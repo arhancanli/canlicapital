@@ -22,7 +22,8 @@ const weekday = (d) => WEEKDAYS[new Date(`${d}T12:00:00Z`).getUTCDay()];
 const YEAR = 364;
 
 // EDGAR prints the acceptance time on the filing index in Eastern time ("2026-07-14 06:30:38").
-// The submissions API's acceptanceDateTime is not used: it is offset by twice the Eastern offset.
+// The submissions API's acceptanceDateTime is not used: many files shift it by an Eastern offset
+// (see acceptanceTimes in sources.mjs).
 export function acceptedEastern(indexHtml) {
   const m = String(indexHtml).match(/Accepted<\/div>\s*<div class="info">\s*(\d{4}-\d{2}-\d{2}) (\d{2}):(\d{2})(?::\d{2})?/);
   return m ? { date: m[1], time: `${m[2]}:${m[3]}`, minutes: Number(m[2]) * 60 + Number(m[3]) } : null;

@@ -4,7 +4,7 @@
 import { z } from "zod";
 
 import { parseForm4 } from "./forms.mjs";
-import { archiveBase, filings, getJson, getText, NotFound, resolveEntity, submissions } from "./sources.mjs";
+import { acceptanceTimes, archiveBase, filings, getJson, getText, NotFound, resolveEntity, submissions } from "./sources.mjs";
 import { priceHistory } from "./tools.mjs";
 
 const DATE = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "a date as YYYY-MM-DD");
@@ -456,7 +456,7 @@ export const eventInput = z.object({
 }).strict();
 
 // The first trading session at or after a filing's acceptance time (16:00 New York close).
-function sessionAfter(iso, tradingDays) {
+export function sessionAfter(iso, tradingDays) {
   const t = new Date(iso);
   const nyDate = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(t);
   const nyHour = Number(new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hour: "2-digit", hour12: false }).format(t)) % 24;
@@ -470,29 +470,30 @@ export async function eventStudy(session, args) {
   const symbol = a.symbol.toUpperCase(), bench = (a.benchmark ?? "SPY").toUpperCase();
   const [pre, post] = a.window ?? [-1, 5], est = a.estimation_days ?? 120, gap = 10, model = a.model ?? "market";
   // Events: dates, or filing acceptance times.
-  let raw = [], source = null;
+  let raw = [], source = null, eventTimes = null;
   if (a.events) raw = a.events.map((d) => ({ at: d, kind: "date", label: d }));
   else {
     const e = await resolveEntity(session, symbol);
     const since = a.since ?? daysAgo(session, 3 * 365);
-    const { rows } = await filings(session, e.cik, { since });
+    const { sub, rows } = await filings(session, e.cik, { since });
     source = `https://data.sec.gov/submissions/CIK${String(e.cik).padStart(10, "0")}.json`;
-    const sub = await submissions(session, e.cik);
-    const acc = new Map();
-    const r = sub.filings?.recent ?? {};
-    (r.accessionNumber ?? []).forEach((x, i) => acc.set(x, r.acceptanceDateTime?.[i]));
     if (a.event_type === "earnings" || a.event_type === "8k") {
-      for (const f of rows) if (f.form === "8-K" && f.filingDate >= since && (a.event_type === "8k" || String(f.items ?? "").split(",").includes("2.02"))) raw.push({ at: acc.get(f.accessionNumber) ?? `${f.filingDate}T21:00:00.000Z`, kind: "filing", label: `${f.form} ${f.accessionNumber}` });
+      for (const f of rows) if (f.form === "8-K" && f.filingDate >= since && (a.event_type === "8k" || String(f.items ?? "").split(",").includes("2.02"))) raw.push({ accession: f.accessionNumber, filed: f.filingDate, kind: "filing", label: `${f.form} ${f.accessionNumber}` });
     } else {
       const code = a.event_type === "insider_buys" ? "P" : "S";
       const f4 = rows.filter((f) => f.form === "4" && f.filingDate >= since).slice(0, 120);
       await Promise.all(f4.map(async (f) => {
         try {
           const doc = parseForm4(await getText(session, `${archiveBase(e.cik, f.accessionNumber)}/${f.primaryDocument.replace(/^xsl[^/]*\//, "")}`, { maxBytes: 4 * 1024 * 1024 }));
-          if (doc.rows.some((t) => t.code === code && t.kind === "stock")) raw.push({ at: acc.get(f.accessionNumber) ?? `${f.filingDate}T21:00:00.000Z`, kind: "filing", label: `Form 4 ${f.accessionNumber} (${doc.owners.map((o) => o.name).join("; ")})` });
+          if (doc.rows.some((t) => t.code === code && t.kind === "stock")) raw.push({ accession: f.accessionNumber, filed: f.filingDate, kind: "filing", label: `Form 4 ${f.accessionNumber} (${doc.owners.map((o) => o.name).join("; ")})` });
         } catch { /* unreadable Form 4 skipped */ }
       }));
     }
+    // Day 0 turns on before or after the 16:00 close, so the time must be right (acceptanceTimes).
+    const { times, shift } = await acceptanceTimes(session, e.cik, sub, raw.map((x) => x.accession));
+    for (const x of raw) x.at = times.has(x.accession) ? new Date(times.get(x.accession)).toISOString() : `${x.filed}T21:00:00.000Z`;
+    eventTimes = shift == null ? "Acceptance times read from each filing's index page on EDGAR (Eastern time); the submissions file's times did not agree with them."
+      : `Acceptance times from EDGAR's submissions file${shift ? `, which shifted them by ${shift > 0 ? "+" : "-"}1 US Eastern offset (4 or 5 hours); corrected` : ""}, checked against the filing index pages of the newest and oldest event.`;
   }
   if (!raw.length) throw new NotFound(`No ${a.event_type ?? "given"} events for ${symbol}${a.event_type ? ` since ${a.since ?? daysAgo(session, 3 * 365)}` : ""}.`);
   raw.sort((x, y) => String(x.at).localeCompare(String(y.at)));
@@ -540,6 +541,7 @@ export async function eventStudy(session, args) {
     ...(skipped.length ? { skipped: { columns: ["event", "reason"], rows: skipped.slice(0, 20) } } : {}),
     meaning: "Abnormal return = actual return minus the model's expected return; CAR sums it over the window. t_stat and p_value test whether the mean CAR across events differs from zero (cross-sectional t test). Returns are simple daily returns of adjusted closes.",
     ...(source ? { sources: [source] } : {}),
+    ...(eventTimes ? { event_times: eventTimes } : {}),
     price_source: ps.source,
     limits: [...LIMITS, "Daily data; events on nearby days overlap and are not adjusted for; a few events give a weak test; a significant average is not a trading rule after costs."],
   };

@@ -268,6 +268,70 @@ function filingRows(block) {
   return out;
 }
 
+// When EDGAR accepted each filing. The submissions files label acceptanceDateTime UTC, but it is not
+// reliable. Measured 2026-10-11 on 450 filings from 25 companies' files:
+//   - each file was either right for every filing in it, or shifted by one US Eastern offset
+//     (+4 h in daylight time, +5 h in standard time);
+//   - the same filing read differently in two files (the issuer's and the insider's);
+//   - the shifted files were the ones rebuilt since early October 2026.
+// edgartools#1501 also saw files with Eastern time labelled UTC. So the filing index page's
+// "Accepted" time (Eastern) calibrates a whole file: one probe, a second to check it, and
+// every time is read from its own index page if they disagree.
+const NY = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit" });
+const HOUR = 3600000;
+export function easternOffsetMs(ms) {
+  const at = Math.floor(ms / 1000) * 1000;
+  const p = Object.fromEntries(NY.formatToParts(new Date(at)).map((x) => [x.type, x.value]));
+  return at - Date.UTC(Number(p.year), Number(p.month) - 1, Number(p.day), Number(p.hour) % 24, Number(p.minute), Number(p.second));
+}
+// An Eastern wall-clock time ("2026-07-14 06:30:38") as a moment.
+export function easternToMs(wall) {
+  const asUtc = Date.parse(`${wall.replace(" ", "T")}Z`);
+  for (const h of [4, 5]) if (easternOffsetMs(asUtc + h * HOUR) === h * HOUR) return asUtc + h * HOUR;
+  return asUtc + 5 * HOUR;
+}
+export function acceptedOnIndex(html) {
+  const m = String(html).match(/Accepted<\/div>\s*<div class="info">\s*(\d{4}-\d{2}-\d{2} \d{2}:\d{2})(:\d{2})?/);
+  return m ? `${m[1]}${m[2] ?? ":00"}` : null;
+}
+// The file's error in Eastern offsets (-1, 0 or 1) from one filing's true time, or NaN.
+export function fileShift(apiMs, trueMs) {
+  const d = apiMs - trueMs, off = easternOffsetMs(trueMs);
+  return d === 0 ? 0 : d === off ? 1 : d === -off ? -1 : NaN;
+}
+export function unshift(apiMs, shift) {
+  if (shift === 0) return apiMs;
+  for (const h of [4, 5]) if (easternOffsetMs(apiMs - shift * h * HOUR) === h * HOUR) return apiMs - shift * h * HOUR;
+  return null;
+}
+export async function acceptanceTimes(session, cik, sub, accessions) {
+  const r = sub.filings?.recent ?? {};
+  const api = new Map();
+  (r.accessionNumber ?? []).forEach((a, i) => { const ms = Date.parse(r.acceptanceDateTime?.[i] ?? ""); if (Number.isFinite(ms)) api.set(a, ms); });
+  const fromIndex = async (acc) => {
+    try {
+      const wall = acceptedOnIndex(await getText(session, `${archiveBase(cik, acc)}/${acc}-index.htm`, { maxBytes: 2 * 1024 * 1024 }));
+      return wall ? easternToMs(wall) : null;
+    } catch (err) { if (err instanceof NotFound) return null; throw err; }
+  };
+  const want = [...new Set(accessions)];
+  const inFile = want.filter((a) => api.has(a)).sort((x, y) => api.get(x) - api.get(y));
+  const times = new Map();
+  const shifts = [];
+  for (const acc of new Set([inFile.at(-1), inFile[0]].filter(Boolean))) {
+    const t = await fromIndex(acc);
+    if (t == null) continue;
+    times.set(acc, t);
+    shifts.push(fileShift(api.get(acc), t));
+  }
+  const shift = shifts.length && shifts.every((s) => s === shifts[0]) && !Number.isNaN(shifts[0]) ? shifts[0] : null;
+  await Promise.all(want.filter((a) => !times.has(a)).map(async (acc) => {
+    const t = shift != null && api.has(acc) ? unshift(api.get(acc), shift) : await fromIndex(acc);
+    if (t != null) times.set(acc, t);
+  }));
+  return { times, shift };
+}
+
 // Filings newest first: the recent block (at least a year, up to 1,000 filings), then older pages
 // only while they may hold filings on or after `since`.
 export async function filings(session, cik, { since } = {}) {
