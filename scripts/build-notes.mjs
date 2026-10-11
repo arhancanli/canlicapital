@@ -19,7 +19,7 @@
 // =============================================================================
 
 import { DESCRIPTION_MIN as DESCRIPTION_WINDOW_MIN, fitDescription as fitDescriptionFrom } from "./lib/descriptions.mjs";
-import { readFileSync, readdirSync, writeFileSync, existsSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -33,6 +33,11 @@ import {
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const SRC_DIR = resolve(ROOT, "notes");
+// The data a note cites lives in config/notes/ and is published to /glassbox/ here, at build time,
+// before any note is rendered (a note's links must resolve). The deploy replaces public/glassbox/
+// with the engine's export before it builds, so a file committed there would be gone before the
+// page linking to it went live (the same reason mcp_agent_benchmark.json moved to config/).
+const DATA_DIR = resolve(ROOT, "config", "notes");
 const ORIGIN = "https://canlicapital.com";
 
 const esc = (v) =>
@@ -386,7 +391,20 @@ ${renderProductShellFooter()}
   return html;
 }
 
+function publishNoteData() {
+  if (!existsSync(DATA_DIR)) return [];
+  const files = readdirSync(DATA_DIR).filter((f) => f.endsWith(".json")).sort();
+  mkdirSync(resolve(ROOT, "public", "glassbox"), { recursive: true });
+  for (const f of files) {
+    JSON.parse(readFileSync(resolve(DATA_DIR, f), "utf8"));
+    copyFileSync(resolve(DATA_DIR, f), resolve(ROOT, "public", "glassbox", f));
+  }
+  return files;
+}
+
 function main() {
+  const published = publishNoteData();
+  if (published.length) console.log(`  note data: ${published.join(", ")} -> public/glassbox/`);
   const files = readdirSync(SRC_DIR).filter((f) => f.endsWith(".md")).sort();
   if (!files.length) throw new Error("no notes to build");
   const notes = files
