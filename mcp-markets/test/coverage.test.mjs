@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { createSession } from "../src/sources.mjs";
+import * as E from "../src/events.mjs";
 import * as F from "../src/funds.mjs";
 import * as G from "../src/global.mjs";
 import * as O from "../src/ownership.mjs";
@@ -208,4 +209,37 @@ test("large_holders: across the market, the week's new 13D stakes with holder, s
   assert.deepEqual([r.since, r.until, r.total, r.shown], ["2026-10-02", "2026-10-09", 113, 3]);
   assert.deepEqual(r.rows[0].slice(0, 8), ["2026-10-09", "SCHEDULE 13D", "Vertical Data Inc.", 2033264, "Creatura Christopher", "individual", 1205004, 0.079]);
   assert.ok(r.rows.every((x) => typeof x[9] === "string" && x[9].length > 0), "each 13D states its purpose");
+});
+
+test("company_events: event names, item numbers and aliases resolve; excerpts start at what the filing says", () => {
+  assert.equal(E.eventCode("earnings"), "2.02");
+  assert.equal(E.eventCode("Item 4.02"), "4.02");
+  assert.equal(E.eventCode("cyber"), "1.05");
+  assert.equal(E.eventCode("executive change"), "5.02");
+  assert.throws(() => E.eventCode("weather"), /Unknown 8-K event/);
+  // Converted text can glue a heading to its title; a later "Item 1.05(a) of Form 8-K" is a reference.
+  const t = "Item 1.05Material Cybersecurity Incident.\nAstrana Health detected unusual activity.\nItem 1.05(a) of Form 8-K was not determined.\nItem 9.01 Exhibits.";
+  assert.equal(E.itemExcerpt(t, "1.05"), "Astrana Health detected unusual activity. Item 1.05(a) of Form 8-K was not determined.");
+  const wrapped = "Item 5.02 Departure of Directors or Certain Officers; Compensatory Arrangements of Certain\nOfficers. On April 20, 2026, Apple announced a transition.";
+  assert.equal(E.itemExcerpt(wrapped, "5.02"), "On April 20, 2026, Apple announced a transition.");
+});
+
+test("company_events: the month's restatements across the market, from each 8-K itself", async () => {
+  const { s } = session();
+  const r = await E.companyEvents(s, { event: "restatement", limit: 3 });
+  assert.deepEqual(r.event, { item: "4.02", name: "restatement", meaning: "previously issued financial statements should no longer be relied on (restatement)" });
+  assert.deepEqual([r.since, r.until, r.found], ["2026-09-09", "2026-10-09", 6]);
+  assert.deepEqual(r.rows.map((x) => [x[0], x[5]]), [["2026-10-08", "0001493152-26-046278"], ["2026-10-02", "0001477932-26-006021"], ["2026-09-25", "0001079973-26-001283"]]);
+  assert.ok(r.rows.every((x) => x[2].includes("4.02") && x[3].includes("restatement")));
+  assert.match(r.rows[2][6], /ftw_8k\.htm$/, "the 8-K itself, not the auditor's letter the search also matched");
+  assert.match(r.rows[2][4], /^The management of Feel the World, Inc\./);
+});
+
+test("company_events: Apple's executive changes, each in the words of the filing", async () => {
+  const { s } = session();
+  const r = await E.companyEvents(s, { company: "AAPL", event: "executive_change", since: "2025-01-01", limit: 3 });
+  assert.equal(r.matched, 6);
+  assert.deepEqual(r.rows.map((x) => x[0]), ["2026-04-20", "2026-01-02", "2025-12-05"]);
+  assert.match(r.rows[0][4], /^On April 20, 2026, Apple Inc\. \("Apple"\) announced that Tim Cook will transition from his role as Chief Executive Officer to Executive Chair/);
+  assert.match(r.rows[2][4], /Jennifer Newstead will become Apple's general counsel/);
 });

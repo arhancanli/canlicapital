@@ -7,6 +7,11 @@
   (SAP.DE, 7203.T, SHEL.L, 0700.HK), by symbol or plain name, and says what each price means
   (pence in London, futures rolls, index levels). Bars stamped after the window asked for are left
   out.
+- `company_events`: company news from Form 8-K, by item (earnings, material agreements, completed
+  deals, executive changes, restatements, auditor changes, bankruptcies, cyber incidents,
+  restructurings, delisting notices), for one company or, by event, across the market, each with
+  the opening of what the filing says under the item. Search hits on exhibits give way to the 8-K
+  itself, and only filings that carry the item are kept.
 - `large_holders`: who owns more than 5 percent of a company, from structured Schedules 13D and
   13G (shares, percent of class, voting power, passive or activist, a 13D's stated purpose), each
   holder's latest filing first; filings the company itself made about other companies are left

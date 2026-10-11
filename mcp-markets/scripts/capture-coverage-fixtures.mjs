@@ -3,8 +3,9 @@
 // URLs come from the same helpers the code uses, and windows end before the tests' clock
 // (2026-10-09 12:00 UTC), so a capture taken later reproduces the same requests.
 import { readFileSync, writeFileSync } from "node:fs";
-import { gzipSync } from "node:zlib";
+import { gunzipSync, gzipSync } from "node:zlib";
 
+import * as E from "../src/events.mjs";
 import * as F from "../src/funds.mjs";
 import * as G from "../src/global.mjs";
 import * as O from "../src/ownership.mjs";
@@ -34,8 +35,11 @@ for (const symbol of ["EURUSD=X", "CL=F", "^GSPC", "SHEL.L", "SAP.DE", "BTC-USD"
 // The rest are recorded by running the tools themselves at the tests' clock, so the requests are
 // exactly the ones the code makes.
 const NOW = Date.parse("2026-10-09T12:00:00Z");
+// A response already in the manifest is served from it, as the tests will, so the tool takes the
+// same path here as under replay (Apple's submissions fixture is cut to 10-K, 10-Q and 8-K).
 async function record(run, args) {
   const fetchImpl = async (url, init) => {
+    if (manifest[url]) return new Response(gunzipSync(readFileSync(new URL(manifest[url], DIR))).toString("utf8"), { status: 200 });
     const res = await fetch(url, init);
     const text = await res.text();
     if (res.ok && !manifest[url]) {
@@ -61,6 +65,9 @@ await record(F.fundPortfolio, { fund: "TLT", top: 2 });
 // week's new 13D stakes across the market.
 await record(O.largeHolders, { company: "21344" });
 await record(O.largeHolders, { limit: 3 });
+// 8-K events: the month's restatements across the market, and Apple's executive changes.
+await record(E.companyEvents, { event: "restatement", limit: 3 });
+await record(E.companyEvents, { company: "AAPL", event: "executive_change", since: "2025-01-01", limit: 3 });
 
 writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
 console.log(n, "coverage responses in the manifest");
