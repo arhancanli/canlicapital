@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **Workflows as prompts.** `company_brief`, `earnings_preview`, `macro_snapshot`, `ownership` and
+  `backtest_check` are MCP prompts. Clients list them as slash commands; each runs one batched
+  `run_tool` call across the packs and says what to write. A prompt is offered only when every tool
+  it names is in an enabled pack. Every call is checked against its tool's schema in
+  `test/prompts.test.mjs`. They cost no context until chosen.
 - **Results too large to read.** A result above 200,000 characters of JSON (about 50,000 tokens)
   comes back as a preview. Every field stays, long lists show their first and last 5 items, and a
   note names the lists it cut. The whole result stays under its ref. `show_result`, called through

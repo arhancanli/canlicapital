@@ -25,6 +25,7 @@ import { z } from "zod";
 import { resolveRefs } from "./files.mjs";
 import { OMITTED, PACKS, RENAMES, enabledPacks, loadPack } from "./packs.mjs";
 import { buildIndex, search } from "./search.mjs";
+import { registerPrompts } from "./prompts.mjs";
 
 const PKG = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
 const INDEX = JSON.parse(readFileSync(new URL("./index.json", import.meta.url), "utf8"));
@@ -292,6 +293,7 @@ export function registerAll(server, packs = enabledPacks()) {
     return { results, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) };
   }));
   registerResources(server, packs);
+  registerPrompts(server, BY_NAME, packs);
 }
 
 export const PRIVACY = (packs) => ({
