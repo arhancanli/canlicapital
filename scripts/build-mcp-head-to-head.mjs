@@ -173,6 +173,7 @@ export function summarize(config, flagship) {
       install: flagship.install, front: flagship.front, packs: flagship.packs,
       tools: flagship.packs.reduce((s, p) => s + p.tools, 0),
       search: flagship.search, file_reference: flagship.file_reference, batch: flagship.batch, example: flagship.example,
+      ...(flagship.coverage ? { coverage: flagship.coverage } : {}),
     },
   };
 }

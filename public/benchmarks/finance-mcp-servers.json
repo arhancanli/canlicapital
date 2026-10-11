@@ -2088,8 +2088,8 @@
   }
  ],
  "context": {
-  "measured": "2026-10-10",
-  "commit": "d168702924dda637174e1d07d7a4483e956d35bc",
+  "measured": "2026-10-11",
+  "commit": "70533a1bc32cb5068f04cae91c5df5c6a316e501",
   "path": "mcp-canli/bench/rivals/context.py",
   "tokenizer": "o200k_base",
   "method": "Each server is started with the benchmark's command; its instructions and whole tool list are counted in the shape an OpenAI-style client sends tools. No model is called.",
@@ -2098,9 +2098,9 @@
     "arm": "canli",
     "label": "canli-mcp",
     "tools": 3,
-    "reaches": 285,
+    "reaches": 306,
     "tokens": 859,
-    "seconds": 0.13
+    "seconds": 0.08
    },
    {
     "arm": "openbb",
@@ -2108,7 +2108,7 @@
     "tools": 1056,
     "reaches": 1056,
     "tokens": 432001,
-    "seconds": 30.7
+    "seconds": 12.03
    },
    {
     "arm": "openbb",
@@ -2116,7 +2116,7 @@
     "tools": 14,
     "reaches": 1056,
     "tokens": 2171,
-    "seconds": 26.82
+    "seconds": 10.32
    },
    {
     "arm": "edgartools",
@@ -2124,7 +2124,7 @@
     "tools": 13,
     "reaches": 13,
     "tokens": 3801,
-    "seconds": 1.59
+    "seconds": 1.17
    },
    {
     "arm": "yahoo",
@@ -2132,7 +2132,7 @@
     "tools": 9,
     "reaches": 9,
     "tokens": 2205,
-    "seconds": 1.35
+    "seconds": 0.91
    }
   ]
  },
@@ -2144,9 +2144,9 @@
   "source": {
    "repository": "https://github.com/arhancanli/canlicapital",
    "path": "mcp-canli",
-   "commit": "e0233a2592685cef1d5f263cfab941ad2c7c5747",
-   "measured": "2026-10-09",
-   "note": "Tool counts come from mcp-canli/src/index.json at that commit; the search figures from mcp-canli/test/search.test.mjs; the file and batch figures from the README's measurements."
+   "commit": "70533a1bc32cb5068f04cae91c5df5c6a316e501",
+   "measured": "2026-10-11",
+   "note": "Tool counts come from mcp-canli/src/index.json at that commit; the search figures are the 48 held-out everyday requests in mcp-canli/test/search.test.mjs (written after the 0.3.0 search changes and measured once, untuned); the file and batch figures from the README's measurements."
   },
   "install": {
    "npx": "npx -y canli-mcp",
@@ -2185,9 +2185,9 @@
    {
     "id": "markets",
     "label": "Markets",
-    "tools": 13,
+    "tools": 34,
     "package": "canli-markets-mcp",
-    "covers": "SEC filings and their sections, insider trades, 13F holdings, Treasury yields, FRED series, prices and market-wide screens"
+    "covers": "SEC filings and their sections, insider trades, 13F and 5% holders, fund portfolios, short interest, options and volatility, the Fed, Treasury auctions, World Bank and OECD data, prices and market-wide screens"
    },
    {
     "id": "fundamentals",
@@ -2218,11 +2218,11 @@
     "covers": "factor backtests that refuse lookahead"
    }
   ],
-  "tools": 285,
+  "tools": 306,
   "search": {
-   "requests": 50,
-   "first": 47,
-   "top_three": 50
+   "requests": 48,
+   "first": 46,
+   "top_three": 47
   },
   "file_reference": {
    "prices": 1000,
@@ -2252,6 +2252,18 @@
    "evidence_documents": 3,
    "evidence_sha256_16": "f192181c12dad789",
    "milliseconds": 764
+  },
+  "coverage": {
+   "questions": 53,
+   "keyless_tool": {
+    "canli-mcp": 49,
+    "OpenBB": 39,
+    "EdgarTools": 11,
+    "Yahoo Finance MCP": 13
+   },
+   "checked": "2026-10-11",
+   "method": "A question counts when the server lists a tool for it that needs no API key, checked against each server's own tool list. It does not say the answer is right; the head-to-head benchmark measures that.",
+   "source": "mcp-canli/bench/rivals/COVERAGE.md"
   }
  }
 }
