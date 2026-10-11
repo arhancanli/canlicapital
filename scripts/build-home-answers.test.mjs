@@ -67,8 +67,8 @@ test("every comparison row has one cell per column, and the table names its sour
 test("the checks refuse a config that would publish a weaker answer", () => {
   const cases = [
     ["not a definition", (c) => { c.definition = "Quant research, proved in the open."; }, /definition must read/],
-    ["too long", (c) => { c.answer += " This sentence adds far too many words to what was a tight answer."; }, /must be 40 to 60 words/],
-    ["missing cell", (c) => { c.comparison.rows[1].cells.pop(); }, /has 2 cells for 3 columns/],
+    ["too long", (c) => { c.answer += " This sentence adds far too many words to what was a tight answer.".repeat(3); }, /must be 40 to 60 words/],
+    ["missing cell", (c) => { c.comparison.rows[1].cells.pop(); }, new RegExp(`has ${config.comparison.columns.length - 1} cells for ${config.comparison.columns.length} columns`)],
     ["unsourced", (c) => { c.comparison.sources = []; }, /comparison.sources must list/],
     ["plain-http source", (c) => { c.comparison.sources[0].url = "http://example.com"; }, /must be an https URL/],
     ["not a question", (c) => { c.faq[0].question = "What Canli Capital is"; }, /must end with a question mark/],

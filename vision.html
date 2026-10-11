@@ -4,24 +4,25 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>What Canli Capital is building | Canli Capital</title>
-<meta name="description" content="Canli Capital is building open infrastructure for AI agents in finance: MCP servers, a glass-box quant engine, verified financial datasets and agent-run execution." />
+<meta name="description" content="Canli Capital builds open infrastructure for AI agents in finance, in four parts: MCP servers for context, an engine for testing, datasets and agent-run execution." />
 <link rel="canonical" href="https://canlicapital.com/vision" />
 <meta name="author" content="Arhan Canli" />
+<meta name="canli:sources" content="benchmarks/finance-mcp-servers.json stats/adoption.json datasets/filing-facts/v0/leaderboard.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
 <meta property="og:title" content="What Canli Capital is building" />
-<meta property="og:description" content="Canli Capital is building open infrastructure for AI agents in finance: MCP servers, a glass-box quant engine, verified financial datasets and agent-run execution." />
+<meta property="og:description" content="Canli Capital builds open infrastructure for AI agents in finance, in four parts: MCP servers for context, an engine for testing, datasets and agent-run execution." />
 <meta property="og:url" content="https://canlicapital.com/vision" />
 <meta property="og:image" content="https://canlicapital.com/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="What Canli Capital is building" />
-<meta name="twitter:description" content="Canli Capital is building open infrastructure for AI agents in finance: MCP servers, a glass-box quant engine, verified financial datasets and agent-run execution." />
+<meta name="twitter:description" content="Canli Capital builds open infrastructure for AI agents in finance, in four parts: MCP servers for context, an engine for testing, datasets and agent-run execution." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"},"founder":{"@type":"Person","name":"Arhan Canli","url":"https://canlicapital.com/founder"},"sameAs":["https://github.com/arhancanli/canlicapital","https://www.npmjs.com/package/canli-validation-mcp"]},{"@type":"AboutPage","name":"What Canli Capital is building","description":"Canli Capital is building open infrastructure for AI agents in finance: MCP servers, a glass-box quant engine, verified financial datasets and agent-run execution.","url":"https://canlicapital.com/vision","about":{"@id":"https://canlicapital.com/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com/"},{"@type":"ListItem","position":2,"name":"Vision","item":"https://canlicapital.com/vision"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"},"founder":{"@type":"Person","name":"Arhan Canli","url":"https://canlicapital.com/founder"},"sameAs":["https://github.com/arhancanli/canlicapital","https://www.npmjs.com/package/canli-validation-mcp"]},{"@type":"AboutPage","name":"What Canli Capital is building","description":"Canli Capital builds open infrastructure for AI agents in finance, in four parts: MCP servers for context, an engine for testing, datasets and agent-run execution.","url":"https://canlicapital.com/vision","about":{"@id":"https://canlicapital.com/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com/"},{"@type":"ListItem","position":2,"name":"Vision","item":"https://canlicapital.com/vision"}]}]}</script>
 <!-- site-design:start -->
 <link rel="stylesheet" href="/css/product-shell.css" />
 <!-- site-design:end -->
@@ -34,6 +35,8 @@
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="/mcp-servers">MCP servers</a>
+<a class="cc-shell__link" href="/benchmarks/finance-mcp-servers">Benchmark</a>
 <a class="cc-shell__link" href="/research" data-current="true">Research</a>
 <a class="cc-shell__link" href="/performance">ALPHAC</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
@@ -88,54 +91,40 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content">
-  <article class="paper__article">
-    <nav class="paper__crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Canli Capital</a></li><li><span aria-current="page">Vision</span></li></ol></nav>
-    <p class="paper__eyebrow">The vision</p>
-    <h1 class="paper__title">What Canli Capital is building</h1>
-    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
-    <div class="paper__body">
-      <p class="hub__standfirst">Financial software was built for people at terminals. More and more of the
-      work is now done by AI agents. Canli Capital is building the open infrastructure they need: data and
-      tests they can check, tools they can call, and a record that keeps its mistakes.</p>
-      <p>Everything is open source and published as it is built, including the tests that fail. Each pillar
-      below says what exists today and what comes next; a goal stays a goal until it is built and measured.</p>
-
-    <section class="pillar" aria-labelledby="pillar-1">
-      <p class="pillar__label">Pillar 1</p>
-      <h2 id="pillar-1">Financial context for AI agents</h2>
-      <p>The most useful and most token-efficient MCP servers and APIs in finance: an agent asks a financial question and gets a compact, sourced answer it can check.</p>
-      <dl><dt>MCP servers</dt><dd>canli-validation-mcp, canli-fundamentals-mcp and canli-research-mcp, open source on npm and the MCP Registry, local or hosted at canlicapital.com/mcp.</dd><dt>API</dt><dd>A free key and validation API that returns content-hashed, signed receipts.</dd><dt>Next</dt><dd>More servers in the family (backtesting, portfolio), smaller tool lists and published token and latency benchmarks for each server.</dd></dl>
-      <p><a href="/mcp-servers">MCP servers</a> · <a href="/developers">Get a free API key</a></p>
-    </section>
-    <section class="pillar" aria-labelledby="pillar-2">
-      <p class="pillar__label">Pillar 2</p>
-      <h2 id="pillar-2">A glass-box quantitative engine</h2>
-      <p>A backtesting and live-tracking engine whose every test, failure and correction is public, so a result can be checked instead of trusted.</p>
-      <dl><dt>ALPHAC</dt><dd>The open-source engine, with its paper-traded record, trial accounting and retracted figures kept visible.</dd><dt>Validators</dt><dd>Deflated Sharpe, probability of backtest overfitting (CSCV), minimum track record and backtest length, the haircut Sharpe and White&#39;s Reality Check, checked against their papers. They measure overfitting risk; they cannot remove it.</dd><dt>Next</dt><dd>More asset classes and more economically distinct strategies, each admitted only on forward evidence.</dd></dl>
-      <p><a href="/research">Research</a> · <a href="/tools">All tools</a> · <a href="https://github.com/arhancanli/alphac">ALPHAC on GitHub</a></p>
-    </section>
-    <section class="pillar" aria-labelledby="pillar-3">
-      <p class="pillar__label">Pillar 3</p>
-      <h2 id="pillar-3">A financial-reasoning data refinery</h2>
-      <p>Datasets for training and testing AI on finance, where every answer is computed from public filings and checked by qualified people.</p>
-      <dl><dt>FilingFacts v0</dt><dd>Questions generated from SEC XBRL data, each answer recomputed by an independent checker and citing its filing.</dd><dt>Annotation</dt><dd>Guidelines, a gold packet and agreement scoring are ready. No item is called human-verified until two people have checked it.</dd><dt>Next</dt><dd>A public benchmark with results for several AI models, and the first double-labelled expert gold set.</dd></dl>
-      <p><a href="/research/filing-facts-v0">FilingFacts v0</a> · <a href="/annotate">Help check the dataset</a></p>
-    </section>
-    <section class="pillar" aria-labelledby="pillar-4">
-      <p class="pillar__label">Pillar 4</p>
-      <h2 id="pillar-4">Agent-run execution</h2>
-      <p>Strategies that pass the engine&#39;s tests, run by agents through real brokers, with every order journaled and verifiable.</p>
-      <dl><dt>Paper trading</dt><dd>A public paper-traded record (not funded) and an execution MCP in development with paper trading by default.</dd><dt>Next</dt><dd>Real capital only after licensing, a legal entity and a forward record that justifies it. Nothing here is investment advice or an offer.</dd></dl>
-      <p><a href="/progress">The live paper record</a></p>
-    </section>
-      <section class="pillar">
-        <h2>How to follow and use it</h2>
-        <p><a href="/stats">Usage stats</a> · <a href="https://github.com/arhancanli/canlicapital">Source on GitHub</a> ·
-        <a href="/developers">Developers</a> · <a href="/founder">Founder</a></p>
-      </section>
-    </div>
-  </article>
+<main class="vision" id="content"><header class="cc-hero" data-scene="harbour"><picture class="cc-hero__art" aria-hidden="true"><source type="image/avif" media="(max-width: 768px)" srcset="/scenes/harbour-900.avif"><source type="image/webp" media="(max-width: 768px)" srcset="/scenes/harbour-900.webp"><source type="image/avif" srcset="/scenes/harbour-1600.avif 1600w, /scenes/harbour-2400.avif 2400w" sizes="100vw"><source type="image/webp" srcset="/scenes/harbour-1600.webp 1600w, /scenes/harbour-2400.webp 2400w" sizes="100vw"><img src="/scenes/harbour-1600.webp" alt="" width="1600" height="560" fetchpriority="high" decoding="async"></picture><div class="cc-hero__inner"><nav class="paper__crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Canli Capital</a></li><li><span aria-current="page">Vision</span></li></ol></nav><p class="vision-eyebrow">The vision</p><h1>Picture the market at dawn, every agent working from checked numbers</h1><p class="vision-lead">AI agents will research, test and trade at machine speed. Canli Capital is building what they stand on, in the open, in four parts: the context they read, the tests that keep them honest, the data they learn from and the execution they act through.</p><div class="vision-actions"><a href="#parts">The four parts</a><a href="/mcp-servers">Start with canli-mcp</a></div></div></header>
+  <section class="flagship-figures" aria-label="Where it stands today"><ul><li><b>285</b><span>finance tools behind one MCP server</span></li><li><b>7</b><span>servers of the family on npm</span></li><li><b>5,676</b><span>npm downloads in the last 30 days</span></li><li><b>79%</b><span>correct in the open benchmark; the best of the others, 54%</span></li><li><b>72%</b><span>of FilingFacts questions right for gpt-5-mini with a Canli MCP server, against 19% on its own</span></li></ul></section>
+  <section class="vision-intro dev-section flagship-section" id="parts"><p class="eyebrow">Four parts</p><h2>What it stands on</h2><p class="flagship-intro">Financial software was built for people at terminals. More and more of the work is now done by AI agents. Everything here is open source and published as it is built, including the tests that fail; each part says what exists today and what comes next, and a goal stays a goal until it is built and measured.</p></section>
+  <div class="vision-parts">
+  <section class="vision-part" data-part="context" aria-labelledby="part-context">
+    <p class="vision-part__n">01</p>
+    <div class="vision-part__head"><h2 id="part-context">Context</h2><em class="vision-chip vision-chip--live">Live</em></div>
+    <p class="vision-part__goal">MCP servers that give AI agents primary-source financial data and quant tools, for as few tokens as possible.</p>
+    <div class="vision-part__cols"><div><h3>Today</h3><ul><li>canli-mcp puts 285 tools behind 3: SEC filings, fundamentals, Treasury and FRED data, prices, quant analytics, backtest validation and paper trading, in 859 tokens of context.</li><li>7 servers of the family are on npm, three of them also hosted at canlicapital.com/mcp.</li><li>In the open benchmark, canli-mcp answered 79% of the questions every server finished; the best of the other open servers, 54%.</li></ul></div><div><h3>Next</h3><p>canli-mcp on npm and the MCP Registry, a held-out benchmark set the servers were not tuned on, and more servers in the family.</p></div></div>
+    <p class="vision-part__links"><a href="/mcp-servers">canli-mcp and the servers</a><a href="/benchmarks/finance-mcp-servers">The benchmark</a></p>
+  </section>
+  <section class="vision-part" data-part="testing" aria-labelledby="part-testing">
+    <p class="vision-part__n">02</p>
+    <div class="vision-part__head"><h2 id="part-testing">Testing</h2><em class="vision-chip vision-chip--live">Live</em></div>
+    <p class="vision-part__goal">An engine that counts every trial, so a lucky backtest is called luck instead of a strategy.</p>
+    <div class="vision-part__cols"><div><h3>Today</h3><ul><li>ALPHAC, the open-source engine, keeps its paper-traded record, its trial accounting and its retracted figures in public.</li><li>The validators (deflated Sharpe, probability of backtest overfitting, minimum track record, the haircut Sharpe and White&#39;s Reality Check) are checked against their papers. They measure overfitting risk; they cannot remove it.</li></ul></div><div><h3>Next</h3><p>More asset classes and more economically distinct strategies, each admitted only on forward evidence.</p></div></div>
+    <p class="vision-part__links"><a href="/research">Research</a><a href="/trials">Every trial</a><a href="/tools">The calculators</a></p>
+  </section>
+  <section class="vision-part" data-part="data" aria-labelledby="part-data">
+    <p class="vision-part__n">03</p>
+    <div class="vision-part__head"><h2 id="part-data">Data</h2><em class="vision-chip vision-chip--next">Started</em></div>
+    <p class="vision-part__goal">Financial datasets to train and test AI models, where every answer is computed from public filings and checked by qualified people.</p>
+    <div class="vision-part__cols"><div><h3>Today</h3><ul><li>FilingFacts asks AI models questions about what companies reported to the SEC. On their own, gpt-5-mini answered 19% correctly; with a Canli MCP server reading the filings, 72%.</li><li>Every answer is recomputed by an independent checker and cites its filing. No item is called human-verified until two people have checked it.</li></ul></div><div><h3>Next</h3><p>The first double-labelled expert gold set, and benchmark results for more models.</p></div></div>
+    <p class="vision-part__links"><a href="/benchmarks/filingfacts">FilingFacts results</a><a href="/annotate">Help check the dataset</a></p>
+  </section>
+  <section class="vision-part" data-part="execution" aria-labelledby="part-execution">
+    <p class="vision-part__n">04</p>
+    <div class="vision-part__head"><h2 id="part-execution">Execution</h2><em class="vision-chip vision-chip--next">Paper only</em></div>
+    <p class="vision-part__goal">Strategies that pass the tests, run by agents through real brokers, with every order journaled and checkable.</p>
+    <div class="vision-part__cols"><div><h3>Today</h3><ul><li>A public paper-traded record, not funded, with every position, decision and broker reconciliation published.</li><li>canli-paper-trading-mcp places Alpaca paper orders behind pre-trade checks and a kill switch.</li></ul></div><div><h3>Next</h3><p>Real capital only after licensing, a legal entity and a forward record that justifies it. Nothing here is investment advice or an offer.</p></div></div>
+    <p class="vision-part__links"><a href="/record">The paper record</a><a href="/progress">Corrections</a></p>
+  </section>
+  </div>
+  <section class="dev-section flagship-section vision-follow"><p class="eyebrow">Follow and use it</p><h2>Build on it</h2><p class="vision-part__links"><a href="/mcp-servers">Install canli-mcp</a><a href="/developers">Developer guide</a><a href="/stats">Usage</a><a href="https://github.com/arhancanli/canlicapital">Source on GitHub</a><a href="/founder">The founder</a></p></section>
 </main>
 <footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
   <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
@@ -185,8 +174,11 @@
     <nav aria-label="Portfolio and research">
       <span>Research system</span>
       <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/record">Paper record</a>
       <a href="/systems">ALPHAC systems</a>
       <a href="/research">Research papers</a>
+      <a href="/benchmarks/finance-mcp-servers">Finance MCP benchmark</a>
+      <a href="/benchmarks/filingfacts">FilingFacts benchmark</a>
       <a href="/trials">Trial union</a>
     </nav>
     <nav aria-label="Evidence and verification">
