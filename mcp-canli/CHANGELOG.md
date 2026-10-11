@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- `find_tool`: "8-K" and "10-Q" keep their number when a request is split into words (8k, 10q),
+  "news" is no longer stemmed to "new", and a one-word tool name (`history`) that merely appears
+  in a request no longer gets the naming bonus (the whole request, or a name with an underscore,
+  still picks a tool). The 50-request cross-pack test goes from 47 to 48 answered first.
+- `bench/rivals/coverage.mjs` and `COVERAGE.md`: which of 53 finance questions each server can
+  answer, checked against every server's own tool list.
+
 ## 0.2.1
 
 The first release on npm: 0.2.0's contents, unchanged. The 0.2.0 number is held by a staged copy on

@@ -1,0 +1,4333 @@
+{
+"listed_at": "2026-10-11T04:42:02.587Z",
+"how": "node list-rivals (MCP tools/list against each server as pinned in env/*-frozen.txt; OpenBB with its full catalog, not tool-discovery mode)",
+"servers": {
+"openbb": {
+"count": 1056,
+"tools": [
+[
+"run_pipeline",
+"Run tools in sequence on the server, feeding the `results` of earlier steps (their whole output when they have none) into the arguments of l"
+],
+[
+"openbb_dispatch",
+"Execute one OpenBB command and return its serialized response."
+],
+[
+"openbb_batch_dispatch",
+"Execute OpenBB commands concurrently and return their responses in input order."
+],
+[
+"openbb_list_commands",
+"List every OpenBB command with a one-line description."
+],
+[
+"openbb_describe_command",
+"Return the parameters and output schema of one OpenBB command."
+],
+[
+"install_skill",
+"Install a skill (SKILL.md plus supporting files) and make it readable via list_resources and read_resource."
+],
+[
+"bls_cpi_t1_expenditure_category",
+"CPI News Release Table 1 — CPI-U U.S. city average, by expenditure category."
+],
+[
+"bls_cpi_t2_detailed_expenditure",
+"CPI News Release Table 2 — CPI-U U.S. city average, by detailed expenditure category."
+],
+[
+"bls_cpi_t3_special_aggregates",
+"CPI News Release Table 3 — CPI-U U.S. city average, special aggregate indexes."
+],
+[
+"bls_cpi_t4_selected_areas",
+"CPI News Release Table 4 — CPI-U selected areas, all items index."
+],
+[
+"bls_cpi_t5_chained_vs_cpiu",
+"CPI News Release Table 5 — Chained CPI (C-CPI-U) and CPI-U 1m/12m percent changes."
+],
+[
+"bls_cpi_t6_1m_analysis",
+"CPI News Release Table 6 — CPI-U U.S. city average, by expenditure category, 1-month analysis."
+],
+[
+"bls_cpi_t7_12m_analysis",
+"CPI News Release Table 7 — CPI-U U.S. city average, by expenditure category, 12-month analysis."
+],
+[
+"bls_cpi_relative_importance",
+"Fetch BLS CPI relative-importance and weights for one yearly file + sheet."
+],
+[
+"bls_cpi_seasonal_factors",
+"Fetch BLS CPI revised seasonally-adjusted indexes and seasonal factors."
+],
+[
+"bls_cpi_supplemental_tables",
+"Fetch one of the BLS CPI supplemental XLSX tables (C-CPI-U, CPI-W, historical, etc.)."
+],
+[
+"bls_cpi_documents",
+"List BLS CPI release PDFs for the file viewer (current edition + archive back to May 2002)."
+],
+[
+"bls_cpi_by_category",
+"BLS Consumer Price Index chart — Consumer Price Index by Category — Latest 12-Month % Change."
+],
+[
+"bls_cpi_by_category_line",
+"BLS Consumer Price Index chart — Consumer Price Index by Category — 12-Month % Change History."
+],
+[
+"bls_cpi_by_region",
+"BLS Consumer Price Index chart — Consumer Price Index by Region and Division — 12-Month % Change."
+],
+[
+"bls_cpi_by_metro",
+"BLS Consumer Price Index chart — Consumer Price Index by Metropolitan Area — 12-Month % Change."
+],
+[
+"bls_cpi_average_prices",
+"BLS Consumer Price Index chart — Average Price Data, Selected Items."
+],
+[
+"bls_ppi_relative_importance",
+"Fetch a published BLS Producer Price Index relative-importance table."
+],
+[
+"bls_ppi_seasonal_factors",
+"Fetch a published BLS Producer Price Index seasonal-factor table."
+],
+[
+"bls_ppi_detailed_report",
+"Fetch one table from a BLS monthly PPI Detailed Report (XLSX, 2022+)."
+],
+[
+"bls_ppi_documents",
+"List published BLS PPI PDF documents for the multi-file viewer widget."
+],
+[
+"bls_ppi_final_demand_1m",
+"BLS Producer Price Index chart — Final Demand — 1-Month % Change (SA)."
+],
+[
+"bls_ppi_final_demand_12m",
+"BLS Producer Price Index chart — Final Demand — 12-Month % Change (NSA)."
+],
+[
+"bls_ppi_final_demand_components_1m",
+"BLS Producer Price Index chart — Final Demand Components — 1-Month % Change."
+],
+[
+"bls_ppi_final_demand_components_12m",
+"BLS Producer Price Index chart — Final Demand Components — 12-Month % Change (NSA)."
+],
+[
+"bls_ppi_intermediate_unprocessed_1m",
+"BLS Producer Price Index chart — Intermediate Demand, Unprocessed Goods — 1-Month % Change (SA)."
+],
+[
+"bls_ppi_intermediate_unprocessed_12m",
+"BLS Producer Price Index chart — Intermediate Demand, Unprocessed Goods — 12-Month % Change (NSA)."
+],
+[
+"bls_ppi_intermediate_processed_1m",
+"BLS Producer Price Index chart — Intermediate Demand, Processed Goods — 1-Month % Change (SA)."
+],
+[
+"bls_ppi_intermediate_processed_12m",
+"BLS Producer Price Index chart — Intermediate Demand, Processed Goods — 12-Month % Change (NSA)."
+],
+[
+"bls_ppi_intermediate_services_1m",
+"BLS Producer Price Index chart — Intermediate Demand, Services — 1-Month % Change (SA)."
+],
+[
+"bls_ppi_intermediate_services_12m",
+"BLS Producer Price Index chart — Intermediate Demand, Services — 12-Month % Change (NSA)."
+],
+[
+"bls_jolts_change_analysis",
+"Fetch a JOLTS change-analysis TXT table (estimated rate/level changes + significance)."
+],
+[
+"bls_jolts_revisions",
+"Fetch the JOLTS SA/NSA revision XLSX in long form (1st / 2nd / benchmark levels + revision deltas)."
+],
+[
+"bls_jolts_documents",
+"List BLS JOLTS release PDFs / supplementals / archived releases for the file viewer."
+],
+[
+"bls_jolts_unemp_per_opening",
+"BLS Job Openings and Labor Turnover chart — Unemployed Persons per Job Opening (SA)."
+],
+[
+"bls_jolts_openings_hires_seps_levels",
+"BLS Job Openings and Labor Turnover chart — Job Openings, Hires, and Separations — Levels (SA, thousands)."
+],
+[
+"bls_jolts_openings_hires_seps_rates",
+"BLS Job Openings and Labor Turnover chart — Job Openings, Hires, and Separations — Rates (SA)."
+],
+[
+"bls_jolts_hires_seps_rates",
+"BLS Job Openings and Labor Turnover chart — Total Nonfarm Hires and Separations Rates (SA)."
+],
+[
+"bls_jolts_openings_by_industry",
+"BLS Job Openings and Labor Turnover chart — Job Openings Rates by Industry (SA)."
+],
+[
+"bls_jolts_openings_hires_seps_by_region",
+"BLS Job Openings and Labor Turnover chart — Job Openings, Hires, and Separations Rates by Region (SA)."
+],
+[
+"bls_jolts_beveridge_curve",
+"BLS Job Openings and Labor Turnover chart — Beveridge Curve — Job Openings Rate vs. Unemployment Rate (SA)."
+],
+[
+"bls_employment_situation_documents",
+"List BLS Employment Situation release PDFs for the file viewer."
+],
+[
+"bls_employment_situation_summary_household",
+"Employment Situation Summary Table A — household data, seasonally adjusted."
+],
+[
+"bls_employment_situation_summary_establishment",
+"Employment Situation Summary Table B — establishment data, seasonally adjusted."
+],
+[
+"bls_employment_situation_t1_employment_changes",
+"CES Analytical Table 1 — employment normal seasonal movements, OTM changes, significance."
+],
+[
+"bls_employment_situation_t2_ranked_industries",
+"CES Analytical Table 2 — detailed industries ranked by over-the-month change."
+],
+[
+"bls_employment_situation_t3a_employment_changes_sa",
+"CES Analytical Table 3A — SA employment changes and tests of significance."
+],
+[
+"bls_employment_situation_t3b_changes_vs_averages",
+"CES Analytical Table 3B — over-the-month changes compared with recent averages."
+],
+[
+"bls_employment_situation_t4_over_the_year_changes",
+"CES Analytical Table 4 — over-the-year employment changes and significance."
+],
+[
+"bls_employment_situation_t5_hours_earnings",
+"CES Analytical Table 5 — average weekly hours and average hourly earnings changes."
+],
+[
+"bls_employment_situation_t6_aggregate_hours_payrolls",
+"CES Analytical Table 6 — aggregate weekly hours and payroll changes."
+],
+[
+"bls_employment_situation_t7_peak_trough",
+"CES Analytical Table 7 — most recent employment peak/trough and changes."
+],
+[
+"bls_employment_situation_confidence_intervals",
+"CES Analytical Tables A-C2 — 90% confidence intervals for employment, hours, and earnings."
+],
+[
+"bls_employment_situation_civilian_unemployment_rate",
+"BLS Employment Situation chart — Civilian Unemployment Rate."
+],
+[
+"bls_employment_situation_civilian_unemployment",
+"BLS Employment Situation chart — Civilian Unemployment (Level)."
+],
+[
+"bls_employment_situation_unemployment_by_education",
+"BLS Employment Situation chart — Unemployment Rates by Educational Attainment (25+)."
+],
+[
+"bls_employment_situation_unemployment_by_veteran_status",
+"BLS Employment Situation chart — Unemployment Rates by Veteran Status (18+)."
+],
+[
+"bls_employment_situation_reasons_for_unemployment",
+"BLS Employment Situation chart — Reasons for Unemployment."
+],
+[
+"bls_employment_situation_duration_of_unemployment",
+"BLS Employment Situation chart — Duration of Unemployment."
+],
+[
+"bls_employment_situation_long_term_unemployed_share",
+"BLS Employment Situation chart — Unemployed 27 Weeks or Longer as a Percent of Total Unemployed."
+],
+[
+"bls_employment_situation_labor_underutilization",
+"BLS Employment Situation chart — Alternative Measures of Labor Underutilization (U-1 to U-6)."
+],
+[
+"bls_employment_situation_labor_force_participation_rate",
+"BLS Employment Situation chart — Civilian Labor Force Participation Rate."
+],
+[
+"bls_employment_situation_employment_population_ratio",
+"BLS Employment Situation chart — Employment-Population Ratio."
+],
+[
+"bls_employment_situation_civilian_employment",
+"BLS Employment Situation chart — Civilian Employment (Level)."
+],
+[
+"bls_employment_situation_not_in_labor_force_want_a_job",
+"BLS Employment Situation chart — People Not in the Labor Force Who Want a Job."
+],
+[
+"bls_employment_situation_not_in_labor_force_indicators",
+"BLS Employment Situation chart — People Not in the Labor Force, Selected Indicators."
+],
+[
+"bls_employment_situation_employment_levels_by_industry",
+"BLS Employment Situation chart — Employment Levels by Industry."
+],
+[
+"bls_employment_situation_average_weekly_hours_production",
+"BLS Employment Situation chart — Average Weekly Hours of Production Employees in Manufacturing."
+],
+[
+"bls_employment_situation_employment_change_by_industry_ci",
+"BLS Employment Situation chart — Employment Change by Industry With Confidence Intervals."
+],
+[
+"bls_employment_situation_employment_by_industry_monthly_changes",
+"BLS Employment Situation chart — Employment by Industry, Monthly Changes."
+],
+[
+"bls_employment_situation_employment_and_hourly_earnings_by_industry",
+"BLS Employment Situation chart — Employment and Average Hourly Earnings by Industry."
+],
+[
+"bls_employment_situation_employment_and_weekly_earnings_by_industry",
+"BLS Employment Situation chart — Employment and Average Weekly Earnings by Industry."
+],
+[
+"bls_productivity_tables",
+"Fetch a BLS Productivity prod2 supplemental table in long form (every column preserved)."
+],
+[
+"bls_productivity_documents",
+"List BLS Productivity release PDFs and supplemental XLSX files for the file viewer."
+],
+[
+"bls_productivity_by_sector",
+"BLS Productivity and Costs chart — Productivity and Costs by Sector."
+],
+[
+"bls_productivity_nonfarm_business_productivity",
+"BLS Productivity and Costs chart — Labor Productivity, Nonfarm Business — Percent Change."
+],
+[
+"bls_productivity_nonfarm_business_labor_costs",
+"BLS Productivity and Costs chart — Unit Labor Costs, Nonfarm Business — Percent Change."
+],
+[
+"bls_productivity_manufacturing_productivity",
+"BLS Productivity and Costs chart — Labor Productivity, Manufacturing — Percent Change."
+],
+[
+"bls_productivity_manufacturing_labor_costs",
+"BLS Productivity and Costs chart — Unit Labor Costs, Manufacturing — Percent Change."
+],
+[
+"bls_productivity_nonfarm_business_indexes",
+"BLS Productivity and Costs chart — Productivity, Output, and Hours Indexes — Nonfarm Business (2017=100)."
+],
+[
+"bls_productivity_manufacturing_indexes",
+"BLS Productivity and Costs chart — Productivity, Output, and Hours Indexes — Manufacturing (2017=100)."
+],
+[
+"bls_productivity_nonfinancial_corporations_indexes",
+"BLS Productivity and Costs chart — Productivity, Output, and Hours Indexes — Nonfinancial Corporations (2017=100)."
+],
+[
+"bls_productivity_tfp_combined_inputs_output",
+"BLS Productivity and Costs chart — Combined Inputs and Output — % Change by Industry (Latest Year)."
+],
+[
+"bls_productivity_tfp_percent_change",
+"BLS Productivity and Costs chart — Total Factor Productivity — % Change by Industry."
+],
+[
+"bls_productivity_tfp_output_and_inputs",
+"BLS Productivity and Costs chart — Output and Inputs — % Change by Industry."
+],
+[
+"bls_productivity_tfp_contributions",
+"BLS Productivity and Costs chart — Contributions to Labor Productivity — % Change by Industry."
+],
+[
+"bls_productivity_tfp_ict_trends",
+"BLS Productivity and Costs chart — ICT Industries — TFP, Inputs, and Output Index Trends."
+],
+[
+"bls_productivity_tfp_fire_trends",
+"BLS Productivity and Costs chart — Finance, Insurance, and Real Estate Industries — TFP, Inputs, and Output Index Trends."
+],
+[
+"bls_productivity_wr_productivity_change",
+"BLS Productivity and Costs chart — Percent Change in Productivity by Industry."
+],
+[
+"bls_productivity_wr_productivity_by_period",
+"BLS Productivity and Costs chart — Percent Change in Productivity by Select Periods."
+],
+[
+"bls_productivity_wr_indexes_by_sector",
+"BLS Productivity and Costs chart — Output, Hours, and Productivity Indexes by Sector (1987=100)."
+],
+[
+"bls_productivity_wr_lp_by_industry",
+"BLS Productivity and Costs chart — Labor Productivity Indexes by Industry (1987=100)."
+],
+[
+"bls_productivity_wr_1yr_change",
+"BLS Productivity and Costs chart — 1-Year % Change in Hours and Output, and Employment Level."
+],
+[
+"bls_productivity_wr_longterm_change",
+"BLS Productivity and Costs chart — Long-Term % Change in Hours and Output, and Employment Level."
+],
+[
+"bls_productivity_wr_labor_cost_by_sector",
+"BLS Productivity and Costs chart — Labor Productivity, Unit Labor Costs, and Hourly Compensation Indexes by Sector (1987=100)."
+],
+[
+"bls_productivity_mm_productivity_change",
+"BLS Productivity and Costs chart — Percent Change in Productivity by Industry."
+],
+[
+"bls_productivity_mm_productivity_by_period",
+"BLS Productivity and Costs chart — Percent Change in Productivity by Select Periods."
+],
+[
+"bls_productivity_mm_indexes_by_industry",
+"BLS Productivity and Costs chart — Output, Hours, and Productivity Indexes by Industry (1987=100)."
+],
+[
+"bls_productivity_mm_1yr_change",
+"BLS Productivity and Costs chart — 1-Year % Change in Hours and Output, and Employment Level."
+],
+[
+"bls_productivity_mm_longterm_change",
+"BLS Productivity and Costs chart — Long-Term % Change in Hours and Output, and Employment Level."
+],
+[
+"bls_productivity_mm_labor_cost_by_industry",
+"BLS Productivity and Costs chart — Labor Productivity, Unit Labor Costs, and Hourly Compensation Indexes by Industry (1987=100)."
+],
+[
+"bls_real_earnings_documents",
+"List BLS Real Earnings release PDFs for the file viewer."
+],
+[
+"bls_import_export_documents",
+"List BLS U.S. Import and Export Price Index release PDFs for the file viewer."
+],
+[
+"bls_import_export_price_indexes",
+"BLS import/export price indexes, 12-month percent change (headline series)."
+],
+[
+"bls_import_export_imports_by_category",
+"BLS U.S. import price indexes by end-use category, 12-month percent change."
+],
+[
+"bls_import_export_exports_by_category",
+"BLS U.S. export price indexes by end-use category, 12-month percent change."
+],
+[
+"bls_import_export_imports_by_origin",
+"BLS U.S. import price indexes by locality of origin, 12-month percent change."
+],
+[
+"bls_import_export_exports_by_grains",
+"BLS U.S. export price indexes by selected grains, 12-month percent change."
+],
+[
+"bls_import_export_air_passenger_fares",
+"BLS air passenger fares (import and export), 12-month percent change."
+],
+[
+"bls_search",
+"Search the BLS series catalog by category, keyword, or code."
+],
+[
+"bls_series",
+"Fetch BLS time series data by series identifier."
+],
+[
+"bls_calendar",
+"BLS Release Calendar."
+],
+[
+"cboe_equity_symbol_choices",
+"``[{label, value}]`` of every symbol in the Cboe company directory."
+],
+[
+"cboe_equity_search",
+"Search the Cboe US company directory for listed options symbols."
+],
+[
+"cboe_equity_quote",
+"Delayed Cboe quotes, with 30/60/90-day implied and realized volatility."
+],
+[
+"cboe_equity_historical",
+"Historical equity and ETF prices from Cboe, daily or one-minute."
+],
+[
+"cboe_index_symbol_choices",
+"``[{label, value}]`` of every index in the Cboe index directory."
+],
+[
+"cboe_index_constituent_choices",
+"``[{label, value}]`` of the Cboe European proprietary indices with constituents."
+],
+[
+"cboe_index_documents",
+"Get the factsheets, methodologies, and governance documents Cboe publishes."
+],
+[
+"cboe_index_document_choices",
+"``[{label, value}]`` of index documents, where the value is the PDF URL."
+],
+[
+"cboe_index_documents_viewer",
+"Open the selected Cboe index documents for the Workspace file viewer."
+],
+[
+"cboe_index_available",
+"All indices available from Cboe, US and European."
+],
+[
+"cboe_index_search",
+"Filter the Cboe index directory for rows containing the query."
+],
+[
+"cboe_index_snapshots",
+"Get current levels for all Cboe indices, grouped by region."
+],
+[
+"cboe_index_constituents",
+"Get current trading day prices for the constituents of a Cboe European index."
+],
+[
+"cboe_index_historical",
+"Historical Cboe index levels, daily or one-minute."
+],
+[
+"cboe_options_get_tickers",
+"Serve expiry/strike dropdown choices for a symbol, loading it on first call."
+],
+[
+"cboe_options_straddle",
+"Price a long straddle at each expiration."
+],
+[
+"cboe_options_strangle",
+"Price a long strangle at each expiration for a given moneyness."
+],
+[
+"cboe_options_spreads",
+"Price all four vertical spreads at each expiration."
+],
+[
+"cboe_options_chains",
+"Delayed Cboe options chains, with greeks and implied volatility."
+],
+[
+"cboe_options_trade_optimizer",
+"Rank the option strategies that reach a target price by an expiration."
+],
+[
+"cboe_options_smile",
+"Implied-volatility smile / skew across strikes."
+],
+[
+"cboe_options_surface",
+"Implied-volatility or greeks 3-D surface over DTE and strike."
+],
+[
+"cboe_options_stats",
+"Open-interest or volume statistics by strike or expiration."
+],
+[
+"cboe_options_term_structure",
+"Price or IV term structure across expirations."
+],
+[
+"cboe_options_payoff",
+"Draw the payoff of one optimized strategy at expiration."
+],
+[
+"cboe_futures_settlement_prices",
+"Get the settlement prices for Cboe futures contracts."
+],
+[
+"cboe_futures_instruments",
+"Get the Cboe futures roots, names, and their underlying symbols."
+],
+[
+"cboe_futures_curve",
+"Get the VIX (VX) futures term structure, at mid-morning TWAP or end-of-day levels."
+],
+[
+"cftc_cot_search",
+"Search current Commitment of Traders Reports."
+],
+[
+"cftc_cot",
+"Get Commitment of Traders Reports."
+],
+[
+"cftc_cot_index",
+"Score COT positioning against each trader group's own lookback range."
+],
+[
+"cftc_cot_movers",
+"Rank this week's largest COT positioning score moves."
+],
+[
+"cftc_cot_positioning",
+"Track one market's COT positioning week by week."
+],
+[
+"cftc_swap_trades",
+"Get swap transaction and pricing data disseminated by DTCC."
+],
+[
+"cftc_swap_valuation",
+"Value a disseminated swap on its own printed terms against the rate curve."
+],
+[
+"cftc_historical_fixings",
+"Daily published fixings for a benchmark index."
+],
+[
+"cftc_swap_summary",
+"Summarize a disseminated swap's net economics on the current curve."
+],
+[
+"cftc_cds_index_trades",
+"Get credit default swap index transactions disseminated by DTCC."
+],
+[
+"cftc_ois_curve",
+"Get an overnight index swap curve, built from executed swap transactions."
+],
+[
+"cftc_ois_curve_history",
+"Get an overnight index swap curve over time, as a date-by-tenor table."
+],
+[
+"cftc_ois_forward_curve",
+"Get the forward par swap rate curve, by forward start date."
+],
+[
+"cftc_ois_policy_path",
+"Get the central bank's expected overnight-rate path from forward-starting OIS."
+],
+[
+"cftc_fx_forward_points",
+"Get FX forward points, built from executed forwards and FX swaps."
+],
+[
+"cftc_fx_forward_curve",
+"Get the outright FX forward curve, in units of the currency per one US dollar."
+],
+[
+"cftc_fx_implied_vol",
+"Get FX implied volatility from vanilla options disseminated by DTCC."
+],
+[
+"cftc_fx_option_trades",
+"Get the raw FX option transactions disseminated by DTCC, newest first."
+],
+[
+"cftc_fx_forward_trades",
+"Get the raw FX forward and swap transactions disseminated by DTCC, newest first."
+],
+[
+"deribit_reference_currencies",
+"Get every currency Deribit lists, with its yield and withdrawal terms."
+],
+[
+"deribit_reference_instruments",
+"Get the full contract specification of every listed Deribit instrument."
+],
+[
+"deribit_reference_expirations",
+"Get the expirations Deribit lists on each currency."
+],
+[
+"deribit_reference_combos",
+"Get the multi-leg structures Deribit lists, one row per leg."
+],
+[
+"deribit_reference_announcements",
+"Get what Deribit has announced."
+],
+[
+"deribit_reference_contract_size",
+"Get the size of one contract of an instrument."
+],
+[
+"deribit_reference_status",
+"Get whether the exchange has locked the platform."
+],
+[
+"deribit_reference_server_time",
+"Get the exchange's server time, in milliseconds since the epoch."
+],
+[
+"deribit_reference_currency_choices",
+"``[{label, value}]`` of every currency the exchange lists."
+],
+[
+"deribit_reference_index_choices",
+"``[{label, value}]`` of every index the exchange publishes."
+],
+[
+"deribit_reference_instrument_choices",
+"``[{label, value}]`` of every instrument the exchange lists."
+],
+[
+"deribit_reference_combo_choices",
+"``[{label, value}]`` of every combo identifier the exchange lists."
+],
+[
+"deribit_market_book_summary",
+"Get the top of book and session statistics of Deribit instruments."
+],
+[
+"deribit_market_order_book",
+"Get the resting depth of a Deribit instrument, one row per level."
+],
+[
+"deribit_market_ticker",
+"Get the live quote, session statistics, and greeks of a Deribit instrument."
+],
+[
+"deribit_market_trades",
+"Get the Deribit prints that crossed, by instrument or across a currency."
+],
+[
+"deribit_market_trade_volumes",
+"Get Deribit's traded volume by currency and product."
+],
+[
+"deribit_market_block_rfq_trades",
+"Get the Deribit block requests that traded, one row per leg."
+],
+[
+"deribit_market_settlements",
+"Get the settlements, deliveries, and bankruptcies Deribit has processed."
+],
+[
+"deribit_index_price",
+"Get the current level of a Deribit index."
+],
+[
+"deribit_index_historical",
+"Get the published level of a Deribit index over a span."
+],
+[
+"deribit_index_delivery_prices",
+"Get the level a Deribit index has delivered at."
+],
+[
+"deribit_rates_funding_history",
+"Get the hourly funding a Deribit perpetual has paid."
+],
+[
+"deribit_rates_funding_chart",
+"Get the funding a Deribit perpetual has accrued over the current window."
+],
+[
+"deribit_rates_apr_history",
+"Get the daily yield a Deribit yield-bearing currency has earned."
+],
+[
+"deribit_rates_funding_value",
+"Get the funding one perpetual paid over a span, as a single rate."
+],
+[
+"deribit_volatility_realized",
+"Get the volatility a Deribit currency has actually realized."
+],
+[
+"deribit_volatility_index",
+"Get the Deribit DVOL volatility index, as candles over a span."
+],
+[
+"deribit_futures_curve_choices",
+"``[{label, value}]`` of every underlying with a listed futures curve."
+],
+[
+"deribit_futures_perpetual_choices",
+"``[{label, value}]`` of every perpetual the exchange lists."
+],
+[
+"deribit_futures_instruments",
+"Get the contract specification of every listed Deribit future."
+],
+[
+"deribit_futures_curve",
+"Get the term structure of a Deribit underlying's dated futures."
+],
+[
+"deribit_futures_historical",
+"Get candles for any listed Deribit instrument."
+],
+[
+"deribit_futures_info",
+"Get the live quote and session statistics of a Deribit future."
+],
+[
+"deribit_options_underlying_choices",
+"``[{label, value}]`` of every underlying with listed options."
+],
+[
+"deribit_options_expiration_choices",
+"``[{label, value}]`` of every expiration the underlying lists."
+],
+[
+"deribit_options_strike_choices",
+"``[{label, value}]`` of every strike the underlying lists."
+],
+[
+"deribit_options_chains",
+"Get the full Deribit option chain of an underlying, with greeks."
+],
+[
+"deribit_options_optimizer",
+"Rank every combo structure against a view on the underlying."
+],
+[
+"deribit_options_straddle",
+"Price a long straddle at each expiration."
+],
+[
+"deribit_options_strangle",
+"Price a long strangle at each expiration."
+],
+[
+"deribit_options_spreads",
+"Price a bull call and a bear put spread at each expiration."
+],
+[
+"deribit_options_strategy_choices",
+"``[{label, value}]`` of the strategies the optimizer ranks for a view."
+],
+[
+"deribit_options_payoff",
+"Draw what one position returns across a range of underlying prices. Raises ------ HTTPException If the expiration lists no strategy, or does"
+],
+[
+"deribit_options_smile",
+"Implied-volatility smile / skew across strikes."
+],
+[
+"deribit_options_term_structure",
+"Price or IV term structure across expirations."
+],
+[
+"deribit_options_surface",
+"Implied-volatility or greeks 3-D surface over DTE and strike."
+],
+[
+"deribit_options_stats",
+"Open-interest or volume statistics by strike or expiration."
+],
+[
+"ecb_list_dataflows",
+"List all ECB SDMX dataflows in the catalogue."
+],
+[
+"ecb_search_dataflows",
+"Search the ECB dataflow catalogue; an empty query lists every dataflow."
+],
+[
+"ecb_list_topics",
+"Return [{label, value, count}] for every ECB topic that has dataflows."
+],
+[
+"ecb_topic_dataflows",
+"Return the dataflows categorised under a topic, as table rows."
+],
+[
+"ecb_list_concepts",
+"Return the ECB data-portal concepts with their dataset members."
+],
+[
+"ecb_get_dataflow_dimensions",
+"Return the ordered dimensions of a dataflow with their codelist values."
+],
+[
+"ecb_dimension_choices",
+"Return ``[{label, value}]`` for one dimension, optionally narrowed."
+],
+[
+"ecb_list_tables",
+"List the ECB data-portal presentation tables."
+],
+[
+"ecb_presentation_table",
+"Resolve a presentation table to indented rows with recent periods pivoted."
+],
+[
+"ecb_available_indicators",
+"Search the ECB SDMX catalogue of dataflows."
+],
+[
+"ecb_indicators",
+"Fetch any ECB SDMX series by a 'FLOW::KEY' symbol."
+],
+[
+"ecb_balance_of_payments",
+"Euro area balance of payments statistics."
+],
+[
+"ecb_calendar",
+"Get the ECB statistical release calendar."
+],
+[
+"ecb_exchange_rates",
+"Euro foreign-exchange reference rates."
+],
+[
+"ecb_reference_rates",
+"Get the latest euro foreign-exchange reference rates."
+],
+[
+"ecb_yield_curve",
+"Euro area government bond yield curve."
+],
+[
+"ecb_euro_short_term_rate",
+"Get the euro short-term rate and its detail."
+],
+[
+"ecb_key_interest_rates",
+"Get the key ECB interest rates."
+],
+[
+"ecb_mfi_interest_rates",
+"MFI interest rates on euro-area loans and deposits."
+],
+[
+"ecb_dataflow_information",
+"Render a dataset's rich ECB reference metadata as an HTML page."
+],
+[
+"ecb_release_document",
+"Render one ECB release as a full HTML page for the Workspace HTML widget."
+],
+[
+"ecb_eligible_assets",
+"Get the Eurosystem list of eligible marketable assets."
+],
+[
+"eia_rss_feed",
+"Articles, releases, testimony, and fuel-price updates from EIA's RSS feeds."
+],
+[
+"eia_electricity_browser",
+"U.S. electric power statistics: net generation, consumption, retail sales, revenue and average retail price, fuel receipts, costs and qualit"
+],
+[
+"eia_coal_browser",
+"U.S. coal statistics: production, consumption and quality, prices by rank, recoverable reserves and mine capacity, exports and imports, and "
+],
+[
+"eia_total_energy_browser",
+"The Monthly Energy Review: recent and historical U.S. energy statistics, including total energy production, consumption, stocks, and trade; "
+],
+[
+"eia_steo_browser",
+"The Short-Term Energy Outlook: EIA's monthly 18-month forecast of energy supply, demand, prices, and inventories - crude oil and liquid fuel"
+],
+[
+"eia_aeo_browser",
+"The Annual Energy Outlook: EIA's long-term projections of U.S. energy production, consumption, trade, prices, and emissions through 2050, in"
+],
+[
+"eia_international_browser",
+"International energy statistics for more than 200 countries and regions: production, consumption, imports, exports, reserves, and carbon dio"
+],
+[
+"eia_petroleum_imports_browser",
+"Company-level U.S. crude oil and petroleum product imports (Form EIA-814): volumes by country of origin, port and PAD District of entry, pro"
+],
+[
+"eia_natural_gas_query_browser",
+"The Natural Gas Annual Respondent Query System (Form EIA-176): company- and state-level natural gas volumes and prices, covering production,"
+],
+[
+"eia_states_browser",
+"State Energy Profiles: energy production, consumption, prices, expenditures, and cross-state rankings for coal, natural gas, petroleum, elec"
+],
+[
+"eia_maps_browser",
+"EIA's oil and natural gas maps: shale plays and sedimentary basins, pipelines and infrastructure, refineries, and production regions - as PD"
+],
+[
+"eia_datasets",
+"Catalog of EIA APIv2 datasets served by this extension."
+],
+[
+"eia_facet_options",
+"List the valid values for one filter (facet) of an EIA dataset."
+],
+[
+"eia_coal_aggregate_production",
+"Aggregate Production. Coal state aggregated data by mine type, includes production, productivity, labor hours, employees, and coal rank. Sou"
+],
+[
+"eia_coal_by_mine_by_plant",
+"By Mine, By Plant. Coal shipments from mine- to plant-level data, including price, quantity, quality, and rank. Source: EIA Form 7A and MSHA"
+],
+[
+"eia_coal_consumption_and_quality",
+"Consumption and Quality. Coal consumption and quality data by state and sector, including price, reciepts, heat content, sulfur content, ash"
+],
+[
+"eia_coal_exports_imports_quantity_price",
+"Exports/Imports Quantity/Price. Coal import/export data, including price, quantity, country, rank, and customs district. Source: EIA Form 7A"
+],
+[
+"eia_coal_market_sales_price",
+"Market Sales Price. Coal market sales prices and amounts by mine types for regions and states (unless withheld for pricing protections). Sou"
+],
+[
+"eia_coal_mine_aggregates",
+"Mine Aggregates. Coal shipments aggregated at mine-level data, including price, quantity, quality, and rank. Source: EIA Form 7A and MSHA Fo"
+],
+[
+"eia_coal_mine_production",
+"Mine Production. Coal mine-level data, including production, region, state, county, rank, status, type, name and description. Source: EIA Fo"
+],
+[
+"eia_coal_mine_state_aggregates",
+"Mine State Aggregates. Coal shipments aggregated at state-level data, including price, quantity, quality, and rank. Source: EIA Form 7A and "
+],
+[
+"eia_coal_plant_aggregates",
+"Plant Aggregates. Coal reciepts aggregated to plant-level data, including price, quantity, quality, and rank. Source: EIA Form 7A and MSHA F"
+],
+[
+"eia_coal_plant_state_aggregates",
+"Plant State Aggregates. Coal reciepts aggregated at state-level data, including price, quantity, quality, and rank. Source: EIA Form 7A and "
+],
+[
+"eia_coal_price_by_rank",
+"Price by Rank. Coal prices by rank data for region and state. Source: EIA Form 7A and MSHA Form 7000-2. Interactive browser: https://www.eia"
+],
+[
+"eia_coal_receipts",
+"Receipts. Coal shipment detailed by reciepient data, including transportation type, supplier, mine, coal basin, county, state, rank, contrac"
+],
+[
+"eia_coal_reserves_capacity",
+"Reserves Capacity. Coal capacity data, including productive capacity, stocks, and recoverable reserves by state, region and mine type. Sourc"
+],
+[
+"eia_petroleum_consumption_sales_adjusted_distillate_fuel_oil_and_kerosene_sales_by_end_use",
+"Adjusted Distillate Fuel Oil and Kerosene Sales by End Use. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_consumption_sales_adjusted_sales_of_distillate_fuel_oil_by_end_use",
+"Adjusted Sales of Distillate Fuel Oil by End Use. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_consumption_sales_adjusted_sales_of_kerosene_by_end_use",
+"Adjusted Sales of Kerosene by End Use. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_consumption_sales_adjusted_sales_of_residual_fuel_oil_by_end_use",
+"Adjusted Sales of Residual Fuel Oil by End Use. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_consumption_sales_distillate_fuel_oil_and_kerosene_sales_by_end_use",
+"Distillate Fuel Oil and Kerosene Sales by End Use. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_consumption_sales_prime_supplier_sales_volumes",
+"Prime Supplier Sales Volumes. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_consumption_sales_product_supplied",
+"Product Supplied. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_consumption_sales_refiner_motor_gasoline_sales_volumes",
+"Refiner Motor Gasoline Sales Volumes. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_consumption_sales_refiner_residual_fuel_oil_and_no4_fuel_sales_volumes",
+"Refiner Residual Fuel Oil and No 4 Fuel Sales Volumes. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_consumption_sales_refiner_sales_volumes_of_other_petroleum_products",
+"Refiner Sales Volumes of Other Petroleum Products. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_consumption_sales_sales_of_distillate_fuel_oil_by_end_use",
+"Sales of Distillate Fuel Oil by End Use. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_consumption_sales_sales_of_kerosene_by_end_use",
+"Sales of Kerosene by End Use. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_consumption_sales_sales_of_residual_fuel_oil_by_end_use",
+"Sales of Residual Fuel Oil by End Use. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_consumption_sales_us_weekly_product_supplied",
+"US Weekly Product Supplied. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_crude_reserves_and_production_average_depth_of_crude_oil_and_natural_gas_wells",
+"Average Depth of Crude Oil and Natural Gas Wells. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_crude_reserves_and_production_costs_of_crude_oil_and_natural_gas_wells_drilled",
+"Costs of Crude Oil and Natural Gas Wells Drilled. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_crude_reserves_and_production_crude_oil_and_lease_condensate_production_by_api_gravity",
+"Crude Oil and Lease Condensate Production by API Gravity. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_crude_reserves_and_production_crude_oil_and_natural_gas_drilling_activity",
+"Crude Oil and Natural Gas Drilling Activity. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_crude_reserves_and_production_crude_oil_and_natural_gas_exploratory_and_development_wells",
+"Crude Oil and Natural Gas Exploratory and Development Wells. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_crude_reserves_and_production_crude_oil_production",
+"Crude Oil Production. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_crude_reserves_and_production_crude_oil_proved_reserves_reserves_changes_and_production",
+"Crude Oil Proved Reserves, Reserves Changes, and Production. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_crude_reserves_and_production_crude_plus_lease_condensate_proved_reserves",
+"Crude Oil plus Lease Condensate Proved Reserves, Reserves Changes, and Production. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_crude_reserves_and_production_footage_drilled_for_crude_oil_and_natural_gas_wells",
+"Footage Drilled for Crude Oil and Natural Gas Wells. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_crude_reserves_and_production_gulf_of_america_federal_offshore_production",
+"Gulf of America Federal Offshore Production. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_crude_reserves_and_production_maximum_us_active_seismic_crew_counts",
+"Maximum US Active Seismic Crew Counts. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_crude_reserves_and_production_proved_nonproducing_reserves",
+"Proved Nonproducing Reserves. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_imports_exports_and_movements_exports",
+"Exports. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_imports_exports_and_movements_exports_by_destination",
+"Exports by Destination. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_imports_exports_and_movements_imports_by_area_of_entry",
+"Imports by Area of Entry. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_imports_exports_and_movements_imports_by_processing_area",
+"Imports by Processing Area. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_imports_exports_and_movements_imports_of_residual_fuel",
+"Imports of Residual Fuel. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_imports_exports_and_movements_movements_between_pad_districts",
+"Movements by Pipeline, Tanker, Barge and Rail between PAD Districts. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_imports_exports_and_movements_movements_by_pipeline_between_pad_districts",
+"Movements by Pipeline between PAD Districts. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_imports_exports_and_movements_movements_by_rail_between_pad_districts",
+"Movements of Crude Oil and Selected Products by Rail between PAD Districts. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_imports_exports_and_movements_movements_by_tanker_and_barge_between_pad_districts",
+"Movements by Tanker and Barge between PAD Districts. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_imports_exports_and_movements_movements_of_crude_oil_and_selected_products_by_rail",
+"Movements of Crude Oil and Selected Products by Rail. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_imports_exports_and_movements_net_receipts_between_pad_districts",
+"Net Receipts by Pipeline, Tanker, Barge and Rail between PAD Districts. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_imports_exports_and_movements_pad_district_exports_by_destination",
+"PAD District Exports by Destination. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_imports_exports_and_movements_pad_district_imports_by_country_of_origin",
+"PAD District Imports by Country of Origin. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_imports_exports_and_movements_us_imports_by_country_of_origin",
+"US Imports by Country of Origin. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_imports_exports_and_movements_us_net_imports_by_country",
+"US Net Imports by Country. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_imports_exports_and_movements_weekly_crude_imports_by_top_10_origins",
+"Weekly Preliminary Crude Imports by Top 10 Countries of Origin (ranking based on 2024 Petroleum Supply Monthly data). EIA petroleum gas surv"
+],
+[
+"eia_petroleum_imports_exports_and_movements_weekly_imports_exports",
+"Weekly Imports & Exports. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_crude_first_purchase_prices_selected_streams",
+"Domestic Crude Oil First Purchase Prices for Selected Crude Streams. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_domestic_crude_oil_first_purchase_prices_by_api_gravity",
+"Domestic Crude Oil First Purchase Prices by API Gravity. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_domestic_crude_oil_first_purchase_prices_by_area",
+"Domestic Crude Oil First Purchase Prices by Area. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_fob_costs_of_imported_crude_oil_by_api_gravity",
+"FOB Costs of Imported Crude Oil by API Gravity. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_fob_costs_of_imported_crude_oil_by_area",
+"FOB Costs of Imported Crude Oil by Area. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_fob_costs_of_imported_crude_oil_for_selected_crude_streams",
+"FOB Costs of Imported Crude Oil for Selected Crude Streams. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_gasoline_prices_by_formulation_grade_sales_type",
+"Gasoline Prices by Formulation, Grade, Sales Type. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_landed_costs_of_imported_crude_by_api_gravity",
+"Landed Costs of Imported Crude by API Gravity. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_landed_costs_of_imported_crude_by_area",
+"Landed Costs of Imported Crude by Area. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_landed_costs_of_imported_crude_for_selected_crude_streams",
+"Landed Costs of Imported Crude for Selected Crude Streams. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_no2_distillate_prices_by_sales_type",
+"No 2 Distillate Prices by Sales Type. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_nymex_futures_prices",
+"NYMEX Futures Prices (Futures prices after April 5, 2024, are not available). EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_percentages_of_total_imported_crude_oil_by_api_gravity",
+"Percentages of Total Imported Crude Oil by API Gravity. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_propane_prices_by_sales_type",
+"Propane (Consumer Grade) Prices by Sales Type. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_refiner_acquisition_cost_of_crude_oil",
+"Refiner Acquisition Cost of Crude Oil. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_refiner_gasoline_prices_by_grade_and_sales_type",
+"Refiner Gasoline Prices by Grade and Sales Type. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_refiner_petroleum_product_prices_by_sales_type",
+"Refiner Petroleum Product Prices by Sales Type. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_residual_fuel_oil_prices_by_sales_type",
+"Residual Fuel Oil Prices by Sales Type. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_spot_prices",
+"Spot Prices. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_us_refiner_gasoline_prices_by_formulation_grade_sales_type",
+"US Refiner Gasoline Prices by Formulation, Grade, Sales Type. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_weekly_heating_oil_and_propane_prices",
+"Weekly Heating Oil and Propane Prices. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_prices_weekly_retail_gasoline_and_diesel_prices",
+"Weekly Retail Gasoline and Diesel Prices. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_biofuels_operable_production_capacity",
+"Biofuels Operable Production Capacity. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_blender_net_input",
+"Blender Net Input. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_blender_net_production",
+"Blender Net Production. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_crude_oil_input_qualities",
+"Crude Oil Input Qualities. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_downstream_charge_capacity_of_operable_petroleum_refineries",
+"Downstream Charge Capacity of Operable Petroleum Refineries. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_downstream_processing_of_fresh_feed_input",
+"Downstream Processing of Fresh Feed Input. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_feedstocks_consumed_for_production_of_biofuels",
+"Feedstocks Consumed for Production of Biofuels. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_fuel_consumed_at_biofuels_plants",
+"Fuel Consumed at Biofuels Plants. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_fuel_consumed_at_refineries",
+"Fuel Consumed at Refineries. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_natural_gas_feedstock_for_hydrogen",
+"Natural Gas Used as Feedstock for Hydrogen Production at Refineries. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_natural_gas_plant_field_production",
+"Natural Gas Plant Field Production. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_number_and_capacity_of_petroleum_refineries",
+"Number and Capacity of Petroleum Refineries. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_oxygenate_production",
+"Oxygenate Production. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_production_capacity_of_operable_petroleum_refineries",
+"Production Capacity of Operable Petroleum Refineries. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_refinery_blender_net_input",
+"Refinery & Blender Net Input. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_refinery_blender_net_production",
+"Refinery & Blender Net Production. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_refinery_net_input",
+"Refinery Net Input. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_refinery_net_production",
+"Refinery Net Production. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_refinery_receipts_of_crude_oil_by_method_of_transportation",
+"Refinery Receipts of Crude Oil by Method of Transportation. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_refinery_utilization_and_capacity",
+"Refinery Utilization and Capacity. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_refinery_yield",
+"Refinery Yield. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_shell_storage_capacity_at_operable_refineries",
+"Shell Storage Capacity at Operable Refineries. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_weekly_blender_net_production",
+"Weekly Blender Net Production. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_weekly_ethanol_plant_production",
+"Weekly Ethanol Plant Production. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_weekly_inputs_utilization",
+"Weekly Inputs & Utilization. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_weekly_refiner_blender_net_production",
+"Weekly Refiner & Blender Net Production. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_weekly_refiner_net_production",
+"Weekly Refiner Net Production. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_refining_and_processing_working_storage_capacity_at_operable_refineries",
+"Working Storage Capacity at Operable Refineries. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_stocks_crude_oil_stocks_at_tank_farms_pipelines",
+"Crude Oil Stocks at Tank Farms & Pipelines. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_stocks_natural_gas_plant_stocks",
+"Natural Gas Plant Stocks. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_stocks_refinery_bulk_terminal_and_natural_gas_plant_stocks_by_state",
+"Refinery, Bulk Terminal, and Natural Gas Plant Stocks by State. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_stocks_refinery_stocks",
+"Refinery Stocks. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_stocks_stocks_by_type",
+"Stocks by Type. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_stocks_stocks_of_selected_products",
+"Stocks of Motor Gasoline, Distillate Fuel Oil, Residual Fuel Oil, Propane and Propylene. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_stocks_weekly_stocks",
+"Weekly Stocks. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_summary_prices_sales_volumes_stocks_by_state",
+"Prices, Sales Volumes & Stocks by State. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_summary_supply_and_disposition",
+"Supply and Disposition. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_summary_us_biodiesel_production_capacity_sales_and_stocks",
+"US Biodiesel Production, Capacity, Sales, and Stocks - discontinued. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_summary_us_crude_oil_supply_disposition",
+"US Crude Oil Supply & Disposition. EIA petroleum gas survey data"
+],
+[
+"eia_petroleum_summary_weekly_supply_estimates",
+"Weekly Supply Estimates. EIA petroleum gas survey data"
+],
+[
+"eia_natural_gas_consumption_end_use_heat_content_of_natural_gas_consumed",
+"Heat Content of Natural Gas Consumed. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_consumption_end_use_natural_gas_consumption_by_end_use",
+"Natural Gas Consumption by End Use. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_consumption_end_use_natural_gas_delivered_for_the_account_of_others",
+"Natural Gas Delivered for the Account of Others. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_consumption_end_use_number_of_natural_gas_consumers",
+"Number of Natural Gas Consumers. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_consumption_end_use_share_of_total_us_natural_gas_delivered_to_consumers",
+"Share of Total US Natural Gas Delivered to Consumers. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_associated_dissolved_proved_reserves",
+"Associated-Dissolved Natural Gas Proved Reserves, Wet After Lease Separation. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_average_depth_of_crude_oil_and_natural_gas_wells",
+"Average Depth of Crude Oil and Natural Gas Wells. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_coalbed_methane",
+"Coalbed Methane. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_costs_of_crude_oil_and_natural_gas_wells_drilled",
+"Costs of Crude Oil and Natural Gas Wells Drilled. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_crude_oil_and_natural_gas_drilling_activity",
+"Crude Oil and Natural Gas Drilling Activity. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_crude_oil_and_natural_gas_exploratory_and_development_wells",
+"Crude Oil and Natural Gas Exploratory and Development Wells. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_crude_oil_plus_lease_condensate",
+"Crude Oil plus Lease Condensate. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_dry_natural_gas_proved_reserves",
+"Dry Natural Gas Proved Reserves. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_federal_offshore_gulf_of_america_proved_reserves",
+"Federal Offshore Gulf of America Proved Reserves. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_footage_drilled_for_crude_oil_and_natural_gas_wells",
+"Footage Drilled for Crude Oil and Natural Gas Wells. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_lease_condensate",
+"Lease Condensate. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_maximum_us_active_seismic_crew_counts",
+"Maximum US Active Seismic Crew Counts. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_natural_gas_liquids_proved_reserves",
+"Natural Gas Liquids Proved Reserves. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_natural_gas_proved_reserves_wet_after_lease_separation",
+"Natural Gas Proved Reserves, Wet After Lease Separation. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_natural_gas_reserves_summary_as_of_dec_31",
+"Natural Gas Reserves Summary as of Dec. 31. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_nonassociated_proved_reserves",
+"Nonassociated Natural Gas Proved Reserves, Wet After Lease Separation. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_plant_liquids_in_proved_reserves",
+"Estimated Natural Gas Plant Liquids contained in Total Natural Gas Proved Reserves. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_proved_nonproducing_reserves",
+"Proved Nonproducing Reserves. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_exploration_and_reserves_shale_gas",
+"Shale Gas. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_imports_and_exports_pipelines_international_interstate_movements_of_natural_gas_by_state",
+"International & Interstate Movements of Natural Gas by State. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_imports_and_exports_pipelines_us_natural_gas_exports_and_re_exports_by_country",
+"US Natural Gas Exports and Re-Exports by Country. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_imports_and_exports_pipelines_us_natural_gas_exports_and_re_exports_by_point_of_exit",
+"US Natural Gas Exports and Re-Exports by Point of Exit. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_imports_and_exports_pipelines_us_natural_gas_imports_by_country",
+"US Natural Gas Imports by Country. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_imports_and_exports_pipelines_us_natural_gas_imports_by_point_of_entry",
+"US Natural Gas Imports by Point of Entry. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_imports_and_exports_pipelines_us_natural_gas_imports_exports_by_state",
+"US Natural Gas Imports & Exports by State. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_prices_natural_gas_prices",
+"Natural Gas Prices. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_prices_natural_gas_spot_and_futures_prices",
+"Natural Gas Spot and Futures Prices (NYMEX) (Futures prices after April 5, 2024, are not available). EIA natural gas survey data"
+],
+[
+"eia_natural_gas_prices_residential_and_commercial_prices_selected_states",
+"Average Price of Natural Gas Delivered to Residential and Commercial Consumers by Local Distribution and Marketers in Selected States. EIA n"
+],
+[
+"eia_natural_gas_production_coalbed_methane_production",
+"Coalbed Methane Production. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_production_gulf_of_america_federal_offshore_production",
+"Gulf of America Federal Offshore Production. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_production_lease_condensate_production",
+"Lease Condensate Production. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_production_natural_gas_gross_withdrawals_and_production",
+"Natural Gas Gross Withdrawals and Production. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_production_natural_gas_plant_liquids_production",
+"Natural Gas Plant Liquids Production. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_production_natural_gas_plant_processing",
+"Natural Gas Plant Processing. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_production_natural_gas_wellhead_value_and_marketed_production",
+"Natural Gas Wellhead Value and Marketed Production. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_production_number_of_gas_producing_oil_wells",
+"Number of Gas Producing Oil Wells. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_production_number_of_producing_gas_wells",
+"Number of Producing Gas Wells. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_production_offshore_gross_withdrawals_of_natural_gas",
+"Offshore Gross Withdrawals of Natural Gas. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_production_shale_gas_production",
+"Shale Gas Production. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_production_supplemental_gas_supplies",
+"Supplemental Gas Supplies. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_storage_lng_storage_additions_and_withdrawals",
+"Liquefied Natural Gas Additions to and Withdrawals from Storage. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_storage_underground_natural_gas_storage_by_all_operators",
+"Underground Natural Gas Storage by All Operators. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_storage_underground_natural_gas_storage_capacity",
+"Underground Natural Gas Storage Capacity. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_storage_us_underground_natural_gas_storage_by_storage_type",
+"US Underground Natural Gas Storage by Storage Type. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_storage_weekly_working_gas_in_underground_storage",
+"Weekly Working Gas in Underground Storage. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_summary_natural_gas_annual_supply_disposition_by_state",
+"Natural Gas Annual Supply & Disposition by State. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_summary_natural_gas_summary",
+"Natural Gas Summary. EIA natural gas survey data"
+],
+[
+"eia_natural_gas_summary_us_natural_gas_monthly_supply_and_disposition_balance",
+"US Natural Gas Monthly Supply and Disposition Balance. EIA natural gas survey data"
+],
+[
+"eia_electricity_electric_power_operations",
+"Electric Power Operations (Annual and Monthly). Monthly and annual electric power operations by state, sector, and energy source. Source: Fo"
+],
+[
+"eia_electricity_electric_power_operations_for_individual_power_plants",
+"Electric Power Operations for Individual Power Plants (Annual and Monthly). Annual and monthly electric power operations for individual powe"
+],
+[
+"eia_electricity_electricity_sales_to_ultimate_customers",
+"Electricity Sales to Ultimate Customers. Electricity sales to ultimate customer by state and sector (number of customers, average price, rev"
+],
+[
+"eia_electricity_inventory_of_operable_generators",
+"Inventory of Operable Generators. Inventory of operable generators in the U.S. Source: Forms EIA-860, EIA-860M"
+],
+[
+"eia_electricity_grid_demand",
+"Hourly Demand, Demand Forecast, Generation, and Interchange. Hourly demand, day-ahead demand forecast, net generation, and interchange by ba"
+],
+[
+"eia_electricity_grid_demand_by_subregion",
+"Hourly Demand by Subregion. Hourly demand by balancing authority subregion. Source: Form EIA-930 Product: Hourly Electric Grid Monitor"
+],
+[
+"eia_electricity_grid_generation_by_fuel",
+"Hourly Generation by Energy Source. Hourly net generation by balancing authority and energy source. Source: Form EIA-930 Product: Hourly Ele"
+],
+[
+"eia_electricity_grid_interchange",
+"Hourly Interchange by Neighboring Balancing Authority. Daily interchange between neighboring balancing authorities. Source: Form EIA-930 Pro"
+],
+[
+"eia_state_electricity_profiles_advanced_metering_infrastructure",
+"Advanced Metering Infrastructure. Advanced meterting counts by technology, state, and sector Source: Forms EIA-861, EIA-861S Product: State "
+],
+[
+"eia_state_electricity_profiles_costs_and_savings_from_energy_efficiency_programs",
+"Costs and Savings from Energy Efficiency Programs. Costs and savings from energy efficiency programs by state and sector Source: Form EIA-86"
+],
+[
+"eia_state_electricity_profiles_electricity_net_metering_customers_and_capacity",
+"Electricity Net Metering: Customers and Capacity. Electricity net metering customer counts and capacity by state, sector, and generating tec"
+],
+[
+"eia_state_electricity_profiles_emissions_by_state_by_fuel",
+"Emissions from Energy Consumption at Conventional Power Plants and Combined-Heat-and-Power Plants. Emissions from electricity generation and"
+],
+[
+"eia_state_electricity_profiles_generating_capacity",
+"Generating Capacity. Electric generating capacity (summer capacity) by state, energy source, and sector. Source: Form EIA-860 Product: State"
+],
+[
+"eia_state_electricity_profiles_state_rankings_for_key_statistics",
+"State Rankings for Key Statistics. State rankings for key electricity statistics by state Source: Forms EIA-860, EIA-861, EIA-923 Product: S"
+],
+[
+"eia_state_electricity_profiles_supply_and_disposition_of_electricity",
+"Supply and disposition of electricity. Supply and disposition of electricity by state. Sources: Forms EIA-860, EIA-861, and EIA-923 Product:"
+],
+[
+"eia_densified_biomass_capacity_by_region",
+"Capacity by Region. Densified biomass capacity includes number of facilities and number of employees. Source: EIA-63C Report: www.eia.gov/bi"
+],
+[
+"eia_densified_biomass_characteristics_by_region",
+"Characteristics by Region. Densified biomass characteristics includes fuel type, average ash, heat, and moisture content by region. Source: "
+],
+[
+"eia_densified_biomass_export_sales_and_price",
+"Export Sales and Price. Densified biomass export prices and quantity. Source: EIA-63C Report: www.eia.gov/biomass/"
+],
+[
+"eia_densified_biomass_feedstocks_and_costs",
+"Feedstocks and Costs. Densified biomass feedstocks and cost by type. Source: EIA-63C Report: www.eia.gov/biomass/"
+],
+[
+"eia_densified_biomass_inventories_by_region",
+"Inventories by Region. Densified biomass inventories by region and fuel type. Source: EIA-63C Report: www.eia.gov/biomass/"
+],
+[
+"eia_densified_biomass_production_by_region",
+"Production by Region. Densified biomass production by region and fuel type. Source: EIA-63C Report: www.eia.gov/biomass/"
+],
+[
+"eia_densified_biomass_sales_and_price_by_region",
+"Sales and Price by Region. Densified biomass sales and average price by region. Source: EIA-63C Report: www.eia.gov/biomass/"
+],
+[
+"eia_densified_biomass_wood_pellet_plant_capacity",
+"Wood Pellet Plant Capacity. Details on wood pellet plants includes region, respondent, capacity, and status. Source: EIA-63C Report: www.eia"
+],
+[
+"eia_nuclear_outages_facility_level_nuclear_outages",
+"Facility Level Nuclear Outages. Facility level nuclear outages with capacity, outages, and percent outage. Source: Nuclear Regulatory Commis"
+],
+[
+"eia_nuclear_outages_generator_level_nuclear_outages",
+"Generator Level Nuclear Outages. Generator level nuclear outages with capacity, outages, and percent outage. Source: Nuclear Regulatory Comm"
+],
+[
+"eia_nuclear_outages_us_nuclear_outages",
+"US Nuclear Outages. Nuclear outages daily with capacity, outages, and percent outage. Source: Nuclear Regulatory Commission's Power Reactor "
+],
+[
+"eia_crude_oil_imports",
+"US crude oil imports by origin, destination, and grade."
+],
+[
+"eia_international",
+"International energy production, consumption, and trade statistics by country and region."
+],
+[
+"eia_seds",
+"State Energy Data System (SEDS): annual state-level energy estimates back to 1960."
+],
+[
+"eia_total_energy",
+"Monthly Energy Review series covering all energy sources, by MSN mnemonic."
+],
+[
+"eia_aeo",
+"Annual Energy Outlook: long-term US energy projections by release and scenario."
+],
+[
+"eia_ieo",
+"International Energy Outlook: long-term world energy projections by release and scenario."
+],
+[
+"eia_data_browser",
+"Query any EIA APIv2 data route directly by path, with facet filters and pagination."
+],
+[
+"eia_petroleum_status_report",
+"EIA Weekly Petroleum Status Report."
+],
+[
+"eia_short_term_energy_outlook",
+"Monthly short term (18 month) projections using EIA's STEO model."
+],
+[
+"famafrench_factors",
+"Fama-French factors. Metadata for the selected dataset are returned in the `extra['results_metadata']` field of the response. Source ------ "
+],
+[
+"famafrench_us_portfolio_returns",
+"US Portfolio returns. Metadata for the selected dataset are returned in the `extra['results_metadata']` field of the response. Source ------"
+],
+[
+"famafrench_regional_portfolio_returns",
+"Regional portfolio returns. Metadata for the selected dataset are returned in the `extra['results_metadata']` field of the response. See the"
+],
+[
+"famafrench_country_portfolio_returns",
+"Country portfolio returns. Metadata for the selected dataset are returned in the `extra['results_metadata']` field of the response. Source -"
+],
+[
+"famafrench_international_index_returns",
+"International index returns. Metadata for the selected dataset are returned in the `extra['results_metadata']` field of the response. See th"
+],
+[
+"famafrench_breakpoints",
+"Fama-French breakpoints. Metadata for the selected dataset are returned in the `extra['results_metadata']` field of the response. Source ---"
+],
+[
+"federal_reserve_list_releases",
+"List Federal Reserve Data Download Program (DDP) statistical releases."
+],
+[
+"federal_reserve_list_datasets",
+"List the data tables available within a Federal Reserve DDP release."
+],
+[
+"federal_reserve_release_calendar",
+"Get the Federal Reserve statistical release publication schedule."
+],
+[
+"federal_reserve_fed_data",
+"Fetch any published Federal Reserve dataset from the Data Download Program."
+],
+[
+"federal_reserve_money_market_funds",
+"Get Money Market Funds Investment Holdings (Enhanced Financial Accounts)."
+],
+[
+"federal_reserve_international_portfolio_investment",
+"Get International Portfolio Investment holdings (Enhanced Financial Accounts)."
+],
+[
+"federal_reserve_fomc_documents",
+"Get lists of FOMC documents by year and document type."
+],
+[
+"federal_reserve_inflation_expectations",
+"Survey of forward inflation expectations from the Survey of Professional Forecasters."
+],
+[
+"federal_reserve_money_measures",
+"Get Money Measures (M1/M2 and components) from the H.6 Release."
+],
+[
+"federal_reserve_treasury_rates",
+"Get Government Treasury Rates."
+],
+[
+"federal_reserve_yield_curve",
+"Get yield curve data by date."
+],
+[
+"federal_reserve_ffiec_institutions",
+"Search the FFIEC National Information Center institution directory."
+],
+[
+"federal_reserve_ffiec_call_report",
+"Get a commercial bank's FFIEC Call Report (Consolidated Reports of Condition and Income)."
+],
+[
+"federal_reserve_ffiec_ubpr",
+"Get a bank's FFIEC Uniform Bank Performance Report (UBPR) measures."
+],
+[
+"federal_reserve_ffiec_executive_summary",
+"Get a bank's FFIEC Executive Summary Report (ESR) measures."
+],
+[
+"federal_reserve_ffiec_custom_peer_group",
+"Get a bank's FFIEC UBPR measures against a custom peer group of RSSDs."
+],
+[
+"federal_reserve_ffiec_peer_group_average",
+"Get a UBPR peer group's average performance ratios."
+],
+[
+"federal_reserve_ffiec_peer_group_bank",
+"Get the FFIEC UBPR Peer Group Bank Report for a bank's peer group."
+],
+[
+"federal_reserve_ffiec_peer_group_distribution",
+"Get the FFIEC UBPR Peer Group Average Distribution for a peer group."
+],
+[
+"federal_reserve_ffiec_state_average",
+"Get the FFIEC UBPR State Average report (state-level peer-group averages)."
+],
+[
+"federal_reserve_ffiec_list_of_banks_peer_group",
+"Get the FFIEC List of Banks in a UBPR peer group for a reporting period."
+],
+[
+"federal_reserve_ffiec_call_report_sectioned",
+"Get a commercial bank's FFIEC Call Report by schedule, periods as columns."
+],
+[
+"federal_reserve_ffiec_country_exposure",
+"Get the FFIEC E.16 Country Exposure Lending Survey (FFIEC 009)."
+],
+[
+"federal_reserve_ffiec_large_holding_companies",
+"Get the largest US bank holding companies ranked by total assets."
+],
+[
+"federal_reserve_ffiec_institution_structure",
+"Get NIC institution ownership relationships or merger transformations."
+],
+[
+"federal_reserve_ffiec_bhcpr_report",
+"Browse Bank Holding Company Performance Report (BHCPR) peer-group average PDFs."
+],
+[
+"federal_reserve_ffiec_financial_report",
+"Get an institution's FFIEC regulatory financial report by schedule."
+],
+[
+"federal_reserve_ffiec_financial_report_pdf",
+"Browse an institution's filed FFIEC regulatory financial reports as PDFs."
+],
+[
+"federal_reserve_ffiec_bhcpr",
+"Get a bank holding company's BHCPR performance data by section."
+],
+[
+"federal_reserve_atlanta_gdpnow",
+"Get the Atlanta Fed GDPNow nowcast model track record."
+],
+[
+"federal_reserve_atlanta_wage_growth",
+"Get the Atlanta Fed Wage Growth Tracker by cohort."
+],
+[
+"federal_reserve_atlanta_sticky_cpi",
+"Get the Atlanta Fed Sticky-Price CPI series."
+],
+[
+"federal_reserve_atlanta_business_inflation_expectations",
+"Get the Atlanta Fed Business Inflation Expectations survey."
+],
+[
+"federal_reserve_atlanta_business_uncertainty",
+"Get the Atlanta Fed Survey of Business Uncertainty index values."
+],
+[
+"federal_reserve_atlanta_market_probability",
+"Get the Atlanta Fed Market Probability Tracker series."
+],
+[
+"federal_reserve_atlanta_taylor_rule",
+"Get the Atlanta Fed Taylor Rule prescribed federal funds rate vs. actual."
+],
+[
+"federal_reserve_atlanta_taylor_rule_measures",
+"Get the Atlanta Fed Taylor Rule menu of candidate input measures."
+],
+[
+"federal_reserve_atlanta_taylor_rule_heatmap",
+"Get the Atlanta Fed Taylor Rule quarterly prescription heat map."
+],
+[
+"federal_reserve_atlanta_publications",
+"Index the Atlanta Fed BIE, SBU, and Working Papers PDF archives."
+],
+[
+"federal_reserve_atlanta_publication_series",
+"List the supported Atlanta Fed publication series and their document counts."
+],
+[
+"federal_reserve_boston_economic_indicators",
+"Get headline New England Economic Indicators from the Boston Fed."
+],
+[
+"federal_reserve_boston_publications",
+"Index the Boston Fed New England Economic Conditions PDF archive."
+],
+[
+"federal_reserve_boston_publication_series",
+"List the supported Boston Fed publication series and their document counts."
+],
+[
+"federal_reserve_chicago_national_activity",
+"Get the Chicago Fed National Activity Index (CFNAI)."
+],
+[
+"federal_reserve_chicago_financial_conditions",
+"Get the Chicago Fed National Financial Conditions Index (NFCI)."
+],
+[
+"federal_reserve_chicago_economic_conditions",
+"Get the Chicago Fed Survey of Economic Conditions (CFSEC) diffusion indexes."
+],
+[
+"federal_reserve_chicago_retail_trade",
+"Get the Chicago Fed Advance Retail Trade Summary (CARTS)."
+],
+[
+"federal_reserve_chicago_labor_market",
+"Get the Chicago Fed Labor Market Indicators (CFLMI)."
+],
+[
+"federal_reserve_chicago_farmland_values",
+"Get the Chicago Fed AgLetter year-over-year farmland values."
+],
+[
+"federal_reserve_chicago_ag_credit_conditions",
+"Get the Chicago Fed AgLetter agricultural credit conditions indexes."
+],
+[
+"federal_reserve_chicago_farm_loan_rates",
+"Get the Chicago Fed AgLetter new farm loan interest rates."
+],
+[
+"federal_reserve_chicago_brave_butters_kelley",
+"Get the Chicago Fed Brave-Butters-Kelley Indexes (BBKI, historical series)."
+],
+[
+"federal_reserve_chicago_midwest_economy",
+"Get the Chicago Fed Midwest Economy Index (MEI, historical series)."
+],
+[
+"federal_reserve_chicago_publications",
+"Index the Chicago Fed AgLetter, Fed Letter, EP, and Working Paper archives."
+],
+[
+"federal_reserve_chicago_publication_series",
+"List the supported Chicago Fed publication series and their document counts."
+],
+[
+"federal_reserve_cleveland_inflation_expectations",
+"Get the Cleveland Fed model-based inflation expectations."
+],
+[
+"federal_reserve_cleveland_inflation_nowcast",
+"Get the Cleveland Fed CPI and PCE inflation nowcasts by target period."
+],
+[
+"federal_reserve_cleveland_median_cpi",
+"Get the Cleveland Fed Median CPI and 16% Trimmed-Mean CPI series."
+],
+[
+"federal_reserve_cleveland_median_cpi_components",
+"Get the latest Median CPI component distribution by expenditure category."
+],
+[
+"federal_reserve_cleveland_systemic_risk",
+"Get the Cleveland Fed Systemic Risk Indicator and distance-to-default legs."
+],
+[
+"federal_reserve_cleveland_publications",
+"Index the Cleveland Fed publication PDF archives."
+],
+[
+"federal_reserve_cleveland_publication_series",
+"List the supported Cleveland Fed publication series and their document counts."
+],
+[
+"federal_reserve_dallas_manufacturing",
+"Get the Dallas Fed Texas Manufacturing Outlook Survey (TMOS)."
+],
+[
+"federal_reserve_dallas_service_sector",
+"Get the Dallas Fed Texas Service Sector Outlook Survey (TSSOS)."
+],
+[
+"federal_reserve_dallas_retail",
+"Get the Dallas Fed Texas Retail Outlook Survey (TROS)."
+],
+[
+"federal_reserve_dallas_banking_conditions",
+"Get the Dallas Fed Banking Conditions Survey (BCS)."
+],
+[
+"federal_reserve_dallas_energy_survey",
+"Get the Dallas Fed Energy Survey: indexes, response shares, and prices."
+],
+[
+"federal_reserve_dallas_trimmed_mean_pce",
+"Get the Dallas Fed Trimmed Mean PCE Inflation Rate."
+],
+[
+"federal_reserve_dallas_weekly_economic_index",
+"Get the Dallas Fed Weekly Economic Index (WEI)."
+],
+[
+"federal_reserve_dallas_leading_index",
+"Get the Dallas Fed Texas Leading Index (TLI)."
+],
+[
+"federal_reserve_dallas_global_economic_indicators",
+"Get the Dallas Fed Database of Global Economic Indicators (DGEI)."
+],
+[
+"federal_reserve_dallas_global_real_economic_activity",
+"Get the Dallas Fed Index of Global Real Economic Activity (IGREA)."
+],
+[
+"federal_reserve_dallas_government_debt",
+"Get the Dallas Fed par and market value of U.S. government debt."
+],
+[
+"federal_reserve_dallas_agricultural_survey",
+"Get the Dallas Fed Eleventh District Agricultural Survey."
+],
+[
+"federal_reserve_dallas_breakeven_prices",
+"Get the Dallas Fed Energy Survey oil break-even prices by shale play."
+],
+[
+"federal_reserve_dallas_gigafactory_map",
+"Get the Dallas Fed U.S. gigafactory (battery plant) map."
+],
+[
+"federal_reserve_dallas_lithium_map",
+"Get the Dallas Fed U.S. lithium projects map."
+],
+[
+"federal_reserve_dallas_publications",
+"Index the Dallas Fed Working Papers and Southwest Economy PDF archives."
+],
+[
+"federal_reserve_dallas_publication_series",
+"List the supported Dallas Fed publication series and their document counts."
+],
+[
+"federal_reserve_kc_financial_stress_index",
+"Get the Kansas City Financial Stress Index (KCFSI)."
+],
+[
+"federal_reserve_kc_risk_index",
+"Get the Kansas City Risk-On/Risk-Off (RORO) Index."
+],
+[
+"federal_reserve_kc_policy_rate_uncertainty",
+"Get the Kansas City Policy Rate Uncertainty (KCPRU) and skew (KCPRS)."
+],
+[
+"federal_reserve_kc_natural_rate",
+"Get the Kansas City model-based natural rates of interest and unemployment."
+],
+[
+"federal_reserve_kc_divisional_lmci",
+"Get the Kansas City Divisional Labor Market Conditions Indicators."
+],
+[
+"federal_reserve_kc_ag_credit_survey",
+"Get the Kansas City Fed Tenth District Agricultural Credit Survey."
+],
+[
+"federal_reserve_kc_ag_interest_rates",
+"Get the Kansas City Fed farm loan interest rates by state and loan type."
+],
+[
+"federal_reserve_kc_ag_finance_databook",
+"Get the Kansas City Fed Ag Finance Databook commercial-bank lending history."
+],
+[
+"federal_reserve_kc_ag_terms_of_lending",
+"Get the National Survey of Terms of Lending to Farmers history."
+],
+[
+"federal_reserve_kc_ag_district_surveys",
+"Get the combined Federal Reserve District Surveys of Ag Credit Conditions."
+],
+[
+"federal_reserve_kc_ag_databook_archived",
+"Get the archived (pre-2018) Kansas City Fed Ag Finance Databook tables."
+],
+[
+"federal_reserve_kc_publications",
+"Index the Kansas City Fed Agricultural Bulletin PDF archive."
+],
+[
+"federal_reserve_kc_publication_series",
+"List the supported Kansas City Fed publication series and their document counts."
+],
+[
+"federal_reserve_minneapolis_business_conditions",
+"Get the Minneapolis Fed Business Conditions Survey diffusion indexes."
+],
+[
+"federal_reserve_minneapolis_regional_employment",
+"Get Ninth District regional employment indexes."
+],
+[
+"federal_reserve_minneapolis_regional_unemployment",
+"Get Ninth District regional unemployment rates."
+],
+[
+"federal_reserve_minneapolis_labor_force_participation",
+"Get Ninth District labor force participation rates."
+],
+[
+"federal_reserve_minneapolis_quits_rate",
+"Get Ninth District quits rates."
+],
+[
+"federal_reserve_minneapolis_regional_gdp",
+"Get Ninth District regional real GDP indexes."
+],
+[
+"federal_reserve_minneapolis_regional_cpi",
+"Get Ninth District regional Consumer Price Index inflation."
+],
+[
+"federal_reserve_minneapolis_unemployment_claims",
+"Get weekly Minnesota initial and continued unemployment claims."
+],
+[
+"federal_reserve_minneapolis_job_openings_hiring",
+"Get Ninth District job opening and hiring rates by state."
+],
+[
+"federal_reserve_minneapolis_publications",
+"Index the Minneapolis Fed research and Quarterly Review PDF archives."
+],
+[
+"federal_reserve_minneapolis_publication_series",
+"List the supported Minneapolis Fed publication series and their document counts."
+],
+[
+"federal_reserve_ny_supply_chain_pressure",
+"Get the New York Fed Global Supply Chain Pressure Index (GSCPI)."
+],
+[
+"federal_reserve_ny_corporate_bond_distress",
+"Get the New York Fed Corporate Bond Market Distress Index (CMDI)."
+],
+[
+"federal_reserve_ny_consumer_expectations",
+"Get the New York Fed Survey of Consumer Expectations across all topics."
+],
+[
+"federal_reserve_ny_business_leaders",
+"Get the New York Fed Business Leaders Survey diffusion indexes."
+],
+[
+"federal_reserve_ny_empire_state_manufacturing",
+"Get the New York Fed Empire State Manufacturing Survey diffusion indexes."
+],
+[
+"federal_reserve_ny_consumer_labor_market",
+"Get the New York Fed SCE Labor Market Survey reservation wage."
+],
+[
+"federal_reserve_ny_consumer_housing",
+"Get the New York Fed SCE Housing Survey across all topics."
+],
+[
+"federal_reserve_ny_consumer_credit_access",
+"Get the New York Fed SCE Credit Access Survey across all metrics."
+],
+[
+"federal_reserve_ny_household_debt",
+"Get the New York Fed total household debt balance by category."
+],
+[
+"federal_reserve_ny_core_trend_inflation",
+"Get the New York Fed Multivariate Core Trend (MCT) inflation estimate."
+],
+[
+"federal_reserve_ny_empire_state_reports",
+"Index the New York Fed Empire State Survey monthly report PDF archive."
+],
+[
+"federal_reserve_ny_market_expectations",
+"Get the New York Fed Survey of Market Expectations results data."
+],
+[
+"federal_reserve_ny_market_expectations_reports",
+"Index the New York Fed Survey of Market Expectations PDF archive."
+],
+[
+"federal_reserve_ny_nowcast",
+"Get the New York Fed Staff Nowcast of U.S. real GDP growth."
+],
+[
+"federal_reserve_ny_publications",
+"Index the New York Fed report PDF archives in a multi-file viewer."
+],
+[
+"federal_reserve_ny_sofr",
+"Get the Secured Overnight Financing Rate (SOFR)."
+],
+[
+"federal_reserve_ny_effr",
+"Get Effective Federal Funds Rate data."
+],
+[
+"federal_reserve_ny_overnight_bank_funding",
+"Get the Overnight Bank Funding Rate (OBFR)."
+],
+[
+"federal_reserve_ny_central_bank_holdings",
+"Get the System Open Market Account (SOMA) balance sheet holdings."
+],
+[
+"federal_reserve_ny_primary_dealer_positioning",
+"Get Primary dealer positioning statistics."
+],
+[
+"federal_reserve_ny_primary_dealer_fails",
+"Get Primary Dealer Statistics for Fails to Deliver and Fails to Receive."
+],
+[
+"federal_reserve_ny_publication_series",
+"List the supported New York Fed publication series and their document counts."
+],
+[
+"federal_reserve_philadelphia_business_conditions",
+"Get the Philadelphia Fed ADS Business Conditions Index."
+],
+[
+"federal_reserve_philadelphia_survey_professional_forecasters",
+"Get the Philadelphia Fed Survey of Professional Forecasters consensus."
+],
+[
+"federal_reserve_philadelphia_anxious_index",
+"Get the Philadelphia Fed Anxious Index recession probability series."
+],
+[
+"federal_reserve_philadelphia_gdpplus",
+"Get the Philadelphia Fed GDPplus measure of output growth."
+],
+[
+"federal_reserve_philadelphia_partisan_conflict",
+"Get the Philadelphia Fed Partisan Conflict Index."
+],
+[
+"federal_reserve_philadelphia_state_coincident_index",
+"Get the Philadelphia Fed State Coincident Indexes."
+],
+[
+"federal_reserve_philadelphia_livingston_survey",
+"Get the Philadelphia Fed Livingston Survey forecasts."
+],
+[
+"federal_reserve_philadelphia_manufacturing_outlook",
+"Get the Philadelphia Fed Manufacturing Business Outlook Survey indexes."
+],
+[
+"federal_reserve_philadelphia_nonmanufacturing_outlook",
+"Get the Philadelphia Fed Nonmanufacturing Business Outlook Survey indexes."
+],
+[
+"federal_reserve_philadelphia_term_structure_inflation",
+"Get the Philadelphia Fed ATSIX term structure of inflation expectations."
+],
+[
+"federal_reserve_philadelphia_publications",
+"Index the Philadelphia Fed survey-report PDF archive."
+],
+[
+"federal_reserve_philadelphia_publication_series",
+"List the supported Philadelphia Fed publication series and their document counts."
+],
+[
+"federal_reserve_richmond_manufacturing_survey",
+"Get the Richmond Fed Fifth District Survey of Manufacturing Activity."
+],
+[
+"federal_reserve_richmond_service_sector_survey",
+"Get the Richmond Fed Fifth District Survey of Service Sector Activity."
+],
+[
+"federal_reserve_richmond_state_survey",
+"Get a Richmond Fed Fifth District state business survey."
+],
+[
+"federal_reserve_richmond_cfo_survey",
+"Get the Richmond Fed CFO Survey optimism series."
+],
+[
+"federal_reserve_richmond_non_employment_index",
+"Get the Richmond Fed Non-Employment Index (NEI)."
+],
+[
+"federal_reserve_richmond_recession_indicator",
+"Get the Richmond Fed SOS (Sum of Stalls) Recession Indicator."
+],
+[
+"federal_reserve_richmond_publications",
+"Index the Richmond Fed publications catalog on Fed in Print."
+],
+[
+"federal_reserve_richmond_publication_series",
+"List the supported Richmond Fed publication series and their document counts."
+],
+[
+"federal_reserve_sf_news_sentiment",
+"Get the San Francisco Fed Daily News Sentiment Index."
+],
+[
+"federal_reserve_sf_proxy_funds_rate",
+"Get the San Francisco Fed Proxy Funds Rate."
+],
+[
+"federal_reserve_sf_cyclical_pce",
+"Get the San Francisco Fed Cyclical & Acyclical Core PCE Inflation series."
+],
+[
+"federal_reserve_sf_supply_demand_pce",
+"Get the San Francisco Fed Supply & Demand-Driven PCE Inflation series."
+],
+[
+"federal_reserve_sf_total_factor_productivity",
+"Get the San Francisco Fed Quarterly TFP (Fernald) growth-accounting series."
+],
+[
+"federal_reserve_sf_term_premium",
+"Get the San Francisco Fed Treasury Term Premium decomposition."
+],
+[
+"federal_reserve_sf_short_rate_path",
+"Get the San Francisco Fed model-implied expected short-rate path by horizon."
+],
+[
+"federal_reserve_sf_publications",
+"Index the San Francisco Fed Economic Letter and FedViews PDF archives."
+],
+[
+"federal_reserve_sf_publication_series",
+"List the supported San Francisco Fed publication series and their document counts."
+],
+[
+"federal_reserve_stl_fred_md",
+"Get the FRED-MD monthly macroeconomic database as a tidy long panel."
+],
+[
+"federal_reserve_stl_publication_series",
+"List the supported St. Louis Fed publication series and their document counts."
+],
+[
+"federal_reserve_stl_fred_qd",
+"Get the FRED-QD quarterly macroeconomic database as a tidy long panel."
+],
+[
+"federal_reserve_stl_national_index",
+"Get a St. Louis Fed national index: financial stress, price pressures, or nowcast."
+],
+[
+"federal_reserve_stl_publications",
+"Index the St. Louis Fed Economic Synopses PDF archive on FRASER."
+],
+[
+"finra_equity_securities",
+"List every FINRA-traded security by type - stocks, ETFs, and closed-end funds."
+],
+[
+"finra_equity_search",
+"Search stocks and funds in the FINRA Market Data Center."
+],
+[
+"finra_equity_profile",
+"Get identifiers, classification, prices, dividends, and ratios for securities."
+],
+[
+"finra_equity_darkpool_otc",
+"Get the weekly OTC and ATS trading volume reported to FINRA."
+],
+[
+"finra_equity_shorts_short_interest",
+"Get the bi-monthly consolidated short interest and days to cover."
+],
+[
+"finra_fixedincome_bond_historical",
+"Get the daily end-of-day TRACE price and yield of bonds."
+],
+[
+"finra_fixedincome_bonds",
+"List every TRACE-reported bond of one type, with its reference data and last sale."
+],
+[
+"finra_fixedincome_bond_prices",
+"Search TRACE-reported bonds, with reference data and the last reported sale."
+],
+[
+"fred_commodity_price_spot",
+"Commodity Spot Prices."
+],
+[
+"fred_fixedincome_corporate_commercial_paper",
+"Commercial Paper."
+],
+[
+"fred_fixedincome_corporate_hqm",
+"High Quality Market Corporate Bond."
+],
+[
+"fred_fixedincome_corporate_spot_rates",
+"Spot Rates."
+],
+[
+"fred_economy_release_table",
+"Read a published release table, with the periods across the columns."
+],
+[
+"fred_economy_balance_of_payments",
+"Balance of Payments Reports."
+],
+[
+"fred_economy_cpi",
+"Consumer Price Index (CPI)."
+],
+[
+"fred_economy_calendar",
+"Economic release calendar."
+],
+[
+"fred_economy_pce",
+"Personal Consumption Expenditures (PCE)."
+],
+[
+"fred_economy_retail_prices",
+"Retail prices for common items."
+],
+[
+"fred_economy_fred_search",
+"Search for FRED series or economic releases by ID or string."
+],
+[
+"fred_economy_fred_series",
+"Get data by series ID from FRED."
+],
+[
+"fred_economy_fred_release_table",
+"Get economic release data by ID and/or element from FRED."
+],
+[
+"fred_economy_fred_regional",
+"Query the Geo Federal Reserve Economic Data (GeoFRED) Regional Data API."
+],
+[
+"fred_fixedincome_bond_indices",
+"Bond Indices."
+],
+[
+"fred_fixedincome_mortgage_indices",
+"Mortgage Indices."
+],
+[
+"fred_fixedincome_government_tips_yields",
+"Get current Treasury inflation-protected securities yields."
+],
+[
+"fred_fixedincome_government_yield_curve",
+"Get yield curve data by country and date."
+],
+[
+"fred_fixedincome_rate_ameribor",
+"Ameribor."
+],
+[
+"fred_fixedincome_rate_dpcredit",
+"Discount Window Primary Credit Rate."
+],
+[
+"fred_fixedincome_rate_estr",
+"Euro Short-Term Rate."
+],
+[
+"fred_fixedincome_rate_ecb",
+"European Central Bank Interest Rates."
+],
+[
+"fred_fixedincome_rate_effr",
+"Fed Funds Rate."
+],
+[
+"fred_fixedincome_rate_iorb",
+"Interest on Reserve Balances."
+],
+[
+"fred_fixedincome_rate_overnight_bank_funding",
+"Overnight Bank Funding."
+],
+[
+"fred_fixedincome_rate_effr_forecast",
+"Fed Funds Rate Projections."
+],
+[
+"fred_fixedincome_rate_sofr",
+"Secured Overnight Financing Rate."
+],
+[
+"fred_fixedincome_rate_sonia",
+"Sterling Overnight Index Average."
+],
+[
+"fred_fixedincome_spreads_treasury_effr",
+"Select Treasury Bill."
+],
+[
+"fred_fixedincome_spreads_tcm_effr",
+"Select Treasury Constant Maturity."
+],
+[
+"fred_fixedincome_spreads_tcm",
+"Treasury Constant Maturity."
+],
+[
+"fred_economy_survey_manufacturing_outlook_ny",
+"Empire State Manufacturing Survey."
+],
+[
+"fred_economy_survey_manufacturing_outlook_texas",
+"Texas Manufacturing Outlook Survey."
+],
+[
+"fred_economy_survey_nonfarm_payrolls",
+"Nonfarm Payrolls Survey."
+],
+[
+"fred_economy_survey_sloos",
+"Senior Loan Officer Opinion Survey on Bank Lending Practices."
+],
+[
+"fred_economy_survey_economic_conditions_chicago",
+"Survey of Economic Conditions - Chicago Fed."
+],
+[
+"fred_economy_survey_university_of_michigan",
+"Get University of Michigan Consumer Sentiment and Inflation Expectations Surveys."
+],
+[
+"imf_list_dataflows",
+"List all available IMF dataflows."
+],
+[
+"imf_get_dataflow_dimensions",
+"Dataflow parameters and their possible values."
+],
+[
+"imf_list_tables",
+"Get the list of presentation tables available from the IMF."
+],
+[
+"imf_list_table_choices",
+"Get presentation table choices for IMF data retrieval."
+],
+[
+"imf_list_dataflow_choices",
+"Get dataflow choices for IMF data retrieval."
+],
+[
+"imf_list_bop_country_choices",
+"Get country choices (label, ISO3 value) for the IMF Balance of Payments dataflow."
+],
+[
+"imf_list_cpi_country_choices",
+"Get country choices (label, ISO3 value) for the IMF Consumer Price Index dataflow."
+],
+[
+"imf_presentation_table_choices",
+"Get presentation table choices for IMF data retrieval."
+],
+[
+"imf_presentation_table",
+"Get a presentation table from the IMF database as native AG Grid rows."
+],
+[
+"imf_available_indicators",
+"Search the IMF SDMX indicator catalog by query, dataflow, or keyword."
+],
+[
+"imf_indicators",
+"Fetch IMF economic indicators or presentation tables by ``dataflow::code`` symbol."
+],
+[
+"imf_cpi",
+"Consumer Price Index (CPI) data from the IMF."
+],
+[
+"imf_balance_of_payments",
+"Balance of Payments reports from the IMF BOP dataflow."
+],
+[
+"imf_direction_of_trade",
+"Direction Of Trade Statistics (DOTS) from the IMF database."
+],
+[
+"imf_port_info",
+"General metadata and statistics for all IMF Port Watch ports."
+],
+[
+"imf_port_volume",
+"Daily port calls and estimated trading volumes from IMF Port Watch."
+],
+[
+"imf_chokepoint_info",
+"Metadata and statistics for all IMF Port Watch maritime chokepoints."
+],
+[
+"imf_chokepoint_volume",
+"Daily transit calls and estimated trade volumes for shipping chokepoints."
+],
+[
+"imf_portwatch_list_port_id_choices",
+"``[{label, value}]`` of IMF Port Watch port IDs."
+],
+[
+"imf_portwatch_list_country_choices",
+"``[{label, value}]`` of ISO3 countries from the IMF Port Watch ports database."
+],
+[
+"imf_portwatch_list_tradenow_region_choices",
+"``[{label, value}]`` of TradeNow regions for dropdown widgets."
+],
+[
+"imf_portwatch_list_container_port_choices",
+"``[{label, value}]`` of ports present in the Container Metrics table, with TOP10."
+],
+[
+"imf_portwatch_list_disruption_event_choices",
+"``[{label, value}]`` of disruption events ordered by start date, with LATEST."
+],
+[
+"imf_portwatch_country_activity",
+"Daily country-level port calls, imports, and exports from IMF Port Watch."
+],
+[
+"imf_portwatch_monthly_trade",
+"Monthly TradeNow trade-value, trade-volume, and AIS port-call series."
+],
+[
+"imf_portwatch_container_metrics",
+"Monthly container metrics by port (long format)."
+],
+[
+"imf_portwatch_disruption_events",
+"Maritime disruption events with country / type / alert / date filters."
+],
+[
+"imf_portwatch_disruptions_map",
+"Disruption events surfaced as a Scattergeo chart when ``chart=True``."
+],
+[
+"imf_portwatch_disruption_sankey",
+"Capacity-spillover Sankey edges for a single disruption event."
+],
+[
+"jodi_oil_balance",
+"Get a country's monthly petroleum balance for one product - production, trade, stocks, and refinery activity, one column per flow of the JOD"
+],
+[
+"jodi_oil_production",
+"Monthly production of a primary petroleum product - one column per reporting country."
+],
+[
+"jodi_oil_demand",
+"Monthly demand for a refined petroleum product - one column per reporting country."
+],
+[
+"jodi_oil_demand_by_product",
+"Get a country's monthly petroleum demand - one column per refined product, in published order."
+],
+[
+"jodi_oil_imports",
+"Monthly imports of a petroleum product - one column per reporting country."
+],
+[
+"jodi_oil_exports",
+"Monthly exports of a petroleum product - one column per reporting country."
+],
+[
+"jodi_oil_stocks",
+"Monthly closing stock levels of a petroleum product - one column per reporting country."
+],
+[
+"jodi_gas_balance",
+"Get a country's monthly natural gas balance - production, pipeline and LNG trade, deliveries, and stocks, one column per flow of the JODI qu"
+],
+[
+"jodi_gas_production",
+"Monthly natural gas production - one column per reporting country."
+],
+[
+"jodi_gas_demand",
+"Monthly natural gas demand, as gross inland deliveries - one column per reporting country."
+],
+[
+"jodi_gas_imports",
+"Monthly natural gas imports - total, pipeline, or LNG - one column per reporting country."
+],
+[
+"jodi_gas_exports",
+"Monthly natural gas exports - total, pipeline, or LNG - one column per reporting country."
+],
+[
+"jodi_gas_stocks",
+"Monthly natural gas closing stock levels - one column per reporting country."
+],
+[
+"nasdaq_equity_symbol_choices",
+"``[{label, value}]`` of every operating company Nasdaq lists."
+],
+[
+"nasdaq_equity_document_choices",
+"``[{label, value}]`` of filing PDFs for a symbol, year, and form group."
+],
+[
+"nasdaq_equity_filings_viewer",
+"Open the selected SEC filing PDFs for the OpenBB Workspace file viewer."
+],
+[
+"nasdaq_equity_filing_years",
+"``[{label, value}]`` of the calendar years Nasdaq indexes filings for."
+],
+[
+"nasdaq_equity_search",
+"Search the Nasdaq symbol directory."
+],
+[
+"nasdaq_equity_screener",
+"Screen US-listed equities by exchange, sector, region, and market cap."
+],
+[
+"nasdaq_equity_quote",
+"Delayed Nasdaq quotes, with the sector, market cap, and dividend summary."
+],
+[
+"nasdaq_equity_profile",
+"Company profile, sector, industry, and business description."
+],
+[
+"nasdaq_equity_historical",
+"Daily OHLCV history for Nasdaq-quoted equities."
+],
+[
+"nasdaq_equity_filings",
+"SEC filings for a company, with links to the filed PDFs."
+],
+[
+"nasdaq_equity_calendar_earnings",
+"Company earnings releases, with consensus and surprise."
+],
+[
+"nasdaq_equity_calendar_dividend",
+"Ex-dividend, record, and payment dates."
+],
+[
+"nasdaq_equity_calendar_ipo",
+"IPO and secondary offering announcements, pricings, and withdrawals."
+],
+[
+"nasdaq_equity_calendar_splits",
+"Announced stock splits and their effective dates."
+],
+[
+"nasdaq_equity_fundamental_income",
+"Income statement, as published on the Nasdaq financials tab."
+],
+[
+"nasdaq_equity_fundamental_balance",
+"Balance sheet, as published on the Nasdaq financials tab."
+],
+[
+"nasdaq_equity_fundamental_cash",
+"Cash flow statement, as published on the Nasdaq financials tab."
+],
+[
+"nasdaq_equity_fundamental_ratios",
+"Liquidity and profitability ratios, as published by Nasdaq."
+],
+[
+"nasdaq_equity_fundamental_dividends",
+"Historical dividend payments for a symbol."
+],
+[
+"nasdaq_equity_fundamental_historical_eps",
+"Get reported EPS against the consensus forecast, with the surprise."
+],
+[
+"nasdaq_equity_ownership_insider_trading",
+"Insider transactions reported to the SEC."
+],
+[
+"nasdaq_equity_ownership_institutional",
+"Institutional holders, their positions, and the change since the prior filing."
+],
+[
+"nasdaq_equity_ownership_short_interest",
+"Bi-monthly settlement short interest, with days to cover."
+],
+[
+"nasdaq_equity_estimates_consensus",
+"Analyst price target consensus, with the buy/hold/sell split."
+],
+[
+"nasdaq_equity_estimates_price_target",
+"Recent analyst rating changes. Nasdaq publishes only current actions."
+],
+[
+"nasdaq_etf_symbol_choices",
+"``[{label, value}]`` of every Nasdaq-traded ETF and mutual fund."
+],
+[
+"nasdaq_etf_info",
+"Fund key data - AUM, expense ratio, beta, alpha, and average volumes."
+],
+[
+"nasdaq_etf_historical",
+"Daily OHLCV history for ETFs and mutual funds."
+],
+[
+"nasdaq_etf_holdings",
+"Get the top ten holdings of an ETF or mutual fund, with weights."
+],
+[
+"nasdaq_etf_equity_exposure",
+"Get the funds carrying an equity as a top-ten holding, with weights."
+],
+[
+"nasdaq_etf_search",
+"Screen ETFs by fund family, sector, asset class, region, and performance."
+],
+[
+"nasdaq_index_symbol_choices",
+"``[{label, value}]`` of every Nasdaq-calculated index."
+],
+[
+"nasdaq_index_historical",
+"Daily OHLCV history for Nasdaq-calculated indexes."
+],
+[
+"nasdaq_index_search",
+"Screen indexes by domicile."
+],
+[
+"nasdaq_index_snapshots",
+"Get current levels, session ranges, and changes for a set of indexes."
+],
+[
+"nasdaq_crypto_historical",
+"Daily OHLCV history for the crypto pairs Nasdaq quotes."
+],
+[
+"nasdaq_options_chains",
+"Delayed Nasdaq options chains. Narrowing with `expiration` populates greeks, implied volatility, and the full quote detail on every contract"
+],
+[
+"nasdaq_economy_calendar",
+"Macroeconomic events, with consensus, actual, and revised values."
+],
+[
+"nasdaq_markets_movers",
+"Nasdaq market movers - most active, advancers, decliners, and Nasdaq-100."
+],
+[
+"nasdaq_markets_status",
+"Get the US market session status, and the next open and close times."
+],
+[
+"nasdaq_markets_quotes",
+"Batch quotes for any mix of stocks, funds, indexes, and crypto pairs."
+],
+[
+"nasdaq_markets_upcoming",
+"Get counts and a preview of upcoming earnings, dividends, splits, and IPOs."
+],
+[
+"nasdaq_nordic_symbol_choices",
+"``[{label, value}]`` of every instrument Nasdaq Nordic lists."
+],
+[
+"nasdaq_nordic_screener",
+"Screen shares, funds, indexes, bonds, and derivatives across Nasdaq Nordic."
+],
+[
+"nasdaq_nordic_news",
+"Company announcements and exchange notices from the Nasdaq Nordic markets."
+],
+[
+"nasdaq_nordic_info",
+"Get the reference and trading metadata for a Nasdaq Nordic instrument."
+],
+[
+"nasdaq_nordic_fundamentals",
+"Get the Morningstar fundamentals published for a Nasdaq Nordic listing."
+],
+[
+"nasdaq_nordic_dividends",
+"Get the declared distributions for a Nasdaq Nordic listing."
+],
+[
+"nasdaq_nordic_historical",
+"Get the daily price history for a Nasdaq Nordic instrument."
+],
+[
+"nasdaq_nordic_historical_trades",
+"Get the trade-by-trade history for a Nasdaq Nordic instrument."
+],
+[
+"nasdaq_nordic_movers",
+"Get the most traded instruments in a Nasdaq Nordic asset group."
+],
+[
+"nasdaq_nordic_derivatives_volume",
+"Get the session volume for each Nasdaq Nordic equity derivatives market."
+],
+[
+"nasdaq_nordic_knocked_out",
+"Get the knocked-out leverage instruments, in buyback or halted."
+],
+[
+"nasdaq_nordic_bond_yields",
+"Get the average bond yield by issuer segment and residual maturity."
+],
+[
+"nasdaq_nordic_index_factors",
+"Get the index factors applied to Danish index-linked mortgage bonds."
+],
+[
+"nasdaq_nordic_mortgage_rates",
+"Get the mortgage rates each Nordic lender lists, by fixed-rate term."
+],
+[
+"nasdaq_nordic_trading_hours",
+"Get the session hours for each Nasdaq Nordic market and segment."
+],
+[
+"nasdaq_nordic_holidays",
+"Get the dates each Nasdaq Nordic market is closed."
+],
+[
+"news_company",
+"Company News. Get news for one or more companies."
+],
+[
+"news_rss",
+"Fetch a registered RSS feed."
+],
+[
+"news_rss_providers",
+"Return [{label, value}] for active news providers."
+],
+[
+"news_rss_feeds",
+"Return [{label, value}] for feeds under outlet."
+],
+[
+"oecd_list_topic_choices",
+"Return [{label, value}] for every OECD topic (for dropdowns)."
+],
+[
+"oecd_list_subtopic_choices",
+"Return [{label, value}] for subtopics within a given topic (for dropdowns)."
+],
+[
+"oecd_list_dataflows",
+"List all available OECD dataflows, optionally filtered by topic and subtopic."
+],
+[
+"oecd_list_dataflow_choices",
+"Return [{label, value}] for every OECD dataflow (for dropdowns)."
+],
+[
+"oecd_list_topics",
+"List all OECD topic categories with dataflow counts."
+],
+[
+"oecd_get_dataflow_parameters",
+"Dataflow parameters and possible dimension values. Returns an OBBject with either a JSON dict or markdown string under results."
+],
+[
+"oecd_list_tables",
+"List all OECD tables with keyword search, topic, subtopic, and dataflow ID filtering."
+],
+[
+"oecd_get_table_detail",
+"Full dimension and indicator breakdown for a single OECD table. Returns a markdown document with: - Table name and description - Each dimens"
+],
+[
+"oecd_list_table_choices",
+"Return [{label, value}] for OECD tables (for dropdowns), optionally filtered by topic."
+],
+[
+"oecd_presentation_table_choices",
+"Get presentation table choices for OECD data retrieval. Progressive cascading selector using the OECD metadata taxonomy. All data is discove"
+],
+[
+"oecd_presentation_table",
+"Get a formatted presentation table from the OECD database."
+],
+[
+"oecd_available_indicators",
+"Search the OECD SDMX catalogue for indicators across all dataflows."
+],
+[
+"oecd_indicators",
+"Get economic indicators by country and indicator symbol from the OECD."
+],
+[
+"oecd_balance_of_payments",
+"Balance of Payments reports from the OECD."
+],
+[
+"oecd_composite_leading_indicator",
+"Get the OECD Composite Leading Indicator (CLI)."
+],
+[
+"oecd_cpi",
+"Get Consumer Price Index (CPI) data by country from the OECD."
+],
+[
+"oecd_country_interest_rates",
+"Get interest rates by country and duration from the OECD."
+],
+[
+"oecd_gdp_nominal",
+"Get Nominal GDP data from the OECD."
+],
+[
+"oecd_gdp_real",
+"Get Real GDP data from the OECD."
+],
+[
+"oecd_gdp_forecast",
+"Get Forecasted GDP data from the OECD."
+],
+[
+"oecd_house_price_index",
+"Get the House Price Index by country from the OECD."
+],
+[
+"oecd_share_price_index",
+"Get the Share Price Index by country from the OECD."
+],
+[
+"oecd_unemployment",
+"Get global unemployment data from the OECD."
+],
+[
+"sec_filing_headers",
+"Download the index headers, and cover page if available, for any SEC filing."
+],
+[
+"sec_full_text_search",
+"Search the full text of all SEC EDGAR filings since 2001."
+],
+[
+"sec_htm_file",
+"Download a raw HTML object from the SEC website."
+],
+[
+"sec_cik_map",
+"Map a ticker symbol to a CIK number."
+],
+[
+"sec_institutions_search",
+"Search SEC-regulated institutions by name and return a list of results with CIK numbers."
+],
+[
+"sec_adviser_firms",
+"Search SEC investment adviser firms."
+],
+[
+"sec_adviser_individuals",
+"Search SEC adviser individuals, with one row per current employer."
+],
+[
+"sec_adviser_documents",
+"List available Form ADV and brochure documents by firm CRD."
+],
+[
+"sec_adviser_universe",
+"Get current registered or exempt Form ADV Part 1 data, optionally by CRD."
+],
+[
+"sec_schema_files",
+"Explore SEC and FASB XBRL taxonomy schemas, labels, and presentation structures. - No parameters: list all available taxonomy families. - ta"
+],
+[
+"sec_symbol_map",
+"Map a CIK number to a ticker symbol, leading 0s can be omitted or included."
+],
+[
+"sec_rss_litigation",
+"Get the RSS feed that provides links to litigation releases concerning civil lawsuits brought by the Commission in federal court."
+],
+[
+"sec_sic_search",
+"Search for Industry Titles, Reporting Office, and SIC Codes. An empty query string returns all results."
+],
+[
+"sec_financial_statements",
+"Get the financial statements exactly as reported in a company's latest 10-K/10-Q filing."
+],
+[
+"sec_company_overview",
+"Get the company overview - entity profile and Business (Item 1) section - from a filing."
+],
+[
+"sec_executive_compensation",
+"Get the Summary Compensation Table from a company's proxy statement (DEF 14A)."
+],
+[
+"sec_beneficial_ownership",
+"Get the 5%+ beneficial owners table from a company's proxy statement (DEF 14A)."
+],
+[
+"sec_management_profiles",
+"Get management profiles from annual filings and referenced proxy statements."
+],
+[
+"sec_pay_versus_performance",
+"Get the Pay Versus Performance disclosure (Item 402(v)) XBRL facts from a proxy."
+],
+[
+"sec_disclosures",
+"Get the disclosure text blocks and tables - notes to the financial statements - from a filing."
+],
+[
+"sec_risk_factors",
+"Get the Risk Factors (Item 1A) section from a company's latest 10-K/10-Q filing."
+],
+[
+"sec_segment_revenue",
+"Get the segment and geographic breakdown of revenues from a filing's XBRL data."
+],
+[
+"sec_legal_proceedings",
+"Get the Legal Proceedings section (Item 3 / Part II Item 1) from a filing."
+],
+[
+"sec_exhibit",
+"Get a single attached exhibit document from a filing, rendered as markdown."
+],
+[
+"sec_balance_sheet",
+"Get the balance sheet for a given company."
+],
+[
+"sec_balance_sheet_growth",
+"Get the growth of a company's balance sheet items over time."
+],
+[
+"sec_cash_flow",
+"Get the cash flow statement for a given company."
+],
+[
+"sec_cash_flow_growth",
+"Get the growth of a company's cash flow statement items over time."
+],
+[
+"sec_income_statement",
+"Get the income statement for a given company."
+],
+[
+"sec_income_statement_growth",
+"Get the growth of a company's income statement items over time."
+],
+[
+"sec_company_filings",
+"Get public company filings."
+],
+[
+"sec_compare_company_facts",
+"Compare reported company facts and fundamental data points."
+],
+[
+"sec_equity_search",
+"Search for stock symbol, CIK, LEI, or company name."
+],
+[
+"sec_latest_financial_reports",
+"Get the newest quarterly, annual, and current reports for all companies."
+],
+[
+"sec_insider_trading",
+"Get data about trading by a company's management team and board of directors."
+],
+[
+"sec_form_13f",
+"Get the form 13F. The Securities and Exchange Commission's (SEC) Form 13F is a quarterly report that is required to be filed by all institut"
+],
+[
+"sec_equity_ftd",
+"Get reported Fail-to-deliver (FTD) data."
+],
+[
+"sec_management_discussion_analysis",
+"Get the Management Discussion & Analysis section from the financial statements for a given company."
+],
+[
+"sec_nport_disclosure",
+"Get SEC NPORT-P disclosure filings for a given ETF or mutual fund (US only)."
+],
+[
+"sec_nport_fund_metrics",
+"Get fund performance, net assets, and flows from the latest NPORT-P filing."
+],
+[
+"tmx_equity_search",
+"Search the instrument symbology across markets and asset classes."
+],
+[
+"tmx_equity_screener",
+"Screen the listed universe by venue, instrument type, and size."
+],
+[
+"tmx_equity_quote",
+"Delayed quote, for any symbol the feed addresses."
+],
+[
+"tmx_equity_profile",
+"Company profile, sector, and reference data."
+],
+[
+"tmx_equity_historical",
+"Historical prices for any listed instrument."
+],
+[
+"tmx_equity_filings",
+"Filings published to SEDAR, with links to the PDFs."
+],
+[
+"tmx_equity_gainers",
+"Curated stock lists of gainers and most actives."
+],
+[
+"tmx_equity_rankings",
+"Read the TSX 30 and TSX Venture 50 annual rankings."
+],
+[
+"tmx_equity_symbol_reference",
+"Resolve symbols to their canonical form, validity, and listing venue."
+],
+[
+"tmx_equity_filings_view",
+"Serve every selected filing to the viewer."
+],
+[
+"tmx_equity_screener_builder",
+"Open the interactive TMX screener builder."
+],
+[
+"tmx_equity_screener_builder_view",
+"Serve the interactive screener-builder iframe page."
+],
+[
+"tmx_equity_asset_info_view",
+"Serve the styled asset overview for the Workspace."
+],
+[
+"tmx_equity_fundamental_income",
+"Income statement, annual or quarterly."
+],
+[
+"tmx_equity_fundamental_balance",
+"Balance sheet, annual or quarterly."
+],
+[
+"tmx_equity_fundamental_cash",
+"Cash flow statement, annual or quarterly."
+],
+[
+"tmx_equity_fundamental_dividends",
+"Return declared dividends, with ex, record, and payable dates."
+],
+[
+"tmx_equity_fundamental_splits",
+"Historical share splits."
+],
+[
+"tmx_equity_fundamental_income_view",
+"Serve the income statement, a column per reported period."
+],
+[
+"tmx_equity_fundamental_balance_view",
+"Serve the balance sheet, a column per reported period."
+],
+[
+"tmx_equity_fundamental_cash_view",
+"Serve the cash flow statement, a column per reported period."
+],
+[
+"tmx_equity_calendar_earnings",
+"Earnings calendar, with estimated and actual EPS."
+],
+[
+"tmx_equity_ownership_insider_trading",
+"Insider buying and selling activity."
+],
+[
+"tmx_equity_ownership_insider_transactions",
+"Individual insider filings, as reported to SEDI."
+],
+[
+"tmx_equity_estimates_consensus",
+"Analyst consensus, ratings breakdown, and price targets."
+],
+[
+"tmx_etf_search",
+"Search the TMX-listed ETF universe."
+],
+[
+"tmx_etf_info",
+"Fund profile, fees, and reference data."
+],
+[
+"tmx_etf_holdings",
+"Return the holdings of a TMX-listed fund."
+],
+[
+"tmx_etf_sectors",
+"Sector exposure of a TMX-listed fund."
+],
+[
+"tmx_etf_countries",
+"Country exposure of a TMX-listed fund."
+],
+[
+"tmx_etf_historical",
+"Historical prices for a TMX-listed fund."
+],
+[
+"tmx_etf_fund_info_view",
+"Serve the styled fund overview for the Workspace."
+],
+[
+"tmx_index_available",
+"Return the S&P/TSX index universe."
+],
+[
+"tmx_index_info",
+"Profile of an index, with links to its factsheet and methodology."
+],
+[
+"tmx_index_historical",
+"Daily open, high, low, close, and volume for an index."
+],
+[
+"tmx_index_constituents",
+"Constituents of an index, with weights and key data."
+],
+[
+"tmx_index_sectors",
+"Sector weights of an index."
+],
+[
+"tmx_index_snapshots",
+"Levels and performance for an entire index region."
+],
+[
+"tmx_index_documents",
+"Factsheet and methodology documents published for an index."
+],
+[
+"tmx_index_document_view",
+"Serve every selected document to the viewer."
+],
+[
+"tmx_derivatives_options_straddle",
+"Price a long straddle at each expiration."
+],
+[
+"tmx_derivatives_options_strangle",
+"Price a long strangle at each expiration for a given moneyness."
+],
+[
+"tmx_derivatives_options_spreads",
+"Price the vertical spreads at each expiration."
+],
+[
+"tmx_derivatives_options_chains",
+"Complete option chain across every expiry, with greeks."
+],
+[
+"tmx_derivatives_options_covered_calls",
+"Screen listed calls by annualized premium return and potential capital gain."
+],
+[
+"tmx_derivatives_options_get_tickers",
+"Serve expiry/strike dropdown choices for a symbol, loading it on first call."
+],
+[
+"tmx_derivatives_options_smile",
+"Implied-volatility smile / skew across strikes."
+],
+[
+"tmx_derivatives_options_surface",
+"Plot the chain as a surface over days to expiry and strike."
+],
+[
+"tmx_derivatives_options_stats",
+"Open-interest or volume statistics by strike or expiration."
+],
+[
+"tmx_derivatives_options_term_structure",
+"Implied volatility or price across expirations."
+],
+[
+"tmx_derivatives_futures_instruments",
+"Every instrument listed on the Montreal Exchange."
+],
+[
+"tmx_derivatives_futures_historical",
+"Historical prices for a futures contract."
+],
+[
+"tmx_currency_historical",
+"Historical rates for a currency pair."
+],
+[
+"tmx_fixedincome_prices",
+"Return reference data and last prices for every CIRO-designated bond."
+],
+[
+"tmx_fixedincome_trades",
+"Every reported trade for a bond, across its full history."
+],
+[
+"tmx_fixedincome_treasury_prices",
+"Government of Canada bond reference data and prices."
+],
+[
+"tmx_markets_movers",
+"Rank the biggest movers on an exchange."
+],
+[
+"tmx_markets_trades",
+"Recent trades, with the buying and selling brokers."
+],
+[
+"tmx_markets_short_interest",
+"Short interest and days to cover."
+],
+[
+"tmx_news_feed",
+"Company news in the shape the news feed widget renders."
+],
+[
+"tmx_news_market",
+"News across a basket of symbols, in the news feed widget's shape."
+],
+[
+"tmx_news_blog",
+"Read the TMX Money editorial feed, in the news feed widget's shape."
+],
+[
+"tmx_news_search",
+"Search the published corpus, in the news feed widget's shape."
+],
+[
+"uscongress_bills",
+"Get and filter lists of Congressional Bills."
+],
+[
+"uscongress_laws",
+"Get and filter lists of enacted Congressional Laws (public or private)."
+],
+[
+"uscongress_calendars",
+"Get House or Senate Congressional Calendar editions."
+],
+[
+"uscongress_mandated_reports",
+"Get Congressionally Mandated Reports submitted by federal agencies."
+],
+[
+"uscongress_search",
+"Full-text search across congressional GovInfo collections."
+],
+[
+"uscongress_law_text_urls",
+"Resolve a law's links by law id, falling back to recent enacted laws."
+],
+[
+"uscongress_calendar_document_urls",
+"Resolve a calendar edition's links, falling back to recent editions."
+],
+[
+"uscongress_mandated_report_urls",
+"Resolve a mandated report's links, falling back to recent reports."
+],
+[
+"uscongress_search_document_urls",
+"Get the document link for a search result, by GovInfo package id."
+],
+[
+"uscongress_bill_text_urls",
+"Get the available text-version document links for a bill, by bill id."
+],
+[
+"uscongress_bill_info",
+"Get summary, status, and other metadata for a specific bill."
+],
+[
+"uscongress_bill_text",
+"Download the content of bill(s) from a Congress.gov file."
+],
+[
+"uscongress_amendments",
+"Get and filter lists of Congressional Amendments."
+],
+[
+"uscongress_amendment_text_urls",
+"Get the Congressional Record document links for an amendment, by amendment id."
+],
+[
+"uscongress_amendment_info",
+"Get details for a specific amendment."
+],
+[
+"uscongress_amendment_text",
+"Download amendment document(s) from Congress.gov."
+],
+[
+"uscongress_committee_info",
+"Get metadata and membership for a single U.S. Congressional Committee."
+],
+[
+"uscongress_committee_documents",
+"Get documents (reports, hearings, prints, meetings) produced by a single Congressional Committee."
+],
+[
+"uscongress_committee_choices",
+"Get committee or subcommittee choices for cascading dropdowns."
+],
+[
+"uscongress_committee_document_urls",
+"Get document choices for a Congressional Committee."
+],
+[
+"uscongress_committee_members_data",
+"Get a committee's current membership with each member's profile. Parameters ---------- chamber : str Chamber the committee belongs to. commi"
+],
+[
+"uscongress_committee_members",
+"Render a committee's members as cards (OpenBB Workspace iframe widget)."
+],
+[
+"uscongress_members",
+"Get and filter the current members of the U.S. Congress."
+],
+[
+"uscongress_member_info_data",
+"Get a member's bio, contact, links, committees, terms, and voting record. Parameters ---------- bioguide_id : str Bioguide id of a current m"
+],
+[
+"uscongress_member_info",
+"Render a member's bio, history, and committees (OpenBB Workspace iframe widget)."
+],
+[
+"uscongress_member_votes",
+"Get a member's roll-call votes on legislation, House and Senate."
+],
+[
+"uscongress_member_legislation",
+"Get the bills a member sponsored or cosponsored in a Congress."
+],
+[
+"uscongress_member_choices",
+"Get bioguide picker choices for the member widgets."
+],
+[
+"uscongress_how_to_use",
+"Return a tab's 'How To Use' note as Markdown (OpenBB Workspace markdown widget)."
+],
+[
+"usda_ers_viz_catalog",
+"List the USDA ERS Tableau Public visualizations. Returns ------- list[dict] One record per visualization, with its embed path and public URL"
+],
+[
+"usda_ers_chart",
+"Render an embedded USDA ERS Tableau Public visualization (OpenBB Workspace iframe widget)."
+],
+[
+"usda_price_spreads",
+"Get ERS price spreads from farm to consumer - retail price versus farm value for food items and market baskets."
+],
+[
+"usda_price_spread_items",
+"List price-spread items, narrowed to a category when provided. Parameters ---------- category : str | None Data product category. When None,"
+],
+[
+"usda_milk_cost_items",
+"List milk cost items, narrowed to a cost category when provided. Parameters ---------- report : str Report key, by_state or by_size_of_opera"
+],
+[
+"usda_bell_report_commodities",
+"List the commodities available for the Bell Report."
+],
+[
+"usda_bell_report_weeks",
+"List the published period ending dates for the Bell Report."
+],
+[
+"usda_bell_report_urls",
+"List the downloadable Bell Reports for a commodity and period. One entry per marketing year report. Only published periods are offered, so a"
+],
+[
+"usda_bell_report",
+"Download one, or more, USDA FAS Bell Reports. This command returns only the results portion of the OBBject response. It contains a list of d"
+],
+[
+"usda_publications",
+"Get the USDA ERS publications catalog - outlook, research, and discontinued report series."
+],
+[
+"usda_ers_publication_urls",
+"List the most recent ERS publications as downloadable choices."
+],
+[
+"usda_ers_publication_series",
+"List the ERS publication series groups and codes."
+],
+[
+"usda_publication_documents",
+"Download one, or more, USDA ERS publication Full Report PDFs. This command returns only the results portion of the OBBject response. It cont"
+],
+[
+"usda_psd_report_commodities",
+"List the commodities that publish a PSD circular."
+],
+[
+"usda_psd_report_urls",
+"List PSD circulars for the file selector. Parameters ---------- commodity : str | None Commodity(ies) to list, as a comma-separated list. Wh"
+],
+[
+"usda_psd_data_attributes",
+"List the PSD attributes available for a commodity. Parameters ---------- commodity : str | None Commodity name. When None (report mode), eve"
+],
+[
+"usda_psd_data_countries",
+"List the PSD countries available for a commodity. Parameters ---------- commodity : str | None Commodity name. When None (report mode), ever"
+],
+[
+"usda_report_calendar",
+"Get the USDA Foreign Agricultural Service calendar of upcoming report releases."
+],
+[
+"usda_dairy_data",
+"Get ERS dairy data - supply, use, prices, and trade for milk and dairy products."
+],
+[
+"usda_milk_cost_of_production",
+"Get ERS milk cost of production estimates, by state or by size of operation."
+],
+[
+"usda_major_land_uses",
+"Get ERS major land uses - acreage by land use class for the United States and its regions."
+],
+[
+"usda_agricultural_trade",
+"Get the ERS U.S. agricultural trade data update - each table pivoted to a wide layout with the year and period in the rows and the trade dir"
+],
+[
+"usda_agricultural_trade_measures",
+"List the measures available in an agricultural-trade table. Parameters ---------- table : str | None Table slug to scope the measures to. Wh"
+],
+[
+"usda_agricultural_trade_commodities",
+"List the commodities available in an agricultural-trade table. Parameters ---------- table : str | None Table slug to scope the commodities "
+],
+[
+"usda_agricultural_trade_periods",
+"List the reporting bases an agricultural-trade table publishes. Parameters ---------- table : str Table slug to scope the bases to. When unk"
+],
+[
+"usda_meat_price_spreads",
+"Get ERS meat price spreads - retail values, farm values, price spreads, and farmers' shares for beef, pork, poultry, and eggs."
+],
+[
+"usda_wheat_data",
+"Get ERS wheat data - the Wheat Yearbook supply, use, price, and trade tables, each pivoted to a wide layout by year."
+],
+[
+"usda_commodity_costs_and_returns",
+"Get ERS commodity costs and returns - annual per-unit cost-and-return budgets by commodity and ERS Farm Resource Region."
+],
+[
+"usda_commodity_cost_regions",
+"List the ERS Farm Resource Regions for a commodity's cost budget. Parameters ---------- commodity : str Commodity key. Unknown commodities f"
+],
+[
+"usda_rice_frequencies",
+"List the observation frequencies a Rice Yearbook table publishes. Parameters ---------- table : str Table key from RICE_TABLES. When absent,"
+],
+[
+"usda_rice_yearbook",
+"Get ERS rice data - the Rice Yearbook acreage, supply, use, stocks, price, and trade tables, each pivoted to a wide layout by year."
+],
+[
+"usda_sugar_frequencies",
+"List the period bases a Sugar and Sweeteners Yearbook table publishes. Parameters ---------- table : str Table key from SUGAR_SWEETENERS_FIL"
+],
+[
+"usda_sugar_sweeteners_yearbook",
+"Get ERS Sugar and Sweeteners Yearbook tables - U.S., Mexican, and world sugar and sweetener prices, supply and use, production, consumption,"
+],
+[
+"usda_oil_crops_frequencies",
+"List the observation frequencies an Oil Crops Yearbook table publishes. Parameters ---------- table : str Table key from OIL_CROPS_TABLES. W"
+],
+[
+"usda_oil_crops_yearbook",
+"Get ERS Oil Crops Yearbook data - the U.S. and world oilseed, oilmeal, and vegetable-oil supply, use, price, and trade tables, each pivoted "
+],
+[
+"usda_feed_grains_database",
+"Get ERS feed grains data - the Feed Grains Yearbook acreage, supply, use, price, and trade tables, each pivoted to a wide layout by year."
+],
+[
+"usda_fruit_yearbook_tables",
+"List the Fruit and Tree Nuts Yearbook tables, narrowed to a category. Parameters ---------- category : str | None Letter category A through "
+],
+[
+"usda_fruit_and_tree_nuts_data",
+"Get ERS fruit and tree nuts data - the Fruit and Tree Nuts Yearbook area, production, price, supply, per-capita availability, and import-sha"
+],
+[
+"usda_vegetables_and_pulses",
+"Get ERS vegetables and pulses yearbook data - U.S. and world vegetable and pulse-crop supply, availability, per capita use, price, trade, an"
+],
+[
+"usda_cotton_frequencies",
+"List the reporting frequencies a cotton, wool, or textile table publishes. Parameters ---------- table : str Table key from CWT_TABLES. When"
+],
+[
+"usda_cotton_wool_and_textile_data",
+"Get ERS cotton, wool, and textile data - the Cotton and Wool Yearbook supply, use, price, and trade tables plus the raw-fiber equivalents of"
+],
+[
+"usda_fertilizer_use_and_price",
+"Get ERS fertilizer use and price - U.S. nutrient and material consumption, farm prices, price indexes, and crop-by-State application rates a"
+],
+[
+"usda_food_price_outlook",
+"Get ERS Food Price Outlook - consumer and producer food price index forecasts, prediction intervals, and the annual percent-change record, e"
+],
+[
+"usda_food_price_outlook_items",
+"List the price-index items available in a Food Price Outlook table. Parameters ---------- table : str Table key. Unknown tables fall back to"
+],
+[
+"usda_fruit_and_vegetable_prices",
+"Get ERS fruit and vegetable prices - 2023 average retail price, preparation yield factor, cup-equivalent size, and average price per edible "
+],
+[
+"usda_livestock_and_meat_domestic_data",
+"Get ERS livestock and meat domestic data - slaughter, production, weights, cold storage, supply and disappearance, and livestock and wholesa"
+],
+[
+"usda_season_average_price_forecasts",
+"Get ERS season-average price forecasts - weekly ERS model and monthly WASDE marketing-year average price forecasts, with farm-bill PLC and A"
+],
+[
+"usda_farm_income_states",
+"List the states published for a farm income and wealth table. Parameters ---------- table : str Table key. Unknown tables fall back to the i"
+],
+[
+"usda_farm_household_income_and_characteristics",
+"Get ERS Farm Household Income and Characteristics - income, finances, and characteristics of U.S. farm operator households, each pivoted to "
+],
+[
+"usda_farm_income_and_wealth_statistics",
+"Get ERS farm income and wealth statistics - U.S. and State-level farm sector income statements, production expenses, cash receipts, governme"
+],
+[
+"usda_food_dollar_series",
+"Get ERS food dollar series - the marketing-bill breakdown of the U.S. food dollar into industry groups and primary factors, in nominal and r"
+],
+[
+"usda_food_dollar_components",
+"List the primary-factor components available for a food-dollar series. Parameters ---------- series : str Series key, nominal or real. Unkno"
+],
+[
+"usda_food_dollar_tables",
+"List the food-dollar tables available for a series. Parameters ---------- series : str Series key, nominal or real. Unknown series fall back"
+],
+[
+"usda_food_expenditure_series",
+"Get ERS Food Expenditure Series - U.S. food and alcohol expenditures by outlet, final purchaser, month, and state, in nominal and constant d"
+],
+[
+"usda_us_food_imports",
+"Get ERS U.S. food imports - annual value, volume, unit prices, and price inflation by food group and by source country."
+],
+[
+"usda_food_import_commodities",
+"List the product lines available for a food group's source-country table. Parameters ---------- food_group : str Detail food-group category "
+],
+[
+"usda_us_bioenergy_statistics",
+"Get ERS U.S. Bioenergy Statistics - ethanol, biodiesel, and renewable diesel supply, use, capacity, consumption, and prices, each pivoted to"
+],
+[
+"usda_agricultural_exchange_rates",
+"Get ERS agricultural exchange rates - real and nominal commodity trade-weighted exchange rate indexes and bilateral local-currency-per-USD r"
+],
+[
+"usda_agricultural_productivity_states",
+"List the states published for an agricultural productivity table. Parameters ---------- table : str Table key. Unknown tables fall back to t"
+],
+[
+"usda_agricultural_productivity",
+"Get ERS agricultural productivity - the farm output, input, and total factor productivity indices for the United States and the relative pro"
+],
+[
+"usda_ag_productivity_countries",
+"List the countries, territories, and aggregates in a grouping. Parameters ---------- grouping : str Grouping key. Unknown groupings fall bac"
+],
+[
+"usda_international_agricultural_productivity",
+"Get ERS international agricultural productivity - agricultural total factor productivity indices, output and input quantity indices, and the"
+],
+[
+"usda_international_macroeconomic_data_set",
+"Get ERS International Macroeconomic Data Set - historical and projected real GDP, GDP per capita, GDP deflator, real GDP shares, real exchan"
+],
+[
+"usda_livestock_trade_products",
+"List the product blocks published for a species and trade direction. Parameters ---------- table : str Species key. Unknown species fall bac"
+],
+[
+"usda_livestock_and_meat_international_trade_data",
+"Get ERS livestock and meat international trade data - U.S. import and export trade in live cattle, hogs, sheep, and goats and in beef and ve"
+],
+[
+"usda_state_ag_trade_states",
+"List the states published for a state agricultural trade table. Parameters ---------- table : str Table key. Unknown tables fall back to the"
+],
+[
+"usda_state_agricultural_trade",
+"Get ERS state agricultural trade - state-level U.S. agricultural exports by commodity and by state on a calendar-year basis, and the top exp"
+],
+[
+"usda_normalized_prices",
+"Get ERS normalized prices - national and State-level normalized prices for crops, livestock, milk, poultry, eggs, and wool, plus national pr"
+],
+[
+"usda_agricultural_trade_multipliers",
+"Get ERS agricultural trade multipliers - producer- and port-level output and employment multipliers per commodity, with export value, in a w"
+],
+[
+"usda_agricultural_and_food_rd_expenditures",
+"Get ERS agricultural and food research and development (R&D) expenditures - public and private U.S. R&D spending in current and constant dol"
+],
+[
+"usda_ge_crop_states",
+"List the states published for a crop's genetically engineered adoption data. Parameters ---------- crop : str Crop key. Unknown crops fall b"
+],
+[
+"usda_adoption_of_genetically_engineered_crops",
+"Get ERS adoption of genetically engineered crops - the annual share of planted acres in genetically engineered corn, upland cotton, and soyb"
+],
+[
+"usda_food_security_in_the_united_states",
+"Get ERS food security in the United States - household and child food security, food insecurity, and very low food security prevalence by ye"
+],
+[
+"usda_food_security_categories",
+"List the category options for a food-security table. Parameters ---------- table : str Table key from FOOD_SECURITY_TABLES, e.g. 'by_charact"
+],
+[
+"usda_food_availability_groups",
+"List the food-group files published for a data system."
+],
+[
+"usda_food_availability_commodities",
+"List the commodity blocks published for a data system's file. Parameters ---------- data_system : str Data system key. Unknown systems fall "
+],
+[
+"usda_food_availability_per_capita",
+"Get ERS Food Availability (Per Capita) Data System - per capita food supply, loss-adjusted availability, and nutrient availability of the U."
+],
+[
+"usda_fmap_food_items",
+"List the food items in a Tier-1 food group. Parameters ---------- group : str Tier-1 food group. Unknown groups fall back to the default gro"
+],
+[
+"usda_fmap_measures",
+"List the measures a Food-at-Home Monthly Area Prices table publishes. Parameters ---------- table : str Table key. Unknown tables fall back "
+],
+[
+"usda_food_at_home_monthly_area_prices",
+"Get ERS Food-at-Home Monthly Area Prices - monthly unit values, purchases, store counts, and price indexes for a food item and measure, spre"
+],
+[
+"usda_rural_urban_continuum_states",
+"List the states published for a rural-urban continuum code vintage. Parameters ---------- vintage : str A vintage key. Unknown vintages fall"
+],
+[
+"usda_rural_urban_continuum_codes",
+"Get ERS Rural-Urban Continuum Codes - a county-level lookup classifying U.S. counties by metro/nonmetro status and degree of urbanization, p"
+],
+[
+"usda_urban_influence_code_states",
+"List the states published for an Urban Influence Codes vintage. Parameters ---------- vintage : str Vintage key. Unknown vintages fall back "
+],
+[
+"usda_urban_influence_codes",
+"Get ERS Urban Influence Codes - a county-level classification of every U.S. county by metropolitan status, size, and adjacency to metro and "
+],
+[
+"usda_county_typology_codes",
+"Get ERS County Typology Codes - county-level economic-dependence and policy typology classifications, published in successive vintages, as a"
+],
+[
+"usda_ruca_states",
+"List the states published for a rural-urban commuting area table. Parameters ---------- table : str Table key. Unknown tables fall back to t"
+],
+[
+"usda_rural_urban_commuting_area_codes",
+"Get ERS rural-urban commuting area (RUCA) codes - primary and secondary RUCA classification codes and descriptions for U.S. census tracts an"
+],
+[
+"usda_far_zip_states",
+"List the states a frontier and remote area codes ZIP vintage publishes. Parameters ---------- year : str Vintage key. Unknown vintages fall "
+],
+[
+"usda_frontier_and_remote_area_codes",
+"Get ERS frontier and remote (FAR) area codes - a ZIP-code geographic classification lookup at four FAR levels with grid population, land are"
+],
+[
+"usda_commuting_zones_and_labor_market_areas",
+"Get ERS commuting zones and labor market areas - county-level commuting-zone and labor-market-area classifications for the 2020, preliminary"
+],
+[
+"usda_natural_amenities_scale",
+"Get ERS natural amenities scale - a county-level measure of the physical characteristics that make a location a desirable place to live, com"
+],
+[
+"usda_poverty_area_measures_states",
+"List the states published for a poverty area measures edition. Parameters ---------- edition : str An edition key. Unknown editions fall bac"
+],
+[
+"usda_poverty_area_measures",
+"Get ERS Poverty Area Measures - county- and census-tract-level poverty-area classification flags (high-poverty, extreme-poverty, persistent-"
+],
+[
+"usda_area_road_ruggedness_states",
+"List the states an area and road ruggedness scales vintage publishes. Parameters ---------- vintage : str Vintage key. Unknown vintages fall"
+],
+[
+"usda_area_and_road_ruggedness_scales",
+"Get ERS area and road ruggedness scales - census-tract Area Ruggedness Scale (ARS) and Road Ruggedness Scale (RRS) classifications with terr"
+],
+[
+"usda_cost_estimates_of_foodborne_illnesses",
+"Get ERS Cost Estimates of Foodborne Illnesses - annual cases and the economic burden of major foodborne pathogens, by pathogen and by health"
+],
+[
+"usda_snap_policy_data_sets",
+"Get ERS SNAP policy data sets - a selected State's monthly SNAP policy options from January 1996 to December 2020, with the forty-five broad"
+],
+[
+"usda_intl_baseline_attributes",
+"List the measures published for an international baseline commodity. Parameters ---------- commodity : str Commodity name. Unknown commoditi"
+],
+[
+"usda_intl_baseline_countries",
+"List the countries and regions published for a baseline commodity. Parameters ---------- commodity : str Commodity name. Unknown commodities"
+],
+[
+"usda_international_baseline_data",
+"Get ERS International Baseline Data - long-term projections of area, yield, production, supply, use, and trade for grains, oilseeds, cotton,"
+],
+[
+"usda_eating_and_health_module_atus",
+"Get ERS Eating and Health Module (ATUS) tables - time spent eating, drinking, in associated and secondary eating, preparing food, grocery sh"
+],
+[
+"usda_food_consumption_nutrient_intakes_and_diet_quality",
+"Get ERS food consumption, nutrient intakes, and diet quality - U.S. daily nutrient and food-group intake, share, and density by food source,"
+],
+[
+"usda_resource_requirements_of_food_demand",
+"Get ERS resource requirements of food demand - the employment, freshwater withdrawals, and energy use, total and by source, embodied across "
+],
+[
+"usda_purchase_to_plate",
+"Get ERS Purchase to Plate national average prices - estimated price per 100 edible grams for NHANES foods, pivoted to a price column per bie"
+],
+[
+"usda_global_food_assessment",
+"Get ERS Global Food Assessment - grain food demand, other demand, total demand, production, and the implied additional supply required to cl"
+],
+[
+"usda_psd_data",
+"Get data tables and historical time series from the USDA FAS Production, Supply, and Distribution (PSD) Reports."
+],
+[
+"usda_psd_report",
+"Download one, or more, USDA FAS commodity PSD circulars. This command returns only the results portion of the OBBject response. It contains "
+],
+[
+"usda_weather_bulletins",
+"Get current and historical weather bulletins with their PDF links. This command returns only the results portion of the OBBject response. It"
+],
+[
+"usda_weather_bulletins_download",
+"Download one, or more, weather bulletin documents. This command returns only the results portion of the OBBject response. It contains a list"
+],
+[
+"ustreasury_debt_to_penny",
+"Get the total public debt outstanding, to the penny, for each business day."
+],
+[
+"ustreasury_daily_statement",
+"Get a table of the Daily Treasury Statement - cash and debt operations of the U.S. Treasury."
+],
+[
+"ustreasury_upcoming_auctions",
+"Get marketable Treasury securities scheduled to be announced or auctioned in the coming week."
+],
+[
+"ustreasury_auction_results",
+"Get announcements and results of marketable Treasury securities auctions back to 1979."
+],
+[
+"ustreasury_weekly_bill_offerings",
+"Get regular weekly Treasury bill auction results from the Treasury Bulletin PDO-1 table."
+],
+[
+"ustreasury_bulletin",
+"Get tables from the quarterly Treasury Bulletin - offerings, ownership distribution, currency and coin, foreign currency positions, the Exch"
+],
+[
+"ustreasury_treasury_auctions",
+"Government Treasury Auctions."
+],
+[
+"ustreasury_treasury_prices",
+"Government Treasury Prices by date."
+],
+[
+"ustreasury_award",
+"Drill into a federal award from USAspending - its summary, transactions, subawards, federal accounts, funding, or the orders placed against "
+],
+[
+"ustreasury_spending_explorer",
+"Explore all federal spending for a fiscal year, broken down by budget function, agency, federal account, program activity, object class, rec"
+],
+[
+"ustreasury_recipient_search",
+"Search every entity that has received federal contract or assistance money, by name, UEI, or legacy DUNS."
+],
+[
+"ustreasury_recipient_awards",
+"List the federal awards belonging to one recipient, then drill into any award by its id."
+],
+[
+"ustreasury_dts_amount_bases",
+"List the amount bases a Daily Treasury Statement table publishes."
+],
+[
+"ustreasury_explorer_types",
+"List the breakdowns that work for the current scope."
+],
+[
+"ustreasury_spending_options",
+"List the selectable entries of one spending dimension."
+],
+[
+"ustreasury_awarding_agencies",
+"List the top-tier awarding agencies."
+],
+[
+"ustreasury_def_codes",
+"List the Disaster Emergency Fund Codes as widget options."
+],
+[
+"ustreasury_dts_sub_tables",
+"List the sub-tables of one Daily Treasury Statement table."
+],
+[
+"ustreasury_recipient_info",
+"Render one federal recipient's profile (OpenBB Workspace HTML widget)."
+],
+[
+"ustreasury_award_info",
+"Render one federal award's summary and subawards (OpenBB Workspace HTML widget)."
+],
+[
+"ustreasury_award_search",
+"Search federal contract and assistance awards from USAspending by agency, recipient, keyword, amount, and date, then drill into any award by"
+],
+[
+"list_prompts",
+"List all available prompts. Returns JSON with prompt metadata including name, description, and optional arguments."
+],
+[
+"get_prompt",
+"Get a prompt by name with optional arguments. Returns the rendered prompt as JSON with a messages array. Arguments should be provided as a d"
+],
+[
+"list_resources",
+"List all available resources and resource templates. Returns JSON with resource metadata. Static resources have a 'uri' field, while templat"
+],
+[
+"read_resource",
+"Read a resource by its URI. For static resources, provide the exact URI. For templated resources, provide the URI with template parameters f"
+]
+]
+},
+"edgartools": {
+"count": 13,
+"tools": [
+[
+"edgar_company",
+"Use this as the starting point for any company-level question. Returns profile, financials, recent filings, and ownership data in one call. "
+],
+[
+"edgar_search",
+"Use this to find companies by name or list filings by form type and company. This searches metadata (names, form types, dates) — not filing "
+],
+[
+"edgar_filing",
+"Use this to examine any SEC filing. Returns structured context: what the filing is, key data, and available next steps. If the filing has a "
+],
+[
+"edgar_read",
+"Use this to read the text content of specific sections from a filing. Extracts narrative content like risk factors, MD&A, business descripti"
+],
+[
+"edgar_compare",
+"Use this to compare companies side-by-side on financial metrics, or analyze an industry sector with automatic peer selection. Examples: - Co"
+],
+[
+"edgar_ownership",
+"Use this for insider trading activity (Form 4) or institutional fund portfolios (13F). For companies, use analysis_type=\"insiders\". For fund"
+],
+[
+"edgar_monitor",
+"Use this to see what was just filed with the SEC. Returns the latest filings from today's live feed, updated every few minutes. Filter by fo"
+],
+[
+"edgar_trends",
+"Use this for financial trend analysis over time. Returns XBRL-sourced time series with growth rates for revenue, income, EPS, and other metr"
+],
+[
+"edgar_screen",
+"Use this to discover or screen companies by industry, exchange, or state. Returns matching companies from SEC reference data — instant resul"
+],
+[
+"edgar_text_search",
+"Use this to find filings that mention specific topics, products, risks, or events. Searches the actual text content of all SEC filings via E"
+],
+[
+"edgar_fund",
+"Use this for mutual fund, ETF, BDC, and money market fund analysis. Supports fund lookup, portfolio holdings, money market yields, and BDC i"
+],
+[
+"edgar_proxy",
+"Use this for CEO compensation, executive pay, and corporate governance questions. Extracts compensation tables, pay-vs-performance metrics, "
+],
+[
+"edgar_notes",
+"Drill into the notes and disclosures behind financial statement numbers. Use this when you need to explain WHY a number is what it is — debt"
+]
+]
+},
+"yahoo": {
+"count": 9,
+"tools": [
+[
+"get_historical_stock_prices",
+"Get historical stock prices for a given ticker symbol from yahoo finance. Include the following information: Date, Open, High, Low, Close, V"
+],
+[
+"get_stock_info",
+"Get stock information for a given ticker symbol from yahoo finance. Include the following information: Stock Price & Trading Info, Company I"
+],
+[
+"get_yahoo_finance_news",
+"Get news for a given ticker symbol from yahoo finance. Args: ticker: str The ticker symbol of the stock to get news for, e.g. \"AAPL\" "
+],
+[
+"get_stock_actions",
+"Get stock dividends and stock splits for a given ticker symbol from yahoo finance. Args: ticker: str The ticker symbol of the stock to get s"
+],
+[
+"get_financial_statement",
+"Get financial statement for a given ticker symbol from yahoo finance. You can choose from the following financial statement types: income_st"
+],
+[
+"get_holder_info",
+"Get holder information for a given ticker symbol from yahoo finance. You can choose from the following holder types: major_holders, institut"
+],
+[
+"get_option_expiration_dates",
+"Fetch the available options expiration dates for a given ticker symbol. Args: ticker: str The ticker symbol of the stock to get option expir"
+],
+[
+"get_option_chain",
+"Fetch the option chain for a given ticker symbol, expiration date, and option type. A full chain is large (a liquid US name runs 40-90 strik"
+],
+[
+"get_recommendations",
+"Get recommendations or upgrades/downgrades for a given ticker symbol from yahoo finance. You can also specify the number of months back to g"
+]
+]
+}
+}
+}
