@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 0.2.0
+
+From 13 tools to 34: the parts of finance 0.1.0 could not answer, each from the publisher's own data
+with no key. Measured against OpenBB, EdgarTools and the Yahoo Finance MCP on 53 finance questions
+(canli-mcp's `bench/rivals/coverage.mjs`), the servers this package joins in canli-mcp now answer 49.
+
 - `options_chain`, `volatility_surface` and `futures_curve` from Cboe's public delayed data: chains
   with Cboe's IV and greeks by strike, put/call ratios, max pain and the move the at-the-money
   straddle prices in; ATM term structure, 25-delta risk reversal and butterfly, and the smile at

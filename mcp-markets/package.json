@@ -1,7 +1,7 @@
 {
   "name": "canli-markets-mcp",
-  "version": "0.1.0",
-  "description": "MCP server for public market data and market-wide research from the sources themselves: screen every US-listed company on fundamentals, one-call company reports, event studies, filing trends, SEC filings and their sections, insider trades, 13F holdings, Treasury yields, FRED and prices, with no key. Every result cites its sources.",
+  "version": "0.2.0",
+  "description": "MCP server for markets, funds and the economy from the sources themselves, no key: options chains and volatility, short interest, dark pools, futures positioning, fund and ETF holdings, 13D/13G, 8-K events, segment revenue, executive pay, Form D, the Fed, Treasury auctions, World Bank and OECD macro, screens, filings and prices. Every result cites its sources.",
   "private": false,
   "type": "module",
   "license": "MIT",
@@ -53,7 +53,25 @@
     "stock-screener",
     "event-study",
     "fundamentals",
-    "company-research"
+    "company-research",
+    "options",
+    "option-chain",
+    "implied-volatility",
+    "short-interest",
+    "dark-pools",
+    "cot",
+    "etf-holdings",
+    "n-port",
+    "13d",
+    "fomc",
+    "world-bank",
+    "oecd",
+    "economic-calendar",
+    "executive-compensation",
+    "form-d",
+    "fx",
+    "futures",
+    "crypto"
   ],
   "devDependencies": {
     "@modelcontextprotocol/client": "2.3.1"
