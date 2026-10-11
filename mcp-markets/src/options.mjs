@@ -3,7 +3,7 @@
 // curves (VIX) from its daily settlements. No key; Cboe's terms for its website data apply.
 import { z } from "zod";
 
-import { getJson, getText, NotFound } from "./sources.mjs";
+import { getJson, getText, NotFound, own } from "./sources.mjs";
 
 const CBOE = "https://cdn-api.cboe.com/api/global/delayed_quotes";
 const SETTLEMENTS = "https://www.cboe.com/us/futures/market_statistics/settlement/csv";
@@ -17,7 +17,7 @@ const LIMITS = [
 const INDEXES = Object.freeze({ spx: "SPX", "s&p 500": "SPX", "^spx": "SPX", "^gspc": "SPX", spxw: "SPX", vix: "VIX", "^vix": "VIX", ndx: "NDX", "nasdaq 100": "NDX", "^ndx": "NDX", rut: "RUT", "russell 2000": "RUT", "^rut": "RUT", djx: "DJX", xsp: "XSP", "mini spx": "XSP" });
 export function cboeSymbol(q) {
   const s = String(q).trim();
-  const index = INDEXES[s.toLowerCase()];
+  const index = own(INDEXES, s.toLowerCase());
   if (index) return { file: `_${index}`, symbol: index, index: true };
   if (!/^[A-Za-z]{1,6}(\.[A-Za-z])?$/.test(s)) throw new NotFound(`"${q}" is not a ticker or an index Cboe lists options for (SPX, NDX, RUT, VIX, XSP, or a stock or ETF such as AAPL or SPY).`);
   return { file: s.toUpperCase().replace(".", ""), symbol: s.toUpperCase(), index: false };
@@ -170,7 +170,7 @@ export const curveInput = z.object({
 export async function futuresCurve(session, args) {
   const a = curveInput.parse(args);
   keyless(session);
-  const product = FUTURES[String(a.product ?? "vix").trim().toLowerCase()] ?? String(a.product ?? "").trim().toUpperCase();
+  const product = own(FUTURES, String(a.product ?? "vix").trim().toLowerCase()) ?? String(a.product ?? "").trim().toUpperCase();
   const csv = await getText(session, SETTLEMENTS, { maxBytes: 2 * 1024 * 1024 });
   const lines = csv.trim().split(/\r?\n/).slice(1).map((l) => l.split(","));
   const all = lines.filter((r) => r[0] === product);

@@ -105,6 +105,9 @@ export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024
 
 export class NotFound extends Error {}
 
+// A lookup table's own entry for a key from a request, never an inherited property ("constructor").
+export const own = (map, key) => (Object.hasOwn(map, key) ? map[key] : undefined);
+
 export async function getJson(session, url, opts = {}) {
   return getText(session, url, { ...opts, parse: (t) => { try { return JSON.parse(t); } catch { throw new Error(`${opts.secret ? host(url) : url} did not return JSON.`); } } });
 }
@@ -185,6 +188,7 @@ const KNOWN_AS = Object.freeze({
   baupost: { cik: 1061768, name: "BAUPOST GROUP LLC/MA" }, "lone pine": { cik: 1061165, name: "LONE PINE CAPITAL LLC" },
 });
 const SUFFIXES = new Set(["inc", "corp", "corporation", "co", "company", "companies", "plc", "ltd", "limited", "the", "holdings", "holding", "group", "sa", "nv", "ag", "se"]);
+const knownAs = (name) => (Object.hasOwn(KNOWN_AS, name) ? KNOWN_AS[name] : null);
 const nameWords = (s) => String(s).toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9 ]+/g, " ").split(/\s+/).filter((w) => w && !SUFFIXES.has(w));
 
 // A listed company whose registered name starts with the words asked for. The SEC's ticker file
@@ -194,7 +198,7 @@ const nameWords = (s) => String(s).toLowerCase().replace(/&/g, " and ").replace(
 export function listedByName(table, q) {
   const words = nameWords(q), joined = words.join("");
   if (!joined) return [];
-  const known = KNOWN_AS[words.join(" ")];
+  const known = knownAs(words.join(" "));
   if (known && typeof known !== "string") return [];
   const rows = Object.values(table).filter((row) => {
     if (known) return row.ticker === known;
@@ -214,7 +218,7 @@ export async function resolveEntity(session, query) {
   const table = await tickerTable(session);
   const want = q.toUpperCase().replace(/\./g, "-").replace(/^\$/, "");
   for (const row of Object.values(table)) if (row.ticker === want) return { cik: row.cik_str, name: row.title, ticker: row.ticker, matched_by: "ticker" };
-  const filer = KNOWN_AS[nameWords(q).join(" ")];
+  const filer = knownAs(nameWords(q).join(" "));
   if (filer && typeof filer !== "string") return { cik: filer.cik, name: filer.name, ticker: null, matched_by: "name" };
   const listed = listedByName(table, q);
   if (listed.length) {

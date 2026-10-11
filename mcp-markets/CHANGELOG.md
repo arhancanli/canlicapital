@@ -28,6 +28,9 @@ The first 0.2 release on npm: 0.2.0's tools, and a fix for answers that were wro
   Two Sigma, Millennium, Point72, Elliott, Pershing Square, Tiger Global, Soros, ARK, Baupost and
   Lone Pine.
 - A company's ticker is its common shares (F, not F-PD; GOOGL, not GOOGM).
+- Fix: lookup tables read inherited properties. "constructor" as a symbol or market crashed
+  `price_history` and `futures_positioning` with a TypeError, and gave `options_chain` and
+  `index_constituents` messages naming "function Object()". Lookups now read only their own entries.
 - `economic_series` knows more series by name. All were checked live on FRED on 2026-10-11:
   - prices: PPI, Michigan inflation expectations, 5-year breakeven inflation;
   - jobs and income: continuing claims, the quits rate, average hourly earnings, labour force

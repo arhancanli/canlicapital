@@ -36,7 +36,7 @@ test("names: the listed company whose registered name starts with them, largest 
     const { s, asked } = offline();
     const r = await resolveEntity(s, q);
     assert.deepEqual([r.ticker, r.cik], [ticker, cik], q);
-    assert.ok(!asked.some((u) => u.includes("efts.sec.gov")), `${q} needed no EDGAR search`);
+    assert.ok(!asked.some((u) => new URL(u).hostname === "efts.sec.gov"), `${q} needed no EDGAR search`);
   }
   const { s } = offline();
   assert.deepEqual((await resolveEntity(s, "apple")).other_matches.map((o) => o.ticker), ["APLE"], "the others that matched are listed");
@@ -55,7 +55,26 @@ test("names: fund managers by the filer of their 13Fs, not a listed company that
 test("names: a name inside another listed name is left to EDGAR's search", async () => {
   const { s, asked } = offline();
   await assert.rejects(resolveEntity(s, "disney land"), /No SEC filer matches/);
-  assert.ok(asked.some((u) => u.includes("efts.sec.gov")));
+  assert.ok(asked.some((u) => new URL(u).hostname === "efts.sec.gov"));
   const { s: s2 } = offline();
   await assert.rejects(resolveEntity(s2, "american vanguardia"), /No SEC filer matches/, "not American Vanguard");
+  // Names are looked up as the table's own keys, never as inherited properties.
+  for (const q of ["constructor", "__proto__", "to string"]) {
+    const { s: s3 } = offline();
+    await assert.rejects(resolveEntity(s3, q), /No SEC filer matches/, q);
+  }
+});
+
+test("lookup tables answer only their own entries: \"constructor\" is not a market, index, event or country", async () => {
+  const { resolveSymbol } = await import("../src/tools.mjs");
+  const { cboeSymbol } = await import("../src/options.mjs");
+  const { eventCode } = await import("../src/events.mjs");
+  const { matchCountry } = await import("../src/global.mjs");
+  for (const q of ["constructor", "__proto__"]) {
+    assert.equal(resolveSymbol(q).symbol, q.toUpperCase(), "taken as a ticker, not a named market");
+    assert.equal(resolveSymbol(q).resolved_from, undefined);
+    assert.throws(() => cboeSymbol(q), /not a ticker or an index/);
+    assert.throws(() => eventCode(q), /Unknown 8-K event/);
+    assert.throws(() => matchCountry([{ id: "USA", iso2: "US", name: "United States" }], q), /no country or region/);
+  }
 });

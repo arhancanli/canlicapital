@@ -3,7 +3,7 @@
 // fund's exposures, its monthly returns and the money that came in and went out.
 import { z } from "zod";
 
-import { getJson, getText, NotFound, tickerTable } from "./sources.mjs";
+import { getJson, getText, NotFound, own, tickerTable } from "./sources.mjs";
 import { child, children, num, parseXml, textAt } from "./xml.mjs";
 
 const round = (x, d = 4) => (x == null ? null : Math.round(x * 10 ** d) / 10 ** d);
@@ -210,8 +210,9 @@ export const indexInput = z.object({
 export async function indexConstituents(session, args) {
   const a = indexInput.parse(args);
   const key = a.index.trim().toLowerCase().replace(/[-\s]+/g, " ").replace(/ index$/, "");
-  if (UIT_INDEXES[key]) throw new NotFound(`The Dow's ETF (${UIT_INDEXES[key]}) is a unit investment trust, which files no N-PORT. The Dow's 30 members are listed by S&P Dow Jones Indices; screen_companies and company_profile cover each of them.`);
-  const [etf, indexName] = INDEX_ETFS[key] ?? [a.index.trim().toUpperCase(), null];
+  const uit = own(UIT_INDEXES, key);
+  if (uit) throw new NotFound(`The Dow's ETF (${uit}) is a unit investment trust, which files no N-PORT. The Dow's 30 members are listed by S&P Dow Jones Indices; screen_companies and company_profile cover each of them.`);
+  const [etf, indexName] = own(INDEX_ETFS, key) ?? [a.index.trim().toUpperCase(), null];
   const f = await resolveFund(session, etf);
   const list = await seriesFilings(session, f.series);
   if (!list.length) throw new NotFound(`${etf} has no public N-PORT to read its holdings from.`);

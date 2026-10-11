@@ -5,7 +5,7 @@ import { z } from "zod";
 
 import { parse13F, parseForm4 } from "./forms.mjs";
 import { findSections, htmlToText, resolveSection } from "./html.mjs";
-import { archiveBase, filingDocuments, filings, fredCsv, fredTitle, getJson, getText, NotFound, resolveEntity, submissions, treasuryYear, TREASURY_CURVES } from "./sources.mjs";
+import { archiveBase, filingDocuments, filings, fredCsv, fredTitle, getJson, getText, NotFound, own, resolveEntity, submissions, TREASURY_CURVES, treasuryYear } from "./sources.mjs";
 import { matchWords, vocabulary } from "./words.mjs";
 
 const DATE = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "a date as YYYY-MM-DD");
@@ -497,7 +497,7 @@ const CRYPTO = new Set("BTC ETH SOL XRP DOGE ADA AVAX DOT LINK LTC BCH TRX MATIC
 // Tiingo also serve) or another market (Yahoo only).
 export function resolveSymbol(input) {
   const raw = String(input).trim();
-  const named = MARKET_SYMBOLS[raw.toLowerCase().replace(/\s+/g, " ").replace(/-(?=year|week)/, " ")];
+  const named = own(MARKET_SYMBOLS, raw.toLowerCase().replace(/\s+/g, " ").replace(/-(?=year|week)/, " "));
   const s = (named ?? raw).toUpperCase().replace(/^\$/, "");
   const from = named || s !== raw.toUpperCase() ? { resolved_from: raw } : {};
   const pair = s.match(/^([A-Z]{3,5})[/ ]?([A-Z]{3})$/);
