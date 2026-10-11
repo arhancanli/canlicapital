@@ -85,7 +85,7 @@ test("price_history: with Alpaca keys, other markets still come from Yahoo; with
   const { s, calls } = session(keys);
   const r = await T.priceHistory(s, { symbol: "EUR/USD", ...window });
   assert.equal(r.source, "Yahoo Finance chart data (no key)");
-  assert.ok(calls.every((c) => !String(c.url).includes("alpaca")));
+  assert.ok(calls.every((c) => new URL(c.url).host === "query1.finance.yahoo.com"));
   const off = session({ ...keys, CANLI_KEYLESS_PRICES: "0" });
   await assert.rejects(T.priceHistory(off.s, { symbol: "gold", ...window }), /GC=F is not a US-listed stock.*CANLI_KEYLESS_PRICES=0/);
 });
