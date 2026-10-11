@@ -14,6 +14,8 @@ const ROWS = [
   [1418121, "APLE", "Apple Hospitality REIT, Inc."], [5981, "AVD", "AMERICAN VANGUARD CORP"], [1746119, "VGES", "Vanguard Green Investment Ltd"],
   [1341317, "BWB", "Bridgewater Bancshares Inc"], [37996, "F-PD", "FORD MOTOR CO"],
 ];
+// The SEC's fund ticker file, cut to two ETFs.
+const FUNDS = { fields: ["cik", "seriesId", "classId", "symbol"], data: [[36405, "S000002839", "C000092055", "VOO"], [1067839, "S000101292", "C000271435", "QQQ"]] };
 const TABLE = Object.fromEntries(ROWS.map(([cik_str, ticker, title], i) => [String(i), { cik_str, ticker, title }]));
 
 function offline() {
@@ -21,6 +23,7 @@ function offline() {
   const fetchImpl = async (url) => {
     asked.push(String(url));
     if (String(url).endsWith("/files/company_tickers.json")) return new Response(JSON.stringify(TABLE), { headers: { "content-type": "application/json" } });
+    if (String(url).endsWith("/files/company_tickers_mf.json")) return new Response(JSON.stringify(FUNDS), { headers: { "content-type": "application/json" } });
     return new Response(JSON.stringify({ hits: { hits: [] } }), { headers: { "content-type": "application/json" } });
   };
   return { s: createSession({ fetchImpl, sleep: async () => {} }), asked };
@@ -77,4 +80,15 @@ test("lookup tables answer only their own entries: \"constructor\" is not a mark
     assert.throws(() => eventCode(q), /Unknown 8-K event/);
     assert.throws(() => matchCountry([{ id: "USA", iso2: "US", name: "United States" }], q), /no country or region/);
   }
+});
+
+test("fund and ETF tickers resolve to the trust that registers them; a ticker in neither file is refused, not guessed", async () => {
+  const { s: s1, asked } = offline();
+  const voo = await resolveEntity(s1, "VOO");
+  assert.deepEqual([voo.cik, voo.ticker, voo.matched_by, voo.series], [36405, "VOO", "fund ticker", "S000002839"]);
+  assert.ok(!asked.some((u) => new URL(u).hostname === "efts.sec.gov"), "no name search for a fund ticker");
+  const { s: s2 } = offline();
+  await assert.rejects(resolveEntity(s2, "VOOX"), /VOOX is not a ticker in the SEC's files/);
+  const { s: s3 } = offline();
+  assert.equal((await resolveEntity(s3, "AAPL")).matched_by, "ticker", "a company ticker is still found first");
 });
