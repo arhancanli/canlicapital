@@ -4,6 +4,7 @@
 import { AsyncLocalStorage } from "node:async_hooks";
 import { Buffer } from "node:buffer";
 import { createHash } from "node:crypto";
+import { inflateRawSync } from "node:zlib";
 
 import { BoundedCache } from "./bounded-cache.mjs";
 import { fetchBoundedText, ResponseReadError } from "./bounded-response.mjs";
@@ -100,6 +101,52 @@ export class NotFound extends Error {}
 
 export async function getJson(session, url, opts = {}) {
   return getText(session, url, { ...opts, parse: (t) => { try { return JSON.parse(t); } catch { throw new Error(`${opts.secret ? host(url) : url} did not return JSON.`); } } });
+}
+
+// The one text file in a zip archive (SEC's fails-to-deliver files): the archive's bytes are
+// witnessed and the unzipped text cached. Stored and deflated entries are read; nothing else.
+export function unzipFirst(bytes, { maxText = 64 * 1024 * 1024 } = {}) {
+  const buf = Buffer.from(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  // End of central directory: signature 0x06054b50 within the last 64 KB.
+  let eocd = -1;
+  for (let i = buf.length - 22; i >= Math.max(0, buf.length - 65557); i--) if (buf.readUInt32LE(i) === 0x06054b50) { eocd = i; break; }
+  if (eocd < 0) throw new Error("not a zip archive");
+  const cd = buf.readUInt32LE(eocd + 16);
+  if (cd + 46 > buf.length || buf.readUInt32LE(cd) !== 0x02014b50) throw new Error("zip central directory not found");
+  // Central directory header: method at +10, compressed size at +20, uncompressed at +24, local header offset at +42.
+  const method = buf.readUInt16LE(cd + 10), compressed = buf.readUInt32LE(cd + 20), size = buf.readUInt32LE(cd + 24), local = buf.readUInt32LE(cd + 42);
+  if (local + 30 > buf.length || buf.readUInt32LE(local) !== 0x04034b50) throw new Error("zip entry not found");
+  const start = local + 30 + buf.readUInt16LE(local + 26) + buf.readUInt16LE(local + 28);
+  if (start + compressed > buf.length) throw new Error("zip entry runs past the archive");
+  const data = buf.subarray(start, start + compressed);
+  if (size > maxText) throw new Error(`zip entry is ${size} bytes, above ${maxText}`);
+  const out = method === 0 ? data : method === 8 ? inflateRawSync(data, { maxOutputLength: maxText }) : null;
+  if (!out) throw new Error(`zip compression method ${method} is not supported`);
+  return out.toString("utf8");
+}
+
+export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024 } = {}) {
+  const hit = session.cache.lookup(url, session.now());
+  if (hit) { witness(session, url, session.hashes.get(url)); return hit.text; }
+  let bytes;
+  for (let attempt = 0; ; attempt++) {
+    if (isSec(url)) await secTurn(session);
+    const signal = AbortSignal.timeout(TIMEOUT_MS);
+    try {
+      bytes = await fetchBoundedText(session.fetchImpl, url, { signal, maxBytes, as: "bytes", headers: { "User-Agent": isSec(url) ? session.userAgent : PLAIN_USER_AGENT } });
+      break;
+    } catch (error) {
+      const transient = !signal.aborted && (error instanceof ResponseReadError ? error.code === "HTTP" && error.status >= 500 : true);
+      if (transient && attempt < 2) { await session.sleep(500 * 3 ** attempt); continue; }
+      throw fetchError(error, { url, aborted: signal.aborted, maxBytes });
+    }
+  }
+  const record = { sha256: createHash("sha256").update(bytes).digest("hex"), bytes: bytes.byteLength, retrieved_at: new Date(session.now()).toISOString() };
+  session.hashes.set(url, record);
+  witness(session, url, record);
+  const text = unzipFirst(bytes);
+  session.cache.set(url, { at: session.now(), text });
+  return text;
 }
 
 // A read-only JSON query sent as a POST body.

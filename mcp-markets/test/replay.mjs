@@ -14,7 +14,9 @@ export function replayFetch(extra = {}) {
     if (extra[key]) return new Response(typeof extra[key] === "string" ? extra[key] : JSON.stringify(extra[key]), { status: 200 });
     const file = MANIFEST[key];
     if (!file) return new Response(`not captured: ${key}`, { status: 404 });
-    return new Response(gunzipSync(readFileSync(new URL(file, DIR))).toString("utf8"), { status: 200 });
+    // A binary response (a zip archive) is kept as bytes in a ".bin.gz" fixture.
+    const body = gunzipSync(readFileSync(new URL(file, DIR)));
+    return new Response(file.endsWith(".bin.gz") ? body : body.toString("utf8"), { status: 200 });
   };
   return { fetchImpl, calls };
 }

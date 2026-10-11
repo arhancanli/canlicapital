@@ -3,7 +3,7 @@
 // URLs come from the same helpers the code uses, and windows end before the tests' clock
 // (2026-10-09 12:00 UTC), so a capture taken later reproduces the same requests.
 import { readFileSync, writeFileSync } from "node:fs";
-import { gunzipSync, gzipSync } from "node:zlib";
+import { crc32, deflateRawSync, gunzipSync, gzipSync } from "node:zlib";
 
 import * as CB from "../src/centralbank.mjs";
 import * as E from "../src/events.mjs";
@@ -37,6 +37,29 @@ export async function grab(url, trim) {
 // another in euros, and a crypto pair.
 for (const symbol of ["EURUSD=X", "CL=F", "^GSPC", "SHEL.L", "SAP.DE", "BTC-USD"]) await grab(yahooChartUrl(symbol, "2026-09-01", "2026-10-08"));
 
+// A zip archive holding one text file, deflated: SEC's fails-to-deliver files are cut to a few
+// securities and packed again, so the fixture is a real file's rows in the format the code reads.
+function zipOne(name, text) {
+  const data = Buffer.from(text, "utf8"), packed = deflateRawSync(data), fname = Buffer.from(name), crc = crc32(data);
+  const local = Buffer.alloc(30); local.writeUInt32LE(0x04034b50, 0); local.writeUInt16LE(20, 4); local.writeUInt16LE(8, 8); local.writeUInt32LE(crc, 14); local.writeUInt32LE(packed.length, 18); local.writeUInt32LE(data.length, 22); local.writeUInt16LE(fname.length, 26);
+  const central = Buffer.alloc(46); central.writeUInt32LE(0x02014b50, 0); central.writeUInt16LE(20, 4); central.writeUInt16LE(20, 6); central.writeUInt16LE(8, 10); central.writeUInt32LE(crc, 16); central.writeUInt32LE(packed.length, 20); central.writeUInt32LE(data.length, 24); central.writeUInt16LE(fname.length, 28);
+  const cdOffset = local.length + fname.length + packed.length;
+  const end = Buffer.alloc(22); end.writeUInt32LE(0x06054b50, 0); end.writeUInt16LE(1, 8); end.writeUInt16LE(1, 10); end.writeUInt32LE(central.length + fname.length, 12); end.writeUInt32LE(cdOffset, 16);
+  return Buffer.concat([local, fname, packed, central, fname, end]);
+}
+async function grabZip(url, keep) {
+  if (manifest[url]) return;
+  const res = await fetch(url, { headers: SEC });
+  if (!res.ok) throw new Error(`${url}: ${res.status}`);
+  const bytes = new Uint8Array(await res.arrayBuffer());
+  const { unzipFirst } = await import("../src/sources.mjs");
+  const lines = unzipFirst(bytes).split(/\r?\n/);
+  const text = [lines[0], ...lines.slice(1).filter((l) => keep.has(l.split("|")[2]))].join("\n") + "\n";
+  const file = `c${String(++n).padStart(3, "0")}.bin.gz`;
+  writeFileSync(new URL(file, DIR), gzipSync(zipOne(url.split("/").pop().replace(".zip", ".txt"), text), { level: 9 }));
+  manifest[url] = file;
+}
+
 // The rest are recorded by running the tools themselves at the tests' clock, so the requests are
 // exactly the ones the code makes.
 const NOW = Date.parse("2026-10-09T12:00:00Z");
@@ -45,7 +68,7 @@ const NOW = Date.parse("2026-10-09T12:00:00Z");
 async function record(run, args) {
   const fetchImpl = async (url, init) => {
     const key = init?.method && init.method !== "GET" ? `${init.method} ${url} ${init.body ?? ""}` : url;
-    if (manifest[key]) return new Response(gunzipSync(readFileSync(new URL(manifest[key], DIR))).toString("utf8"), { status: 200 });
+    if (manifest[key]) { const body = gunzipSync(readFileSync(new URL(manifest[key], DIR))); return new Response(manifest[key].endsWith(".bin.gz") ? body : body.toString("utf8"), { status: 200 }); }
     const res = await fetch(url, init);
     const text = await res.text();
     if (res.ok && !manifest[key]) {
@@ -101,6 +124,14 @@ await record(CB.fomc, {});
 await record(Pos.offExchangeVolume, { symbol: "AAPL", weeks: 6 });
 // Revenue by segment, product and region from Apple's fiscal 2025 10-K XBRL and its label linkbase.
 await record(Seg.segmentRevenue, { company: "AAPL" });
+// Fails to deliver: the two latest half-month files, cut to GameStop and the largest ETFs.
+{
+  const page = await (await fetch("https://www.sec.gov/data/foiadocsfailsdatahtm", { headers: SEC })).text();
+  const zips = [...new Set([...page.matchAll(/href="(\/files\/data\/fails-deliver-data\/cnsfails\d{6}[ab]\.zip)"/g)].map((m) => m[1]))].sort().reverse().slice(0, 2);
+  for (const z of zips) await grabZip(`https://www.sec.gov${z}`, new Set(["GME", "QQQ", "SPY", "IWM", "LQD"]));
+  await record(Pos.failsToDeliver, { symbol: "GME" });
+  await record(Pos.failsToDeliver, { limit: 5 });
+}
 
 writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
 console.log(n, "coverage responses in the manifest");

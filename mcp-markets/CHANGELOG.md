@@ -28,6 +28,9 @@
   average daily volume and days to cover, and the share of shares outstanding from the company's
   latest SEC cover page; or the market ranked by days to cover, change or size, among stocks
   trading at least a million shares a day.
+- `fails_to_deliver`: the SEC's fails-to-deliver data (NSCC balances) for a stock over the latest
+  half-month files, with prices and values, or the largest fails across the market. The files are
+  zip archives, read with a small built-in reader (stored and deflated entries, size-checked).
 - `off_exchange_volume`: FINRA's OTC transparency data for a stock, weekly: shares and trades in dark
   pools (ATSs) and with other off-exchange dealers, and the largest of each in the latest week.
 - `futures_positioning`: the CFTC's Commitments of Traders by market name (gold, crude oil, corn,

@@ -3,7 +3,7 @@
 // group). No key.
 import { z } from "zod";
 
-import { getJson, NotFound, pad10, postJson, resolveEntity } from "./sources.mjs";
+import { getJson, getText, getZipText, NotFound, pad10, postJson, resolveEntity } from "./sources.mjs";
 
 const round = (x, d = 4) => (x == null || !Number.isFinite(x) ? null : Math.round(x * 10 ** d) / 10 ** d);
 const n = (s) => (s == null || s === "" || !Number.isFinite(Number(s)) ? null : Number(s));
@@ -218,5 +218,71 @@ export async function offExchangeVolume(session, args) {
       "Exchange volume is not included; compare with price_history's volume for the share traded off exchange.",
       "Not investment advice.",
     ],
+  };
+}
+
+// ---------------------------------------------------------------------------------------------
+// fails_to_deliver (SEC fails-to-deliver data, from NSCC's continuous net settlement system)
+// ---------------------------------------------------------------------------------------------
+const FTD_PAGE = "https://www.sec.gov/data/foiadocsfailsdatahtm";
+
+async function ftdFiles(session) {
+  const html = await getText(session, FTD_PAGE, { maxBytes: 4 * 1024 * 1024 });
+  return [...new Set([...html.matchAll(/href="(\/files\/data\/fails-deliver-data\/cnsfails(\d{6})([ab])\.zip)"/g)].map((m) => `${m[2]}${m[3]}|${m[1]}`))]
+    .sort().reverse().map((k) => { const [id, path] = k.split("|"); return { id, url: `https://www.sec.gov${path}`, half: id.endsWith("a") ? "first half" : "second half", month: `${id.slice(0, 4)}-${id.slice(4, 6)}` }; });
+}
+
+function parseFtd(text) {
+  const out = [];
+  for (const line of text.split(/\r?\n/).slice(1)) {
+    const [date, cusip, symbol, qty, description, price] = line.split("|");
+    if (!/^\d{8}$/.test(date ?? "")) continue;
+    out.push({ date: `${date.slice(0, 4)}-${date.slice(4, 6)}-${date.slice(6, 8)}`, cusip, symbol: symbol?.trim() ?? "", qty: Number(qty), description: description?.trim() ?? null, price: price === "" || price == null || price === "." ? null : Number(price) });
+  }
+  return out;
+}
+
+export const ftdInput = z.object({
+  symbol: z.string().regex(/^[A-Za-z0-9.\-]{1,12}$/).optional().describe("A ticker. Without it, the securities with the largest fails by value in the latest file."),
+  files: z.number().int().min(1).max(6).optional().describe("Half-month files to read, newest first; default 2 (about a month) for a ticker, 1 across the market."),
+  limit: z.number().int().min(1).max(100).optional().describe("Across the market, most securities to list; default 25."),
+}).strict();
+
+export async function failsToDeliver(session, args) {
+  const a = ftdInput.parse(args);
+  const files = (await ftdFiles(session)).slice(0, a.files ?? (a.symbol ? 2 : 1));
+  if (!files.length) throw new NotFound("SEC's fails-to-deliver page lists no data files.");
+  const limits = [
+    "SEC fails-to-deliver data from NSCC's Continuous Net Settlement system: the total outstanding balance of shares that failed to settle on each settlement date (a balance, not new fails that day), published twice a month for the half-month about two weeks earlier; days with no balance listed have none in the file.",
+    "Value is the balance times the prior day's closing price as given in the file. Fails have many causes (operational delays as well as short selling).",
+    "Not investment advice.",
+  ];
+  const rows = [];
+  for (const f of files) rows.push(...parseFtd(await getZipText(session, f.url)));
+  if (a.symbol) {
+    const symbol = a.symbol.toUpperCase().replace(/-/g, ".");
+    const mine = rows.filter((r) => r.symbol === symbol).sort((x, y) => x.date.localeCompare(y.date));
+    if (!mine.length) throw new NotFound(`SEC's files list no fails to deliver for ${symbol} in ${files.map((f) => `${f.month} ${f.half}`).join(", ")}.`);
+    const max = mine.reduce((m, r) => (r.qty > m.qty ? r : m), mine[0]);
+    return {
+      symbol, cusip: mine[0].cusip, name: mine[0].description, files: files.map((f) => `${f.month} ${f.half}`),
+      days_with_fails: mine.length, largest: { date: max.date, shares: max.qty, value: max.price == null ? null : round(max.qty * max.price, 2) },
+      columns: ["settlement_date", "shares_failed", "price", "value"],
+      rows: mine.map((r) => [r.date, r.qty, r.price, r.price == null ? null : round(r.qty * r.price, 2)]),
+      source: FTD_PAGE, limits,
+    };
+  }
+  const by = new Map();
+  for (const r of rows) {
+    const g = by.get(r.cusip) ?? { symbol: r.symbol, name: r.description, days: 0, max: 0, value: 0 };
+    g.days++; g.max = Math.max(g.max, r.qty); g.value = Math.max(g.value, r.price == null ? 0 : r.qty * r.price);
+    by.set(r.cusip, g);
+  }
+  const ranked = [...by].sort((x, y) => y[1].value - x[1].value).slice(0, a.limit ?? 25);
+  return {
+    files: files.map((f) => `${f.month} ${f.half}`), securities: by.size, ranked_by: "largest single-day balance by value",
+    columns: ["symbol", "name", "cusip", "days_with_fails", "largest_balance_shares", "largest_balance_value"],
+    rows: ranked.map(([cusip, g]) => [g.symbol, g.name, cusip, g.days, g.max, round(g.value, 2)]),
+    source: FTD_PAGE, limits,
   };
 }

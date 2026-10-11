@@ -3,7 +3,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { createSession } from "../src/sources.mjs";
+import { createSession, unzipFirst } from "../src/sources.mjs";
 import * as CB from "../src/centralbank.mjs";
 import * as E from "../src/events.mjs";
 import * as F from "../src/funds.mjs";
@@ -425,4 +425,18 @@ test("segment_revenue: labels from a label linkbase or a schema, in any attribut
   const labels = Seg.memberLabels(lab);
   assert.equal(labels.get("ProductivityAndBusinessProcessesMember"), "Productivity and Business Processes");
   assert.equal(labels.get("ComputeAndNetworkingMember"), "Compute & Networking");
+});
+
+test("fails_to_deliver: GameStop over two half-month files, and the largest fails by value; files read from zip", async () => {
+  const { s } = session();
+  const g = await Pos.failsToDeliver(s, { symbol: "GME" });
+  assert.deepEqual(g.files, ["2026-09 first half", "2026-08 second half"]);
+  assert.equal(g.days_with_fails, 14);
+  assert.deepEqual(g.largest, { date: "2026-09-02", shares: 2570429, value: 48349769.49 });
+  assert.deepEqual(g.rows[0], ["2026-08-17", 56718, 18.66, 1058357.88]);
+  for (const [, shares, price, value] of g.rows) assert.equal(value, Math.round(shares * price * 100) / 100);
+  const m = await Pos.failsToDeliver(s, { limit: 5 });
+  assert.deepEqual(m.rows.map((x) => x[0]), ["QQQ", "SPY", "IWM", "LQD", "GME"]);
+  assert.throws(() => unzipFirst(new Uint8Array([80, 75, 5, 6, 0, 0, 0, 0, 1, 0, 1, 0, 46, 0, 0, 0, 200, 0, 0, 0, 0, 0])), /central directory not found/);
+  assert.throws(() => unzipFirst(new Uint8Array([1, 2, 3])), /not a zip archive/);
 });
