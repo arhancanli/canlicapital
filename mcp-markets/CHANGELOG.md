@@ -52,6 +52,9 @@
   restructurings, delisting notices), for one company or, by event, across the market, each with
   the opening of what the filing says under the item. Search hits on exhibits give way to the 8-K
   itself, and only filings that carry the item are kept.
+- `investment_advisers`: firms from the SEC's Form ADV database (IAPD) by name or CRD: SEC file
+  number, status, disclosure flag, offices, then the best match in full (registration and since
+  when, other names, relying advisers, latest ADV date, links to its Form ADV and brochures).
 - `large_holders`: who owns more than 5 percent of a company, from structured Schedules 13D and
   13G (shares, percent of class, voting power, passive or activist, a 13D's stated purpose), each
   holder's latest filing first; filings the company itself made about other companies are left

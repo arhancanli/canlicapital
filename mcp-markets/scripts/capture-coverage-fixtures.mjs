@@ -5,6 +5,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { crc32, deflateRawSync, gunzipSync, gzipSync } from "node:zlib";
 
+import * as Adv from "../src/advisers.mjs";
 import * as Cal from "../src/calendar.mjs";
 import * as CB from "../src/centralbank.mjs";
 import * as E from "../src/events.mjs";
@@ -125,6 +126,8 @@ await record(Pay.executivePay, { limit: 6 });
 await record(CB.fomc, {});
 // The economic calendar for the 30 days from the tests' clock: BLS, BEA, Census and the Fed.
 await record(Cal.economicCalendar, { key_only: true });
+// Investment advisers: a name search with the best match in full (Bridgewater).
+await record(Adv.investmentAdvisers, { query: "Bridgewater Associates", limit: 4 });
 // Off-exchange volume: Apple's last six weeks of dark pool and OTC trading (FINRA).
 await record(Pos.offExchangeVolume, { symbol: "AAPL", weeks: 6 });
 // Revenue by segment, product and region from Apple's fiscal 2025 10-K XBRL and its label linkbase.

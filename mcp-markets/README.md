@@ -48,6 +48,7 @@ received and when, so any figure can be checked against the same document later.
 | `segment_revenue` | Where revenue comes from: by segment (with operating income), product and region, three years, checked against total revenue | 10-K/10-Q XBRL |
 | `insider_trades` | Who inside bought or sold, at what price, under a 10b5-1 plan or not | Form 4 |
 | `fund_holdings` | What a fund manager holds, its weights, and what it bought and sold last quarter | 13F |
+| `investment_advisers` | Who an investment adviser is: registration, offices, other names, disclosure flags, Form ADV and brochures | SEC Form ADV (IAPD) |
 | `large_holders` | Who owns more than 5 percent, passive (13G) or activist (13D, with its stated purpose); or the week's new activist stakes across the market | Schedules 13D and 13G |
 | `private_offerings` | Who is raising private money (startups, private equity, hedge and real estate funds): amount sold, investors, exemption, people | Form D |
 | `fails_to_deliver` | Shares that failed to settle for a stock over the last month, or the largest fails across the market | SEC fails-to-deliver data |

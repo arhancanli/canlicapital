@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { createSession, unzipFirst } from "../src/sources.mjs";
+import * as Adv from "../src/advisers.mjs";
 import * as Cal from "../src/calendar.mjs";
 import * as CB from "../src/centralbank.mjs";
 import * as E from "../src/events.mjs";
@@ -477,4 +478,17 @@ test("economic_calendar: iCalendar lines are unfolded and unescaped, and UTC tim
   assert.deepEqual(ev.map((e) => e.summary), ["Gross Domestic Product, 4th Quarter and Year 2024 (Advance Estimate)", "Employment Situation"]);
   assert.deepEqual(Cal.easternTime(ev[0].start), { date: "2025-01-07", time: "08:30" }, "13:30 UTC in January is 08:30 Eastern");
   assert.deepEqual(Cal.easternTime(ev[1].start), { date: "2025-01-10", time: "08:30" });
+});
+
+test("investment_advisers: firms by name from the SEC's Form ADV database, the best match in full", async () => {
+  const { s } = session();
+  const r = await Adv.investmentAdvisers(s, { query: "Bridgewater Associates", limit: 4 });
+  assert.deepEqual(r.rows[0], [105129, "BRIDGEWATER ASSOCIATES, LP", "801-35875", "ACTIVE", false, "WESTPORT, CT, United States", 1]);
+  const f = r.firm;
+  assert.deepEqual([f.crd, f.name, f.sec_file_number, f.latest_adv_filed], [105129, "BRIDGEWATER ASSOCIATES, LP", "801-35875", "08/18/2026"]);
+  assert.deepEqual(f.registered_with, ["SEC"]);
+  assert.deepEqual(f.sec_registration, [{ jurisdiction: "SEC", status: "Approved", effective: "1/12/1990" }]);
+  assert.equal(f.form_adv_pdf, "https://reports.adviserinfo.sec.gov/reports/ADV/105129/PDF/105129.pdf");
+  assert.match(f.brochures[0].url, /BRCHR_VRSN_ID=\d+$/);
+  assert.ok(!f.other_names.includes(f.name));
 });
