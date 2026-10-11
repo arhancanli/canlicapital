@@ -77,7 +77,8 @@ export function at(v, path) {
     }
     if (k === "rows" && o && typeof o === "object" && !Array.isArray(o) && Array.isArray(o.columns)) cols = o.columns;
     else if (!(cols && Array.isArray(o) && /^\d+$/.test(k) && Array.isArray(o[k]))) cols = null;
-    o = o[k];
+    // Own fields only: "constructor" is not a field of a result.
+    o = Object.hasOwn(o, k) ? o[k] : undefined;
   }
   return o;
 }

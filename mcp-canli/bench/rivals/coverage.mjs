@@ -1,5 +1,5 @@
 // Which finance questions each server can answer with a tool, checked against the tools each one
-// actually lists: canli-mcp's src/index.json (plus the markets tools in PR #447, marked pending),
+// actually lists: canli-mcp's src/index.json (0.3.0 has every markets tool counted here),
 // and the rivals' tools/list snapshot in rivals-tools-2026-10-11.json. Any tool named here that a
 // server does not list fails the script, so the map cannot claim what is not there.
 //   node bench/rivals/coverage.mjs        writes bench/rivals/COVERAGE.md
@@ -16,11 +16,10 @@ const rivals = JSON.parse(readFileSync(new URL("rivals-tools-2026-10-11.json", H
 // for CFTC. Their tools count as "with a key", not as keyless coverage.
 export const OPENBB_KEYED = Object.freeze(["fred_", "bls_", "eia_", "cftc_"]);
 
-// canli-markets-mcp tools added in PR #447, not yet in a released canli-mcp.
-export const PENDING = Object.freeze(["world_economy", "treasury_auctions", "federal_debt", "fund_portfolio", "large_holders", "company_events", "private_offerings", "price_history+", "short_interest", "futures_positioning", "executive_pay", "fomc", "index_constituents", "off_exchange_volume", "segment_revenue", "fails_to_deliver", "economic_outlook", "economic_calendar", "investment_advisers", "options_chain", "volatility_surface", "futures_curve"]);
+// Tools counted here that no released canli-mcp has yet (none since 0.3.0).
+export const PENDING = Object.freeze([]);
 
-// [area, question, canli, openbb, edgartools, yahoo, note]. "price_history+" is price_history with
-// the currencies, futures, indices, crypto and foreign listings PR #447 adds.
+// [area, question, canli, openbb, edgartools, yahoo, note].
 export const QUESTIONS = Object.freeze([
   ["Companies", "Multi-year financial statements", ["company_report", "history"], ["sec_income_statement", "sec_balance_sheet", "sec_cash_flow", "nasdaq_equity_fundamental_income"], ["edgar_company"], ["get_financial_statement"]],
   ["Companies", "Financials as first reported, and what was restated", ["known_as_of", "restatements", "vintages"], [], [], [], "Point-in-time figures, as an investor could have known them."],
@@ -49,12 +48,12 @@ export const QUESTIONS = Object.freeze([
   ["Funds", "Private raises by startups and funds (Form D)", ["private_offerings"], [], [], []],
   ["Funds", "Investment advisers (Form ADV)", ["investment_advisers"], ["sec_adviser_firms", "sec_adviser_individuals"], [], []],
   ["Markets", "US stock and ETF prices", ["price_history"], ["nasdaq_equity_historical", "cboe_equity_historical"], [], ["get_historical_stock_prices"]],
-  ["Markets", "Stocks listed outside the US", ["price_history+"], ["tmx_equity_historical"], [], ["get_historical_stock_prices"], "OpenBB: Canada only (TMX). Yahoo: any Yahoo symbol."],
-  ["Markets", "Currency pairs", ["price_history+"], ["ecb_exchange_rates", "ecb_reference_rates"], [], ["get_historical_stock_prices"]],
-  ["Markets", "Futures prices", ["price_history+"], ["cboe_futures_curve", "deribit_futures_historical"], [], ["get_historical_stock_prices"]],
+  ["Markets", "Stocks listed outside the US", ["price_history"], ["tmx_equity_historical"], [], ["get_historical_stock_prices"], "OpenBB: Canada only (TMX). Yahoo: any Yahoo symbol."],
+  ["Markets", "Currency pairs", ["price_history"], ["ecb_exchange_rates", "ecb_reference_rates"], [], ["get_historical_stock_prices"]],
+  ["Markets", "Futures prices", ["price_history"], ["cboe_futures_curve", "deribit_futures_historical"], [], ["get_historical_stock_prices"]],
   ["Markets", "Futures curves (term structure)", ["futures_curve"], ["cboe_futures_curve", "deribit_futures_curve"], [], []],
-  ["Markets", "Crypto prices", ["price_history+"], ["nasdaq_crypto_historical", "deribit_index_historical"], [], ["get_historical_stock_prices"]],
-  ["Markets", "Index levels", ["price_history+"], ["cboe_index_historical", "nasdaq_index_historical", "tmx_index_historical"], [], ["get_historical_stock_prices"]],
+  ["Markets", "Crypto prices", ["price_history"], ["nasdaq_crypto_historical", "deribit_index_historical"], [], ["get_historical_stock_prices"]],
+  ["Markets", "Index levels", ["price_history"], ["cboe_index_historical", "nasdaq_index_historical", "tmx_index_historical"], [], ["get_historical_stock_prices"]],
   ["Markets", "Index constituents", ["index_constituents"], ["cboe_index_constituents", "tmx_index_constituents"], [], []],
   ["Markets", "Options chains with implied volatility and greeks", ["options_chain"], ["cboe_options_chains", "nasdaq_options_chains", "deribit_options_chains"], [], ["get_option_chain"], "canli: Cboe's delayed data, approved by the owner 2026-10-11 (PR #450)."],
   ["Markets", "Volatility smile, surface and term structure", ["volatility_surface"], ["cboe_options_smile", "cboe_options_surface", "cboe_options_term_structure"], [], []],
@@ -88,7 +87,7 @@ if (missing.length) { console.error(missing.join("\n")); process.exit(1); }
 
 const keyed = (t) => OPENBB_KEYED.some((p) => t.startsWith(p));
 const keyless = (tools) => tools.filter((t) => !keyed(t));
-const mark = (tools, pending = false) => (!tools.length ? "·" : !keyless(tools).length ? "with a key" : tools.some((t) => PENDING.includes(t)) && pending ? "yes (PR #447)" : "yes");
+const mark = (tools, pending = false) => (!tools.length ? "·" : !keyless(tools).length ? "with a key" : tools.some((t) => PENDING.includes(t)) && pending ? "yes (unreleased)" : "yes");
 const count = (i, released) => QUESTIONS.filter((q) => keyless(q[i]).length && (!released || !q[i].some((t) => PENDING.includes(t)))).length;
 const lines = [
   "# Coverage: which finance questions each server has a tool for",
@@ -97,7 +96,7 @@ const lines = [
   "",
   `| | canli-mcp | OpenBB | EdgarTools | Yahoo Finance MCP |`,
   `|---|---|---|---|---|`,
-  `| Questions with a keyless tool (of ${QUESTIONS.length}) | ${count(2, false)} (${count(2, true)} released, ${count(2, false) - count(2, true)} in PRs #447 and #450) | ${count(3)} | ${count(4)} | ${count(5)} |`,
+  `| Questions with a keyless tool (of ${QUESTIONS.length}) | ${count(2, false)}${count(2, true) < count(2, false) ? ` (${count(2, true)} released)` : ""} | ${count(3)} | ${count(4)} | ${count(5)} |`,
   `| Tools listed | ${index.tools.length} behind 3 (find_tool, describe_tool, run_tool) | ${rivals.servers.openbb.count} | ${rivals.servers.edgartools.count} | ${rivals.servers.yahoo.count} |`,
   `| Tokens of tool definitions per request (REPORT.md) | 859 | 432,001 (2,171 in discovery mode) | 3,801 | 2,205 |`,
   "",

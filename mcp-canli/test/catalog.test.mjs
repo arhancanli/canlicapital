@@ -38,6 +38,9 @@ test("paths into results: dotted fields, and column names on tables", async () =
   assert.deepEqual(at(r, "rows.filed"), ["2026-01-02", "2025-01-02"]);
   assert.equal(at(r, "rows.0.nothing"), undefined);
   assert.equal(at({ rows: [{ accession: "y" }] }, "rows.0.accession"), "y");
+  assert.equal(at(r, "constructor"), undefined, "own fields only");
+  assert.equal(at(r, "a.__proto__"), undefined);
+  assert.equal(at(r, "rows.length"), 2, "an array's length is its own");
 });
 
 test("digits rounds fractions only: counts, shares, CIKs and dollar totals stay exact", async () => {

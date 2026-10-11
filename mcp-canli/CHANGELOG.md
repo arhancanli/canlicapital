@@ -1,13 +1,68 @@
 # Changelog
 
-## Unreleased
+## 0.3.0
 
-- `find_tool`: "8-K" and "10-Q" keep their number when a request is split into words (8k, 10q),
-  "news" is no longer stemmed to "new", and a one-word tool name (`history`) that merely appears
-  in a request no longer gets the naming bonus (the whole request, or a name with an underscore,
-  still picks a tool). The 50-request cross-pack test goes from 47 to 48 answered first.
-- `bench/rivals/coverage.mjs` and `COVERAGE.md`: which of 53 finance questions each server can
-  answer, checked against every server's own tool list.
+The markets pack (canli-markets-mcp 0.2.1) goes from 13 tools to 34, so canli-mcp has 306, and
+`find_tool` finds the right one more often.
+
+- Fix, from canli-markets-mcp 0.2.1: `economic_series` no longer answers with a series that
+  shares one word with the request. In canli-mcp 0.2.1 it answered "silver price" and "bitcoin
+  price" with US CPI, and "japan inflation" with US inflation. The new `world_economy` and
+  `economic_outlook` had the same flaw before release: "wage growth" gave GDP growth. A request
+  that names nothing these tools hold is now refused, with where to look instead.
+  `economic_series` also knows 27 more FRED series by name (PPI, wages, consumer credit,
+  permits, gasoline ...), and `find_tool` finds them.
+- Fix, from canli-markets-mcp 0.2.1: company names. In canli-mcp 0.2.1 "facebook" was Denny
+  Hill/Facebook LLC, "jp morgan" JP Morgan AG, and "google" an old Google Inc. with no ticker. A
+  name now resolves to the largest listed company whose registered name starts with it (Google is
+  Alphabet). Fund managers resolve to the filer of their 13Fs (Vanguard, Fidelity's FMR, Citadel
+  Advisors, Bridgewater, Renaissance ...).
+
+- New in the markets pack, all from the publishers and without a key:
+  - options chains with implied volatility and greeks, the volatility surface, and the VIX futures
+    curve (Cboe's delayed data);
+  - short interest and off-exchange volume (FINRA), fails to deliver (SEC), futures positioning
+    (CFTC Commitments of Traders);
+  - fund and ETF portfolios (N-PORT), index members, 5% holders (13D/13G), events from 8-Ks, private
+    offerings (Form D), investment advisers (IAPD);
+  - executive pay against performance, and revenue by segment, from the filings' XBRL;
+  - Fed decisions, votes and dot-plot medians, and the US economic calendar;
+  - Treasury auctions, the federal debt, and World Bank and OECD data;
+  - prices for currencies, futures, indices, crypto and stocks listed abroad.
+- `canli://privacy` and the README name every service the markets pack reaches. 0.2.1 still said SEC,
+  Treasury and FRED only.
+- `find_tool`:
+  - Plurals lose only their "s". "rates" used to become "rat" and matched nothing that said "rate";
+    the same happened to prices, shares, trades, futures, values and sales.
+  - Keyword lists are no longer discounted for their length, and repeated matches count for more
+    (k1 3).
+  - "max" and "min" match "maximum" and "minimum". Time words (last, latest, recent, current, today,
+    now) are ignored.
+  - `economic_series` is found by the series it resolves (core CPI, mortgage rates, GDP growth,
+    payrolls ...), the company screen by profit and margin words, and the paper tools by buy, sell,
+    trade and order.
+  - "8-K" and "10-Q" keep their number, "news" is no longer stemmed to "new", and a one-word tool
+    name (`history`) that merely appears in a request no longer gets the naming bonus.
+  - Measured on 48 everyday requests written after these changes and never tuned on: the right tool
+    first 46 times (0.2.1: 25), in the top three 47 times (29). On the questions 0.2.1 also had a
+    tool for, 27 of 29 first against 25.
+  - 48 everyday requests written before the changes were used to tune them: 34 first before, 43
+    after. The 50 cross-pack requests stay at 47 first, 50 in the top three. All four sets are in
+    `test/search.test.mjs`.
+- Fix: `find_tool` threw on any request containing "constructor" (an abbreviation table read the
+  word's built-in property). `select` and `$result` paths read only a result's own fields, so
+  "constructor" is reported as a missing field rather than returning a function.
+- Context, re-measured with `bench/context.py`: 1,109 tokens, against 34,508 for the seven servers
+  listed separately (24,858 when markets had 13 tools).
+- `bench/robustness.mjs`: every tool, called offline with hostile arguments ("constructor", empty and
+  5,000-character strings, unusual unicode, edge numbers, empty and 20,000-item arrays), in a
+  throwaway home folder. On 0.3.0: 2,980 calls ran, and none crashed or leaked internals in
+  canli-mcp itself. It found 3 crashes in packs (fundamentals `cross_section` on "constructor",
+  backtest `backtest_signal` on a NUL byte) and 4 NaN answers on degenerate quant inputs; those are
+  fixed in the packs' next releases.
+- `bench/rivals/coverage.mjs` and `COVERAGE.md`: which of 53 finance questions each server has a tool
+  for, checked against every server's own tool list. canli-mcp 49, OpenBB 39, Yahoo Finance MCP 13,
+  EdgarTools 11.
 
 ## 0.2.1
 

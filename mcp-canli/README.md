@@ -1,6 +1,6 @@
 # canli-mcp
 
-Every Canli Capital MCP server in one: 285 finance tools for Claude, Cursor or any MCP client.
+Every Canli Capital MCP server in one: 306 finance tools for Claude, Cursor or any MCP client.
 
 - Quant finance: 235 tools covering performance and risk, options and exotics, fixed income,
   portfolios, econometrics, indicators, and a library of 399 strategy sleeves with
@@ -8,9 +8,13 @@ Every Canli Capital MCP server in one: 285 finance tools for Claude, Cursor or a
 - Backtest validation: deflated Sharpe, overfitting probability, data-snooping tests, leakage checks
   and placebo tests, run on your machine.
 - Point-in-time SEC fundamentals.
-- Market data and market-wide research from the sources, no key: screens of every US-listed
-  company, one-call company reports, event studies, filing trends, SEC filings and their sections,
-  insider trades, 13F holdings, Treasury yields, FRED series and prices.
+- Markets from the sources, no key: screens of every US-listed company, company reports, event
+  studies, SEC filings and their sections, insider trades, 13F and 5% holders, fund and ETF
+  portfolios, index members, short interest, off-exchange volume, fails to deliver, futures
+  positioning, executive pay, revenue by segment, options chains and volatility surfaces, the VIX
+  futures curve, Fed decisions and projections, the economic calendar, Treasury yields and auctions,
+  the federal debt, FRED, World Bank and OECD data, and prices for stocks, currencies, futures,
+  indices and crypto.
 - Canli Capital's open research record.
 - Factor backtests without lookahead.
 - Alpaca paper trading behind pre-trade checks.
@@ -36,19 +40,21 @@ Claude Desktop, Cursor or any MCP client:
 
 ## Why one server is cheaper and faster
 
-Measured on Node 24 on 2026-10-09 (o200k tokens of the tool objects a client receives, plus the
-server instructions):
+Measured on Node 24 on 2026-10-11 with `bench/context.py` (o200k tokens of the tool objects a
+client receives, plus the server instructions; start-up is the median time from launch to the
+tool list):
 
 | | seven servers separately | canli-mcp |
 |---|---|---|
-| tool list and instructions sent with every request | 24,858 tokens | 1,109 tokens |
+| tool list and instructions sent with every request | 34,508 tokens | 1,109 tokens |
 | processes | 7 | 1 |
-| start-up | about 110-165 ms each | 110 ms |
+| start-up | 63-90 ms each | 73 ms |
 
 - **Three tools in context.** The model searches with `find_tool`, reads one schema with
-  `describe_tool`, and calls anything with `run_tool`. On 50 requests spread over every pack, the
-  right tool comes first 47 times and is in the top three every time (`test/search.test.mjs`).
-- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 285 tools; a pack's
+  `describe_tool`, and calls anything with `run_tool`. On 48 everyday requests written after the
+  last change to the search and never tuned on, the right tool comes first 46 times and is in the
+  top three 47 times (0.2.1: 25 and 29). `test/search.test.mjs` holds these and 135 more.
+- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 306 tools; a pack's
   code loads the first time one of its tools runs.
 - **Data by file, not by pasting.** Any argument can be `{"$file": "prices.csv", "column": "close"}`
   (or `"columns": ["SPY", "TLT"]` or `"all"`). For 1,000 prices that is 23 tokens instead of 4,893,
@@ -100,7 +106,7 @@ Everything runs on your machine. `canli://privacy` states, per pack, what leaves
 | fundamentals | public SEC data from canlicapital.com (the company and measure you ask for) | caches that public data in `~/.cache/canli-fundamentals` (`CANLI_CACHE_DIR=""` keeps nothing) |
 | research | public research pages from canlicapital.com (your search words) | none |
 | backtest | public SEC data, as fundamentals; your prices and signals stay local | your trial ledgers in `~/.canli/ledgers` |
-| markets | SEC EDGAR, the US Treasury and FRED directly (the company, form, dates or series you ask for); Yahoo Finance's public chart data for prices, or Alpaca or Tiingo with your key | none |
+| markets | SEC EDGAR and the SEC's adviser database, the US Treasury, FRED, FINRA, the CFTC, the Federal Reserve, BLS, BEA, the Census Bureau, the OECD, the World Bank and Cboe directly (the company, form, dates, search words or series you ask for); Yahoo Finance's public chart data for prices, or for US stocks Alpaca or Tiingo with your key | none |
 | paper | Alpaca's paper API only, with your paper keys | a hash-chained order log in `~/.canli` |
 
 `CANLI_OFFLINE=1` enables only the packs with no network, and no other pack's code is even loaded.
@@ -128,7 +134,7 @@ Order-sending tools never run inside a batch: preview first, then send on its ow
 | fundamentals | [canli-fundamentals-mcp](https://www.npmjs.com/package/canli-fundamentals-mcp) | 7 | SEC XBRL filings |
 | research | [canli-research-mcp](https://www.npmjs.com/package/canli-research-mcp) | 6 | the published research record and its hash chain |
 | backtest | [canli-backtest-mcp](https://www.npmjs.com/package/canli-backtest-mcp) | 3 | point-in-time SEC data |
-| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 13 | replayed SEC, Treasury and FRED responses: a 13F's total equals its cover page |
+| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 34 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank and Cboe: a 13F's total equals its cover page |
 | paper | [canli-paper-trading-mcp](https://www.npmjs.com/package/canli-paper-trading-mcp) | 4 | a simulated Alpaca paper API |
 
 Two tools differ from their standalone servers. Validation's `stress_test` is `strategy_stress_test`
@@ -139,7 +145,8 @@ here, because the quant pack has a portfolio `stress_test`. Validation's `get_ke
 
 ```bash
 npm ci && npm test
-npm run build-index   # after updating a pack; a test fails if the index and the packs differ
+npm run build-index        # after updating a pack; a test fails if the index and the packs differ
+node bench/robustness.mjs  # every tool, offline, with hostile arguments: crashes and leaks reported
 ```
 
 MIT licence.
