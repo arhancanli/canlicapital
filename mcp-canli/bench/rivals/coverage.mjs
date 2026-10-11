@@ -17,7 +17,7 @@ const rivals = JSON.parse(readFileSync(new URL("rivals-tools-2026-10-11.json", H
 export const OPENBB_KEYED = Object.freeze(["fred_", "bls_", "eia_", "cftc_"]);
 
 // canli-markets-mcp tools added in PR #447, not yet in a released canli-mcp.
-export const PENDING = Object.freeze(["world_economy", "treasury_auctions", "federal_debt", "fund_portfolio", "large_holders", "company_events", "private_offerings", "price_history+", "short_interest", "futures_positioning", "executive_pay", "fomc", "index_constituents"]);
+export const PENDING = Object.freeze(["world_economy", "treasury_auctions", "federal_debt", "fund_portfolio", "large_holders", "company_events", "private_offerings", "price_history+", "short_interest", "futures_positioning", "executive_pay", "fomc", "index_constituents", "off_exchange_volume", "segment_revenue"]);
 
 // [area, question, canli, openbb, edgartools, yahoo, note]. "price_history+" is price_history with
 // the currencies, futures, indices, crypto and foreign listings PR #447 adds.
@@ -27,7 +27,7 @@ export const QUESTIONS = Object.freeze([
   ["Companies", "One section of a 10-K or 10-Q (risk factors, MD&A)", ["read_filing"], ["sec_risk_factors", "sec_management_discussion_analysis", "sec_legal_proceedings"], ["edgar_read"], []],
   ["Companies", "Search the text of every filing", ["search_filings"], ["sec_full_text_search"], ["edgar_text_search"], []],
   ["Companies", "Screen every listed company on fundamentals", ["screen_companies", "cross_section"], ["nasdaq_equity_screener", "tmx_equity_screener"], ["edgar_screen"], []],
-  ["Companies", "Revenue by segment", [], ["sec_segment_revenue"], ["edgar_notes"], []],
+  ["Companies", "Revenue by segment", ["segment_revenue"], ["sec_segment_revenue"], ["edgar_notes"], []],
   ["Companies", "Executive pay, and pay versus performance", ["executive_pay"], ["sec_executive_compensation", "sec_pay_versus_performance"], ["edgar_proxy"], []],
   ["Companies", "A company's events from its 8-Ks (deals, executive changes, restatements)", ["company_events"], [], ["edgar_monitor"], [], "canli reads each 8-K item; EdgarTools lists recent filings."],
   ["Companies", "One kind of event across the market (restatements, bankruptcies, cyber incidents)", ["company_events"], [], [], []],
@@ -43,7 +43,7 @@ export const QUESTIONS = Object.freeze([
   ["Ownership", "New activist stakes across the market", ["large_holders"], [], [], []],
   ["Ownership", "Short interest", ["short_interest"], ["finra_equity_shorts_short_interest", "nasdaq_equity_ownership_short_interest"], [], []],
   ["Ownership", "Fails to deliver", [], ["sec_equity_ftd"], [], []],
-  ["Ownership", "Dark pool and OTC volume", [], ["finra_equity_darkpool_otc"], [], []],
+  ["Ownership", "Dark pool and OTC volume", ["off_exchange_volume"], ["finra_equity_darkpool_otc"], [], []],
   ["Funds", "What a mutual fund or ETF holds", ["fund_portfolio"], ["sec_nport_disclosure", "nasdaq_etf_holdings", "tmx_etf_holdings"], ["edgar_fund"], []],
   ["Funds", "Fund flows and monthly returns", ["fund_portfolio"], ["sec_nport_fund_metrics"], [], []],
   ["Funds", "Private raises by startups and funds (Form D)", ["private_offerings"], [], [], []],

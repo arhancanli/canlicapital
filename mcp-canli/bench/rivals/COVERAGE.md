@@ -4,7 +4,7 @@ Checked by `node bench/rivals/coverage.mjs` against each server's own tool list:
 
 | | canli-mcp | OpenBB | EdgarTools | Yahoo Finance MCP |
 |---|---|---|---|---|
-| Questions with a keyless tool (of 53) | 40 (20 released, 20 in PR #447) | 39 | 11 | 13 |
+| Questions with a keyless tool (of 53) | 42 (20 released, 22 in PR #447) | 39 | 11 | 13 |
 | Tools listed | 285 behind 3 (find_tool, describe_tool, run_tool) | 1056 | 13 | 9 |
 | Tokens of tool definitions per request (REPORT.md) | 859 | 432,001 (2,171 in discovery mode) | 3,801 | 2,205 |
 
@@ -15,7 +15,7 @@ Checked by `node bench/rivals/coverage.mjs` against each server's own tool list:
 | Companies | One section of a 10-K or 10-Q (risk factors, MD&A) | yes | yes | yes | · |  |
 | Companies | Search the text of every filing | yes | yes | yes | · |  |
 | Companies | Screen every listed company on fundamentals | yes | yes | yes | · |  |
-| Companies | Revenue by segment | · | yes | yes | · |  |
+| Companies | Revenue by segment | yes (PR #447) | yes | yes | · |  |
 | Companies | Executive pay, and pay versus performance | yes (PR #447) | yes | yes | · |  |
 | Companies | A company's events from its 8-Ks (deals, executive changes, restatements) | yes (PR #447) | · | yes | · | canli reads each 8-K item; EdgarTools lists recent filings. |
 | Companies | One kind of event across the market (restatements, bankruptcies, cyber incidents) | yes (PR #447) | · | · | · |  |
@@ -31,7 +31,7 @@ Checked by `node bench/rivals/coverage.mjs` against each server's own tool list:
 | Ownership | New activist stakes across the market | yes (PR #447) | · | · | · |  |
 | Ownership | Short interest | yes (PR #447) | yes | · | · |  |
 | Ownership | Fails to deliver | · | yes | · | · |  |
-| Ownership | Dark pool and OTC volume | · | yes | · | · |  |
+| Ownership | Dark pool and OTC volume | yes (PR #447) | yes | · | · |  |
 | Funds | What a mutual fund or ETF holds | yes (PR #447) | yes | yes | · |  |
 | Funds | Fund flows and monthly returns | yes (PR #447) | yes | · | · |  |
 | Funds | Private raises by startups and funds (Form D) | yes (PR #447) | · | · | · |  |
@@ -68,4 +68,4 @@ Checked by `node bench/rivals/coverage.mjs` against each server's own tool list:
 
 Only canli-mcp: financials as first reported, and what was restated; one kind of event across the market (restatements, bankruptcies, cyber incidents); how the stock reacted to events (event study); new activist stakes across the market; private raises by startups and funds (form d); futures positioning (cftc commitments of traders); us economic series (inflation, jobs, gdp); performance and risk (sharpe, drawdown, var); portfolio construction (min variance, risk parity, black-litterman); strategy backtests; is a backtest overfit (deflated sharpe, pbo, reality check); paper trading behind pre-trade checks.
 
-canli-mcp has no tool yet: revenue by segment; news headlines; analyst estimates, price targets, recommendations; upcoming earnings dates; fails to deliver; dark pool and otc volume; investment advisers (form adv); futures curves (term structure); options chains with implied volatility and greeks; volatility smile, surface and term structure; corporate bond prices; economic forecasts; economic calendar.
+canli-mcp has no tool yet: news headlines; analyst estimates, price targets, recommendations; upcoming earnings dates; fails to deliver; investment advisers (form adv); futures curves (term structure); options chains with implied volatility and greeks; volatility smile, surface and term structure; corporate bond prices; economic forecasts; economic calendar.
