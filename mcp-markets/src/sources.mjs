@@ -170,6 +170,13 @@ export async function postJson(session, url, payload, opts = {}) {
 export const pad10 = (cik) => String(Number(cik)).padStart(10, "0");
 export const archiveBase = (cik, accession) => `https://www.sec.gov/Archives/edgar/data/${Number(cik)}/${String(accession).replace(/-/g, "")}`;
 
+// Fund share classes by ticker (mutual funds and ETFs), from the SEC's fund ticker file.
+export async function fundTickers(session) {
+  const d = await getJson(session, "https://www.sec.gov/files/company_tickers_mf.json", { maxBytes: 8 * 1024 * 1024 });
+  const at = Object.fromEntries((d?.fields ?? []).map((f, i) => [f, i]));
+  return new Map((d?.data ?? []).map((r) => [r[at.symbol], { cik: r[at.cik], series: r[at.seriesId], class: r[at.classId] }]));
+}
+
 export async function tickerTable(session) {
   return getJson(session, "https://www.sec.gov/files/company_tickers.json");
 }
@@ -218,6 +225,14 @@ export async function resolveEntity(session, query) {
   const table = await tickerTable(session);
   const want = q.toUpperCase().replace(/\./g, "-").replace(/^\$/, "");
   for (const row of Object.values(table)) if (row.ticker === want) return { cik: row.cik_str, name: row.title, ticker: row.ticker, matched_by: "ticker" };
+  // Mutual funds and ETFs are in the SEC's fund ticker file, under the trust that registers them. If
+  // that file cannot be read, names are searched as before.
+  let funds = null;
+  try { funds = await fundTickers(session); } catch (err) { if (!(err instanceof NotFound)) throw err; }
+  const fund = funds?.get(want);
+  if (fund) return { cik: fund.cik, name: null, ticker: want, matched_by: "fund ticker", series: fund.series, class: fund.class };
+  // Written like a ticker but in neither file: not a name to guess at ("VOO" is not Vooy, Inc.).
+  if (funds && /^\$?[A-Z]{1,5}([.-][A-Z])?$/.test(q)) throw new NotFound(`${want} is not a ticker in the SEC's files of listed companies, mutual funds and ETFs (a delisted or changed ticker, or a foreign listing). Pass the company's name or CIK instead.`);
   const filer = knownAs(nameWords(q).join(" "));
   if (filer && typeof filer !== "string") return { cik: filer.cik, name: filer.name, ticker: null, matched_by: "name" };
   const listed = listedByName(table, q);

@@ -2,6 +2,25 @@
 
 ## Unreleased
 
+- New tool `earnings_calendar`: earnings dates from the companies' own 8-Ks under Item 2.02 (results
+  of operations).
+  - For a company: its recent results releases, the quarter each covered (from its 10-Q and 10-K
+    period ends), and whether each came before the open or after the close. The time is EDGAR's
+    acceptance time from the filing index, in Eastern time; the submissions API's
+    `acceptanceDateTime` is offset by twice the Eastern offset and is not used.
+  - The next release is estimated 52 weeks after the one that followed the same quarter a year
+    earlier, with a window from how far the company's dates have moved year on year, and marked
+    upcoming, due now or late.
+  - Across the market: the companies that reported in the same weeks last year, with this year's
+    implied date, marked reported once they have (within three weeks).
+  - Estimates, not announcements. Checked live: Apple 2026-10-29 after the close, NVIDIA 2026-11-18
+    after the close, Walmart 2026-11-19 before the open, JPMorgan 2026-10-13 before the open.
+- Fix: a ticker that is not in the SEC's file of listed companies went to EDGAR's name search, which
+  matches prefixes, so "VOO" (an ETF) was Vooy, Inc. Mutual fund and ETF tickers now resolve through
+  the SEC's fund ticker file to the trust that registers them (VOO is Vanguard Index Funds). A
+  ticker in neither file is refused rather than guessed. If the fund file cannot be read, names are
+  searched as before.
+
 ## 0.2.1
 
 The first 0.2 release on npm: 0.2.0's tools, and a fix for answers that were wrong without warning.

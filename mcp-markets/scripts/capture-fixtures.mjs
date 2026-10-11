@@ -27,7 +27,7 @@ const trimSubmissions = (keep) => (t) => {
   return JSON.stringify(d);
 };
 const tickers = JSON.parse(await (await fetch("https://www.sec.gov/files/company_tickers.json", { headers: UA })).text());
-const small = Object.fromEntries(Object.entries(tickers).filter(([, v]) => ["AAPL", "NVDA", "TSLA", "BRK-B", "MSFT"].includes(v.ticker)));
+const small = Object.fromEntries(Object.entries(tickers).filter(([, v]) => ["AAPL", "NVDA", "TSLA", "BRK-B", "MSFT", "GME"].includes(v.ticker)));
 writeFileSync(new URL("f00.gz", DIR), gzipSync(JSON.stringify(small)));
 manifest["https://www.sec.gov/files/company_tickers.json"] = "f00.gz";
 
