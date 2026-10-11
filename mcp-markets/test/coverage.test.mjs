@@ -9,6 +9,7 @@ import * as F from "../src/funds.mjs";
 import * as G from "../src/global.mjs";
 import * as O from "../src/ownership.mjs";
 import * as Pos from "../src/positioning.mjs";
+import * as Pay from "../src/pay.mjs";
 import * as P from "../src/private.mjs";
 import * as T from "../src/tools.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
@@ -309,4 +310,41 @@ test("futures_positioning: 10-year notes from the financial report (leveraged fu
   const l = await Pos.futuresPositioning(s, { market: "lumber", weeks: 4 });
   assert.equal(l.market.code, "058644", "the contract still reported, not the larger one that stopped in 2023");
   assert.deepEqual(l.market.other_matches, [{ code: "058643", name: "RANDOM LENGTH LUMBER - CHICAGO MERCANTILE EXCHANGE" }]);
+});
+
+test("executive_pay: NVIDIA's pay-versus-performance table from its proxy XBRL, five years", async () => {
+  const { s } = session();
+  const r = await Pay.executivePay(s, { company: "NVDA" });
+  assert.deepEqual(r.proxy, { filed: "2026-05-12", accession: "0001045810-26-000036" });
+  assert.equal(r.company_selected_measure_name, "Non-GAAP Operating Income");
+  assert.equal(r.rows.length, 5);
+  assert.deepEqual(r.rows[0], ["2026-01-25", "Jen-Hsun Huang", 36343830, 162180936, 14422317, 57721552, 1445.67, 198.1, 120067000000, 137300000000]);
+  assert.ok(r.rows.some((x) => x[3] < 0), "pay actually paid revalues equity awards and can be negative");
+  assert.equal(r.check, undefined);
+});
+
+test("executive_pay: CEO pay ranked across the market, mis-scaled filings held out, mega-grants flagged to confirm", async () => {
+  const { s } = session();
+  const r = await Pay.executivePay(s, { limit: 6 });
+  assert.equal(r.year, 2025);
+  assert.deepEqual(r.rows.map((x) => x[0]), ["Opendoor Technologies Inc.", "Rivian Automotive, Inc. / DE", "CrowdStrike Holdings, Inc.", "APPLIED DIGITAL CORPORATION", "Warner Bros. Discovery, Inc.", "CHIME FINANCIAL, INC."]);
+  assert.deepEqual(r.rows.map((x) => x[7]), ["very large: confirm in the filing", "very large: confirm in the filing", null, null, null, null]);
+  assert.deepEqual(r.held_out.rows.map((x) => [x[0], x[2], x[3]]), [
+    ["LeMaitre Vascular, Inc.", 3780990000, 911587000], ["American Outdoor Brands, Inc.", 1843433000, 672173000],
+    ["U-HAUL HOLDING COMPANY", 1015838000, 618887000], ["Welltower Inc", 821090355, 136616146],
+  ]);
+  assert.ok(r.held_out.rows.every((x) => x[3] > Pay.SLIPPED_AVG));
+});
+
+test("executive_pay: a CEO name wrapped in HTML, and other executives' names tagged as CEO names, are read right", () => {
+  const xml = `<xbrli:xbrl xmlns:xbrli="x" xmlns:ecd="e" xmlns:xbrldi="d">
+    <xbrli:context id="Y"><xbrli:entity/><xbrli:period><xbrli:startDate>2024-09-29</xbrli:startDate><xbrli:endDate>2025-09-27</xbrli:endDate></xbrli:period></xbrli:context>
+    <xbrli:context id="Y_ceo"><xbrli:entity><xbrli:segment><xbrldi:explicitMember dimension="ecd:ExecutiveCategoryAxis">ecd:PeoMember</xbrldi:explicitMember><xbrldi:explicitMember dimension="ecd:IndividualAxis">a:CookMember</xbrldi:explicitMember></xbrli:segment></xbrli:entity><xbrli:period><xbrli:startDate>2024-09-29</xbrli:startDate><xbrli:endDate>2025-09-27</xbrli:endDate></xbrli:period></xbrli:context>
+    <xbrli:context id="Y_cfo"><xbrli:entity><xbrli:segment><xbrldi:explicitMember dimension="ecd:ExecutiveCategoryAxis">ecd:NonPeoNeoMember</xbrldi:explicitMember><xbrldi:explicitMember dimension="ecd:IndividualAxis">a:MaestriMember</xbrldi:explicitMember></xbrli:segment></xbrli:entity><xbrli:period><xbrli:startDate>2024-09-29</xbrli:startDate><xbrli:endDate>2025-09-27</xbrli:endDate></xbrli:period></xbrli:context>
+    <ecd:PeoName contextRef="Y_ceo"><span>Mr. Cook</span></ecd:PeoName>
+    <ecd:PeoName contextRef="Y_cfo">Luca Maestri</ecd:PeoName>
+    <ecd:PeoTotalCompAmt contextRef="Y">74294811</ecd:PeoTotalCompAmt>
+  </xbrli:xbrl>`;
+  const { rows } = Pay.parsePayTable(xml);
+  assert.deepEqual(rows.map((r) => [r.year_end, r.ceo, r.ceo_reported_pay]), [["2025-09-27", "Mr. Cook", 74294811]]);
 });

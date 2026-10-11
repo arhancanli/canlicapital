@@ -7,6 +7,12 @@
   (SAP.DE, 7203.T, SHEL.L, 0700.HK), by symbol or plain name, and says what each price means
   (pence in London, futures rolls, index levels). Bars stamped after the window asked for are left
   out.
+- `executive_pay`: the pay-versus-performance table every proxy has tagged in XBRL since 2023, read
+  from the proxy itself (the CEO's reported and actually paid pay, the other executives' averages,
+  TSR against peers, net income, the company's chosen measure and its name, five years), or CEO pay
+  ranked across the market from SEC's frames. A filing whose other executives average over $100
+  million is held out as tagged in thousands; a CEO figure over $300 million stays, flagged to
+  confirm.
 - `short_interest`: FINRA's consolidated short interest, twice a month: shares short, change,
   average daily volume and days to cover, and the share of shares outstanding from the company's
   latest SEC cover page; or the market ranked by days to cover, change or size, among stocks

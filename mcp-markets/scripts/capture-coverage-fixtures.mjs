@@ -10,6 +10,7 @@ import * as F from "../src/funds.mjs";
 import * as G from "../src/global.mjs";
 import * as O from "../src/ownership.mjs";
 import * as Pos from "../src/positioning.mjs";
+import * as Pay from "../src/pay.mjs";
 import * as P from "../src/private.mjs";
 import { createSession } from "../src/sources.mjs";
 import { yahooChartUrl } from "../src/tools.mjs";
@@ -84,6 +85,14 @@ await record(Pos.shortInterest, { limit: 5 });
 await record(Pos.futuresPositioning, { market: "gold" });
 await record(Pos.futuresPositioning, { market: "10 year note", weeks: 26 });
 await record(Pos.futuresPositioning, { market: "lumber", weeks: 4 });
+// Executive pay: NVIDIA's pay-versus-performance table from its proxy, and the market's 2025 CEO
+// pay from SEC's frames, cut to the 30 largest packages and NVIDIA so the fixtures stay small.
+await record(Pay.executivePay, { company: "NVDA" });
+const PAY_FRAMES = ["PeoTotalCompAmt", "PeoActuallyPaidCompAmt", "NonPeoNeoAvgTotalCompAmt", "TotalShareholderRtnAmt"].map((t) => `https://data.sec.gov/api/xbrl/frames/ecd/${t}/USD/CY2025.json`);
+const top = JSON.parse(await (await fetch(PAY_FRAMES[0], { headers: SEC })).text()).data.sort((a, b) => b.val - a.val).slice(0, 30).map((r) => r.cik);
+const keep = new Set([...top, 1045810]);
+for (const url of PAY_FRAMES) await grab(url, (t) => { const d = JSON.parse(t); d.data = d.data.filter((r) => keep.has(r.cik)); return JSON.stringify(d); });
+await record(Pay.executivePay, { limit: 6 });
 
 writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
 console.log(n, "coverage responses in the manifest");
