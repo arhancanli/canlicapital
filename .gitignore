@@ -61,6 +61,9 @@ design-system/src/shell/optical-handoff.mjs
 # Written by scripts/build-standards-and-developers.mjs from config/mcp-agent-benchmark.json at build
 # time. Never commit it: the deploy replaces public/glassbox/ with the engine export.
 /public/glassbox/mcp_agent_benchmark.json
+# Written by scripts/build-notes.mjs from config/notes/*.json at build time, for the same reason.
+/public/glassbox/edgar-acceptance-times-2026-10-11.json
+/public/glassbox/series-lookup-2026-10-11.json
 public/glassbox/research/
 public/glassbox/datasets/
 .swarm/
