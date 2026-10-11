@@ -17,7 +17,7 @@ const rivals = JSON.parse(readFileSync(new URL("rivals-tools-2026-10-11.json", H
 export const OPENBB_KEYED = Object.freeze(["fred_", "bls_", "eia_", "cftc_"]);
 
 // canli-markets-mcp tools added in PR #447, not yet in a released canli-mcp.
-export const PENDING = Object.freeze(["world_economy", "treasury_auctions", "federal_debt", "fund_portfolio", "large_holders", "company_events", "private_offerings", "price_history+"]);
+export const PENDING = Object.freeze(["world_economy", "treasury_auctions", "federal_debt", "fund_portfolio", "large_holders", "company_events", "private_offerings", "price_history+", "short_interest", "futures_positioning", "executive_pay", "fomc", "index_constituents"]);
 
 // [area, question, canli, openbb, edgartools, yahoo, note]. "price_history+" is price_history with
 // the currencies, futures, indices, crypto and foreign listings PR #447 adds.
@@ -28,7 +28,7 @@ export const QUESTIONS = Object.freeze([
   ["Companies", "Search the text of every filing", ["search_filings"], ["sec_full_text_search"], ["edgar_text_search"], []],
   ["Companies", "Screen every listed company on fundamentals", ["screen_companies", "cross_section"], ["nasdaq_equity_screener", "tmx_equity_screener"], ["edgar_screen"], []],
   ["Companies", "Revenue by segment", [], ["sec_segment_revenue"], ["edgar_notes"], []],
-  ["Companies", "Executive pay, and pay versus performance", [], ["sec_executive_compensation", "sec_pay_versus_performance"], ["edgar_proxy"], []],
+  ["Companies", "Executive pay, and pay versus performance", ["executive_pay"], ["sec_executive_compensation", "sec_pay_versus_performance"], ["edgar_proxy"], []],
   ["Companies", "A company's events from its 8-Ks (deals, executive changes, restatements)", ["company_events"], [], ["edgar_monitor"], [], "canli reads each 8-K item; EdgarTools lists recent filings."],
   ["Companies", "One kind of event across the market (restatements, bankruptcies, cyber incidents)", ["company_events"], [], [], []],
   ["Companies", "News headlines", [], ["news_company"], [], ["get_yahoo_finance_news"], "Not primary sources; canli reads the companies' own 8-Ks instead."],
@@ -41,7 +41,7 @@ export const QUESTIONS = Object.freeze([
   ["Ownership", "A fund manager's 13F holdings and changes", ["fund_holdings"], ["sec_form_13f"], ["edgar_fund"], ["get_holder_info"]],
   ["Ownership", "5 percent holders and activists (13D/13G)", ["large_holders"], ["sec_beneficial_ownership"], [], []],
   ["Ownership", "New activist stakes across the market", ["large_holders"], [], [], []],
-  ["Ownership", "Short interest", [], ["finra_equity_shorts_short_interest", "nasdaq_equity_ownership_short_interest"], [], []],
+  ["Ownership", "Short interest", ["short_interest"], ["finra_equity_shorts_short_interest", "nasdaq_equity_ownership_short_interest"], [], []],
   ["Ownership", "Fails to deliver", [], ["sec_equity_ftd"], [], []],
   ["Ownership", "Dark pool and OTC volume", [], ["finra_equity_darkpool_otc"], [], []],
   ["Funds", "What a mutual fund or ETF holds", ["fund_portfolio"], ["sec_nport_disclosure", "nasdaq_etf_holdings", "tmx_etf_holdings"], ["edgar_fund"], []],
@@ -55,18 +55,18 @@ export const QUESTIONS = Object.freeze([
   ["Markets", "Futures curves (term structure)", [], ["cboe_futures_curve", "deribit_futures_curve"], [], []],
   ["Markets", "Crypto prices", ["price_history+"], ["nasdaq_crypto_historical", "deribit_index_historical"], [], ["get_historical_stock_prices"]],
   ["Markets", "Index levels", ["price_history+"], ["cboe_index_historical", "nasdaq_index_historical", "tmx_index_historical"], [], ["get_historical_stock_prices"]],
-  ["Markets", "Index constituents", [], ["cboe_index_constituents", "tmx_index_constituents"], [], []],
+  ["Markets", "Index constituents", ["index_constituents"], ["cboe_index_constituents", "tmx_index_constituents"], [], []],
   ["Markets", "Options chains with implied volatility and greeks", [], ["cboe_options_chains", "nasdaq_options_chains", "deribit_options_chains"], [], ["get_option_chain"], "canli: Cboe's delayed chains work but await the owner's licensing decision."],
   ["Markets", "Volatility smile, surface and term structure", [], ["cboe_options_smile", "cboe_options_surface", "cboe_options_term_structure"], [], []],
   ["Rates", "Treasury yield curve", ["treasury_yields"], ["federal_reserve_yield_curve", "federal_reserve_treasury_rates"], [], []],
   ["Rates", "Treasury auctions, results and upcoming", ["treasury_auctions"], ["ustreasury_auction_results", "ustreasury_upcoming_auctions"], [], []],
   ["Rates", "The federal debt", ["federal_debt"], ["ustreasury_debt_to_penny"], [], []],
   ["Rates", "Corporate bond prices", [], ["finra_fixedincome_bond_prices"], [], []],
-  ["Rates", "Futures positioning (CFTC Commitments of Traders)", [], ["cftc_cot"], [], []],
+  ["Rates", "Futures positioning (CFTC Commitments of Traders)", ["futures_positioning"], ["cftc_cot"], [], []],
   ["Economy", "US economic series (inflation, jobs, GDP)", ["economic_series"], ["bls_cpi_by_category", "fred_economy_fred_series"], [], []],
   ["Economy", "Any country's economy", ["world_economy"], ["imf_indicators", "oecd_indicators"], [], []],
   ["Economy", "Economic forecasts", [], ["oecd_gdp_forecast"], [], []],
-  ["Economy", "Central bank documents (FOMC)", [], ["federal_reserve_fomc_documents"], [], []],
+  ["Economy", "Central bank decisions and documents (FOMC)", ["fomc"], ["federal_reserve_fomc_documents"], [], []],
   ["Economy", "Economic calendar", [], ["nasdaq_economy_calendar", "ecb_calendar"], [], []],
   ["Analytics", "Performance and risk (Sharpe, drawdown, VaR)", ["sharpe_ratio", "max_drawdown", "value_at_risk"], [], [], []],
   ["Analytics", "Option pricing and greeks from inputs", ["black_scholes", "implied_volatility", "option_portfolio_greeks"], ["cboe_options_payoff"], [], []],
