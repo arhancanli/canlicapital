@@ -12,15 +12,17 @@ branch and the latest npm release are supported.
 `npx -y canli-markets-mcp` runs `src/server.mjs` over stdio. It:
 
 - reads its own `package.json`, to report its version, and no other file of yours;
-- sends GET requests, only when a tool is called, and only to these hosts: `www.sec.gov`,
+- sends GET requests (and to `api.finra.org`, whose query API takes its filters only in a request body,
+  read-only POST queries), only when a tool is called, and only to these hosts: `www.sec.gov`,
   `data.sec.gov` and `efts.sec.gov` (SEC EDGAR), `home.treasury.gov` (Treasury rates),
   `api.fiscaldata.treasury.gov` (Treasury auctions and the federal debt), `api.worldbank.org`
-  (World Bank indicators), `fred.stlouisfed.org` (FRED), and, for `price_history` only, `data.alpaca.markets` or
+  (World Bank indicators), `api.finra.org` (short interest), `publicreporting.cftc.gov` (Commitments of
+  Traders), `fred.stlouisfed.org` (FRED), and, for `price_history` only, `data.alpaca.markets` or
   `api.tiingo.com` with your key, or without a key `query1.finance.yahoo.com` (Yahoo Finance's
   public chart data; `CANLI_KEYLESS_PRICES=0` turns it off). Nothing goes to Canli Capital;
 - sends what the tool needs and nothing else: the company, form, dates, search words or series
   asked for. Results link to the publishers' own pages (`fiscaldata.treasury.gov`, `data.worldbank.org`),
-  which the server never requests. SEC requests carry a User-Agent naming this package (or `SEC_USER_AGENT`, which SEC
+  which the server never requests, nor `www.finra.org`. SEC requests carry a User-Agent naming this package (or `SEC_USER_AGENT`, which SEC
   asks for: your name and email); other hosts get `canli-markets-mcp`;
 - keeps SEC requests at most 8 a second (SEC's limit is 10), refuses redirects, gives every
   request a 20 second deadline and discards responses above a size cap;

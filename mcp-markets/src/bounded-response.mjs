@@ -117,10 +117,10 @@ export async function readBoundedResponse(response, { signal, maxBytes }) {
   }
 }
 
-export async function fetchBoundedText(fetchImpl, url, { signal, maxBytes, headers }) {
+export async function fetchBoundedText(fetchImpl, url, { signal, maxBytes, headers, method, body }) {
   checkAbort(signal);
   const response = await untilAbort(
-    fetchImpl(url, { signal, redirect: "error", ...(headers ? { headers } : {}) }),
+    fetchImpl(url, { signal, redirect: "error", ...(method && method !== "GET" ? { method, body } : {}), ...(headers ? { headers } : {}) }),
     signal,
     discardResponse,
   );

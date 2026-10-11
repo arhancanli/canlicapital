@@ -8,10 +8,12 @@ const MANIFEST = JSON.parse(readFileSync(new URL("manifest.json", DIR), "utf8"))
 export function replayFetch(extra = {}) {
   const calls = [];
   const fetchImpl = async (url, init = {}) => {
-    calls.push({ url, headers: init.headers ?? {} });
-    if (extra[url]) return new Response(typeof extra[url] === "string" ? extra[url] : JSON.stringify(extra[url]), { status: 200 });
-    const file = MANIFEST[url];
-    if (!file) return new Response(`not captured: ${url}`, { status: 404 });
+    calls.push({ url, headers: init.headers ?? {}, method: init.method ?? "GET", body: init.body });
+    // A POST query (FINRA) is captured under "POST <url> <body>".
+    const key = init.method && init.method !== "GET" ? `${init.method} ${url} ${init.body ?? ""}` : url;
+    if (extra[key]) return new Response(typeof extra[key] === "string" ? extra[key] : JSON.stringify(extra[key]), { status: 200 });
+    const file = MANIFEST[key];
+    if (!file) return new Response(`not captured: ${key}`, { status: 404 });
     return new Response(gunzipSync(readFileSync(new URL(file, DIR))).toString("utf8"), { status: 200 });
   };
   return { fetchImpl, calls };

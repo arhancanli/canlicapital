@@ -7,6 +7,16 @@
   (SAP.DE, 7203.T, SHEL.L, 0700.HK), by symbol or plain name, and says what each price means
   (pence in London, futures rolls, index levels). Bars stamped after the window asked for are left
   out.
+- `short_interest`: FINRA's consolidated short interest, twice a month: shares short, change,
+  average daily volume and days to cover, and the share of shares outstanding from the company's
+  latest SEC cover page; or the market ranked by days to cover, change or size, among stocks
+  trading at least a million shares a day.
+- `futures_positioning`: the CFTC's Commitments of Traders by market name (gold, crude oil, corn,
+  S&P 500, 10 year note, euro, bitcoin): each trader group's long, short and net contracts, weekly
+  changes, and where the speculators' net position sits in its range. A name search prefers a
+  contract that is still reported, and an old report says so.
+- Sources that take queries only in a request body (FINRA) are read with a POST; cache and evidence
+  key it by the exact query.
 - `private_offerings`: private raises from Form D (startups, private equity, hedge, venture and
   real estate funds): amount offered and sold, investors, minimum investment, exemption, industry
   and the people behind each issuer, for one issuer or the newest across the market, filtered by

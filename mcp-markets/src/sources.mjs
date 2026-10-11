@@ -64,9 +64,12 @@ function witness(session, url, record) {
   if (record) evidenceScope.getStore()?.set(url, record);
 }
 
-export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false } = {}) {
-  const hit = session.cache.lookup(url, session.now());
-  if (hit) { witness(session, url, session.hashes.get(url)); return parse(hit.text); }
+// A read-only query some sources take only as a POST body (FINRA's query API) is cached and
+// witnessed under "POST <url> <body>", so the evidence names the exact query.
+export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false, method = "GET", body } = {}) {
+  const key = method === "GET" ? url : `${method} ${url} ${body ?? ""}`;
+  const hit = session.cache.lookup(key, session.now());
+  if (hit) { witness(session, key, session.hashes.get(key)); return parse(hit.text); }
   let text;
   // Server errors are often momentary (EDGAR full-text search answered 1 request in 12 with HTTP 500
   // on 2026-10-09): retry them, and dropped connections, twice with a short backoff.
@@ -74,7 +77,7 @@ export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024
     if (isSec(url)) await secTurn(session);
     const signal = AbortSignal.timeout(TIMEOUT_MS);
     try {
-      text = await fetchBoundedText(session.fetchImpl, url, { signal, maxBytes, headers: { "User-Agent": isSec(url) ? session.userAgent : PLAIN_USER_AGENT, ...headers } });
+      text = await fetchBoundedText(session.fetchImpl, url, { signal, maxBytes, method, body, headers: { "User-Agent": isSec(url) ? session.userAgent : PLAIN_USER_AGENT, ...headers } });
       break;
     } catch (error) {
       const transient = !signal.aborted && (error instanceof ResponseReadError ? error.code === "HTTP" && error.status >= 500 : true);
@@ -83,13 +86,13 @@ export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024
     }
   }
   const record = { sha256: createHash("sha256").update(text).digest("hex"), bytes: Buffer.byteLength(text, "utf8"), retrieved_at: new Date(session.now()).toISOString() };
-  session.hashes.delete(url);
-  session.hashes.set(url, record);
+  session.hashes.delete(key);
+  session.hashes.set(key, record);
   if (session.hashes.size > MAX_HASHES) session.hashes.delete(session.hashes.keys().next().value);
-  witness(session, url, record);
+  witness(session, key, record);
   if (transform) text = transform(text);
   const value = parse(text);
-  session.cache.set(url, { at: session.now(), text });
+  session.cache.set(key, { at: session.now(), text });
   return value;
 }
 
@@ -97,6 +100,11 @@ export class NotFound extends Error {}
 
 export async function getJson(session, url, opts = {}) {
   return getText(session, url, { ...opts, parse: (t) => { try { return JSON.parse(t); } catch { throw new Error(`${opts.secret ? host(url) : url} did not return JSON.`); } } });
+}
+
+// A read-only JSON query sent as a POST body.
+export async function postJson(session, url, payload, opts = {}) {
+  return getJson(session, url, { ...opts, method: "POST", body: JSON.stringify(payload), headers: { "Content-Type": "application/json", Accept: "application/json", ...(opts.headers ?? {}) } });
 }
 
 // ---------------------------------------------------------------------------------------------

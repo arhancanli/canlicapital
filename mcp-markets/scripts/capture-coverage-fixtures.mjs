@@ -9,6 +9,7 @@ import * as E from "../src/events.mjs";
 import * as F from "../src/funds.mjs";
 import * as G from "../src/global.mjs";
 import * as O from "../src/ownership.mjs";
+import * as Pos from "../src/positioning.mjs";
 import * as P from "../src/private.mjs";
 import { createSession } from "../src/sources.mjs";
 import { yahooChartUrl } from "../src/tools.mjs";
@@ -40,13 +41,14 @@ const NOW = Date.parse("2026-10-09T12:00:00Z");
 // same path here as under replay (Apple's submissions fixture is cut to 10-K, 10-Q and 8-K).
 async function record(run, args) {
   const fetchImpl = async (url, init) => {
-    if (manifest[url]) return new Response(gunzipSync(readFileSync(new URL(manifest[url], DIR))).toString("utf8"), { status: 200 });
+    const key = init?.method && init.method !== "GET" ? `${init.method} ${url} ${init.body ?? ""}` : url;
+    if (manifest[key]) return new Response(gunzipSync(readFileSync(new URL(manifest[key], DIR))).toString("utf8"), { status: 200 });
     const res = await fetch(url, init);
     const text = await res.text();
-    if (res.ok && !manifest[url]) {
+    if (res.ok && !manifest[key]) {
       const file = `c${String(++n).padStart(3, "0")}.gz`;
       writeFileSync(new URL(file, DIR), gzipSync(text, { level: 9 }));
-      manifest[url] = file;
+      manifest[key] = file;
     }
     return new Response(text, { status: res.status });
   };
@@ -75,6 +77,13 @@ await record(E.companyEvents, { company: "AAPL", event: "executive_change", sinc
 await record(P.privateOfferings, { limit: 3 });
 await record(P.privateOfferings, { min_sold: 10000000, limit: 2 });
 await record(P.privateOfferings, { company: "2159753" });
+// Positioning: GameStop's short interest and the market's longest days to cover (FINRA), and the
+// Commitments of Traders for gold, 10-year notes and, by name search, lumber (CFTC).
+await record(Pos.shortInterest, { symbol: "GME" });
+await record(Pos.shortInterest, { limit: 5 });
+await record(Pos.futuresPositioning, { market: "gold" });
+await record(Pos.futuresPositioning, { market: "10 year note", weeks: 26 });
+await record(Pos.futuresPositioning, { market: "lumber", weeks: 4 });
 
 writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
 console.log(n, "coverage responses in the manifest");

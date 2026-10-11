@@ -8,6 +8,7 @@ import * as E from "../src/events.mjs";
 import * as F from "../src/funds.mjs";
 import * as G from "../src/global.mjs";
 import * as O from "../src/ownership.mjs";
+import * as Pos from "../src/positioning.mjs";
 import * as P from "../src/private.mjs";
 import * as T from "../src/tools.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
@@ -264,4 +265,48 @@ test("private_offerings: a private equity fund's Form D by CIK, with its exempti
   assert.deepEqual(r.rows[0].slice(2, 9), ["Pooled Investment Fund", "Private Equity Fund", "NY", 0, "indefinite", 0, "yet to occur"]);
   assert.ok(r.rows[0][9].includes("Investment Company Act Section 3(c)(7) (qualified purchasers)"));
   assert.deepEqual(r.people[0], { name: "MATTHEW MURPHY", roles: ["Executive Officer", "Promoter"] });
+});
+
+test("short_interest: GameStop over six reports, as a share of the shares on its latest 10-Q cover", async () => {
+  const { s, calls } = session();
+  const r = await Pos.shortInterest(s, { symbol: "GME" });
+  assert.equal(r.name, "GameStop Corp. Class A");
+  assert.deepEqual(r.rows.map((x) => x[0]), ["2026-07-15", "2026-07-31", "2026-08-14", "2026-08-31", "2026-09-15", "2026-09-30"]);
+  const { settlement_date, short_position, change, days_to_cover, pct_of_shares_outstanding, shares_outstanding } = r.latest;
+  assert.deepEqual([settlement_date, short_position, change, days_to_cover], ["2026-09-30", 42673721, 3604595, 3.98]);
+  for (let i = 1; i < r.rows.length; i++) assert.equal(r.rows[i][1] - r.rows[i - 1][1], r.rows[i][2], `FINRA's change matches the positions at ${r.rows[i][0]}`);
+  assert.deepEqual(shares_outstanding, { shares: 504500990, as_of: "2026-09-03", form: "10-Q", filed: "2026-09-09" });
+  assert.equal(pct_of_shares_outstanding, Math.round((42673721 / 504500990) * 1e6) / 1e6);
+  assert.ok(calls.some((c) => c.method === "POST" && new URL(c.url).host === "api.finra.org"), "FINRA's filters go in a POST body");
+});
+
+test("short_interest: across the market, the longest days to cover among stocks trading over a million shares a day", async () => {
+  const { s } = session();
+  const r = await Pos.shortInterest(s, { limit: 5 });
+  assert.deepEqual([r.settlement_date, r.ranked_by, r.min_average_daily_volume], ["2026-09-30", "days_to_cover", 1000000]);
+  assert.deepEqual(r.rows.map((x) => x[0]), ["AMXOF", "CNQ", "SFBQF", "GPGI", "GLUE"]);
+  for (let i = 1; i < r.rows.length; i++) assert.ok(r.rows[i - 1][6] >= r.rows[i][6]);
+  assert.ok(r.rows.every((x) => x[5] > 1000000));
+});
+
+test("futures_positioning: gold's Commitments of Traders by trader group, with managed money's place in its year", async () => {
+  const { s } = session();
+  const r = await Pos.futuresPositioning(s, { market: "gold" });
+  assert.deepEqual(r.market, { code: "088691", name: "GOLD - COMMODITY EXCHANGE INC.", units: "(CONTRACTS OF 100 TROY OUNCES)" });
+  assert.equal(r.report, "Disaggregated Futures Only");
+  assert.deepEqual([r.as_of, r.open_interest, r.rows.length], ["2026-10-06", 396109, 52]);
+  for (const [group, long, short, net] of r.latest.rows) assert.equal(long - short, net, group);
+  assert.deepEqual(r.latest.rows.find((x) => x[0] === "managed_money"), ["managed_money", 127101, 16114, 110987, 0.2802, -9331]);
+  assert.deepEqual(r.speculators, { group: "managed_money", net: 110987, range_in_window: [89752, 144747], position_in_range: 0.3861, weeks: 52 });
+  assert.equal(r.stale, undefined);
+});
+
+test("futures_positioning: 10-year notes from the financial report (leveraged funds); lumber found by name, current contract first", async () => {
+  const { s } = session();
+  const t = await Pos.futuresPositioning(s, { market: "10 year note", weeks: 26 });
+  assert.equal(t.report, "Traders in Financial Futures, Futures Only");
+  assert.deepEqual(t.latest.rows.find((x) => x[0] === "leveraged_funds"), ["leveraged_funds", 510611, 2650396, -2139785, -0.3726, -103353]);
+  const l = await Pos.futuresPositioning(s, { market: "lumber", weeks: 4 });
+  assert.equal(l.market.code, "058644", "the contract still reported, not the larger one that stopped in 2023");
+  assert.deepEqual(l.market.other_matches, [{ code: "058643", name: "RANDOM LENGTH LUMBER - CHICAGO MERCANTILE EXCHANGE" }]);
 });
