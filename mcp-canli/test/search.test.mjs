@@ -72,3 +72,14 @@ test("cross-pack requests: a right tool first in at least 45 of 50, in the top t
   console.log(JSON.stringify({ top1, top3, misses }));
   assert.ok(top1 >= 45 && top3 === Q.length, JSON.stringify({ top1, top3, misses }));
 });
+
+test("form names keep their number, \"news\" stays news, and a one-word tool name in a question is just a word", async () => {
+  const { tokens } = await import("../src/search.mjs");
+  assert.ok(tokens("latest 8-K news").includes("8k"));
+  assert.ok(tokens("the 10-Q").includes("10q"));
+  assert.ok(tokens("company news").includes("news"));
+  // "history" is also a tool's name; a question about exchange-rate history is not a request for it.
+  const r = search(INDEX, "euro dollar exchange rate history", { limit: 3 }).map((t) => t.name);
+  assert.notEqual(r[0], "history");
+  assert.equal(search(INDEX, "history", { limit: 1 })[0].name, "history", "the whole query naming a tool still picks it");
+});
