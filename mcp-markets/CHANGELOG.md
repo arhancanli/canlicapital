@@ -7,6 +7,13 @@
   (SAP.DE, 7203.T, SHEL.L, 0700.HK), by symbol or plain name, and says what each price means
   (pence in London, futures rolls, index levels). Bars stamped after the window asked for are left
   out.
+- `fomc`: the Federal Reserve's decisions for a year from its own calendar and statements (held and
+  scheduled meetings, action, change, target range, vote, dissenters with their reasons), the
+  latest statement, and the median projections from the latest Summary of Economic Projections
+  with the previous ones. Notation votes are labelled as such.
+- `index_constituents`: an index's members and weights (S&P 500, Nasdaq 100, Russell 1000, 2000 and
+  3000, S&P 400 and 600, MSCI EAFE and others) from the latest N-PORT of an ETF that tracks it,
+  rescaled to add to 1; the Dow, whose ETF is a unit investment trust, says why it cannot.
 - `executive_pay`: the pay-versus-performance table every proxy has tagged in XBRL since 2023, read
   from the proxy itself (the CEO's reported and actually paid pay, the other executives' averages,
   TSR against peers, net income, the company's chosen measure and its name, five years), or CEO pay

@@ -5,6 +5,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { gunzipSync, gzipSync } from "node:zlib";
 
+import * as CB from "../src/centralbank.mjs";
 import * as E from "../src/events.mjs";
 import * as F from "../src/funds.mjs";
 import * as G from "../src/global.mjs";
@@ -93,6 +94,8 @@ const top = JSON.parse(await (await fetch(PAY_FRAMES[0], { headers: SEC })).text
 const keep = new Set([...top, 1045810]);
 for (const url of PAY_FRAMES) await grab(url, (t) => { const d = JSON.parse(t); d.data = d.data.filter((r) => keep.has(r.cik)); return JSON.stringify(d); });
 await record(Pay.executivePay, { limit: 6 });
+// The Fed: 2026's meetings, statements and the September projections.
+await record(CB.fomc, {});
 
 writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
 console.log(n, "coverage responses in the manifest");

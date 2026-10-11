@@ -188,3 +188,50 @@ export async function fundPortfolio(session, args) {
   ];
   return out;
 }
+
+// ---------------------------------------------------------------------------------------------
+// index_constituents: an index's members through an ETF that tracks it, from the ETF's N-PORT
+// ---------------------------------------------------------------------------------------------
+export const INDEX_ETFS = Object.freeze({
+  "s&p 500": ["IVV", "S&P 500"], "sp 500": ["IVV", "S&P 500"], spx: ["IVV", "S&P 500"],
+  "nasdaq 100": ["QQQ", "Nasdaq-100"], ndx: ["QQQ", "Nasdaq-100"],
+  "russell 1000": ["IWB", "Russell 1000"], "russell 2000": ["IWM", "Russell 2000"], "russell 3000": ["IWV", "Russell 3000"],
+  "s&p 400": ["IJH", "S&P MidCap 400"], "s&p midcap 400": ["IJH", "S&P MidCap 400"], "s&p 600": ["IJR", "S&P SmallCap 600"], "s&p smallcap 600": ["IJR", "S&P SmallCap 600"],
+  "total market": ["VTI", "CRSP US Total Market"], "msci eafe": ["EFA", "MSCI EAFE"], "msci emerging markets": ["EEM", "MSCI Emerging Markets"],
+  "msci world": ["URTH", "MSCI World"], "msci acwi": ["ACWI", "MSCI ACWI"], "aggregate bond": ["AGG", "Bloomberg US Aggregate Bond"],
+});
+const UIT_INDEXES = Object.freeze({ dow: "DIA", "dow jones": "DIA", djia: "DIA", "dow jones industrial average": "DIA" });
+
+export const indexInput = z.object({
+  index: z.string().min(1).max(60).describe("An index by name (\"S&P 500\", \"Nasdaq 100\", \"Russell 2000\", \"S&P 400\", \"MSCI EAFE\"), or the ticker of an ETF that tracks the index you want (VOO, IWM)."),
+  limit: z.number().int().min(1).max(5000).optional().describe("Most members to list, by weight; default 50."),
+}).strict();
+
+export async function indexConstituents(session, args) {
+  const a = indexInput.parse(args);
+  const key = a.index.trim().toLowerCase().replace(/[-\s]+/g, " ").replace(/ index$/, "");
+  if (UIT_INDEXES[key]) throw new NotFound(`The Dow's ETF (${UIT_INDEXES[key]}) is a unit investment trust, which files no N-PORT. The Dow's 30 members are listed by S&P Dow Jones Indices; screen_companies and company_profile cover each of them.`);
+  const [etf, indexName] = INDEX_ETFS[key] ?? [a.index.trim().toUpperCase(), null];
+  const f = await resolveFund(session, etf);
+  const list = await seriesFilings(session, f.series);
+  if (!list.length) throw new NotFound(`${etf} has no public N-PORT to read its holdings from.`);
+  const cur = await loadNport(session, list[0]);
+  const members = cur.holdings.filter((h) => (h.asset === "EC" || h.asset === "EP") && (h.pct ?? 0) > 0).sort((x, y) => y.pct - x.pct);
+  if (!members.length) throw new NotFound(`${etf}'s latest N-PORT holds no stocks; for a bond index use fund_portfolio.`);
+  const limit = a.limit ?? 50;
+  const weight = members.reduce((s, h) => s + h.pct, 0);
+  return {
+    index: indexName ?? `the index ${etf} tracks`, through: { etf, fund: cur.series.name, series_id: cur.series.id },
+    as_of: cur.period, filed: list[0].filed, members: members.length,
+    stock_weight_of_fund: round(weight / 100, 4),
+    top_10_weight: round(members.slice(0, 10).reduce((s, h) => s + h.pct, 0) / weight, 4),
+    columns: ["name", "title", "cusip", "isin", "country", "weight_in_index"],
+    rows: members.slice(0, limit).map((h) => [h.name, h.title, h.cusip, h.isin, h.country, round(h.pct / weight, 6)]),
+    source: `${list[0].base}/${list[0].accession}-index.htm`,
+    limits: [
+      `Members and weights are ${etf}'s stock holdings in its latest public N-PORT (the last month of a fiscal quarter, made public 60 days later), rescaled to add to 1. An ETF that samples its index can hold fewer names or different weights than the index itself.`,
+      "The index provider's own list is authoritative; members added or removed since the report date are not shown.",
+      "Not investment advice.",
+    ],
+  };
+}

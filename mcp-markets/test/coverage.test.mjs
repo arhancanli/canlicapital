@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { createSession } from "../src/sources.mjs";
+import * as CB from "../src/centralbank.mjs";
 import * as E from "../src/events.mjs";
 import * as F from "../src/funds.mjs";
 import * as G from "../src/global.mjs";
@@ -347,4 +348,44 @@ test("executive_pay: a CEO name wrapped in HTML, and other executives' names tag
   </xbrli:xbrl>`;
   const { rows } = Pay.parsePayTable(xml);
   assert.deepEqual(rows.map((r) => [r.year_end, r.ceo, r.ceo_reported_pay]), [["2025-09-27", "Mr. Cook", 74294811]]);
+});
+
+test("fomc: 2026's decisions from the Fed's own statements, with votes, dissenters and the September projections", async () => {
+  const { s } = session();
+  const r = await CB.fomc(s, {});
+  assert.deepEqual(r.rows.map((x) => [x[1], x[2], x[4], x[5], x[6], x[7], x[8]]), [
+    ["2026-01-28", "held", "held", 0, 3.5, 3.75, "10-2"], ["2026-03-18", "held", "held", 0, 3.5, 3.75, "11-1"],
+    ["2026-04-29", "held", "held", 0, 3.5, 3.75, "8-4"], ["2026-06-17", "held", "held", 0, 3.5, 3.75, "12-0"],
+    ["2026-07-29", "held", "held", 0, 3.5, 3.75, "9-3"], ["2026-09-16", "held", "raised", 25, 3.75, 4, "12-0"],
+    ["2026-10-28", "scheduled", null, null, null, null, null], ["2026-12-09", "scheduled", null, null, null, null, null],
+  ]);
+  assert.equal(r.rows[2][9], "Stephen I. Miran; Beth M. Hammack; Neel Kashkari; Lorie K. Logan");
+  assert.deepEqual(r.rows.map((x) => x[3]), [false, true, false, true, false, true, false, true], "projection meetings are starred on the calendar");
+  assert.match(r.latest_statement.decision, /^The Committee decided to raise the target range for the federal funds rate by 1\/4 percentage point to 3-3\/4 to 4 percent/);
+  assert.equal(r.projections.meeting, "2026-09-16");
+  assert.deepEqual(r.projections.columns, ["variable", "2026", "2027", "2028", "2029", "longer_run"]);
+  assert.deepEqual(r.projections.median.find((x) => x[0] === "Federal funds rate"), ["Federal funds rate", 4.1, 4.1, 3.9, 3.6, 3.2]);
+  assert.deepEqual(r.projections.previous_median.find((x) => x[0] === "Federal funds rate"), ["Federal funds rate", 3.8, 3.6, 3.4, null, 3.1]);
+});
+
+test("fomc: statements parse in both forms, with grouped dissents and non-breaking hyphens", () => {
+  assert.equal(CB.fedNumber("3-3/4"), 3.75);
+  assert.equal(CB.fedNumber("1/4"), 0.25);
+  assert.equal(CB.fedNumber("4"), 4);
+  const html = "<p>In support of its goals, the Committee decided to maintain the target range for the federal funds rate at 3\u20111/2 to 3\u20113/4 percent.</p><p>Voting for the monetary policy action were Jerome H. Powell, Chair; John C. Williams, Vice Chair; Michael S. Barr; and Anna Paulson. Voting against this action were Stephen I. Miran, who preferred to lower the target range by 1/4 percentage point at this meeting; and Beth M. Hammack and Lorie K. Logan, who did not support an easing bias. For media inquiries, call.</p>";
+  const s = CB.parseStatement(html);
+  assert.deepEqual([s.action, s.change_bp, s.target_low, s.target_high, s.vote], ["held", 0, 3.5, 3.75, "4-3"]);
+  assert.equal(s.voting_against, "Stephen I. Miran; Beth M. Hammack; Lorie K. Logan");
+  assert.deepEqual(s.dissents.map((d) => d.names), [["Stephen I. Miran"], ["Beth M. Hammack", "Lorie K. Logan"]]);
+});
+
+test("index_constituents: the S&P 500 through IVV's N-PORT, weights rescaled to add to 1; the Dow says why it cannot", async () => {
+  const { s } = session();
+  const r = await F.indexConstituents(s, { index: "S&P 500", limit: 3 });
+  assert.deepEqual(r.through, { etf: "IVV", fund: "iShares Core S&P 500 ETF", series_id: "S000004310" });
+  assert.deepEqual([r.as_of, r.members, r.stock_weight_of_fund, r.top_10_weight], ["2026-06-30", 503, 0.9983, 0.3642]);
+  assert.deepEqual(r.rows.map((x) => [x[0], x[5]]), [["NVIDIA Corp.", 0.075186], ["Apple, Inc.", 0.065934], ["Microsoft Corp.", 0.042989]]);
+  const all = await F.indexConstituents(s, { index: "s&p 500", limit: 5000 });
+  assert.ok(Math.abs(all.rows.reduce((t, x) => t + x[5], 0) - 1) < 1e-4);
+  await assert.rejects(F.indexConstituents(s, { index: "Dow Jones" }), /unit investment trust, which files no N-PORT/);
 });

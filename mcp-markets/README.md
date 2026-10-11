@@ -52,7 +52,9 @@ received and when, so any figure can be checked against the same document later.
 | `short_interest` | How heavily a stock is shorted (shares short, days to cover, share of shares outstanding), or the market's most shorted | FINRA |
 | `futures_positioning` | Who is long and short in a futures market (managed money, dealers, asset managers, leveraged funds) and how crowded | CFTC Commitments of Traders |
 | `executive_pay` | What executives are paid against how the company did (reported and actually-paid pay, TSR vs peers), five years; or CEO pay ranked across the market | Proxy pay-versus-performance XBRL |
+| `index_constituents` | The members of the S&P 500, Nasdaq 100, Russell 2000 and other indexes, with weights | N-PORT of a tracking ETF |
 | `fund_portfolio` | What a mutual fund or ETF holds (VOO, IVV, AGG): every position, exposures, a bond fund's coupon and maturity, monthly returns and money in and out | Form N-PORT |
+| `fomc` | The Fed's decisions for a year (action, target range, vote and dissenters), the latest statement and the dot-plot medians | Federal Reserve |
 | `treasury_yields` | The Treasury curve (nominal, real, bills) for a day or a range | US Treasury |
 | `economic_series` | Any FRED series by id or words ("core inflation"), as levels, changes or year-over-year | FRED |
 | `price_history` | Daily to monthly bars for stocks in the US and abroad, currencies, futures, indices and crypto, adjusted, with dividends and splits, as columns | Yahoo Finance (no key), or Alpaca or Tiingo (your key) for US stocks |
