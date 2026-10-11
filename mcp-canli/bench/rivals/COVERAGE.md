@@ -4,7 +4,7 @@ Checked by `node bench/rivals/coverage.mjs` against each server's own tool list:
 
 | | canli-mcp | OpenBB | EdgarTools | Yahoo Finance MCP |
 |---|---|---|---|---|
-| Questions with a keyless tool (of 53) | 45 (20 released, 25 in PR #447) | 39 | 11 | 13 |
+| Questions with a keyless tool (of 53) | 46 (20 released, 26 in PR #447) | 39 | 11 | 13 |
 | Tools listed | 285 behind 3 (find_tool, describe_tool, run_tool) | 1056 | 13 | 9 |
 | Tokens of tool definitions per request (REPORT.md) | 859 | 432,001 (2,171 in discovery mode) | 3,801 | 2,205 |
 
@@ -35,7 +35,7 @@ Checked by `node bench/rivals/coverage.mjs` against each server's own tool list:
 | Funds | What a mutual fund or ETF holds | yes (PR #447) | yes | yes | · |  |
 | Funds | Fund flows and monthly returns | yes (PR #447) | yes | · | · |  |
 | Funds | Private raises by startups and funds (Form D) | yes (PR #447) | · | · | · |  |
-| Funds | Investment advisers (Form ADV) | · | yes | · | · |  |
+| Funds | Investment advisers (Form ADV) | yes (PR #447) | yes | · | · |  |
 | Markets | US stock and ETF prices | yes | yes | · | yes |  |
 | Markets | Stocks listed outside the US | yes (PR #447) | yes | · | yes | OpenBB: Canada only (TMX). Yahoo: any Yahoo symbol. |
 | Markets | Currency pairs | yes (PR #447) | yes | · | yes |  |
@@ -68,4 +68,4 @@ Checked by `node bench/rivals/coverage.mjs` against each server's own tool list:
 
 Only canli-mcp: financials as first reported, and what was restated; one kind of event across the market (restatements, bankruptcies, cyber incidents); how the stock reacted to events (event study); new activist stakes across the market; private raises by startups and funds (form d); futures positioning (cftc commitments of traders); us economic series (inflation, jobs, gdp); performance and risk (sharpe, drawdown, var); portfolio construction (min variance, risk parity, black-litterman); strategy backtests; is a backtest overfit (deflated sharpe, pbo, reality check); paper trading behind pre-trade checks.
 
-canli-mcp has no tool yet: news headlines; analyst estimates, price targets, recommendations; upcoming earnings dates; investment advisers (form adv); futures curves (term structure); options chains with implied volatility and greeks; volatility smile, surface and term structure; corporate bond prices.
+canli-mcp has no tool yet: news headlines; analyst estimates, price targets, recommendations; upcoming earnings dates; futures curves (term structure); options chains with implied volatility and greeks; volatility smile, surface and term structure; corporate bond prices.

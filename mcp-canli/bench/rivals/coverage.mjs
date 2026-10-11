@@ -17,7 +17,7 @@ const rivals = JSON.parse(readFileSync(new URL("rivals-tools-2026-10-11.json", H
 export const OPENBB_KEYED = Object.freeze(["fred_", "bls_", "eia_", "cftc_"]);
 
 // canli-markets-mcp tools added in PR #447, not yet in a released canli-mcp.
-export const PENDING = Object.freeze(["world_economy", "treasury_auctions", "federal_debt", "fund_portfolio", "large_holders", "company_events", "private_offerings", "price_history+", "short_interest", "futures_positioning", "executive_pay", "fomc", "index_constituents", "off_exchange_volume", "segment_revenue", "fails_to_deliver", "economic_outlook", "economic_calendar"]);
+export const PENDING = Object.freeze(["world_economy", "treasury_auctions", "federal_debt", "fund_portfolio", "large_holders", "company_events", "private_offerings", "price_history+", "short_interest", "futures_positioning", "executive_pay", "fomc", "index_constituents", "off_exchange_volume", "segment_revenue", "fails_to_deliver", "economic_outlook", "economic_calendar", "investment_advisers"]);
 
 // [area, question, canli, openbb, edgartools, yahoo, note]. "price_history+" is price_history with
 // the currencies, futures, indices, crypto and foreign listings PR #447 adds.
@@ -47,7 +47,7 @@ export const QUESTIONS = Object.freeze([
   ["Funds", "What a mutual fund or ETF holds", ["fund_portfolio"], ["sec_nport_disclosure", "nasdaq_etf_holdings", "tmx_etf_holdings"], ["edgar_fund"], []],
   ["Funds", "Fund flows and monthly returns", ["fund_portfolio"], ["sec_nport_fund_metrics"], [], []],
   ["Funds", "Private raises by startups and funds (Form D)", ["private_offerings"], [], [], []],
-  ["Funds", "Investment advisers (Form ADV)", [], ["sec_adviser_firms", "sec_adviser_individuals"], [], []],
+  ["Funds", "Investment advisers (Form ADV)", ["investment_advisers"], ["sec_adviser_firms", "sec_adviser_individuals"], [], []],
   ["Markets", "US stock and ETF prices", ["price_history"], ["nasdaq_equity_historical", "cboe_equity_historical"], [], ["get_historical_stock_prices"]],
   ["Markets", "Stocks listed outside the US", ["price_history+"], ["tmx_equity_historical"], [], ["get_historical_stock_prices"], "OpenBB: Canada only (TMX). Yahoo: any Yahoo symbol."],
   ["Markets", "Currency pairs", ["price_history+"], ["ecb_exchange_rates", "ecb_reference_rates"], [], ["get_historical_stock_prices"]],
