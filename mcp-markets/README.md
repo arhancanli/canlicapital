@@ -44,7 +44,7 @@ received and when, so any figure can be checked against the same document later.
 | `list_filings` | What has it filed: by form and date, with links | SEC |
 | `read_filing` | What does the filing say: one 10-K/10-Q item ("risk factors", "md&a"), an 8-K press release (`EX-99.1`), paged | SEC |
 | `search_filings` | Which filings mention a phrase, since 2001 | EDGAR full-text search |
-| `company_events` | A company's news from its 8-Ks (earnings, deals, executive changes, restatements, bankruptcies, cyber incidents) in the filing's own words; or one kind of event across the market | Form 8-K |
+| `company_events` | A company's news from its 8-Ks (earnings, deals, executive changes, restatements, bankruptcies, cyber incidents): the headline of the press release attached, and the filing's own words; or one kind of event across the market | Form 8-K |
 | `earnings_calendar` | A company's results release dates with the quarter covered and before the open or after the close, and the next one estimated from the same quarter last year; or who is due to report in a window across the market | SEC EDGAR (8-K Item 2.02) |
 | `segment_revenue` | Where revenue comes from: by segment (with operating income), product and region, three years, checked against total revenue | 10-K/10-Q XBRL |
 | `insider_trades` | Who inside bought or sold, at what price, under a 10b5-1 plan or not | Form 4 |
