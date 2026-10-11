@@ -8,6 +8,7 @@ import * as E from "../src/events.mjs";
 import * as F from "../src/funds.mjs";
 import * as G from "../src/global.mjs";
 import * as O from "../src/ownership.mjs";
+import * as P from "../src/private.mjs";
 import * as T from "../src/tools.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
 
@@ -242,4 +243,25 @@ test("company_events: Apple's executive changes, each in the words of the filing
   assert.deepEqual(r.rows.map((x) => x[0]), ["2026-04-20", "2026-01-02", "2025-12-05"]);
   assert.match(r.rows[0][4], /^On April 20, 2026, Apple Inc\. \("Apple"\) announced that Tim Cook will transition from his role as Chief Executive Officer to Executive Chair/);
   assert.match(r.rows[2][4], /Jennifer Newstead will become Apple's general counsel/);
+});
+
+test("private_offerings: the newest Form D raises across the market, and those that sold at least $10 million", async () => {
+  const { s } = session();
+  const r = await P.privateOfferings(s, { limit: 3 });
+  assert.deepEqual([r.since, r.until, r.filings_in_window, r.read], ["2026-10-02", "2026-10-09", 1764, 3]);
+  assert.deepEqual(r.rows[1], ["2026-10-09", "KBC Baxter LLC", "Residential", null, "WA", 7700000, 7700000, 49, "2026-09-30", ["Rule 506(b) (no general solicitation)"], false, "0002159787-26-000001"]);
+  const big = await P.privateOfferings(s, { min_sold: 10000000, limit: 2 });
+  assert.equal(big.read, 6);
+  assert.deepEqual(big.rows.map((x) => [x[1], x[5], x[7]]), [["SOVEREIGN CULTURAL FUND I, LP", 35000000, 1], ["Barada Holdings LLC", 95676600, 103]]);
+  assert.ok(big.rows.every((x) => x[5] >= 10000000));
+});
+
+test("private_offerings: a private equity fund's Form D by CIK, with its exemptions and the people behind it", async () => {
+  const { s } = session();
+  const r = await P.privateOfferings(s, { company: "2159753" });
+  assert.equal(r.issuer.name, "Onex Partners Opportunities Fund Annex I LP");
+  assert.equal(r.issuer.incorporated_in, "CAYMAN ISLANDS");
+  assert.deepEqual(r.rows[0].slice(2, 9), ["Pooled Investment Fund", "Private Equity Fund", "NY", 0, "indefinite", 0, "yet to occur"]);
+  assert.ok(r.rows[0][9].includes("Investment Company Act Section 3(c)(7) (qualified purchasers)"));
+  assert.deepEqual(r.people[0], { name: "MATTHEW MURPHY", roles: ["Executive Officer", "Promoter"] });
 });

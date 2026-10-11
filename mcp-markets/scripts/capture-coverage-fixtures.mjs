@@ -9,6 +9,7 @@ import * as E from "../src/events.mjs";
 import * as F from "../src/funds.mjs";
 import * as G from "../src/global.mjs";
 import * as O from "../src/ownership.mjs";
+import * as P from "../src/private.mjs";
 import { createSession } from "../src/sources.mjs";
 import { yahooChartUrl } from "../src/tools.mjs";
 
@@ -49,7 +50,9 @@ async function record(run, args) {
     }
     return new Response(text, { status: res.status });
   };
-  await run(createSession({ fetchImpl, now: () => NOW }), args);
+  // The clock starts at the tests' time and runs, so SEC requests are still spaced 125 ms apart.
+  const started = Date.now();
+  await run(createSession({ fetchImpl, now: () => NOW + (Date.now() - started) }), args);
 }
 await record(G.worldEconomy, { indicator: "inflation", countries: ["United States", "euro area", "China", "Japan", "turkey"] });
 await record(G.treasuryAuctions, { security: "10-year", limit: 6 });
@@ -68,6 +71,10 @@ await record(O.largeHolders, { limit: 3 });
 // 8-K events: the month's restatements across the market, and Apple's executive changes.
 await record(E.companyEvents, { event: "restatement", limit: 3 });
 await record(E.companyEvents, { company: "AAPL", event: "executive_change", since: "2025-01-01", limit: 3 });
+// Form D: the newest private offerings, those that sold at least $10 million, and one fund by CIK.
+await record(P.privateOfferings, { limit: 3 });
+await record(P.privateOfferings, { min_sold: 10000000, limit: 2 });
+await record(P.privateOfferings, { company: "2159753" });
 
 writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
 console.log(n, "coverage responses in the manifest");

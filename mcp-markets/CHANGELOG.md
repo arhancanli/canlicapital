@@ -7,6 +7,10 @@
   (SAP.DE, 7203.T, SHEL.L, 0700.HK), by symbol or plain name, and says what each price means
   (pence in London, futures rolls, index levels). Bars stamped after the window asked for are left
   out.
+- `private_offerings`: private raises from Form D (startups, private equity, hedge, venture and
+  real estate funds): amount offered and sold, investors, minimum investment, exemption, industry
+  and the people behind each issuer, for one issuer or the newest across the market, filtered by
+  industry or amount sold.
 - `company_events`: company news from Form 8-K, by item (earnings, material agreements, completed
   deals, executive changes, restatements, auditor changes, bankruptcies, cyber incidents,
   restructurings, delisting notices), for one company or, by event, across the market, each with
