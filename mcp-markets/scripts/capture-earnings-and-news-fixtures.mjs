@@ -1,11 +1,13 @@
-// Captures the responses the earnings_calendar tests replay (node scripts/capture-earnings-fixtures.mjs):
-// Apple's results 8-Ks with the filing indexes that carry their acceptance times, and a quiet
-// September week across the market. Recorded by running the tool at the tests' clock (2026-10-09
+// Captures the responses the earnings_calendar and company_events headline tests replay
+// (node scripts/capture-earnings-and-news-fixtures.mjs): Apple's results 8-Ks with the filing
+// indexes that carry their acceptance times, a quiet September week across the market, and the
+// filing indexes and press-release exhibits behind company_events' headlines. Recorded by running the tool at the tests' clock (2026-10-09
 // 12:00 UTC); responses already in test/fixtures/manifest.json are served from it, as under replay.
 import { readFileSync, writeFileSync } from "node:fs";
 import { gunzipSync, gzipSync } from "node:zlib";
 
 import { earningsCalendar } from "../src/earnings.mjs";
+import { companyEvents } from "../src/events.mjs";
 import { createSession } from "../src/sources.mjs";
 
 const DIR = new URL("../test/fixtures/", import.meta.url);
@@ -32,6 +34,9 @@ async function record(run, args) {
 
 await record(earningsCalendar, { company: "AAPL" });
 await record(earningsCalendar, { since: "2026-09-14", until: "2026-09-18" });
+await record(companyEvents, { event: "restatement", limit: 3 });
+await record(companyEvents, { company: "AAPL", event: "executive_change", since: "2025-01-01", limit: 3 });
+await record(companyEvents, { company: "AAPL", event: "earnings", since: "2026-04-01", limit: 2 });
 
 writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
 console.log(n, "coverage responses in the manifest");

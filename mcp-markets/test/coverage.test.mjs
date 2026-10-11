@@ -237,10 +237,12 @@ test("company_events: the month's restatements across the market, from each 8-K 
   const r = await E.companyEvents(s, { event: "restatement", limit: 3 });
   assert.deepEqual(r.event, { item: "4.02", name: "restatement", meaning: "previously issued financial statements should no longer be relied on (restatement)" });
   assert.deepEqual([r.since, r.until, r.found], ["2026-09-09", "2026-10-09", 6]);
-  assert.deepEqual(r.rows.map((x) => [x[0], x[5]]), [["2026-10-08", "0001493152-26-046278"], ["2026-10-02", "0001477932-26-006021"], ["2026-09-25", "0001079973-26-001283"]]);
+  assert.deepEqual(r.columns, ["filed", "company", "items", "events", "headline", "excerpt", "accession", "url"]);
+  assert.deepEqual(r.rows.map((x) => [x[0], x[6]]), [["2026-10-08", "0001493152-26-046278"], ["2026-10-02", "0001477932-26-006021"], ["2026-09-25", "0001079973-26-001283"]]);
   assert.ok(r.rows.every((x) => x[2].includes("4.02") && x[3].includes("restatement")));
-  assert.match(r.rows[2][6], /ftw_8k\.htm$/, "the 8-K itself, not the auditor's letter the search also matched");
-  assert.match(r.rows[2][4], /^The management of Feel the World, Inc\./);
+  assert.match(r.rows[2][7], /ftw_8k\.htm$/, "the 8-K itself, not the auditor's letter the search also matched");
+  assert.match(r.rows[2][5], /^The management of Feel the World, Inc\./);
+  assert.deepEqual(r.rows.map((x) => x[4]), [null, null, null], "no press release: Feel the World's exhibit is its restated statements, not a headline");
 });
 
 test("company_events: Apple's executive changes, each in the words of the filing", async () => {
@@ -248,8 +250,25 @@ test("company_events: Apple's executive changes, each in the words of the filing
   const r = await E.companyEvents(s, { company: "AAPL", event: "executive_change", since: "2025-01-01", limit: 3 });
   assert.equal(r.matched, 6);
   assert.deepEqual(r.rows.map((x) => x[0]), ["2026-04-20", "2026-01-02", "2025-12-05"]);
-  assert.match(r.rows[0][4], /^On April 20, 2026, Apple Inc\. \("Apple"\) announced that Tim Cook will transition from his role as Chief Executive Officer to Executive Chair/);
-  assert.match(r.rows[2][4], /Jennifer Newstead will become Apple's general counsel/);
+  assert.match(r.rows[0][5], /^On April 20, 2026, Apple Inc\. \("Apple"\) announced that Tim Cook will transition from his role as Chief Executive Officer to Executive Chair/);
+  assert.match(r.rows[2][5], /Jennifer Newstead will become Apple's general counsel/);
+});
+
+test("company_events: Apple's results 8-Ks carry the headlines of the press releases attached to them", async () => {
+  const { s } = session();
+  const r = await E.companyEvents(s, { company: "AAPL", event: "earnings", since: "2026-04-01", limit: 2 });
+  assert.deepEqual(r.rows.map((x) => [x[0], x[4]]), [["2026-07-30", "Apple reports third quarter results"], ["2026-04-30", "Apple reports second quarter results"]]);
+  assert.match(r.rows[0][5], /^On July 30, 2026, Apple Inc\. \("Apple"\) issued a press release/);
+});
+
+test("press release headlines: past EDGAR's header and the boilerplate, never the letterhead or a financial statement", () => {
+  const doc = (...lines) => `<DOCUMENT><TYPE>EX-99.1<SEQUENCE>2<FILENAME>pr.htm<DESCRIPTION>EX-99.1<TEXT>${lines.map((l) => `<p>${l}</p>`).join("")}`;
+  assert.equal(E.pressHeadline(doc("Exhibit 99.1", "FOR IMMEDIATE RELEASE", "Pfizer Announces Chief Financial Officer Transition", "NEW YORK, June 18, 2026")), "Pfizer Announces Chief Financial Officer Transition");
+  assert.equal(E.pressHeadline(doc("NEW YORK, June 18, 2026", "Contacts:", "Acme Widgets Raises Full-Year Guidance")), "Acme Widgets Raises Full-Year Guidance");
+  assert.equal(E.pressHeadline(doc("ACME WIDGETS, INC.", "Acme Widgets to Acquire Gizmo Corp"), "Acme Widgets, Inc."), "Acme Widgets to Acquire Gizmo Corp", "the company's own name is letterhead");
+  assert.equal(E.pressHeadline(doc("CONDENSED CONSOLIDATED FINANCIAL", "STATEMENTS")), null, "restated statements, not a press release");
+  assert.equal(E.pressHeadline(doc("Tesla Third Quarter 2026 Production, Deliveries &#38; Deployments")), "Tesla Third Quarter 2026 Production, Deliveries & Deployments");
+  assert.equal(E.pressHeadline("<p>1</p><p>2</p>"), null);
 });
 
 test("private_offerings: the newest Form D raises across the market, and those that sold at least $10 million", async () => {

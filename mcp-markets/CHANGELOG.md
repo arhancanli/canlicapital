@@ -15,6 +15,13 @@
     implied date, marked reported once they have (within three weeks).
   - Estimates, not announcements. Checked live: Apple 2026-10-29 after the close, NVIDIA 2026-11-18
     after the close, Walmart 2026-11-19 before the open, JPMorgan 2026-10-13 before the open.
+- `company_events` gives each 8-K the headline of the press release attached to it (an EX-99
+  exhibit), for example "Apple reports third quarter results", "Pfizer Announces Chief Financial
+  Officer Transition" or "Bank of America Increases Common Stock Dividend 14% to $0.32 Per Share".
+  The headline is the first line of real text after EDGAR's document header and the boilerplate; it
+  is never the company's letterhead, and an exhibit that opens with financial statements has none.
+  These are news headlines from the companies themselves, not a news wire. Reading them adds up to
+  two requests per filing; `excerpts: false` skips both.
 - Fix: a ticker that is not in the SEC's file of listed companies went to EDGAR's name search, which
   matches prefixes, so "VOO" (an ETF) was Vooy, Inc. Mutual fund and ETF tickers now resolve through
   the SEC's fund ticker file to the trust that registers them (VOO is Vanguard Index Funds). A

@@ -67,6 +67,43 @@ export function itemExcerpt(text, code, max = 420) {
   return out ? out.slice(0, max) + (out.length > max ? "…" : "") : null;
 }
 
+// The headline of a press release exhibit: its first line of real text after EDGAR's document header
+// and the boilerplate around it ("Exhibit 99.1", "FOR IMMEDIATE RELEASE", contacts, the dateline).
+const BOILERPLATE = /^(exhibit\s*99(\.\d+)?|ex-?99(\.\d+)?|document|press release|news release|for immediate release|for release|investor (relations|contacts?)|media (relations|contacts?)|contacts?:?|page \d+|\d+|[•■▪●◦\-–—*]+)$/i;
+// A company's name as words, without punctuation or legal suffixes, to tell its letterhead from a headline.
+const nameKey = (n) => String(n ?? "").toLowerCase().replace(/[^a-z0-9& ]+/g, " ").split(/\s+/).filter((w) => w && !["inc", "corp", "corporation", "co", "company", "ltd", "plc", "llc", "lp", "the", "nv", "sa", "ag", "holdings", "group"].includes(w)).join(" ");
+export function pressHeadline(html, company = null) {
+  const letterhead = company ? nameKey(company) : null;
+  let s = String(html ?? "");
+  // EDGAR's document header (<TYPE>, <SEQUENCE>, <FILENAME>, <DESCRIPTION>) comes before <TEXT>.
+  const textAt = s.search(/<TEXT>/i);
+  if (textAt >= 0) s = s.slice(textAt + 6);
+  const lines = htmlToText(s).split("\n").map((x) => x.replace(/\s+/g, " ").replace(/\s*Exhibit 99(\.\d+)?$/i, "").trim()).filter(Boolean);
+  for (const l of lines.slice(0, 60)) {
+    if (BOILERPLATE.test(l) || /\.(htm|html|jpe?g|png|gif)$/i.test(l)) continue;
+    if (letterhead && nameKey(l) === letterhead) continue;
+    // An exhibit that opens with financial statements is not a press release.
+    if (/^(unaudited |audited )?(condensed |interim )?(consolidated |combined )?(financial (statements?|information|data)\b|financial$|balance sheets?\b|statements? of (operations|income|cash flows|financial (position|condition)))/i.test(l)) return null;
+    // A dateline ("NEW YORK, June 18, 2026") or a date alone is not the headline.
+    if (/^[A-Z][A-Za-z .,'&-]*,\s+[A-Z][a-z]+\.? \d{1,2},? \d{4}\b/.test(l) || /^[A-Z][a-z]+\.? \d{1,2},? \d{4}$/.test(l)) continue;
+    const words = l.split(" ").length;
+    if (words < 3 || words > 40 || l.length > 300 || !/[A-Za-z]{4,}/.test(l)) continue;
+    return l;
+  }
+  return null;
+}
+
+// The headline of the press release attached to an 8-K, when it has one (an EX-99 exhibit).
+async function headlineFor(session, cik, accession, company) {
+  try {
+    const ex = (await filingDocuments(session, cik, accession)).find((d) => /^EX-99/.test(d.type ?? ""));
+    return ex ? pressHeadline(await getText(session, ex.url, { maxBytes: 8 * 1024 * 1024 }), company) : null;
+  } catch (err) {
+    if (err instanceof NotFound) return null;
+    throw err;
+  }
+}
+
 async function excerptFor(session, url, codes) {
   try {
     const text = await getText(session, url, { maxBytes: 8 * 1024 * 1024, transform: htmlToText });
@@ -86,7 +123,7 @@ export const eventsInput = z.object({
   since: DATE.optional().describe("Filed on or after this date; default 180 days ago for a company, 30 days across the market."),
   until: DATE.optional().describe("Filed on or before this date; default today."),
   limit: z.number().int().min(1).max(40).optional().describe("Most events to list; default 15."),
-  excerpts: z.boolean().optional().describe("Read each filing for the opening of what it says; default true (one request per filing)."),
+  excerpts: z.boolean().optional().describe("Read each filing for the opening of what it says and its press release's headline; default true (up to three requests per filing)."),
 }).strict();
 
 export async function companyEvents(session, args) {
@@ -94,9 +131,9 @@ export async function companyEvents(session, args) {
   const code = a.event ? eventCode(a.event) : null;
   const limit = a.limit ?? 15;
   const until = a.until ?? isoDay(session);
-  const columns = ["filed", "company", "items", "events", "excerpt", "accession", "url"];
+  const columns = ["filed", "company", "items", "events", "headline", "excerpt", "accession", "url"];
   const limits = [
-    "From Forms 8-K as filed with the SEC, usually within four business days of the event; Canli Capital does not edit or verify them. Excerpts are the opening of the filing's text under the item.",
+    "From Forms 8-K as filed with the SEC, usually within four business days of the event; Canli Capital does not edit or verify them. Excerpts are the opening of the filing's text under the item; a headline is the title of the press release attached as an exhibit (EX-99), when there is one.",
     "An earnings release (2.02) or investor presentation (7.01) is usually in exhibit 99.1; read it with read_filing and document \"EX-99.1\".",
     "Not investment advice.",
   ];
@@ -111,7 +148,8 @@ export async function companyEvents(session, args) {
     const out = [];
     for (const { r, codes } of picked.slice(0, limit)) {
       const url = `${archiveBase(e.cik, r.accessionNumber)}/${String(r.primaryDocument).replace(/^xsl[^/]*\//, "")}`;
-      out.push([r.filingDate, sub.name, codes, decode(codes), a.excerpts === false ? null : await excerptFor(session, url, code ? [code] : codes), r.accessionNumber, url]);
+      const read = a.excerpts !== false;
+      out.push([r.filingDate, sub.name, codes, decode(codes), read ? await headlineFor(session, e.cik, r.accessionNumber, sub.name) : null, read ? await excerptFor(session, url, code ? [code] : codes) : null, r.accessionNumber, url]);
     }
     const counts = {};
     for (const { codes } of picked) for (const c of codes) if (c !== "9.01") counts[ITEMS[c]?.[0] ?? c] = (counts[ITEMS[c]?.[0] ?? c] ?? 0) + 1;
@@ -145,7 +183,8 @@ export async function companyEvents(session, args) {
       if (main) file = main.name;
     }
     const url = `${archiveBase(cik, adsh)}/${file}`;
-    out.push([s.file_date, (s.display_names?.[0] ?? "").replace(/\s+/g, " ").trim() || null, s.items ?? [], decode(s.items ?? []), a.excerpts === false ? null : await excerptFor(session, url, [code]), adsh, url]);
+    const read = a.excerpts !== false;
+    out.push([s.file_date, (s.display_names?.[0] ?? "").replace(/\s+/g, " ").trim() || null, s.items ?? [], decode(s.items ?? []), read ? await headlineFor(session, cik, adsh, String(s.display_names?.[0] ?? "").replace(/\s*\(.*$/, "")) : null, read ? await excerptFor(session, url, [code]) : null, adsh, url]);
   }
   return { event: { item: code, name: ITEMS[code][0], meaning: ITEMS[code][1] }, since, until, found: hits.length, columns, rows: out, source: `https://efts.sec.gov/LATEST/search-index?q=%22Item%20${code}%22&forms=8-K&dateRange=custom&startdt=${since}&enddt=${until}`, limits };
 }
