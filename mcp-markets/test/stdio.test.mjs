@@ -15,12 +15,12 @@ async function connect() {
   return c;
 }
 
-test("twenty-eight tools, byte-identical across launches, all read-only", async () => {
+test("twenty-nine tools, byte-identical across launches, all read-only", async () => {
   const lists = [];
   for (let i = 0; i < 2; i++) { const c = await connect(); lists.push(JSON.stringify(await c.listTools())); await c.close(); }
   assert.equal(lists[0], lists[1]);
   const tools = JSON.parse(lists[0]).tools;
-  assert.deepEqual(tools.map((t) => t.name).sort(), ["company_events", "company_profile", "company_report", "economic_series", "event_study", "executive_pay", "fails_to_deliver", "federal_debt", "fomc", "fund_holdings", "fund_portfolio", "futures_positioning", "index_constituents", "insider_trades", "large_holders", "list_filings", "mentions_trend", "off_exchange_volume", "price_history", "private_offerings", "read_filing", "screen_companies", "search_filings", "segment_revenue", "short_interest", "treasury_auctions", "treasury_yields", "world_economy"]);
+  assert.deepEqual(tools.map((t) => t.name).sort(), ["company_events", "company_profile", "company_report", "economic_outlook", "economic_series", "event_study", "executive_pay", "fails_to_deliver", "federal_debt", "fomc", "fund_holdings", "fund_portfolio", "futures_positioning", "index_constituents", "insider_trades", "large_holders", "list_filings", "mentions_trend", "off_exchange_volume", "price_history", "private_offerings", "read_filing", "screen_companies", "search_filings", "segment_revenue", "short_interest", "treasury_auctions", "treasury_yields", "world_economy"]);
   for (const t of tools) {
     assert.equal(t.annotations.readOnlyHint, true, t.name);
     assert.equal(t.annotations.openWorldHint, true, t.name);

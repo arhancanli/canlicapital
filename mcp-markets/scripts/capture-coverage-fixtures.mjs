@@ -87,6 +87,8 @@ await record(G.treasuryAuctions, { security: "10-year", limit: 6 });
 await record(G.treasuryAuctions, { security: "13-week bill", limit: 3 });
 await record(G.treasuryAuctions, { upcoming: true, limit: 5 });
 await record(G.federalDebt, {});
+// The OECD's projections for the US, the euro area, China, Japan and the world.
+await record(G.economicOutlook, { countries: ["United States", "euro area", "China", "Japan", "world"] });
 // Funds: SEC's fund ticker table cut to the funds the tests use, then IVV (equities) and TLT
 // (Treasury bonds), each with the previous public report for the comparison.
 await grab("https://www.sec.gov/files/company_tickers_mf.json", (t) => { const d = JSON.parse(t); d.data = d.data.filter((r) => ["IVV", "TLT", "AGG", "VOO", "QQQ"].includes(r[3])); return JSON.stringify(d); });

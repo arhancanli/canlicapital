@@ -31,13 +31,17 @@ export function createSession({ fetchImpl, env = process.env, now = () => Date.n
 }
 
 const isSec = (url) => /^https:\/\/(www|data|efts)\.sec\.gov\//.test(url);
+// The OECD's data service throttles bursts of queries with HTTP 500s: its requests are spaced
+// OECD_GAP_MS apart and retried after longer waits.
+const isOecd = (url) => url.startsWith("https://sdmx.oecd.org/");
+const OECD_GAP_MS = 1500;
 const host = (url) => new URL(url).host;
 
-// Spaces SEC requests SEC_GAP_MS apart across concurrent callers.
-async function secTurn(session) {
+// Spaces SEC requests SEC_GAP_MS apart across concurrent callers (and OECD requests OECD_GAP_MS).
+async function secTurn(session, gap = SEC_GAP_MS, key = "secNext") {
   const t = session.now();
-  const at = Math.max(t, session.secNext);
-  session.secNext = at + SEC_GAP_MS;
+  const at = Math.max(t, session[key] ?? 0);
+  session[key] = at + gap;
   if (at > t) await session.sleep(at - t);
 }
 
@@ -49,6 +53,7 @@ function fetchError(error, { url, secret, aborted, maxBytes }) {
     if (error.code === "HTTP" && error.status === 404) return new NotFound(`${where} was not found.`);
     if (error.code === "HTTP" && (error.status === 403 || error.status === 429) && isSec(url)) return new Error(`SEC refused the request (HTTP ${error.status}). SEC limits clients to 10 requests a second and asks for a contact in the User-Agent: set SEC_USER_AGENT to "Your Name you@example.com".`);
     if (error.code === "HTTP" && (error.status === 401 || error.status === 403)) return new Error(`${host(url)} refused the key (HTTP ${error.status}).`);
+    if (error.code === "HTTP" && error.status >= 500) return new Error(`${where} returned HTTP ${error.status}; the service may be busy (some throttle bursts of queries), so retry in a minute.`);
     if (error.code === "HTTP") return new Error(`${where} returned HTTP ${error.status}.`);
     if (error.code === "TOO_LARGE") return new Error(`${where} is larger than ${Math.round(maxBytes / 1048576)} MB; not read.`);
   }
@@ -76,13 +81,14 @@ export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024
   // on 2026-10-09): retry them, and dropped connections, twice with a short backoff.
   for (let attempt = 0; ; attempt++) {
     if (isSec(url)) await secTurn(session);
+    if (isOecd(url)) await secTurn(session, OECD_GAP_MS, "oecdNext");
     const signal = AbortSignal.timeout(TIMEOUT_MS);
     try {
       text = await fetchBoundedText(session.fetchImpl, url, { signal, maxBytes, method, body, headers: { "User-Agent": isSec(url) ? session.userAgent : PLAIN_USER_AGENT, ...headers } });
       break;
     } catch (error) {
       const transient = !signal.aborted && (error instanceof ResponseReadError ? error.code === "HTTP" && error.status >= 500 : true);
-      if (transient && attempt < 2) { await session.sleep(500 * 3 ** attempt); continue; }
+      if (transient && attempt < 2) { await session.sleep((isOecd(url) ? 4000 : 500) * 3 ** attempt); continue; }
       throw fetchError(error, { url, secret, aborted: signal.aborted, maxBytes });
     }
   }

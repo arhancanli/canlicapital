@@ -57,6 +57,11 @@
   coupon and maturity profile, monthly returns, the money that came in and went out each month,
   and what changed since the previous quarter. A 13,000-position bond fund (AGG) reads in about
   three seconds; unit investment trusts such as SPY are told apart and explained.
+- `economic_outlook`: the OECD Economic Outlook's projections for the next two years and estimates
+  for the two before, for 50+ economies, the euro area, the OECD and the world (GDP growth,
+  inflation, core inflation, unemployment, budget balance, government debt, current account, short-
+  and long-term rates), the euro area on its harmonised index. Requests to the OECD are spaced and
+  made one at a time, since its service throttles bursts and overlapping requests.
 - `world_economy`: any of the World Bank's World Development Indicators for 200+ countries and
   regions (GDP and growth, inflation, unemployment, government debt and deficits, the current
   account, trade, reserves), by plain words or code, as a year-by-country table.

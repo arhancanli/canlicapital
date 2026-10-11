@@ -440,3 +440,18 @@ test("fails_to_deliver: GameStop over two half-month files, and the largest fail
   assert.throws(() => unzipFirst(new Uint8Array([80, 75, 5, 6, 0, 0, 0, 0, 1, 0, 1, 0, 46, 0, 0, 0, 200, 0, 0, 0, 0, 0])), /central directory not found/);
   assert.throws(() => unzipFirst(new Uint8Array([1, 2, 3])), /not a zip archive/);
 });
+
+test("economic_outlook: the OECD's projections, the euro area on its harmonised index, series it does not publish left empty", async () => {
+  const { s, calls } = session();
+  const r = await G.economicOutlook(s, { countries: ["United States", "euro area", "China", "Japan", "world"] });
+  assert.deepEqual(r.outlook, { name: "Economic Outlook 119", dataflow: "DSD_EO@DF_EO 1.5" });
+  assert.deepEqual(r.columns, ["area", "name", "measure", "2024", "2025", "2026", "2027"]);
+  const row = (area, measure) => r.rows.find((x) => x[0] === area && x[2] === measure);
+  assert.deepEqual(row("USA", "GDPV_ANNPCT"), ["USA", "United States", "GDPV_ANNPCT", 2.7932, 2.1063, 1.9501, 1.799]);
+  assert.deepEqual(row("EA17", "CPIH_YTYPCT").slice(3), [2.3536, 2.1001, 2.8298, 2.4408], "the euro area reports a harmonised index");
+  assert.equal(row("EA17", "CPI_YTYPCT"), undefined);
+  assert.deepEqual(row("W", "CPI_YTYPCT").slice(3), [null, null, null, null]);
+  assert.match(r.note, /^2026 and 2027 are the OECD's projections/);
+  const oecd = calls.filter((c) => new URL(c.url).host === "sdmx.oecd.org");
+  assert.equal(oecd.length, 2, "the data, then the edition: one request at a time");
+});

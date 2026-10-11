@@ -3,7 +3,7 @@
 // No key; every result names the URL it came from.
 import { z } from "zod";
 
-import { getJson, NotFound } from "./sources.mjs";
+import { getJson, getText, NotFound } from "./sources.mjs";
 
 const round = (x, d = 4) => (x == null ? null : Math.round(x * 10 ** d) / 10 ** d);
 
@@ -249,5 +249,78 @@ export async function federalDebt(session, args) {
     ...(avg.length ? { average_interest_rates: { month: month, units: "percent a year", columns: ["type", "security", "rate"], rows: avg } } : {}),
     source: "https://fiscaldata.treasury.gov/datasets/debt-to-the-penny/",
     limits: ["US Treasury Fiscal Data as published: total public debt outstanding each business day (debt held by the public plus intragovernmental holdings); average interest rates are monthly, on outstanding securities by type.", "Not investment advice."],
+  };
+}
+
+// ---------------------------------------------------------------------------------------------
+// economic_outlook (OECD Economic Outlook projections)
+// ---------------------------------------------------------------------------------------------
+const OECD = "https://sdmx.oecd.org/public/rest";
+const EO_FLOW = "OECD.ECO.MAD,DSD_EO@DF_EO,";
+// Euro-area members report harmonised indices: their inflation measures carry an H.
+const HARMONISED = Object.freeze({ CPI_YTYPCT: "CPIH_YTYPCT", PCORE_YTYPCT: "PCOREH_YTYPCT" });
+export const EO_MEASURES = Object.freeze([
+  ["GDPV_ANNPCT", "gdp growth real economic growth", "Real GDP growth, percent"],
+  ["CPI_YTYPCT", "inflation consumer prices cpi headline", "Consumer price inflation, percent"],
+  ["PCORE_YTYPCT", "core inflation underlying", "Core inflation, percent"],
+  ["UNR", "unemployment rate jobless", "Unemployment rate, percent of the labour force"],
+  ["NLGQ", "budget balance fiscal deficit surplus government net lending", "General government balance, percent of GDP"],
+  ["GGFLQ", "government debt public debt gross", "General government gross debt, percent of GDP"],
+  ["CBGDPR", "current account balance", "Current account balance, percent of GDP"],
+  ["IRS", "short term interest rate policy rate money market", "Short-term interest rate, percent"],
+  ["IRL", "long term interest rate bond yield 10 year", "Long-term interest rate, percent"],
+]);
+// The outlook's own codes for groups the World Bank names differently.
+const EO_AREAS = Object.freeze({ EMU: "EA17", WLD: "W", OED: "OECD" });
+
+function eoMeasure(q) {
+  const s = String(q).trim();
+  const byCode = EO_MEASURES.find((m) => m[0] === s.toUpperCase());
+  if (byCode) return byCode;
+  const words = s.toLowerCase().match(/[a-z0-9]+/g) ?? [];
+  const scored = EO_MEASURES.map((m) => [m, words.filter((w) => m[1].split(" ").includes(w)).length / (words.length || 1)]).sort((a, b) => b[1] - a[1]);
+  if (!scored.length || scored[0][1] < 0.5) throw new NotFound(`No OECD outlook measure matches "${q}". Use: ${EO_MEASURES.map((m) => m[1].split(" ").slice(0, 2).join(" ")).join(", ")}.`);
+  return scored[0][0];
+}
+
+export const outlookInput = z.object({
+  countries: z.array(z.string().min(1).max(60)).min(1).max(20).describe("Countries or groups: names (\"Germany\", \"euro area\", \"world\", \"OECD\") or ISO codes (US, JPN)."),
+  measures: z.array(z.string().min(1).max(60)).min(1).max(9).optional().describe("What to project: \"gdp growth\", \"inflation\", \"core inflation\", \"unemployment\", \"budget balance\", \"government debt\", \"current account\", \"short term interest rate\", \"long term interest rate\". Default: GDP growth, inflation, unemployment."),
+}).strict();
+
+export async function economicOutlook(session, args) {
+  const a = outlookInput.parse(args);
+  const measures = [...new Map((a.measures ?? ["gdp growth", "inflation", "unemployment"]).map(eoMeasure).map((m) => [m[0], m])).values()];
+  const table = await countryTable(session);
+  const special = { "euro area": "EA17", eurozone: "EA17", world: "W", global: "W", oecd: "OECD" };
+  const areas = [...new Set(a.countries.map((q) => special[q.trim().toLowerCase()] ?? (EO_AREAS[matchCountry(table, q).id] ?? matchCountry(table, q).id)))];
+  const year = new Date(session.now()).getUTCFullYear();
+  // No endPeriod: asking past the outlook's last year makes the OECD's server fail (HTTP 500) for
+  // some groups of areas, and the outlook ends where its projections end anyway.
+  const codes = [...new Set(measures.flatMap((m) => [m[0], ...(HARMONISED[m[0]] ? [HARMONISED[m[0]]] : [])]))];
+  const url = `${OECD}/data/${EO_FLOW}/${areas.join("+")}.${codes.join("+")}.A?startPeriod=${year - 2}`;
+  // One request at a time: the OECD's service answers overlapping requests from one client with HTTP 500.
+  const csv = await getText(session, url, { headers: { Accept: "application/vnd.sdmx.data+csv; charset=utf-8" }, maxBytes: 4 * 1024 * 1024 });
+  const flow = await getJson(session, `${OECD}/dataflow/OECD.ECO.MAD/DSD_EO@DF_EO/latest`, { headers: { Accept: "application/vnd.sdmx.structure+json" } }).catch(() => null);
+  const lines = csv.trim().split(/\r?\n/);
+  const head = lines[0].split(",");
+  const col = (name) => head.indexOf(name);
+  const obs = lines.slice(1).map((l) => l.split(",")).map((c) => ({ area: c[col("REF_AREA")], measure: c[col("MEASURE")], year: Number(c[col("TIME_PERIOD")]), value: Number(c[col("OBS_VALUE")]) })).filter((o) => Number.isFinite(o.value));
+  if (!obs.length) throw new NotFound(`The OECD Economic Outlook has none of ${measures.map((m) => m[0]).join(", ")} for ${areas.join(", ")}; it covers OECD members, major partners (China, India, Brazil, Indonesia, South Africa and others), the euro area (EA17), the OECD and the world (W).`);
+  const years = [...new Set(obs.map((o) => o.year))].sort((x, y) => x - y);
+  const edition = flow?.data?.dataflows?.[0];
+  const names = new Map(table.map((c) => [EO_AREAS[c.id] ?? c.id, c.name]));
+  return {
+    outlook: { name: edition?.name ?? "OECD Economic Outlook", dataflow: `DSD_EO@DF_EO ${edition?.version ?? ""}`.trim() },
+    columns: ["area", "name", "measure", ...years.map(String)],
+    rows: areas.flatMap((ar) => measures.map((m) => {
+      // The CPI measure, or the harmonised one where the area reports only that (the euro area).
+      const code = !obs.some((x) => x.area === ar && x.measure === m[0]) && HARMONISED[m[0]] && obs.some((x) => x.area === ar && x.measure === HARMONISED[m[0]]) ? HARMONISED[m[0]] : m[0];
+      return [ar, ar === "W" ? "World" : ar === "EA17" ? "Euro area (17 countries)" : names.get(ar) ?? ar, code, ...years.map((y) => { const o = obs.find((x) => x.area === ar && x.measure === code && x.year === y); return o ? round(o.value, 4) : null; })];
+    })),
+    measures: Object.fromEntries(measures.flatMap((m) => [[m[0], m[2]], ...(HARMONISED[m[0]] ? [[HARMONISED[m[0]], `${m[2]} (harmonised index)`]] : [])])),
+    note: `${year} and ${year + 1} are the OECD's projections in this edition; earlier years are its estimates of outcomes, which later editions revise.`,
+    source: "https://data-explorer.oecd.org/",
+    limits: ["OECD Economic Outlook projections as published (OECD data, CC BY 4.0); projections change with each edition (June and December).", "Not investment advice."],
   };
 }
