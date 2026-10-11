@@ -1,14 +1,14 @@
 {
  "schema": "canli.home-answers.v1",
  "purpose": "The homepage's opening answer, its comparison table and its FAQ. scripts/build-home-answers.mjs writes all three into index.html and builds the FAQPage JSON-LD from the same entries, so the markup can never say something the page does not.",
- "reviewed": "2026-10-10",
+ "reviewed": "2026-10-11",
  "definition": "Canli Capital is an open-source lab that connects AI agents to financial data and quant tools they can check.",
- "answer": "Its flagship MCP server, canli-mcp, reads SEC filings, Treasury and FRED data at the source and puts 285 finance tools behind three. The code is free and MIT-licensed.",
+ "answer": "Its flagship MCP server, canli-mcp, reads SEC filings, market data and economic statistics at the source and puts 306 finance tools behind three. The code is free and MIT-licensed.",
  "comparison": {
   "id": "compare",
   "eyebrow": "Side by side",
   "title": "canli-mcp, OpenBB, EdgarTools and Yahoo Finance MCP",
-  "intro": "Each of these open-source servers gives an AI model finance data in its own way. This is what each one offers in the version we benchmarked. How each one scored is in the benchmark above.",
+  "intro": "Each of these open-source servers gives an AI model finance data in its own way. This is what each one offers, checked against its own tool list: canli-mcp 0.3.0 and the other servers in the versions we benchmarked. How each one scored is in the benchmark above, which tested canli-mcp 0.1.0.",
   "caption": "What each MCP server offers, checked against its own tool list and source code",
   "columns": [
    "Canli Capital",
@@ -18,9 +18,9 @@
   ],
   "rows": [
    {
-    "question": "The MCP server tested",
+    "question": "The version compared",
     "cells": [
-     "canli-mcp 0.1.0",
+     "canli-mcp 0.3.0",
      "openbb-mcp-server 2.0.1 with openbb 5.0.0",
      "edgartools 5.61.1",
      "Alex2Yang97/yahoo-finance-mcp at commit b9c1765"
@@ -29,10 +29,19 @@
    {
     "question": "Tools sent to the model on every request",
     "cells": [
-     "3, in front of 285",
+     "3, in front of 306",
      "1,056, or 14 in its tool-discovery mode",
      "13",
      "9"
+    ]
+   },
+   {
+    "question": "Finance question types it has a keyless tool for, of 53",
+    "cells": [
+     "49",
+     "39",
+     "11",
+     "13"
     ]
    },
    {
@@ -65,7 +74,7 @@
    {
     "question": "News, options chains and analyst ratings",
     "cells": [
-     "No",
+     "Options chains and volatility surfaces from Cboe's delayed data, no key; no news feed or analyst ratings",
      "News and options tools, some needing provider keys",
      "No",
      "Yes"
@@ -81,11 +90,15 @@
     ]
    }
   ],
-  "checked": "2026-10-10",
+  "checked": "2026-10-11",
   "sources": [
    {
     "label": "canli-mcp source",
     "url": "https://github.com/arhancanli/canlicapital/tree/main/mcp-canli"
+   },
+   {
+    "label": "the coverage map (53 finance questions, each server's own tool list)",
+    "url": "https://github.com/arhancanli/canlicapital/blob/main/mcp-canli/bench/rivals/COVERAGE.md"
    },
    {
     "label": "OpenBB MCP server",
@@ -116,7 +129,7 @@
   },
   {
    "question": "What is canli-mcp?",
-   "answer": "canli-mcp is one MCP server that loads every Canli Capital server in one process. The model sees three tools, find_tool, describe_tool and run_tool, and behind them sit 285 tools for quant finance, backtest validation, SEC filings, fundamentals, rates, prices and paper trading.",
+   "answer": "canli-mcp is one MCP server that loads every Canli Capital server in one process. The model sees three tools, find_tool, describe_tool and run_tool, and behind them sit 306 tools for quant finance, backtest validation, SEC filings and fundamentals, ownership, funds, options, the Fed, economic data, prices and paper trading.",
    "link": {
     "href": "/mcp-servers",
     "text": "See every server it combines."

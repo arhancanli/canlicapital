@@ -41,7 +41,7 @@ test("the headline figures on the homepage are the published ones", () => {
   const closed = leaderboard.rows.find((r) => r.model === "gpt-5.4-mini").closed;
   const openbb = h2h.context.rows.find((r) => r.arm === "openbb" && r.tools === r.reaches);
   const pct = (x) => `${Math.round(x * 100)}%`;
-  for (const figure of [pct(ours.common.accuracy), pct(best.common.accuracy), `${closed.numbers_given} numbers`, pct(closed.numbers_wrong), "1,056 tools", "432,001 tokens", "859 tokens", "285"]) {
+  for (const figure of [pct(ours.common.accuracy), pct(best.common.accuracy), `${closed.numbers_given} numbers`, pct(closed.numbers_wrong), "1,056 tools", "432,001 tokens", "859 tokens", String(h2h.flagship.tools)]) {
     assert.ok(text.includes(figure), figure);
   }
   assert.equal(openbb.tools, 1056);
