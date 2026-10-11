@@ -18,6 +18,16 @@ The first 0.2 release on npm: 0.2.0's tools, and a fix for answers that were wro
   currencies, crypto and stocks, world_economy for other countries, or a FRED id.
 - Fix: "gold price" pointed at FRED's LBMA gold series, which FRED withdrew in 2022, so it failed.
   Gold is `price_history`'s (COMEX gold futures).
+- Fix: company names went straight to EDGAR's entity search, which knows every filer. "facebook"
+  was Denny Hill/Facebook LLC, "jp morgan" JP Morgan AG, "jpmorgan chase" a JPMorgan entity that
+  is not the listed company, and "google" an old Google Inc. with no filings since. A name is now
+  looked for first among listed companies: the largest whose registered name starts with it, with
+  the others that matched listed. Then come names people use for them (Google is Alphabet,
+  Facebook is Meta), and then EDGAR's search. Fund managers known by a short name go to the filer
+  of their 13Fs: Vanguard, Fidelity (FMR), Citadel Advisors, D. E. Shaw, Bridgewater, Renaissance,
+  Two Sigma, Millennium, Point72, Elliott, Pershing Square, Tiger Global, Soros, ARK, Baupost and
+  Lone Pine.
+- A company's ticker is its common shares (F, not F-PD; GOOGL, not GOOGM).
 - `economic_series` knows more series by name. All were checked live on FRED on 2026-10-11:
   - prices: PPI, Michigan inflation expectations, 5-year breakeven inflation;
   - jobs and income: continuing claims, the quits rate, average hourly earnings, labour force
