@@ -2,12 +2,29 @@
 
 ## Unreleased
 
+- Fix: `event_study` took filing times from the submissions file's `acceptanceDateTime`, which is
+  labelled UTC but is not reliable. Measured 2026-10-11 on 450 filings from 25 companies' files:
+  - each file was either right for every filing in it, or shifted by one US Eastern offset (+4 h
+    in daylight time, +5 h in standard time);
+  - the same filing read differently in two files (Apple's and its director's);
+  - the shifted files were the ones rebuilt since early October 2026;
+  - edgartools#1501 also saw files that give Eastern time labelled UTC.
+
+  Day 0 turns on the 16:00 close, so a filing could land on the wrong day. With today's +1 shift
+  that happens only to afternoon filings: 1 of 31 JPMorgan 8-Ks since 2025, and none of 55 NVIDIA
+  insider sales. In a file that labels Eastern time as UTC, every release after the close would
+  fall on its own day.
+
+  Event times are now calibrated per file against the filing index page's "Accepted" time (the
+  newest and oldest event; 2 extra requests). If the two disagree, each event is read from its own
+  index page. The result says which was done (`event_times`).
+
 - New tool `earnings_calendar`: earnings dates from the companies' own 8-Ks under Item 2.02 (results
   of operations).
   - For a company: its recent results releases, the quarter each covered (from its 10-Q and 10-K
     period ends), and whether each came before the open or after the close. The time is EDGAR's
     acceptance time from the filing index, in Eastern time; the submissions API's
-    `acceptanceDateTime` is offset by twice the Eastern offset and is not used.
+    `acceptanceDateTime` is not used (see the `event_study` fix below).
   - The next release is estimated 52 weeks after the one that followed the same quarter a year
     earlier, with a window from how far the company's dates have moved year on year, and marked
     upcoming, due now or late.
