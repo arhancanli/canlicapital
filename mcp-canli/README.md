@@ -66,6 +66,23 @@ tool list):
   to read the labels and type them into the next call.
 - **Shorter numbers when they are enough.** `digits: 5` rounds every result.
 
+## Workflows as prompts
+
+Clients that show MCP prompts (Claude Desktop and Claude Code list them as slash commands) offer five
+workflows. Each one runs a single batched `run_tool` call and says what to write from the results:
+
+| prompt | asks for | runs |
+|---|---|---|
+| `company_brief` | a ticker | company report, 8-K news with press-release headlines, next earnings date, insider trades, short interest, options-implied move |
+| `earnings_preview` | a ticker | earnings date and timing, the move options price in, past reactions to results (event study), recent results headlines, revenue by segment |
+| `macro_snapshot` | nothing | the Fed's latest decision and projections, the next two weeks' key releases, CPI, core PCE, unemployment, the Treasury curve, the VIX futures curve |
+| `ownership` | a ticker | 5% holders and activists, insider buying and selling, short interest |
+| `backtest_check` | a returns file | deflated Sharpe for the variants tried, the track record needed, then leakage and placebo plans |
+
+A prompt is offered only when every tool it names is in an enabled pack (`CANLI_PACKS`,
+`CANLI_OFFLINE`), and `test/prompts.test.mjs` checks each call against its tool's own schema.
+Prompts add nothing to a request's context until one is chosen.
+
 ## An agent, end to end
 
 The same model (gpt-5.4-mini) answered seven tasks twice each:
