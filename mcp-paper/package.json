@@ -1,0 +1,40 @@
+{
+  "name": "canli-paper-trading-mcp",
+  "version": "0.1.0",
+  "description": "MCP server that sends orders to your Alpaca paper account only after a pre-trade check and a confirmation token: account, preview, send, rebalance to target weights, and a hash-chained local log of every order. Paper only; live keys are refused.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "canli-paper-trading-mcp": "src/server.mjs"
+  },
+  "engines": {
+    "node": ">=20.10"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.3.1",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.3.1"
+  },
+  "mcpName": "io.github.arhancanli/canli-paper-trading-mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arhancanli/canlicapital.git",
+    "directory": "mcp-paper"
+  },
+  "homepage": "https://canlicapital.com/developers",
+  "bugs": {
+    "url": "https://github.com/arhancanli/canlicapital/issues"
+  },
+  "keywords": ["mcp", "mcp-server", "model-context-protocol", "paper-trading", "alpaca", "trading", "pre-trade-checks", "risk-limits", "kill-switch", "rebalancing"]
+}
