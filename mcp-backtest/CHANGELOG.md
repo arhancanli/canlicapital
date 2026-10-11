@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 0.1.1
+
+- Installable on its own. 0.1.0 was published with `canli-validation-mcp` declared as
+  `file:../mcp`, a path that exists only inside this repository, so a standalone install could not
+  load the server. 0.1.1 depends on the published `canli-validation-mcp@^0.14.0`. No code changes.
+
 ## 0.1.0 (2026-10-07)
 
 - First release. `pit_factor`: point-in-time factors from SEC filings (roa, gross_margin,
