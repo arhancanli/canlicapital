@@ -5,6 +5,8 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { gzipSync } from "node:zlib";
 
+import * as G from "../src/global.mjs";
+import { createSession } from "../src/sources.mjs";
 import { yahooChartUrl } from "../src/tools.mjs";
 
 const DIR = new URL("../test/fixtures/", import.meta.url);
@@ -26,6 +28,28 @@ export async function grab(url, trim) {
 // Markets beyond US stocks: a currency pair, a future, an index, a stock listed abroad in pence,
 // another in euros, and a crypto pair.
 for (const symbol of ["EURUSD=X", "CL=F", "^GSPC", "SHEL.L", "SAP.DE", "BTC-USD"]) await grab(yahooChartUrl(symbol, "2026-09-01", "2026-10-08"));
+
+// The rest are recorded by running the tools themselves at the tests' clock, so the requests are
+// exactly the ones the code makes.
+const NOW = Date.parse("2026-10-09T12:00:00Z");
+async function record(run, args) {
+  const fetchImpl = async (url, init) => {
+    const res = await fetch(url, init);
+    const text = await res.text();
+    if (res.ok && !manifest[url]) {
+      const file = `c${String(++n).padStart(3, "0")}.gz`;
+      writeFileSync(new URL(file, DIR), gzipSync(text, { level: 9 }));
+      manifest[url] = file;
+    }
+    return new Response(text, { status: res.status });
+  };
+  await run(createSession({ fetchImpl, now: () => NOW }), args);
+}
+await record(G.worldEconomy, { indicator: "inflation", countries: ["United States", "euro area", "China", "Japan", "turkey"] });
+await record(G.treasuryAuctions, { security: "10-year", limit: 6 });
+await record(G.treasuryAuctions, { security: "13-week bill", limit: 3 });
+await record(G.treasuryAuctions, { upcoming: true, limit: 5 });
+await record(G.federalDebt, {});
 
 writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
 console.log(n, "coverage responses in the manifest");

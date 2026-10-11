@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+- `price_history` covers currencies (EUR/USD), futures (crude oil, gold, Treasury futures),
+  indices and yields (S&P 500, VIX, 10 year yield), crypto (bitcoin) and stocks listed abroad
+  (SAP.DE, 7203.T, SHEL.L, 0700.HK), by symbol or plain name, and says what each price means
+  (pence in London, futures rolls, index levels). Bars stamped after the window asked for are left
+  out.
+- `world_economy`: any of the World Bank's World Development Indicators for 200+ countries and
+  regions (GDP and growth, inflation, unemployment, government debt and deficits, the current
+  account, trade, reserves), by plain words or code, as a year-by-country table.
+- `treasury_auctions`: results of Treasury bill, note, bond, TIPS and FRN auctions (clearing rate,
+  bid-to-cover, size, indirect, direct and dealer shares, which add up to the competitive amount
+  accepted) and the auctions announced next, from Treasury Fiscal Data.
+- `federal_debt`: Debt to the Penny each business day (held by the public plus intragovernmental
+  equals the total, to the cent) and the average interest rate on each type of security.
+
 ## 0.1.0
 
 First release: public market data and market-wide research from the sources themselves, 13 tools.

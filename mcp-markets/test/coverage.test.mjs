@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { createSession } from "../src/sources.mjs";
+import * as G from "../src/global.mjs";
 import * as T from "../src/tools.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
 
@@ -83,4 +84,62 @@ test("price_history: with Alpaca keys, other markets still come from Yahoo; with
   assert.ok(calls.every((c) => !String(c.url).includes("alpaca")));
   const off = session({ ...keys, CANLI_KEYLESS_PRICES: "0" });
   await assert.rejects(T.priceHistory(off.s, { symbol: "gold", ...window }), /GC=F is not a US-listed stock.*CANLI_KEYLESS_PRICES=0/);
+});
+
+test("world_economy: inflation by plain words for countries named as people say them, with each one's latest year", async () => {
+  const { s } = session();
+  const r = await G.worldEconomy(s, { indicator: "inflation", countries: ["United States", "euro area", "China", "Japan", "turkey"] });
+  assert.equal(r.indicator.id, "FP.CPI.TOTL.ZG");
+  assert.equal(r.indicator.name, "Inflation, consumer prices (annual %)");
+  assert.equal(r.matched_from, "inflation");
+  assert.deepEqual(r.columns, ["year", "USA", "EMU", "CHN", "JPN", "TUR"]);
+  assert.deepEqual(r.latest.rows.map((x) => x.slice(0, 3)), [["USA", "United States", 2024], ["EMU", "Euro area", 2025], ["CHN", "China", 2025], ["JPN", "Japan", 2025], ["TUR", "Turkiye", 2025]]);
+  assert.equal(r.latest.rows[4][3], 34.88117);
+  assert.deepEqual(r.rows[0], [2016, 1.261583, 0.14881, 2.000002, -0.127259, 7.775134]);
+  assert.equal(r.rows.at(-1)[1], null, "the US 2025 figure is not yet published");
+  assert.match(r.source, /locations=US-XC-CN-JP-TR$/);
+});
+
+test("world_economy: a place the World Bank does not cover says so", async () => {
+  const { s } = session();
+  await assert.rejects(G.worldEconomy(s, { indicator: "inflation", countries: ["Taiwan"] }), /not a World Bank member/);
+  await assert.rejects(G.worldEconomy(s, { indicator: "favourite colour", countries: ["US"] }), /No common indicator/);
+});
+
+test("treasury_auctions: the 10-year includes its reopenings; bidder shares add up to the competitive amount", async () => {
+  const { s } = session();
+  const r = await G.treasuryAuctions(s, { security: "10-year", limit: 6 });
+  assert.equal(r.rate_is, "yield, percent");
+  assert.deepEqual(r.rows.map((x) => x[0]), ["2026-10-07", "2026-09-09", "2026-08-12", "2026-07-08", "2026-06-10", "2026-05-12"]);
+  assert.equal(r.rows[0][1], "9-Year 10-Month Note (reopening)");
+  assert.equal(r.rows[2][1], "10-Year Note");
+  const [, , cusip, high, coupon, btc, offering, accepted, indirect, direct, dealer, hm] = r.rows[0];
+  assert.deepEqual([cusip, high, coupon, btc, offering, accepted, hm], ["91282CRF0", 5.3, 4.625, 2.77, 39000000000, 39926321900, 4.5]);
+  for (const x of r.rows) assert.ok(Math.abs(x[8] + x[9] + x[10] - 1) <= 0.0002, `${x[0]} shares ${x[8]} + ${x[9]} + ${x[10]}`);
+  assert.deepEqual([indirect, direct, dealer], [0.8034, 0.1712, 0.0254]);
+  assert.deepEqual(r.averages, { bid_to_cover: 2.595, indirect_share: 0.7665, over_auctions: 6 });
+});
+
+test("treasury_auctions: bills clear at their investment rate; upcoming auctions come soonest first, after today", async () => {
+  const { s } = session();
+  const b = await G.treasuryAuctions(s, { security: "13-week bill", limit: 3 });
+  assert.equal(b.rate_is, "investment rate (bond-equivalent yield), percent");
+  assert.deepEqual(b.rows[0].slice(0, 6), ["2026-10-05", "13-Week Bill (reopening)", "912797VS3", 4.149, null, 2.51]);
+  const u = await G.treasuryAuctions(s, { upcoming: true, limit: 5 });
+  assert.equal(u.upcoming, true);
+  assert.ok(u.rows.every((x) => x[0] > "2026-10-09"));
+  assert.deepEqual(u.rows[0].slice(0, 4), ["2026-10-13", "6-Week Bill (reopening)", "912797SU2", 95000000000]);
+  assert.throws(() => G.parseSecurity("apples"), /names no Treasury security/);
+});
+
+test("federal_debt: a year of Debt to the Penny; held by the public plus intragovernmental is the total, to the cent", async () => {
+  const { s } = session();
+  const r = await G.federalDebt(s, {});
+  assert.deepEqual(r.latest, { date: "2026-10-08", total: 40305316210829.72, held_by_public: 32454086117711.32, intragovernmental: 7851230093118.4 });
+  assert.equal(r.frequency, "daily");
+  assert.equal(r.rows.length, 251);
+  for (const [d, total, pub, intra] of r.rows) assert.ok(Math.abs(pub + intra - total) < 0.011, d);
+  assert.deepEqual(r.change, { from: "2025-10-09", to: "2026-10-08", total: 2421385798367.33, total_pct: 0.063916 });
+  assert.equal(r.average_interest_rates.month, "2026-09-30");
+  assert.deepEqual(r.average_interest_rates.rows.find((x) => x[1] === "Total Marketable"), ["Marketable", "Total Marketable", 3.518]);
 });

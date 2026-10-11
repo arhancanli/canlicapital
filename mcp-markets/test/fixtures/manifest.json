@@ -99,5 +99,13 @@
  "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC?period1=1788220800&period2=1791503999&interval=1d&events=div%2Csplit&includeAdjustedClose=true": "c003.gz",
  "https://query1.finance.yahoo.com/v8/finance/chart/SHEL.L?period1=1788220800&period2=1791503999&interval=1d&events=div%2Csplit&includeAdjustedClose=true": "c004.gz",
  "https://query1.finance.yahoo.com/v8/finance/chart/SAP.DE?period1=1788220800&period2=1791503999&interval=1d&events=div%2Csplit&includeAdjustedClose=true": "c005.gz",
- "https://query1.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1788220800&period2=1791503999&interval=1d&events=div%2Csplit&includeAdjustedClose=true": "c006.gz"
+ "https://query1.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1788220800&period2=1791503999&interval=1d&events=div%2Csplit&includeAdjustedClose=true": "c006.gz",
+ "https://api.worldbank.org/v2/country?format=json&per_page=400": "c007.gz",
+ "https://api.worldbank.org/v2/country/USA;EMU;CHN;JPN;TUR/indicator/FP.CPI.TOTL.ZG?format=json&date=2016:2026&per_page=20000": "c008.gz",
+ "https://api.worldbank.org/v2/indicator/FP.CPI.TOTL.ZG?format=json": "c009.gz",
+ "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/auctions_query?filter=auction_date:gte:2026-04-12,auction_date:lte:2026-10-09,original_security_term:eq:10-Year,inflation_index_security:eq:No,floating_rate:eq:No&sort=-auction_date&page[size]=18": "c010.gz",
+ "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/auctions_query?filter=auction_date:gte:2026-04-12,auction_date:lte:2026-10-09,security_type:eq:Bill,security_term:eq:13-Week&sort=-auction_date&page[size]=9": "c011.gz",
+ "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/auctions_query?filter=auction_date:gt:2026-10-09&sort=auction_date&page[size]=5": "c012.gz",
+ "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny?filter=record_date:gte:2025-10-09,record_date:lte:2026-10-09&sort=record_date&page[size]=10000": "c013.gz",
+ "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/avg_interest_rates?filter=record_date:lte:2026-10-09&sort=-record_date&page[size]=40": "c014.gz"
 }

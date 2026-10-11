@@ -1,7 +1,7 @@
 # canli-markets-mcp
 
 Public market data for AI agents, read from the sources themselves: SEC EDGAR, the US Treasury,
-FRED and prices, with no key and no account. Every
+FRED, the World Bank and prices for stocks, currencies, futures, indices and crypto, with no key and no account. Every
 request goes from your machine straight to the source, and every result names the URL it came
 from, so an agent can cite it.
 
@@ -48,7 +48,10 @@ received and when, so any figure can be checked against the same document later.
 | `fund_holdings` | What a fund holds, its weights, and what it bought and sold last quarter | 13F |
 | `treasury_yields` | The Treasury curve (nominal, real, bills) for a day or a range | US Treasury |
 | `economic_series` | Any FRED series by id or words ("core inflation"), as levels, changes or year-over-year | FRED |
-| `price_history` | Daily to monthly bars, adjusted, with dividends and splits, as columns | Yahoo Finance (no key), or Alpaca or Tiingo (your key) |
+| `price_history` | Daily to monthly bars for stocks in the US and abroad, currencies, futures, indices and crypto, adjusted, with dividends and splits, as columns | Yahoo Finance (no key), or Alpaca or Tiingo (your key) for US stocks |
+| `treasury_auctions` | How each Treasury auction went (yield, bid-to-cover, who bought) and which auctions come next | US Treasury Fiscal Data |
+| `federal_debt` | The US debt each business day, and the average rate the Treasury pays on it | US Treasury Fiscal Data |
+| `world_economy` | Any country's economy: GDP and growth, inflation, unemployment, debt, deficits, trade, reserves, for 200+ countries and regions | World Bank (CC BY 4.0) |
 
 Examples an agent can now answer in one or two calls: "What are the new risk factors in Nvidia's
 latest 10-K?", "Did any Tesla insider buy shares on the open market this year?", "What did
