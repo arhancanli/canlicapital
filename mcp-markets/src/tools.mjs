@@ -462,8 +462,44 @@ export async function economicSeries(session, args) {
 // ---------------------------------------------------------------------------------------------
 // price_history (the user's Alpaca or Tiingo key)
 // ---------------------------------------------------------------------------------------------
+// Markets beyond US stocks, by the names people use, as Yahoo's codes: =X currency pairs, =F
+// continuous front-month futures, ^ indices and yields, -USD crypto, and exchange suffixes for
+// stocks listed outside the US (SAP.DE, 7203.T, SHEL.L, 0700.HK).
+export const MARKET_SYMBOLS = Object.freeze({
+  "s&p 500": "^GSPC", "s&p500": "^GSPC", "spx": "^GSPC", "nasdaq": "^IXIC", "nasdaq composite": "^IXIC", "nasdaq 100": "^NDX", "dow": "^DJI", "dow jones": "^DJI",
+  "russell 2000": "^RUT", "vix": "^VIX", "ftse 100": "^FTSE", "dax": "^GDAXI", "cac 40": "^FCHI", "euro stoxx 50": "^STOXX50E", "nikkei": "^N225", "nikkei 225": "^N225",
+  "hang seng": "^HSI", "shanghai composite": "000001.SS", "sensex": "^BSESN", "nifty 50": "^NSEI", "kospi": "^KS11", "tsx": "^GSPTSE", "asx 200": "^AXJO",
+  "13 week yield": "^IRX", "5 year yield": "^FVX", "10 year yield": "^TNX", "30 year yield": "^TYX", "dollar index": "DX-Y.NYB", "dxy": "DX-Y.NYB",
+  "crude oil": "CL=F", "oil": "CL=F", "wti": "CL=F", "brent": "BZ=F", "natural gas": "NG=F", "gasoline": "RB=F", "heating oil": "HO=F",
+  "gold": "GC=F", "silver": "SI=F", "copper": "HG=F", "platinum": "PL=F", "palladium": "PA=F",
+  "corn": "ZC=F", "wheat": "ZW=F", "soybeans": "ZS=F", "coffee": "KC=F", "sugar": "SB=F", "cocoa": "CC=F", "cotton": "CT=F", "live cattle": "LE=F", "lean hogs": "HE=F",
+  "s&p 500 futures": "ES=F", "nasdaq 100 futures": "NQ=F", "dow futures": "YM=F", "russell 2000 futures": "RTY=F",
+  "2 year note futures": "ZT=F", "10 year note futures": "ZN=F", "30 year bond futures": "ZB=F",
+  "bitcoin": "BTC-USD", "ethereum": "ETH-USD", "ether": "ETH-USD", "solana": "SOL-USD", "xrp": "XRP-USD", "dogecoin": "DOGE-USD", "cardano": "ADA-USD",
+});
+const CURRENCIES = new Set("USD EUR JPY GBP CHF CAD AUD NZD CNY CNH HKD SGD SEK NOK DKK PLN CZK HUF TRY ZAR MXN BRL INR KRW TWD THB IDR MYR PHP ILS SAR AED RUB CLP COP PEN ARS".split(" "));
+const CRYPTO = new Set("BTC ETH SOL XRP DOGE ADA AVAX DOT LINK LTC BCH TRX MATIC POL SHIB XLM ATOM UNI ETC NEAR".split(" "));
+
+// The Yahoo code for what was asked, and whether it is a US-listed stock or ETF (which Alpaca and
+// Tiingo also serve) or another market (Yahoo only).
+export function resolveSymbol(input) {
+  const raw = String(input).trim();
+  const named = MARKET_SYMBOLS[raw.toLowerCase().replace(/\s+/g, " ").replace(/-(?=year|week)/, " ")];
+  const s = (named ?? raw).toUpperCase().replace(/^\$/, "");
+  const from = named || s !== raw.toUpperCase() ? { resolved_from: raw } : {};
+  const pair = s.match(/^([A-Z]{3,5})[/ ]?([A-Z]{3})$/);
+  if (pair && CRYPTO.has(pair[1]) && ["USD", "EUR", "GBP", "JPY"].includes(pair[2]) && (s.includes("/") || s.includes(" "))) return { symbol: `${pair[1]}-${pair[2]}`, us_listed: false, resolved_from: raw };
+  if (pair && CURRENCIES.has(pair[1]) && CURRENCIES.has(pair[2]) && pair[1].length === 3) return { symbol: `${pair[1]}${pair[2]}=X`, us_listed: false, resolved_from: raw };
+  // BRK.B is a US share class (BRK-B to Yahoo); SAP.DE or 7203.T is a market suffix and stays.
+  const shareClass = s.match(/^([A-Z]{1,5})[.-]([ABC])$/);
+  if (shareClass) return { symbol: `${shareClass[1]}.${shareClass[2]}`, us_listed: true, ...from };
+  const usListed = /^[A-Z]{1,5}$/.test(s);
+  return { symbol: s, us_listed: usListed, ...from };
+}
+
 export const priceInput = z.object({
-  symbol: z.string().regex(/^[A-Za-z0-9.\-/^]{1,15}$/, "a ticker such as AAPL or BRK.B").describe("Ticker, for example AAPL."),
+  symbol: z.string().min(1).max(40).regex(/^[A-Za-z0-9 .\-/^=&$]+$/, "a ticker or market such as AAPL, BRK.B, SAP.DE, EUR/USD, gold or S&P 500")
+    .describe("A ticker (AAPL, BRK.B), a stock listed abroad with its market suffix (SAP.DE, 7203.T, SHEL.L, 0700.HK), a currency pair (EUR/USD), a future (CL=F, or \"crude oil\", \"gold\"), an index (^GSPC, or \"S&P 500\", \"VIX\", \"10 year yield\") or a crypto pair (BTC/USD, or \"bitcoin\")."),
   start: DATE.optional().describe("First date; default one year ago."),
   end: DATE.optional().describe("Last date; default today."),
   interval: z.enum(["1Day", "1Week", "1Month", "1Hour"]).optional().describe("Bar size; default 1Day (1Hour needs Alpaca)."),
@@ -484,7 +520,7 @@ function priceProvider(env) {
 // "close" there is split-adjusted; "adjclose" also adjusts for dividends, and open, high and low are
 // scaled by the same ratio when adjusted bars are asked for.
 export function yahooChartUrl(symbol, start, end, interval = "1Day") {
-  const sym = symbol.replace(/\./g, "-");
+  const sym = symbol.replace(/^([A-Z]{1,5})\.([ABC])$/, "$1-$2");
   const iv = { "1Day": "1d", "1Week": "1wk", "1Month": "1mo", "1Hour": "1h" }[interval];
   const p1 = Math.floor(Date.parse(`${start}T00:00:00Z`) / 1000), p2 = Math.floor(Date.parse(`${end}T23:59:59Z`) / 1000);
   return `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?period1=${p1}&period2=${p2}&interval=${iv}&events=div%2Csplit&includeAdjustedClose=true`;
@@ -500,7 +536,9 @@ async function yahooBars(session, symbol, { start, end, interval, adjusted }) {
   const stamp = (t) => new Date(t * 1000 + off).toISOString().slice(0, interval === "1Hour" ? 16 : 10);
   const bars = [], adjCloses = [];
   res.timestamp.forEach((t, i) => {
-    if (q.close[i] == null) return;
+    // A session that opens before midnight UTC (currencies, crypto, Asian markets) is stamped with
+    // its local date, which can fall after the window asked for.
+    if (q.close[i] == null || stamp(t).slice(0, 10) > end || stamp(t).slice(0, 10) < start) return;
     const k = adjusted && adj && adj[i] != null && q.close[i] ? adj[i] / q.close[i] : 1;
     const f = (v) => (v == null ? null : round(v * k, 4));
     bars.push([stamp(t), f(q.open[i]), f(q.high[i]), f(q.low[i]), f(q.close[i]), q.volume[i]]);
@@ -509,13 +547,32 @@ async function yahooBars(session, symbol, { start, end, interval, adjusted }) {
   const ev = res.events ?? {};
   const dividends = Object.values(ev.dividends ?? {}).sort((a, b) => a.date - b.date).map((d) => [stamp(d.date).slice(0, 10), d.amount]);
   const splits = Object.values(ev.splits ?? {}).sort((a, b) => a.date - b.date).map((d) => [stamp(d.date).slice(0, 10), `${d.numerator}:${d.denominator}`]);
-  return { bars, adjCloses, dividends, splits, currency: res.meta.currency ?? null, exchange: res.meta.fullExchangeName ?? res.meta.exchangeName ?? null };
+  return { bars, adjCloses, dividends, splits, currency: res.meta.currency ?? null, exchange: res.meta.fullExchangeName ?? res.meta.exchangeName ?? null, kind: res.meta.instrumentType ?? null, name: res.meta.longName ?? res.meta.shortName ?? null };
+}
+
+// What a price means for each kind of market Yahoo reports.
+const KIND_NOTES = Object.freeze({
+  CURRENCY: "A currency pair: the price is units of the second currency per one of the first (EURUSD=X is US dollars per euro). Volume is not reported for currencies.",
+  FUTURE: "A continuous front-month futures series: it rolls to the next contract as each one expires, so jumps at the rolls are not price moves, and there are no dividends.",
+  INDEX: "An index level, not a tradable price: no dividends, and price indices leave dividends out of the return. ^TNX, ^FVX and ^TYX are yields in percent; ^IRX is the 13-week bill rate.",
+  CRYPTOCURRENCY: "A crypto pair quoted by Yahoo from aggregated venues; it trades every day, weekends included.",
+});
+function kindOut(y) {
+  const pence = y.currency === "GBp" || y.currency === "ZAc" || y.currency === "ILA";
+  const notes = [KIND_NOTES[y.kind], pence ? `Prices are in ${y.currency}, hundredths of the currency (pence for GBp): divide by 100 for ${y.currency === "GBp" ? "pounds" : "the main unit"}.` : null].filter(Boolean);
+  return { ...(y.kind ? { asset_class: y.kind.toLowerCase() } : {}), ...(y.name ? { name: y.name } : {}), ...(notes.length ? { notes } : {}) };
 }
 export async function priceHistory(session, args) {
   const a = priceInput.parse(args);
-  const p = priceProvider(session.env);
-  if (!p) throw new Error("Keyless prices are off (CANLI_KEYLESS_PRICES=0). Set ALPACA_API_KEY_ID and ALPACA_API_SECRET_KEY (a free Alpaca account; paper keys work) or TIINGO_API_KEY, or pass prices to the analysis tools as a CSV file.");
-  const symbol = a.symbol.toUpperCase();
+  const want = resolveSymbol(a.symbol);
+  let p = priceProvider(session.env);
+  // Alpaca and Tiingo serve US-listed stocks and ETFs here; currencies, futures, indices, crypto
+  // and stocks listed abroad come from Yahoo's chart data unless keyless prices are turned off.
+  if (p && p.name !== "yahoo" && !want.us_listed) p = priceProvider({ ...session.env, ALPACA_API_KEY_ID: "", APCA_API_KEY_ID: "", ALPACA_PAPER_KEY_ID: "", TIINGO_API_KEY: "" });
+  if (!p) throw new Error(want.us_listed
+    ? "Keyless prices are off (CANLI_KEYLESS_PRICES=0). Set ALPACA_API_KEY_ID and ALPACA_API_SECRET_KEY (a free Alpaca account; paper keys work) or TIINGO_API_KEY, or pass prices to the analysis tools as a CSV file."
+    : `${want.symbol} is not a US-listed stock, and its prices come only from Yahoo's chart data, which is off (CANLI_KEYLESS_PRICES=0).`);
+  const symbol = want.symbol;
   const start = a.start ?? daysAgo(session, 365), end = a.end ?? today(session);
   const interval = a.interval ?? "1Day", adjusted = a.adjusted !== false;
   let bars = [], adjCloses = null;
@@ -524,7 +581,7 @@ export async function priceHistory(session, args) {
     const y = await yahooBars(session, symbol, { start, end, interval, adjusted });
     bars = y.bars;
     adjCloses = y.adjCloses;
-    extra = { currency: y.currency, exchange: y.exchange, dividends: y.dividends, splits: y.splits };
+    extra = { currency: y.currency, exchange: y.exchange, ...kindOut(y), dividends: y.dividends, splits: y.splits };
     source = "Yahoo Finance chart data (no key)";
   } else if (p.name === "alpaca") {
     let token = null, pages = 0;
@@ -542,7 +599,7 @@ export async function priceHistory(session, args) {
     if (interval === "1Hour") throw new Error("1Hour bars need Alpaca; Tiingo's end-of-day prices are daily.");
     const freq = { "1Day": "daily", "1Week": "weekly", "1Month": "monthly" }[interval];
     const q = new URLSearchParams({ startDate: start, endDate: end, resampleFreq: freq });
-    const r = await getJson(session, `https://api.tiingo.com/tiingo/daily/${encodeURIComponent(symbol)}/prices?${q}`, { headers: { Authorization: `Token ${p.key}` }, secret: true });
+    const r = await getJson(session, `https://api.tiingo.com/tiingo/daily/${encodeURIComponent(symbol.replace(".", "-"))}/prices?${q}`, { headers: { Authorization: `Token ${p.key}` }, secret: true });
     for (const b of r ?? []) bars.push(adjusted ? [b.date.slice(0, 10), b.adjOpen, b.adjHigh, b.adjLow, b.adjClose, b.adjVolume] : [b.date.slice(0, 10), b.open, b.high, b.low, b.close, b.volume]);
     adjCloses = (r ?? []).map((b) => b.adjClose ?? null);
     source = "Tiingo end-of-day prices";
@@ -560,7 +617,7 @@ export async function priceHistory(session, args) {
     ...(a0 && a1 ? {} : { total_return_note: "needs dividend-adjusted closes, which this source did not return for these settings" }),
   };
   return {
-    symbol, interval, adjusted, start: bars[0][0], end: bars[bars.length - 1][0], count: bars.length, change,
+    symbol, ...(want.resolved_from ? { resolved_from: want.resolved_from } : {}), interval, adjusted, start: bars[0][0], end: bars[bars.length - 1][0], count: bars.length, change,
     ...(rets ? { returns: rets, returns_dates: bars.slice(1).map((b) => b[0]) } : {}),
     dates: bars.map((b) => b[0]), open: bars.map((b) => b[1]), high: bars.map((b) => b[2]), low: bars.map((b) => b[3]), close: bars.map((b) => b[4]), volume: bars.map((b) => b[5]),
     ...extra,
