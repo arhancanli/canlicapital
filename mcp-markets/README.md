@@ -1,7 +1,7 @@
 # canli-markets-mcp
 
 Public market data for AI agents, read from the sources themselves: SEC EDGAR, the US Treasury,
-FRED and prices, with no key and no account. Every
+FRED, the World Bank and prices for stocks, currencies, futures, indices and crypto, with no key and no account. Every
 request goes from your machine straight to the source, and every result names the URL it came
 from, so an agent can cite it.
 
@@ -44,11 +44,29 @@ received and when, so any figure can be checked against the same document later.
 | `list_filings` | What has it filed: by form and date, with links | SEC |
 | `read_filing` | What does the filing say: one 10-K/10-Q item ("risk factors", "md&a"), an 8-K press release (`EX-99.1`), paged | SEC |
 | `search_filings` | Which filings mention a phrase, since 2001 | EDGAR full-text search |
+| `company_events` | A company's news from its 8-Ks (earnings, deals, executive changes, restatements, bankruptcies, cyber incidents) in the filing's own words; or one kind of event across the market | Form 8-K |
+| `segment_revenue` | Where revenue comes from: by segment (with operating income), product and region, three years, checked against total revenue | 10-K/10-Q XBRL |
 | `insider_trades` | Who inside bought or sold, at what price, under a 10b5-1 plan or not | Form 4 |
-| `fund_holdings` | What a fund holds, its weights, and what it bought and sold last quarter | 13F |
+| `fund_holdings` | What a fund manager holds, its weights, and what it bought and sold last quarter | 13F |
+| `investment_advisers` | Who an investment adviser is: registration, offices, other names, disclosure flags, Form ADV and brochures | SEC Form ADV (IAPD) |
+| `large_holders` | Who owns more than 5 percent, passive (13G) or activist (13D, with its stated purpose); or the week's new activist stakes across the market | Schedules 13D and 13G |
+| `private_offerings` | Who is raising private money (startups, private equity, hedge and real estate funds): amount sold, investors, exemption, people | Form D |
+| `fails_to_deliver` | Shares that failed to settle for a stock over the last month, or the largest fails across the market | SEC fails-to-deliver data |
+| `off_exchange_volume` | How much of a stock trades in dark pools and with other off-exchange dealers each week, and where | FINRA OTC transparency |
+| `short_interest` | How heavily a stock is shorted (shares short, days to cover, share of shares outstanding), or the market's most shorted | FINRA |
+| `futures_positioning` | Who is long and short in a futures market (managed money, dealers, asset managers, leveraged funds) and how crowded | CFTC Commitments of Traders |
+| `executive_pay` | What executives are paid against how the company did (reported and actually-paid pay, TSR vs peers), five years; or CEO pay ranked across the market | Proxy pay-versus-performance XBRL |
+| `index_constituents` | The members of the S&P 500, Nasdaq 100, Russell 2000 and other indexes, with weights | N-PORT of a tracking ETF |
+| `fund_portfolio` | What a mutual fund or ETF holds (VOO, IVV, AGG): every position, exposures, a bond fund's coupon and maturity, monthly returns and money in and out | Form N-PORT |
+| `economic_calendar` | When the data comes out: BLS, BEA, Census and FOMC release dates and times, the market-moving ones flagged | The agencies' own schedules |
+| `fomc` | The Fed's decisions for a year (action, target range, vote and dissenters), the latest statement and the dot-plot medians | Federal Reserve |
 | `treasury_yields` | The Treasury curve (nominal, real, bills) for a day or a range | US Treasury |
 | `economic_series` | Any FRED series by id or words ("core inflation"), as levels, changes or year-over-year | FRED |
-| `price_history` | Daily to monthly bars, adjusted, with dividends and splits, as columns | Yahoo Finance (no key), or Alpaca or Tiingo (your key) |
+| `price_history` | Daily to monthly bars for stocks in the US and abroad, currencies, futures, indices and crypto, adjusted, with dividends and splits, as columns | Yahoo Finance (no key), or Alpaca or Tiingo (your key) for US stocks |
+| `treasury_auctions` | How each Treasury auction went (yield, bid-to-cover, who bought) and which auctions come next | US Treasury Fiscal Data |
+| `federal_debt` | The US debt each business day, and the average rate the Treasury pays on it | US Treasury Fiscal Data |
+| `economic_outlook` | The OECD's projections for the next two years: growth, inflation, unemployment, deficits, debt, current account, rates | OECD Economic Outlook |
+| `world_economy` | Any country's economy: GDP and growth, inflation, unemployment, debt, deficits, trade, reserves, for 200+ countries and regions | World Bank (CC BY 4.0) |
 
 Examples an agent can now answer in one or two calls: "What are the new risk factors in Nvidia's
 latest 10-K?", "Did any Tesla insider buy shares on the open market this year?", "What did

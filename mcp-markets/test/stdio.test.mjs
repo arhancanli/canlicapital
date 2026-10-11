@@ -15,12 +15,12 @@ async function connect() {
   return c;
 }
 
-test("thirteen tools, byte-identical across launches, all read-only", async () => {
+test("thirty-one tools, byte-identical across launches, all read-only", async () => {
   const lists = [];
   for (let i = 0; i < 2; i++) { const c = await connect(); lists.push(JSON.stringify(await c.listTools())); await c.close(); }
   assert.equal(lists[0], lists[1]);
   const tools = JSON.parse(lists[0]).tools;
-  assert.deepEqual(tools.map((t) => t.name).sort(), ["company_profile", "company_report", "economic_series", "event_study", "fund_holdings", "insider_trades", "list_filings", "mentions_trend", "price_history", "read_filing", "screen_companies", "search_filings", "treasury_yields"]);
+  assert.deepEqual(tools.map((t) => t.name).sort(), ["company_events", "company_profile", "company_report", "economic_calendar", "economic_outlook", "economic_series", "event_study", "executive_pay", "fails_to_deliver", "federal_debt", "fomc", "fund_holdings", "fund_portfolio", "futures_positioning", "index_constituents", "insider_trades", "investment_advisers", "large_holders", "list_filings", "mentions_trend", "off_exchange_volume", "price_history", "private_offerings", "read_filing", "screen_companies", "search_filings", "segment_revenue", "short_interest", "treasury_auctions", "treasury_yields", "world_economy"]);
   for (const t of tools) {
     assert.equal(t.annotations.readOnlyHint, true, t.name);
     assert.equal(t.annotations.openWorldHint, true, t.name);
@@ -45,4 +45,37 @@ test("bad input and an unknown symbol come back as tool errors that say what to 
   const unknown = await c.callTool({ name: "price_history", arguments: { symbol: "ZZZZNOPE", start: "2026-01-01", end: "2026-02-01" } });
   assert.equal(unknown.isError, true);
   assert.match(unknown.content[0].text, /no prices for ZZZZNOPE/);
+});
+
+// Every tool this release adds, over stdio on the captured responses: the server checks each result
+// against the tool's output schema, so a mismatch fails here, not for a user. Arguments pin the dates
+// the fixtures were captured for (the spawned server runs on the real clock).
+const NEW_TOOL_CALLS = [
+  ["price_history", { symbol: "EUR/USD", start: "2026-09-01", end: "2026-10-08" }],
+  ["world_economy", { indicator: "inflation", countries: ["United States", "euro area", "China", "Japan", "turkey"] }],
+  ["economic_outlook", { countries: ["United States", "euro area", "China", "Japan", "world"] }],
+  ["treasury_auctions", { security: "10-year", limit: 6, since: "2026-04-12", until: "2026-10-09" }],
+  ["federal_debt", { start: "2025-10-09", end: "2026-10-09" }],
+  ["fund_portfolio", { fund: "IVV", top: 3 }],
+  ["index_constituents", { index: "S&P 500", limit: 3 }],
+  ["large_holders", { company: "21344" }],
+  ["company_events", { company: "AAPL", event: "executive_change", since: "2025-01-01", limit: 3 }],
+  ["private_offerings", { company: "2159753" }],
+  ["short_interest", { symbol: "GME" }],
+  ["futures_positioning", { market: "gold" }],
+  ["fails_to_deliver", { symbol: "GME" }],
+  ["executive_pay", { company: "NVDA" }],
+  ["segment_revenue", { company: "AAPL" }],
+  ["fomc", { year: 2026 }],
+  ["economic_calendar", { since: "2026-10-12", until: "2026-10-16" }],
+  ["investment_advisers", { query: "Bridgewater Associates", limit: 4 }],
+];
+test("every tool this release adds answers over stdio within its output schema", async (t) => {
+  const c = await connect(); t.after(() => c.close());
+  for (const [name, args] of NEW_TOOL_CALLS) {
+    const r = await c.callTool({ name, arguments: args });
+    assert.ok(!r.isError, `${name}: ${r.content?.[0]?.text}`);
+    assert.deepEqual(JSON.parse(r.content[0].text), r.structuredContent, name);
+    assert.ok(r.structuredContent.evidence?.documents > 0, `${name} names the documents behind it`);
+  }
 });

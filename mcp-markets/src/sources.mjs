@@ -4,6 +4,7 @@
 import { AsyncLocalStorage } from "node:async_hooks";
 import { Buffer } from "node:buffer";
 import { createHash } from "node:crypto";
+import { inflateRawSync } from "node:zlib";
 
 import { BoundedCache } from "./bounded-cache.mjs";
 import { fetchBoundedText, ResponseReadError } from "./bounded-response.mjs";
@@ -30,13 +31,17 @@ export function createSession({ fetchImpl, env = process.env, now = () => Date.n
 }
 
 const isSec = (url) => /^https:\/\/(www|data|efts)\.sec\.gov\//.test(url);
+// The OECD's data service throttles bursts of queries with HTTP 500s: its requests are spaced
+// OECD_GAP_MS apart and retried after longer waits.
+const isOecd = (url) => url.startsWith("https://sdmx.oecd.org/");
+const OECD_GAP_MS = 1500;
 const host = (url) => new URL(url).host;
 
-// Spaces SEC requests SEC_GAP_MS apart across concurrent callers.
-async function secTurn(session) {
+// Spaces SEC requests SEC_GAP_MS apart across concurrent callers (and OECD requests OECD_GAP_MS).
+async function secTurn(session, gap = SEC_GAP_MS, key = "secNext") {
   const t = session.now();
-  const at = Math.max(t, session.secNext);
-  session.secNext = at + SEC_GAP_MS;
+  const at = Math.max(t, session[key] ?? 0);
+  session[key] = at + gap;
   if (at > t) await session.sleep(at - t);
 }
 
@@ -48,6 +53,7 @@ function fetchError(error, { url, secret, aborted, maxBytes }) {
     if (error.code === "HTTP" && error.status === 404) return new NotFound(`${where} was not found.`);
     if (error.code === "HTTP" && (error.status === 403 || error.status === 429) && isSec(url)) return new Error(`SEC refused the request (HTTP ${error.status}). SEC limits clients to 10 requests a second and asks for a contact in the User-Agent: set SEC_USER_AGENT to "Your Name you@example.com".`);
     if (error.code === "HTTP" && (error.status === 401 || error.status === 403)) return new Error(`${host(url)} refused the key (HTTP ${error.status}).`);
+    if (error.code === "HTTP" && error.status >= 500) return new Error(`${where} returned HTTP ${error.status}; the service may be busy (some throttle bursts of queries), so retry in a minute.`);
     if (error.code === "HTTP") return new Error(`${where} returned HTTP ${error.status}.`);
     if (error.code === "TOO_LARGE") return new Error(`${where} is larger than ${Math.round(maxBytes / 1048576)} MB; not read.`);
   }
@@ -64,32 +70,36 @@ function witness(session, url, record) {
   if (record) evidenceScope.getStore()?.set(url, record);
 }
 
-export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false } = {}) {
-  const hit = session.cache.lookup(url, session.now());
-  if (hit) { witness(session, url, session.hashes.get(url)); return parse(hit.text); }
+// A read-only query some sources take only as a POST body (FINRA's query API) is cached and
+// witnessed under "POST <url> <body>", so the evidence names the exact query.
+export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false, method = "GET", body } = {}) {
+  const key = method === "GET" ? url : `${method} ${url} ${body ?? ""}`;
+  const hit = session.cache.lookup(key, session.now());
+  if (hit) { witness(session, key, session.hashes.get(key)); return parse(hit.text); }
   let text;
   // Server errors are often momentary (EDGAR full-text search answered 1 request in 12 with HTTP 500
   // on 2026-10-09): retry them, and dropped connections, twice with a short backoff.
   for (let attempt = 0; ; attempt++) {
     if (isSec(url)) await secTurn(session);
+    if (isOecd(url)) await secTurn(session, OECD_GAP_MS, "oecdNext");
     const signal = AbortSignal.timeout(TIMEOUT_MS);
     try {
-      text = await fetchBoundedText(session.fetchImpl, url, { signal, maxBytes, headers: { "User-Agent": isSec(url) ? session.userAgent : PLAIN_USER_AGENT, ...headers } });
+      text = await fetchBoundedText(session.fetchImpl, url, { signal, maxBytes, method, body, headers: { "User-Agent": isSec(url) ? session.userAgent : PLAIN_USER_AGENT, ...headers } });
       break;
     } catch (error) {
       const transient = !signal.aborted && (error instanceof ResponseReadError ? error.code === "HTTP" && error.status >= 500 : true);
-      if (transient && attempt < 2) { await session.sleep(500 * 3 ** attempt); continue; }
+      if (transient && attempt < 2) { await session.sleep((isOecd(url) ? 4000 : 500) * 3 ** attempt); continue; }
       throw fetchError(error, { url, secret, aborted: signal.aborted, maxBytes });
     }
   }
   const record = { sha256: createHash("sha256").update(text).digest("hex"), bytes: Buffer.byteLength(text, "utf8"), retrieved_at: new Date(session.now()).toISOString() };
-  session.hashes.delete(url);
-  session.hashes.set(url, record);
+  session.hashes.delete(key);
+  session.hashes.set(key, record);
   if (session.hashes.size > MAX_HASHES) session.hashes.delete(session.hashes.keys().next().value);
-  witness(session, url, record);
+  witness(session, key, record);
   if (transform) text = transform(text);
   const value = parse(text);
-  session.cache.set(url, { at: session.now(), text });
+  session.cache.set(key, { at: session.now(), text });
   return value;
 }
 
@@ -97,6 +107,57 @@ export class NotFound extends Error {}
 
 export async function getJson(session, url, opts = {}) {
   return getText(session, url, { ...opts, parse: (t) => { try { return JSON.parse(t); } catch { throw new Error(`${opts.secret ? host(url) : url} did not return JSON.`); } } });
+}
+
+// The one text file in a zip archive (SEC's fails-to-deliver files): the archive's bytes are
+// witnessed and the unzipped text cached. Stored and deflated entries are read; nothing else.
+export function unzipFirst(bytes, { maxText = 64 * 1024 * 1024 } = {}) {
+  const buf = Buffer.from(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  // End of central directory: signature 0x06054b50 within the last 64 KB.
+  let eocd = -1;
+  for (let i = buf.length - 22; i >= Math.max(0, buf.length - 65557); i--) if (buf.readUInt32LE(i) === 0x06054b50) { eocd = i; break; }
+  if (eocd < 0) throw new Error("not a zip archive");
+  const cd = buf.readUInt32LE(eocd + 16);
+  if (cd + 46 > buf.length || buf.readUInt32LE(cd) !== 0x02014b50) throw new Error("zip central directory not found");
+  // Central directory header: method at +10, compressed size at +20, uncompressed at +24, local header offset at +42.
+  const method = buf.readUInt16LE(cd + 10), compressed = buf.readUInt32LE(cd + 20), size = buf.readUInt32LE(cd + 24), local = buf.readUInt32LE(cd + 42);
+  if (local + 30 > buf.length || buf.readUInt32LE(local) !== 0x04034b50) throw new Error("zip entry not found");
+  const start = local + 30 + buf.readUInt16LE(local + 26) + buf.readUInt16LE(local + 28);
+  if (start + compressed > buf.length) throw new Error("zip entry runs past the archive");
+  const data = buf.subarray(start, start + compressed);
+  if (size > maxText) throw new Error(`zip entry is ${size} bytes, above ${maxText}`);
+  const out = method === 0 ? data : method === 8 ? inflateRawSync(data, { maxOutputLength: maxText }) : null;
+  if (!out) throw new Error(`zip compression method ${method} is not supported`);
+  return out.toString("utf8");
+}
+
+export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024 } = {}) {
+  const hit = session.cache.lookup(url, session.now());
+  if (hit) { witness(session, url, session.hashes.get(url)); return hit.text; }
+  let bytes;
+  for (let attempt = 0; ; attempt++) {
+    if (isSec(url)) await secTurn(session);
+    const signal = AbortSignal.timeout(TIMEOUT_MS);
+    try {
+      bytes = await fetchBoundedText(session.fetchImpl, url, { signal, maxBytes, as: "bytes", headers: { "User-Agent": isSec(url) ? session.userAgent : PLAIN_USER_AGENT } });
+      break;
+    } catch (error) {
+      const transient = !signal.aborted && (error instanceof ResponseReadError ? error.code === "HTTP" && error.status >= 500 : true);
+      if (transient && attempt < 2) { await session.sleep(500 * 3 ** attempt); continue; }
+      throw fetchError(error, { url, aborted: signal.aborted, maxBytes });
+    }
+  }
+  const record = { sha256: createHash("sha256").update(bytes).digest("hex"), bytes: bytes.byteLength, retrieved_at: new Date(session.now()).toISOString() };
+  session.hashes.set(url, record);
+  witness(session, url, record);
+  const text = unzipFirst(bytes);
+  session.cache.set(url, { at: session.now(), text });
+  return text;
+}
+
+// A read-only JSON query sent as a POST body.
+export async function postJson(session, url, payload, opts = {}) {
+  return getJson(session, url, { ...opts, method: "POST", body: JSON.stringify(payload), headers: { "Content-Type": "application/json", Accept: "application/json", ...(opts.headers ?? {}) } });
 }
 
 // ---------------------------------------------------------------------------------------------

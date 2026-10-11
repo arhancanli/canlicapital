@@ -72,7 +72,8 @@ function advertisedOversize(value, maxBytes) {
   return digits.length > limit.length || (digits.length === limit.length && digits > limit);
 }
 
-export async function readBoundedResponse(response, { signal, maxBytes }) {
+// as: "text" (UTF-8, rejected if invalid) or "bytes" (a Uint8Array, for zip files).
+export async function readBoundedResponse(response, { signal, maxBytes, as = "text" }) {
   let reader;
   let failed = true;
   try {
@@ -84,7 +85,7 @@ export async function readBoundedResponse(response, { signal, maxBytes }) {
     }
     if (!reader) {
       failed = false;
-      return "";
+      return as === "bytes" ? new Uint8Array(0) : "";
     }
     const decoder = new TextDecoder("utf-8", { fatal: true });
     const parts = [];
@@ -97,11 +98,20 @@ export async function readBoundedResponse(response, { signal, maxBytes }) {
       if (!(value instanceof Uint8Array)) throw new ResponseReadError("NON_BYTE_BODY");
       if (value.byteLength > maxBytes - accepted) throw new ResponseReadError("TOO_LARGE");
       accepted += value.byteLength;
+      if (as === "bytes") { parts.push(value); continue; }
       try {
         parts.push(decoder.decode(value, { stream: true }));
       } catch {
         throw new ResponseReadError("INVALID_UTF8");
       }
+    }
+    if (as === "bytes") {
+      checkAbort(signal);
+      const out = new Uint8Array(accepted);
+      let at = 0;
+      for (const p of parts) { out.set(p, at); at += p.byteLength; }
+      failed = false;
+      return out;
     }
     try {
       parts.push(decoder.decode());
@@ -117,12 +127,12 @@ export async function readBoundedResponse(response, { signal, maxBytes }) {
   }
 }
 
-export async function fetchBoundedText(fetchImpl, url, { signal, maxBytes, headers }) {
+export async function fetchBoundedText(fetchImpl, url, { signal, maxBytes, headers, method, body, as }) {
   checkAbort(signal);
   const response = await untilAbort(
-    fetchImpl(url, { signal, redirect: "error", ...(headers ? { headers } : {}) }),
+    fetchImpl(url, { signal, redirect: "error", ...(method && method !== "GET" ? { method, body } : {}), ...(headers ? { headers } : {}) }),
     signal,
     discardResponse,
   );
-  return readBoundedResponse(response, { signal, maxBytes });
+  return readBoundedResponse(response, { signal, maxBytes, as });
 }
