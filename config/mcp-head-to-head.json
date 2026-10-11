@@ -123,8 +123,8 @@
   }
  ],
  "context": {
-  "measured": "2026-10-10",
-  "commit": "d168702924dda637174e1d07d7a4483e956d35bc",
+  "measured": "2026-10-11",
+  "commit": "70533a1bc32cb5068f04cae91c5df5c6a316e501",
   "path": "mcp-canli/bench/rivals/context.py",
   "tokenizer": "o200k_base",
   "method": "Each server is started with the benchmark's command; its instructions and whole tool list are counted in the shape an OpenAI-style client sends tools. No model is called.",
@@ -133,9 +133,9 @@
     "arm": "canli",
     "label": "canli-mcp",
     "tools": 3,
-    "reaches": 285,
+    "reaches": 306,
     "tokens": 859,
-    "seconds": 0.13
+    "seconds": 0.08
    },
    {
     "arm": "openbb",
@@ -143,7 +143,7 @@
     "tools": 1056,
     "reaches": 1056,
     "tokens": 432001,
-    "seconds": 30.7
+    "seconds": 12.03
    },
    {
     "arm": "openbb",
@@ -151,7 +151,7 @@
     "tools": 14,
     "reaches": 1056,
     "tokens": 2171,
-    "seconds": 26.82
+    "seconds": 10.32
    },
    {
     "arm": "edgartools",
@@ -159,7 +159,7 @@
     "tools": 13,
     "reaches": 13,
     "tokens": 3801,
-    "seconds": 1.59
+    "seconds": 1.17
    },
    {
     "arm": "yahoo",
@@ -167,7 +167,7 @@
     "tools": 9,
     "reaches": 9,
     "tokens": 2205,
-    "seconds": 1.35
+    "seconds": 0.91
    }
   ]
  },
