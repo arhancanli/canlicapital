@@ -1,7 +1,7 @@
 // =============================================================================
 // build-hero-fallbacks.mjs
 // -----------------------------------------------------------------------------
-// The homepage's status strip is the FIRST text in the document, and it shipped
+// The record page's status strip is among the FIRST text in the document, and it shipped
 // as four "Loading..." placeholders. JavaScript replaces them a moment later, so
 // a person with a browser never notices. A crawler without JS, a reader with
 // scripts blocked, and every social-card and search-snippet generator sees
@@ -9,13 +9,16 @@
 // the site.
 //
 // This writes the real values into that markup at build time, computed from the
-// SAME public-claims contract js/home.js reads, with the SAME formatters, so the
+// SAME public-claims contract js/record.js reads, with the SAME formatters, so the
 // static text and the hydrated text are identical rather than merely similar.
 //
 // The site already enforces this discipline for brand facts through data-fact
 // spans, whose static text verify-papers checks against config/brand.js. This is
 // the same rule applied to the claim contract, and audit-homepage.py asserts the
 // two agree in a real browser.
+//
+// The strip, the live console and the cards moved from the homepage to /record
+// (record.html) on 2026-10-10, when the homepage became the canli-mcp film.
 // =============================================================================
 
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
@@ -30,7 +33,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const CLAIMS = resolve(ROOT, "public", "contracts", "public-claims.json");
 const CHAIN = resolve(ROOT, "public", "glassbox", "transparency_log.json");
 const BROKER = resolve(ROOT, "public", "glassbox", "alpaca_broker_reconciliation.json");
-const PAGE = resolve(ROOT, "index.html");
+const PAGE = resolve(ROOT, "record.html");
 const STATE = resolve(ROOT, "public", "paper-state.json");
 const RESEARCH_INDEX = resolve(ROOT, "public", "research-index.json");
 const TRIALS = resolve(ROOT, "public", "glassbox", "trial-packets", "index.json");
@@ -40,7 +43,7 @@ const ENGINEERING = resolve(ROOT, "public", "glassbox", "engineering_open_source
 const EVIDENCE_MAP = resolve(ROOT, "public", "glassbox", "stanford_cs_evidence_map.json");
 const FILM_STATE = resolve(ROOT, "public", "system-films", "state.json");
 
-// Mirrors js/home.js exactly. If either side changes, audit-homepage.py catches
+// Mirrors js/record.js exactly. If either side changes, audit-homepage.py catches
 // it in a browser, because it compares the static text against the hydrated text.
 const integer = new Intl.NumberFormat("en-GB");
 const fullDate = new Intl.DateTimeFormat("en-GB", {
@@ -62,7 +65,7 @@ const dateTime = new Intl.DateTimeFormat("en-GB", {
 
 const compactCurrency = { format: formatCompactCurrency };
 
-// The same formatter js/home.js uses for the three live-console figures.
+// The same formatter js/record.js uses for the three live-console figures.
 const percentSigned = new Intl.NumberFormat("en-GB", {
   minimumFractionDigits: 2, maximumFractionDigits: 2, signDisplay: "always",
 });
@@ -222,7 +225,7 @@ export function heroFallbacks(claimsPayload, chainPayload, brokerPayload, extra 
     } : {}),
     "evidence-signed-time": signedText,
     "console-time": signedText === "Signed head unavailable" ? signedText : `Signed ${signedText}`,
-    // Per-sleeve broker state, from the same reconciliation artifact js/home.js
+    // Per-sleeve broker state, from the same reconciliation artifact js/record.js
     // fetches. Spread last so a sleeve appearing or disappearing upstream changes
     // this map rather than being quietly dropped.
     ...Object.fromEntries(
@@ -314,7 +317,7 @@ function main() {
     .filter((paper) => /kill/i.test(paper.slug ?? "") || /killed/i.test(paper.verdict ?? "")).length;
   const chainEntries = chain?.entry_count ?? chain?.entries?.length ?? chain?.count ?? null;
 
-  // Same derivations js/home.js performs, from the same artifacts. Each is
+  // Same derivations js/record.js performs, from the same artifacts. Each is
   // guarded: an artifact that does not carry the shape simply omits its cell,
   // and the placeholder guard below then fails the build rather than shipping
   // the word "Pending" to a crawler.
@@ -361,7 +364,7 @@ function main() {
     // a fixed list would quietly stop filling it and restore the placeholder.
     const pattern = new RegExp(`(<([a-z]+)(?:\\s[^>]*?)? id="${id}"[^>]*>)([^<]*)(</\\2>)`);
     const found = html.match(pattern);
-    if (!found) throw new Error(`hero fallbacks: no element with id="${id}" on the homepage`);
+    if (!found) throw new Error(`hero fallbacks: no element with id="${id}" on the record page`);
     // A REPLACER FUNCTION, not a replacement string. Compact currency renders
     // "$1.0M", and in a replacement string "$1" is a backreference: it silently
     // substituted the captured opening tag and produced a broken element that
@@ -389,7 +392,7 @@ function main() {
     // looked merely empty. A function treats the text literally.
     html = html.replace(pattern, (_, open, __, close) => `${open}${text}${close}`);
 
-    // The state cell beside it. js/home.js writes "Pass" or "Open"; the static
+    // The state cell beside it. js/record.js writes "Pass" or "Open"; the static
     // page said "Checking" forever, which reads to a crawler and to a language
     // model as a system that never finished checking.
     const statePattern = new RegExp(
@@ -467,13 +470,13 @@ function main() {
     .filter((cell) => cell.text && PLACEHOLDER.test(cell.text));
   if (cells.length) {
     throw new Error(
-      `hero fallbacks: ${cells.length} placeholder cell(s) remain on the homepage, ` +
+      `hero fallbacks: ${cells.length} placeholder cell(s) remain on the record page, ` +
       `which is exactly what a crawler and a language model will read as the record:\n  ` +
       cells.map((cell) => `#${cell.id} = "${cell.text}"`).join("\n  "),
     );
   }
   const remaining = cells.length;
-  console.log(`  homepage fallbacks written: ${Object.keys(fallbacks).length} element(s)`);
+  console.log(`  record page fallbacks written: ${Object.keys(fallbacks).length} element(s)`);
   console.log(`  loading placeholders still in index.html: ${remaining}`);
 }
 

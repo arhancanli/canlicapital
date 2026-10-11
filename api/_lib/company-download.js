@@ -1,3 +1,4 @@
+import { PAGE_CACHE } from './company-cache.js';
 import { catalogHash } from './company-catalog.js';
 import { fetchStorage } from './company-catalog-http.js';
 import { DOWNLOAD_LIMITS, validateDownloadDescriptor } from './company-download-index.js';
@@ -40,7 +41,7 @@ export function createCompanyDownloadHandler({ index, readDownload }) {
       // A verified object is fixed for its release, like an admitted company page: cache it at the edge
       // for five minutes (measured 2026-09-24: 345 ms median server time uncached from iad1 vs 82 ms for an
       // edge-cached glass-box file). Errors above stay no-store.
-      res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800');
+      res.setHeader('Cache-Control', PAGE_CACHE);
       res.statusCode = 200; res.end(req.method === 'HEAD' ? undefined : bytes);
     } catch { return fail(503, 'Company source temporarily unavailable'); }
   };

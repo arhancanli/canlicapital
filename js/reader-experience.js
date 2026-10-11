@@ -1,6 +1,8 @@
 const index=document.querySelector('.reader-index');
 if(index){
- // Native, initially closed disclosure prevents a post-paint mobile layout jump.
+ // Native, initially closed disclosure prevents a post-paint mobile layout jump. Beside the article (wide screens)
+ // the contents open: they sit in their own column, so nothing in the article moves.
+ if(matchMedia('(min-width: 1001px)').matches)index.querySelector('details')?.setAttribute('open','');
  const links=[...index.querySelectorAll('nav a')];
  const targets=links.map(a=>document.getElementById(a.hash.slice(1))).filter(Boolean);
  if('IntersectionObserver' in window){
