@@ -7,6 +7,11 @@
   (SAP.DE, 7203.T, SHEL.L, 0700.HK), by symbol or plain name, and says what each price means
   (pence in London, futures rolls, index levels). Bars stamped after the window asked for are left
   out.
+- `fund_portfolio`: what a US mutual fund or ETF holds, from its own Form N-PORT: every position
+  with value and weight, exposure by asset type, issuer, country and currency, a bond fund's
+  coupon and maturity profile, monthly returns, the money that came in and went out each month,
+  and what changed since the previous quarter. A 13,000-position bond fund (AGG) reads in about
+  three seconds; unit investment trusts such as SPY are told apart and explained.
 - `world_economy`: any of the World Bank's World Development Indicators for 200+ countries and
   regions (GDP and growth, inflation, unemployment, government debt and deficits, the current
   account, trade, reserves), by plain words or code, as a year-by-country table.

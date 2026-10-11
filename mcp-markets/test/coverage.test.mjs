@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { createSession } from "../src/sources.mjs";
+import * as F from "../src/funds.mjs";
 import * as G from "../src/global.mjs";
 import * as T from "../src/tools.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
@@ -142,4 +143,44 @@ test("federal_debt: a year of Debt to the Penny; held by the public plus intrago
   assert.deepEqual(r.change, { from: "2025-10-09", to: "2026-10-08", total: 2421385798367.33, total_pct: 0.063916 });
   assert.equal(r.average_interest_rates.month, "2026-09-30");
   assert.deepEqual(r.average_interest_rates.rows.find((x) => x[1] === "Total Marketable"), ["Marketable", "Total Marketable", 3.518]);
+});
+
+test("fund_portfolio: IVV's N-PORT, its largest positions, exposures, returns, flows and changes since the quarter before", async () => {
+  const { s } = session();
+  const r = await F.fundPortfolio(s, { fund: "IVV", top: 3 });
+  assert.deepEqual(r.fund, { name: "iShares Core S&P 500 ETF", ticker: "IVV", series_id: "S000004310", class_id: "C000012040", registrant: "iShares Trust", registrant_cik: 1100663 });
+  assert.deepEqual([r.period, r.filed, r.accession, r.net_assets, r.positions], ["2026-06-30", "2026-08-25", "0002071691-26-019760", 888128937468.17, 508]);
+  assert.equal(r.weights_add_to, 1.0012);
+  assert.deepEqual(r.rows.map((x) => [x[0], x[2], x[5]]), [["NVIDIA Corp.", "67066G104", 0.075059], ["Apple, Inc.", "037833100", 0.065823], ["Microsoft Corp.", "594918104", 0.042917]]);
+  assert.deepEqual(r.exposure.asset_category.rows[0], ["EC", "equity, common", 0.9983]);
+  assert.deepEqual(r.exposure.country.rows[0], ["US", 0.9717]);
+  assert.deepEqual(r.monthly_returns.rows, [["2026-04", 0.104916], ["2026-05", 0.052632], ["2026-06", -0.009562]]);
+  for (const [m, sales, reinvest, redeem, net] of r.flows.rows) assert.ok(Math.abs(sales + reinvest - redeem - net) < 0.011, m);
+  assert.deepEqual(r.flows.rows[2], ["2026-06", 114335801883.95, 0, 70740612095.5, 43595189788.45]);
+  assert.equal(r.changes_since.period, "2026-03-31");
+  assert.deepEqual(r.changes_since.counts, { new: 10, exited: 9, added: 490, reduced: 6 });
+  assert.deepEqual(r.changes_since.rows[0].slice(0, 3), ["new", "Marvell Technology, Inc.", "573874104"]);
+  assert.equal(r.bonds, undefined, "an equity fund has no bond profile");
+  assert.match(r.source, /0002071691-26-019760-index\.htm$/);
+});
+
+test("fund_portfolio: TLT, a Treasury bond fund, with its coupon and maturity profile", async () => {
+  const { s } = session();
+  const r = await F.fundPortfolio(s, { fund: "tlt", top: 2 });
+  assert.equal(r.fund.name, "iShares 20+ Year Treasury Bond ETF");
+  assert.equal(r.period, "2026-05-31", "TLT's fiscal quarters end in February, May, August and November");
+  assert.deepEqual(r.exposure.issuer_category.rows[0], ["UST", "US Treasury", 0.9822]);
+  assert.equal(r.bonds.bonds, 46);
+  assert.equal(r.bonds.weighted_coupon_pct, 3.489);
+  assert.equal(r.bonds.weighted_years_to_maturity, 26.01);
+  assert.deepEqual(r.bonds.maturity.rows.at(-1), ["20 years and over", 0.9682]);
+  assert.deepEqual(r.rows[0].slice(0, 6), ["United States of America", "U.S. Treasury Bonds", "912810TT5", "US912810TT51", 1964434087.09, 0.045785]);
+});
+
+test("fund_portfolio: SPY, a unit investment trust, and an unknown ticker each say why there is no N-PORT", async () => {
+  const tickers = { 0: { cik_str: 884394, ticker: "SPY", title: "SPDR S&P 500 ETF TRUST" } };
+  const r = replayFetch({ "https://www.sec.gov/files/company_tickers.json": tickers });
+  const s = createSession({ fetchImpl: r.fetchImpl, now: () => NOW, sleep: async () => {} });
+  await assert.rejects(F.fundPortfolio(s, { fund: "SPY" }), /SPY \(SPDR S&P 500 ETF TRUST\) files no Form N-PORT: unit investment trusts/);
+  await assert.rejects(F.fundPortfolio(s, { fund: "ZZZZZ" }), /No US mutual fund or ETF has the ticker ZZZZZ/);
 });

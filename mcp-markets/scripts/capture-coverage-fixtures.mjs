@@ -5,6 +5,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { gzipSync } from "node:zlib";
 
+import * as F from "../src/funds.mjs";
 import * as G from "../src/global.mjs";
 import { createSession } from "../src/sources.mjs";
 import { yahooChartUrl } from "../src/tools.mjs";
@@ -50,6 +51,11 @@ await record(G.treasuryAuctions, { security: "10-year", limit: 6 });
 await record(G.treasuryAuctions, { security: "13-week bill", limit: 3 });
 await record(G.treasuryAuctions, { upcoming: true, limit: 5 });
 await record(G.federalDebt, {});
+// Funds: SEC's fund ticker table cut to the funds the tests use, then IVV (equities) and TLT
+// (Treasury bonds), each with the previous public report for the comparison.
+await grab("https://www.sec.gov/files/company_tickers_mf.json", (t) => { const d = JSON.parse(t); d.data = d.data.filter((r) => ["IVV", "TLT", "AGG", "VOO", "QQQ"].includes(r[3])); return JSON.stringify(d); });
+await record(F.fundPortfolio, { fund: "IVV", top: 3 });
+await record(F.fundPortfolio, { fund: "TLT", top: 2 });
 
 writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
 console.log(n, "coverage responses in the manifest");
