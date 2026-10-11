@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- `options_chain`, `volatility_surface` and `futures_curve` from Cboe's public delayed data: chains
+  with Cboe's IV and greeks by strike, put/call ratios, max pain and the move the at-the-money
+  straddle prices in; ATM term structure, 25-delta risk reversal and butterfly, and the smile at
+  fixed moneyness; and Cboe futures curves (VIX against the index) from its daily settlements.
+  `CANLI_KEYLESS_OPTIONS=0` turns the source off.
+
 - `price_history` covers currencies (EUR/USD), futures (crude oil, gold, Treasury futures),
   indices and yields (S&P 500, VIX, 10 year yield), crypto (bitcoin) and stocks listed abroad
   (SAP.DE, 7203.T, SHEL.L, 0700.HK), by symbol or plain name, and says what each price means

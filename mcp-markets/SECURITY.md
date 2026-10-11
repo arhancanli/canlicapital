@@ -17,7 +17,7 @@ branch and the latest npm release are supported.
   `data.sec.gov` and `efts.sec.gov` (SEC EDGAR), `home.treasury.gov` (Treasury rates),
   `api.fiscaldata.treasury.gov` (Treasury auctions and the federal debt), `api.worldbank.org`
   (World Bank indicators), `sdmx.oecd.org` (OECD Economic Outlook), `api.finra.org` (short interest), `publicreporting.cftc.gov` (Commitments of
-  Traders), `www.federalreserve.gov` (FOMC calendar, statements and projections), `www.bls.gov`, `www.bea.gov` and `www.census.gov` (release schedules), `api.adviserinfo.sec.gov` (investment advisers), `fred.stlouisfed.org` (FRED), and, for `price_history` only, `data.alpaca.markets` or
+  Traders), `www.federalreserve.gov` (FOMC calendar, statements and projections), `www.bls.gov`, `www.bea.gov` and `www.census.gov` (release schedules), `api.adviserinfo.sec.gov` (investment advisers), `cdn-api.cboe.com` and `www.cboe.com` (Cboe's delayed option quotes and futures settlements; `CANLI_KEYLESS_OPTIONS=0` turns them off), `fred.stlouisfed.org` (FRED), and, for `price_history` only, `data.alpaca.markets` or
   `api.tiingo.com` with your key, or without a key `query1.finance.yahoo.com` (Yahoo Finance's
   public chart data; `CANLI_KEYLESS_PRICES=0` turns it off). Nothing goes to Canli Capital;
 - sends what the tool needs and nothing else: the company, form, dates, search words or series

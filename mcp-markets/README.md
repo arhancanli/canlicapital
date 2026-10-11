@@ -62,6 +62,9 @@ received and when, so any figure can be checked against the same document later.
 | `fomc` | The Fed's decisions for a year (action, target range, vote and dissenters), the latest statement and the dot-plot medians | Federal Reserve |
 | `treasury_yields` | The Treasury curve (nominal, real, bills) for a day or a range | US Treasury |
 | `economic_series` | Any FRED series by id or words ("core inflation"), as levels, changes or year-over-year | FRED |
+| `options_chain` | An option chain with IV, greeks, open interest, put/call ratios, max pain and the expected move | Cboe delayed quotes |
+| `volatility_surface` | Implied volatility term structure, 25-delta skew and the smile | Cboe delayed quotes |
+| `futures_curve` | The VIX futures curve (and other Cboe futures) against the index: contango or backwardation | Cboe settlements |
 | `price_history` | Daily to monthly bars for stocks in the US and abroad, currencies, futures, indices and crypto, adjusted, with dividends and splits, as columns | Yahoo Finance (no key), or Alpaca or Tiingo (your key) for US stocks |
 | `treasury_auctions` | How each Treasury auction went (yield, bid-to-cover, who bought) and which auctions come next | US Treasury Fiscal Data |
 | `federal_debt` | The US debt each business day, and the average rate the Treasury pays on it | US Treasury Fiscal Data |

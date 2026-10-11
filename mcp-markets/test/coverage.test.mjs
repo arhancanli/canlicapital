@@ -13,6 +13,7 @@ import * as G from "../src/global.mjs";
 import * as O from "../src/ownership.mjs";
 import * as Pos from "../src/positioning.mjs";
 import * as Pay from "../src/pay.mjs";
+import * as Opt from "../src/options.mjs";
 import * as P from "../src/private.mjs";
 import * as Seg from "../src/segments.mjs";
 import * as T from "../src/tools.mjs";
@@ -491,4 +492,55 @@ test("investment_advisers: firms by name from the SEC's Form ADV database, the b
   assert.equal(f.form_adv_pdf, "https://reports.adviserinfo.sec.gov/reports/ADV/105129/PDF/105129.pdf");
   assert.match(f.brochures[0].url, /BRCHR_VRSN_ID=\d+$/);
   assert.ok(!f.other_names.includes(f.name));
+});
+
+test("options: OSI symbols and index names read the way Cboe writes them", () => {
+  assert.deepEqual(Opt.parseOsi("AAPL261012C00245000"), { root: "AAPL", expiry: "2026-10-12", type: "call", strike: 245 });
+  assert.deepEqual(Opt.parseOsi("SPXW261016P05800000"), { root: "SPXW", expiry: "2026-10-16", type: "put", strike: 5800 });
+  assert.equal(Opt.parseOsi("not an option"), null);
+  assert.deepEqual(Opt.cboeSymbol("S&P 500"), { file: "_SPX", symbol: "SPX", index: true });
+  assert.deepEqual(Opt.cboeSymbol("spy"), { file: "SPY", symbol: "SPY", index: false });
+  assert.throws(() => Opt.cboeSymbol("EUR/USD"), /not a ticker or an index/);
+});
+
+test("options_chain: Apple's nearest expiration near the money, with put/call ratios, max pain and the expected move", async () => {
+  const { s } = session();
+  const r = await Opt.optionsChain(s, { symbol: "AAPL", window: 0.03 });
+  assert.deepEqual(r.underlying, { symbol: "AAPL", price: 336.08, change_pct: -0.011229, iv30: 0.2637, as_of: "2026-10-11 01:42:41" });
+  assert.equal(r.expiration, "2026-10-12");
+  assert.ok(r.rows.every((x) => Math.abs(x[0] / 336.08 - 1) <= 0.03), "strikes within 3 percent");
+  for (const [, , bid, ask, mid] of r.rows) if (bid > 0 && ask > 0) assert.equal(mid, Math.round(((bid + ask) / 2) * 1e4) / 1e4);
+  assert.deepEqual(r.rows[0], [327.5, "call", 8.65, 10.7, 9.675, 9.09, 0.296, 0.9494, 0.0187, -0.0774, 0.0336, 245, 83]);
+  assert.equal(r.summary.max_pain, 337.5);
+  assert.equal(r.summary.atm_strike, 335);
+  assert.deepEqual(r.summary.expected_move, { dollars: 3.985, fraction_of_price: 0.0119, from: "at-the-money straddle mid" });
+  assert.equal(r.expirations.rows.length, 6);
+  const off = { s: createSession({ fetchImpl: replayFetch().fetchImpl, env: { CANLI_KEYLESS_OPTIONS: "0" }, now: () => NOW, sleep: async () => {} }) };
+  await assert.rejects(Opt.optionsChain(off.s, { symbol: "AAPL" }), /CANLI_KEYLESS_OPTIONS=0/);
+});
+
+test("volatility_surface: S&P 500 term structure and skew; the risk reversal is the put's IV minus the call's", async () => {
+  const { s } = session();
+  const r = await Opt.volatilitySurface(s, { symbol: "SPX", expirations: 6 });
+  assert.equal(r.underlying.symbol, "SPX");
+  assert.equal(r.term_structure.rows.length, 6);
+  for (const [e, , atm, p25, c25, rr, fly] of r.term_structure.rows) {
+    assert.equal(rr, Math.round((p25 - c25) * 1e4) / 1e4, e);
+    assert.ok(Math.abs(fly - ((p25 + c25) / 2 - atm)) < 2e-4, e);
+  }
+  assert.deepEqual(r.smile.columns, ["expiration", "iv_at_0.8", "iv_at_0.9", "iv_at_0.95", "iv_at_1", "iv_at_1.05", "iv_at_1.1", "iv_at_1.2"]);
+  const first = r.smile.rows[0];
+  assert.ok(first[1] > first[4] && first[7] > first[4], "the smile rises away from the money");
+});
+
+test("futures_curve: the VIX futures curve from Cboe's settlements, against the VIX index", async () => {
+  const { s } = session();
+  const r = await Opt.futuresCurve(s, {});
+  assert.equal(r.product, "VX");
+  assert.equal(r.spot_index, 14.84);
+  assert.deepEqual(r.rows[0], ["VX/V6", "2026-10-21", 17.1186]);
+  assert.ok(r.rows.every((x, i) => i === 0 || r.rows[i - 1][1] < x[1]), "monthly contracts by expiration");
+  assert.equal(r.shape.state, "contango");
+  assert.equal(r.shape.front_to_second, Math.round((r.rows[1][2] - r.rows[0][2]) * 1e4) / 1e4);
+  await assert.rejects(Opt.futuresCurve(s, { product: "crude oil" }), /trade on CME/);
 });

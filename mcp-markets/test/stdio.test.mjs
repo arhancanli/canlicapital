@@ -15,12 +15,12 @@ async function connect() {
   return c;
 }
 
-test("thirty-one tools, byte-identical across launches, all read-only", async () => {
+test("thirty-four tools, byte-identical across launches, all read-only", async () => {
   const lists = [];
   for (let i = 0; i < 2; i++) { const c = await connect(); lists.push(JSON.stringify(await c.listTools())); await c.close(); }
   assert.equal(lists[0], lists[1]);
   const tools = JSON.parse(lists[0]).tools;
-  assert.deepEqual(tools.map((t) => t.name).sort(), ["company_events", "company_profile", "company_report", "economic_calendar", "economic_outlook", "economic_series", "event_study", "executive_pay", "fails_to_deliver", "federal_debt", "fomc", "fund_holdings", "fund_portfolio", "futures_positioning", "index_constituents", "insider_trades", "investment_advisers", "large_holders", "list_filings", "mentions_trend", "off_exchange_volume", "price_history", "private_offerings", "read_filing", "screen_companies", "search_filings", "segment_revenue", "short_interest", "treasury_auctions", "treasury_yields", "world_economy"]);
+  assert.deepEqual(tools.map((t) => t.name).sort(), ["company_events", "company_profile", "company_report", "economic_calendar", "economic_outlook", "economic_series", "event_study", "executive_pay", "fails_to_deliver", "federal_debt", "fomc", "fund_holdings", "fund_portfolio", "futures_curve", "futures_positioning", "index_constituents", "insider_trades", "investment_advisers", "large_holders", "list_filings", "mentions_trend", "off_exchange_volume", "options_chain", "price_history", "private_offerings", "read_filing", "screen_companies", "search_filings", "segment_revenue", "short_interest", "treasury_auctions", "treasury_yields", "volatility_surface", "world_economy"]);
   for (const t of tools) {
     assert.equal(t.annotations.readOnlyHint, true, t.name);
     assert.equal(t.annotations.openWorldHint, true, t.name);
@@ -69,6 +69,9 @@ const NEW_TOOL_CALLS = [
   ["fomc", { year: 2026 }],
   ["economic_calendar", { since: "2026-10-12", until: "2026-10-16" }],
   ["investment_advisers", { query: "Bridgewater Associates", limit: 4 }],
+  ["options_chain", { symbol: "AAPL", window: 0.03 }],
+  ["volatility_surface", { symbol: "SPX", expirations: 6 }],
+  ["futures_curve", {}],
 ];
 test("every tool this release adds answers over stdio within its output schema", async (t) => {
   const c = await connect(); t.after(() => c.close());
