@@ -17,9 +17,10 @@ branch and the latest npm release are supported.
   `data.sec.gov` and `efts.sec.gov` (SEC EDGAR), `home.treasury.gov` (Treasury rates),
   `api.fiscaldata.treasury.gov` (Treasury auctions and the federal debt), `api.worldbank.org`
   (World Bank indicators), `sdmx.oecd.org` (OECD Economic Outlook), `api.finra.org` (short interest), `publicreporting.cftc.gov` (Commitments of
-  Traders), `www.federalreserve.gov` (FOMC calendar, statements and projections), `www.bls.gov`, `www.bea.gov` and `www.census.gov` (release schedules), `api.adviserinfo.sec.gov` (investment advisers), `cdn-api.cboe.com` and `www.cboe.com` (Cboe's delayed option quotes and futures settlements; `CANLI_KEYLESS_OPTIONS=0` turns them off), `fred.stlouisfed.org` (FRED), and, for `price_history` only, `data.alpaca.markets` or
-  `api.tiingo.com` with your key, or without a key `query1.finance.yahoo.com` (Yahoo Finance's
-  public chart data; `CANLI_KEYLESS_PRICES=0` turns it off). Nothing goes to Canli Capital;
+  Traders), `www.federalreserve.gov` (FOMC calendar, statements and projections), `www.bls.gov`, `www.bea.gov` and `www.census.gov` (release schedules), `api.adviserinfo.sec.gov` (investment advisers), `cdn-api.cboe.com` and `www.cboe.com` (Cboe's delayed option quotes and futures settlements; `CANLI_KEYLESS_OPTIONS=0` turns them off), `fred.stlouisfed.org` (FRED), and, for `price_history` only, `query1.finance.yahoo.com` (Yahoo
+  Finance's public chart data) for currencies, futures, indices, crypto and stocks listed abroad,
+  and for US stocks unless you set a key, in which case `data.alpaca.markets` or `api.tiingo.com`
+  (`CANLI_KEYLESS_PRICES=0` turns Yahoo off). Nothing goes to Canli Capital;
 - sends what the tool needs and nothing else: the company, form, dates, search words or series
   asked for. Results link to the publishers' own pages (`fiscaldata.treasury.gov`, `data.worldbank.org`, `data-explorer.oecd.org`, `adviserinfo.sec.gov`, `files.adviserinfo.sec.gov`, `reports.adviserinfo.sec.gov`),
   which the server never requests, nor `www.finra.org`. SEC requests carry a User-Agent naming this package (or `SEC_USER_AGENT`, which SEC

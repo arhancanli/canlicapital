@@ -6,6 +6,7 @@ import { z } from "zod";
 import { parse13F, parseForm4 } from "./forms.mjs";
 import { findSections, htmlToText, resolveSection } from "./html.mjs";
 import { archiveBase, filingDocuments, filings, fredCsv, fredTitle, getJson, getText, NotFound, resolveEntity, submissions, treasuryYear, TREASURY_CURVES } from "./sources.mjs";
+import { matchWords, vocabulary } from "./words.mjs";
 
 const DATE = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "a date as YYYY-MM-DD");
 const COMPANY = z.string().min(1).max(120).describe("Ticker (AAPL), CIK (320193) or name (Apple).");
@@ -402,28 +403,40 @@ export async function treasuryYields(session, args) {
 // ---------------------------------------------------------------------------------------------
 // economic_series (FRED)
 // ---------------------------------------------------------------------------------------------
-// Common series by the words people use; any FRED id also works.
+// Common series by the words people use; any FRED id also works. Every one was checked live on FRED
+// (2026-10-11); FRED withdrew the LBMA gold price in 2022, so gold is price_history's (COMEX futures).
 export const COMMON_SERIES = Object.freeze([
-  ["CPIAUCSL", "cpi consumer price index inflation all items"], ["CPILFESL", "core cpi inflation excluding food energy"], ["PCEPI", "pce price index inflation"], ["PCEPILFE", "core pce inflation"],
-  ["UNRATE", "unemployment rate"], ["PAYEMS", "nonfarm payrolls jobs employment"], ["ICSA", "initial jobless claims unemployment insurance"], ["JTSJOL", "job openings jolts"],
+  ["CPIAUCSL", "cpi consumer price index inflation all items"], ["CPILFESL", "core cpi consumer price index inflation excluding food energy"], ["PCEPI", "pce price index inflation"], ["PCEPILFE", "core pce price index inflation"],
+  ["PPIFIS", "ppi producer price index final demand"], ["MICH", "michigan inflation expectations"], ["T5YIE", "5 year breakeven inflation"],
+  ["UNRATE", "unemployment rate"], ["PAYEMS", "nonfarm payrolls jobs report employment"], ["ICSA", "initial jobless claims unemployment insurance"], ["CCSA", "continuing jobless claims"], ["JTSJOL", "job openings jolts"],
+  ["JTSQUR", "quits rate jolts"], ["CES0500000003", "average hourly earnings wages pay"], ["CIVPART", "labor force participation"],
   ["GDP", "gdp gross domestic product nominal"], ["GDPC1", "real gdp gross domestic product"], ["A191RL1Q225SBEA", "real gdp growth rate quarterly annualized"],
-  ["FEDFUNDS", "federal funds rate effective monthly"], ["DFF", "federal funds rate effective daily"], ["SOFR", "sofr secured overnight financing rate"], ["DFEDTARU", "fed funds target upper"],
-  ["DGS3MO", "3 month treasury yield"], ["DGS2", "2 year treasury yield"], ["DGS5", "5 year treasury yield"], ["DGS10", "10 year treasury yield"], ["DGS30", "30 year treasury yield"],
-  ["T10Y2Y", "10 year minus 2 year treasury spread yield curve"], ["T10Y3M", "10 year minus 3 month spread yield curve"], ["DFII10", "10 year real yield tips"], ["T10YIE", "10 year breakeven inflation"],
-  ["BAMLH0A0HYM2", "high yield credit spread option adjusted"], ["BAMLC0A0CM", "investment grade corporate credit spread"], ["MORTGAGE30US", "30 year mortgage rate"],
-  ["VIXCLS", "vix volatility index"], ["DCOILWTICO", "wti crude oil price"], ["DCOILBRENTEU", "brent crude oil price"], ["GOLDAMGBD228NLBM", "gold price london"],
+  ["PCE", "personal consumption expenditures consumer spending"], ["PI", "personal income"], ["DSPIC96", "real disposable personal income"], ["PSAVERT", "personal saving savings rate"],
+  ["CP", "corporate profits after tax"], ["BOPGSTB", "trade balance deficit goods services exports imports"], ["GFDEGDQ188S", "federal government debt to gdp public"],
+  ["FEDFUNDS", "federal funds fed rate effective monthly"], ["DFF", "federal funds fed rate effective daily"], ["SOFR", "sofr secured overnight financing rate"], ["DFEDTARU", "fed funds target upper"],
+  ["DGS3MO", "3 month treasury bill tbill yield"], ["DGS1", "1 year treasury bill yield"], ["DGS2", "2 year treasury note yield"], ["DGS5", "5 year treasury note yield"], ["DGS10", "10 year treasury note bond yield"], ["DGS30", "30 year treasury bond yield"],
+  ["T10Y2Y", "10 year minus 2 year treasury spread yield curve 2s10s 10y 2y"], ["T10Y3M", "10 year minus 3 month treasury spread yield curve 10y 3m"], ["DFII10", "10 year real yield interest rate tips"], ["T10YIE", "10 year breakeven inflation"],
+  ["BAMLH0A0HYM2", "high yield credit spread option adjusted"], ["BAMLC0A0CM", "investment grade corporate credit spread"], ["MORTGAGE30US", "30 year fixed mortgage rate"], ["MORTGAGE15US", "15 year fixed mortgage rate"],
+  ["NFCI", "chicago fed financial conditions"], ["STLFSI4", "st louis fed financial stress"],
+  ["VIXCLS", "vix volatility index"], ["DCOILWTICO", "wti crude oil price"], ["DCOILBRENTEU", "brent crude oil price"], ["GASREGW", "regular gasoline gas price"], ["DHHNGSP", "henry hub natural gas price"],
   ["DTWEXBGS", "dollar index broad trade weighted usd"], ["DEXUSEU", "euro dollar exchange rate eur usd"], ["DEXJPUS", "yen dollar exchange rate usd jpy"], ["DEXCHUS", "yuan dollar exchange rate usd cny"],
-  ["M2SL", "m2 money supply"], ["WALCL", "fed balance sheet total assets"], ["RRPONTSYD", "overnight reverse repo"],
-  ["INDPRO", "industrial production"], ["RSAFS", "retail sales"], ["HOUST", "housing starts"], ["CSUSHPINSA", "case shiller home price index"], ["UMCSENT", "consumer sentiment michigan"],
+  ["M2SL", "m2 money supply"], ["M1SL", "m1 money supply"], ["WALCL", "fed balance sheet total assets"], ["RRPONTSYD", "overnight reverse repo"], ["TOTALSL", "consumer credit growth"], ["TOTLL", "bank loans leases lending"], ["DPRIME", "bank prime loan lending rate"],
+  ["INDPRO", "industrial production"], ["RSAFS", "retail sales"], ["DGORDER", "durable goods orders"], ["HOUST", "housing starts"], ["PERMIT", "building permits"], ["HSN1F", "new home sales"],
+  ["CSUSHPINSA", "case shiller home house price index"], ["UMCSENT", "consumer sentiment michigan"],
   ["USREC", "us recession indicator nber"], ["RECPROUSM156N", "recession probability smoothed"], ["SP500", "s&p 500 index level"], ["NASDAQCOM", "nasdaq composite index"],
 ]);
-function resolveSeries(q) {
+// The series are all US, so naming the country is filler here; "interest" only says what kind of rate.
+const FRED_WORDS = vocabulary({ kind: "interest", filler: "us usa united states america american fred" });
+export function resolveSeries(q) {
   const s = String(q).trim();
   if (/^[A-Z0-9_]{2,40}$/.test(s)) return { id: s };
-  const words = s.toLowerCase().match(/[a-z0-9&]+/g) ?? [];
-  const scored = COMMON_SERIES.map(([id, text]) => [id, words.filter((w) => text.split(" ").includes(w)).length / words.length]).sort((a, b) => b[1] - a[1]);
-  if (!scored.length || scored[0][1] < 0.5) throw new NotFound(`No common series matches "${q}"; pass a FRED series id (find it at fred.stlouisfed.org). Common: ${COMMON_SERIES.slice(0, 12).map((c) => c[0]).join(", ")}.`);
-  return { id: scored[0][0], matched_from: s };
+  // A series id written inside the words ("unemployment rate (UNRATE)"): in capitals, and only ids
+  // that cannot be an ordinary word (GDP and PCE are both).
+  const named = COMMON_SERIES.find(([id]) => (/\d/.test(id) || id.length >= 6) && new RegExp(`(^|[^A-Za-z0-9_])${id}([^A-Za-z0-9_]|$)`).test(s));
+  if (named) return { id: named[0], matched_from: s };
+  const hit = matchWords(COMMON_SERIES, (c) => c[1], s, FRED_WORDS);
+  if (!hit) throw new NotFound(`No common series matches "${q}". These are US series: for another country's economy use world_economy or economic_outlook, and for the price of a commodity, currency, crypto or stock use price_history ("gold" is COMEX gold futures). Or pass a FRED series id (find it at fred.stlouisfed.org). Common: ${COMMON_SERIES.slice(0, 12).map((c) => c[0]).join(", ")}.`);
+  return { id: hit[0], matched_from: s };
 }
 export const fredInput = z.object({
   series: z.string().min(1).max(80).describe("A FRED series id (DGS10, CPIAUCSL, UNRATE) or plain words (\"core inflation\", \"10 year treasury yield\")."),

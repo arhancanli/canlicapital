@@ -4,6 +4,7 @@
 import { z } from "zod";
 
 import { getJson, getText, NotFound } from "./sources.mjs";
+import { matchWords, vocabulary } from "./words.mjs";
 
 const round = (x, d = 4) => (x == null ? null : Math.round(x * 10 ** d) / 10 ** d);
 
@@ -12,12 +13,13 @@ const round = (x, d = 4) => (x == null ? null : Math.round(x * 10 ** d) / 10 ** 
 // ---------------------------------------------------------------------------------------------
 // Common indicators by the words people use; any WDI code also works.
 export const WDI_COMMON = Object.freeze([
-  ["NY.GDP.MKTP.CD", "gdp nominal size economy current us dollars output"],
+  ["NY.GDP.MKTP.CD", "gdp nominal size economy output"],
   ["NY.GDP.MKTP.KD.ZG", "gdp growth real economic growth rate annual"],
-  ["NY.GDP.PCAP.CD", "gdp per capita income per person current us dollars"],
+  ["NY.GDP.PCAP.CD", "gdp per capita income per person"],
   ["NY.GDP.PCAP.PP.CD", "gdp per capita ppp purchasing power parity"],
   ["FP.CPI.TOTL.ZG", "inflation consumer prices cpi annual"],
   ["SL.UEM.TOTL.ZS", "unemployment rate jobless labor force"],
+  ["SL.UEM.1524.ZS", "youth unemployment young people ages 15 24"],
   ["GC.DOD.TOTL.GD.ZS", "government debt public debt central government debt to gdp"],
   ["GC.NLD.TOTL.GD.ZS", "budget balance fiscal deficit surplus net lending borrowing to gdp"],
   ["GC.TAX.TOTL.GD.ZS", "tax revenue taxes to gdp"],
@@ -25,10 +27,10 @@ export const WDI_COMMON = Object.freeze([
   ["NE.EXP.GNFS.ZS", "exports goods services to gdp trade"],
   ["NE.IMP.GNFS.ZS", "imports goods services to gdp trade"],
   ["BX.KLT.DINV.WD.GD.ZS", "foreign direct investment fdi inflows to gdp"],
-  ["FI.RES.TOTL.CD", "foreign exchange reserves total reserves including gold"],
+  ["FI.RES.TOTL.CD", "foreign exchange reserves total reserves"],
   ["PA.NUS.FCRF", "exchange rate official local currency per us dollar"],
   ["FR.INR.LEND", "lending interest rate bank loans"],
-  ["FR.INR.RINR", "real interest rate"],
+  ["FR.INR.RINR", "real interest rate yield"],
   ["CM.MKT.LCAP.GD.ZS", "stock market capitalization listed companies to gdp"],
   ["NE.GDI.TOTL.ZS", "investment gross capital formation to gdp"],
   ["NY.GNS.ICTR.ZS", "savings gross savings to gdp"],
@@ -37,6 +39,9 @@ export const WDI_COMMON = Object.freeze([
   ["SI.POV.GINI", "gini inequality index income"],
   ["DT.DOD.DECT.CD", "external debt stocks total foreign"],
   ["NV.IND.MANF.ZS", "manufacturing value added share of gdp industry"],
+  ["MS.MIL.XPND.GD.ZS", "military spending defense defence expenditure to gdp"],
+  ["SP.DYN.LE00.IN", "life expectancy at birth"],
+  ["BX.TRF.PWKR.DT.GD.ZS", "remittances personal received migrants to gdp"],
 ]);
 
 // Names the World Bank spells differently from how people say them.
@@ -51,13 +56,14 @@ const COUNTRY_ALIASES = Object.freeze({
 });
 const WB = "https://api.worldbank.org/v2";
 
-function resolveIndicator(q) {
+// Countries are named separately, so "us" in a request is filler.
+const WDI_WORDS = vocabulary({ filler: "us usa" });
+export function resolveIndicator(q) {
   const s = String(q).trim();
   if (/^[A-Za-z0-9]+(\.[A-Za-z0-9]+)+$/.test(s)) return { id: s.toUpperCase() };
-  const words = s.toLowerCase().match(/[a-z0-9&]+/g) ?? [];
-  const scored = WDI_COMMON.map(([id, text]) => [id, words.filter((w) => text.split(" ").includes(w)).length / words.length]).sort((a, b) => b[1] - a[1]);
-  if (!scored.length || scored[0][1] < 0.5) throw new NotFound(`No common indicator matches "${q}"; pass a World Bank indicator code (find it at data.worldbank.org). Common: ${WDI_COMMON.slice(0, 10).map((c) => c[0]).join(", ")}.`);
-  return { id: scored[0][0], matched_from: s };
+  const hit = matchWords(WDI_COMMON, (c) => c[1], s, WDI_WORDS);
+  if (!hit) throw new NotFound(`No common indicator matches "${q}"; pass a World Bank indicator code (find it at data.worldbank.org). Common: ${WDI_COMMON.slice(0, 10).map((c) => c[0]).join(", ")}.`);
+  return { id: hit[0], matched_from: s };
 }
 
 async function countryTable(session) {
@@ -264,7 +270,7 @@ export const EO_MEASURES = Object.freeze([
   ["CPI_YTYPCT", "inflation consumer prices cpi headline", "Consumer price inflation, percent"],
   ["PCORE_YTYPCT", "core inflation underlying", "Core inflation, percent"],
   ["UNR", "unemployment rate jobless", "Unemployment rate, percent of the labour force"],
-  ["NLGQ", "budget balance fiscal deficit surplus government net lending", "General government balance, percent of GDP"],
+  ["NLGQ", "budget balance fiscal deficit surplus government", "General government balance, percent of GDP"],
   ["GGFLQ", "government debt public debt gross", "General government gross debt, percent of GDP"],
   ["CBGDPR", "current account balance", "Current account balance, percent of GDP"],
   ["IRS", "short term interest rate policy rate money market", "Short-term interest rate, percent"],
@@ -273,14 +279,14 @@ export const EO_MEASURES = Object.freeze([
 // The outlook's own codes for groups the World Bank names differently.
 const EO_AREAS = Object.freeze({ EMU: "EA17", WLD: "W", OED: "OECD" });
 
-function eoMeasure(q) {
+const EO_WORDS = vocabulary();
+export function eoMeasure(q) {
   const s = String(q).trim();
   const byCode = EO_MEASURES.find((m) => m[0] === s.toUpperCase());
   if (byCode) return byCode;
-  const words = s.toLowerCase().match(/[a-z0-9]+/g) ?? [];
-  const scored = EO_MEASURES.map((m) => [m, words.filter((w) => m[1].split(" ").includes(w)).length / (words.length || 1)]).sort((a, b) => b[1] - a[1]);
-  if (!scored.length || scored[0][1] < 0.5) throw new NotFound(`No OECD outlook measure matches "${q}". Use: ${EO_MEASURES.map((m) => m[1].split(" ").slice(0, 2).join(" ")).join(", ")}.`);
-  return scored[0][0];
+  const hit = matchWords(EO_MEASURES, (m) => m[1], s, EO_WORDS);
+  if (!hit) throw new NotFound(`No OECD outlook measure matches "${q}". Use: ${EO_MEASURES.map((m) => m[1].split(" ").slice(0, 2).join(" ")).join(", ")}.`);
+  return hit;
 }
 
 export const outlookInput = z.object({

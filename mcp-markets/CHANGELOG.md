@@ -2,6 +2,37 @@
 
 ## Unreleased
 
+## 0.2.1
+
+The first 0.2 release on npm: 0.2.0's tools, and a fix for answers that were wrong without warning.
+0.2.0 was tagged but never reached npm (the publish was refused before upload).
+
+- Fix: `economic_series`, `world_economy` and `economic_outlook` took plain words to the series that
+  shared at least half of them, so one generic word was enough. "silver price", "copper price" and
+  "bitcoin price" returned US CPI. "japan inflation" returned US inflation, and "uk unemployment
+  rate" US unemployment. "wage growth" and "employment growth" returned GDP growth, and "house
+  prices" consumer inflation. In the OECD outlook, "exchange rate" returned the unemployment rate.
+  Now every specific word must be among the entry's own words; words that only say what kind of
+  number ("rate", "growth") or when ("this year", "since 2020") are not required. A request that
+  names nothing listed is refused, with where to look instead: price_history for commodities,
+  currencies, crypto and stocks, world_economy for other countries, or a FRED id.
+- Fix: "gold price" pointed at FRED's LBMA gold series, which FRED withdrew in 2022, so it failed.
+  Gold is `price_history`'s (COMEX gold futures).
+- `economic_series` knows more series by name. All were checked live on FRED on 2026-10-11:
+  - prices: PPI, Michigan inflation expectations, 5-year breakeven inflation;
+  - jobs and income: continuing claims, the quits rate, average hourly earnings, labour force
+    participation, personal income and spending, real disposable income, the saving rate;
+  - output and trade: corporate profits, the trade balance, federal debt to GDP;
+  - rates and credit: the 1-year Treasury, the bank prime rate, the 15-year mortgage rate, consumer
+    credit, bank loans;
+  - conditions: the Chicago and St. Louis Fed financial-conditions indexes;
+  - energy: gasoline and Henry Hub natural gas prices;
+  - money and housing: M1, durable goods orders, building permits, new home sales.
+
+  A series id inside the words ("unemployment rate (UNRATE)") is read as that id.
+- `world_economy` knows youth unemployment, military spending, life expectancy and remittances by
+  name.
+
 ## 0.2.0
 
 From 13 tools to 34: the parts of finance 0.1.0 could not answer, each from the publisher's own data
