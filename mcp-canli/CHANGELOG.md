@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+The first release on npm: 0.2.0's contents, unchanged. The 0.2.0 number is held by a staged copy on
+npm that could not be approved from this machine, and npm does not publish over a staged version,
+so this release takes the next number and is published from GitHub Actions with provenance.
+
 ## 0.2.0
 
 The first release on npm. 0.1.0 is the version the rival benchmark measured (`bench/rivals`) and was
