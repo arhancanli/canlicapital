@@ -4,6 +4,8 @@ import { fileURLToPath } from 'node:url';
 import { renderContributorChapter } from './lib/contributors.mjs';
 import { buildContributors } from './build-contributors.mjs';
 import { captureSourceDates } from './capture-source-dates.mjs';
+import { applyHero } from './lib/site-hero.mjs';
+import { computedTrail, declaredTrail, pageLabel, visibleNav } from './lib/breadcrumbs.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const family = path => path === 'index.html' ? 'home'
@@ -16,7 +18,7 @@ const family = path => path === 'index.html' ? 'home'
 // Runs after the source generators. Only the site's editable route documents are
 // migrated; immutable papers, releases and evidence files under public stay exact.
 // A second run must be byte-identical. This is also the route inventory for QA.
-export function applySiteDesign(html, path) {
+export function applySiteDesign(html, path, { labels = null } = {}) {
   if (!html.includes('data-product-shell="v3"')) return html;
   // Company documents share this renderer with hosted routes. It already emits
   // the design stylesheet and accessible table regions; preserve exact parity.
@@ -35,21 +37,6 @@ export function applySiteDesign(html, path) {
   if (path === 'developers.html') {
     next = next.replace(/<!-- developer-contributors:start -->[\s\S]*?<!-- developer-contributors:end -->\s*/g, '');
     next = next.replace('</main>', `<!-- developer-contributors:start --><section class="developer-contributors" aria-labelledby="developer-contributors-title"><p class="eyebrow">Contribute</p><h2 id="developer-contributors-title">Improve the tools you use.</h2><p>Reproduce a result, fix a tool or improve its documentation. Contributor rewards include higher hosted API quotas and early access to new MCP tools; the program is in development.</p><a href="/contributors">Explore contribution routes and reward status ↗</a></section><!-- developer-contributors:end --></main>`);
-  }
-  // The same restrained opener on every page family. Only the first heading's
-  // container is marked; document bodies and calculator panels remain readable.
-  if (family(path) !== 'home') {
-    const mainStart = next.indexOf('<main');
-    const h1 = next.indexOf('<h1', mainStart);
-    if (h1 >= 0) {
-      const before = next.slice(0, h1);
-      const candidates = [...before.matchAll(/<(header|section)\b([^>]*)>/g)].filter(match => match.index > mainStart);
-      const opener = candidates.at(-1);
-      if (opener && !opener[2].includes('cc-film-head')) {
-        const attributes = /class="/.test(opener[2]) ? opener[2].replace('class="', 'class="cc-film-head ') : `${opener[2]} class="cc-film-head"`;
-        next = next.slice(0, opener.index) + `<${opener[1]}${attributes}>` + next.slice(opener.index + opener[0].length);
-      }
-    }
   }
   next = next.replace(/\n?<!-- site-design:start -->[\s\S]*?<!-- site-design:end -->\n?/g, '\n');
   next = next.replace(/<link\b[^>]*href="(?:\/?(?:\.\.\/|\.\/)*css\/)[^"]+"[^>]*>\s*/g, '');
@@ -83,6 +70,13 @@ export function applySiteDesign(html, path) {
   if (questions[path] && !next.includes('class="workbench-explanation"')) {
     next = next.replace(/(<p\b[^>]*class="[^"]*(?:lead|lede|dek|description)[^"]*"[^>]*>)([\s\S]*?)(<\/p>)/, (_, open, copy, close) => `<p class="workbench-question">${questions[path]}</p><details class="workbench-explanation"><summary>How this tool works</summary>${open}${copy}${close}</details>`);
   }
+  // Every page but the homepage opens with the same cinematic header (scripts/lib/site-hero.mjs): its trail,
+  // label, title, summary line and actions over a still from the homepage film.
+  if (family(path) !== 'home') {
+    const route = '/' + path.replace(/\.html$/, '');
+    const trail = declaredTrail(next) ?? (labels ? computedTrail(route, labels) : null);
+    next = applyHero(next, path, { trailNav: trail && trail.length > 1 ? visibleNav(trail) : null });
+  }
   next = next.replace(/<pre\b([^>]*)>/g, (all, attrs) => /\btabindex=/.test(attrs) ? all : `<pre${attrs} tabindex="0">`);
   const head = '<!-- site-design:start -->\n<link rel="stylesheet" href="/css/product-shell.css" />\n<!-- site-design:end -->\n';
   next = next.replace(/\s*<\/head>/, `\n${head}</head>`);
@@ -104,13 +98,20 @@ function run() {
       else if (path.endsWith('.html')) files.push(path);
     }
   };
-  for (const dir of ['research','measurements','companies','publication','notes','trials','tools','standards','mcp-servers','datasets']) visit(resolve(root,dir));
+  for (const dir of ['research','measurements','companies','publication','notes','trials','tools','standards','mcp-servers','datasets','benchmarks']) visit(resolve(root,dir));
   const routes = [];
+  // every page's name, for the breadcrumb trails the headers carry
+  const labels = new Map();
+  for (const path of files) {
+    const file = relative(root,path).replaceAll('\\','/');
+    const label = pageLabel(readFileSync(path,'utf8'));
+    if (label) labels.set(file === 'index.html' ? '/' : '/' + file.replace(/\.html$/, ''), label);
+  }
   for (const path of files.sort()) {
     const file = relative(root,path).replaceAll('\\','/');
     const original = readFileSync(path,'utf8');
     if (!original.includes('data-product-shell="v3"')) continue;
-    const next = applySiteDesign(original,file);
+    const next = applySiteDesign(original,file,{labels});
     if (next !== original) writeFileSync(path,next);
     routes.push({file,route:file==='index.html'?'/':'/'+file.replace(/\.html$/,''),family:family(file),indexable:!/name="robots"[^>]*content="noindex/i.test(next)});
   }

@@ -98,7 +98,7 @@ export function renderProductShellHeader({ active = "", dynamicStatus = false } 
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-${renderLinks([PRIMARY_LINKS.find(link => link.key === "research"), {key:"performance",label:"ALPHAC",href:"/performance"}, PRIMARY_LINKS.find(link => link.key === "developers")], active, "cc-shell__link")}
+${renderLinks([{key:"mcp-servers",label:"MCP servers",href:"/mcp-servers"}, {key:"benchmark",label:"Benchmark",href:"/benchmarks/finance-mcp-servers"}, PRIMARY_LINKS.find(link => link.key === "research"), {key:"performance",label:"ALPHAC",href:"/performance"}, PRIMARY_LINKS.find(link => link.key === "developers")], active, "cc-shell__link")}
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>

@@ -69,14 +69,14 @@ function walk(dir, ext) {
  *  ones that are. */
 const visibleText = (html) =>
   html
-    .replace(/<head>[\s\S]*?<\/head>/gi, " ")
-    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<head\b[\s\S]*?<\/head[^>]*>/gi, " ")
+    .replace(/<script\b[\s\S]*?<\/script[^>]*>/gi, " ")
     // Inline SVG is geometry. Path coordinates are not published claims and will
     // never appear in an artifact, so scanning them makes every icon added to the
     // shell look like an untraceable figure. One GitHub mark contributed 47 of
     // them to /founder and one more to /engineering.
-    .replace(/<svg[\s\S]*?<\/svg>/gi, " ")
-    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<svg\b[\s\S]*?<\/svg[^>]*>/gi, " ")
+    .replace(/<style\b[\s\S]*?<\/style[^>]*>/gi, " ")
     .replace(/<[^>]+>/g, " ")
     .replace(/&#x[0-9a-f]+;/gi, " ")
     .replace(/&#\d+;/g, " ")
@@ -314,6 +314,13 @@ for (const file of htmlFiles) {
   // A content hash is an identifier too, and a hex digest containing "2844e509" reads as
   // exponential notation to any numeral scanner.
   for (const match of text.matchAll(/\b[0-9a-f]{12,}\b/g)) {
+    for (const token of match[0].match(NUMERAL) || []) identifiers.add(token);
+  }
+  // So is a short form of a hash the page prints in full: a trial's trail names it "trial 337e7574" beside its
+  // key 337e75745bd4a1a8, and "337e7574" reads as exponential notation too.
+  const digests = [...text.matchAll(/\b[0-9a-f]{12,}\b/g)].map((match) => match[0]);
+  for (const match of text.matchAll(/\b[0-9a-f]{6,11}\b/g)) {
+    if (!digests.some((digest) => digest.startsWith(match[0]))) continue;
     for (const token of match[0].match(NUMERAL) || []) identifiers.add(token);
   }
 
