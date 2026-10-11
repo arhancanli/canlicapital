@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased
+
+- **Results too large to read.** A result above 200,000 characters of JSON (about 50,000 tokens)
+  comes back as a preview. Every field stays, long lists show their first and last 5 items, and a
+  note names the lists it cut. The whole result stays under its ref. `show_result`, called through
+  `run_tool` (`{"name": "show_result", "arguments": {"ref": "r3", "path": "values", "offset": 0,
+  "limit": 200}}`), reads any part of it, a page at a time. Before this, a 30,000-price
+  `convert_returns` sent 626,859 characters into the model's context. The note appears only when
+  needed, so the three front tools cost the same 1,109 tokens.
+- **Numbers JSON cannot print.** NaN and Infinity print as null, so a model read an overflow or a
+  division by zero as a missing value. Such results now carry `non_finite_values`, naming the
+  fields (for example `zero_coupon_bond` at price 1e308: modified_duration, convexity, dv01).
+
 ## 0.3.0
 
 The markets pack (canli-markets-mcp 0.2.1) goes from 13 tools to 34, so canli-mcp has 306, and

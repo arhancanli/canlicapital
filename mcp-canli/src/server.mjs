@@ -141,13 +141,67 @@ export function roundNumbers(v, digits) {
   return v;
 }
 
+// JSON prints NaN and Infinity as null, so a model would read an overflow or a division by zero as
+// a missing value. They are named instead.
+export function nonFinitePaths(v, path = "", out = []) {
+  if (typeof v === "number") { if (!Number.isFinite(v)) out.push(path || "result"); }
+  else if (Array.isArray(v)) v.forEach((x, i) => nonFinitePaths(x, path ? `${path}.${i}` : String(i), out));
+  else if (v && typeof v === "object") for (const [k, x] of Object.entries(v)) nonFinitePaths(x, path ? `${path}.${k}` : k, out);
+  return out;
+}
+
+// A result above RESULT_CHARS of JSON (about 50,000 tokens) is sent as a preview: every field, with
+// long lists cut to their first and last items. The full result stays under its ref, and the
+// show_result call (named in the preview's note) reads any part of it.
+export const RESULT_CHARS = 200_000;
+const LIST_KEEP = 5, LIST_MAX = 40;
+export function preview(v, path = "", cut = []) {
+  const at = (k) => (path ? `${path}.${k}` : String(k));
+  if (Array.isArray(v)) {
+    if (v.length <= LIST_MAX) return v.map((x, i) => preview(x, at(i), cut));
+    cut.push({ path: path || "result", items: v.length });
+    return { list_of: v.length, first: v.slice(0, LIST_KEEP).map((x, i) => preview(x, at(i), cut)), last: v.slice(-LIST_KEEP).map((x, i) => preview(x, at(v.length - LIST_KEEP + i), cut)) };
+  }
+  if (v && typeof v === "object") return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, preview(x, at(k), cut)]));
+  return typeof v === "string" && v.length > 2000 ? `${v.slice(0, 2000)}… (${v.length} characters)` : v;
+}
+function trimmed(result, ref) {
+  const chars = JSON.stringify(result).length;
+  if (chars <= RESULT_CHARS) return result;
+  const cut = [], shown = preview(result, "", cut);
+  const lists = cut.slice(0, 6).map((c) => `${c.path} (${c.items} items)`).join(", ") + (cut.length > 6 ? ` and ${cut.length - 6} more` : "");
+  const first = cut[0]?.path ?? "rows";
+  return {
+    ...shown,
+    preview_only: {
+      chars,
+      shortened: cut.slice(0, 20),
+      note: `This result is ${chars} characters, so these lists show only their first and last ${LIST_KEEP} items: ${lists || "long text"}. ${ref ? `The whole result is kept as ${ref}: read a part with run_tool {"name": "show_result", "arguments": {"ref": "${ref}", "path": "${first}", "offset": 0, "limit": 200}}, pass {"$result": "${ref}", "path": "${first}"} to another tool, or call again with select.` : "Call again with select to choose the fields you need."}`,
+    },
+  };
+}
+
+// Part of a kept result: one path, and for a list a window of it.
+export function showResult(keeper, args) {
+  const a = z.object({ ref: z.string().max(20), path: z.string().max(200).optional(), offset: z.number().int().min(0).optional(), limit: z.number().int().min(1).max(1000).optional() }).strict().parse(args ?? {});
+  if (!keeper?.has(a.ref)) throw new Error(`show_result: "${a.ref}" is not kept; refs name earlier results (the last ${KEEP_COUNT} are kept), for example "r1".`);
+  const v = at(keeper.get(a.ref), a.path);
+  if (v === undefined) throw new Error(`show_result: ${a.ref} has no ${a.path}.`);
+  if (!Array.isArray(v)) return { ref: a.ref, ...(a.path ? { path: a.path } : {}), value: v };
+  const offset = a.offset ?? 0, limit = a.limit ?? 200;
+  return { ref: a.ref, path: a.path ?? null, total: v.length, offset, items: v.slice(offset, offset + limit), ...(offset + limit < v.length ? { next_offset: offset + limit } : {}) };
+}
+
 async function runOne(packs, { name, arguments: args }, { digits }, files) {
   const tool = await toolFor(name, packs);
   const parsed = tool.input.safeParse(resolveRefs(args ?? {}, files));
   if (!parsed.success) throw new Error(`${name}: ${parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "arguments"}: ${i.message}`).join("; ")}. Arguments: ${BY_NAME.get(name).args}. describe_tool ${name} explains each one.`);
   // Packs return full precision (quant's own default); rounding happens once, here.
   const out = await tool.run(parsed.data, tool.pack === "quant" ? { digits: 15 } : undefined);
-  return digits ? roundNumbers(out, digits) : out;
+  const bad = nonFinitePaths(out);
+  const result = digits ? roundNumbers(out, digits) : out;
+  if (!bad.length || !result || typeof result !== "object" || Array.isArray(result)) return result;
+  return { ...result, non_finite_values: { count: bad.length, paths: bad.slice(0, 8), note: "These numbers are not finite (an overflow, or a division by zero in the inputs) and print as null." } };
 }
 
 export function registerAll(server, packs = enabledPacks()) {
@@ -202,19 +256,20 @@ export function registerAll(server, packs = enabledPacks()) {
     if (!a.calls && !a.name) throw new Error("Pass name (and arguments) for one call, or calls for several.");
     if (a.calls && a.name) throw new Error("Pass either name or calls, not both.");
     const calls = a.calls ?? [{ name: a.name, arguments: a.arguments }], files = [], opts = { digits: a.digits };
-    const destructive = await Promise.all(calls.map(async (c) => { try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
+    const run = (c, args) => (c.name === "show_result" ? Promise.resolve().then(() => showResult(keeper, args)) : runOne(packs, { name: c.name, arguments: args }, opts, files));
+    const destructive = await Promise.all(calls.map(async (c) => { if (c.name === "show_result") return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
     if (calls.length > 1 && destructive.some(Boolean)) throw new Error("A tool that sends orders cannot run inside a batch; call it on its own after previewing.");
     const done = [];
     if (calls.some((c) => usesResults(c.arguments))) {
       for (const c of calls) {
-        try { done.push({ name: c.name, result: await runOne(packs, { name: c.name, arguments: resolveResults(c.arguments ?? {}, done, keeper) }, opts, files) }); }
+        try { done.push({ name: c.name, result: await run(c, resolveResults(c.arguments ?? {}, done, keeper)) }); }
         catch (e) { done.push({ name: c.name, error: e.message }); }
       }
     } else {
-      done.push(...await Promise.all(calls.map((c) => runOne(packs, c, opts, files).then((result) => ({ name: c.name, result }), (e) => ({ name: c.name, error: e.message })))));
+      done.push(...await Promise.all(calls.map((c) => run(c, c.arguments).then((result) => ({ name: c.name, result }), (e) => ({ name: c.name, error: e.message })))));
     }
     // Keep each full result (before select) under a ref for later calls.
-    for (const d of done) if (d.result !== undefined) { const ref = keeper.put(d.result); if (ref) d.ref = ref; }
+    for (const d of done) if (d.result !== undefined && d.name !== "show_result") { const ref = keeper.put(d.result); if (ref) d.ref = ref; }
     if (a.select) for (const d of done) if (d.result) {
       const full = d.result;
       // Rows without their column names are unreadable: selecting a table's rows keeps its columns.
@@ -230,6 +285,8 @@ export function registerAll(server, packs = enabledPacks()) {
       if (paths.some((p) => at(full, p) === undefined)) d.result.available_fields = Object.entries(full).flatMap(([k, v]) => (v && typeof v === "object" && !Array.isArray(v) ? Object.keys(v).slice(0, 12).map((x) => `${k}.${x}`) : [k])).slice(0, 60);
     }
     const receipt = a.receipt ? { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(done.map(({ ref, ...d }) => d)) } : undefined;
+    // After the receipt, which hashes the full results: an oversized one is sent as a preview.
+    for (const d of done) if (d.result !== undefined) d.result = trimmed(d.result, d.ref);
     if (!a.calls) { if (done[0].error) throw new Error(done[0].error); return { ...(done[0].ref ? { ref: done[0].ref } : {}), ...done[0].result, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) }; }
     const results = (a.return === "last" ? done.slice(-1) : done).map(({ name, ref, result, error }) => ({ name, ...(ref ? { ref } : {}), ...(error ? { error } : { result }) }));
     return { results, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) };
