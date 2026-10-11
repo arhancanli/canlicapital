@@ -4,7 +4,7 @@ Checked by `node bench/rivals/coverage.mjs` against each server's own tool list:
 
 | | canli-mcp | OpenBB | EdgarTools | Yahoo Finance MCP |
 |---|---|---|---|---|
-| Questions with a keyless tool (of 53) | 46 (20 released, 26 in PR #447) | 39 | 11 | 13 |
+| Questions with a keyless tool (of 53) | 49 (20 released, 29 in PRs #447 and #450) | 39 | 11 | 13 |
 | Tools listed | 285 behind 3 (find_tool, describe_tool, run_tool) | 1056 | 13 | 9 |
 | Tokens of tool definitions per request (REPORT.md) | 859 | 432,001 (2,171 in discovery mode) | 3,801 | 2,205 |
 
@@ -40,12 +40,12 @@ Checked by `node bench/rivals/coverage.mjs` against each server's own tool list:
 | Markets | Stocks listed outside the US | yes (PR #447) | yes | · | yes | OpenBB: Canada only (TMX). Yahoo: any Yahoo symbol. |
 | Markets | Currency pairs | yes (PR #447) | yes | · | yes |  |
 | Markets | Futures prices | yes (PR #447) | yes | · | yes |  |
-| Markets | Futures curves (term structure) | · | yes | · | · |  |
+| Markets | Futures curves (term structure) | yes (PR #447) | yes | · | · |  |
 | Markets | Crypto prices | yes (PR #447) | yes | · | yes |  |
 | Markets | Index levels | yes (PR #447) | yes | · | yes |  |
 | Markets | Index constituents | yes (PR #447) | yes | · | · |  |
-| Markets | Options chains with implied volatility and greeks | · | yes | · | yes | canli: Cboe's delayed chains work but await the owner's licensing decision. |
-| Markets | Volatility smile, surface and term structure | · | yes | · | · |  |
+| Markets | Options chains with implied volatility and greeks | yes (PR #447) | yes | · | yes | canli: Cboe's delayed data, approved by the owner 2026-10-11 (PR #450). |
+| Markets | Volatility smile, surface and term structure | yes (PR #447) | yes | · | · |  |
 | Rates | Treasury yield curve | yes | yes | · | · |  |
 | Rates | Treasury auctions, results and upcoming | yes (PR #447) | yes | · | · |  |
 | Rates | The federal debt | yes (PR #447) | yes | · | · |  |
@@ -68,4 +68,4 @@ Checked by `node bench/rivals/coverage.mjs` against each server's own tool list:
 
 Only canli-mcp: financials as first reported, and what was restated; one kind of event across the market (restatements, bankruptcies, cyber incidents); how the stock reacted to events (event study); new activist stakes across the market; private raises by startups and funds (form d); futures positioning (cftc commitments of traders); us economic series (inflation, jobs, gdp); performance and risk (sharpe, drawdown, var); portfolio construction (min variance, risk parity, black-litterman); strategy backtests; is a backtest overfit (deflated sharpe, pbo, reality check); paper trading behind pre-trade checks.
 
-canli-mcp has no tool yet: news headlines; analyst estimates, price targets, recommendations; upcoming earnings dates; futures curves (term structure); options chains with implied volatility and greeks; volatility smile, surface and term structure; corporate bond prices.
+canli-mcp has no tool yet: news headlines; analyst estimates, price targets, recommendations; upcoming earnings dates; corporate bond prices.

@@ -17,7 +17,7 @@ const rivals = JSON.parse(readFileSync(new URL("rivals-tools-2026-10-11.json", H
 export const OPENBB_KEYED = Object.freeze(["fred_", "bls_", "eia_", "cftc_"]);
 
 // canli-markets-mcp tools added in PR #447, not yet in a released canli-mcp.
-export const PENDING = Object.freeze(["world_economy", "treasury_auctions", "federal_debt", "fund_portfolio", "large_holders", "company_events", "private_offerings", "price_history+", "short_interest", "futures_positioning", "executive_pay", "fomc", "index_constituents", "off_exchange_volume", "segment_revenue", "fails_to_deliver", "economic_outlook", "economic_calendar", "investment_advisers"]);
+export const PENDING = Object.freeze(["world_economy", "treasury_auctions", "federal_debt", "fund_portfolio", "large_holders", "company_events", "private_offerings", "price_history+", "short_interest", "futures_positioning", "executive_pay", "fomc", "index_constituents", "off_exchange_volume", "segment_revenue", "fails_to_deliver", "economic_outlook", "economic_calendar", "investment_advisers", "options_chain", "volatility_surface", "futures_curve"]);
 
 // [area, question, canli, openbb, edgartools, yahoo, note]. "price_history+" is price_history with
 // the currencies, futures, indices, crypto and foreign listings PR #447 adds.
@@ -52,12 +52,12 @@ export const QUESTIONS = Object.freeze([
   ["Markets", "Stocks listed outside the US", ["price_history+"], ["tmx_equity_historical"], [], ["get_historical_stock_prices"], "OpenBB: Canada only (TMX). Yahoo: any Yahoo symbol."],
   ["Markets", "Currency pairs", ["price_history+"], ["ecb_exchange_rates", "ecb_reference_rates"], [], ["get_historical_stock_prices"]],
   ["Markets", "Futures prices", ["price_history+"], ["cboe_futures_curve", "deribit_futures_historical"], [], ["get_historical_stock_prices"]],
-  ["Markets", "Futures curves (term structure)", [], ["cboe_futures_curve", "deribit_futures_curve"], [], []],
+  ["Markets", "Futures curves (term structure)", ["futures_curve"], ["cboe_futures_curve", "deribit_futures_curve"], [], []],
   ["Markets", "Crypto prices", ["price_history+"], ["nasdaq_crypto_historical", "deribit_index_historical"], [], ["get_historical_stock_prices"]],
   ["Markets", "Index levels", ["price_history+"], ["cboe_index_historical", "nasdaq_index_historical", "tmx_index_historical"], [], ["get_historical_stock_prices"]],
   ["Markets", "Index constituents", ["index_constituents"], ["cboe_index_constituents", "tmx_index_constituents"], [], []],
-  ["Markets", "Options chains with implied volatility and greeks", [], ["cboe_options_chains", "nasdaq_options_chains", "deribit_options_chains"], [], ["get_option_chain"], "canli: Cboe's delayed chains work but await the owner's licensing decision."],
-  ["Markets", "Volatility smile, surface and term structure", [], ["cboe_options_smile", "cboe_options_surface", "cboe_options_term_structure"], [], []],
+  ["Markets", "Options chains with implied volatility and greeks", ["options_chain"], ["cboe_options_chains", "nasdaq_options_chains", "deribit_options_chains"], [], ["get_option_chain"], "canli: Cboe's delayed data, approved by the owner 2026-10-11 (PR #450)."],
+  ["Markets", "Volatility smile, surface and term structure", ["volatility_surface"], ["cboe_options_smile", "cboe_options_surface", "cboe_options_term_structure"], [], []],
   ["Rates", "Treasury yield curve", ["treasury_yields"], ["federal_reserve_yield_curve", "federal_reserve_treasury_rates"], [], []],
   ["Rates", "Treasury auctions, results and upcoming", ["treasury_auctions"], ["ustreasury_auction_results", "ustreasury_upcoming_auctions"], [], []],
   ["Rates", "The federal debt", ["federal_debt"], ["ustreasury_debt_to_penny"], [], []],
@@ -97,7 +97,7 @@ const lines = [
   "",
   `| | canli-mcp | OpenBB | EdgarTools | Yahoo Finance MCP |`,
   `|---|---|---|---|---|`,
-  `| Questions with a keyless tool (of ${QUESTIONS.length}) | ${count(2, false)} (${count(2, true)} released, ${count(2, false) - count(2, true)} in PR #447) | ${count(3)} | ${count(4)} | ${count(5)} |`,
+  `| Questions with a keyless tool (of ${QUESTIONS.length}) | ${count(2, false)} (${count(2, true)} released, ${count(2, false) - count(2, true)} in PRs #447 and #450) | ${count(3)} | ${count(4)} | ${count(5)} |`,
   `| Tools listed | ${index.tools.length} behind 3 (find_tool, describe_tool, run_tool) | ${rivals.servers.openbb.count} | ${rivals.servers.edgartools.count} | ${rivals.servers.yahoo.count} |`,
   `| Tokens of tool definitions per request (REPORT.md) | 859 | 432,001 (2,171 in discovery mode) | 3,801 | 2,205 |`,
   "",
