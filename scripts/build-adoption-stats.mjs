@@ -16,7 +16,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 export const OUT = "public/stats/adoption.json";
-export const PACKAGES = Object.freeze(["canli-validation-mcp", "canli-fundamentals-mcp", "canli-research-mcp", "canli-markets-mcp", "canli-quant-mcp", "canli-backtest-mcp", "canli-paper-trading-mcp"]);
+export const PACKAGES = Object.freeze(["canli-mcp", "canli-validation-mcp", "canli-fundamentals-mcp", "canli-research-mcp", "canli-markets-mcp", "canli-quant-mcp", "canli-backtest-mcp", "canli-paper-trading-mcp"]);
 export const REPOSITORIES = Object.freeze(["arhancanli/canlicapital", "arhancanli/alphac", "arhancanli/canli-validation-mcp",
   "arhancanli/canli-fundamentals-mcp", "arhancanli/canli-research-mcp", "arhancanli/canli-pit-lake", "arhancanli/canli-backtest"]);
 const STATUS_URL = "https://canlicapital.com/api/v1/validate/status";

@@ -1,0 +1,84 @@
+# Publish canli-markets-mcp from CI, so every release is built from this repository and npm
+# shows a provenance attestation for it. The same shape as mcp-publish.yml.
+#
+# Trigger: push a tag markets-mcp-v<version>, where <version> equals mcp-markets/package.json
+# "version". No npm token is stored: npm trusted publishing exchanges this job's GitHub OIDC token,
+# which requires a one-time setting on npmjs.com (package canli-markets-mcp, Settings, Trusted
+# Publisher, GitHub Actions: owner arhancanli, repository canlicapital, workflow
+# mcp-markets-publish.yml, environment mcp-markets-release). The MCP Registry entry is published
+# with the same OIDC token (mcp-publisher login github-oidc).
+#
+# The first release must be published to npm by hand to create the package (trusted publishing
+# can only be configured on an existing package); its tag then publishes only the registry entry,
+# because the npm step skips a version npm already serves.
+name: Publish markets MCP package
+
+on:
+  push:
+    tags: ["markets-mcp-v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: npm (with provenance) and MCP Registry
+    runs-on: ubuntu-latest
+    environment: mcp-markets-release
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          # npm trusted publishing needs npm 11.5.1 or later; Node 24 ships npm 11.
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          cache: npm
+          cache-dependency-path: mcp-markets/package-lock.json
+      - name: The tag names the version being published
+        run: |
+          tag="${GITHUB_REF_NAME#markets-mcp-v}"
+          version="$(node -p "require('./mcp-markets/package.json').version")"
+          registry="$(node -p "require('./mcp-markets/server.json').version")"
+          package="$(node -p "require('./mcp-markets/server.json').packages[0].version")"
+          test "$tag" = "$version" || { echo "tag $tag != package.json $version"; exit 1; }
+          test "$tag" = "$registry" || { echo "tag $tag != server.json $registry"; exit 1; }
+          test "$tag" = "$package" || { echo "tag $tag != server.json package $package"; exit 1; }
+      - run: npm ci --prefix mcp-markets
+      - run: npm audit --prefix mcp-markets --audit-level=high
+      - run: npm test --prefix mcp-markets
+      - name: Publish to npm with provenance
+        working-directory: mcp-markets
+        # Idempotent, so a run that failed at the registry step can be re-run.
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          if npm view "canli-markets-mcp@$version" version >/dev/null 2>&1; then
+            echo "canli-markets-mcp@$version is already on npm; not publishing again"
+          else
+            npm publish --provenance --access public
+          fi
+      - name: Wait until npm serves the new version
+        working-directory: mcp-markets
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          for attempt in $(seq 1 30); do
+            if npm view "canli-markets-mcp@$version" version >/dev/null 2>&1; then
+              echo "npm serves $version (attempt $attempt)"; exit 0
+            fi
+            sleep 10
+          done
+          echo "npm did not serve $version within 5 minutes" >&2; exit 1
+      - name: Publish to the MCP Registry
+        working-directory: mcp-markets
+        env:
+          # Pinned release and checksum (registry_1.8.1_checksums.txt); never "latest" in a publish job.
+          PUBLISHER_URL: https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1/mcp-publisher_linux_amd64.tar.gz
+          PUBLISHER_SHA256: a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc
+        run: |
+          curl -fsSL -o mcp-publisher.tar.gz "$PUBLISHER_URL"
+          echo "$PUBLISHER_SHA256  mcp-publisher.tar.gz" | sha256sum -c -
+          tar xzf mcp-publisher.tar.gz mcp-publisher
+          ./mcp-publisher login github-oidc
+          ./mcp-publisher publish
