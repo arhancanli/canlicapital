@@ -56,14 +56,36 @@ test("find_tool rows carry argument signatures; select returns only the named fi
   assert.deepEqual(f.structuredContent.columns, ["name", "pack", "args", "description"]);
   assert.match(f.structuredContent.rows[0][2], /returns\?: number\[\]/);
   const r = await c.callTool({ name: "run_tool", arguments: { name: "max_drawdown", arguments: { prices: { $file: CSV, column: "close" } }, select: ["max_drawdown", "nope"] } });
-  assert.deepEqual(Object.keys(r.structuredContent).filter((k) => k !== "files_read"), ["max_drawdown", "nope", "available_fields"]);
+  assert.deepEqual(Object.keys(r.structuredContent).filter((k) => k !== "files_read" && k !== "ref"), ["max_drawdown", "nope", "available_fields"]);
   assert.equal(r.structuredContent.nope, null);
   assert.ok(r.structuredContent.available_fields.includes("max_drawdown"));
   const lifted = await c.callTool({ name: "run_tool", arguments: { name: "max_drawdown", arguments: { prices: { $file: CSV, column: "close" }, select: ["max_drawdown"], digits: 3 } } });
   assert.ok(!lifted.isError, lifted.content[0].text);
-  assert.deepEqual(Object.keys(lifted.structuredContent).filter((k) => k !== "files_read"), ["max_drawdown"]);
+  assert.deepEqual(Object.keys(lifted.structuredContent).filter((k) => k !== "files_read" && k !== "ref"), ["max_drawdown"]);
   const listCol = await c.callTool({ name: "run_tool", arguments: { name: "correlation_matrix", arguments: { returns: { $file: CSV, column: ["close", "other"] } } } });
   assert.ok(!listCol.isError, listCol.content[0].text);
+});
+
+test("a result's ref feeds a later run_tool call; a batch index outside its batch says to use the ref", async (t) => {
+  const c = await connect(); t.after(() => c.close());
+  const first = await c.callTool({ name: "run_tool", arguments: { name: "convert_returns", arguments: { values: { $file: CSV, column: "close" }, from: "prices", to: "simple" } } });
+  assert.ok(!first.isError, first.content[0].text);
+  const ref = first.structuredContent.ref;
+  assert.match(ref, /^r\d+$/);
+  const field = Object.keys(first.structuredContent).find((k) => Array.isArray(first.structuredContent[k]) && typeof first.structuredContent[k][0] === "number");
+  const second = await c.callTool({ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { returns: { $result: ref, path: field } } } });
+  assert.ok(!second.isError, second.content[0].text);
+  const direct = await c.callTool({ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { returns: first.structuredContent[field] } } });
+  assert.equal(second.structuredContent.sharpe_ratio ?? JSON.stringify(second.structuredContent.result), direct.structuredContent.sharpe_ratio ?? JSON.stringify(direct.structuredContent.result));
+  const wrong = await c.callTool({ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { returns: { $result: 0, path: field } } } });
+  assert.equal(wrong.isError, true);
+  assert.match(wrong.content[0].text, /pass its ref/);
+  const gone = await c.callTool({ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { returns: { $result: "r999" } } } });
+  assert.match(gone.content[0].text, /not kept/);
+  const nested = await c.callTool({ name: "run_tool", arguments: { name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { returns: { $result: ref, path: field } } } } });
+  assert.ok(!nested.isError, nested.content[0].text);
+  const nestedBatch = await c.callTool({ name: "run_tool", arguments: { calls: [{ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { returns: [0.01, -0.02, 0.03] } } }] } });
+  assert.ok(nestedBatch.structuredContent.results[0].result, JSON.stringify(nestedBatch.structuredContent));
 });
 
 test("errors are per call and say what to do", async (t) => {

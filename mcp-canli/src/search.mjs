@@ -2,9 +2,12 @@
 // stop words and finance abbreviations expanded, plus a bonus when the query names a tool or
 // contains a run of its name's words. Built once from index.json.
 const STOP = new Set("a an and are as at be by can do does for from get how i in is it me my of on or our the this to what which with you your want need using use show find give compute calculate".split(" "));
-const ABBREV = { cvar: "expected shortfall conditional", es: "expected shortfall", var: "value risk", npv: "net present value", irr: "internal rate return", ytm: "yield maturity", dcf: "discounted cash flow", pnl: "profit loss", vol: "volatility", iv: "implied volatility", rv: "realized variance", hmm: "markov regime", pbo: "probability backtest overfitting", dsr: "deflated sharpe", ml: "machine learning", cv: "cross validation", etf: "etfs", fx: "currency", otm: "out money", sec: "filings", "10k": "annual filing", pit: "point time" };
-export const stem = (w) => (w.length <= 3 ? w : w.replace(/(ies)$/, "y").replace(/(ing|ed|es|s)$/, "").replace(/(istic|ility|ation|ion|ity|al|ness|ic)$/, "") || w);
-export const tokens = (s) => String(s ?? "").toLowerCase().replace(/[-_/]/g, " ").split(/[^a-z0-9]+/).filter((w) => w.length > 1 && !STOP.has(w)).flatMap((w) => (ABBREV[w] ? [w, ...ABBREV[w].split(" ")] : [w])).map(stem);
+const ABBREV = { cvar: "expected shortfall conditional", es: "expected shortfall", var: "value risk", npv: "net present value", irr: "internal rate return", ytm: "yield maturity", dcf: "discounted cash flow", pnl: "profit loss", vol: "volatility", iv: "implied volatility", rv: "realized variance", hmm: "markov regime", pbo: "probability backtest overfitting", dsr: "deflated sharpe", ml: "machine learning", cv: "cross validation", etf: "etfs", fx: "currency", otm: "out money", sec: "filings", "10k": "annual filing", "10q": "quarterly filing", "8k": "current report events", pit: "point time" };
+// Words the stemmer would turn into another word ("news" into "new").
+const KEEP = new Set(["news"]);
+export const stem = (w) => (w.length <= 3 || KEEP.has(w) ? w : w.replace(/(ies)$/, "y").replace(/(ing|ed|es|s)$/, "").replace(/(istic|ility|ation|ion|ity|al|ness|ic)$/, "") || w);
+// Form names keep their number ("8-K" as 8k, "10-Q" as 10q) before dashes become spaces.
+export const tokens = (s) => String(s ?? "").toLowerCase().replace(/\b(\d{1,2})-([kq])\b/g, "$1$2").replace(/[-_/]/g, " ").split(/[^a-z0-9]+/).filter((w) => w.length > 1 && !STOP.has(w)).flatMap((w) => (ABBREV[w] ? [w, ...ABBREV[w].split(" ")] : [w])).map(stem);
 
 const FIELDS = [["name", 3], ["title", 2.5], ["keywords", 2], ["description", 1]];
 
@@ -33,7 +36,9 @@ export function search(index, query, { packs, limit = 8 } = {}) {
     let run = 0;
     for (let x = 0; x < raw.length; x++) for (let j = 0; j < nw.length; j++) { let k = 0; while (raw[x + k] && nw[j + k] && raw[x + k] === nw[j + k]) k++; run = Math.max(run, k); }
     if (run >= 2) s += 2 * run;
-    if (q.length && (t.name.replace(/_/g, " ") === plain.trim() || new RegExp(`(^|[^a-z_])${t.name}([^a-z_]|$)`).test(plain))) s += 100;
+    // Naming a tool picks it: the whole query, or an identifier with an underscore (sharpe_ratio).
+    // A one-word name ("history") is an ordinary word in a question, so it gets no bonus there.
+    if (q.length && (t.name.replace(/_/g, " ") === plain.trim() || (t.name.includes("_") && new RegExp(`(^|[^a-z_])${t.name}([^a-z_]|$)`).test(plain)))) s += 100;
     if (s > 0 || q.length === 0) scored.push([s, t]);
   });
   scored.sort((x, y) => y[0] - x[0] || x[1].name.length - y[1].name.length || x[1].name.localeCompare(y[1].name));

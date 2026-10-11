@@ -30,7 +30,7 @@ test("src imports only the SDK, zod, the published packs and file, path, os, url
 });
 
 test("pack selection: paper only with Alpaca paper keys; offline keeps only the network-free packs", () => {
-  assert.deepEqual(enabledPacks({}), ["quant", "validation", "fundamentals", "research", "backtest"]);
+  assert.deepEqual(enabledPacks({}), ["quant", "validation", "fundamentals", "research", "backtest", "markets"]);
   assert.ok(enabledPacks({ ALPACA_PAPER_KEY_ID: "PK1" }).includes("paper"));
   assert.deepEqual(enabledPacks({ CANLI_OFFLINE: "1", CANLI_PACKS: "all" }), ["quant", "validation"]);
   assert.throws(() => enabledPacks({ CANLI_PACKS: "nope" }), /no pack nope/);
