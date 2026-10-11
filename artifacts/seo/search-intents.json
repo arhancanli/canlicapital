@@ -1,9 +1,9 @@
 {
   "schema": "canli.search-intent-audit.v1",
   "measurement_status": "Editorial intent hypotheses; search volume, rankings and query coverage are not measured",
-  "canonical_owners": 111,
-  "query_hypotheses": 166,
-  "local_indexable_pages": 343,
+  "canonical_owners": 113,
+  "query_hypotheses": 171,
+  "local_indexable_pages": 345,
   "unassigned_canonicals": [
     "https://canlicapital.com/contributors",
     "https://canlicapital.com/annotate",
@@ -643,6 +643,23 @@
         "quant research null benchmark"
       ],
       "source": "public/research/null-zoo-v0.md"
+    },
+    {
+      "path": "/notes/edgar-acceptance-times",
+      "intent": "Find out why EDGAR's acceptanceDateTime is hours off and how to correct it",
+      "queries": [
+        "edgar acceptancedatetime wrong",
+        "sec submissions api acceptance time timezone",
+        "edgar filing acceptance time utc"
+      ]
+    },
+    {
+      "path": "/notes/silver-price-returned-cpi",
+      "intent": "Map plain-word requests to the right FRED series in an agent tool",
+      "queries": [
+        "fred series lookup by name",
+        "mcp tool returned the wrong data series"
+      ]
     },
     {
       "path": "/companies/0000019617",
