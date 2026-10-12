@@ -231,11 +231,11 @@ const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: 
 
 export const TOOL_DESCRIPTIONS = Object.freeze({
   search_research: "Find Canli Capital research papers (strategy tests, killed candidates, literature reviews, feasibility protocols) by words in their titles and summaries. Use it to find a paper's slug, then read it with get_paper; to browse by subject instead, use list_topics.",
-  list_topics: "The research topics, with how many papers each holds and what it covers.",
-  get_paper: "A research paper's text as published, by slug, with its headings; send section for one part, and max_chars to cap the length. Find the slug with search_research or list_topics first.",
-  trial_ledger: "How many distinct hypotheses Canli Capital has tried against its declared budget, and how many were killed or survived. Use it to judge any published result against the size of the search behind it.",
-  live_record: "The live paper-trading record (returns, costs, risk, corrections, provenance) and each sleeve's paper equity, with their limits. Use it for how the strategies are doing now; for why they exist, read the papers.",
-  chain_head: "The head of the tamper-evident chain that shows the published record was not rewritten after publication, with where to verify it. Use it to check that a figure you read was not changed later.",
+  list_topics: "List the research topics, with how many papers each holds and what it covers.",
+  get_paper: "Read a research paper's text as published, by slug, with its headings; send section for one part, and max_chars to cap the length. Find the slug with search_research or list_topics first.",
+  trial_ledger: "Count how many distinct hypotheses Canli Capital has tried against its declared budget, and how many were killed or survived. Use it to judge any published result against the size of the search behind it.",
+  live_record: "Read the live paper-trading record (returns, costs, risk, corrections, provenance) and each sleeve's paper equity, with their limits. Use it for how the strategies are doing now; for why they exist, read the papers.",
+  chain_head: "Get the head of the tamper-evident chain that shows the published record was not rewritten after publication, with where to verify it. Use it to check that a figure you read was not changed later.",
 });
 
 // Output schemas: published OPEN (extra fields always pass), every field optional, one sentence

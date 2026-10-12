@@ -22,7 +22,7 @@ const SOURCE_PINS = Object.freeze({
   'package/src/canonical-json.mjs': '881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b',
   'package/src/audit-inputs-core.mjs': 'e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059',
   'package/src/audit-inputs-stdio.mjs': '537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0',
-  'package/src/server.mjs': 'dd856068821d05648eb5f3ff6f2e2996cc165de2c9b6f1d24f506fbc29382d38',
+  'package/src/server.mjs': 'fe4c1042da41f58f34d7852a6b93ef7af82c612fca2c33f5b6af5143393300e8',
   'package/src/expert-submission-stdio.mjs': '56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208',
   'package/src/expert-submission-audit-core.mjs': '4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3',
   'package/src/expert-intake-core.mjs': '5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545',

@@ -486,14 +486,14 @@ tokenizers give different absolute counts), in the shape an OpenAI-style client 
 
 | CANLI_TOOLSETS | tools | tokens per turn | of all |
 |---|---|---|---|
-| (default) | 19 | 5,978 | 85% |
-| (default, with CANLI_KEY) | 18 | 5,842 | 83% |
-| `all` | 23 | 7,019 | 100% |
-| `validate` | 11 | 3,658 | 52% |
+| (default) | 19 | 6,142 | 85% |
+| (default, with CANLI_KEY) | 18 | 6,006 | 84% |
+| `all` | 23 | 7,185 | 100% |
+| `validate` | 11 | 3,672 | 51% |
 | `receipts` | 1 | 182 | 3% |
-| `company` | 1 | 273 | 4% |
-| `status` | 1 | 89 | 1% |
-| `lab` | 6 | 2,055 | 29% |
+| `company` | 1 | 275 | 4% |
+| `status` | 1 | 90 | 1% |
+| `lab` | 6 | 2,204 | 31% |
 | `ledger` | 3 | 772 | 11% |
 
 Providers cache a tool list that is identical from turn to turn and bill the cached part at a

@@ -25,11 +25,11 @@ export const LAB_BOUNDARY = Object.freeze({
 
 export const LAB_TOOL_DESCRIPTIONS = Object.freeze({
   backtest_strategy: `Backtest a rule on your prices over a whole parameter grid, then validate the best with the count of variants actually run: deflated Sharpe, overfitting probability, minimum track record, vs buy and hold, after costs. ${LAB_BOUNDARY.backtest_strategy}`,
-  summarize_series: `A long price or return series in about 100 words plus fields: growth, risk, dated drawdowns, trend, volatility regime, tails, jumps, stale data. Use instead of reading raw bars. ${LAB_BOUNDARY.summarize_series}`,
+  summarize_series: `Summarize a long price or return series in about 100 words plus fields: growth, risk, dated drawdowns, trend, volatility regime, tails, jumps, stale data. Use instead of reading raw bars. ${LAB_BOUNDARY.summarize_series}`,
   stress_test: `Stress a strategy's returns: bootstrap histories (how often the drawdown limit breaks or Sharpe turns negative) and named crash, volatility, repeat and stuck-position scenarios, with a fragility share. ${LAB_BOUNDARY.stress_test}`,
   check_feasibility: `Check a trading plan before it trades: broker order-rate and minimum-order limits, 2026 US day-trading rules, square-root market impact with crowding, and the capital where costs eat the return. ${LAB_BOUNDARY.check_feasibility}`,
-  check_leakage: `Does a signal look ahead? plan gives cuts; rerun your code on the first cut rows for each, then compare. Rows that changed used later rows; the result names the pattern and horizon. No code is sent. ${LAB_BOUNDARY.check_leakage}`,
-  placebo_test: `Does your pipeline find edges in noise? plan writes placebo files (your data's returns in random orders, so nothing is predictable); run the whole pipeline on real.csv and on each, then compare for a p-value that counts every choice it makes. ${LAB_BOUNDARY.placebo_test}`,
+  check_leakage: `Test whether a signal looks ahead: plan gives cuts; rerun your code on the first cut rows for each, then compare. Rows that changed used later rows; the result names the pattern and horizon. No code is sent. ${LAB_BOUNDARY.check_leakage}`,
+  placebo_test: `Test whether your pipeline finds edges in noise: plan writes placebo files (your data's returns in random orders, so nothing is predictable); run the whole pipeline on real.csv and on each, then compare for a p-value that counts every choice it makes. ${LAB_BOUNDARY.placebo_test}`,
 });
 
 const FAMILY_NAMES = Object.keys(FAMILIES);
@@ -91,11 +91,11 @@ export const stressInput = z
 export const feasibilityInput = z
   .object({
     broker: z.enum(["alpaca", "ibkr", "other"]).optional().describe("Default other."),
-    asset_class: z.enum(["us_equity", "crypto", "futures", "fx", "options"]).optional(),
-    account: z.enum(["cash", "margin"]).optional(),
-    capital_usd: z.number(),
-    orders_per_rebalance: z.number().int(),
-    rebalances_per_year: z.number(),
+    asset_class: z.enum(["us_equity", "crypto", "futures", "fx", "options"]).optional().describe("Default us_equity."),
+    account: z.enum(["cash", "margin"]).optional().describe("Default margin; cash adds T+1 settlement checks."),
+    capital_usd: z.number().describe("Account capital, e.g. 250000."),
+    orders_per_rebalance: z.number().int().describe("Orders sent each rebalance, e.g. 40."),
+    rebalances_per_year: z.number().describe("e.g. 52 weekly, 252 daily."),
     turnover_per_year: z.number().min(0).describe("Buys plus sells a year / capital."),
     adv_usd: z.number().describe("Daily dollar volume of a typical holding."),
     daily_volatility: z.number().max(1).describe("Of a typical holding, e.g. 0.02."),
@@ -110,32 +110,32 @@ export const feasibilityInput = z
 
 export const leakageInput = z
   .object({
-    action: z.enum(["plan", "compare"]),
+    action: z.enum(["plan", "compare"]).describe("plan first, then compare."),
     observations: z.number().int().optional().describe("plan: rows in the series."),
     prefixes: z.number().int().optional().describe("plan: cuts, default 5."),
-    seed: z.number().int().optional(),
+    seed: z.number().int().optional().describe("plan: default random; reproduces the cuts."),
     cuts: z.array(z.number().int()).optional().describe("compare: plan's cuts."),
     // Shapes and lengths are checked by the computation (js/leakage-core.js) with messages that
     // say what to send; the advertised schema stays small because it is re-sent every turn.
     columns: z.record(z.string(), z.looseObject({})).optional().describe("compare: {name: {full: [all rows], prefixes: [[first cuts[i] rows], ...]}}, null for missing."),
     columns_file: z.string().optional().describe("compare, on your machine: a JSON file {cuts, columns} instead."),
-    timestamps: z.array(z.string()).optional(),
+    timestamps: z.array(z.string()).optional().describe("compare: a label per row, to name rows by date."),
     tolerance: z.number().optional().describe("Default 1e-9."),
   })
   .strict();
 
 export const placeboInput = z
   .object({
-    action: z.enum(["plan", "compare"]),
+    action: z.enum(["plan", "compare"]).describe("plan first, then compare."),
     data_file: z.string().optional().describe("plan, on your machine: CSV or JSON, a column per asset, dates optional."),
     columns: z.record(z.string(), z.array(z.number())).optional().describe("plan: {asset: [values]} instead of data_file."),
     kind: z.enum(["prices", "returns"]).optional().describe("plan: default prices."),
     placebos: z.number().int().optional().describe("plan: default 19, up to 199."),
-    method: z.enum(PLACEBO_METHODS).optional(),
-    seed: z.number().int().optional(),
+    method: z.enum(PLACEBO_METHODS).optional().describe("plan: default permute; block methods keep autocorrelation."),
+    seed: z.number().int().optional().describe("plan: default random; reproduces the files."),
     real: z.number().optional().describe("compare: the pipeline's result on the real data."),
     placebo_results: z.array(z.number()).optional().describe("compare: its result on each placebo, in file order."),
-    lower_is_better: z.boolean().optional(),
+    lower_is_better: z.boolean().optional().describe("compare: true for a loss or error; default false."),
   })
   .strict();
 
