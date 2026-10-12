@@ -1,5 +1,11 @@
 # Persistent CanliCapital goal
 
+Current finance MCP continuation (2026-10-13 Dubai): [MCP_RUN_20261012.md](MCP_RUN_20261012.md).
+Verified release and candidate evidence are in artifacts/mcp. Hosted rollout and
+two npm Trusted Publisher configurations remain pending. The owner October6 reset
+uses ordinary PRs/tests/CI; the older custody/checkpoint entries below are history.
+All owner requirements remain active; global ranking and adoption are unestablished.
+
 Current continuation (2026-10-02): actual main64d81591 contains delivered PR358
 052c4d60 and PR35764d81591, with their reviewed trees and independent final
 source/archive/current-CI evidence. The current primary worktree is

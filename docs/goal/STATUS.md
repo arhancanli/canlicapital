@@ -1,5 +1,11 @@
 # Current state
 
+Current finance MCP continuation (2026-10-13 Dubai): [MCP_RUN_20261012.md](MCP_RUN_20261012.md).
+Verified release and candidate evidence are in artifacts/mcp. Hosted rollout and
+two npm Trusted Publisher configurations remain pending. The owner October6 reset
+uses ordinary PRs/tests/CI; the older custody/checkpoint entries below are history.
+All owner requirements remain active; global ranking and adoption are unestablished.
+
 ## MCP page update live; final evidence checkpoint, 2026-10-01
 
 Goal ACTIVE, NOT ACHIEVED. PR349 merged62d2a195 from signed88d4ac9a at15:00:27Z;
