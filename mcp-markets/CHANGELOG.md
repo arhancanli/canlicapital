@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.3.0
+
 - Fix: `event_study` took filing times from the submissions file's `acceptanceDateTime`, which is
   labelled UTC but is not reliable. Measured 2026-10-11 on 450 filings from 25 companies' files:
   - each file was either right for every filing in it, or shifted by one US Eastern offset (+4 h
