@@ -2,7 +2,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { RESULT_CHARS, nonFinitePaths, preview, registerAll } from "../src/server.mjs";
+import { RESULT_CHARS, createKeeper, nonFinitePaths, preview, registerAll, showResult } from "../src/server.mjs";
 
 function handlers() {
   const h = {};
@@ -48,4 +48,39 @@ test("numbers JSON cannot print are named, not left to read as missing", async (
   assert.equal(r.non_finite_values.count, 3);
   assert.deepEqual(nonFinitePaths({ a: [1, NaN, { b: Infinity }], c: 2 }), ["a.1", "a.2.b"]);
   assert.deepEqual(preview(Array.from({ length: 41 }, (_, i) => i), "", []).first, [0, 1, 2, 3, 4]);
+});
+
+test("a table page retains the column labels, including nested tables", () => {
+  const keeper = createKeeper();
+  const table = { columns: ["ticker", "close"], rows: [["AAPL", 100], ["MSFT", 200]] };
+  const ref = keeper.put({ table });
+  const page = showResult(keeper, { ref, path: "table.rows", limit: 1 });
+  assert.deepEqual(page.columns, table.columns);
+  assert.deepEqual(page.items, [["AAPL", 100]]);
+  assert.equal(page.next_offset, 1);
+  const last = showResult(keeper, { ref, path: "table.rows", offset: 1, limit: 1 });
+  assert.deepEqual(last.items, [["MSFT", 200]]);
+  assert.equal(last.next_offset, undefined);
+});
+
+test("long text can be read completely in successive pages", () => {
+  const keeper = createKeeper(), text = "SEC filing 😀 ".repeat(500);
+  const ref = keeper.put({ filing: { text } });
+  let offset = 0, rebuilt = "";
+  do {
+    const page = showResult(keeper, { ref, path: "filing.text", offset, limit: 97 });
+    assert.equal(page.unit, "characters");
+    assert.equal(page.total, text.length);
+    assert.ok(page.value.length <= 97);
+    rebuilt += page.value;
+    offset = page.next_offset;
+  } while (offset !== undefined);
+  assert.equal(rebuilt, text);
+});
+
+test("text shortened by a preview names its actual path for paging", () => {
+  const cuts = [];
+  const shown = preview({ filing: { text: "x".repeat(2500) } }, "", cuts);
+  assert.ok(shown.filing.text.length < 2100);
+  assert.deepEqual(cuts, [{ path: "filing.text", chars: 2500 }]);
 });
