@@ -1,5 +1,11 @@
 # Phases and exit evidence
 
+Current finance MCP continuation (2026-10-13 Dubai): [MCP_RUN_20261012.md](MCP_RUN_20261012.md).
+Verified release and candidate evidence are in artifacts/mcp. Hosted rollout and
+two npm Trusted Publisher configurations remain pending. The owner October6 reset
+uses ordinary PRs/tests/CI; the older custody/checkpoint entries below are history.
+All owner requirements remain active; global ranking and adoption are unestablished.
+
 | Phase | Scope | Status | Exit evidence |
 | --- | --- | --- | --- |
 | 0 | Review Claude, inventory production and preserve owner objectives | Claude owner messages/vision and 16 plans recovered; goal active; implementation and production checkpoint verified 2026-10-01 | Recorded baseline, isolated worktrees, source-linked goals |

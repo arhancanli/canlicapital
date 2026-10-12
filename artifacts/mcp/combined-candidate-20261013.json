@@ -1,0 +1,564 @@
+{
+  "schema": "canli.mcp-candidate-evidence.v1",
+  "state": "PRIVATE CANDIDATE; not published to npm or MCP Registry",
+  "version": "0.4.0",
+  "catalog_tools": 307,
+  "dependency_versions": {
+    "quant": "0.1.1",
+    "validation": "0.14.0",
+    "fundamentals": "0.6.0",
+    "research": "0.3.0",
+    "backtest": "0.1.2",
+    "markets": "0.3.0",
+    "paper": "0.1.0"
+  },
+  "full_tests": [
+    {
+      "node": "20.20.2",
+      "passed": 33,
+      "failed": 0
+    },
+    {
+      "node": "22.23.2",
+      "passed": 33,
+      "failed": 0
+    },
+    {
+      "node": "24.19.0",
+      "passed": 33,
+      "failed": 0
+    }
+  ],
+  "workflow_smoke": [
+    {
+      "node": "20.20.2",
+      "server": "0.4.0",
+      "tools": 3,
+      "prompts": [
+        "backtest_check",
+        "company_brief",
+        "earnings_preview",
+        "macro_snapshot",
+        "ownership"
+      ],
+      "network_guard": "active",
+      "pass": true
+    },
+    {
+      "node": "22.23.2",
+      "server": "0.4.0",
+      "tools": 3,
+      "prompts": [
+        "backtest_check",
+        "company_brief",
+        "earnings_preview",
+        "macro_snapshot",
+        "ownership"
+      ],
+      "network_guard": "active",
+      "pass": true
+    },
+    {
+      "node": "24.19.0",
+      "server": "0.4.0",
+      "tools": 3,
+      "prompts": [
+        "backtest_check",
+        "company_brief",
+        "earnings_preview",
+        "macro_snapshot",
+        "ownership"
+      ],
+      "network_guard": "active",
+      "pass": true
+    }
+  ],
+  "context_measurement": {
+    "measured": "2026-10-13",
+    "node": "v24.19.0",
+    "tokenizer": "o200k_base",
+    "rows": {
+      "canli-mcp": {
+        "version": "0.4.0",
+        "tools": 3,
+        "tool_tokens": 944,
+        "instruction_tokens": 165,
+        "total_tokens": 1109,
+        "startup_ms": 67
+      },
+      "canli-quant-mcp": {
+        "version": "0.1.1",
+        "tools": 3,
+        "tool_tokens": 731,
+        "instruction_tokens": 201,
+        "total_tokens": 932,
+        "startup_ms": 84
+      },
+      "canli-validation-mcp": {
+        "version": "0.14.0",
+        "tools": 19,
+        "tool_tokens": 9702,
+        "instruction_tokens": 200,
+        "total_tokens": 9902,
+        "startup_ms": 79
+      },
+      "canli-fundamentals-mcp": {
+        "version": "0.6.0",
+        "tools": 7,
+        "tool_tokens": 3143,
+        "instruction_tokens": 121,
+        "total_tokens": 3264,
+        "startup_ms": 62
+      },
+      "canli-research-mcp": {
+        "version": "0.3.0",
+        "tools": 6,
+        "tool_tokens": 1539,
+        "instruction_tokens": 76,
+        "total_tokens": 1615,
+        "startup_ms": 58
+      },
+      "canli-backtest-mcp": {
+        "version": "0.1.2",
+        "tools": 3,
+        "tool_tokens": 1010,
+        "instruction_tokens": 72,
+        "total_tokens": 1082,
+        "startup_ms": 62
+      },
+      "canli-markets-mcp": {
+        "version": "0.3.0",
+        "tools": 35,
+        "tool_tokens": 16484,
+        "instruction_tokens": 453,
+        "total_tokens": 16937,
+        "startup_ms": 81
+      },
+      "canli-paper-trading-mcp": {
+        "version": "0.1.0",
+        "tools": 4,
+        "tool_tokens": 1351,
+        "instruction_tokens": 59,
+        "total_tokens": 1410,
+        "startup_ms": 60
+      }
+    },
+    "seven_separately": {
+      "tools": 77,
+      "total_tokens": 35142,
+      "startup_ms": [
+        58,
+        84
+      ]
+    }
+  },
+  "robustness": {
+    "tools": 307,
+    "calls": 2999,
+    "refused_by_validation": 4812,
+    "findings": [
+      {
+        "tool": "black_scholes",
+        "pack": "quant",
+        "call": "spot=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "black76",
+        "pack": "quant",
+        "call": "forward=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "bachelier",
+        "pack": "quant",
+        "call": "forward=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "bachelier",
+        "pack": "quant",
+        "call": "strike=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "put_call_parity",
+        "pack": "quant",
+        "call": "call=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "put_call_parity",
+        "pack": "quant",
+        "call": "strike=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "option_portfolio_greeks",
+        "pack": "quant",
+        "call": "spot=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "sabr_volatility",
+        "pack": "quant",
+        "call": "alpha=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "zero_coupon_bond",
+        "pack": "quant",
+        "call": "price=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "zero_coupon_bond",
+        "pack": "quant",
+        "call": "price=9007199254740992",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "treasury_bill_yields",
+        "pack": "quant",
+        "call": "price=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "merton_credit_risk",
+        "pack": "quant",
+        "call": "equity_value=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "merton_credit_risk",
+        "pack": "quant",
+        "call": "equity_value=9007199254740992",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "portfolio_risk",
+        "pack": "quant",
+        "call": "returns=[20000]",
+        "kind": "message leaks internals",
+        "message": "asset_1 has no variance (its returns never change), so risk-based weights are undefined. Drop it or check the data."
+      },
+      {
+        "tool": "min_variance_portfolio",
+        "pack": "quant",
+        "call": "returns=[20000]",
+        "kind": "message leaks internals",
+        "message": "asset_1 has no variance (its returns never change), so risk-based weights are undefined. Drop it or check the data."
+      },
+      {
+        "tool": "max_sharpe_portfolio",
+        "pack": "quant",
+        "call": "returns=[20000]",
+        "kind": "message leaks internals",
+        "message": "asset_1 has no variance (its returns never change), so risk-based weights are undefined. Drop it or check the data."
+      },
+      {
+        "tool": "mean_variance_portfolio",
+        "pack": "quant",
+        "call": "returns=[20000]",
+        "kind": "message leaks internals",
+        "message": "asset_1 has no variance (its returns never change), so risk-based weights are undefined. Drop it or check the data."
+      },
+      {
+        "tool": "risk_parity_portfolio",
+        "pack": "quant",
+        "call": "returns=[20000]",
+        "kind": "message leaks internals",
+        "message": "asset_1 has no variance (its returns never change), so risk-based weights are undefined. Drop it or check the data."
+      },
+      {
+        "tool": "inverse_volatility_weights",
+        "pack": "quant",
+        "call": "returns=[20000]",
+        "kind": "message leaks internals",
+        "message": "asset_1 has no variance (its returns never change), so risk-based weights are undefined. Drop it or check the data."
+      },
+      {
+        "tool": "hierarchical_risk_parity",
+        "pack": "quant",
+        "call": "returns=[20000]",
+        "kind": "message leaks internals",
+        "message": "asset_1 has no variance (its returns never change), so risk-based weights are undefined. Drop it or check the data."
+      },
+      {
+        "tool": "efficient_frontier",
+        "pack": "quant",
+        "call": "returns=[20000]",
+        "kind": "message leaks internals",
+        "message": "asset_1 has no variance (its returns never change), so risk-based weights are undefined. Drop it or check the data."
+      },
+      {
+        "tool": "correlation_matrix",
+        "pack": "quant",
+        "call": "base",
+        "kind": "message leaks internals",
+        "message": "asset_1 has no variance (its returns never change), so its correlations are undefined. Drop it or check the data."
+      },
+      {
+        "tool": "correlation_matrix",
+        "pack": "quant",
+        "call": "returns=[20000]",
+        "kind": "message leaks internals",
+        "message": "asset_1 has no variance (its returns never change), so its correlations are undefined. Drop it or check the data."
+      },
+      {
+        "tool": "correlation_matrix",
+        "pack": "quant",
+        "call": "assets=[]",
+        "kind": "message leaks internals",
+        "message": "asset_1 has no variance (its returns never change), so its correlations are undefined. Drop it or check the data."
+      },
+      {
+        "tool": "rebalance_trades",
+        "pack": "quant",
+        "call": "cash=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "kelly_portfolio",
+        "pack": "quant",
+        "call": "returns=[20000]",
+        "kind": "message leaks internals",
+        "message": "asset_1 has no variance (its returns never change), so risk-based weights are undefined. Drop it or check the data."
+      },
+      {
+        "tool": "max_diversification_portfolio",
+        "pack": "quant",
+        "call": "returns=[20000]",
+        "kind": "message leaks internals",
+        "message": "asset_1 has no variance (its returns never change), so risk-based weights are undefined. Drop it or check the data."
+      },
+      {
+        "tool": "index_tracking_portfolio",
+        "pack": "quant",
+        "call": "returns=[20000]",
+        "kind": "message leaks internals",
+        "message": "asset_1 has no variance (its returns never change), so risk-based weights are undefined. Drop it or check the data."
+      },
+      {
+        "tool": "almgren_chriss_schedule",
+        "pack": "quant",
+        "call": "shares=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "almgren_chriss_schedule",
+        "pack": "quant",
+        "call": "period_length=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "almgren_chriss_schedule",
+        "pack": "quant",
+        "call": "volatility=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "market_impact_estimate",
+        "pack": "quant",
+        "call": "order_shares=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "market_impact_estimate",
+        "pack": "quant",
+        "call": "daily_volatility=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "execution_schedule",
+        "pack": "quant",
+        "call": "order_shares=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "position_size_from_stop",
+        "pack": "quant",
+        "call": "stop=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "trade_expectancy",
+        "pack": "quant",
+        "call": "average_win=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "trade_expectancy",
+        "pack": "quant",
+        "call": "cost_per_trade=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "drawdown_probability",
+        "pack": "quant",
+        "call": "annual_volatility=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "leverage_and_margin",
+        "pack": "quant",
+        "call": "notional=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "leverage_and_margin",
+        "pack": "quant",
+        "call": "equity=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "var_position_limit",
+        "pack": "quant",
+        "call": "var_budget=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "futures_basis",
+        "pack": "quant",
+        "call": "future=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "futures_basis",
+        "pack": "quant",
+        "call": "future=9007199254740992",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "fx_forward",
+        "pack": "quant",
+        "call": "forward=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "pip_value",
+        "pack": "quant",
+        "call": "price=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "pip_value",
+        "pack": "quant",
+        "call": "pip=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "pip_value",
+        "pack": "quant",
+        "call": "quote_to_account=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "carry_trade_return",
+        "pack": "quant",
+        "call": "spot_end=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "growing_annuity",
+        "pack": "quant",
+        "call": "payment=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "retirement_projection",
+        "pack": "quant",
+        "call": "balance=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "retirement_projection",
+        "pack": "quant",
+        "call": "annual_contribution=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "enterprise_value_multiples",
+        "pack": "quant",
+        "call": "net_income=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "enterprise_value_multiples",
+        "pack": "quant",
+        "call": "free_cash_flow=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "altman_z_score",
+        "pack": "quant",
+        "call": "working_capital=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "altman_z_score",
+        "pack": "quant",
+        "call": "retained_earnings=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "altman_z_score",
+        "pack": "quant",
+        "call": "ebit=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "altman_z_score",
+        "pack": "quant",
+        "call": "equity_value=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "altman_z_score",
+        "pack": "quant",
+        "call": "revenue=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "dupont_analysis",
+        "pack": "quant",
+        "call": "net_income=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "dupont_analysis",
+        "pack": "quant",
+        "call": "revenue=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "dupont_analysis",
+        "pack": "quant",
+        "call": "total_assets=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      },
+      {
+        "tool": "graham_valuation",
+        "pack": "quant",
+        "call": "book_value_per_share=1e+308",
+        "kind": "non-finite answer from an extreme number"
+      }
+    ]
+  },
+  "finding_interpretation": {
+    "crashes": 0,
+    "timeouts": 0,
+    "extreme_number_overflows": 48,
+    "mathematical_undefined_word_flags": 14,
+    "note": "The 14 regex flags are explicit errors for zero-variance assets, using undefined in its mathematical sense. Raw findings are preserved above. The 48 overflow findings are retained, not counted as passing numerical answers."
+  },
+  "limitations": [
+    "Two dependencies were installed from private tarballs whose packed bytes match their signed tags; their npm publication is pending. Release package.json uses registry versions; temporary file dependencies will not ship.",
+    "Synthetic offline robustness calls stub every fetch; they do not establish live provider behavior, data freshness, model task accuracy, customer adoption or worldwide superiority.",
+    "Context counts use o200k_base on initial tools/list objects and initialize instructions. No model was called; prompt text, selected schemas and task results add context later."
+  ],
+  "release_preparation": {
+    "package_json": "private release-package.json has exact registry pins",
+    "index_sha256": "213b0632f56d7a319462476f5f10f02094cc5a684a853ef9c7f6a26342cf460a"
+  }
+}

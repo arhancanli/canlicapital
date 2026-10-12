@@ -1,10 +1,8 @@
 # Contributing to canli-markets-mcp
 
 This package is developed in the `mcp-markets/` directory of
-[arhancanli/canlicapital](https://github.com/arhancanli/canlicapital/tree/main/mcp-markets). The
-standalone repository
-[arhancanli/canli-markets-mcp](https://github.com/arhancanli/canli-markets-mcp) is imported from
-it at each release, so open issues and pull requests on canlicapital.
+[arhancanli/canlicapital](https://github.com/arhancanli/canlicapital/tree/main/mcp-markets).
+Open issues and pull requests on canlicapital; this package has no standalone release mirror.
 
 ## Reporting
 
