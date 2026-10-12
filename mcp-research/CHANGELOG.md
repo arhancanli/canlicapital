@@ -1,6 +1,11 @@
 # Changelog
 
-## Unreleased: prompts and code resources
+## Unreleased
+
+## 0.3.0
+
+- Resource and example lookup reads only declared tool names. Inherited property names are
+  refused with a useful message before schema conversion or code generation.
 
 - Three guided prompts: `preflight_idea` (has this idea been tried here, how did it end, what does
   the literature say), `audit_canli_record` (hypotheses tried against the budget, the live paper

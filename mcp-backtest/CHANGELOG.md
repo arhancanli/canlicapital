@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.1.2
+
 - Fix: a NUL character in `prices_file`, `signal_file` or `out_file` reached the file system, which
   throws a TypeError. It now fails argument validation with the reason.
 - Fix: a factor named like a built-in property ("constructor") read Object's constructor out of the
