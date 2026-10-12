@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.1.1
+
 - Fix: an asset whose returns never change made `covariance_shrinkage`, `correlation_matrix` and
   the portfolio optimizers (`max_sharpe_portfolio`, `min_variance_portfolio` and the others built
   on the same estimates) answer with NaN. They now refuse and name the asset ("CASH has no
@@ -12,7 +14,6 @@
 - Fix: `digits` also rounded whole numbers, so `digits: 4` turned 227,917,808 into 227,900,000.
   It now trims fractions only; whole numbers and the integer part of large values stay exact.
 
-## 0.1.1
 
 - `deflated_sharpe_ratio` and `probabilistic_sharpe_ratio` also take summary numbers (`sharpe_annual`,
   `observations`, `skew`, `kurtosis`) and refuse fewer than 20 returns or zero variance, instead of
