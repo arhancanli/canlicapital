@@ -60,7 +60,19 @@ export function runTool(name, args, { digits = 10 } = {}) {
     const issues = parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "arguments"}: ${i.message}`).join("; ");
     throw new Error(`${name}: ${issues}. describe_tool ${name} gives the exact input schema.`);
   }
-  return compact(tool.run(parsed.data), digits);
+  let nonFiniteCount = 0;
+  const examples = [];
+  const result = compact(tool.run(parsed.data), digits, (value, path) => {
+    nonFiniteCount++;
+    if (examples.length < 5) {
+      const pointer = path.map((key) => String(key).replace(/~/g, "~0").replace(/\//g, "~1")).join("/");
+      examples.push(`${pointer ? "/" + pointer.slice(0, 160) : "root"} (${String(value)})`);
+    }
+  });
+  if (nonFiniteCount) {
+    throw new Error(`${name}: calculation returned ${nonFiniteCount} non-finite value(s): ${examples.join(", ")}${nonFiniteCount > examples.length ? ", ..." : ""}. JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain.`);
+  }
+  return result;
 }
 
 // Search: BM25 over each tool's name, title, keywords and description (field-weighted), with light

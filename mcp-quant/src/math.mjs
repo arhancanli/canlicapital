@@ -229,15 +229,26 @@ export function sig(x, digits = 10) {
 }
 
 // Rounds every number in a plain result tree.
-export function compact(v, digits = 10) {
-  if (typeof v === "number") return sig(v, digits);
-  if (Array.isArray(v)) return v.map((x) => compact(x, digits));
-  if (v && typeof v === "object" && !(v instanceof Date)) {
-    const out = {};
-    for (const [k, x] of Object.entries(v)) if (x !== undefined) out[k] = compact(x, digits);
+export function compact(v, digits = 10, onNonFinite) {
+  const path = [];
+  const child = (key, value) => {
+    if (onNonFinite) path.push(key);
+    const out = visit(value);
+    if (onNonFinite) path.pop();
     return out;
+  };
+  const visit = (value) => {
+    if (typeof value === "number") {
+      if (onNonFinite && !Number.isFinite(value)) onNonFinite(value, path);
+      return sig(value, digits);
+    }
+    if (Array.isArray(value)) return value.map((x, i) => child(i, x));
+    if (value && typeof value === "object" && !(value instanceof Date)) {
+      return Object.fromEntries(Object.entries(value).filter(([, x]) => x !== undefined).map(([k, x]) => [k, child(k, x)]));
+    }
+    return value;
   }
-  return v;
+  return visit(v);
 }
 
 // ---------------------------------------------------------------------------------------------

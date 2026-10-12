@@ -11,8 +11,10 @@ Hosted fundamentals 0.6.0 and research 0.3.0 are merged in #467 and queued in th
 production source for the daily publisher. Live deployment verification remains pending.
 
 Quant 0.1.1 and backtest 0.1.2 have signed source releases and npm-compatible GitHub
-tarballs, but npm rejected their trusted-publisher jobs with E404. Their npm and
-Registry releases remain pending. Combined 0.4.0 has a private tested candidate with
+tarballs, but npm rejected their trusted-publisher jobs with E404. Quant 0.1.2 now
+gathers the unpublished statistical fixes and numerical-result guards into one intended
+npm update; its 0.1.1 source archive stays immutable. Backtest 0.1.2 and combined 0.4.0
+also await npm authorization. Combined 0.4.0 has a private tested candidate with
 307 tools and five prompts; it awaits those registry dependencies before publication.
 Its [candidate measurements](../artifacts/mcp/combined-candidate-20261013.json) do not
 establish a worldwide ranking.

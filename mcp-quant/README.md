@@ -1,5 +1,9 @@
 # canli-quant-mcp
 
+Computed NaN and Infinity values are refused with a tool error naming the affected fields.
+They do not become unexplained nulls or receive a success receipt. Check the input scale
+and the calculation's domain. Ordinary finite answers and null warm-up positions are preserved.
+
 235 quant finance tools in one MCP server: performance and risk, options and exotics, fixed income,
 portfolio construction, econometrics, technical indicators, execution, sizing, crypto and FX,
 valuation, strategy backtests, a library of 399 strategy sleeves, data checks, and data annotation
