@@ -32,7 +32,10 @@ export function releasedCatalog() {
     if (pkg.name !== release.package || pkg.version !== release.version || manifest.commit !== release.commit) throw new Error(`Released MCP metadata disagrees: ${server.id}`);
     const tools = [];
     const module = MODULES[server.id];
-    module.registerTools({ registerTool: (name, metadata) => tools.push({ name, title: metadata.title, description: metadata.description, schema: metadata.inputSchema }) }, module.createSession());
+    // The public validation endpoint runs under a shared or caller key. Its registration
+    // hides get_key, unlike an unkeyed local session. No credential is needed to derive it.
+    const session = module.createSession(server.id === 'validation' ? { hosted: { keySource: 'shared' } } : {});
+    module.registerTools({ registerTool: (name, metadata) => tools.push({ name, title: metadata.title, description: metadata.description, schema: metadata.inputSchema }) }, session);
     if (!tools.length || new Set(tools.map(t => t.name)).size !== tools.length) throw new Error(`Empty or repeated MCP tools: ${server.id}`);
     const exampleTool = tools.find(tool => tool.name === server.example?.name);
     if (!exampleTool) throw new Error(`MCP example names an unavailable tool: ${server.id}`);

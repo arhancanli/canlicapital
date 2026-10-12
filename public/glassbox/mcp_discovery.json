@@ -48,13 +48,8 @@
       "tag": "mcp-v0.14.0",
       "route": "/mcp-servers/validation",
       "endpoint": "/mcp",
-      "tool_count": 19,
+      "tool_count": 18,
       "tools": [
-        {
-          "name": "get_key",
-          "title": "Get a free validation key",
-          "description": "Issue a free validation key for this session. Rarely needed: the first validation issues one itself unless CANLI_KEY or local mode is set, and the read tools need none. Quotas: 1000 validations per key per UTC day, 5 keys per client per UTC day, 1048576 bytes per validation request, 1024 bytes per key revocation request, 20000 observations per series, 200 variants per matrix."
-        },
         {
           "name": "validate_deflated_sharpe",
           "title": "Validate deflated Sharpe",
