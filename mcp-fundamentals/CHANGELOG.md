@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Concept lookup reads only declared aliases. `constructor` and `__proto__` previously reached
+  Object's prototype and crashed `cross_section`; they now return the same unknown-concept
+  message as other unreported names. The same guard applies to history and vintage lookup.
+
 - Prepare a separate opt-in `canli-fundamentals-audit` package command with its
   own exact canonical-helper copy and the included audit input contract. The actual
   candidate tarball is checked for runtime source closure, bin links and complete

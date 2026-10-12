@@ -524,7 +524,7 @@ export function resolveSeries(entry, name, unit, { keep = true } = {}) {
   const raw = name.trim();
   const key = normalize(raw);
   const plain = !raw.includes(":") && !/[A-Z]/.test(raw);
-  const friendlyKey = FRIENDLY[key] ? key : SYNONYMS[key];
+  const friendlyKey = Object.hasOwn(FRIENDLY, key) ? key : Object.hasOwn(SYNONYMS, key) ? SYNONYMS[key] : undefined;
   let exact = [];
   if (!(plain && friendlyKey)) {
     const lower = raw.toLowerCase();
@@ -996,7 +996,7 @@ function conceptFilter(name) {
   const raw = name.trim();
   const key = normalize(raw);
   const plain = !raw.includes(":") && !/[A-Z]/.test(raw);
-  const friendlyKey = FRIENDLY[key] ? key : SYNONYMS[key];
+  const friendlyKey = Object.hasOwn(FRIENDLY, key) ? key : Object.hasOwn(SYNONYMS, key) ? SYNONYMS[key] : undefined;
   const friendly = new Set(friendlyKey ? FRIENDLY[friendlyKey] : []);
   if (plain && friendlyKey) return (taxonomy, tag) => friendly.has(`${taxonomy}:${tag}`);
   const lower = raw.toLowerCase();

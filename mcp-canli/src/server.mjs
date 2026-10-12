@@ -164,20 +164,24 @@ export function preview(v, path = "", cut = []) {
     return { list_of: v.length, first: v.slice(0, LIST_KEEP).map((x, i) => preview(x, at(i), cut)), last: v.slice(-LIST_KEEP).map((x, i) => preview(x, at(v.length - LIST_KEEP + i), cut)) };
   }
   if (v && typeof v === "object") return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, preview(x, at(k), cut)]));
-  return typeof v === "string" && v.length > 2000 ? `${v.slice(0, 2000)}… (${v.length} characters)` : v;
+  if (typeof v === "string" && v.length > 2000) {
+    cut.push({ path: path || "result", chars: v.length });
+    return `${v.slice(0, 2000)}… (${v.length} characters)`;
+  }
+  return v;
 }
 function trimmed(result, ref) {
   const chars = JSON.stringify(result).length;
   if (chars <= RESULT_CHARS) return result;
   const cut = [], shown = preview(result, "", cut);
-  const lists = cut.slice(0, 6).map((c) => `${c.path} (${c.items} items)`).join(", ") + (cut.length > 6 ? ` and ${cut.length - 6} more` : "");
-  const first = cut[0]?.path ?? "rows";
+  const parts = cut.slice(0, 6).map((c) => `${c.path} (${c.items !== undefined ? `${c.items} items` : `${c.chars} characters`})`).join(", ") + (cut.length > 6 ? ` and ${cut.length - 6} more` : "");
+  const first = cut[0]?.path === "result" ? "" : cut[0]?.path ?? "";
   return {
     ...shown,
     preview_only: {
       chars,
       shortened: cut.slice(0, 20),
-      note: `This result is ${chars} characters, so these lists show only their first and last ${LIST_KEEP} items: ${lists || "long text"}. ${ref ? `The whole result is kept as ${ref}: read a part with run_tool {"name": "show_result", "arguments": {"ref": "${ref}", "path": "${first}", "offset": 0, "limit": 200}}, pass {"$result": "${ref}", "path": "${first}"} to another tool, or call again with select.` : "Call again with select to choose the fields you need."}`,
+      note: `This result is ${chars} characters. Lists show their first and last ${LIST_KEEP} items; long text shows its first 2000 characters. Shortened: ${parts || "large fields"}. ${ref ? `The whole result is kept as ${ref}: read a part with run_tool {"name": "show_result", "arguments": {"ref": "${ref}", "path": "${first}", "offset": 0, "limit": 200}}, pass {"$result": "${ref}", "path": "${first}"} to another tool, or call again with select.` : "Call again with select to choose the fields you need."}`,
     },
   };
 }
@@ -186,12 +190,26 @@ function trimmed(result, ref) {
 export function showResult(keeper, args) {
   const a = z.object({ ref: z.string().max(20), path: z.string().max(200).optional(), offset: z.number().int().min(0).optional(), limit: z.number().int().min(1).max(1000).optional() }).strict().parse(args ?? {});
   if (!keeper?.has(a.ref)) throw new Error(`show_result: "${a.ref}" is not kept; refs name earlier results (the last ${KEEP_COUNT} are kept), for example "r1".`);
-  const v = at(keeper.get(a.ref), a.path);
+  const full = keeper.get(a.ref), v = at(full, a.path);
   if (v === undefined) throw new Error(`show_result: ${a.ref} has no ${a.path}.`);
-  if (!Array.isArray(v)) return { ref: a.ref, ...(a.path ? { path: a.path } : {}), value: v };
   const offset = a.offset ?? 0, limit = a.limit ?? 200;
-  return { ref: a.ref, path: a.path ?? null, total: v.length, offset, items: v.slice(offset, offset + limit), ...(offset + limit < v.length ? { next_offset: offset + limit } : {}) };
+  if (typeof v === "string") return { ref: a.ref, path: a.path ?? null, unit: "characters", total: v.length, offset, value: v.slice(offset, offset + limit), ...(offset + limit < v.length ? { next_offset: offset + limit } : {}) };
+  if (!Array.isArray(v)) return { ref: a.ref, ...(a.path ? { path: a.path } : {}), value: v };
+  const match = a.path?.match(/^(?:(.*)\.)?rows$/);
+  const table = match ? at(full, match[1]) : null;
+  const columns = table && Object.hasOwn(table, "columns") && Array.isArray(table.columns) ? table.columns : null;
+  return { ref: a.ref, path: a.path ?? null, ...(columns ? { columns } : {}), total: v.length, offset, items: v.slice(offset, offset + limit), ...(offset + limit < v.length ? { next_offset: offset + limit } : {}) };
 }
+
+const RUN_INPUT = z.object({
+      name: z.string().max(100).optional().describe("Tool name from find_tool (single call)."),
+      arguments: z.record(z.string(), z.unknown()).optional().describe("The tool's arguments (single call)."),
+      calls: z.array(z.object({ name: z.string().max(100), arguments: z.record(z.string(), z.unknown()).optional() }).strict()).min(1).max(25).optional().describe("Several calls in one round trip. Calls without $result references run concurrently."),
+      return: z.enum(["all", "last"]).optional().describe("For a batch: every result (default) or only the last one."),
+      digits: z.number().int().min(3).max(10).optional().describe("Round fractional numbers in the results to this many significant figures (4-6 saves output tokens); whole numbers such as counts, shares and IDs are never changed. Default: as each tool returns them."),
+      select: z.array(z.string().max(200)).min(1).max(30).optional().describe("Return only these fields of each result, as dotted paths, e.g. [\"verdict\", \"multiple_testing.best\", \"rows.0.accession\"] (table rows take column names)."),
+      receipt: z.boolean().optional().describe("Add input and output SHA-256 and pack versions so the result can be recomputed and compared."),
+    }).strict();
 
 async function runOne(packs, { name, arguments: args }, { digits }, files) {
   const tool = await toolFor(name, packs);
@@ -234,26 +252,21 @@ export function registerAll(server, packs = enabledPacks()) {
     title: "Run tools",
     description: "Run one tool ({name, arguments}) or several in one call ({calls: [...]}). Any argument can be {\"$file\": \"path.csv\", \"column\": \"close\"} (or \"columns\": [...] / \"all\") instead of pasted numbers. {\"$result\": i, \"path\": \"close\"} passes batch call i's output into a later call; every result also has a ref (\"r1\", \"r2\", ...) that later run_tool calls can pass the same way, {\"$result\": \"r1\", \"path\": \"close\"}, so data never needs to be copied.",
     annotations: { title: "Run tools", readOnlyHint: false, destructiveHint: true, idempotentHint: false, openWorldHint: true },
-    inputSchema: z.object({
-      name: z.string().max(100).optional().describe("Tool name from find_tool (single call)."),
-      arguments: z.record(z.string(), z.unknown()).optional().describe("The tool's arguments (single call)."),
-      calls: z.array(z.object({ name: z.string().max(100), arguments: z.record(z.string(), z.unknown()).optional() }).strict()).min(1).max(25).optional().describe("Several calls in one round trip. Calls without $result references run concurrently."),
-      return: z.enum(["all", "last"]).optional().describe("For a batch: every result (default) or only the last one."),
-      digits: z.number().int().min(3).max(10).optional().describe("Round fractional numbers in the results to this many significant figures (4-6 saves output tokens); whole numbers such as counts, shares and IDs are never changed. Default: as each tool returns them."),
-      select: z.array(z.string().max(200)).min(1).max(30).optional().describe("Return only these fields of each result, as dotted paths, e.g. [\"verdict\", \"multiple_testing.best\", \"rows.0.accession\"] (table rows take column names)."),
-      receipt: z.boolean().optional().describe("Add input and output SHA-256 and pack versions so the result can be recomputed and compared."),
-    }).strict(),
+    inputSchema: RUN_INPUT,
     outputSchema: open,
   }, guard(async (a) => {
     // Models sometimes call run_tool through itself ({"name": "run_tool", "arguments": {...}});
     // unwrap it, and its calls inside a batch.
-    if (a.name === "run_tool" && a.arguments && typeof a.arguments === "object") { const inner = a.arguments; delete a.name; delete a.arguments; Object.assign(a, { ...inner, ...Object.fromEntries(Object.entries(a).filter(([, v]) => v !== undefined)) }); }
+    if (a.name === "run_tool" && a.arguments && typeof a.arguments === "object") { const { name, arguments: inner, ...outer } = a; a = { ...inner, ...Object.fromEntries(Object.entries(outer).filter(([, v]) => v !== undefined)) }; }
     if (a.calls) a.calls = a.calls.flatMap((c) => (c.name === "run_tool" && c.arguments ? (c.arguments.calls ?? [{ name: c.arguments.name, arguments: c.arguments.arguments }]) : [c]));
     // Models sometimes put run_tool's own options inside a call's arguments; move them out when the
     // tool itself has no argument of that name.
     for (const c of a.calls ?? [a]) for (const k of ["return", "digits", "select", "receipt"]) {
       if (c.arguments && k in c.arguments && !(BY_NAME.get(c.name)?.args ?? "").split(", ").some((x) => x.replace(/\?.*$/, "").replace(/:.*$/, "") === k)) { if (a[k] === undefined) a[k] = c.arguments[k]; delete c.arguments[k]; }
     }
+    // The SDK validates the outer envelope. Wrapping and lifting options changes that envelope,
+    // so validate the resulting request again before loading or executing any tool.
+    a = RUN_INPUT.parse(a);
     if (!a.calls && !a.name) throw new Error("Pass name (and arguments) for one call, or calls for several.");
     if (a.calls && a.name) throw new Error("Pass either name or calls, not both.");
     const calls = a.calls ?? [{ name: a.name, arguments: a.arguments }], files = [], opts = { digits: a.digits };

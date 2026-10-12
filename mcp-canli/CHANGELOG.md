@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Wrapped `run_tool` requests and options moved out of a tool's arguments are validated again
+  before execution. Wrapping could previously bypass the 25-call batch limit and the bounds on
+  `digits`, `select` and `receipt`. Oversized batches now fail before any call runs.
+- `show_result` keeps a table's column labels when paging its rows. Text is paged by character
+  offset, and previews name the actual shortened text path, so the full text can be recovered.
+
 - **Workflows as prompts.** `company_brief`, `earnings_preview`, `macro_snapshot`, `ownership` and
   `backtest_check` are MCP prompts. Clients list them as slash commands; each runs one batched
   `run_tool` call across the packs and says what to write. A prompt is offered only when every tool
