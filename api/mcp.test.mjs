@@ -6,6 +6,7 @@ import { createServer } from "node:http";
 import test from "node:test";
 
 import { createHostedHandler, resolveKey } from "./mcp.js";
+import { releasedCatalog } from "../scripts/build-mcp-pages.mjs";
 
 const CALLER_KEY = "canli_callerkey_0123456789abcdefghij";
 const SHARED_KEY = "canli_sharedkey_0123456789abcdefghij";
@@ -66,6 +67,8 @@ test("initialize answers with the package's own server name and version", async 
 test("tools/list exposes exactly the npm package's default tools; a keyed session has no get_key", async () => {
   await withServer({ CANLI_REMOTE_MCP_KEY: SHARED_KEY }, async (url) => {
     const { json } = await rpc(url, "tools/list", {});
+    const advertised = releasedCatalog().find((server) => server.id === "validation").tools;
+    assert.deepEqual(advertised.map((tool) => tool.name).sort(), json.result.tools.map((tool) => tool.name).sort(), "the discovery page must advertise the keyed hosted session's tool list");
     assert.deepEqual(json.result.tools.map((t) => t.name).sort(), [
       "audit_backtest",
       "backtest_strategy",
