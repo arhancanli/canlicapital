@@ -1,6 +1,6 @@
 # Registry listings for CanliCapital MCP servers
 
-## Current distribution checkpoint — 2026-10-13 Dubai
+## Current distribution checkpoint: 2026-10-13 Dubai
 
 Verified npm and official MCP Registry releases: validation 0.14.0, markets 0.3.0,
 fundamentals 0.6.0 and research 0.3.0. Validation's npm version is unchanged in this batch.
