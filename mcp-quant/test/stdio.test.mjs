@@ -18,6 +18,27 @@ async function connect(env = {}) {
   return client;
 }
 
+test("non-finite calculations are tool errors and cannot receive success receipts", async (t) => {
+  const c = await connect({ CANLI_TOOLSETS: "rates,options" });
+  t.after(() => c.close());
+  const cases = [
+    { name: "zero_coupon_bond", arguments: { years: 0.5, face: 100, price: 1e308 }, field: "modified_duration", values: ["Infinity"] },
+    { name: "merton_credit_risk", arguments: { equity_value: 1e308, equity_volatility: 0.4, debt: 100, years: 1, rate: 0.03 }, field: "credit_spread", values: ["Infinity"] },
+    { name: "bachelier", arguments: { type: "call", forward: -1e308, strike: 1e308, years: 1, normal_volatility: 0.008 }, field: "price", values: ["NaN", "-Infinity"] },
+  ];
+  for (const { name, arguments: args, field, values } of cases) {
+    const routed = await c.callTool({ name: "run_tool", arguments: { name, arguments: args, receipt: true } });
+    const direct = await c.callTool({ name, arguments: args });
+    for (const response of [routed, direct]) {
+      assert.equal(response.isError, true, `${name} must refuse an unrepresentable numerical result`);
+      assert.match(response.content[0].text, /non-finite/);
+      assert.ok(response.content[0].text.includes(field), response.content[0].text);
+      for (const value of values) assert.ok(response.content[0].text.includes(`(${value})`), response.content[0].text);
+      assert.equal(response.structuredContent?.receipt, undefined, "no success receipt for an invalid result");
+    }
+  }
+});
+
 test("default: three discovery tools that find, describe and run every tool", async (t) => {
   const c = await connect();
   t.after(() => c.close());

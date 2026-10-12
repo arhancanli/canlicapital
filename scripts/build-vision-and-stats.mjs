@@ -199,7 +199,7 @@ export function renderStats(stats) {
       The table below is read from npm's public download counts each time the site is built.</p>
       ${table}
       <p class="stats__note">npm counts every download, including automated ones (CI runs, mirrors and bots), so these
-      numbers are an upper bound on the number of people using the servers, not a count of users.
+      numbers measure package downloads. They do not establish distinct users or installations.
       The raw numbers, with the time each was read, are in <a href="/stats/adoption.json">adoption.json</a>.</p>
       <h2>Use them</h2>
       <p><a href="/mcp-servers">Install an MCP server</a> · <a href="/developers#quickstart">Get a free API key</a> ·

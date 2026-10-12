@@ -2,7 +2,17 @@
 
 ## Unreleased
 
-## 0.1.1
+## 0.1.2
+
+This cumulative npm candidate includes the statistical and input corrections recorded under
+0.1.1 below. The 0.1.1 source archive stays available; it will not be published separately to npm.
+
+- Non-finite computed results now return a tool error naming their fields and values before JSON
+  serialization or success receipt creation. Previously NaN and Infinity appeared as null with no
+  diagnostic. Both discovery and directly listed tools use the same result check. Ordinary finite
+  answers and legitimate null warm-up positions retain their existing representation.
+
+## 0.1.1 (signed source release; not published to npm)
 
 - Fix: an asset whose returns never change made `covariance_shrinkage`, `correlation_matrix` and
   the portfolio optimizers (`max_sharpe_portfolio`, `min_variance_portfolio` and the others built

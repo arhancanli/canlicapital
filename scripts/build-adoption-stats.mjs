@@ -82,7 +82,7 @@ export async function collect({ now = new Date(), fetchImpl = fetch, previous = 
   return {
     schema: "canli.adoption-stats.v1",
     generated_at: at,
-    note: "npm counts every download, including CI runs, mirrors and bots; it is an upper bound on people. Stars and forks are GitHub's own counters. Validations are calls to the hosted API, which also counts the site's own smoke tests.",
+    note: "npm counts package downloads, including CI runs, mirrors and bots. Distinct users and installations are not measured by this counter. Stars and forks are GitHub's own counters. Validations are calls to the hosted API, which also counts the site's own smoke tests.",
     windows_days: { last_week: 7, last_month: 30 },
     npm: await section("npm", () => Promise.all(PACKAGES.map((name) => npmPackage(name, now, fetchImpl)))),
     github: await section("github", () => Promise.all(REPOSITORIES.map((name) => githubRepository(name, fetchImpl)))),
