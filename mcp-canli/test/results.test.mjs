@@ -43,9 +43,10 @@ test("a small result is untouched, and show_result inside a batch reads an earli
 
 test("numbers JSON cannot print are named, not left to read as missing", async () => {
   const h = handlers();
-  const r = (await h.run_tool({ name: "zero_coupon_bond", arguments: { price: 1e308, years: 5 } })).structuredContent;
-  assert.deepEqual(r.non_finite_values.paths, ["modified_duration", "convexity", "dv01"]);
-  assert.equal(r.non_finite_values.count, 3);
+  const r = await h.run_tool({ name: "zero_coupon_bond", arguments: { price: 1e308, years: 5 }, receipt: true });
+  assert.equal(r.isError, true);
+  assert.match(r.content[0].text, /non-finite/);
+  assert.equal(r.structuredContent?.receipt, undefined);
   assert.deepEqual(nonFinitePaths({ a: [1, NaN, { b: Infinity }], c: 2 }), ["a.1", "a.2.b"]);
   assert.deepEqual(preview(Array.from({ length: 41 }, (_, i) => i), "", []).first, [0, 1, 2, 3, 4]);
 });

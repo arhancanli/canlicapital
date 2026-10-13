@@ -5,6 +5,7 @@ import { writeFileSync } from "node:fs";
 
 import { PACKS, loadPack } from "../src/packs.mjs";
 import { signature } from "../src/signature.mjs";
+import { closeGuideClients, discoverPackGuides } from "../src/guides.mjs";
 
 const tools = [], versions = {};
 for (const pack of Object.keys(PACKS)) {
@@ -14,3 +15,10 @@ for (const pack of Object.keys(PACKS)) {
 }
 writeFileSync(new URL("../src/index.json", import.meta.url), `${JSON.stringify({ versions, tools })}\n`);
 console.log(`${tools.length} tools`, versions);
+try {
+  const guides = await discoverPackGuides();
+  writeFileSync(new URL("../src/guides.json", import.meta.url), `${JSON.stringify(guides)}\n`);
+  console.log("Pack guides:", Object.fromEntries(Object.entries(guides).map(([pack, g]) => [pack, { prompts: g.prompts.length, resources: g.resources.length, templates: g.templates.length }])));
+} finally {
+  await closeGuideClients();
+}

@@ -1,6 +1,11 @@
 # Changelog
 
-## Unreleased
+## 0.4.0
+
+- The packs' own interfaces are available in the combined server: 25 additional prompts (30 total), 11 additional static resources (14 total), and 8 additional resource templates (9 total). Names and URI schemes identify the pack, schemas and completions use its published MCP handlers, and renamed validation tools use the combined names. Listing these interfaces loads no pack code; disabled packs stay hidden. Original standalone client examples retain their transport configuration.
+- Includes a build script and attested release workflow for a Claude Desktop MCPB extension, with bundled exact dependencies and optional offline configuration.
+- Pins the corrected quant 0.1.2 and backtest 0.1.2 engines, fundamentals 0.6.0, research 0.3.0, and markets 0.3.0. The rebuilt catalog has 307 tools, including the source-backed earnings calendar.
+- Context remeasured locally on Node 24.19.0: 1,113 o200k_base tokens for the initial tools and instructions, versus 35,142 for the seven separate servers. This is a context measurement, not a worldwide quality or latency ranking.
 
 - Wrapped `run_tool` requests and options moved out of a tool's arguments are validated again
   before execution. Wrapping could previously bypass the 25-call batch limit and the bounds on
@@ -12,17 +17,16 @@
   `backtest_check` are MCP prompts. Clients list them as slash commands; each runs one batched
   `run_tool` call across the packs and says what to write. A prompt is offered only when every tool
   it names is in an enabled pack. Every call is checked against its tool's schema in
-  `test/prompts.test.mjs`. They cost no context until chosen.
+  `test/prompts.test.mjs`. Prompt metadata is requested separately from the tool list; the client
+  decides when to include it in model context.
 - **Results too large to read.** A result above 200,000 characters of JSON (about 50,000 tokens)
   comes back as a preview. Every field stays, long lists show their first and last 5 items, and a
   note names the lists it cut. The whole result stays under its ref. `show_result`, called through
   `run_tool` (`{"name": "show_result", "arguments": {"ref": "r3", "path": "values", "offset": 0,
   "limit": 200}}`), reads any part of it, a page at a time. Before this, a 30,000-price
   `convert_returns` sent 626,859 characters into the model's context. The note appears only when
-  needed, so the three front tools cost the same 1,109 tokens.
-- **Numbers JSON cannot print.** NaN and Infinity print as null, so a model read an overflow or a
-  division by zero as a missing value. Such results now carry `non_finite_values`, naming the
-  fields (for example `zero_coupon_bond` at price 1e308: modified_duration, convexity, dv01).
+  needed, so the three front tools cost the 1,113 tokens with all seven packs enabled.
+- **Numerical errors.** Quant 0.1.2 refuses computed NaN and Infinity with field diagnostics, before JSON or success receipts. The combined server forwards those errors. Its generic `non_finite_values` diagnostics still name non-finite values returned by other packs.
 
 ## 0.3.0
 

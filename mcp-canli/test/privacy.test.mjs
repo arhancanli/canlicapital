@@ -18,7 +18,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = path.join(ROOT, "src");
 
 test("src imports only the SDK, zod, the published packs and file, path, os, url and crypto helpers", () => {
-  const allowed = /^(zod|@modelcontextprotocol\/server(\/stdio)?|node:(crypto|fs|os|path|url)|canli-[a-z-]+-mcp\/.+)$/;
+  const allowed = /^(zod|@modelcontextprotocol\/client|@modelcontextprotocol\/server(\/stdio)?|node:(crypto|fs|os|path|url)|canli-[a-z-]+-mcp\/.+)$/;
   for (const f of readdirSync(SRC).filter((f) => f.endsWith(".mjs"))) {
     const text = readFileSync(path.join(SRC, f), "utf8");
     for (const m of text.matchAll(/(?:from\s+|import\()\s*"([^"]+)"/g)) if (!m[1].startsWith(".")) assert.match(m[1], allowed, `${f} imports ${m[1]}`);
@@ -55,4 +55,14 @@ test("offline mode: tools work with the network and network packs poisoned", asy
   assert.match(off.content[0].text, /not enabled here/);
   const priv = JSON.parse((await c.readResource({ uri: "canli://privacy" })).contents[0].text);
   assert.deepEqual(Object.keys(priv.packs), ["quant", "validation"]);
+  const prompts = (await c.listPrompts()).prompts;
+  assert.ok(prompts.some((p) => p.name === "quant.audit_backtest"));
+  assert.ok(prompts.some((p) => p.name === "validation.stress_my_strategy"));
+  assert.ok(prompts.every((p) => !/^(fundamentals|research)\./.test(p.name)));
+  const guide = await c.getPrompt({ name: "validation.stress_my_strategy", arguments: { returns_file: csv } });
+  assert.match(guide.messages[0].content.text, /strategy_stress_test/);
+  assert.doesNotMatch(guide.messages[0].content.text, /\bstress_test\b/);
+  const schema = await c.readResource({ uri: "canli-quant://tools/sharpe_ratio" });
+  assert.equal(JSON.parse(schema.contents[0].text).name, "sharpe_ratio");
+  await assert.rejects(c.readResource({ uri: "canli-fundamentals://concepts" }));
 });
