@@ -1,6 +1,6 @@
 # canli-mcp
 
-Every Canli Capital MCP server in one: 306 finance tools for Claude, Cursor or any MCP client.
+Every Canli Capital MCP server in one: 307 finance tools for Claude, Cursor or any MCP client.
 
 - Quant finance: 235 tools covering performance and risk, options and exotics, fixed income,
   portfolios, econometrics, indicators, and a library of 399 strategy sleeves with
@@ -38,23 +38,23 @@ Claude Desktop, Cursor or any MCP client:
 { "mcpServers": { "canli": { "command": "npx", "args": ["-y", "canli-mcp"] } } }
 ```
 
-## Why one server is cheaper and faster
+## Context and startup
 
-Measured on Node 24 on 2026-10-11 with `bench/context.py` (o200k tokens of the tool objects a
-client receives, plus the server instructions; start-up is the median time from launch to the
+Measured on Node 24 on 2026-10-13 with `bench/context.py` (o200k tokens of the tool objects a
+client receives, plus the server instructions; all seven packs enabled with `CANLI_PACKS=all`; start-up is the median time from launch to the
 tool list):
 
 | | seven servers separately | canli-mcp |
 |---|---|---|
-| tool list and instructions sent with every request | 34,508 tokens | 1,109 tokens |
+| initial tool list and instructions | 35,142 tokens | 1,113 tokens |
 | processes | 7 | 1 |
-| start-up | 63-90 ms each | 73 ms |
+| start-up | 64-90 ms each | 75 ms |
 
 - **Three tools in context.** The model searches with `find_tool`, reads one schema with
   `describe_tool`, and calls anything with `run_tool`. On 48 everyday requests written after the
   last change to the search and never tuned on, the right tool comes first 46 times and is in the
   top three 47 times (0.2.1: 25 and 29). `test/search.test.mjs` holds these and 135 more.
-- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 306 tools; a pack's
+- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 307 tools; a pack's
   code loads the first time one of its tools runs.
 - **Data by file, not by pasting.** Any argument can be `{"$file": "prices.csv", "column": "close"}`
   (or `"columns": ["SPY", "TLT"]` or `"all"`). For 1,000 prices that is 23 tokens instead of 4,893,
@@ -81,7 +81,25 @@ workflows. Each one runs a single batched `run_tool` call and says what to write
 
 A prompt is offered only when every tool it names is in an enabled pack (`CANLI_PACKS`,
 `CANLI_OFFLINE`), and `test/prompts.test.mjs` checks each call against its tool's own schema.
-Prompts add nothing to a request's context until one is chosen.
+Prompts are requested separately from `tools/list`. Their context cost depends on how the client
+includes prompt and resource metadata.
+
+The packs also bring their own 25 prompts, so the full server offers 30. Their names identify the
+pack, such as `fundamentals.known_on_date`, `quant.audit_backtest`,
+`validation.stress_my_strategy` and `research.literature_review`. They route tool calls through
+`run_tool`, preserve the source pack's prompt argument checks, and forward its completion helpers.
+
+The 14 static resources and nine resource templates include the 399 sleeve specifications,
+reference methods, exact input/output schemas, concept mappings, limits and client examples.
+Pack resource schemes keep their names separate: `canli-quant://`, `canli-validation://`,
+`canli-fundamentals://` and `canli-research://`. For example, read
+`canli-fundamentals://schemas/cross_section`. Original client examples retain each pack's local or
+hosted connection. Disabled packs have no guides; listing guides reads the prebuilt metadata and
+loads no pack code. The guide handlers load only when a prompt, resource or completion is used.
+
+[FEATURES.md](FEATURES.md) maps the supported finance workflows, evidence checks and remaining gaps.
+For Claude Desktop, the GitHub release also carries a `.mcpb` extension with its dependencies and
+GitHub build attestation. Its manifest lets you choose enabled packs and offline mode.
 
 ## An agent, end to end
 
@@ -146,12 +164,12 @@ Order-sending tools never run inside a batch: preview first, then send on its ow
 
 | pack | package | tools | tested against |
 |---|---|---|---|
-| quant | [canli-quant-mcp](https://www.npmjs.com/package/canli-quant-mcp) | 235 | QuantLib, statsmodels, arch, TA-Lib, scipy, pandas: 461 reference cases |
+| quant | [canli-quant-mcp](https://www.npmjs.com/package/canli-quant-mcp) | 235 | QuantLib, statsmodels, arch, TA-Lib, scipy, pandas: 465 reference cases |
 | validation | [canli-validation-mcp](https://www.npmjs.com/package/canli-validation-mcp) | 17 | the Null Zoo benchmark of 160,000 simulated searches |
 | fundamentals | [canli-fundamentals-mcp](https://www.npmjs.com/package/canli-fundamentals-mcp) | 7 | SEC XBRL filings |
 | research | [canli-research-mcp](https://www.npmjs.com/package/canli-research-mcp) | 6 | the published research record and its hash chain |
 | backtest | [canli-backtest-mcp](https://www.npmjs.com/package/canli-backtest-mcp) | 3 | point-in-time SEC data |
-| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 34 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank and Cboe: a 13F's total equals its cover page |
+| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 35 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank and Cboe: a 13F's total equals its cover page |
 | paper | [canli-paper-trading-mcp](https://www.npmjs.com/package/canli-paper-trading-mcp) | 4 | a simulated Alpaca paper API |
 
 Two tools differ from their standalone servers. Validation's `stress_test` is `strategy_stress_test`

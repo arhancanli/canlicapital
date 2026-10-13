@@ -40,7 +40,9 @@ def read(proc, want_id):
 
 
 def launch(server_file):
-    env = {"PATH": os.environ["PATH"], "HOME": os.environ["HOME"]}
+    # Enable all seven flagship packs, including paper, for the same coverage as the separate
+    # servers. Initialization and listing make no broker call and need no credentials.
+    env = {"PATH": os.environ["PATH"], "HOME": os.environ["HOME"], "CANLI_PACKS": "all"}
     t0 = time.perf_counter()
     proc = subprocess.Popen(["node", str(server_file)], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                             stderr=subprocess.DEVNULL, text=True, env=env)
@@ -84,7 +86,7 @@ def main():
                   "startup_ms": [min(r["startup_ms"] for r in packs), max(r["startup_ms"] for r in packs)]}
     node = subprocess.run(["node", "--version"], capture_output=True, text=True).stdout.strip()
     if "--json" in sys.argv:
-        print(json.dumps({"measured": time.strftime("%Y-%m-%d"), "node": node, "tokenizer": "o200k_base",
+        print(json.dumps({"measured": time.strftime("%Y-%m-%d"), "node": node, "tokenizer": "o200k_base", "configuration": {"CANLI_PACKS": "all", "scope": "initial tool list and instructions; no tool execution"},
                           "rows": rows, "seven_separately": separately}, indent=2))
         return
     print(f"Node {node}, o200k_base")

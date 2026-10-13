@@ -1,7 +1,7 @@
 {
   "name": "canli-mcp",
-  "version": "0.3.0",
-  "description": "Every Canli Capital MCP server in one: 306 tools for quant finance, backtest validation, SEC filings and fundamentals, markets (ownership, short interest, options, the Fed, macro data) and prices, research and paper trading, behind three discovery tools (about 1,100 tokens of context instead of 34,500). Batch calls, data by file path, offline mode, local by default.",
+  "version": "0.4.0",
+  "description": "Every Canli Capital MCP server in one: 307 tools for quant finance, backtest validation, SEC filings and fundamentals, markets (ownership, short interest, options, the Fed, macro data) and prices, research and paper trading, behind three discovery tools (about 1,100 tokens of context instead of 35,142). Batch calls, data by file path, offline mode, local by default.",
   "private": false,
   "type": "module",
   "license": "MIT",
@@ -14,6 +14,7 @@
   "files": [
     "src",
     "README.md",
+    "FEATURES.md",
     "CHANGELOG.md",
     "LICENSE"
   ],
@@ -22,18 +23,16 @@
     "test": "node --test test/*.test.mjs"
   },
   "dependencies": {
+    "@modelcontextprotocol/client": "2.3.1",
     "@modelcontextprotocol/server": "2.3.1",
-    "canli-backtest-mcp": "0.1.1",
-    "canli-fundamentals-mcp": "0.5.0",
-    "canli-markets-mcp": "0.2.1",
+    "canli-backtest-mcp": "0.1.2",
+    "canli-fundamentals-mcp": "0.6.0",
+    "canli-markets-mcp": "0.3.0",
     "canli-paper-trading-mcp": "0.1.0",
-    "canli-quant-mcp": "0.1.0",
-    "canli-research-mcp": "0.2.0",
+    "canli-quant-mcp": "0.1.2",
+    "canli-research-mcp": "0.3.0",
     "canli-validation-mcp": "0.14.0",
     "zod": "4.6.5"
-  },
-  "devDependencies": {
-    "@modelcontextprotocol/client": "2.3.1"
   },
   "mcpName": "io.github.arhancanli/canli-mcp",
   "repository": {

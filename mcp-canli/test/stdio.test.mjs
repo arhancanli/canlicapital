@@ -108,5 +108,5 @@ test("order-sending tools never run inside a batch; receipts are stable", async 
   const args = { name: "kelly_fraction", arguments: { win_probability: 0.6, payoff: 1 }, receipt: true };
   const a = await c.callTool({ name: "run_tool", arguments: args }), b = await c.callTool({ name: "run_tool", arguments: args });
   assert.deepEqual(a.structuredContent.receipt, b.structuredContent.receipt);
-  assert.equal(a.structuredContent.receipt.packs.quant, "0.1.0");
+  assert.equal(a.structuredContent.receipt.packs.quant, "0.1.2");
 });

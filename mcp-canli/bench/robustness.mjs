@@ -9,7 +9,7 @@
 //
 //   node bench/robustness.mjs [--pack quant] [--tool name] [--json]
 import { spawnSync } from "node:child_process";
-import { mkdtempSync, readFileSync, realpathSync, rmSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -45,7 +45,7 @@ function sample(p) {
 }
 
 // The calls for one tool: its base arguments, then each property in turn made hostile.
-export function variants(schema) {
+function variants(schema) {
   const base = sample(schema), out = [["no arguments", {}], ["base", base]];
   for (const [k, p] of Object.entries(schema.properties ?? {})) {
     const types = new Set([p.type, ...(p.anyOf ?? []).map((x) => x.type)]);
@@ -124,7 +124,5 @@ function parent() {
   }
 }
 
-if (process.argv[1] && process.argv[1] !== "-" && realpathSync(process.argv[1]) === SELF) {
-  if (process.argv[2] === "--child") await child(process.argv[3]);
-  else parent();
-}
+if (process.argv[2] === "--child") await child(process.argv[3]);
+else parent();

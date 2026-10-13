@@ -7,6 +7,11 @@ execution map: MASTER_PLAN.md; recovery evidence: CLAUDE_RECOVERY_20261001.md.
 
 All remain active; later SEO requests do not replace the platform or algorithm goals.
 
+Owner update (2026-10-13): prioritize the combined flagship for comprehensive finance
+coverage, accuracy, low hallucination, context/runtime/cost efficiency and verified
+platform delivery. Compare primary peer documentation and retain unsupported gaps;
+absolute worldwide superiority remains an objective requiring independent evidence.
+
 Owner update (2026-10-01): report concrete progress and keep SEO at the highest standard so
 everything useful we build is findable, with indexed pages covering the MCP servers, datasets,
 research and supported reference topics. Maintain a canonical page for each distinct useful

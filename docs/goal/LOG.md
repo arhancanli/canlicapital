@@ -19619,3 +19619,27 @@ Entire owner hierarchy remains ACTIVE/outcomesUNKNOWNNULL: efficient differentia
 ## 2026-10-13 Dubai — current finance MCP delivery
 
 Three npm/Registry releases, three release mirrors/attested desktop bundles, two signed GitHub source releases with npm pending, and hosted467/all7CI merge are verified. Combined0.4 private candidate passes33 tests on each Node20/22/24 and has307 tools/five prompts; context and raw robustness findings are captured. Research feature-version descriptions corrected against actual npm0.2 tarball. Current state and finite next steps: MCP_RUN_20261012.md. No worldwide ranking, adoption, indexing, annotation or investment outcome claim.
+
+
+## 2026-10-13 — real registry flagship and full pack guides preflight
+
+Owner-confirmed publisher changes succeeded: quant0.1.2 run38411507515 and backtest0.1.2
+run38296417389 attempt2 completed successfully. Actual npm metadata includes provenance,
+and official Registry identifiers/versions were independently verified. Quant npmSHA1
+86c1f9048d2ecf04bb0736ee8558866b37924d1d; backtest009ba7542f1d4b52f656e84680652e193e77c952.
+Combined0.4 now uses exact real npm dependencies, with no file fixtures. New lazy guide
+bridge forwards published native handlers:307 tools/30 prompts/14 static resources/9
+templates; disabled packs hidden, renamed/encoded tool paths handled, omitted tools
+refused.38 tests pass on Node20.20.2/22.23.2/24.19.0; actual packaged MCPB SDK smokes pass
+on all3.22 registry signatures/14 npm attestations verified; audit0 vulnerabilities.
+All-pack context comparison fixes paper-selection asymmetry:1113 vs35142 tokens,
+75ms vs64–90ms each, initial tools/instructions only. Earlier1109 measurements retain
+the default6-pack scope. No total-cost or worldwide ranking is inferred. New FEATURES
+matrix cites current primary peer docs and retains news/transcripts/chart/provider
+gaps, no new paid model benchmark. Desktop release workflow prepared with exact
+dependencies and pinned MCPB2.1.2; attested public bundle and combined publication
+still pending CI/release. Candidate branch mcp/flagship-release-20261013, basis16bab.
+Evidence: artifacts/mcp/flagship-preflight-20261013.json and bench/context-2026-10-13.json.
+Glama/Smithery access discovery found no installed authenticated browser; no duplicate
+TinyFish suggestion. Existing directory/next-daily hosted gates remain separate.
+All indexed-page/quality/SEO/keyword/adoption/expert/governed-ALPHAC objectives preserved.

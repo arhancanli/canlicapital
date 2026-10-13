@@ -1,8 +1,11 @@
 # Phases and exit evidence
 
 Current finance MCP continuation (2026-10-13 Dubai): [MCP_RUN_20261012.md](MCP_RUN_20261012.md).
-Verified release and candidate evidence are in artifacts/mcp. Hosted rollout and
-two npm Trusted Publisher configurations remain pending. The owner October6 reset
+Quant0.1.2/backtest0.1.2 npm and official Registry releases are verified after the
+owner configured both Trusted Publishers. Combined0.4 with full pack guides is a
+review candidate:307 tools/30 prompts/14 resources/9 templates;38 tests on Node20/22/24.
+Evidence: artifacts/mcp/flagship-preflight-20261013.json. Hosted three-server rollout
+is verified; next daily discovery documentation and directory account parity remain open. The owner October6 reset
 uses ordinary PRs/tests/CI; the older custody/checkpoint entries below are history.
 All owner requirements remain active; global ranking and adoption are unestablished.
 

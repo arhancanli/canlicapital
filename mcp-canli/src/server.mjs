@@ -26,6 +26,7 @@ import { resolveRefs } from "./files.mjs";
 import { OMITTED, PACKS, RENAMES, enabledPacks, loadPack } from "./packs.mjs";
 import { buildIndex, search } from "./search.mjs";
 import { registerPrompts } from "./prompts.mjs";
+import { registerPackGuides } from "./guides.mjs";
 
 const PKG = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
 const INDEX = JSON.parse(readFileSync(new URL("./index.json", import.meta.url), "utf8"));
@@ -307,6 +308,7 @@ export function registerAll(server, packs = enabledPacks()) {
   }));
   registerResources(server, packs);
   registerPrompts(server, BY_NAME, packs);
+  registerPackGuides(server, packs);
 }
 
 export const PRIVACY = (packs) => ({
