@@ -71,7 +71,12 @@ for (const q of questions) {
   let answer = null, error = null;
   try { answer = await TOOLS[q.tool](session, q.args); } catch (err) { error = String(err?.message ?? err); }
   const ms = Date.now() - t0;
-  const s = error ? { pass: false, why: `tool error: ${error}` } : score(q, truths[q.id], answer);
+  // A trap passes on a refusal that says why, or an answer with nothing in it; never on a figure.
+  const s = q.type === "trap"
+    ? (q.expect.error ? (error && error.includes(q.expect.error) ? { pass: true } : { pass: false, why: error ? `refused, but: ${error}` : "answered instead of refusing" })
+      : q.expect.no_tables ? (!error && (answer?.results ?? []).every((r) => !r.tables?.length) ? { pass: true } : { pass: false, why: error ? `error: ${error}` : "returned a table" })
+      : (!error && answer?.rows?.[0]?.[answer.columns.indexOf("verdict")] === q.expect.verdict ? { pass: true } : { pass: false, why: error ? `error: ${error}` : `verdict ${answer?.rows?.[0]?.[5]}` }))
+    : error ? { pass: false, why: `tool error: ${error}` } : score(q, truths[q.id], answer);
   results.push({ id: q.id, set: q.set, type: q.type, tool: q.tool, pass: s.pass, ...(s.pass ? {} : { why: s.why }), ...(s.row ? { row: s.row } : {}), ...(s.rows ? { rows: s.rows } : {}), ms, chars: answer ? JSON.stringify(answer).length : 0 });
   console.log(`${s.pass ? "PASS" : "FAIL"} ${q.set.padEnd(5)} ${q.id.padEnd(30)} ${String(ms).padStart(6)} ms${s.pass ? "" : `  ${s.why}`}`);
 }
