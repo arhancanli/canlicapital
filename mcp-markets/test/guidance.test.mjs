@@ -167,3 +167,84 @@ test("the exact statement of a result is compared, not the rounded headline", ()
   const r = resultsFromText("•Revenues of $18.7 billion for the quarter.\nRevenues for the fourth quarter of fiscal 2026 were $18.68 billion.");
   assert.deepEqual(compareGuidance(g, r).map((x) => [x.actual, x.position]), [[18.68, "above the range"]]);
 });
+
+// Results read from release text, on sentences from the releases above and from Micron, Cisco,
+// Intuit, HP, Lam Research, Cintas, Accenture, Qualcomm, Lennar and Palo Alto Networks (2026).
+const facts = (text) => resultsFromText(text).map((x) => [x.measure, x.value, x.unit, x.basis, x.change, x.versus, x.section]);
+
+test("results under a part of the business carry its name; changes say what they are measured against", () => {
+  const nvidia = ["•Revenue of $96.2 billion, up 106% from a year ago", "NVIDIA today reported revenue for the second quarter ended July 26, 2026, of $96.2 billion, up 18% from the previous quarter and up 106% from a year ago.", "Highlights", "Data Center", "•Second-quarter revenue was $89.0 billion, up 18% from the previous quarter and up 117% from a year ago.", "Edge Computing", "•Second-quarter Edge Computing revenue was $7.2 billion, up 13% from the previous quarter.", "CFO Commentary"].join("\n");
+  assert.deepEqual(facts(nvidia), [
+    ["revenue", 96.2, "USD billion", null, null, null, null], ["revenue", 106, "%", null, "growth", "year over year", null],
+    ["revenue", 96.2, "USD billion", null, null, null, null], ["revenue", 18, "%", null, "growth", "quarter over quarter", null], ["revenue", 106, "%", null, "growth", "year over year", null],
+    ["revenue", 89, "USD billion", null, null, null, "Data Center"], ["revenue", 18, "%", null, "growth", "quarter over quarter", "Data Center"], ["revenue", 117, "%", null, "growth", "year over year", "Data Center"],
+    ["revenue", 7.2, "USD billion", null, null, null, "Edge Computing"], ["revenue", 13, "%", null, "growth", "quarter over quarter", "Edge Computing"],
+  ]);
+  assert.deepEqual(facts("Revenue in Productivity and Business Processes was $33.1 billion.\nWalmart U.S. comp sales grew 2.6%.\n•System Design and Analysis revenue grew 37% year-over-year").map((x) => [x[0], x[1], x[6]]),
+    [["revenue", 33.1, "Productivity and Business Processes"], ["comparable_sales", 2.6, "Walmart U.S."], ["revenue", 37, "System Design and Analysis"]]);
+  // Before the company's results a short line is a contact's name, not a part; capitals are a table's title.
+  assert.deepEqual(facts("Satya Kumar\n•Revenue of $54.23 billion\nNOTES TO TABLE A\nOur effective tax rate for the twelve months was approximately 24%.").map((x) => x[6]), [null, null]);
+  // Deferred, recurring or unit revenue is not revenue.
+  assert.deepEqual(facts("Deferred revenue increased to $2.43 billion.\n•Agentforce and Data 360 annual recurring revenue reached nearly $3.9 billion.\nMain cabin unit revenue grew 17 percent over prior year."), []);
+});
+
+test("a part's result does not answer the company's guide, nor growth from last quarter a growth guide, nor a year's result a quarter's guide", () => {
+  const nvidiaGuide = guidanceFromSentence("For the second quarter of fiscal 2027, revenue is expected to be $91.0 billion, plus or minus 2%.", { section: true });
+  const nvidia = resultsFromText(["•Revenue of $96.2 billion", "Highlights", "Data Center", "•Second-quarter revenue was $89.04 billion, up 13% from the previous quarter."].join("\n"));
+  assert.deepEqual(compareGuidance(nvidiaGuide, nvidia).map((x) => [x.actual, x.position]), [[96.2, "above the range"]], "Data Center's $89.04 billion, though stated more precisely, is not the company's");
+  const growthGuide = guidanceFromSentence("For the fourth quarter of fiscal 2026, revenue growth of approximately 11 to 12 percent.", { section: true });
+  assert.deepEqual(compareGuidance(growthGuide, resultsFromText("Revenue was $5.0 billion, up 13% sequentially.")), [], "growth from the previous quarter does not answer a growth guide");
+  const intuit = resultsFromText(["Financial Highlights", "For the full year:", "•Total revenue increased 14 percent to $21.4 billion.", "For the fourth quarter:", "•Total revenue increased 13 percent to $4.4 billion."].join("\n"));
+  assert.deepEqual(compareGuidance(growthGuide, intuit).map((x) => [x.unit, x.actual, x.result_quote]), [["%", 13, "•Total revenue increased 13 percent to $4.4 billion."]], "the year's 14% does not answer the quarter's guide");
+});
+
+test("last year's figures, guidance, assumptions, impacts and boilerplate are not results", () => {
+  const lines = [
+    "•Diluted earnings per share were $2.92 compared to $3.10 in the second quarter of 2025.",
+    "•Revenue of $54.23 billion versus $41.46 billion for the prior quarter and $11.32 billion for the same period last year",
+    "•GAAP operating income for fiscal 2026 increased 12% to $11.41 billion compared with GAAP operating income of $10.23 billion for fiscal 2025.",
+    "This compares to revenue of $5.84 billion, gross margin of $2.91 billion, or 49.8% of revenue.",
+    "Revenue for the first quarter was $3.01 billion compared to $2.72 billion in last year's first quarter, an increase of 10.9%.",
+    "For Q3 sales guidance, we expect a headwind of over 100bps to growth related to a timing shift.",
+    "This assumes a tax rate of approximately 30%.",
+    "•Currency rate fluctuations positively affected sales by $1.5 billion and operating income by $0.1 billion",
+    "Walmart U.S. comp sales grew 2.6%, led by growth in transactions and includes 80 bps headwind from health & wellness.",
+    "The Company ended the quarter with $1.4 billion in cash and cash equivalents and it had $593.7 million of available capacity under its revolving credit facility.",
+    "(1)GAAP earnings per share based on approximately 1.15 billion diluted shares.",
+    "Transpacific revenue grew 13 percent over prior year on 8 percent higher capacity.",
+    "Operating expenses were $6.8 billion, up 10% year over year, and were 39.4% of revenue.",
+    "TurboTax Live revenue increased 37 percent, representing 53 percent of total TurboTax revenue.",
+    "(NASDAQ: WMT) announces results with strong growth in revenue, including eCommerce, which grew 23% globally.",
+    "About Walmart",
+    "With fiscal year 2026 revenue of $713 billion, Walmart employs approximately 2.1 million associates worldwide.",
+  ].join("\n");
+  assert.deepEqual(facts(lines).map((x) => [x[0], x[1], x[2]]), [
+    ["eps", 2.92, "USD per share"], ["revenue", 54.23, "USD billion"], ["operating_income", 12, "%"], ["operating_income", 11.41, "USD billion"],
+    ["revenue", 3.01, "USD billion"], ["revenue", 10.9, "%"], ["comparable_sales", 2.6, "%"], ["revenue", 13, "%"], ["operating_expenses", 6.8, "USD billion"], ["operating_expenses", 10, "%"], ["revenue", 37, "%"],
+  ]);
+  // A subheadline is not an outlook section, and a section joining results to the outlook keeps them.
+  assert.deepEqual(facts("Reaffirms Fiscal 2026 Guidance\nNet earnings for the quarter were $4.8 billion.\nRevenue Environment and Outlook\nSeptember quarter revenue grew approximately 16 percent over prior year.\nFiscal 2027 Guidance\n•Gross margin of approximately 33.1%").map((x) => [x[0], x[1]]), [["net_income", 4.8], ["revenue", 16]]);
+});
+
+test("a rate's change, a margin in dollars, a share of revenue and a change in dollars are read as what they are", () => {
+  const lines = [
+    "•Gross profit rate up 96 bps, led by Walmart U.S.",
+    "For the June 2026 quarter, revenue was $6.72 billion, gross margin was $3.48 billion, or 51.7% of revenue, operating income was 37.4% of revenue, and net income was $2.28 billion.",
+    "•Personal Systems net revenue was $11.8 billion, up 18% year over year (up 17% in constant currency) with a 4.6% operating margin.",
+    "•Free cash flow of $5.5 billion, a decrease of $1.4 billion",
+    "•Net earnings of $284 million",
+    "•Operating revenue of $20.2 billion",
+    "•GAAP diluted net income per share of $4.29, up 119% Y/Y and non-GAAP diluted net income per share of $5.90, up 103% Y/Y",
+    "•Revenues of $18.7 billion for the quarter, an increase of 6% in U.S. dollars and 7% in local currency",
+  ].join("\n");
+  assert.deepEqual(facts(lines).map((x) => [x[0], x[1], x[2], x[3], x[4]]), [
+    ["gross_margin", 96, "bps", null, "change"],
+    ["revenue", 6.72, "USD billion", null, null], ["gross_profit", 3.48, "USD billion", null, null], ["gross_margin", 51.7, "%", null, null], ["operating_margin", 37.4, "%", null, null], ["net_income", 2.28, "USD billion", null, null],
+    ["revenue", 11.8, "USD billion", null, null], ["revenue", 18, "%", null, "growth"], ["revenue", 17, "%", "constant currency", "growth"], ["operating_margin", 4.6, "%", null, null],
+    ["free_cash_flow", 5.5, "USD billion", null, null], ["free_cash_flow", -1.4, "USD billion", null, "change"],
+    ["net_income", 284, "USD million", null, null],
+    ["revenue", 20.2, "USD billion", null, null],
+    ["eps", 4.29, "USD per share", "GAAP", null], ["eps", 119, "%", "GAAP", "growth"], ["eps", 5.9, "USD per share", "non-GAAP", null], ["eps", 103, "%", "non-GAAP", "growth"],
+    ["revenue", 18.7, "USD billion", null, null], ["revenue", 6, "%", null, "growth"], ["revenue", 7, "%", "constant currency", "growth"],
+  ]);
+});

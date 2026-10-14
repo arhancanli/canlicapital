@@ -9,15 +9,15 @@ const SCALE = { thousand: "thousand", k: "thousand", million: "million", m: "mil
 // Measures people guide on, most specific first. A label that is none of these is kept as written.
 const MEASURES = [
   ["pretax_margin", /\bpre-?tax (?:profit |income )?margins?\b/],
-  ["gross_margin", /\bgross (?:profit )?margins?\b/],
+  ["gross_margin", /\bgross (?:profit )?(?:margins?|rate)\b/],
   ["operating_margin", /\b(?:operating|op\.?) (?:income |profit )?margins?(?: rate)?\b/],
   ["net_margin", /\bnet (?:income |profit )?margins?\b/],
   ["ebitda_margin", /\bebitda margins?\b/],
   ["eps", /\b(?:diluted |basic )?(?:earnings|eps|net income|income|loss)(?: \(loss\))? (?:per (?:diluted )?share|attributable to [\w .]+? per share)\b|\beps\b|\bearnings of\b/],
-  ["comparable_sales", /\b(?:comparable|comp|same[- ]store|like-for-like)(?: store)?(?: sales)?\b/],
+  ["comparable_sales", /\b(?:comparable|comp|same[- ](?:store|restaurant)|like-for-like)(?: store)?(?: sales)?\b/],
   ["free_cash_flow", /\bfree cash flows?\b/],
   ["operating_cash_flow", /\b(?:operating cash flows?|cash flows? from operations|cash from operations)\b/],
-  ["capex", /\b(?:capital expenditures?|capex|capital spending|capital investments?)\b/],
+  ["capex", /\b(?:gross )?(?:capital expenditures?|capex|capital spending|capital investments?)\b/],
   ["tax_rate", /\b(?:effective )?(?:income )?tax (?:rates?|provision(?: rate)?)\b/],
   ["operating_income", /\b(?:operating (?:income|profit|earnings))\b/],
   ["pretax_income", /\bpre-?tax (?:profit|income|earnings)\b/],
@@ -35,9 +35,9 @@ const MEASURES = [
   ["dividends_per_share", /\bdividends? (?:per share|declared)\b|\bquarterly dividend\b/],
   ["gross_profit", /\bgross profit\b/],
   ["income_tax", /\b(?:provision for income taxes|income tax expense)\b/],
-  ["revenue", /\b(?:total |net |consolidated )?(?:revenues?|net sales|sales)\b/],
+  ["revenue", /\b(?:total |net |consolidated |operating )?(?:revenues?|net sales|sales)\b/],
 ];
-const BASIS = [["constant currency", /\bconstant (?:currency|dollars?)\b|\(cc\)|\bin cc\b/gi], ["non-GAAP", /\bnon-?gaap\b/gi], ["adjusted", /\badjusted\b|\badj\.(?=\s)/gi], ["GAAP", /(?<!non-?)\bgaap\b/gi]];
+const BASIS = [["constant currency", /\bconstant (?:currency|dollars?)\b|\blocal currenc(?:y|ies)\b|\(cc\)|\bin cc\b/gi], ["non-GAAP", /\bnon-?gaap\b/gi], ["adjusted", /\badjusted\b|\badj\.(?=\s)/gi], ["GAAP", /(?<!non-?)\bgaap\b/gi]];
 
 export function measureOf(text) {
   const t = String(text).toLowerCase();
@@ -187,16 +187,20 @@ export function figuresIn(sentence, { bare = false } = {}) {
 }
 
 const round = (x) => (x === null || !Number.isFinite(x) ? null : Math.round(x * 1e6) / 1e6);
-const GROWTH = /\b(grow(?:th)?|increase[sd]?|up|rise|higher|decline[sd]?|down|decrease[sd]?|lower|change)\b/i;
+const GROWTH = /\b(grow(?:th)?|grew|increase[sd]?|up|rise|rose|risen|higher|gain(?:ed|s)?|climb(?:ed)?|jump(?:ed)?|surged?|decline[sd]?|down|decrease[sd]?|lower|fell|fall(?:ing)?|drop(?:ped)?|slipped|change)\b/i;
 
 // Words that do not make a measure a part of itself: "fourth quarter revenue" is revenue,
 // "AI semiconductor revenue" is not.
 const GENERIC = new Set(["the", "our", "its", "their", "total", "net", "consolidated", "quarterly", "annual", "fiscal", "full", "year", "full-year", "quarter", "first", "second", "third", "fourth", "first-quarter", "second-quarter", "third-quarter", "fourth-quarter", "gaap", "non-gaap", "adjusted", "reported", "and", "of", "for", "to", "is", "be", "in", "a", "an", "on", "with", "expected", "expects", "expect", "expecting", "guidance", "outlook", "company", "company's", "organic", "overall", "diluted", "basic", "this", "next", "current", "period", "both", "now", "updated", "group", "initiates", "raises", "maintains", "reaffirms", "updates", "sees", "forecasting", "forecast", "projected", "that", "we", "it", "as", "at", "by", "q1", "q2", "q3", "q4",
   "deliver", "generate", "produce", "achieve", "reach", "return", "grow", "see", "have", "pay", "keep", "hit", "post", "drive", "improve", "reduce", "remain", "continue", "accelerate", "record", "approximately", "about", "roughly", "around",
-  "had", "has", "was", "were", "reported", "posted", "generated", "recorded", "delivered", "achieved", "earned", "booked", "made", "saw", "its", "total", "annual", "quarterly", "full", "year's", "quarter's"]);
+  "had", "has", "was", "were", "reported", "posted", "generated", "recorded", "delivered", "achieved", "earned", "booked", "made", "saw", "its", "total", "annual", "quarterly", "full", "year's", "quarter's",
+  "strong", "solid", "robust", "healthy", "continued", "higher", "lower", "double-digit", "single-digit", "global", "worldwide", "sequential", "basis", "blended", "combined"]);
 const FILLER = /\b(?:of|to|be|is|are|at|approximately|approx|about|around|roughly|guidance|expected|expects|range|the|in|between|from|for|will|now|an|a)\s*$/i;
 
-const SIDE = /,\s*(?:absorbing|including|includes|included|which|reflecting|reflects|excluding|excludes|driven|based on|assuming|assumes|net of|offset|partially|primarily|compared|versus|vs\.?)\b|\band (?:pay|return|repurchase|reduce|invest|buy|retire|fund)\b/i;
+const SIDE = /,\s*(?:absorbing|including|includes|included|which|reflecting|reflects|excluding|excludes|driven|led by|based on|assuming|assumes|net of|offset|partially|primarily|compared|versus|vs\.?)\b|\band (?:pay|return|repurchase|reduce|invest|buy|retire|fund|includes?)\b/i;
+// A side clause that moves to another subject even before the measure has a figure: "growth in
+// revenue, including eCommerce, which grew 23%".
+const SIDE_SUBJECT = /,\s*(?:including|includes|led by|driven by|partially offset|offset by|primarily)\b/i;
 // What a side figure is about: the words after it ("$6 billion increase in fuel costs"), else the
 // words before it ("a fuel price of approximately $4.25").
 function sideLabel(sentence, at) {
@@ -212,7 +216,11 @@ function sideLabel(sentence, at) {
 function clauseBefore(sentence, at) {
   const before = sentence.slice(0, at);
   let start = 0;
-  for (const m of before.matchAll(/[.;!?]["”']?\s+|[•▪●]/g)) start = m.index + m[0].length;
+  for (const m of before.matchAll(/[.;!?]["”']?\s+|[•▪●]/g)) {
+    // "Walmart U.S. comp sales": an abbreviation's full stop does not end the clause.
+    if (m[0][0] === "." && /\b(?:U\.S|U\.K|No|approx|vs|e\.g|i\.e|Inc|Corp|Co|Ltd)$/.test(before.slice(0, m.index))) continue;
+    start = m.index + m[0].length;
+  }
   return before.slice(start);
 }
 
@@ -230,20 +238,27 @@ function measureNear(sentence, at, own = new Set(), lookAfter = true) {
     }
   }
   if (best) {
-    const lead = clause.slice(0, bestAt).replace(/[^\w\s&'-]/g, " ").split(/\s+/).filter(Boolean).slice(-4);
+    const lead = clause.slice(0, bestAt).split(",").pop().replace(/[^\w\s&'.-]/g, " ").split(/\s+/).filter(Boolean).slice(-5);
     const words = [];
     for (let k = lead.length - 1; k >= 0; k--) {
       const w = lead[k].toLowerCase();
+      // A name joined by "and" between capitalized words: "System Design and Analysis".
+      if ((w === "and" || w === "&") && k > 0 && words.length && /^[A-Z]/.test(lead[k - 1]) && /^[A-Z]/.test(words[0])) { words.unshift(lead[k]); continue; }
       // A possessive ("Apple's", "the company's") names whose measure it is, not a part of it.
-      if (GENERIC.has(w) || own.has(w) || /['’]s$/.test(w) || /^(?:fy)?['’]?\d+$|^q[1-4]$|^fy\d+$/.test(w)) break;
+      if (GENERIC.has(w) || own.has(w) || /['’]s$/.test(w) || /\d|^q[1-4]$/.test(w) || !/[a-z]/.test(w)) break;
       words.unshift(lead[k]);
     }
     const phrase = clause.slice(bestAt, bestAt + bestLen);
-    if (words.length) return { measure: null, label: `${words.join(" ")} ${phrase}`.trim() };
+    if (words.length) return { measure: null, label: `${words.join(" ")} ${phrase}`.trim(), base: best, qualifier: words.join(" ") };
+    // So does a name after it: "Revenue in Productivity and Business Processes", "sales at Sam's
+    // Club". A time ("Revenue in the Second Quarter") or a basis ("from Continuing Operations") is
+    // not a part of the business.
+    const part = clause.slice(bestAt + bestLen).match(/^\s+(?:in|at|from)\s+(?:the\s+)?([A-Z][\w&'’.-]*(?:\s+(?:and|&|of|[A-Z][\w&'’.-]*))*)/);
+    if (part && !NOT_A_PART.test(part[1])) return { measure: null, label: `${phrase} ${part[0].trim()}`, base: best, qualifier: part[1] };
     // After the measure's own figure, a side clause names something else: "a pre-tax profit of
     // $4.5 billion, absorbing a $6 billion increase in fuel costs".
     const between = clause.slice(bestAt + bestLen);
-    if (/\d/.test(between) && SIDE.test(between)) return { measure: null, label: sideLabel(sentence, at) };
+    if ((/\d/.test(between) && SIDE.test(between)) || SIDE_SUBJECT.test(between)) return { measure: null, label: sideLabel(sentence, at) };
     return { measure: best, label: null };
   }
   const after = sentence.slice(at, at + 80).toLowerCase();
@@ -255,9 +270,11 @@ function measureNear(sentence, at, own = new Set(), lookAfter = true) {
   return { measure: null, label: label || null };
 }
 
+const NOT_A_PART = /^(?:Q[1-4]|FY|Fiscal|First|Second|Third|Fourth|Full|Quarter|Year|Calendar|January|February|March|April|May|June|July|August|September|October|November|December|Continuing|Discontinued|Operations|Ongoing|Constant|Local|Comparable|GAAP|Non-GAAP|U\.S\. Dollars?)\b/;
+
 const pick = (low, high) => (low === null || high === null ? null : round((low + high) / 2));
 
-const DECLINE = /\b(?:decline[sd]?|declining|down|decrease[sd]?|decreasing|lower|drop(?:ped)?|fall|fell|contract(?:ed|ion)?)\b(?:\s+(?:of|by))?(?:\s+(?:approximately|about|around|roughly))?\s*$/i;
+const DECLINE = /\b(?:decline[sd]?|declining|down|decrease[sd]?|decreasing|lower|drop(?:ped)?|fall|fell|slipped|contract(?:ed|ion)?)\b(?:\s+(?:of|by))?(?:\s+(?:approximately|about|around|roughly))?\s*$/i;
 const signed = (f, sentence) => DECLINE.test(sentence.slice(Math.max(0, f.at - 40), f.at)) && f.f.pct && !/basis|bps/.test(f.f.pct);
 // A change in points or basis points that is a decrease ("operating margin decreased 190 basis points").
 const fallsBy = (f, sentence) => DECLINE.test(sentence.slice(Math.max(0, f.at - 40), f.at));
@@ -427,36 +444,162 @@ export function guidanceFromTable(t) {
 export function resultsFromText(text, max = 400) {
   const lines = unglue(text).split("\n").map((l) => l.trim()).filter(Boolean).slice(0, max);
   const out = [];
+  // Lines under a heading that names a part of the business ("Data Center") are that part's
+  // results, even when the sentence says only "revenue was $89.0 billion".
+  let section = null, skipping = false, scope = null;
   for (const line of lines) {
-    if (BOILERPLATE.test(line) || STOP.test(line) || line.includes(" | ")) continue;
+    const heading = headingOf(line);
+    // A subheadline ("Reaffirms Fiscal 2026 Guidance") is not a section.
+    if (heading && SUBHEADLINE.test(heading)) continue;
+    if (heading) {
+      // Boilerplate and outlook sections hold no results: "About Walmart", "Fiscal 2027 Outlook".
+      // A heading that joins the outlook to something else ("Revenue Environment and Outlook")
+      // still has results.
+      skipping = NO_RESULTS.test(heading) || (/\b(?:outlook|guidance|expectations)\b/i.test(heading) && !/\b(?:results?|highlights?|summary)\b|\s(?:and|&)\s/i.test(heading));
+      // A part of the business is named in title case, after the company's own results begin:
+      // "Data Center", "Walmart U.S.", not a contact's name above the release or "Three Months Ended".
+      section = !skipping && out.length && !WHOLE.test(heading) && isPartName(heading) ? heading : null;
+      // "Full-Year Highlights" or "Fourth-Quarter Results": the period the lines under it cover.
+      scope = scopeOf(heading);
+      continue;
+    }
+    if (skipping || BOILERPLATE.test(line) || STOP.test(line) || line.includes(" | ")) continue;
+    // A line that introduces a list names the period of the lines under it: "For the full year:".
+    if (/:$/.test(line) && line.split(/\s+/).length <= 8 && !/\d[\d,.]*\s*(?:%|percent|million|billion)|\$/.test(line) && scopeOf(line)) { scope = scopeOf(line); continue; }
     for (const s of sentences(line)) {
       if (VERBS.test(s) && !/\b(?:was|were|reported|delivered|grew|increased|decreased|declined|totaled|came in|of)\b/i.test(s)) continue;
-      let prev = null;
+      // "This compares to revenue of $5.84 billion, gross margin of ...": last year's figures only.
+      if (/^\W*(?:this|these|that|which)\s+(?:compares?|compared)\b/i.test(s)) continue;
+      let prev = null, comparedEnd = null;
       const figs = figuresIn(s);
       for (const [k, f] of figs.entries()) {
         if (f.low !== f.high) continue;
+        // The figures compared against are earlier periods', not results: "$2.92 compared to
+        // $3.10", "$54.23 billion versus $41.46 billion for the prior quarter and $11.32 billion for
+        // the same period last year".
+        const gap = s.slice(figs[k - 1]?.end ?? Math.max(0, f.at - 40), f.at);
+        const chain = comparedEnd !== null ? s.slice(comparedEnd, f.at) : null;
+        if (COMPARED.test(gap) || (chain !== null && !measureOf(chain) && !/[;]|\.\s/.test(chain) && !GROWTH.test(chain))) { comparedEnd = f.end; continue; }
+        // Guidance, assumptions and impacts are not results: "we expect a headwind of over 100bps",
+        // "affected sales by $1.5 billion", "includes 80 bps headwind from health & wellness".
+        const clause = clauseBefore(s, f.at);
+        if (VERBS.test(clause) || /\bassum(?:es?|ing|ptions?)\b/i.test(clause) || (IMPACT.test(clause) && /\bby\s*$/i.test(clause)) || IMPACT_AFTER.test(s.slice(f.end, f.end + 30))) continue;
         // "decreased 9%, or 10% on a constant dollar basis": the second figure shares the first's sign.
         const sameSign = prev && prev.negative && /^\s*,?\s*or\s+$/i.test(s.slice(prev.end, f.at));
-        let { measure } = measureNear(s, f.at, new Set(), false);
+        let { measure, base, qualifier } = measureNear(s, f.at, new Set(), false);
+        // A measure of a named part of the business ("Data Center revenue", "revenue in Intelligent
+        // Cloud") is that part's result. Deferred or recurring revenue, an average price, or words
+        // that are not a name ("services", "where") are left out.
+        let part = section;
+        if (!measure && base) {
+          const q = qualifier.replace(/^[^A-Za-z0-9]+/, "");
+          if (!isPartName(q) || CHANGES_MEANING.test(q)) continue;
+          measure = base;
+          // Under a heading, the part is the heading's ("Walmart U.S. eCommerce"), said once.
+          const [a, b] = [section ?? "", q].map((x) => x.toLowerCase());
+          part = !a || a.includes(b) ? (a ? section : q) : b.includes(a) ? q : `${section} ${q}`;
+        }
         if (!measure) continue;
-        const unit = unitOf(f.f, measure);
+        // The words after a figure name that figure, not the next one: "$1.4 billion in cash and
+        // cash equivalents and it had $593.7 million of available capacity".
+        const between = k > 0 ? s.slice(figs[k - 1].end, f.at).split(/[,;)]|\band (?:it|we|the company|they)\b|\bwhile\b|\bwith\b/i)[0] : "";
+        if (/^\s*(?:in|of)\s/i.test(between) && measureOf(between) === measure && measureNear(s, figs[k - 1].at, new Set(), false).measure !== measure) continue;
+        // A measure named right after the figure is the figure's: "with a 4.6% operating margin".
+        measure = measureAt(s.slice(f.end, f.end + 40)) ?? measure;
+        let unit = unitOf(f.f, measure);
         if (/per share$/.test(unit ?? "") && (measure === "net_income" || measure === "revenue")) measure = "eps";
-        // A margin's "up 0.4 percentage points" is a change, not a level.
-        const change = unit === "percentage points" || unit === "bps" ? "change" : f.f.pct && (GROWTH.test(s.slice(Math.max(0, f.at - 45), f.at)) || signed(f, s)) && !/margin|rate/.test(measure) ? "growth" : null;
+        // A change in points is a rate's: "gross profit rate up 96 bps", "gross profit grew 158 bps";
+        // so is a percent of revenue ("operating income was 37.4% of revenue"). A margin in dollars
+        // is the profit ("gross margin was $3.48 billion"). A per-share measure needs a per-share
+        // figure ("1.15 billion diluted shares" is not EPS).
+        const share = unit === "%" && /^\s*of (?:total |net |our )?(?:[\w&'’-]+\s+){0,3}?(?:revenues?|sales)\b/i.test(s.slice(f.end, f.end + 60));
+        if ((unit === "percentage points" || unit === "bps" || share) && RATE_OF[measure]) measure = RATE_OF[measure];
+        // Any other share of revenue is a ratio, not the measure's level or growth ("operating
+        // expenses ... were 39.4% of revenue", "53 percent of total TurboTax revenue"); a figure that
+        // describes what follows it is about that ("on 8 percent higher capacity").
+        else if ((share && !/margin|rate/.test(measure)) || /^\s*(?:higher|lower|more|fewer|less|additional)\s+[a-z]/i.test(s.slice(f.end, f.end + 30))) continue;
+        if (f.f.cur && AMOUNT_OF[measure]) measure = AMOUNT_OF[measure];
+        if (measure === "eps" && !f.f.pct && (f.f.scale || !/per share$/.test(unitOf(f.f, measure) ?? ""))) {
+          // "Net earnings of $284 million" is net income; any other amount read as EPS is dropped.
+          if (!f.f.scale || !/\bnet earnings\b/i.test(clause)) continue;
+          measure = "net_income";
+          unit = unitOf(f.f, measure);
+        }
+        // A margin's "up 0.4 percentage points" is a change, not a level; so is an amount after "an
+        // increase of" or "up".
+        const change = unit === "percentage points" || unit === "bps" || (!f.f.pct && AMOUNT_CHANGE.test(s.slice(Math.max(0, f.at - 30), f.at))) ? "change" : f.f.pct && (GROWTH.test(s.slice(Math.max(0, f.at - 45), f.at)) || signed(f, s)) && !/margin|rate/.test(measure) ? "growth" : null;
         const negative = (change === "growth" && (signed(f, s) || sameSign)) || (change === "change" && fallsBy(f, s));
         const value = negative ? -f.low : f.low;
-        prev = { end: f.end, negative };
-        // The basis can follow the figure ("5% on a constant dollar basis"), up to the next figure.
-        const basis = basisOf(s.slice(Math.max(0, (figs[k - 1]?.end ?? f.at - 120)), Math.min(figs[k + 1]?.at ?? f.end + 40, f.end + 40)));
-        out.push({ measure, value, unit, basis, change, decimals: f.decimals, quote: s });
+        // The basis can follow the figure ("5% on a constant dollar basis"), up to the next figure
+        // or clause; else a change has its level's basis ("GAAP EPS of $4.29, up 119%").
+        const after = s.slice(f.end, Math.min(figs[k + 1]?.at ?? f.end + 40, f.end + 40)).split(/\band\b|[,;]/)[0];
+        const from = Math.max(0, figs[k - 1]?.end ?? f.at - 120);
+        const cut = s.slice(from, f.at).search(/[)(][^)(]*$/);
+        const basis = basisOf(s.slice(cut >= 0 ? from + cut + 1 : from, f.end) + after) ?? (prev?.measure === measure ? prev.basis : null);
+        prev = { end: f.end, negative, measure, basis };
+        out.push({ measure, value, unit, basis, change, versus: change ? versusOf(s, f.end) : null, section: part, scope: scopeOf(clause) ?? scope, decimals: f.decimals, quote: s });
       }
     }
   }
   return out;
 }
 
+// A section heading: a short line of words between paragraphs ("Data Center", "Outlook", "Q2
+// Fiscal 2027 Summary"), not a bullet, a sentence, a table row or a file name.
+export function headingOf(line) {
+  if (line.length > 60 || /[|$%•▪●]|[.!?]["”']?\s|[:;!?]$|[a-z]{4,}\.$/.test(line) || /\.(?:htm|html|txt|pdf)$|^(?:EX-|exhibit\s+)\d|^page\s+\d/i.test(line)) return null;
+  return /^[A-Z]/.test(line) && /[A-Za-z]{3}/.test(line) && line.split(/\s+/).length <= 6 ? line : null;
+}
+// Headings about the whole company's results rather than a part of the business.
+const WHOLE = /\b(?:summary|highlights?|outlook|guidance|results?|overview|financials?|quarter(?:ly)?|fiscal|year|annual|updates?|recent|developments?|commentary|conference|webcast|calls?|gaap|non-gaap|measures?|about|capital|returns?|dividends?|repurchases?|shareholders?|stockholders?|liquidity|cash|balance|statements?|reconciliations?|forward|harbor|contacts?|media|investors?|business|operating|performance|key|metrics|other|corporate|strategic|consolidated|total|revenues?|sales|margins?|income|earnings|expenses|profit|eps|release|immediate|press|news|announces?|reports?|company|corporation|inc|notes?|tables?|months|ended|q[1-4]|fy\s?\d+|\d{4})\b/i;
+
+// What a change is measured against, from the words after it: "up 18% from the previous quarter
+// and up 117% from a year ago".
+const VERSUS = [
+  [/^[\s,]*(?:\([^)]{0,40}\)\s*)?(?:year[- ]over[- ]year|y\/y|yoy)\b|^[\s,]*(?:\([^)]{0,40}\)\s*)?(?:from|over|versus|vs\.?|compared (?:to|with)|against)\s+(?:the\s+|a\s+)?(?:year[- ]ago|year[- ]earlier|prior[- ]year|previous[- ]year|last[- ]year|same (?:quarter|period) (?:a |of the )?(?:last|prior|previous) year)/i, "year over year"],
+  [/^[\s,]*(?:\([^)]{0,40}\)\s*)?(?:sequentially|quarter[- ]over[- ]quarter|q\/q|qoq)\b|^[\s,]*(?:\([^)]{0,40}\)\s*)?(?:from|over|versus|vs\.?|compared (?:to|with)|against)\s+(?:the\s+)?(?:previous|prior|preceding|last|sequential) quarter/i, "quarter over quarter"],
+];
+const NO_RESULTS = /^(?:about\b|forward[- ]looking|safe harbor|cautionary|(?:use of )?non-gaap (?:financial )?(?:measures?|information|reconciliations?)|reconciliations?\b|conference call|webcast|contacts?\b|investors? (?:relations|contacts?)\b|media (?:relations|contacts?)\b|definitions?\b)/i;
+const SUBHEADLINE = /^(?:reaffirms?|raises?|updates?|initiates?|lowers?|narrows?|maintains?|provides?|announces?|reports?|delivers?|declares?|increases?|achieves?|posts?|records?|expands?|completes?|launches?|sets?|exceeds?|beats?|generates?|returns?)\b/i;
+const CHANGES_MEANING = /\b(?:deferred|unearned|recurring|estimated|future|expected|backlog|remaining|pro forma|run[- ]rate|average|annualized|bookings|incremental|cumulative|potential|unit|per)\b/i;
+const AMOUNT_OF = { gross_margin: "gross_profit", operating_margin: "operating_income", net_margin: "net_income", pretax_margin: "pretax_income" };
+// The name of a part of the business: one to five words starting with a capital ("Data Center",
+// "Walmart U.S.", "eCommerce", "System Design and Analysis"), no figures, roles, measures or
+// connecting words.
+function isPartName(q) {
+  const words = q.split(/\s+/).filter(Boolean);
+  // Capitals throughout are a table's title ("NOTES TO TABLE A"), not a part's name.
+  return words.length >= 1 && words.length <= 5 && /^(?:[A-Z]|[a-z]+[A-Z])/.test(words[0]) && !/\d/.test(q) && !/[-–—]{2}/.test(q) && (words.length === 1 || /[a-z]/.test(q))
+    && !/\b(?:CEO|CFO|COO|Chair(?:man|woman)?|President|Officer|Director|Vice|Executive|Founder|Chief|Months|Weeks|Ended|Period|Where|Which|While|When|Whose|That|Delivers?|Generates?|Reported|Reports?|Revenues?|Sales|Income|Earnings|Margins?|Profit)\b/i.test(q);
+}
+const IMPACT = /\b(?:affected|impacted|benefit(?:ed|ted)?|hurt|helped|boosted|weighed on|reduced|lowered|raised)\b/i;
+const IMPACT_AFTER = /^\s*(?:of\s+)?(?:headwinds?|tailwinds?|impacts?|benefits?|drag|contribution|unfavorable|favorable)\b/i;
+const AMOUNT_CHANGE = /\b(?:an?\s+)?(?:increase|decrease|decline|rise|drop|reduction|improvement)\s+of\s*$|\b(?:up|down|increased|decreased|declined|rose|fell|grew)\s+(?:by\s+)?$/i;
+const RATE_OF = { gross_profit: "gross_margin", operating_income: "operating_margin", net_income: "net_margin", pretax_income: "pretax_margin", ebitda: "ebitda_margin" };
+const COMPARED = /\b(?:compar(?:ed|es?) (?:to|with)|versus|vs\.?|from)\s*(?:approximately\s+|about\s+)?$|\b(?:compar(?:ed|es?) (?:to|with)|versus|vs\.?)\s+(?:(?!was\b|were\b|is\b|are\b|increased\b|decreased\b|grew\b|rose\b|fell\b)[\w&'’()-]+\s+){1,6}(?:of|at|was|were)\s+(?:approximately\s+|about\s+)?$/i;
+// The measure a text starts with, after a basis word: " operating margin" gives operating_margin;
+// " of revenue" gives none (a share is read separately).
+function measureAt(text) {
+  const t = String(text).toLowerCase().replace(/^\s*(?:(?:gaap|non-gaap|adjusted|total|net)\s+)*/, "");
+  if (/^of\b/.test(t)) return null;
+  for (const [key, re] of MEASURES) { const m = t.match(re); if (m && m.index === 0) return key; }
+  return null;
+}
+// Whether a text speaks of a quarter or a whole year; the mention nearest its end wins ("Fourth-
+// quarter revenue grew 14 percent, full year fiscal 2026 revenue grew 14 percent").
+function scopeOf(text) {
+  let at = -1, scope = null;
+  for (const m of String(text).matchAll(/\b(?:full[- ](?:fiscal )?year|fiscal year|for the year|twelve months|annual)\b|\b(?:quarter|q[1-4]|three months)\b/gi)) {
+    if (m.index > at) { at = m.index; scope = /quarter|q[1-4]|three months/i.test(m[0]) ? "quarter" : "year"; }
+  }
+  return scope;
+}
+const versusOf = (s, end) => VERSUS.find(([re]) => re.test(s.slice(end, end + 80)))?.[1] ?? null;
+
 // Last quarter's guidance against this quarter's results, where both name the same measure and
-// basis in the same unit. The verdict is the position against the range, nothing more.
+// basis in the same unit. The verdict is the position against the range, nothing more. A result
+// under a part of the business ("Data Center") does not answer the company's guide, and growth
+// from the previous quarter does not answer a growth guide.
 export function compareGuidance(guided, results) {
   const rows = [];
   for (const g of guided) {
@@ -464,7 +607,9 @@ export function compareGuidance(guided, results) {
     // A result for both bases ("GAAP and non-GAAP gross margins were both 75.0%") answers either guide.
     const sameBasis = (x) => g.basis === "GAAP and non-GAAP" || (x.basis ?? null) === (g.basis ?? null) || (!g.basis && x.basis === "GAAP") || (x.basis === "GAAP and non-GAAP" && (g.basis === "GAAP" || g.basis === "non-GAAP"));
     // The most precise statement of the result: "$18.68 billion" rather than the headline's "$18.7 billion".
-    const r = results.filter((x) => x.measure === g.measure && x.unit === g.unit && (x.change ?? null) === (g.change === "decline" ? "growth" : g.change ?? null) && sameBasis(x)).reduce((best, x) => (!best || (x.decimals ?? 0) > (best.decimals ?? 0) ? x : best), null);
+    // Nor does a full year's result answer a quarter's guide, or a quarter's the year's.
+    const quarterly = Boolean(quarterOf(g.period ?? "")), yearly = !quarterly && /\b(?:year|fy|fiscal|annual)/i.test(g.period ?? "");
+    const r = results.filter((x) => !x.section && !(x.change === "growth" && x.versus === "quarter over quarter") && !(quarterly && x.scope === "year") && !(yearly && x.scope === "quarter") && x.measure === g.measure && x.unit === g.unit && (x.change ?? null) === (g.change === "decline" ? "growth" : g.change ?? null) && sameBasis(x)).reduce((best, x) => (!best || (x.decimals ?? 0) > (best.decimals ?? 0) ? x : best), null);
     if (!r) continue;
     const scale = g.unit === "%" || g.unit === "percentage points" ? 100 : null;
     const vsLow = round(r.value - g.low), vsHigh = round(r.value - g.high);

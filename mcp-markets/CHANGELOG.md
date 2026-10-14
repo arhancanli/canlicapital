@@ -32,6 +32,17 @@ rendered XBRL page or document, and for text the sentence or table row itself.
   - The previous release's guidance for the same quarter is set against these results (above,
     within or below the range, and in basis points for rates). A result stated more coarsely than
     the guide ("$2.4 billion" against "$2.450 billion to $2.475 billion") is not placed.
+  - Results name the part of the business they belong to (`section`: NVIDIA's "Data Center", whose
+    bullets say only "revenue was $89.0 billion"; "Walmart U.S. eCommerce") and what a change is
+    measured against (`versus`: year over year or quarter over quarter). Only the company's own
+    results answer its guidance: not a part's, not growth from the previous quarter, not the full
+    year's against a quarter's guide.
+  - Not read as results: last year's figures ("$2.92 compared to $3.10", "versus $41.46 billion
+    for the prior quarter and $11.32 billion for the same period last year"), guidance and its
+    assumptions, impacts and headwinds ("affected sales by $1.5 billion", "80 bps headwind"),
+    shares of revenue, and "About" and outlook sections. A rate's change in basis points is the
+    margin's ("gross profit rate up 96 bps"), a margin in dollars the profit, "an increase of $1.4
+    billion" a change, and "local currency" a constant-currency basis.
 - New tool `verify_claims`: checks a draft answer's figures against the company's own filings
   before they are used. Claims are given as measure, period and value, or found in a draft
   paragraph about the company, and looked up in SEC's XBRL company-concept facts for the period as

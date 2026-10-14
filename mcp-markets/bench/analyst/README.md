@@ -47,6 +47,30 @@ the figure came from (now it starts from that one).
 
 Median time per call 0.7 s; median answer 4,600 characters.
 
+### What the questions did not check: every results row
+
+A question passes when the right figure is in the answer; a wrong row next to it is not counted.
+So on 2026-10-14 every results row `earnings_release` gave for the 26 releases in this set was read
+by hand, the parser before this fix against after (the same live EDGAR pages).
+Wrong rows found, all fixed, and the questions still pass 87 of 87:
+
+- segment results reported as the company's: NVIDIA's Data Center bullets ("Second-quarter revenue
+  was $89.0 billion") under a heading; now each carries `section`;
+- last year's figures as results: Lululemon's "$2.92 compared to $3.10", Micron's "versus $41.46
+  billion for the prior quarter and $11.32 billion for the same period last year", and six more
+  releases;
+- guidance, assumptions and impacts as results: Walmart's "affected ... operating income by $0.1
+  billion" and "80 bps headwind", Lululemon's "assumes a tax rate of approximately 30%", Home
+  Depot's guidance bullets, the "About Walmart" revenue of $713 billion;
+- figures under the wrong measure: "1.15 billion diluted shares" as EPS, "operating earnings of
+  $502 million" as EPS, "$593.7 million of available capacity" as cash, "gross profit rate up 96
+  bps" as gross profit, eCommerce's 23% growth as revenue growth.
+
+The beat-or-miss rows changed in five releases, each now right: Qualcomm's non-GAAP EPS guide was
+set against GAAP EPS (a false miss), Intuit's quarterly EPS guide against full-year EPS (a false
+beat), Accenture's local-currency guide against US-dollar growth; Salesforce and Dell gained a
+comparison. The review found these by reading; it is not a measured error rate.
+
 ## Limits
 
 - The question set is ours, and its guidance questions are the ones whose answers could be keyed
