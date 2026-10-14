@@ -7386,3 +7386,11 @@ Actual all91 charge ORIGINAL 10155611B/STORED 4774055B includes literal and mani
 This documentary assembly is repository source work. The forthcoming signed documentaryhead and automatic newHEAD CI are separate from historical e10 source-time38PASS/full2259/all7/testedfdf57/RAW24. Newhead outcomes remain UNKNOWN until retained originals and separate PRIMARY+THIRD FINAL SOURCE_ARCHIVE/currentCI gates; allfour actual final personal intakes precede unchangedREADY/PRIMARYsoleordinaryheadlockedmerge/pairedACTUALcustody/publication. All FINAL proofs external/no92nd. No npm installation, live human/expert/rights/labels/adjudication/adoption/indexing or strategy outcome inferred.
 
 Entire owner hierarchy remains ACTIVE/outcomesUNKNOWNNULL: efficient differentiated Sovereignfinancial MCP/API/developer-repository adoption/substantialUnreleased; consenting vetted independent rights-cleared realexpert doubleannotation/refinery/sourcegovernance/agreement-adjudication/reproducible research; governed ALPHAC netforwardSharpe>2/14economically distinct qualifiedsleeves/DD<=10%after actual costs/privatepaper/lawfulcapital;10MACTUALLYindexed useful maintained source-backed canonical qualitySEO/keywords/design3D-understandability/graph-social/a11y-security-performance analyzers. Owner cinematic TraceAxiom/GIMBIX/editableFigma website refinement remains active in the reserved separate lane. PRIMARYguide/date/focus/live/privatejournal/reconciliation/release/solemergepub;LeadCPU127/SAMEroles-thread-model-goal. No local project Node/import/SDK/test/CLI/npm/pack/install/helper/build/browser/GET/probe/job/manualrerun/grant/provider-model-resource-spend/publication.
+
+
+## 2026-10-14 — MCP new-level Phase 1 ready for review
+
+canli-markets-mcp gains financial_statements, filing_tables and earnings_release (Unreleased).
+Tests 146/146 on Node 20/22/24; analyst bench first run fresh 26/32, after fixes 32/32 and a
+second fresh set 9/9 (mcp-markets/bench/analyst). Release, flagship pin and model-graded
+evaluation follow in later phases. Live npm: canli-mcp 0.4.0, markets 0.3.0.

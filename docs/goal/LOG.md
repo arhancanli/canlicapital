@@ -19643,3 +19643,25 @@ Evidence: artifacts/mcp/flagship-preflight-20261013.json and bench/context-2026-
 Glama/Smithery access discovery found no installed authenticated browser; no duplicate
 TinyFish suggestion. Existing directory/next-daily hosted gates remain separate.
 All indexed-page/quality/SEO/keyword/adoption/expert/governed-ALPHAC objectives preserved.
+
+
+## 2026-10-14 — MCP new-level Phase 1: analyst-grade filings (canli-markets-mcp, Unreleased)
+
+Owner direction: bring the MCP servers, the flagship first, to a new level, measured on
+independent questions. Phase 1 adds three tools to canli-markets-mcp (no version bump; the
+flagship picks them up at the next markets release): financial_statements (statements exactly as
+filed from SEC's rendered XBRL reports; filings joined by period; restated or split-changed lines
+shown beside their first-reported figures, never mixed), filing_tables (the table that holds a
+figure, in XBRL detail reports and document tables, followed through earlier filings) and
+earnings_release (results and guidance as ranges with quotes; the previous release's guidance for
+the same quarter against these results). Tests 146/146 on Node 20.20.2, 22.23.2 and 24.19.0,
+including a hostile-argument sweep and stdio schema checks over captured responses.
+
+Bench mcp-markets/bench/analyst: 62 questions checked against truths built without the tools
+(companyfacts XBRL, a separate row reader, the releases' words). First run: dev 21/21, fresh
+26/32 (kept as results-2026-10-14-first-run.json). Four general gaps fixed; fresh 32/32 after
+(no longer held out); fresh-2 run once afterwards, not tuned on: 9/9. Flagship check (scratch,
+not committed): index 310 tools; analyst search queries put the new tools first 13/14 and in the
+top three 14/14; existing flagship search tests unchanged; initial context still 3 tools and
+1,113 o200k tokens against 37,263 for the seven servers separately. Tool level only: no model
+benchmark (API credit empty), no release, no deployment.
