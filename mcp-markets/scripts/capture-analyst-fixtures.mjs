@@ -81,12 +81,22 @@ export const TABLE_CALLS = [
   { company: "MSFT" },
 ];
 
+// earnings_release: Lululemon (a revenue decline guided and missed, EPS beaten), NVIDIA (plus or
+// minus guidance), Walmart (guidance tables, raised for the year).
+export const RELEASE_CALLS = [
+  { company: "1397187", accession: "0001397187-26-000126" },
+  { company: "NVDA", accession: "0001045810-26-000073" },
+  { company: "104169", accession: "0000104169-26-000145" },
+];
+
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split("/").pop())) {
   for (const url of PAGES) await grab(url);
   const { financialStatements } = await import("../src/statements.mjs");
   for (const args of STATEMENT_CALLS) await record(financialStatements, args);
   const { filingTables } = await import("../src/filing-tables.mjs");
   for (const args of TABLE_CALLS) await record(filingTables, args);
+  const { earningsRelease } = await import("../src/releases.mjs");
+  for (const args of RELEASE_CALLS) await record(earningsRelease, args);
   writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
   console.log(n, "analyst responses in the manifest");
 }

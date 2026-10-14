@@ -44,7 +44,8 @@ async function pickDocument(session, cik, filing, wanted) {
   return ex ? { name: ex.name, type: ex.type, url: ex.url } : { ...main, url: `${base}/${main.name}` };
 }
 
-async function documentTables(session, url) {
+// A document's tables, parsed once per session and cached apart from its text.
+export async function documentTables(session, url) {
   return getText(session, url, { maxBytes: 24 * 1024 * 1024, variant: "tables", transform: (html) => JSON.stringify(extractTables(html)), parse: (t) => JSON.parse(t) });
 }
 
