@@ -7,6 +7,7 @@ import { InMemoryTransport, McpServer } from "@modelcontextprotocol/server";
 
 import { closeGuideClients, discoverPackGuides, loadedGuidePacks } from "../src/guides.mjs";
 import { PACKS } from "../src/packs.mjs";
+import { PROMPTS } from "../src/prompts.mjs";
 import { registerAll } from "../src/server.mjs";
 
 const CATALOG = JSON.parse(readFileSync(new URL("../src/guides.json", import.meta.url), "utf8"));
@@ -26,7 +27,7 @@ test("listing the full guide catalog loads no pack code and keeps three front to
   assert.deepEqual(loadedGuidePacks(), []);
   const client = await connect(t);
   const prompts = (await client.listPrompts()).prompts;
-  assert.equal(prompts.length, 5 + Object.values(CATALOG).reduce((n, g) => n + g.prompts.length, 0));
+  assert.equal(prompts.length, Object.keys(PROMPTS).length + Object.values(CATALOG).reduce((n, g) => n + g.prompts.length, 0));
   assert.equal(new Set(prompts.map((p) => p.name)).size, prompts.length);
   assert.deepEqual((await client.listTools()).tools.map((tool) => tool.name), ["find_tool", "describe_tool", "run_tool"]);
   const resources = (await client.listResources()).resources;

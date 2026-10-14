@@ -1,14 +1,17 @@
-# Finance coverage and quality, 0.4.0
+# Finance coverage and quality, 0.5.0
 
-The flagship combines seven exact published Canli packages. Its full catalog has 307 tools;
+The flagship combines seven exact published Canli packages. Its full catalog has 311 tools;
 paper trading is enabled with paper credentials or an explicit pack selection. Three discovery
-tools are advertised initially. The 30 prompts, 14 static resources and nine resource templates
+tools are advertised initially. The 32 prompts, 14 static resources and nine resource templates
 appear only for enabled packs. This is a coverage inventory, not a worldwide ranking.
 
 | Area | Available in this release | Scope and remaining work |
 | --- | --- | --- |
 | SEC fundamentals | `known_as_of`, `history`, `vintages`, `restatements`, `cross_section` | Filing dates and fiscal periods remain explicit; a revised figure is not substituted for an earlier vintage. |
-| Filing research | `list_filings`, `read_filing`, `search_filings`, `company_events`, `mentions_trend` | Source filing text and press-release headlines; richer statement modeling and continuous filing monitoring remain gaps against [EdgarTools' documented interfaces](https://github.com/dgunning/edgartools/blob/main/docs/ai/mcp-tools.md). |
+| Filing research | `list_filings`, `read_filing`, `search_filings`, `company_events`, `mentions_trend`, `filing_tables` | Source filing text, press-release headlines, and the table in a filing that holds a figure, followed through earlier filings; continuous filing monitoring remains a gap against [EdgarTools' documented interfaces](https://github.com/dgunning/edgartools/blob/main/docs/ai/mcp-tools.md). |
+| Statements as filed | `financial_statements` | Income statement, balance sheet, cash flow and equity statement from SEC's rendered XBRL reports, several filings joined; restated and split-changed lines shown beside their first-reported figures. US filers with XBRL. |
+| Earnings and guidance | `earnings_release`, `earnings_calendar` | Results and guidance from the company's own release, as ranges with quotes; last quarter's guidance against the results. Guidance given only on the call is not in the release; parsing is by rule, so each figure carries its quote. |
+| Checking the answer | `verify_claims` | A draft's GAAP figures checked against XBRL company facts: confirmed, contradicted (with what the wrong figure matches) or not reported. Non-GAAP, guidance and segment figures are not checked by it. |
 | Ownership and funds | Insider trades, 13F, 13D/13G, N-PORT portfolios, index constituents | Cover-page checks and source receipts; reporting lags remain part of each source contract. |
 | Macro and rates | FRED, Treasury yields/auctions/debt, FOMC, economic calendar, World Bank, OECD | Source series and dates; unsupported series names are refused. |
 | Prices and derivatives | `price_history`, options chains/surfaces, VIX futures, CFTC positioning | Provider history, rate limits and freshness vary; exchange-grade live feeds for every asset are not established. |
