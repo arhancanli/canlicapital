@@ -150,3 +150,20 @@ test("\"X and Y, respectively\" is two values, one for each basis, each with the
   const both = compareGuidance(margins, resultsFromText("For the quarter, GAAP and non-GAAP gross margins were both 75.0%."));
   assert.deepEqual(both.map((x) => [x.basis, x.position]), [["GAAP", "within the range"], ["non-GAAP", "within the range"]]);
 });
+
+test("guidance tables named by an introducing sentence or a heading row; a band across cells; prose above a results table does not count", async () => {
+  const { isGuidanceTable } = await import("../src/guidance.mjs");
+  assert.equal(isGuidanceTable({ caption: "x / Cisco expects to achieve the following results for the first quarter of fiscal 2027:", columns: ["line", ""], rows: [["Revenue", "$18.0 billion - $18.2 billion"]] }), true);
+  assert.equal(isGuidanceTable({ caption: "Share Repurchase Activity", columns: ["line", ""], rows: [["Fourth Quarter Fiscal 2026 Outlook", null], ["Revenues", "$17.75B - $18.4B"]] }), true);
+  assert.equal(isGuidanceTable({ caption: "We've narrowed our fiscal 27 free cash flow expectations reflecting stronger underlying expectations / x", columns: ["line", "Q2 FY27"], rows: [["Revenue", 2046]] }), false);
+  const band = guidanceFromTable({ caption: "…are expected to be as follows:", columns: ["line", "Q4 FY2026", "Q4 FY2026", "Q4 FY2026"], rows: [["Total revenue", 10250, "+/-", 500], ["Non-GAAP diluted EPS", 4.02, "+/-", 0.2]] });
+  assert.deepEqual(band.map((x) => [x.measure, x.low, x.high]), [["revenue", 9750, 10750], ["eps", 3.82, 4.22]]);
+  const lam = guidanceFromTable({ caption: "", columns: ["line", "", "", ""], rows: [["Revenue", "$8.10 Billion", "+/-", "$400 Million"]] });
+  assert.deepEqual(lam.map((x) => [x.measure, x.low, x.high, x.unit]), [["revenue", 7.7, 8.5, "USD billion"]]);
+});
+
+test("the exact statement of a result is compared, not the rounded headline", () => {
+  const g = guidanceFromSentence("Accenture expects revenues for the fourth quarter of fiscal 2026 to be in the range of $17.75 billion to $18.40 billion.");
+  const r = resultsFromText("•Revenues of $18.7 billion for the quarter.\nRevenues for the fourth quarter of fiscal 2026 were $18.68 billion.");
+  assert.deepEqual(compareGuidance(g, r).map((x) => [x.actual, x.position]), [[18.68, "above the range"]]);
+});

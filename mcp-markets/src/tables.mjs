@@ -29,7 +29,8 @@ function tableSpans(html) {
 
 const PREFIX = /^(?:\(|[$€£¥]|US\$|C\$|A\$|\(\s*[$€£¥]|[$€£¥]\s*\()$/;
 const SUFFIX = /^(?:\)|%|\)\s*%|%\s*\)|pts?\.?|bps|x|\*+)$/i;
-const isNumeric = (t) => typeof cellValue(t).value === "number";
+// A figure: a number as cells hold them, or an amount with its scale ("$8.10 Billion").
+const isNumeric = (t) => typeof cellValue(t).value === "number" || /^\(?[$€£¥]\s?\d[\d,]*(?:\.\d+)?\s*(?:billion|million|thousand|bn|mn|[bmk])\)?$/i.test(String(t).trim());
 const isYear = (t) => /^(?:fiscal |fy\s?)?(?:19|20)\d{2}$/i.test(t);
 
 // One row's cells as tokens: a figure's pieces joined, empty cells dropped, each token with the
@@ -156,7 +157,9 @@ export function parseTable(tableHtml, caption = null) {
     if (!label && values.every((v) => v === null)) continue;
     out.push([label ? label.text : "", ...values]);
   }
-  return { caption, columns: ["line", ...headers], rows: out, ...(notes.length ? { notes } : {}) };
+  // A header row's first cell is the table's own title ("Q3 FY27 Guidance Metrics").
+  const heading = headRows.map((r) => r.raw[0]).filter((t) => t && t.start === left && t.text).map((t) => t.text).join(" / ");
+  return { caption, ...(heading ? { heading } : {}), columns: ["line", ...headers], rows: out, ...(notes.length ? { notes } : {}) };
 }
 
 // Every table in a document, each with the text just above it as its caption (the heading or the

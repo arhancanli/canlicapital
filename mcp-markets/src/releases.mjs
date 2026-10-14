@@ -7,7 +7,7 @@ import { z } from "zod";
 import { releasesFrom } from "./earnings.mjs";
 import { pressHeadline } from "./events.mjs";
 import { documentTables } from "./filing-tables.mjs";
-import { compareGuidance, guidanceFromTable, guidanceFromText, quarterOf, resultsFromText } from "./guidance.mjs";
+import { compareGuidance, guidanceFromTable, guidanceFromText, isGuidanceTable, quarterOf, resultsFromText } from "./guidance.mjs";
 import { htmlToText } from "./html.mjs";
 import { filingDocuments, filings, getText, NotFound, resolveEntity } from "./sources.mjs";
 
@@ -21,7 +21,6 @@ export const releaseInput = z.object({
   max_lines: z.number().int().min(3).max(40).optional().describe("Most result lines; default 12."),
 }).strict();
 
-const GUIDANCE_TABLE = /outlook|guidance|forecast|expectations/i;
 
 // The press release of a results 8-K and what it says.
 async function readRelease(session, cik, accession, company) {
@@ -33,14 +32,14 @@ async function readRelease(session, cik, accession, company) {
   const raw = await getText(session, main.url, { maxBytes: 16 * 1024 * 1024 });
   const text = htmlToText(raw);
   const tables = await documentTables(session, main.url);
-  let guidance = [...guidanceFromText(text, { company }), ...tables.filter((t) => GUIDANCE_TABLE.test(`${t.caption ?? ""} ${t.columns.join(" ")} ${(t.notes ?? []).join(" ")}`)).flatMap(guidanceFromTable)];
+  let guidance = [...guidanceFromText(text, { company }), ...tables.filter(isGuidanceTable).flatMap(guidanceFromTable)];
   const read = [main];
   // Some companies give their outlook in a second exhibit (CFO commentary, a supplement).
   if (!guidance.length && exhibits[1]) {
     const second = exhibits[1];
     const t2 = await documentTables(session, second.url);
     const x2 = htmlToText(await getText(session, second.url, { maxBytes: 16 * 1024 * 1024 }));
-    guidance = [...guidanceFromText(x2, { company }), ...t2.filter((t) => GUIDANCE_TABLE.test(`${t.caption ?? ""} ${t.columns.join(" ")} ${(t.notes ?? []).join(" ")}`)).flatMap(guidanceFromTable)];
+    guidance = [...guidanceFromText(x2, { company }), ...t2.filter(isGuidanceTable).flatMap(guidanceFromTable)];
     read.push(second);
   }
   // The same figure stated in a bullet, a quote and a table is listed once.

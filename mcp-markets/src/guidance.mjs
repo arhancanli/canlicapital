@@ -92,7 +92,7 @@ function unitOf(f, measure) {
 
 // The figures in a sentence, joined into ranges where two are linked by "to", "-" or "and",
 // with "plus or minus" applied and "approximately" noted.
-export function figuresIn(sentence) {
+export function figuresIn(sentence, { bare = false } = {}) {
   const s = String(sentence);
   const raw = [];
   for (const m of s.matchAll(FIG)) {
@@ -148,7 +148,7 @@ export function figuresIn(sentence) {
     } else if ((a.pct || a.cur) && /\bflat\s+to\s*$/i.test(s.slice(Math.max(0, a.at - 12), a.at))) {
       // "approximately flat to 2.0%": from zero to the figure.
       item = { at: s.lastIndexOf("flat", a.at), end: a.end, low: Math.min(0, a.n), high: Math.max(0, a.n), decimals: a.decimals, f: a };
-    } else if (a.cur || a.pct || a.scale) {
+    } else if (a.cur || a.pct || a.scale || bare) {
       item = { at: a.at, end: a.end, low: a.n, high: a.n, decimals: a.decimals, f: a };
     } else continue;
     // "plus or minus 2%" / "± $300 million" / "+/- 50 basis points" after the figure.
@@ -315,7 +315,7 @@ export function sentences(line) {
 
 const HEADING = /^(?:[\w&,.' -]{0,40}\s)?(?:business |financial |fiscal |full[- ]year |quarterly |current |updated |annual )?(?:outlook|guidance|expectations|looking ahead)(?:\s[\w&,.' -]{0,40})?:?$/i;
 const STOP = /^(?:about |forward[- ]looking|conference call|webcast|use of non-gaap|non-gaap (?:financial )?measures?|reconciliation|safe harbor|investor (?:relations|contact)|media (?:relations|contact)|contacts?:?$|additional information|supplemental|condensed consolidated|consolidated (?:statements|balance))/i;
-const FORWARD = /\b(?:expects?|expected|expecting|anticipates?|anticipated|projects?|projected|forecasts?|forecasted|forecasting|guid(?:ance|es|ed|ing)|outlook|reaffirm\w*|sees|targets?|will|to be|plans? to)\b/i;
+const FORWARD = /\b(?:expects?|expected|expecting|expectations?|estimates?|estimated|anticipates?|anticipated|projects?|projected|forecasts?|forecasted|forecasting|guid(?:ance|es|ed|ing)|outlook|reaffirm\w*|sees|targets?|will|to be|plans? to)\b/i;
 const VERBS = /\b(?:expects?|expected|expecting|anticipates?|anticipated|projects?|projected|forecasts?|forecasted|forecasting|guid(?:ance|es|ed|ing)|outlook|reaffirm\w*|raises?|raising|initiates?|maintains?|sees|targets?)\b/i;
 const BOILERPLATE = /forward-looking|risks and uncertainties|actual results (?:could|may)|undue reliance|could cause|safe harbor|based on the following|is based on (?:the )?(?:prior|last)[- ]year/i;
 
@@ -347,7 +347,7 @@ export function guidanceFromText(text, context = {}) {
       if (BOILERPLATE.test(s) || seen.has(s)) continue;
       const pure = Boolean(section?.pure);
       if (!pure && !VERBS.test(s)) continue;
-      if (!pure && !/\b(?:quarter|year|fiscal|fy|q[1-4]|20\d{2}|month|period|next|full)\b/i.test(s)) continue;
+      if (!pure && !/\b(?:quarter|year|annual|fiscal|fy|q[1-4]|20\d{2}|month|period|next|full)\b/i.test(s)) continue;
       const items = guidanceFromSentence(s, { period: section?.period ?? null, section: pure, company: context.company }).filter((x) => x.measure || (x.label && x.label.length > 2));
       // "... for the quarter" means the quarter named just before; "for the year", the year.
       for (const x of items) {
@@ -362,6 +362,18 @@ export function guidanceFromText(text, context = {}) {
   return out;
 }
 
+// A guidance table names itself: "Outlook" or "Guidance" in its title, its headers, the prose
+// inside it, or one of its heading rows ("Fourth Quarter Fiscal 2026 Outlook"). The prose above a
+// table only counts in its last line, so "...narrowed our free cash flow expectations" above a
+// table of results does not make it guidance.
+export function isGuidanceTable(t) {
+  const lastLine = String(t.caption ?? "").split(" / ").at(-1);
+  const headings = t.rows.filter((r) => r.slice(1).every((v) => v === null || v === "")).map((r) => r[0]).slice(0, 6);
+  // "Cisco expects to achieve the following results for the first quarter:" introduces one too.
+  const intro = /:\s*$/.test(lastLine) && /\b(?:expects?|expected|anticipates?|outlook|guidance|forecasts?|estimates?)\b/i.test(lastLine);
+  return intro || /\b(?:outlook|guidance)\b/i.test([lastLine, t.heading ?? "", ...t.columns, ...(t.notes ?? []), ...headings].join(" "));
+}
+
 // Guidance tables (rows of measures, columns of periods or bases): each cell's figures parsed.
 export function guidanceFromTable(t) {
   const out = [];
@@ -370,18 +382,24 @@ export function guidanceFromTable(t) {
   // "($ in billions)" in a header or caption is the scale of its dollar figures.
   const scaleIn = (text) => { const m = String(text).match(/\$\s*in\s+(thousands|millions|billions)|in\s+(thousands|millions|billions)\b/i); return m ? (m[1] ?? m[2]).toLowerCase().replace(/s$/, "") : null; };
   let heading = null;
-  for (const row of t.rows) {
-    const label = unglue(String(row[0] ?? "")).trim();
+  for (const raw of t.rows) {
+    const label = unglue(String(raw[0] ?? "")).trim();
     if (!label) continue;
     // A row with a label and no values heads the rows under it ("Fiscal year 2027", "Third quarter").
-    if (row.slice(1).every((v) => v === null || v === "")) { heading = label; continue; }
+    if (raw.slice(1).every((v) => v === null || v === "")) { heading = label; continue; }
+    // "$ 10,250 | +/- | $ 500": a band written across cells is one figure.
+    const row = [raw[0]];
+    for (let k = 1; k < raw.length; k++) {
+      if (/^(?:\+\/-|±|plus or minus)$/i.test(String(raw[k] ?? "").trim()) && row.length > 1 && raw[k + 1] != null) { row[row.length - 1] = `${row[row.length - 1]} +/- ${raw[k + 1]}`; row.push(null, null); k++; continue; }
+      row.push(raw[k]);
+    }
     row.slice(1).forEach((cell, j) => {
       if (cell === null || cell === "" || /^unchanged$/i.test(String(cell))) return;
       const text = typeof cell === "number" ? String(cell) : String(cell);
       const header = head[j] ?? "";
       const sentence = `${label}: ${text}`;
       const measure = measureOf(label) ?? measureOf(header);
-      const figures = typeof cell === "number" ? [{ at: label.length + 2, end: sentence.length, low: cell, high: cell, f: { cur: null, scale: null, pct: null, after: "" } }] : figuresIn(text).map((f) => ({ ...f, at: f.at + label.length + 2, end: f.end + label.length + 2 }));
+      const figures = typeof cell === "number" ? [{ at: label.length + 2, end: sentence.length, low: cell, high: cell, f: { cur: null, scale: null, pct: null, after: "" } }] : figuresIn(text, { bare: /\+\/-|±/.test(text) }).map((f) => ({ ...f, at: f.at + label.length + 2, end: f.end + label.length + 2 }));
       const scale = scaleIn(header) ?? scaleIn(ctx);
       for (const f of figures) {
         if (scale && !f.f.pct && !f.f.scale && measure !== "eps" && !/per share/i.test(label)) f.f = { ...f.f, cur: f.f.cur ?? "$", scale };
@@ -434,7 +452,8 @@ export function compareGuidance(guided, results) {
     if (!g.measure || g.low === null || g.unit === null) continue;
     // A result for both bases ("GAAP and non-GAAP gross margins were both 75.0%") answers either guide.
     const sameBasis = (x) => g.basis === "GAAP and non-GAAP" || (x.basis ?? null) === (g.basis ?? null) || (!g.basis && x.basis === "GAAP") || (x.basis === "GAAP and non-GAAP" && (g.basis === "GAAP" || g.basis === "non-GAAP"));
-    const r = results.find((x) => x.measure === g.measure && x.unit === g.unit && (x.change ?? null) === (g.change === "decline" ? "growth" : g.change ?? null) && sameBasis(x));
+    // The most precise statement of the result: "$18.68 billion" rather than the headline's "$18.7 billion".
+    const r = results.filter((x) => x.measure === g.measure && x.unit === g.unit && (x.change ?? null) === (g.change === "decline" ? "growth" : g.change ?? null) && sameBasis(x)).reduce((best, x) => (!best || (x.decimals ?? 0) > (best.decimals ?? 0) ? x : best), null);
     if (!r) continue;
     const scale = g.unit === "%" || g.unit === "percentage points" ? 100 : null;
     const vsLow = round(r.value - g.low), vsHigh = round(r.value - g.high);
