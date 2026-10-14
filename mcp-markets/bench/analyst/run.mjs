@@ -9,9 +9,10 @@ import { earningsRelease } from "../../src/releases.mjs";
 import { filingTables } from "../../src/filing-tables.mjs";
 import { createSession } from "../../src/sources.mjs";
 import { financialStatements } from "../../src/statements.mjs";
+import { verifyClaims } from "../../src/verify.mjs";
 
 const HERE = new URL("./", import.meta.url);
-const TOOLS = { financial_statements: financialStatements, filing_tables: filingTables, earnings_release: earningsRelease };
+const TOOLS = { financial_statements: financialStatements, filing_tables: filingTables, earnings_release: earningsRelease, verify_claims: verifyClaims };
 const questions = JSON.parse(readFileSync(new URL("questions.json", HERE), "utf8")).questions;
 const truths = JSON.parse(readFileSync(new URL("truth.json", HERE), "utf8")).truths;
 const arg = (name) => { const i = process.argv.indexOf(name); return i > 0 ? process.argv[i + 1] : null; };
@@ -39,6 +40,11 @@ const rowHolds = (answer, [lo, hi]) => rowsIn(answer).some((r) => { const n = nu
 function score(q, truth, answer) {
   if (truth?.error) return { pass: false, why: `no truth: ${truth.error}` };
   const want = truth?.given ?? truth;
+  if (q.type === "verify") {
+    const v = answer.rows[0][answer.columns.indexOf("verdict")], note = String(answer.rows[0][answer.columns.indexOf("note")] ?? "");
+    const ok = v === want.verdict && (!want.note || note.includes(want.note));
+    return ok ? { pass: true } : { pass: false, why: `verdict ${v}${note ? ` (${note.slice(0, 80)})` : ""}, expected ${want.verdict}${want.note ? ` (${want.note})` : ""}` };
+  }
   if (q.type === "beat_or_miss") {
     const rows = answer?.previous_guidance_vs_results?.rows ?? [];
     const cols = answer?.previous_guidance_vs_results?.columns ?? [];

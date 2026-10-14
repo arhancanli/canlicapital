@@ -80,3 +80,17 @@ test("input that cannot be checked is refused with what to pass", async () => {
   const r = await verifyClaims(session(), { company: "AAPL", claims: [{ measure: "revenue", period: "last year", value: 1 }, { measure: "ARPU", period: "fiscal 2025", value: 1 }] });
   assert.deepEqual(r.rows.map((x) => x[col(r, "verdict")]), ["not checkable", "not checkable"]);
 });
+
+test("an empty concept answer from SEC falls back to the company's facts file", async () => {
+  // As SEC answered for Coca-Cola's Revenues on 2026-10-14: {"units":{"USD":{}}}.
+  const empty = { cik: 21344, taxonomy: "us-gaap", tag: "Revenues", units: { USD: {} } };
+  const fact = (fy, val, end) => ({ start: `${fy}-01-01`, end, val, accn: `0000021344-${String(fy + 1).slice(2)}-000001`, fy, fp: "FY", form: "10-K", filed: `${fy + 1}-02-20` });
+  const facts = { cik: 21344, facts: { "us-gaap": { Revenues: { units: { USD: [fact(2024, 47061000000, "2024-12-31"), fact(2025, 47941000000, "2025-12-31")] } } } } };
+  const extra = {
+    "https://data.sec.gov/api/xbrl/companyconcept/CIK0000021344/us-gaap/Revenues.json": empty,
+    "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json": facts,
+  };
+  const s = createSession({ fetchImpl: replayFetch(extra).fetchImpl, env: {}, now: () => NOW, sleep: async () => {} });
+  const r = await verifyClaims(s, { company: "21344", claims: [{ measure: "revenue", period: "fiscal 2025", value: 47.9, unit: "USD billion" }, { measure: "revenue", period: "fiscal 2025", value: 47.1, unit: "USD billion" }] });
+  assert.deepEqual(r.rows.map((x) => [x[5], x[6], x[8]]), [["confirmed", 47.941, null], ["contradicted", 47.941, "matches fiscal 2024 instead"]]);
+});

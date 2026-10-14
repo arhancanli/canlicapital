@@ -62,11 +62,25 @@ const decimalsOf = (v) => (String(v).split(".")[1] ?? "").length;
 const days = (a, b) => (Date.parse(b) - Date.parse(a)) / 86400000;
 const round = (x, d = 6) => (x == null || !Number.isFinite(x) ? null : Math.round(x * 10 ** d) / 10 ** d);
 
-// The facts of one concept, cached per session.
+// The facts of one concept, cached per session. SEC's company-concept endpoint answers some
+// companies with an empty units object ({"USD":{}}) for concepts their companyfacts file holds
+// (Coca-Cola's Revenues and NetIncomeLoss, 2026-10-14), so an empty or malformed answer falls back
+// to the company's full facts file.
 async function conceptFacts(session, cik, concept, unit) {
+  let rows = null;
   try {
     const d = await getJson(session, `https://data.sec.gov/api/xbrl/companyconcept/CIK${pad10(cik)}/us-gaap/${concept}.json`, { maxBytes: 16 * 1024 * 1024 });
-    return d?.units?.[unit] ?? [];
+    rows = d?.units?.[unit];
+  } catch (err) {
+    if (!(err instanceof NotFound)) throw err;
+  }
+  if (Array.isArray(rows) && rows.length) return rows;
+  // A concept the endpoint does not have (404) is not in the facts file either.
+  if (rows === undefined || rows === null) return [];
+  try {
+    const all = await getJson(session, `https://data.sec.gov/api/xbrl/companyfacts/CIK${pad10(cik)}.json`, { maxBytes: 96 * 1024 * 1024 });
+    const r = all?.facts?.["us-gaap"]?.[concept]?.units?.[unit];
+    return Array.isArray(r) ? r : [];
   } catch (err) {
     if (err instanceof NotFound) return [];
     throw err;
@@ -128,12 +142,15 @@ const scaleOf = (unit) => { const m = String(unit ?? "").toLowerCase().match(/th
 const label = (period) => (period.instant ? period.instant : period.fp === "FY" ? `fiscal ${period.fy}` : `${period.fp} of fiscal ${period.fy}`);
 
 // What a wrong figure does match: another year, a quarter of the year, a thousandfold slip.
-async function explain(session, cik, measure, period, claimed, tolerance) {
+async function explain(session, cik, measure, period, claimed, tolerance, used) {
   const near = (v) => Math.abs(v - claimed) <= tolerance;
   const spec = FACTS[measure];
   if (!spec) return null;
-  for (const concept of spec.concepts) {
-    const rows = await conceptFacts(session, cik, concept, spec.unit);
+  // The concept the lookup used first, then the others (a company that changed concepts reports
+  // the other years under another one).
+  const order = [used, ...spec.concepts.map((c) => `us-gaap:${c}`).filter((c) => c !== used)].filter(Boolean);
+  for (const name of order) {
+    const rows = await conceptFacts(session, cik, name.replace(/^us-gaap:/, ""), spec.unit);
     if (!rows.length) continue;
     for (const fy of [period.fy - 1, period.fy + 1, period.fy - 2]) {
       const f = factFor(rows, { ...period, fy }, spec.instant);
@@ -147,7 +164,6 @@ async function explain(session, cik, measure, period, claimed, tolerance) {
     }
     const f = factFor(rows, period, spec.instant);
     if (f) for (const k of [1e3, 1e6, 1e-3, 1e-6]) if (Math.abs(f.latest.val * k - claimed) <= tolerance * Math.max(1, k)) return `matches the filed figure times ${k}: a slip of units`;
-    break;
   }
   return null;
 }
@@ -192,7 +208,7 @@ async function check(session, cik, claim) {
   if (Math.abs(first - claimed) <= tol) {
     return { ...base, verdict: "confirmed as first reported", filed: shown(latest), first_reported: shown(first), note: `matches the figure first reported in the ${f.first.form} filed ${f.first.filed}; a later filing revised it to ${shown(latest)}`, concept: f.concept, period_end: f.latest.end, source: sourceOf(cik, f.first.accn) };
   }
-  const why = await explain(session, cik, measure, period, claimed, tol);
+  const why = await explain(session, cik, measure, period, claimed, tol, f.concept);
   return { ...base, verdict: "contradicted", filed: shown(latest), difference: round(value - shown(latest), 6), ...(why ? { note: why } : {}), concept: f.concept, period_end: f.latest.end, source: sourceOf(cik, f.latest.accn) };
 }
 
