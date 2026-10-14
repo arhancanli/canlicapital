@@ -26,6 +26,15 @@ const MEASURES = [
   ["operating_expenses", /\b(?:operating expenses|opex)\b/],
   ["interest_expense", /\binterest (?:expense|, net)\b/],
   ["share_count", /\b(?:diluted )?(?:share count|shares outstanding|weighted[- ]average (?:diluted )?shares)\b/],
+  ["total_assets", /\btotal assets\b/],
+  ["total_liabilities", /\btotal liabilities\b/],
+  ["equity", /\b(?:stockholders|shareholders|shareowners)['’]? equity\b|\btotal equity\b/],
+  ["cash", /\bcash and (?:cash )?equivalents\b/],
+  ["long_term_debt", /\blong[- ]term debt\b/],
+  ["rnd", /\bresearch and development\b|\br&d\b/],
+  ["dividends_per_share", /\bdividends? (?:per share|declared)\b|\bquarterly dividend\b/],
+  ["gross_profit", /\bgross profit\b/],
+  ["income_tax", /\b(?:provision for income taxes|income tax expense)\b/],
   ["revenue", /\b(?:total |net |consolidated )?(?:revenues?|net sales|sales)\b/],
 ];
 const BASIS = [["constant currency", /\bconstant (?:currency|dollars?)\b|\(cc\)|\bin cc\b/gi], ["non-GAAP", /\bnon-?gaap\b/gi], ["adjusted", /\badjusted\b|\badj\.(?=\s)/gi], ["GAAP", /(?<!non-?)\bgaap\b/gi]];
@@ -183,7 +192,8 @@ const GROWTH = /\b(grow(?:th)?|increase[sd]?|up|rise|higher|decline[sd]?|down|de
 // Words that do not make a measure a part of itself: "fourth quarter revenue" is revenue,
 // "AI semiconductor revenue" is not.
 const GENERIC = new Set(["the", "our", "its", "their", "total", "net", "consolidated", "quarterly", "annual", "fiscal", "full", "year", "full-year", "quarter", "first", "second", "third", "fourth", "first-quarter", "second-quarter", "third-quarter", "fourth-quarter", "gaap", "non-gaap", "adjusted", "reported", "and", "of", "for", "to", "is", "be", "in", "a", "an", "on", "with", "expected", "expects", "expect", "expecting", "guidance", "outlook", "company", "company's", "organic", "overall", "diluted", "basic", "this", "next", "current", "period", "both", "now", "updated", "group", "initiates", "raises", "maintains", "reaffirms", "updates", "sees", "forecasting", "forecast", "projected", "that", "we", "it", "as", "at", "by", "q1", "q2", "q3", "q4",
-  "deliver", "generate", "produce", "achieve", "reach", "return", "grow", "see", "have", "pay", "keep", "hit", "post", "drive", "improve", "reduce", "remain", "continue", "accelerate", "record", "approximately", "about", "roughly", "around"]);
+  "deliver", "generate", "produce", "achieve", "reach", "return", "grow", "see", "have", "pay", "keep", "hit", "post", "drive", "improve", "reduce", "remain", "continue", "accelerate", "record", "approximately", "about", "roughly", "around",
+  "had", "has", "was", "were", "reported", "posted", "generated", "recorded", "delivered", "achieved", "earned", "booked", "made", "saw", "its", "total", "annual", "quarterly", "full", "year's", "quarter's"]);
 const FILLER = /\b(?:of|to|be|is|are|at|approximately|approx|about|around|roughly|guidance|expected|expects|range|the|in|between|from|for|will|now|an|a)\s*$/i;
 
 const SIDE = /,\s*(?:absorbing|including|includes|included|which|reflecting|reflects|excluding|excludes|driven|based on|assuming|assumes|net of|offset|partially|primarily|compared|versus|vs\.?)\b|\band (?:pay|return|repurchase|reduce|invest|buy|retire|fund)\b/i;
@@ -224,7 +234,8 @@ function measureNear(sentence, at, own = new Set(), lookAfter = true) {
     const words = [];
     for (let k = lead.length - 1; k >= 0; k--) {
       const w = lead[k].toLowerCase();
-      if (GENERIC.has(w) || own.has(w) || /^(?:fy)?['’]?\d+$|^q[1-4]$|^fy\d+$/.test(w)) break;
+      // A possessive ("Apple's", "the company's") names whose measure it is, not a part of it.
+      if (GENERIC.has(w) || own.has(w) || /['’]s$/.test(w) || /^(?:fy)?['’]?\d+$|^q[1-4]$|^fy\d+$/.test(w)) break;
       words.unshift(lead[k]);
     }
     const phrase = clause.slice(bestAt, bestAt + bestLen);

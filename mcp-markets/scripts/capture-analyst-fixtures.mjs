@@ -89,6 +89,16 @@ export const RELEASE_CALLS = [
   { company: "104169", accession: "0000104169-26-000145" },
 ];
 
+// verify_claims: Apple's true, wrong and impossible claims (structured and as a draft), Tesla's
+// false premises, Home Depot's fiscal year labels, Apple's fourth quarter derived from the year.
+export const VERIFY_CALLS = [
+  { company: "AAPL", claims: [{ measure: "revenue", period: "fiscal 2025", value: 416.2, unit: "USD billion" }, { measure: "revenue", period: "fiscal 2025", value: 391.0, unit: "USD billion" }, { measure: "diluted EPS", period: "fiscal 2025", value: 7.46 }, { measure: "net income", period: "fiscal 2031", value: 120, unit: "USD billion" }, { measure: "operating margin", period: "fiscal 2025", value: 32 }, { measure: "revenue", period: "fiscal 2025", value: 6.4, growth: true }, { measure: "adjusted EBITDA", period: "fiscal 2025", value: 150, unit: "USD billion" }, { measure: "total assets", period: "fiscal 2025", value: 359.2, unit: "USD billion" }] },
+  { company: "AAPL", text: "In fiscal 2025 Apple had revenue of $391.0 billion and net income of $93.7 billion. Diluted EPS was $6.08. Operating income was $133.1 million." },
+  { company: "TSLA", claims: [{ measure: "dividends per share", period: "fiscal 2024", value: 1.0 }, { measure: "revenue", period: "fiscal 2024", value: 97.7, unit: "USD billion" }] },
+  { company: "354950", claims: [{ measure: "revenue", period: "fiscal 2025", value: 164.7, unit: "USD billion" }, { measure: "total assets", period: "fiscal 2025", value: 105.1, unit: "USD billion" }] },
+  { company: "AAPL", claims: [{ measure: "revenue", period: "Q4 fiscal 2025", value: 102.5, unit: "USD billion" }, { measure: "revenue", period: "Q3 fiscal 2025", value: 94.0, unit: "USD billion" }] },
+];
+
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split("/").pop())) {
   for (const url of PAGES) await grab(url);
   const { financialStatements } = await import("../src/statements.mjs");
@@ -97,6 +107,8 @@ if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split("/").pop()
   for (const args of TABLE_CALLS) await record(filingTables, args);
   const { earningsRelease } = await import("../src/releases.mjs");
   for (const args of RELEASE_CALLS) await record(earningsRelease, args);
+  const { verifyClaims } = await import("../src/verify.mjs");
+  for (const args of VERIFY_CALLS) await record(verifyClaims, args);
   writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
   console.log(n, "analyst responses in the manifest");
 }
