@@ -19665,3 +19665,16 @@ not committed): index 310 tools; analyst search queries put the new tools first 
 top three 14/14; existing flagship search tests unchanged; initial context still 3 tools and
 1,113 o200k tokens against 37,263 for the seven servers separately. Tool level only: no model
 benchmark (API credit empty), no release, no deployment.
+
+
+## 2026-10-14 — MCP new-level Phase 2: fact-check layer (canli-markets-mcp, Unreleased)
+
+verify_claims checks a draft's figures (structured claims or a paragraph) against SEC XBRL
+company-concept facts for the period as the company labels it: confirmed at the claim's own
+precision; contradicted with the filed figure and what the wrong one matches (another year, a
+quarter, a unit slip, the first-reported figure); not reported for periods and measures the
+filings lack; not checkable for non-GAAP. Margins and growth from two facts; Q4 derived from the
+year less nine months. SEC's company-concept endpoint answered Coca-Cola's Revenues and
+NetIncomeLoss with an empty units object on 2026-10-14; the companyfacts file is read instead.
+Tests 155/155. Bench: verify set first run 15/19 (the crash and a diagnosis defect), now 19/19;
+traps 6/6 first run; all 87 questions pass. Tool level only; no release.
