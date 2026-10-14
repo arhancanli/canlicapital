@@ -2,6 +2,38 @@
 
 ## Unreleased
 
+Three tools for the work an analyst does with filings. Every figure keeps where it came from: the
+rendered XBRL page or document, and for text the sentence or table row itself.
+
+- New tool `financial_statements`: income statement, balance sheet, cash flow, comprehensive income
+  and equity statement exactly as the company filed them, read from SEC's rendered XBRL reports
+  (FilingSummary.xml and its R pages): the company's own labels and order, each line's XBRL concept,
+  values as the page shows them with the page's units, never rescaled.
+  - `filings` joins up to six 10-Ks or 10-Qs by period, newest figure first. A line a newer filing
+    changed is listed in `revised` with its first-reported figure; an older filing's other periods
+    on such a line go to `other_basis` instead of the table, so a row never mixes bases. Two 10-Ks
+    across NVIDIA's 2024 split say: "consistent with a 10-for-1 stock split after it was filed".
+  - Rows under a breakdown member ("Product", "Service and Other") keep their member, and join by
+    concept and member, so a breakdown listed in another order lands on the right line.
+- New tool `filing_tables`: the table that holds a figure, by words. A 10-K or 10-Q is searched in
+  its XBRL detail reports and in the tables of its document (MD&A figures the XBRL does not tag:
+  members, stores, average revenue per user); an 8-K, in its press release. All words must be in
+  a table, and tables where they come together outrank tables where they are scattered.
+  `filings` follows the same words through earlier filings: Costco's paid members through three
+  10-Ks, 65,800 to 84,100 thousand.
+  - Document tables: a figure's pieces ("$", "1,234", ")", "%") are joined, self-closing spacer
+    cells are read, headers are placed over the figures they span, percentages keep their sign.
+- New tool `earnings_release`: a quarter's results press release (8-K Item 2.02). Results and
+  guidance with each figure parsed into a range (low, high, midpoint, unit) with its measure,
+  basis (GAAP, non-GAAP, adjusted, constant currency), period and quote. "Plus or minus 2%" and
+  "plus or minus 50 basis points" become ranges; "approximately" is marked; "flat to 2.0%" starts at
+  zero; "X and Y, respectively" is two values; a decline is negative growth; "low single digits"
+  stays words.
+  - The previous release's guidance for the same quarter is set against these results (above,
+    within or below the range, and in basis points for rates). A result stated more coarsely than
+    the guide ("$2.4 billion" against "$2.450 billion to $2.475 billion") is not placed.
+- `read_filing` and `filing_tables` cache a document's text and its parsed tables apart.
+
 ## 0.3.0
 
 - Fix: `event_study` took filing times from the submissions file's `acceptanceDateTime`, which is
