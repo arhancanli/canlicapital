@@ -97,13 +97,23 @@ pack, such as `fundamentals.known_on_date`, `quant.audit_backtest`,
 `validation.stress_my_strategy` and `research.literature_review`. They route tool calls through
 `run_tool`, preserve the source pack's prompt argument checks, and forward its completion helpers.
 
-The 14 static resources and nine resource templates include the 399 sleeve specifications,
+The 15 static resources and nine resource templates include the 399 sleeve specifications,
 reference methods, exact input/output schemas, concept mappings, limits and client examples.
 Pack resource schemes keep their names separate: `canli-quant://`, `canli-validation://`,
 `canli-fundamentals://` and `canli-research://`. For example, read
 `canli-fundamentals://schemas/cross_section`. Original client examples retain each pack's local or
 hosted connection. Disabled packs have no guides; listing guides reads the prebuilt metadata and
 loads no pack code. The guide handlers load only when a prompt, resource or completion is used.
+
+## Results drawn in the chat
+
+Clients that draw MCP Apps (the extension of 2026-01-26) show each `run_tool` result as a page
+beside the answer: tables with the figures aligned, statements as filed with their scale, checked
+claims under their sentence with a verdict for each figure, last quarter's guidance as a range with
+the actual result marked, and a line chart for prices or any table of dates. The page is the
+resource `ui://canli/view`, one self-contained file with no network access and no external
+scripts, drawn in the client's sandbox; every string from a result is escaped. What the model
+reads does not change, and clients without MCP Apps ignore the page.
 
 [FEATURES.md](FEATURES.md) maps the supported finance workflows, evidence checks and remaining gaps.
 For Claude Desktop, the GitHub release also carries a `.mcpb` extension with its dependencies and

@@ -26,6 +26,7 @@ import { resolveRefs } from "./files.mjs";
 import { OMITTED, PACKS, RENAMES, enabledPacks, loadPack } from "./packs.mjs";
 import { buildIndex, search } from "./search.mjs";
 import { registerPrompts } from "./prompts.mjs";
+import { registerView, VIEW_URI } from "./view.mjs";
 import { registerPackGuides } from "./guides.mjs";
 
 const PKG = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
@@ -255,6 +256,8 @@ export function registerAll(server, packs = enabledPacks()) {
     annotations: { title: "Run tools", readOnlyHint: false, destructiveHint: true, idempotentHint: false, openWorldHint: true },
     inputSchema: RUN_INPUT,
     outputSchema: open,
+    // Hosts that draw MCP Apps show the result in the viewer; others ignore this.
+    _meta: { ui: { resourceUri: VIEW_URI } },
   }, guard(async (a) => {
     // Models sometimes call run_tool through itself ({"name": "run_tool", "arguments": {...}});
     // unwrap it, and its calls inside a batch.
@@ -307,6 +310,7 @@ export function registerAll(server, packs = enabledPacks()) {
     return { results, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) };
   }));
   registerResources(server, packs);
+  registerView(server);
   registerPrompts(server, BY_NAME, packs);
   registerPackGuides(server, packs);
 }

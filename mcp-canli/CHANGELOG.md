@@ -16,6 +16,13 @@
   against the results. The full server offers 32 prompts.
 - With the markets pack enabled, the server's instructions ask agents to check reported figures
   with `verify_claims` before answering.
+- Results drawn in the chat: in clients that draw MCP Apps, `run_tool` results appear as a page
+  beside the answer (tables, statements as filed, checked claims with their verdicts, last
+  quarter's guidance as ranges with the actual marked, line charts for dated series). One
+  self-contained page served as `ui://canli/view`, with no network access and every string
+  escaped; the model's context is unchanged. Tested in the MCP Apps reference host (`basic-host`
+  from `@modelcontextprotocol/ext-apps` 2.0.3) with live results (an earnings release, a fact
+  check, a price chart, light and dark); not yet tried inside a commercial client.
 - Measured in canli-markets-mcp's `bench/analyst`: 87 questions checked against truths built
   without the tools; first runs on releases and companies not used in development were 26 of 32
   (fresh), 9 of 9 (fresh-2), 15 of 19 (verify) and 6 of 6 (traps); the defects they found are

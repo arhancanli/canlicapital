@@ -2,7 +2,7 @@
 
 The flagship combines seven exact published Canli packages. Its full catalog has 311 tools;
 paper trading is enabled with paper credentials or an explicit pack selection. Three discovery
-tools are advertised initially. The 32 prompts, 14 static resources and nine resource templates
+tools are advertised initially. The 32 prompts, 15 static resources (one is the result viewer drawn by clients with MCP Apps) and nine resource templates
 appear only for enabled packs. This is a coverage inventory, not a worldwide ranking.
 
 | Area | Available in this release | Scope and remaining work |
