@@ -71,10 +71,22 @@ export const STATEMENT_CALLS = [
   { company: "21344", statement: "equity", fiscal_year: 2025 },
 ];
 
+// filing_tables: Costco's paid members through three 10-Ks (an MD&A table the XBRL does not
+// tag), Walmart's results release (guidance tables), Microsoft's 10-K (an XBRL detail report with a
+// footnote, and the list of every table).
+export const TABLE_CALLS = [
+  { company: "909832", find: "paid members", filings: 3 },
+  { company: "104169", form: "8-K", find: "guidance", accession: "0000104169-26-000145" },
+  { company: "MSFT", find: "geographic revenue" },
+  { company: "MSFT" },
+];
+
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split("/").pop())) {
   for (const url of PAGES) await grab(url);
   const { financialStatements } = await import("../src/statements.mjs");
   for (const args of STATEMENT_CALLS) await record(financialStatements, args);
+  const { filingTables } = await import("../src/filing-tables.mjs");
+  for (const args of TABLE_CALLS) await record(filingTables, args);
   writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
   console.log(n, "analyst responses in the manifest");
 }

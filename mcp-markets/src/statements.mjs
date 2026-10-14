@@ -221,11 +221,13 @@ export async function financialStatements(session, args) {
     for (const x of built.otherBasis) if (otherBasis.length < MAX_REVISED) otherBasis.push([kind, x.label, columnLabel(x.column), x.value, joined[x.filing].filing.accessionNumber]);
     for (const [fi, k] of built.splits) splits.add(`${joined[fi].filing.accessionNumber} reports per-share figures ${k} times the newer ones and share counts a ${k}th of them: consistent with a ${k}-for-1 stock split after it was filed.`);
     const rowsOut = pruneHeadings(built.rows).map((r) => [r.label, r.concept, ...r.values]);
+    const footnotes = joined[0].footnotes;
     out[kind] = {
       title: joined[0].title,
       units: joined[0].units,
       columns: ["line", "concept", ...shown.map(columnLabel)],
       rows: rowsOut,
+      ...(footnotes ? { footnotes } : {}),
       ...(ordered.length > shown.length ? { more_columns: `${ordered.length - shown.length} older columns not shown; pass fiscal_year or accession to start earlier` } : {}),
       sources: joined.map((t) => t.url),
     };

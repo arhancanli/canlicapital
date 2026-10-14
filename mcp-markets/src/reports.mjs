@@ -59,14 +59,17 @@ const strip = (html) => {
 // The cells of one row: tag, class, spans, text, and the XBRL concept a label links to.
 function cellsOf(rowHtml, inner) {
   const out = [];
-  for (const m of rowHtml.matchAll(/<(t[hd])\b([^>]*)>([\s\S]*?)<\/t[hd]>/gi)) {
+  // A cell may close itself ("<td colspan=\"3\" />"); its content is then empty.
+  for (const m of rowHtml.matchAll(/<(t[hd])\b([^>]*?)(?:\/>|>([\s\S]*?)<\/t[hd]>)/gi)) {
     const attrs = m[2];
+    const html = m[3] ?? "";
     const num = (name) => Number(attrs.match(new RegExp(`${name}\\s*=\\s*"?(\\d+)`, "i"))?.[1] ?? 1) || 1;
     // A note's own tables sit inside its cell; they read as text.
-    const body = m[3].replace(/\u0000(\d+)\u0000/g, (_, i) => ` ${inner[Number(i)]} `);
-    const concept = m[3].match(/defref_([^'"\s)]+)/)?.[1] ?? null;
+    const body = html.replace(/\u0000(\d+)\u0000/g, (_, i) => ` ${inner[Number(i)]} `);
+    const concept = html.match(/defref_([^'"\s)]+)/)?.[1] ?? null;
     // Footnote marks ("[1]") are references to the notes below the table, not part of the value.
-    out.push({ th: m[1].toLowerCase() === "th", cls: attrs.match(/class\s*=\s*"([^"]*)"/i)?.[1] ?? "", colspan: Math.min(num("colspan"), 50), rowspan: Math.min(num("rowspan"), 10), text: strip(body.replace(/<sup\b[^>]*>[\s\S]*?<\/sup>/gi, "")), concept });
+    const marks = [...body.matchAll(/<sup\b[^>]*>([\s\S]*?)<\/sup>/gi)].map((x) => strip(x[1])).filter(Boolean);
+    out.push({ th: m[1].toLowerCase() === "th", cls: attrs.match(/class\s*=\s*"([^"]*)"/i)?.[1] ?? "", colspan: Math.min(num("colspan"), 50), rowspan: Math.min(num("rowspan"), 10), text: strip(body.replace(/<sup\b[^>]*>[\s\S]*?<\/sup>/gi, "")), concept, marks });
   }
   return out;
 }
@@ -116,6 +119,15 @@ export function parseReport(html) {
   const start = s.search(/<table\b[^>]*class\s*=\s*"report"/i);
   if (start < 0) throw new Error("not a rendered XBRL report");
   let table = outerTable(s, start);
+  // The footnotes ("[1] Includes billings to OEMs...") sit in a table in the report's last row.
+  const footnotes = [];
+  table = table.replace(/<table\b[^>]*class\s*=\s*"outerFootnotes"[^>]*>[\s\S]*?<\/table>/gi, (ft) => {
+    for (const m of ft.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)) {
+      const cells = [...m[1].matchAll(/<td\b[^>]*>([\s\S]*?)<\/td>/gi)].map((c) => strip(c[1]));
+      if (cells.length >= 2 && /^\[\d+\]$/.test(cells[0])) footnotes.push([cells[0], cells.slice(1).join(" ").slice(0, 600)]);
+    }
+    return "";
+  });
   // Tables inside cells (a note's text block) become placeholders, so rows split cleanly.
   const inner = [];
   const open = table.indexOf(">") + 1;
@@ -149,17 +161,22 @@ export function parseReport(html) {
     fill();
   });
   const { title, units } = splitTitle(grid[0][0] ?? "");
+  // The title cell spans the label column and, on pages with footnotes, the column of their marks.
+  const labelSpan = head[0].cells[0]?.colspan ?? 1;
   const width = Math.max(...grid.map((g) => g.length));
   const columns = [];
-  for (let c = 1; c < width; c++) {
+  for (let c = labelSpan; c < width; c++) {
     const parts = [];
     for (const g of grid) if (g[c] && parts.at(-1) !== g[c]) parts.push(g[c]);
     columns.push(columnOf(parts));
   }
   const out = [];
   for (const row of rows.slice(head.length)) {
-    const [first, ...rest] = row.cells;
+    const [first, ...others] = row.cells;
     if (!first || first.th) continue;
+    const markCells = others.slice(0, labelSpan - 1);
+    const rest = others.slice(labelSpan - 1);
+    const marks = [...first.marks, ...markCells.flatMap((c) => [...c.marks, c.text].filter(Boolean))].filter((x) => /^\[\d+\]$/.test(x));
     const label = first.text.replace(/\s*\[\d+\]$/, "");
     // Footnote rows after the report repeat no label and no concept.
     if (!label && !first.concept) continue;
@@ -174,8 +191,9 @@ export function parseReport(html) {
       concept: first.concept && !member ? first.concept.replace(/^([a-z][a-z0-9-]*)_/i, "$1:") : null,
       ...(empty ? { section: true } : {}),
       ...(member ? { member: true } : {}),
+      ...(marks.length ? { notes: marks } : {}),
       values: values.map((v) => v.value),
     });
   }
-  return { title, units, columns, rows: out };
+  return { title, units, columns, rows: out, ...(footnotes.length ? { footnotes } : {}) };
 }

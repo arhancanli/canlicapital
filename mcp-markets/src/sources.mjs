@@ -72,9 +72,12 @@ function witness(session, url, record) {
 
 // A read-only query some sources take only as a POST body (FINRA's query API) is cached and
 // witnessed under "POST <url> <body>", so the evidence names the exact query.
-export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false, method = "GET", body } = {}) {
+// `variant` caches a second form of the same document under its own name (a filing's text for
+// read_filing, its parsed tables for filing_tables); the evidence still names the URL.
+export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false, method = "GET", body, variant } = {}) {
   const key = method === "GET" ? url : `${method} ${url} ${body ?? ""}`;
-  const hit = session.cache.lookup(key, session.now());
+  const cacheKey = variant ? `${key}#${variant}` : key;
+  const hit = session.cache.lookup(cacheKey, session.now());
   if (hit) { witness(session, key, session.hashes.get(key)); return parse(hit.text); }
   let text;
   // Server errors are often momentary (EDGAR full-text search answered 1 request in 12 with HTTP 500
@@ -99,7 +102,7 @@ export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024
   witness(session, key, record);
   if (transform) text = transform(text);
   const value = parse(text);
-  session.cache.set(key, { at: session.now(), text });
+  session.cache.set(cacheKey, { at: session.now(), text });
   return value;
 }
 
