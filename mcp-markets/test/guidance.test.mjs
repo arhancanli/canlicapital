@@ -247,4 +247,6 @@ test("a rate's change, a margin in dollars, a share of revenue and a change in d
     ["eps", 4.29, "USD per share", "GAAP", null], ["eps", 119, "%", "GAAP", "growth"], ["eps", 5.9, "USD per share", "non-GAAP", null], ["eps", 103, "%", "non-GAAP", "growth"],
     ["revenue", 18.7, "USD billion", null, null], ["revenue", 6, "%", null, "growth"], ["revenue", 7, "%", "constant currency", "growth"],
   ]);
+  assert.deepEqual(facts("GAAP and non-GAAP earnings per diluted share were $2.46 and $2.22, respectively.\nFor the quarter, GAAP and non-GAAP gross margins were both 75.0%.").map((x) => [x[0], x[1], x[3]]),
+    [["eps", 2.46, "GAAP"], ["eps", 2.22, "non-GAAP"], ["gross_margin", 75, "GAAP and non-GAAP"]], "respectively gives one basis each; both gives both");
 });

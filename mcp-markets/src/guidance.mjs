@@ -471,6 +471,7 @@ export function resultsFromText(text, max = 400) {
       // "This compares to revenue of $5.84 billion, gross margin of ...": last year's figures only.
       if (/^\W*(?:this|these|that|which)\s+(?:compares?|compared)\b/i.test(s)) continue;
       let prev = null, comparedEnd = null;
+      const paired = {};
       const figs = figuresIn(s);
       for (const [k, f] of figs.entries()) {
         if (f.low !== f.high) continue;
@@ -535,8 +536,15 @@ export function resultsFromText(text, max = 400) {
         const after = s.slice(f.end, Math.min(figs[k + 1]?.at ?? f.end + 40, f.end + 40)).split(/\band\b|[,;]/)[0];
         const from = Math.max(0, figs[k - 1]?.end ?? f.at - 120);
         const cut = s.slice(from, f.at).search(/[)(][^)(]*$/);
-        const basis = basisOf(s.slice(cut >= 0 ? from + cut + 1 : from, f.end) + after) ?? (prev?.measure === measure ? prev.basis : null);
-        prev = { end: f.end, negative, measure, basis };
+        const named = basisOf(s.slice(cut >= 0 ? from + cut + 1 : from, f.end) + after) ?? (prev?.measure === measure ? prev.named : null);
+        let basis = named;
+        // "GAAP and non-GAAP earnings per diluted share were $2.46 and $2.22, respectively": one each.
+        if (basis === "GAAP and non-GAAP" && /\brespectively\b/i.test(s)) {
+          const n = paired[measure] ?? 0;
+          paired[measure] = n + 1;
+          if (n < 2) basis = n === 0 ? "GAAP" : "non-GAAP";
+        }
+        prev = { end: f.end, negative, measure, named };
         out.push({ measure, value, unit, basis, change, versus: change ? versusOf(s, f.end) : null, section: part, scope: scopeOf(clause) ?? scope, decimals: f.decimals, quote: s });
       }
     }
