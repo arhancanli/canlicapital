@@ -19678,3 +19678,19 @@ year less nine months. SEC's company-concept endpoint answered Coca-Cola's Reven
 NetIncomeLoss with an empty units object on 2026-10-14; the companyfacts file is read instead.
 Tests 155/155. Bench: verify set first run 15/19 (the crash and a diagnosis defect), now 19/19;
 traps 6/6 first run; all 87 questions pass. Tool level only; no release.
+
+## 2026-10-14T18:50Z — earnings_release results reviewed row by row (added to PR #473)
+
+The analyst bench checks that the right figure is in an answer, not that no wrong one is. Every
+results row earnings_release gave for the 26 bench releases was read by hand, parser before
+against after, on the same live EDGAR pages. Wrong rows found and fixed: segment results read
+as the company's (NVIDIA's Data Center bullets under their heading), last year's figures
+("compared to", "versus ... for the prior quarter and ... last year", "This compares to"),
+guidance, assumptions, impacts, headwinds and "About" sections read as results, and figures
+under the wrong measure (shares outstanding as EPS, credit capacity as cash, a rate's bps
+change as gross profit, "respectively" pairs given both bases). Beat-or-miss rows changed in
+five releases, each now right: Qualcomm's non-GAAP EPS guide had been set against GAAP EPS (a
+false miss), Intuit's quarterly EPS guide against full-year EPS (a false beat), Accenture's
+local-currency guide against US-dollar growth; Salesforce and Dell gained a comparison.
+Results now carry section and versus. Commits a9b99eae and 8027e001; tests 159/159 on Node
+20/22/24; bench 87/87. Found by reading, not a measured error rate. No release.
