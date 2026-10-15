@@ -9,8 +9,8 @@ with no tools and with the rival servers, graded the same way for every arm.
 | `financebench` | Patronus AI's FinanceBench open-source sample: 150 questions with reference answers | reference judge | no licence file in the repository: check the dataset card before publishing transcripts |
 | `dev` | 3 synthetic questions in `dev.json` (Apple, Novo Nordisk, Shell; figures checked against SEC filings on 2026-10-15) | either | ours |
 
-Both external files are fetched at pinned commits and checked against pinned SHA-256s
-(`datasets.mjs`); a changed file stops the run.
+Both external files are fetched at pinned commits on every run and checked against pinned SHA-256s
+(`datasets.mjs`); a changed file stops the run. Nothing is written to disk but the results.
 
 ## The rule that keeps the result honest
 

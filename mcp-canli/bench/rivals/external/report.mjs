@@ -31,7 +31,7 @@ export function report(lines, set) {
   const types = [...new Set(rows.map((r) => r.type))].sort();
   const keys = [...groups.keys()].sort();
   if (types.length > 1) {
-    out.push("", "By question type (passed of answered):", "", `| Type | ${keys.map((k) => k.replace("|", " · ")).join(" | ")} |`, `|---|${keys.map(() => "---").join("|")}|`);
+    out.push("", "By question type (passed of answered):", "", `| Type | ${keys.map((k) => k.split("|").join(" · ")).join(" | ")} |`, `|---|${keys.map(() => "---").join("|")}|`);
     for (const t of types) out.push(`| ${t} | ${keys.map((k) => { const rs = groups.get(k).filter((r) => r.type === t); return rs.length ? `${rs.filter((r) => r.pass).length} of ${rs.length}` : "-"; }).join(" | ")} |`);
   }
   return out.join("\n");

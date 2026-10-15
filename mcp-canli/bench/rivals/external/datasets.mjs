@@ -1,5 +1,5 @@
-// The external question sets, each fetched at a pinned commit, checked against its pinned SHA-256
-// and cached under data/ (not committed):
+// The external question sets, each fetched at a pinned commit and checked against its pinned SHA-256
+// on every run (they are small; nothing is written to disk):
 //   vals          Vals.ai Finance Agent Benchmark, public set: 50 questions, each with a rubric of facts
 //                 the answer must state and one reference answer it must not contradict (MIT).
 //   financebench  Patronus AI's FinanceBench open-source sample: 150 questions with reference answers
@@ -8,7 +8,7 @@
 // Only six of the 50 Vals questions were read during development (2026-10-14, listed in README.md);
 // the other 44 are the final exam. Nothing here prints a question: callers log ids and types only.
 import { createHash } from "node:crypto";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 
 export const SOURCES = Object.freeze({
   vals: {
@@ -23,7 +23,6 @@ export const SOURCES = Object.freeze({
   },
 });
 
-const DATA = new URL("./data/", import.meta.url);
 const sha256 = (text) => createHash("sha256").update(text).digest("hex");
 export const idOf = (question) => sha256(question).slice(0, 12);
 
@@ -57,21 +56,14 @@ export function financebenchItems(text) {
   return text.split("\n").filter((l) => l.trim()).map((l) => JSON.parse(l)).map((r) => ({ id: r.financebench_id, set: "financebench", type: r.question_type, question: r.question, reference: r.answer, rubric: null, asOf: SOURCES.financebench.asOf, company: r.company, document: r.doc_name }));
 }
 
-// The set's items: the cached file when its hash still matches, else a fresh download that must.
+// The set's items, from a download that must match the pinned SHA-256.
 export async function loadSet(name, { fetchImpl = fetch } = {}) {
   if (name === "dev") return JSON.parse(readFileSync(new URL("./dev.json", import.meta.url), "utf8"));
   const src = SOURCES[name];
   if (!src) throw new Error(`Unknown set ${name}: vals, financebench or dev.`);
-  const file = new URL(src.url.split("/").pop(), DATA);
-  let text = null;
-  try { text = readFileSync(file, "utf8"); } catch { /* not cached yet */ }
-  if (text === null || sha256(text) !== src.sha256) {
-    const res = await fetchImpl(src.url);
-    if (!res.ok) throw new Error(`${name}: ${res.status} from ${src.url}`);
-    text = await res.text();
-    if (sha256(text) !== src.sha256) throw new Error(`${name}: the file at the pinned commit no longer has the pinned SHA-256; refusing to run on different questions.`);
-    mkdirSync(DATA, { recursive: true });
-    writeFileSync(file, text);
-  }
+  const res = await fetchImpl(src.url);
+  if (!res.ok) throw new Error(`${name}: ${res.status} from ${src.url}`);
+  const text = await res.text();
+  if (sha256(text) !== src.sha256) throw new Error(`${name}: the file at the pinned commit no longer has the pinned SHA-256; refusing to run on different questions.`);
   return name === "vals" ? valsItems(text) : financebenchItems(text);
 }
