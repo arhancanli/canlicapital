@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.5.0
+
 Beyond the US, from the publishers themselves: four tools, no key.
 
 - New tool `european_filings`: a European company's annual financial report in the European Single
