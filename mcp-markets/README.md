@@ -1,7 +1,9 @@
 # canli-markets-mcp
 
 Public market data for AI agents, read from the sources themselves: SEC EDGAR, the US Treasury,
-FRED, the World Bank and prices for stocks, currencies, futures, indices and crypto, with no key and no account. Every
+FRED, the World Bank, the New York Fed, the ECB, the Bank of England and the BIS, European companies'
+ESEF reports, prediction markets, DeFi data and prices for stocks, currencies, futures, indices and
+crypto, with no key and no account. Every
 request goes from your machine straight to the source, and every result names the URL it came
 from, so an agent can cite it.
 
@@ -49,6 +51,22 @@ Examples: "Show Microsoft's last four years of income statements as filed", "How
 paid membership grown over five years?", "Did NVIDIA beat its revenue guidance last quarter, and
 what is it guiding to now?", "What full-year EPS range is Walmart guiding to, and how has it moved
 since the original guide?", "Check this paragraph's numbers before I send it."
+
+## Beyond the US
+
+| Tool | What it answers | Source |
+| --- | --- | --- |
+| `european_filings` | A European company's annual report as it tagged it: revenue, operating and net profit, EPS, assets, equity, cash, cash flows and dividends with the comparatives, in its own currency at full scale; any other tagged figure by words; the other years on file | ESEF reports (filings.xbrl.org) |
+| `reference_rates` | SOFR, TGCR, BGCR, EFFR and OBFR (with percentiles and volume), the euro short-term rate and the ECB's policy rates (the rate in effect and its changes), SONIA and Bank Rate, and about forty central banks' policy rates | New York Fed, ECB, Bank of England, BIS |
+| `prediction_markets` | What traders pay for an outcome (a Fed decision, a recession, an election), as a probability with bid, ask, volume and closing date, from both venues | Polymarket, Kalshi |
+| `crypto_fundamentals` | A DeFi protocol's value locked (by chain, with history), the fees users pay it and the revenue it keeps; a chain's value locked; a stablecoin's supply and its change | DefiLlama |
+
+Examples: "What did ASML report for 2025 revenue and net profit?", "Where is SOFR against the
+fed funds range this month?", "When did the ECB last change its deposit rate?", "What odds do
+prediction markets give a US recession this year?", "How much revenue does Aave keep from its
+fees?". `bench/global/crosscheck.mjs` sets these tools against sources they do not read: ESEF
+figures against the same companies' Form 20-F at the SEC, and the central banks' policy rates
+against the BIS (21 of 21 agreed on 2026-10-15).
 
 ## Tools
 

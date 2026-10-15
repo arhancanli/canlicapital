@@ -15,12 +15,12 @@ async function connect() {
   return c;
 }
 
-test("thirty-nine tools, byte-identical across launches, all read-only", async () => {
+test("forty-three tools, byte-identical across launches, all read-only", async () => {
   const lists = [];
   for (let i = 0; i < 2; i++) { const c = await connect(); lists.push(JSON.stringify(await c.listTools())); await c.close(); }
   assert.equal(lists[0], lists[1]);
   const tools = JSON.parse(lists[0]).tools;
-  assert.deepEqual(tools.map((t) => t.name).sort(), ["company_events", "company_profile", "company_report", "earnings_calendar", "earnings_release", "economic_calendar", "economic_outlook", "economic_series", "event_study", "executive_pay", "fails_to_deliver", "federal_debt", "filing_tables", "financial_statements", "fomc", "fund_holdings", "fund_portfolio", "futures_curve", "futures_positioning", "index_constituents", "insider_trades", "investment_advisers", "large_holders", "list_filings", "mentions_trend", "off_exchange_volume", "options_chain", "price_history", "private_offerings", "read_filing", "screen_companies", "search_filings", "segment_revenue", "short_interest", "treasury_auctions", "treasury_yields", "verify_claims", "volatility_surface", "world_economy"]);
+  assert.deepEqual(tools.map((t) => t.name).sort(), ["company_events", "company_profile", "company_report", "crypto_fundamentals", "earnings_calendar", "earnings_release", "economic_calendar", "economic_outlook", "economic_series", "european_filings", "event_study", "executive_pay", "fails_to_deliver", "federal_debt", "filing_tables", "financial_statements", "fomc", "fund_holdings", "fund_portfolio", "futures_curve", "futures_positioning", "index_constituents", "insider_trades", "investment_advisers", "large_holders", "list_filings", "mentions_trend", "off_exchange_volume", "options_chain", "prediction_markets", "price_history", "private_offerings", "read_filing", "reference_rates", "screen_companies", "search_filings", "segment_revenue", "short_interest", "treasury_auctions", "treasury_yields", "verify_claims", "volatility_surface", "world_economy"]);
   for (const t of tools) {
     assert.equal(t.annotations.readOnlyHint, true, t.name);
     assert.equal(t.annotations.openWorldHint, true, t.name);
@@ -57,6 +57,11 @@ const NEW_TOOL_CALLS = [
   ["filing_tables", { company: "MSFT", find: "geographic revenue" }],
   ["earnings_release", { company: "1397187", accession: "0001397187-26-000126" }],
   ["earnings_release", { company: "104169", accession: "0000104169-26-000145" }],
+  ["reference_rates", { rate: "sofr", start: "2026-09-01", end: "2026-10-08" }],
+  ["reference_rates", { rate: "ecb_deposit", start: "2026-01-01", end: "2026-10-08" }],
+  ["european_filings", { company: "724500Y6DUVHQD6OXN27", year: 2025 }],
+  ["prediction_markets", { query: "recession", limit: 3 }],
+  ["crypto_fundamentals", { stablecoin: "USDC" }],
   ["verify_claims", { company: "AAPL", text: "In fiscal 2025 Apple had revenue of $391.0 billion and net income of $93.7 billion. Diluted EPS was $6.08. Operating income was $133.1 million." }],
   ["earnings_calendar", { company: "AAPL" }],
   ["earnings_calendar", { since: "2026-09-14", until: "2026-09-18" }],

@@ -42,12 +42,17 @@ async function readRelease(session, cik, accession, company) {
     guidance = [...guidanceFromText(x2, { company }), ...t2.filter(isGuidanceTable).flatMap(guidanceFromTable)];
     read.push(second);
   }
-  // The same figure stated in a bullet, a quote and a table is listed once.
+  // The same figure stated in a bullet, a quote and a table is listed once; and a table's point
+  // figure that is the midpoint of a range the text states for the same measure, basis and quarter
+  // ("74.0%" beside "74.0%, plus or minus 50 basis points") is that range restated.
   const seen = new Set();
+  const sameQuarter = (a, b) => { const x = quarterOf(a ?? ""), y = quarterOf(b ?? ""); return Boolean(x && y && x.quarter === y.quarter && (!x.year || !y.year || x.year === y.year)); };
+  const covers = (band, basis) => band === basis || (band === "GAAP and non-GAAP" && (basis === "GAAP" || basis === "non-GAAP"));
   guidance = guidance.filter((g) => {
     const k = [g.measure ?? g.label, g.basis, g.low, g.high, g.unit, g.change ?? ""].join("|");
     if (seen.has(k)) return false;
     seen.add(k);
+    if (g.from === "table" && g.low !== null && g.low === g.high && guidance.some((b) => b.from !== "table" && b.measure && b.measure === g.measure && b.unit === g.unit && b.low < b.high && Math.abs((b.low + b.high) / 2 - g.low) < 1e-9 && covers(b.basis ?? null, g.basis ?? null) && sameQuarter(b.period, g.period))) return false;
     return true;
   });
   return { main, read, raw, text, tables, guidance, headline: pressHeadline(raw, company), results: resultsFromText(text) };

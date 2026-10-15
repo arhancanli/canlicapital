@@ -2,6 +2,38 @@
 
 ## Unreleased
 
+Beyond the US, from the publishers themselves: four tools, no key.
+
+- New tool `european_filings`: a European company's annual financial report in the European Single
+  Electronic Format, the tagged report issuers on EU and EEA regulated markets file, from XBRL
+  International's filings.xbrl.org. The company by name (matched against the repository's ~7,400
+  filers, legal forms and generic words ignored; a filer with no report is passed over and said) or
+  by LEI; the latest annual report by default, not a newer interim one; the report's own tagged
+  totals for revenue, operating and net profit, EPS, assets, equity, cash, cash flows and
+  dividends, each from the IFRS concept the company used (ASML's revenue is
+  RevenueFromContractsWithCustomers), with the comparatives and periods as days; `words` finds any
+  other tagged figure (asml:NetSystemSales).
+- New tool `reference_rates`: SOFR, TGCR, BGCR, EFFR (with the Fed's target range) and OBFR from
+  the New York Fed with percentiles and volume; the euro short-term rate and the ECB's deposit,
+  refinancing and marginal lending rates (published as change dates: the rate in effect on the
+  first day, then each change); SONIA and Bank Rate from the Bank of England; and about forty
+  central banks' policy rates as the BIS collects them (`policy:JP`, `policy:Brazil`).
+- New tool `prediction_markets`: what traders on Polymarket and Kalshi pay for an outcome, found
+  by words: a probability (the middle of bid and ask, else the last trade), bid, ask, volume and
+  closing date, with each event's resolution rules.
+- New tool `crypto_fundamentals`: from DefiLlama, a DeFi protocol's value locked (now, by chain,
+  and its history), the fees users pay it and the revenue it keeps; a chain's value locked; a
+  stablecoin's supply and its change by chain.
+- Checked against sources these tools do not read (`bench/global/crosscheck.mjs`, 2026-10-15):
+  ESEF revenue and net profit equal the same companies' Form 20-F facts at the SEC (TotalEnergies,
+  Novo Nordisk and Shell, 2024 and 2025: 12 of 12), and the ECB's, the Bank of England's and the
+  Fed's rates agree with the policy rates the BIS collects (9 of 9).
+- `earnings_release` lists a guide once: a table's point figure that is the midpoint of a range
+  the text states for the same measure, basis and quarter (NVIDIA's "74.0%" beside "74.0%, plus or
+  minus 50 basis points") is that range restated, not a second guide.
+- `verify_claims` shows its rounding rule on the result's own first figure ("391.0 billion: within
+  0.05 billion"), not a fixed example from another company.
+
 ## 0.4.0
 
 Four tools for the work an analyst does with filings, and for checking the answer. Every figure keeps where it came from: the
