@@ -130,3 +130,69 @@ test("a results release reads compactly: segment under the measure, unit under t
   const prior = releaseTable({ columns: ["measure", "basis", "period_guided", "unit", "guided_low", "guided_high", "actual", "vs_low", "vs_high", "vs_low_bps", "vs_high_bps", "position", "guidance_quote", "result_quote"], rows: [["gross_margin", "GAAP", "second quarter", "%", 74.4, 75.4, 75, 0.6, -0.4, 60, -40, "within the range", "g", "r"]] }, "previous guidance vs results");
   assert.ok(prior.includes("<td title=\"g | r\">gross margin<span class=\"sub line\">GAAP, second quarter</span></td><td class=\"num\">74.4 to 75.4%</td><td class=\"num\">75%</td><td><span class=\"badge info\">within the range</span></td>"));
 });
+
+test("what a result is about heads it; its grouped figures are drawn as figures, the tables inside them as tables", () => {
+  const lido = {
+    protocol: { name: "Lido", slug: "lido", category: "Liquid Staking", chains: ["Solana", "Ethereum"], url: "https://lido.fi/" },
+    tvl: { usd: 22870668284, date: "2026-10-15", change_7d_pct: -4.91, by_chain: { columns: ["chain", "tvl_usd"], rows: [["Ethereum", 22865379517], ["Solana", 5288767]] } },
+    fees_usd: { last_24h: 1631285, last_30d: 52119324, source: "https://api.llama.fi/summary/fees/lido?dataType=dailyFees" },
+    dates: ["2026-10-13", "2026-10-14", "2026-10-15"], values: [23.4e9, 23.1e9, 22.87e9], series: "TVL, USD", source: "https://api.llama.fi/protocol/lido",
+  };
+  const html = renderResult(lido);
+  assert.ok(html.startsWith("<p class=\"lead\">Lido · TVL, USD<span class=\"sub line\">category Liquid Staking · chains Solana, Ethereum · url <a href=\"https://lido.fi/\""), "the subject's name, then its other identifiers (not its slug)");
+  assert.ok(html.includes("<h3>tvl</h3><dl class=\"facts\"><div><dt>usd</dt><dd>22,870,668,284</dd></div><div><dt>date</dt><dd>2026-10-15</dd></div>"));
+  assert.ok(html.includes("<h3>tvl · by chain</h3>") && html.includes("<td class=\"num\">22,865,379,517</td>"), "a table two levels down");
+  assert.ok(html.includes("<dt>source</dt><dd><a href=\"https://api.llama.fi/summary/fees/lido?dataType=dailyFees\" target=\"_blank\" rel=\"noopener noreferrer\">api.llama.fi/<wbr>…/<wbr>lido</a></dd>"), "a link reads as its host and last part, breaking at slashes");
+  assert.ok(html.indexOf("<h3>fees usd</h3>") < html.indexOf("<svg"), "figures before the chart");
+  assert.match(html, /class="axis" text-anchor="end">22\.87B<\/text>/, "axis labels in billions");
+  assert.doesNotMatch(html, /<dt>series<\/dt>/, "what heads the page is not repeated");
+  const report = renderResult({ company: { name: "MICROSOFT CORP", ticker: "MSFT" }, earnings: { expected: "2026-10-29", year_on_year_moves_days: [0, 1, -1] }, summary: { open_market_sales: { transactions: 1, value: 938419.17 } }, snapshot: { sha256: "73a86c6aedc31f77cac2ea4df5f80f0b3bd7e6eb58bb4e01444fbedf3afb9c43" } });
+  assert.ok(report.includes("<dt>year on year moves days</dt><dd>0, 1, -1</dd>"));
+  assert.ok(report.includes("<dt>open market sales</dt><dd>transactions 1 · value 938,419</dd>"), "a small group on one line");
+  assert.ok(report.includes("<span title=\"73a86c6aedc31f77cac2ea4df5f80f0b3bd7e6eb58bb4e01444fbedf3afb9c43\">73a86c6aedc31f77…</span>"), "a hash shortened, whole on hover");
+  const fomc = renderResult({ projections: { meeting: "2026-09-16", columns: ["variable", "2026", "2027"], median: [["Federal funds rate", 4.1, 4.1]], previous_median: [["Federal funds rate", 3.8, 3.6]] } });
+  assert.ok(fomc.includes("<h3>projections · median</h3>") && fomc.includes("<h3>projections · previous median</h3>") && fomc.includes("<dt>meeting</dt>"));
+  const segments = renderResult({ total_revenue: { columns: ["2025-09-27", "2024-09-28"], values: [416161000000, 391035000000] } });
+  assert.ok(segments.includes("<h3>total revenue</h3>") && segments.includes("<td class=\"num\">416,161,000,000</td>"), "one row of values is a table");
+});
+
+test("odds read as percentages; records, empty columns and labels as a reader needs them", () => {
+  const odds = { query: "recession", columns: ["venue", "event", "outcome", "probability", "bid", "volume_usd", "revised"], rows: [["Polymarket", "US recession by end of 2026?", "Yes", 0.075, 0.07, 2300532, null], ["Kalshi", "Recession this year?", "Yes", 0.045, 0.04, null, null]], events: [{ venue: "Polymarket", event: "US recession by end of 2026?", resolution: "This market will resolve to Yes if ...", url: "https://polymarket.com/event/us-recession-by-end-of-2026" }] };
+  const html = renderResult(odds);
+  assert.ok(html.startsWith("<p class=\"lead\">“recession”</p>"));
+  assert.ok(html.includes("<td class=\"num\">7.5%</td><td class=\"num\">0.07</td>") && html.includes("<td class=\"num\">4.5%</td>"), "a probability as a percentage; prices stay prices");
+  assert.doesNotMatch(html, /<th>revised<\/th>/, "a column no row fills is left out");
+  assert.ok(html.includes("<th class=\"num\">probability</th>") && html.includes("<th>venue</th>"), "number columns are headed on the right");
+  assert.ok(html.includes("<h3>events</h3>") && html.includes("<th>resolution</th>"), "a list of records is a table");
+  assert.equal(table({ columns: ["chance"], rows: [[0.5]] }).includes("50%"), false, "only a column named probability");
+  assert.equal(table({ columns: ["probability"], rows: [[45]] }).includes("<td class=\"num\">45</td>"), true, "a probability already in percent is left alone");
+  const facts = table({ columns: ["measure", "concept", "period", "value", "decimals"], rows: [["eps_basic", "ifrs-full:BasicEarningsLossPerShare", "2025-01-01 to 2025-12-31", 26.29, 2]] });
+  assert.ok(facts.includes("<td title=\"ifrs-full:BasicEarningsLossPerShare\">eps basic</td>") || facts.includes(">eps basic</td>"), "a measure's id reads as words");
+  assert.ok(facts.includes("<td class=\"num\">26.29</td><td class=\"num\">2</td>"), "decimals is a count, not a figure with cents");
+});
+
+test("charts: one scale, outer percentiles or a target range, steps for decisions, series only", () => {
+  const rates = { columns: ["date", "rate", "percentile_1", "percentile_25", "percentile_99", "volume_usd_billion"], rows: [["2026-09-01", 3.66, 3.61, 3.63, 3.74, 2912], ["2026-09-02", 3.65, 3.6, 3.63, 3.73, 2882], ["2026-09-03", 3.66, 3.6, 3.64, 3.74, 2949]] };
+  assert.deepEqual(seriesFromTable(rates).lines.map((l) => l.name), ["rate", "percentile_1", "percentile_99"], "the outer pair; the volume is on another scale");
+  const effr = { columns: ["date", "rate", "percentile_1", "percentile_99", "target_from", "target_to"], rows: [["2026-09-01", 3.63, 3.61, 3.65, 3.5, 3.75], ["2026-09-02", 3.63, 3.6, 3.65, 3.5, 3.75], ["2026-09-17", 3.88, 3.85, 3.9, 3.75, 4]] };
+  assert.deepEqual(seriesFromTable(effr).lines.map((l) => l.name), ["rate", "target_from", "target_to"], "beside a target range, the range");
+  const fomc = { columns: ["start", "change_bp", "target_low", "target_high"], rows: [["2026-06-16", 0, 3.5, 3.75], ["2026-07-28", 0, 3.5, 3.75], ["2026-09-15", 25, 3.75, 4]] };
+  assert.deepEqual(seriesFromTable(fomc).lines.map((l) => l.name), ["target_low", "target_high"], "basis points are not drawn beside percent");
+  assert.equal(seriesFromTable({ columns: ["date", "insider", "shares"], rows: [["2026-09-05", "a", 1], ["2026-09-05", "b", 2], ["2026-09-08", "c", 3]] }), null, "trades on a shared day are not a series");
+  const curve = seriesFromTable({ columns: ["contract", "expiration", "settlement"], rows: [["VX/V6", "2026-10-21", 17.66], ["VX/X6", "2026-11-18", 18.08], ["VX/Z6", "2026-12-16", 18.4]] });
+  assert.deepEqual(curve, { dates: ["2026-10-21", "2026-11-18", "2026-12-16"], lines: [{ name: "settlement", values: [17.66, 18.08, 18.4] }] }, "a futures curve by expiration");
+  const ecb = renderResult({ rate: { id: "ecb_deposit", name: "ECB deposit facility rate", publisher: "European Central Bank" }, start: "2026-01-01", end: "2026-10-08", columns: ["date", "rate", "event"], rows: [["2026-01-01", 2, "in effect since 2025-06-11"], ["2026-06-17", 2.25, "change"], ["2026-09-16", 2.5, "change"]] });
+  assert.ok(ecb.startsWith("<p class=\"lead\">ECB deposit facility rate<span class=\"sub line\">publisher European Central Bank</span></p>"));
+  const path = /<path d="([^"]+)" class="line s0"\/>/.exec(ecb)[1];
+  assert.match(path, /^M[\d.]+,[\d.]+H[\d.]+V[\d.]+H[\d.]+V[\d.]+H[\d.]+V[\d.]+$/, "level until each change, then on to the last day asked for");
+  assert.ok(ecb.includes(">2026-10-08</text>"));
+  const yields = renderResult({ yields: { "1 Mo": 4.11, "3 Mo": 4.28, "2 Yr": 4.82, "10 Yr": 5.19, "30 Yr": 5.52 } });
+  assert.ok(yields.includes("<h3>yields</h3><svg") && yields.includes("<title>10 Yr: 5.19</title>") && yields.includes(">30y</text>"), "a curve over maturities");
+});
+
+test("the page carries the code without its comment lines, and the code still parses", () => {
+  const html = viewHtml();
+  assert.doesNotMatch(html, /^[ \t]*\/\/.*$/m);
+  const script = html.slice(html.indexOf("<script>") + 8, html.lastIndexOf("</script>"));
+  assert.doesNotThrow(() => new Function(script));
+});

@@ -1,6 +1,6 @@
 # canli-mcp
 
-Every Canli Capital MCP server in one: 311 finance tools for Claude, Cursor or any MCP client.
+Every Canli Capital MCP server in one: 315 finance tools for Claude, Cursor or any MCP client.
 
 - Quant finance: 235 tools covering performance and risk, options and exotics, fixed income,
   portfolios, econometrics, indicators, and a library of 399 strategy sleeves with
@@ -21,6 +21,10 @@ Every Canli Capital MCP server in one: 311 finance tools for Claude, Cursor or a
   futures curve, Fed decisions and projections, the economic calendar, Treasury yields and auctions,
   the federal debt, FRED, World Bank and OECD data, and prices for stocks, currencies, futures,
   indices and crypto.
+- Beyond the US, from the publishers: European companies' annual reports as they filed them
+  (ESEF), central-bank rates (SOFR, the euro short-term rate, SONIA, the ECB's and the Bank of
+  England's rates, and about forty policy rates the BIS collects), what Polymarket and Kalshi
+  traders pay for an outcome, and DeFi value locked, fees and stablecoin supply from DefiLlama.
 - Canli Capital's open research record.
 - Factor backtests without lookahead.
 - Alpaca paper trading behind pre-trade checks.
@@ -56,19 +60,25 @@ own broker keys. The hosted server keeps nothing between requests, so chain call
 
 Measured on Node 24 on 2026-10-15 with `bench/context.py` (o200k tokens of the tool objects a
 client receives, plus the server instructions; all seven packs enabled with `CANLI_PACKS=all`; start-up is the median time from launch to the
-tool list):
+tool list, on a machine running other work; `bench/context-2026-10-15-0.6.0.json`):
 
 | | seven servers separately | canli-mcp |
 |---|---|---|
-| initial tool list and instructions | 38,047 tokens | 1,160 tokens |
+| initial tool list and instructions | 39,962 tokens | 1,160 tokens |
 | processes | 7 | 1 |
-| start-up | 62-89 ms each | 73 ms |
+| start-up | 71-100 ms each | 86 ms |
+
+The four tools this release adds cost the combined server nothing up front; run separately, the
+markets server's list grew by 1,915 tokens.
 
 - **Three tools in context.** The model searches with `find_tool`, reads one schema with
   `describe_tool`, and calls anything with `run_tool`. On 48 everyday requests written after the
   last change to the search and never tuned on, the right tool comes first 46 times and is in the
-  top three 47 times (0.2.1: 25 and 29). `test/search.test.mjs` holds these and 135 more.
-- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 311 tools; a pack's
+  top three 47 times (0.2.1: 25 and 29). For the eight tools added in 0.5.0 and 0.6.0, 41 requests
+  written before measuring found the right tool first 36 times and in the top three 38 times; two
+  words they used were then added to the index (38 and 40). `test/search.test.mjs` holds these and
+  176 more.
+- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 315 tools; a pack's
   code loads the first time one of its tools runs.
 - **Data by file, not by pasting.** Any argument can be `{"$file": "prices.csv", "column": "close"}`
   (or `"columns": ["SPY", "TLT"]` or `"all"`). For 1,000 prices that is 23 tokens instead of 4,893,
@@ -82,7 +92,7 @@ tool list):
 
 ## Workflows as prompts
 
-Clients that show MCP prompts (Claude Desktop and Claude Code list them as slash commands) offer seven
+Clients that show MCP prompts (Claude Desktop and Claude Code list them as slash commands) offer ten
 workflows. Each one runs a single batched `run_tool` call and says what to write from the results:
 
 | prompt | asks for | runs |
@@ -91,7 +101,10 @@ workflows. Each one runs a single batched `run_tool` call and says what to write
 | `earnings_preview` | a ticker | earnings date and timing, what the company guided for the quarter and whether it met its last guidance, the move options price in, past reactions to results (event study), recent results headlines, revenue by segment |
 | `financial_history` | a ticker | four years of statements as filed, with restatements and splits shown |
 | `fact_check` | a ticker and a draft | every reported figure in the draft checked against the filings, the draft returned corrected |
-| `macro_snapshot` | nothing | the Fed's latest decision and projections, the next two weeks' key releases, CPI, core PCE, unemployment, the Treasury curve, the VIX futures curve |
+| `macro_snapshot` | nothing | the Fed's latest decision and projections, what prediction markets price for its next decisions, SOFR against the Fed's range, the next two weeks' key releases, CPI, core PCE, unemployment, the Treasury curve, the VIX futures curve |
+| `global_rates` | nothing | the Fed's, ECB's, Bank of England's and Bank of Japan's policy rates, SOFR, the euro short-term rate and SONIA beside them, the Treasury curve |
+| `european_company` | a company's name or LEI | its latest ESEF annual report: revenue, profit, EPS, assets, equity, cash flows and dividends beside the prior years, linked to the report |
+| `defi_snapshot` | a protocol (optional) | stablecoin supply and its change, value locked on Ethereum and Solana, the protocol's value locked, fees and revenue |
 | `ownership` | a ticker | 5% holders and activists, insider buying and selling, short interest |
 | `backtest_check` | a returns file | deflated Sharpe for the variants tried, the track record needed, then leakage and placebo plans |
 
@@ -100,7 +113,7 @@ A prompt is offered only when every tool it names is in an enabled pack (`CANLI_
 Prompts are requested separately from `tools/list`. Their context cost depends on how the client
 includes prompt and resource metadata.
 
-The packs also bring their own 25 prompts, so the full server offers 32. Their names identify the
+The packs also bring their own 25 prompts, so the full server offers 35. Their names identify the
 pack, such as `fundamentals.known_on_date`, `quant.audit_backtest`,
 `validation.stress_my_strategy` and `research.literature_review`. They route tool calls through
 `run_tool`, preserve the source pack's prompt argument checks, and forward its completion helpers.
@@ -118,7 +131,10 @@ loads no pack code. The guide handlers load only when a prompt, resource or comp
 Clients that draw MCP Apps (the extension of 2026-01-26) show each `run_tool` result as a page
 beside the answer: tables with the figures aligned, statements as filed with their scale, checked
 claims under their sentence with a verdict for each figure, last quarter's guidance as a range with
-the actual result marked, and a line chart for prices or any table of dates. The page is the
+the actual result marked, and a line chart for prices or any series of dates. A result's grouped
+figures (a stock's market data, the next earnings date, a protocol's fees) are drawn as labelled
+figures, the Treasury curve over its maturities, a futures curve by expiration, a policy rate as
+steps between its decisions, and a market's probability as a percentage. The page is the
 resource `ui://canli/view`, one self-contained file with no network access and no external
 scripts, drawn in the client's sandbox; every string from a result is escaped. What the model
 reads does not change, and clients without MCP Apps ignore the page.
@@ -167,7 +183,7 @@ Everything runs on your machine. `canli://privacy` states, per pack, what leaves
 | fundamentals | public SEC data from canlicapital.com (the company and measure you ask for) | caches that public data in `~/.cache/canli-fundamentals` (`CANLI_CACHE_DIR=""` keeps nothing) |
 | research | public research pages from canlicapital.com (your search words) | none |
 | backtest | public SEC data, as fundamentals; your prices and signals stay local | your trial ledgers in `~/.canli/ledgers` |
-| markets | SEC EDGAR and the SEC's adviser database, the US Treasury, FRED, FINRA, the CFTC, the Federal Reserve, BLS, BEA, the Census Bureau, the OECD, the World Bank and Cboe directly (the company, form, dates, search words or series you ask for); Yahoo Finance's public chart data for prices, or for US stocks Alpaca or Tiingo with your key | none |
+| markets | SEC EDGAR and the SEC's adviser database, the US Treasury, FRED, FINRA, the CFTC, the Federal Reserve and the New York Fed, BLS, BEA, the Census Bureau, the OECD, the World Bank, Cboe, filings.xbrl.org (European filings), the ECB, the Bank of England, the BIS, Polymarket, Kalshi and DefiLlama directly (the company, form, dates, search words, rate or series you ask for); Yahoo Finance's public chart data for prices, or for US stocks Alpaca or Tiingo with your key | none |
 | paper | Alpaca's paper API only, with your paper keys | a hash-chained order log in `~/.canli` |
 
 `CANLI_OFFLINE=1` enables only the packs with no network, and no other pack's code is even loaded.
@@ -195,7 +211,7 @@ Order-sending tools never run inside a batch: preview first, then send on its ow
 | fundamentals | [canli-fundamentals-mcp](https://www.npmjs.com/package/canli-fundamentals-mcp) | 7 | SEC XBRL filings |
 | research | [canli-research-mcp](https://www.npmjs.com/package/canli-research-mcp) | 6 | the published research record and its hash chain |
 | backtest | [canli-backtest-mcp](https://www.npmjs.com/package/canli-backtest-mcp) | 3 | point-in-time SEC data |
-| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 39 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank and Cboe: a 13F's total equals its cover page |
+| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 43 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank, Cboe, ECB, Bank of England, BIS, filings.xbrl.org, Polymarket, Kalshi and DefiLlama: a 13F's total equals its cover page; ESEF figures equal the same companies' Form 20-F at the SEC; central-bank rates agree with the BIS |
 | paper | [canli-paper-trading-mcp](https://www.npmjs.com/package/canli-paper-trading-mcp) | 4 | a simulated Alpaca paper API |
 
 Two tools differ from their standalone servers. Validation's `stress_test` is `strategy_stress_test`

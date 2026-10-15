@@ -10,7 +10,7 @@ import { PROMPTS, availablePrompts, registerPrompts } from "../src/prompts.mjs";
 const INDEX = JSON.parse(readFileSync(new URL("../src/index.json", import.meta.url), "utf8"));
 const BY_NAME = new Map(INDEX.tools.map(([name, pack]) => [name, { name, pack }]));
 const ALL = Object.keys(PACKS);
-const ARGS = { ticker: "AAPL", returns_file: "returns.csv", trials: "40", draft: "Apple's revenue was $416.2 billion in fiscal 2025." };
+const ARGS = { ticker: "AAPL", returns_file: "returns.csv", trials: "40", draft: "Apple's revenue was $416.2 billion in fiscal 2025.", company: "Novo Nordisk", protocol: "lido" };
 const argsFor = (p) => Object.fromEntries(Object.keys(p.args).map((k) => [k, ARGS[k]]));
 
 test("every prompt offered asks only for calls its tools accept", async () => {
