@@ -81,6 +81,7 @@ export function renderAiTxt(facts) {
     ["MCP-Validation", `${ORIGIN}/mcp`],
     ["MCP-Fundamentals", `${ORIGIN}/mcp/fundamentals`],
     ["MCP-Research", `${ORIGIN}/mcp/research`],
+    ["MCP-Canli", `${ORIGIN}/mcp/canli`],
     ["MCP-Servers-Page", `${ORIGIN}/mcp-servers`],
     ["API-Status", `${ORIGIN}/api/v1/status`],
     ["Developers", `${ORIGIN}/developers`],

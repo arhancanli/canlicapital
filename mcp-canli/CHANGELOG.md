@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- The registry entry lists the hosted server, `https://canlicapital.com/mcp/canli`: this package's
+  public-data and computing packs over Streamable HTTP for clients that take a URL. Files, prices
+  and paper trading stay with the local server.
+
 ## 0.5.0
 
 - Pins canli-markets-mcp 0.4.0: four tools for the work an analyst does with filings, and for
