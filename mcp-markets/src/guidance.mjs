@@ -555,7 +555,8 @@ export function resultsFromText(text, max = 400) {
 // A section heading: a short line of words between paragraphs ("Data Center", "Outlook", "Q2
 // Fiscal 2027 Summary"), not a bullet, a sentence, a table row or a file name.
 export function headingOf(line) {
-  if (line.length > 60 || /[|$%•▪●]|[.!?]["”']?\s|[:;!?]$|[a-z]{4,}\.$/.test(line) || /\.(?:htm|html|txt|pdf)$|^(?:EX-|exhibit\s+)\d|^page\s+\d/i.test(line)) return null;
+  // A line ending in a figure and a full stop is a sentence ("Revenue was 309.1bn."), not a heading.
+  if (line.length > 60 || /[|$%•▪●]|[.!?]["”']?\s|[:;!?]$|(?:[a-z]{4,}|\d[\w.]*)\.$/.test(line) || /\.(?:htm|html|txt|pdf)$|^(?:EX-|exhibit\s+)\d|^page\s+\d/i.test(line)) return null;
   return /^[A-Z]/.test(line) && /[A-Za-z]{3}/.test(line) && line.split(/\s+/).length <= 6 ? line : null;
 }
 // Headings about the whole company's results rather than a part of the business.

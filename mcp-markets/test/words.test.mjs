@@ -34,6 +34,26 @@ test("economic_series: plain requests, with filler, plurals and ids inside the w
   assert.equal(series("DGS10"), "DGS10", "an id passes straight through");
 });
 
+// Reported by izgorodin on dev.to (2026-10-13): ties went to the list's order, so "treasury yield"
+// gave the 3-month bill, "jobless rate" weekly claims and "employment rate" the payroll count.
+test("economic_series: a rate is never answered with a count, and a maturity is never guessed", () => {
+  const want = {
+    "jobless rate": "UNRATE", "the jobless rate": "UNRATE", "unemployment": "UNRATE", "employment rate": "EMRATIO",
+    "employment population ratio": "EMRATIO", "epop": "EMRATIO", "employment": "PAYEMS", "weekly jobless numbers": "ICSA",
+    "jobless claims": "ICSA", "continuing jobless claims": "CCSA", "job openings": "JTSJOL", "10 year": "DGS10", "30 year treasury yield": "DGS30",
+  };
+  for (const [q, id] of Object.entries(want)) assert.equal(series(q), id, q);
+  // Only counts match: refused, naming the nearest count and saying it is one.
+  for (const [q, near] of [["initial claims rate", "ICSA"], ["jobless claims rate", "ICSA"], ["job openings rate", "JTSJOL"]]) {
+    assert.throws(() => resolveSeries(q), (e) => e instanceof NotFound && e.message.includes(`The nearest is ${near}, a`) && /count/.test(e.message) && /not a rate/.test(e.message), q);
+  }
+  // No maturity named: refused, listing every maturity that matched.
+  for (const q of ["treasury yield", "treasury yields", "bond yield", "treasury bill"]) {
+    assert.throws(() => resolveSeries(q), (e) => e instanceof NotFound && /names no maturity/.test(e.message), q);
+  }
+  assert.throws(() => resolveSeries("treasury yield"), (e) => ["DGS3MO", "DGS1", "DGS2", "DGS5", "DGS10", "DGS30"].every((id) => e.message.includes(id)));
+});
+
 test("world_economy: the indicator asked for, never a neighbour sharing one word", () => {
   for (const q of ["house prices", "wage growth", "employment growth", "household debt", "gold price", "stock prices"]) assert.throws(() => resolveIndicator(q), NotFound, q);
   const want = { "inflation": "FP.CPI.TOTL.ZG", "gdp growth": "NY.GDP.MKTP.KD.ZG", "gdp per capita": "NY.GDP.PCAP.CD", "government debt": "GC.DOD.TOTL.GD.ZS", "real yields": "FR.INR.RINR", "youth unemployment": "SL.UEM.1524.ZS", "military spending": "MS.MIL.XPND.GD.ZS", "life expectancy": "SP.DYN.LE00.IN", "population growth": "SP.POP.GROW", "foreign reserves": "FI.RES.TOTL.CD" };

@@ -50,7 +50,8 @@ async function kalshi(session, query, limit) {
   const data = await getJson(session, url);
   const rows = [], events = [];
   for (const e of (Array.isArray(data?.current_page) ? data.current_page : []).slice(0, limit)) {
-    events.push({ venue: "Kalshi", event: e.event_title ?? null, subtitle: e.event_subtitle ?? null, ticker: e.event_ticker ?? null, volume_usd: round(num(e.total_volume), 0), category: e.category ?? null });
+    // Kalshi counts volume in contracts (each pays 1 dollar if the outcome happens), not dollars.
+    events.push({ venue: "Kalshi", event: e.event_title ?? null, subtitle: e.event_subtitle ?? null, ticker: e.event_ticker ?? null, volume_contracts: round(num(e.total_volume), 0), category: e.category ?? null });
     for (const m of (Array.isArray(e.markets) ? e.markets : []).slice(0, PER_EVENT)) {
       const bid = num(m.yes_bid_dollars), ask = num(m.yes_ask_dollars), last = num(m.last_price_dollars);
       rows.push(["Kalshi", e.event_title ?? null, m.yes_subtitle || m.ticker || null, "Yes", probability(bid, ask, last), bid, ask, last, null, m.close_ts ?? null, null]);
@@ -80,6 +81,7 @@ export async function predictionMarkets(session, args) {
     limits: [
       "Prices are what traders pay, not Canli Capital's forecasts: a price is the cost of a contract paying 1 if the outcome happens, so it reads as a probability before fees and the spread. probability is the middle of the bid and ask when both are quoted, else the last trade.",
       "Thin markets move on small trades; read volume and the spread before relying on a price. Each venue's rules decide how a market resolves.",
+      "Volume is not one measure across venues: Polymarket's is dollars traded (volume_usd), Kalshi's is contracts traded (volume_contracts on its events; each contract pays 1 dollar if the outcome happens).",
       "Not investment advice, and not an offer to trade; access to each venue depends on where you live.",
     ],
   };

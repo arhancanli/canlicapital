@@ -6,7 +6,7 @@ import { z } from "zod";
 import { parse13F, parseForm4 } from "./forms.mjs";
 import { findSections, htmlToText, resolveSection } from "./html.mjs";
 import { archiveBase, filingDocuments, filings, fredCsv, fredTitle, getJson, getText, NotFound, own, resolveEntity, submissions, TREASURY_CURVES, treasuryYear } from "./sources.mjs";
-import { matchWords, vocabulary } from "./words.mjs";
+import { topMatches, vocabulary } from "./words.mjs";
 
 const DATE = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "a date as YYYY-MM-DD");
 const COMPANY = z.string().min(1).max(120).describe("Ticker (AAPL), CIK (320193) or name (Apple).");
@@ -404,11 +404,14 @@ export async function treasuryYields(session, args) {
 // economic_series (FRED)
 // ---------------------------------------------------------------------------------------------
 // Common series by the words people use; any FRED id also works. Every one was checked live on FRED
-// (2026-10-11); FRED withdrew the LBMA gold price in 2022, so gold is price_history's (COMEX futures).
+// (2026-10-11; EMRATIO 2026-10-15); FRED withdrew the LBMA gold price in 2022, so gold is price_history's
+// (COMEX futures). A third field marks a count and says what it counts: a request for a rate never
+// gets one (izgorodin on dev.to, 2026-10-13: "jobless rate" returned weekly claims).
 export const COMMON_SERIES = Object.freeze([
   ["CPIAUCSL", "cpi consumer price index inflation all items"], ["CPILFESL", "core cpi consumer price index inflation excluding food energy"], ["PCEPI", "pce price index inflation"], ["PCEPILFE", "core pce price index inflation"],
   ["PPIFIS", "ppi producer price index final demand"], ["MICH", "michigan inflation expectations"], ["T5YIE", "5 year breakeven inflation"],
-  ["UNRATE", "unemployment rate"], ["PAYEMS", "nonfarm payrolls jobs report employment"], ["ICSA", "initial jobless claims unemployment insurance"], ["CCSA", "continuing jobless claims"], ["JTSJOL", "job openings jolts"],
+  ["UNRATE", "unemployment jobless rate"], ["PAYEMS", "nonfarm payrolls jobs report employment", "a count of payroll jobs, in thousands"], ["EMRATIO", "employment population ratio rate epop"],
+  ["ICSA", "initial jobless claims unemployment insurance weekly", "a weekly count of new claims"], ["CCSA", "continuing jobless claims weekly", "a weekly count of continuing claims"], ["JTSJOL", "job openings jolts", "a count of job openings, in thousands"],
   ["JTSQUR", "quits rate jolts"], ["CES0500000003", "average hourly earnings wages pay"], ["CIVPART", "labor force participation"],
   ["GDP", "gdp gross domestic product nominal"], ["GDPC1", "real gdp gross domestic product"], ["A191RL1Q225SBEA", "real gdp growth rate quarterly annualized"],
   ["PCE", "personal consumption expenditures consumer spending"], ["PI", "personal income"], ["DSPIC96", "real disposable personal income"], ["PSAVERT", "personal saving savings rate"],
@@ -427,6 +430,8 @@ export const COMMON_SERIES = Object.freeze([
 ]);
 // The series are all US, so naming the country is filler here; "interest" only says what kind of rate.
 const FRED_WORDS = vocabulary({ kind: "interest", filler: "us usa united states america american fred" });
+// Points on the Treasury curve: when several match equally, the request named no maturity.
+const CURVE = Object.freeze({ DGS3MO: "3-month", DGS1: "1-year", DGS2: "2-year", DGS5: "5-year", DGS10: "10-year", DGS30: "30-year" });
 export function resolveSeries(q) {
   const s = String(q).trim();
   if (/^[A-Z0-9_]{2,40}$/.test(s)) return { id: s };
@@ -434,8 +439,15 @@ export function resolveSeries(q) {
   // that cannot be an ordinary word (GDP and PCE are both).
   const named = COMMON_SERIES.find(([id]) => (/\d/.test(id) || id.length >= 6) && new RegExp(`(^|[^A-Za-z0-9_])${id}([^A-Za-z0-9_]|$)`).test(s));
   if (named) return { id: named[0], matched_from: s };
-  const hit = matchWords(COMMON_SERIES, (c) => c[1], s, FRED_WORDS);
-  if (!hit) throw new NotFound(`No common series matches "${q}". These are US series: for another country's economy use world_economy or economic_outlook, and for the price of a commodity, currency, crypto or stock use price_history ("gold" is COMEX gold futures). Or pass a FRED series id (find it at fred.stlouisfed.org). Common: ${COMMON_SERIES.slice(0, 12).map((c) => c[0]).join(", ")}.`);
+  const { asked, top } = topMatches(COMMON_SERIES, (c) => c[1], s, FRED_WORDS);
+  if (!top.length) throw new NotFound(`No common series matches "${q}". These are US series: for another country's economy use world_economy or economic_outlook, and for the price of a commodity, currency, crypto or stock use price_history ("gold" is COMEX gold futures). Or pass a FRED series id (find it at fred.stlouisfed.org). Common: ${COMMON_SERIES.slice(0, 12).map((c) => c[0]).join(", ")}.`);
+  // The list's order is a fair default between kinds of inflation, not between maturities.
+  const points = top.filter((c) => CURVE[c[0]]);
+  if (points.length > 1) throw new NotFound(`"${q}" names no maturity, and ${points.length} Treasury yields match: ${points.map((c) => `${c[0]} (${CURVE[c[0]]})`).join(", ")}. Ask again with one, such as "10 year treasury yield", or pass the id.`);
+  // A rate asked for takes the best match that is a rate. When only counts match, say which count
+  // came nearest rather than return it, so the retry costs one call and nobody guesses.
+  const hit = asked.includes("rate") ? top.find((c) => !c[2]) : top[0];
+  if (!hit) throw new NotFound(`No rate series matches "${q}". The nearest is ${top[0][0]}, ${top[0][2]}, which is not a rate. Ask without "rate" to get that count, or name the rate, such as the unemployment rate (UNRATE) or the employment-population ratio (EMRATIO).`);
   return { id: hit[0], matched_from: s };
 }
 export const fredInput = z.object({

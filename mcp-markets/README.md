@@ -45,7 +45,7 @@ received and when, so any figure can be checked against the same document later.
 | `financial_statements` | The income statement, balance sheet, cash flow and equity statement exactly as filed, several years joined; what a later filing restated, and what a split changed, beside the first-reported figure | 10-K/10-Q rendered XBRL reports |
 | `filing_tables` | The table that holds a figure, by words, in one filing or followed through several (members, stores, ARPU, segment and region detail, non-GAAP reconciliations, guidance tables) | 10-K/10-Q/8-K documents and XBRL reports |
 | `earnings_release` | A results press release: the results, the guidance as ranges, and last quarter's guidance against this quarter's results | 8-K Item 2.02, exhibit 99 |
-| `verify_claims` | Is a figure in a draft answer right? Confirmed, contradicted (with the filed figure and what the wrong one matches: last year, a quarter, a unit slip), or not reported (a future year, a dividend a company never paid) | XBRL company facts |
+| `verify_claims` | Is a figure in a draft answer right? Confirmed, contradicted (with the filed figure and what the wrong one matches: last year, a quarter, a unit slip, the wrong currency), or not reported (a future year, a dividend a company never paid); US and foreign filers (20-F, IFRS) in the currency they report in | XBRL company facts |
 
 Examples: "Show Microsoft's last four years of income statements as filed", "How has Costco's
 paid membership grown over five years?", "Did NVIDIA beat its revenue guidance last quarter, and
