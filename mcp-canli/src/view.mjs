@@ -18,18 +18,20 @@ th,td{padding:4px 8px;border-bottom:1px solid var(--line);text-align:left;vertic
 td.num,th.num{text-align:right}td.text{white-space:normal;min-width:12em;overflow-wrap:anywhere}.clamp{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}td.obj{color:var(--muted);font-family:ui-monospace,monospace;font-size:11px}tr.heading td{font-weight:600;background:var(--soft);white-space:normal}
 a{color:var(--info)}.note{color:var(--muted);font-size:11.5px;margin:6px 0}.error{color:var(--bad)}.sub{color:var(--muted);font-size:11.5px;font-weight:400}.line{display:block}.tally{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:2px 0 10px}
 .badge{display:inline-block;padding:1px 7px;border-radius:9px;font-size:11.5px;font-weight:600}.badge.ok{color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,transparent)}.badge.bad{color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,transparent)}.badge.warn{color:var(--warn);background:color-mix(in srgb,var(--warn) 16%,transparent)}.badge.info{color:var(--info);background:color-mix(in srgb,var(--info) 14%,transparent)}.badge.muted{color:var(--muted);background:var(--soft)}
-svg{width:100%;max-width:760px;height:auto;display:block}.grid{stroke:var(--line);stroke-width:1}.axis{fill:var(--muted);font-size:11px}.line{fill:none;stroke-width:1.8}.line.s0{stroke:var(--s0)}.line.s1{stroke:var(--s1)}.line.s2{stroke:var(--s2)}.line.s3{stroke:var(--s3)}
+svg{width:100%;max-width:760px;height:auto;display:block}.grid{stroke:var(--line);stroke-width:1}.axis{fill:var(--muted);font-size:11px}.line{fill:none;stroke-width:1.8}.line.s0{stroke:var(--s0)}.line.s1{stroke:var(--s1)}.line.s2{stroke:var(--s2)}.line.s3{stroke:var(--s3)}.pt{fill:var(--s0);stroke:var(--bg);stroke-width:1.5}
 .legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11.5px;margin-top:4px}.legend i{display:inline-block;width:10px;height:3px;margin-right:5px;vertical-align:middle}.legend i.s0{background:var(--s0)}.legend i.s1{background:var(--s1)}.legend i.s2{background:var(--s2)}.legend i.s3{background:var(--s3)}
 .ranges{margin:6px 0 10px}.range{margin:8px 0 12px}.top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2px 12px}.vals{color:var(--muted);font-variant-numeric:tabular-nums}.track{position:relative;height:10px;margin-top:6px;background:var(--soft);border-radius:5px}.bar{position:absolute;top:0;bottom:0;background:color-mix(in srgb,var(--s0) 55%,transparent);border-radius:5px}.dot{position:absolute;top:-3px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--fg);border:3px solid var(--bg)}
-dl{display:grid;grid-template-columns:max-content 1fr;gap:2px 14px;margin:0}dt{color:var(--muted)}dd{margin:0;overflow-wrap:anywhere}pre{white-space:pre-wrap;font-size:11.5px}
+dl.facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px 16px;margin:0}.facts div{min-width:0}.facts .wide{grid-column:1/-1}dt{color:var(--muted);font-size:11px}dd{margin:0;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}pre{white-space:pre-wrap;font-size:11.5px}
 @media (max-width:480px){body{padding:10px}}`;
 
 let page = null;
-// The page: styles, the rendering functions (render.js, its exports made plain), then the app.
+// The page: styles, the rendering functions (render.js, its exports made plain), then the app,
+// without their comment lines.
+const code = (file) => readFileSync(new URL(file, import.meta.url), "utf8").replace(/^[ \t]*\/\/.*\n/gm, "");
 export function viewHtml() {
   if (page) return page;
-  const render = readFileSync(new URL("./view/render.js", import.meta.url), "utf8").replace(/^export\s+/gm, "");
-  const app = readFileSync(new URL("./view/app.js", import.meta.url), "utf8");
+  const render = code("./view/render.js").replace(/^export\s+/gm, "");
+  const app = code("./view/app.js");
   page = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Canli result</title><style>${CSS}</style></head><body><main id="root"><p class="note">Waiting for the result…</p></main><script>${render}\n${app}</script></body></html>`;
   return page;
 }

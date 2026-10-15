@@ -2,7 +2,8 @@
 // functions run in the host's sandboxed frame and in the tests. Tables stay tables; a table whose
 // first column is dates, or a series of dates and values, also gets a line chart; statements keep
 // their lines and units; checked claims sit under their sentence with verdict badges; earlier
-// guidance is drawn as its range with the actual result marked.
+// guidance is drawn as its range with the actual result marked; the fields a result groups (a
+// stock's market figures, a protocol's fees) are drawn as figures with their labels.
 // Every string from a result is escaped: results carry text from filings and press releases.
 
 export function esc(v) {
@@ -15,6 +16,12 @@ const isUrl = (v) => /^https?:\/\//.test(String(v ?? ""));
 // A link out of the frame; `html` is already escaped.
 const link = (url, html) => `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${html}</a>`;
 const words = (v) => esc(String(v ?? "").replace(/_/g, " "));
+// A link's text: the host and the last part of the path.
+function linkText(url) {
+  const m = /^https?:\/\/([^/?#]+)([^?#]*)/.exec(url), tail = (m?.[2] ?? "").split("/").filter(Boolean).pop();
+  const s = tail ? `${m[1]}/…/${tail}` : m?.[1] ?? url;
+  return s.length > 60 ? `${s.slice(0, 59)}…` : s;
+}
 const unitAfter = (u) => (u === "%" ? "%" : u ? ` <span class="sub">${esc(u)}</span>` : "");
 
 // A number as people read it: thousands grouped, up to four decimals (at least `min`), never in
@@ -24,6 +31,13 @@ export function fmt(v, min = 0) {
   const abs = Math.abs(v);
   const digits = abs >= 1000 ? 0 : abs >= 1 ? 2 : 4;
   return v.toLocaleString("en-US", { maximumFractionDigits: Math.max(digits, min), minimumFractionDigits: min });
+}
+
+// An axis label: millions, billions and trillions shortened, so a large figure fits.
+function short(v) {
+  const a = Math.abs(v);
+  for (const [d, u] of [[1e12, "T"], [1e9, "B"], [1e6, "M"]]) if (a >= d) return `${Number((v / d).toPrecision(4)).toLocaleString("en-US")}${u}`;
+  return fmt(v);
 }
 
 // Verdicts carry their meaning in colour. Positions against a guided range stay neutral: above the
@@ -48,17 +62,25 @@ export function table({ columns, rows, title, note, maxRows = 200 }) {
     cols = [cols[0], ...cols.slice(2)];
     body = body.map((r) => [r[0], ...r.slice(2)]);
   }
+  // A column no row fills is left out (the first, the label, stays).
+  const filled = cols.map((_, i) => i === 0 || body.some((r) => r[i] !== null && r[i] !== undefined && r[i] !== ""));
+  if (filled.includes(false)) { cols = cols.filter((_, i) => filled[i]); body = body.map((r) => r.filter((_, i) => filled[i])); }
   const badgeCol = new Set(cols.map((c, i) => (/^(verdict|position)$/.test(String(c)) ? i : -1)).filter((i) => i >= 0));
+  const numCol = cols.map((_, i) => body.some((r) => isNum(r[i])) && body.every((r) => r[i] == null || isNum(r[i])));
+  // A market's probability (0 to 1) reads as a percentage.
+  const pctCol = new Set(cols.map((c, i) => (c === "probability" && body.every((r) => r[i] == null || (isNum(r[i]) && r[i] >= 0 && r[i] <= 1)) ? i : -1)).filter((i) => i >= 0));
   const cell = (v, i, min, tip) => {
     if (Array.isArray(v) || (v && typeof v === "object")) return `<td class="obj">${esc(JSON.stringify(v).slice(0, 160))}</td>`;
     if (badgeCol.has(i)) return `<td>${badge(v)}</td>`;
-    if (isNum(v)) return `<td class="num">${fmt(v, min)}</td>`;
+    if (pctCol.has(i) && isNum(v)) return `<td class="num">${fmt(Math.round(v * 1000) / 10)}%</td>`;
+    if (isNum(v)) return `<td class="num">${fmt(v, cols[i] === "decimals" ? 0 : min)}</td>`;
     const s = String(v ?? "");
+    if (cols[i] === "measure" && /^[a-z0-9]+(_[a-z0-9]+)+$/.test(s)) return `<td>${words(s)}</td>`;
     if (isUrl(s)) return `<td>${link(s, "source")}</td>`;
     if (s.length > 48) return `<td class="text" title="${esc(tip ?? s)}"><div class="clamp">${esc(s.length > 600 ? `${s.slice(0, 597)}…` : s)}</div></td>`;
     return `<td${tip ? ` title="${esc(tip)}"` : ""}>${esc(s)}</td>`;
   };
-  const head = cols.length ? `<thead><tr>${cols.map((c) => `<th>${esc(c)}</th>`).join("")}</tr></thead>` : "";
+  const head = cols.length ? `<thead><tr>${cols.map((c, i) => `<th${numCol[i] ? " class=\"num\"" : ""}>${esc(c)}</th>`).join("")}</tr></thead>` : "";
   // A heading row has a label and no values.
   const lines = body.map((row, n) => {
     const heading = row.length > 1 && row.slice(1).every((v) => v === null || v === "");
@@ -111,21 +133,39 @@ export function releaseTable({ columns, rows }, title) {
   return `<section>${title ? `<h3>${esc(title)}</h3>` : ""}<div class="scroll"><table><thead><tr>${th}</tr></thead><tbody>${lines}</tbody></table></div></section>`;
 }
 
-// Series for a chart from a table: the first column as dates, each numeric column a line.
+// Series for a chart from a table: the first column as dates, each numeric column a line, on the
+// scale of the first one that is not all zeros (a volume beside a rate, or a change in basis points
+// beside a rate in percent, would flatten it); a spread of percentiles is drawn as its outer pair,
+// or not at all beside a target range. Rows that are changes (an "event" column: a policy rate's decisions) are steps.
 export function seriesFromTable({ columns, rows }) {
-  if (!Array.isArray(rows) || rows.length < 3 || !Array.isArray(columns)) return null;
-  const dates = rows.map((r) => (Array.isArray(r) ? r[0] : null));
-  if (!dates.every((d) => typeof d === "string" && ISO.test(d))) return null;
-  const lines = [];
-  for (let i = 1; i < columns.length && lines.length < 4; i++) {
+  if (!Array.isArray(rows) || rows.length < 3 || !Array.isArray(columns) || !rows.every(Array.isArray)) return null;
+  // The dates: the first column, one row a date (transactions on a shared day are not a series); or,
+  // beside labels, a later column of dates in order (a futures curve's expirations).
+  const isDates = (i) => rows.every((r) => typeof r[i] === "string" && ISO.test(r[i]));
+  const unique = (i) => new Set(rows.map((r) => r[i])).size === rows.length;
+  let at = isDates(0) && unique(0) ? 0 : -1;
+  if (at < 0 && !isDates(0) && unique(0)) at = columns.findIndex((_, i) => i > 0 && isDates(i) && rows.every((r, k) => k === 0 || r[i] > rows[k - 1][i]));
+  if (at < 0) return null;
+  const dates = rows.map((r) => r[at]);
+  const mid = (vs) => { const a = vs.filter(isNum).map(Math.abs).sort((x, y) => x - y); return a[a.length >> 1] ?? 0; };
+  const pct = columns.map((c, i) => (/^percentile_/.test(String(c)) ? i : -1)).filter((i) => i > 0);
+  const band = columns.includes("target_from") && columns.includes("target_to");
+  let lines = [];
+  for (let i = 1; i < columns.length; i++) {
+    if (i === at) continue;
+    if (pct.includes(i) && (band || (pct.length > 2 && i !== pct[0] && i !== pct.at(-1)))) continue;
     const values = rows.map((r) => r[i]);
     if (values.filter(isNum).length >= Math.max(3, rows.length * 0.6)) lines.push({ name: String(columns[i]), values: values.map((v) => (isNum(v) ? v : null)) });
   }
-  return lines.length ? { dates, lines } : null;
+  const m0 = lines.map((l) => mid(l.values)).find((m) => m > 0);
+  if (m0) lines = lines.filter((l) => { const m = mid(l.values); return m > m0 / 10 && m < m0 * 10; });
+  lines = lines.slice(0, 4);
+  return lines.length ? { dates, lines, ...(columns.includes("event") ? { step: true } : {}) } : null;
 }
 
-// A line chart in SVG: oldest on the left, the value range with four gridlines, a legend.
-export function chart({ dates, lines }, title) {
+// A line chart in SVG: oldest on the left, the value range with four gridlines, a legend. Steps
+// (a rate that holds until it changes) are spaced by date and drawn level until the next change.
+export function chart({ dates, lines, step = false }, title) {
   const order = dates.map((d, i) => [d, i]).sort((a, b) => (a[0] < b[0] ? -1 : 1)).map(([, i]) => i);
   const xs = order.map((i) => dates[i]);
   const all = lines.flatMap((l) => l.values.filter(isNum));
@@ -133,12 +173,13 @@ export function chart({ dates, lines }, title) {
   let lo = Math.min(...all), hi = Math.max(...all);
   if (lo === hi) { lo -= 1; hi += 1; }
   const W = 640, H = 220, L = 56, R = 12, T = 12, B = 28;
-  const x = (k) => L + (xs.length === 1 ? 0 : (k / (xs.length - 1)) * (W - L - R));
+  const t = xs.map((d) => Date.parse(d)), t0 = t[0], span = t[t.length - 1] - t0;
+  const x = (k) => L + (xs.length === 1 ? 0 : (step && span > 0 ? (t[k] - t0) / span : k / (xs.length - 1)) * (W - L - R));
   const y = (v) => T + (1 - (v - lo) / (hi - lo)) * (H - T - B);
-  const grid = [0, 1, 2, 3].map((g) => { const v = lo + ((hi - lo) * g) / 3; return `<line x1="${L}" x2="${W - R}" y1="${y(v).toFixed(1)}" y2="${y(v).toFixed(1)}" class="grid"/><text x="${L - 6}" y="${(y(v) + 4).toFixed(1)}" class="axis" text-anchor="end">${fmt(v)}</text>`; }).join("");
+  const grid = [0, 1, 2, 3].map((g) => { const v = lo + ((hi - lo) * g) / 3; return `<line x1="${L}" x2="${W - R}" y1="${y(v).toFixed(1)}" y2="${y(v).toFixed(1)}" class="grid"/><text x="${L - 6}" y="${(y(v) + 4).toFixed(1)}" class="axis" text-anchor="end">${short(v)}</text>`; }).join("");
   const paths = lines.map((l, n) => {
     let d = "", pen = false;
-    order.forEach((i, k) => { const v = l.values[i]; if (!isNum(v)) { pen = false; return; } d += `${pen ? "L" : "M"}${x(k).toFixed(1)},${y(v).toFixed(1)}`; pen = true; });
+    order.forEach((i, k) => { const v = l.values[i]; if (!isNum(v)) { pen = false; return; } d += pen ? (step ? `H${x(k).toFixed(1)}V${y(v).toFixed(1)}` : `L${x(k).toFixed(1)},${y(v).toFixed(1)}`) : `M${x(k).toFixed(1)},${y(v).toFixed(1)}`; pen = true; });
     return `<path d="${d}" class="line s${n}"/>`;
   }).join("");
   const labels = `<text x="${L}" y="${H - 8}" class="axis">${esc(xs[0])}</text><text x="${W - R}" y="${H - 8}" class="axis" text-anchor="end">${esc(xs[xs.length - 1])}</text>`;
@@ -166,28 +207,118 @@ export function ranges({ columns, rows }, title) {
 const STATEMENTS = ["income", "balance_sheet", "cash_flow", "comprehensive_income", "equity"];
 const NAMES = { income: "Income statement", balance_sheet: "Balance sheet", cash_flow: "Cash flows", comprehensive_income: "Comprehensive income", equity: "Equity" };
 const TALLY = [["confirmed", "ok"], ["contradicted", "bad"], ["not_reported", "warn"], ["not_checkable", "muted"]];
+// What a result is about: its name heads the page, its other identifiers under it.
+const SUBJECTS = ["company", "fund", "rate", "protocol", "chain", "stablecoin"];
+const isObj = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
+const isPlain = (v) => v === null || typeof v !== "object";
 
-// The blocks of one result: special forms first (statements, series, guided against actual), then
-// any table found in its fields, then its plain fields.
+// One field's value among figures: numbers grouped, links shortened, short lists joined, a small
+// object on one line.
+function value(v, depth = 0) {
+  if (isNum(v)) return fmt(v);
+  if (typeof v === "boolean") return v ? "yes" : "no";
+  if (typeof v === "string") return isUrl(v) ? link(v, esc(linkText(v)).replace(/\//g, "/<wbr>")) : esc(v.length > 600 ? `${v.slice(0, 599)}…` : v);
+  if (Array.isArray(v) && v.every(isPlain)) return `${v.slice(0, 12).map((x) => value(x, depth + 1)).join(v.every(isUrl) ? "<br>" : ", ")}${v.length > 12 ? `, and ${v.length - 12} more` : ""}`;
+  if (isObj(v) && depth === 0 && Object.values(v).every(isPlain)) return Object.entries(v).map(([k, x]) => `${words(k)} ${value(x, 1)}`).join(" · ");
+  return esc(JSON.stringify(v ?? "").slice(0, 160));
+}
+
+// The tables an object holds: columns with rows, with one row of values, or with other lists of
+// rows (a projection's median beside its range).
+function tablesOf(v, title) {
+  if (!isObj(v) || !Array.isArray(v.columns)) return [];
+  const n = v.columns.length, out = [], note = typeof v.note === "string" ? v.note : null;
+  if (Array.isArray(v.values) && v.values.length === n && v.values.every(isPlain)) out.push(table({ columns: v.columns, rows: [v.values], title, note }));
+  for (const [k, rows] of Object.entries(v)) {
+    if (k === "rows" ? Array.isArray(rows) : k !== "columns" && Array.isArray(rows) && rows.length && rows.every((r) => Array.isArray(r) && r.length === n)) out.push(table({ columns: v.columns, rows, title: k === "rows" ? title : `${title} · ${k.replace(/_/g, " ")}`, note: k === "rows" ? note : null }));
+  }
+  return out;
+}
+
+// A curve over maturities (Treasury yields: "1 Mo" to "30 Yr"), in their order, each rate on hover.
+const TENOR = /^\d+(\.\d+)?\s*(mo|month|months|yr|year|years|y|m|w|wk|week|weeks)$/i;
+function curve(entries, title) {
+  const vs = entries.map(([, v]) => v), W = 640, H = 200, L = 44, R = 12, T = 12, B = 28;
+  let lo = Math.min(...vs), hi = Math.max(...vs);
+  if (lo === hi) { lo -= 1; hi += 1; }
+  const x = (k) => L + (k / (entries.length - 1)) * (W - L - R), y = (v) => T + (1 - (v - lo) / (hi - lo)) * (H - T - B);
+  const grid = [0, 1, 2, 3].map((g) => { const v = lo + ((hi - lo) * g) / 3; return `<line x1="${L}" x2="${W - R}" y1="${y(v).toFixed(1)}" y2="${y(v).toFixed(1)}" class="grid"/><text x="${L - 6}" y="${(y(v) + 4).toFixed(1)}" class="axis" text-anchor="end">${short(v)}</text>`; }).join("");
+  const path = entries.map(([, v], k) => `${k ? "L" : "M"}${x(k).toFixed(1)},${y(v).toFixed(1)}`).join("");
+  const dots = entries.map(([n, v], k) => `<circle cx="${x(k).toFixed(1)}" cy="${y(v).toFixed(1)}" r="3" class="pt"><title>${esc(n)}: ${fmt(v)}</title></circle>`).join("");
+  const ticks = entries.map(([n], k) => `<text x="${x(k).toFixed(1)}" y="${H - 8}" class="axis" text-anchor="middle">${esc(String(n).replace(/\s*(month|months|mo)$/i, "m").replace(/\s*(year|years|yr)$/i, "y"))}</text>`).join("");
+  return `<section>${title ? `<h3>${esc(title)}</h3>` : ""}<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(title ?? "curve")}">${grid}<path d="${path}" class="line s0"/>${dots}${ticks}</svg></section>`;
+}
+
+// Figures with their labels, in a grid; long text across the grid.
+function grid(entries, title) {
+  if (!entries.length) return "";
+  if (entries.length >= 4 && entries.every(([k, v]) => TENOR.test(k) && isNum(v))) return curve(entries, title);
+  const dd = (v) => {
+    if (typeof v !== "string" || isUrl(v)) return value(v);
+    if (v.length > 240) return `<div class="clamp" title="${esc(v.slice(0, 2000))}">${value(v)}</div>`;
+    // A hash or other long unbroken token: its start, the whole on hover.
+    if (v.length > 32 && !/\s/.test(v)) return `<span title="${esc(v)}">${esc(v.slice(0, 16))}…</span>`;
+    return value(v);
+  };
+  // Long text and long links take the whole row.
+  const wide = (v) => (Array.isArray(v) ? v.some(isUrl) : typeof v === "string" && (isUrl(v) ? linkText(v).length > 30 : v.length > 80 && /\s/.test(v)));
+  return `<section>${title ? `<h3>${esc(title)}</h3>` : ""}<dl class="facts">${entries.map(([k, v]) => `<div${wide(v) ? " class=\"wide\"" : ""}><dt>${words(k)}</dt><dd>${dd(v)}</dd></div>`).join("")}</dl></section>`;
+}
+
+// A group of fields (market figures, a filing, fees): its figures, then the tables in it and in its
+// own groups.
+function facts(obj, title, skip = []) {
+  if (Array.isArray(obj.columns)) {
+    const plain = Object.entries(obj).filter(([k, v]) => k !== "note" && isPlain(v) && !skip.includes(k));
+    return grid(plain, title) + tablesOf(obj, title).join("");
+  }
+  const entries = [], tables = [];
+  for (const [k, v] of Object.entries(obj)) {
+    if (skip.includes(k)) continue;
+    const t = tablesOf(v, `${title} · ${k.replace(/_/g, " ")}`);
+    if (t.length) tables.push(...t);
+    else if (isObj(v) && !Object.values(v).every(isPlain)) tables.push(facts(v, `${title} · ${k.replace(/_/g, " ")}`));
+    else entries.push([k, v]);
+  }
+  return grid(entries, title) + tables.join("");
+}
+
+// The blocks of one result: what it is about, a verdict tally, its grouped figures, then special
+// forms (statements, series, guided against actual), any table in its fields, lists of records,
+// and its plain fields and notes.
 export function renderResult(result) {
   if (result == null || typeof result !== "object") return `<pre>${esc(JSON.stringify(result, null, 1))}</pre>`;
+  if (Array.isArray(result)) return result.every(isObj) ? records(result) : `<pre>${esc(JSON.stringify(result, null, 1).slice(0, 4000))}</pre>`;
   const out = [];
-  // The ref is in the heading; a preview's note is drawn at the end.
-  const seen = new Set(["ref", "preview_only"]);
-  const head = [result.company?.name ?? result.company?.ticker, result.release?.headline, result.symbol, result.series, result.title].filter((x) => typeof x === "string").slice(0, 2);
-  if (head.length) out.push(`<p class="lead">${esc(head.join(" · "))}</p>`);
-  // A tally of verdicts reads at a glance; any other summary is a list of its fields.
+  // The ref is in the heading; a preview's note and the limits are drawn at the end.
+  const seen = new Set(["ref", "preview_only", "limits"]);
+  const who = SUBJECTS.find((k) => isObj(result[k]) && typeof (result[k].name ?? result[k].ticker) === "string");
+  const head = [who && (result[who].name ?? result[who].ticker), result.release?.headline, result.symbol, result.series, result.title, typeof result.query === "string" ? `“${result.query}”` : null].filter((x) => typeof x === "string").slice(0, 2);
+  for (const k of ["symbol", "series", "title", "query"]) if (head.includes(result[k]) || head.includes(`“${result[k]}”`)) seen.add(k);
+  if (who) {
+    seen.add(who);
+    const ids = Object.entries(result[who]).filter(([k, v]) => !["name", "id", "slug"].includes(k) && v !== head[0] && (isPlain(v) || (Array.isArray(v) && v.every(isPlain))) && v !== null && v !== "");
+    out.push(`<p class="lead">${esc(head.join(" · "))}${ids.length ? `<span class="sub line">${ids.map(([k, v]) => `${words(k)} ${value(v)}`).join(" · ")}</span>` : ""}</p>`);
+  } else if (head.length) out.push(`<p class="lead">${esc(head.join(" · "))}</p>`);
+  // A tally of verdicts reads at a glance; any other summary is figures with their labels.
   const sum = result.summary;
-  if (sum && typeof sum === "object" && !Array.isArray(sum)) {
+  if (isObj(sum)) {
     if (Object.keys(sum).every((k) => k === "claims" || TALLY.some(([t]) => t === k))) {
       out.push(`<p class="tally">${isNum(sum.claims) ? `${fmt(sum.claims)} ${sum.claims === 1 ? "claim" : "claims"} checked: ` : ""}${TALLY.filter(([k]) => sum[k] > 0).map(([k, kind]) => `<span class="badge ${kind}">${fmt(sum[k])} ${words(k)}</span>`).join(" ")}</p>`);
-    } else out.push(kv(sum, "Summary"));
+    } else out.push(facts(sum, "Summary"));
     seen.add("summary");
+  }
+  // Grouped figures (a stock's market data, the next earnings date, a filing, fees), before the
+  // long tables; statements and tables are drawn below.
+  for (const [k, v] of Object.entries(result)) {
+    if (seen.has(k) || STATEMENTS.includes(k) || !isObj(v) || Array.isArray(v.rows) || (Array.isArray(v.columns) && Array.isArray(v.values) && Object.keys(v).length <= 3)) continue;
+    out.push(facts(v, k.replace(/_/g, " "), k === "release" ? ["headline"] : []));
+    seen.add(k);
   }
   // Statements as filed, under the company's own title and scale.
   for (const k of STATEMENTS) if (result[k]?.columns && result[k]?.rows) {
-    const s = result[k];
-    out.push(table({ columns: s.columns, rows: s.rows, title: `${s.title || NAMES[k]}${s.units ? ` (${s.units})` : ""}` }));
+    const st = result[k];
+    out.push(table({ columns: st.columns, rows: st.rows, title: `${st.title || NAMES[k]}${st.units ? ` (${st.units})` : ""}` }));
     seen.add(k);
   }
   // A price or economic series: dates beside values.
@@ -203,12 +334,13 @@ export function renderResult(result) {
   const tables = [];
   if (Array.isArray(result.columns) && Array.isArray(result.rows)) tables.push([null, result]);
   for (const [k, v] of Object.entries(result)) {
-    if (seen.has(k) || !v || typeof v !== "object" || Array.isArray(v)) continue;
-    if (Array.isArray(v.columns) && Array.isArray(v.rows)) tables.push([k.replace(/_/g, " "), v]);
+    if (seen.has(k) || !isObj(v)) continue;
+    if (Array.isArray(v.columns) && (Array.isArray(v.rows) || Array.isArray(v.values))) { tables.push([k.replace(/_/g, " "), v]); seen.add(k); }
   }
   for (const [title, t] of tables) {
     const note = typeof t.note === "string" ? t.note : null;
     if (t === result && note) seen.add("note");
+    if (!Array.isArray(t.rows)) { out.push(...tablesOf(t, title)); continue; }
     if (t.columns.includes("claim") && t.columns.includes("verdict")) {
       out.push(claims(t, title ?? "Claims"));
       if (note) out.push(`<p class="note">${esc(note)}</p>`);
@@ -219,19 +351,35 @@ export function renderResult(result) {
       if (note) out.push(`<p class="note">${esc(note)}</p>`);
       continue;
     }
-    const s = seriesFromTable(t);
-    if (s) out.push(chart(s, title));
+    const series = seriesFromTable(t);
+    // A rate that holds until it changes is drawn to the last day asked for.
+    const last = series ? series.dates.reduce((b, d, i) => (d > series.dates[b] ? i : b), 0) : -1;
+    if (series?.step && typeof result.end === "string" && ISO.test(result.end) && result.end > series.dates[last]) {
+      series.dates.push(result.end);
+      for (const l of series.lines) l.values.push(l.values[last]);
+    }
+    if (series) out.push(chart(series, title));
     out.push(table({ columns: t.columns, rows: t.rows, title, note }));
   }
-  const plain = Object.fromEntries(Object.entries(result).filter(([k, v]) => !seen.has(k) && (v === null || typeof v !== "object") && !["columns", "rows"].includes(k)).slice(0, 14));
-  if (Object.keys(plain).length) out.push(kv(plain, "Details"));
+  // Lists of records (a market's events with their rules) as tables.
+  for (const [k, v] of Object.entries(result)) {
+    if (!seen.has(k) && Array.isArray(v) && v.length && v.every(isObj)) { out.push(records(v, k.replace(/_/g, " "))); seen.add(k); }
+  }
+  // Plain fields and short lists; notes as notes.
+  const notes = Object.entries(result).filter(([k, v]) => !seen.has(k) && /(^|_)note$/.test(k) && typeof v === "string");
+  for (const [k] of notes) seen.add(k);
+  const plain = Object.entries(result).filter(([k, v]) => !seen.has(k) && !["columns", "rows"].includes(k) && (isPlain(v) || (Array.isArray(v) && v.length && v.length <= 12 && v.every(isPlain)))).slice(0, 14);
+  out.push(grid(plain, "Details"));
+  for (const [, v] of notes) out.push(`<p class="note">${esc(v)}</p>`);
   if (typeof result.preview_only?.note === "string") out.push(`<p class="note">${esc(result.preview_only.note)}</p>`);
   if (Array.isArray(result.limits)) out.push(`<p class="note">${result.limits.map(esc).join(" ")}</p>`);
   return out.join("") || `<pre>${esc(JSON.stringify(result, null, 1).slice(0, 4000))}</pre>`;
 }
 
-function kv(obj, title) {
-  return `<section><h3>${esc(title)}</h3><dl>${Object.entries(obj).map(([k, v]) => `<dt>${words(k)}</dt><dd>${isNum(v) ? fmt(v) : esc(typeof v === "object" ? JSON.stringify(v) : v)}</dd>`).join("")}</dl></section>`;
+// Records (objects with the same fields) as a table: the fields of the first ones as columns.
+function records(list, title) {
+  const columns = [...new Set(list.slice(0, 20).flatMap((r) => Object.keys(r)))].slice(0, 10);
+  return table({ columns, rows: list.slice(0, 50).map((r) => columns.map((c) => r[c] ?? null)), title, maxRows: 50 });
 }
 
 // A run_tool result: one tool's result, or a batch of them, each under its tool's name.

@@ -118,13 +118,14 @@ test("markets requests: a right tool first in at least 35 of 37, in the top thre
 // Everyday requests across finance, in two sets of 48: the first written before the 0.3.0 search
 // changes (they were then tuned on it: 34 first before, 43 after), the second written after them and
 // measured once, untuned (46 first; 0.2.1 found 25). A new held-out set is needed to measure the next
-// change.
+// change. reference_rates (0.6.0: the New York Fed's effective rate with the Fed's target range) is
+// also a right answer to "current fed funds rate"; it did not exist when the set was written.
 const EVERYDAY_Q = [
   ["us inflation rate", ["economic_series"]],
   ["inflation rate", ["economic_series","world_economy"]],
   ["unemployment rate", ["economic_series","world_economy"]],
   ["30 year mortgage rates", ["economic_series"]],
-  ["current fed funds rate", ["fomc","economic_series"]],
+  ["current fed funds rate", ["fomc","economic_series","reference_rates"]],
   ["us gdp growth last quarter", ["economic_series"]],
   ["yield curve inversion 2s10s", ["treasury_yields","check_yield_curve"]],
   ["2 year treasury yield history", ["treasury_yields","economic_series"]],
@@ -228,6 +229,69 @@ test("everyday requests: a right tool first in at least 86 of 96, in the top thr
   }
   console.log(JSON.stringify({ top1, top3, misses }));
   assert.ok(top1 >= 86 && top3 >= 94, JSON.stringify({ top1, top3, misses }));
+});
+
+// The tools added in 0.5.0 (an analyst's filings and the fact check) and 0.6.0 (beyond the US),
+// asked the way people ask, in a set written before it was measured. Measured once, untuned, on
+// 2026-10-15: 36 first and 38 in the top three of 41 (with 0.5.0's index, before the 0.6.0 tools: 15).
+// Two misses asked in words the tools' keywords lacked ("effective federal funds", "comparable
+// sales"); with those words added (packs.mjs) the set gives 38 and 40, so it is now tuned on. The
+// rest name a European company without saying it is one (Airbus, Volkswagen) or ask for "financial
+// statements" of a European company (financial_statements first, european_filings second).
+const NEW_Q = [
+  ["apple income statement as filed for the last four years", ["financial_statements"]],
+  ["microsoft balance sheet from its 10-k", ["financial_statements"]],
+  ["amazon cash flow statement", ["financial_statements"]],
+  ["statement of shareholders equity for coca cola", ["financial_statements"]],
+  ["the table in walmart's 10-k with comparable sales", ["filing_tables"]],
+  ["netflix paid memberships table from its filings", ["filing_tables"]],
+  ["store count table over the last few annual reports", ["filing_tables"]],
+  ["find a kpi table in a 10-q", ["filing_tables"]],
+  ["latest earnings press release for nvidia", ["earnings_release"]],
+  ["did apple beat its own guidance last quarter", ["earnings_release"]],
+  ["company guidance for next quarter revenue", ["earnings_release"]],
+  ["quarterly results release with eps and outlook", ["earnings_release"]],
+  ["fact check this paragraph about apple's revenue", ["verify_claims"]],
+  ["check the numbers in my draft against sec filings", ["verify_claims"]],
+  ["is it true that tesla's net income was 7 billion in 2024", ["verify_claims", "history", "known_as_of"]],
+  ["verify these financial claims before i publish", ["verify_claims"]],
+  ["sofr rate today", ["reference_rates"]],
+  ["euro short term rate history", ["reference_rates"]],
+  ["ecb deposit rate changes this year", ["reference_rates"]],
+  ["bank of england base rate", ["reference_rates"]],
+  ["sonia overnight rate", ["reference_rates"]],
+  ["bank of japan policy rate", ["reference_rates"]],
+  ["central bank interest rates around the world", ["reference_rates"]],
+  ["effective federal funds rate daily", ["reference_rates", "economic_series"]],
+  ["airbus net income from its annual financial report", ["european_filings"]],
+  ["lvmh revenue in its esef annual financial report", ["european_filings"]],
+  ["volkswagen total assets from the xbrl annual report", ["european_filings"]],
+  ["ifrs figures for a german company", ["european_filings"]],
+  ["novo nordisk profit in danish kroner", ["european_filings"]],
+  ["financial statements of a european listed company", ["european_filings"]],
+  ["polymarket odds of a fed rate cut", ["prediction_markets"]],
+  ["kalshi probability of a recession", ["prediction_markets"]],
+  ["betting odds on the next election", ["prediction_markets"]],
+  ["market implied probability bitcoin above 150k this year", ["prediction_markets"]],
+  ["what do prediction markets say about inflation", ["prediction_markets"]],
+  ["aave total value locked", ["crypto_fundamentals"]],
+  ["uniswap fees and revenue", ["crypto_fundamentals"]],
+  ["usdt stablecoin supply", ["crypto_fundamentals"]],
+  ["tvl on solana", ["crypto_fundamentals"]],
+  ["defi protocol revenue for lido", ["crypto_fundamentals"]],
+  ["how much usdc is circulating on ethereum", ["crypto_fundamentals"]],
+];
+
+test("requests for the 0.5.0 and 0.6.0 tools: a right tool first in at least 36 of 41, in the top three in at least 39", () => {
+  let top1 = 0, top3 = 0;
+  const misses = [];
+  for (const [q, want] of NEW_Q) {
+    const r = search(INDEX, q, { limit: 3 }).map((t) => t.name);
+    if (want.includes(r[0])) top1++; else misses.push(`${q} -> ${r.join(", ")}`);
+    if (r.some((n) => want.includes(n))) top3++;
+  }
+  console.log(JSON.stringify({ top1, top3, of: NEW_Q.length, misses }));
+  assert.ok(top1 >= 36 && top3 >= 39, JSON.stringify({ top1, top3, misses }));
 });
 
 test("a request word that is a built-in property name (\"constructor\") is an ordinary word", () => {

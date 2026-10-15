@@ -2,9 +2,55 @@
 
 ## Unreleased
 
-- The registry entry lists the hosted server, `https://canlicapital.com/mcp/canli`: this package's
-  public-data and computing packs over Streamable HTTP for clients that take a URL. Files, prices
-  and paper trading stay with the local server.
+## 0.6.0
+
+Beyond the US, and results drawn the way a reader needs them.
+
+- Pins canli-markets-mcp 0.5.0: four tools from the publishers themselves, no key.
+  `european_filings` reads a European company's annual report as it filed it in ESEF (from
+  filings.xbrl.org): the tagged totals and comparatives, in the company's own currency. In a
+  cross-check, revenue and net profit equal the same companies' Form 20-F at the SEC (12 of 12).
+  `reference_rates` gives SOFR, the effective fed funds rate with the Fed's range, the euro
+  short-term rate and the ECB's rates, SONIA and Bank Rate, and about forty policy rates the BIS
+  collects; in a cross-check they agree with the BIS (9 of 9). `prediction_markets` shows what
+  Polymarket and Kalshi traders pay for an outcome. `crypto_fundamentals` gives DefiLlama's value
+  locked, fees, revenue and stablecoin supply. The catalog has 315 tools.
+- Three new workflow prompts:
+  - `global_rates`: four central banks' policy rates beside SOFR, the euro short-term rate and
+    SONIA, and the Treasury curve.
+  - `european_company`: a company's latest ESEF annual report.
+  - `defi_snapshot`: stablecoin supply, value locked on Ethereum and Solana, and a protocol's fees
+    and revenue.
+
+  `macro_snapshot` adds what prediction markets price for the Fed's next decisions and SOFR
+  against the Fed's range. The full server offers 35 prompts. Every call they ask for passes its
+  tool's schema, and each batch ran against the live sources before release.
+- The result viewer draws what it used to leave out:
+  - grouped figures as labelled figures, with the tables inside them: a stock's market data and
+    P/E, the next expected earnings date, the latest short interest, the Fed's latest decision, a
+    protocol's value locked and fees;
+  - lists of records as tables;
+  - a market's probability as a percentage;
+  - the Treasury curve over its maturities, and a futures curve by expiration;
+  - a policy rate as steps between its decisions, to the last day asked for.
+
+  Charts keep their lines on one scale (no volume beside a rate, no basis points beside percent),
+  skip transactions that share a day, and label axes in millions and billions. Columns no row
+  fills are left out. The page ships without its comment lines (32 KB).
+- `find_tool`: 41 requests for the eight tools added in 0.5.0 and 0.6.0 were written before
+  measuring. They found the right tool first 36 times and in the top three 38 times. Two phrases
+  people use for these tools ("effective federal funds", "comparable sales") were then added to the
+  index, giving 38 and 40. The earlier sets are unchanged: right tool first in 47 of 50, 37 of 37
+  and 89 of 96.
+- The registry entry lists the hosted server, `https://canlicapital.com/mcp/canli`. It runs this
+  package's public-data and computing packs over Streamable HTTP for clients that take a URL.
+  Files, prices and paper trading stay with the local server.
+- `canli://privacy` and the README name every host the markets pack now contacts: the New York Fed,
+  filings.xbrl.org, the ECB, the Bank of England, the BIS, Polymarket, Kalshi and DefiLlama.
+- Context on Node 24.19.0, 2026-10-15: 1,160 o200k_base tokens for the initial tools and
+  instructions, unchanged, against 39,962 for the seven servers run separately.
+- Robustness: the markets pack's 43 tools took 590 calls with hostile arguments, with no crash
+  and no leak.
 
 ## 0.5.0
 
