@@ -35,8 +35,8 @@ appear only for enabled packs. This is a coverage inventory, not a worldwide ran
 - `npm audit signatures`: verifies registry signatures and available package attestations.
 - `npm run build-index`: derives tools and guide metadata from the exact installed packages.
 - `uv run --with tiktoken python bench/context.py --json`: measures initial tool objects plus
-  instructions and five-launch median startup. On Node 24.19.0, 2026-10-13: 1,113 o200k_base tokens
-  versus 35,142 for seven separate servers; 75 ms versus 64–90 ms each. This excludes later tool
+  instructions and five-launch median startup. On Node 24.19.0, 2026-10-15: 1,160 o200k_base tokens
+  versus 38,047 for seven separate servers; 73 ms versus 62–89 ms each. This excludes later tool
   calls, prompts, results, provider fees and model reasoning.
 
 The dated rival benchmark in `bench/rivals/REPORT.md` retains its limited question set, tuned

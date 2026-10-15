@@ -1,7 +1,7 @@
 {
   "name": "canli-mcp",
-  "version": "0.4.0",
-  "description": "Every Canli Capital MCP server in one: 307 tools for quant finance, backtest validation, SEC filings and fundamentals, markets (ownership, short interest, options, the Fed, macro data) and prices, research and paper trading, behind three discovery tools (about 1,100 tokens of context instead of 35,142). Batch calls, data by file path, offline mode, local by default.",
+  "version": "0.5.0",
+  "description": "Every Canli Capital MCP server in one: 311 tools for quant finance, backtest validation, SEC filings and fundamentals (statements as filed, earnings guidance, a draft's figures checked against the filings), markets (ownership, short interest, options, the Fed, macro data) and prices, research and paper trading, behind three discovery tools (1,160 tokens of context instead of 38,047). Results drawn as tables and charts in clients with MCP Apps. Batch calls, data by file path, offline mode, local by default.",
   "private": false,
   "type": "module",
   "license": "MIT",
@@ -27,7 +27,7 @@
     "@modelcontextprotocol/server": "2.3.1",
     "canli-backtest-mcp": "0.1.2",
     "canli-fundamentals-mcp": "0.6.0",
-    "canli-markets-mcp": "0.3.0",
+    "canli-markets-mcp": "0.4.0",
     "canli-paper-trading-mcp": "0.1.0",
     "canli-quant-mcp": "0.1.2",
     "canli-research-mcp": "0.3.0",
@@ -63,7 +63,11 @@
     "sec-edgar",
     "insider-trading",
     "13f",
-    "economic-data"
+    "economic-data",
+    "financial-statements",
+    "earnings",
+    "fact-checking",
+    "mcp-apps"
   ],
   "overrides": {
     "canli-backtest-mcp": {

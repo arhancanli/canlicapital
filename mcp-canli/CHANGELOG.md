@@ -23,6 +23,9 @@
   escaped; the model's context is unchanged. Tested in the MCP Apps reference host (`basic-host`
   from `@modelcontextprotocol/ext-apps` 2.0.3) with live results (an earnings release, a fact
   check, a price chart, light and dark); not yet tried inside a commercial client.
+- Context re-measured on Node 24.19.0, 2026-10-15: 1,160 o200k_base tokens for the initial tools and
+  instructions (the instructions now ask for `verify_claims`), versus 38,047 for the seven separate
+  servers; start-up 73 ms against 62-89 ms each.
 - Measured in canli-markets-mcp's `bench/analyst`: 87 questions checked against truths built
   without the tools; first runs on releases and companies not used in development were 26 of 32
   (fresh), 9 of 9 (fresh-2), 15 of 19 (verify) and 6 of 6 (traps); the defects they found are

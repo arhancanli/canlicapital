@@ -46,15 +46,15 @@ Claude Desktop, Cursor or any MCP client:
 
 ## Context and startup
 
-Measured on Node 24 on 2026-10-13 with `bench/context.py` (o200k tokens of the tool objects a
+Measured on Node 24 on 2026-10-15 with `bench/context.py` (o200k tokens of the tool objects a
 client receives, plus the server instructions; all seven packs enabled with `CANLI_PACKS=all`; start-up is the median time from launch to the
 tool list):
 
 | | seven servers separately | canli-mcp |
 |---|---|---|
-| initial tool list and instructions | 35,142 tokens | 1,113 tokens |
+| initial tool list and instructions | 38,047 tokens | 1,160 tokens |
 | processes | 7 | 1 |
-| start-up | 64-90 ms each | 75 ms |
+| start-up | 62-89 ms each | 73 ms |
 
 - **Three tools in context.** The model searches with `find_tool`, reads one schema with
   `describe_tool`, and calls anything with `run_tool`. On 48 everyday requests written after the
