@@ -58,8 +58,10 @@ function contextTable(h2h) {
 function install(h2h, npm) {
   const f = h2h.flagship;
   const lines = [["Claude Code", f.install.claude_code], ["Cursor, Claude Desktop or any MCP client", f.install.json]];
+  if (f.install.hosted) lines.push(["claude.ai, ChatGPT or any client that takes a URL", f.install.hosted]);
   const cmds = lines.map(([where, cmd]) => `<figure class="flagship-cmd"><figcaption>${esc(where)}</figcaption><pre tabindex="0"><code>${esc(cmd)}</code></pre></figure>`).join("");
-  if (f.npm_published) return `<div class="flagship-install">${cmds}</div>`;
+  const hosted = f.install.hosted_note ? `<p class="flagship-note">${esc(f.install.hosted_note)}</p>` : "";
+  if (f.npm_published) return `<div class="flagship-install">${cmds}</div>${hosted}`;
   const live = f.packs.filter((p) => npm.has(p.package));
   return `<div class="flagship-install">${cmds}</div><p class="flagship-note">canli-mcp is being published to npm now, so these lines will work once it is. Until then each server it combines installs on its own:</p>
 <ul class="flagship-packages">${live.map((p) => `<li><code>${esc(`claude mcp add ${p.package.replace(/-mcp$/, "")} -- npx -y ${p.package}`)}</code><span>${esc(p.label)}, ${esc(npm.get(p.package).latest_version)} on npm</span></li>`).join("")}</ul>`;

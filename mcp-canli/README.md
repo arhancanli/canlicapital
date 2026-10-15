@@ -44,6 +44,14 @@ Claude Desktop, Cursor or any MCP client:
 { "mcpServers": { "canli": { "command": "npx", "args": ["-y", "canli-mcp"] } } }
 ```
 
+Hosted, no install: add `https://canlicapital.com/mcp/canli` as a connector in claude.ai, ChatGPT
+or any client that takes a URL (`claude mcp add --transport http canli https://canlicapital.com/mcp/canli`).
+It runs this release with the quant, validation, fundamentals, research, backtest and markets
+packs. File arguments (`$file`), prices and paper trading need the local server: files there would
+be the server's disk, the keyless price source is for personal use, and paper trading needs your
+own broker keys. The hosted server keeps nothing between requests, so chain calls inside one
+`run_tool` batch, and each caller gets 60 requests a minute.
+
 ## Context and startup
 
 Measured on Node 24 on 2026-10-15 with `bench/context.py` (o200k tokens of the tool objects a
