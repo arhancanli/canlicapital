@@ -15,12 +15,12 @@ async function connect() {
   return c;
 }
 
-test("thirty-five tools, byte-identical across launches, all read-only", async () => {
+test("thirty-eight tools, byte-identical across launches, all read-only", async () => {
   const lists = [];
   for (let i = 0; i < 2; i++) { const c = await connect(); lists.push(JSON.stringify(await c.listTools())); await c.close(); }
   assert.equal(lists[0], lists[1]);
   const tools = JSON.parse(lists[0]).tools;
-  assert.deepEqual(tools.map((t) => t.name).sort(), ["company_events", "company_profile", "company_report", "earnings_calendar", "economic_calendar", "economic_outlook", "economic_series", "event_study", "executive_pay", "fails_to_deliver", "federal_debt", "fomc", "fund_holdings", "fund_portfolio", "futures_curve", "futures_positioning", "index_constituents", "insider_trades", "investment_advisers", "large_holders", "list_filings", "mentions_trend", "off_exchange_volume", "options_chain", "price_history", "private_offerings", "read_filing", "screen_companies", "search_filings", "segment_revenue", "short_interest", "treasury_auctions", "treasury_yields", "volatility_surface", "world_economy"]);
+  assert.deepEqual(tools.map((t) => t.name).sort(), ["company_events", "company_profile", "company_report", "earnings_calendar", "earnings_release", "economic_calendar", "economic_outlook", "economic_series", "event_study", "executive_pay", "fails_to_deliver", "federal_debt", "filing_tables", "financial_statements", "fomc", "fund_holdings", "fund_portfolio", "futures_curve", "futures_positioning", "index_constituents", "insider_trades", "investment_advisers", "large_holders", "list_filings", "mentions_trend", "off_exchange_volume", "options_chain", "price_history", "private_offerings", "read_filing", "screen_companies", "search_filings", "segment_revenue", "short_interest", "treasury_auctions", "treasury_yields", "volatility_surface", "world_economy"]);
   for (const t of tools) {
     assert.equal(t.annotations.readOnlyHint, true, t.name);
     assert.equal(t.annotations.openWorldHint, true, t.name);
@@ -51,6 +51,12 @@ test("bad input and an unknown symbol come back as tool errors that say what to 
 // against the tool's output schema, so a mismatch fails here, not for a user. Arguments pin the dates
 // the fixtures were captured for (the spawned server runs on the real clock).
 const NEW_TOOL_CALLS = [
+  ["financial_statements", { company: "MSFT", filings: 2 }],
+  ["financial_statements", { company: "NVDA", statement: "income", filings: 2, fiscal_year: 2025 }],
+  ["filing_tables", { company: "909832", find: "paid members", filings: 3 }],
+  ["filing_tables", { company: "MSFT", find: "geographic revenue" }],
+  ["earnings_release", { company: "1397187", accession: "0001397187-26-000126" }],
+  ["earnings_release", { company: "104169", accession: "0000104169-26-000145" }],
   ["earnings_calendar", { company: "AAPL" }],
   ["earnings_calendar", { since: "2026-09-14", until: "2026-09-18" }],
   ["price_history", { symbol: "EUR/USD", start: "2026-09-01", end: "2026-10-08" }],

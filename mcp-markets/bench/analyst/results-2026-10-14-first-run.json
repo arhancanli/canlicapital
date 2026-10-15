@@ -1,0 +1,635 @@
+{
+ "ran": "2026-10-14T15:58:27.153Z",
+ "node": "v24.19.0",
+ "summary": {
+  "passed": 47,
+  "of": 53,
+  "by_set": [
+   {
+    "group": "dev",
+    "passed": 21,
+    "of": 21
+   },
+   {
+    "group": "fresh",
+    "passed": 26,
+    "of": 32
+   }
+  ],
+  "by_type": [
+   {
+    "group": "dev statement",
+    "passed": 4,
+    "of": 4
+   },
+   {
+    "group": "fresh statement",
+    "passed": 8,
+    "of": 8
+   },
+   {
+    "group": "dev trend",
+    "passed": 1,
+    "of": 1
+   },
+   {
+    "group": "fresh trend",
+    "passed": 2,
+    "of": 2
+   },
+   {
+    "group": "dev kpi",
+    "passed": 3,
+    "of": 3
+   },
+   {
+    "group": "dev segment",
+    "passed": 1,
+    "of": 1
+   },
+   {
+    "group": "dev reconciliation",
+    "passed": 1,
+    "of": 1
+   },
+   {
+    "group": "dev guidance",
+    "passed": 8,
+    "of": 8
+   },
+   {
+    "group": "dev beat_or_miss",
+    "passed": 3,
+    "of": 3
+   },
+   {
+    "group": "fresh guidance",
+    "passed": 14,
+    "of": 19
+   },
+   {
+    "group": "fresh beat_or_miss",
+    "passed": 2,
+    "of": 3
+   }
+  ],
+  "median_ms": 719,
+  "median_chars": 5675
+ },
+ "results": [
+  {
+   "id": "st-ko-revenue-2025",
+   "set": "dev",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 1468,
+   "chars": 2822
+  },
+  {
+   "id": "st-jpm-netincome-2025",
+   "set": "dev",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 14306,
+   "chars": 4043
+  },
+  {
+   "id": "st-cost-netincome-2026",
+   "set": "dev",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 751,
+   "chars": 2837
+  },
+  {
+   "id": "st-msft-eps-2026",
+   "set": "dev",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 1029,
+   "chars": 2816
+  },
+  {
+   "id": "st-pg-sales-2026",
+   "set": "fresh",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 1308,
+   "chars": 2569
+  },
+  {
+   "id": "st-xom-revenue-2025",
+   "set": "fresh",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 1116,
+   "chars": 3361
+  },
+  {
+   "id": "st-orcl-revenue-2026",
+   "set": "fresh",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 762,
+   "chars": 3684
+  },
+  {
+   "id": "st-nke-netincome-2026",
+   "set": "fresh",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 903,
+   "chars": 2551
+  },
+  {
+   "id": "st-cat-opprofit-2025",
+   "set": "fresh",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 497,
+   "chars": 4107
+  },
+  {
+   "id": "st-pfe-netincome-2025",
+   "set": "fresh",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 917,
+   "chars": 6281
+  },
+  {
+   "id": "st-hd-assets-2025",
+   "set": "fresh",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 820,
+   "chars": 4006
+  },
+  {
+   "id": "st-aapl-opcash-2025",
+   "set": "fresh",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 995,
+   "chars": 5021
+  },
+  {
+   "id": "tr-msft-rnd-2023-2026",
+   "set": "dev",
+   "type": "trend",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 716,
+   "chars": 3204
+  },
+  {
+   "id": "tr-nvda-revenue-2023-2026",
+   "set": "fresh",
+   "type": "trend",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 912,
+   "chars": 3222
+  },
+  {
+   "id": "tr-ko-opincome-2022-2025",
+   "set": "fresh",
+   "type": "trend",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 1493,
+   "chars": 3177
+  },
+  {
+   "id": "kpi-cost-members-2022-2026",
+   "set": "dev",
+   "type": "kpi",
+   "tool": "filing_tables",
+   "pass": true,
+   "ms": 1108,
+   "chars": 3332
+  },
+  {
+   "id": "kpi-cost-employees-2026",
+   "set": "dev",
+   "type": "kpi",
+   "tool": "filing_tables",
+   "pass": true,
+   "ms": 396,
+   "chars": 1503
+  },
+  {
+   "id": "kpi-cost-warehouses-2026",
+   "set": "dev",
+   "type": "kpi",
+   "tool": "filing_tables",
+   "pass": true,
+   "ms": 1921,
+   "chars": 1345
+  },
+  {
+   "id": "seg-msft-us-revenue-2026",
+   "set": "dev",
+   "type": "segment",
+   "tool": "filing_tables",
+   "pass": true,
+   "ms": 1161,
+   "chars": 2156
+  },
+  {
+   "id": "rc-wmt-fcf-h1-fy27",
+   "set": "dev",
+   "type": "reconciliation",
+   "tool": "filing_tables",
+   "pass": true,
+   "ms": 688,
+   "chars": 2791
+  },
+  {
+   "id": "gd-nvda-rev-q3fy27",
+   "set": "dev",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 600,
+   "chars": 4256
+  },
+  {
+   "id": "gd-txn-rev-q3-2026",
+   "set": "dev",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 719,
+   "chars": 3847
+  },
+  {
+   "id": "gd-lulu-eps-q3-2026",
+   "set": "dev",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 458,
+   "chars": 5229
+  },
+  {
+   "id": "gd-wmt-eps-fy27",
+   "set": "dev",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 465,
+   "chars": 7138
+  },
+  {
+   "id": "gd-hd-opmargin-fy26",
+   "set": "dev",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 493,
+   "chars": 9587
+  },
+  {
+   "id": "gd-dal-eps-q4-2026",
+   "set": "dev",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 755,
+   "chars": 8446
+  },
+  {
+   "id": "gd-crm-rev-fy27",
+   "set": "dev",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 489,
+   "chars": 14304
+  },
+  {
+   "id": "gd-mu-rev-q1fy27",
+   "set": "dev",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 749,
+   "chars": 5640
+  },
+  {
+   "id": "bm-nvda-rev-q2fy27",
+   "set": "dev",
+   "type": "beat_or_miss",
+   "tool": "earnings_release",
+   "pass": true,
+   "row": [
+    "revenue",
+    null,
+    "second quarter of fiscal 2027",
+    "USD billion",
+    89.18,
+    92.82,
+    96.2,
+    7.02,
+    3.38,
+    null,
+    null,
+    "above the range"
+   ],
+   "ms": 1014,
+   "chars": 5675
+  },
+  {
+   "id": "bm-wmt-eps-q2fy27",
+   "set": "dev",
+   "type": "beat_or_miss",
+   "tool": "earnings_release",
+   "pass": true,
+   "row": [
+    "eps",
+    "adjusted",
+    "Second quarter",
+    "USD per share",
+    0.72,
+    0.74,
+    0.81,
+    0.09,
+    0.07,
+    null,
+    null,
+    "above the range"
+   ],
+   "ms": 897,
+   "chars": 8665
+  },
+  {
+   "id": "bm-lulu-rev-q2-2026",
+   "set": "dev",
+   "type": "beat_or_miss",
+   "tool": "earnings_release",
+   "pass": true,
+   "row": [
+    "revenue",
+    null,
+    "second quarter of 2026",
+    "%",
+    -3,
+    -2,
+    -4,
+    -1,
+    -2,
+    -100,
+    -200,
+    "below the range"
+   ],
+   "ms": 837,
+   "chars": 6796
+  },
+  {
+   "id": "gd-qcom-rev-q4fy26",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 648,
+   "chars": 5282
+  },
+  {
+   "id": "gd-qcom-eps-q4fy26",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 510,
+   "chars": 5282
+  },
+  {
+   "id": "gd-amat-rev-q4fy26",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": false,
+   "why": "no row holds 9750-10750",
+   "ms": 445,
+   "chars": 7279
+  },
+  {
+   "id": "gd-mrvl-rev-q3fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 666,
+   "chars": 7634
+  },
+  {
+   "id": "gd-mrvl-gm-q3fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 466,
+   "chars": 7634
+  },
+  {
+   "id": "gd-csco-rev-q1fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 710,
+   "chars": 6764
+  },
+  {
+   "id": "gd-csco-opm-q1fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 523,
+   "chars": 6764
+  },
+  {
+   "id": "gd-intu-rev-fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 675,
+   "chars": 10826
+  },
+  {
+   "id": "gd-hpq-eps-q4fy26",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 692,
+   "chars": 8632
+  },
+  {
+   "id": "gd-hpq-fcf-fy26",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 487,
+   "chars": 8632
+  },
+  {
+   "id": "gd-panw-rev-q1fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 449,
+   "chars": 6313
+  },
+  {
+   "id": "gd-panw-eps-fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 525,
+   "chars": 6313
+  },
+  {
+   "id": "gd-acn-eps-fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 695,
+   "chars": 9001
+  },
+  {
+   "id": "gd-len-deliveries-q4-2026",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 1091,
+   "chars": 5655
+  },
+  {
+   "id": "gd-ctas-rev-fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": false,
+   "why": "no row holds 12.1-12.25",
+   "ms": 668,
+   "chars": 9893
+  },
+  {
+   "id": "gd-lrcx-rev-sep-q",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": false,
+   "why": "no row holds 7.7-8.5",
+   "ms": 695,
+   "chars": 7457
+  },
+  {
+   "id": "gd-adsk-rev-q3fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": false,
+   "why": "no row holds 2125-2140",
+   "ms": 667,
+   "chars": 5903
+  },
+  {
+   "id": "gd-adsk-eps-fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": false,
+   "why": "no row holds 12.52-12.6",
+   "ms": 477,
+   "chars": 5903
+  },
+  {
+   "id": "gd-dell-rev-fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 1029,
+   "chars": 10752
+  },
+  {
+   "id": "bm-hpq-eps-q3fy26",
+   "set": "fresh",
+   "type": "beat_or_miss",
+   "tool": "earnings_release",
+   "pass": true,
+   "row": [
+    "eps",
+    "non-GAAP",
+    "third quarter",
+    "USD per share",
+    0.61,
+    0.71,
+    0.83,
+    0.22,
+    0.12,
+    null,
+    null,
+    "above the range"
+   ],
+   "ms": 1351,
+   "chars": 10779
+  },
+  {
+   "id": "bm-acn-rev-q4fy26",
+   "set": "fresh",
+   "type": "beat_or_miss",
+   "tool": "earnings_release",
+   "pass": false,
+   "why": "no comparison row \"above the range\" with actual 18.68",
+   "rows": [],
+   "ms": 1047,
+   "chars": 9438
+  },
+  {
+   "id": "bm-mrvl-rev-q2fy27",
+   "set": "fresh",
+   "type": "beat_or_miss",
+   "tool": "earnings_release",
+   "pass": true,
+   "row": [
+    "revenue",
+    null,
+    "Second Quarter of Fiscal 2027",
+    "USD billion",
+    2.565,
+    2.835,
+    2.739,
+    0.174,
+    -0.096,
+    null,
+    null,
+    "within the range"
+   ],
+   "ms": 1468,
+   "chars": 9038
+  }
+ ]
+}
