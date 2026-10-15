@@ -1,5 +1,36 @@
 # Changelog
 
+## 0.5.0
+
+- Pins canli-markets-mcp 0.4.0: four tools for the work an analyst does with filings, and for
+  checking the answer. `financial_statements` returns statements exactly as filed (several years
+  joined; restated and split-changed lines beside their first-reported figures, never mixed).
+  `filing_tables` finds the table in a filing that holds a figure, and follows it through earlier
+  filings. `earnings_release` reads a results release: guidance as ranges with quotes, and the
+  previous quarter's guidance set against the results. `verify_claims` checks a draft's figures
+  against the filings: confirmed, contradicted (with the filed figure and what the wrong one
+  matches: another year, a quarter, a unit slip) or not reported. The catalog has 311 tools.
+- Two new workflow prompts: `financial_history` (four years of statements as filed) and
+  `fact_check` (a draft's figures checked and the draft returned corrected); `company_brief` and
+  `earnings_preview` now read the latest results release, its guidance and last quarter's guidance
+  against the results. The full server offers 32 prompts.
+- With the markets pack enabled, the server's instructions ask agents to check reported figures
+  with `verify_claims` before answering.
+- Results drawn in the chat: in clients that draw MCP Apps, `run_tool` results appear as a page
+  beside the answer (tables, statements as filed, checked claims with their verdicts, last
+  quarter's guidance as ranges with the actual marked, line charts for dated series). One
+  self-contained page served as `ui://canli/view`, with no network access and every string
+  escaped; the model's context is unchanged. Tested in the MCP Apps reference host (`basic-host`
+  from `@modelcontextprotocol/ext-apps` 2.0.3) with live results (an earnings release, a fact
+  check, a price chart, light and dark); not yet tried inside a commercial client.
+- Context re-measured on Node 24.19.0, 2026-10-15: 1,160 o200k_base tokens for the initial tools and
+  instructions (the instructions now ask for `verify_claims`), versus 38,047 for the seven separate
+  servers; start-up 73 ms against 62-89 ms each.
+- Measured in canli-markets-mcp's `bench/analyst`: 87 questions checked against truths built
+  without the tools; first runs on releases and companies not used in development were 26 of 32
+  (fresh), 9 of 9 (fresh-2), 15 of 19 (verify) and 6 of 6 (traps); the defects they found are
+  fixed. A tool-level measure, not a model benchmark.
+
 ## 0.4.0
 
 - The packs' own interfaces are available in the combined server: 25 additional prompts (30 total), 11 additional static resources (14 total), and 8 additional resource templates (9 total). Names and URI schemes identify the pack, schemas and completions use its published MCP handlers, and renamed validation tools use the combined names. Listing these interfaces loads no pack code; disabled packs stay hidden. Original standalone client examples retain their transport configuration.

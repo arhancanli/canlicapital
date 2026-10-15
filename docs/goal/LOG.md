@@ -19694,3 +19694,13 @@ false miss), Intuit's quarterly EPS guide against full-year EPS (a false beat), 
 local-currency guide against US-dollar growth; Salesforce and Dell gained a comparison.
 Results now carry section and versus. Commits a9b99eae and 8027e001; tests 159/159 on Node
 20/22/24; bench 87/87. Found by reading, not a measured error rate. No release.
+
+## 2026-10-15 — MCP new-level: Phases 1 and 2 released; flagship 0.5.0 prepared
+
+Owner approved the merges and asked to carry the goal through. #472 and #473 merged (squash
+c088c446, a0107383). canli-markets-mcp 0.4.0 released (#477, tag markets-mcp-v0.4.0, workflow
+38684639084): npm latest with SLSA provenance, MCP Registry latest. canli-mcp 0.5.0 prepared:
+markets 0.4.0 pinned, 311 tools, 32 prompts, the MCP Apps result viewer; 48 tests on Node
+20/22/24; context 1,160 tokens against 38,047 for seven servers; bundle validated and smoked in
+three configurations; robustness 0 findings on 536 hostile calls. Preflight:
+artifacts/mcp/flagship-preflight-20261015.json.
