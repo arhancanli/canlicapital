@@ -2,6 +2,24 @@
 
 ## Unreleased
 
+- `verify_claims` checks foreign companies: IFRS and US GAAP facts from 20-F and 40-F annual
+  reports and tagged 6-K quarters, in the currency the company reports in (Novo Nordisk in DKK,
+  TSMC in TWD and in its US-dollar translation, ASML's US GAAP in euros). Before, every foreign
+  filer came back "not reported". A figure in a currency the company does not report in is called a
+  conversion instead of judged; the filed number under the wrong currency is contradicted.
+- `verify_claims` reads periods as people write them: a plain year ("in 2025", "2025 revenue"),
+  "FY'25", and a span by its end date ("three months ended June 28, 2025", matched by its dates).
+  A net income that is the profit including non-controlling interests is named as that line.
+- Figures in draft text: a short sentence ending in a glued scale ("net income was €9.6bn.") is
+  read instead of taken for a heading, and NT$, HK$, C$ and A$ are no longer read as US dollars.
+- `economic_series`: "jobless rate" is the unemployment rate (UNRATE), not weekly claims, and
+  "employment rate" the employment-population ratio (new entry, EMRATIO). A rate asked for where
+  only a count matches ("initial claims rate") is refused, naming the nearest count; a Treasury
+  yield with no maturity ("treasury yield") lists the maturities instead of returning the 3-month
+  bill. Reported by izgorodin on dev.to.
+- `prediction_markets`: Kalshi's event volume is contracts traded (`volume_contracts`), not
+  dollars; it was labelled `volume_usd`.
+
 ## 0.5.0
 
 Beyond the US, from the publishers themselves: four tools, no key.

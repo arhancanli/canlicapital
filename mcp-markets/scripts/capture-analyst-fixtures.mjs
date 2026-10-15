@@ -97,6 +97,14 @@ export const VERIFY_CALLS = [
   { company: "TSLA", claims: [{ measure: "dividends per share", period: "fiscal 2024", value: 1.0 }, { measure: "revenue", period: "fiscal 2024", value: 97.7, unit: "USD billion" }] },
   { company: "354950", claims: [{ measure: "revenue", period: "fiscal 2025", value: 164.7, unit: "USD billion" }, { measure: "total assets", period: "fiscal 2025", value: 105.1, unit: "USD billion" }] },
   { company: "AAPL", claims: [{ measure: "revenue", period: "Q4 fiscal 2025", value: 102.5, unit: "USD billion" }, { measure: "revenue", period: "Q3 fiscal 2025", value: 94.0, unit: "USD billion" }] },
+  // Foreign filers (2026-10-15): IFRS in DKK and TWD (with TSMC's US-dollar translation), US GAAP in
+  // euros, a 6-K quarter and profit attributable to shareholders; and periods in everyday words.
+  { company: "353278", claims: [{ measure: "revenue", period: "fiscal 2025", value: 309.064, unit: "DKK billion" }, { measure: "net income", period: "2025", value: 102.4, unit: "DKK billion" }, { measure: "revenue", period: "2025", value: 309.1, unit: "USD billion" }, { measure: "revenue", period: "2025", value: 45.0, unit: "USD billion" }, { measure: "diluted EPS", period: "fiscal 2025", value: 23.0 }, { measure: "operating margin", period: "fiscal 2025", value: 41.3 }] },
+  { company: "1046179", claims: [{ measure: "revenue", period: "fiscal 2024", value: 88.3, unit: "USD billion" }, { measure: "revenue", period: "fiscal 2024", value: 2894.3, unit: "TWD billion" }, { measure: "revenue", period: "fiscal 2024", value: 2.89, unit: "trillion" }] },
+  { company: "1046179", text: "TSMC's revenue in 2024 was NT$2.89 trillion." },
+  { company: "937966", text: "ASML's revenue in 2025 was €32.7 billion and net income was €9.6bn." },
+  { company: "1306965", claims: [{ measure: "revenue", period: "Q2 2025", value: 65.4, unit: "USD billion" }, { measure: "revenue", period: "fiscal 2025", value: 266.9, unit: "USD billion" }, { measure: "net income", period: "fiscal 2025", value: 18.1, unit: "USD billion" }] },
+  { company: "AAPL", text: "Apple's 2025 revenue was $416.2 billion. For the three months ended June 28, 2025, revenue was $94.0 billion. FY'25 net income was $112.0bn." },
 ];
 
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split("/").pop())) {

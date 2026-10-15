@@ -1,10 +1,14 @@
 // verify_claims: check the figures in a draft answer against the company's own filings before
-// they reach a reader. Each claim (a measure, a period, a value) is looked up in SEC's XBRL
-// company-concept facts for the period as the company labels it: fiscal year N is the year its
-// 10-K for fiscal N reports, a quarter the one its 10-Q for that quarter reports. The verdict
-// carries the filed figure and its source; a number that does not match is checked against what
-// it might be instead (another year, a quarter, a thousandfold slip, the figure before a
-// restatement), because that is how wrong figures usually arise.
+// they reach a reader. Each claim (a measure, a period, a value) is looked up in the XBRL facts SEC
+// publishes for the company: US GAAP concepts first, then IFRS (foreign companies filing 20-F, and
+// those that moved from one to the other), in the currency the company reports in. A period is read
+// as the company labels it: fiscal year N is the year its annual report for fiscal N (10-K, 20-F or
+// 40-F) reports, a quarter the one its 10-Q (or a tagged 6-K) for that quarter reports; a year written
+// plainly ("in 2025", "2025 revenue") is that fiscal year, and "three months ended June 28, 2025" is
+// matched by its dates. The verdict carries the filed figure and its source; a number that does not
+// match is checked against what it might be instead (another year, a quarter, another tagged line, a
+// thousandfold slip, the figure before a restatement), because that is how wrong figures usually
+// arise. A figure in a currency the company does not report in is a conversion, and is called one.
 import { z } from "zod";
 
 import { measureOf, periodOf, quarterOf, resultsFromText, sentences, unglue } from "./guidance.mjs";
@@ -12,28 +16,29 @@ import { getJson, NotFound, pad10, resolveEntity } from "./sources.mjs";
 
 const SCALE = { thousand: 1e3, million: 1e6, billion: 1e9, trillion: 1e12 };
 
-// Measures checked against GAAP facts: their concepts (first with facts for the period wins), whether
-// they are flows over a period or balances at a date, and their unit.
+// Measures checked against tagged facts: their US GAAP concepts, then their IFRS ones (the first with
+// a fact for the period wins), whether they are balances at a date, and whether they are per share.
 const FACTS = Object.freeze({
-  revenue: { concepts: ["RevenueFromContractWithCustomerExcludingAssessedTax", "Revenues", "SalesRevenueNet", "RevenueFromContractWithCustomerIncludingAssessedTax", "RevenuesNetOfInterestExpense"], unit: "USD" },
-  net_income: { concepts: ["NetIncomeLoss", "ProfitLoss"], unit: "USD" },
-  eps: { concepts: ["EarningsPerShareDiluted", "EarningsPerShareBasicAndDiluted"], unit: "USD/shares" },
-  eps_basic: { concepts: ["EarningsPerShareBasic", "EarningsPerShareBasicAndDiluted"], unit: "USD/shares" },
-  operating_income: { concepts: ["OperatingIncomeLoss"], unit: "USD" },
-  gross_profit: { concepts: ["GrossProfit"], unit: "USD" },
-  pretax_income: { concepts: ["IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest", "IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments"], unit: "USD" },
-  operating_expenses: { concepts: ["OperatingExpenses", "CostsAndExpenses"], unit: "USD" },
-  rnd: { concepts: ["ResearchAndDevelopmentExpense", "ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost"], unit: "USD" },
-  operating_cash_flow: { concepts: ["NetCashProvidedByUsedInOperatingActivities"], unit: "USD" },
-  capex: { concepts: ["PaymentsToAcquirePropertyPlantAndEquipment", "PaymentsToAcquireProductiveAssets"], unit: "USD" },
-  income_tax: { concepts: ["IncomeTaxExpenseBenefit"], unit: "USD" },
-  dividends_per_share: { concepts: ["CommonStockDividendsPerShareDeclared", "CommonStockDividendsPerShareCashPaid"], unit: "USD/shares" },
-  total_assets: { concepts: ["Assets"], unit: "USD", instant: true },
-  total_liabilities: { concepts: ["Liabilities"], unit: "USD", instant: true },
-  equity: { concepts: ["StockholdersEquity", "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"], unit: "USD", instant: true },
-  cash: { concepts: ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"], unit: "USD", instant: true },
-  long_term_debt: { concepts: ["LongTermDebtNoncurrent", "LongTermDebt"], unit: "USD", instant: true },
+  revenue: { concepts: ["RevenueFromContractWithCustomerExcludingAssessedTax", "Revenues", "SalesRevenueNet", "RevenueFromContractWithCustomerIncludingAssessedTax", "RevenuesNetOfInterestExpense"], ifrs: ["Revenue", "RevenueFromContractsWithCustomers"] },
+  net_income: { concepts: ["NetIncomeLoss", "ProfitLoss"], ifrs: ["ProfitLossAttributableToOwnersOfParent", "ProfitLoss"] },
+  eps: { concepts: ["EarningsPerShareDiluted", "EarningsPerShareBasicAndDiluted"], ifrs: ["DilutedEarningsLossPerShare"], perShare: true },
+  eps_basic: { concepts: ["EarningsPerShareBasic", "EarningsPerShareBasicAndDiluted"], ifrs: ["BasicEarningsLossPerShare"], perShare: true },
+  operating_income: { concepts: ["OperatingIncomeLoss"], ifrs: ["ProfitLossFromOperatingActivities"] },
+  gross_profit: { concepts: ["GrossProfit"], ifrs: ["GrossProfit"] },
+  pretax_income: { concepts: ["IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest", "IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments"], ifrs: ["ProfitLossBeforeTax"] },
+  operating_expenses: { concepts: ["OperatingExpenses", "CostsAndExpenses"], ifrs: [] },
+  rnd: { concepts: ["ResearchAndDevelopmentExpense", "ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost"], ifrs: ["ResearchAndDevelopmentExpense"] },
+  operating_cash_flow: { concepts: ["NetCashProvidedByUsedInOperatingActivities"], ifrs: ["CashFlowsFromUsedInOperatingActivities"] },
+  capex: { concepts: ["PaymentsToAcquirePropertyPlantAndEquipment", "PaymentsToAcquireProductiveAssets"], ifrs: ["PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"] },
+  income_tax: { concepts: ["IncomeTaxExpenseBenefit"], ifrs: ["IncomeTaxExpenseContinuingOperations"] },
+  dividends_per_share: { concepts: ["CommonStockDividendsPerShareDeclared", "CommonStockDividendsPerShareCashPaid"], ifrs: ["DividendsRecognisedAsDistributionsToOwnersPerShare"], perShare: true },
+  total_assets: { concepts: ["Assets"], ifrs: ["Assets"], instant: true },
+  total_liabilities: { concepts: ["Liabilities"], ifrs: ["Liabilities"], instant: true },
+  equity: { concepts: ["StockholdersEquity", "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"], ifrs: ["EquityAttributableToOwnersOfParent", "Equity"], instant: true },
+  cash: { concepts: ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"], ifrs: ["CashAndCashEquivalents"], instant: true },
+  long_term_debt: { concepts: ["LongTermDebtNoncurrent", "LongTermDebt"], ifrs: ["LongtermBorrowings"], instant: true },
 });
+const conceptsOf = (spec) => [...spec.concepts.map((c) => `us-gaap:${c}`), ...spec.ifrs.map((c) => `ifrs-full:${c}`)];
 // Ratios of two facts, in percent.
 const RATIOS = Object.freeze({ gross_margin: ["gross_profit", "revenue"], operating_margin: ["operating_income", "revenue"], net_margin: ["net_income", "revenue"], pretax_margin: ["pretax_income", "revenue"] });
 // Differences of two facts.
@@ -45,9 +50,15 @@ export function claimMeasure(text) {
   return measureOf(text);
 }
 
-// A claimed period as the company labels it: { fy, fp: "FY" | "Q1".."Q4" } or { instant }.
+const MONTH = { january: "01", february: "02", march: "03", april: "04", may: "05", june: "06", july: "07", august: "08", september: "09", october: "10", november: "11", december: "12" };
+const MONTHS = { three: 3, six: 6, nine: 9, twelve: 12, 3: 3, 6: 6, 9: 9, 12: 12 };
+
+// A claimed period as the company labels it: { fy, fp: "FY" | "Q1".."Q4" }, a span given by its
+// dates ({ end, months }: "three months ended June 28, 2025") or { instant }.
 export function claimPeriod(text) {
   const t = String(text ?? "").trim();
+  const span = t.match(/\b(three|six|nine|twelve|3|6|9|12) months? end(?:ed|ing) (?:on )?(january|february|march|april|may|june|july|august|september|october|november|december) (\d{1,2}),? (\d{4})\b/i);
+  if (span) return { end: `${span[4]}-${MONTH[span[2].toLowerCase()]}-${span[3].padStart(2, "0")}`, months: MONTHS[span[1].toLowerCase()] };
   const iso = t.match(/\b(\d{4}-\d{2}-\d{2})\b/);
   const q = quarterOf(t);
   if (q && q.year) return { fy: q.year, fp: `Q${q.quarter}` };
@@ -58,40 +69,77 @@ export function claimPeriod(text) {
   return year ? { fy: Number(year[0]), fp: "FY" } : null;
 }
 
+// A period a sentence gives in everyday words when it names none the usual way: "in 2025", "2025
+// revenue", "FY'25". A number that only looks like a year (inside a figure or a date) is not one.
+function plainPeriod(s) {
+  const fy = s.match(/\bfy\s?['’]\s?\d{2}\b/i);
+  if (fy) return fy[0];
+  const year = s.match(/(?<![\d.,$€£¥/-])\b(?:19|20)\d{2}\b(?![\d,./-]|\s?(?:%|percent))/);
+  return year ? year[0] : null;
+}
+
+// A claim's currency, from its unit: an ISO code or a symbol. Dollars other than the US's are
+// written as codes before the figures are read (NT$ is TWD, not USD).
+const CODES = /\b(USD|EUR|GBP|JPY|CHF|DKK|SEK|NOK|TWD|CNY|RMB|HKD|KRW|INR|CAD|AUD|NZD|SGD|BRL|MXN|ZAR|ILS)\b/;
+const DOLLARS = { NT: "TWD", HK: "HKD", C: "CAD", CA: "CAD", A: "AUD", AU: "AUD", S: "SGD", NZ: "NZD" };
+export function currencyOf(unit) {
+  const u = String(unit ?? "");
+  const code = u.match(new RegExp(CODES.source, "i"));
+  if (code) return code[1].toUpperCase() === "RMB" ? "CNY" : code[1].toUpperCase();
+  const sym = u.match(/US\$|[$€£¥]/);
+  return sym ? { $: "USD", "US$": "USD", "€": "EUR", "£": "GBP", "¥": "JPY" }[sym[0]] : null;
+}
+
 const decimalsOf = (v) => (String(v).split(".")[1] ?? "").length;
 const days = (a, b) => (Date.parse(b) - Date.parse(a)) / 86400000;
 const round = (x, d = 6) => (x == null || !Number.isFinite(x) ? null : Math.round(x * 10 ** d) / 10 ** d);
 
-// The facts of one concept, cached per session. SEC's company-concept endpoint answers some
+// A concept's facts by unit, cached per session. SEC's company-concept endpoint answers some
 // companies with an empty units object ({"USD":{}}) for concepts their companyfacts file holds
-// (Coca-Cola's Revenues and NetIncomeLoss, 2026-10-14), so an empty or malformed answer falls back
+// (Coca-Cola's Revenues and NetIncomeLoss, 2026-10-14), so an answer with no facts in it falls back
 // to the company's full facts file.
-async function conceptFacts(session, cik, concept, unit) {
-  let rows = null;
+async function conceptUnits(session, cik, name) {
+  const [taxonomy, concept] = name.split(":");
+  let units = null;
   try {
-    const d = await getJson(session, `https://data.sec.gov/api/xbrl/companyconcept/CIK${pad10(cik)}/us-gaap/${concept}.json`, { maxBytes: 16 * 1024 * 1024 });
-    rows = d?.units?.[unit];
+    const d = await getJson(session, `https://data.sec.gov/api/xbrl/companyconcept/CIK${pad10(cik)}/${taxonomy}/${concept}.json`, { maxBytes: 16 * 1024 * 1024 });
+    units = d?.units && typeof d.units === "object" ? d.units : null;
   } catch (err) {
     if (!(err instanceof NotFound)) throw err;
   }
-  if (Array.isArray(rows) && rows.length) return rows;
   // A concept the endpoint does not have (404) is not in the facts file either.
-  if (rows === undefined || rows === null) return [];
+  if (!units) return {};
+  if (Object.values(units).some((r) => Array.isArray(r) && r.length)) return units;
   try {
     const all = await getJson(session, `https://data.sec.gov/api/xbrl/companyfacts/CIK${pad10(cik)}.json`, { maxBytes: 96 * 1024 * 1024 });
-    const r = all?.facts?.["us-gaap"]?.[concept]?.units?.[unit];
-    return Array.isArray(r) ? r : [];
+    return all?.facts?.[taxonomy]?.[concept]?.units ?? {};
   } catch (err) {
-    if (err instanceof NotFound) return [];
+    if (err instanceof NotFound) return {};
     throw err;
   }
 }
 
-// The fact for a period as the company labels it: from the filing for that fiscal year and period,
+// The units to read a concept in, in order: the claim's currency when the company tags it, then the
+// currency most of its facts use, the one it reports in (a convenience translation, like TSMC's US
+// dollars beside its NT dollars, has fewer).
+function unitsFor(units, perShare, want) {
+  const ok = Object.keys(units).filter((u) => (perShare ? /^[A-Z]{3}\/shares$/ : /^[A-Z]{3}$/).test(u) && Array.isArray(units[u]) && units[u].length);
+  if (!ok.length) return [];
+  const main = ok.reduce((m, u) => (units[u].length > units[m].length ? u : m));
+  const wanted = want ? ok.find((u) => u.slice(0, 3) === want) : null;
+  return [...new Set([wanted, main].filter(Boolean))].map((u) => ({ rows: units[u], currency: u.slice(0, 3), main: main.slice(0, 3) }));
+}
+
+const ANNUAL = /^(?:10-K|20-F|40-F)/, INTERIM = /^(?:10-Q|6-K)/;
+// How many days a span of months covers (a 52/53-week year included).
+const SPANS = { 3: [80, 100], 6: [170, 190], 9: [260, 280], 12: [350, 380] };
+
+// The fact for a period as the company labels it: from the report for that fiscal year and period,
 // the fact covering it (a year, a quarter, or the balance at its end), with the latest value filed
-// later for the same dates.
+// later for the same dates. A span given by its dates is matched by them instead.
 function factFor(rows, period, instant) {
-  const forms = period.fp === "FY" ? /^10-K/ : /^10-Q/;
+  if (period.end) return factEnding(rows, period, instant);
+  const forms = period.fp === "FY" ? ANNUAL : INTERIM;
   const span = (r) => (r.start ? days(r.start, r.end) : null);
   const fits = (r) => (instant ? !r.start : period.fp === "FY" ? span(r) >= 350 && span(r) <= 380 : span(r) >= 80 && span(r) <= 100);
   const own = rows.filter((r) => r.fy === period.fy && r.fp === period.fp && forms.test(r.form ?? "") && fits(r));
@@ -102,59 +150,92 @@ function factFor(rows, period, instant) {
   return { first, latest: same[0] ?? first };
 }
 
-// A fourth quarter has no 10-Q: it is the 10-K's year less the nine months the third-quarter
-// 10-Q reports (a flow); a balance at its end is the year-end balance.
+// The fact ending on a span's last day and covering its months, from whichever report carries it;
+// a span a year away (near) may end a few days off, as 52/53-week years do.
+function factEnding(rows, period, instant) {
+  const [lo, hi] = SPANS[period.months] ?? [0, 0];
+  const off = (r) => Math.abs(days(r.end, period.end));
+  const fits = (r) => off(r) <= (period.near ?? 0) && (instant ? !r.start : Boolean(r.start) && days(r.start, r.end) >= lo && days(r.start, r.end) <= hi);
+  const all = rows.filter(fits);
+  if (!all.length) return null;
+  const end = all.reduce((m, r) => (off(r) < off(m) ? r : m)).end;
+  const same = all.filter((r) => r.end === end).sort((a, b) => a.filed.localeCompare(b.filed));
+  return { first: same[0], latest: same[same.length - 1] };
+}
+
+// A fourth quarter has no quarterly report: it is the annual report's year less the nine months the
+// third-quarter report gives (a flow); a balance at its end is the year-end balance.
 function fourthQuarter(rows, fy, instant) {
   const year = factFor(rows, { fy, fp: "FY" }, instant);
-  if (!year || instant) return year && { ...year, derived: "the balance at the fiscal year end (10-K)" };
-  const nine = rows.filter((r) => r.fy === fy && r.fp === "Q3" && /^10-Q/.test(r.form ?? "") && r.start === year.latest.start && days(r.start, r.end) >= 260 && days(r.start, r.end) <= 280).sort((a, b) => b.filed.localeCompare(a.filed))[0];
+  if (!year || instant) return year && { ...year, derived: `the balance at the fiscal year end (${year.latest.form})` };
+  const nine = rows.filter((r) => r.fy === fy && r.fp === "Q3" && INTERIM.test(r.form ?? "") && r.start === year.latest.start && days(r.start, r.end) >= 260 && days(r.start, r.end) <= 280).sort((a, b) => b.filed.localeCompare(a.filed))[0];
   if (!nine) return null;
   const val = year.latest.val - nine.val;
   const fact = { ...year.latest, start: nine.end, val, derived: true };
-  return { first: { ...fact, val: year.first.val - nine.val }, latest: fact, derived: `the fiscal year (10-K) less the first nine months (10-Q filed ${nine.filed})` };
+  return { first: { ...fact, val: year.first.val - nine.val }, latest: fact, derived: `the fiscal year (${year.latest.form}) less the first nine months (${nine.form} filed ${nine.filed})` };
 }
 
-async function lookup(session, cik, measure, period) {
+// The fact for a measure and period: the first concept with one, in the claim's currency when the
+// company tags it, else in the currency it reports in.
+async function lookup(session, cik, measure, period, want) {
   const spec = FACTS[measure];
-  for (const concept of spec.concepts) {
-    const rows = await conceptFacts(session, cik, concept, spec.unit);
-    if (!rows.length) continue;
-    const f = period.fp === "Q4" ? fourthQuarter(rows, period.fy, spec.instant) : factFor(rows, period, spec.instant);
-    if (f) return { ...f, concept: `us-gaap:${concept}`, rows };
+  for (const name of conceptsOf(spec)) {
+    for (const unit of unitsFor(await conceptUnits(session, cik, name), spec.perShare, want)) {
+      const f = period.fp === "Q4" ? fourthQuarter(unit.rows, period.fy, spec.instant) : factFor(unit.rows, period, spec.instant);
+      if (f) return { ...f, concept: name, currency: unit.currency, main: unit.main };
+    }
   }
   return null;
 }
 
-// The newest fiscal year and quarter a company has reported a measure for, to say so when a claim
-// is about a period not reported (yet, or ever).
+// The newest fiscal year a company has reported a measure for, to say so when a claim is about a
+// period not reported (yet, or ever).
 async function latestReported(session, cik, measure) {
   const spec = FACTS[FACTS[measure] ? measure : (RATIOS[measure] ?? DIFFERENCES[measure])[0]];
-  for (const concept of spec.concepts) {
-    const rows = await conceptFacts(session, cik, concept, spec.unit);
-    const tenK = rows.filter((r) => /^10-K/.test(r.form ?? "") && r.fp === "FY");
-    if (tenK.length) { const r = tenK.reduce((m, x) => (x.end > m.end ? x : m)); return { fy: r.fy, end: r.end, concept }; }
+  for (const name of conceptsOf(spec)) {
+    for (const unit of unitsFor(await conceptUnits(session, cik, name), spec.perShare, null)) {
+      const annual = unit.rows.filter((r) => ANNUAL.test(r.form ?? "") && r.fp === "FY");
+      if (annual.length) { const r = annual.reduce((m, x) => (x.end > m.end ? x : m)); return { fy: r.fy, end: r.end, concept: name }; }
+    }
   }
   return null;
 }
 
 const sourceOf = (cik, accn) => `https://www.sec.gov/Archives/edgar/data/${Number(cik)}/${accn.replace(/-/g, "")}/${accn}-index.htm`;
-const scaleOf = (unit) => { const m = String(unit ?? "").toLowerCase().match(/thousand|million|billion|trillion/); return m ? SCALE[m[0]] : 1; };
-const label = (period) => (period.instant ? period.instant : period.fp === "FY" ? `fiscal ${period.fy}` : `${period.fp} of fiscal ${period.fy}`);
+const scaleWord = (unit) => String(unit ?? "").toLowerCase().match(/thousand|million|billion|trillion/)?.[0] ?? null;
+const scaleOf = (unit) => (scaleWord(unit) ? SCALE[scaleWord(unit)] : 1);
+const SPAN_WORDS = { 3: "three", 6: "six", 9: "nine", 12: "twelve" };
+const label = (period) => (period.instant ? period.instant : period.end ? `the ${SPAN_WORDS[period.months]} months ended ${period.end}` : period.fp === "FY" ? `fiscal ${period.fy}` : `${period.fp} of fiscal ${period.fy}`);
+// The same period some years away: the fiscal label, or the span ending about then.
+function shifted(period, years) {
+  if (!period.end) return { ...period, fy: period.fy + years };
+  const d = new Date(`${period.end}T00:00:00Z`);
+  d.setUTCFullYear(d.getUTCFullYear() + years);
+  return { end: d.toISOString().slice(0, 10), months: period.months, near: 7 };
+}
+const LINES = { "ifrs-full:ProfitLoss": "profit including non-controlling interests", "us-gaap:ProfitLoss": "profit including non-controlling interests" };
 
-// What a wrong figure does match: another year, a quarter of the year, a thousandfold slip.
-async function explain(session, cik, measure, period, claimed, tolerance, used) {
+// What a wrong figure does match: another year, a quarter of the year, another tagged line for the
+// same period, a thousandfold slip.
+async function explain(session, cik, measure, period, claimed, tolerance, used, currency) {
   const near = (v) => Math.abs(v - claimed) <= tolerance;
   const spec = FACTS[measure];
   if (!spec) return null;
   // The concept the lookup used first, then the others (a company that changed concepts reports
-  // the other years under another one).
-  const order = [used, ...spec.concepts.map((c) => `us-gaap:${c}`).filter((c) => c !== used)].filter(Boolean);
+  // the other years under another one), all in the currency the lookup used.
+  const order = [used, ...conceptsOf(spec).filter((c) => c !== used)].filter(Boolean);
   for (const name of order) {
-    const rows = await conceptFacts(session, cik, name.replace(/^us-gaap:/, ""), spec.unit);
-    if (!rows.length) continue;
-    for (const fy of [period.fy - 1, period.fy + 1, period.fy - 2]) {
-      const f = factFor(rows, { ...period, fy }, spec.instant);
-      if (f && (near(f.latest.val) || near(f.first.val))) return `matches ${label({ ...period, fy })} instead`;
+    const unit = unitsFor(await conceptUnits(session, cik, name), spec.perShare, currency).find((u) => u.currency === currency);
+    if (!unit) continue;
+    const rows = unit.rows;
+    if (name !== used) {
+      const f = factFor(rows, period, spec.instant);
+      if (f && (near(f.latest.val) || near(f.first.val))) return `matches ${name}${LINES[name] ? ` (${LINES[name]})` : ""} for ${label(period)} instead, a different line from ${used}`;
+    }
+    for (const k of [-1, 1, -2]) {
+      const other = shifted(period, k);
+      const f = factFor(rows, other, spec.instant);
+      if (f && (near(f.latest.val) || near(f.first.val))) return `matches ${other.end ? label({ end: f.latest.end, months: other.months }) : label(other)} instead`;
     }
     if (period.fp === "FY" && !spec.instant) {
       for (const q of ["Q1", "Q2", "Q3"]) {
@@ -174,57 +255,69 @@ async function check(session, cik, claim) {
   const base = { claim: claim.quote ?? `${measure} ${label(period ?? { fy: "?", fp: "FY" })} ${value}${unit ? ` ${unit}` : ""}`, measure, period: period ? label(period) : null, claimed: value, unit: unit ?? null };
   if (claim.basis && claim.basis !== "GAAP") return { ...base, verdict: "not checkable", note: `${claim.basis} figures are the company's own measures, not in its XBRL statements; earnings_release reads them from the release.` };
   if (!measure || !(FACTS[measure] || RATIOS[measure] || DIFFERENCES[measure])) return { ...base, verdict: "not checkable", note: `${measure ?? "this measure"} is not one this tool checks: ${[...Object.keys(FACTS), ...Object.keys(RATIOS), ...Object.keys(DIFFERENCES)].join(", ")}.` };
-  if (!period) return { ...base, verdict: "not checkable", note: "No period named: give a fiscal year (\"fiscal 2025\"), a quarter (\"Q3 2026\") or a date." };
+  if (!period) return { ...base, verdict: "not checkable", note: "No period named: give a fiscal year (\"fiscal 2025\" or \"2025\"), a quarter (\"Q3 2026\"), or a span with its end date (\"three months ended June 28, 2025\")." };
   if (period.instant) return { ...base, verdict: "not checkable", note: "Give the fiscal year whose end the balance is at (\"fiscal 2025\"); a bare date is not matched to a filing." };
   const tolerance = 0.5 * 10 ** -(claim.decimals ?? decimalsOf(value));
+  const want = currencyOf(unit);
   // Ratios in percent, differences in the claim's scale.
   if (RATIOS[measure] || DIFFERENCES[measure]) {
     const [a, b] = RATIOS[measure] ?? DIFFERENCES[measure];
-    const [fa, fb] = await Promise.all([lookup(session, cik, a, period), lookup(session, cik, b, period)]);
+    const [fa, fb] = await Promise.all([lookup(session, cik, a, period, want), lookup(session, cik, b, period, want)]);
     if (!fa || !fb) return { ...base, verdict: "not reported", ...(await notReported(session, cik, measure, period)) };
+    if (DIFFERENCES[measure] && want && fa.currency !== want) return { ...base, verdict: "not checkable", note: `the company reports in ${fa.currency}; a ${want} figure is a conversion at an exchange rate the claim does not give` };
     const filed = RATIOS[measure] ? (fa.latest.val / fb.latest.val) * 100 : (fa.latest.val - fb.latest.val) / scaleOf(unit);
     const ok = Math.abs(filed - value) <= tolerance + 1e-9;
     return { ...base, verdict: ok ? "confirmed" : "contradicted", filed: round(filed, 4), difference: round(value - filed, 4), how: RATIOS[measure] ? `${fa.concept} / ${fb.concept} x 100` : `${fa.concept} - ${fb.concept}`, source: sourceOf(cik, fa.latest.accn) };
   }
-  // Growth over the prior year.
+  // Growth over the prior year, in whatever currency both years are in.
   if (claim.change === "growth") {
-    const prior = period.fp === "FY" ? { fy: period.fy - 1, fp: "FY" } : { fy: period.fy - 1, fp: period.fp };
-    const [now, then] = await Promise.all([lookup(session, cik, measure, period), lookup(session, cik, measure, prior)]);
+    const prior = shifted(period, -1);
+    const [now, then] = await Promise.all([lookup(session, cik, measure, period, null), lookup(session, cik, measure, prior, null)]);
     if (!now || !then) return { ...base, verdict: "not reported", ...(await notReported(session, cik, measure, now ? prior : period)) };
     const filed = (now.latest.val / then.latest.val - 1) * 100;
     const ok = Math.abs(filed - value) <= tolerance + 1e-9;
-    return { ...base, verdict: ok ? "confirmed" : "contradicted", filed: round(filed, 4), difference: round(value - filed, 4), how: `${now.concept} ${label(period)} over ${label(prior)}, minus 1, x 100`, source: sourceOf(cik, now.latest.accn) };
+    return { ...base, verdict: ok ? "confirmed" : "contradicted", filed: round(filed, 4), difference: round(value - filed, 4), how: `${now.concept} ${label(period)} over ${label(then.latest.end && prior.end ? { end: then.latest.end, months: prior.months } : prior)}, minus 1, x 100`, source: sourceOf(cik, now.latest.accn) };
   }
-  const f = await lookup(session, cik, measure, period);
+  const f = await lookup(session, cik, measure, period, want);
   if (!f) return { ...base, verdict: "not reported", ...(await notReported(session, cik, measure, period)) };
-  const scale = FACTS[measure].unit === "USD/shares" ? 1 : scaleOf(unit);
+  if (FACTS[measure].perShare && !unit) base.unit = `${f.currency} per share`;
+  const scale = FACTS[measure].perShare ? 1 : scaleOf(unit);
   const claimed = value * scale, tol = tolerance * scale;
   const latest = f.latest.val, first = f.first.val;
   const shown = (v) => round(v / scale, 6);
+  const where = { concept: f.concept, period_end: f.latest.end };
+  // A figure in a currency the company does not tag is a conversion: only the filed number under
+  // the wrong currency is judged.
+  if (want && f.currency !== want) {
+    if (Math.abs(latest - claimed) <= tol || Math.abs(first - claimed) <= tol) return { ...base, verdict: "contradicted", filed: shown(latest), note: `the number is the filed figure in ${f.currency}, not ${want}: the currency is wrong`, ...where, source: sourceOf(cik, f.latest.accn) };
+    return { ...base, verdict: "not checkable", filed: shown(latest), note: `the company reports in ${f.currency} (${f.currency} ${shown(latest)}${scaleWord(unit) ? ` ${scaleWord(unit)}` : ""} filed); a ${want} figure is a conversion at an exchange rate the claim does not give`, ...where, source: sourceOf(cik, f.latest.accn) };
+  }
+  const currency = f.currency !== f.main ? `the ${f.currency} figure the filing gives beside its ${f.main} one (a convenience translation)` : !want && f.currency !== "USD" ? `in ${f.currency}, the currency the company reports in` : null;
   const derived = f.derived ? `derived: ${f.derived}` : null;
   if (Math.abs(latest - claimed) <= tol) {
-    return { ...base, verdict: "confirmed", filed: shown(latest), ...(first !== latest ? { note: [`first reported as ${shown(first)} (${f.first.form} filed ${f.first.filed}); revised since`, derived].filter(Boolean).join("; ") } : derived ? { note: derived } : {}), concept: f.concept, period_end: f.latest.end, source: sourceOf(cik, f.latest.accn) };
+    const notes = [first !== latest ? `first reported as ${shown(first)} (${f.first.form} filed ${f.first.filed}); revised since` : null, derived, currency].filter(Boolean);
+    return { ...base, verdict: "confirmed", filed: shown(latest), ...(notes.length ? { note: notes.join("; ") } : {}), ...where, source: sourceOf(cik, f.latest.accn) };
   }
   if (Math.abs(first - claimed) <= tol) {
-    return { ...base, verdict: "confirmed as first reported", filed: shown(latest), first_reported: shown(first), note: `matches the figure first reported in the ${f.first.form} filed ${f.first.filed}; a later filing revised it to ${shown(latest)}`, concept: f.concept, period_end: f.latest.end, source: sourceOf(cik, f.first.accn) };
+    return { ...base, verdict: "confirmed as first reported", filed: shown(latest), first_reported: shown(first), note: [`matches the figure first reported in the ${f.first.form} filed ${f.first.filed}; a later filing revised it to ${shown(latest)}`, currency].filter(Boolean).join("; "), ...where, source: sourceOf(cik, f.first.accn) };
   }
-  const why = await explain(session, cik, measure, period, claimed, tol, f.concept);
-  return { ...base, verdict: "contradicted", filed: shown(latest), difference: round(value - shown(latest), 6), ...(why ? { note: why } : {}), concept: f.concept, period_end: f.latest.end, source: sourceOf(cik, f.latest.accn) };
+  const notes = [await explain(session, cik, measure, period, claimed, tol, f.concept, f.currency), currency].filter(Boolean);
+  return { ...base, verdict: "contradicted", filed: shown(latest), difference: round(value - shown(latest), 6), ...(notes.length ? { note: notes.join("; ") } : {}), ...where, source: sourceOf(cik, f.latest.accn) };
 }
 
 async function notReported(session, cik, measure, period) {
   const latest = await latestReported(session, cik, measure);
-  if (!latest) return { note: `The company's filings carry no ${measure.replace(/_/g, " ")} under the GAAP concepts this tool reads; the premise may be wrong (a measure it does not report), or it reports it under its own name.` };
+  if (!latest) return { note: `The company's filings carry no ${measure.replace(/_/g, " ")} under the US GAAP or IFRS concepts this tool reads; the premise may be wrong (a measure it does not report), or it reports it under its own name.` };
   return { note: `No ${measure.replace(/_/g, " ")} is reported for ${label(period)}: the latest annual figure is for fiscal ${latest.fy} (the year ending ${latest.end}). A claim about a later period is not a reported figure.` };
 }
 
 export const verifyInput = z.object({
-  company: z.string().min(1).max(120).describe("Ticker (AAPL), CIK (320193) or name: the company the claims are about."),
+  company: z.string().min(1).max(120).describe("Ticker (AAPL, NVO, TSM), CIK (320193) or name: the company the claims are about. Foreign companies filing 20-F or 40-F are checked too, in the currency they report in."),
   claims: z.array(z.object({
     measure: z.string().min(2).max(80).describe("What the figure is: revenue, net income, diluted EPS, operating income, gross profit, operating margin, net margin, free cash flow, total assets, cash, long-term debt, R&D, dividends per share..."),
-    period: z.string().min(2).max(60).describe("The period as the company labels it: \"fiscal 2025\", \"FY2025\", \"Q3 2026\", \"third quarter of fiscal 2026\"."),
+    period: z.string().min(2).max(60).describe("The period as the company labels it: \"fiscal 2025\", \"FY2025\", \"2025\", \"Q3 2026\", \"third quarter of fiscal 2026\", or a span by its end date: \"three months ended June 28, 2025\"."),
     value: z.number().describe("The claimed figure, as written: 416.2 with unit \"USD billion\"; margins and growth in percent."),
-    unit: z.string().max(30).optional().describe("\"USD billion\", \"USD million\", \"USD\", \"USD per share\", \"%\"."),
+    unit: z.string().max(30).optional().describe("\"USD billion\", \"EUR million\", \"DKK billion\", \"USD per share\", \"%\". A currency the company does not report in is a conversion and is not judged."),
     growth: z.boolean().optional().describe("The value is growth over the prior year, in percent."),
     basis: z.enum(["GAAP", "non-GAAP", "adjusted"]).optional().describe("Adjusted and non-GAAP figures are not in the XBRL statements and are not checked here."),
   }).strict()).min(1).max(25).optional().describe("Claims to check, each a measure, period and value."),
@@ -237,7 +330,7 @@ function precisionExample(rows, claims) {
   const i = rows.findIndex((x) => typeof x.claimed === "number" && Number.isFinite(x.claimed));
   if (i < 0) return "";
   const r = rows[i], d = claims[i]?.decimals ?? decimalsOf(r.claimed);
-  const unit = String(r.unit ?? "").replace(/^USD\s*/, "").trim();
+  const unit = String(r.unit ?? "").replace(/^(?:[A-Z]{3}|[€£¥$])\s*/, "").trim();
   const tail = unit === "%" ? { claim: "%", half: " points" } : unit ? { claim: ` ${unit}`, half: ` ${unit}` } : { claim: "", half: "" };
   return ` (${r.claimed.toFixed(d)}${tail.claim}: within ${Number((0.5 / 10 ** d).toFixed(d + 1))}${tail.half})`;
 }
@@ -247,17 +340,22 @@ export async function verifyClaims(session, args) {
   if (!a.claims && !a.text) throw new Error("Pass claims (measure, period, value) or the text of a draft answer.");
   const e = await resolveEntity(session, a.company);
   const claims = [];
-  for (const c of a.claims ?? []) claims.push({ measure: claimMeasure(c.measure), period: claimPeriod(c.period), value: c.value, unit: c.unit ?? (/eps|per share/i.test(c.measure) ? "USD per share" : /margin|growth/i.test(c.measure) || c.growth ? "%" : null), basis: c.basis ?? (/adjusted|non-gaap/i.test(c.measure) ? "adjusted" : null), change: c.growth || /growth|grew|increase/i.test(c.measure) ? "growth" : null, quote: `${c.measure}, ${c.period}: ${c.value}${c.unit ? ` ${c.unit}` : ""}` });
+  for (const c of a.claims ?? []) claims.push({ measure: claimMeasure(c.measure), period: claimPeriod(c.period), value: c.value, unit: c.unit ?? (/margin|growth/i.test(c.measure) || c.growth ? "%" : null), basis: c.basis ?? (/adjusted|non-gaap/i.test(c.measure) ? "adjusted" : null), change: c.growth || /growth|grew|increase/i.test(c.measure) ? "growth" : null, quote: `${c.measure}, ${c.period}: ${c.value}${c.unit ? ` ${c.unit}` : ""}` });
   if (a.text) {
     // A sentence that names no period is about the last one named before it.
     let last = null;
-    for (const s of sentences(unglue(a.text).replace(/\n+/g, " "))) {
+    const text = unglue(a.text).replace(/\n+/g, " ").replace(/\b(NT|HK|CA|C|AU|A|NZ|S)\$\s?/g, (m, p) => `${DOLLARS[p]} `);
+    for (const s of sentences(text)) {
       const named = periodOf(s);
-      const period = named ? claimPeriod(named) : last;
-      if (named && period) last = period;
+      let period = named ? claimPeriod(named) : null;
+      if (!period) { const plain = plainPeriod(s); period = plain ? claimPeriod(plain) : null; }
+      if (period) last = period; else period = last;
+      // A currency written as a code ("DKK 309.1 billion") is the sentence's when it names only one.
+      const codes = [...new Set([...s.matchAll(new RegExp(CODES.source, "g"))].map((m) => m[1]))];
       for (const r of resultsFromText(s)) {
         if (r.change === "change") continue;
-        claims.push({ measure: r.measure, period, value: r.value, decimals: r.decimals, unit: r.unit, basis: r.basis === "GAAP" || r.basis === "GAAP and non-GAAP" ? null : r.basis, change: r.change === "growth" ? "growth" : null, quote: s.trim() });
+        const unit = codes.length === 1 && !currencyOf(r.unit) && !/%|bps|points/.test(r.unit ?? "") ? `${codes[0]}${r.unit ? ` ${r.unit}` : ""}` : r.unit;
+        claims.push({ measure: r.measure, period, value: r.value, decimals: r.decimals, unit, basis: r.basis === "GAAP" || r.basis === "GAAP and non-GAAP" ? null : r.basis, change: r.change === "growth" ? "growth" : null, quote: s.trim() });
       }
     }
     if (!claims.length) throw new Error("No figure with a measure in the text; pass claims (measure, period, value) instead.");
@@ -270,9 +368,10 @@ export async function verifyClaims(session, args) {
     summary: { claims: rows.length, confirmed: count("confirmed") + count("confirmed as first reported"), contradicted: count("contradicted"), not_reported: count("not reported"), not_checkable: count("not checkable") },
     columns: ["claim", "measure", "period", "claimed", "unit", "verdict", "filed", "difference", "note", "source"],
     rows: rows.map((r) => [r.claim, r.measure, r.period, r.claimed, r.unit, r.verdict, r.filed ?? null, r.difference ?? null, r.note ?? r.how ?? null, r.source ?? null]),
-    note: `Confirmed means the filed figure rounds to the claim at the claim's own precision${precisionExample(rows, claims)}. Fiscal years and quarters are as the company labels them in its 10-K and 10-Q.`,
+    note: `Confirmed means the filed figure rounds to the claim at the claim's own precision${precisionExample(rows, claims)}. Fiscal years and quarters are as the company labels them in its annual and quarterly reports; a year written plainly ("in 2025") is that fiscal year. Filed figures are in the currency the claim names, or else the one the company reports in (each row's note says when that is not US dollars).`,
     limits: [
-      "Checked against the GAAP figures companies tag in XBRL (SEC company-concept data); non-GAAP and adjusted figures, guidance and segment figures are not checked here.",
+      "Checked against the US GAAP and IFRS figures companies tag in their SEC filings (10-K, 10-Q, 20-F, 40-F, and 6-K reports that carry tags); non-GAAP and adjusted figures, guidance and segment figures are not checked here.",
+      "A figure converted to another currency is not judged: the company's own figure is shown beside it.",
       "A claim's measure and period are read from its words; read each row's measure and period before relying on a verdict.",
     ],
   };

@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { createSession } from "../src/sources.mjs";
-import { claimMeasure, claimPeriod, verifyClaims } from "../src/verify.mjs";
+import { claimMeasure, claimPeriod, currencyOf, verifyClaims } from "../src/verify.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
 
 const session = () => createSession({ fetchImpl: replayFetch().fetchImpl, env: {}, now: () => NOW, sleep: async () => {} });
@@ -58,7 +58,65 @@ test("fiscal years as the company labels them, and a fourth quarter derived from
   assert.match(q.rows[0][col(q, "note")], /^derived: the fiscal year \(10-K\) less the first nine months/);
 });
 
+// Before 2026-10-15 every foreign filer came back "not reported": only US GAAP tags in US dollars on
+// 10-K and 10-Q were read.
+test("foreign filers: IFRS or US GAAP, in the currency the company reports in; a conversion is called one", async () => {
+  const novo = await verifyClaims(session(), { company: "353278", claims: [
+    { measure: "revenue", period: "fiscal 2025", value: 309.064, unit: "DKK billion" },
+    { measure: "net income", period: "2025", value: 102.4, unit: "DKK billion" },
+    { measure: "revenue", period: "2025", value: 309.1, unit: "USD billion" },
+    { measure: "revenue", period: "2025", value: 45.0, unit: "USD billion" },
+    { measure: "diluted EPS", period: "fiscal 2025", value: 23.0 },
+    { measure: "operating margin", period: "fiscal 2025", value: 41.3 },
+  ] });
+  assert.deepEqual(verdicts(novo), [["revenue", 309.064, "confirmed"], ["net_income", 102.4, "confirmed"], ["revenue", 309.1, "contradicted"], ["revenue", 45, "not checkable"], ["eps", 23, "confirmed"], ["operating_margin", 41.3, "confirmed"]]);
+  const note = (r, i) => r.rows[i][col(r, "note")];
+  assert.equal(novo.rows[1][col(novo, "filed")], 102.434, "Novo Nordisk has no minority interests: profit for the year");
+  assert.equal(note(novo, 2), "the number is the filed figure in DKK, not USD: the currency is wrong");
+  assert.match(note(novo, 3), /reports in DKK \(DKK 309\.064 billion filed\); a USD figure is a conversion/);
+  assert.equal(novo.rows[4][col(novo, "unit")], "DKK per share");
+  assert.match(novo.rows[5][col(novo, "note")], /^ifrs-full:ProfitLossFromOperatingActivities \/ ifrs-full:Revenue/);
+  const tsmc = await verifyClaims(session(), { company: "1046179", claims: [
+    { measure: "revenue", period: "fiscal 2024", value: 88.3, unit: "USD billion" },
+    { measure: "revenue", period: "fiscal 2024", value: 2894.3, unit: "TWD billion" },
+    { measure: "revenue", period: "fiscal 2024", value: 2.89, unit: "trillion" },
+  ] });
+  assert.deepEqual(tsmc.rows.map((x) => [x[col(tsmc, "verdict")], x[col(tsmc, "filed")], x[col(tsmc, "note")]]), [
+    ["confirmed", 88.268, "the USD figure the filing gives beside its TWD one (a convenience translation)"],
+    ["confirmed", 2894.3077, null],
+    ["confirmed", 2.894308, "in TWD, the currency the company reports in"],
+  ]);
+  const drafted = await verifyClaims(session(), { company: "1046179", text: "TSMC's revenue in 2024 was NT$2.89 trillion." });
+  assert.deepEqual(drafted.rows.map((x) => [x[col(drafted, "unit")], x[col(drafted, "verdict")]]), [["TWD trillion", "confirmed"]], "NT dollars are not US dollars");
+});
+
+test("a quarter from a foreign filer's 6-K, and profit attributable to shareholders", async () => {
+  const r = await verifyClaims(session(), { company: "1306965", claims: [
+    { measure: "revenue", period: "Q2 2025", value: 65.4, unit: "USD billion" },
+    { measure: "revenue", period: "fiscal 2025", value: 266.9, unit: "USD billion" },
+    { measure: "net income", period: "fiscal 2025", value: 18.1, unit: "USD billion" },
+  ] });
+  assert.deepEqual(verdicts(r), [["revenue", 65.4, "confirmed"], ["revenue", 266.9, "confirmed"], ["net_income", 18.1, "contradicted"]]);
+  assert.equal(r.rows[2][col(r, "filed")], 17.837);
+  assert.match(r.rows[2][col(r, "note")], /^matches ifrs-full:ProfitLoss \(profit including non-controlling interests\) for fiscal 2025 instead/);
+});
+
+test("periods and figures in everyday words: a plain year, FY'25, a span by its end date, 9.6bn", async () => {
+  const apple = await verifyClaims(session(), { company: "AAPL", text: "Apple's 2025 revenue was $416.2 billion. For the three months ended June 28, 2025, revenue was $94.0 billion. FY'25 net income was $112.0bn." });
+  assert.deepEqual(apple.rows.map((x) => [x[col(apple, "period")], x[col(apple, "claimed")], x[col(apple, "verdict")]]), [
+    ["fiscal 2025", 416.2, "confirmed"], ["the three months ended 2025-06-28", 94, "confirmed"], ["fiscal 2025", 112, "confirmed"],
+  ]);
+  const asml = await verifyClaims(session(), { company: "937966", text: "ASML's revenue in 2025 was €32.7 billion and net income was €9.6bn." });
+  assert.deepEqual(asml.rows.map((x) => [x[col(asml, "measure")], x[col(asml, "period")], x[col(asml, "verdict")], x[col(asml, "filed")]]), [
+    ["revenue", "fiscal 2025", "confirmed", 32.6673], ["net_income", "fiscal 2025", "confirmed", 9.6094],
+  ], "ASML files US GAAP in euros");
+});
+
 test("claims' measures and periods as people write them", () => {
+  assert.deepEqual(claimPeriod("three months ended June 28, 2025"), { end: "2025-06-28", months: 3 });
+  assert.deepEqual(claimPeriod("nine months ended September 30, 2025"), { end: "2025-09-30", months: 9 });
+  assert.deepEqual(claimPeriod("FY'25"), { fy: 2025, fp: "FY" });
+  assert.deepEqual(["DKK billion", "€ billion", "USD per share", "NT dollars", "billion", "%"].map(currencyOf), ["DKK", "EUR", "USD", null, null, null]);
   assert.equal(claimMeasure("diluted EPS"), "eps");
   assert.equal(claimMeasure("basic earnings per share"), "eps_basic");
   assert.equal(claimMeasure("total assets"), "total_assets");

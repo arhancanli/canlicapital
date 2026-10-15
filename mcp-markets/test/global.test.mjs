@@ -94,6 +94,10 @@ test("prediction markets: a probability from the bid and ask, else the last trad
   assert.ok(r.events.length >= 2 && r.sources.length === 2);
   const k = await predictionMarkets(session(), { query: "fed rate cut", limit: 3, venue: "kalshi" });
   assert.ok(k.rows.length && k.rows.every((x) => x[0] === "Kalshi"));
+  // Kalshi's volume is contracts, not dollars (it was labelled volume_usd until 2026-10-15).
+  assert.ok(k.events.length && k.events.every((e) => "volume_contracts" in e && !("volume_usd" in e)));
+  assert.ok(r.events.filter((e) => e.venue === "Polymarket").every((e) => "volume_usd" in e && !("volume_contracts" in e)));
+  assert.ok(k.limits.some((l) => /contracts traded/.test(l)));
 });
 
 test("crypto fundamentals: a protocol by slug with its fees and revenue, a stablecoin's supply, one subject a call", async () => {
