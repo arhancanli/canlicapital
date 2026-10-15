@@ -18,6 +18,7 @@ test("the page is one self-contained file: no network, no external script, the p
   assert.doesNotMatch(html, /^export\s/m, "render.js's exports are made plain");
   for (const method of ["ui/initialize", "ui/notifications/initialized", "ui/notifications/tool-input", "ui/notifications/tool-result", "ui/notifications/tool-cancelled", "ui/notifications/size-changed", "ui/notifications/host-context-changed", "ui/resource-teardown"]) assert.ok(html.includes(method), method);
   assert.ok(html.includes("protocolVersion: \"2026-01-26\""), "the MCP Apps version the official package calls latest");
+  assert.ok(html.includes("if (event.source !== window.parent) return;") && html.includes("if (hostOrigin !== null && event.origin !== hostOrigin) return;"), "only the framing host, at the origin of its handshake answer, is heard");
   assert.ok(Buffer.byteLength(html) < 40000, `${Buffer.byteLength(html)} bytes`);
 });
 

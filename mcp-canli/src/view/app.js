@@ -5,7 +5,11 @@
   const root = document.getElementById("root");
   let nextId = 1, input = {};
   const pending = new Map();
-  const send = (msg) => window.parent.postMessage(msg, "*");
+  // The host is the window that framed this page. Its origin is learnt from its answer to the
+  // handshake; after that, messages from any other origin are ignored and replies go only there.
+  // (A host whose own frame is sandboxed has the opaque origin "null", which cannot be targeted.)
+  let hostOrigin = null;
+  const send = (msg) => window.parent.postMessage(msg, hostOrigin && hostOrigin !== "null" ? hostOrigin : "*");
   const request = (method, params) => new Promise((resolve, reject) => {
     const id = nextId++;
     pending.set(id, { resolve, reject });
@@ -34,11 +38,14 @@
     report();
   };
   window.addEventListener("message", (event) => {
+    if (event.source !== window.parent) return;
+    if (hostOrigin !== null && event.origin !== hostOrigin) return;
     const m = event.data;
     if (!m || m.jsonrpc !== "2.0") return;
     if (m.id !== undefined && pending.has(m.id) && (m.result !== undefined || m.error !== undefined)) {
       const p = pending.get(m.id);
       pending.delete(m.id);
+      if (hostOrigin === null) hostOrigin = event.origin;
       if (m.error) p.reject(new Error(m.error.message || "error")); else p.resolve(m.result);
       return;
     }
