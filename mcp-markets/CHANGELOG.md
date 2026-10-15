@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.4.0
+
 Four tools for the work an analyst does with filings, and for checking the answer. Every figure keeps where it came from: the
 rendered XBRL page or document, and for text the sentence or table row itself.
 
