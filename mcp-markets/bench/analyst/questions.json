@@ -1,5 +1,5 @@
 {
- "about": "Analyst questions for the filings tools, answered from the companies' own filings. dev: companies and releases the tools were built on; fresh: releases never used while building or tuning them. Truths are independent of the tools: statement figures from SEC's companyfacts XBRL API (truth.py), table figures from the raw document by a separate parser (truth.py), guidance from the release's own words (source_quote, read by hand). None of these companies or periods is one of the Vals.ai Finance Agent public questions read on 2026-10-14. fresh-2: a second set of releases, run once after the fixes the fresh set prompted, to check that they generalize; not tuned on.",
+ "about": "Analyst questions for the filings tools, answered from the companies' own filings. dev: companies and releases the tools were built on; fresh: releases never used while building or tuning them. Truths are independent of the tools: statement figures from SEC's companyfacts XBRL API (truth.py), table figures from the raw document by a separate parser (truth.py), guidance from the release's own words (source_quote, read by hand). None of these companies or periods is one of the Vals.ai Finance Agent public questions read on 2026-10-14. fresh-2: a second set of releases, run once after the fixes the fresh set prompted, to check that they generalize; not tuned on. verify: claims for verify_claims built from SEC companyfacts by a separate script (true figures, last year's figure claimed for this year, unit slips, a quarter claimed for the year, future years, dividends from companies that pay none, a non-GAAP figure); pass = the expected verdict and, for a contradicted claim, the expected diagnosis. trap: questions with false premises (a year not reported, a company that does not exist, a table no filing has, a release that does not exist, a dividend never paid); pass = a refusal or an empty answer, never a figure.",
  "scoring": "A question passes when the tool's answer holds every expected figure: values in any scale the page uses (thousands, millions, billions), a range as one row with both ends, a comparison as the row with the expected position. Tool level only: no model reads the answers.",
  "questions": [
   {
@@ -1238,6 +1238,500 @@
     ]
    },
    "source_quote": "Subscription revenues | $15,760 - $15,780 (Full-Year 2026, in millions)"
+  },
+  {
+   "id": "vt-msft-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Microsoft's revenue for fiscal 2026 was 331.8 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "MSFT",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2026",
+      "value": 331.8,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "confirmed"
+   }
+  },
+  {
+   "id": "vt-nvda-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that NVIDIA's revenue for fiscal 2026 was 215.9 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "NVDA",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2026",
+      "value": 215.9,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "confirmed"
+   }
+  },
+  {
+   "id": "vt-909832-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Costco's revenue for fiscal 2026 was 303.2 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "909832",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2026",
+      "value": 303.2,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "confirmed"
+   }
+  },
+  {
+   "id": "vt-21344-rev-2025",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Coca-Cola's revenue for fiscal 2025 was 47.9 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "21344",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2025",
+      "value": 47.9,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "confirmed"
+   }
+  },
+  {
+   "id": "vt-80424-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Procter & Gamble's revenue for fiscal 2026 was 87.0 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "80424",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2026",
+      "value": 87.0,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "confirmed"
+   }
+  },
+  {
+   "id": "vt-1341439-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Oracle's revenue for fiscal 2026 was 67.4 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "1341439",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2026",
+      "value": 67.4,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "confirmed"
+   }
+  },
+  {
+   "id": "vt-34088-ni-2025",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Exxon Mobil's net income for fiscal 2025 was 28.8 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "34088",
+    "claims": [
+     {
+      "measure": "net income",
+      "period": "fiscal 2025",
+      "value": 28.8,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "confirmed"
+   }
+  },
+  {
+   "id": "vt-19617-ni-2025",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that JPMorgan Chase's net income for fiscal 2025 was 57.0 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "19617",
+    "claims": [
+     {
+      "measure": "net income",
+      "period": "fiscal 2025",
+      "value": 57.0,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "confirmed"
+   }
+  },
+  {
+   "id": "vw-msft-rev-prior",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Microsoft's revenue for fiscal 2026 was 281.7 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "MSFT",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2026",
+      "value": 281.7,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "contradicted",
+    "note": "matches fiscal 2025 instead"
+   }
+  },
+  {
+   "id": "vw-nvda-rev-prior",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that NVIDIA's revenue for fiscal 2026 was 130.5 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "NVDA",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2026",
+      "value": 130.5,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "contradicted",
+    "note": "matches fiscal 2025 instead"
+   }
+  },
+  {
+   "id": "vw-21344-rev-prior",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Coca-Cola's revenue for fiscal 2025 was 47.1 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "21344",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2025",
+      "value": 47.1,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "contradicted",
+    "note": "matches fiscal 2024 instead"
+   }
+  },
+  {
+   "id": "vw-msft-rev-slip",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Microsoft's revenue for fiscal 2026 was 331.8 USD million?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "MSFT",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2026",
+      "value": 331.8,
+      "unit": "USD million"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "contradicted",
+    "note": "a slip of units"
+   }
+  },
+  {
+   "id": "vw-80424-rev-slip",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Procter & Gamble's revenue for fiscal 2026 was 87.0 USD million?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "80424",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2026",
+      "value": 87.0,
+      "unit": "USD million"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "contradicted",
+    "note": "a slip of units"
+   }
+  },
+  {
+   "id": "vw-cost-ni-quarter",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Costco's net income for fiscal 2026 was 2.2 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "909832",
+    "claims": [
+     {
+      "measure": "net income",
+      "period": "fiscal 2026",
+      "value": 2.2,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "contradicted",
+    "note": "a quarter, not the year"
+   }
+  },
+  {
+   "id": "vp-msft-rev-2031",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Microsoft's revenue for fiscal 2031 was 500.0 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "MSFT",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2031",
+      "value": 500.0,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "not reported"
+   }
+  },
+  {
+   "id": "vp-ko-ni-2030",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Coca-Cola's net income for fiscal 2030 was 15.0 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "21344",
+    "claims": [
+     {
+      "measure": "net income",
+      "period": "fiscal 2030",
+      "value": 15.0,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "not reported"
+   }
+  },
+  {
+   "id": "vp-amzn-div-2025",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Amazon's dividend per share for fiscal 2025 was 0.5?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "AMZN",
+    "claims": [
+     {
+      "measure": "dividends per share",
+      "period": "fiscal 2025",
+      "value": 0.5
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "not reported"
+   }
+  },
+  {
+   "id": "vp-brk-div-2025",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Berkshire Hathaway's dividend per share for fiscal 2025 was 2.0?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "1067983",
+    "claims": [
+     {
+      "measure": "dividends per share",
+      "period": "fiscal 2025",
+      "value": 2.0
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "not reported"
+   }
+  },
+  {
+   "id": "vp-nvda-ebitda",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that NVIDIA's adjusted EBITDA for fiscal 2026 was 140.0 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "NVDA",
+    "claims": [
+     {
+      "measure": "adjusted EBITDA",
+      "period": "fiscal 2026",
+      "value": 140.0,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "not checkable"
+   }
+  },
+  {
+   "id": "tp-aapl-statements-2031",
+   "set": "trap",
+   "type": "trap",
+   "question": "Show Apple's fiscal 2031 income statement.",
+   "tool": "financial_statements",
+   "args": {
+    "company": "AAPL",
+    "statement": "income",
+    "fiscal_year": 2031
+   },
+   "expect": {
+    "error": "no 10-K for a period ending in 2031"
+   }
+  },
+  {
+   "id": "tp-unknown-company",
+   "set": "trap",
+   "type": "trap",
+   "question": "What were ZZZQ Corp's revenues last year?",
+   "tool": "financial_statements",
+   "args": {
+    "company": "ZZZQ"
+   },
+   "expect": {
+    "error": "not a ticker in the SEC's files"
+   }
+  },
+  {
+   "id": "tp-msft-warp-table",
+   "set": "trap",
+   "type": "trap",
+   "question": "Find Microsoft's warp drive revenue table.",
+   "tool": "filing_tables",
+   "args": {
+    "company": "MSFT",
+    "find": "warp drive revenue"
+   },
+   "expect": {
+    "no_tables": true
+   }
+  },
+  {
+   "id": "tp-nvda-release-fake",
+   "set": "trap",
+   "type": "trap",
+   "question": "What did NVIDIA guide in its release 0001045810-26-999999?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "NVDA",
+    "accession": "0001045810-26-999999"
+   },
+   "expect": {
+    "error": "not one of NVIDIA"
+   }
+  },
+  {
+   "id": "tp-tsla-div-statement",
+   "set": "trap",
+   "type": "trap",
+   "question": "Is it right that Tesla paid a $1.00 dividend per share in fiscal 2024?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "TSLA",
+    "claims": [
+     {
+      "measure": "dividends per share",
+      "period": "fiscal 2024",
+      "value": 1.0
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "not reported"
+   }
+  },
+  {
+   "id": "tp-wmt-q4-10q",
+   "set": "trap",
+   "type": "trap",
+   "question": "Show Walmart's quarterly income statement for a fiscal year that has not ended.",
+   "tool": "financial_statements",
+   "args": {
+    "company": "104169",
+    "period": "quarterly",
+    "fiscal_year": 2030
+   },
+   "expect": {
+    "error": "no 10-Q for a period ending in 2030"
+   }
   }
  ]
 }

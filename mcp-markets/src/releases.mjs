@@ -74,7 +74,9 @@ export async function earningsRelease(session, args) {
   const now = await readRelease(session, e.cik, target.accession, sub.name);
   const max = a.max_lines ?? 12;
   const seenQuotes = new Set();
-  const results = now.results.filter((r) => { const k = `${r.measure}|${r.value}|${r.unit}`; if (seenQuotes.has(k)) return false; seenQuotes.add(k); return true; }).slice(0, max);
+  // The company's own results first, then its parts' ("Data Center"), each in the release's order.
+  const results = now.results.filter((r) => { const k = `${r.measure}|${r.value}|${r.unit}|${r.versus}|${r.section}`; if (seenQuotes.has(k)) return false; seenQuotes.add(k); return true; })
+    .map((r, i) => [r, i]).sort((a, b) => (a[0].section ? 1 : 0) - (b[0].section ? 1 : 0) || a[1] - b[1]).map(([r]) => r).slice(0, max);
   let comparison;
   if (a.compare !== false && at > 0) {
     const prev = releases[at - 1];
@@ -108,7 +110,7 @@ export async function earningsRelease(session, args) {
   return {
     company: { cik: e.cik, name: sub.name, ticker: sub.tickers?.[0] ?? e.ticker ?? null },
     release: { filed: target.date, accession: target.accession, document: now.main.name, url: now.main.url, headline: now.headline, ...(now.read.length > 1 ? { also_read: now.read.slice(1).map((d) => d.url) } : {}) },
-    results: { columns: ["measure", "value", "unit", "basis", "change", "quote"], rows: results.map((r) => [r.measure, r.value, r.unit, r.basis, r.change, r.quote]) },
+    results: { columns: ["measure", "value", "unit", "basis", "change", "versus", "section", "quote"], rows: results.map((r) => [r.measure, r.value, r.unit, r.basis, r.change, r.versus, r.section, r.quote]), note: "versus is what a change is measured against (year over year, quarter over quarter) when the release says; section is the part of the business a line sits under (\"Data Center\"), when its heading names one." },
     guidance: now.guidance.length
       ? { columns: ["measure", "basis", "period", "low", "high", "mid", "unit", "approximate", "change_or_words", "width_pct_of_mid", "quote"], rows: now.guidance.slice(0, 40).map(gRow) }
       : { rows: [], note: "No guidance was found in this release (some companies give it on the call or in a separate exhibit); read_filing with document \"EX-99.2\" reads another exhibit." },

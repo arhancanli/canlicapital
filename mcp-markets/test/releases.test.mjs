@@ -43,6 +43,10 @@ test("NVIDIA: plus-or-minus guidance as ranges, and the quarter's revenue above 
   assert.deepEqual(rev.slice(4, 7), [89.18, 92.82, 96.2]);
   assert.equal(rev[col(c, "position")], "above the range");
   assert.ok(c.rows.filter((x) => x[0] === "gross_margin").every((x) => x[col(c, "position")] === "within the range"));
+  // The company's results first; Data Center's under its name; each change says what it is measured against.
+  const res = r.results, at = (name) => col(res, name);
+  assert.deepEqual(res.rows.slice(0, 3).map((x) => [x[0], x[1], x[at("versus")], x[at("section")]]), [["revenue", 96.2, null, null], ["revenue", 106, "year over year", null], ["revenue", 18, "quarter over quarter", null]]);
+  assert.deepEqual(res.rows.filter((x) => x[at("section")] === "Data Center").map((x) => [x[1], x[at("unit")], x[at("versus")]]), [[89, "USD billion", null], [117, "%", "year over year"], [18, "%", "quarter over quarter"]]);
 });
 
 test("Walmart: guidance tables, and last quarter's table guidance against this quarter", async () => {
@@ -56,6 +60,12 @@ test("Walmart: guidance tables, and last quarter's table guidance against this q
   const cc = c.rows.find((x) => x[0] === "revenue" && x[1] === "constant currency");
   assert.deepEqual(cc.slice(4, 12), [4, 5, 5.1, 1.1, 0.1, 110, 10, "above the range"]);
   assert.ok(r.tables.rows.length > 5);
+  // The gross profit rate's change is the margin's; impacts, boilerplate and headwinds are not results.
+  const res = r.results, at = (name) => col(res, name);
+  const all = (await earningsRelease(session(), { company: "104169", accession: "0000104169-26-000145", max_lines: 40 })).results.rows;
+  assert.ok(all.some((x) => x[0] === "gross_margin" && x[1] === 96 && x[at("unit")] === "bps" && x[at("change")] === "change"));
+  assert.ok(!all.some((x) => x[1] === 713 || x[1] === 0.1 || x[at("unit")] === "bps" && x[1] === 80), "not the About section's revenue, a currency impact or a headwind");
+  assert.deepEqual(all.filter((x) => /eCommerce/.test(x[at("section")] ?? "")).map((x) => [x[1], x[at("section")]]), [[23, "eCommerce"], [24, "Walmart U.S. eCommerce"], [19, "Walmart International eCommerce"], [26, "Sam's Club U.S. eCommerce"]]);
 });
 
 test("compare false skips the previous release; an accession that is not a results release is refused", async () => {

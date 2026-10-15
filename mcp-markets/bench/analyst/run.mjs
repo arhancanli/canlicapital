@@ -9,9 +9,10 @@ import { earningsRelease } from "../../src/releases.mjs";
 import { filingTables } from "../../src/filing-tables.mjs";
 import { createSession } from "../../src/sources.mjs";
 import { financialStatements } from "../../src/statements.mjs";
+import { verifyClaims } from "../../src/verify.mjs";
 
 const HERE = new URL("./", import.meta.url);
-const TOOLS = { financial_statements: financialStatements, filing_tables: filingTables, earnings_release: earningsRelease };
+const TOOLS = { financial_statements: financialStatements, filing_tables: filingTables, earnings_release: earningsRelease, verify_claims: verifyClaims };
 const questions = JSON.parse(readFileSync(new URL("questions.json", HERE), "utf8")).questions;
 const truths = JSON.parse(readFileSync(new URL("truth.json", HERE), "utf8")).truths;
 const arg = (name) => { const i = process.argv.indexOf(name); return i > 0 ? process.argv[i + 1] : null; };
@@ -39,6 +40,11 @@ const rowHolds = (answer, [lo, hi]) => rowsIn(answer).some((r) => { const n = nu
 function score(q, truth, answer) {
   if (truth?.error) return { pass: false, why: `no truth: ${truth.error}` };
   const want = truth?.given ?? truth;
+  if (q.type === "verify") {
+    const v = answer.rows[0][answer.columns.indexOf("verdict")], note = String(answer.rows[0][answer.columns.indexOf("note")] ?? "");
+    const ok = v === want.verdict && (!want.note || note.includes(want.note));
+    return ok ? { pass: true } : { pass: false, why: `verdict ${v}${note ? ` (${note.slice(0, 80)})` : ""}, expected ${want.verdict}${want.note ? ` (${want.note})` : ""}` };
+  }
   if (q.type === "beat_or_miss") {
     const rows = answer?.previous_guidance_vs_results?.rows ?? [];
     const cols = answer?.previous_guidance_vs_results?.columns ?? [];
@@ -65,7 +71,12 @@ for (const q of questions) {
   let answer = null, error = null;
   try { answer = await TOOLS[q.tool](session, q.args); } catch (err) { error = String(err?.message ?? err); }
   const ms = Date.now() - t0;
-  const s = error ? { pass: false, why: `tool error: ${error}` } : score(q, truths[q.id], answer);
+  // A trap passes on a refusal that says why, or an answer with nothing in it; never on a figure.
+  const s = q.type === "trap"
+    ? (q.expect.error ? (error && error.includes(q.expect.error) ? { pass: true } : { pass: false, why: error ? `refused, but: ${error}` : "answered instead of refusing" })
+      : q.expect.no_tables ? (!error && (answer?.results ?? []).every((r) => !r.tables?.length) ? { pass: true } : { pass: false, why: error ? `error: ${error}` : "returned a table" })
+      : (!error && answer?.rows?.[0]?.[answer.columns.indexOf("verdict")] === q.expect.verdict ? { pass: true } : { pass: false, why: error ? `error: ${error}` : `verdict ${answer?.rows?.[0]?.[5]}` }))
+    : error ? { pass: false, why: `tool error: ${error}` } : score(q, truths[q.id], answer);
   results.push({ id: q.id, set: q.set, type: q.type, tool: q.tool, pass: s.pass, ...(s.pass ? {} : { why: s.why }), ...(s.row ? { row: s.row } : {}), ...(s.rows ? { rows: s.rows } : {}), ms, chars: answer ? JSON.stringify(answer).length : 0 });
   console.log(`${s.pass ? "PASS" : "FAIL"} ${q.set.padEnd(5)} ${q.id.padEnd(30)} ${String(ms).padStart(6)} ms${s.pass ? "" : `  ${s.why}`}`);
 }

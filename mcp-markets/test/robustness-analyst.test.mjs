@@ -9,6 +9,7 @@ import { filingTables, tablesInput } from "../src/filing-tables.mjs";
 import { earningsRelease, releaseInput } from "../src/releases.mjs";
 import { createSession } from "../src/sources.mjs";
 import { financialStatements, statementsInput } from "../src/statements.mjs";
+import { verifyClaims } from "../src/verify.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
 
 const session = () => createSession({ fetchImpl: replayFetch().fetchImpl, env: {}, now: () => NOW, sleep: async () => {} });
@@ -20,7 +21,26 @@ const TOOLS = [
   ["financial_statements", financialStatements, { company: "MSFT" }, ["company", "statement", "period", "accession", "filed_before"], ["filings", "fiscal_year"]],
   ["filing_tables", filingTables, { company: "MSFT", find: "geographic revenue" }, ["company", "find", "form", "accession", "filed_before", "document"], ["filings", "max_tables"]],
   ["earnings_release", earningsRelease, { company: "NVDA", accession: "0001045810-26-000073" }, ["company", "accession", "filed_before"], ["max_lines"]],
+  ["verify_claims", verifyClaims, { company: "AAPL", text: "Apple's revenue was $416.2 billion in fiscal 2025." }, ["company", "text"], []],
 ];
+
+test("verify_claims: hostile claims give verdicts or clean errors", async () => {
+  const s = () => createSession({ fetchImpl: replayFetch().fetchImpl, env: {}, now: () => NOW, sleep: async () => {} });
+  for (const bad of ["constructor", "__proto__", "", "x".repeat(5000), "fiscal 99999", "Q9 2026", "-1"]) {
+    for (const field of ["measure", "period"]) {
+      const claim = { measure: "revenue", period: "fiscal 2025", value: 416.2, unit: "USD billion", [field]: bad };
+      try {
+        const r = await verifyClaims(s(), { company: "AAPL", claims: [claim] });
+        assert.ok(["confirmed", "contradicted", "not reported", "not checkable"].includes(r.rows[0][5]), `${field}=${bad.slice(0, 12)}: ${r.rows[0][5]}`);
+      } catch (err) {
+        assert.ok(!(err instanceof TypeError), `${field}=${bad.slice(0, 12)} crashed: ${err.message}`);
+      }
+    }
+  }
+  for (const value of [Number.NaN, Infinity, -1e308, 1e308, 0]) {
+    try { await verifyClaims(s(), { company: "AAPL", claims: [{ measure: "revenue", period: "fiscal 2025", value }] }); } catch (err) { assert.ok(!(err instanceof TypeError), String(value)); }
+  }
+});
 
 const badValue = (x) => typeof x === "number" && !Number.isFinite(x);
 function scan(value, path = "") {

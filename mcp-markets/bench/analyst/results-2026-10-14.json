@@ -1,9 +1,9 @@
 {
- "ran": "2026-10-14T16:07:07.033Z",
+ "ran": "2026-10-14T16:36:02.284Z",
  "node": "v24.19.0",
  "summary": {
-  "passed": 62,
-  "of": 62,
+  "passed": 87,
+  "of": 87,
   "by_set": [
    {
     "group": "dev",
@@ -19,6 +19,16 @@
     "group": "fresh-2",
     "passed": 9,
     "of": 9
+   },
+   {
+    "group": "verify",
+    "passed": 19,
+    "of": 19
+   },
+   {
+    "group": "trap",
+    "passed": 6,
+    "of": 6
    }
   ],
   "by_type": [
@@ -81,10 +91,20 @@
     "group": "fresh-2 guidance",
     "passed": 9,
     "of": 9
+   },
+   {
+    "group": "verify verify",
+    "passed": 19,
+    "of": 19
+   },
+   {
+    "group": "trap trap",
+    "passed": 6,
+    "of": 6
    }
   ],
-  "median_ms": 719,
-  "median_chars": 5640
+  "median_ms": 668,
+  "median_chars": 4043
  },
  "results": [
   {
@@ -93,7 +113,7 @@
    "type": "statement",
    "tool": "financial_statements",
    "pass": true,
-   "ms": 869,
+   "ms": 1010,
    "chars": 2822
   },
   {
@@ -102,7 +122,7 @@
    "type": "statement",
    "tool": "financial_statements",
    "pass": true,
-   "ms": 18210,
+   "ms": 14442,
    "chars": 4043
   },
   {
@@ -111,7 +131,7 @@
    "type": "statement",
    "tool": "financial_statements",
    "pass": true,
-   "ms": 357,
+   "ms": 299,
    "chars": 2837
   },
   {
@@ -120,7 +140,7 @@
    "type": "statement",
    "tool": "financial_statements",
    "pass": true,
-   "ms": 1110,
+   "ms": 572,
    "chars": 2816
   },
   {
@@ -129,7 +149,7 @@
    "type": "statement",
    "tool": "financial_statements",
    "pass": true,
-   "ms": 671,
+   "ms": 548,
    "chars": 2569
   },
   {
@@ -138,7 +158,7 @@
    "type": "statement",
    "tool": "financial_statements",
    "pass": true,
-   "ms": 584,
+   "ms": 628,
    "chars": 3361
   },
   {
@@ -147,7 +167,7 @@
    "type": "statement",
    "tool": "financial_statements",
    "pass": true,
-   "ms": 636,
+   "ms": 549,
    "chars": 3684
   },
   {
@@ -156,7 +176,7 @@
    "type": "statement",
    "tool": "financial_statements",
    "pass": true,
-   "ms": 614,
+   "ms": 537,
    "chars": 2551
   },
   {
@@ -165,7 +185,7 @@
    "type": "statement",
    "tool": "financial_statements",
    "pass": true,
-   "ms": 565,
+   "ms": 539,
    "chars": 4107
   },
   {
@@ -174,7 +194,7 @@
    "type": "statement",
    "tool": "financial_statements",
    "pass": true,
-   "ms": 323,
+   "ms": 558,
    "chars": 6281
   },
   {
@@ -183,7 +203,7 @@
    "type": "statement",
    "tool": "financial_statements",
    "pass": true,
-   "ms": 557,
+   "ms": 519,
    "chars": 4006
   },
   {
@@ -192,7 +212,7 @@
    "type": "statement",
    "tool": "financial_statements",
    "pass": true,
-   "ms": 438,
+   "ms": 672,
    "chars": 5021
   },
   {
@@ -201,7 +221,7 @@
    "type": "trend",
    "tool": "financial_statements",
    "pass": true,
-   "ms": 775,
+   "ms": 718,
    "chars": 3204
   },
   {
@@ -210,7 +230,7 @@
    "type": "trend",
    "tool": "financial_statements",
    "pass": true,
-   "ms": 978,
+   "ms": 685,
    "chars": 3222
   },
   {
@@ -219,7 +239,7 @@
    "type": "trend",
    "tool": "financial_statements",
    "pass": true,
-   "ms": 672,
+   "ms": 556,
    "chars": 3177
   },
   {
@@ -228,7 +248,7 @@
    "type": "kpi",
    "tool": "filing_tables",
    "pass": true,
-   "ms": 1262,
+   "ms": 1617,
    "chars": 3332
   },
   {
@@ -237,7 +257,7 @@
    "type": "kpi",
    "tool": "filing_tables",
    "pass": true,
-   "ms": 475,
+   "ms": 386,
    "chars": 1503
   },
   {
@@ -246,7 +266,7 @@
    "type": "kpi",
    "tool": "filing_tables",
    "pass": true,
-   "ms": 882,
+   "ms": 855,
    "chars": 1345
   },
   {
@@ -255,7 +275,7 @@
    "type": "segment",
    "tool": "filing_tables",
    "pass": true,
-   "ms": 1290,
+   "ms": 1092,
    "chars": 2156
   },
   {
@@ -264,7 +284,7 @@
    "type": "reconciliation",
    "tool": "filing_tables",
    "pass": true,
-   "ms": 798,
+   "ms": 603,
    "chars": 2791
   },
   {
@@ -273,7 +293,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 934,
+   "ms": 590,
    "chars": 4256
   },
   {
@@ -282,8 +302,8 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 733,
-   "chars": 3847
+   "ms": 721,
+   "chars": 4037
   },
   {
    "id": "gd-lulu-eps-q3-2026",
@@ -291,8 +311,8 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 700,
-   "chars": 5229
+   "ms": 651,
+   "chars": 5225
   },
   {
    "id": "gd-wmt-eps-fy27",
@@ -300,8 +320,8 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 610,
-   "chars": 7138
+   "ms": 467,
+   "chars": 7165
   },
   {
    "id": "gd-hd-opmargin-fy26",
@@ -309,7 +329,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 523,
+   "ms": 478,
    "chars": 5945
   },
   {
@@ -318,7 +338,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 742,
+   "ms": 889,
    "chars": 8037
   },
   {
@@ -327,7 +347,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 732,
+   "ms": 671,
    "chars": 14304
   },
   {
@@ -336,7 +356,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 704,
+   "ms": 604,
    "chars": 5640
   },
   {
@@ -359,7 +379,7 @@
     null,
     "above the range"
    ],
-   "ms": 1073,
+   "ms": 955,
    "chars": 5675
   },
   {
@@ -382,8 +402,8 @@
     null,
     "above the range"
    ],
-   "ms": 1088,
-   "chars": 8665
+   "ms": 857,
+   "chars": 8692
   },
   {
    "id": "bm-lulu-rev-q2-2026",
@@ -405,8 +425,8 @@
     -200,
     "below the range"
    ],
-   "ms": 901,
-   "chars": 6796
+   "ms": 863,
+   "chars": 6792
   },
   {
    "id": "gd-qcom-rev-q4fy26",
@@ -414,8 +434,8 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 703,
-   "chars": 5282
+   "ms": 669,
+   "chars": 5440
   },
   {
    "id": "gd-qcom-eps-q4fy26",
@@ -423,8 +443,8 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 445,
-   "chars": 5282
+   "ms": 574,
+   "chars": 5440
   },
   {
    "id": "gd-amat-rev-q4fy26",
@@ -432,7 +452,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 681,
+   "ms": 781,
    "chars": 7099
   },
   {
@@ -441,7 +461,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 707,
+   "ms": 1127,
    "chars": 7634
   },
   {
@@ -450,7 +470,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 492,
+   "ms": 512,
    "chars": 7634
   },
   {
@@ -459,7 +479,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 719,
+   "ms": 666,
    "chars": 6993
   },
   {
@@ -468,7 +488,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 540,
+   "ms": 488,
    "chars": 6993
   },
   {
@@ -477,7 +497,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 811,
+   "ms": 804,
    "chars": 10826
   },
   {
@@ -486,7 +506,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 759,
+   "ms": 859,
    "chars": 8632
   },
   {
@@ -495,7 +515,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 1204,
+   "ms": 556,
    "chars": 8632
   },
   {
@@ -504,7 +524,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 695,
+   "ms": 816,
    "chars": 6313
   },
   {
@@ -513,7 +533,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 455,
+   "ms": 454,
    "chars": 6313
   },
   {
@@ -522,7 +542,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 785,
+   "ms": 826,
    "chars": 9402
   },
   {
@@ -531,7 +551,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 708,
+   "ms": 864,
    "chars": 5655
   },
   {
@@ -540,7 +560,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 673,
+   "ms": 696,
    "chars": 11243
   },
   {
@@ -549,7 +569,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 740,
+   "ms": 679,
    "chars": 6946
   },
   {
@@ -558,7 +578,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 753,
+   "ms": 671,
    "chars": 5620
   },
   {
@@ -567,7 +587,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 450,
+   "ms": 448,
    "chars": 5620
   },
   {
@@ -576,7 +596,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 1109,
+   "ms": 1517,
    "chars": 7929
   },
   {
@@ -599,7 +619,7 @@
     null,
     "above the range"
    ],
-   "ms": 906,
+   "ms": 900,
    "chars": 10779
   },
   {
@@ -622,7 +642,7 @@
     null,
     "above the range"
    ],
-   "ms": 889,
+   "ms": 918,
    "chars": 10751
   },
   {
@@ -645,7 +665,7 @@
     null,
     "within the range"
    ],
-   "ms": 1071,
+   "ms": 821,
    "chars": 9038
   },
   {
@@ -654,7 +674,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 873,
+   "ms": 671,
    "chars": 5467
   },
   {
@@ -663,7 +683,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 447,
+   "ms": 513,
    "chars": 5467
   },
   {
@@ -672,7 +692,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 778,
+   "ms": 668,
    "chars": 4568
   },
   {
@@ -681,7 +701,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 579,
+   "ms": 483,
    "chars": 4568
   },
   {
@@ -690,7 +710,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 707,
+   "ms": 669,
    "chars": 3170
   },
   {
@@ -699,7 +719,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 723,
+   "ms": 755,
    "chars": 15747
   },
   {
@@ -708,7 +728,7 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 475,
+   "ms": 452,
    "chars": 15747
   },
   {
@@ -717,8 +737,8 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 751,
-   "chars": 10030
+   "ms": 656,
+   "chars": 10017
   },
   {
    "id": "f2-now-subrev-fy26",
@@ -726,8 +746,233 @@
    "type": "guidance",
    "tool": "earnings_release",
    "pass": true,
-   "ms": 602,
-   "chars": 10030
+   "ms": 516,
+   "chars": 10017
+  },
+  {
+   "id": "vt-msft-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 513,
+   "chars": 990
+  },
+  {
+   "id": "vt-nvda-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 903,
+   "chars": 989
+  },
+  {
+   "id": "vt-909832-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 505,
+   "chars": 976
+  },
+  {
+   "id": "vt-21344-rev-2025",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 2770,
+   "chars": 971
+  },
+  {
+   "id": "vt-80424-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 803,
+   "chars": 967
+  },
+  {
+   "id": "vt-1341439-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 423,
+   "chars": 975
+  },
+  {
+   "id": "vt-34088-ni-2025",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 463,
+   "chars": 977
+  },
+  {
+   "id": "vt-19617-ni-2025",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 470,
+   "chars": 1030
+  },
+  {
+   "id": "vw-msft-rev-prior",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 2050,
+   "chars": 1021
+  },
+  {
+   "id": "vw-nvda-rev-prior",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 385,
+   "chars": 1020
+  },
+  {
+   "id": "vw-21344-rev-prior",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 515,
+   "chars": 1001
+  },
+  {
+   "id": "vw-msft-rev-slip",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 214,
+   "chars": 1048
+  },
+  {
+   "id": "vw-80424-rev-slip",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 219,
+   "chars": 1022
+  },
+  {
+   "id": "vw-cost-ni-quarter",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 410,
+   "chars": 1030
+  },
+  {
+   "id": "vp-msft-rev-2031",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 1834,
+   "chars": 1058
+  },
+  {
+   "id": "vp-ko-ni-2030",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 1014,
+   "chars": 1050
+  },
+  {
+   "id": "vp-amzn-div-2025",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 1176,
+   "chars": 1090
+  },
+  {
+   "id": "vp-brk-div-2025",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 1239,
+   "chars": 1072
+  },
+  {
+   "id": "vp-nvda-ebitda",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 189,
+   "chars": 1018
+  },
+  {
+   "id": "tp-aapl-statements-2031",
+   "set": "trap",
+   "type": "trap",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 479,
+   "chars": 0
+  },
+  {
+   "id": "tp-unknown-company",
+   "set": "trap",
+   "type": "trap",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 1877,
+   "chars": 0
+  },
+  {
+   "id": "tp-msft-warp-table",
+   "set": "trap",
+   "type": "trap",
+   "tool": "filing_tables",
+   "pass": true,
+   "ms": 1253,
+   "chars": 1102
+  },
+  {
+   "id": "tp-nvda-release-fake",
+   "set": "trap",
+   "type": "trap",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 387,
+   "chars": 0
+  },
+  {
+   "id": "tp-tsla-div-statement",
+   "set": "trap",
+   "type": "trap",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 1522,
+   "chars": 1083
+  },
+  {
+   "id": "tp-wmt-q4-10q",
+   "set": "trap",
+   "type": "trap",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 414,
+   "chars": 0
   }
  ]
 }
