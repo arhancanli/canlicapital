@@ -10,6 +10,10 @@ import { earningsRelease, releaseInput } from "../src/releases.mjs";
 import { createSession } from "../src/sources.mjs";
 import { financialStatements, statementsInput } from "../src/statements.mjs";
 import { verifyClaims } from "../src/verify.mjs";
+import { cryptoFundamentals } from "../src/crypto.mjs";
+import { europeanFilings } from "../src/esef.mjs";
+import { predictionMarkets } from "../src/predictions.mjs";
+import { referenceRates } from "../src/rates.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
 
 const session = () => createSession({ fetchImpl: replayFetch().fetchImpl, env: {}, now: () => NOW, sleep: async () => {} });
@@ -22,6 +26,10 @@ const TOOLS = [
   ["filing_tables", filingTables, { company: "MSFT", find: "geographic revenue" }, ["company", "find", "form", "accession", "filed_before", "document"], ["filings", "max_tables"]],
   ["earnings_release", earningsRelease, { company: "NVDA", accession: "0001045810-26-000073" }, ["company", "accession", "filed_before"], ["max_lines"]],
   ["verify_claims", verifyClaims, { company: "AAPL", text: "Apple's revenue was $416.2 billion in fiscal 2025." }, ["company", "text"], []],
+  ["reference_rates", referenceRates, { rate: "sofr", start: "2026-09-01", end: "2026-10-08" }, ["rate", "start", "end"], []],
+  ["european_filings", europeanFilings, { company: "724500Y6DUVHQD6OXN27", year: 2025 }, ["company", "words"], ["year"]],
+  ["prediction_markets", predictionMarkets, { query: "recession", limit: 3 }, ["query", "venue"], ["limit"]],
+  ["crypto_fundamentals", cryptoFundamentals, { stablecoin: "USDC" }, ["protocol", "chain", "stablecoin"], ["days"]],
 ];
 
 test("verify_claims: hostile claims give verdicts or clean errors", async () => {

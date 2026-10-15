@@ -433,7 +433,7 @@ export function guidanceFromTable(t) {
         if (scale && !f.f.pct && !f.f.scale && measure !== "eps" && !/per share/i.test(label)) f.f = { ...f.f, cur: f.f.cur ?? "$", scale };
         const item = itemFrom(f, measure, sentence);
         const safeCtx = BOILERPLATE.test(ctx) ? "" : ctx;
-        out.push({ ...(measure ? {} : { label }), ...item, basis: basisOf(`${label} ${header}`) ?? basisOf(safeCtx), period: periodOf(header) ?? periodOf(label) ?? periodOf(heading ?? "") ?? periodOf(safeCtx), column: header || null, quote: `${label} | ${header ? `${header}: ` : ""}${text}` });
+        out.push({ ...(measure ? {} : { label }), ...item, from: "table", basis: basisOf(`${label} ${header}`) ?? basisOf(safeCtx), period: periodOf(header) ?? periodOf(label) ?? periodOf(heading ?? "") ?? periodOf(safeCtx), column: header || null, quote: `${label} | ${header ? `${header}: ` : ""}${text}` });
       }
     });
   }

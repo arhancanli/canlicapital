@@ -231,6 +231,17 @@ export const verifyInput = z.object({
   text: z.string().min(10).max(6000).optional().describe("Or a draft answer about the company: every figure in it with a measure and a period is checked."),
 }).strict();
 
+// The rounding rule shown on this result's own first figure: 331.8 billion is confirmed by a filed
+// figure within 0.05 billion of it.
+function precisionExample(rows, claims) {
+  const i = rows.findIndex((x) => typeof x.claimed === "number" && Number.isFinite(x.claimed));
+  if (i < 0) return "";
+  const r = rows[i], d = claims[i]?.decimals ?? decimalsOf(r.claimed);
+  const unit = String(r.unit ?? "").replace(/^USD\s*/, "").trim();
+  const tail = unit === "%" ? { claim: "%", half: " points" } : unit ? { claim: ` ${unit}`, half: ` ${unit}` } : { claim: "", half: "" };
+  return ` (${r.claimed.toFixed(d)}${tail.claim}: within ${Number((0.5 / 10 ** d).toFixed(d + 1))}${tail.half})`;
+}
+
 export async function verifyClaims(session, args) {
   const a = verifyInput.parse(args);
   if (!a.claims && !a.text) throw new Error("Pass claims (measure, period, value) or the text of a draft answer.");
@@ -259,7 +270,7 @@ export async function verifyClaims(session, args) {
     summary: { claims: rows.length, confirmed: count("confirmed") + count("confirmed as first reported"), contradicted: count("contradicted"), not_reported: count("not reported"), not_checkable: count("not checkable") },
     columns: ["claim", "measure", "period", "claimed", "unit", "verdict", "filed", "difference", "note", "source"],
     rows: rows.map((r) => [r.claim, r.measure, r.period, r.claimed, r.unit, r.verdict, r.filed ?? null, r.difference ?? null, r.note ?? r.how ?? null, r.source ?? null]),
-    note: "Confirmed means the filed figure rounds to the claim at the claim's own precision (416.2 billion: within 0.05 billion). Fiscal years and quarters are as the company labels them in its 10-K and 10-Q.",
+    note: `Confirmed means the filed figure rounds to the claim at the claim's own precision${precisionExample(rows, claims)}. Fiscal years and quarters are as the company labels them in its 10-K and 10-Q.`,
     limits: [
       "Checked against the GAAP figures companies tag in XBRL (SEC company-concept data); non-GAAP and adjusted figures, guidance and segment figures are not checked here.",
       "A claim's measure and period are read from its words; read each row's measure and period before relying on a verdict.",
