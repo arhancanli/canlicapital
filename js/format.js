@@ -1,7 +1,7 @@
 // =============================================================================
 // format.js
 // -----------------------------------------------------------------------------
-// Formatters shared by the browser (js/home.js) and the static build
+// Formatters shared by the browser (js/record.js) and the static build
 // (scripts/build-hero-fallbacks.mjs), so the text a crawler reads and the text a
 // browser renders are produced by one function rather than by two that agree
 // until someone edits one of them.

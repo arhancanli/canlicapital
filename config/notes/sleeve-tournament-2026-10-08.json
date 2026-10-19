@@ -1,0 +1,846 @@
+{
+ "generator": "numpy default_rng: R = normal(0, 0.006, (1000,1)) + normal(0.0002, 0.009, (1000,5)); trend: column 0 += repeat(choice([-1,1], 8) * 0.0025, 125); prices = 100*exp(cumsum(R)).round(4); seeds 404 (trend) and 405 (no edge)",
+ "results": {
+  "trend": {
+   "tournament": {
+    "periods": 1000,
+    "columns": 5,
+    "evaluation": {
+     "from_period": 504,
+     "periods": 495,
+     "note": "Every sleeve is scored on the same window, after the longest warm-up included."
+    },
+    "sleeves_run": 399,
+    "sleeves_skipped": 0,
+    "skipped_examples": [],
+    "benchmark": {
+     "kind": "buy_and_hold",
+     "cagr": 0.33258751118071084,
+     "sharpe": 2.483787979877172,
+     "max_drawdown": -0.07296036235557735
+    },
+    "columns_leaderboard": [
+     "id",
+     "family",
+     "sharpe",
+     "cagr",
+     "max_drawdown",
+     "annual_turnover"
+    ],
+    "leaderboard": [
+     [
+      "breakout-40-20-ls",
+      "breakout",
+      4.067103737978788,
+      0.8794336079485496,
+      -0.09621392770452109,
+      4.031499752007223
+     ],
+     [
+      "ma-20-100-long",
+      "ma_crossover",
+      4.052017524878096,
+      0.7545612676244904,
+      -0.06447796401570649,
+      0.509090909090909
+     ],
+     [
+      "breakout-100-50-long",
+      "breakout",
+      4.020338690762701,
+      0.7420430049033213,
+      -0.06447796401570638,
+      0.509090909090909
+     ],
+     [
+      "ma-20-50-ls",
+      "ma_crossover",
+      4.014439418656671,
+      0.9368825454655012,
+      -0.1113458982132961,
+      6.310333175377644
+     ],
+     [
+      "breakout-40-20-long",
+      "breakout",
+      4.010790796685962,
+      0.7197219908093517,
+      -0.07757997087592694,
+      1.5272727272727273
+     ],
+     [
+      "breakout-100-50-ls",
+      "breakout",
+      4.006460853517957,
+      0.9253431871296689,
+      -0.0966638284749044,
+      2.340839103790617
+     ],
+     [
+      "ma-20-50-long",
+      "ma_crossover",
+      4.005352457682265,
+      0.7633806620729351,
+      -0.06447796401570627,
+      2.545454545454546
+     ],
+     [
+      "breakout-55-20-long",
+      "breakout",
+      3.9850087437154174,
+      0.7135434861487728,
+      -0.07757997087592705,
+      1.5272727272727273
+     ],
+     [
+      "breakout-55-20-ls",
+      "breakout",
+      3.972100181298534,
+      0.8506292109063789,
+      -0.12322118184554431,
+      4.007889072736847
+     ],
+     [
+      "ma-50-100-long",
+      "ma_crossover",
+      3.965615888785121,
+      0.7243450147645374,
+      -0.06447796401570627,
+      0.509090909090909
+     ],
+     [
+      "trend-mid-long",
+      "trend_ensemble",
+      3.9634546547441984,
+      0.6764640891161968,
+      -0.0644375700071057,
+      4.146358898315455
+     ],
+     [
+      "ma-20-100-ls",
+      "ma_crossover",
+      3.9450699398123326,
+      0.9157225652849383,
+      -0.11059208017319311,
+      2.3846468156441536
+     ],
+     [
+      "tsmom-126-long",
+      "time_series_momentum",
+      3.942440551587792,
+      0.7197113738247649,
+      -0.06447796401570616,
+      0.509090909090909
+     ],
+     [
+      "tsmom-21-long",
+      "time_series_momentum",
+      3.924085563607299,
+      0.7373815604655403,
+      -0.10712848790064544,
+      11.709090909090909
+     ],
+     [
+      "trend-mid-vt15-long",
+      "trend_ensemble",
+      3.9146287376637625,
+      0.6014590262236212,
+      -0.059610721597286864,
+      5.262681508812984
+     ]
+    ],
+    "worst": [
+     [
+      "zrev-60-z25-ls",
+      -3.806625889102916
+     ],
+     [
+      "zrev-60-z20-ls",
+      -3.984785314138618
+     ],
+     [
+      "zrev-60-z15-ls",
+      -4.135513521127027
+     ]
+    ],
+    "columns_families": [
+     "family",
+     "sleeves",
+     "median_sharpe",
+     "best_id",
+     "best_sharpe"
+    ],
+    "families": [
+     [
+      "breakout",
+      12,
+      3.839757322866538,
+      "breakout-40-20-ls",
+      4.067103737978788
+     ],
+     [
+      "trend_ensemble",
+      18,
+      3.81137298034042,
+      "trend-mid-long",
+      3.9634546547441984
+     ],
+     [
+      "time_series_momentum",
+      48,
+      3.7214830334576754,
+      "tsmom-126-long",
+      3.942440551587792
+     ],
+     [
+      "ma_crossover",
+      20,
+      3.71223857581154,
+      "ma-20-100-long",
+      4.052017524878096
+     ],
+     [
+      "dual_momentum",
+      10,
+      2.8149702982428746,
+      "dualmom-63-r5",
+      3.221078236953099
+     ],
+     [
+      "volatility_target",
+      36,
+      2.7935023464058606,
+      "voltarget-5-21-r21",
+      2.8986409550555483
+     ],
+     [
+      "high_proximity",
+      12,
+      2.375187417255251,
+      "nearhigh-126-top25-r21",
+      2.9302029929070756
+     ],
+     [
+      "trend_filter",
+      20,
+      2.1834065024513802,
+      "trendfilter-100-ew-r21",
+      2.606669908294337
+     ],
+     [
+      "equal_weight",
+      5,
+      2.0924637285241574,
+      "equalweight-r63",
+      2.15149202273135
+     ],
+     [
+      "risk_parity",
+      24,
+      2.061427585650089,
+      "riskparity-21-r63-vt10",
+      2.2951217749239308
+     ],
+     [
+      "min_variance",
+      6,
+      1.910310168043009,
+      "minvar-252-r63",
+      2.3145381368111475
+     ],
+     [
+      "cross_sectional_momentum",
+      72,
+      1.8669276152133871,
+      "xsmom-126-s0-top25-r63-long",
+      3.3264636675161214
+     ],
+     [
+      "low_volatility",
+      12,
+      1.8182447244541442,
+      "lowvol-252-top50-r63",
+      2.540901144285717
+     ],
+     [
+      "macd_trend",
+      8,
+      1.4891876499801078,
+      "macd-19-39-9-long",
+      2.626612402628258
+     ],
+     [
+      "short_term_reversal",
+      24,
+      -0.783248464893857,
+      "reversal-10-top33-r21-long",
+      1.3027745964619886
+     ],
+     [
+      "rsi_reversion",
+      24,
+      -0.8314378606923771,
+      "rsi-2-30-70",
+      0.1242709352250679
+     ],
+     [
+      "zscore_reversion",
+      30,
+      -1.2892274111791808,
+      "zrev-10-z25-ls",
+      0.6975080540901046
+     ],
+     [
+      "pairs",
+      18,
+      -3.348843341032558,
+      "pairs-20-z25-x5",
+      -1.937748882535759
+     ]
+    ],
+    "multiple_testing": {
+     "trials": 399,
+     "effective_trials": 3.9710931153065263,
+     "best": {
+      "id": "breakout-40-20-ls",
+      "sharpe": 4.067103737978788,
+      "deflated_sharpe_probability": 0.0012709734808999537,
+      "deflated_sharpe_probability_effective": 0.9959785263062798,
+      "expected_max_sharpe_under_null": 6.214757519974534,
+      "expected_max_sharpe_under_null_effective": 2.181327364670464
+     },
+     "reality_check": {
+      "p_value": 0.011
+     },
+     "spa": {
+      "sleeves_tested": 399,
+      "statistic": 4.180219704837735,
+      "p_values": {
+       "lower": 0.012,
+       "consistent": 0.017,
+       "upper": 0.021
+      },
+      "studentization": "re-estimated in every resample",
+      "block": 8,
+      "reps": 1000,
+      "seed": 7,
+      "bootstrap": "stationary, mulberry32(seed)"
+     },
+     "stepm": {
+      "family_wise_error": 0.05,
+      "superior": [
+       "tsmom-21-vt20-long",
+       "tsmom-42-vt20-long",
+       "tsmom-63-vt20-long",
+       "tsmom-126-vt20-long"
+      ]
+     },
+     "pbo": {
+      "probability": 0.24134199134199133,
+      "splits": 12,
+      "combinations": 924,
+      "median_logit": 0.6521731063496395,
+      "probability_oos_loss": 0.024891774891774892,
+      "degradation_slope": -0.6966270469893294
+     }
+    },
+    "verdict": "399 sleeves ran on 495 common periods (effective independent sleeves 4.0). Best sleeve breakout-40-20-ls: deflated Sharpe probability 0.001 counting all 399 sleeves, 0.996 counting 4.0 independent bets; it survives only the effective count, which can be too lenient (the raw count is the conservative bound). Deflation asks whether the Sharpe ratio is above zero; SPA and StepM ask whether a sleeve beats the benchmark, so a long-only sleeve in a rising market can pass the first and fail the second. SPA rejects \"no sleeve beats the benchmark\" (p 0.017; Reality Check p 0.011); StepM keeps 4 sleeve(s). Probability of backtest overfitting 0.24."
+   },
+   "walk_forward": {
+    "sleeves": 399,
+    "refits": 4,
+    "out_of_sample_periods": 243,
+    "columns": [
+     "strategy",
+     "cagr",
+     "sharpe",
+     "volatility",
+     "max_drawdown"
+    ],
+    "rows": [
+     [
+      "selected top sleeves",
+      0.7641302222642987,
+      3.5717126537533286,
+      0.16279037089610893,
+      -0.11451259141591874
+     ],
+     [
+      "all sleeves equally",
+      0.3704972534516331,
+      3.948692759495619,
+      0.08068703561603373,
+      -0.03476065557385288
+     ],
+     [
+      "benchmark",
+      0.47991597520683205,
+      3.527971574389231,
+      0.11299418826844515,
+      -0.04928610002383438
+     ]
+    ],
+    "selection_decay": {
+     "mean_in_sample_sharpe_of_picks": 4.689231402437119,
+     "mean_out_of_sample_sharpe_of_picks": 3.76408655731801,
+     "note": "The gap between the two is how much of the picks' in-sample Sharpe was luck."
+    },
+    "recent_picks": [
+     {
+      "from_period": 819,
+      "sleeves": [
+       "tsmom-21-long",
+       "tsmom-21-vt20-long",
+       "tsmom-21-vt15-long",
+       "tsmom-21-vt10-long",
+       "breakout-40-20-long"
+      ]
+     },
+     {
+      "from_period": 882,
+      "sleeves": [
+       "voltarget-20-21-r21",
+       "voltarget-15-21-r21",
+       "voltarget-10-21-r21",
+       "voltarget-20-63-r5",
+       "voltarget-5-21-r21"
+      ]
+     },
+     {
+      "from_period": 945,
+      "sleeves": [
+       "voltarget-20-21-r21",
+       "voltarget-15-21-r21",
+       "ma-100-200-long",
+       "voltarget-10-21-r21",
+       "voltarget-20-126-r21"
+      ]
+     }
+    ],
+    "note": "Blends are equal weights across the picked sleeves' net returns, rebalanced each period with no extra cost."
+   },
+   "seconds": 0.542
+  },
+  "no_edge": {
+   "tournament": {
+    "periods": 1000,
+    "columns": 5,
+    "evaluation": {
+     "from_period": 504,
+     "periods": 495,
+     "note": "Every sleeve is scored on the same window, after the longest warm-up included."
+    },
+    "sleeves_run": 399,
+    "sleeves_skipped": 0,
+    "skipped_examples": [],
+    "benchmark": {
+     "kind": "buy_and_hold",
+     "cagr": 0.15573497600647768,
+     "sharpe": 1.2850889261745884,
+     "max_drawdown": -0.072577826466386
+    },
+    "columns_leaderboard": [
+     "id",
+     "family",
+     "sharpe",
+     "cagr",
+     "max_drawdown",
+     "annual_turnover"
+    ],
+    "leaderboard": [
+     [
+      "xsmom-63-s21-top33-r21-long",
+      "cross_sectional_momentum",
+      1.9501459466807107,
+      0.29139348576839996,
+      -0.07849355765594557,
+      9.379955416923671
+     ],
+     [
+      "xsmom-63-s21-top50-r21-long",
+      "cross_sectional_momentum",
+      1.9501459466807107,
+      0.29139348576839996,
+      -0.07849355765594557,
+      9.379955416923671
+     ],
+     [
+      "nearhigh-126-top50-r63",
+      "high_proximity",
+      1.9172157866207775,
+      0.2589870991628189,
+      -0.07742216685938264,
+      1.0979532902200542
+     ],
+     [
+      "trendfilter-200-iv-r21",
+      "trend_filter",
+      1.9080638787743844,
+      0.17138437707033716,
+      -0.058169465176870494,
+      1.4554154951201848
+     ],
+     [
+      "trendfilter-200-ew-r21",
+      "trend_filter",
+      1.9079527963999288,
+      0.16912117874645904,
+      -0.056361240577100236,
+      1.229606387377422
+     ],
+     [
+      "xsmom-63-s21-top33-r21-ls",
+      "cross_sectional_momentum",
+      1.9075830599498593,
+      0.14139755335482018,
+      -0.0420715969127311,
+      9.734580605466753
+     ],
+     [
+      "xsmom-63-s21-top50-r21-ls",
+      "cross_sectional_momentum",
+      1.9075830599498593,
+      0.14139755335482018,
+      -0.0420715969127311,
+      9.734580605466753
+     ],
+     [
+      "trendfilter-250-ew-r21",
+      "trend_filter",
+      1.9045964339221857,
+      0.16546987620238918,
+      -0.05673234242575198,
+      0.913038336181137
+     ],
+     [
+      "trendfilter-250-iv-r21",
+      "trend_filter",
+      1.8965373142926314,
+      0.1670562962476847,
+      -0.05886117704502414,
+      1.1543538107348137
+     ],
+     [
+      "xsmom-63-s21-top33-r63-long",
+      "cross_sectional_momentum",
+      1.8566669324071818,
+      0.2796628485337036,
+      -0.08006647537819478,
+      3.0937869146787764
+     ],
+     [
+      "xsmom-63-s21-top50-r63-long",
+      "cross_sectional_momentum",
+      1.8566669324071818,
+      0.2796628485337036,
+      -0.08006647537819478,
+      3.0937869146787764
+     ],
+     [
+      "xsmom-252-s21-top33-r63-long",
+      "cross_sectional_momentum",
+      1.8432472117963299,
+      0.2744686799689333,
+      -0.10635270591673152,
+      2.604819394645761
+     ],
+     [
+      "xsmom-252-s21-top50-r63-long",
+      "cross_sectional_momentum",
+      1.8432472117963299,
+      0.2744686799689333,
+      -0.10635270591673152,
+      2.604819394645761
+     ],
+     [
+      "nearhigh-252-top50-r63",
+      "high_proximity",
+      1.838386943027485,
+      0.24685128899949982,
+      -0.07510031088901914,
+      1.0947983846554254
+     ],
+     [
+      "xsmom-252-s0-top33-r63-long",
+      "cross_sectional_momentum",
+      1.7969486501164442,
+      0.26836723624626946,
+      -0.10635270591673152,
+      1.617909896887841
+     ]
+    ],
+    "worst": [
+     [
+      "pairs-120-z25-x0",
+      -1.4267990412972387
+     ],
+     [
+      "pairs-20-z15-x5",
+      -1.4627349171795447
+     ],
+     [
+      "pairs-120-z25-x5",
+      -1.660251450264714
+     ]
+    ],
+    "columns_families": [
+     "family",
+     "sleeves",
+     "median_sharpe",
+     "best_id",
+     "best_sharpe"
+    ],
+    "families": [
+     [
+      "volatility_target",
+      36,
+      1.7405383612500647,
+      "voltarget-15-63-r1",
+      1.7840645707070613
+     ],
+     [
+      "high_proximity",
+      12,
+      1.6425473895441454,
+      "nearhigh-126-top50-r63",
+      1.9172157866207775
+     ],
+     [
+      "trend_filter",
+      20,
+      1.54019766722873,
+      "trendfilter-200-iv-r21",
+      1.9080638787743844
+     ],
+     [
+      "time_series_momentum",
+      48,
+      1.429131002488147,
+      "tsmom-189-vt15-long",
+      1.7840645707070613
+     ],
+     [
+      "min_variance",
+      6,
+      1.335956479155349,
+      "minvar-63-r63",
+      1.4138341980183133
+     ],
+     [
+      "ma_crossover",
+      20,
+      1.3257350553079394,
+      "ma-50-150-long",
+      1.7503131246005386
+     ],
+     [
+      "equal_weight",
+      5,
+      1.2462939153478465,
+      "equalweight-r252",
+      1.2850040911369183
+     ],
+     [
+      "risk_parity",
+      24,
+      1.2421431102403975,
+      "riskparity-21-r5",
+      1.3806897057929306
+     ],
+     [
+      "cross_sectional_momentum",
+      72,
+      1.2405185995457768,
+      "xsmom-63-s21-top33-r21-long",
+      1.9501459466807107
+     ],
+     [
+      "trend_ensemble",
+      18,
+      1.1989102354034844,
+      "trend-slow-vt15-long",
+      1.5693637841678885
+     ],
+     [
+      "low_volatility",
+      12,
+      1.0405999634987961,
+      "lowvol-252-top50-r21",
+      1.4016000424820068
+     ],
+     [
+      "breakout",
+      12,
+      1.030855523419738,
+      "breakout-10-5-long",
+      1.4922716921625865
+     ],
+     [
+      "short_term_reversal",
+      24,
+      0.7755273280922659,
+      "reversal-21-top33-r21-long",
+      1.6616153558223985
+     ],
+     [
+      "macd_trend",
+      8,
+      0.7752963055022561,
+      "macd-5-35-5-long",
+      1.705431370754702
+     ],
+     [
+      "dual_momentum",
+      10,
+      0.6078474449125757,
+      "dualmom-252-r5",
+      1.2723181980470077
+     ],
+     [
+      "rsi_reversion",
+      24,
+      0.5008599338263761,
+      "rsi-2-10-50",
+      1.3941013682378
+     ],
+     [
+      "zscore_reversion",
+      30,
+      0,
+      "zrev-40-z15-long",
+      1.1030500607272573
+     ],
+     [
+      "pairs",
+      18,
+      -1.1734932660944946,
+      "pairs-20-z25-x0",
+      0.13030398118927855
+     ]
+    ],
+    "multiple_testing": {
+     "trials": 399,
+     "effective_trials": 3.5116428372418955,
+     "best": {
+      "id": "xsmom-63-s21-top33-r21-long",
+      "sharpe": 1.9501459466807107,
+      "deflated_sharpe_probability": 0.29294249351009927,
+      "deflated_sharpe_probability_effective": 0.9538679424600434,
+      "expected_max_sharpe_under_null": 2.336733492266599,
+      "expected_max_sharpe_under_null_effective": 0.7555094113731362
+     },
+     "reality_check": {
+      "p_value": 0.434
+     },
+     "spa": {
+      "sleeves_tested": 399,
+      "statistic": 2.3844009380349136,
+      "p_values": {
+       "lower": 0.246,
+       "consistent": 0.347,
+       "upper": 0.354
+      },
+      "studentization": "re-estimated in every resample",
+      "block": 8,
+      "reps": 1000,
+      "seed": 7,
+      "bootstrap": "stationary, mulberry32(seed)"
+     },
+     "stepm": {
+      "family_wise_error": 0.05,
+      "superior": []
+     },
+     "pbo": {
+      "probability": 0.7619047619047619,
+      "splits": 12,
+      "combinations": 924,
+      "median_logit": -0.7195140564006876,
+      "probability_oos_loss": 0.19155844155844157,
+      "degradation_slope": -0.46164946450034205
+     }
+    },
+    "verdict": "399 sleeves ran on 495 common periods (effective independent sleeves 3.5). Best sleeve xsmom-63-s21-top33-r21-long: deflated Sharpe probability 0.293 counting all 399 sleeves, 0.954 counting 3.5 independent bets; it survives only the effective count, which can be too lenient (the raw count is the conservative bound). Deflation asks whether the Sharpe ratio is above zero; SPA and StepM ask whether a sleeve beats the benchmark, so a long-only sleeve in a rising market can pass the first and fail the second. SPA cannot reject that no sleeve beats the benchmark (p 0.347; Reality Check p 0.434). Probability of backtest overfitting 0.76: picking the in-sample winner did worse than a random pick more often than not."
+   },
+   "walk_forward": {
+    "sleeves": 399,
+    "refits": 4,
+    "out_of_sample_periods": 243,
+    "columns": [
+     "strategy",
+     "cagr",
+     "sharpe",
+     "volatility",
+     "max_drawdown"
+    ],
+    "rows": [
+     [
+      "selected top sleeves",
+      0.11588155573301662,
+      1.2232792312057754,
+      0.09318486976289087,
+      -0.05512074482215268
+     ],
+     [
+      "all sleeves equally",
+      0.1572213777570719,
+      1.8956343336821884,
+      0.07867806576138864,
+      -0.055596410479795244
+     ],
+     [
+      "benchmark",
+      0.24444399633374259,
+      1.8985139297296283,
+      0.1189489947975766,
+      -0.06998744853996086
+     ]
+    ],
+    "selection_decay": {
+     "mean_in_sample_sharpe_of_picks": 2.8076973051486966,
+     "mean_out_of_sample_sharpe_of_picks": 1.288966695672986,
+     "note": "The gap between the two is how much of the picks' in-sample Sharpe was luck."
+    },
+    "recent_picks": [
+     {
+      "from_period": 819,
+      "sleeves": [
+       "xsmom-63-s21-top33-r21-ls",
+       "xsmom-63-s21-top50-r21-ls",
+       "xsmom-252-s21-top33-r63-ls",
+       "xsmom-252-s21-top50-r63-ls",
+       "xsmom-252-s21-top33-r21-ls"
+      ]
+     },
+     {
+      "from_period": 882,
+      "sleeves": [
+       "xsmom-63-s21-top33-r21-ls",
+       "xsmom-63-s21-top50-r21-ls",
+       "xsmom-252-s21-top33-r21-ls",
+       "xsmom-252-s21-top50-r21-ls",
+       "xsmom-252-s21-top33-r63-ls"
+      ]
+     },
+     {
+      "from_period": 945,
+      "sleeves": [
+       "xsmom-252-s21-top33-r21-long",
+       "xsmom-252-s21-top50-r21-long",
+       "ma-50-150-long",
+       "ma-50-150-ls",
+       "ma-50-200-long"
+      ]
+     }
+    ],
+    "note": "Blends are equal weights across the picked sleeves' net returns, rebalanced each period with no extra cost."
+   },
+   "seconds": 0.527
+  }
+ },
+ "title": "The 399-sleeve tournament and walk-forward on two generated markets (trend and no edge)",
+ "run": "2026-10-11, reproducing the dev.to post of 2026-10-08 exactly",
+ "tools": "sleeve_tournament and sleeve_walk_forward in canli-quant-mcp (part of canli-mcp), default arguments: 5 basis points per trade, 1,000 bootstrap repetitions, seed 7",
+ "cost_bps": 5,
+ "periods": 1000,
+ "assets": 5
+}

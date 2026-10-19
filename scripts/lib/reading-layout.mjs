@@ -1,5 +1,7 @@
 // Pure reading/navigation transforms shared by normal and standalone generators.
 import { htmlText, escapeHtml } from './html-text.mjs';
+// The contents and hub indexes follow the page's cinematic header (scripts/lib/site-hero.mjs) when it has one.
+const afterOpening=(html,nav)=>{const hero=/<main\b[^>]*>\s*<header class="cc-hero"[\s\S]*?<\/header>/.exec(html);return hero?html.slice(0,hero.index+hero[0].length)+`\n${nav}`+html.slice(hero.index+hero[0].length):html.replace(/(<main\b[^>]*>)/,`$1\n${nav}`);};
 export const stripReader=html=>html.replace(/ data-reader="[^"]*"/,'').replace(/\n<link rel="stylesheet" href="\/css\/reader-experience.css" \/>/,'').replace(/\n<script type="module" src="\/js\/reader-experience.js"><\/script>/,'').replace(/<!-- reader-index:start -->[\s\S]*?<!-- reader-index:end -->/,'').replace(/ id="reader-section-\d+" data-reader-anchor="true"/g,'').replace(/ tabindex="0" data-reader-focus="true"/g,'').replace(/<dd class="reader-definition-note">(<small>[\s\S]*?<\/small>)<\/dd>/g,'$1');
 
 export function applyReaderPresentation(source,{file,family}) {
@@ -20,7 +22,8 @@ export function applyReaderPresentation(source,{file,family}) {
  if(file==='founder.html')body=body.replace(/(<dd>[^<]*<\/dd>)<small>([\s\S]*?)<\/small>/g,'$1<dd class="reader-definition-note"><small>$2</small></dd>');
  const parent=family==='measurements'?'/measurements':family==='trials'||file==='trials.html'?'/trials':family==='notes'||file==='notes.html'?'/notes':family==='publication'?'/research':family==='research'?'/research':'/systems';
  const nav=`<!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="${parent}">Explore ${parent.slice(1)}</a>${links.length?`<details><summary>In this document</summary><nav aria-label="Document sections">${links.join('')}</nav></details>`:''}<a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->`;
- html=html.replace(match[0],()=>match[0].replace(match[1],()=>nav+body));
+ const hero=/^\s*<header class="cc-hero"[\s\S]*?<\/header>/.exec(body);
+ html=html.replace(match[0],()=>match[0].replace(match[1],()=>hero?hero[0]+nav+body.slice(hero[0].length):nav+body));
  return html;
 }
 
@@ -34,7 +37,7 @@ export function applyHubNavigation(source,{file,links=[]}) {
  const items=links.map(([id,label])=>`<a href="#${id}">${label}</a>`);
  if(!items.length)items.push('<a href="/research">Research library</a>','<a href="/methodology">Methodology</a>','<a href="/measurements">Measurements</a>','<a href="/verify">Verify a claim</a>');
  const nav=`<!-- hub-index:start --><nav class="hub-index" aria-label="${links.length?'On this page':'Related evidence hubs'}"><span>${links.length?'On this page':'Explore the evidence'}</span>${items.join('')}</nav><!-- hub-index:end -->\n`;
- html=html.replace(/(<main\b[^>]*>)/,`$1\n${nav}`);
+ html=afterOpening(html,nav);
  if(!html.includes('src="/js/hub-experience.js"'))html=html.replace('</body>','<script type="module" src="/js/hub-experience.js"></script>\n</body>');
  return html;
 }

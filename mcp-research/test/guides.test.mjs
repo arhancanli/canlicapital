@@ -54,3 +54,15 @@ test("over stdio: three prompts, the limits resource, both templates, and each r
   const example = (await client.readResource({ uri: "canli://examples/javascript/trial_ledger" })).contents[0].text;
   assert.match(example, /StreamableHTTPClientTransport/);
 });
+
+
+test("resource and example lookup refuses inherited tool names with a useful error", async (t) => {
+  const client = new Client({ name: "resource-names-test", version: "1" });
+  await client.connect(new StdioClientTransport({ command: process.execPath, args: [ENTRY], env: { ...process.env } }));
+  t.after(() => client.close());
+  for (const tool of ["constructor", "__proto__", "toString"]) {
+    assert.throws(() => exampleCode("python", tool), /No tool/);
+    await assert.rejects(client.readResource({ uri: `canli://schemas/${tool}` }), /No tool/);
+    await assert.rejects(client.readResource({ uri: `canli://examples/javascript/${tool}` }), /No tool/);
+  }
+});

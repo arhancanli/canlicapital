@@ -132,7 +132,7 @@ export function renderComparison(config) {
   return [
     `<section class="home-compare" id="${escapeHtml(c.id)}" aria-labelledby="home-compare-title">`,
     `      <div class="home-compare__heading"><p class="eyebrow">${escapeHtml(c.eyebrow)}</p><h2 id="home-compare-title">${escapeHtml(c.title)}</h2><p>${escapeHtml(c.intro)}</p></div>`,
-    `      <div class="home-compare__scroll" role="region" aria-labelledby="home-compare-title" tabindex="0">`,
+    `      <div class="home-compare__scroll cc-table-scroll" role="region" aria-label="${escapeHtml(c.caption)}" tabindex="0">`,
     `        <table class="home-compare__table">`,
     `          <caption>${escapeHtml(c.caption)}</caption>`,
     `          <thead><tr><th scope="col">Question</th>${head}</tr></thead>`,
