@@ -7,7 +7,9 @@
 // than this date: change a template, move the date in the same commit.
 // 2026-10-06: BreadcrumbList and a visible trail on every company page (#414).
 // 2026-10-07: page dates follow this markup date (this module).
-export const COMPANY_MARKUP_DATE = '2026-10-07';
+// 2026-10-20: film-still bands (#444), titles and snippets that lead with the latest figures (#428),
+// the free MCP install line and star ask (#487).
+export const COMPANY_MARKUP_DATE = '2026-10-20';
 
 export const COMPANY_MARKUP_SOURCES = [
   'scripts/lib/company-page-renderer.mjs',
