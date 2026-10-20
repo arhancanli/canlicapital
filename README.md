@@ -3,6 +3,9 @@
 **Open quant research where every published number comes with the file that produced it, including
 the strategies that failed.** Live at **[canlicapital.com](https://canlicapital.com)**.
 
+If a check here stopped you from trusting a backtest that wasn't real, a ⭐ helps other quants find it.
+
+[![GitHub stars](https://img.shields.io/github/stars/arhancanli/canlicapital?style=social)](https://github.com/arhancanli/canlicapital/stargazers)
 [![npm](https://img.shields.io/npm/v/canli-validation-mcp?label=canli-validation-mcp)](https://www.npmjs.com/package/canli-validation-mcp)
 [![npm](https://img.shields.io/npm/v/canli-fundamentals-mcp?label=canli-fundamentals-mcp)](https://www.npmjs.com/package/canli-fundamentals-mcp)
 [![npm](https://img.shields.io/npm/v/canli-research-mcp?label=canli-research-mcp)](https://www.npmjs.com/package/canli-research-mcp)
