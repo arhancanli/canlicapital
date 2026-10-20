@@ -1,0 +1,124 @@
+{
+  "schema": "canli.mcp-release-evidence.v1",
+  "captured_at": "2026-10-12T20:04:29.311205+00:00",
+  "source_release_commit": "4f517160563fa54482a49263344d3989004d4305",
+  "npm_releases": [
+    {
+      "package": "canli-markets-mcp",
+      "version": "0.3.0",
+      "shasum": "4c950765df6db41bfebad36c94044ffa082c7bf5",
+      "provenance": true,
+      "publish_run": 38294068266,
+      "source_commit": "3609f4291ec782ee8a7c93f78fbb7fccf7142ad8",
+      "mcp_registry_verified": true,
+      "mcp_registry_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.arhancanli%2Fcanli-markets-mcp/versions/0.3.0",
+      "mcp_registry_response_sha256": "d9ce706d7edef529c0c6d72dd061b03983996a83947dac97a0a637af3a8bdd1c"
+    },
+    {
+      "package": "canli-fundamentals-mcp",
+      "version": "0.6.0",
+      "shasum": "c59e47c6fe7f537e3b33df0f37b65437e55207dd",
+      "provenance": true,
+      "publish_run": 38296404825,
+      "source_commit": "4f517160563fa54482a49263344d3989004d4305",
+      "mcp_registry_verified": true,
+      "mcp_registry_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.arhancanli%2Fcanli-fundamentals-mcp/versions/0.6.0",
+      "mcp_registry_response_sha256": "3f1f08a1380f98b39a98fadd2fc78b39744d3aa0fddc4dc3d2fb9fdabfeddb1f"
+    },
+    {
+      "package": "canli-research-mcp",
+      "version": "0.3.0",
+      "shasum": "7fd009ab04cd3a4f841f772128b8862f183897ac",
+      "provenance": true,
+      "publish_run": 38296411068,
+      "source_commit": "4f517160563fa54482a49263344d3989004d4305",
+      "mcp_registry_verified": true,
+      "mcp_registry_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.arhancanli%2Fcanli-research-mcp/versions/0.3.0",
+      "mcp_registry_response_sha256": "e079d55461852ab9344e6edd6f38da749eef6b17d01ff62a3d00d8879b5c34e5"
+    }
+  ],
+  "client_verification": {
+    "fresh_installs": true,
+    "node_versions": [
+      "20.20.2",
+      "22.23.2",
+      "24.19.0"
+    ],
+    "stdio_checks_passed": 9,
+    "npm_registry_signatures_verified": 17,
+    "npm_attestations_verified": 10
+  },
+  "desktop_bundles": [
+    {
+      "server": "validation",
+      "version": "0.14.0",
+      "mirror_commit": "7f3d5325a692b3b58e0905c355a48108765f36d0",
+      "mirror_pr": 26,
+      "sha256": "f60ffec39d22733bf672602e14082e6afae4fa33f14cdfa1f5f463e518e998bc",
+      "github_attestation_verified": true,
+      "url": "https://github.com/arhancanli/canli-validation-mcp/releases/tag/v0.14.0"
+    },
+    {
+      "server": "fundamentals",
+      "version": "0.6.0",
+      "mirror_commit": "07094aa388904764918421d0eecde828039c48c8",
+      "mirror_pr": 15,
+      "sha256": "e83d7be25c5d1ace357ecf85e7c36147ad1d56820647c042bcdc28eb74e9488c",
+      "github_attestation_verified": true,
+      "url": "https://github.com/arhancanli/canli-fundamentals-mcp/releases/tag/v0.6.0"
+    },
+    {
+      "server": "research",
+      "version": "0.3.0",
+      "mirror_commit": "12a243439b54e95ee233581675f6672d03c8c52e",
+      "mirror_pr": 12,
+      "sha256": "08ab1b8626d480bb5d49102526b9888b48a591b69fec884076659fd24ac28102",
+      "github_attestation_verified": true,
+      "url": "https://github.com/arhancanli/canli-research-mcp/releases/tag/v0.3.0"
+    }
+  ],
+  "hosted_delivery": {
+    "fundamentals": "0.6.0",
+    "research": "0.3.0",
+    "state": "merged; clean production source queued for established daily publisher; live verification pending",
+    "focused_tests_passed": 11,
+    "full_site_build": "pass on Node 22.23.2",
+    "merge_commit": "6d2f4acb066c0353445752f7eb1c7b7ae0175a1e",
+    "pr": 467,
+    "ci_checks_passed": 7,
+    "page_date_design_tests_passed": 22
+  },
+  "publication_pending": [
+    {
+      "package": "canli-quant-mcp",
+      "version": "0.1.1",
+      "publish_run": 38294072717,
+      "reason": "npm publish authorization E404; Trusted Publisher owner configuration pending",
+      "github_source_release": "https://github.com/arhancanli/canlicapital/releases/tag/quant-mcp-v0.1.1",
+      "source_tarball_sha256": "e1a980644ebd9221d9fe7d56776af2d23a5ba2dc6a98d720a198c58e6a8f0fa1"
+    },
+    {
+      "package": "canli-backtest-mcp",
+      "version": "0.1.2",
+      "publish_run": 38296417389,
+      "reason": "npm publish authorization E404; Trusted Publisher owner configuration pending",
+      "github_source_release": "https://github.com/arhancanli/canlicapital/releases/tag/backtest-mcp-v0.1.2",
+      "source_tarball_sha256": "7f467f833d0cca687061a933564942ce6afa9f3ea6f905b4abf9b00121e7866d"
+    },
+    {
+      "package": "canli-mcp",
+      "version": "0.4.0",
+      "reason": "awaits verified quant and backtest npm dependency releases"
+    }
+  ],
+  "limitations": [
+    "No worldwide quality ranking, new adoption, search indexing, human annotations or investment outcomes established by these checks.",
+    "Glama and Smithery external listing refresh is not independently confirmed."
+  ],
+  "verified_at": "2026-10-12T20:38:14.648867+00:00",
+  "research_release_correction": {
+    "previous_package": "canli-research-mcp@0.2.0",
+    "previous_shasum": "73f9315d20db222402974ea4ca40f70e2f774429",
+    "actual_0_3_0_change": "Own-name lookup guards for schema and code-example resources. The three prompts and code resources already shipped in 0.2.0. GitHub notes corrected; source changelog rebucketed. Published npm/tag bytes remain immutable."
+  }
+}

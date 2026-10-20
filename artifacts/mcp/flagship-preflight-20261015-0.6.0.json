@@ -1,0 +1,177 @@
+{
+  "status": "review candidate; not yet published",
+  "captured_at": "2026-10-15T06:44:23.831511+00:00",
+  "basis_main": "be23fa76bd614e56f0537fd9cbf6b8130706d833",
+  "package": {
+    "name": "canli-mcp",
+    "version": "0.6.0",
+    "tarball_sha1": "075dd71d4c939a8ceb782f24f0e69d230e292d88",
+    "file_count": 17
+  },
+  "pack_versions": {
+    "quant": "0.1.2",
+    "validation": "0.14.0",
+    "fundamentals": "0.6.0",
+    "research": "0.3.0",
+    "backtest": "0.1.2",
+    "markets": "0.5.0",
+    "paper": "0.1.0"
+  },
+  "interfaces": {
+    "tools": 315,
+    "front_tools": 3,
+    "prompts": 35,
+    "resources": 15,
+    "resource_templates": 9,
+    "ui_resources": [
+      "ui://canli/view"
+    ]
+  },
+  "checks": {
+    "tests_per_node": 53,
+    "nodes": [
+      "20.20.2",
+      "22.23.2",
+      "24.19.0"
+    ],
+    "network_poisoned_offline_guides": "pass",
+    "desktop_packaged_stdio_smokes": "3 pass (all packs: 3 tools, 15 resources, 35 prompts; offline: 12, 20; markets only: 4, 9; run_tool names ui://canli/view in each)",
+    "mcpb_validate": "pass (mcpb 2.1.2 validate)",
+    "registry_signatures": 22,
+    "npm_attestations": 14,
+    "high_audit_vulnerabilities": 0,
+    "robustness_markets": {
+      "tools": 43,
+      "calls": 590,
+      "refused_by_validation": 985,
+      "findings": 0
+    },
+    "find_tool": {
+      "new_tools_set": {
+        "queries": 41,
+        "written_before_measuring": true,
+        "first_run": {
+          "top1": 36,
+          "top3": 38
+        },
+        "after_two_keyword_additions": {
+          "top1": 38,
+          "top3": 40
+        }
+      },
+      "earlier_sets_unchanged": {
+        "cross_pack": "47 of 50",
+        "markets": "37 of 37",
+        "everyday": "89 of 96 first, 95 in the top three"
+      },
+      "note": "reference_rates added as a right answer to 'current fed funds rate' (the New York Fed's effective rate with the Fed's range); it did not exist when that set was written"
+    },
+    "prompts_live": "macro_snapshot (9 calls), global_rates (8), european_company (Novo Nordisk), defi_snapshot (default and lido): every call returned a result from the live sources on 2026-10-15",
+    "viewer": {
+      "samples": "28 live results (the four new tools and 20 existing ones) rendered by the page's own script exactly as by the module",
+      "page_bytes": 32556,
+      "mcp_apps_reference_host": "viewer rendered in modelcontextprotocol/ext-apps examples/basic-host (2.0.3) with live results: ECB deposit rate as steps, the Treasury curve, Lido's figures, Fed-decision odds, Novo Nordisk's ESEF report; dark and light; no console errors"
+    },
+    "analyst_bench_markets": "87 of 87 (tool level, unchanged tools; no model graded the answers)",
+    "global_crosscheck_markets": "21 of 21 (bench/global/results-2026-10-15.json in canli-markets-mcp 0.5.0)"
+  },
+  "context": {
+    "measured": "2026-10-15",
+    "node": "v24.19.0",
+    "tokenizer": "o200k_base",
+    "configuration": {
+      "CANLI_PACKS": "all",
+      "scope": "initial tool list and instructions; no tool execution"
+    },
+    "rows": {
+      "canli-mcp": {
+        "version": "0.6.0",
+        "tools": 3,
+        "tool_tokens": 961,
+        "instruction_tokens": 199,
+        "total_tokens": 1160,
+        "startup_ms": 86
+      },
+      "canli-quant-mcp": {
+        "version": "0.1.2",
+        "tools": 3,
+        "tool_tokens": 731,
+        "instruction_tokens": 201,
+        "total_tokens": 932,
+        "startup_ms": 100
+      },
+      "canli-validation-mcp": {
+        "version": "0.14.0",
+        "tools": 19,
+        "tool_tokens": 9702,
+        "instruction_tokens": 200,
+        "total_tokens": 9902,
+        "startup_ms": 100
+      },
+      "canli-fundamentals-mcp": {
+        "version": "0.6.0",
+        "tools": 7,
+        "tool_tokens": 3143,
+        "instruction_tokens": 121,
+        "total_tokens": 3264,
+        "startup_ms": 74
+      },
+      "canli-research-mcp": {
+        "version": "0.3.0",
+        "tools": 6,
+        "tool_tokens": 1539,
+        "instruction_tokens": 76,
+        "total_tokens": 1615,
+        "startup_ms": 71
+      },
+      "canli-backtest-mcp": {
+        "version": "0.1.2",
+        "tools": 3,
+        "tool_tokens": 1010,
+        "instruction_tokens": 72,
+        "total_tokens": 1082,
+        "startup_ms": 74
+      },
+      "canli-markets-mcp": {
+        "version": "0.5.0",
+        "tools": 43,
+        "tool_tokens": 21071,
+        "instruction_tokens": 686,
+        "total_tokens": 21757,
+        "startup_ms": 98
+      },
+      "canli-paper-trading-mcp": {
+        "version": "0.1.0",
+        "tools": 4,
+        "tool_tokens": 1351,
+        "instruction_tokens": 59,
+        "total_tokens": 1410,
+        "startup_ms": 80
+      }
+    },
+    "seven_separately": {
+      "tools": 85,
+      "total_tokens": 39962,
+      "startup_ms": [
+        71,
+        100
+      ]
+    }
+  },
+  "source_files": {
+    "package.json": "9f2c510baebbedc0fca32709a145363faa766de1680211e0ba136c23265b3515",
+    "package-lock.json": "dcf656251fd34b8efcfd6d5f299d5b567781859a9a32a1c91a6622df4dfd8f0d",
+    "src/server.mjs": "207e3af0bdfa727a39129e5dcea8581fbcaf420506654cbcd7b6a1396a2f1143",
+    "src/prompts.mjs": "83ff2e4dc64d342bbb51158b3816c123ec511b2d9e9f2f626653744fabd4af7f",
+    "src/packs.mjs": "5ed0d958da941f3cb42298cfab48cdab1f3f70f114bc6770de8ebfb812e4104c",
+    "src/search.mjs": "015a3f016a174ad886d2afce9887353fcde903ec27a84a41e1299831110c5b25",
+    "src/view.mjs": "2769746746104efbeb1eec6ee95c93e945ff2671334b4ce104d3386955dde362",
+    "src/view/render.js": "f9b8f2afa3aa46a0912fdb5e8a6626906a7048935a725f04756bc404210d940f",
+    "src/view/app.js": "63af2e7d6dc16a078dccb0410c938078e5377907e5ea330ded0843a0e5aab17e",
+    "src/guides.mjs": "c2d80cde514647bf80e0f791627136fadc1db3b4b3d00dd1ca33e0d57b2d5236",
+    "src/guides.json": "29ea4c0b885a28780dd9d8ec4cd74b1bd551cdc58c06f3ca1ece5d98e99b15e0",
+    "src/index.json": "1853cde73bc5f1660787e34b4a1e6bd9fb7200547c858aef7264b5b8ddb77987",
+    "server.json": "257551df2ce546745b9f78070d81c893b32cfa6a8d9836ae5ef7c04a99a305ff",
+    "mcpb/manifest.json": "b96e8220eca79cdf4ae85335e5e9e419f2ecc34cab14d2e5136e83e4ca433426"
+  }
+}

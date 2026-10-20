@@ -2,7 +2,7 @@
 // curve-stats.js
 // -----------------------------------------------------------------------------
 // One definition of the headline curve statistics, imported by BOTH the browser
-// (js/home.js) and the static build (scripts/build-hero-fallbacks.mjs).
+// (js/record.js) and the static build (scripts/build-hero-fallbacks.mjs).
 //
 // WHY IT IS SHARED RATHER THAN WRITTEN TWICE. The homepage promises that the
 // text a crawler reads is the text a browser renders. If the build computed

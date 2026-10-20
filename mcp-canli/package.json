@@ -1,0 +1,82 @@
+{
+  "name": "canli-mcp",
+  "version": "0.6.0",
+  "description": "Every Canli Capital MCP server in one: 315 tools for quant finance, backtest validation, SEC filings and fundamentals (statements as filed, earnings guidance, a draft's figures checked against the filings), European companies' ESEF reports, central-bank rates, prediction markets, DeFi, markets (ownership, short interest, options, the Fed, macro data) and prices, research and paper trading, behind three discovery tools (1,160 tokens of context instead of 39,962). Results drawn as tables and charts in clients with MCP Apps. Batch calls, data by file path, offline mode, local by default.",
+  "private": false,
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "canli-mcp": "src/server.mjs"
+  },
+  "engines": {
+    "node": ">=20.10"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "FEATURES.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build-index": "node scripts/build-index.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/client": "2.3.1",
+    "@modelcontextprotocol/server": "2.3.1",
+    "canli-backtest-mcp": "0.1.2",
+    "canli-fundamentals-mcp": "0.6.0",
+    "canli-markets-mcp": "0.5.0",
+    "canli-paper-trading-mcp": "0.1.0",
+    "canli-quant-mcp": "0.1.2",
+    "canli-research-mcp": "0.3.0",
+    "canli-validation-mcp": "0.14.0",
+    "zod": "4.6.5"
+  },
+  "mcpName": "io.github.arhancanli/canli-mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arhancanli/canlicapital.git",
+    "directory": "mcp-canli"
+  },
+  "homepage": "https://canlicapital.com/developers",
+  "bugs": {
+    "url": "https://github.com/arhancanli/canlicapital/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "quant",
+    "quantitative-finance",
+    "backtesting",
+    "overfitting",
+    "sec-filings",
+    "fundamentals",
+    "paper-trading",
+    "risk",
+    "options",
+    "portfolio-optimization",
+    "technical-indicators",
+    "econometrics",
+    "sec-edgar",
+    "insider-trading",
+    "13f",
+    "economic-data",
+    "financial-statements",
+    "earnings",
+    "fact-checking",
+    "mcp-apps",
+    "esef",
+    "central-banks",
+    "interest-rates",
+    "prediction-markets",
+    "defi"
+  ],
+  "overrides": {
+    "canli-backtest-mcp": {
+      "canli-validation-mcp": "$canli-validation-mcp"
+    }
+  }
+}

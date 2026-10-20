@@ -1,0 +1,1737 @@
+{
+ "about": "Analyst questions for the filings tools, answered from the companies' own filings. dev: companies and releases the tools were built on; fresh: releases never used while building or tuning them. Truths are independent of the tools: statement figures from SEC's companyfacts XBRL API (truth.py), table figures from the raw document by a separate parser (truth.py), guidance from the release's own words (source_quote, read by hand). None of these companies or periods is one of the Vals.ai Finance Agent public questions read on 2026-10-14. fresh-2: a second set of releases, run once after the fixes the fresh set prompted, to check that they generalize; not tuned on. verify: claims for verify_claims built from SEC companyfacts by a separate script (true figures, last year's figure claimed for this year, unit slips, a quarter claimed for the year, future years, dividends from companies that pay none, a non-GAAP figure); pass = the expected verdict and, for a contradicted claim, the expected diagnosis. trap: questions with false premises (a year not reported, a company that does not exist, a table no filing has, a release that does not exist, a dividend never paid); pass = a refusal or an empty answer, never a figure.",
+ "scoring": "A question passes when the tool's answer holds every expected figure: values in any scale the page uses (thousands, millions, billions), a range as one row with both ends, a comparison as the row with the expected position. Tool level only: no model reads the answers.",
+ "questions": [
+  {
+   "id": "st-ko-revenue-2025",
+   "set": "dev",
+   "type": "statement",
+   "question": "What were Coca-Cola's net operating revenues for 2025?",
+   "tool": "financial_statements",
+   "args": {
+    "company": "21344",
+    "statement": "income",
+    "fiscal_year": 2025
+   },
+   "truth": {
+    "kind": "fact",
+    "cik": 21344,
+    "concepts": [
+     "us-gaap:Revenues",
+     "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+    ],
+    "end": "2025-12-31"
+   }
+  },
+  {
+   "id": "st-jpm-netincome-2025",
+   "set": "dev",
+   "type": "statement",
+   "question": "What was JPMorgan Chase's net income for 2025?",
+   "tool": "financial_statements",
+   "args": {
+    "company": "19617",
+    "statement": "income",
+    "fiscal_year": 2025
+   },
+   "truth": {
+    "kind": "fact",
+    "cik": 19617,
+    "concepts": [
+     "us-gaap:NetIncomeLoss"
+    ],
+    "end": "2025-12-31"
+   }
+  },
+  {
+   "id": "st-cost-netincome-2026",
+   "set": "dev",
+   "type": "statement",
+   "question": "What was Costco's net income attributable to Costco for fiscal 2026?",
+   "tool": "financial_statements",
+   "args": {
+    "company": "909832",
+    "statement": "income",
+    "fiscal_year": 2026
+   },
+   "truth": {
+    "kind": "fact",
+    "cik": 909832,
+    "concepts": [
+     "us-gaap:NetIncomeLoss"
+    ],
+    "end": "2026-08-30"
+   }
+  },
+  {
+   "id": "st-msft-eps-2026",
+   "set": "dev",
+   "type": "statement",
+   "question": "What was Microsoft's diluted EPS for fiscal 2026?",
+   "tool": "financial_statements",
+   "args": {
+    "company": "MSFT",
+    "statement": "income"
+   },
+   "truth": {
+    "kind": "fact",
+    "cik": 789019,
+    "concepts": [
+     "us-gaap:EarningsPerShareDiluted"
+    ],
+    "end": "2026-06-30",
+    "unit": "USD/shares"
+   }
+  },
+  {
+   "id": "st-pg-sales-2026",
+   "set": "fresh",
+   "type": "statement",
+   "question": "What were Procter & Gamble's net sales for fiscal 2026?",
+   "tool": "financial_statements",
+   "args": {
+    "company": "80424",
+    "statement": "income",
+    "fiscal_year": 2026
+   },
+   "truth": {
+    "kind": "fact",
+    "cik": 80424,
+    "concepts": [
+     "us-gaap:Revenues",
+     "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "us-gaap:SalesRevenueNet"
+    ],
+    "end": "2026-06-30"
+   }
+  },
+  {
+   "id": "st-xom-revenue-2025",
+   "set": "fresh",
+   "type": "statement",
+   "question": "What were Exxon Mobil's total revenues and other income for 2025?",
+   "tool": "financial_statements",
+   "args": {
+    "company": "34088",
+    "statement": "income",
+    "fiscal_year": 2025
+   },
+   "truth": {
+    "kind": "fact",
+    "cik": 34088,
+    "concepts": [
+     "us-gaap:Revenues"
+    ],
+    "end": "2025-12-31"
+   }
+  },
+  {
+   "id": "st-orcl-revenue-2026",
+   "set": "fresh",
+   "type": "statement",
+   "question": "What were Oracle's total revenues for fiscal 2026?",
+   "tool": "financial_statements",
+   "args": {
+    "company": "1341439",
+    "statement": "income",
+    "fiscal_year": 2026
+   },
+   "truth": {
+    "kind": "fact",
+    "cik": 1341439,
+    "concepts": [
+     "us-gaap:Revenues",
+     "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+    ],
+    "end": "2026-05-31"
+   }
+  },
+  {
+   "id": "st-nke-netincome-2026",
+   "set": "fresh",
+   "type": "statement",
+   "question": "What was Nike's net income for fiscal 2026?",
+   "tool": "financial_statements",
+   "args": {
+    "company": "320187",
+    "statement": "income",
+    "fiscal_year": 2026
+   },
+   "truth": {
+    "kind": "fact",
+    "cik": 320187,
+    "concepts": [
+     "us-gaap:NetIncomeLoss"
+    ],
+    "end": "2026-05-31"
+   }
+  },
+  {
+   "id": "st-cat-opprofit-2025",
+   "set": "fresh",
+   "type": "statement",
+   "question": "What was Caterpillar's operating profit for 2025?",
+   "tool": "financial_statements",
+   "args": {
+    "company": "18230",
+    "statement": "income",
+    "fiscal_year": 2025
+   },
+   "truth": {
+    "kind": "fact",
+    "cik": 18230,
+    "concepts": [
+     "us-gaap:OperatingIncomeLoss"
+    ],
+    "end": "2025-12-31"
+   }
+  },
+  {
+   "id": "st-pfe-netincome-2025",
+   "set": "fresh",
+   "type": "statement",
+   "question": "What was Pfizer's net income attributable to Pfizer common shareholders for 2025?",
+   "tool": "financial_statements",
+   "args": {
+    "company": "78003",
+    "statement": "income",
+    "fiscal_year": 2025
+   },
+   "truth": {
+    "kind": "fact",
+    "cik": 78003,
+    "concepts": [
+     "us-gaap:NetIncomeLoss"
+    ],
+    "end": "2025-12-31"
+   }
+  },
+  {
+   "id": "st-hd-assets-2025",
+   "set": "fresh",
+   "type": "statement",
+   "question": "What were Home Depot's total assets at the end of fiscal 2025?",
+   "tool": "financial_statements",
+   "args": {
+    "company": "354950",
+    "statement": "balance_sheet",
+    "fiscal_year": 2026
+   },
+   "truth": {
+    "kind": "fact",
+    "cik": 354950,
+    "concepts": [
+     "us-gaap:Assets"
+    ],
+    "instant": "2026-02-01"
+   }
+  },
+  {
+   "id": "st-aapl-opcash-2025",
+   "set": "fresh",
+   "type": "statement",
+   "question": "What was Apple's cash generated by operating activities in fiscal 2025?",
+   "tool": "financial_statements",
+   "args": {
+    "company": "AAPL",
+    "statement": "cash_flow",
+    "fiscal_year": 2025
+   },
+   "truth": {
+    "kind": "fact",
+    "cik": 320193,
+    "concepts": [
+     "us-gaap:NetCashProvidedByUsedInOperatingActivities"
+    ],
+    "end": "2025-09-27"
+   }
+  },
+  {
+   "id": "tr-msft-rnd-2023-2026",
+   "set": "dev",
+   "type": "trend",
+   "question": "How did Microsoft's research and development expense change from fiscal 2023 to fiscal 2026?",
+   "tool": "financial_statements",
+   "args": {
+    "company": "MSFT",
+    "statement": "income",
+    "filings": 2
+   },
+   "truth": {
+    "kind": "facts",
+    "cik": 789019,
+    "concepts": [
+     "us-gaap:ResearchAndDevelopmentExpense"
+    ],
+    "ends": [
+     "2026-06-30",
+     "2025-06-30",
+     "2024-06-30",
+     "2023-06-30"
+    ]
+   }
+  },
+  {
+   "id": "tr-nvda-revenue-2023-2026",
+   "set": "fresh",
+   "type": "trend",
+   "question": "What was NVIDIA's revenue in each of fiscal 2023 to fiscal 2026?",
+   "tool": "financial_statements",
+   "args": {
+    "company": "NVDA",
+    "statement": "income",
+    "filings": 2,
+    "fiscal_year": 2026
+   },
+   "truth": {
+    "kind": "facts",
+    "cik": 1045810,
+    "concepts": [
+     "us-gaap:Revenues",
+     "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+    ],
+    "ends": [
+     "2026-01-25",
+     "2025-01-26",
+     "2024-01-28",
+     "2023-01-29"
+    ]
+   }
+  },
+  {
+   "id": "tr-ko-opincome-2022-2025",
+   "set": "fresh",
+   "type": "trend",
+   "question": "What was Coca-Cola's operating income in each year from 2022 to 2025?",
+   "tool": "financial_statements",
+   "args": {
+    "company": "21344",
+    "statement": "income",
+    "filings": 2,
+    "fiscal_year": 2025
+   },
+   "truth": {
+    "kind": "facts",
+    "cik": 21344,
+    "concepts": [
+     "us-gaap:OperatingIncomeLoss"
+    ],
+    "ends": [
+     "2025-12-31",
+     "2024-12-31",
+     "2023-12-31",
+     "2022-12-31"
+    ]
+   }
+  },
+  {
+   "id": "kpi-cost-members-2022-2026",
+   "set": "dev",
+   "type": "kpi",
+   "question": "How many paid Costco members were there at the end of each fiscal year from 2022 to 2026?",
+   "tool": "filing_tables",
+   "args": {
+    "company": "909832",
+    "find": "paid members",
+    "filings": 3
+   },
+   "truth": {
+    "kind": "html_row",
+    "cik": 909832,
+    "accessions": [
+     "0000909832-26-000093",
+     "0000909832-24-000049"
+    ],
+    "label": "paid members",
+    "count": 3
+   }
+  },
+  {
+   "id": "kpi-cost-employees-2026",
+   "set": "dev",
+   "type": "kpi",
+   "question": "How many employees did Costco have at the end of fiscal 2026?",
+   "tool": "filing_tables",
+   "args": {
+    "company": "909832",
+    "find": "total employees"
+   },
+   "truth": {
+    "kind": "html_row",
+    "cik": 909832,
+    "accessions": [
+     "0000909832-26-000093"
+    ],
+    "label": "total employees",
+    "count": 1
+   }
+  },
+  {
+   "id": "kpi-cost-warehouses-2026",
+   "set": "dev",
+   "type": "kpi",
+   "question": "How many warehouses did Costco operate at the end of fiscal 2026, owned and leased?",
+   "tool": "filing_tables",
+   "args": {
+    "company": "909832",
+    "find": "warehouses own lease"
+   },
+   "truth": {
+    "kind": "html_row",
+    "cik": 909832,
+    "accessions": [
+     "0000909832-26-000093"
+    ],
+    "label": "Total",
+    "after": "Warehouse Properties",
+    "count": 3
+   }
+  },
+  {
+   "id": "seg-msft-us-revenue-2026",
+   "set": "dev",
+   "type": "segment",
+   "question": "How much of Microsoft's fiscal 2026 revenue came from the United States?",
+   "tool": "filing_tables",
+   "args": {
+    "company": "MSFT",
+    "find": "geographic revenue"
+   },
+   "truth": {
+    "kind": "html_row",
+    "cik": 789019,
+    "accessions": [
+     "0001193125-26-323660"
+    ],
+    "label": "United States",
+    "after": "geographic areas in which our customers were located",
+    "count": 1
+   }
+  },
+  {
+   "id": "rc-wmt-fcf-h1-fy27",
+   "set": "dev",
+   "type": "reconciliation",
+   "question": "What was Walmart's free cash flow for the first six months of fiscal 2027?",
+   "tool": "filing_tables",
+   "args": {
+    "company": "104169",
+    "form": "8-K",
+    "find": "free cash flow",
+    "accession": "0000104169-26-000145"
+   },
+   "expect": {
+    "values": [
+     5529
+    ]
+   },
+   "source_quote": "Free cash flow | 5,529 | 6,943 (Six Months Ended July 31, 2026 | 2025)"
+  },
+  {
+   "id": "gd-nvda-rev-q3fy27",
+   "set": "dev",
+   "type": "guidance",
+   "question": "What revenue did NVIDIA guide for the third quarter of fiscal 2027, as a range?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "NVDA",
+    "accession": "0001045810-26-000073",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     105.84,
+     110.16
+    ]
+   },
+   "source_quote": "Revenue is expected to be $108.0 billion, plus or minus 2%."
+  },
+  {
+   "id": "gd-txn-rev-q3-2026",
+   "set": "dev",
+   "type": "guidance",
+   "question": "What revenue range did Texas Instruments guide for the third quarter of 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "97476",
+    "accession": "0000097476-26-000148",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     5.65,
+     6.15
+    ]
+   },
+   "source_quote": "TI's third quarter outlook is for revenue in the range of $5.65 billion to $6.15 billion and earnings per share between $2.23 and $2.57."
+  },
+  {
+   "id": "gd-lulu-eps-q3-2026",
+   "set": "dev",
+   "type": "guidance",
+   "question": "What diluted EPS range did Lululemon guide for the third quarter of 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1397187",
+    "accession": "0001397187-26-000126",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     0.93,
+     0.98
+    ]
+   },
+   "source_quote": "Diluted earnings per share are expected to be in the range of $0.93 to $0.98 for the quarter."
+  },
+  {
+   "id": "gd-wmt-eps-fy27",
+   "set": "dev",
+   "type": "guidance",
+   "question": "What adjusted EPS range does Walmart guide for fiscal 2027 after its August 2026 update, and what was the original range?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "104169",
+    "accession": "0000104169-26-000145",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     2.8,
+     2.87
+    ],
+    "also_range": [
+     2.75,
+     2.85
+    ]
+   },
+   "source_quote": "Adj. EPS | $2.75 to $2.85 | Unchanged | $2.80 to $2.87"
+  },
+  {
+   "id": "gd-hd-opmargin-fy26",
+   "set": "dev",
+   "type": "guidance",
+   "question": "What operating margin does Home Depot guide for fiscal 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "354950",
+    "accession": "0000354950-26-000145",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     12.4,
+     12.6
+    ]
+   },
+   "source_quote": "Operating margin of approximately 12.4% to 12.6%"
+  },
+  {
+   "id": "gd-dal-eps-q4-2026",
+   "set": "dev",
+   "type": "guidance",
+   "question": "What EPS range does Delta expect for the December quarter of 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "27904",
+    "accession": "0000027904-26-000035",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     1.15,
+     1.65
+    ]
+   },
+   "source_quote": "In the December quarter, we expect earnings of $1.15 to $1.65 per share"
+  },
+  {
+   "id": "gd-crm-rev-fy27",
+   "set": "dev",
+   "type": "guidance",
+   "question": "What revenue range does Salesforce guide for fiscal 2027?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1108524",
+    "accession": "0001108524-26-000187",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     46.1,
+     46.4
+    ]
+   },
+   "source_quote": "Salesforce raises full year FY27 revenue guidance to $46.1 billion to $46.4 billion"
+  },
+  {
+   "id": "gd-mu-rev-q1fy27",
+   "set": "dev",
+   "type": "guidance",
+   "question": "What revenue range did Micron guide for the first quarter of fiscal 2027?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "723125",
+    "accession": "0000723125-26-000018",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     60,
+     63
+    ]
+   },
+   "source_quote": "FQ1-27 GAAP Outlook: $61.5 billion ± $1.5 billion"
+  },
+  {
+   "id": "bm-nvda-rev-q2fy27",
+   "set": "dev",
+   "type": "beat_or_miss",
+   "question": "Did NVIDIA's revenue for the second quarter of fiscal 2027 beat its guidance?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "NVDA",
+    "accession": "0001045810-26-000073"
+   },
+   "expect": {
+    "position": "above the range",
+    "actual": 96.2,
+    "range": [
+     89.18,
+     92.82
+    ]
+   },
+   "source_quote": "Revenue is expected to be $91.0 billion, plus or minus 2% (May 2026); Revenue of $96.2 billion (August 2026)"
+  },
+  {
+   "id": "bm-wmt-eps-q2fy27",
+   "set": "dev",
+   "type": "beat_or_miss",
+   "question": "Did Walmart's adjusted EPS for the second quarter of fiscal 2027 beat its guidance?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "104169",
+    "accession": "0000104169-26-000145"
+   },
+   "expect": {
+    "position": "above the range",
+    "actual": 0.81,
+    "range": [
+     0.72,
+     0.74
+    ]
+   },
+   "source_quote": "Adjusted EPS | $0.72 to $0.74 (May 2026); Adjusted EPS of $0.81 (August 2026)"
+  },
+  {
+   "id": "bm-lulu-rev-q2-2026",
+   "set": "dev",
+   "type": "beat_or_miss",
+   "question": "Did Lululemon's second-quarter 2026 revenue growth meet its guidance?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1397187",
+    "accession": "0001397187-26-000126"
+   },
+   "expect": {
+    "position": "below the range",
+    "actual": -4,
+    "range": [
+     -3,
+     -2
+    ]
+   },
+   "source_quote": "representing a decline of 3% to 2% (June 2026); Revenue decreased 4% (September 2026)"
+  },
+  {
+   "id": "gd-qcom-rev-q4fy26",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "What revenue range did Qualcomm guide for the fourth quarter of fiscal 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "804328",
+    "accession": "0000804328-26-000085",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     9.7,
+     10.5
+    ]
+   },
+   "source_quote": "Revenues | $9.7B - $10.5B"
+  },
+  {
+   "id": "gd-qcom-eps-q4fy26",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "What non-GAAP diluted EPS range did Qualcomm guide for the fourth quarter of fiscal 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "804328",
+    "accession": "0000804328-26-000085",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     2.05,
+     2.25
+    ]
+   },
+   "source_quote": "Non-GAAP diluted EPS | $2.05 - $2.25"
+  },
+  {
+   "id": "gd-amat-rev-q4fy26",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "What revenue did Applied Materials guide for the fourth quarter of fiscal 2026, as a range?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "6951",
+    "accession": "0001628280-26-056699",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     9750,
+     10750
+    ]
+   },
+   "source_quote": "Total revenue | $ 10,250 | +/- | $ 500 (in millions)"
+  },
+  {
+   "id": "gd-mrvl-rev-q3fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "What net revenue did Marvell guide for the third quarter of fiscal 2027, as a range?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1835632",
+    "accession": "0001835632-26-000022",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     2992.5,
+     3307.5
+    ]
+   },
+   "source_quote": "GAAP net revenue | $3,150 +/- 5% (in millions)"
+  },
+  {
+   "id": "gd-mrvl-gm-q3fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "What non-GAAP gross margin did Marvell guide for the third quarter of fiscal 2027?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1835632",
+    "accession": "0001835632-26-000022",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     57.5,
+     58.5
+    ]
+   },
+   "source_quote": "Non-GAAP gross margin | 57.5% - 58.5%"
+  },
+  {
+   "id": "gd-csco-rev-q1fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "What revenue range did Cisco guide for the first quarter of fiscal 2027?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "858877",
+    "accession": "0000858877-26-000106",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     18,
+     18.2
+    ]
+   },
+   "source_quote": "Revenue | $18.0 billion - $18.2 billion"
+  },
+  {
+   "id": "gd-csco-opm-q1fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "What non-GAAP operating margin did Cisco guide for the first quarter of fiscal 2027?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "858877",
+    "accession": "0000858877-26-000106",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     35.5,
+     36.5
+    ]
+   },
+   "source_quote": "Non-GAAP operating margin | 35.5% - 36.5%"
+  },
+  {
+   "id": "gd-intu-rev-fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "What total revenue range does Intuit guide for fiscal 2027?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "896878",
+    "accession": "0000896878-26-000029",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     23279,
+     23512
+    ]
+   },
+   "source_quote": "Total Revenue | $23,279 to $23,512 | 9% to 10%"
+  },
+  {
+   "id": "gd-hpq-eps-q4fy26",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "What non-GAAP diluted EPS range did HP guide for the fourth quarter of fiscal 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "47217",
+    "accession": "0000047217-26-000048",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     0.69,
+     0.79
+    ]
+   },
+   "source_quote": "For the fiscal 2026 fourth quarter, HP estimates GAAP diluted net EPS to be in the range of $0.74 to $0.84 and non-GAAP diluted net EPS to be in the range of $0.69 to $0.79"
+  },
+  {
+   "id": "gd-hpq-fcf-fy26",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "What free cash flow does HP now expect for fiscal 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "47217",
+    "accession": "0000047217-26-000048",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     3,
+     3.2
+    ]
+   },
+   "source_quote": "For fiscal 2026, HP is also raising its estimate of free cash flow to be in the range of $3.0 to $3.2 billion."
+  },
+  {
+   "id": "gd-panw-rev-q1fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "What total revenue range did Palo Alto Networks guide for the first quarter of fiscal 2027?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1327567",
+    "accession": "0001327567-26-000019",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     3.3,
+     3.31
+    ]
+   },
+   "source_quote": "Total revenue in the range of $3.300 billion to $3.310 billion, representing year-over-year growth of 33% to 34%."
+  },
+  {
+   "id": "gd-panw-eps-fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "What non-GAAP EPS range does Palo Alto Networks guide for fiscal 2027?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1327567",
+    "accession": "0001327567-26-000019",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     4.16,
+     4.19
+    ]
+   },
+   "source_quote": "Diluted non-GAAP net income per share in the range of $4.16 to $4.19"
+  },
+  {
+   "id": "gd-acn-eps-fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "What GAAP diluted EPS range does Accenture expect for fiscal 2027?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1467373",
+    "accession": "0001467373-26-000037",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     14.39,
+     14.81
+    ]
+   },
+   "source_quote": "Expects full-year GAAP diluted EPS of $14.39 to $14.81"
+  },
+  {
+   "id": "gd-len-deliveries-q4-2026",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "How many homes does Lennar expect to deliver in the fourth quarter of 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "920760",
+    "accession": "0001628280-26-062287",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     22000,
+     23000
+    ]
+   },
+   "source_quote": "we expect ... to deliver approximately 22,000 to 23,000 homes"
+  },
+  {
+   "id": "gd-ctas-rev-fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "What annual revenue range does Cintas now expect, and what was the prior range?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "723254",
+    "accession": "0000723254-26-000044",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     12.15,
+     12.27
+    ],
+    "also_range": [
+     12.1,
+     12.25
+    ]
+   },
+   "source_quote": "We are raising our annual revenue expectations from a range of $12.10 billion to $12.25 billion to a range of $12.15 billion to $12.27 billion"
+  },
+  {
+   "id": "gd-lrcx-rev-sep-q",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "What revenue did Lam Research guide for the quarter ending September 2026, as a range?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "707549",
+    "accession": "0000707549-26-000033",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     7.7,
+     8.5
+    ]
+   },
+   "source_quote": "Revenue | $8.10 Billion | +/- | $400 Million"
+  },
+  {
+   "id": "gd-adsk-rev-q3fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "What revenue range did Autodesk guide for the third quarter of fiscal 2027?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "769397",
+    "accession": "0000769397-26-000059",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     2125,
+     2140
+    ]
+   },
+   "source_quote": "Revenue (in millions) | $2,125 - $2,140"
+  },
+  {
+   "id": "gd-adsk-eps-fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "What non-GAAP EPS range does Autodesk guide for fiscal 2027?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "769397",
+    "accession": "0000769397-26-000059",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     12.52,
+     12.6
+    ]
+   },
+   "source_quote": "Non-GAAP EPS | $12.52 - $12.60"
+  },
+  {
+   "id": "gd-dell-rev-fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "question": "What full-year fiscal 2027 revenue does Dell now expect?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1571996",
+    "accession": "0001571996-26-000039",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     192,
+     192
+    ]
+   },
+   "source_quote": "we're raising our full-year FY27 revenue outlook by $25 billion to $192 billion"
+  },
+  {
+   "id": "bm-hpq-eps-q3fy26",
+   "set": "fresh",
+   "type": "beat_or_miss",
+   "question": "Did HP's non-GAAP diluted EPS for the third quarter of fiscal 2026 beat its outlook?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "47217",
+    "accession": "0000047217-26-000048"
+   },
+   "expect": {
+    "position": "above the range",
+    "actual": 0.83,
+    "range": [
+     0.61,
+     0.71
+    ]
+   },
+   "source_quote": "Third quarter non-GAAP diluted net EPS was $0.83 ... above the previously provided outlook of $0.61 to $0.71."
+  },
+  {
+   "id": "bm-acn-rev-q4fy26",
+   "set": "fresh",
+   "type": "beat_or_miss",
+   "question": "Did Accenture's fourth-quarter fiscal 2026 revenue beat its guided range?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1467373",
+    "accession": "0001467373-26-000037"
+   },
+   "expect": {
+    "position": "above the range",
+    "actual": 18.68,
+    "range": [
+     17.75,
+     18.4
+    ]
+   },
+   "source_quote": "Revenues for the fourth quarter of fiscal 2026 were $18.68 billion ... above the company's guided range of $17.75 billion to $18.40 billion"
+  },
+  {
+   "id": "bm-mrvl-rev-q2fy27",
+   "set": "fresh",
+   "type": "beat_or_miss",
+   "question": "Where did Marvell's second-quarter fiscal 2027 net revenue land against its guidance?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1835632",
+    "accession": "0001835632-26-000022"
+   },
+   "expect": {
+    "position": "within the range",
+    "actual": 2.739
+   },
+   "source_quote": "Net revenue for the second quarter of fiscal 2027 was $2.739 billion, $39.0 million above the mid-point of the Company's guidance"
+  },
+  {
+   "id": "f2-cdns-rev-fy26",
+   "set": "fresh-2",
+   "type": "guidance",
+   "question": "What revenue range does Cadence expect for fiscal 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "813672",
+    "accession": "0000813672-26-000089",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     6.26,
+     6.34
+    ]
+   },
+   "source_quote": "Revenue in the range of $6.26 billion to $6.34 billion"
+  },
+  {
+   "id": "f2-cdns-eps-fy26",
+   "set": "fresh-2",
+   "type": "guidance",
+   "question": "What non-GAAP diluted EPS range does Cadence expect for fiscal 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "813672",
+    "accession": "0000813672-26-000089",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     8.05,
+     8.15
+    ]
+   },
+   "source_quote": "Non-GAAP diluted net income per share in the range of $8.05 to $8.15"
+  },
+  {
+   "id": "f2-ftnt-rev-q3-2026",
+   "set": "fresh-2",
+   "type": "guidance",
+   "question": "What revenue range did Fortinet guide for the third quarter of 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1262039",
+    "accession": "0001262039-26-000018",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     2.01,
+     2.1
+    ]
+   },
+   "source_quote": "Revenue in the range of $2.010 billion to $2.100 billion"
+  },
+  {
+   "id": "f2-ftnt-rev-fy26",
+   "set": "fresh-2",
+   "type": "guidance",
+   "question": "What revenue range does Fortinet guide for full-year 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1262039",
+    "accession": "0001262039-26-000018",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     8.02,
+     8.18
+    ]
+   },
+   "source_quote": "Revenue in the range of $8.020 billion to $8.180 billion"
+  },
+  {
+   "id": "f2-dri-eps-fy27",
+   "set": "fresh-2",
+   "type": "guidance",
+   "question": "What diluted EPS from continuing operations does Darden expect for fiscal 2027?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "940944",
+    "accession": "0000940944-26-000032",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     11.1,
+     11.35
+    ]
+   },
+   "source_quote": "diluted net earnings per share from continuing operations of $11.10 to $11.35"
+  },
+  {
+   "id": "f2-stz-eps-fy27",
+   "set": "fresh-2",
+   "type": "guidance",
+   "question": "What comparable EPS range does Constellation Brands expect for fiscal 2027, and what reported EPS range?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "16918",
+    "accession": "0000016918-26-000039",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     11.2,
+     11.9
+    ],
+    "also_range": [
+     11.85,
+     12.55
+    ]
+   },
+   "source_quote": "Updates fiscal 2027 reported EPS outlook to $11.85 - $12.55, and reaffirms comparable EPS outlook of $11.20 - $11.90"
+  },
+  {
+   "id": "f2-stz-fcf-fy27",
+   "set": "fresh-2",
+   "type": "guidance",
+   "question": "What free cash flow does Constellation Brands target for fiscal 2027?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "16918",
+    "accession": "0000016918-26-000039",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     1.6,
+     1.7
+    ]
+   },
+   "source_quote": "free cash flow target of $1.6 - $1.7 billion"
+  },
+  {
+   "id": "f2-now-subrev-q3-2026",
+   "set": "fresh-2",
+   "type": "guidance",
+   "question": "What subscription revenue did ServiceNow guide for the third quarter of 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1373715",
+    "accession": "0001373715-26-000072",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     3975,
+     3980
+    ]
+   },
+   "source_quote": "Subscription revenues | $3,975 - $3,980 (Third Quarter 2026, in millions)"
+  },
+  {
+   "id": "f2-now-subrev-fy26",
+   "set": "fresh-2",
+   "type": "guidance",
+   "question": "What subscription revenue does ServiceNow guide for full-year 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1373715",
+    "accession": "0001373715-26-000072",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     15760,
+     15780
+    ]
+   },
+   "source_quote": "Subscription revenues | $15,760 - $15,780 (Full-Year 2026, in millions)"
+  },
+  {
+   "id": "vt-msft-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Microsoft's revenue for fiscal 2026 was 331.8 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "MSFT",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2026",
+      "value": 331.8,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "confirmed"
+   }
+  },
+  {
+   "id": "vt-nvda-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that NVIDIA's revenue for fiscal 2026 was 215.9 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "NVDA",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2026",
+      "value": 215.9,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "confirmed"
+   }
+  },
+  {
+   "id": "vt-909832-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Costco's revenue for fiscal 2026 was 303.2 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "909832",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2026",
+      "value": 303.2,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "confirmed"
+   }
+  },
+  {
+   "id": "vt-21344-rev-2025",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Coca-Cola's revenue for fiscal 2025 was 47.9 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "21344",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2025",
+      "value": 47.9,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "confirmed"
+   }
+  },
+  {
+   "id": "vt-80424-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Procter & Gamble's revenue for fiscal 2026 was 87.0 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "80424",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2026",
+      "value": 87.0,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "confirmed"
+   }
+  },
+  {
+   "id": "vt-1341439-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Oracle's revenue for fiscal 2026 was 67.4 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "1341439",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2026",
+      "value": 67.4,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "confirmed"
+   }
+  },
+  {
+   "id": "vt-34088-ni-2025",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Exxon Mobil's net income for fiscal 2025 was 28.8 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "34088",
+    "claims": [
+     {
+      "measure": "net income",
+      "period": "fiscal 2025",
+      "value": 28.8,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "confirmed"
+   }
+  },
+  {
+   "id": "vt-19617-ni-2025",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that JPMorgan Chase's net income for fiscal 2025 was 57.0 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "19617",
+    "claims": [
+     {
+      "measure": "net income",
+      "period": "fiscal 2025",
+      "value": 57.0,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "confirmed"
+   }
+  },
+  {
+   "id": "vw-msft-rev-prior",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Microsoft's revenue for fiscal 2026 was 281.7 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "MSFT",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2026",
+      "value": 281.7,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "contradicted",
+    "note": "matches fiscal 2025 instead"
+   }
+  },
+  {
+   "id": "vw-nvda-rev-prior",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that NVIDIA's revenue for fiscal 2026 was 130.5 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "NVDA",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2026",
+      "value": 130.5,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "contradicted",
+    "note": "matches fiscal 2025 instead"
+   }
+  },
+  {
+   "id": "vw-21344-rev-prior",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Coca-Cola's revenue for fiscal 2025 was 47.1 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "21344",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2025",
+      "value": 47.1,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "contradicted",
+    "note": "matches fiscal 2024 instead"
+   }
+  },
+  {
+   "id": "vw-msft-rev-slip",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Microsoft's revenue for fiscal 2026 was 331.8 USD million?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "MSFT",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2026",
+      "value": 331.8,
+      "unit": "USD million"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "contradicted",
+    "note": "a slip of units"
+   }
+  },
+  {
+   "id": "vw-80424-rev-slip",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Procter & Gamble's revenue for fiscal 2026 was 87.0 USD million?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "80424",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2026",
+      "value": 87.0,
+      "unit": "USD million"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "contradicted",
+    "note": "a slip of units"
+   }
+  },
+  {
+   "id": "vw-cost-ni-quarter",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Costco's net income for fiscal 2026 was 2.2 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "909832",
+    "claims": [
+     {
+      "measure": "net income",
+      "period": "fiscal 2026",
+      "value": 2.2,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "contradicted",
+    "note": "a quarter, not the year"
+   }
+  },
+  {
+   "id": "vp-msft-rev-2031",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Microsoft's revenue for fiscal 2031 was 500.0 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "MSFT",
+    "claims": [
+     {
+      "measure": "revenue",
+      "period": "fiscal 2031",
+      "value": 500.0,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "not reported"
+   }
+  },
+  {
+   "id": "vp-ko-ni-2030",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Coca-Cola's net income for fiscal 2030 was 15.0 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "21344",
+    "claims": [
+     {
+      "measure": "net income",
+      "period": "fiscal 2030",
+      "value": 15.0,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "not reported"
+   }
+  },
+  {
+   "id": "vp-amzn-div-2025",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Amazon's dividend per share for fiscal 2025 was 0.5?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "AMZN",
+    "claims": [
+     {
+      "measure": "dividends per share",
+      "period": "fiscal 2025",
+      "value": 0.5
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "not reported"
+   }
+  },
+  {
+   "id": "vp-brk-div-2025",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that Berkshire Hathaway's dividend per share for fiscal 2025 was 2.0?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "1067983",
+    "claims": [
+     {
+      "measure": "dividends per share",
+      "period": "fiscal 2025",
+      "value": 2.0
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "not reported"
+   }
+  },
+  {
+   "id": "vp-nvda-ebitda",
+   "set": "verify",
+   "type": "verify",
+   "question": "Is it right that NVIDIA's adjusted EBITDA for fiscal 2026 was 140.0 USD billion?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "NVDA",
+    "claims": [
+     {
+      "measure": "adjusted EBITDA",
+      "period": "fiscal 2026",
+      "value": 140.0,
+      "unit": "USD billion"
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "not checkable"
+   }
+  },
+  {
+   "id": "tp-aapl-statements-2031",
+   "set": "trap",
+   "type": "trap",
+   "question": "Show Apple's fiscal 2031 income statement.",
+   "tool": "financial_statements",
+   "args": {
+    "company": "AAPL",
+    "statement": "income",
+    "fiscal_year": 2031
+   },
+   "expect": {
+    "error": "no 10-K for a period ending in 2031"
+   }
+  },
+  {
+   "id": "tp-unknown-company",
+   "set": "trap",
+   "type": "trap",
+   "question": "What were ZZZQ Corp's revenues last year?",
+   "tool": "financial_statements",
+   "args": {
+    "company": "ZZZQ"
+   },
+   "expect": {
+    "error": "not a ticker in the SEC's files"
+   }
+  },
+  {
+   "id": "tp-msft-warp-table",
+   "set": "trap",
+   "type": "trap",
+   "question": "Find Microsoft's warp drive revenue table.",
+   "tool": "filing_tables",
+   "args": {
+    "company": "MSFT",
+    "find": "warp drive revenue"
+   },
+   "expect": {
+    "no_tables": true
+   }
+  },
+  {
+   "id": "tp-nvda-release-fake",
+   "set": "trap",
+   "type": "trap",
+   "question": "What did NVIDIA guide in its release 0001045810-26-999999?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "NVDA",
+    "accession": "0001045810-26-999999"
+   },
+   "expect": {
+    "error": "not one of NVIDIA"
+   }
+  },
+  {
+   "id": "tp-tsla-div-statement",
+   "set": "trap",
+   "type": "trap",
+   "question": "Is it right that Tesla paid a $1.00 dividend per share in fiscal 2024?",
+   "tool": "verify_claims",
+   "args": {
+    "company": "TSLA",
+    "claims": [
+     {
+      "measure": "dividends per share",
+      "period": "fiscal 2024",
+      "value": 1.0
+     }
+    ]
+   },
+   "expect": {
+    "verdict": "not reported"
+   }
+  },
+  {
+   "id": "tp-wmt-q4-10q",
+   "set": "trap",
+   "type": "trap",
+   "question": "Show Walmart's quarterly income statement for a fiscal year that has not ended.",
+   "tool": "financial_statements",
+   "args": {
+    "company": "104169",
+    "period": "quarterly",
+    "fiscal_year": 2030
+   },
+   "expect": {
+    "error": "no 10-Q for a period ending in 2030"
+   }
+  }
+ ]
+}

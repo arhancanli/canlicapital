@@ -63,7 +63,7 @@ PERFORMANCE_OBSERVERS = """
 
 def source_fingerprint() -> str:
     digest = hashlib.sha256()
-    for relative_path in ("index.html", "css/home.css", "js/home.js", "package-lock.json"):
+    for relative_path in ("index.html", "css/home.css", "js/record.js", "package-lock.json"):
         path = ROOT / relative_path
         digest.update(relative_path.encode())
         digest.update(b"\0")

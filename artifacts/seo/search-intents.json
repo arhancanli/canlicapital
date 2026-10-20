@@ -1,11 +1,17 @@
 {
   "schema": "canli.search-intent-audit.v1",
   "measurement_status": "Editorial intent hypotheses; search volume, rankings and query coverage are not measured",
-  "canonical_owners": 111,
-  "query_hypotheses": 166,
-  "local_indexable_pages": 337,
+  "canonical_owners": 116,
+  "query_hypotheses": 177,
+  "local_indexable_pages": 348,
   "unassigned_canonicals": [
+    "https://canlicapital.com/contributors",
     "https://canlicapital.com/annotate",
+    "https://canlicapital.com/benchmarks/filingfacts",
+    "https://canlicapital.com/benchmarks/finance-mcp-servers",
+    "https://canlicapital.com/record",
+    "https://canlicapital.com/vision",
+    "https://canlicapital.com/stats",
     "https://canlicapital.com/research/active-ownership-item4-v3-feasibility",
     "https://canlicapital.com/research/alphamax-equity-momentum-lineage",
     "https://canlicapital.com/research/alphatrend-managed-futures-lineage",
@@ -637,6 +643,47 @@
         "quant research null benchmark"
       ],
       "source": "public/research/null-zoo-v0.md"
+    },
+    {
+      "path": "/notes/edgar-acceptance-times",
+      "intent": "Find out why EDGAR's acceptanceDateTime is hours off and how to correct it",
+      "queries": [
+        "edgar acceptancedatetime wrong",
+        "sec submissions api acceptance time timezone",
+        "edgar filing acceptance time utc"
+      ]
+    },
+    {
+      "path": "/notes/silver-price-returned-cpi",
+      "intent": "Map plain-word requests to the right FRED series in an agent tool",
+      "queries": [
+        "fred series lookup by name",
+        "mcp tool returned the wrong data series"
+      ]
+    },
+    {
+      "path": "/notes/pasted-data-lost-numbers",
+      "intent": "Understand why an agent gets numbers wrong when it copies data into a tool call",
+      "queries": [
+        "llm tool call drops numbers",
+        "pass a file to an mcp tool instead of pasting data"
+      ]
+    },
+    {
+      "path": "/notes/would-it-beat-a-placebo",
+      "intent": "Test whether a backtest beats a placebo of its own returns in random order",
+      "queries": [
+        "placebo test backtest",
+        "permutation test trading strategy"
+      ]
+    },
+    {
+      "path": "/notes/best-of-399-strategies",
+      "intent": "Decide whether the best of many backtested strategies is skill or luck",
+      "queries": [
+        "best of many strategies skill or luck",
+        "deflated sharpe effective number of trials"
+      ]
     },
     {
       "path": "/companies/0000019617",
