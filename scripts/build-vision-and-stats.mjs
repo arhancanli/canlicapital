@@ -1,8 +1,8 @@
 // =============================================================================
 // CANLI CAPITAL / scripts/build-vision-and-stats.mjs
 // -----------------------------------------------------------------------------
-// Renders /vision (what Canli Capital is building: the four pillars, each with what exists today
-// and what is next) and /stats (how much the open MCP servers are used, from
+// Renders /vision (what Canli Capital is building: five branches and the flagship funds they feed, each
+// with what exists today and what is next, and the road to 2028) and /stats (how much the open MCP servers are used, from
 // public/stats/adoption.json, which scripts/build-adoption-stats.mjs writes).
 //
 // The vision states goals as goals. Anything not yet measured or built is labelled as next or as a
@@ -92,38 +92,60 @@ const ORGANIZATION = {
   sameAs: ["https://github.com/arhancanli/canlicapital", "https://www.npmjs.com/package/canli-validation-mcp"],
 };
 
-// The four parts, as the homepage film shows them (Context, Testing, Data, Execution): what each is for, what exists
-// today and what comes next. Today's figures are read from published files; a goal stays labelled as a goal.
+// The five branches and the destination they feed (owner, 2026-10-15 and 2026-10-20), as the homepage
+// film's vision chapter lists them: what each is for, what exists today and what comes next. Today's
+// figures are read from published files; a goal stays labelled as a goal.
 const PARTS = [
-  { id: "context", n: "01", name: "Context", status: ["live", "Live"],
-    goal: "MCP servers that give AI agents primary-source financial data and quant tools, for as few tokens as possible.",
+  { id: "mcp", n: "01", name: "MCP servers and API", status: ["live", "Live"],
+    goal: "The best finance tools for AI agents: primary-source data and quant tools behind one MCP server, for as few tokens as possible, proved on someone else's test.",
     today: (f) => [
       `canli-mcp puts ${f.tools} tools behind ${f.front}: SEC filings, fundamentals, Treasury and FRED data, prices, quant analytics, backtest validation and paper trading, in ${f.tokens} tokens of context.`,
       `${f.onNpm} servers of the family are on npm, three of them also hosted at canlicapital.com/mcp.`,
       `In the open benchmark, canli-mcp answered ${f.ours} of the questions every server finished; the best of the other open servers, ${f.best}.`],
-    next: "canli-mcp on npm and the MCP Registry, a held-out benchmark set the servers were not tuned on, and more servers in the family.",
+    next: "The independent test on public expert questions (Vals.ai's finance set and FinanceBench) against the strongest open servers, then canli-mcp 1.0, more servers in the family and a paid tier for developers.",
     links: [["/mcp-servers", "canli-mcp and the servers"], ["/benchmarks/finance-mcp-servers", "The benchmark"]] },
-  { id: "testing", n: "02", name: "Testing", status: ["live", "Live"],
-    goal: "An engine that counts every trial, so a lucky backtest is called luck instead of a strategy.",
-    today: () => [
-      "ALPHAC, the open-source engine, keeps its paper-traded record, its trial accounting and its retracted figures in public.",
-      "The validators (deflated Sharpe, probability of backtest overfitting, minimum track record, the haircut Sharpe and White's Reality Check) are checked against their papers. They measure overfitting risk; they cannot remove it."],
-    next: "More asset classes and more economically distinct strategies, each admitted only on forward evidence.",
-    links: [["/research", "Research"], ["/trials", "Every trial"], ["/tools", "The calculators"]] },
-  { id: "data", n: "03", name: "Data", status: ["next", "Started"],
-    goal: "Financial datasets to train and test AI models, where every answer is computed from public filings and checked by qualified people.",
+  { id: "data", n: "02", name: "Data and annotation", status: ["next", "Started"],
+    goal: "Financial datasets to train and test AI models, computed from public filings and checked by qualified people. The aim is the best expert annotation in finance.",
     today: (f) => [
       `FilingFacts asks AI models questions about what companies reported to the SEC. On their own, ${f.closedModel} answered ${f.closed} correctly; with a Canli MCP server reading the filings, ${f.mcp}.`,
       "Every answer is recomputed by an independent checker and cites its filing. No item is called human-verified until two people have checked it."],
-    next: "The first double-labelled expert gold set, and benchmark results for more models.",
+    next: "The first double-labelled expert gold set, a paid network of qualified annotators, and benchmark results for more models.",
     links: [["/benchmarks/filingfacts", "FilingFacts results"], ["/annotate", "Help check the dataset"]] },
-  { id: "execution", n: "04", name: "Execution", status: ["next", "Paper only"],
-    goal: "Strategies that pass the tests, run by agents through real brokers, with every order journaled and checkable.",
+  { id: "library", n: "03", name: "The sleeve library", status: ["next", "Started"],
+    goal: "A library where developers and their agents build, train and test millions of strategy sleeves, with honest statistics on every result. Failed experiments are kept and used, and developers get their own testing servers later.",
+    today: () => [
+      "canli-quant-mcp ships a library of strategy sleeves with backtests and multiple-testing corrections, so a search over many sleeves is judged as a search.",
+      "Every trial ALPHAC runs is counted and published, including the ones that fail."],
+    next: "Version 1 of the training environment, open to developers, growing from today's library toward millions of sleeves.",
+    links: [["/mcp-servers", "The quant server"], ["/trials", "Every trial"]] },
+  { id: "alphac", n: "04", name: "ALPHAC, the breadth engine", status: ["next", "Paper only"],
+    goal: "One book built from hundreds of thousands of sleeves. What matters most is how little they move together: the number of independent bets, not the number of sleeves, sets the ceiling, so a sleeve may be weak as long as it is weakly correlated with the rest and clears its own costs. The target is a Sharpe ratio far beyond 2, claimed only on a forward record after costs.",
+    today: () => [
+      "ALPHAC, the open-source engine, keeps its paper-traded record, its trial accounting and its retracted figures in public.",
+      "Its research found that many sleeves built on the same few ideas add almost nothing, so the work now is new, uncorrelated families: new markets, horizons and kinds of data."],
+    next: "Ideas admitted as whole families on their correlation to the book, more asset classes, and a forward record long enough to tell skill from luck.",
+    links: [["/record", "The paper record"], ["/research", "Research"]] },
+  { id: "breakthroughs", n: "05", name: "The breakthroughs lab", status: ["next", "Started"],
+    goal: "New mathematics and statistics for quant research: tests that tell a real edge from luck, published openly so anyone can check them.",
+    today: () => [
+      "The validators (deflated Sharpe, probability of backtest overfitting, minimum track record, the haircut Sharpe and White's Reality Check) are checked against their papers. They measure overfitting risk; they cannot remove it.",
+      "Studies of strategies with no edge at all decide which tests the servers run, and the methods ship with their code."],
+    next: "Papers for peer review, and new tests built for the way AI agents now search through strategies.",
+    links: [["/research", "Research"], ["/tools", "The calculators"]] },
+  { id: "funds", n: "06", name: "The flagship funds", status: ["next", "Paper only"],
+    goal: "The destination all five branches feed: funds run from the US, open to investors worldwide under US rules, trading the best of everything above.",
     today: () => [
       "A public paper-traded record, not funded, with every position, decision and broker reconciliation published.",
       "canli-paper-trading-mcp places Alpaca paper orders behind pre-trade checks and a kill switch."],
     next: "Real capital only after licensing, a legal entity and a forward record that justifies it. Nothing here is investment advice or an offer.",
     links: [["/record", "The paper record"], ["/progress", "Corrections"]] },
+];
+
+// The road, in the owner's order (tools first, the funds later). Goals, not dates already met.
+const ROAD = [
+  ["Now to mid-2027", "Tools developers pay for", "The best finance MCP servers, proved on independent tests; the first paid developer tier; the sleeve library opening to developers; ALPHAC adding new, uncorrelated families with a year of forward record."],
+  ["2027", "The research platform", "The training environment and testing servers, the expert annotation network, and ALPHAC across asset classes with far more independent bets."],
+  ["2028", "Groundwork for the funds", "The US company, counsel and compliance, and a real-money track record through the legal path, before any fund opens."],
 ];
 
 const pct = (x) => `${Math.round(x * 100)}%`;
@@ -142,7 +164,7 @@ export function visionFigures({ h2h, stats, leaderboard }) {
 export function renderVision({ h2h, stats, leaderboard }) {
   const route = "/vision";
   const title = "What Canli Capital is building";
-  const description = "Canli Capital builds open infrastructure for AI agents in finance, in four parts: MCP servers for context, an engine for testing, datasets and agent-run execution.";
+  const description = "Canli Capital is building the research platform for quants and AI agents in finance, in the open, in five branches (MCP servers, data and annotation, a sleeve library, the ALPHAC engine and a breakthroughs lab) feeding flagship funds from the US.";
   const f = visionFigures({ h2h, stats, leaderboard });
   const schema = { "@context": "https://schema.org", "@graph": [ORGANIZATION,
     { "@type": "AboutPage", name: title, description, url: `${ORIGIN}${route}`, about: { "@id": `${ORIGIN}/#organization` } }, breadcrumbList(VISION_TRAIL)] };
@@ -160,13 +182,14 @@ export function renderVision({ h2h, stats, leaderboard }) {
     ${breadcrumbNav(VISION_TRAIL)}
     <p class="vision-eyebrow">The vision</p>
     <h1>Picture the market at dawn, every agent working from checked numbers</h1>
-    <p class="vision-lead">AI agents will research, test and trade at machine speed. Canli Capital is building what they stand on, in the open, in four parts: the context they read, the tests that keep them honest, the data they learn from and the execution they act through.</p>
-    <div class="vision-actions"><a href="#parts">The four parts</a><a href="/mcp-servers">Start with canli-mcp</a></div>
+    <p class="vision-lead">AI agents will research, test and trade at machine speed. The goal is to build the biggest research platform in finance and quant for them and for the people who direct them, in the open, in five branches: the tools they use, the data they learn from, a library of strategies to build on, an engine that combines them and new methods that keep them honest. Flagship funds from the US are where the best of it is meant to trade.</p>
+    <div class="vision-actions"><a href="#parts">The five branches</a><a href="/mcp-servers">Start with canli-mcp</a></div>
   </section>
   <section class="flagship-figures" aria-label="Where it stands today"><ul>${strip.map(([value, label]) => `<li><b>${esc(value)}</b><span>${esc(label)}</span></li>`).join("")}</ul></section>
-  <section class="vision-intro dev-section flagship-section" id="parts"><p class="eyebrow">Four parts</p><h2>What it stands on</h2><p class="flagship-intro">Financial software was built for people at terminals. More and more of the work is now done by AI agents. Everything here is open source and published as it is built, including the tests that fail; each part says what exists today and what comes next, and a goal stays a goal until it is built and measured.</p></section>
+  <section class="vision-intro dev-section flagship-section" id="parts"><p class="eyebrow">Five branches, one destination</p><h2>What it stands on</h2><p class="flagship-intro">Financial software was built for people at terminals. More and more of the work is now done by AI agents. Each branch feeds the others: developers come for the tools and data and build in the library, the most different strategies feed ALPHAC, the methods keep every result honest, and the funds' record brings more developers. Everything is open source and published as it is built, including the tests that fail; each branch says what exists today and what comes next, and a goal stays a goal until it is built and measured.</p></section>
   <div class="vision-parts">${parts}
   </div>
+  <section class="dev-section flagship-section vision-road" aria-labelledby="road-h"><p class="eyebrow">The road</p><h2 id="road-h">Tools first, the funds later</h2><ol class="vision-road__steps">${ROAD.map(([when, name, what]) => `<li><p class="vision-part__n">${esc(when)}</p><h3>${esc(name)}</h3><p>${esc(what)}</p></li>`).join("")}</ol><p class="flagship-intro">Every target here is a target until it is built and measured, and a Sharpe ratio counts only on a forward record after real costs.</p></section>
   <section class="dev-section flagship-section vision-follow"><p class="eyebrow">Follow and use it</p><h2>Build on it</h2><p class="vision-part__links"><a href="/mcp-servers">Install canli-mcp</a><a href="/developers">Developer guide</a><a href="/stats">Usage</a><a href="https://github.com/arhancanli/canlicapital">Source on GitHub</a><a href="/founder">The founder</a></p></section>
 </main>
 ${renderProductShellFooter()}
