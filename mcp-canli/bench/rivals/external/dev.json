@@ -1,0 +1,42 @@
+[
+  {
+    "id": "dev-apple-fy25",
+    "set": "dev",
+    "type": "Simple retrieval - Quantitative",
+    "question": "What were Apple's total net sales for fiscal year 2025, and by how much did they grow over fiscal 2024, in percent?",
+    "reference": "Apple's net sales were $416.161 billion in fiscal 2025 against $391.035 billion in fiscal 2024, growth of 6.43%. Source: Apple's 10-K for fiscal 2025.",
+    "rubric": [
+      { "operator": "correctness", "criteria": "Fiscal 2025 net sales of $416.16 billion" },
+      { "operator": "correctness", "criteria": "Fiscal 2024 net sales of $391.04 billion" },
+      { "operator": "correctness", "criteria": "Growth of 6.43%" },
+      { "operator": "contradiction", "criteria": "Apple's net sales were $416.161 billion in fiscal 2025 against $391.035 billion in fiscal 2024, growth of 6.43%." }
+    ],
+    "asOf": "2026-10-15",
+    "mock_answer": "Apple reported net sales of $416.16 billion for fiscal 2025, up from $391.04 billion in fiscal 2024: growth of 6.43%."
+  },
+  {
+    "id": "dev-novo-2025",
+    "set": "dev",
+    "type": "Numerical Reasoning",
+    "question": "What were Novo Nordisk's revenue and net profit for 2025 in Danish kroner, and what was its net profit margin?",
+    "reference": "Revenue DKK 309,064 million and net profit DKK 102,434 million in 2025: a net profit margin of 33.14%. Source: Novo Nordisk's annual report on Form 20-F for 2025.",
+    "rubric": [
+      { "operator": "correctness", "criteria": "Revenue of DKK 309,064 million" },
+      { "operator": "correctness", "criteria": "Net profit of DKK 102,434 million" },
+      { "operator": "correctness", "criteria": "Net profit margin of 33.14%" },
+      { "operator": "contradiction", "criteria": "Revenue DKK 309,064 million and net profit DKK 102,434 million in 2025: a net profit margin of 33.14%." }
+    ],
+    "asOf": "2026-10-15",
+    "mock_answer": "Novo Nordisk's 2025 revenue was DKK 309,064 million and its net profit DKK 102,434 million."
+  },
+  {
+    "id": "dev-shell-q2-2025",
+    "set": "dev",
+    "type": "metrics-generated",
+    "question": "What was Shell's total revenue in the second quarter of 2025, in US dollars?",
+    "reference": "$65,406 million (about $65.4 billion), from Shell's second-quarter 2025 results furnished to the SEC on Form 6-K.",
+    "rubric": null,
+    "asOf": "2026-10-15",
+    "mock_answer": "Shell's revenue in Q2 2025 was $65,406 million."
+  }
+]

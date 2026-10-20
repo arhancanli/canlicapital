@@ -4,7 +4,7 @@ import {fileURLToPath} from 'node:url';
 
 export function applyReleaseReadiness(source,{file,chainCount}){
  let html=source.replace(/\n<!-- release-style:start -->[\s\S]*?<!-- release-style:end -->/,'');
- if(file==='index.html') html=html.replace(/(<strong id="trust-chain">)[^<]*(<\/strong>)/,`$1${chainCount.toLocaleString('en-GB')}$2`);
+ if(file==='record.html') html=html.replace(/(<strong id="trust-chain">)[^<]*(<\/strong>)/,`$1${chainCount.toLocaleString('en-GB')}$2`);
  html=html.replace('</head>','\n<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>');
  if(file==='research.html'){
   html=html.replace(/<!-- release-basis:start -->[\s\S]*?<!-- release-basis:end -->/,'');

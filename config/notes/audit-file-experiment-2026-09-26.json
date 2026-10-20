@@ -1,0 +1,465 @@
+{
+ "title": "audit_backtest: a pasted return series against a file the tool reads",
+ "run": "2026-09-26",
+ "model": "gpt-5.4-mini",
+ "source": "https://github.com/arhancanli/canlicapital/tree/main/mcp/bench/agent/experiments/2026-09-26-audit-file",
+ "tasks": [
+  {
+   "id": "aud-1",
+   "daily_returns": 504
+  },
+  {
+   "id": "aud-2",
+   "daily_returns": 756
+  },
+  {
+   "id": "aud-3",
+   "daily_returns": 400
+  }
+ ],
+ "repeats": 3,
+ "correct_within": "2 percent of the local computation the tools run",
+ "trading_days_per_year": 252,
+ "arms": [
+  {
+   "arm": "validators only, returns pasted",
+   "record": "before-audit-tool-pasted.json",
+   "server": {
+    "name": "canli-validation-mcp",
+    "version": "0.5.0",
+    "mode": "local (CANLI_LOCAL=1); company tool reads canlicapital.com"
+   },
+   "correct": 0,
+   "runs": 9,
+   "median_total_tokens": 11180,
+   "median_ms": 2434,
+   "max_total_tokens": 13055,
+   "run_records": [
+    {
+     "task": "aud-1",
+     "repeat": 0,
+     "tools_called": [
+      "validate_track_record",
+      "validate_track_record"
+     ],
+     "expected": 1.5358170932493782,
+     "answer": 0,
+     "correct": false,
+     "prompt_tokens": 12871,
+     "completion_tokens": 164,
+     "ms": 6005,
+     "total_tokens": 13035
+    },
+    {
+     "task": "aud-2",
+     "repeat": 0,
+     "tools_called": [
+      "validate_track_record"
+     ],
+     "expected": 0.14519214917212134,
+     "answer": 0,
+     "correct": false,
+     "prompt_tokens": 11071,
+     "completion_tokens": 108,
+     "ms": 2434,
+     "total_tokens": 11179
+    },
+    {
+     "task": "aud-3",
+     "repeat": 0,
+     "tools_called": [
+      "validate_track_record"
+     ],
+     "expected": 0.5756915284678064,
+     "answer": 0,
+     "correct": false,
+     "prompt_tokens": 7505,
+     "completion_tokens": 112,
+     "ms": 2509,
+     "total_tokens": 7617
+    },
+    {
+     "task": "aud-1",
+     "repeat": 1,
+     "tools_called": [
+      "validate_track_record",
+      "validate_track_record"
+     ],
+     "expected": 1.5358170932493782,
+     "answer": 0,
+     "correct": false,
+     "prompt_tokens": 12877,
+     "completion_tokens": 178,
+     "ms": 5266,
+     "total_tokens": 13055
+    },
+    {
+     "task": "aud-2",
+     "repeat": 1,
+     "tools_called": [
+      "validate_track_record"
+     ],
+     "expected": 0.14519214917212134,
+     "answer": 0,
+     "correct": false,
+     "prompt_tokens": 11071,
+     "completion_tokens": 109,
+     "ms": 2403,
+     "total_tokens": 11180
+    },
+    {
+     "task": "aud-3",
+     "repeat": 1,
+     "tools_called": [
+      "validate_track_record"
+     ],
+     "expected": 0.5756915284678064,
+     "answer": 0,
+     "correct": false,
+     "prompt_tokens": 7500,
+     "completion_tokens": 104,
+     "ms": 2291,
+     "total_tokens": 7604
+    },
+    {
+     "task": "aud-1",
+     "repeat": 2,
+     "tools_called": [
+      "validate_track_record",
+      "validate_track_record"
+     ],
+     "expected": 1.5358170932493782,
+     "answer": 0,
+     "correct": false,
+     "prompt_tokens": 12871,
+     "completion_tokens": 176,
+     "ms": 3704,
+     "total_tokens": 13047
+    },
+    {
+     "task": "aud-2",
+     "repeat": 2,
+     "tools_called": [
+      "validate_track_record"
+     ],
+     "expected": 0.14519214917212134,
+     "answer": 0,
+     "correct": false,
+     "prompt_tokens": 11071,
+     "completion_tokens": 109,
+     "ms": 2216,
+     "total_tokens": 11180
+    },
+    {
+     "task": "aud-3",
+     "repeat": 2,
+     "tools_called": [
+      "validate_track_record"
+     ],
+     "expected": 0.5756915284678064,
+     "answer": 0,
+     "correct": false,
+     "prompt_tokens": 7505,
+     "completion_tokens": 109,
+     "ms": 2400,
+     "total_tokens": 7614
+    }
+   ]
+  },
+  {
+   "arm": "audit_backtest, returns pasted",
+   "record": "audit-tool-pasted.json",
+   "server": {
+    "name": "canli-validation-mcp",
+    "version": "0.5.0",
+    "mode": "local (CANLI_LOCAL=1); company tool reads canlicapital.com"
+   },
+   "correct": 4,
+   "runs": 9,
+   "median_total_tokens": 27036,
+   "median_ms": 10046,
+   "max_total_tokens": 76930,
+   "run_records": [
+    {
+     "task": "aud-1",
+     "repeat": 0,
+     "tools_called": [
+      "audit_backtest",
+      "audit_backtest"
+     ],
+     "expected": 1.5358170932493782,
+     "answer": 1.5358170932493782,
+     "correct": true,
+     "prompt_tokens": 23741,
+     "completion_tokens": 5207,
+     "ms": 19609,
+     "total_tokens": 28948
+    },
+    {
+     "task": "aud-2",
+     "repeat": 0,
+     "tools_called": [
+      "audit_backtest"
+     ],
+     "expected": 0.14519214917212134,
+     "answer": 0.17175175382939192,
+     "correct": false,
+     "prompt_tokens": 16055,
+     "completion_tokens": 2595,
+     "ms": 9525,
+     "total_tokens": 18650
+    },
+    {
+     "task": "aud-3",
+     "repeat": 0,
+     "tools_called": [
+      "audit_backtest",
+      "validate_track_record",
+      "validate_track_record"
+     ],
+     "expected": 0.5756915284678064,
+     "answer": 0,
+     "correct": false,
+     "prompt_tokens": 24776,
+     "completion_tokens": 2260,
+     "ms": 9963,
+     "total_tokens": 27036
+    },
+    {
+     "task": "aud-1",
+     "repeat": 1,
+     "tools_called": [
+      "audit_backtest"
+     ],
+     "expected": 1.5358170932493782,
+     "answer": 1.5358170932493782,
+     "correct": true,
+     "prompt_tokens": 13538,
+     "completion_tokens": 2626,
+     "ms": 10046,
+     "total_tokens": 16164
+    },
+    {
+     "task": "aud-2",
+     "repeat": 1,
+     "tools_called": [
+      "audit_backtest",
+      "audit_backtest"
+     ],
+     "expected": 0.14519214917212134,
+     "answer": 0.17175175382939192,
+     "correct": false,
+     "prompt_tokens": 27545,
+     "completion_tokens": 5181,
+     "ms": 17478,
+     "total_tokens": 32726
+    },
+    {
+     "task": "aud-3",
+     "repeat": 1,
+     "tools_called": [
+      "audit_backtest"
+     ],
+     "expected": 0.5756915284678064,
+     "answer": 0.5756915284678064,
+     "correct": true,
+     "prompt_tokens": 11979,
+     "completion_tokens": 2101,
+     "ms": 6982,
+     "total_tokens": 14080
+    },
+    {
+     "task": "aud-1",
+     "repeat": 2,
+     "tools_called": [
+      "audit_backtest",
+      "validate_track_record",
+      "validate_deflated_sharpe",
+      "validate_track_record",
+      "validate_overfitting"
+     ],
+     "expected": 1.5358170932493782,
+     "answer": 1.5358170932493782,
+     "correct": true,
+     "prompt_tokens": 66482,
+     "completion_tokens": 10448,
+     "ms": 35055,
+     "total_tokens": 76930
+    },
+    {
+     "task": "aud-2",
+     "repeat": 2,
+     "tools_called": [
+      "audit_backtest",
+      "audit_backtest"
+     ],
+     "expected": 0.14519214917212134,
+     "answer": 0.17175175382939192,
+     "correct": false,
+     "prompt_tokens": 27533,
+     "completion_tokens": 5179,
+     "ms": 16451,
+     "total_tokens": 32712
+    },
+    {
+     "task": "aud-3",
+     "repeat": 2,
+     "tools_called": [
+      "validate_track_record",
+      "validate_track_record"
+     ],
+     "expected": 0.5756915284678064,
+     "answer": 0,
+     "correct": false,
+     "prompt_tokens": 13862,
+     "completion_tokens": 187,
+     "ms": 3397,
+     "total_tokens": 14049
+    }
+   ]
+  },
+  {
+   "arm": "audit_backtest, returns_file",
+   "record": "audit-tool-file.json",
+   "server": {
+    "name": "canli-validation-mcp",
+    "version": "0.5.0",
+    "mode": "local (CANLI_LOCAL=1); company tool reads canlicapital.com"
+   },
+   "correct": 8,
+   "runs": 9,
+   "median_total_tokens": 6524,
+   "median_ms": 2374,
+   "max_total_tokens": 7244,
+   "run_records": [
+    {
+     "task": "aud-1",
+     "repeat": 0,
+     "tools_called": [
+      "audit_backtest"
+     ],
+     "expected": 1.5358170932493782,
+     "answer": 1.5358170932493782,
+     "correct": true,
+     "prompt_tokens": 6402,
+     "completion_tokens": 136,
+     "ms": 4576,
+     "total_tokens": 6538
+    },
+    {
+     "task": "aud-2",
+     "repeat": 0,
+     "tools_called": [
+      "audit_backtest"
+     ],
+     "expected": 0.14519214917212134,
+     "answer": 0.14519214917212134,
+     "correct": true,
+     "prompt_tokens": 6376,
+     "completion_tokens": 131,
+     "ms": 5056,
+     "total_tokens": 6507
+    },
+    {
+     "task": "aud-3",
+     "repeat": 0,
+     "tools_called": [
+      "audit_backtest"
+     ],
+     "expected": 0.5756915284678064,
+     "answer": 0.5756915284678064,
+     "correct": true,
+     "prompt_tokens": 6391,
+     "completion_tokens": 133,
+     "ms": 2114,
+     "total_tokens": 6524
+    },
+    {
+     "task": "aud-1",
+     "repeat": 1,
+     "tools_called": [
+      "audit_backtest"
+     ],
+     "expected": 1.5358170932493782,
+     "answer": 1.5358170932493782,
+     "correct": true,
+     "prompt_tokens": 6396,
+     "completion_tokens": 129,
+     "ms": 2374,
+     "total_tokens": 6525
+    },
+    {
+     "task": "aud-2",
+     "repeat": 1,
+     "tools_called": [
+      "audit_backtest"
+     ],
+     "expected": 0.14519214917212134,
+     "answer": 0.14519214917212134,
+     "correct": true,
+     "prompt_tokens": 6376,
+     "completion_tokens": 126,
+     "ms": 2304,
+     "total_tokens": 6502
+    },
+    {
+     "task": "aud-3",
+     "repeat": 1,
+     "tools_called": [
+      "audit_backtest",
+      "service_status"
+     ],
+     "expected": 0.5756915284678064,
+     "answer": 0.58,
+     "correct": true,
+     "prompt_tokens": 7073,
+     "completion_tokens": 171,
+     "ms": 4281,
+     "total_tokens": 7244
+    },
+    {
+     "task": "aud-1",
+     "repeat": 2,
+     "tools_called": [
+      "audit_backtest"
+     ],
+     "expected": 1.5358170932493782,
+     "answer": 388,
+     "correct": false,
+     "prompt_tokens": 6402,
+     "completion_tokens": 100,
+     "ms": 2245,
+     "total_tokens": 6502
+    },
+    {
+     "task": "aud-2",
+     "repeat": 2,
+     "tools_called": [
+      "audit_backtest"
+     ],
+     "expected": 0.14519214917212134,
+     "answer": 0.14519214917212134,
+     "correct": true,
+     "prompt_tokens": 6382,
+     "completion_tokens": 127,
+     "ms": 2433,
+     "total_tokens": 6509
+    },
+    {
+     "task": "aud-3",
+     "repeat": 2,
+     "tools_called": [
+      "audit_backtest"
+     ],
+     "expected": 0.5756915284678064,
+     "answer": 0.5756915284678064,
+     "correct": true,
+     "prompt_tokens": 6391,
+     "completion_tokens": 134,
+     "ms": 2199,
+     "total_tokens": 6525
+    }
+   ]
+  }
+ ]
+}

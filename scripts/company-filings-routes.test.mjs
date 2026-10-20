@@ -35,13 +35,15 @@ test('filing index and accession pages are served from the release, noindex by d
   const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader(options) });
   const document = documents[0];
   const index = await get(handler, filingsIndexPath(document.cik));
-  assert.equal(index.statusCode, 200); assert.equal(index.headers['X-Robots-Tag'], 'noindex'); assert.match(index.headers['Cache-Control'], /s-maxage=86400/);
+  assert.equal(index.statusCode, 200); assert.equal(index.headers['X-Robots-Tag'], 'noindex'); assert.match(index.headers['Cache-Control'], /s-maxage=604800/);
   assert.match(index.body, /assets\/company.css/); assert.ok(index.body.includes(filingPath(document.cik, document.filings[0].accession)));
   const page = await get(handler, filingPath(document.cik, document.filings[0].accession));
   assert.equal(page.statusCode, 200); assert.ok(page.body.includes(document.filings[0].sec_index_url));
   const again = await get(handler, filingPath(document.cik, document.filings[0].accession), { 'if-none-match': page.headers.ETag });
   assert.equal(again.statusCode, 304);
-  assert.equal((await get(handler, filingPath(document.cik, '0000000000-00-000000'))).statusCode, 404);
+  const missing = await get(handler, filingPath(document.cik, '0000000000-00-000000'));
+  // Absent from the release until the next deployment, so the CDN may keep the 404 for a day.
+  assert.equal(missing.statusCode, 404); assert.equal(missing.headers['Cache-Control'], 'public, max-age=0, s-maxage=86400');
   assert.equal((await get(handler, filingsIndexPath('9999999999'))).statusCode, 404);
   assert.equal((await get(handler, `/companies/${document.cik}/filings/not-an-accession`)).statusCode, 404);
   // History pages keep working beside filing pages; the overview links to the filing index with its count.
@@ -57,7 +59,7 @@ test('filing pages become indexable only through the company-level admission pre
   const admitted = documents[0].cik;
   const handler = createCompanyReferenceHandler({ loadRelease: createCompanyReleaseLoader({ ...options, filingsIndexable: cik => cik === admitted }) });
   const yes = await get(handler, filingPath(admitted, documents[0].filings[0].accession));
-  assert.equal(yes.statusCode, 200); assert.equal(yes.headers['X-Robots-Tag'], undefined); assert.match(yes.headers['Cache-Control'], /s-maxage=86400/);
+  assert.equal(yes.statusCode, 200); assert.equal(yes.headers['X-Robots-Tag'], undefined); assert.match(yes.headers['Cache-Control'], /s-maxage=604800/);
   const no = await get(handler, filingsIndexPath(documents[1].cik));
   assert.equal(no.statusCode, 200); assert.equal(no.headers['X-Robots-Tag'], 'noindex');
   await assert.rejects(createCompanyReleaseLoader({ ...options, filingsIndexable: true })(), /admission predicate/);

@@ -30,6 +30,17 @@ const out = (r) => r.structuredContent;
 const byCol = (res) => res.rows.map((row) => Object.fromEntries(res.columns.map((c, i) => [c, row[i]])));
 const get = (rows, concept) => rows.find((r) => r.concept === concept);
 
+test("inherited property names are unknown concepts, never prototype lookups", async () => {
+  for (const concept of ["constructor", "__proto__", "hasOwnProperty"]) {
+    const { s } = session();
+    const section = out(await toolCrossSection(s, { companies: ["FIX"], concept, as_of: "2020-11-01" }));
+    assert.deepEqual(section.rows, []);
+    assert.equal(section.missing.length, 1);
+    assert.match(section.missing[0], /reports no concept/);
+    await assert.rejects(toolHistory(s, { company: "FIX", concept }), (error) => error.constructor === Error && /reports no concept/.test(error.message));
+  }
+});
+
 test("period kinds: 52/53-week years annual, 12- to 17-week quarters quarterly, year-to-date other; balances take their first report's kind", () => {
   assert.equal(durationKind("2018-09-30", "2019-09-28"), "annual");
   assert.equal(durationKind("2019-09-29", "2020-10-03"), "annual");

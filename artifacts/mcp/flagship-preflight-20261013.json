@@ -1,0 +1,140 @@
+{
+  "status": "review candidate; not yet published",
+  "captured_at": "2026-10-13T15:00:53.141753+00:00",
+  "basis_main": "16bab164e13b877712113716af9ae7bc07cd76db",
+  "package": {
+    "name": "canli-mcp",
+    "version": "0.4.0",
+    "tarball_sha1": "dc5db3e0e7932ff2d50baad96df032ce51aee839",
+    "file_count": 14
+  },
+  "pack_versions": {
+    "quant": "0.1.2",
+    "validation": "0.14.0",
+    "fundamentals": "0.6.0",
+    "research": "0.3.0",
+    "backtest": "0.1.2",
+    "markets": "0.3.0",
+    "paper": "0.1.0"
+  },
+  "interfaces": {
+    "tools": 307,
+    "front_tools": 3,
+    "prompts": 30,
+    "resources": 14,
+    "resource_templates": 9
+  },
+  "checks": {
+    "tests_per_node": 38,
+    "nodes": [
+      "20.20.2",
+      "22.23.2",
+      "24.19.0"
+    ],
+    "network_poisoned_offline_guides": "pass",
+    "desktop_packaged_stdio_smokes": "3 pass",
+    "registry_signatures": 22,
+    "npm_attestations": 14,
+    "high_audit_vulnerabilities": 0
+  },
+  "context": {
+    "measured": "2026-10-13",
+    "node": "v24.19.0",
+    "tokenizer": "o200k_base",
+    "configuration": {
+      "CANLI_PACKS": "all",
+      "scope": "initial tool list and instructions; no tool execution"
+    },
+    "rows": {
+      "canli-mcp": {
+        "version": "0.4.0",
+        "tools": 3,
+        "tool_tokens": 946,
+        "instruction_tokens": 167,
+        "total_tokens": 1113,
+        "startup_ms": 75
+      },
+      "canli-quant-mcp": {
+        "version": "0.1.2",
+        "tools": 3,
+        "tool_tokens": 731,
+        "instruction_tokens": 201,
+        "total_tokens": 932,
+        "startup_ms": 90
+      },
+      "canli-validation-mcp": {
+        "version": "0.14.0",
+        "tools": 19,
+        "tool_tokens": 9702,
+        "instruction_tokens": 200,
+        "total_tokens": 9902,
+        "startup_ms": 89
+      },
+      "canli-fundamentals-mcp": {
+        "version": "0.6.0",
+        "tools": 7,
+        "tool_tokens": 3143,
+        "instruction_tokens": 121,
+        "total_tokens": 3264,
+        "startup_ms": 68
+      },
+      "canli-research-mcp": {
+        "version": "0.3.0",
+        "tools": 6,
+        "tool_tokens": 1539,
+        "instruction_tokens": 76,
+        "total_tokens": 1615,
+        "startup_ms": 64
+      },
+      "canli-backtest-mcp": {
+        "version": "0.1.2",
+        "tools": 3,
+        "tool_tokens": 1010,
+        "instruction_tokens": 72,
+        "total_tokens": 1082,
+        "startup_ms": 66
+      },
+      "canli-markets-mcp": {
+        "version": "0.3.0",
+        "tools": 35,
+        "tool_tokens": 16484,
+        "instruction_tokens": 453,
+        "total_tokens": 16937,
+        "startup_ms": 85
+      },
+      "canli-paper-trading-mcp": {
+        "version": "0.1.0",
+        "tools": 4,
+        "tool_tokens": 1351,
+        "instruction_tokens": 59,
+        "total_tokens": 1410,
+        "startup_ms": 66
+      }
+    },
+    "seven_separately": {
+      "tools": 77,
+      "total_tokens": 35142,
+      "startup_ms": [
+        64,
+        90
+      ]
+    }
+  },
+  "source_files": {
+    "package.json": "89db26443e32c7caff5c1e4eeb70767ecc7476fb8d9e2d41562875fd1274f5ad",
+    "package-lock.json": "0eeaa699135f48becbd10a4ecf412db383a0dc29d8cf86c5e86b254f8fd5d1ab",
+    "src/server.mjs": "819546fc82b65ad0be5818ead4713fa201bcec29a7bad3244ff833c8b42b7384",
+    "src/guides.mjs": "c2d80cde514647bf80e0f791627136fadc1db3b4b3d00dd1ca33e0d57b2d5236",
+    "src/guides.json": "29ea4c0b885a28780dd9d8ec4cd74b1bd551cdc58c06f3ca1ece5d98e99b15e0",
+    "src/index.json": "a77da6aab0f964936ab41cfd95f7827bdcca841ac084a4560b734db73334c531",
+    "server.json": "8d8c8124b3605723351ac7c8f881a1807c95c7cc46740bb165683a27dc5cd8d3",
+    "mcpb/manifest.json": "b9d4199537ff1fe666247bc450fb4ac6c051319ce7b181a6cd13c1f08aef6ff8",
+    "mcpb/build.mjs": "ca336e3705ed28abd35b131bda665878c8cff1a056cc0d74cfa7a72114d4ef3d"
+  },
+  "limits": [
+    "Initial context only; provider/model/workflow costs excluded",
+    "No new paid model evaluation or worldwide superiority claim",
+    "Glama/Smithery authenticated directory parity still open",
+    "Actual hosted discovery awaits normal daily publication"
+  ]
+}

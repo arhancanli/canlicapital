@@ -62,6 +62,7 @@ export function registerPrompts(server) {
 }
 
 export function exampleCode(language, tool) {
+  if (!Object.hasOwn(EXAMPLE_ARGS, tool)) throw new Error(`No tool ${tool}; tools are ${Object.keys(EXAMPLE_ARGS).join(", ")}`);
   const args = EXAMPLE_ARGS[tool] ?? {};
   const json = JSON.stringify(args, null, 2);
   if (language === "python") {
@@ -120,7 +121,7 @@ export function registerResources(server, catalog, limits) {
     new ResourceTemplate("canli://schemas/{tool}", { list: undefined, complete: { tool: complete(names) } }),
     { title: "A tool's exact JSON Schemas", description: "Input and output JSON Schema and the description of one tool, for writing code against it.", mimeType: "application/json" },
     (uri, { tool }) => {
-      const entry = catalog[tool];
+      const entry = Object.hasOwn(catalog, tool) ? catalog[tool] : undefined;
       if (!entry) throw new Error(`No tool ${tool}; tools are ${names.join(", ")}`);
       const body = { tool, description: entry.description, input_schema: z.toJSONSchema(entry.inputSchema, { io: "input" }), output_schema: z.toJSONSchema(entry.outputSchema, { io: "output" }) };
       return { contents: [{ uri: uri.href, mimeType: "application/json", text: JSON.stringify(body, null, 2) }] };
@@ -131,7 +132,7 @@ export function registerResources(server, catalog, limits) {
     new ResourceTemplate("canli://examples/{language}/{tool}", { list: undefined, complete: { language: complete([...EXAMPLE_LANGUAGES]), tool: complete(names) } }),
     { title: "A working call, in Python, JavaScript or curl", description: "Runnable client code calling one tool on the hosted endpoint with valid example arguments.", mimeType: "text/plain" },
     (uri, { language, tool }) => {
-      if (!catalog[tool]) throw new Error(`No tool ${tool}; tools are ${names.join(", ")}`);
+      if (!Object.hasOwn(catalog, tool)) throw new Error(`No tool ${tool}; tools are ${names.join(", ")}`);
       return { contents: [{ uri: uri.href, mimeType: "text/plain", text: exampleCode(language, tool) }] };
     },
   );

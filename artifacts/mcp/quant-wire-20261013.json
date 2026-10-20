@@ -1,0 +1,430 @@
+{
+  "schema": "canli.quant-numerical-result-evidence.v1",
+  "state": "reviewable0.1.2 candidate; npm authorization pending",
+  "tests": {
+    "full_node24_groups_passed": 46,
+    "independent_reference_cases": 465,
+    "protocol_nodes": [
+      "20.20.2",
+      "22.23.2",
+      "24.19.0"
+    ],
+    "protocol_contract": "NaN and both Infinity signs are tool errors on discovery and direct routes, with no success receipt"
+  },
+  "original_overflow_replay": {
+    "before_cases": 48,
+    "refused": 48,
+    "outcomes": [
+      {
+        "tool": "black_scholes",
+        "pack": "quant",
+        "call": "spot=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "black_scholes: calculation returned 6 non-finite value(s): /vanna (NaN), /volga (NaN), /charm (NaN), /speed (NaN), /d1 (Infinity), .... JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "black76",
+        "pack": "quant",
+        "call": "forward=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "black76: calculation returned 2 non-finite value(s): /d1 (Infinity), /d2 (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "bachelier",
+        "pack": "quant",
+        "call": "forward=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "bachelier: calculation returned 1 non-finite value(s): /d (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "bachelier",
+        "pack": "quant",
+        "call": "strike=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "bachelier: calculation returned 1 non-finite value(s): /d (-Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "put_call_parity",
+        "pack": "quant",
+        "call": "call=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "put_call_parity: calculation returned 1 non-finite value(s): /implied_carry (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "put_call_parity",
+        "pack": "quant",
+        "call": "strike=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "put_call_parity: calculation returned 1 non-finite value(s): /implied_carry (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "option_portfolio_greeks",
+        "pack": "quant",
+        "call": "spot=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "option_portfolio_greeks: calculation returned 3 non-finite value(s): /value (Infinity), /dollar_delta (Infinity), /dollar_gamma_1pct (NaN). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "sabr_volatility",
+        "pack": "quant",
+        "call": "alpha=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "sabr_volatility: calculation returned 24 non-finite value(s): /rows/0/1 (-Infinity), /rows/1/1 (-Infinity), /rows/2/1 (-Infinity), /rows/3/1 (-Infinity), /rows/4/1 (-Infinity), .... JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "zero_coupon_bond",
+        "pack": "quant",
+        "call": "price=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "zero_coupon_bond: calculation returned 3 non-finite value(s): /modified_duration (Infinity), /convexity (Infinity), /dv01 (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "zero_coupon_bond",
+        "pack": "quant",
+        "call": "price=9007199254740992",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "zero_coupon_bond: calculation returned 3 non-finite value(s): /modified_duration (Infinity), /convexity (Infinity), /dv01 (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "treasury_bill_yields",
+        "pack": "quant",
+        "call": "price=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "treasury_bill_yields: calculation returned 1 non-finite value(s): /discount_yield (-Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "merton_credit_risk",
+        "pack": "quant",
+        "call": "equity_value=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "merton_credit_risk: calculation returned 3 non-finite value(s): /d1 (Infinity), /distance_to_default (Infinity), /credit_spread (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "merton_credit_risk",
+        "pack": "quant",
+        "call": "equity_value=9007199254740992",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "merton_credit_risk: calculation returned 1 non-finite value(s): /credit_spread (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "rebalance_trades",
+        "pack": "quant",
+        "call": "cash=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "rebalance_trades: calculation returned 50 non-finite value(s): /rows/0/3 (Infinity), /rows/0/4 (Infinity), /rows/1/3 (Infinity), /rows/1/4 (Infinity), /rows/2/3 (Infinity), .... JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "almgren_chriss_schedule",
+        "pack": "quant",
+        "call": "shares=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "almgren_chriss_schedule: calculation returned 9 non-finite value(s): /holdings/0 (Infinity), /holdings/1 (Infinity), /holdings/2 (Infinity), /trades/0 (NaN), /trades/1 (NaN), .... JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "almgren_chriss_schedule",
+        "pack": "quant",
+        "call": "period_length=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "almgren_chriss_schedule: calculation returned 15 non-finite value(s): /kappa (Infinity), /holdings/0 (NaN), /holdings/1 (NaN), /holdings/2 (NaN), /holdings/3 (NaN), .... JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "almgren_chriss_schedule",
+        "pack": "quant",
+        "call": "volatility=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "almgren_chriss_schedule: calculation returned 15 non-finite value(s): /kappa (Infinity), /holdings/0 (NaN), /holdings/1 (NaN), /holdings/2 (NaN), /holdings/3 (NaN), .... JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "market_impact_estimate",
+        "pack": "quant",
+        "call": "order_shares=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "market_impact_estimate: calculation returned 4 non-finite value(s): /participation_of_adv (Infinity), /impact_bps (Infinity), /total_bps (Infinity), /total_cost (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "market_impact_estimate",
+        "pack": "quant",
+        "call": "daily_volatility=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "market_impact_estimate: calculation returned 3 non-finite value(s): /impact_bps (Infinity), /total_bps (Infinity), /total_cost (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "execution_schedule",
+        "pack": "quant",
+        "call": "order_shares=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "execution_schedule: calculation returned 48 non-finite value(s): /schedule/0 (Infinity), /schedule/1 (Infinity), /schedule/2 (Infinity), /schedule/3 (Infinity), /schedule/4 (Infinity), .... JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "position_size_from_stop",
+        "pack": "quant",
+        "call": "stop=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "position_size_from_stop: calculation returned 1 non-finite value(s): /stop_distance_percent (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "trade_expectancy",
+        "pack": "quant",
+        "call": "average_win=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "trade_expectancy: calculation returned 2 non-finite value(s): /payoff_ratio (Infinity), /profit_factor (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "trade_expectancy",
+        "pack": "quant",
+        "call": "cost_per_trade=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "trade_expectancy: calculation returned 2 non-finite value(s): /expectancy_r (-Infinity), /required_payoff_at_win_rate (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "drawdown_probability",
+        "pack": "quant",
+        "call": "annual_volatility=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "drawdown_probability: calculation returned 2 non-finite value(s): /log_drift (-Infinity), /probability_within_horizon (NaN). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "leverage_and_margin",
+        "pack": "quant",
+        "call": "notional=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "leverage_and_margin: calculation returned 1 non-finite value(s): /leverage (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "leverage_and_margin",
+        "pack": "quant",
+        "call": "equity=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "leverage_and_margin: calculation returned 1 non-finite value(s): /adverse_move_to_margin_call (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "var_position_limit",
+        "pack": "quant",
+        "call": "var_budget=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "var_position_limit: calculation returned 1 non-finite value(s): /max_notional (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "futures_basis",
+        "pack": "quant",
+        "call": "future=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "futures_basis: calculation returned 5 non-finite value(s): /basis_percent (Infinity), /annualized_simple (Infinity), /annualized_compounded (Infinity), /implied_continuous_rate (Infinity), /net_carry_simple (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "futures_basis",
+        "pack": "quant",
+        "call": "future=9007199254740992",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "futures_basis: calculation returned 1 non-finite value(s): /annualized_compounded (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "fx_forward",
+        "pack": "quant",
+        "call": "forward=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "fx_forward: calculation returned 3 non-finite value(s): /forward_points_pips (Infinity), /annualized_forward_premium (Infinity), /implied_quote_rate (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "pip_value",
+        "pack": "quant",
+        "call": "price=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "pip_value: calculation returned 1 non-finite value(s): /notional_in_quote (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "pip_value",
+        "pack": "quant",
+        "call": "pip=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "pip_value: calculation returned 1 non-finite value(s): /pip_value (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "pip_value",
+        "pack": "quant",
+        "call": "quote_to_account=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "pip_value: calculation returned 1 non-finite value(s): /pip_value (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "carry_trade_return",
+        "pack": "quant",
+        "call": "spot_end=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "carry_trade_return: calculation returned 3 non-finite value(s): /fx_return (Infinity), /total_return (Infinity), /annualized (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "growing_annuity",
+        "pack": "quant",
+        "call": "payment=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "growing_annuity: calculation returned 1 non-finite value(s): /present_value (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "retirement_projection",
+        "pack": "quant",
+        "call": "balance=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "retirement_projection: calculation returned 5 non-finite value(s): /balance_at_retirement (Infinity), /balance_today_money (Infinity), /sustainable_withdrawal_nominal_first_year (Infinity), /sustainable_withdrawal_today_money (Infinity), /withdrawal_rate (NaN). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "retirement_projection",
+        "pack": "quant",
+        "call": "annual_contribution=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "retirement_projection: calculation returned 5 non-finite value(s): /balance_at_retirement (Infinity), /balance_today_money (Infinity), /sustainable_withdrawal_nominal_first_year (Infinity), /sustainable_withdrawal_today_money (Infinity), /withdrawal_rate (NaN). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "enterprise_value_multiples",
+        "pack": "quant",
+        "call": "net_income=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "enterprise_value_multiples: calculation returned 2 non-finite value(s): /earnings_yield (Infinity), /fcf_yield (NaN). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "enterprise_value_multiples",
+        "pack": "quant",
+        "call": "free_cash_flow=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "enterprise_value_multiples: calculation returned 2 non-finite value(s): /earnings_yield (NaN), /fcf_yield (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "altman_z_score",
+        "pack": "quant",
+        "call": "working_capital=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "altman_z_score: calculation returned 2 non-finite value(s): /z_score (Infinity), /ratios/x1_working_capital_to_assets (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "altman_z_score",
+        "pack": "quant",
+        "call": "retained_earnings=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "altman_z_score: calculation returned 2 non-finite value(s): /z_score (Infinity), /ratios/x2_retained_earnings_to_assets (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "altman_z_score",
+        "pack": "quant",
+        "call": "ebit=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "altman_z_score: calculation returned 2 non-finite value(s): /z_score (Infinity), /ratios/x3_ebit_to_assets (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "altman_z_score",
+        "pack": "quant",
+        "call": "equity_value=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "altman_z_score: calculation returned 2 non-finite value(s): /z_score (Infinity), /ratios/x4_equity_to_liabilities (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "altman_z_score",
+        "pack": "quant",
+        "call": "revenue=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "altman_z_score: calculation returned 2 non-finite value(s): /z_score (Infinity), /ratios/x5_sales_to_assets (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "dupont_analysis",
+        "pack": "quant",
+        "call": "net_income=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "dupont_analysis: calculation returned 3 non-finite value(s): /roe (Infinity), /net_margin (Infinity), /roa (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "dupont_analysis",
+        "pack": "quant",
+        "call": "revenue=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "dupont_analysis: calculation returned 1 non-finite value(s): /asset_turnover (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "dupont_analysis",
+        "pack": "quant",
+        "call": "total_assets=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "dupont_analysis: calculation returned 1 non-finite value(s): /equity_multiplier (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      },
+      {
+        "tool": "graham_valuation",
+        "pack": "quant",
+        "call": "book_value_per_share=1e+308",
+        "kind": "non-finite answer from an extreme number",
+        "refused": true,
+        "message": "graham_valuation: calculation returned 1 non-finite value(s): /graham_number (Infinity). JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain."
+      }
+    ]
+  },
+  "timing": {
+    "before": {
+      "node": "v24.19.0",
+      "tool": "convert_returns",
+      "values": 20000,
+      "rounds": 50,
+      "median_ms": 1.6264169999999893,
+      "p95_ms": 2.0998329999999896,
+      "scope": "local computation and output rounding; no network or model"
+    },
+    "after": {
+      "node": "v24.19.0",
+      "tool": "convert_returns",
+      "values": 20000,
+      "rounds": 50,
+      "median_ms": 1.777708000000004,
+      "p95_ms": 2.4962079999999958,
+      "scope": "local computation, output rounding and numerical result checks; no other local tests running"
+    }
+  },
+  "scope": [
+    "The48 original cases use the unchanged hostile-argument generator and15-digit outputs.",
+    "The guard refuses unrepresentable results. It does not claim to remove every underlying numerical instability or prove arbitrary financial accuracy.",
+    "Result checks run inside the existing rounding traversal; bounded diagnostics retain at most5 field examples.",
+    "The0.1.1 signed source archive remains immutable.0.1.2 gathers its unpublished corrections with this guard into one intended npm update."
+  ]
+}
