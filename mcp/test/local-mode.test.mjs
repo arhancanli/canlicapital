@@ -9,6 +9,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import { LOCAL_FILES } from "../scripts/sync-local.mjs";
+import { LOCAL_VALIDATORS } from "../src/local.mjs";
 import { configuredLocal, createSession, toolValidateBacktestLength, toolValidateBreadth, toolValidateHaircutSharpe, toolValidateLuckTrials, toolValidateDeflatedSharpe, toolValidateOverfitting, toolValidateRealityCheck, toolValidateTrackRecord } from "../src/server.mjs";
 
 const MCP = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -128,4 +129,19 @@ test("data-snooping tests read a matrix file on this machine, give the inline an
   await assert.rejects(toolValidateRealityCheck(session, { matrix: RC_MATRIX, matrix_file: file }), /Send exactly one of matrix or matrix_file/);
   const hosted = createSession({ base: "https://example.test", fetchImpl: async () => { throw new Error("no network"); }, hosted: { keySource: "shared" } });
   await assert.rejects(toolValidateRealityCheck(hosted, { matrix_file: file }), /hosted endpoint cannot read files on your machine/);
+});
+
+test("the README counts the validators local mode runs", () => {
+  const words = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12 };
+  const readme = readFileSync(resolve(MCP, "README.md"), "utf8");
+  const sentences = [
+    /runs the (\w+) validators on this machine/,
+    /Set `CANLI_LOCAL=1` and the (\w+) validators run/,
+  ];
+  const expected = Object.keys(LOCAL_VALIDATORS).length;
+  for (const pattern of sentences) {
+    const match = readme.match(pattern);
+    assert.ok(match, `README.md no longer contains ${pattern}`);
+    assert.equal(words[match[1]] ?? Number(match[1]), expected, `README.md says "${match[0]}"; LOCAL_VALIDATORS has ${expected}`);
+  }
 });
