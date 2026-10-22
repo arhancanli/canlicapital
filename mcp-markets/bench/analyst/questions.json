@@ -1732,6 +1732,270 @@
    "expect": {
     "error": "no 10-Q for a period ending in 2030"
    }
+  },
+  {
+   "id": "gd-uri-rev-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What total revenue range does United Rentals now expect for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1067701",
+    "accession": "0001067701-26-000036",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     18.0,
+     18.2
+    ]
+   },
+   "source_quote": "Total revenue $18.0 billion to $18.2 billion"
+  },
+  {
+   "id": "gd-uri-ebitda-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What adjusted EBITDA range does United Rentals now expect for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1067701",
+    "accession": "0001067701-26-000036",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     8.3,
+     8.4
+    ]
+   },
+   "source_quote": "Adjusted EBITDA 6 $8.3 billion to $8.4 billion"
+  },
+  {
+   "id": "gd-tdy-eps-q4",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What non-GAAP diluted EPS range does Teledyne expect for the fourth quarter of 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1094285",
+    "accession": "0001094285-26-000055",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     6.6,
+     6.7
+    ]
+   },
+   "source_quote": "Non-GAAP Diluted Earnings per Common Share Outlook $ 6.60 $ 6.70 $ 25.40 $ 25.50"
+  },
+  {
+   "id": "gd-tdy-gaapeps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What GAAP diluted EPS range does Teledyne expect for full year 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1094285",
+    "accession": "0001094285-26-000055",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     21.71,
+     21.87
+    ]
+   },
+   "source_quote": "full year 2026 GAAP diluted earnings per share will be in the range of $21.71 to $21.87"
+  },
+  {
+   "id": "gd-dhr-eps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What adjusted diluted EPS range does Danaher now guide for full year 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "313616",
+    "accession": "0000313616-26-000201",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     8.57,
+     8.62
+    ]
+   },
+   "source_quote": "increasing its full year adjusted diluted net earnings per common share guidance to a range of $8.57 to $8.62"
+  },
+  {
+   "id": "gd-hon-sales-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What sales range does Honeywell now expect for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "773840",
+    "accession": "0000773840-26-000141",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     20.0,
+     20.1
+    ]
+   },
+   "source_quote": "The company now expects full-year sales of $20.0 billion to $20.1 billion"
+  },
+  {
+   "id": "gd-hon-eps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What adjusted EPS range does Honeywell now expect for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "773840",
+    "accession": "0000773840-26-000141",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     8.4,
+     8.45
+    ]
+   },
+   "source_quote": "adjusted earnings per share 1 of $8.40 to $8.45"
+  },
+  {
+   "id": "gd-r-eps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What comparable EPS range does Ryder now forecast for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "85961",
+    "accession": "0000085961-26-000023",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     14.85,
+     15.05
+    ]
+   },
+   "source_quote": "Comparable EPS (non-GAAP) range raised to $14.85 - $15.05"
+  },
+  {
+   "id": "gd-r-gaapeps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What GAAP EPS range does Ryder forecast for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "85961",
+    "accession": "0000085961-26-000023",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     9.75,
+     9.95
+    ]
+   },
+   "source_quote": "FY26 GAAP EPS (includes ~$4.30 non-cash pension settlement charges) (1) $9.75 - $9.95"
+  },
+  {
+   "id": "gd-knx-eps-q4",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What adjusted EPS range does Knight-Swift expect for the fourth quarter of 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1492691",
+    "accession": "0001492691-26-000065",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     0.78,
+     0.84
+    ]
+   },
+   "source_quote": "We expect that Adjusted EPS 1 will range from $0.78 to $0.84 for the fourth quarter of 2026"
+  },
+  {
+   "id": "gd-lmt-sales-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What sales range does Lockheed Martin now expect for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "936468",
+    "accession": "0001628280-26-066780",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     80000,
+     82000
+    ]
+   },
+   "source_quote": "Sales ~$80,000 - $82,000 $79,750 - $81,750"
+  },
+  {
+   "id": "gd-lmt-eps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What diluted EPS range does Lockheed Martin now expect for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "936468",
+    "accession": "0001628280-26-066780",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     30.35,
+     30.75
+    ]
+   },
+   "source_quote": "Diluted earnings per share ~$30.35 - $30.75 $29.95 - $30.65"
+  },
+  {
+   "id": "gd-elv-eps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What adjusted diluted EPS does Elevance Health now guide for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1156039",
+    "accession": "0001156039-26-000068",
+    "compare": false
+   },
+   "expect": {
+    "values": [
+     29.0
+    ]
+   },
+   "source_quote": "adjusted diluted EPS 2 guidance raised to at least $29.00"
+  },
+  {
+   "id": "gd-moh-eps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What adjusted EPS does Molina Healthcare guide for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1179929",
+    "accession": "0001179929-26-000042",
+    "compare": false
+   },
+   "expect": {
+    "values": [
+     5.25
+    ]
+   },
+   "source_quote": "reaffirmed its full year 2026 adjusted earnings of at least $5.25 per diluted share"
   }
  ]
 }

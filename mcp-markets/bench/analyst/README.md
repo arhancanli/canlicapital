@@ -29,6 +29,7 @@ expected position. This is tool level: no model reads the answers.
 | dev | companies and releases the tools were built on | 21 of 21 | 21 of 21 |
 | fresh | releases never used while building, keyed before the first run | 26 of 32 | 32 of 32 |
 | fresh-2 | releases added after the fixes, run once, not tuned on | | 9 of 9 |
+| fresh-3 | 14 outlooks from 12 releases filed 2026-10-19 to 10-22 (Q3 season), keyed from the releases before the first run | 12 of 14 | 14 of 14 |
 | verify | claims for `verify_claims` on companies it was not built on | 15 of 19 | 19 of 19 |
 | trap | false premises: a year not reported, a company that does not exist, a table no filing has, a release that does not exist, a dividend never paid; pass = a refusal or an empty answer, never a figure | 6 of 6 | 6 of 6 |
 
@@ -38,6 +39,13 @@ sentence ("Cisco expects to achieve the following results:") or named by a headi
 result stated twice, rounded and exact, where the exact one should be compared. After those
 fixes the fresh set is no longer held out, so fresh-2 checks that they generalize.
 `results-2026-10-14-first-run.json` keeps the first run.
+
+The fresh-3 run (2026-10-22) found one gap: Lockheed Martin's outlook table puts an empty spacer
+cell before every label and its footnote marker in that spacer, so the footnote row set the label
+column and no row had a label; the release came back with no guidance at all. A footnote row (a
+marker and a long note) is now a note, the table's own title row gives its scale ("in millions"),
+and a results column beside the outlook ("2025 Actual") is no longer listed as guidance. The
+other 86 questions still pass, and the dev, fresh and fresh-2 answers are unchanged.
 
 The verify set's first run found two defects: SEC's company-concept endpoint answers some
 companies with an empty units object (`{"USD":{}}` for Coca-Cola's Revenues and NetIncomeLoss on
