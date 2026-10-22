@@ -250,3 +250,27 @@ test("a rate's change, a margin in dollars, a share of revenue and a change in d
   assert.deepEqual(facts("GAAP and non-GAAP earnings per diluted share were $2.46 and $2.22, respectively.\nFor the quarter, GAAP and non-GAAP gross margins were both 75.0%.").map((x) => [x[0], x[1], x[3]]),
     [["eps", 2.46, "GAAP"], ["eps", 2.22, "non-GAAP"], ["gross_margin", 75, "GAAP and non-GAAP"]], "respectively gives one basis each; both gives both");
 });
+
+test("a guidance table whose footnote starts left of its labels (Lockheed Martin, 2026-10-22)", async () => {
+  const { parseTable } = await import("../src/tables.mjs");
+  // The release's own layout: an empty spacer cell before every label, the footnote marker in that spacer.
+  const cell = (t, span = 3) => `<td colspan="${span}">${t}</td>`;
+  const row = (...c) => `<tr>${c.join("")}</tr>`;
+  const html = `<table>${[
+    row(cell(""), cell("(in millions, except per share data)"), cell(""), cell("Current Update"), cell(""), cell("July 2026"), cell("")),
+    row(cell(""), cell("Sales"), cell(""), cell("~$80,000 - $82,000"), cell(""), cell("$79,750 - $81,750"), cell("")),
+    row(cell(""), cell("Diluted earnings per share"), cell(""), cell("~$30.35 - $30.75"), cell(""), cell("$29.95 - $30.65"), cell("")),
+    row(cell("1"), cell("Business segment operating profit and free cash flow are non-GAAP measures. See the section of this news release.", 15), cell("")),
+  ].join("")}</table>`;
+  const t = parseTable(html, "Refer to the section for factors that may impact the company's ability to achieve guidance.");
+  assert.deepEqual(t.rows.map((r) => r[0]), ["Sales", "Diluted earnings per share"], "labels survive the footnote row");
+  assert.equal(t.notes.length, 1);
+  assert.deepEqual(brief(guidanceFromTable(t)), [["revenue", 80000, 82000, "USD million"], ["revenue", 79750, 81750, "USD million"], ["eps", 30.35, 30.75, "USD per share"], ["eps", 29.95, 30.65, "USD per share"]],
+    "both columns, in millions from the table's own title row");
+});
+
+test("a results column beside the outlook is not guidance", () => {
+  const t = { caption: "Selected Financial Data", columns: ["line", "2026 Outlook", "2025 Actual"], rows: [["FAS pension expense", -370, -924]] };
+  const items = guidanceFromTable(t);
+  assert.deepEqual(items.map((x) => [x.label, x.low, x.period]), [["FAS pension expense", -370, "2026"]], "only the outlook column");
+});
