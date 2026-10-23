@@ -46,7 +46,7 @@ const SEARCH = buildIndex(ENTRIES);
 // The most asked-for tools, which run_tool takes without a find_tool first: each saves the model a
 // search turn on the commonest questions. Only tools in enabled packs are named.
 const STARTS = [
-  ["fundamentals", "a company's SEC-reported figure over time: history {company, concept} (concept a plain name like revenue or an XBRL tag; basis first_reported or latest)"],
+  ["fundamentals", "a company's SEC-reported figures over time: history {company, concept} or, for several at once, {company, concepts: [...]} (plain names like revenue or XBRL tags; basis first_reported or latest)"],
   ["fundamentals", "figures as known on a date: known_as_of {company, as_of}"],
   ["markets", "statements as filed: financial_statements {company}"],
   ["markets", "filings and their text: list_filings, read_filing, search_filings"],

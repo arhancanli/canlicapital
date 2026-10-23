@@ -431,3 +431,14 @@ test("two filers with the same name: the listed one is used, and the answer name
   assert.match(r.matched.note, /Also named "Star Equity Holdings": Star Equity Holdings, Inc\. \(CIK 0000707388, no current ticker\)\. This is STAR EQUITY HOLDINGS, INC\. \(CIK 0001210708\), the one with a current ticker; pass another CIK/);
   assert.equal((await resolveCompany(s, "Twitter")).matched.note, undefined, "a single best match carries no note");
 });
+
+test("history takes several concepts in one call, each series as a single call gives it", async () => {
+  const { s } = session();
+  const both = out(await toolHistory(s, { company: "FIX", concepts: ["revenue", "assets"], basis: "latest" }));
+  assert.deepEqual(both.series.map((x) => x.concept.name), ["revenue", "assets"]);
+  const alone = out(await toolHistory(s, { company: "FIX", concept: "assets", basis: "latest" }));
+  assert.deepEqual(both.series[1].rows, alone.rows);
+  assert.equal(both.company.cik, alone.company.cik);
+  await assert.rejects(toolHistory(s, { company: "FIX" }), /send concept \(one measure\) or concepts/);
+  await assert.rejects(toolHistory(s, { company: "FIX", concept: "assets", concepts: ["revenue", "assets"] }), /not both/);
+});

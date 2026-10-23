@@ -20,3 +20,18 @@ run on the same items with deepseek-flash through `scripts/datasets/filing-facts
 to a copy of 0.6.0 whose canli-mcp, canli-fundamentals-mcp and canli-markets-mcp sources are this
 branch's). Reported whatever it shows: answerable items correct per arm, paired counts of items one
 arm gets right and the other wrong, and runs at the six-turn limit.
+
+## Round 1 results (2026-10-23 18:25 UTC)
+
+Answerable and unanswerable items together, accuracy: v0 (100 items) validation tool 0.99,
+canli-mcp 0.6.0 0.90, this branch 0.92; large (55) 0.964, 0.891, 0.909. The branch closes little of
+the gap. Its v0 misses: three runs at the six-turn limit (questions needing two measures took
+several calls), one cash-flow sign copied from a statement as presented, two unanswerable items
+answered with a sibling tag's figure, one figure from another basis, one ratio from another line.
+
+## Round 2 (planned before any run)
+
+After round 1: history takes `concepts` (two to six measures in one call) and the flagship's
+instructions say so. New items again, none used in any earlier run: v0 items outside every sample
+so far, 20 per template with seed 20261125 (100 items), and fresh-core items outside the DeepSeek
+round's sample, 10 per template with seed 20261125 (50 items). Same three arms, model and limits.

@@ -690,7 +690,8 @@ export async function toolListConcepts(session, args) {
 
 export const historyInput = z.object({
   company,
-  concept: conceptArg,
+  concept: conceptArg.optional(),
+  concepts: z.array(z.string().min(1).max(200)).min(2).max(6).optional().describe("Instead of concept: 2-6 measures."),
   basis: z.enum(["first_reported", "latest", "as_of"]).optional().describe("first_reported (default), latest, or as_of (default when as_of is set)."),
   as_of: date.optional().describe("Only filings made on or before this date count, for every basis."),
   periods: periodsArg,
@@ -699,7 +700,21 @@ export const historyInput = z.object({
 }).strict();
 
 export async function toolHistory(session, args) {
-  const { company: who, concept, basis: basisArg, as_of: asOf, periods = "annual", unit, limit = 20 } = parse(historyInput, args, "history");
+  const parsed = parse(historyInput, args, "history");
+  if (Boolean(parsed.concept) === Boolean(parsed.concepts)) throw new Error("history: send concept (one measure) or concepts (two to six), not both or neither.");
+  // Several measures: each series as one call would give it, under one company header.
+  if (parsed.concepts) {
+    const series = [];
+    for (const c of parsed.concepts) series.push((await toolHistory(session, { ...args, concepts: undefined, concept: c })).structuredContent);
+    const [first] = series;
+    return asText({
+      company: first.company, snapshot: first.snapshot, ...(first.snapshot_note ? { snapshot_note: first.snapshot_note } : {}),
+      basis: first.basis, ...(first.as_of ? { as_of: first.as_of } : {}), periods: first.periods,
+      series: series.map(({ company: _c, snapshot: _s, snapshot_note: _n, basis: _b, as_of: _a, periods: _p, meaning: _m, limits: _l, ...rest }) => rest),
+      meaning: first.meaning, limits: LIMITS,
+    });
+  }
+  const { company: who, concept, basis: basisArg, as_of: asOf, periods = "annual", unit, limit = 20 } = parsed;
   const basis = basisArg ?? (asOf ? "as_of" : "first_reported");
   if (basis === "as_of" && !asOf) throw new Error("history: basis as_of needs an as_of date.");
   const e = await loadCompany(session, who);
@@ -1266,7 +1281,7 @@ const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: 
 
 export const TOOL_DESCRIPTIONS = Object.freeze({
   known_as_of: "Get what a company had reported as of a date: per measure, the latest period filed by then, its value, and whether it was later restated; optionally ratios from those filings. For point-in-time backtests.",
-  history: "Get one measure over time, newest first: as first reported (default), as latest filed, or as known on as_of, each with its filing and whether it later changed.",
+  history: "Get a measure (or several, with concepts) over time, newest first: first reported (default), latest, or as known on as_of, with its filing, any later change and the yearly change.",
   restatements: "List periods whose value changed in a later filing, with first and latest values, % change and cause (stock splits left out by default). Omit concept to scan everything.",
   vintages: "List every filing that reported one period of one measure, oldest first: the revision history behind a number.",
   list_concepts: "List the XBRL concepts a company reports and the plain names it supports, with units, periods, date range and restated-period counts.",
@@ -1282,7 +1297,7 @@ const common = { company: z.looseObject({}).optional(), snapshot: z.looseObject(
 export const OUTPUT_SCHEMAS = Object.freeze({
   known_as_of: z.looseObject({ ...common, as_of: z.string().optional(), ...table, missing: z.array(z.string()).optional(), ratios: z.looseObject({}).optional() })
     .describe("rows: one per measure in the order of columns, the value as it stood on as_of; changed_after flags values later restated."),
-  history: z.looseObject({ ...common, concept: z.looseObject({}).optional(), basis: z.string().optional(), total: z.number().optional(), ...table })
+  history: z.looseObject({ ...common, concept: z.looseObject({}).optional(), basis: z.string().optional(), total: z.number().optional(), series: z.array(z.looseObject({})).optional(), ...table })
     .describe("rows: one per period, newest first, in the order of columns."),
   restatements: z.looseObject({ ...common, scanned: z.number().optional(), changed: z.number().optional(), ...table })
     .describe("rows: one per restated period, newest first, with first and latest values, change_pct and cause."),
