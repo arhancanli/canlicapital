@@ -54,6 +54,39 @@ First-day values, for reference only: in the closed-book runs, 213 of 294 wrong 
 `unsupported`. 69 matched some reported value. The discordant pairs were 44 real-only against 13
 decoy-only.
 
+## Pre-registration for the extension runs (2026-10-23)
+
+Fixed in this commit, before any extension run had been made. The runs, in the order the script
+makes them (`eval.mjs`, sampling seed `20261023` for the v1 sets, `20260926` for v0 as before):
+
+- **v0 set:** the paper's 150 v0 items. Gemma 4 12B (Q4_0, run locally through Ollama, thinking
+  off, temperature 0), closed-book and with the tool.
+- **Restatement set:** 60 v1 restatement items (`filing-facts-v1-restatement.jsonl`, SHA-256
+  `0a5a2121...98c5`). Closed-book: Gemma 4 12B, gpt-4.1, gpt-4o, gpt-5.4, gpt-4.1-mini,
+  gpt-5.4-mini, o4-mini. With the tool: Gemma 4 12B, gpt-5.4-mini.
+- **Fresh set:** 75 v1 fresh items, 15 per v0 template (`filing-facts-v1-fresh-core.jsonl`, the
+  fresh split without its restatement items, SHA-256 `59580491...76da`). Closed-book: the same
+  seven models. With the tool: Gemma 4 12B, gpt-4.1-mini, o4-mini, gpt-5.4-mini.
+
+OpenAI runs stay inside the free data-sharing allowance; a run whose estimate would pass 90% of
+its pool is skipped, and skipped runs are reported. The taxonomy is run once per set with the
+unchanged placebo seed. `confirm-extension.mjs` (this commit) computes every test, at alpha 0.05,
+reported whatever it shows:
+
+- **H1'.** Pooling the closed-book runs on the v0 and fresh sets, more than half of wrong numbers
+  are `unsupported` (one-sided exact binomial against 0.5).
+- **H2'.** Pooling every closed-book extension run, wrong numbers match their own company's
+  history more often than a decoy's (one-sided exact McNemar).
+- **H3'.** For every model and set with both arms, the tool arm gives fewer `unsupported` plus
+  `invented_*` answers per item (a count per model and set, no pooled test).
+- **H4.** On restatement items, pooled closed-book answers equal to the revised figure
+  (`superseded_version`) outnumber those equal to the first-reported one (`correct`) (one-sided
+  exact binomial on the two counts).
+- **H5.** For models run closed-book on both v0 (any day) and the fresh set, correct numbers per
+  answerable item are higher on v0 than on the fresh set (one-sided Fisher exact, pooled).
+
+Exploratory, with no test: tool-arm accuracy on answerable fresh items against v0.
+
 ## Limits
 
 - A match shows where a number could have come from. It does not show that the model looked it up.

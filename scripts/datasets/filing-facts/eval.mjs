@@ -3,7 +3,9 @@
 // model ends with "ANSWER: <value>" and is scored against the item's recomputed answer.
 //   node scripts/datasets/filing-facts/eval.mjs <items.jsonl> <out.json> --arm closed|mcp [--per-template 30] [--model gpt-5.4-mini]
 // A model id starting "claude-" runs through the Anthropic API with the same prompts, tools,
-// six-turn limit and capture record; any other id runs through OpenAI.
+// six-turn limit and capture record; "ollama/<name>" runs an open-weight model locally through
+// Ollama's OpenAI-compatible endpoint (no key, thinking off, temperature 0); any other id runs
+// through OpenAI.
 import { closeSync, openSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, resolve } from "node:path";
@@ -90,12 +92,14 @@ const SYSTEM_CLOSED = "You are a financial analyst. Answer from what you know. E
 const SYSTEM_MCP = "You are a financial analyst with a tool that returns a company's SEC-reported financial history (XBRL facts with filing accession numbers). Use it; do not guess numbers. End with one final line 'ANSWER: <value>': a plain number without commas, units or percent signs (a percent as its number, e.g. 12.34), or 'not reported' if the filings do not report it.";
 
 async function chat(model, messages, tools) {
-  const key = readFileSync(resolve(homedir(), ".config/canli/openai_benchmark_key"), "utf8").trim();
+  const local = model.startsWith("ollama/");
+  const key = local ? "ollama" : readFileSync(resolve(homedir(), ".config/canli/openai_benchmark_key"), "utf8").trim();
   for (let attempt = 0; ; attempt++) {
-    const res = await fetch("https://api.openai.com/v1/chat/completions", {
+    const res = await fetch(local ? "http://127.0.0.1:11434/v1/chat/completions" : "https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ model, messages, ...(tools ? { tools, tool_choice: "auto" } : {}), max_completion_tokens: 3000 }),
+      body: JSON.stringify({ model: local ? model.slice(7) : model, messages, ...(tools ? { tools, tool_choice: "auto" } : {}),
+        ...(local ? { max_tokens: 3000, temperature: 0, reasoning_effort: "none" } : { max_completion_tokens: 3000 }) }),
     });
     const body = await res.json();
     if (res.status === 429 && attempt < 12) { await new Promise((r) => setTimeout(r, 5000 * (attempt + 1))); continue; }
@@ -197,7 +201,7 @@ async function main() {
   if (!itemsFile || !outFile) throw new RangeError("usage: eval.mjs items.jsonl out.json --arm closed|mcp [--per-template 30] [--seed 20260926] [--model gpt-5.4-mini]");
   const model = arg("model", "gpt-5.4-mini"), arm = arg("arm", "closed"), perTemplate = Number(arg("per-template", "30")), seed = Number(arg("seed", "20260926"));
   if (!["closed", "mcp"].includes(arm) || !model?.trim()) throw new RangeError("arm must be closed or mcp and model must be nonempty");
-  const provider = model.startsWith("claude-") ? "anthropic" : "openai";
+  const provider = model.startsWith("claude-") ? "anthropic" : model.startsWith("ollama/") ? "ollama" : "openai";
   const { CAPTURE_SCHEMA, evaluateCapture, readDataset } = await import("./evidence.mjs");
   const bytes = readFileSync(itemsFile), dataset = readDataset(bytes);
   const sample = stratifiedSample(dataset.items, perTemplate, seed);
@@ -209,7 +213,8 @@ async function main() {
     mcp = arm === "mcp" ? await mcpClient() : null;
     const runs = [];
     const queue = [...sample];
-    await Promise.all(Array.from({ length: 4 }, async () => { while (queue.length) runs.push(await (provider === "anthropic" ? runClaudeItem : runItem)(queue.shift(), { model, arm, mcp })); }));
+    // One local model serves one request at a time; queued requests would hit fetch's timeout.
+    await Promise.all(Array.from({ length: provider === "ollama" ? 1 : 4 }, async () => { while (queue.length) runs.push(await (provider === "anthropic" ? runClaudeItem : runItem)(queue.shift(), { model, arm, mcp })); }));
     const capture = { schema: CAPTURE_SCHEMA, provider, model, arm,
       recorded_at: startedAt, completed_at: new Date().toISOString(), dataset_sha256: dataset.sha256,
       sampling: { method: "stratified", seed, per_template: perTemplate, item_ids: sample.map((item) => item.id) },
