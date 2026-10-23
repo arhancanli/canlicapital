@@ -36,7 +36,7 @@ async function gdelt(session, params, attempts = 2) {
     const wait = lastCall + GAP_MS * (1 + attempt) - session.now();
     if (wait > 0) await session.sleep(wait);
     lastCall = session.now();
-    try { return { url, body: await getJson(session, url, { maxBytes: 4 * 1024 * 1024 }) }; } catch (err) {
+    try { return { url, body: await getJson(session, url, { maxBytes: 4 * 1024 * 1024, timeoutMs: 10000, retries: 0 }) }; } catch (err) {
       // Over the rate GDELT answers with a sentence instead of JSON: wait and ask again.
       if (attempt < attempts - 1 && /did not return JSON|429|could not be reached/.test(String(err.message))) continue;
       throw err;

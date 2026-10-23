@@ -46,9 +46,9 @@ async function secTurn(session, gap = SEC_GAP_MS, key = "secNext") {
 }
 
 // The message a failed request turns into. A URL carrying a key is never echoed back.
-function fetchError(error, { url, secret, aborted, maxBytes }) {
+function fetchError(error, { url, secret, aborted, maxBytes, timeoutMs = TIMEOUT_MS }) {
   const where = secret ? host(url) : url;
-  if (aborted) return new Error(`${where} did not answer within ${TIMEOUT_MS / 1000} s; retry in a moment.`);
+  if (aborted) return new Error(`${where} did not answer within ${timeoutMs / 1000} s; retry in a moment.`);
   if (error instanceof ResponseReadError) {
     if (error.code === "HTTP" && error.status === 404) return new NotFound(`${where} was not found.`);
     if (error.code === "HTTP" && (error.status === 403 || error.status === 429) && isSec(url)) return new Error(`SEC refused the request (HTTP ${error.status}). SEC limits clients to 10 requests a second and asks for a contact in the User-Agent: set SEC_USER_AGENT to "Your Name you@example.com".`);
@@ -74,7 +74,8 @@ function witness(session, url, record) {
 // witnessed under "POST <url> <body>", so the evidence names the exact query.
 // `variant` caches a second form of the same document under its own name (a filing's text for
 // read_filing, its parsed tables for filing_tables); the evidence still names the URL.
-export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false, method = "GET", body, variant } = {}) {
+// timeoutMs and retries: a source that can stall (GDELT) asks for less waiting than the default.
+export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false, method = "GET", body, variant, timeoutMs = TIMEOUT_MS, retries = 2 } = {}) {
   const key = method === "GET" ? url : `${method} ${url} ${body ?? ""}`;
   const cacheKey = variant ? `${key}#${variant}` : key;
   const hit = session.cache.lookup(cacheKey, session.now());
@@ -85,14 +86,14 @@ export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024
   for (let attempt = 0; ; attempt++) {
     if (isSec(url)) await secTurn(session);
     if (isOecd(url)) await secTurn(session, OECD_GAP_MS, "oecdNext");
-    const signal = AbortSignal.timeout(TIMEOUT_MS);
+    const signal = AbortSignal.timeout(timeoutMs);
     try {
       text = await fetchBoundedText(session.fetchImpl, url, { signal, maxBytes, method, body, headers: { "User-Agent": isSec(url) ? session.userAgent : PLAIN_USER_AGENT, ...headers } });
       break;
     } catch (error) {
       const transient = !signal.aborted && (error instanceof ResponseReadError ? error.code === "HTTP" && error.status >= 500 : true);
-      if (transient && attempt < 2) { await session.sleep((isOecd(url) ? 4000 : 500) * 3 ** attempt); continue; }
-      throw fetchError(error, { url, secret, aborted: signal.aborted, maxBytes });
+      if (transient && attempt < retries) { await session.sleep((isOecd(url) ? 4000 : 500) * 3 ** attempt); continue; }
+      throw fetchError(error, { url, secret, aborted: signal.aborted, maxBytes, timeoutMs });
     }
   }
   const record = { sha256: createHash("sha256").update(text).digest("hex"), bytes: Buffer.byteLength(text, "utf8"), retrieved_at: new Date(session.now()).toISOString() };
