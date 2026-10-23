@@ -28,9 +28,9 @@ test("three discovery tools and the two front tools, byte-identical across launc
   assert.deepEqual(tools.map((t) => t.name), ["find_tool", "describe_tool", "run_tool", "history", "financial_statements"]);
   assert.ok(lists[0].length < 9000, `${lists[0].length} bytes`);
   const c = await connect({ CANLI_FRONT: "" });
-  const bare = JSON.stringify(await c.listTools());
-  assert.match(c.getInstructions(), /^Canli Capital's finance tools in one server: \d+ tools in \d+ packs \([^)]+\)\. Call these with run_tool directly:/);
+  const bare = JSON.stringify(await c.listTools()), said = c.getInstructions();
   await c.close();
+  assert.match(said, /^Canli Capital's finance tools in one server: \d+ tools in \d+ packs \([^)]+\)\. Common tools, which run_tool takes without a search first/);
   assert.deepEqual(JSON.parse(bare).tools.map((t) => t.name), ["find_tool", "describe_tool", "run_tool"]);
   assert.ok(bare.length < 4500, `${bare.length} bytes`);
 });
@@ -42,9 +42,13 @@ test("a front tool runs as run_tool runs it", async () => {
   const viaRun = await c.callTool({ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { prices } } });
   assert.equal(direct.isError, undefined);
   const strip = (r) => { const { ref, ...rest } = JSON.parse(r.content[0].text); return rest; };
-  assert.deepEqual(strip(direct), strip(viaRun));
-  assert.match(c.getInstructions(), /sharpe_ratio is a tool of its own here: call it directly\./);
+  const said = c.getInstructions();
+  const viaRunFind = await c.callTool({ name: "run_tool", arguments: { name: "find_tool", arguments: { query: "sharpe ratio" } } });
   await c.close();
+  assert.deepEqual(strip(direct), strip(viaRun));
+  assert.match(said, /sharpe_ratio is a tool of its own here: call it directly\./);
+  assert.equal(viaRunFind.isError, undefined, "find_tool runs through run_tool too");
+  assert.ok(JSON.parse(viaRunFind.content[0].text).rows.some((r) => r[0] === "sharpe_ratio"));
 });
 
 test("find, describe and run across packs; a batch with $file, $result, return last and digits", async (t) => {
