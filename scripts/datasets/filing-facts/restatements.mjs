@@ -15,10 +15,14 @@ import { ANNUAL_FORMS, CONCEPT_NAMES, secFilingUrl } from "./templates.mjs";
 
 export const RESTATEMENT_CONCEPTS = Object.freeze(Object.keys(CONCEPT_NAMES).filter((t) => !t.startsWith("EarningsPerShare")));
 
+// An annual filing also tags shorter periods (its fourth quarter, say) with fp "FY": a flow
+// figure is a fiscal year only when its period runs about a year (52 or 53 weeks, or 12 months).
+export const isYear = (o) => !o.start || ((d) => d >= 350 && d <= 380)((Date.parse(o.end) - Date.parse(o.start)) / 86400000);
+
 function groups(raw, tag) {
   const out = new Map();
   for (const o of raw?.facts?.["us-gaap"]?.[tag]?.units?.USD ?? []) {
-    if (o.fp !== "FY" || !ANNUAL_FORMS.has(o.form) || !Number.isFinite(o.val) || typeof o.accn !== "string") continue;
+    if (o.fp !== "FY" || !ANNUAL_FORMS.has(o.form) || !isYear(o) || !Number.isFinite(o.val) || typeof o.accn !== "string") continue;
     const key = `${o.start ?? ""}|${o.end}`;
     if (!out.has(key)) out.set(key, []);
     out.get(key).push(o);
@@ -74,6 +78,7 @@ export function checkRestatement(item, raw) {
   if (!find(first)) problems.push("first-reported fact is not in the snapshot as cited");
   if (!find(later)) problems.push("revising fact is not in the snapshot as cited");
   if (later.concept !== first.concept || later.end !== first.end || later.start !== first.start) problems.push("the two facts are not the same period");
+  if (!isYear(first)) problems.push("the period is not a fiscal year (an annual filing's quarter)");
   if (!(later.filed > first.filed)) problems.push("the revision is not filed after the first report");
   if (later.val === first.val) problems.push("the values do not differ");
   if (same.some((o) => o.filed < first.filed)) problems.push("an earlier annual filing reported this period: the cited fact is not the first");

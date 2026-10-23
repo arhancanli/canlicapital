@@ -26,6 +26,16 @@ test("splits, changed fiscal-year starts and same-value refilings are not restat
   assert.equal(restatedPeriods(raw({ Revenues: [fy(100, "2022-02-10", "a"), fy(100, "2023-02-10", "b")] })).length, 0);
 });
 
+test("an annual filing's quarter is not a fiscal year: its revision is not a restatement item", () => {
+  const q4 = { start: "2021-10-01", end: "2021-12-31" };
+  const r = raw({ Revenues: [fy(30, "2022-02-10", "0000000001-22-000001", q4), fy(29, "2023-02-10", "0000000001-23-000001", q4)] });
+  assert.equal(restatedPeriods(r).length, 0);
+  const year = restatementItem(record, raw({ Revenues: [fy(100, "2022-02-10", "0000000001-22-000001"), fy(97, "2024-02-10", "0000000001-24-000001")] }), mulberry32(1));
+  const quarter = { ...year, facts: year.facts.map((f) => ({ ...f, ...q4 })) };
+  assert.match(checkRestatement(quarter, r).join(" "), /not a fiscal year/);
+  assert.equal(restatedPeriods(raw({ Revenues: [fy(100, "2022-02-10", "a", { start: "2021-01-03" }), fy(97, "2023-02-10", "b", { start: "2021-01-03" })] })).length, 1, "a 52-week year counts");
+});
+
 test("the checker refuses a cited 'first' that is not the earliest filing, or an answer that is the later value", () => {
   const r = raw({ Revenues: [fy(90, "2021-12-01", "0000000001-21-000009"), fy(100, "2022-02-10", "0000000001-22-000001"), fy(97, "2024-02-10", "0000000001-24-000001")] });
   const item = restatementItem(record, raw({ Revenues: [fy(100, "2022-02-10", "0000000001-22-000001"), fy(97, "2024-02-10", "0000000001-24-000001")] }), mulberry32(1));
