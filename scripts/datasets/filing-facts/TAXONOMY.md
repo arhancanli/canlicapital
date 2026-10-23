@@ -96,6 +96,21 @@ and discarded: another job on the machine loads the same model at a 16,384-token
 endpoint at 16,384 tokens; a turn whose prompt reaches 95% of that is logged, and the count is
 reported with the results.
 
+**Results (2026-10-23, runs finished 12:02 UTC from commit 96a487b7).** As printed by
+`confirm-extension.mjs`, Gemma 4 12B only:
+
+- H1': 112 of 142 wrong numbers unsupported (79%), p = 1.25e-12. Supported. (v0 83/107, fresh 29/35.)
+- H2': own company only 29, decoy only 15, p = 0.024. Supported.
+- H3': unsupported plus invented, closed against tool: v0 105/150 against 16/150, restatement 33/60
+  against 1/60, fresh 39/75 against 7/75. Supported in every set; but the tool arm reached the
+  six-turn limit on 100, 40 and 40 items, mostly after calling the tool with a guessed ticker that it
+  does not know and repeating the call.
+- H4: revised 0, first-reported 0 closed-book; the test cannot be computed. Not supported.
+- H5: v0 1/120 against fresh 0/60 correct, p = 0.67. Not supported.
+- Exploratory: tool arm, 18 of 60 answerable fresh items correct.
+- Turns that reached 95% of the 16,384-token context: tool arm 10, 1 and 10 (v0, restatement,
+  fresh); closed-book none.
+
 ## Limits
 
 - A match shows where a number could have come from. It does not show that the model looked it up.
