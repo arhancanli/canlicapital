@@ -131,3 +131,22 @@ OpenAI-compatible API, with everything else as above. Arms: **canli-0.6.0** (the
 published on npm, installed unchanged), openbb, edgartools, yahoo and edgartools+yahoo, one run per
 question per arm first, a second run if the budget allows. Results go to `results-deepseek.jsonl`
 and are reported whatever they show; the 2026-10-09 truths and prompt date stay unchanged.
+
+### Results on DeepSeek (2026-10-23, one run per question per arm)
+
+| arm | held-out (24) | frontier (10) | mean input tokens, held-out | mean input tokens, frontier |
+|---|---|---|---|---|
+| canli-0.6.0 (npm) | 23 | 5 | 17,569 | 76,789 |
+| canli-dev (branch mcp/flagship-proof-20261023 at 4c05bb51) | 23 | 9 | 18,552 | 51,991 |
+| edgartools | 11 | 6 | 46,210 | 240,471 |
+| yahoo | 14 | 5 | 64,330 | 390,774 |
+| edgartools+yahoo | 16 | 0 of 6 run (budget) | 126,666 | 477,914 |
+| openbb | 16 | 1 | 183,574 | 332,607 |
+
+Read with care: one run per question; the held-out set was written after the 10-09 fixes and before
+these runs. **The frontier gain of canli-dev is partly tuned**: three frontier questions (count of
+$1 trillion balance sheets, highest R&D intensity, highest revenue growth) failed for 0.6.0 because
+`screen_companies` ranked calendar years, and the `fiscal_year_end` window was added after seeing
+them. A first run of canli-dev (results-deepseek-dev-run1.jsonl: held-out 21, frontier 4) exposed a
+regression, the model calling `run_tool` with `find_tool` as the tool name; it was fixed (c425c9a4)
+before this run. A new frontier set, written before any run, is the next fair test.
