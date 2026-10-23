@@ -34,7 +34,8 @@ export const METRICS = Object.freeze({
   eps_diluted: metric(D, "USD/shares", one("EarningsPerShareDiluted")),
   rd_expense: metric(D, "USD", [["ResearchAndDevelopmentExpense", "ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost"]]),
   operating_cash_flow: metric(D, "USD", one("NetCashProvidedByUsedInOperatingActivities")),
-  capex: metric(D, "USD", one("PaymentsToAcquirePropertyPlantAndEquipment")),
+  // Capital spending under either tag: Amazon reports it as productive assets.
+  capex: metric(D, "USD", [["PaymentsToAcquirePropertyPlantAndEquipment", "PaymentsToAcquireProductiveAssets"]]),
   assets: metric(I, "USD", one("Assets")),
   liabilities: metric(I, "USD", one("Liabilities")),
   equity: metric(I, "USD", one("StockholdersEquity", "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest")),
@@ -294,7 +295,7 @@ export async function screenCompanies(session, args) {
   }
   out.definitions = Object.fromEntries(shown.map((m) => [m, DERIVED[m] ? `derived from ${DERIVED[m].needs.join(", ")}` : `XBRL ${METRICS[m].groups.map((g) => g.join(" or ")).join(", else ")} (the larger within "or"), ${METRICS[m].unit}`]));
   out.sources = [...new Set(frames.flatMap((f) => f.urls))];
-  out.limits = [...LIMITS, "XBRL frames give one value per filer for the fiscal period that best overlaps the calendar period, as most recently filed; filers tag line items differently, so a missing or unusual tag drops or skews a company. Check a shortlisted company's filing before relying on a figure."];
+  out.limits = [...LIMITS, "XBRL frames give one value per filer for the fiscal period that best overlaps the calendar period, as most recently filed; filers tag line items differently, so a missing or unusual tag drops or skews a company. Check a shortlisted company's filing before relying on a figure.", "Listing is SEC's ticker-and-exchange file: a company that has just moved its ticker to a new holding company (Exxon Mobil, 2026) is listed under the new filer, which may not have filed financial statements yet."];
   return out;
 }
 
