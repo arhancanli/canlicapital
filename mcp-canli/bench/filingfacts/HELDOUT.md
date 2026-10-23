@@ -110,3 +110,11 @@ v0 (200 items): 0.6.0 0.865 (answerable 140/160, unanswerable 33/40, 13 at the l
 an item); branch 0.920 (150/160, 34/40, none at the limit, 11,096 tokens). Paired: right only with
 the branch 20, only with 0.6.0 9, one-sided exact McNemar p = 0.031. Rounds 5 and 6 together (400
 items, none seen before): branch 0.925 against 0.868, 34 against 11.
+
+Round 6 misses, read one by one: most are the model's choices (a quarter-end instead of the fiscal
+year, a sibling tag on "not reported" items, a figure it knew belonged to another filer) or a
+presented sign copied from a statement (Merck's capital expenditures as -4,388 million). Two are
+FilingFacts v0 answer keys built on a filer's own tagging slip, where the model's answer is the
+sensible one: Crexendo's diluted shares (a later 10-K tags 20,275,691,000 for 20,275,691, so the key's
+change is 116,290%) and Zions Bancorporation's "net margin" of 1.96 (its Revenues tag holds only some
+fee income). They are kept as scored, as the benchmark defines them.
