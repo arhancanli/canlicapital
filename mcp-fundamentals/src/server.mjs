@@ -743,6 +743,9 @@ export async function toolHistory(session, args) {
     ...(asOf ? { as_of: asOf } : {}),
     periods,
     total: picked.length,
+    // The span the company's XBRL data covers for this measure: a question about a period outside
+    // it has no answer here, which a model should say rather than search further.
+    ...(picked.length ? { covers: { first_end: picked.at(-1).p.end, last_end: picked[0].p.end, note: `No ${periods === "all" ? "" : `${periods} `}value for this measure before ${picked.at(-1).p.end} or after ${picked[0].p.end} is in this company's XBRL data (SEC XBRL starts in 2009 to 2011, by filer size).` } } : {}),
     columns,
     ...shown,
     ...(s.newer ? { newer_series: s.newer } : {}),

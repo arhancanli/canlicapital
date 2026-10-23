@@ -442,3 +442,10 @@ test("history takes several concepts in one call, each series as a single call g
   await assert.rejects(toolHistory(s, { company: "FIX" }), /send concept \(one measure\) or concepts/);
   await assert.rejects(toolHistory(s, { company: "FIX", concept: "assets", concepts: ["revenue", "assets"] }), /not both/);
 });
+
+test("history says what span the data covers, so a question outside it is answered as not reported", async () => {
+  const { s } = session();
+  const r = out(await toolHistory(s, { company: "FIX", concept: "revenue" }));
+  assert.equal(r.covers.first_end, "2018-09-30"); assert.equal(r.covers.last_end, "2020-09-30");
+  assert.match(r.covers.note, /No annual value for this measure before 2018-09-30/);
+});

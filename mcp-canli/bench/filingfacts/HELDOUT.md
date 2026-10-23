@@ -35,3 +35,20 @@ After round 1: history takes `concepts` (two to six measures in one call) and th
 instructions say so. New items again, none used in any earlier run: v0 items outside every sample
 so far, 20 per template with seed 20261125 (100 items), and fresh-core items outside the DeepSeek
 round's sample, 10 per template with seed 20261125 (50 items). Same three arms, model and limits.
+
+## Round 2 results (2026-10-23 18:40 UTC)
+
+Answerable items right: v0 (80) validation 79, 0.6.0 71, branch 76; fresh (40) 40, 30, 36. Overall
+accuracy v0 0.99, 0.88, 0.88 (the branch loses on unanswerable items what it gains on answerable
+ones); fresh 1.00, 0.75, 0.90. The fresh split has no unanswerable items left outside earlier
+samples, so it has 40 items, not 50. The branch's unanswerable misses: five runs at the six-turn
+limit on years before XBRL (2005 to 2008), searching for a period the data does not cover; three
+answers from a sibling tag or a rendered statement, figures that are in the filing but not under the
+tag the question names.
+
+## Round 3 (planned before any run)
+
+After round 2: history and its several-concepts form state the span the data covers (`covers`), so a
+period outside it is plainly not reported; screen_companies takes a fiscal-year-end window (commit
+56ef55e8, found on the rival frontier set). New v0 items outside every earlier sample, 20 per
+template, seed 20261126 (100 items); the same three arms, model and limits.
