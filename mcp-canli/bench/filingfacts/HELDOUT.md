@@ -102,4 +102,4 @@ the instructions make verify_claims a check for drafts, and new tools are in the
 (latest_filings, filing_diff, news, explain_move, portfolio_xray, price_panel, the breadth lab and
 annotation), which a search can now return. Check that plain questions did not suffer: v0 items
 outside every earlier sample, 40 per template, seed 20261129 (200 items); arms canli-mcp 0.6.0 and
-this branch at 910c0ad5; reported as in rounds 4 and 5.
+this branch at 910c0ad5, refreshed to cad93efa (comps, capex under both tags) before its arm started; reported as in rounds 4 and 5.
