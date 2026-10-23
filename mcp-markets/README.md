@@ -79,6 +79,7 @@ against the BIS (21 of 21 agreed on 2026-10-15).
 | `company_events` | A company's news from its 8-Ks (earnings, deals, executive changes, restatements, bankruptcies, cyber incidents): the headline of the press release attached, and the filing's own words; or one kind of event across the market | Form 8-K |
 | `latest_filings` | What has just been filed, across every company: newest first by acceptance time, by form (8-K, 10-K, 4, SC 13D, S-1), 8-K event and filer name; the last few business days | EDGAR latest-filings feed |
 | `filing_diff` | What changed in a 10-K (or 10-Q) against the one before, section by section: new and dropped paragraphs, the sentences changed in the rest, and the words whose use rose or fell most (Apple 2025: court, remedies, enforcement from 0 to 4 or 5) | SEC EDGAR filings |
+| `news` | News about a company or a topic from the world's press: articles newest first with outlet and country, and the daily average tone of the coverage | GDELT Project (open index, no key) |
 | `earnings_calendar` | A company's results release dates with the quarter covered and before the open or after the close, and the next one estimated from the same quarter last year; or who is due to report in a window across the market | SEC EDGAR (8-K Item 2.02) |
 | `segment_revenue` | Where revenue comes from: by segment (with operating income), product and region, three years, checked against total revenue | 10-K/10-Q XBRL |
 | `insider_trades` | Who inside bought or sold, at what price, under a 10b5-1 plan or not | Form 4 |
