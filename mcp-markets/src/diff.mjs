@@ -16,7 +16,7 @@ export const diffInput = z.object({
   accession: z.string().regex(/^\d{10}-\d{2}-\d{6}$/).optional().describe("The newer filing; default the latest."),
   against: z.string().regex(/^\d{10}-\d{2}-\d{6}$/).optional().describe("The older filing; default the one filed before the newer."),
   threshold: z.number().min(0.2).max(0.95).optional().describe("Word-pair overlap at which two paragraphs are the same paragraph. Default 0.5."),
-  max_items: z.number().int().min(1).max(60).optional().describe("Most new, dropped and changed paragraphs listed each. Default 15."),
+  max_items: z.number().int().min(1).max(60).optional().describe("Most new, dropped and changed paragraphs listed each. Default 8; raise it to read more."),
 }).strict();
 
 // The whole section's text, page by page.
@@ -48,7 +48,7 @@ function overlap(a, b) {
 
 const STOP = new Set("the of and to a in or our we that for be is are as on by with may could its from an any which this other these such not have has their it at will can were been more than also including".split(" "));
 
-export function diffText(oldText, newText, { threshold = 0.5, maxItems = 15 } = {}) {
+export function diffText(oldText, newText, { threshold = 0.5, maxItems = 8 } = {}) {
   const A = paragraphs(oldText), B = paragraphs(newText);
   const pa = A.map(pairs), pb = B.map(pairs);
   // Each new paragraph takes its best old match above the threshold; an old paragraph is used once.
@@ -64,7 +64,7 @@ export function diffText(oldText, newText, { threshold = 0.5, maxItems = 15 } = 
     const so = sentences(A[match[j]]), sn = sentences(B[j]);
     const oldSet = new Set(so.map(norm)), newSet = new Set(sn.map(norm));
     const plus = sn.filter((s) => !oldSet.has(norm(s))), minus = so.filter((s) => !newSet.has(norm(s)));
-    if (plus.length || minus.length) changed.push({ similarity: Math.round(score[j] * 100) / 100, added_sentences: plus.slice(0, 4), removed_sentences: minus.slice(0, 4), paragraph_start: B[j].slice(0, 160) });
+    if (plus.length || minus.length) changed.push({ similarity: Math.round(score[j] * 100) / 100, added_sentences: plus.slice(0, 3).map((x) => (x.length > 350 ? `${x.slice(0, 350)}...` : x)), removed_sentences: minus.slice(0, 3).map((x) => (x.length > 350 ? `${x.slice(0, 350)}...` : x)), paragraph_start: B[j].slice(0, 120) });
   }
   // Words whose count moved most, per 10,000 words, among words used at least 3 times in either.
   const count = (t) => { const m = new Map(); let n = 0; for (const w of words(t)) { n += 1; if (w.length > 3 && !STOP.has(w) && !/^\d/.test(w)) m.set(w, (m.get(w) ?? 0) + 1); } return { m, n }; };
@@ -75,7 +75,7 @@ export function diffText(oldText, newText, { threshold = 0.5, maxItems = 15 } = 
   const lift = ([, a, b]) => Math.log((b + 1) / Math.max(cn.n, 1)) - Math.log((a + 1) / Math.max(co.n, 1));
   const rising = terms.filter((t) => lift(t) > Math.log(1.5)).sort((x, y) => lift(y) - lift(x) || y[2] - x[2]).slice(0, 15);
   const falling = terms.filter((t) => lift(t) < -Math.log(1.5)).sort((x, y) => lift(x) - lift(y) || y[1] - x[1]).slice(0, 10);
-  const cut = (p) => (p.length > 700 ? `${p.slice(0, 700)}...` : p);
+  const cut = (p) => (p.length > 450 ? `${p.slice(0, 450)}...` : p);
   return {
     summary: { old_paragraphs: A.length, new_paragraphs: B.length, added: added.length, removed: removed.length, changed: changed.length, unchanged: B.length - added.length - changed.length, old_words: co.n, new_words: cn.n },
     added: added.slice(0, maxItems).map(cut), removed: removed.slice(0, maxItems).map(cut),
@@ -92,7 +92,7 @@ export async function filingDiff(session, args) {
   const olderArgs = a.against ? { company: a.company, section, accession: a.against }
     : { company: a.company, section, form, filed_before: new Date(Date.parse(newer.head.filing.filed) - 86400000).toISOString().slice(0, 10) };
   const older = await sectionText(session, olderArgs);
-  const d = diffText(older.text, newer.text, { threshold: a.threshold ?? 0.5, maxItems: a.max_items ?? 15 });
+  const d = diffText(older.text, newer.text, { threshold: a.threshold ?? 0.5, maxItems: a.max_items ?? 8 });
   const s = d.summary;
   return {
     company: newer.head.company,

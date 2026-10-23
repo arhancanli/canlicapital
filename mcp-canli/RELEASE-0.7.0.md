@@ -25,5 +25,10 @@ following the fewer-and-bigger rule: one release of each.
      backtest and markets, 2026-10-24);
    - the hosted pin and the deploy (see the canlicapital production-source notes).
 
+Speed, through the dev flagship on an idle machine (2026-10-24, no AI): history 129 ms cold and
+10 ms warm, four measures in one call 144 ms, verify_claims 0.5 s, latest_filings 0.4 s,
+explain_move 0.6 s (without news), filing_diff 1.2 s, financial_statements 1.4 s, portfolio_xray
+1.5 s, screen_companies 3.7 s, comps 5.8 s.
+
 Evidence for the release notes: `bench/filingfacts/HELDOUT.md` (rounds 1-6) and
 `bench/rivals/REPORT.md` (DeepSeek runs, with the tuned-question caveats).
