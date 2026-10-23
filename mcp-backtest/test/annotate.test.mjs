@@ -56,5 +56,16 @@ test("packets, agreement and gold: blind by default, the machine's labels kept f
   const lines = readFileSync(g.gold_file, "utf8").trim().split("\n").map((l) => JSON.parse(l));
   assert.equal(lines.find((x) => x.label === "contradicted").correct_value, 416.161);
   assert.match(g.gold_sha256, /^[0-9a-f]{64}$/);
-  await assert.rejects(annotationPacket(session(), { task: "xyz" }), /Send items or items_file/);
+  await assert.rejects(annotationPacket(session(), { task: "xyz" }), /Send items, items_file or text/);
+  await assert.rejects(annotationPacket(session(), { task: "xyz", text: "Apple had revenue of $416.2 billion in fiscal 2025." }), /text needs company/);
+});
+
+test("a draft becomes items: every figure with a measure and a period, labelled by machine", async () => {
+  const out = mkdtempSync(join(tmpdir(), "canli-annot-draft-"));
+  const p = await annotationPacket(session(), { task: "apple-draft", company: "AAPL", out_dir: out,
+    text: "In fiscal 2025 Apple had revenue of $391.0 billion and net income of $93.7 billion. Diluted EPS was $6.08. Operating income was $133.1 million." });
+  assert.ok(p.items >= 3, JSON.stringify(p));
+  const key = JSON.parse(readFileSync(p.key, "utf8"));
+  assert.ok(key.items.every((x) => x.machine && x.machine.verdict), "every item carries the machine's verdict");
+  assert.ok(key.items.some((x) => x.machine.verdict === "contradicted"), "last year's revenue is caught");
 });

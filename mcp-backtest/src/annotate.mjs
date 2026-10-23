@@ -38,6 +38,8 @@ export const packetInput = z.object({
   task: z.string().regex(/^[a-z0-9][a-z0-9-]{2,63}$/).describe("A name for the task, e.g. q3-revenue-check: the folder the files go in."),
   items: z.array(item).min(1).max(200).optional().describe("Figures to label: company, measure, period, value (and unit), as for verify_claims."),
   items_file: filePath.optional().describe("Or a JSONL file of the same objects, up to 2,000."),
+  text: z.string().min(10).max(6000).optional().describe("Or a draft about one company (an AI's answer, say): every figure in it with a measure and a period becomes an item. Needs company."),
+  company: z.string().min(1).max(120).optional().describe("With text: the company the draft is about."),
   annotators: z.number().int().min(1).max(5).optional().describe("Packets to write, one per person. Default 2: two people label every item independently."),
   assisted: z.boolean().optional().describe("Show the machine's label and the filed figure in the packets. Default false (blind), so agreement with the machine means something."),
   out_dir: filePath.optional().describe("Folder for the task folder. Default: a new temporary folder."),
@@ -94,13 +96,27 @@ export async function annotationPacket(session, args) {
   if (a.items_file) items = items.concat(readFileSync(a.items_file, "utf8").split(/\r?\n/).filter((l) => l.trim()).map((l, i) => {
     try { return item.parse(JSON.parse(l)); } catch (e) { throw new RangeError(`items_file line ${i + 1}: ${e.message}`); }
   }));
-  if (!items.length) throw new RangeError("Send items or items_file.");
+  // A draft: verify_claims finds its figures and labels them in the same pass.
+  let fromText = null;
+  if (a.text) {
+    if (!a.company) throw new RangeError("text needs company: the company the draft is about.");
+    const r = await verifyClaims(session, { company: a.company, text: a.text });
+    const col = (name) => r.columns.indexOf(name);
+    fromText = r.rows.map((row) => ({ item: { company: a.company, measure: String(row[col("measure")]), period: String(row[col("period")]), value: Number(row[col("claimed")]), ...(row[col("unit")] ? { unit: String(row[col("unit")]) } : {}), note: String(row[col("claim")] ?? "").slice(0, 500) },
+      machine: { verdict: row[col("verdict")] ?? null, filed: row[col("filed")] ?? null, note: row[col("note")] ?? null, source: row[col("source")] ?? null } })).filter((x) => Number.isFinite(x.item.value));
+    items = items.concat(fromText.map((x) => x.item));
+  }
+  if (!items.length) throw new RangeError(a.text ? "The draft has no figure with a measure and a period to label." : "Send items, items_file or text.");
   if (items.length > 2000) throw new RangeError("At most 2,000 items in one task.");
   // Machine labels: verify_claims per company, 25 claims a call.
   const machine = new Array(items.length);
   const byCompany = new Map();
   items.forEach((it, i) => { if (!byCompany.has(it.company)) byCompany.set(it.company, []); byCompany.get(it.company).push(i); });
-  for (const [company, idx] of byCompany) {
+  // Items from a draft already carry their machine labels.
+  const preset = items.length - (fromText?.length ?? 0);
+  fromText?.forEach((x, k) => { machine[preset + k] = x.machine; });
+  for (const [company, allIdx] of byCompany) {
+    const idx = allIdx.filter((i) => i < preset);
     for (let k = 0; k < idx.length; k += 25) {
       const part = idx.slice(k, k + 25);
       try {
