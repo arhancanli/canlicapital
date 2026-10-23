@@ -39,7 +39,7 @@ export async function resolveFund(session, query) {
 }
 
 // A series' public N-PORT filings, newest first, from EDGAR's filing list for that series.
-async function seriesFilings(session, series) {
+export async function seriesFilings(session, series) {
   const xml = await getText(session, `https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${series}&type=NPORT-P&dateb=&owner=include&count=12&output=atom`, { maxBytes: 2 * 1024 * 1024 });
   const out = [];
   for (const entry of xml.split(/<entry>/).slice(1)) {
@@ -93,7 +93,7 @@ export function parseNport(xml) {
   };
 }
 
-async function loadNport(session, filing) {
+export async function loadNport(session, filing) {
   const url = `${filing.base}/primary_doc.xml`;
   return { url, ...parseNport(await getText(session, url, { maxBytes: 48 * 1024 * 1024 })) };
 }
