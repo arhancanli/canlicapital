@@ -30,5 +30,12 @@ Speed, through the dev flagship on an idle machine (2026-10-24, no AI): history 
 explain_move 0.6 s (without news), filing_diff 1.2 s, financial_statements 1.4 s, portfolio_xray
 1.5 s, screen_companies 3.7 s, comps 5.8 s.
 
+Dependencies: zod < 4.6.6 has a high advisory (memory exhaustion on oversized constrained
+collections). mcp/ moves to 4.6.7 in #501 (with the execution-guide re-pin); markets, backtest and
+canli-mcp are on 4.6.7 in this branch. canli-fundamentals-mcp freezes its whole lockfile and the
+zod version in its supply-chain package tests (`ORIGINAL_LOCK` and the dependency assertions in the
+`*-package.test.mjs` files): bump it there deliberately at release, with those pins. Quant, research
+and paper-trading also need a 4.6.7 release, or `npm audit` on an installed canli-mcp stays high.
+
 Evidence for the release notes: `bench/filingfacts/HELDOUT.md` (rounds 1-6) and
 `bench/rivals/REPORT.md` (DeepSeek runs, with the tuned-question caveats).
