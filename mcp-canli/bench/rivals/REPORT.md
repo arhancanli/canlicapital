@@ -150,3 +150,21 @@ $1 trillion balance sheets, highest R&D intensity, highest revenue growth) faile
 them. A first run of canli-dev (results-deepseek-dev-run1.jsonl: held-out 21, frontier 4) exposed a
 regression, the model calling `run_tool` with `find_tool` as the tool name; it was fixed (c425c9a4)
 before this run. A new frontier set, written before any run, is the next fair test.
+
+### Second frontier set (2026-10-24, questions and answers committed in a4256089 before any run)
+
+Eight questions with answers from SEC frames, company concepts and submissions, EDGAR full-text
+search and Treasury (`truth_frontier2.py`), one run per arm on deepseek-flash:
+
+| arm | correct | mean input tokens |
+|---|---|---|
+| canli-dev (cad93efa's packs not yet in it: run at 4c05bb51 + c425c9a4) | 7 | 44,112 |
+| edgartools | 6 | 227,235 |
+| canli-0.6.0 | 5 | 46,286 |
+| yahoo | 4 | 242,416 |
+| openbb | 3 | 245,139 |
+
+canli-dev's miss was the capex count: `screen_companies` read one capital-spending tag, so Amazon
+(which reports productive assets) was missing; it was fixed after this run (15b9a6a0), so that
+question is tuned from here. Exxon Mobil, which moved its ticker to a new holding company in 2026, is
+not listed under its old filer in SEC's exchange file, a stated limit of the screen.
