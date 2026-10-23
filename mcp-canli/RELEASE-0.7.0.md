@@ -4,7 +4,7 @@ The branch changes four packages. Release them in dependency order, each from ma
 following the fewer-and-bigger rule: one release of each.
 
 1. **canli-markets-mcp 0.6.0**: `latest_filings`, `filing_diff`, `news`, `explain_move`,
-   `portfolio_xray`, `comps`, the screen's `fiscal_year_end` window and capex under both tags,
+   `portfolio_xray`, `comps`, `debt_profile`, `ownership_breadth`, `forensic_scores`, `funding_rates`, the screen's `fiscal_year_end` window and capex under both tags,
    statement scales, event-study day 0, `seriesFilings`/`loadNport` exported; plus #484 and #497 if
    merged. Bump `package.json`, `server.json`, CHANGELOG heading; `npm test`; `node bench/live/run.mjs`
    (all PASS; news may be refused for a minute after heavy use: GDELT's limit).
