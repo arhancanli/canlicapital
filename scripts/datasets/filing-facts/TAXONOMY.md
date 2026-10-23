@@ -246,6 +246,17 @@ restatement, v0, large, fresh, each skipped if the balance is below USD 1.20.
 - Reported with no test: the same paired counts on v0, large and fresh, and flagship runs that
   reached the six-turn limit.
 
+**Amendment 1 results (2026-10-23, runs 17:52-18:05 UTC from commit 9739a73a; canli-mcp 0.6.0).**
+As printed by `confirm-flagship.mjs`:
+
+- D8: restatement items correct with the validation tool 2/60, with the flagship 56/60 (flagship
+  only 54, validation only 0), p = 5.6e-17. Supported. Three of the flagship's four misses are
+  items whose cited period is a quarter, not a fiscal year (FilingFacts v1 errata); on the other
+  57 it is right on 56.
+- Reported: answerable items correct, validation tool against flagship: v0 118 against 105, large
+  117 against 103, fresh 60 against 53; flagship runs at the six-turn limit 6/150, 5/150, 2/75 and
+  2/60 (restatement).
+
 ## Limits
 
 - A match shows where a number could have come from. It does not show that the model looked it up.
