@@ -10,6 +10,7 @@ import { screenCompanies } from "../../src/research.mjs";
 import { createSession } from "../../src/sources.mjs";
 import { portfolioXray } from "../../src/xray.mjs";
 import { comps } from "../../src/comps.mjs";
+import { debtProfile } from "../../src/credit.mjs";
 
 const s = createSession();
 const day = (k) => new Date(Date.now() - k * 86400000).toISOString().slice(0, 10);
@@ -22,6 +23,7 @@ const CHECKS = [
   ["explain_move", () => explainMove(s, { symbol: "MSFT", date: lastSession, news: false }), (r) => Number.isFinite(r.move.return) && Number.isFinite(r.move.z_score)],
   ["portfolio_xray", () => portfolioXray(s, { holdings: [{ symbol: "IVV", weight: 1 }, { symbol: "AAPL", weight: 1 }], top: 5 }), (r) => r.positions_after_look_through > 400 && r.rows[0][1] > 0.05],
   ["comps", () => comps(s, { company: "NVDA", peers: 5 }), (r) => r.rows.length >= 4 && r.rows[0][0] === "NVDA" && r.company.sic === "3674"],
+  ["debt_profile", () => debtProfile(s, { company: "T" }), (r) => r.debt.total > 5e10 && r.maturities.ladder_total > 0 && r.cost_and_cover.interest_coverage > 0],
   ["screen_window", () => screenCompanies(s, { fiscal_year_end: [day(500), day(120)], filters: [{ metric: "revenue", op: ">", value: 1e11 }], limit: 50 }), (r) => r.matched >= 10 && r.rows.every((x) => x[4] >= day(500) && x[4] <= day(120))],
 ];
 let failed = 0;

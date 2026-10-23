@@ -14,6 +14,8 @@
   8-K the evening before).
 - `portfolio_xray`: a portfolio's ETFs and funds opened into their latest N-PORT positions and added
   to the stocks held directly: real exposure per company, overlap between funds, effective positions.
+- `debt_profile`: total and net debt, the maturity ladder from the debt note, lease payments, and
+  what the debt costs (implied rate, coverage, debt to EBITDA), from the company's annual XBRL.
 - `comps`: a comparable-companies table, the company beside its listed peers under the same SEC
   industry code, nearest in revenue, with the peers' median and the company's rank on each measure.
 - `screen_companies` reads capital spending under both tags companies use (Amazon reports
