@@ -616,16 +616,49 @@ async function resolveTicker(session, ticker) {
   const key = ticker.toUpperCase();
   const cik = session.tickerIndex.tickers?.[key];
   if (!cik) {
-    return { error: { error: { code: "unknown_ticker", message: `No company in the current company reference release trades as ${key}. Search by name at the page below, or pass the SEC CIK.` }, page: `${session.base}/companies` } };
+    return { error: { error: { code: "unknown_ticker", message: `No company in the current company reference release trades as ${key}. Pass the company name or the SEC CIK instead.` }, page: `${session.base}/companies` } };
   }
   return { cik };
 }
 
+// Name -> CIK through the published name index of the release, fetched once per session. Names are
+// compared without case, punctuation or a trailing legal form (Inc., Corp., plc and so on); an exact
+// match wins, then a unique match on the start of the name. Several matches are returned with their
+// CIKs and tickers so the caller can choose, never guessed.
+const LEGAL_FORMS = new Set(["inc", "incorporated", "corp", "corporation", "co", "company", "ltd", "limited", "plc", "llc", "lp", "sa", "nv", "ag", "the"]);
+export function normalizeCompanyName(name) {
+  const words = name.toLowerCase().replace(/&/g, " and ").replace(/\([^)]*\)/g, " ").replace(/[^a-z0-9]+/g, " ").trim().split(" ").filter(Boolean);
+  while (words.length > 1 && LEGAL_FORMS.has(words.at(-1))) words.pop();
+  if (words.length > 1 && words[0] === "the") words.shift();
+  return words.join(" ");
+}
+async function resolveName(session, name) {
+  if (!session.nameIndex) {
+    const signal = AbortSignal.timeout(session.timeoutMs);
+    let res;
+    try {
+      res = await session.fetchImpl(`${session.base}/api/v1/company-names.json`, { headers: { Accept: "application/json" }, signal, redirect: "error" });
+    } catch {
+      throw new Error(`company_financial_history: ${signal.aborted ? "the name index request timed out" : "could not reach the name index"} at ${session.base}. Retry, check service_status, or pass the SEC CIK.`);
+    }
+    if (!res.ok) throw new Error(`company_financial_history: the name index returned HTTP ${res.status}`);
+    const body = await res.json(), col = (k) => body.columns.indexOf(k);
+    session.nameIndex = body.rows.map((row) => ({ cik: String(row[col("cik")]).padStart(10, "0"), name: row[col("name")], tickers: row[col("tickers")] ?? [], key: normalizeCompanyName(row[col("name")]) }));
+  }
+  const key = normalizeCompanyName(name);
+  const exact = session.nameIndex.filter((c) => c.key === key);
+  const found = exact.length ? exact : session.nameIndex.filter((c) => key && (c.key.startsWith(`${key} `) || c.key === key));
+  if (found.length === 1) return { cik: found[0].cik };
+  if (!found.length) return { error: { error: { code: "unknown_name", message: `No company in the current company reference release is named ${name}. Try the name as filed with the SEC, a ticker, or the SEC CIK.` }, page: `${session.base}/companies` } };
+  return { error: { error: { code: "ambiguous_name", message: `${found.length} companies fit ${name}. Call again with the cik of the one you mean.` },
+    candidates: found.slice(0, 10).map(({ cik, name: n, tickers }) => ({ cik, name: n, tickers })), page: `${session.base}/companies` } };
+}
+
 export async function toolCompanyFinancialHistory(session, args) {
-  const { cik, ticker, concept, limit = 40 } = parseOrThrow(companyHistoryInput, args, "company_financial_history");
+  const { cik, ticker, name, concept, limit = 40 } = parseOrThrow(companyHistoryInput, args, "company_financial_history");
   let id;
-  if (ticker !== undefined) {
-    const resolved = await resolveTicker(session, ticker);
+  if (ticker !== undefined || name !== undefined) {
+    const resolved = ticker !== undefined ? await resolveTicker(session, ticker) : await resolveName(session, name);
     if (resolved.error) return asText(resolved.error, true);
     id = resolved.cik;
   } else {

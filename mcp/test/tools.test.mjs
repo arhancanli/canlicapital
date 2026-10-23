@@ -615,10 +615,54 @@ test("company_financial_history: an unknown ticker is an error naming the ticker
   assert.match(body.error.message, /ZZZZ/);
 });
 
-test("company_financial_history: exactly one of cik or ticker", async () => {
+test("company_financial_history: exactly one of cik, ticker or name", async () => {
   const session = createSession({ base: "https://example.test", fetchImpl: tickerAwareFetch(COMPANY_RECORD, []) });
-  await assert.rejects(toolCompanyFinancialHistory(session, { cik: "320193", ticker: "AAPL" }), /exactly one of cik or ticker/);
-  await assert.rejects(toolCompanyFinancialHistory(session, {}), /exactly one of cik or ticker/);
+  await assert.rejects(toolCompanyFinancialHistory(session, { cik: "320193", ticker: "AAPL" }), /exactly one of cik, ticker or name/);
+  await assert.rejects(toolCompanyFinancialHistory(session, { ticker: "AAPL", name: "Apple Inc." }), /exactly one of cik, ticker or name/);
+  await assert.rejects(toolCompanyFinancialHistory(session, {}), /exactly one of cik, ticker or name/);
+});
+
+const NAMES = { schema: "canli.company-names.v1", columns: ["cik", "name", "tickers"], rows: [
+  [320193, "Apple Inc.", ["AAPL"]], [1001, "King Resources, Inc.", []], [1002, "Kingstone Companies, Inc.", ["KINS"]],
+  [1003, "Acme Holdings Corp", []], [1004, "Acme Holdings Group plc", []]] };
+function nameAwareFetch(record, seen) {
+  return async (url) => {
+    seen.push(String(url));
+    const body = String(url).endsWith("/api/v1/company-names.json") ? NAMES : record;
+    return new Response(JSON.stringify(body), { status: 200, headers: { "Content-Type": "application/json" } });
+  };
+}
+
+test("company_financial_history: a company name resolves to its CIK, ignoring case, punctuation and legal form", async () => {
+  const seen = [];
+  const session = createSession({ base: "https://example.test", fetchImpl: nameAwareFetch(COMPANY_RECORD, seen) });
+  assert.ok(!(await toolCompanyFinancialHistory(session, { name: "apple" })).isError);
+  assert.ok(!(await toolCompanyFinancialHistory(session, { name: "APPLE INC" })).isError);
+  await toolCompanyFinancialHistory(session, { name: "King Resources Inc." });
+  assert.deepEqual(seen, [
+    "https://example.test/api/v1/company-names.json",
+    "https://example.test/company-data/0000320193.json",
+    "https://example.test/company-data/0000320193.json",
+    "https://example.test/company-data/0000001001.json",
+  ]);
+});
+
+test("company_financial_history: a name that fits several companies lists them instead of guessing", async () => {
+  const session = createSession({ base: "https://example.test", fetchImpl: nameAwareFetch(COMPANY_RECORD, []) });
+  const result = await toolCompanyFinancialHistory(session, { name: "Acme" });
+  assert.equal(result.isError, true);
+  const body = JSON.parse(result.content[0].text);
+  assert.equal(body.error.code, "ambiguous_name");
+  assert.deepEqual(body.candidates.map((c) => c.cik), ["0000001003", "0000001004"]);
+});
+
+test("company_financial_history: an unknown name is an error naming it", async () => {
+  const session = createSession({ base: "https://example.test", fetchImpl: nameAwareFetch(COMPANY_RECORD, []) });
+  const result = await toolCompanyFinancialHistory(session, { name: "Nonesuch Widgets" });
+  assert.equal(result.isError, true);
+  const body = JSON.parse(result.content[0].text);
+  assert.equal(body.error.code, "unknown_name");
+  assert.match(body.error.message, /Nonesuch Widgets/);
 });
 
 // ---------------------------------------------------------------------------------------------

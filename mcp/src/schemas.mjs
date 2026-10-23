@@ -42,8 +42,9 @@ export const FIELD_DESCRIPTIONS = Object.freeze({
   label: "Name for the key.",
   receipt_id: "Receipt id from a validation result.",
   receipt_object: "A receipt object, to verify without fetching.",
-  cik: "SEC CIK; send cik or ticker.",
-  ticker: "Ticker such as AAPL; send ticker or cik.",
+  cik: "SEC CIK; send one of cik, ticker or name.",
+  ticker: "Ticker such as AAPL; send one of cik, ticker or name.",
+  name: "Company name as filed with the SEC, such as Apple Inc.; send one of cik, ticker or name. A name that fits several companies returns them with their CIKs.",
   concept: "us-gaap concept such as Assets; omit to list them.",
   limit: "Most observations, newest first; default 40.",
   target_sharpe_annualized: "In-sample annualized Sharpe you would call a discovery; default 1.",
@@ -293,6 +294,7 @@ export const companyHistoryToolShape = z
   .object({
     cik: z.string().regex(/^\d{1,10}$/, "A CIK is 1 to 10 digits").optional().describe(d.cik),
     ticker: z.string().regex(/^[A-Za-z0-9.\-]{1,10}$/, "A ticker is 1 to 10 letters, digits, dots or hyphens").optional().describe(d.ticker),
+    name: z.string().trim().min(2, "A name has at least 2 characters").max(160).optional().describe(d.name),
     concept: z.string().regex(/^[A-Za-z][A-Za-z0-9]{0,99}$/, "A concept is a us-gaap tag such as Revenues or Assets").optional().describe(d.concept),
     limit: z.number().int().min(1).max(200).optional().describe(d.limit),
   })
@@ -302,11 +304,12 @@ export const companyHistoryInput = z
   .object({
     cik: z.string().regex(/^\d{1,10}$/, "A CIK is 1 to 10 digits").optional().describe(d.cik),
     ticker: z.string().regex(/^[A-Za-z0-9.\-]{1,10}$/, "A ticker is 1 to 10 letters, digits, dots or hyphens").optional().describe(d.ticker),
+    name: z.string().trim().min(2, "A name has at least 2 characters").max(160).optional().describe(d.name),
     concept: z.string().regex(/^[A-Za-z][A-Za-z0-9]{0,99}$/, "A concept is a us-gaap tag such as Revenues or Assets").optional().describe(d.concept),
     limit: z.number().int().min(1).max(200).optional().describe(d.limit),
   })
   .strict()
-  .refine((v) => (v.cik === undefined) !== (v.ticker === undefined), "Send exactly one of cik or ticker");
+  .refine((v) => [v.cik, v.ticker, v.name].filter((x) => x !== undefined).length === 1, "Send exactly one of cik, ticker or name");
 
 // The company reference carries its own boundary sentence in every record (claim_boundary),
 // written by scripts/lib/company-reference.mjs. A test pins this copy to that source verbatim.
@@ -362,7 +365,7 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   validate_breadth: `Book Sharpe ceiling from adding sleeves of this quality and correlation, the Sharpe at a sleeve count, and the sleeves a target needs. For portfolio construction; it validates no single strategy. ${LIMITS_SENTENCES.scope}`,
   verify_receipt: `Verify a receipt offline: its Ed25519 signature against the bundled canlicapital.com key, its output hash and its id. Send an id to fetch it first, or the receipt itself. ${LIMITS_SENTENCES.unsigned}`,
   service_status: `Whether the validation API is up, with its quotas; check after a timeout before resubmitting. No key. ${LIMITS_SENTENCES.scope}`,
-  company_financial_history: `SEC-reported financial history for one company in the canlicapital.com reference, by cik or ticker: without a concept, the histories available; with one, observations newest first with accession, form, filed date and unit, plus the source's SHA-256. For point-in-time values use canli-fundamentals-mcp. ${COMPANY_REFERENCE_BOUNDARY}`,
+  company_financial_history: `SEC-reported financial history for one company in the canlicapital.com reference, by cik, ticker or company name: without a concept, the histories available; with one, observations newest first with accession, form, filed date and unit, plus the source's SHA-256. For point-in-time values use canli-fundamentals-mcp. ${COMPANY_REFERENCE_BOUNDARY}`,
 });
 
 // Output schemas (0.8.0). Published OPEN: extra fields always pass. A client validates a tool's
