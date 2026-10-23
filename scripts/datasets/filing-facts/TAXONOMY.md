@@ -219,6 +219,19 @@ again on it and labelled secondary.
   (p = 1.2e-4), D5 9/120 against 0/60 (p = 0.023), D6 31/120 against 9/120 (p = 1.0e-4) supported;
   D4 (0 against 2) and D7 (24/80 against 26/102, p = 0.30) not supported.
 
+**Amendment 1 (2026-10-23, after the results above and before any flagship run).** The tool arm
+above used the validation server's company tool, which keeps only the latest-filed value for each
+period, so it could not answer first-reported questions (2 of 60). The published flagship server,
+`canli-mcp` 0.6.0 from npm, has a history tool that returns values as first reported. It is run as
+a user installs it (every pack, three discovery tools), with `deepseek-flash`, the same prompts,
+samples and six-turn limit, on all four sets (`eval.mjs --server flagship`), in the order
+restatement, v0, large, fresh, each skipped if the balance is below USD 1.20.
+
+- **D8.** On restatement items, more answerable items are correct with the flagship than with the
+  validation tool (one-sided exact McNemar, paired by item; `confirm-flagship.mjs`).
+- Reported with no test: the same paired counts on v0, large and fresh, and flagship runs that
+  reached the six-turn limit.
+
 ## Limits
 
 - A match shows where a number could have come from. It does not show that the model looked it up.

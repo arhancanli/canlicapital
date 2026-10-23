@@ -148,11 +148,17 @@ async function ollamaChat(model, messages, tools) {
     choices: [{ message: { role: "assistant", content: body.message?.content ?? "", ...(calls.length ? { tool_calls: calls } : {}) } }] };
 }
 
-async function mcpClient() {
+// --server validation (the default) runs this repository's validation server with only its company
+// tool; --server flagship runs the published canli-mcp flagship as a user installs it (all packs,
+// three discovery tools), from CANLI_FLAGSHIP_SERVER or ~/canli-bench-flagship.
+export const FLAGSHIP_SERVER = process.env.CANLI_FLAGSHIP_SERVER ?? resolve(homedir(), "canli-bench-flagship/node_modules/canli-mcp/src/server.mjs");
+async function mcpClient(server = "validation") {
   const { Client } = await import(resolve(HERE, "../../../mcp/node_modules/@modelcontextprotocol/client/dist/index.mjs"));
   const { StdioClientTransport } = await import(resolve(HERE, "../../../mcp/node_modules/@modelcontextprotocol/client/dist/stdio.mjs"));
   const client = new Client({ name: "filing-facts-eval", version: "0" });
-  await client.connect(new StdioClientTransport({ command: process.execPath, args: [resolve(HERE, "../../../mcp/src/server.mjs")], env: { ...process.env, CANLI_TOOLSETS: "company", CANLI_KEY: "" } }));
+  await client.connect(new StdioClientTransport(server === "flagship"
+    ? { command: process.execPath, args: [FLAGSHIP_SERVER], env: { PATH: process.env.PATH, HOME: process.env.HOME }, stderr: "ignore" }
+    : { command: process.execPath, args: [resolve(HERE, "../../../mcp/src/server.mjs")], env: { ...process.env, CANLI_TOOLSETS: "company", CANLI_KEY: "" } }));
   const tools = (await client.listTools()).tools.map((t) => ({ type: "function", function: { name: t.name, description: t.description, parameters: (({ $schema, ...p }) => p)(t.inputSchema) } }));
   return { client, tools, server_info: client.getServerVersion() ?? null };
 }
@@ -238,9 +244,10 @@ export async function runItem(item, { model, arm, mcp, request = chat }) {
 // its import at the top level would wait on this module's own evaluation and never settle.
 async function main() {
   const [itemsFile, outFile] = process.argv.slice(2);
-  if (!itemsFile || !outFile) throw new RangeError("usage: eval.mjs items.jsonl out.json --arm closed|mcp [--per-template 30] [--seed 20260926] [--model gpt-5.4-mini]");
-  const model = arg("model", "gpt-5.4-mini"), arm = arg("arm", "closed"), perTemplate = Number(arg("per-template", "30")), seed = Number(arg("seed", "20260926"));
+  if (!itemsFile || !outFile) throw new RangeError("usage: eval.mjs items.jsonl out.json --arm closed|mcp [--per-template 30] [--seed 20260926] [--model gpt-5.4-mini] [--server validation|flagship]");
+  const model = arg("model", "gpt-5.4-mini"), arm = arg("arm", "closed"), server = arg("server", "validation"), perTemplate = Number(arg("per-template", "30")), seed = Number(arg("seed", "20260926"));
   if (!["closed", "mcp"].includes(arm) || !model?.trim()) throw new RangeError("arm must be closed or mcp and model must be nonempty");
+  if (!["validation", "flagship"].includes(server)) throw new RangeError("server must be validation or flagship");
   const provider = model.startsWith("claude-") ? "anthropic" : model.startsWith("ollama/") ? "ollama" : model.startsWith("deepseek/") ? "deepseek" : "openai";
   const { CAPTURE_SCHEMA, evaluateCapture, readDataset } = await import("./evidence.mjs");
   const bytes = readFileSync(itemsFile), dataset = readDataset(bytes);
@@ -250,7 +257,7 @@ async function main() {
   const startedAt = new Date().toISOString();
   let mcp = null;
   try {
-    mcp = arm === "mcp" ? await mcpClient() : null;
+    mcp = arm === "mcp" ? await mcpClient(server) : null;
     const runs = [];
     const queue = [...sample];
     // One local model serves one request at a time; queued requests would hit fetch's timeout.
@@ -259,7 +266,7 @@ async function main() {
       recorded_at: startedAt, completed_at: new Date().toISOString(), dataset_sha256: dataset.sha256,
       sampling: { method: "stratified", seed, per_template: perTemplate, item_ids: sample.map((item) => item.id) },
       system_prompt: arm === "mcp" ? SYSTEM_MCP : SYSTEM_CLOSED,
-      ...(mcp ? { tool_contract: { server_info: mcp.server_info, tools: mcp.tools } } : {}), runs };
+      ...(mcp ? { tool_contract: { server, server_info: mcp.server_info, tools: mcp.tools } } : {}), runs };
     const evidence = evaluateCapture(bytes, capture);
     writeFileSync(output, JSON.stringify(evidence, null, 2) + "\n");
     console.log(JSON.stringify(evidence.summary));
