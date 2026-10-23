@@ -103,3 +103,10 @@ the instructions make verify_claims a check for drafts, and new tools are in the
 annotation), which a search can now return. Check that plain questions did not suffer: v0 items
 outside every earlier sample, 40 per template, seed 20261129 (200 items); arms canli-mcp 0.6.0 and
 this branch at 910c0ad5, refreshed to cad93efa (comps, capex under both tags) before its arm started; reported as in rounds 4 and 5.
+
+## Round 6 results (2026-10-24 00:57 Dubai)
+
+v0 (200 items): 0.6.0 0.865 (answerable 140/160, unanswerable 33/40, 13 at the limit, 13,437 tokens
+an item); branch 0.920 (150/160, 34/40, none at the limit, 11,096 tokens). Paired: right only with
+the branch 20, only with 0.6.0 9, one-sided exact McNemar p = 0.031. Rounds 5 and 6 together (400
+items, none seen before): branch 0.925 against 0.868, 34 against 11.
