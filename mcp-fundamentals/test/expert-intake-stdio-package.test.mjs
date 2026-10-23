@@ -250,7 +250,7 @@ function admit(entries) {
   const metadata=JSON.parse(entries.get('package/package.json').bytes);
   assert.deepEqual(metadata.bin,BIN,'BIN'); assert.deepEqual(metadata.files,FILES,'FILES');
   assert.equal(metadata.name,'canli-fundamentals-mcp'); assert.equal(metadata.version,'0.6.0'); assert.equal(metadata.private,false);
-  assert.deepEqual(metadata.dependencies,{'@modelcontextprotocol/server':'2.3.1',zod:'4.6.5','@modelcontextprotocol/client':'2.3.1'});
+  assert.deepEqual(metadata.dependencies,{'@modelcontextprotocol/server':'2.3.1',zod:'4.6.7','@modelcontextprotocol/client':'2.3.1'});
   return metadata;
 }
 function marked(guide,label) {
@@ -368,8 +368,8 @@ const SDK_SOURCE_PINS = Object.freeze({
   "@modelcontextprotocol/core/package.json": "2d367771e2f50a8bda7d7d30bfe2e912739e0e0b9b89329fcb83d53b9848fc4b",
   "@modelcontextprotocol/client/dist/index.mjs": "8b370b8009c7b64834cc91bf5e6ab28e524d7c2ce952dfe57d943a6926f8d54b",
   "@modelcontextprotocol/server/dist/index.mjs": "60fca0c96c38d4e64df281ae22d85b3f9edf43306cc857c390054a5e4c3cf2fb",
-  "zod/package.json": "a046ed85fa09571dba539fee9ef236152d12dabd1f229b014ec3bd2ebaad9000",
-  "zod/v4/core/schemas.js": "e632b655441418f0593153abc6809fd81cf3e0782d810622d0a4fa50ef6e182e"
+  "zod/package.json": "c2d190d9ee4e0bdb60332aaa2130a6a98d65ddb903fe1d29248b15de57832c45",
+  "zod/v4/core/schemas.js": "0ee56e8afbae28eeb1060a162ad7e56f0675ee6fb83f0ae56bea2e088f6cdbc0"
 });
 function unlinkOwnedDependencyLinks() {
   for (const row of dependencyLinks.reverse()) {

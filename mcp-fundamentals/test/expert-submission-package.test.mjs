@@ -176,7 +176,7 @@ function audit(entries) {
   assert.deepEqual(metadata.bin, BIN, 'PACKAGE_BIN');
   assert.deepEqual(metadata.files, ['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md', 'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md', 'EXPERT_INTAKE_STDIO.md'], 'PACKAGE_FILES');
   assert.equal(metadata.name, 'canli-fundamentals-mcp'); assert.equal(metadata.version, '0.6.0');
-  assert.deepEqual(metadata.dependencies, { '@modelcontextprotocol/server': '2.3.1', zod: '4.6.5', '@modelcontextprotocol/client': '2.3.1' });
+  assert.deepEqual(metadata.dependencies, { '@modelcontextprotocol/server': '2.3.1', zod: '4.6.7', '@modelcontextprotocol/client': '2.3.1' });
   for (const [filename, row] of entries) assert.deepEqual(row.bytes, expectedBytes.get(filename), 'EXACT_FROZEN_BYTES');
   assert.match(entries.get('package/src/expert-submission-stdio.mjs').bytes.toString(), /^#!\/usr\/bin\/env node\n/);
   return metadata;
@@ -268,7 +268,7 @@ before(async t => {
     fs.writeFileSync(target, row.bytes, { flag: 'wx', mode: row.mode }); fs.chmodSync(target, row.mode);
   }
   const dependencyRoot = path.join(ROOT, 'node_modules'); const dependencies = [];
-  for (const [name, version] of [['@modelcontextprotocol/server', '2.3.1'], ['@modelcontextprotocol/client', '2.3.1'], ['@modelcontextprotocol/core', '2.3.1'], ['zod', '4.6.5']]) {
+  for (const [name, version] of [['@modelcontextprotocol/server', '2.3.1'], ['@modelcontextprotocol/client', '2.3.1'], ['@modelcontextprotocol/core', '2.3.1'], ['zod', '4.6.7']]) {
     const bytes = snapshot(path.join(dependencyRoot, name, 'package.json'), 65536);
     assert.equal(JSON.parse(bytes).version, version); dependencies.push({ name, version, package_json_sha256: sha(bytes) });
   }
@@ -485,7 +485,7 @@ test('expert package: checksum traversal duplicate link and nonregular controls 
 test('expert package: Git-free consumer contains admitted bytes and only disclosed locked dependencies', () => {
   for (const name of ['.git', 'scripts', 'js']) assert.equal(fs.existsSync(path.join(packed.packageRoot, name)), false);
   for (const [name, row] of packed.entries) assert.deepEqual(snapshot(path.join(packed.packageRoot, name.slice(8)), L.expanded), row.bytes);
-  assert.deepEqual(packed.dependencies.filter(row => row.version).map(row => row.version), ['2.3.1', '2.3.1', '2.3.1', '4.6.5']);
+  assert.deepEqual(packed.dependencies.filter(row => row.version).map(row => row.version), ['2.3.1', '2.3.1', '2.3.1', '4.6.7']);
 });
 test('expert package: README and standalone guide expose a literal complete package-local workflow', () => {
   const guide = packed.entries.get('package/EXPERT_SUBMISSIONS.md').bytes.toString();
