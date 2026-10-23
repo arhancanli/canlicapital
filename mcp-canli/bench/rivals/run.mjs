@@ -21,8 +21,10 @@ const OUT = new URL(process.env.OUT ?? "./results.jsonl", import.meta.url);
 const SUFFIX = process.env.SET ? `_${process.env.SET}` : "";
 const TASKS = JSON.parse(readFileSync(new URL(`./tasks${SUFFIX}.json`, import.meta.url), "utf8")).filter((t) => !process.env.TASKS || process.env.TASKS.split(",").includes(t.id));
 const TRUTH = JSON.parse(readFileSync(new URL(`./truth${SUFFIX}.json`, import.meta.url), "utf8"));
-// claude-* models run on the Anthropic API, others on OpenAI; the same tools, prompt and limits.
+// claude-* models run on the Anthropic API, deepseek-* on DeepSeek's OpenAI-compatible API (thinking
+// off), others on OpenAI; the same tools, prompt and limits.
 const CLAUDE = MODEL.startsWith("claude-");
+const DEEPSEEK = MODEL.startsWith("deepseek-");
 const key = (name) => readFileSync(`${process.env.HOME}/.config/canli/${name}`, "utf8").trim();
 // MOCK_LLM=1 replaces the model with one that calls the arm's first tool once, then answers: it
 // checks the loop, the MCP plumbing and the scoring without spending anything.
@@ -34,7 +36,10 @@ const mockOpenAI = { chat: { completions: { create: async ({ tools }) => (mockSt
 const mockAnthropic = { messages: { create: async ({ tools }) => (mockStep++ % 2 === 0
   ? { stop_reason: "tool_use", usage: { input_tokens: 10, output_tokens: 1 }, content: [{ type: "tool_use", id: "t1", name: tools[0].name, input: {} }] }
   : { stop_reason: "end_turn", usage: { input_tokens: 10, output_tokens: 1 }, content: [{ type: "text", text: "ANSWER: 1" }] }) } };
-const openai = CLAUDE ? null : MOCK ? mockOpenAI : new OpenAI({ maxRetries: 8, apiKey: key("openai_benchmark_key") });
+const openai = CLAUDE ? null : MOCK ? mockOpenAI : DEEPSEEK
+  ? new OpenAI({ maxRetries: 8, baseURL: "https://api.deepseek.com", apiKey: readFileSync(`${process.env.HOME}/.config/deepseek/api-key`, "utf8").trim() })
+  : new OpenAI({ maxRetries: 8, apiKey: key("openai_benchmark_key") });
+const EXTRA = DEEPSEEK ? { thinking: { type: "disabled" }, temperature: 0 } : {};
 const anthropic = !CLAUDE ? null : MOCK ? mockAnthropic : new Anthropic({ maxRetries: 8, apiKey: key("anthropic_benchmark_key") });
 const RESULT_CAP = 30000;
 const MAX_TURNS = 12;
@@ -49,7 +54,7 @@ const done = new Set(prior.trim().split("\n").filter(Boolean).map((l) => JSON.pa
 const BUDGET = Number(process.env.BUDGET_TOKENS ?? 0), BUDGET_FILE = process.env.BUDGET_FILE;
 const used = () => { try { return Number(readFileSync(BUDGET_FILE, "utf8")) || 0; } catch { return 0; } };
 // An account without credit fails every request; stop instead of recording failures.
-const outOfCredit = (err) => /no credits remaining|insufficient_quota|exceeded your current quota|credit balance is too low/i.test(`${err?.code ?? ""} ${err?.message ?? ""}`);
+const outOfCredit = (err) => /no credits remaining|insufficient_quota|exceeded your current quota|credit balance is too low|insufficient balance/i.test(`${err?.code ?? ""} ${err?.message ?? ""}`);
 
 // OpenAI requires an object schema; some servers send none or a bare one.
 function params(schema) {
@@ -152,8 +157,8 @@ async function runTask(ctx, task) {
   let input = 0, cached = 0, output = 0, calls = 0, errors = 0, turns = 0;
   const t0 = Date.now(), trace = [];
   for (; turns < MAX_TURNS; turns++) {
-    const r = await openai.chat.completions.create({ model: MODEL, messages, tools: ctx.tools });
-    input += r.usage.prompt_tokens; cached += r.usage.prompt_tokens_details?.cached_tokens ?? 0; output += r.usage.completion_tokens;
+    const r = await openai.chat.completions.create({ model: MODEL, messages, tools: ctx.tools, ...EXTRA });
+    input += r.usage.prompt_tokens; cached += r.usage.prompt_tokens_details?.cached_tokens ?? r.usage.prompt_cache_hit_tokens ?? 0; output += r.usage.completion_tokens;
     const msg = r.choices[0].message;
     messages.push(msg);
     if (!msg.tool_calls?.length) {
