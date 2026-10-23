@@ -199,7 +199,8 @@ export const screenInput = z.object({
   include_suspect: z.boolean().optional().describe("Keep companies whose figures fail a plausibility check (for example net income above 10 times revenue, usually a tagging slip); default false: they are listed apart."),
 }).strict();
 
-export async function screenCompanies(session, args) {
+// opts.ciks: only these filers (comps uses it); not an argument of the tool.
+export async function screenCompanies(session, args, opts = {}) {
   const a = screenInput.parse(args);
   const year = Number(today(session).slice(0, 4)) - 1;
   const win = a.fiscal_year_end;
@@ -237,6 +238,7 @@ export async function screenCompanies(session, args) {
   for (const cik of ciks) {
     const co = listed.get(cik);
     if (!any && (!co || !venues.has(co.exchange))) continue;
+    if (opts.ciks && !opts.ciks.has(Number(cik))) continue;
     let r = null;
     for (let pi = pers.length - 1; pi >= 0 && !r; pi -= 1) {
       const t = { cik, name: co?.name ?? frames.find((f) => f.values.has(cik)).values.get(cik).name, ticker: co?.ticker ?? null, exchange: co?.exchange ?? null, m: {}, tag: {}, end: null, src: {} };

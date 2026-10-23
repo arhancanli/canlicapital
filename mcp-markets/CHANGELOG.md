@@ -14,7 +14,10 @@
   8-K the evening before).
 - `portfolio_xray`: a portfolio's ETFs and funds opened into their latest N-PORT positions and added
   to the stocks held directly: real exposure per company, overlap between funds, effective positions.
-- `screen_companies` takes `fiscal_year_end`, a window of fiscal-year ends, so each company is ranked
+- `comps`: a comparable-companies table, the company beside its listed peers under the same SEC
+  industry code, nearest in revenue, with the peers' median and the company's rank on each measure.
+- `screen_companies` reads capital spending under both tags companies use (Amazon reports
+  productive assets), and takes `fiscal_year_end`, a window of fiscal-year ends, so each company is ranked
   on its own fiscal year with balance-sheet figures at that year's end.
 - `financial_statements` gives each statement's `money_scale` and `shares_scale`, and says that a
   line shown negated has the opposite sign in its XBRL fact.
