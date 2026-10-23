@@ -118,3 +118,11 @@ FilingFacts v0 answer keys built on a filer's own tagging slip, where the model'
 sensible one: Crexendo's diluted shares (a later 10-K tags 20,275,691,000 for 20,275,691, so the key's
 change is 116,290%) and Zions Bancorporation's "net margin" of 1.96 (its Revenues tag holds only some
 fee income). They are kept as scored, as the benchmark defines them.
+
+## Round 7 (planned before any run, 2026-10-24 ~03:15 Dubai)
+
+Since round 6 the catalog gained comps, debt_profile, ownership_breadth, forensic_scores and
+funding_rates, and price_panel and annotation from a draft in the backtest pack (332 tools): a
+check that a larger catalog does not cost plain questions. v0 items outside every earlier sample,
+40 per template, seed 20261130 (200 items); arms canli-mcp 0.6.0 and this branch at 08cdd461;
+reported as in rounds 4 to 6. (Committed locally first; pushed after the CI run in progress.)
