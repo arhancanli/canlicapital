@@ -158,7 +158,7 @@ search and Treasury (`truth_frontier2.py`), one run per arm on deepseek-flash:
 
 | arm | correct | mean input tokens |
 |---|---|---|
-| canli-dev (cad93efa's packs not yet in it: run at 4c05bb51 + c425c9a4) | 7 | 44,112 |
+| canli-dev (the branch as of 4c05bb51) | 7 | 44,112 |
 | edgartools | 6 | 227,235 |
 | canli-0.6.0 | 5 | 46,286 |
 | yahoo | 4 | 242,416 |
