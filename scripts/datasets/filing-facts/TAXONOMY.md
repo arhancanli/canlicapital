@@ -199,6 +199,26 @@ Reported with no test: tool-arm accuracy on answerable items and the number of t
 reached the six-turn limit, per set. If `deepseek-v4-pro` runs, D1, D2 and D4 to D7 are computed
 again on it and labelled secondary.
 
+**Results (2026-10-23, runs 17:35-17:46 UTC from commit c77019e1).** Every planned run was made
+(balance USD 5.65 before, 5.37 after); none failed or was skipped. As printed by
+`confirm-deepseek.mjs`, on `deepseek-flash`:
+
+- D1: 114 of 153 wrong numbers unsupported (75%), p = 5.1e-10. Supported.
+- D2: own company only 24, decoy only 11, p = 0.020. Supported.
+- D3: unsupported plus invented, closed against tool: v0 57/150 against 2/150, large 49/150 against
+  2/150, restatement 16/60 against 0/60, fresh 17/75 against 5/75; pooled 139/435 against 9/435,
+  p = 1.9e-36. Supported.
+- D4: revised 0, first-reported 1. Not supported.
+- D5: v0 3/120 against fresh 0/60 correct, p = 0.29. Not supported.
+- D6: large 24/120 against v0 3/120 correct, p = 9.1e-6. Supported.
+- D7: large 16/64 against v0 14/73 matching a reported value, p = 0.27. Not supported.
+- Reported: with the tool, answerable items correct v0 118/120, large 117/120, fresh 60/60,
+  restatement 2/60 (the tool returns only the latest-filed value, so the model abstained on 57 of
+  60 first-reported questions); no run reached the six-turn limit and no request failed.
+- Secondary, `deepseek-v4-pro` closed-book: D1 142/223 (p = 2.7e-5), D2 50 against 19
+  (p = 1.2e-4), D5 9/120 against 0/60 (p = 0.023), D6 31/120 against 9/120 (p = 1.0e-4) supported;
+  D4 (0 against 2) and D7 (24/80 against 26/102, p = 0.30) not supported.
+
 ## Limits
 
 - A match shows where a number could have come from. It does not show that the model looked it up.
