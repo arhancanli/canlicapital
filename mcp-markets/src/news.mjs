@@ -13,6 +13,8 @@ export const newsInput = z.object({
   query: z.string().min(2).max(200).optional().describe("Words or a \"quoted phrase\" to find, e.g. \"\\\"rate cut\\\" Fed\". With company, they narrow its news."),
   company: z.string().min(1).max(120).optional().describe("Ticker, CIK or name: its news, searched by the company's name."),
   days: z.number().int().min(1).max(90).optional().describe("How far back; default 7."),
+  start: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Instead of days: the first day (GDELT's search covers about the last three months)."),
+  end: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("With start: the last day (default start)."),
   limit: z.number().int().min(1).max(75).optional().describe("Most articles; default 25."),
   language: z.string().regex(/^[a-z]{3,20}$/).optional().describe("Source language, e.g. english (default) or any; others by name (german, japanese...)."),
   tone: z.boolean().optional().describe("Add the daily average tone of the coverage (one more request, about five seconds). Default true."),
@@ -27,23 +29,24 @@ export function plainName(name) {
 const stamp = (s) => (/^\d{8}T\d{6}Z$/.test(s) ? `${s.slice(0, 4)}-${s.slice(4, 6)}-${s.slice(6, 8)}T${s.slice(9, 11)}:${s.slice(11, 13)}:${s.slice(13, 15)}Z` : s);
 
 let lastCall = 0;
-async function gdelt(session, params) {
+async function gdelt(session, params, attempts = 3) {
   const url = `${API}?${new URLSearchParams({ ...params, format: "json" })}`;
-  for (let attempt = 0; attempt < 3; attempt += 1) {
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
     // Past the limit, back off further each time (GDELT counts requests per address).
     const wait = lastCall + GAP_MS * (1 + 2 * attempt) - session.now();
     if (wait > 0) await session.sleep(wait);
     lastCall = session.now();
     try { return { url, body: await getJson(session, url, { maxBytes: 4 * 1024 * 1024 }) }; } catch (err) {
       // Over the rate GDELT answers with a sentence instead of JSON: wait and ask again.
-      if (attempt < 2 && /did not return JSON|429|could not be reached/.test(String(err.message))) continue;
+      if (attempt < attempts - 1 && /did not return JSON|429|could not be reached/.test(String(err.message))) continue;
       throw err;
     }
   }
   throw new Error("GDELT did not answer");
 }
 
-export async function news(session, args) {
+// attempts: GDELT requests to try before giving up (explain_move asks once, to stay quick).
+export async function news(session, args, { attempts = 3 } = {}) {
   const a = newsInput.parse(args);
   if (!a.query && !a.company) throw new Error("news needs query or company.");
   let who = null;
@@ -53,17 +56,19 @@ export async function news(session, args) {
   }
   const lang = a.language ?? "english";
   const q = [who ? `"${who.searched_as}"` : null, a.query ?? null, lang === "any" ? null : `sourcelang:${lang}`].filter(Boolean).join(" ");
-  const span = `${a.days ?? 7}d`;
-  const list = await gdelt(session, { query: q, mode: "artlist", maxrecords: String(a.limit ?? 25), timespan: span, sort: "datedesc" });
+  if (a.end && !a.start) throw new Error("end needs start.");
+  const compact = (d, t) => `${d.replace(/-/g, "")}${t}`;
+  const when = a.start ? { startdatetime: compact(a.start, "000000"), enddatetime: compact(a.end ?? a.start, "235959") } : { timespan: `${a.days ?? 7}d` };
+  const list = await gdelt(session, { query: q, mode: "artlist", maxrecords: String(a.limit ?? 25), ...when, sort: "datedesc" }, attempts);
   const articles = (list.body.articles ?? []).map((x) => [stamp(x.seendate), x.title?.replace(/\s+([.,:;?!])/g, "$1").trim() ?? null, x.domain ?? null, x.sourcecountry ?? null, x.language ?? null, x.url]);
   const out = {
-    ...(who ? { company: who } : {}), query: q, days: a.days ?? 7,
+    ...(who ? { company: who } : {}), query: q, ...(a.start ? { start: a.start, end: a.end ?? a.start } : { days: a.days ?? 7 }),
     articles: { columns: ["seen", "title", "outlet", "country", "language", "url"], rows: articles },
     sources: [list.url],
   };
   if (a.tone ?? true) {
     // The articles stand on their own: a refused tone request leaves a note, not an error.
-    const t = await gdelt(session, { query: q, mode: "timelinetone", timespan: span }).catch((err) => ({ error: String(err.message) }));
+    const t = await gdelt(session, { query: q, mode: "timelinetone", ...when }, attempts).catch((err) => ({ error: String(err.message) }));
     if (t.error) { out.tone = { note: `GDELT did not return the tone series (${t.error.slice(0, 120)}); ask again in a minute.` }; return finish(out); }
     const series = t.body.timeline?.[0]?.data ?? [];
     const rows = series.map((d) => [stamp(d.date).slice(0, 10), Math.round(d.value * 1000) / 1000]);
