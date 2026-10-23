@@ -83,7 +83,7 @@ test("history: latest and quarterly periods, including a 16-week quarter; prospe
 
 test("history shows the other vintage beside the one asked for, and the change from a year earlier", async () => {
   const { s } = session();
-  const first = byCol(out(await toolHistory(s, { company: "FIX", concept: "revenue" })));
+  const first = byCol(out(await toolHistory(s, { company: "FIX", concept: "revenue", basis: "first_reported" })));
   const r2019 = first.find((r) => r.end === "2019-09-30");
   assert.equal(r2019.val, 100); assert.equal(r2019.latest_val, 90); assert.ok(r2019.latest_filed > r2019.filed);
   assert.equal(first.find((r) => r.end === "2020-09-30").latest_val, null, "unchanged values have no second vintage");
@@ -98,7 +98,7 @@ test("history shows the other vintage beside the one asked for, and the change f
 
 test("a plain name follows the measure across a tag change, and each value names its tag", async () => {
   const { s } = session();
-  const first = out(await toolHistory(s, { company: "FIX", concept: "revenue" }));
+  const first = out(await toolHistory(s, { company: "FIX", concept: "revenue", basis: "first_reported" }));
   assert.deepEqual(first.concept.tags, ["Revenues", "SalesRevenueNet"]);
   assert.deepEqual(byCol(first).map((r) => [r.end, r.val, r.filed, r.tag, r.changed]), [
     ["2020-09-30", 110, "2020-10-29", "Revenues", false],
@@ -129,10 +129,10 @@ test("an XBRL tag the company stopped using points to the series that continues 
 
 test("a tag in two taxonomies is one measure; a taxonomy prefix picks one", async () => {
   const { s } = session();
-  const exact = out(await toolHistory(s, { company: "FIX", concept: "Assets" }));
+  const exact = out(await toolHistory(s, { company: "FIX", concept: "Assets", basis: "first_reported" }));
   assert.deepEqual(exact.concept.tags, ["ifrs-full:Assets", "Assets"], "the IFRS series, still reported, comes first");
   assert.deepEqual(byCol(exact).map((r) => [r.end, r.val, r.tag]), [["2021-09-30", 700, "ifrs-full:Assets"], ["2020-09-30", 600, "Assets"], ["2019-09-30", 500, "Assets"]]);
-  assert.deepEqual(byCol(out(await toolHistory(s, { company: "FIX", concept: "assets" }))).map((r) => r.val), [700, 600, 500]);
+  assert.deepEqual(byCol(out(await toolHistory(s, { company: "FIX", concept: "assets", basis: "first_reported" }))).map((r) => r.val), [700, 600, 500]);
   const usgaap = out(await toolHistory(s, { company: "FIX", concept: "us-gaap:Assets" }));
   assert.deepEqual(usgaap.concept.tags, ["Assets"]);
 });
@@ -448,4 +448,14 @@ test("history says what span the data covers, so a question outside it is answer
   const r = out(await toolHistory(s, { company: "FIX", concept: "revenue" }));
   assert.equal(r.covers.first_end, "2018-09-30"); assert.equal(r.covers.last_end, "2020-09-30");
   assert.match(r.covers.note, /No annual value for this measure before 2018-09-30/);
+});
+
+test("history defaults to the latest value; as_of is a filing date, and a period ending on it is pointed out", async () => {
+  const { s } = session();
+  const r = out(await toolHistory(s, { company: "FIX", concept: "revenue" }));
+  assert.equal(r.basis, "latest");
+  assert.equal(byCol(r).find((x) => x.end === "2019-09-30").val, 90);
+  const trap = out(await toolHistory(s, { company: "FIX", concept: "revenue", as_of: "2020-09-30" }));
+  assert.match(trap.as_of_note, /A period ends on 2020-09-30, but it was filed after that date/);
+  assert.equal(out(await toolHistory(s, { company: "FIX", concept: "revenue", as_of: "2020-06-30" })).as_of_note, undefined);
 });

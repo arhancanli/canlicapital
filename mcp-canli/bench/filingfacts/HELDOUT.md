@@ -69,3 +69,20 @@ see past run-to-run noise: v0 items outside every earlier sample, 40 per templat
 (200 items). Arms: canli-mcp 0.6.0 and this branch (the validation tool is left out: 0.98 to 0.99
 in all three rounds). Reported: accuracy, answerable and unanswerable items right, runs at the
 limit, and items one arm gets right and the other wrong.
+
+## Round 4 results (2026-10-23 19:07 UTC)
+
+v0 (200 items): 0.6.0 0.870 (answerable 142/160, unanswerable 32/40, 6 at the limit, 12,923 tokens
+an item); branch with front tools 0.885 (142/160, 35/40, 2 at the limit, 10,394 tokens). Paired:
+right only with the branch 10, only with 0.6.0 7 (one-sided p = 0.31). Fewer runs at the limit and
+a fifth fewer tokens; no clear gain in accuracy. The branch's answerable misses: answers built on
+the first-reported value where the item's answer is the latest filing's (history's default was
+first_reported), and balance-sheet questions "as of" a period end answered through the as_of
+argument, which is a filing date, so an earlier balance sheet came back.
+
+## Round 5 (planned before any run)
+
+After round 4: history defaults to the latest value (first_reported stays one argument away, and
+each row still shows the other version), and when as_of equals a period end filed later, the
+result says so. v0 items outside every earlier sample, 40 per template, seed 20261128 (200 items);
+arms canli-mcp 0.6.0 and this branch; reported as in round 4.

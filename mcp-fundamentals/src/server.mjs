@@ -692,8 +692,8 @@ export const historyInput = z.object({
   company,
   concept: conceptArg.optional(),
   concepts: z.array(z.string().min(1).max(200)).min(2).max(6).optional().describe("Instead of concept: 2-6 measures."),
-  basis: z.enum(["first_reported", "latest", "as_of"]).optional().describe("first_reported (default), latest, or as_of (default when as_of is set)."),
-  as_of: date.optional().describe("Only filings made on or before this date count, for every basis."),
+  basis: z.enum(["first_reported", "latest", "as_of"]).optional().describe("latest (default), first_reported, or as_of (default with as_of)."),
+  as_of: date.optional().describe("A filing date, not a period end: only filings made by then count."),
   periods: periodsArg,
   unit: unitArg,
   limit: z.number().int().min(1).max(400).optional().describe("Default 20, newest first."),
@@ -715,7 +715,7 @@ export async function toolHistory(session, args) {
     });
   }
   const { company: who, concept, basis: basisArg, as_of: asOf, periods = "annual", unit, limit = 20 } = parsed;
-  const basis = basisArg ?? (asOf ? "as_of" : "first_reported");
+  const basis = basisArg ?? (asOf ? "as_of" : "latest");
   if (basis === "as_of" && !asOf) throw new Error("history: basis as_of needs an as_of date.");
   const e = await loadCompany(session, who);
   const s = resolveSeries(e, concept, unit);
@@ -741,6 +741,8 @@ export async function toolHistory(session, args) {
     concept: { name: s.name, label: s.label, unit: s.unit, units: s.units, tags: s.tags.map(tagName) },
     basis,
     ...(asOf ? { as_of: asOf } : {}),
+    // as_of is a filing date; a question "as of" a date usually means the period ending then.
+    ...(asOf && s.periods.some((p) => p.end === asOf && matchesKind(p, periods) && !select(p, basis, asOf)) ? { as_of_note: `A period ends on ${asOf}, but it was filed after that date, so as_of leaves it out. For the value at the period ending ${asOf}, call again without as_of.` } : {}),
     periods,
     total: picked.length,
     // The span the company's XBRL data covers for this measure: a question about a period outside
@@ -1284,7 +1286,7 @@ const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: 
 
 export const TOOL_DESCRIPTIONS = Object.freeze({
   known_as_of: "Get what a company had reported as of a date: per measure, the latest period filed by then, its value, and whether it was later restated; optionally ratios from those filings. For point-in-time backtests.",
-  history: "Get a measure (or several, with concepts) over time, newest first: first reported (default), latest, or as known on as_of, with its filing, any later change and the yearly change.",
+  history: "Get a measure (or several, with concepts) over time, newest first: latest (default), first reported, or as known on a filing date, with its filing, other version and yearly change.",
   restatements: "List periods whose value changed in a later filing, with first and latest values, % change and cause (stock splits left out by default). Omit concept to scan everything.",
   vintages: "List every filing that reported one period of one measure, oldest first: the revision history behind a number.",
   list_concepts: "List the XBRL concepts a company reports and the plain names it supports, with units, periods, date range and restated-period counts.",
