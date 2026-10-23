@@ -81,7 +81,7 @@ test("over stdio: backtest_signal runs on CSV files and records every run in the
   await client.connect(new StdioClientTransport({ command: process.execPath, args: [path.join(HERE, "../src/server.mjs")], env: { ...process.env, CANLI_LEDGER_DIR: dir } }));
   t.after(() => client.close());
   const { tools } = await client.listTools();
-  assert.deepEqual(tools.map((x) => x.name).sort(), ["backtest_signal", "list_factors", "pit_factor"]);
+  assert.deepEqual(tools.map((x) => x.name).sort(), ["backtest_signal", "breadth_book", "breadth_signals", "effective_bets", "list_factors", "pit_factor"]);
   for (const q of [0.2, 0.33]) {
     const res = await client.callTool({ name: "backtest_signal", arguments: { prices_file: path.join(dir, "prices.csv"), signal_file: path.join(dir, "signal.csv"), quantile: q, ledger: "test-search" } });
     assert.ok(!res.isError, JSON.stringify(res.content));
@@ -90,4 +90,17 @@ test("over stdio: backtest_signal runs on CSV files and records every run in the
   const last = (await client.callTool({ name: "backtest_signal", arguments: { prices_file: path.join(dir, "prices.csv"), signal_file: path.join(dir, "signal.csv"), cost_bps: 0, ledger: "test-search" } })).structuredContent;
   assert.equal(last.search.trials, 3);
   assert.ok(last.search.deflated && last.search.plain_reading.includes("Across 3 recorded trials"));
+  // The breadth lab over the same files: three groups of ten names, a sleeve per signal per group.
+  writeFileSync(path.join(dir, "groups.csv"), "ticker,group\n" + names.map((n, i) => `${n},G${i % 3}`).join("\n") + "\n");
+  const out = path.join(dir, "sleeves.csv");
+  const book = await client.callTool({ name: "breadth_book", arguments: { prices_file: path.join(dir, "prices.csv"), groups_file: path.join(dir, "groups.csv"), signals: ["rev_1m", "mom_6_1"], min_names: 8, out_file: out } });
+  assert.ok(!book.isError, JSON.stringify(book.content));
+  assert.equal(book.structuredContent.sleeves, 6);
+  const header = readFileSync(out, "utf8").split("\n")[0].split(",");
+  assert.equal(header.length, 1 + 6 + 1, "date, six sleeves, the netted book");
+  assert.equal(JSON.parse(readFileSync(`${out}.specs.json`, "utf8")).sleeves.length, 6);
+  const bets = await client.callTool({ name: "effective_bets", arguments: { returns_file: out, family_separator: "@" } });
+  assert.ok(!bets.isError, JSON.stringify(bets.content));
+  assert.equal(bets.structuredContent.series, 7);
+  assert.ok(Array.isArray((await client.callTool({ name: "breadth_signals", arguments: {} })).structuredContent.signals));
 });
