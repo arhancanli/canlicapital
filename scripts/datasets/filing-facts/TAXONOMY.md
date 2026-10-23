@@ -54,6 +54,63 @@ First-day values, for reference only: in the closed-book runs, 213 of 294 wrong 
 `unsupported`. 69 matched some reported value. The discordant pairs were 44 real-only against 13
 decoy-only.
 
+## Pre-registration for the extension runs (2026-10-23)
+
+Fixed in this commit, before any extension run had been made. The runs, in the order the script
+makes them (`eval.mjs`, sampling seed `20261023` for the v1 sets, `20260926` for v0 as before):
+
+- **v0 set:** the paper's 150 v0 items. Gemma 4 12B (Q4_0, run locally through Ollama, thinking
+  off, temperature 0), closed-book and with the tool.
+- **Restatement set:** 60 v1 restatement items (`filing-facts-v1-restatement.jsonl`, SHA-256
+  `0a5a2121...98c5`). Closed-book: Gemma 4 12B, gpt-4.1, gpt-4o, gpt-5.4, gpt-4.1-mini,
+  gpt-5.4-mini, o4-mini. With the tool: Gemma 4 12B, gpt-5.4-mini.
+- **Fresh set:** 75 v1 fresh items, 15 per v0 template (`filing-facts-v1-fresh-core.jsonl`, the
+  fresh split without its restatement items, SHA-256 `59580491...76da`). Closed-book: the same
+  seven models. With the tool: Gemma 4 12B, gpt-4.1-mini, o4-mini, gpt-5.4-mini.
+
+OpenAI runs stay inside the free data-sharing allowance; a run whose estimate would pass 90% of
+its pool is skipped, and skipped runs are reported. The taxonomy is run once per set with the
+unchanged placebo seed. `confirm-extension.mjs` (this commit) computes every test, at alpha 0.05,
+reported whatever it shows:
+
+- **H1'.** Pooling the closed-book runs on the v0 and fresh sets, more than half of wrong numbers
+  are `unsupported` (one-sided exact binomial against 0.5).
+- **H2'.** Pooling every closed-book extension run, wrong numbers match their own company's
+  history more often than a decoy's (one-sided exact McNemar).
+- **H3'.** For every model and set with both arms, the tool arm gives fewer `unsupported` plus
+  `invented_*` answers per item (a count per model and set, no pooled test).
+- **H4.** On restatement items, pooled closed-book answers equal to the revised figure
+  (`superseded_version`) outnumber those equal to the first-reported one (`correct`) (one-sided
+  exact binomial on the two counts).
+- **H5.** For models run closed-book on both v0 (any day) and the fresh set, correct numbers per
+  answerable item are higher on v0 than on the fresh set (one-sided Fisher exact, pooled).
+
+Exploratory, with no test: tool-arm accuracy on answerable fresh items against v0.
+
+**Amendment 1 (2026-10-23, before any extension run had completed).** (a) The OpenAI runs could
+not be made: the first request returned `credit_balance_exhausted`, so nothing was billed and no
+OpenAI run exists. The extension is Gemma 4 12B alone; every test above is computed on its runs,
+and H5 compares its fresh run with its own v0 run. (b) Gemma's first v0 run was stopped unfinished
+and discarded: another job on the machine loads the same model at a 16,384-token context, and the
+32,768-token default reloaded the model on every request. Gemma now runs through Ollama's native
+endpoint at 16,384 tokens; a turn whose prompt reaches 95% of that is logged, and the count is
+reported with the results.
+
+**Results (2026-10-23, runs finished 12:02 UTC from commit 96a487b7).** As printed by
+`confirm-extension.mjs`, Gemma 4 12B only:
+
+- H1': 112 of 142 wrong numbers unsupported (79%), p = 1.25e-12. Supported. (v0 83/107, fresh 29/35.)
+- H2': own company only 29, decoy only 15, p = 0.024. Supported.
+- H3': unsupported plus invented, closed against tool: v0 105/150 against 16/150, restatement 33/60
+  against 1/60, fresh 39/75 against 7/75. Supported in every set; but the tool arm reached the
+  six-turn limit on 100, 40 and 40 items, mostly after calling the tool with a guessed ticker that it
+  does not know and repeating the call.
+- H4: revised 0, first-reported 0 closed-book; the test cannot be computed. Not supported.
+- H5: v0 1/120 against fresh 0/60 correct, p = 0.67. Not supported.
+- Exploratory: tool arm, 18 of 60 answerable fresh items correct.
+- Turns that reached 95% of the 16,384-token context: tool arm 10, 1 and 10 (v0, restatement,
+  fresh); closed-book none.
+
 ## Limits
 
 - A match shows where a number could have come from. It does not show that the model looked it up.

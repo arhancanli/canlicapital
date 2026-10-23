@@ -86,3 +86,13 @@ test("the one-sided McNemar p-value is the binomial tail over the discordant pai
   assert.ok(Math.abs(mcnemarOneSided(5, 0) - 1 / 32) < 1e-12);
   assert.ok(Math.abs(mcnemarOneSided(3, 3) - 21 / 32) < 1e-12, "P(X>=3), n=6: (20+15+6+1)/64");
 });
+
+test("a restatement item asks for the first-reported value, so giving the revised one is a superseded version", () => {
+  const restated = { id: "r", template: "restatement", company: { cik: "1" }, answer: { kind: "number", value: 1150, unit: "USD" },
+    facts: [fact("Revenues", "2023-12-31", 1150), fact("Revenues", "2023-12-31", 1200)] };
+  const c = candidates(restated, history);
+  assert.equal(classify(restated, run(1150, { correct: true }), c), "correct");
+  assert.equal(classify(restated, run(1200), c), "superseded_version");
+  assert.equal(classify(restated, run(1500), c), "other_period");
+  assert.equal(classify(restated, run(777), c), "unsupported");
+});

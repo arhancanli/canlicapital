@@ -3,7 +3,8 @@
 // model ends with "ANSWER: <value>" and is scored against the item's recomputed answer.
 //   node scripts/datasets/filing-facts/eval.mjs <items.jsonl> <out.json> --arm closed|mcp [--per-template 30] [--model gpt-5.4-mini]
 // A model id starting "claude-" runs through the Anthropic API with the same prompts, tools,
-// six-turn limit and capture record; any other id runs through OpenAI.
+// six-turn limit and capture record; "ollama/<name>" runs an open-weight model locally through
+// Ollama (no key, thinking off, temperature 0); any other id runs through OpenAI.
 import { closeSync, openSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, resolve } from "node:path";
@@ -90,6 +91,7 @@ const SYSTEM_CLOSED = "You are a financial analyst. Answer from what you know. E
 const SYSTEM_MCP = "You are a financial analyst with a tool that returns a company's SEC-reported financial history (XBRL facts with filing accession numbers). Use it; do not guess numbers. End with one final line 'ANSWER: <value>': a plain number without commas, units or percent signs (a percent as its number, e.g. 12.34), or 'not reported' if the filings do not report it.";
 
 async function chat(model, messages, tools) {
+  if (model.startsWith("ollama/")) return ollamaChat(model.slice(7), messages, tools);
   const key = readFileSync(resolve(homedir(), ".config/canli/openai_benchmark_key"), "utf8").trim();
   for (let attempt = 0; ; attempt++) {
     const res = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -102,6 +104,28 @@ async function chat(model, messages, tools) {
     if (!res.ok) throw new Error(`OpenAI HTTP ${res.status}: ${body?.error?.message ?? "error"}`);
     return body;
   }
+}
+
+// Local models go through Ollama's native endpoint, which takes the context size: other jobs on this
+// machine load the same model at 16,384 tokens, and asking for any other size reloads it on every
+// request. Replies are returned in the OpenAI shape runItem reads; a turn whose prompt reaches the
+// context limit is logged to stderr, so the run log counts them.
+export const OLLAMA_CONTEXT = 16384;
+async function ollamaChat(model, messages, tools) {
+  const res = await fetch("http://127.0.0.1:11434/api/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ model, stream: false, think: false, options: { temperature: 0, num_predict: 3000, num_ctx: OLLAMA_CONTEXT },
+      messages: messages.map((m) => (m.tool_calls ? { ...m, tool_calls: m.tool_calls.map((c) => ({ function: { name: c.function.name, arguments: JSON.parse(c.function.arguments || "{}") } })) } : m)),
+      ...(tools ? { tools } : {}) }),
+  });
+  const body = await res.json();
+  if (!res.ok) throw new Error(`Ollama HTTP ${res.status}: ${body?.error ?? "error"}`);
+  const prompt = (body.prompt_eval_count ?? 0) + (body.prompt_eval_cached_count ?? 0);
+  if (prompt >= 0.95 * OLLAMA_CONTEXT) console.error(`CONTEXT_LIMIT prompt ${prompt} of ${OLLAMA_CONTEXT}`);
+  const calls = (body.message?.tool_calls ?? []).map((c, i) => ({ id: `call_${i}`, type: "function", function: { name: c.function.name, arguments: JSON.stringify(c.function.arguments ?? {}) } }));
+  return { id: null, model: body.model, usage: { prompt_tokens: prompt, completion_tokens: body.eval_count ?? 0 },
+    choices: [{ message: { role: "assistant", content: body.message?.content ?? "", ...(calls.length ? { tool_calls: calls } : {}) } }] };
 }
 
 async function mcpClient() {
@@ -197,7 +221,7 @@ async function main() {
   if (!itemsFile || !outFile) throw new RangeError("usage: eval.mjs items.jsonl out.json --arm closed|mcp [--per-template 30] [--seed 20260926] [--model gpt-5.4-mini]");
   const model = arg("model", "gpt-5.4-mini"), arm = arg("arm", "closed"), perTemplate = Number(arg("per-template", "30")), seed = Number(arg("seed", "20260926"));
   if (!["closed", "mcp"].includes(arm) || !model?.trim()) throw new RangeError("arm must be closed or mcp and model must be nonempty");
-  const provider = model.startsWith("claude-") ? "anthropic" : "openai";
+  const provider = model.startsWith("claude-") ? "anthropic" : model.startsWith("ollama/") ? "ollama" : "openai";
   const { CAPTURE_SCHEMA, evaluateCapture, readDataset } = await import("./evidence.mjs");
   const bytes = readFileSync(itemsFile), dataset = readDataset(bytes);
   const sample = stratifiedSample(dataset.items, perTemplate, seed);
@@ -209,7 +233,8 @@ async function main() {
     mcp = arm === "mcp" ? await mcpClient() : null;
     const runs = [];
     const queue = [...sample];
-    await Promise.all(Array.from({ length: 4 }, async () => { while (queue.length) runs.push(await (provider === "anthropic" ? runClaudeItem : runItem)(queue.shift(), { model, arm, mcp })); }));
+    // One local model serves one request at a time; queued requests would hit fetch's timeout.
+    await Promise.all(Array.from({ length: provider === "ollama" ? 1 : 4 }, async () => { while (queue.length) runs.push(await (provider === "anthropic" ? runClaudeItem : runItem)(queue.shift(), { model, arm, mcp })); }));
     const capture = { schema: CAPTURE_SCHEMA, provider, model, arm,
       recorded_at: startedAt, completed_at: new Date().toISOString(), dataset_sha256: dataset.sha256,
       sampling: { method: "stratified", seed, per_template: perTemplate, item_ids: sample.map((item) => item.id) },

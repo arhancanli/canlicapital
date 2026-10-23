@@ -73,8 +73,10 @@ const cross = (xs, ys, f) => xs.flatMap((x) => ys.map((y) => f(x, y))).filter(Nu
 export function candidates(item, history) {
   const f = item.facts;
   const unit = f[0].unit;
-  if (item.template === "lookup" || item.template === "unanswerable") {
-    const c = f[0].concept, asked = item.template === "lookup" ? f[0].end : null;
+  // A restatement item asks for the first-reported value (facts[0]); the revised value a later
+  // filing reported for the same period is then one of the asked figure's other versions.
+  if (item.template === "lookup" || item.template === "restatement" || item.template === "unanswerable") {
+    const c = f[0].concept, asked = item.template === "unanswerable" ? null : f[0].end;
     const sameEnd = asked ? values(history, c, unit, asked) : [];
     const otherEnds = ends(history, c, unit).filter((e) => e !== asked).flatMap((e) => values(history, c, unit, e));
     const otherItems = [...history].filter(([k]) => k.split("|")[1] === unit && k.split("|")[0] !== c).flatMap(([, m]) => [...m.values()].flatMap((s) => [...s]));
