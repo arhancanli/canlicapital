@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- `history` and `financial_statements` are listed as tools of their own beside the three discovery
+  tools (`CANLI_FRONT`; empty restores three): one step instead of a search on the commonest
+  questions. `run_tool` also runs `find_tool` and `describe_tool`. The instructions name the common
+  tools and make `verify_claims` a check for drafts, not every answer. On 200 held-out FilingFacts
+  questions (DeepSeek V4.1 Flash) this branch answered 93.0% against 0.6.0's 87.0% (14 right only
+  here, 2 only there, p = 0.002), with a fifth of the runs that hit the turn limit and fewer tokens.
+
 ## 0.6.0
 
 Beyond the US, and results drawn the way a reader needs them.
