@@ -86,3 +86,11 @@ After round 4: history defaults to the latest value (first_reported stays one ar
 each row still shows the other version), and when as_of equals a period end filed later, the
 result says so. v0 items outside every earlier sample, 40 per template, seed 20261128 (200 items);
 arms canli-mcp 0.6.0 and this branch; reported as in round 4.
+
+## Round 5 results (2026-10-23 19:19 UTC)
+
+v0 (200 items): 0.6.0 0.870 (answerable 142/160, unanswerable 32/40, 10 at the limit, 13,055 tokens
+an item); branch 0.930 (150/160, 36/40, 2 at the limit, 11,311 tokens). Paired: right only with the
+branch 14, only with 0.6.0 2, one-sided exact McNemar p = 0.0021. The first round where the branch
+is clearly better than the published flagship; the validation server's single company tool still
+scored 0.98 to 0.99 in rounds 1 to 3.
