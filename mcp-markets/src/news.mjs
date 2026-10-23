@@ -29,11 +29,11 @@ export function plainName(name) {
 const stamp = (s) => (/^\d{8}T\d{6}Z$/.test(s) ? `${s.slice(0, 4)}-${s.slice(4, 6)}-${s.slice(6, 8)}T${s.slice(9, 11)}:${s.slice(11, 13)}:${s.slice(13, 15)}Z` : s);
 
 let lastCall = 0;
-async function gdelt(session, params, attempts = 3) {
+async function gdelt(session, params, attempts = 2) {
   const url = `${API}?${new URLSearchParams({ ...params, format: "json" })}`;
   for (let attempt = 0; attempt < attempts; attempt += 1) {
     // Past the limit, back off further each time (GDELT counts requests per address).
-    const wait = lastCall + GAP_MS * (1 + 2 * attempt) - session.now();
+    const wait = lastCall + GAP_MS * (1 + attempt) - session.now();
     if (wait > 0) await session.sleep(wait);
     lastCall = session.now();
     try { return { url, body: await getJson(session, url, { maxBytes: 4 * 1024 * 1024 }) }; } catch (err) {
@@ -45,8 +45,13 @@ async function gdelt(session, params, attempts = 3) {
   throw new Error("GDELT did not answer");
 }
 
+// GDELT's own refusal, said plainly.
+function refused(err) {
+  return /429/.test(String(err?.message)) ? new Error("GDELT is limiting requests from this address (HTTP 429); it allows about one every five seconds. Ask again in a minute.") : err;
+}
+
 // attempts: GDELT requests to try before giving up (explain_move asks once, to stay quick).
-export async function news(session, args, { attempts = 3 } = {}) {
+export async function news(session, args, { attempts = 2 } = {}) {
   const a = newsInput.parse(args);
   if (!a.query && !a.company) throw new Error("news needs query or company.");
   let who = null;
@@ -59,7 +64,7 @@ export async function news(session, args, { attempts = 3 } = {}) {
   if (a.end && !a.start) throw new Error("end needs start.");
   const compact = (d, t) => `${d.replace(/-/g, "")}${t}`;
   const when = a.start ? { startdatetime: compact(a.start, "000000"), enddatetime: compact(a.end ?? a.start, "235959") } : { timespan: `${a.days ?? 7}d` };
-  const list = await gdelt(session, { query: q, mode: "artlist", maxrecords: String(a.limit ?? 25), ...when, sort: "datedesc" }, attempts);
+  const list = await gdelt(session, { query: q, mode: "artlist", maxrecords: String(a.limit ?? 25), ...when, sort: "datedesc" }, attempts).catch((err) => { throw refused(err); });
   const articles = (list.body.articles ?? []).map((x) => [stamp(x.seendate), x.title?.replace(/\s+([.,:;?!])/g, "$1").trim() ?? null, x.domain ?? null, x.sourcecountry ?? null, x.language ?? null, x.url]);
   const out = {
     ...(who ? { company: who } : {}), query: q, ...(a.start ? { start: a.start, end: a.end ?? a.start } : { days: a.days ?? 7 }),
