@@ -52,3 +52,20 @@ After round 2: history and its several-concepts form state the span the data cov
 period outside it is plainly not reported; screen_companies takes a fiscal-year-end window (commit
 56ef55e8, found on the rival frontier set). New v0 items outside every earlier sample, 20 per
 template, seed 20261126 (100 items); the same three arms, model and limits.
+
+## Round 3 results (2026-10-23 18:54 UTC)
+
+v0 (100 items): validation tool 0.98 (answerable 78/80, unanswerable 20/20, no turn limit); 0.6.0
+0.85 (72/80, 13/20, 9 at the limit); branch 0.84 (68/80, 16/20, 7 at the limit). Across rounds 2 and
+3 the branch is no better than 0.6.0 on plain v0 items; single runs of 80 answerable items move by
+about four either way. Most remaining failures are runs at the six-turn limit on items that need two
+measures, where the model reaches the data only through find_tool and run_tool.
+
+## Round 4 (planned before any run)
+
+After round 3: the flagship lists history and financial_statements as tools of their own beside the
+three discovery tools (`CANLI_FRONT`, default those two; empty restores three). Larger sample to
+see past run-to-run noise: v0 items outside every earlier sample, 40 per template, seed 20261127
+(200 items). Arms: canli-mcp 0.6.0 and this branch (the validation tool is left out: 0.98 to 0.99
+in all three rounds). Reported: accuracy, answerable and unanswerable items right, runs at the
+limit, and items one arm gets right and the other wrong.

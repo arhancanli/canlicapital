@@ -52,10 +52,10 @@ const STARTS = [
   ["markets", "filings and their text: list_filings, read_filing, search_filings"],
   ["markets", "prices: price_history {symbol}; macro series: economic_series"],
 ];
-export function instructions(packs) {
+export function instructions(packs, front = []) {
   const n = ENTRIES.filter((e) => packs.includes(e.pack)).length;
   const starts = STARTS.filter(([pack]) => packs.includes(pack)).map(([, text]) => text);
-  return `Canli Capital's finance tools in one server: ${n} tools in ${packs.length} packs (${packs.join(", ")}). ${starts.length ? `Call these with run_tool directly: ${starts.join("; ")}. For anything else, call` : "Call"} find_tool with what you need in plain words; its results include each tool's arguments, so you can usually call run_tool next (describe_tool explains arguments in full). To save tokens: pass long data as {"$file": "path.csv", "column": "close"} instead of pasting numbers; put several calls in one run_tool, using {"$result": i, "path": "field"} to feed one call's output into the next, and return: "last" when only the final answer matters. Returns are simple fractions (0.01 = 1%), oldest first. canli://privacy says what each pack sends and stores.${packs.includes("markets") ? " Before answering with a company's reported figures, check them with verify_claims: each comes back confirmed, contradicted (with the filed figure) or not reported." : ""}`;
+  return `Canli Capital's finance tools in one server: ${n} tools in ${packs.length} packs (${packs.join(", ")}). ${front.length ? `${front.join(" and ")} ${front.length > 1 ? "are tools of their own" : "is a tool of its own"} here: call ${front.length > 1 ? "them" : "it"} directly. ` : ""}${starts.length ? `Call these with run_tool directly${front.length ? " (or, if listed, by name)" : ""}: ${starts.join("; ")}. For anything else, call` : "Call"} find_tool with what you need in plain words; its results include each tool's arguments, so you can usually call run_tool next (describe_tool explains arguments in full). To save tokens: pass long data as {"$file": "path.csv", "column": "close"} instead of pasting numbers; put several calls in one run_tool, using {"$result": i, "path": "field"} to feed one call's output into the next, and return: "last" when only the final answer matters. Returns are simple fractions (0.01 = 1%), oldest first. canli://privacy says what each pack sends and stores.${packs.includes("markets") ? " Before answering with a company's reported figures, check them with verify_claims: each comes back confirmed, contradicted (with the filed figure) or not reported." : ""}`;
 }
 
 const sha256 = (v) => createHash("sha256").update(JSON.stringify(v)).digest("hex");
@@ -345,10 +345,31 @@ function registerResources(server, packs) {
     async (uri, { name }) => { const t = await toolFor(String(name), packs), s = z.toJSONSchema(t.input, { io: "input" }); delete s.$schema; return json(uri.href, { name: t.name, pack: t.pack, description: t.description, input_schema: s }); });
 }
 
+// The most-used tools are also listed directly, with their own schemas, beside the three discovery
+// tools: a model calls them in one step instead of searching first, for a few hundred more tokens of
+// tool list. CANLI_FRONT names them, comma-separated; set it empty to list only the three.
+export const FRONT_DEFAULT = Object.freeze(["history", "financial_statements"]);
+export function frontTools(packs, env = process.env) {
+  const names = env.CANLI_FRONT === undefined ? FRONT_DEFAULT : env.CANLI_FRONT.split(",").map((x) => x.trim()).filter(Boolean);
+  return [...new Set(names)].filter((n) => BY_NAME.has(n) && packs.includes(BY_NAME.get(n).pack));
+}
+export async function registerFront(server, packs, names = frontTools(packs)) {
+  for (const name of names) {
+    const t = await toolFor(name, packs);
+    server.registerTool(name, {
+      title: t.title, description: t.description, inputSchema: t.input, outputSchema: open,
+      annotations: { title: t.title, ...(t.annotations ?? READ_ONLY) },
+    }, guard(async (args) => trimmed(await runOne(packs, { name, arguments: args }, {}, []))));
+  }
+  return names;
+}
+
 const isMain = (() => { try { return realpathSync(process.argv[1] ?? "") === realpathSync(fileURLToPath(import.meta.url)); } catch { return false; } })();
 if (isMain) {
   const packs = enabledPacks();
-  const server = new McpServer(SERVER_INFO, { instructions: instructions(packs) });
+  const front = frontTools(packs);
+  const server = new McpServer(SERVER_INFO, { instructions: instructions(packs, front) });
   registerAll(server, packs);
+  await registerFront(server, packs, front);
   await server.connect(new StdioServerTransport());
 }

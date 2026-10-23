@@ -20,13 +20,31 @@ async function connect(env = {}) {
 const CSV = path.join(mkdtempSync(path.join(tmpdir(), "canli-stdio-")), "prices.csv");
 writeFileSync(CSV, `date,close,other\n${Array.from({ length: 500 }, (_, i) => `d${i},${(100 * Math.exp(0.0006 * i + 0.03 * Math.sin(i / 9))).toFixed(4)},${i}`).join("\n")}\n`);
 
-test("three small tools, byte-identical across launches", async () => {
+test("three discovery tools and the two front tools, byte-identical across launches; CANLI_FRONT empty lists only the three", async () => {
   const lists = [];
   for (let i = 0; i < 2; i++) { const c = await connect(); lists.push(JSON.stringify(await c.listTools())); await c.close(); }
   assert.equal(lists[0], lists[1]);
   const tools = JSON.parse(lists[0]).tools;
-  assert.deepEqual(tools.map((t) => t.name), ["find_tool", "describe_tool", "run_tool"]);
-  assert.ok(lists[0].length < 4500, `${lists[0].length} bytes`);
+  assert.deepEqual(tools.map((t) => t.name), ["find_tool", "describe_tool", "run_tool", "history", "financial_statements"]);
+  assert.ok(lists[0].length < 9000, `${lists[0].length} bytes`);
+  const c = await connect({ CANLI_FRONT: "" });
+  const bare = JSON.stringify(await c.listTools());
+  assert.match(c.getInstructions(), /^Canli Capital's finance tools in one server: \d+ tools in \d+ packs \([^)]+\)\. Call these with run_tool directly:/);
+  await c.close();
+  assert.deepEqual(JSON.parse(bare).tools.map((t) => t.name), ["find_tool", "describe_tool", "run_tool"]);
+  assert.ok(bare.length < 4500, `${bare.length} bytes`);
+});
+
+test("a front tool runs as run_tool runs it", async () => {
+  const c = await connect({ CANLI_OFFLINE: "1", CANLI_FRONT: "sharpe_ratio" });
+  const prices = Array.from({ length: 300 }, (_, i) => 100 * Math.exp(0.0005 * i + 0.01 * Math.sin(i)));
+  const direct = await c.callTool({ name: "sharpe_ratio", arguments: { prices } });
+  const viaRun = await c.callTool({ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { prices } } });
+  assert.equal(direct.isError, undefined);
+  const strip = (r) => { const { ref, ...rest } = JSON.parse(r.content[0].text); return rest; };
+  assert.deepEqual(strip(direct), strip(viaRun));
+  assert.match(c.getInstructions(), /sharpe_ratio is a tool of its own here: call it directly\./);
+  await c.close();
 });
 
 test("find, describe and run across packs; a batch with $file, $result, return last and digits", async (t) => {
