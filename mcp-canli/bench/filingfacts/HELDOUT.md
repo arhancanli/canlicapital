@@ -94,3 +94,12 @@ an item); branch 0.930 (150/160, 36/40, 2 at the limit, 11,311 tokens). Paired: 
 branch 14, only with 0.6.0 2, one-sided exact McNemar p = 0.0021. The first round where the branch
 is clearly better than the published flagship; the validation server's single company tool still
 scored 0.98 to 0.99 in rounds 1 to 3.
+
+## Round 6 (planned before any run, 2026-10-24)
+
+After round 5: run_tool also runs find_tool and describe_tool (a regression the rival rerun found),
+the instructions make verify_claims a check for drafts, and new tools are in the catalog
+(latest_filings, filing_diff, news, explain_move, portfolio_xray, price_panel, the breadth lab and
+annotation), which a search can now return. Check that plain questions did not suffer: v0 items
+outside every earlier sample, 40 per template, seed 20261129 (200 items); arms canli-mcp 0.6.0 and
+this branch at 910c0ad5; reported as in rounds 4 and 5.
