@@ -154,6 +154,20 @@ tool runs mostly ended at the six-turn limit, often after it guessed an unknown 
 A run that fails for a reason outside the model (machine, Ollama, network) is rerun from the start
 and the failure reported. Turns that reach 95% of the context are counted and reported.
 
+**Results (2026-10-23, runs finished 18:44 UTC from commit b73d3505).** As printed by
+`confirm-large.mjs`; every planned run was made and none failed:
+
+- H6: large 1/120 against v0 1/120 correct closed-book, p = 0.75. Not supported (Gemma 4 12B
+  answers almost nothing from memory on either set).
+- H7: 29/95 against 24/107 wrong numbers matching a reported value, p = 0.13. Not supported.
+- H1'': 63 of 95 wrong numbers unsupported (66%), p = 9.6e-4. Supported.
+- H2'': own company only 9, decoy only 6, p = 0.30. Not supported.
+- H8: six-turn limit reached with the ticker-only tool only 125 times, with name lookup only 9,
+  p = 1.4e-27. Supported.
+- H9: correct with name lookup only 118, with the ticker-only tool only 8, p = 1.6e-26. Supported.
+- Descriptive: v0 turn-limit runs 100 -> 4 and accuracy 0.193 -> 0.940; large 31 -> 11 and
+  0.773 -> 0.893.
+
 ## Pre-registration for the DeepSeek runs (2026-10-23)
 
 Fixed in this commit, before any of these runs was made. The extension and large-company rounds
