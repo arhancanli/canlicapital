@@ -14,6 +14,7 @@ import {
   loadCompany,
   toolCrossSection,
   toolFindCompany,
+  resolveCompany,
   toolHistory,
   toolKnownAsOf,
   toolListConcepts,
@@ -78,6 +79,21 @@ test("history: latest and quarterly periods, including a 16-week quarter; prospe
   assert.deepEqual(quarterly.map((r) => [r.end, r.val]), [["2020-04-21", 40], ["2019-12-31", 30]]);
   const all = out(await toolHistory(s, { company: "FIX", concept: "Revenues", periods: "all" }));
   assert.equal(all.total, 5, "the six-month figure appears only under all");
+});
+
+test("history shows the other vintage beside the one asked for, and the change from a year earlier", async () => {
+  const { s } = session();
+  const first = byCol(out(await toolHistory(s, { company: "FIX", concept: "revenue" })));
+  const r2019 = first.find((r) => r.end === "2019-09-30");
+  assert.equal(r2019.val, 100); assert.equal(r2019.latest_val, 90); assert.ok(r2019.latest_filed > r2019.filed);
+  assert.equal(first.find((r) => r.end === "2020-09-30").latest_val, null, "unchanged values have no second vintage");
+  assert.equal(first.find((r) => r.end === "2020-09-30").change_pct, 10);
+  assert.equal(first.find((r) => r.end === "2018-09-30").change_pct, null, "no earlier year in the rows");
+  const latest = byCol(out(await toolHistory(s, { company: "FIX", concept: "revenue", basis: "latest" })));
+  assert.equal(latest.find((r) => r.end === "2019-09-30").first_val, 100);
+  assert.equal(latest.find((r) => r.end === "2020-09-30").change_pct, 22.2222);
+  const asOf = out(await toolHistory(s, { company: "FIX", concept: "revenue", as_of: "2020-06-30" }));
+  assert.ok(!asOf.columns.includes("latest_val") && !asOf.columns.includes("first_val"), "as_of never shows a later value");
 });
 
 test("a plain name follows the measure across a tag change, and each value names its tag", async () => {
@@ -235,8 +251,8 @@ test("find_company: best match first, resolved only when one is clearly best, an
   assert.equal(out(await toolFindCompany(s, { query: "Exxon Mobil Corp" })).resolved.match, "name");
   assert.equal(out(await toolFindCompany(s, { query: "Meta", limit: 1 })).rows.length, 1);
   // Several at the best level: the one with a current ticker is the one meant.
-  assert.deepEqual(out(await toolFindCompany(s, { query: "Alphabet" })).resolved, { cik: "0001652044", name: "Alphabet Inc.", match: "name" });
-  assert.deepEqual(out(await toolFindCompany(s, { query: "Toyota" })).resolved, { cik: "0001094517", name: "TOYOTA MOTOR CORP/", match: "name_start" });
+  assert.deepEqual(out(await toolFindCompany(s, { query: "Alphabet" })).resolved, { cik: "0001652044", name: "Alphabet Inc.", match: "name", also_matching: [{ cik: "0002100000", name: "Alphabet Holding Company, Inc.", tickers: [] }] });
+  assert.deepEqual(out(await toolFindCompany(s, { query: "Toyota" })).resolved, { cik: "0001094517", name: "TOYOTA MOTOR CORP/", match: "name_start", also_matching: [{ cik: "0000834071", name: "Toyota Motor Credit Corporation", tickers: [] }] });
   assert.equal(out(await toolFindCompany(s, { query: "JPMorgan Chase" })).resolved.match, "name", "& Co drops like Inc");
   // The start of one name and no other: resolved. A word inside names is used only when it is the
   // single match at all.
@@ -406,4 +422,12 @@ test("a quarter is stale once a later fiscal year has been filed: the fourth qua
   assert.deepEqual(await quarter("2020-11-01"), ["2020-04-21", true]);
   const xs = out(await toolCrossSection(s, { companies: ["FIX"], concept: "revenue", as_of: "2020-11-01", periods: "quarterly" }));
   assert.equal(byCol(xs)[0].stale, true);
+});
+
+test("two filers with the same name: the listed one is used, and the answer names the other", async () => {
+  const { s } = session();
+  const r = await resolveCompany(s, "Star Equity Holdings");
+  assert.equal(r.cik, "0001210708");
+  assert.match(r.matched.note, /Also named "Star Equity Holdings": Star Equity Holdings, Inc\. \(CIK 0000707388, no current ticker\)\. This is STAR EQUITY HOLDINGS, INC\. \(CIK 0001210708\), the one with a current ticker; pass another CIK/);
+  assert.equal((await resolveCompany(s, "Twitter")).matched.note, undefined, "a single best match carries no note");
 });

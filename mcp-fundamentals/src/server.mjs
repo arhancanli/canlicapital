@@ -231,10 +231,13 @@ export async function findCompanies(session, query, limit = 8) {
   const tied = best ? ranked.filter((r) => r.level === best.level) : [];
   const listed = tied.filter((r) => r.c.tickers.length);
   const pick = !best ? null : ranked.length === 1 ? best : best.level > 4 ? null : tied.length === 1 ? best : listed.length === 1 ? listed[0] : null;
+  // Companies as good a match as the one used (the same name, another filer): the answer names them,
+  // since a question about the other one would otherwise get this one's figures without a word.
+  const alike = pick && tied.length > 1 ? tied.filter((r) => r !== pick).map(({ c }) => ({ cik: c.cik, name: c.name, tickers: c.tickers })) : [];
   return {
     matches: ranked.slice(0, limit).map(({ c, level }) => ({ cik: c.cik, name: c.name, tickers: c.tickers, match: MATCH_LEVELS[level] })),
     total: ranked.length,
-    resolved: pick ? { cik: pick.c.cik, name: pick.c.name, match: MATCH_LEVELS[pick.level] } : null,
+    resolved: pick ? { cik: pick.c.cik, name: pick.c.name, match: MATCH_LEVELS[pick.level], ...(alike.length ? { also_matching: alike } : {}) } : null,
     outside,
     captured: names.captured,
   };
@@ -257,7 +260,9 @@ export async function resolveCompany(session, company) {
   }
   const heldBy = found.outside ? `${found.outside.ticker} is the SEC's ticker for ${found.outside.name} (CIK ${found.outside.cik}), which the Canli company reference does not cover` : null;
   if (found.resolved) {
-    const note = found.resolved.match === "same_name_as_ticker_holder" ? `${heldBy}; the covered filer with the same name was used.` : undefined;
+    const alike = found.resolved.also_matching?.map((m) => `${m.name} (CIK ${m.cik}${m.tickers.length ? `, ${m.tickers.join("/")}` : ", no current ticker"})`).join("; ");
+    const note = [found.resolved.match === "same_name_as_ticker_holder" ? `${heldBy}; the covered filer with the same name was used.` : null,
+      alike ? `Also named "${text}": ${alike}. This is ${found.resolved.name} (CIK ${found.resolved.cik}), the one with a current ticker; pass another CIK as company for a different filer, such as a former company of that name.` : null].filter(Boolean).join(" ") || undefined;
     return { cik: found.resolved.cik, ticker: null, matched: { query: text, by: found.resolved.match, ...(note ? { note } : {}) } };
   }
   const options = found.matches.map((m) => `${m.name} (CIK ${m.cik}${m.tickers.length ? `, ${m.tickers.join("/")}` : ""})`).join("; ");
@@ -584,6 +589,20 @@ function select(p, basis, asOf) {
   return { v, changedLater: p.vintages.slice(i + 1).some((x) => x.val !== v.val) };
 }
 
+// Percent change of val from the period of the same length that ends one period earlier (about a
+// year for annual figures, a quarter for quarterly), among the older rows shown; null for mixed
+// period lists, instants without a matching earlier date, or a zero base. Computed here so a model
+// does not do the arithmetic by hand.
+function changePct(p, val, older, periods) {
+  if (periods === "all") return null;
+  const gap = periods === "quarterly" ? [80, 100] : [350, 380];
+  const days = (a, b) => (Date.parse(a) - Date.parse(b)) / DAY_MS;
+  const prev = older.find(({ p: q }) => { const d = days(p.end, q.end); return d >= gap[0] && d <= gap[1]; });
+  const base = prev?.sel.v.val;
+  if (!Number.isFinite(base) || base === 0 || !Number.isFinite(val)) return null;
+  return Math.round(((val - base) / Math.abs(base)) * 1e6) / 1e4;
+}
+
 // ---------------------------------------------------------------------------------------------
 // Tools
 // ---------------------------------------------------------------------------------------------
@@ -689,8 +708,19 @@ export async function toolHistory(session, args) {
     .filter((p) => matchesKind(p, periods))
     .map((p) => ({ p, sel: select(p, basis, asOf) }))
     .filter((r) => r.sel);
-  const columns = ["end", "start", "val", "filed", "form", "accn", "changed", ...(s.multi ? ["tag"] : [])];
-  const shown = fit(picked.slice(0, limit).map(({ p, sel }) => [p.end, p.start, sel.v.val, sel.v.filed, sel.v.form, sel.v.accn, basis === "latest" && !asOf ? p.restated : sel.changedLater, ...(s.multi ? [tagName(sel.v.tag)] : [])]));
+  // The other vintage beside the one shown, so a question about either needs no second call: the
+  // latest value beside a first report, the first report beside a latest value. Never with as_of,
+  // where a later value would be look-ahead.
+  const latestBasis = basis === "latest" && !asOf, other = asOf ? null : latestBasis ? "first" : "latest";
+  const otherOf = (p, sel) => {
+    if (!other) return [];
+    const v = other === "first" ? p.vintages[0] : p.vintages[p.vintages.length - 1];
+    return v.val === sel.v.val ? [null, null] : [v.val, v.filed];
+  };
+  const columns = ["end", "start", "val", "filed", "form", "accn", "changed", ...(other ? [`${other}_val`, `${other}_filed`] : []), "change_pct", ...(s.multi ? ["tag"] : [])];
+  const rows = picked.slice(0, limit).map(({ p, sel }, i, all) => [p.end, p.start, sel.v.val, sel.v.filed, sel.v.form, sel.v.accn, latestBasis ? p.restated : sel.changedLater,
+    ...otherOf(p, sel), changePct(p, sel.v.val, all.slice(i + 1), periods), ...(s.multi ? [tagName(sel.v.tag)] : [])]);
+  const shown = fit(rows);
   return asText({
     ...head(e, asOf),
     concept: { name: s.name, label: s.label, unit: s.unit, units: s.units, tags: s.tags.map(tagName) },
@@ -701,9 +731,10 @@ export async function toolHistory(session, args) {
     columns,
     ...shown,
     ...(s.newer ? { newer_series: s.newer } : {}),
-    meaning: basis === "latest" && !asOf
-      ? "changed: the latest value differs from the period's first report."
-      : "changed: a filing after the one shown reported a different value for the period (restatements and vintages show which).",
+    meaning: (latestBasis
+      ? "changed: the latest value differs from the period's first report; first_val and first_filed give that first report."
+      : `changed: a filing after the one shown reported a different value for the period (restatements and vintages show which).${other ? " latest_val and latest_filed give the latest value when it differs." : ""}`) +
+      " change_pct: percent change of val from the same kind of period a year (or, for quarters, a quarter) earlier, against the earlier value's absolute size; null when that period is not in the rows.",
     limits: LIMITS,
   });
 }

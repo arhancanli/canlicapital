@@ -52,6 +52,14 @@ async function statementPages(session, cik, filing) {
   return { pages, index: `${base}/${filing.accessionNumber}-index.htm` };
 }
 
+// The multiplier a statement's title gives one kind of figure: "$ in Millions" is 1000000 for money,
+// "shares in Thousands" 1000 for share counts; no scale named means the figures are full amounts.
+const SCALES = { thousands: 1e3, millions: 1e6, billions: 1e9 };
+export function unitScale(units, what) {
+  const m = new RegExp(`${what} in (thousands|millions|billions)`, "i").exec(String(units ?? ""));
+  return m ? SCALES[m[1].toLowerCase()] : 1;
+}
+
 // Rows keyed by concept, the breakdown member they sit under ("Revenue" under "Product" is not
 // "Revenue" under "Service and Other") and the occurrence of that pair on the page, so filings that
 // relabel a line still join and a breakdown listed in another order still lands on the right line.
@@ -225,6 +233,8 @@ export async function financialStatements(session, args) {
     out[kind] = {
       title: joined[0].title,
       units: joined[0].units,
+      money_scale: unitScale(joined[0].units, "\\$"),
+      shares_scale: unitScale(joined[0].units, "shares"),
       columns: ["line", "concept", ...shown.map(columnLabel)],
       rows: rowsOut,
       ...(footnotes ? { footnotes } : {}),
@@ -242,7 +252,7 @@ export async function financialStatements(session, args) {
     ...(otherBasis.length ? { other_basis: { note: "Periods only an older filing covers, on lines that filing reports differently for the periods both cover: they are on another basis (before a split, restatement or reclassification), so they are listed here and left out of the table.", columns: ["statement", "line", "period", "value_as_filed", "filing"], rows: otherBasis } } : {}),
     ...(splits.size ? { splits: [...splits] } : {}),
     ...(notJoined.length ? { not_joined: { note: "These filings present the statement in other units, so their numbers were not joined; read them with accession.", rows: notJoined } } : {}),
-    units_note: "Values are as each statement shows them: units gives the scale of money and shares (\"$ in Millions\"); per-share amounts, percentages and rows labeled with their own unit are not scaled.",
+    units_note: "Values are as each statement shows them: units gives the scale of money and shares (\"$ in Millions\"), and money_scale and shares_scale are the multipliers to full amounts (a money value of 705 with money_scale 1000000 is 705000000); per-share amounts, percentages and rows labeled with their own unit are not scaled. Signs are as the statement presents them: a line shown negated (a cash outflow, an increase in receivables in the cash flow statement) has the opposite sign in its XBRL fact, which the fundamentals history tool returns.",
     limits: [
       "From the XBRL statements the company filed, as SEC renders them; Canli Capital does not edit or verify them. Labels are the company's own.",
       ...(period === "quarterly" ? ["A 10-Q holds the quarter and the year to date (cash flows are usually year to date only); the fourth quarter is in the 10-K, as the year."] : []),

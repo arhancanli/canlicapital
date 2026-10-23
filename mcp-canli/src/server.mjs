@@ -43,9 +43,19 @@ export const ENTRIES = INDEX.tools.map(([name, pack, toolset, title, description
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 const SEARCH = buildIndex(ENTRIES);
 
+// The most asked-for tools, which run_tool takes without a find_tool first: each saves the model a
+// search turn on the commonest questions. Only tools in enabled packs are named.
+const STARTS = [
+  ["fundamentals", "a company's SEC-reported figure over time: history {company, concept} (concept a plain name like revenue or an XBRL tag; basis first_reported or latest)"],
+  ["fundamentals", "figures as known on a date: known_as_of {company, as_of}"],
+  ["markets", "statements as filed: financial_statements {company}"],
+  ["markets", "filings and their text: list_filings, read_filing, search_filings"],
+  ["markets", "prices: price_history {symbol}; macro series: economic_series"],
+];
 export function instructions(packs) {
   const n = ENTRIES.filter((e) => packs.includes(e.pack)).length;
-  return `Canli Capital's finance tools in one server: ${n} tools in ${packs.length} packs (${packs.join(", ")}). Call find_tool with what you need in plain words; its results include each tool's arguments, so you can usually call run_tool next (describe_tool explains arguments in full). To save tokens: pass long data as {"$file": "path.csv", "column": "close"} instead of pasting numbers; put several calls in one run_tool, using {"$result": i, "path": "field"} to feed one call's output into the next, and return: "last" when only the final answer matters. Returns are simple fractions (0.01 = 1%), oldest first. canli://privacy says what each pack sends and stores.${packs.includes("markets") ? " Before answering with a company's reported figures, check them with verify_claims: each comes back confirmed, contradicted (with the filed figure) or not reported." : ""}`;
+  const starts = STARTS.filter(([pack]) => packs.includes(pack)).map(([, text]) => text);
+  return `Canli Capital's finance tools in one server: ${n} tools in ${packs.length} packs (${packs.join(", ")}). ${starts.length ? `Call these with run_tool directly: ${starts.join("; ")}. For anything else, call` : "Call"} find_tool with what you need in plain words; its results include each tool's arguments, so you can usually call run_tool next (describe_tool explains arguments in full). To save tokens: pass long data as {"$file": "path.csv", "column": "close"} instead of pasting numbers; put several calls in one run_tool, using {"$result": i, "path": "field"} to feed one call's output into the next, and return: "last" when only the final answer matters. Returns are simple fractions (0.01 = 1%), oldest first. canli://privacy says what each pack sends and stores.${packs.includes("markets") ? " Before answering with a company's reported figures, check them with verify_claims: each comes back confirmed, contradicted (with the filed figure) or not reported." : ""}`;
 }
 
 const sha256 = (v) => createHash("sha256").update(JSON.stringify(v)).digest("hex");
