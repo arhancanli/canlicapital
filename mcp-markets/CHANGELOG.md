@@ -14,6 +14,8 @@
   8-K the evening before).
 - `portfolio_xray`: a portfolio's ETFs and funds opened into their latest N-PORT positions and added
   to the stocks held directly: real exposure per company, overlap between funds, effective positions.
+- `funding_rates`: crypto perpetual funding on OKX, no key: latest rate, annualized carry over a
+  window and the last week, and the share of positive periods.
 - `forensic_scores`: Beneish's M-score, Piotroski's F-score and Altman's Z-score from the company's
   own annual XBRL in one call, each input with its tag.
 - `ownership_breadth`: how many 13F filers hold a stock each quarter (its CUSIP found from a 13F
