@@ -87,6 +87,15 @@ reported whatever it shows:
 
 Exploratory, with no test: tool-arm accuracy on answerable fresh items against v0.
 
+**Amendment 1 (2026-10-23, before any extension run had completed).** (a) The OpenAI runs could
+not be made: the first request returned `credit_balance_exhausted`, so nothing was billed and no
+OpenAI run exists. The extension is Gemma 4 12B alone; every test above is computed on its runs,
+and H5 compares its fresh run with its own v0 run. (b) Gemma's first v0 run was stopped unfinished
+and discarded: another job on the machine loads the same model at a 16,384-token context, and the
+32,768-token default reloaded the model on every request. Gemma now runs through Ollama's native
+endpoint at 16,384 tokens; a turn whose prompt reaches 95% of that is logged, and the count is
+reported with the results.
+
 ## Limits
 
 - A match shows where a number could have come from. It does not show that the model looked it up.
