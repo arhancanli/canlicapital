@@ -21,13 +21,14 @@ import { ledgerDir, recordTrial } from "canli-validation-mcp/src/ledger.mjs";
 
 import { agreementInput, annotationAgreement, annotationGold, annotationPacket, goldInput, packetInput } from "./annotate.mjs";
 import { BREADTH_LIMITS_TEXT, effectiveBets, runBreadth, signalCatalog } from "./breadth.mjs";
+import { buildPanel, panelInput } from "./panel.mjs";
 import { ENGINE_LIMITS_TEXT, describe, runBacktest } from "./engine.mjs";
 import { readPanel, writePanel } from "./panel-io.mjs";
 import { FACTORS, PIT_LIMITS_TEXT, buildFactorPanel } from "./pit.mjs";
 
 export const SERVER_NAME = "canli-backtest-mcp";
 export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
-export const SERVER_INSTRUCTIONS = "Backtests that refuse lookahead. Build a point-in-time factor from SEC filings with pit_factor (or bring your own signal CSV, each row dated when it was known), then run backtest_signal against your own prices CSV. Pass the same ledger name to every backtest_signal call in one search: the reply judges the best variant against all of them. For breadth, breadth_book builds a sleeve for every signal in every industry from one price panel and trades them as one netted account; effective_bets counts the independent bets in any set of return series. For datasets, annotation_packet, annotation_agreement and annotation_gold turn figures into a gold set people have checked against the filings.";
+export const SERVER_INSTRUCTIONS = "Backtests that refuse lookahead. Build a point-in-time factor from SEC filings with pit_factor (or bring your own signal CSV, each row dated when it was known), then run backtest_signal against your own prices CSV. Pass the same ledger name to every backtest_signal call in one search: the reply judges the best variant against all of them. For breadth, price_panel builds a free price panel (an index fund's holdings, prices, dollar volume and industries), breadth_book builds a sleeve for every signal in every industry from one price panel and trades them as one netted account; effective_bets counts the independent bets in any set of return series. For datasets, annotation_packet, annotation_agreement and annotation_gold turn figures into a gold set people have checked against the filings.";
 export const SERVER_INFO = Object.freeze({
   name: SERVER_NAME,
   version: SERVER_VERSION,
@@ -107,6 +108,7 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   annotation_packet: "Start a labelled dataset: figures (company, measure, period, value) are checked by machine against the SEC filings and written as blind CSV packets for two or more people to label, with guidelines and a key holding the machine labels.",
   annotation_agreement: "Read filled annotation packets: how often the people agree (Cohen's kappa), how often they agree with the machine, and every disagreement.",
   annotation_gold: "Merge filled annotation packets and a reviewer's decisions into a gold dataset (JSONL: each item's label, who decided it, the machine label and source) with a datasheet of agreement and hashes.",
+  price_panel: "Build a price panel from free sources for breadth_book or backtest_signal: the tickers you name or an index fund's current holdings, daily adjusted closes and dollar volume, and each company's Fama-French industry from its SEC SIC code, written as CSV files.",
   effective_bets: "How many independent bets a set of return series holds: the participation ratio of their weekly correlations (n for unrelated series, 1 for copies), and with families, the families' bets and the ideas they cluster into.",
   list_factors: "The point-in-time factors pit_factor builds from SEC filings, and what each measures.",
   pit_factor: `Build a factor from SEC filings for a list of tickers, monthly from start to end, using only what had been filed by each date (restatements invisible until filed). Writes a signal CSV for backtest_signal. ${PIT_LIMITS_TEXT[0]}`,
@@ -220,6 +222,7 @@ export function registerTools(server, session) {
   tool("list_factors", "Point-in-time factors", z.object({}).strict(), READ_ONLY, async () => text({ factors: Object.fromEntries(Object.entries(FACTORS).map(([k, v]) => [k, v.meaning])), plus: "level:<measure> for any annual measure (revenue, net_income, assets, equity, operating_cash_flow, ...)", limits: PIT_LIMITS_TEXT }));
   tool("pit_factor", "Build a point-in-time factor", pitInput, { ...WRITES_LOCAL, openWorldHint: true }, (args) => toolPitFactor(session, args));
   tool("backtest_signal", "Backtest a signal without lookahead", backtestInput, WRITES_LOCAL, (args) => toolBacktestSignal(session, args));
+  tool("price_panel", "Build a price panel", panelInput, { ...WRITES_LOCAL, openWorldHint: true }, async (args) => text(await buildPanel(session.markets ??= marketsSession(), args)));
   tool("breadth_signals", "Breadth lab signals", z.object({}).strict(), READ_ONLY, async () => text({ signals: signalCatalog(), next: "breadth_book with your prices_file (and groups_file, dollar_volume_file) builds a sleeve per signal per group.", limits: BREADTH_LIMITS_TEXT }));
   tool("breadth_book", "Breadth book of sleeves", breadthInput, WRITES_LOCAL, (args) => toolBreadthBook(session, args));
   tool("effective_bets", "Effective independent bets", betsInput, READ_ONLY, (args) => toolEffectiveBets(args));
