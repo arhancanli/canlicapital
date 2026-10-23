@@ -14,6 +14,8 @@
   8-K the evening before).
 - `portfolio_xray`: a portfolio's ETFs and funds opened into their latest N-PORT positions and added
   to the stocks held directly: real exposure per company, overlap between funds, effective positions.
+- `forensic_scores`: Beneish's M-score, Piotroski's F-score and Altman's Z-score from the company's
+  own annual XBRL in one call, each input with its tag.
 - `ownership_breadth`: how many 13F filers hold a stock each quarter (its CUSIP found from a 13F
   table that names it), with the change; a fall in breadth predicted lower returns in the literature.
 - `debt_profile`: total and net debt, the maturity ladder from the debt note, lease payments, and

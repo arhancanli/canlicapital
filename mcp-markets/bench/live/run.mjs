@@ -12,6 +12,7 @@ import { portfolioXray } from "../../src/xray.mjs";
 import { comps } from "../../src/comps.mjs";
 import { debtProfile } from "../../src/credit.mjs";
 import { ownershipBreadth } from "../../src/breadth.mjs";
+import { forensicScores } from "../../src/forensic.mjs";
 
 const s = createSession();
 const day = (k) => new Date(Date.now() - k * 86400000).toISOString().slice(0, 10);
@@ -26,6 +27,7 @@ const CHECKS = [
   ["comps", () => comps(s, { company: "NVDA", peers: 5 }), (r) => r.rows.length >= 4 && r.rows[0][0] === "NVDA" && r.company.sic === "3674"],
   ["debt_profile", () => debtProfile(s, { company: "T" }), (r) => r.debt.total > 5e10 && r.maturities.ladder_total > 0 && r.cost_and_cover.interest_coverage > 0],
   ["ownership_breadth", () => ownershipBreadth(s, { company: "AAPL", quarters: 2 }), (r) => r.cusip === "037833100" && r.rows[1][3] > 3000],
+  ["forensic_scores", () => forensicScores(s, { company: "CAT" }), (r) => Number.isFinite(r.beneish.m_score) && Number.isInteger(r.piotroski.f_score) && Number.isFinite(r.altman.z_score)],
   ["screen_window", () => screenCompanies(s, { fiscal_year_end: [day(500), day(120)], filters: [{ metric: "revenue", op: ">", value: 1e11 }], limit: 50 }), (r) => r.matched >= 10 && r.rows.every((x) => x[4] >= day(500) && x[4] <= day(120))],
 ];
 let failed = 0;
