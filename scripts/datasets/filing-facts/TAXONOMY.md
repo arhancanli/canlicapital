@@ -154,6 +154,51 @@ tool runs mostly ended at the six-turn limit, often after it guessed an unknown 
 A run that fails for a reason outside the model (machine, Ollama, network) is rerun from the start
 and the failure reported. Turns that reach 95% of the context are counted and reported.
 
+## Pre-registration for the DeepSeek runs (2026-10-23)
+
+Fixed in this commit, before any of these runs was made. The extension and large-company rounds
+ran one small open-weight model, because the OpenAI and Anthropic accounts had no usable credit
+that day. This round adds a stronger hosted model that the owner funded for the papers: DeepSeek's
+`deepseek-flash` (served as DeepSeek-V4.1-Flash-1017), through DeepSeek's OpenAI-compatible API with
+thinking off, temperature 0 and a 3,000-token answer cap, the same prompts and the same six-turn
+limit. The tool arm uses the name-lookup tool (commit a2c4c5b2). Only items already published in
+this release, or built from public filings in the rounds above, are sent; no held-out item is.
+
+- **Runs, in this order** (`run_deepseek.sh`, this commit): closed-book on v0 (150 items, seed
+  20260926), the large set (150, seed 20261024), the restatement set (60, seed 20261023) and the fresh
+  set (75, seed 20261023); then the same four with the tool. The samples are the ones the earlier
+  rounds used.
+- **Then, only if the balance allows,** `deepseek-v4-pro` closed-book on the same four sets, as a
+  secondary replication of the closed-book tests.
+- **Spend.** The account held USD 5.65. Before each run the script reads the balance and skips the
+  run if it is below USD 0.40 for a closed-book run or USD 1.20 for a tool run (about twice the
+  estimate from earlier runs' token counts at USD 0.30 per million input and USD 1.20 per million
+  output tokens). Skipped runs are reported. A run that fails for a reason outside the model
+  (network, provider error) is rerun from the start and the failure reported.
+
+`confirm-deepseek.mjs` (this commit) computes every test on `deepseek-flash` at alpha 0.05 and
+reports it whatever it shows:
+
+- **D1.** Closed-book, v0, fresh and large sets pooled: more than half of wrong numbers are
+  `unsupported` (one-sided exact binomial against 0.5).
+- **D2.** Closed-book, all four sets pooled: wrong numbers match their own company's history more
+  often than a decoy's (one-sided exact McNemar).
+- **D3.** Unsupported plus `invented_*` answers per item are fewer with the tool than closed-book,
+  pooled over the four sets (one-sided Fisher exact), with the count per set reported.
+- **D4.** On restatement items, closed-book answers equal to the revised figure outnumber those equal
+  to the first-reported one (one-sided exact binomial on the two counts). This is H4 on a stronger
+  model; Gemma 4 12B gave neither.
+- **D5.** Closed-book correct numbers per answerable item are higher on v0 than on the fresh set
+  (one-sided Fisher exact). This is H5 on a stronger model.
+- **D6.** Closed-book correct numbers per answerable item are higher on the large set than on v0
+  (one-sided Fisher exact). This is H6.
+- **D7.** Closed-book wrong numbers that equal a reported value are a larger share on the large set
+  than on v0 (one-sided Fisher exact). This is H7.
+
+Reported with no test: tool-arm accuracy on answerable items and the number of tool runs that
+reached the six-turn limit, per set. If `deepseek-v4-pro` runs, D1, D2 and D4 to D7 are computed
+again on it and labelled secondary.
+
 ## Limits
 
 - A match shows where a number could have come from. It does not show that the model looked it up.

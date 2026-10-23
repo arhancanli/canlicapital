@@ -4,7 +4,8 @@
 //   node scripts/datasets/filing-facts/eval.mjs <items.jsonl> <out.json> --arm closed|mcp [--per-template 30] [--model gpt-5.4-mini]
 // A model id starting "claude-" runs through the Anthropic API with the same prompts, tools,
 // six-turn limit and capture record; "ollama/<name>" runs an open-weight model locally through
-// Ollama (no key, thinking off, temperature 0); any other id runs through OpenAI.
+// Ollama (no key, thinking off, temperature 0); "deepseek/<name>" runs through DeepSeek's
+// OpenAI-compatible API (thinking off, temperature 0); any other id runs through OpenAI.
 import { closeSync, openSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, resolve } from "node:path";
@@ -92,6 +93,7 @@ const SYSTEM_MCP = "You are a financial analyst with a tool that returns a compa
 
 async function chat(model, messages, tools) {
   if (model.startsWith("ollama/")) return ollamaChat(model.slice(7), messages, tools);
+  if (model.startsWith("deepseek/")) return deepseekChat(model.slice(9), messages, tools);
   const key = readFileSync(resolve(homedir(), ".config/canli/openai_benchmark_key"), "utf8").trim();
   for (let attempt = 0; ; attempt++) {
     const res = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -102,6 +104,24 @@ async function chat(model, messages, tools) {
     const body = await res.json();
     if (res.status === 429 && attempt < 12) { await new Promise((r) => setTimeout(r, 5000 * (attempt + 1))); continue; }
     if (!res.ok) throw new Error(`OpenAI HTTP ${res.status}: ${body?.error?.message ?? "error"}`);
+    return body;
+  }
+}
+
+// DeepSeek speaks the OpenAI chat format; thinking is a request field, turned off here so the
+// model answers in one pass like the closed-book OpenAI runs. 429 and 503 mean busy, so retry.
+export async function deepseekChat(model, messages, tools, { request = fetch, key = null } = {}) {
+  key ??= readFileSync(resolve(homedir(), ".config/deepseek/api-key"), "utf8").trim();
+  for (let attempt = 0; ; attempt++) {
+    const res = await request("https://api.deepseek.com/chat/completions", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ model, messages, thinking: { type: "disabled" }, temperature: 0, max_tokens: 3000,
+        ...(tools ? { tools, tool_choice: "auto" } : {}) }),
+    });
+    const body = await res.json();
+    if ([429, 503].includes(res.status) && attempt < 12) { await new Promise((r) => setTimeout(r, 5000 * (attempt + 1))); continue; }
+    if (!res.ok) throw new Error(`DeepSeek HTTP ${res.status}: ${body?.error?.message ?? "error"}`);
     return body;
   }
 }
@@ -221,7 +241,7 @@ async function main() {
   if (!itemsFile || !outFile) throw new RangeError("usage: eval.mjs items.jsonl out.json --arm closed|mcp [--per-template 30] [--seed 20260926] [--model gpt-5.4-mini]");
   const model = arg("model", "gpt-5.4-mini"), arm = arg("arm", "closed"), perTemplate = Number(arg("per-template", "30")), seed = Number(arg("seed", "20260926"));
   if (!["closed", "mcp"].includes(arm) || !model?.trim()) throw new RangeError("arm must be closed or mcp and model must be nonempty");
-  const provider = model.startsWith("claude-") ? "anthropic" : model.startsWith("ollama/") ? "ollama" : "openai";
+  const provider = model.startsWith("claude-") ? "anthropic" : model.startsWith("ollama/") ? "ollama" : model.startsWith("deepseek/") ? "deepseek" : "openai";
   const { CAPTURE_SCHEMA, evaluateCapture, readDataset } = await import("./evidence.mjs");
   const bytes = readFileSync(itemsFile), dataset = readDataset(bytes);
   const sample = stratifiedSample(dataset.items, perTemplate, seed);

@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { behaviour, runClaudeItem, runItem, scoreAnswer, stratifiedSample } from "./eval.mjs";
+import { behaviour, deepseekChat, runClaudeItem, runItem, scoreAnswer, stratifiedSample } from "./eval.mjs";
 
 const item = (kind, value) => ({ answer: { kind, value, unit: kind === "number" ? "USD" : kind } });
 
@@ -135,4 +135,22 @@ test("a Claude refusal is recorded as an error, never as an answer", async () =>
     request: async () => ({ id: "r", stop_reason: "refusal", usage: { input_tokens: 1, output_tokens: 0 }, content: [] }) });
   assert.equal(run.response_text, null);
   assert.equal(run.error, "Refused by the model");
+});
+
+test("the DeepSeek adapter sends the OpenAI chat shape with thinking off and reports HTTP errors", async () => {
+  const sent = [];
+  const ok = async (url, init) => { sent.push({ url, body: JSON.parse(init.body), auth: init.headers.Authorization });
+    return { ok: true, status: 200, json: async () => ({ id: "fixture", choices: [{ message: { role: "assistant", content: "ANSWER: 1" } }] }) }; };
+  const tools = [{ type: "function", function: { name: "fixture_lookup", parameters: {} } }];
+  const out = await deepseekChat("deepseek-flash", [{ role: "user", content: "Synthetic" }], tools, { request: ok, key: "fixture-key" });
+  assert.equal(out.choices[0].message.content, "ANSWER: 1");
+  assert.equal(sent[0].url, "https://api.deepseek.com/chat/completions");
+  assert.equal(sent[0].auth, "Bearer fixture-key");
+  assert.deepEqual(sent[0].body.thinking, { type: "disabled" });
+  assert.equal(sent[0].body.model, "deepseek-flash"); assert.equal(sent[0].body.temperature, 0);
+  assert.deepEqual(sent[0].body.tools, tools);
+  await deepseekChat("deepseek-flash", [], undefined, { request: ok, key: "fixture-key" });
+  assert.equal(Object.hasOwn(sent[1].body, "tools"), false);
+  const bad = async () => ({ ok: false, status: 402, json: async () => ({ error: { message: "Insufficient Balance" } }) });
+  await assert.rejects(deepseekChat("deepseek-flash", [], undefined, { request: bad, key: "fixture-key" }), /DeepSeek HTTP 402: Insufficient Balance/);
 });
