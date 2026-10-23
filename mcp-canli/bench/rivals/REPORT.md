@@ -121,3 +121,13 @@ OpenAI-style client sends tools. Measured 2026-10-10 (`context-2026-10-10.json`)
 | EdgarTools | 13 | 3,801 | 1.6 |
 | Yahoo Finance MCP | 9 | 2,205 | 1.4 |
 
+
+## Held-out and frontier runs on DeepSeek (planned 2026-10-23, before any run)
+
+The OpenAI account had no credit, so the held-out set (`tasks_fresh.json`, 24 questions written after
+the fixes and never used for tuning) and the frontier set (`tasks_frontier.json`, 10 questions) run
+on `deepseek-flash` (DeepSeek-V4.1-Flash-1017, thinking off, temperature 0) through DeepSeek's
+OpenAI-compatible API, with everything else as above. Arms: **canli-0.6.0** (the flagship as
+published on npm, installed unchanged), openbb, edgartools, yahoo and edgartools+yahoo, one run per
+question per arm first, a second run if the budget allows. Results go to `results-deepseek.jsonl`
+and are reported whatever they show; the 2026-10-09 truths and prompt date stay unchanged.
