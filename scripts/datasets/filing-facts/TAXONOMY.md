@@ -111,6 +111,49 @@ reported with the results.
 - Turns that reached 95% of the 16,384-token context: tool arm 10, 1 and 10 (v0, restatement,
   fresh); closed-book none.
 
+## Pre-registration for the large-company and name-lookup runs (2026-10-24)
+
+Fixed in this commit, before any of these runs was made. Two reviewer concerns motivate it: the v0
+companies are mostly small, so closed-book models answer almost nothing correctly; and Gemma 4 12B's
+tool runs mostly ended at the six-turn limit, often after it guessed an unknown ticker.
+
+- **Large set.** 60 large, widely covered US companies, listed before any item was made
+  (`tickers.txt`: AAPL MSFT NVDA AMZN GOOGL META TSLA AVGO BRK-B LLY JPM V UNH XOM WMT MA PG JNJ HD
+  COST ORCL ABBV MRK KO PEP CVX BAC ADBE CRM NFLX AMD CSCO MCD TMO INTC IBM QCOM TXN AMGN CAT GS MS
+  WFC C AXP BA HON GE DIS NKE MMM UPS LOW SBUX PFE T VZ CMCSA SHW TRV). Each company's published
+  reference record and the SEC companyfacts snapshot it cites (hash checked) were fetched on
+  2026-10-23; `generate.mjs --per-company 5 --seed 20261024` made 262 items, all accepted by the
+  checker (`filing-facts-large.jsonl`, SHA-256 `df535e43...3e`). Runs sample 30 per template with
+  seed 20261024.
+- **Name lookup.** `company_financial_history` now also takes a company name, resolved through the
+  release's published name index (exact match after removing case, punctuation and legal form, then
+  a unique match on the start of the name; several matches are listed, never guessed). Commit
+  a2c4c5b2.
+- **Runs**, all Gemma 4 12B through Ollama as in Amendment 1 (16,384-token context, thinking off,
+  temperature 0): large set closed-book; large set with the ticker-only tool (code d61b857c);
+  large set with the name-lookup tool (this branch); the 150 v0 items with the name-lookup tool.
+  Earlier Gemma runs (v0 closed-book and ticker-only tool) are reused from the 2026-10-23 extension.
+
+`confirm-large.mjs` (this commit) computes every test at alpha 0.05 and reports it whatever it shows:
+
+- **H6.** Closed-book correct numbers per answerable item are higher on the large set than on v0
+  (one-sided Fisher exact).
+- **H7.** Closed-book wrong numbers that equal a reported value (superseded version, other period,
+  other line item, sign, scale or percent slip) are a larger share on the large set than on v0
+  (one-sided Fisher exact): when a model knows a company, its wrong numbers are more often real
+  figures misplaced.
+- **H1''.** On the large set, closed-book, more than half of wrong numbers are `unsupported`
+  (one-sided exact binomial against 0.5).
+- **H2''.** On the large set, closed-book, wrong numbers match their own company's history more
+  often than a decoy's (one-sided exact McNemar).
+- **H8.** Paired by item and pooled over v0 and the large set, fewer items reach the six-turn limit
+  with the name-lookup tool than with the ticker-only tool (one-sided exact McNemar).
+- **H9.** Paired the same way, more answerable items are correct with the name-lookup tool
+  (one-sided exact McNemar).
+
+A run that fails for a reason outside the model (machine, Ollama, network) is rerun from the start
+and the failure reported. Turns that reach 95% of the context are counted and reported.
+
 ## Limits
 
 - A match shows where a number could have come from. It does not show that the model looked it up.
