@@ -576,7 +576,7 @@ export async function eventStudy(session, args) {
     average_path: { columns: ["day", "mean_ar", "mean_car"], rows: path },
     events: { columns: ["event", "event_time", "day0", "car", "ar_day0", "t_stat", "beta"], rows: per.map((p) => [p.label, p.at, p.t0, round(p.car, 6), round(p.ar0, 6), round(p.t, 3), round(p.beta, 3)]) },
     ...(skipped.length ? { skipped: { columns: ["event", "reason"], rows: skipped.slice(0, 20) } } : {}),
-    meaning: "Abnormal return = actual return minus the model's expected return; CAR sums it over the window. t_stat and p_value test whether the mean CAR across events differs from zero (cross-sectional t test). Returns are simple daily returns of adjusted closes.",
+    meaning: "Abnormal return = actual return minus the model's expected return; CAR sums it over the window. t_stat and p_value test whether the mean CAR across events differs from zero (cross-sectional t test). Returns are simple daily returns of adjusted closes. day0 is the first session that could react to a filing: its own day if accepted before the 4 p.m. New York close on a trading day, else the next session (event_time is UTC); dates passed in events are used as day0 as given.",
     ...(source ? { sources: [source] } : {}),
     ...(eventTimes ? { event_times: eventTimes } : {}),
     price_source: ps.source,
