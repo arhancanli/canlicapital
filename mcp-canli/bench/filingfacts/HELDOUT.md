@@ -126,3 +126,11 @@ funding_rates, and price_panel and annotation from a draft in the backtest pack 
 check that a larger catalog does not cost plain questions. v0 items outside every earlier sample,
 40 per template, seed 20261130 (200 items); arms canli-mcp 0.6.0 and this branch at 08cdd461;
 reported as in rounds 4 to 6. (Committed locally first; pushed after the CI run in progress.)
+
+## Round 7 results (2026-10-24 ~04:00 Dubai)
+
+v0 (200 items): 0.6.0 0.870 (answerable 141/160, unanswerable 33/40, 13 at the limit, 13,021 tokens
+an item); branch 0.935 (149/160, 38/40, 2 at the limit, 11,350 tokens). Paired: right only with the
+branch 19, only with 0.6.0 6, one-sided exact McNemar p = 0.007. The larger catalog (332 tools) did
+not cost plain questions. Rounds 5 to 7 together (600 items, none seen before): branch 0.928 against
+0.868, 53 against 17.
