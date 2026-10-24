@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.2.0
 
 - The breadth lab: `breadth_signals` (24 cross-sectional signals with their sources),
   `breadth_book` (a sleeve for every signal in every group of names from your price panel, hedged

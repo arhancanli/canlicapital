@@ -1,6 +1,13 @@
 # Registry listings for CanliCapital MCP servers
 
-## Current distribution checkpoint: 2026-10-13 Dubai
+## Current distribution checkpoint: 2026-10-24 Dubai
+
+npm and official MCP Registry: canli-markets-mcp 0.6.0, canli-fundamentals-mcp 0.7.0,
+canli-backtest-mcp 0.2.0 and canli-mcp 0.7.0. `canli-validation-mcp@0.14.1`, research 0.3.1,
+quant 0.1.3 and paper trading 0.1.1 move to zod 4.6.7 (a high advisory in earlier zod) with no
+code change, so an installed canli-mcp audits clean.
+
+## Earlier checkpoint: 2026-10-13 Dubai
 
 Verified npm and official MCP Registry releases: validation 0.14.0, markets 0.3.0,
 fundamentals 0.6.0 and research 0.3.0. Validation's npm version is unchanged in this batch.

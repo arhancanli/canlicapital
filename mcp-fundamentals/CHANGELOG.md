@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.7.0
 
 - `history` returns the latest value by default (first-reported is `basis: "first_reported"`), and
   every row shows the other version when a later filing changed it, plus `change_pct` from the year

@@ -249,7 +249,7 @@ function admit(entries) {
   for(const[name,row]of entries) { assert.equal(row.mode,MODES[name],'MODE'); if(SOURCE_PINS[name.slice(8)])assert.equal(hash(row.bytes),SOURCE_PINS[name.slice(8)],'SOURCE'); assert.deepEqual(row.bytes,expectedBytes.get(name),'FROZEN_BYTES'); }
   const metadata=JSON.parse(entries.get('package/package.json').bytes);
   assert.deepEqual(metadata.bin,BIN,'BIN'); assert.deepEqual(metadata.files,FILES,'FILES');
-  assert.equal(metadata.name,'canli-fundamentals-mcp'); assert.equal(metadata.version,'0.6.0'); assert.equal(metadata.private,false);
+  assert.equal(metadata.name,'canli-fundamentals-mcp'); assert.equal(metadata.version,'0.7.0'); assert.equal(metadata.private,false);
   assert.deepEqual(metadata.dependencies,{'@modelcontextprotocol/server':'2.3.1',zod:'4.6.7','@modelcontextprotocol/client':'2.3.1'});
   return metadata;
 }

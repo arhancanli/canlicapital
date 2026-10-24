@@ -1,7 +1,16 @@
 # Changelog
 
-## Unreleased
+## 0.7.1
 
+- The packs move to zod 4.6.7 (validation 0.14.1, research 0.3.1, quant 0.1.3, paper trading
+  0.1.1; no code change), so an installed canli-mcp audits clean.
+
+## 0.7.0
+
+- Packs: canli-markets-mcp 0.6.0, canli-fundamentals-mcp 0.7.0 and canli-backtest-mcp 0.2.0 (332
+  tools). Five new prompts: `filing_changes`, `why_it_moved`, `portfolio_xray`,
+  `peers_and_red_flags` and `human_check`. Held out over rounds 5 to 7 (600 FilingFacts questions
+  never sampled before): 92.8% against 0.6.0's 86.8%.
 - `history` and `financial_statements` are listed as tools of their own beside the three discovery
   tools (`CANLI_FRONT`; empty restores three): one step instead of a search on the commonest
   questions. `run_tool` also runs `find_tool` and `describe_tool`. The instructions name the common
