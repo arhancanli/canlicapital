@@ -10,6 +10,8 @@
   company's.
 - `comment_letters`: SEC comment letters and replies grouped into reviews, with the topics of the
   newest letters and excerpts.
+- `bank_financials`: a US bank's quarterly call-report condition from the FDIC (uninsured deposits,
+  noncurrent loans, capital ratios, margin, returns), or the latest bank failures and their cost.
 - `reverse_dcf`: the free-cash-flow growth a share price implies, with a sensitivity table, the
   company's own growth, and every input's tag; `base: "average_3y"` smooths an unusual year.
 

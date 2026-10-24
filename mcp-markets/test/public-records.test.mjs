@@ -86,3 +86,25 @@ test("annual series come from the tag a company reports most recently", () => {
   assert.equal(s.tag, "RevenueFromContractWithCustomerExcludingAssessedTax");
   assert.deepEqual([...s.values.values()], [391, 416]);
 });
+
+test("bank_financials: the bank whose name holds the words, ratios computed, failures dated", async () => {
+  const { bankFinancials, bankWords, isoDate, pickBank } = await import("../src/banks.mjs");
+  assert.equal(bankWords("VALLEY NATIONAL BANCORP"), "VALLEY NATIONAL");
+  assert.equal(bankWords("ZIONS BANCORPORATION, N.A. /UT/"), "ZIONS");
+  assert.equal(isoDate("7/17/2026"), "2026-07-17");
+  const fuzzy = [{ NAME: "Fifth Third Bank, National Association", NAMEHCR: "FIFTH THIRD BCORP", ASSET: 299e6, CERT: 6672 }, { NAME: "Valley National Bank", NAMEHCR: "VALLEY NATIONAL BCORP", ASSET: 66e6, CERT: 9396 }];
+  assert.equal(pickBank(fuzzy, "VALLEY NATIONAL").CERT, 9396, "the larger bank the search ranked first does not hold the words");
+  assert.equal(pickBank([{ NAME: "First-Citizens Bank & Trust Company", ASSET: 1 }], "FIRST CITIZENS").NAME, "First-Citizens Bank & Trust Company");
+  const API = "https://api.fdic.gov/banks";
+  const inst = `${API}/institutions?${new URLSearchParams({ filters: "CERT:57512", fields: "NAME,CERT,NAMEHCR,CITY,STALP,ASSET,ACTIVE", limit: "1" })}`;
+  const fin = `${API}/financials?${new URLSearchParams({ filters: "CERT:57512", fields: "REPDTE,ASSET,DEP,DEPUNA,LNLSNET,NCLNLS,EQTOT,NETINC,ROA,ROE,NIMY,RBC1AAJ,RBCRWAJ,IDT1CER", sort_by: "REPDTE", sort_order: "DESC", limit: "1" })}`;
+  const extra = {
+    [inst]: { data: [{ data: { NAME: "Western Alliance Bank", CERT: 57512, NAMEHCR: "WESTERN ALLIANCE BCORP", CITY: "Phoenix", STALP: "AZ" } }] },
+    [fin]: { data: [{ data: { REPDTE: "20260630", ASSET: 98568765, DEP: 82322362, DEPUNA: 31358475, LNLSNET: 65087517, NCLNLS: 1849780, EQTOT: 8225700, NETINC: 561931, ROA: 1.1623, ROE: 14.37, NIMY: 3.5176, RBC1AAJ: 8.0796, RBCRWAJ: 13.4506, IDT1CER: 11.5823 } }] },
+  };
+  const r = await bankFinancials(session(extra), { cert: 57512, quarters: 1 });
+  const q = Object.fromEntries(r.columns.map((c, i) => [c, r.rows[0][i]]));
+  assert.equal(q.quarter_end, "2026-06-30");
+  assert.equal(q.uninsured_pct, 38.09); assert.equal(q.noncurrent_loans_pct, 2.84); assert.equal(q.tier1_leverage_pct, 8.08);
+  assert.equal(r.bank.place, "Phoenix, AZ");
+});
