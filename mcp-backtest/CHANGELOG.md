@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.3.0
 
 - `breadth_sweep`: a grid of breadth-book settings run in parallel on every core (or as shards other
   machines run, merged with checks on inputs, grid, gaps and duplicates); the best Sharpe is set

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.7.1
+
+- `history` lists `other_dates`: balances annual reports also carry on dates that are not year ends,
+  such as the opening balance after a new accounting standard (Booking's receivables on 2018-01-01)
+  or a transition period's end. They were left out because a 10-Q reported them first; they are
+  kept apart from the yearly rows so `change_pct` never uses them.
+- Plain names `long_term_debt` (LongTermDebt: the total, current portion included) and
+  `long_term_debt_noncurrent`.
+
 ## 0.7.0
 
 - `history` returns the latest value by default (first-reported is `basis: "first_reported"`), and

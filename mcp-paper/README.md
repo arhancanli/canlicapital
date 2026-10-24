@@ -53,7 +53,10 @@ against which limits (their hash), the verdict, the kill switch, the time, and c
 account's equity and positions, signed with an Ed25519 key made on your machine the first time
 (`CANLI_HOME/attest-ed25519.pem`, mode 0600; it never leaves the machine). Give
 `attest-ed25519.pub.pem` to an auditor or counterparty; `verify_attestation` checks a statement was
-signed by that key and not altered.
+signed by that key and not altered. On Node 24.7 or later each statement is also signed with an
+ML-DSA-65 key (FIPS 204, a post-quantum signature; `attest-ml-dsa-65.pem`), over the same statement
+naming both keys: give both public keys, and both signatures must hold, so a statement stays
+unforgeable even if one scheme is broken.
 
 Set `CANLI_PAPER_PRIVATE=1` and the model never sees the account's figures: `paper_account` returns
 commitments (SHA-256 of a random salt and the value) instead of equity, cash, buying power and

@@ -170,11 +170,18 @@ test("every check and send carries an attestation the trader's public key verifi
   try {
     const p = await s.broker.preview({ orders: [{ symbol: "AAPL", side: "buy", qty: 5 }] });
     assert.equal(p.attestation.kind, "pretrade"); assert.equal(p.attestation.accepted, true);
-    const pub = readFileSync(join(s.home, "attest-ed25519.pub.pem"), "utf8");
-    assert.equal(verifyAttestation(p.attestation, pub).valid, true);
-    assert.equal(verifyAttestation({ ...p.attestation, accepted: false }, pub).valid, false, "a changed verdict breaks the signature");
+    const pub = readFileSync(join(s.home, "attest-ed25519.pub.pem"), "utf8"), pq = readFileSync(join(s.home, "attest-ml-dsa-65.pub.pem"), "utf8");
+    assert.equal(p.attestation.v, 2); assert.equal(p.attestation.pq_alg, "ML-DSA-65");
+    const ok = verifyAttestation(p.attestation, pub, [], pq);
+    assert.equal(ok.valid, true, ok.reason); assert.deepEqual(ok.signatures, ["Ed25519", "ML-DSA-65"]);
+    assert.equal(verifyAttestation({ ...p.attestation, accepted: false }, pub, [], pq).valid, false, "a changed verdict breaks the signature");
+    assert.match(verifyAttestation(p.attestation, pub).reason, /ML-DSA-65/, "the post-quantum key is required");
+    const { pq_signature: _drop, ...edOnly } = p.attestation;
+    assert.equal(verifyAttestation(edOnly, pub, [], pq).valid, false, "dropping the post-quantum signature fails");
+    const other = p.attestation.pq_signature.startsWith("A") ? "B" : "A";
+    assert.equal(verifyAttestation({ ...p.attestation, pq_signature: other + p.attestation.pq_signature.slice(1) }, pub, [], pq).valid, false, "a forged post-quantum signature fails");
     const sent = await s.broker.send({ token: p.token });
-    assert.equal(sent.attestation.kind, "send"); assert.equal(verifyAttestation(sent.attestation, pub).valid, true);
+    assert.equal(sent.attestation.kind, "send"); assert.equal(verifyAttestation(sent.attestation, pub, [], pq).valid, true);
   } finally { s.done(); }
 });
 
@@ -192,9 +199,9 @@ test("private mode: the model sees commitments, not the account's figures, and t
     assert.ok(!JSON.stringify(r.rows).match(/\b9[0-9]\b/), "order sizes are not shown");
     assert.equal(r.rows[0][2], null);
     const opened = readFileSync(join(home, "commitments.jsonl"), "utf8").trim().split("\n").map((l) => JSON.parse(l)).find((c) => c.label === "equity" && c.commitment === r.attestation.account.equity);
-    const pub = readFileSync(join(home, "attest-ed25519.pub.pem"), "utf8");
-    const v = verifyAttestation(r.attestation, pub, [opened]);
+    const pub = readFileSync(join(home, "attest-ed25519.pub.pem"), "utf8"), pq = readFileSync(join(home, "attest-ml-dsa-65.pub.pem"), "utf8");
+    const v = verifyAttestation(r.attestation, pub, [opened], pq);
     assert.equal(v.valid, true); assert.deepEqual(v.opened, [{ label: "equity", value: 100000, matches: true }]);
-    assert.equal(verifyAttestation(r.attestation, pub, [{ ...opened, value: 1 }]).opened[0].matches, false, "a false value does not open the commitment");
+    assert.equal(verifyAttestation(r.attestation, pub, [{ ...opened, value: 1 }], pq).opened[0].matches, false, "a false value does not open the commitment");
   } finally { rmSync(home, { recursive: true, force: true }); }
 });

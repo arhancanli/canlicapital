@@ -1,6 +1,13 @@
 # Changelog
 
-## Unreleased
+## 0.3.0
+
+- Attestations are signed twice on Node 24.7+: Ed25519 and post-quantum ML-DSA-65 (FIPS 204), over
+  the same statement naming both keys (`v: 2`, `pq_key_id`, `pq_signature`); `verify_attestation`
+  requires both to hold (`pq_public_key_pem`, default `CANLI_HOME/attest-ml-dsa-65.pub.pem`).
+  Attestations from 0.2.0 still verify with the Ed25519 key alone.
+
+## 0.2.0
 
 - Every preview, rebalance and send returns an Ed25519-signed attestation (orders, limits and
   verdict hashed, account committed); `verify_attestation` checks one offline, and opens commitments.
@@ -11,7 +18,7 @@
 
 - zod 4.6.7 (a high advisory in earlier zod: memory exhaustion on oversized constrained collections). No code change.
 
-## Unreleased
+## 0.2.0
 
 ## 0.1.0
 

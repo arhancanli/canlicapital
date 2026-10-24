@@ -1,6 +1,13 @@
 # Changelog
 
-## Unreleased
+## 0.7.1
+
+- `compute_prices`: compute as a market. The on-demand hourly price of each data-centre GPU (B200,
+  H200, H100, A100, L40S...) across the clouds and GPU marketplaces, every provider's offer for one
+  model, recent list-price changes, and the Cirrun GPU Index, a daily chained index of those prices
+  (cirrun.com, no key, CC BY 4.0). 62 tools.
+
+## 0.7.0
 
 - `ipo_pipeline`: S-1/F-1 registrations (IPO candidates, SPACs, funds, listed filers) and priced IPOs
   with price, shares and proceeds from the prospectus cover.
