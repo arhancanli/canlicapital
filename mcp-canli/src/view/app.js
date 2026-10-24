@@ -1,21 +1,32 @@
 // The viewer in the host's sandboxed frame (MCP Apps, 2026-01-26): the ui/initialize handshake,
 // the theme the host sends, the tool's input and result, and the frame's height reported back.
-// Rendering is render.js, placed before this script in the same page.
+// Rendering is render.js and studio.js, placed before this script in the same page. Interactive
+// views reach the server only through the host: tools/call (which the host may ask the person to
+// allow), ui/message (a message in the conversation) and ui/update-model-context (what the model
+// knows of the view next turn).
 (function () {
   const root = document.getElementById("root");
-  let nextId = 1, input = {};
+  let nextId = 1, input = {}, hostCaps = {};
   const pending = new Map();
   // The host is the window that framed this page. Its origin is learnt from its answer to the
   // handshake; after that, messages from any other origin are ignored and replies go only there.
   // (A host whose own frame is sandboxed has the opaque origin "null", which cannot be targeted.)
   let hostOrigin = null;
   const send = (msg) => window.parent.postMessage(msg, hostOrigin && hostOrigin !== "null" ? hostOrigin : "*");
-  const request = (method, params) => new Promise((resolve, reject) => {
+  const request = (method, params, wait = 10000) => new Promise((resolve, reject) => {
     const id = nextId++;
     pending.set(id, { resolve, reject });
     send({ jsonrpc: "2.0", id, method, params });
-    setTimeout(() => { if (pending.has(id)) { pending.delete(id); reject(new Error(`${method} timed out`)); } }, 10000);
+    setTimeout(() => { if (pending.has(id)) { pending.delete(id); reject(new Error(`${method} timed out`)); } }, wait);
   });
+  // A tool call can wait on the network and on the person allowing it.
+  const host = {
+    get canCall() { return Boolean(hostCaps.serverTools); },
+    canMessage: true,
+    call: (name, args) => request("tools/call", { name, arguments: args }, 120000),
+    message: (text) => request("ui/message", { role: "user", content: { type: "text", text } }, 30000),
+    context: (text) => request("ui/update-model-context", { content: [{ type: "text", text }] }).catch(() => {}),
+  };
   const theme = (ctx) => {
     if (!ctx) return;
     if (ctx.theme) document.documentElement.dataset.theme = ctx.theme;
@@ -30,7 +41,9 @@
       } else {
         let data = result && result.structuredContent;
         if (data === undefined && result && result.content && result.content[0] && result.content[0].type === "text") { try { data = JSON.parse(result.content[0].text); } catch { data = result.content[0].text; } }
+        studioReset(input);
         root.innerHTML = renderRunResult(data, input);
+        mountStudio(root, host);
       }
     } catch (err) {
       root.innerHTML = `<p class="error">This result could not be drawn: ${esc(err && err.message)}</p>`;
@@ -58,6 +71,6 @@
   });
   if (typeof ResizeObserver === "function") new ResizeObserver(report).observe(document.documentElement);
   request("ui/initialize", { protocolVersion: "2026-01-26", appInfo: { name: "canli-view", version: "1" }, appCapabilities: { availableDisplayModes: ["inline", "fullscreen"] } })
-    .then((r) => { theme(r && r.hostContext); send({ jsonrpc: "2.0", method: "ui/notifications/initialized", params: {} }); })
+    .then((r) => { hostCaps = (r && r.hostCapabilities) || {}; theme(r && r.hostContext); send({ jsonrpc: "2.0", method: "ui/notifications/initialized", params: {} }); })
     .catch(() => send({ jsonrpc: "2.0", method: "ui/notifications/initialized", params: {} }));
 })();

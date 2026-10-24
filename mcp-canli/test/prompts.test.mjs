@@ -17,9 +17,13 @@ test("every prompt offered asks only for calls its tools accept", async () => {
   const offered = availablePrompts(BY_NAME, ALL);
   assert.ok(offered.length >= 3, `${offered.length} prompts offered`);
   for (const [name, p] of offered) {
-    for (const call of p.calls(argsFor(p))) {
+    for (const [i, call] of p.calls(argsFor(p)).entries()) {
       const tool = (await loadPack(BY_NAME.get(call.name).pack)).get(call.name);
-      const parsed = tool.input.safeParse(call.arguments);
+      // An argument fed from an earlier call's result ({"$result": k}) names an earlier call; the
+      // rest are checked against the schema.
+      const refs = Object.entries(call.arguments).filter(([, v]) => v && typeof v === "object" && "$result" in v);
+      for (const [k, v] of refs) assert.ok(Number.isInteger(v.$result) && v.$result < i, `${name}: ${call.name}.${k} refers to call ${v.$result}`);
+      const parsed = (refs.length ? tool.input.omit(Object.fromEntries(refs.map(([k]) => [k, true]))) : tool.input).safeParse(Object.fromEntries(Object.entries(call.arguments).filter(([k]) => !refs.some(([r]) => r === k))));
       assert.ok(parsed.success, `${name}: ${call.name} ${JSON.stringify(call.arguments)}: ${parsed.error?.issues?.map((i) => i.message).join("; ")}`);
     }
     const text = p.ask(argsFor(p));

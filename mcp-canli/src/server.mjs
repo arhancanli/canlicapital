@@ -29,7 +29,7 @@ import { OMITTED, PACKS, PLUGINS, RENAMES, enabledPacks, loadPack, loadPlugins, 
 import { signature } from "./signature.mjs";
 import { buildIndex, search } from "./search.mjs";
 import { registerPrompts } from "./prompts.mjs";
-import { registerView, VIEW_URI } from "./view.mjs";
+import { clientDrawsApps, registerView, VIEW_URI } from "./view.mjs";
 import { registerPackGuides } from "./guides.mjs";
 import { governance, publicKeys, verifyAudit } from "./governance.mjs";
 import { watchFilings } from "./watch.mjs";
@@ -71,13 +71,16 @@ const STARTS = [
 export function instructions(packs, front = []) {
   const n = ENTRIES.filter((e) => packs.includes(e.pack)).length;
   const starts = STARTS.filter(([pack]) => packs.includes(pack)).map(([, text]) => text);
-  return `Canli Capital's finance tools in one server: ${n} tools in ${packs.length} packs (${packs.join(", ")}). ${front.length ? `${front.join(" and ")} ${front.length > 1 ? "are tools of their own" : "is a tool of its own"} here: call ${front.length > 1 ? "them" : "it"} directly. ` : ""}${starts.length ? `Common tools, which run_tool takes without a search first (as {name, arguments})${front.length ? " unless listed above" : ""}: ${starts.join("; ")}. For anything else, call the find_tool tool` : "Call the find_tool tool"} with what you need in plain words; its results include each tool's arguments, so you can usually call run_tool next (describe_tool explains arguments in full). To save tokens: pass long data as {"$file": "path.csv", "column": "close"} instead of pasting numbers; put several calls in one run_tool, using {"$result": i, "path": "field"} to feed one call's output into the next, and return: "last" when only the final answer matters. Returns are simple fractions (0.01 = 1%), oldest first. canli://privacy says what each pack sends and stores.${packs.includes("markets") ? " To double-check figures in a written draft, verify_claims (through run_tool) marks each confirmed, contradicted (with the filed figure) or not reported; figures that came from these tools need no second check." : ""}`;
+  return `Canli Capital's finance tools in one server: ${n} tools in ${packs.length} packs (${packs.join(", ")}). ${front.length ? `${front.join(" and ")} ${front.length > 1 ? "are tools of their own" : "is a tool of its own"} here: call ${front.length > 1 ? "them" : "it"} directly. ` : ""}${starts.length ? `Common tools, which run_tool takes without a search first (as {name, arguments})${front.length ? " unless listed above" : ""}: ${starts.join("; ")}. For anything else, call the find_tool tool` : "Call the find_tool tool"} with what you need in plain words; its results include each tool's arguments, so you can usually call run_tool next (describe_tool explains arguments in full). To save tokens: pass long data as {"$file": "path.csv", "column": "close"} instead of pasting numbers; put several calls in one run_tool, using {"$result": i, "path": "field"} to feed one call's output into the next, and return: "last" when only the final answer matters. To show prices, an option chain, a backtest, holdings or orders, add view: true: the person gets an interactive view, you a summary. Returns are simple fractions (0.01 = 1%), oldest first. canli://privacy says what each pack sends and stores.${packs.includes("markets") ? " To double-check figures in a written draft, verify_claims (through run_tool) marks each confirmed, contradicted (with the filed figure) or not reported; figures that came from these tools need no second check." : ""}`;
 }
 
 const sha256 = (v) => createHash("sha256").update(JSON.stringify(v)).digest("hex");
 const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false };
 const open = z.looseObject({});
-const ok = (result) => ({ content: [{ type: "text", text: JSON.stringify(result) }], structuredContent: result });
+// A result drawn as a view has a summary for the model in SUMMARIES: the model reads the summary,
+// the view the whole result.
+const SUMMARIES = new WeakMap();
+const ok = (result) => ({ content: [{ type: "text", text: JSON.stringify((result && typeof result === "object" && SUMMARIES.get(result)) ?? result) }], structuredContent: result });
 const fail = (err) => ({ isError: true, content: [{ type: "text", text: String(err?.message ?? err) }] });
 const guard = (fn) => async (args) => { try { return ok(await fn(args)); } catch (err) { return fail(err); } };
 
@@ -198,9 +201,9 @@ export function preview(v, path = "", cut = []) {
   }
   return v;
 }
-function trimmed(result, ref) {
+function trimmed(result, ref, limit = RESULT_CHARS) {
   const chars = JSON.stringify(result).length;
-  if (chars <= RESULT_CHARS) return result;
+  if (chars <= limit) return result;
   const cut = [], shown = preview(result, "", cut);
   const parts = cut.slice(0, 6).map((c) => `${c.path} (${c.items !== undefined ? `${c.items} items` : `${c.chars} characters`})`).join(", ") + (cut.length > 6 ? ` and ${cut.length - 6} more` : "");
   const first = cut[0]?.path === "result" ? "" : cut[0]?.path ?? "";
@@ -212,6 +215,20 @@ function trimmed(result, ref) {
       note: `This result is ${chars} characters. Lists show their first and last ${LIST_KEEP} items; long text shows its first 2000 characters. Shortened: ${parts || "large fields"}. ${ref ? `The whole result is kept as ${ref}: read a part with run_tool {"name": "show_result", "arguments": {"ref": "${ref}", "path": "${first}", "offset": 0, "limit": 200}}, pass {"$result": "${ref}", "path": "${first}"} to another tool, or call again with select.` : "Call again with select to choose the fields you need."}`,
     },
   };
+}
+
+// What the model reads of a result the person sees as a view: every field, with each long list as
+// its length, first and last items (and range, for numbers); labels such as columns kept whole.
+export const VIEW_CHARS = 2_000_000;
+export function glance(v, depth = 0) {
+  if (Array.isArray(v)) {
+    if (v.length <= 6 || (v.length <= 40 && v.every((x) => typeof x === "string" && x.length <= 60))) return v.map((x) => glance(x, depth + 1));
+    let lo = Infinity, hi = -Infinity, nums = true;
+    for (const x of v) { if (typeof x !== "number" || !Number.isFinite(x)) { nums = false; break; } if (x < lo) lo = x; if (x > hi) hi = x; }
+    return { items: v.length, first: glance(v[0], depth + 1), last: glance(v.at(-1), depth + 1), ...(nums ? { min: lo, max: hi } : {}) };
+  }
+  if (v && typeof v === "object") return depth > 5 ? "…" : Object.fromEntries(Object.entries(v).map(([k, x]) => [k, glance(x, depth + 1)]));
+  return typeof v === "string" && v.length > 400 ? `${v.slice(0, 400)}…` : v;
 }
 
 // Part of a kept result: one path, and for a list a window of it.
@@ -237,6 +254,7 @@ const RUN_INPUT = z.object({
       digits: z.number().int().min(3).max(10).optional().describe("Round fractional numbers in the results to this many significant figures (4-6 saves output tokens); whole numbers such as counts, shares and IDs are never changed. Default: as each tool returns them."),
       select: z.array(z.string().max(200)).min(1).max(30).optional().describe("Return only these fields of each result, as dotted paths, e.g. [\"verdict\", \"multiple_testing.best\", \"rows.0.accession\"] (table rows take column names)."),
       receipt: z.boolean().optional().describe("Add input and output SHA-256 and pack versions so the result can be recomputed and compared."),
+      view: z.boolean().optional().describe("Draw the whole result for the person (chart, option chain, backtest dashboard, treemap, order ticket) and return you a summary, where MCP Apps are drawn."),
     }).strict();
 
 export const canliHome = (env = process.env) => env.CANLI_HOME ?? join(homedir(), ".canli");
@@ -317,6 +335,10 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     if (!a.calls && !a.name) throw new Error("Pass name (and arguments) for one call, or calls for several.");
     if (a.calls && a.name) throw new Error("Pass either name or calls, not both.");
     const calls = a.calls ?? [{ name: a.name, arguments: a.arguments }], files = [], opts = { digits: a.digits };
+    // A view is drawn only where the host draws MCP Apps; elsewhere view changes nothing but the
+    // backtest curve. A backtest shown as a view gets its curve and trades.
+    const viewing = Boolean(a.view) && clientDrawsApps(server);
+    if (a.view) for (const c of calls) if (/^backtest_/.test(c.name) && !(c.arguments && "curve" in c.arguments)) { try { if ((await toolFor(c.name, packs)).input?.shape?.curve) c.arguments = { ...(c.arguments ?? {}), curve: true }; } catch { /* reported when it runs */ } }
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
     const SELF = { show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
     const run = (c, args) => (SELF[c.name] ? Promise.resolve().then(() => SELF[c.name](args)) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov));
@@ -349,10 +371,16 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     }
     const receipt = a.receipt ? { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(done.map(({ ref, ...d }) => d)) } : undefined;
     // After the receipt, which hashes the full results: an oversized one is sent as a preview.
-    for (const d of done) if (d.result !== undefined) d.result = trimmed(d.result, d.ref);
-    if (!a.calls) { if (done[0].error) throw new Error(done[0].error); return { ...(done[0].ref ? { ref: done[0].ref } : {}), ...done[0].result, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) }; }
+    for (const d of done) if (d.result !== undefined) d.result = trimmed(d.result, d.ref, viewing ? VIEW_CHARS : RESULT_CHARS);
+    const shown = (out) => {
+      if (!viewing) return out;
+      const refs = (out.results ?? [out]).map((r) => r.ref).filter(Boolean);
+      SUMMARIES.set(out, { viewed: `The person sees the whole result drawn as an interactive view; this is a summary of it.${refs.length ? ` show_result with ref ${refs.join(" or ")} reads any part.` : ""}`, ...glance(out) });
+      return out;
+    };
+    if (!a.calls) { if (done[0].error) throw new Error(done[0].error); return shown({ ...(done[0].ref ? { ref: done[0].ref } : {}), ...done[0].result, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) }); }
     const results = (a.return === "last" ? done.slice(-1) : done).map(({ name, ref, result, error }) => ({ name, ...(ref ? { ref } : {}), ...(error ? { error } : { result }) }));
-    return { results, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) };
+    return shown({ results, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) });
   }));
   registerResources(server, packs, gov);
   registerView(server);

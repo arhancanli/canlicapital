@@ -19,7 +19,7 @@ test("the page is one self-contained file: no network, no external script, the p
   for (const method of ["ui/initialize", "ui/notifications/initialized", "ui/notifications/tool-input", "ui/notifications/tool-result", "ui/notifications/tool-cancelled", "ui/notifications/size-changed", "ui/notifications/host-context-changed", "ui/resource-teardown"]) assert.ok(html.includes(method), method);
   assert.ok(html.includes("protocolVersion: \"2026-01-26\""), "the MCP Apps version the official package calls latest");
   assert.ok(html.includes("if (event.source !== window.parent) return;") && html.includes("if (hostOrigin !== null && event.origin !== hostOrigin) return;"), "only the framing host, at the origin of its handshake answer, is heard");
-  assert.ok(Buffer.byteLength(html) < 40000, `${Buffer.byteLength(html)} bytes`);
+  assert.ok(Buffer.byteLength(html) < 120000, `${Buffer.byteLength(html)} bytes`);
 });
 
 test("run_tool names the viewer, and the viewer is served as an MCP App", async (t) => {
@@ -195,4 +195,33 @@ test("the page carries the code without its comment lines, and the code still pa
   assert.doesNotMatch(html, /^[ \t]*\/\/.*$/m);
   const script = html.slice(html.indexOf("<script>") + 8, html.lastIndexOf("</script>"));
   assert.doesNotThrow(() => new Function(script));
+});
+
+test("view: true draws the whole result for the person and gives the model a summary, only where the host draws apps", async (t) => {
+  const prices = Array.from({ length: 400 }, (_, i) => 100 * Math.exp(0.0004 * i + 0.05 * Math.sin(i / 17)));
+  const call = { name: "run_tool", arguments: { name: "backtest_ma_crossover", arguments: { prices, fast: 10, slow: 40 }, view: true } };
+  const connect = async (capabilities) => {
+    const server = new McpServer({ name: "t", version: "0" });
+    registerAll(server, ["quant", "validation"]);
+    const [a, b] = InMemoryTransport.createLinkedPair();
+    await server.connect(a);
+    const client = new Client({ name: "t", version: "0" }, { capabilities });
+    await client.connect(b);
+    t.after(async () => { await client.close(); await server.close(); });
+    return client;
+  };
+  const apps = await connect({ extensions: { "io.modelcontextprotocol/ui": { mimeTypes: [VIEW_MIME] } } });
+  const r = await apps.callTool(call);
+  assert.equal(r.structuredContent.curve.rows.length, 400, "the view gets the whole curve");
+  assert.ok(r.structuredContent.trades.rows.length > 0);
+  const model = JSON.parse(r.content[0].text);
+  assert.match(model.viewed, /interactive view.*show_result with ref r\d+/);
+  assert.deepEqual(model.curve.columns, ["period", "strategy", "buy_and_hold", "drawdown", "exposure"], "labels stay whole");
+  assert.equal(model.curve.rows.items, 400);
+  assert.equal(model.sharpe, r.structuredContent.sharpe, "the figures are all there");
+  assert.ok(r.content[0].text.length * 10 < JSON.stringify(r.structuredContent).length, `${r.content[0].text.length} vs ${JSON.stringify(r.structuredContent).length}`);
+  const plain = await connect({});
+  const p = await plain.callTool(call);
+  assert.equal(JSON.parse(p.content[0].text).curve.rows.length, 400, "without apps the model gets the whole result");
+  assert.equal(JSON.parse(p.content[0].text).viewed, undefined);
 });

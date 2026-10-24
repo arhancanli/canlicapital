@@ -5,6 +5,8 @@
 // guidance is drawn as its range with the actual result marked; the fields a result groups (a
 // stock's market figures, a protocol's fees) are drawn as figures with their labels.
 // Every string from a result is escaped: results carry text from filings and press releases.
+import { studioCall, studioFor } from "./studio.js";
+
 
 export function esc(v) {
   return String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" })[c]);
@@ -34,7 +36,7 @@ export function fmt(v, min = 0) {
 }
 
 // An axis label: millions, billions and trillions shortened, so a large figure fits.
-function short(v) {
+export function short(v) {
   const a = Math.abs(v);
   for (const [d, u] of [[1e12, "T"], [1e9, "B"], [1e6, "M"]]) if (a >= d) return `${Number((v / d).toPrecision(4)).toLocaleString("en-US")}${u}`;
   return fmt(v);
@@ -300,9 +302,13 @@ export function renderResult(result) {
     const ids = Object.entries(result[who]).filter(([k, v]) => !["name", "id", "slug"].includes(k) && v !== head[0] && (isPlain(v) || (Array.isArray(v) && v.every(isPlain))) && v !== null && v !== "");
     out.push(`<p class="lead">${esc(head.join(" · "))}${ids.length ? `<span class="sub line">${ids.map(([k, v]) => `${words(k)} ${value(v)}`).join(" · ")}</span>` : ""}</p>`);
   } else if (head.length) out.push(`<p class="lead">${esc(head.join(" · "))}</p>`);
+  // Interactive views (studio.js) draw what they hold; the rest is drawn as before.
+  const studio = studioFor(result);
+  for (const k of studio.used) seen.add(k);
+  if (studio.html) out.push(studio.html);
   // A tally of verdicts reads at a glance; any other summary is figures with their labels.
   const sum = result.summary;
-  if (isObj(sum)) {
+  if (isObj(sum) && !seen.has("summary")) {
     if (Object.keys(sum).every((k) => k === "claims" || TALLY.some(([t]) => t === k))) {
       out.push(`<p class="tally">${isNum(sum.claims) ? `${fmt(sum.claims)} ${sum.claims === 1 ? "claim" : "claims"} checked: ` : ""}${TALLY.filter(([k]) => sum[k] > 0).map(([k, kind]) => `<span class="badge ${kind}">${fmt(sum[k])} ${words(k)}</span>`).join(" ")}</p>`);
     } else out.push(facts(sum, "Summary"));
@@ -322,7 +328,7 @@ export function renderResult(result) {
     seen.add(k);
   }
   // A price or economic series: dates beside values.
-  if (Array.isArray(result.dates) && (Array.isArray(result.close) || Array.isArray(result.values))) {
+  if (Array.isArray(result.dates) && (Array.isArray(result.close) || Array.isArray(result.values)) && !seen.has("close")) {
     const values = result.close ?? result.values;
     out.push(chart({ dates: result.dates, lines: [{ name: result.close ? "close" : String(result.series ?? "value"), values }] }, result.close ? `${result.symbol ?? ""} close` : String(result.title ?? result.series ?? "")));
     seen.add("dates"); seen.add("close"); seen.add("values");
@@ -332,7 +338,7 @@ export function renderResult(result) {
   if (prior?.columns && prior?.rows) out.push(ranges(prior, "Guided and actual"));
   // Every table in the result, at the top level or one level down.
   const tables = [];
-  if (Array.isArray(result.columns) && Array.isArray(result.rows)) tables.push([null, result]);
+  if (Array.isArray(result.columns) && Array.isArray(result.rows) && !seen.has("rows")) tables.push([null, result]);
   for (const [k, v] of Object.entries(result)) {
     if (seen.has(k) || !isObj(v)) continue;
     if (Array.isArray(v.columns) && (Array.isArray(v.rows) || Array.isArray(v.values))) { tables.push([k.replace(/_/g, " "), v]); seen.add(k); }
@@ -386,8 +392,10 @@ function records(list, title) {
 export function renderRunResult(structured, input = {}) {
   if (!structured || typeof structured !== "object") return renderResult(structured);
   if (Array.isArray(structured.results)) {
-    return structured.results.map((r) => `<article><h2>${esc(r.name ?? "result")}${r.ref ? ` <small>${esc(r.ref)}</small>` : ""}</h2>${r.error ? `<p class="error">${esc(r.error)}</p>` : renderResult(r.result)}</article>`).join("");
+    const last = Array.isArray(input?.calls) && input.return === "last";
+    return structured.results.map((r, i) => (studioCall(r.name, last ? input.calls.length - 1 : i), `<article><h2>${esc(r.name ?? "result")}${r.ref ? ` <small>${esc(r.ref)}</small>` : ""}</h2>${r.error ? `<p class="error">${esc(r.error)}</p>` : renderResult(r.result)}</article>`)).join("");
   }
   const name = input?.name ?? "";
+  studioCall(name, null);
   return `<article>${name ? `<h2>${esc(name)}${structured.ref ? ` <small>${esc(structured.ref)}</small>` : ""}</h2>` : ""}${renderResult(structured)}</article>`;
 }

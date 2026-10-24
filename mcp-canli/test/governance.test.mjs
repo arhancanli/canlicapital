@@ -52,8 +52,9 @@ test("audit log: chained, signed at checkpoints with Ed25519 and ML-DSA-65, and 
   const lines = readFileSync(audit.path, "utf8").trim().split("\n");
   const cp = JSON.parse(lines.find((l) => l.includes('"checkpoint"')));
   if (Number(process.versions.node.split(".")[0]) >= 25 || (process.versions.node.startsWith("24.") && Number(process.versions.node.split(".")[1]) >= 7)) assert.ok(cp.sig.ml_dsa_65 && cp.keys.ml_dsa_65, "post-quantum signature present");
-  // Arguments are hashed, not kept.
-  assert.doesNotMatch(readFileSync(audit.path, "utf8"), /AAPL/);
+  // Arguments are hashed, not kept. (Signatures and keys are base64, which can spell AAPL by chance.)
+  const unsigned = lines.map((l) => { const { sig, keys: k, ...rest } = JSON.parse(l); return JSON.stringify(rest); }).join("\n");
+  assert.doesNotMatch(unsigned, /AAPL/);
   const check = (text) => { const f = path.join(tmp("tamper"), "log.jsonl"); writeFileSync(f, text); return verifyAudit(f, pubs); };
   assert.equal(check(lines.join("\n")).valid, true);
   const edited = lines.map((l, i) => (i === 5 ? l.replace('"history"', '"news"') : l));

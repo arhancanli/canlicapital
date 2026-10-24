@@ -1,7 +1,26 @@
 # Changelog
 
-## 0.9.1 (in progress)
+## 0.10.0
 
+- Interactive views in hosts that draw MCP Apps (`src/view/studio.js`, in the same self-contained
+  page): candlesticks with zoom, pan, ranges, moving averages, Bollinger bands, volume, RSI and MACD
+  (the quant pack's definitions, checked value for value); option chains with calls and puts around
+  the strike, quotes, greeks or activity, any expiration and a contract's payoff; backtest
+  dashboards with figures, growth of 1 against buy-and-hold (and the S&P 500 on request), trade
+  markers, the drawdown and a sortable trade log, whose sliders rerun the backtest and count every
+  setting tried, with a deflated-Sharpe check of them all; sweep heatmaps whose cells open their
+  dashboard; treemaps of holdings and weights; and the paper order ticket with Approve. Views call
+  tools only when the person picks, releases or presses something, through the host.
+- Two prompts that open views: `stock_chart` (two years of prices and the option chain) and
+  `strategy_lab` (a crossover dashboard with sliders). Twenty-seven of its own, fifty-two in all.
+- `run_tool` takes `view: true`: the view gets the whole result (up to 2,000,000 characters) and the
+  model a summary (every field; long lists as their length, first and last items and range), so a
+  two-year price history costs the model 1,598 characters instead of 30,529. Backtests run with
+  `view` get their curve and trades. Without MCP Apps nothing changes but the curve.
+- Packs: canli-quant-mcp 0.2.0 (backtest `curve` and `dates`), canli-paper-trading-mcp 0.3.1
+  (preview prices and notionals).
+- A test that looked for a ticker in the audit log now skips the base64 signatures, which could
+  spell it by chance (about one run in a thousand).
 - `audit verify` finds the public keys beside the log (its `CANLI_HOME`'s `audit-keys`) before this
   machine's, so a copied log checks without flags.
 - The package description gives the current counts; the context cost re-measured for 0.9.0: 2,319
