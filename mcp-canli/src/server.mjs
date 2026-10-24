@@ -15,9 +15,9 @@
 // Privacy: canli://privacy states what each pack sends and stores; CANLI_OFFLINE=1 keeps only the
 // packs that never use the network, and their code is the only code loaded.
 import { createHash } from "node:crypto";
-import { readFileSync, realpathSync } from "node:fs";
+import { readFileSync, realpathSync, statSync } from "node:fs";
 import { homedir } from "node:os";
-import { join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/server";
@@ -418,7 +418,11 @@ if (isMain && process.argv[2] === "audit") {
   const argv = process.argv.slice(3), home = canliHome();
   if (argv[0] !== "verify") { process.stderr.write("usage: canli-mcp audit verify [file or directory] [--ed25519 pub.pem] [--ml-dsa pub.pem]\n"); process.exit(2); }
   const target = argv[1] && !argv[1].startsWith("--") ? argv[1] : join(home, "audit");
-  const keys = publicKeys(home), read = (p) => (p ? readFileSync(p, "utf8") : undefined);
+  // The keys beside the log (its CANLI_HOME is the audit folder's parent) come first, then this
+  // machine's CANLI_HOME: a log copied with its home checks without flags.
+  const at = resolve(target), folder = (() => { try { return statSync(at).isDirectory() ? at : dirname(at); } catch { return dirname(at); } })();
+  const near = publicKeys(dirname(folder)), mine = publicKeys(home);
+  const keys = { ed25519: near.ed25519 ?? mine.ed25519, ml_dsa_65: near.ml_dsa_65 ?? mine.ml_dsa_65 }, read = (p) => (p ? readFileSync(p, "utf8") : undefined);
   const out = verifyAudit(target, { ed25519: read(flag(argv, "--ed25519")) ?? keys.ed25519, ml_dsa_65: read(flag(argv, "--ml-dsa")) ?? keys.ml_dsa_65 });
   process.stdout.write(`${JSON.stringify(out, null, 2)}\n`);
   process.exit(out.valid ? 0 : 1);
