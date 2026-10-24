@@ -108,3 +108,24 @@ test("bank_financials: the bank whose name holds the words, ratios computed, fai
   assert.equal(q.uninsured_pct, 38.09); assert.equal(q.noncurrent_loans_pct, 2.84); assert.equal(q.tier1_leverage_pct, 8.08);
   assert.equal(r.bank.place, "Phoenix, AZ");
 });
+
+test("filing_drift: change from the prior year, theme counts and the flags they raise", async () => {
+  const { cosine, driftFlags, driftMetrics } = await import("../src/drift.mjs");
+  assert.equal(cosine(new Map([["a", 1]]), new Map([["a", 2]])), 1);
+  const base = "We may face risks from our supply chain. Our suppliers could fail to deliver parts on time. Demand may decline in any year.";
+  const texts = [`${base} Tariffs on imports may raise our costs. New tariffs could reduce our margins. Retaliatory tariffs may follow.`, `${base} Tariffs on imports may raise our costs.`, base];
+  const m = driftMetrics(texts, "tariff");
+  assert.equal(m[2].change, null, "the oldest has nothing before it");
+  assert.ok(m[0].change > 0 && m[1].change > 0);
+  assert.deepEqual(m.map((x) => x.theme_sentences), [3, 1, 0]);
+  const flags = driftFlags(["2026", "2025", "2024"], m, "tariff");
+  assert.ok(flags.some((f) => /"tariff" took up more of the section/.test(f)), flags.join(" | "));
+});
+
+test("a 10-K whose item heading is a cross-reference index is read from its titled pages", async () => {
+  const { crossReferenced } = await import("../src/html.mjs");
+  const lines = ["Table of contents", "Risk Factors", ...Array(80).fill("x"), "Risk Factors", "first page", "Risk Factors", "second page", "more", "Properties", "y", ...Array(10).fill("z"), "Item 1A. | Risk Factors", "Pages 37-51"];
+  const s = { line: lines.length - 2, end: lines.length, title: "| Risk Factors" };
+  assert.deepEqual(crossReferenced(lines, s, [s, { title: "Properties" }]), { line: 82, end: 86 }, "the run of page titles and one page gap after the last; the contents line is passed over");
+  assert.equal(crossReferenced(["Item 1A. Risk Factors", "Our business faces many risks ".repeat(40)], { line: 0, end: 2, title: "Risk Factors" }, []), null, "a real section is left alone");
+});

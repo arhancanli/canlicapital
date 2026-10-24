@@ -102,6 +102,39 @@ export function findSections(text, form = "10-K") {
   return { lines, sections: ordered };
 }
 
+// Some 10-Ks (Intel's) open with a cross-reference index ("Item 1A. Risk Factors | Pages 37-51") and
+// head the section in the body with its title alone, repeated at the top of each page. When the item
+// found is such an index entry, the section is the run of those title lines after it: from the
+// first to the last that are less than 60 lines apart, plus one page gap, or to the next item's
+// title if that comes sooner.
+export function crossReferenced(lines, section, others) {
+  const stub = lines.slice(section.line, section.end).join("\n");
+  if (stub.length > 600 || !/\bpages?\s+\d/i.test(stub)) return null;
+  const title = section.title.replace(/^[|\s]+/, "").trim().toLowerCase();
+  if (title.length < 4) return null;
+  const same = (l) => l.replace(/^[|\s]+|[|\s]+$/g, "").replace(/\s+/g, " ").toLowerCase() === title;
+  // Every line that is the title alone, anywhere outside the index entry (the index may sit at the
+  // end, as Intel's does); the section is the longest run of them less than 60 lines apart, which
+  // passes over a table of contents' single mention.
+  const at = [];
+  for (let i = 0; i < lines.length; i += 1) if ((i < section.line || i >= section.end) && lines[i].length < 90 && same(lines[i])) at.push(i);
+  if (!at.length) return null;
+  let best = null;
+  for (let k = 0; k < at.length;) {
+    let j = k;
+    while (j + 1 < at.length && at[j + 1] - at[j] < 60) j += 1;
+    if (!best || j - k > best[1] - best[0]) best = [k, j];
+    k = j + 1;
+  }
+  const run = at.slice(best[0], best[1] + 1);
+  const gaps = run.slice(1).map((x, k) => x - run[k]).sort((x, y) => x - y);
+  const gap = gaps.length ? gaps[Math.floor(gaps.length / 2)] : 40;
+  const otherTitles = new Set(others.map((o) => o.title.replace(/^[|\s]+/, "").trim().toLowerCase()).filter((t) => t && t !== title));
+  let end = Math.min(lines.length, run.at(-1) + gap);
+  for (let i = run[0] + 1; i < end; i += 1) if (lines[i].length < 90 && otherTitles.has(lines[i].replace(/^[|\s]+|[|\s]+$/g, "").toLowerCase())) { end = i; break; }
+  return { line: run[0], end };
+}
+
 export function resolveSection(query, form, sections) {
   const q = String(query).trim().toLowerCase().replace(/^item\s*/, "").replace(/\s+/g, " ");
   const quarterly = /^10-Q/i.test(form);

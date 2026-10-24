@@ -4,7 +4,7 @@
 import { z } from "zod";
 
 import { parse13F, parseForm4 } from "./forms.mjs";
-import { findSections, htmlToText, resolveSection } from "./html.mjs";
+import { crossReferenced, findSections, htmlToText, resolveSection } from "./html.mjs";
 import { archiveBase, filingDocuments, filings, fredCsv, fredTitle, getJson, getText, NotFound, own, resolveEntity, submissions, TREASURY_CURVES, treasuryYear } from "./sources.mjs";
 import { topMatches, vocabulary } from "./words.mjs";
 
@@ -145,7 +145,9 @@ export async function readFiling(session, args) {
       const s = resolveSection(a.section, formOf, found.sections);
       if (!s) throw new NotFound(`No item matching "${a.section}" in this ${formOf}; its items are ${found.sections.map((x) => `${x.key} ${x.title.slice(0, 40)}`).join("; ")}.`);
       chosen = { item: s.key, title: s.title };
-      body = found.lines.slice(s.line, s.end).join("\n");
+      const moved = crossReferenced(found.lines, s, found.sections);
+      if (moved) chosen.located = "by its title in the body: the item heading is a cross-reference index entry";
+      body = found.lines.slice(moved?.line ?? s.line, moved?.end ?? s.end).join("\n");
     }
   } else if (a.section) {
     throw new Error(`section applies to the primary document of a 10-K or 10-Q; this is ${formOf}${a.document ? ` (${a.document})` : ""}.`);
