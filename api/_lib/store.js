@@ -31,6 +31,15 @@ export function createStore({ url, serviceKey, fetchImpl = globalThis.fetch }) {
       if (!out || typeof out.revoked !== 'boolean' || (out.revoked && (typeof out.revoked_at !== 'string' || !Number.isFinite(Date.parse(out.revoked_at))))) throw new Error('Invalid revocation response');
       return out;
     },
+    async keyTier(keyHash) {
+      const out = await call("/rpc/key_tier", { method: "POST", body: JSON.stringify({ p_key_hash: keyHash }) });
+      if (!out || typeof out.known !== "boolean") throw new Error("Invalid key tier response");
+      return { known: out.known, revoked: Boolean(out.revoked), tier: out.tier ?? null, tier_until: out.tier_until ?? null };
+    },
+    async setKeyTier({ keyHash = null, subscription = null, tier, until = null, customer = null }) {
+      const out = await call("/rpc/set_key_tier", { method: "POST", body: JSON.stringify({ p_key_hash: keyHash, p_subscription: subscription, p_tier: tier, p_until: until, p_customer: customer }) });
+      return { updated: Number(out?.updated ?? 0) };
+    },
     async saveReceipt(receipt) {
       await call("/receipts?on_conflict=id", { method: "POST", headers: { Prefer: "return=minimal,resolution=ignore-duplicates" }, body: JSON.stringify(receipt) });
     },

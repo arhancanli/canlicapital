@@ -91,3 +91,42 @@ test("each caller gets a bounded number of requests a minute", async () => {
     assert.match(again.body.error.message, /60 a minute/);
   });
 });
+
+test("paid keys: the tier sets the rate and the size, counted per key; unknown and revoked keys are refused; free requests never read the store", async () => {
+  const PRO = "ck_live_" + "p".repeat(43), GONE = "ck_live_" + "r".repeat(43), NOPE = "ck_live_" + "n".repeat(43), DOWN = "ck_live_" + "d".repeat(43);
+  const { hashKey } = await import("./_lib/auth.js");
+  const reads = [];
+  const tierOf = async (h) => {
+    reads.push(h);
+    if (h === hashKey(PRO)) return { known: true, revoked: false, tier: "pro" };
+    if (h === hashKey(GONE)) return { known: true, revoked: true, tier: null };
+    if (h === hashKey(DOWN)) throw new Error("store 503");
+    return { known: false, revoked: false, tier: null };
+  };
+  const keyed = (url, key, method, params, raw) => fetch(url, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json, text/event-stream", "Mcp-Protocol-Version": "2025-06-18", ...(key ? { Authorization: `Bearer ${key}` } : {}) }, body: raw ?? JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }) }).then(async (r) => ({ status: r.status, body: await r.json() }));
+  await withHandler(createCanliHandler({ limiter: createLimiter({ perMinute: 1 }), tierOf }), async (url) => {
+    assert.equal((await keyed(url, null, "initialize", INIT)).status, 200);
+    assert.equal((await keyed(url, null, "tools/list", {})).status, 429, "free: one a minute here");
+    assert.equal(reads.length, 0, "a request with no key never reads the store");
+    for (let i = 0; i < 5; i += 1) assert.equal((await keyed(url, PRO, "tools/list", {})).status, 200, "pro: 600 a minute, its own count");
+    const gone = await keyed(url, GONE, "tools/list", {});
+    assert.equal(gone.status, 401); assert.match(gone.body.error.message, /revoked/);
+    const nope = await keyed(url, NOPE, "tools/list", {});
+    assert.equal(nope.status, 401); assert.match(nope.body.error.message, /Unknown key/);
+    assert.equal((await keyed(url, DOWN, "tools/list", {})).status, 200, "store down: served at the free tier");
+    assert.equal((await keyed(url, DOWN, "tools/list", {})).status, 429, "at the free tier's rate, per key");
+    const body = JSON.stringify({ jsonrpc: "2.0", id: 1, method: "tools/call", params: { name: "run_tool", arguments: { name: "return_stats", arguments: { returns: Array(Math.ceil((MAX_FLAGSHIP_BODY_BYTES * 1.5) / 6)).fill(0.001) } } } });
+    assert.ok(body.length > MAX_FLAGSHIP_BODY_BYTES);
+    assert.equal((await keyed(url, PRO, null, null, body)).status, 200, "pro takes a larger request");
+  });
+});
+
+test("a key's tier is read once a minute per key", async () => {
+  const { createTierResolver } = await import("./mcp-canli.js");
+  let t = 0, n = 0;
+  const resolve = createTierResolver({ store: { keyTier: async () => { n += 1; return { known: true, revoked: false, tier: "pro" }; } }, now: () => t });
+  await resolve("h"); await resolve("h");
+  assert.equal(n, 1);
+  t = 60_001; await resolve("h");
+  assert.equal(n, 2);
+});
