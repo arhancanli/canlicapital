@@ -150,4 +150,6 @@ jobs:
           psql -X -v ON_ERROR_STOP=1 -f supabase/migrations/20260905_validation_api.sql
           psql -X -v ON_ERROR_STOP=1 -f supabase/migrations/20260920_key_revocation.sql
           psql -X -v ON_ERROR_STOP=1 -f supabase/tests/key_revocation.sql
+          psql -X -v ON_ERROR_STOP=1 -f supabase/migrations/20261024_cloud_tiers.sql
+          psql -X -v ON_ERROR_STOP=1 -f supabase/tests/cloud_tiers.sql
           python3 scripts/test-key-revocation-race.py
