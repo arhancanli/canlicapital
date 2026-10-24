@@ -277,6 +277,29 @@ export const PROMPTS = Object.freeze({
     ],
     ask: () => `Tell me how the market is doing with canli-mcp. ${batch(PROMPTS.market_today.calls({}))}\nThen write, in plain words: how US stocks did over the day, the week and the year to date, and what volatility says; which sectors led and lagged over the month; what Treasury yields, the dollar, oil, gold and bitcoin did; how Europe and Asia did; what the Fed last did and what prediction markets price for its next decision; and the key releases due in the coming days. Say each market's date: closes abroad and crypto can be a day apart. ${SOURCES}`,
   },
+  stock_chart: {
+    title: "Stock chart",
+    description: "An interactive chart of a stock over two years (candlesticks, moving averages, Bollinger bands, RSI and MACD, zoom and pan) and its option chain, with where the price sits against its averages, its RSI and the move options price in.",
+    args: { ticker: TICKER },
+    calls: ({ ticker }) => [
+      { name: "price_history", arguments: { symbol: ticker.toUpperCase(), start: new Date(Date.now() - 730 * 86400000).toISOString().slice(0, 10) } },
+      { name: "sma", arguments: { close: { $result: 0, path: "close" }, period: 50, tail: 1 } },
+      { name: "sma", arguments: { close: { $result: 0, path: "close" }, period: 200, tail: 1 } },
+      { name: "rsi", arguments: { close: { $result: 0, path: "close" }, period: 14, tail: 1 } },
+      { name: "options_chain", arguments: { symbol: ticker.toUpperCase() } },
+    ],
+    ask: (a) => `Chart ${a.ticker} with canli-mcp. In one run_tool call, run these together:\n${json({ calls: PROMPTS.stock_chart.calls(a), view: true })}\nThe person sees the chart and the option chain; you get summaries. Then write, briefly: the last close and the change over the period; where the price sits against its 50- and 200-day averages; the RSI and what it says; and the move options price in to the nearest expiration. Point the person to the chart's controls (ranges, indicators, expirations) rather than repeating the data. ${SOURCES}`,
+  },
+  strategy_lab: {
+    title: "Strategy lab",
+    description: "A moving-average crossover backtested on a ticker since 2010 as an interactive dashboard: figures against buy-and-hold, growth of 1, drawdown and trades, with sliders that rerun it and a check of every setting tried for luck.",
+    args: { ticker: TICKER },
+    calls: ({ ticker }) => [
+      { name: "price_history", arguments: { symbol: ticker.toUpperCase(), start: "2010-01-01" } },
+      { name: "backtest_ma_crossover", arguments: { prices: { $result: 0, path: "close" }, dates: { $result: 0, path: "dates" }, fast: 50, slow: 200, curve: true } },
+    ],
+    ask: (a) => `Backtest a 50/200-day moving-average crossover on ${a.ticker} with canli-mcp. In one run_tool call, run these together:\n${json({ calls: PROMPTS.strategy_lab.calls(a), return: "last", view: true })}\nThe person sees the dashboard; you get a summary. Then write, briefly: the strategy's CAGR, Sharpe and worst drawdown against buy-and-hold, and how much of the time it was invested. Tell the person the sliders rerun it with other averages, and that every setting they try counts as a trial: the dashboard's luck check runs them all through the deflated Sharpe ratio. Say that one backtest is not evidence of an edge. ${SOURCES}`,
+  },
   dividend_check: {
     title: "Dividend check",
     description: "Whether a company's dividend looks safe and growing: years of dividends and buybacks against earnings and free cash flow, the split-adjusted record, the yields, its debt and what falls due, and its accounting screens.",

@@ -1,6 +1,8 @@
 // The result viewer as an MCP App: one HTML page, served as the resource ui://canli/view, that
 // hosts supporting MCP Apps draw run_tool results in, as tables, charts, statements, checked
-// claims and guidance against results. Everything is inline (no network, no external scripts), so
+// claims and guidance against results, and as interactive views (studio.js): candlesticks with
+// indicators, option chains, backtest dashboards with sliders, sweep heatmaps, treemaps and the
+// paper order ticket. Everything is inline (no network, no external scripts), so
 // the default sandbox policy is enough. Hosts without MCP Apps ignore it.
 import { readFileSync } from "node:fs";
 
@@ -8,8 +10,8 @@ export const VIEW_URI = "ui://canli/view";
 export const VIEW_MIME = "text/html;profile=mcp-app";
 
 const CSS = `
-:root{--bg:var(--color-background-primary,#fff);--fg:var(--color-text-primary,#171717);--muted:var(--color-text-secondary,#6b6b6b);--line:var(--color-border-primary,#e3e3e3);--soft:var(--color-background-secondary,#f6f6f4);--ok:#1f7a4d;--bad:#b42318;--warn:#a15c07;--info:#1d5fa7;--s0:#2563eb;--s1:#d97706;--s2:#059669;--s3:#9333ea;font-family:var(--font-sans,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif);color-scheme:light}
-:root[data-theme="dark"]{--bg:var(--color-background-primary,#171717);--fg:var(--color-text-primary,#f2f2f2);--muted:var(--color-text-secondary,#a3a3a3);--line:var(--color-border-primary,#333);--soft:var(--color-background-secondary,#222);--ok:#4ade80;--bad:#f87171;--warn:#fbbf24;--info:#60a5fa;--s0:#60a5fa;--s1:#fbbf24;--s2:#34d399;--s3:#c084fc;color-scheme:dark}
+:root{--up:#0f7b5f;--dn:#c2410c;--bg:var(--color-background-primary,#fff);--fg:var(--color-text-primary,#171717);--muted:var(--color-text-secondary,#6b6b6b);--line:var(--color-border-primary,#e3e3e3);--soft:var(--color-background-secondary,#f6f6f4);--ok:#1f7a4d;--bad:#b42318;--warn:#a15c07;--info:#1d5fa7;--s0:#2563eb;--s1:#d97706;--s2:#059669;--s3:#9333ea;font-family:var(--font-sans,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif);color-scheme:light}
+:root[data-theme="dark"]{--up:#34d399;--dn:#fb923c;--bg:var(--color-background-primary,#171717);--fg:var(--color-text-primary,#f2f2f2);--muted:var(--color-text-secondary,#a3a3a3);--line:var(--color-border-primary,#333);--soft:var(--color-background-secondary,#222);--ok:#4ade80;--bad:#f87171;--warn:#fbbf24;--info:#60a5fa;--s0:#60a5fa;--s1:#fbbf24;--s2:#34d399;--s3:#c084fc;color-scheme:dark}
 *{box-sizing:border-box}body{margin:0;padding:12px 14px;background:var(--bg);color:var(--fg);font-size:13px;line-height:1.45}
 h2{font-size:14px;margin:4px 0 8px}h2 small{color:var(--muted);font-weight:400}h3{font-size:12px;margin:12px 0 6px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
 article+article{border-top:1px solid var(--line);margin-top:14px;padding-top:10px}.lead{margin:0 0 6px;font-weight:600}
@@ -22,17 +24,29 @@ svg{width:100%;max-width:760px;height:auto;display:block}.grid{stroke:var(--line
 .legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11.5px;margin-top:4px}.legend i{display:inline-block;width:10px;height:3px;margin-right:5px;vertical-align:middle}.legend i.s0{background:var(--s0)}.legend i.s1{background:var(--s1)}.legend i.s2{background:var(--s2)}.legend i.s3{background:var(--s3)}
 .ranges{margin:6px 0 10px}.range{margin:8px 0 12px}.top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2px 12px}.vals{color:var(--muted);font-variant-numeric:tabular-nums}.track{position:relative;height:10px;margin-top:6px;background:var(--soft);border-radius:5px}.bar{position:absolute;top:0;bottom:0;background:color-mix(in srgb,var(--s0) 55%,transparent);border-radius:5px}.dot{position:absolute;top:-3px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--fg);border:3px solid var(--bg)}
 dl.facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px 16px;margin:0}.facts div{min-width:0}.facts .wide{grid-column:1/-1}dt{color:var(--muted);font-size:11px}dd{margin:0;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}pre{white-space:pre-wrap;font-size:11.5px}
+.w{position:relative;margin:6px 0 14px}.ctl{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:0 0 8px}.grp{display:inline-flex;flex-wrap:wrap;gap:2px}
+button,select{font:inherit;font-size:12px;color:var(--fg);background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:3px 8px;cursor:pointer}button[aria-pressed="true"]{background:color-mix(in srgb,var(--s0) 18%,var(--bg));border-color:color-mix(in srgb,var(--s0) 55%,var(--line))}
+button.primary{background:var(--s0);border-color:var(--s0);color:#fff;font-weight:600;padding:6px 14px}button:disabled,select:disabled{opacity:.5;cursor:default}button:focus-visible,select:focus-visible,input:focus-visible,.plot:focus-visible{outline:2px solid var(--s0);outline-offset:1px}
+.plot{position:relative;touch-action:pan-y;user-select:none;cursor:crosshair;overflow:hidden}.plot svg{max-width:none;width:100%}.xh{position:absolute;width:1px;background:var(--muted);opacity:.55;pointer-events:none}
+.tip{position:absolute;z-index:3;pointer-events:none;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 8px;font-size:11.5px;line-height:1.5;box-shadow:0 2px 10px rgba(0,0,0,.14);white-space:nowrap;font-variant-numeric:tabular-nums}
+.cd-up{fill:var(--bg);stroke:var(--up);stroke-width:1}.cd-dn{fill:var(--dn);stroke:var(--dn);stroke-width:1}.wk-up{stroke:var(--up)}.wk-dn{stroke:var(--dn)}.v-up{fill:var(--up);opacity:.4}.v-dn{fill:var(--dn);opacity:.4}
+.line.thin{stroke-width:1.3}.band{fill:var(--s3);opacity:.09}.pane{fill:none;stroke:var(--line)}.guide{stroke:var(--muted);stroke-dasharray:3 3;opacity:.6}.dd{fill:color-mix(in srgb,var(--bad) 20%,transparent);stroke:var(--bad);stroke-width:1.2}
+.mk-buy{fill:var(--up)}.mk-sell{fill:var(--dn)}.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:8px;margin:4px 0 10px}.tile{background:var(--soft);border-radius:8px;padding:8px 10px}.tile .k{color:var(--muted);font-size:11px}.tile .v{font-size:18px;font-weight:600;font-variant-numeric:tabular-nums}.tile .b{color:var(--muted);font-size:11px}
+.sliders{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:6px 16px;margin:4px 0 8px}.sliders label{display:block;font-size:12px;color:var(--muted)}.sliders output{color:var(--fg);font-weight:600;margin-left:4px}input[type=range]{width:100%;accent-color:var(--s0)}
+table.chain td,table.chain th{padding:3px 6px}.chain .k{text-align:center;font-weight:700;background:var(--soft)}.chain td.itm{background-color:color-mix(in srgb,var(--s0) 8%,transparent)}.chain tr[data-k]{cursor:pointer}.chain tr.sel td{box-shadow:inset 0 0 0 1px var(--s0)}.chain tr.spot td{padding:1px 6px;border-bottom:2px solid var(--s1);text-align:center}.chain th.side{text-align:center;color:var(--fg)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}.chip{background:var(--soft);border-radius:12px;padding:2px 9px;font-size:11.5px}.chip b{font-weight:600}.ticket{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0}.acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.side-buy{color:var(--up);font-weight:600}.side-sell{color:var(--dn);font-weight:600}.tm text{font-size:11.5px;font-weight:600;pointer-events:none}.tm text.small{font-size:10.5px;font-weight:400}.on-dark{fill:#fff}.on-light{fill:var(--fg)}.tm rect{stroke:var(--bg);stroke-width:2}
+table.hm th.c{text-align:center}table.hm td.cell{text-align:center;min-width:46px;cursor:pointer}table.hm td.best{box-shadow:inset 0 0 0 2px var(--fg)}th.sort{cursor:pointer}th.sort:hover{color:var(--fg)}.warn-text{color:var(--warn)}
 @media (max-width:480px){body{padding:10px}}`;
 
 let page = null;
 // The page: styles, the rendering functions (render.js, its exports made plain), then the app,
 // without their comment lines.
-const code = (file) => readFileSync(new URL(file, import.meta.url), "utf8").replace(/^[ \t]*\/\/.*\n/gm, "");
+const code = (file) => readFileSync(new URL(file, import.meta.url), "utf8").replace(/^[ \t]*\/\/.*\n/gm, "").replace(/^import .*\n/gm, "").replace(/^export\s+/gm, "");
 export function viewHtml() {
   if (page) return page;
-  const render = code("./view/render.js").replace(/^export\s+/gm, "");
-  const app = code("./view/app.js");
-  page = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Canli result</title><style>${CSS}</style></head><body><main id="root"><p class="note">Waiting for the result…</p></main><script>${render}\n${app}</script></body></html>`;
+  const render = code("./view/render.js"), studio = code("./view/studio.js"), app = code("./view/app.js");
+  page = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Canli result</title><style>${CSS}</style></head><body><main id="root"><p class="note">Waiting for the result…</p></main><script>${render}\n${studio}\n${app}</script></body></html>`;
   return page;
 }
 
