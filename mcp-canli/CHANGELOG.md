@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.1
+
+- The packs move to zod 4.6.7 (validation 0.14.1, research 0.3.1, quant 0.1.3, paper trading
+  0.1.1; no code change), so an installed canli-mcp audits clean.
+
 ## 0.7.0
 
 - Packs: canli-markets-mcp 0.6.0, canli-fundamentals-mcp 0.7.0 and canli-backtest-mcp 0.2.0 (332
