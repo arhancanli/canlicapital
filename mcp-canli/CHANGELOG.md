@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.11.0
+
+- More interactive views (`src/view/atlas.js`, in the same page): a market map from `market_overview`
+  (tiles by move over any period, ranked or in order, a tile opens its candlestick chart, Refresh); the
+  Treasury curve from `treasury_yields` against a month, a year and five years before, with a slider
+  and Play through five years of history and the 10Y-2Y and 10Y-3M spreads; `financial_statements`
+  charted, as filed, as a share of revenue or total assets, or as growth, with a trend on every line;
+  the `volatility_surface` as smiles, term structure and a heatmap; several price series in one batch
+  compared (growth of 1, return, CAGR, volatility, Sharpe, drawdown, correlation and beta to the first,
+  a correlation heatmap with the number of independent bets); `correlation_matrix` as a heatmap. The
+  comparison's correlations and volatility match the quant pack's tools, checked in the tests.
+- Every other table sorts by any heading; a long one has a filter box. A full-screen button where
+  the host offers it.
+- Four prompts that open views: `compare_stocks`, `yield_curve`, `volatility_surface` and
+  `statement_charts`. Thirty-one of its own, fifty-six in all.
+- With `view: true`, a result smaller than its summary is sent whole (a one-day yield curve was 1,191
+  characters, its summary 1,296).
+- Packs: canli-markets-mcp 0.7.4 (`treasury_yields` ranges across years line maturities up by name).
+- Context cost re-measured: 2,408 tokens up front (13 more than 0.10.0).
+
 ## 0.10.0
 
 - Interactive views in hosts that draw MCP Apps (`src/view/studio.js`, in the same self-contained

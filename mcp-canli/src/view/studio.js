@@ -6,20 +6,23 @@
 // sorting and toggling cost no tool call and no tokens. Only what the person presses (an expiration,
 // a released slider, Approve) calls a tool again, through the host, and its answer goes to the view.
 import { esc, fmt, short } from "./render.js";
+import { ATLAS_MOUNTS, atlasFor } from "./atlas.js";
 
 const PLACED = [];
-let STUDIO = { input: {}, call: null };
-export function studioReset(input) { PLACED.length = 0; STUDIO = { input: input && typeof input === "object" ? input : {}, call: null }; }
+let STUDIO = { input: {}, call: null, compact: false };
+export function studioReset(input) { PLACED.length = 0; STUDIO = { input: input && typeof input === "object" ? input : {}, call: null, compact: false }; }
+// While on, a price series is left to a comparison above it rather than drawn on its own.
+export function studioCompact(on) { STUDIO.compact = Boolean(on); }
 // Which call of the input a result answers: its tool's name and its place in a batch (null alone).
 export function studioCall(name, index) { STUDIO.call = { name, index }; }
-const place = (kind, data) => { PLACED.push({ kind, data, call: STUDIO.call, input: STUDIO.input }); return `<div class="w" data-w="${PLACED.length - 1}" data-kind="${kind}"></div>`; };
+export const place = (kind, data) => { PLACED.push({ kind, data, call: STUDIO.call, input: STUDIO.input }); return `<div class="w" data-w="${PLACED.length - 1}" data-kind="${kind}"></div>`; };
 export const placed = () => PLACED.map((p) => p.kind);
 
-const finite = (v) => typeof v === "number" && Number.isFinite(v);
-const colsOf = (t) => (t && typeof t === "object" && Array.isArray(t.columns) && Array.isArray(t.rows) ? t.columns.map(String) : null);
-const pct = (v, d = 1) => (finite(v) ? `${(v * 100).toFixed(d)}%` : "–");
-const signed = (v, d = 1) => (finite(v) ? `${v > 0 ? "+" : ""}${(v * 100).toFixed(d)}%` : "–");
-const clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
+export const finite = (v) => typeof v === "number" && Number.isFinite(v);
+export const colsOf = (t) => (t && typeof t === "object" && Array.isArray(t.columns) && Array.isArray(t.rows) ? t.columns.map(String) : null);
+export const pct = (v, d = 1) => (finite(v) ? `${(v * 100).toFixed(d)}%` : "–");
+export const signed = (v, d = 1) => (finite(v) ? `${v > 0 ? "+" : ""}${(v * 100).toFixed(d)}%` : "–");
+export const clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
 const nullsOf = (n) => new Array(n).fill(null);
 
 // ---------------------------------------------------------------------------------------------
@@ -154,12 +157,13 @@ export function studioFor(result) {
   if (!result || typeof result !== "object" || Array.isArray(result)) return { html: "", used };
   const use = (...k) => k.forEach((x) => used.add(x));
   const c = colsOf(result), n = Array.isArray(result.dates) ? result.dates.length : 0;
-  if (n >= 2 && ["open", "high", "low", "close"].every((k) => Array.isArray(result[k]) && result[k].length === n)) { out.push(place("candles", result)); use("dates", "open", "high", "low", "close", "volume"); }
+  if (n >= 2 && ["open", "high", "low", "close"].every((k) => Array.isArray(result[k]) && result[k].length === n)) { if (!STUDIO.compact) out.push(place("candles", result)); use("dates", "open", "high", "low", "close", "volume"); }
   if (c && result.underlying && ["strike", "type", "bid", "ask"].every((k) => c.includes(k))) { out.push(place("chain", result)); use("columns", "rows", "expirations", "underlying", "summary", "expiration", "days_to_expiration"); }
   const cc = colsOf(result.curve);
   if (cc && cc.includes("strategy") && cc.includes("buy_and_hold")) { out.push(place("backtest", result)); use("curve", "trades", "parameters", "rule", "total_return", "cagr", "volatility", "sharpe", "max_drawdown", "calmar", "buy_and_hold", "returns_tail", "periods"); }
   if (c && c[0] === "params" && typeof result.recipe === "string" && result.rows.length > 1) { out.push(place("sweep", result)); if (sweepGrid(result.rows)) use("deflation"); }
   if (result.paper === true && "token" in result && c && c.includes("accepted")) { out.push(place("ticket", result)); use("columns", "rows", "token", "expires_at", "accepted", "next"); }
+  out.push(...atlasFor(result, use, used));
   if (!used.has("rows")) {
     const tm = [[null, result], ...Object.entries(result).filter(([k]) => !used.has(k))].map(([k, t]) => [k, treemapData(t)]).find(([, d]) => d) ?? [null, weightLists(result)];
     if (tm[1]) out.push(place("treemap", { ...tm[1], title: tm[0] }));
@@ -170,21 +174,21 @@ export function studioFor(result) {
 // ---------------------------------------------------------------------------------------------
 // Shared pieces
 // ---------------------------------------------------------------------------------------------
-const btn = (label, attrs = "") => `<button type="button" ${attrs}>${label}</button>`;
-const toggle = (key, label, on) => btn(esc(label), `data-t="${key}" aria-pressed="${on}"`);
+export const btn = (label, attrs = "") => `<button type="button" ${attrs}>${label}</button>`;
+export const toggle = (key, label, on) => btn(esc(label), `data-t="${key}" aria-pressed="${on}"`);
 // A line through values, broken at nulls.
-function pathOf(values, X, Y, from = 0, to = values.length - 1) {
+export function pathOf(values, X, Y, from = 0, to = values.length - 1) {
   let d = "", pen = false;
   for (let i = from; i <= to; i++) { const v = values[i]; if (!finite(v)) { pen = false; continue; } d += `${pen ? "L" : "M"}${X(i).toFixed(1)},${Y(v).toFixed(1)}`; pen = true; }
   return d;
 }
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-function dateLabel(s, long) {
+export function dateLabel(s, long) {
   const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(s));
   if (!m) return String(s);
   return long ? `${MONTHS[+m[2] - 1]} ${m[1]}` : `${MONTHS[+m[2] - 1]} ${+m[3]}`;
 }
-function xTicks(labels, from, to, X, y, width) {
+export function xTicks(labels, from, to, X, y, width) {
   const count = to - from + 1, k = Math.max(2, Math.floor(width / 110)), step = Math.max(1, Math.round(count / k));
   const long = /^\d{4}/.test(String(labels[from])) && Date.parse(labels[to]) - Date.parse(labels[from]) > 400 * 86400000;
   let s = "", prev = null;
@@ -197,13 +201,13 @@ function xTicks(labels, from, to, X, y, width) {
   }
   return s;
 }
-function yGrid(lo, hi, Y, x1, x2, fmtY = short, n = 4) {
+export function yGrid(lo, hi, Y, x1, x2, fmtY = short, n = 4) {
   let s = "";
   for (let g = 0; g <= n; g++) { const v = lo + ((hi - lo) * g) / n, y = Y(v).toFixed(1); s += `<line x1="${x1}" x2="${x2}" y1="${y}" y2="${y}" class="grid"/><text x="${x2 + 4}" y="${(+y + 4).toFixed(1)}" class="axis">${esc(fmtY(v))}</text>`; }
   return s;
 }
 // Tool results from the host: the structured result, or the error's text as an Error.
-function resultOf(res) {
+export function resultOf(res) {
   if (!res) throw new Error("No answer from the host.");
   const text = res.content && res.content[0] && res.content[0].type === "text" ? res.content[0].text : "";
   if (res.isError) throw new Error(text || "The tool returned an error.");
@@ -220,23 +224,23 @@ export function againInput(p, patch, name) {
   }
   return { name: name ?? inp.name ?? (p.call && p.call.name), arguments: { ...(inp.arguments || {}), ...patch }, digits: 6 };
 }
-async function callAgain(host, p, patch, name) {
+export async function callAgain(host, p, patch, name) {
   const r = resultOf(await host.call("run_tool", againInput(p, patch, name)));
   if (r && Array.isArray(r.results)) { const last = r.results.at(-1); if (last.error) throw new Error(last.error); return last.result; }
   return r;
 }
-function tipAt(tip, box, html, px, py) {
+export function tipAt(tip, box, html, px, py) {
   tip.innerHTML = html; tip.hidden = false;
   const w = tip.offsetWidth, h = tip.offsetHeight, W = box.clientWidth;
   tip.style.left = `${clamp(px + 14 + w > W ? px - w - 14 : px + 14, 0, Math.max(0, W - w))}px`;
   tip.style.top = `${Math.max(0, py - h - 8)}px`;
 }
-const notice = (el, text, kind = "note") => { el.innerHTML = `<p class="${kind}">${esc(text)}</p>`; };
+export const notice = (el, text, kind = "note") => { el.innerHTML = `<p class="${kind}">${esc(text)}</p>`; };
 
 // ---------------------------------------------------------------------------------------------
 // Candlesticks: zoom, pan, overlays and indicator panes
 // ---------------------------------------------------------------------------------------------
-function mountCandles(el, r) {
+export function mountCandles(el, r) {
   const d = r.dates, o = r.open, h = r.high, l = r.low, c = r.close, v = Array.isArray(r.volume) && r.volume.some(finite) ? r.volume : null, n = d.length;
   const ind = { sma20: smaSeries(c, 20), sma50: smaSeries(c, 50), sma200: smaSeries(c, 200), bb: bollingerSeries(c, 20, 2), rsi: rsiSeries(c, 14), macd: macdSeries(c, 12, 26, 9) };
   const on = { sma20: n >= 40, sma50: n >= 120, sma200: false, bb: false, volume: Boolean(v), rsi: false, macd: false };
@@ -439,8 +443,8 @@ function mountChain(el, data, p, host) {
 // ---------------------------------------------------------------------------------------------
 // Lines with a crosshair (equity, drawdown, payoff): one scale, a legend for two or more
 // ---------------------------------------------------------------------------------------------
-function mountLines(box, spec) {
-  const { labels, series, height = 220, fmtY = short, area = false, markers = [] } = spec;
+export function mountLines(box, spec) {
+  const { labels, series, height = 220, fmtY = short, area = false, markers = [], zero = false } = spec;
   box.style.position = "relative";
   box.innerHTML = '<div class="plot"></div><div class="xh" hidden></div><div class="tip" hidden></div>';
   const plot = box.querySelector(".plot"), tip = box.querySelector(".tip"), xh = box.querySelector(".xh");
@@ -453,6 +457,7 @@ function mountLines(box, spec) {
     if (lo === hi) { lo -= 1; hi += 1; }
     const Y = (y) => T + (1 - (y - lo) / (hi - lo)) * (height - T - B);
     let s = yGrid(lo, hi, Y, L, W - R, fmtY);
+    if (zero && lo < 0 && hi > 0) s += `<line x1="${L}" x2="${W - R}" y1="${Y(0).toFixed(1)}" y2="${Y(0).toFixed(1)}" class="guide"/>`;
     series.forEach((sr, k) => {
       const dd = pathOf(sr.values, X, Y);
       s += area ? `<path d="${dd}L${X(n - 1).toFixed(1)},${Y(0).toFixed(1)}L${X(0).toFixed(1)},${Y(0).toFixed(1)}Z" class="dd"/>` : `<path d="${dd}" class="line ${sr.cls ?? `s${k}`}"/>`;
@@ -692,6 +697,39 @@ export function mountStudio(root, host) {
     const p = PLACED[+el.dataset.w];
     if (!p || el.dataset.mounted) continue;
     el.dataset.mounted = "1";
-    try { MOUNTS[p.kind](el, p.data, p, host); } catch (err) { notice(el, `This view could not be drawn: ${err && err.message}`, "error"); }
+    try { (MOUNTS[p.kind] ?? ATLAS_MOUNTS[p.kind])(el, p.data, p, host); } catch (err) { notice(el, `This view could not be drawn: ${err && err.message}`, "error"); }
   }
+  wireTables(root);
+}
+
+// Any table marked sortable sorts by a heading's column when it is clicked (numbers by their value,
+// text as text), and a filter box above a long table hides the rows without its words. Listeners
+// go on the root once; the tables change with each result.
+function wireTables(root) {
+  if (root.dataset.tables) return;
+  root.dataset.tables = "1";
+  root.addEventListener("click", (e) => {
+    const th = e.target.closest("table.sortable th");
+    if (!th) return;
+    const table = th.closest("table"), body = table.tBodies[0], i = [...th.parentNode.children].indexOf(th);
+    if (!body) return;
+    const dir = th.getAttribute("aria-sort") === "descending" ? 1 : -1;
+    for (const h of th.parentNode.children) h.removeAttribute("aria-sort");
+    th.setAttribute("aria-sort", dir > 0 ? "ascending" : "descending");
+    const key = (tr) => { const td = tr.children[i]; if (!td) return null; const v = td.dataset.v; return v !== undefined ? Number(v) : td.textContent.trim().toLowerCase(); };
+    const rows = [...body.rows].sort((a, b) => {
+      const x = key(a), y = key(b);
+      if (x === y) return 0;
+      if (x === null || x === "" || x === "–") return 1;
+      if (y === null || y === "" || y === "–") return -1;
+      return (typeof x === "number" && typeof y === "number" ? x - y : String(x).localeCompare(String(y))) * dir;
+    });
+    body.append(...rows);
+  });
+  root.addEventListener("input", (e) => {
+    const box = e.target.closest("input.filter");
+    if (!box) return;
+    const q = box.value.trim().toLowerCase(), table = box.parentNode.querySelector("table");
+    if (table) for (const tr of table.tBodies[0]?.rows ?? []) tr.hidden = Boolean(q) && !tr.textContent.toLowerCase().includes(q);
+  });
 }

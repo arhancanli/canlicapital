@@ -71,7 +71,7 @@ const STARTS = [
 export function instructions(packs, front = []) {
   const n = ENTRIES.filter((e) => packs.includes(e.pack)).length;
   const starts = STARTS.filter(([pack]) => packs.includes(pack)).map(([, text]) => text);
-  return `Canli Capital's finance tools in one server: ${n} tools in ${packs.length} packs (${packs.join(", ")}). ${front.length ? `${front.join(" and ")} ${front.length > 1 ? "are tools of their own" : "is a tool of its own"} here: call ${front.length > 1 ? "them" : "it"} directly. ` : ""}${starts.length ? `Common tools, which run_tool takes without a search first (as {name, arguments})${front.length ? " unless listed above" : ""}: ${starts.join("; ")}. For anything else, call the find_tool tool` : "Call the find_tool tool"} with what you need in plain words; its results include each tool's arguments, so you can usually call run_tool next (describe_tool explains arguments in full). To save tokens: pass long data as {"$file": "path.csv", "column": "close"} instead of pasting numbers; put several calls in one run_tool, using {"$result": i, "path": "field"} to feed one call's output into the next, and return: "last" when only the final answer matters. To show prices, an option chain, a backtest, holdings or orders, add view: true: the person gets an interactive view, you a summary. Returns are simple fractions (0.01 = 1%), oldest first. canli://privacy says what each pack sends and stores.${packs.includes("markets") ? " To double-check figures in a written draft, verify_claims (through run_tool) marks each confirmed, contradicted (with the filed figure) or not reported; figures that came from these tools need no second check." : ""}`;
+  return `Canli Capital's finance tools in one server: ${n} tools in ${packs.length} packs (${packs.join(", ")}). ${front.length ? `${front.join(" and ")} ${front.length > 1 ? "are tools of their own" : "is a tool of its own"} here: call ${front.length > 1 ? "them" : "it"} directly. ` : ""}${starts.length ? `Common tools, which run_tool takes without a search first (as {name, arguments})${front.length ? " unless listed above" : ""}: ${starts.join("; ")}. For anything else, call the find_tool tool` : "Call the find_tool tool"} with what you need in plain words; its results include each tool's arguments, so you can usually call run_tool next (describe_tool explains arguments in full). To save tokens: pass long data as {"$file": "path.csv", "column": "close"} instead of pasting numbers; put several calls in one run_tool, using {"$result": i, "path": "field"} to feed one call's output into the next, and return: "last" when only the final answer matters. To show prices (several are compared), markets, yields, statements, options, a backtest, holdings or orders, add view: true: the person gets an interactive view, you a summary. Returns are simple fractions (0.01 = 1%), oldest first. canli://privacy says what each pack sends and stores.${packs.includes("markets") ? " To double-check figures in a written draft, verify_claims (through run_tool) marks each confirmed, contradicted (with the filed figure) or not reported; figures that came from these tools need no second check." : ""}`;
 }
 
 const sha256 = (v) => createHash("sha256").update(JSON.stringify(v)).digest("hex");
@@ -254,7 +254,7 @@ const RUN_INPUT = z.object({
       digits: z.number().int().min(3).max(10).optional().describe("Round fractional numbers in the results to this many significant figures (4-6 saves output tokens); whole numbers such as counts, shares and IDs are never changed. Default: as each tool returns them."),
       select: z.array(z.string().max(200)).min(1).max(30).optional().describe("Return only these fields of each result, as dotted paths, e.g. [\"verdict\", \"multiple_testing.best\", \"rows.0.accession\"] (table rows take column names)."),
       receipt: z.boolean().optional().describe("Add input and output SHA-256 and pack versions so the result can be recomputed and compared."),
-      view: z.boolean().optional().describe("Draw the whole result for the person (chart, option chain, backtest dashboard, treemap, order ticket) and return you a summary, where MCP Apps are drawn."),
+      view: z.boolean().optional().describe("Draw the whole result for the person (charts, comparisons, option chains, yield curves, statements, backtest dashboards, order tickets) and return you a summary, where MCP Apps are drawn."),
     }).strict();
 
 export const canliHome = (env = process.env) => env.CANLI_HOME ?? join(homedir(), ".canli");
@@ -375,7 +375,9 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const shown = (out) => {
       if (!viewing) return out;
       const refs = (out.results ?? [out]).map((r) => r.ref).filter(Boolean);
-      SUMMARIES.set(out, { viewed: `The person sees the whole result drawn as an interactive view; this is a summary of it.${refs.length ? ` show_result with ref ${refs.join(" or ")} reads any part.` : ""}`, ...glance(out) });
+      const summary = { viewed: `The person sees the whole result drawn as an interactive view; this is a summary of it.${refs.length ? ` show_result with ref ${refs.join(" or ")} reads any part.` : ""}`, ...glance(out) };
+      // A result smaller than its summary is sent whole.
+      if (JSON.stringify(summary).length < JSON.stringify(out).length) SUMMARIES.set(out, summary);
       return out;
     };
     if (!a.calls) { if (done[0].error) throw new Error(done[0].error); return shown({ ...(done[0].ref ? { ref: done[0].ref } : {}), ...done[0].result, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) }); }
