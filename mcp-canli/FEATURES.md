@@ -2,7 +2,7 @@
 
 The flagship combines seven exact published Canli packages. Its full catalog has 345 tools;
 paper trading is enabled with paper credentials or an explicit pack selection. Five tools are
-advertised initially (three for discovery and running, two common ones). The 52 prompts, 15 static resources (one is the result viewer drawn by clients with MCP Apps) and nine resource templates
+advertised initially (three for discovery and running, two common ones). The 56 prompts, 15 static resources (one is the result viewer drawn by clients with MCP Apps) and nine resource templates
 appear only for enabled packs. This is a coverage inventory, not a worldwide ranking.
 
 | Area | Available in this release | Scope and remaining work |
@@ -27,7 +27,7 @@ appear only for enabled packs. This is a coverage inventory, not a worldwide ran
 | Execution | Alpaca paper accounts, previews, constrained submission and rebalancing | Paper only; order-sending tools cannot run in batches. Live capital is outside this release. |
 | Pipelines and context | Batches of up to 25, file inputs, result references, selection, paging and retained results | Large results return previews with recoverable paths; server memory is bounded. |
 | Guides | Combined workflows plus pack prompts, schemas, examples, methods, sleeve specs and completions | Upstream examples keep their original client configuration. Dynamic lookup retains the published handlers. |
-| Charts and providers | Results drawn in clients with MCP Apps: tables, statements, checked claims, guidance ranges, labelled figures, line charts, the Treasury and futures curves; interactive candlesticks with indicators, option chains, backtest dashboards with sliders and a luck check, sweep heatmaps, treemaps and a paper order ticket with Approve; `view: true` sends the model a summary instead of the data | Exported images and broader keyed providers are gaps against [OpenBB's MCP interface](https://docs.openbb.co/odp/python/extensions/interface/openbb-mcp); the views are tested in a local host that follows the MCP Apps protocol, not yet in a commercial client. |
+| Charts and providers | Results drawn in clients with MCP Apps: tables, statements, checked claims, guidance ranges, labelled figures, line charts, the Treasury and futures curves; interactive candlesticks with indicators, option chains, backtest dashboards with sliders and a luck check, sweep heatmaps, treemaps and a paper order ticket with Approve; a market map, the Treasury curve through time, statements with margins and growth, the volatility surface, stock comparisons with correlation heatmaps and independent bets, and sortable tables; `view: true` sends the model a summary instead of the data | Exported images and broader keyed providers are gaps against [OpenBB's MCP interface](https://docs.openbb.co/odp/python/extensions/interface/openbb-mcp); the views are tested in a local host that follows the MCP Apps protocol, not yet in a commercial client. |
 | Banking and accounting | No bank-ledger or accounting-system adapter | Additional connectors require explicit data contracts and authentication; they are not inferred from market-data coverage. |
 | Transport and distribution | Local stdio through npm; official MCP Registry and GitHub release; MCPB build workflow; hosted Streamable HTTP at `https://canlicapital.com/mcp/canli` | The hosted server runs the public-data and computing packs; file arguments, prices and paper trading stay local. Authenticated third-party directory parity is separate delivery work. |
 

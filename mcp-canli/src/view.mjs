@@ -2,7 +2,8 @@
 // hosts supporting MCP Apps draw run_tool results in, as tables, charts, statements, checked
 // claims and guidance against results, and as interactive views (studio.js): candlesticks with
 // indicators, option chains, backtest dashboards with sliders, sweep heatmaps, treemaps and the
-// paper order ticket. Everything is inline (no network, no external scripts), so
+// paper order ticket, and (atlas.js) the market map, the yield curve through time, statements as
+// charts, correlations, the volatility surface and several prices compared. Everything is inline (no network, no external scripts), so
 // the default sandbox policy is enough. Hosts without MCP Apps ignore it.
 import { readFileSync } from "node:fs";
 
@@ -10,8 +11,8 @@ export const VIEW_URI = "ui://canli/view";
 export const VIEW_MIME = "text/html;profile=mcp-app";
 
 const CSS = `
-:root{--up:#0f7b5f;--dn:#c2410c;--bg:var(--color-background-primary,#fff);--fg:var(--color-text-primary,#171717);--muted:var(--color-text-secondary,#6b6b6b);--line:var(--color-border-primary,#e3e3e3);--soft:var(--color-background-secondary,#f6f6f4);--ok:#1f7a4d;--bad:#b42318;--warn:#a15c07;--info:#1d5fa7;--s0:#2563eb;--s1:#d97706;--s2:#059669;--s3:#9333ea;font-family:var(--font-sans,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif);color-scheme:light}
-:root[data-theme="dark"]{--up:#34d399;--dn:#fb923c;--bg:var(--color-background-primary,#171717);--fg:var(--color-text-primary,#f2f2f2);--muted:var(--color-text-secondary,#a3a3a3);--line:var(--color-border-primary,#333);--soft:var(--color-background-secondary,#222);--ok:#4ade80;--bad:#f87171;--warn:#fbbf24;--info:#60a5fa;--s0:#60a5fa;--s1:#fbbf24;--s2:#34d399;--s3:#c084fc;color-scheme:dark}
+:root{--up:#0f7b5f;--dn:#c2410c;--bg:var(--color-background-primary,#fff);--fg:var(--color-text-primary,#171717);--muted:var(--color-text-secondary,#6b6b6b);--line:var(--color-border-primary,#e3e3e3);--soft:var(--color-background-secondary,#f6f6f4);--ok:#1f7a4d;--bad:#b42318;--warn:#a15c07;--info:#1d5fa7;--s0:#2563eb;--s1:#d97706;--s2:#059669;--s3:#9333ea;--k0:#2a78d6;--k1:#eb6834;--k2:#1baf7a;--k3:#eda100;--k4:#e87ba4;--k5:#008300;--k6:#6250d6;--k7:#e34948;font-family:var(--font-sans,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif);color-scheme:light}
+:root[data-theme="dark"]{--up:#34d399;--dn:#fb923c;--bg:var(--color-background-primary,#171717);--fg:var(--color-text-primary,#f2f2f2);--muted:var(--color-text-secondary,#a3a3a3);--line:var(--color-border-primary,#333);--soft:var(--color-background-secondary,#222);--ok:#4ade80;--bad:#f87171;--warn:#fbbf24;--info:#60a5fa;--s0:#60a5fa;--s1:#fbbf24;--s2:#34d399;--s3:#c084fc;--k0:#3987e5;--k1:#d95926;--k2:#199e70;--k3:#c98500;--k4:#d55181;--k5:#008300;--k6:#9085e9;--k7:#e66767;color-scheme:dark}
 *{box-sizing:border-box}body{margin:0;padding:12px 14px;background:var(--bg);color:var(--fg);font-size:13px;line-height:1.45}
 h2{font-size:14px;margin:4px 0 8px}h2 small{color:var(--muted);font-weight:400}h3{font-size:12px;margin:12px 0 6px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
 article+article{border-top:1px solid var(--line);margin-top:14px;padding-top:10px}.lead{margin:0 0 6px;font-weight:600}
@@ -37,6 +38,12 @@ table.chain td,table.chain th{padding:3px 6px}.chain .k{text-align:center;font-w
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}.chip{background:var(--soft);border-radius:12px;padding:2px 9px;font-size:11.5px}.chip b{font-weight:600}.ticket{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0}.acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
 .side-buy{color:var(--up);font-weight:600}.side-sell{color:var(--dn);font-weight:600}.tm text{font-size:11.5px;font-weight:600;pointer-events:none}.tm text.small{font-size:10.5px;font-weight:400}.on-dark{fill:#fff}.on-light{fill:var(--fg)}.tm rect{stroke:var(--bg);stroke-width:2}
 table.hm th.c{text-align:center}table.hm td.cell{text-align:center;min-width:46px;cursor:pointer}table.hm td.best{box-shadow:inset 0 0 0 2px var(--fg)}th.sort{cursor:pointer}th.sort:hover{color:var(--fg)}.warn-text{color:var(--warn)}
+button.fs{float:right;margin:0 0 4px 8px;font-size:11.5px}table.sortable th{cursor:pointer}table.sortable th:hover{color:var(--fg)}th[aria-sort="ascending"]::after{content:" ↑"}th[aria-sort="descending"]::after{content:" ↓"}input.filter{font:inherit;font-size:12px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:3px 8px;margin:0 0 6px;width:min(260px,100%)}
+.mtiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(122px,1fr));gap:4px}.mt{display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left;border:1px solid var(--line);border-radius:8px;padding:6px 8px;min-width:0}.mt .n{font-size:11.5px;font-weight:600;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mt .v{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums}.mt:hover{border-color:var(--fg)}
+.wrap{position:relative}.scrub{display:flex;align-items:center;gap:10px;margin:6px 0}.scrub input{flex:1}.scrub b{font-variant-numeric:tabular-nums;min-width:6.5em}
+table.stmt tr.pick{cursor:pointer}table.stmt tr.pick:hover td{background:var(--soft)}table.stmt tr.sel td:first-child{box-shadow:inset 3px 0 0 var(--s0);font-weight:600}table.stmt tr.base td{font-weight:600}svg.mini{display:inline-block;width:auto;vertical-align:middle}.bars svg{max-width:none;width:100%}.b0{fill:var(--s0)}.b1{fill:var(--s1)}.b2{fill:var(--s2)}.b3{fill:var(--s3)}.bn{fill:var(--dn)}
+table.corr td.cell{min-width:40px;cursor:default}table.corr td.dot{min-width:14px;height:14px;padding:0}.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.line.k0{stroke:var(--k0)}.legend i.k0,.sw.k0{background:var(--k0)}.line.k1{stroke:var(--k1)}.legend i.k1,.sw.k1{background:var(--k1)}.line.k2{stroke:var(--k2)}.legend i.k2,.sw.k2{background:var(--k2)}.line.k3{stroke:var(--k3)}.legend i.k3,.sw.k3{background:var(--k3)}.line.k4{stroke:var(--k4)}.legend i.k4,.sw.k4{background:var(--k4)}.line.k5{stroke:var(--k5)}.legend i.k5,.sw.k5{background:var(--k5)}.line.k6{stroke:var(--k6)}.legend i.k6,.sw.k6{background:var(--k6)}.line.k7{stroke:var(--k7)}.legend i.k7,.sw.k7{background:var(--k7)}
 @media (max-width:480px){body{padding:10px}}`;
 
 let page = null;
@@ -45,8 +52,8 @@ let page = null;
 const code = (file) => readFileSync(new URL(file, import.meta.url), "utf8").replace(/^[ \t]*\/\/.*\n/gm, "").replace(/^import .*\n/gm, "").replace(/^export\s+/gm, "");
 export function viewHtml() {
   if (page) return page;
-  const render = code("./view/render.js"), studio = code("./view/studio.js"), app = code("./view/app.js");
-  page = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Canli result</title><style>${CSS}</style></head><body><main id="root"><p class="note">Waiting for the result…</p></main><script>${render}\n${studio}\n${app}</script></body></html>`;
+  const render = code("./view/render.js"), studio = code("./view/studio.js"), atlas = code("./view/atlas.js"), app = code("./view/app.js");
+  page = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Canli result</title><style>${CSS}</style></head><body><main id="root"><p class="note">Waiting for the result…</p></main><script>${render}\n${studio}\n${atlas}\n${app}</script></body></html>`;
   return page;
 }
 

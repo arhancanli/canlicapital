@@ -27,8 +27,22 @@
     message: (text) => request("ui/message", { role: "user", content: { type: "text", text } }, 30000),
     context: (text) => request("ui/update-model-context", { content: [{ type: "text", text }] }).catch(() => {}),
   };
+  // Full screen, when the host offers it: a button that asks for it and back.
+  let mode = "inline", fsButton = null;
+  const displayModes = (ctx) => {
+    if (ctx && typeof ctx.displayMode === "string") mode = ctx.displayMode;
+    if (ctx && Array.isArray(ctx.availableDisplayModes) && ctx.availableDisplayModes.includes("fullscreen") && !fsButton) {
+      fsButton = document.createElement("button");
+      fsButton.type = "button"; fsButton.className = "fs";
+      fsButton.addEventListener("click", () => { request("ui/request-display-mode", { mode: mode === "fullscreen" ? "inline" : "fullscreen" }).then((r) => { if (r && typeof r.mode === "string") mode = r.mode; label(); }).catch(() => {}); });
+      document.body.prepend(fsButton);
+    }
+    label();
+  };
+  const label = () => { if (fsButton) { fsButton.textContent = mode === "fullscreen" ? "Exit full screen" : "⤢ Full screen"; fsButton.setAttribute("aria-pressed", String(mode === "fullscreen")); } };
   const theme = (ctx) => {
     if (!ctx) return;
+    displayModes(ctx);
     if (ctx.theme) document.documentElement.dataset.theme = ctx.theme;
     const vars = ctx.styles && ctx.styles.variables;
     if (vars) for (const [k, v] of Object.entries(vars)) if (/^--[a-z0-9-]+$/i.test(k) && typeof v === "string") document.documentElement.style.setProperty(k, v);

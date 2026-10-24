@@ -5,7 +5,8 @@
 // guidance is drawn as its range with the actual result marked; the fields a result groups (a
 // stock's market figures, a protocol's fees) are drawn as figures with their labels.
 // Every string from a result is escaped: results carry text from filings and press releases.
-import { studioCall, studioFor } from "./studio.js";
+import { studioCall, studioCompact, studioFor } from "./studio.js";
+import { compareFor } from "./atlas.js";
 
 
 export function esc(v) {
@@ -74,8 +75,8 @@ export function table({ columns, rows, title, note, maxRows = 200 }) {
   const cell = (v, i, min, tip) => {
     if (Array.isArray(v) || (v && typeof v === "object")) return `<td class="obj">${esc(JSON.stringify(v).slice(0, 160))}</td>`;
     if (badgeCol.has(i)) return `<td>${badge(v)}</td>`;
-    if (pctCol.has(i) && isNum(v)) return `<td class="num">${fmt(Math.round(v * 1000) / 10)}%</td>`;
-    if (isNum(v)) return `<td class="num">${fmt(v, cols[i] === "decimals" ? 0 : min)}</td>`;
+    if (pctCol.has(i) && isNum(v)) return `<td class="num" data-v="${v}">${fmt(Math.round(v * 1000) / 10)}%</td>`;
+    if (isNum(v)) return `<td class="num" data-v="${v}">${fmt(v, cols[i] === "decimals" ? 0 : min)}</td>`;
     const s = String(v ?? "");
     if (cols[i] === "measure" && /^[a-z0-9]+(_[a-z0-9]+)+$/.test(s)) return `<td>${words(s)}</td>`;
     if (isUrl(s)) return `<td>${link(s, "source")}</td>`;
@@ -83,14 +84,18 @@ export function table({ columns, rows, title, note, maxRows = 200 }) {
     return `<td${tip ? ` title="${esc(tip)}"` : ""}>${esc(s)}</td>`;
   };
   const head = cols.length ? `<thead><tr>${cols.map((c, i) => `<th${numCol[i] ? " class=\"num\"" : ""}>${esc(c)}</th>`).join("")}</tr></thead>` : "";
-  // A heading row has a label and no values.
+  // A heading row has a label and no values. A table without them sorts by any heading, and a long
+  // one has a filter box (studio.js wires both).
+  const isHeading = (row) => row.length > 1 && row.slice(1).every((v) => v === null || v === "");
+  const sortable = body.length >= 3 && !concepts && !body.some(isHeading);
   const lines = body.map((row, n) => {
-    const heading = row.length > 1 && row.slice(1).every((v) => v === null || v === "");
+    const heading = isHeading(row);
     const min = concepts && row.some((v) => isNum(v) && !Number.isInteger(v)) ? 2 : 0;
     return `<tr${heading ? " class=\"heading\"" : ""}>${row.map((v, i) => cell(v, i, min, i === 0 && concepts?.[n] ? String(concepts[n]) : undefined)).join("")}</tr>`;
   }).join("");
   const more = Array.isArray(rows) && rows.length > maxRows ? `<p class="note">${rows.length - maxRows} more rows not shown.</p>` : "";
-  return `<section>${title ? `<h3>${esc(title)}</h3>` : ""}<div class="scroll"><table>${head}<tbody>${lines}</tbody></table></div>${note ? `<p class="note">${esc(note)}</p>` : ""}${more}</section>`;
+  const filter = sortable && body.length > 12 ? `<input type="search" class="filter" placeholder="Filter ${body.length} rows" aria-label="Filter rows">` : "";
+  return `<section>${title ? `<h3>${esc(title)}</h3>` : ""}${filter}<div class="scroll"><table${sortable ? ' class="sortable"' : ""}>${head}<tbody>${lines}</tbody></table></div>${note ? `<p class="note">${esc(note)}</p>` : ""}${more}</section>`;
 }
 
 // Claims checked against filings (verify_claims): each sentence once, then its checks: the verdict,
@@ -322,7 +327,7 @@ export function renderResult(result) {
     seen.add(k);
   }
   // Statements as filed, under the company's own title and scale.
-  for (const k of STATEMENTS) if (result[k]?.columns && result[k]?.rows) {
+  for (const k of STATEMENTS) if (!seen.has(k) && result[k]?.columns && result[k]?.rows) {
     const st = result[k];
     out.push(table({ columns: st.columns, rows: st.rows, title: `${st.title || NAMES[k]}${st.units ? ` (${st.units})` : ""}` }));
     seen.add(k);
@@ -393,7 +398,12 @@ export function renderRunResult(structured, input = {}) {
   if (!structured || typeof structured !== "object") return renderResult(structured);
   if (Array.isArray(structured.results)) {
     const last = Array.isArray(input?.calls) && input.return === "last";
-    return structured.results.map((r, i) => (studioCall(r.name, last ? input.calls.length - 1 : i), `<article><h2>${esc(r.name ?? "result")}${r.ref ? ` <small>${esc(r.ref)}</small>` : ""}</h2>${r.error ? `<p class="error">${esc(r.error)}</p>` : renderResult(r.result)}</article>`)).join("");
+    // Several price series are compared in one view above them, and each is not drawn again.
+    const compare = compareFor(structured.results);
+    studioCompact(Boolean(compare));
+    const items = structured.results.map((r, i) => (studioCall(r.name, last ? input.calls.length - 1 : i), `<article><h2>${esc(r.name ?? "result")}${r.ref ? ` <small>${esc(r.ref)}</small>` : ""}</h2>${r.error ? `<p class="error">${esc(r.error)}</p>` : renderResult(r.result)}</article>`)).join("");
+    studioCompact(false);
+    return (compare ? `<article><h2>Compared</h2>${compare}</article>` : "") + items;
   }
   const name = input?.name ?? "";
   studioCall(name, null);

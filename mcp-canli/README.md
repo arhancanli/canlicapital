@@ -2,13 +2,15 @@
 
 Every Canli Capital MCP server in one: 345 finance tools for Claude, Cursor or any MCP client.
 
-- Interactive views in the chat (new in 0.10.0): candlestick charts you zoom and pan with moving
-  averages, Bollinger bands, RSI and MACD; option chains with calls and puts around the strike and
-  any expiration a click away; backtest dashboards (equity against buy-and-hold and the S&P 500,
-  drawdown, a sortable trade log) whose sliders rerun the backtest and count every setting tried;
-  sweep heatmaps; treemaps of holdings; and a paper order ticket with an Approve button. With
-  `view: true` the person gets the whole result drawn and the model a summary: 19 to 37 times fewer
-  characters in our checks.
+- Interactive views in the chat: candlestick charts you zoom and pan with moving averages,
+  Bollinger bands, RSI and MACD; option chains with any expiration a click away; backtest
+  dashboards whose sliders rerun the backtest and count every setting tried; treemaps; a paper order
+  ticket with an Approve button. New in 0.11.0: a market map whose tiles open their charts, the
+  Treasury curve against earlier dates and played through five years, statements charted with
+  margins and growth, the volatility surface, several prices compared with a correlation heatmap and
+  the number of independent bets they add up to, and every table sortable. With `view: true` the
+  person gets the whole result drawn and the model a summary: 19 to 47 times fewer characters in our
+  checks.
 - Quant finance: 235 tools covering performance and risk, options and exotics, fixed income,
   portfolios, econometrics, indicators, and a library of 399 strategy sleeves with
   multiple-testing corrections.
@@ -82,16 +84,16 @@ own broker keys. The hosted server keeps nothing between requests, so chain call
 
 Measured on Node 24 on 2026-10-24 with `bench/context.py` (o200k tokens of the tool objects a
 client receives, plus the server instructions; all seven packs enabled with `CANLI_PACKS=all`; start-up is the median time from launch to the
-tool list, on a machine running other work; `bench/context-2026-10-24-0.10.0.json`):
+tool list, on a machine running other work; `bench/context-2026-10-24-0.11.0.json`):
 
 | | seven servers separately | canli-mcp |
 |---|---|---|
-| initial tool list and instructions | 53,974 tokens (115 tools) | 2,395 tokens (5 tools) |
+| initial tool list and instructions | 53,974 tokens (115 tools) | 2,408 tokens (5 tools) |
 | processes | 7 | 1 |
-| start-up | 87-139 ms each | 151 ms |
+| start-up | 87-139 ms each | 149 ms |
 
 Tools the packs add cost the combined server nothing up front: since 0.6.0 the seven servers' own
-lists grew from 39,962 to 53,974 tokens. The interactive views of 0.10.0 added 76 tokens.
+lists grew from 39,962 to 53,974 tokens. The interactive views of 0.10.0 added 76 tokens, those of 0.11.0 another 13.
 
 - **Five tools in context.** The model searches with `find_tool`, reads one schema with
   `describe_tool`, and calls anything with `run_tool`; `history` and `financial_statements`, the
@@ -116,7 +118,7 @@ lists grew from 39,962 to 53,974 tokens. The interactive views of 0.10.0 added 7
 
 ## Workflows as prompts
 
-Clients that show MCP prompts (Claude Desktop and Claude Code list them as slash commands) offer twenty-seven
+Clients that show MCP prompts (Claude Desktop and Claude Code list them as slash commands) offer thirty-one
 workflows. Each one runs a single batched `run_tool` call and says what to write from the results:
 
 | prompt | asks for | runs |
@@ -125,6 +127,10 @@ workflows. Each one runs a single batched `run_tool` call and says what to write
 | `market_today` | nothing | US indices and the VIX, sectors ranked by the month, yields, the dollar, oil, gold, bitcoin and markets abroad over a day to a year, the week's key releases, the Fed's latest decision and what prediction markets price for its next |
 | `stock_chart` | a ticker | an interactive chart of two years of prices (candlesticks, averages, Bollinger bands, RSI, MACD) and the option chain, with the price against its 50- and 200-day averages, the RSI and the options-implied move |
 | `strategy_lab` | a ticker | a 50/200-day crossover since 2010 as a dashboard with sliders, figures against buy-and-hold and a luck check of every setting tried |
+| `compare_stocks` | two to eight tickers | five years side by side: growth of 1, each one's return, volatility, Sharpe, worst drawdown and beta, a correlation heatmap and the number of independent bets |
+| `yield_curve` | nothing | the Treasury curve against a month, a year and five years ago, played through five years, with the 10Y-2Y and 10Y-3M spreads and how often it was inverted |
+| `volatility_surface` | a ticker | implied volatility by strike and expiration: each expiration's smile, the term structure at the money and at 25 delta, the skew, the surface as a heatmap |
+| `statement_charts` | a ticker | the statements as filed, charted: any line over the years, margins, the balance sheet as a share of assets, growth |
 | `dividend_check` | a ticker | years of dividends and buybacks against earnings and free cash flow, the split-adjusted dividend record, the yields, debt falling due, Altman and Piotroski screens |
 | `company_brief` | a ticker | company report, 8-K news with press-release headlines, the latest results against their guidance, next earnings date, insider trades, short interest, options-implied move |
 | `earnings_preview` | a ticker | earnings date and timing, what the company guided for the quarter and whether it met its last guidance, the move options price in, past reactions to results (event study), recent results headlines, revenue by segment |
@@ -154,7 +160,7 @@ A prompt is offered only when every tool it names is in an enabled pack (`CANLI_
 Prompts are requested separately from `tools/list`. Their context cost depends on how the client
 includes prompt and resource metadata.
 
-The packs also bring their own 25 prompts, so the full server offers 52. Their names identify the
+The packs also bring their own 25 prompts, so the full server offers 56. Their names identify the
 pack, such as `fundamentals.known_on_date`, `quant.audit_backtest`,
 `validation.stress_my_strategy` and `research.literature_review`. They route tool calls through
 `run_tool`, preserve the source pack's prompt argument checks, and forward its completion helpers.
@@ -190,13 +196,35 @@ beside the answer, and some results as interactive views:
 - Paper orders (`preview_paper_orders`, `rebalance_to_weights`): a ticket with each order's price,
   notional, cost and checks, the token's countdown and Approve, which sends exactly the previewed
   orders through `send_paper_orders` and shows the receipt.
+- The market (`market_overview`): every index, sector, yield, currency, commodity and crypto as a
+  tile coloured by its move over a day, a week, a month, three months, the year to date or a year,
+  ranked or in order, with the best, the worst and how many sectors rose; a tile opens that market's
+  candlestick chart, and Refresh reloads the map.
+- The Treasury curve (`treasury_yields`): the curve on a day against a month, a year and five years
+  before (five years of history load once), a slider and Play that run the curve through time, the
+  10Y-2Y and 10Y-3M spreads over the years with the share of days inverted, and each maturity's
+  rates under the cursor.
+- Statements (`financial_statements`): the income statement, balance sheet and cash flows as filed,
+  with a trend for every line; as filed, as a share of revenue (the margins) or of total assets, or
+  as growth on the year before; click lines to chart them over the years.
+- Implied volatility (`volatility_surface`): each expiration's smile by moneyness, the term
+  structure at the money and at 25 delta, the skew, and the whole surface as a heatmap.
+- Several prices in one batch: growth of 1 over three months to all, a sortable table of each one's
+  return, CAGR, volatility, Sharpe, worst drawdown, and correlation and beta to the first, and a
+  heatmap of how their daily returns move together (as given or clustered) with the average pair,
+  the closest and most opposed pairs, the best diversifier and the number of independent bets
+  ((sum of eigenvalues)² over the sum of their squares). `correlation_matrix` results get the same
+  heatmap. The figures agree with the quant pack's own tools, checked in the tests.
+- Every other table sorts by any heading, and a long one has a filter box. Hosts that offer full
+  screen get a button for it.
 
 Zooming, panning, sorting and toggling call nothing. An expiration, a released slider, the S&P 500
 or Approve calls `run_tool` through the host (which may ask the person first), and the answer goes
 to the view, not the conversation; what the person did is passed to the model as context. With
 `view: true`, `run_tool` sends the model a summary (every field, long lists as their length, ends and
 range) and the view the whole result: a two-year price history fell from 30,529 characters to 1,598
-for the model, a backtest with its curve from 50,320 to 1,369. Without MCP Apps, `view` changes
+for the model, a backtest with its curve from 50,320 to 1,369, five stocks over five years compared
+from 357,016 to 7,656. A result smaller than its summary is sent whole. Without MCP Apps, `view` changes
 nothing but adding a backtest's curve.
 
 Every result's page also has tables with the figures aligned, statements as filed with their scale, checked
