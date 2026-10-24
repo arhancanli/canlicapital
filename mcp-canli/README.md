@@ -73,25 +73,27 @@ own broker keys. The hosted server keeps nothing between requests, so chain call
 
 ## Context and startup
 
-Measured on Node 24 on 2026-10-15 with `bench/context.py` (o200k tokens of the tool objects a
+Measured on Node 24 on 2026-10-24 with `bench/context.py` (o200k tokens of the tool objects a
 client receives, plus the server instructions; all seven packs enabled with `CANLI_PACKS=all`; start-up is the median time from launch to the
-tool list, on a machine running other work; `bench/context-2026-10-15-0.6.0.json`):
+tool list, on a machine running other work; `bench/context-2026-10-24-0.9.0.json`):
 
 | | seven servers separately | canli-mcp |
 |---|---|---|
-| initial tool list and instructions | 39,962 tokens | 1,160 tokens |
+| initial tool list and instructions | 53,974 tokens (115 tools) | 2,319 tokens (5 tools) |
 | processes | 7 | 1 |
-| start-up | 71-100 ms each | 86 ms |
+| start-up | 88-137 ms each | 153 ms |
 
-The four tools this release adds cost the combined server nothing up front; run separately, the
-markets server's list grew by 1,915 tokens.
+Tools the packs add cost the combined server nothing up front: since 0.6.0 the seven servers' own
+lists grew from 39,962 to 53,974 tokens.
 
-- **Three tools in context.** The model searches with `find_tool`, reads one schema with
-  `describe_tool`, and calls anything with `run_tool`. On 48 everyday requests written after the
+- **Five tools in context.** The model searches with `find_tool`, reads one schema with
+  `describe_tool`, and calls anything with `run_tool`; `history` and `financial_statements`, the
+  most used, are listed directly too (`CANLI_FRONT` changes them; empty lists only the three). On 48 everyday requests written after the
   last change to the search and never tuned on, the right tool comes first 46 times and is in the
   top three 47 times (0.2.1: 25 and 29). For the eight tools added in 0.5.0 and 0.6.0, 41 requests
   written before measuring found the right tool first 36 times and in the top three 38 times; two
-  words they used were then added to the index (38 and 40). `test/search.test.mjs` holds these and
+  words they used were then added to the index (38 and 40). For the 0.7.0 to 0.9.0 tools, 43 requests
+  written before measuring: 41 first, 42 in the top three. `test/search.test.mjs` holds these and
   176 more.
 - **Nothing loads until it is used.** Start-up reads a prebuilt index of all 345 tools; a pack's
   code loads the first time one of its tools runs.
