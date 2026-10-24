@@ -48,12 +48,15 @@ export const canonical = (v) => (v === null || typeof v !== "object" ? JSON.stri
 const sha256 = (s) => createHash("sha256").update(s).digest("hex");
 const hashOf = (v) => sha256(canonical(v ?? null));
 
+// CANLI_POLICY is a policy file's path, or the policy itself as JSON (a value starting with "{"), which
+// suits a desktop app's config where a file is one more thing to manage.
 export function loadPolicy(env = process.env) {
   if (!env.CANLI_POLICY) return null;
+  const inline = env.CANLI_POLICY.trim().startsWith("{"), label = inline ? "CANLI_POLICY (inline)" : `CANLI_POLICY ${env.CANLI_POLICY}`;
   let raw;
-  try { raw = JSON.parse(readFileSync(env.CANLI_POLICY, "utf8")); } catch (e) { throw new Error(`CANLI_POLICY ${env.CANLI_POLICY}: ${e.message}`); }
+  try { raw = JSON.parse(inline ? env.CANLI_POLICY : readFileSync(env.CANLI_POLICY, "utf8")); } catch (e) { throw new Error(`${label}: ${e.message}`); }
   const parsed = POLICY.safeParse(raw);
-  if (!parsed.success) throw new Error(`CANLI_POLICY ${env.CANLI_POLICY}: ${parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "policy"}: ${i.message}`).join("; ")}`);
+  if (!parsed.success) throw new Error(`${label}: ${parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "policy"}: ${i.message}`).join("; ")}`);
   return parsed.data;
 }
 
@@ -122,6 +125,8 @@ export function createAudit({ dir, keys, now = () => new Date(), args: mode = "h
       if (++sinceCheckpoint >= CHECKPOINT_EVERY) checkpoint();
     },
     checkpoint,
+    // Signs what is still unsigned, so a log that ends cleanly ends on a checkpoint.
+    close() { if (sinceCheckpoint > 0) checkpoint(); },
     status: () => ({ file: path, records: seq, unsigned: sinceCheckpoint, head: prev, keys: Object.fromEntries(Object.entries(keys).map(([id, k]) => [id, { key_id: k.keyId, public_key: k.publicPath }])) }),
   };
 }
@@ -131,7 +136,9 @@ export function createAudit({ dir, keys, now = () => new Date(), args: mode = "h
 // beside the log's keys in CANLI_HOME). Every signature a checkpoint carries must verify, and a key
 // a checkpoint names must be supplied.
 export function verifyAudit(target, publicPems = {}) {
-  const files = statSync(target).isDirectory() ? readdirSync(target).filter((f) => f.endsWith(".jsonl")).sort().map((f) => join(target, f)) : [target];
+  let isDir;
+  try { isDir = statSync(target).isDirectory(); } catch { return { valid: false, files: [], error: `no audit log at ${target}` }; }
+  const files = isDir ? readdirSync(target).filter((f) => f.endsWith(".jsonl")).sort().map((f) => join(target, f)) : [target];
   const pubs = Object.fromEntries(Object.entries(publicPems).filter(([, pem]) => pem).map(([id, pem]) => { const k = createPublicKey(pem); return [id, { key: k, keyId: sha256(k.export({ type: "spki", format: "pem" })).slice(0, 16) }]; }));
   const out = files.map((file) => verifyFile(file, pubs));
   return { valid: out.length > 0 && out.every((f) => f.valid), files: out };
@@ -170,7 +177,7 @@ function verifyFile(file, pubs) {
 // The policy and audit log for this process, or nothing when CANLI_POLICY is unset.
 export function governance(env = process.env, home) {
   const policy = loadPolicy(env);
-  if (!policy) return { policy: null, audit: null, check: () => {}, record: () => {} };
+  if (!policy) return { policy: null, audit: null, check: () => {}, record: () => {}, close: () => {} };
   const keyDir = join(home, "audit-keys");
   const audit = policy.audit ? createAudit({ dir: policy.audit.dir ?? join(home, "audit"), keys: signingKeys(keyDir), args: policy.audit.arguments ?? "hash" }) : null;
   const window = [];
@@ -187,6 +194,7 @@ export function governance(env = process.env, home) {
       }
     },
     record: (call) => audit?.record(call),
+    close: () => audit?.close(),
   };
 }
 

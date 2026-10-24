@@ -1,6 +1,6 @@
 # canli-mcp
 
-Every Canli Capital MCP server in one: 343 finance tools for Claude, Cursor or any MCP client.
+Every Canli Capital MCP server in one: 345 finance tools for Claude, Cursor or any MCP client.
 
 - Quant finance: 235 tools covering performance and risk, options and exotics, fixed income,
   portfolios, econometrics, indicators, and a library of 399 strategy sleeves with
@@ -93,7 +93,7 @@ markets server's list grew by 1,915 tokens.
   written before measuring found the right tool first 36 times and in the top three 38 times; two
   words they used were then added to the index (38 and 40). `test/search.test.mjs` holds these and
   176 more.
-- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 343 tools; a pack's
+- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 345 tools; a pack's
   code loads the first time one of its tools runs.
 - **Data by file, not by pasting.** Any argument can be `{"$file": "prices.csv", "column": "close"}`
   (or `"columns": ["SPY", "TLT"]` or `"all"`). For 1,000 prices that is 23 tokens instead of 4,893,
@@ -107,11 +107,14 @@ markets server's list grew by 1,915 tokens.
 
 ## Workflows as prompts
 
-Clients that show MCP prompts (Claude Desktop and Claude Code list them as slash commands) offer twenty-two
+Clients that show MCP prompts (Claude Desktop and Claude Code list them as slash commands) offer twenty-five
 workflows. Each one runs a single batched `run_tool` call and says what to write from the results:
 
 | prompt | asks for | runs |
 |---|---|---|
+| `research_report` | a ticker | a full research note: the business and segments, statements as filed, results against guidance, peers, the growth the price implies, debt, dividends and buybacks, Beneish, Piotroski and Altman screens, what changed in the risk factors, ownership breadth, insiders, news |
+| `market_today` | nothing | US indices and the VIX, sectors ranked by the month, yields, the dollar, oil, gold, bitcoin and markets abroad over a day to a year, the week's key releases, the Fed's latest decision and what prediction markets price for its next |
+| `dividend_check` | a ticker | years of dividends and buybacks against earnings and free cash flow, the split-adjusted dividend record, the yields, debt falling due, Altman and Piotroski screens |
 | `company_brief` | a ticker | company report, 8-K news with press-release headlines, the latest results against their guidance, next earnings date, insider trades, short interest, options-implied move |
 | `earnings_preview` | a ticker | earnings date and timing, what the company guided for the quarter and whether it met its last guidance, the move options price in, past reactions to results (event study), recent results headlines, revenue by segment |
 | `financial_history` | a ticker | four years of statements as filed, with restatements and splits shown |
@@ -140,7 +143,7 @@ A prompt is offered only when every tool it names is in an enabled pack (`CANLI_
 Prompts are requested separately from `tools/list`. Their context cost depends on how the client
 includes prompt and resource metadata.
 
-The packs also bring their own 25 prompts, so the full server offers 47. Their names identify the
+The packs also bring their own 25 prompts, so the full server offers 50. Their names identify the
 pack, such as `fundamentals.known_on_date`, `quant.audit_backtest`,
 `validation.stress_my_strategy` and `research.literature_review`. They route tool calls through
 `run_tool`, preserve the source pack's prompt argument checks, and forward its completion helpers.
@@ -227,14 +230,15 @@ code, and writes only the audit log a policy file asks for (both tested). Opt-in
 | `CANLI_OFFLINE` | `1` keeps only `quant` and `validation`. |
 | `ALPACA_PAPER_KEY_ID`, `ALPACA_PAPER_SECRET_KEY` | Paper keys (starting `PK`); setting them enables the paper pack. Live keys are refused. |
 | `CANLI_HOME` | Where the paper pack keeps its limits file, kill switch and order log, and the audit log and its keys are kept; default `~/.canli`. |
-| `CANLI_POLICY` | A policy file (below). Unset: no policy and no audit log. |
+| `CANLI_POLICY` | A policy file's path, or the policy itself as JSON (below). Unset: no policy and no audit log. |
 | `CANLI_PLUGINS` | Plugin packs to load (below): package names or `.mjs` paths, comma-separated. |
 
 Order-sending tools never run inside a batch: preview first, then send on its own.
 
 ## For firms: policy and audit log
 
-A compliance team sets what the server may do in one file and points `CANLI_POLICY` at it:
+A compliance team sets what the server may do in one file and points `CANLI_POLICY` at it (or puts
+the JSON itself in `CANLI_POLICY`, handy in a desktop app's config):
 
 ```json
 {
@@ -252,7 +256,7 @@ logged like any other.
 With `audit`, every call is written to `CANLI_HOME/audit/` (one JSONL file per server process): the
 tool, the time, the outcome and the SHA-256 of the arguments and the result (the arguments
 themselves only with `"arguments": "full"`). Each record carries the hash of the one before it, so
-an edited, removed or inserted record breaks the chain. Every 20 records a checkpoint is signed
+an edited, removed or inserted record breaks the chain. Every 20 records, and when the server exits, a checkpoint is signed
 with an Ed25519 key and, on Node 24.7 or later, also with an ML-DSA-65 key (FIPS 204, a
 post-quantum signature); both must verify. The keys are made on your machine the first time and
 never leave it; give an auditor the public halves (`CANLI_HOME/audit-keys/*.pub.pem`), and they
@@ -311,7 +315,7 @@ feed carries on.
 | fundamentals | [canli-fundamentals-mcp](https://www.npmjs.com/package/canli-fundamentals-mcp) | 7 | SEC XBRL filings |
 | research | [canli-research-mcp](https://www.npmjs.com/package/canli-research-mcp) | 6 | the published research record and its hash chain |
 | backtest | [canli-backtest-mcp](https://www.npmjs.com/package/canli-backtest-mcp) | 11 | point-in-time SEC data and the breadth lab's own checks |
-| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 62 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank, Cboe, ECB, Bank of England, BIS, filings.xbrl.org, Polymarket, Kalshi, DefiLlama, USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index: a 13F's total equals its cover page; ESEF figures equal the same companies' Form 20-F at the SEC; central-bank rates agree with the BIS |
+| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 64 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank, Cboe, ECB, Bank of England, BIS, filings.xbrl.org, Polymarket, Kalshi, DefiLlama, USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index: a 13F's total equals its cover page; ESEF figures equal the same companies' Form 20-F at the SEC; central-bank rates agree with the BIS |
 | paper | [canli-paper-trading-mcp](https://www.npmjs.com/package/canli-paper-trading-mcp) | 5 | a simulated Alpaca paper API |
 
 Two tools differ from their standalone servers. Validation's `stress_test` is `strategy_stress_test`

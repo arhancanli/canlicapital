@@ -344,3 +344,30 @@ test("requests for the 0.7.0 and 0.8.0 tools: a right tool first in at least 29 
   console.log(JSON.stringify({ top1, top3, of: Q08.length, misses }));
   assert.ok(top1 >= 29 && top3 === Q08.length, JSON.stringify({ top1, top3, misses }));
 });
+
+// Requests for the 0.9.0 tools (market_overview, shareholder_returns), written before searching them.
+const Q09 = [
+  ["how is the stock market doing today", ["market_overview"]],
+  ["which sectors are leading this month", ["market_overview"]],
+  ["s&p 500 nasdaq and vix this week", ["market_overview"]],
+  ["give me a market snapshot with oil gold and bitcoin", ["market_overview"]],
+  ["how did european and asian markets do", ["market_overview"]],
+  ["coca cola dividend history", ["shareholder_returns"]],
+  ["how much has apple spent on buybacks", ["shareholder_returns"]],
+  ["is johnson and johnson's dividend safe payout ratio", ["shareholder_returns"]],
+  ["dividend growth rate over ten years for pepsi", ["shareholder_returns"]],
+  ["shareholder yield including repurchases", ["shareholder_returns"]],
+  ["how many years in a row has the dividend been raised", ["shareholder_returns"]],
+  ["is the share count shrinking", ["shareholder_returns"]],
+];
+
+test("requests for the 0.9.0 tools: a right tool first in at least 11 of 12 (the miss, \"european and asian markets\", finds Asian options first)", () => {
+  let top1 = 0;
+  const misses = [];
+  for (const [q, want] of Q09) {
+    const r = search(INDEX, q, { limit: 3 }).map((t) => t.name);
+    if (want.includes(r[0])) top1++; else misses.push(`${q} -> ${r.join(", ")}`);
+  }
+  console.log(JSON.stringify({ top1, of: Q09.length, misses }));
+  assert.ok(top1 >= 11, JSON.stringify({ top1, misses }));
+});

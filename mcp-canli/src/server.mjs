@@ -437,5 +437,8 @@ if (isMain && process.argv[2] === "audit") {
   const server = new McpServer(SERVER_INFO, { instructions: instructions(packs, front) });
   registerAll(server, packs, gov);
   await registerFront(server, packs, front, gov);
+  // Signing is synchronous, so the last calls are signed even as the process exits.
+  process.on("exit", () => gov.close());
+  for (const signal of ["SIGINT", "SIGTERM"]) process.on(signal, () => process.exit(0));
   await server.connect(new StdioServerTransport());
 }

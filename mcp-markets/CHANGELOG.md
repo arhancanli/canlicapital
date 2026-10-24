@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.3
+
+- `news` and `explain_move` search for a company by its plain name when its SEC name ends in "/NEW"
+  (Costco Wholesale was searched as "Costco Wholesale CORP /NEW" and found nothing).
+
 ## 0.7.2
 
 - `market_overview`: the market at a glance in one call: US indices and the VIX, the eleven S&P sectors
