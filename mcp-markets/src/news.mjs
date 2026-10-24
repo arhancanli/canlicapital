@@ -51,8 +51,9 @@ function refused(err) {
   return /429/.test(String(err?.message)) ? new Error("GDELT is limiting requests from this address (HTTP 429); it allows about one every five seconds. Ask again in a minute.") : err;
 }
 
-// attempts: GDELT requests to try before giving up (explain_move asks once, to stay quick).
-export async function news(session, args, { attempts = 2 } = {}) {
+// attempts: GDELT requests to try before giving up, each after a longer wait (GDELT counts requests
+// per address and often refuses one in a burst); explain_move asks once, to stay quick.
+export async function news(session, args, { attempts = 3 } = {}) {
   const a = newsInput.parse(args);
   if (!a.query && !a.company) throw new Error("news needs query or company.");
   let who = null;

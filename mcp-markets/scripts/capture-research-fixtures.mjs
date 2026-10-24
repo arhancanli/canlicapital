@@ -6,6 +6,7 @@ import { gzipSync } from "node:zlib";
 
 import { frameUrl, METRICS } from "../src/research.mjs";
 import { yahooChartUrl } from "../src/tools.mjs";
+import { MEASURES as PAYOUTS } from "../src/payouts.mjs";
 
 const DIR = new URL("../test/fixtures/", import.meta.url);
 const manifest = JSON.parse(readFileSync(new URL("manifest.json", DIR), "utf8"));
@@ -40,7 +41,7 @@ for (const [, , t] of tickers) if (!seen.has(t)) { seen.add(t); await grab(yahoo
 for (const t of ["AAPL", "SPY"]) await grab(yahooChartUrl(t, day(372), day(0)));
 // Apple's XBRL history, cut to the concepts the report reads.
 await grab("https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json", (t) => {
-  const d = JSON.parse(t), keep = new Set(Object.values(METRICS).flatMap((m) => m.tags));
+  const d = JSON.parse(t), keep = new Set([...Object.values(METRICS).flatMap((m) => m.tags), ...Object.values(PAYOUTS).flatMap(([tags]) => tags)]);
   d.facts = { "us-gaap": Object.fromEntries(Object.entries(d.facts["us-gaap"]).filter(([k]) => keep.has(k))), dei: { EntityCommonStockSharesOutstanding: d.facts.dei.EntityCommonStockSharesOutstanding } };
   return JSON.stringify(d);
 });

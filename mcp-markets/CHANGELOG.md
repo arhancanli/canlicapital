@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.7.2
+
+- `market_overview`: the market at a glance in one call: US indices and the VIX, the eleven S&P sectors
+  ranked by the month, Treasury yields, the dollar and major currencies, oil, gas, gold, silver and copper,
+  bitcoin and ether, and the main markets in Europe and Asia, each over a day, a week, a month, three
+  months, the year to date and a year (yields in percentage points). A market that fails is listed as
+  missing. 64 tools.
+- `shareholder_returns`: what a company has paid its shareholders, year by year from its annual XBRL:
+  dividends per share and in total, buybacks and shares issued for cash, the diluted share count, the
+  payout ratio and the share of free cash flow paid out; the dividend's record on split-adjusted figures
+  (years raised in a row, 5- and 10-year growth; a split shows in older 10-Ks as a cut otherwise); and the
+  dividend and shareholder yields at the last close.
+- `ownership_breadth` finds the CUSIP from a company's name in many more cases: 13F tables shorten
+  issuer names ("COSTCO WHSL CORP NEW", "BANK OF AMER CORP"), write "&" as "&amp;", and some filers
+  slip, so names now match word by word with abbreviations, the CUSIP check digit is checked, the
+  company's own 13F and old text filings are skipped, three tables vote, and among several CUSIPs
+  (share classes, or a CUSIP that changed) the one most filers list is counted, the others shown.
+  A CUSIP new in recent quarters is flagged rather than read as a jump in ownership.
+- `news` tries GDELT three times, each after a longer wait, before reporting its rate limit.
+
 ## 0.7.1
 
 - `compute_prices`: compute as a market. The on-demand hourly price of each data-centre GPU (B200,
