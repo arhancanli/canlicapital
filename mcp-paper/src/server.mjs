@@ -10,6 +10,7 @@ import { McpServer } from "@modelcontextprotocol/server";
 import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { z } from "zod";
 
+import { verifyAttestation } from "./attest.mjs";
 import { createBroker } from "./broker.mjs";
 
 export const SERVER_NAME = "canli-paper-trading-mcp";
@@ -18,7 +19,7 @@ export const SERVER_INFO = Object.freeze({
   name: SERVER_NAME, version: SERVER_VERSION, title: "Canli Paper Trading", websiteUrl: "https://canlicapital.com/developers",
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
-export const SERVER_INSTRUCTIONS = "Alpaca paper trading only. Preview first: preview_paper_orders or rebalance_to_weights run pre-trade checks (your limits file, market clock, kill switch) and return a five-minute token only when every order passes; send_paper_orders needs that token. Never live money.";
+export const SERVER_INSTRUCTIONS = "Alpaca paper trading only. Every check and send returns a signed attestation (verify_attestation checks one); with CANLI_PAPER_PRIVATE=1 the account's figures are committed, never shown. Preview first: preview_paper_orders or rebalance_to_weights run pre-trade checks (your limits file, market clock, kill switch) and return a five-minute token only when every order passes; send_paper_orders needs that token. Never live money.";
 
 const order = z.object({
   symbol: z.string().regex(/^[A-Z][A-Z0-9.]{0,9}$/, "a US equity ticker, e.g. AAPL").describe("Ticker, e.g. AAPL."),
@@ -43,6 +44,11 @@ export const INPUTS = {
     allow_leverage: z.boolean().optional().describe("Allow gross weight above 1; default false."),
     fees, limits,
   }).strict(),
+  verify_attestation: z.object({
+    attestation: z.looseObject({}).describe("An attestation object a check or send returned."),
+    public_key_pem: z.string().max(2000).optional().describe("The signer's public key (PEM); default this machine's CANLI_HOME/attest-ed25519.pub.pem."),
+    openings: z.array(z.object({ label: z.string().max(40), commitment: z.string().regex(/^[0-9a-f]{64}$/), salt: z.string().regex(/^[0-9a-f]{32}$/), value: z.unknown() }).strict()).max(10).optional().describe("Commitments to open: label, commitment, salt and value, from the trader's commitments.jsonl."),
+  }).strict(),
   send_paper_orders: z.object({ token: z.string().max(4000).optional().describe("Confirmation token from preview_paper_orders or rebalance_to_weights."), cancel_order_ids: z.array(z.string().max(64)).max(100).optional().describe("Open paper order ids to cancel instead (no token needed).") }).strict(),
 };
 
@@ -50,18 +56,20 @@ const DESCRIPTIONS = {
   paper_account: "Read your Alpaca paper account: equity, cash, buying power, positions, open orders, the market clock, the kill switch and the local order log's verified head.",
   preview_paper_orders: "Check orders against your paper account, live quotes, the market clock, your limits file and the kill switch; when every order passes, return a five-minute confirmation token for exactly these orders.",
   rebalance_to_weights: "Turn target portfolio weights into the whole-share orders that move your paper account there (sells first), check them, and return a confirmation token when all pass.",
+  verify_attestation: "Check an attestation a pre-trade check or send returned: that it was signed by the trader's key and not altered, and, given openings from the trader's commitments file, that committed account figures are what they claim. Offline; reads nothing from Alpaca.",
   send_paper_orders: "Send previewed orders to your Alpaca paper account with their confirmation token (the kill switch is read again first), or cancel open paper orders by id. Every send is logged, hash-chained.",
 };
 const ANNOTATIONS = {
   paper_account: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true },
   preview_paper_orders: { readOnlyHint: true, destructiveHint: false, idempotentHint: false, openWorldHint: true },
   rebalance_to_weights: { readOnlyHint: true, destructiveHint: false, idempotentHint: false, openWorldHint: true },
+  verify_attestation: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
   send_paper_orders: { readOnlyHint: false, destructiveHint: true, idempotentHint: false, openWorldHint: true },
 };
-const TITLES = { paper_account: "Paper account", preview_paper_orders: "Preview paper orders", rebalance_to_weights: "Rebalance to weights", send_paper_orders: "Send paper orders" };
+const TITLES = { paper_account: "Paper account", preview_paper_orders: "Preview paper orders", rebalance_to_weights: "Rebalance to weights", send_paper_orders: "Send paper orders", verify_attestation: "Verify an attestation" };
 
-export function registerAll(server, { broker }) {
-  const run = { paper_account: () => broker.account(), preview_paper_orders: (a) => broker.preview(a), rebalance_to_weights: (a) => broker.rebalance(a), send_paper_orders: (a) => broker.send(a) };
+export function registerAll(server, { broker, home }) {
+  const run = { paper_account: () => broker.account(), preview_paper_orders: (a) => broker.preview(a), rebalance_to_weights: (a) => broker.rebalance(a), send_paper_orders: (a) => broker.send(a), verify_attestation: (a) => verifyAttestation(a.attestation, a.public_key_pem ?? readFileSync(join(home ?? join(homedir(), ".canli"), "attest-ed25519.pub.pem"), "utf8"), a.openings ?? []) };
   for (const name of Object.keys(INPUTS)) {
     server.registerTool(name, { title: TITLES[name], description: DESCRIPTIONS[name], annotations: { title: TITLES[name], ...ANNOTATIONS[name] }, inputSchema: INPUTS[name], outputSchema: z.looseObject({}) }, async (args) => {
       try { const v = await run[name](args ?? {}); return { content: [{ type: "text", text: JSON.stringify(v) }], structuredContent: v }; }
@@ -75,6 +83,6 @@ const isMain = (() => { try { return realpathSync(process.argv[1] ?? "") === rea
 if (isMain) {
   const home = process.env.CANLI_HOME ?? join(homedir(), ".canli");
   const server = new McpServer(SERVER_INFO, { instructions: SERVER_INSTRUCTIONS });
-  registerAll(server, { broker: createBroker({ home }) });
+  registerAll(server, { broker: createBroker({ home }), home });
   await server.connect(new StdioServerTransport());
 }

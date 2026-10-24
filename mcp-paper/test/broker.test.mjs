@@ -163,3 +163,38 @@ test("a broker that never answers times out instead of hanging", async (t) => {
   await assert.rejects(broker.account(), /no response in 0.05 s/);
   assert.ok(Date.now() - t0 < 5000);
 });
+
+test("every check and send carries an attestation the trader's public key verifies; an altered one fails", async () => {
+  const { verifyAttestation } = await import("../src/attest.mjs");
+  const s = setup();
+  try {
+    const p = await s.broker.preview({ orders: [{ symbol: "AAPL", side: "buy", qty: 5 }] });
+    assert.equal(p.attestation.kind, "pretrade"); assert.equal(p.attestation.accepted, true);
+    const pub = readFileSync(join(s.home, "attest-ed25519.pub.pem"), "utf8");
+    assert.equal(verifyAttestation(p.attestation, pub).valid, true);
+    assert.equal(verifyAttestation({ ...p.attestation, accepted: false }, pub).valid, false, "a changed verdict breaks the signature");
+    const sent = await s.broker.send({ token: p.token });
+    assert.equal(sent.attestation.kind, "send"); assert.equal(verifyAttestation(sent.attestation, pub).valid, true);
+  } finally { s.done(); }
+});
+
+test("private mode: the model sees commitments, not the account's figures, and the trader can open them", async () => {
+  const { verifyAttestation } = await import("../src/attest.mjs");
+  const home = mkdtempSync(join(tmpdir(), "canli-paper-"));
+  const fake = fakeAlpaca();
+  const broker = createBroker({ env: { ...KEYS, CANLI_PAPER_PRIVATE: "1" }, home, fetchImpl: fake.fetchImpl, now: () => new Date("2026-10-08T15:00:00Z") });
+  try {
+    const a = await broker.account();
+    const text = JSON.stringify(a);
+    for (const figure of ["100000", "96000", "192000", "MSFT"]) assert.ok(!text.includes(figure), `${figure} is not shown`);
+    assert.equal(a.positions_held, 1);
+    const r = await broker.rebalance({ target_weights: { SPY: 0.5 }, limits: { max_order_notional: 1e9, max_position_weight: 1, max_gross_exposure: 10 } });
+    assert.ok(!JSON.stringify(r.rows).match(/\b9[0-9]\b/), "order sizes are not shown");
+    assert.equal(r.rows[0][2], null);
+    const opened = readFileSync(join(home, "commitments.jsonl"), "utf8").trim().split("\n").map((l) => JSON.parse(l)).find((c) => c.label === "equity" && c.commitment === r.attestation.account.equity);
+    const pub = readFileSync(join(home, "attest-ed25519.pub.pem"), "utf8");
+    const v = verifyAttestation(r.attestation, pub, [opened]);
+    assert.equal(v.valid, true); assert.deepEqual(v.opened, [{ label: "equity", value: 100000, matches: true }]);
+    assert.equal(verifyAttestation(r.attestation, pub, [{ ...opened, value: 1 }]).opened[0].matches, false, "a false value does not open the commitment");
+  } finally { rmSync(home, { recursive: true, force: true }); }
+});

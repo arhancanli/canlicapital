@@ -46,6 +46,25 @@ that directory, every preview fails and every send is refused.
 Every send and cancel is appended to `CANLI_HOME/paper-orders.jsonl`, each line holding the hash of
 the one before. `paper_account` reports whether the chain still verifies; an edited line breaks it.
 
+## Signed attestations and private balances
+
+Every preview, rebalance and send returns an `attestation`: which orders were checked (their hash),
+against which limits (their hash), the verdict, the kill switch, the time, and commitments to the
+account's equity and positions, signed with an Ed25519 key made on your machine the first time
+(`CANLI_HOME/attest-ed25519.pem`, mode 0600; it never leaves the machine). Give
+`attest-ed25519.pub.pem` to an auditor or counterparty; `verify_attestation` checks a statement was
+signed by that key and not altered.
+
+Set `CANLI_PAPER_PRIVATE=1` and the model never sees the account's figures: `paper_account` returns
+commitments (SHA-256 of a random salt and the value) instead of equity, cash, buying power and
+positions; `rebalance_to_weights` sizes orders without showing them; numbers in check messages are
+blanked. The salts are written only to `CANLI_HOME/commitments.jsonl`, so you can later open a
+commitment to someone (show its value and salt) and `verify_attestation` confirms it.
+
+This is a signature over commitments, not a zero-knowledge proof: whoever you open a value to learns
+it, and the checks are this server's code. Brokers accept API keys, not proofs; the keys stay in the
+environment and are never shown to the model in either mode.
+
 ## Quick start
 
 1. Create an Alpaca account and open the paper trading dashboard; generate paper API keys (the key
