@@ -15,7 +15,7 @@ export const ownershipInput = z.object({
 }).strict();
 
 const EFTS = "https://efts.sec.gov/LATEST/search-index";
-const key = (s) => String(s ?? "").replace(/&amp;/gi, "&").replace(/&#39;|&apos;/gi, "'").toUpperCase().replace(/\/[A-Z]{2,3}\/?/g, " ").replace(/&/g, " AND ").replace(/[^A-Z0-9 ]+/g, " ").replace(/\b(INC|CORP|CORPORATION|CO|COMPANY|LTD|PLC|HOLDINGS?|GROUP|THE|CL [A-C]|CLASS [A-C]|COM|NEW|DEL)\b/g, " ").replace(/\s+/g, " ").trim();
+const key = (s) => String(s ?? "").replace(/&(amp|apos|#39);/gi, (_, e) => (e.toLowerCase() === "amp" ? "&" : "'")).toUpperCase().replace(/\/[A-Z]{2,3}\/?/g, " ").replace(/&/g, " AND ").replace(/[^A-Z0-9 ]+/g, " ").replace(/\b(INC|CORP|CORPORATION|CO|COMPANY|LTD|PLC|HOLDINGS?|GROUP|THE|CL [A-C]|CLASS [A-C]|COM|NEW|DEL)\b/g, " ").replace(/\s+/g, " ").trim();
 
 // 13F reports are due 45 days after a quarter ends: filings made in a calendar quarter report the
 // quarter before it. Each window is a calendar quarter of filing dates.
