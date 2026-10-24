@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- `ipo_pipeline`: S-1/F-1 registrations (IPO candidates, SPACs, funds, listed filers) and priced IPOs
+  with price, shares and proceeds from the prospectus cover.
+- `planned_insider_sales`: Form 144 notices, filed before an insider sells, with totals by seller.
 - `federal_contracts`: the US government's obligations to a company in a fiscal year, by agency and
   industry code, with its recipient entities and largest contracts, from USAspending.gov (no key).
 - `drug_pipeline`: a drug company's active trials by phase, readouts due, late-stage trials and FDA

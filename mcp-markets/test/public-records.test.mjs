@@ -129,3 +129,28 @@ test("a 10-K whose item heading is a cross-reference index is read from its titl
   assert.deepEqual(crossReferenced(lines, s, [s, { title: "Properties" }]), { line: 82, end: 86 }, "the run of page titles and one page gap after the last; the contents line is passed over");
   assert.equal(crossReferenced(["Item 1A. Risk Factors", "Our business faces many risks ".repeat(40)], { line: 0, end: 2, title: "Risk Factors" }, []), null, "a real section is left alone");
 });
+
+test("Form 144: the seller, the shares and value summed over lots, dates as ISO", async () => {
+  const { parse144 } = await import("../src/planned.mjs");
+  const xml = `<edgarSubmission><formData><issuerInfo><nameOfPersonForWhoseAccountTheSecuritiesAreToBeSold>Colette Kress</nameOfPersonForWhoseAccountTheSecuritiesAreToBeSold><relationshipsToIssuer><relationshipToIssuer>Officer</relationshipToIssuer></relationshipsToIssuer></issuerInfo>
+    <securitiesInformation><brokerOrMarketmakerDetails><name>Morgan Stanley</name></brokerOrMarketmakerDetails><noOfUnitsSold>30000</noOfUnitsSold><aggregateMarketValue>6000000</aggregateMarketValue><noOfUnitsOutstanding>24300000000</noOfUnitsOutstanding><approxSaleDate>09/17/2026</approxSaleDate></securitiesInformation>
+    <securitiesInformation><noOfUnitsSold>4918</noOfUnitsSold><aggregateMarketValue>1658914.12</aggregateMarketValue></securitiesInformation>
+    <securitiesToBeSold><natureOfAcquisitionTransaction>Restricted Stock Units</natureOfAcquisitionTransaction></securitiesToBeSold></formData></edgarSubmission>`;
+  const p = parse144(xml);
+  assert.equal(p.seller, "Colette Kress"); assert.equal(p.relationship, "Officer");
+  assert.equal(p.shares, 34918); assert.equal(p.market_value, 7658914.12);
+  assert.equal(p.approx_sale_date, "2026-09-17"); assert.equal(p.acquired, "Restricted Stock Units");
+});
+
+test("ipo_pipeline: filers parsed and labelled, and a cover's price is never its par value", async () => {
+  const { coverTerms, kindOf, parseFiler } = await import("../src/ipos.mjs");
+  const f = parseFiler("Sunshine Biopharma Inc.  (SBFM, SBFMW)  (CIK 0001402328)");
+  assert.deepEqual(f, { name: "Sunshine Biopharma Inc.", tickers: ["SBFM", "SBFMW"], cik: 1402328 });
+  assert.equal(kindOf(f, ["2834"]), "listed");
+  assert.equal(kindOf(parseFiler("WINDWARD BIO GROUP AG  (CIK 0002101234)"), ["2836"]), "ipo");
+  assert.equal(kindOf(parseFiler("TCGX Acquisition Corp. II  (CIK 0002100001)"), []), "spac");
+  assert.equal(kindOf(parseFiler("Canary Staked INJ ETF  (CIK 0002100002)"), ["6199"]), "fund");
+  assert.equal(kindOf(f, ["2834"], { priced: true }), "company", "a priced deal's ticker tells nothing");
+  const t = coverTerms("Lycia Therapeutics, Inc. 17,640,000 Shares Common Stock, par value $0.0001 per share. This is the initial public offering. The initial public offering price is $18.00 per share.");
+  assert.deepEqual(t, { price: 18, shares: 17640000, gross: 317520000 });
+});

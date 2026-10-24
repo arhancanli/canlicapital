@@ -16,6 +16,8 @@ import { drugPipeline } from "../../src/pipeline.mjs";
 import { reverseDcf } from "../../src/valuation.mjs";
 import { bankFinancials } from "../../src/banks.mjs";
 import { filingDrift } from "../../src/drift.mjs";
+import { ipoPipeline } from "../../src/ipos.mjs";
+import { plannedInsiderSales } from "../../src/planned.mjs";
 import { debtProfile } from "../../src/credit.mjs";
 import { ownershipBreadth } from "../../src/breadth.mjs";
 import { forensicScores } from "../../src/forensic.mjs";
@@ -42,6 +44,8 @@ const CHECKS = [
   ["bank_financials", () => bankFinancials(s, { company: "WAL", quarters: 4 }), (r) => r.bank.cert === 57512 && r.rows.length === 4 && r.rows.every((x) => x[1] > 1e7)],
   ["bank_failures", () => bankFinancials(s, { failures: 3 }), (r) => r.failures.rows.length === 3 && /^\d{4}-\d{2}-\d{2}$/.test(r.failures.rows[0][3])],
   ["filing_drift", () => filingDrift(s, { company: "NVDA", years: 3, theme: "export" }), (r) => r.rows.length === 3 && r.rows[0][2] > 5000 && r.rows[0][4] != null],
+  ["planned_insider_sales", () => plannedInsiderSales(s, { company: "NVDA", days: 365, limit: 5 }), (r) => r.notices >= 1 && r.rows.every((x) => x[1] && x[4] > 0)],
+  ["ipo_pipeline", () => ipoPipeline(s, { days: 30, priced: 5 }), (r) => r.registrations.rows.length >= 1 && r.priced.rows.length >= 1],
   ["funding_rates", () => fundingRates(s, { coins: ["BTC", "ETH"], days: 7 }), (r) => r.rows.length === 2 && r.rows.every((x) => x[7] >= 15)],
   ["screen_window", () => screenCompanies(s, { fiscal_year_end: [day(500), day(120)], filters: [{ metric: "revenue", op: ">", value: 1e11 }], limit: 50 }), (r) => r.matched >= 10 && r.rows.every((x) => x[4] >= day(500) && x[4] <= day(120))],
 ];

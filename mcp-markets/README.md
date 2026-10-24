@@ -96,10 +96,12 @@ against the BIS (21 of 21 agreed on 2026-10-15).
 | `earnings_calendar` | A company's results release dates with the quarter covered and before the open or after the close, and the next one estimated from the same quarter last year; or who is due to report in a window across the market | SEC EDGAR (8-K Item 2.02) |
 | `segment_revenue` | Where revenue comes from: by segment (with operating income), product and region, three years, checked against total revenue | 10-K/10-Q XBRL |
 | `insider_trades` | Who inside bought or sold, at what price, under a 10b5-1 plan or not | Form 4 |
+| `planned_insider_sales` | Insiders' planned sales from Form 144, filed before they sell: seller, role, shares, value, approximate sale date, how the shares were acquired, any 10b5-1 plan date, and totals by seller | Form 144 |
 | `fund_holdings` | What a fund manager holds, its weights, and what it bought and sold last quarter | 13F |
 | `investment_advisers` | Who an investment adviser is: registration, offices, other names, disclosure flags, Form ADV and brochures | SEC Form ADV (IAPD) |
 | `large_holders` | Who owns more than 5 percent, passive (13G) or activist (13D, with its stated purpose); or the week's new activist stakes across the market | Schedules 13D and 13G |
 | `private_offerings` | Who is raising private money (startups, private equity, hedge and real estate funds): amount sold, investors, exemption, people | Form D |
+| `ipo_pipeline` | Companies that filed or amended a registration (S-1, F-1) in a window, labelled IPO candidate, SPAC, fund or already listed, and offerings priced (424B4) with price, shares and proceeds from the cover | EDGAR full-text search |
 | `fails_to_deliver` | Shares that failed to settle for a stock over the last month, or the largest fails across the market | SEC fails-to-deliver data |
 | `off_exchange_volume` | How much of a stock trades in dark pools and with other off-exchange dealers each week, and where | FINRA OTC transparency |
 | `short_interest` | How heavily a stock is shorted (shares short, days to cover, share of shares outstanding), or the market's most shorted | FINRA |
