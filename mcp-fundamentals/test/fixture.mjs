@@ -159,20 +159,22 @@ const record = (cik, sha) => Buffer.from(JSON.stringify({
 // The site's name index, shaped like public/api/v1/company-names.json, with the cases the real one
 // holds: a covered filer whose ticker the SEC now gives to a new holding company (Exxon Mobil and
 // XOM), names that share a first word (Meta, Toyota), a name that reduces to another's (Alphabet
-// Holding Company), "& Co" (JPMorgan Chase), and a company that no longer trades (Twitter).
+// Holding Company), "& Co" (JPMorgan Chase), a company that no longer trades (Twitter), and two filers with one name, one listed (Star Equity).
 export const EXXON = "0000034088";
 export const NAMES = {
   schema: "canli.company-names.v1",
   source: { url: "https://www.sec.gov/files/company_tickers.json", captured: "2026-09-19" },
-  count: 12,
+  count: 14,
   columns: ["cik", "name", "tickers"],
   rows: [
     [19617, "JPMORGAN CHASE & CO", ["JPM"]],
     [34088, "Exxon Mobil Corporation", []],
     [123456, "Fixture Corp", ["FIX"]],
+    [707388, "Star Equity Holdings, Inc.", []],
     [834071, "Toyota Motor Credit Corporation", []],
     [1067983, "Berkshire Hathaway Inc", ["BRK-B"]],
     [1094517, "TOYOTA MOTOR CORP/", ["TM"]],
+    [1210708, "STAR EQUITY HOLDINGS, INC.", ["STRR"]],
     [1326801, "Meta Platforms, Inc.", []],
     [1418091, "Twitter, Inc.", []],
     [1431959, "Meta Materials Inc.", []],

@@ -121,3 +121,50 @@ OpenAI-style client sends tools. Measured 2026-10-10 (`context-2026-10-10.json`)
 | EdgarTools | 13 | 3,801 | 1.6 |
 | Yahoo Finance MCP | 9 | 2,205 | 1.4 |
 
+
+## Held-out and frontier runs on DeepSeek (planned 2026-10-23, before any run)
+
+The OpenAI account had no credit, so the held-out set (`tasks_fresh.json`, 24 questions written after
+the fixes and never used for tuning) and the frontier set (`tasks_frontier.json`, 10 questions) run
+on `deepseek-flash` (DeepSeek-V4.1-Flash-1017, thinking off, temperature 0) through DeepSeek's
+OpenAI-compatible API, with everything else as above. Arms: **canli-0.6.0** (the flagship as
+published on npm, installed unchanged), openbb, edgartools, yahoo and edgartools+yahoo, one run per
+question per arm first, a second run if the budget allows. Results go to `results-deepseek.jsonl`
+and are reported whatever they show; the 2026-10-09 truths and prompt date stay unchanged.
+
+### Results on DeepSeek (2026-10-23, one run per question per arm)
+
+| arm | held-out (24) | frontier (10) | mean input tokens, held-out | mean input tokens, frontier |
+|---|---|---|---|---|
+| canli-0.6.0 (npm) | 23 | 5 | 17,569 | 76,789 |
+| canli-dev (branch mcp/flagship-proof-20261023 at 4c05bb51) | 23 | 9 | 18,552 | 51,991 |
+| edgartools | 11 | 6 | 46,210 | 240,471 |
+| yahoo | 14 | 5 | 64,330 | 390,774 |
+| edgartools+yahoo | 16 | 0 of 6 run (budget) | 126,666 | 477,914 |
+| openbb | 16 | 1 | 183,574 | 332,607 |
+
+Read with care: one run per question; the held-out set was written after the 10-09 fixes and before
+these runs. **The frontier gain of canli-dev is partly tuned**: three frontier questions (count of
+$1 trillion balance sheets, highest R&D intensity, highest revenue growth) failed for 0.6.0 because
+`screen_companies` ranked calendar years, and the `fiscal_year_end` window was added after seeing
+them. A first run of canli-dev (results-deepseek-dev-run1.jsonl: held-out 21, frontier 4) exposed a
+regression, the model calling `run_tool` with `find_tool` as the tool name; it was fixed (c425c9a4)
+before this run. A new frontier set, written before any run, is the next fair test.
+
+### Second frontier set (2026-10-24, questions and answers committed in a4256089 before any run)
+
+Eight questions with answers from SEC frames, company concepts and submissions, EDGAR full-text
+search and Treasury (`truth_frontier2.py`), one run per arm on deepseek-flash:
+
+| arm | correct | mean input tokens |
+|---|---|---|
+| canli-dev (the branch as of 4c05bb51) | 7 | 44,112 |
+| edgartools | 6 | 227,235 |
+| canli-0.6.0 | 5 | 46,286 |
+| yahoo | 4 | 242,416 |
+| openbb | 3 | 245,139 |
+
+canli-dev's miss was the capex count: `screen_companies` read one capital-spending tag, so Amazon
+(which reports productive assets) was missing; it was fixed after this run (15b9a6a0), so that
+question is tuned from here. Exxon Mobil, which moved its ticker to a new holding company in 2026, is
+not listed under its old filer in SEC's exchange file, a stated limit of the screen.

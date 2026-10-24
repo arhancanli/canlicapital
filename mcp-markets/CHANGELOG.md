@@ -2,6 +2,35 @@
 
 ## Unreleased
 
+- `latest_filings`: what has just been filed across every company, from EDGAR's live feed, by form,
+  8-K event, filer name and time.
+- `filing_diff`: what changed in a 10-K's (or 10-Q's) risk factors, MD&A or any item since the last
+  one: new, dropped and changed paragraphs, the sentences changed, and the words whose use rose most
+  (Apple 2025: court, remedies and enforcement, from 0 to 4 or 5 mentions).
+- `news`: the world's press on a company or topic from GDELT's open index, with the daily tone of
+  the coverage and a date window; no key.
+- `explain_move`: a day's return against the market, its z-score from a one-year market model, and
+  the filings and headlines around the day (NVIDIA 2026-08-27: +7.6% abnormal, z 4.3, its earnings
+  8-K the evening before).
+- `portfolio_xray`: a portfolio's ETFs and funds opened into their latest N-PORT positions and added
+  to the stocks held directly: real exposure per company, overlap between funds, effective positions.
+- `funding_rates`: crypto perpetual funding on OKX, no key: latest rate, annualized carry over a
+  window and the last week, and the share of positive periods.
+- `forensic_scores`: Beneish's M-score, Piotroski's F-score and Altman's Z-score from the company's
+  own annual XBRL in one call, each input with its tag.
+- `ownership_breadth`: how many 13F filers hold a stock each quarter (its CUSIP found from a 13F
+  table that names it), with the change; a fall in breadth predicted lower returns in the literature.
+- `debt_profile`: total and net debt, the maturity ladder from the debt note, lease payments, and
+  what the debt costs (implied rate, coverage, debt to EBITDA), from the company's annual XBRL.
+- `comps`: a comparable-companies table, the company beside its listed peers under the same SEC
+  industry code, nearest in revenue, with the peers' median and the company's rank on each measure.
+- `screen_companies` reads capital spending under both tags companies use (Amazon reports
+  productive assets), and takes `fiscal_year_end`, a window of fiscal-year ends, so each company is ranked
+  on its own fiscal year with balance-sheet figures at that year's end.
+- `financial_statements` gives each statement's `money_scale` and `shares_scale`, and says that a
+  line shown negated has the opposite sign in its XBRL fact.
+- `event_study` says how day 0 is chosen.
+
 - `verify_claims` checks foreign companies: IFRS and US GAAP facts from 20-F and 40-F annual
   reports and tagged 6-K quarters, in the currency the company reports in (Novo Nordisk in DKK,
   TSMC in TWD and in its US-dollar translation, ASML's US GAAP in euros). Before, every foreign
