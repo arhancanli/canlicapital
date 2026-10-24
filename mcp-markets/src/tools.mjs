@@ -370,6 +370,30 @@ export const treasuryInput = z.object({
   start: DATE.optional().describe("A range instead of one day: first date."),
   end: DATE.optional().describe("Last date of the range; default today."),
 }).strict();
+// A maturity in months ("1 Mo", "1.5 Month", "4 WEEKS BANK DISCOUNT", "10 Yr"), or null.
+const tenorMonths = (h) => {
+  const m = /^(\d+(?:\.\d+)?)\s*(wk|weeks?|mo|months?|yr|years?)\b/i.exec(h);
+  if (!m) return null;
+  const u = m[2].toLowerCase();
+  return Number(m[1]) * (u.startsWith("w") ? 12 / 52 : u.startsWith("m") ? 1 : 12);
+};
+// Years of rates as one table. The Treasury adds and drops maturities (the 4-month bill in 2022,
+// the 6-week in 2025), so each year's columns are matched by name; the newest year's order is kept
+// and a maturity only older years have is placed by its length.
+export function joinYears(parts) {
+  const names = parts[0].header.slice(1);
+  for (const p of parts.slice(1)) for (const h of p.header.slice(1)) {
+    if (names.includes(h)) continue;
+    const m = tenorMonths(h), at = m === null ? -1 : names.findIndex((x) => (tenorMonths(x) ?? Infinity) > m);
+    names.splice(at < 0 ? names.length : at, 0, h);
+  }
+  const rows = parts.flatMap((p) => {
+    const ix = names.map((h) => p.header.indexOf(h));
+    return p.rows.map((r) => [r[0], ...ix.map((i) => (i < 1 ? null : r[i] ?? null))]);
+  });
+  rows.sort((x, y) => x[0].localeCompare(y[0]));
+  return { names, rows };
+}
 export async function treasuryYields(session, args) {
   const a = treasuryInput.parse(args);
   const curve = a.curve ?? "nominal";
@@ -379,17 +403,17 @@ export async function treasuryYields(session, args) {
   const years = [];
   for (let y = Number(last.slice(0, 4)); y >= Number(first.slice(0, 4)); y--) years.push(y);
   if (years.length > 40) throw new Error("treasury_yields reads at most 40 years at once.");
-  let header = null, rows = [], url = null;
+  const parts = [];
   for (const y of years) {
     let t;
     try { t = await treasuryYear(session, y, curve); } catch (err) { if (err instanceof NotFound) continue; throw err; }
-    header = header ?? t.header; url = url ?? t.url;
-    rows = rows.concat(t.rows.filter((r) => r[0] >= first && r[0] <= last));
-    if (!ranged && rows.length) break;
+    const kept = t.rows.filter((r) => r[0] >= first && r[0] <= last);
+    if (kept.length) parts.push({ ...t, rows: kept });
+    if (!ranged && kept.length) break;
   }
-  if (!rows.length) throw new NotFound(`No ${curve} Treasury rates between ${first} and ${last}.`);
-  rows.sort((x, y) => x[0].localeCompare(y[0]));
-  const cols = ["date", ...header.slice(1)];
+  if (!parts.length) throw new NotFound(`No ${curve} Treasury rates between ${first} and ${last}.`);
+  const { names, rows } = joinYears(parts), url = parts[0].url;
+  const cols = ["date", ...names];
   const base = { curve, units: "percent a year", columns: cols, source: url, limits: ["U.S. Department of the Treasury daily rates, as published; par yields on a bond-equivalent basis.", "Not investment advice."] };
   if (!ranged) {
     const day = rows[rows.length - 1];
