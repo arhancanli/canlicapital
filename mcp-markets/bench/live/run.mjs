@@ -23,6 +23,8 @@ import { ownershipBreadth } from "../../src/breadth.mjs";
 import { forensicScores } from "../../src/forensic.mjs";
 import { fundingRates } from "../../src/funding.mjs";
 import { computePrices } from "../../src/compute.mjs";
+import { shareholderReturns } from "../../src/payouts.mjs";
+import { marketOverview } from "../../src/overview.mjs";
 
 const s = createSession();
 const day = (k) => new Date(Date.now() - k * 86400000).toISOString().slice(0, 10);
@@ -48,6 +50,9 @@ const CHECKS = [
   ["planned_insider_sales", () => plannedInsiderSales(s, { company: "NVDA", days: 365, limit: 5 }), (r) => r.notices >= 1 && r.rows.every((x) => x[1] && x[4] > 0)],
   ["ipo_pipeline", () => ipoPipeline(s, { days: 30, priced: 5 }), (r) => r.registrations.rows.length >= 1 && r.priced.rows.length >= 1],
   ["compute_prices", () => computePrices(s, { gpu: "H100" }), (r) => r.rows.length >= 3 && r.rows.every((x) => x[2] > 0) && r.index.level > 0],
+  ["shareholder_returns", () => shareholderReturns(s, { company: "KO", years: 5 }), (r) => r.rows.length === 5 && r.rows.every((x) => x[1] > 0 && x[2] > 0) && r.dividends.raised_years_in_a_row >= 10 && r.yields?.dividend_yield > 0],
+  ["market_overview", () => marketOverview(s, {}), (r) => r.sectors.length === 11 && r.us.length >= 5 && r.rates.every((x) => x[3] > 0 && x[3] < 20) && (r.missing ?? []).length <= 2],
+  ["ownership_breadth_by_name", () => ownershipBreadth(s, { company: "COST", quarters: 2, holders: 1 }), (r) => r.cusip === "22160K105" && r.rows[0][3] > 1000],
   ["funding_rates", () => fundingRates(s, { coins: ["BTC", "ETH"], days: 7 }), (r) => r.rows.length === 2 && r.rows.every((x) => x[7] >= 15)],
   ["screen_window", () => screenCompanies(s, { fiscal_year_end: [day(500), day(120)], filters: [{ metric: "revenue", op: ">", value: 1e11 }], limit: 50 }), (r) => r.matched >= 10 && r.rows.every((x) => x[4] >= day(500) && x[4] <= day(120))],
 ];

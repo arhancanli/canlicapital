@@ -33,4 +33,5 @@ test("a refused tone request still returns the articles, with a note", async () 
 
 test("company names as the press writes them", () => {
   assert.deepEqual(["NVIDIA CORP", "Apple Inc.", "JPMORGAN CHASE & CO", "BERKSHIRE HATHAWAY INC", "Meta Platforms, Inc."].map(plainName), ["Nvidia", "Apple", "Jpmorgan Chase", "Berkshire Hathaway", "Meta Platforms"]);
+  assert.deepEqual(["COSTCO WHOLESALE CORP /NEW", "BANK OF AMERICA CORP /DE/"].map(plainName), ["Costco Wholesale", "BANK OF America"], "a state or /NEW suffix is dropped before the company suffix");
 });

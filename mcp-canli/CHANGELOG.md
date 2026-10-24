@@ -1,5 +1,16 @@
 # Changelog
 
+
+## 0.9.0 (in progress)
+
+- `research_report` prompt: a full research note on a company in one batched call (business and
+  segments, statements as filed, results against guidance, peers, implied growth, debt, accounting
+  screens, risk-factor changes, ownership breadth, insiders, news). Twenty-three prompts.
+- `CANLI_POLICY` takes the policy itself as JSON as well as a file's path.
+- The audit log signs a checkpoint when the server exits, so a log that ends cleanly ends signed;
+  `audit verify` on a missing log answers plainly.
+- markets 0.7.2: `ownership_breadth` finds the CUSIP for many more companies (Costco, JPMorgan, Bank of
+  America), and `news` waits out GDELT's rate limit.
 ## 0.8.0
 
 - Packs: canli-markets-mcp 0.7.1 (nine new tools: federal contracts, drug pipelines and FDA

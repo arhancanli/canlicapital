@@ -31,6 +31,10 @@ test("policy: deny wins, allow lists and packs, orders off, and a bad file is na
   writeFileSync(f, JSON.stringify({ orders: "maybe" }));
   assert.throws(() => loadPolicy({ CANLI_POLICY: f }), /orders/);
   assert.equal(loadPolicy({}), null);
+  // The policy itself, inline, for a desktop app's config.
+  assert.deepEqual(loadPolicy({ CANLI_POLICY: ' {"orders":"off"}' }), { orders: "off" });
+  assert.throws(() => loadPolicy({ CANLI_POLICY: '{"orders":"maybe"}' }), /CANLI_POLICY \(inline\): orders/);
+  assert.throws(() => loadPolicy({ CANLI_POLICY: "{orders" }), /CANLI_POLICY \(inline\)/);
 });
 
 test("audit log: chained, signed at checkpoints with Ed25519 and ML-DSA-65, and any edit is caught", () => {
@@ -121,4 +125,19 @@ test("watch: the first read marks what is there, then each new filing comes once
   assert.equal(out[0].already_filed, 2);
   assert.equal(out[0].every_seconds, 15);
   assert.deepEqual(asked[0], { forms: ["8-K"], limit: 100 });
+});
+
+test("a log that ends cleanly ends signed: the server signs its unsigned calls as it exits", async () => {
+  const home = tmp("close");
+  const c = new Client({ name: "gov", version: "0" });
+  const transport = new StdioClientTransport({ command: process.execPath, args: [SERVER], env: { PATH: process.env.PATH ?? "", HOME: process.env.HOME ?? "", CANLI_OFFLINE: "1", CANLI_PACKS: "all", CANLI_HOME: home, CANLI_POLICY: JSON.stringify({ audit: {} }) } });
+  await c.connect(transport);
+  for (let i = 0; i < 3; i += 1) assert.ok(!(await c.callTool({ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { returns: [0.01, -0.02, 0.015, i / 1000] } } })).isError);
+  await c.close();
+  let out;
+  for (let i = 0; i < 50; i += 1) { out = verifyAudit(path.join(home, "audit"), publicKeys(home)); if (out.files[0]?.unsigned_tail === 0) break; await new Promise((r) => setTimeout(r, 100)); }
+  assert.equal(out.valid, true, JSON.stringify(out));
+  assert.deepEqual([out.files[0].calls, out.files[0].checkpoints, out.files[0].unsigned_tail], [3, 1, 0]);
+  // A missing log is a plain answer, not a crash.
+  assert.deepEqual(verifyAudit(path.join(home, "nothing-here")), { valid: false, files: [], error: `no audit log at ${path.join(home, "nothing-here")}` });
 });

@@ -22,7 +22,7 @@ export const newsInput = z.object({
 
 // A company's legal name as people write it: "NVIDIA CORP" -> "NVIDIA", "Apple Inc." -> "Apple".
 export function plainName(name) {
-  return String(name).replace(/\s*\/[A-Z]{2}\/?\s*$/, "").replace(/\s*&\s*co\.?$/i, "").replace(/[,.]?\s+(inc|corp|corporation|co|company|ltd|plc|holdings|group|incorporated|lp|llc|sa|nv|ag|se)\.?$/i, "").replace(/[,.]?\s+(inc|corp|corporation|co|ltd|plc)\.?$/i, "").trim()
+  return String(name).replace(/\s*\/[A-Z]{2,3}\/?\s*$/, "").replace(/\s*&\s*co\.?$/i, "").replace(/[,.]?\s+(inc|corp|corporation|co|company|ltd|plc|holdings|group|incorporated|lp|llc|sa|nv|ag|se)\.?$/i, "").replace(/[,.]?\s+(inc|corp|corporation|co|ltd|plc)\.?$/i, "").trim()
     .replace(/\b([A-Z])([A-Z]+)\b/g, (w) => (w.length > 4 ? w[0] + w.slice(1).toLowerCase() : w));
 }
 
