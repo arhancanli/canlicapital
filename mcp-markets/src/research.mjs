@@ -34,7 +34,8 @@ export const METRICS = Object.freeze({
   eps_diluted: metric(D, "USD/shares", one("EarningsPerShareDiluted")),
   rd_expense: metric(D, "USD", [["ResearchAndDevelopmentExpense", "ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost"]]),
   operating_cash_flow: metric(D, "USD", one("NetCashProvidedByUsedInOperatingActivities")),
-  capex: metric(D, "USD", one("PaymentsToAcquirePropertyPlantAndEquipment")),
+  // Capital spending under either tag: Amazon reports it as productive assets.
+  capex: metric(D, "USD", [["PaymentsToAcquirePropertyPlantAndEquipment", "PaymentsToAcquireProductiveAssets"]]),
   assets: metric(I, "USD", one("Assets")),
   liabilities: metric(I, "USD", one("Liabilities")),
   equity: metric(I, "USD", one("StockholdersEquity", "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest")),
@@ -102,6 +103,15 @@ export function parsePeriod(p) {
   return q
     ? { duration: `CY${y}Q${q}`, instant: `CY${y}Q${q}I`, prev: `CY${y - 1}Q${q}`, label: `CY${y}Q${q}` }
     : { duration: `CY${y}`, instant: `CY${y}Q4I`, prev: `CY${y - 1}`, label: `FY${y} (calendar frame CY${y})` };
+}
+
+// The calendar-quarter instant frames a balance-sheet date in [from, to] can sit in: the quarters
+// from the one before from's to the one after to's.
+export function quarterInstants([from, to]) {
+  const q = (d) => Number(d.slice(0, 4)) * 4 + Math.floor((Number(d.slice(5, 7)) - 1) / 3);
+  const out = [];
+  for (let k = q(from) - 1; k <= q(to) + 1; k += 1) out.push(`CY${Math.floor(k / 4)}Q${(k % 4) + 1}I`);
+  return out;
 }
 
 // SEC writes a ratio unit as "USD-per-shares" in frame URLs.
@@ -174,6 +184,7 @@ async function listedCompanies(session) {
 const metricName = z.string().refine((m) => ALL_METRICS.includes(m) || VALUATION.includes(m), { message: `a metric: ${ALL_METRICS.join(", ")}` });
 export const screenInput = z.object({
   period: z.string().max(12).optional().describe("FY2025 (each company's fiscal year that best overlaps calendar 2025; default the last complete year) or a quarter such as CY2026Q2."),
+  fiscal_year_end: z.tuple([z.string().regex(/^\d{4}-\d{2}-\d{2}$/), z.string().regex(/^\d{4}-\d{2}-\d{2}$/)]).optional().describe("Instead of period: each company's fiscal year ending between these dates, e.g. [\"2025-02-01\", \"2026-01-31\"]; balance-sheet figures at that year's end."),
   filters: z.array(z.object({
     metric: metricName,
     op: z.enum([">", ">=", "<", "<=", "between"]),
@@ -188,10 +199,19 @@ export const screenInput = z.object({
   include_suspect: z.boolean().optional().describe("Keep companies whose figures fail a plausibility check (for example net income above 10 times revenue, usually a tagging slip); default false: they are listed apart."),
 }).strict();
 
-export async function screenCompanies(session, args) {
+// opts.ciks: only these filers (comps uses it); not an argument of the tool.
+export async function screenCompanies(session, args, opts = {}) {
   const a = screenInput.parse(args);
   const year = Number(today(session).slice(0, 4)) - 1;
-  const per = parsePeriod(a.period ?? `FY${year}`);
+  const win = a.fiscal_year_end;
+  if (win && a.period) throw new Error("Send period or fiscal_year_end, not both.");
+  if (win && win[0] > win[1]) throw new Error("fiscal_year_end: the first date is after the second.");
+  // A window of fiscal-year ends: every calendar frame a fiscal year ending in it can sit in, and,
+  // per company, the fiscal year whose end falls in the window (the latest if several do).
+  const pers = win
+    ? Array.from({ length: Number(win[1].slice(0, 4)) - Number(win[0].slice(0, 4)) + 2 }, (_, i) => parsePeriod(`FY${Number(win[0].slice(0, 4)) - 1 + i}`))
+    : [parsePeriod(a.period ?? `FY${year}`)];
+  const per = win ? { ...pers.at(-1), label: `each company's fiscal year ending ${win[0]} to ${win[1]}` } : pers[0];
   const filters = a.filters ?? [];
   const sortBy = a.sort_by ?? filters[0]?.metric ?? "revenue";
   if (VALUATION.includes(sortBy) || filters.some((f) => VALUATION.includes(f.metric))) throw new Error("Valuation metrics need a price per company, so they apply to the returned rows only: filter and sort on fundamentals, and set valuation: true.");
@@ -199,31 +219,51 @@ export async function screenCompanies(session, args) {
   // Base metrics needed, with @prev for growth.
   const base = new Set(["revenue", "net_income", "assets"]);
   for (const m of shown) for (const n of DERIVED[m]?.needs ?? [m]) base.add(n);
-  const needed = [...base].map((n) => (n.endsWith("@prev") ? { key: n, metric: n.slice(0, -5), frame: per.prev } : { key: n, metric: n, frame: METRICS[n].kind === I ? per.instant : per.duration }));
-  const [listed, ...frames] = await Promise.all([listedCompanies(session), ...needed.map((n) => metricFrame(session, n.metric, n.frame))]);
+  const keys = [...base];
+  const durKeys = keys.filter((n) => n.endsWith("@prev") || METRICS[n].kind === D);
+  const instKeys = keys.filter((n) => !n.endsWith("@prev") && METRICS[n].kind === I);
+  const durJobs = pers.flatMap((p, pi) => durKeys.map((n) => ({ pi, key: n, metric: n.replace(/@prev$/, ""), frame: n.endsWith("@prev") ? p.prev : p.duration })));
+  const instJobs = (win ? quarterInstants(win) : [per.instant]).flatMap((f) => instKeys.map((n) => ({ key: n, metric: n, frame: f })));
+  const jobs = [...durJobs, ...instJobs];
+  const [listed, ...frames] = await Promise.all([listedCompanies(session), ...jobs.map((j) => metricFrame(session, j.metric, j.frame))]);
+  jobs.forEach((j, i) => { j.mf = frames[i]; });
   const venues = new Set(a.exchanges ?? ["NYSE", "Nasdaq"]);
   const any = venues.has("all");
   // Every filer in any needed frame, on the chosen venues; current values first, then the prior
-  // year's, preferring the tag the current value came from.
+  // year's, preferring the tag the current value came from; balance-sheet values at the fiscal
+  // year's end when a window is given (else the calendar year-end frame).
   const rows = new Map();
   const ciks = new Set(frames.flatMap((f) => [...f.values.keys()]));
+  const inWindow = (end) => !win || (end != null && end >= win[0] && end <= win[1]);
   for (const cik of ciks) {
     const co = listed.get(cik);
     if (!any && (!co || !venues.has(co.exchange))) continue;
-    const r = { cik, name: co?.name ?? frames.find((f) => f.values.has(cik)).values.get(cik).name, ticker: co?.ticker ?? null, exchange: co?.exchange ?? null, m: {}, tag: {}, end: null };
-    r.src = {};
-    needed.forEach((n, i) => {
-      if (n.key.endsWith("@prev")) return;
-      const c = chosen(frames[i], cik);
-      if (!c) return;
-      r.m[n.key] = c.val; r.tag[n.key] = c.tag; r.src[n.key] = { accn: c.accn, end: c.end, start: c.start };
-      if (METRICS[n.metric].kind === D) r.end = r.end ?? c.end;
-    });
-    needed.forEach((n, i) => {
-      if (!n.key.endsWith("@prev")) return;
-      const c = chosen(frames[i], cik, r.tag[n.metric]);
-      if (c) r.m[n.key] = c.val;
-    });
+    if (opts.ciks && !opts.ciks.has(Number(cik))) continue;
+    let r = null;
+    for (let pi = pers.length - 1; pi >= 0 && !r; pi -= 1) {
+      const t = { cik, name: co?.name ?? frames.find((f) => f.values.has(cik)).values.get(cik).name, ticker: co?.ticker ?? null, exchange: co?.exchange ?? null, m: {}, tag: {}, end: null, src: {} };
+      for (const j of durJobs) {
+        if (j.pi !== pi || j.key.endsWith("@prev")) continue;
+        const c = chosen(j.mf, cik);
+        if (!c) continue;
+        t.m[j.key] = c.val; t.tag[j.key] = c.tag; t.src[j.key] = { accn: c.accn, end: c.end, start: c.start };
+        t.end = t.end ?? c.end;
+      }
+      if (!inWindow(t.end)) continue;
+      for (const j of durJobs) {
+        if (j.pi !== pi || !j.key.endsWith("@prev")) continue;
+        const c = chosen(j.mf, cik, t.tag[j.metric]);
+        if (c) t.m[j.key] = c.val;
+      }
+      r = t;
+    }
+    if (!r) continue;
+    for (const key of instKeys) {
+      const found = instJobs.filter((j) => j.key === key).map((j) => chosen(j.mf, cik)).filter(Boolean);
+      const c = win ? (found.find((x) => x.end === r.end) ?? found.filter((x) => r.end && Math.abs(Date.parse(x.end) - Date.parse(r.end)) <= 31 * 86400000)[0]) : found[0];
+      if (!c) continue;
+      r.m[key] = c.val; r.tag[key] = c.tag; r.src[key] = { accn: c.accn, end: c.end, start: c.start };
+    }
     rows.set(cik, r);
   }
   const value = (r, metric) => (DERIVED[metric] ? DERIVED[metric].f(r.m) : r.m[metric] ?? null);
@@ -257,7 +297,7 @@ export async function screenCompanies(session, args) {
   }
   out.definitions = Object.fromEntries(shown.map((m) => [m, DERIVED[m] ? `derived from ${DERIVED[m].needs.join(", ")}` : `XBRL ${METRICS[m].groups.map((g) => g.join(" or ")).join(", else ")} (the larger within "or"), ${METRICS[m].unit}`]));
   out.sources = [...new Set(frames.flatMap((f) => f.urls))];
-  out.limits = [...LIMITS, "XBRL frames give one value per filer for the fiscal period that best overlaps the calendar period, as most recently filed; filers tag line items differently, so a missing or unusual tag drops or skews a company. Check a shortlisted company's filing before relying on a figure."];
+  out.limits = [...LIMITS, "XBRL frames give one value per filer for the fiscal period that best overlaps the calendar period, as most recently filed; filers tag line items differently, so a missing or unusual tag drops or skews a company. Check a shortlisted company's filing before relying on a figure.", "Listing is SEC's ticker-and-exchange file: a company that has just moved its ticker to a new holding company (Exxon Mobil, 2026) is listed under the new filer, which may not have filed financial statements yet."];
   return out;
 }
 
@@ -539,7 +579,7 @@ export async function eventStudy(session, args) {
     average_path: { columns: ["day", "mean_ar", "mean_car"], rows: path },
     events: { columns: ["event", "event_time", "day0", "car", "ar_day0", "t_stat", "beta"], rows: per.map((p) => [p.label, p.at, p.t0, round(p.car, 6), round(p.ar0, 6), round(p.t, 3), round(p.beta, 3)]) },
     ...(skipped.length ? { skipped: { columns: ["event", "reason"], rows: skipped.slice(0, 20) } } : {}),
-    meaning: "Abnormal return = actual return minus the model's expected return; CAR sums it over the window. t_stat and p_value test whether the mean CAR across events differs from zero (cross-sectional t test). Returns are simple daily returns of adjusted closes.",
+    meaning: "Abnormal return = actual return minus the model's expected return; CAR sums it over the window. t_stat and p_value test whether the mean CAR across events differs from zero (cross-sectional t test). Returns are simple daily returns of adjusted closes. day0 is the first session that could react to a filing: its own day if accepted before the 4 p.m. New York close on a trading day, else the next session (event_time is UTC); dates passed in events are used as day0 as given.",
     ...(source ? { sources: [source] } : {}),
     ...(eventTimes ? { event_times: eventTimes } : {}),
     price_source: ps.source,

@@ -166,3 +166,26 @@ test("plausibility checks flag only the impossible, not early-stage losses", () 
   assert.deepEqual(R.suspect({ revenue: 1e9, gross_profit: 1.2e9, assets: 5e9 }), ["gross profit above revenue"]);
   assert.deepEqual(R.suspect({ revenue: 6842e6, "revenue@prev": 57e6, assets: 2e10 }), []);
 });
+
+test("a fiscal-year-end window takes each company's year ending in it, and the balance sheet at that year's end", async () => {
+  const F = (tag, unit, frame) => R.frameUrl("us-gaap", tag, unit, frame);
+  const tickers = { fields: ["cik", "name", "ticker", "exchange"], data: [[1, "Retail Co", "RTL", "NYSE"], [2, "Calendar Co", "CAL", "Nasdaq"], [3, "June Co", "JUN", "NYSE"]] };
+  const row = (cik, end, val, start) => ({ cik, entityName: `co${cik}`, end, val, accn: `0000000000-26-00000${cik}`, ...(start ? { start } : {}) });
+  const extra = { "https://www.sec.gov/files/company_tickers_exchange.json": tickers };
+  // CY2025 holds Retail's year to 2026-01-31 and Calendar's to 2025-12-31; June's year to 2025-06-30
+  // sits in CY2025 too but ends outside the window. CY2024 holds the earlier years.
+  extra[F("Revenues", "USD", "CY2025")] = { data: [row(1, "2026-01-31", 120, "2025-02-01"), row(2, "2025-12-31", 300, "2025-01-01"), row(3, "2025-06-30", 50, "2024-07-01")] };
+  extra[F("Revenues", "USD", "CY2024")] = { data: [row(1, "2025-01-31", 100, "2024-02-01"), row(2, "2024-12-31", 200, "2024-01-01"), row(3, "2024-06-30", 40, "2023-07-01")] };
+  extra[F("Revenues", "USD", "CY2023")] = { data: [row(1, "2024-01-31", 90, "2023-02-01"), row(2, "2023-12-31", 150, "2023-01-01")] };
+  extra[F("Assets", "USD", "CY2026Q1I")] = { data: [row(1, "2026-01-31", 999)] };
+  extra[F("Assets", "USD", "CY2025Q4I")] = { data: [row(1, "2025-10-31", 111), row(2, "2025-12-31", 777)] };
+  const s = createSession({ fetchImpl: replayFetch(extra).fetchImpl, now: () => NOW, env: {} });
+  const r = await R.screenCompanies(s, { fiscal_year_end: ["2025-10-01", "2026-01-31"], sort_by: "revenue_growth", columns: ["assets"] });
+  const by = Object.fromEntries(r.rows.map((x) => [x[0], Object.fromEntries(r.columns.map((c, i) => [c, x[i]]))]));
+  assert.deepEqual(Object.keys(by).sort(), ["CAL", "RTL"], "June's fiscal year ends outside the window");
+  assert.equal(by.RTL.period_end, "2026-01-31"); assert.equal(by.RTL.revenue_growth, 0.2); assert.equal(by.RTL.assets, 999, "assets at the fiscal year's end, not at a quarter end");
+  assert.equal(by.CAL.revenue_growth, 0.5); assert.equal(by.CAL.assets, 777);
+  assert.match(r.period, /fiscal year ending 2025-10-01 to 2026-01-31/);
+  await assert.rejects(R.screenCompanies(s, { period: "FY2025", fiscal_year_end: ["2025-01-01", "2025-12-31"] }), /not both/);
+  assert.deepEqual(R.quarterInstants(["2025-10-01", "2026-01-31"]), ["CY2025Q3I", "CY2025Q4I", "CY2026Q1I", "CY2026Q2I"]);
+});

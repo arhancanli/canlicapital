@@ -14,6 +14,7 @@ import {
   loadCompany,
   toolCrossSection,
   toolFindCompany,
+  resolveCompany,
   toolHistory,
   toolKnownAsOf,
   toolListConcepts,
@@ -80,9 +81,24 @@ test("history: latest and quarterly periods, including a 16-week quarter; prospe
   assert.equal(all.total, 5, "the six-month figure appears only under all");
 });
 
+test("history shows the other vintage beside the one asked for, and the change from a year earlier", async () => {
+  const { s } = session();
+  const first = byCol(out(await toolHistory(s, { company: "FIX", concept: "revenue", basis: "first_reported" })));
+  const r2019 = first.find((r) => r.end === "2019-09-30");
+  assert.equal(r2019.val, 100); assert.equal(r2019.latest_val, 90); assert.ok(r2019.latest_filed > r2019.filed);
+  assert.equal(first.find((r) => r.end === "2020-09-30").latest_val, null, "unchanged values have no second vintage");
+  assert.equal(first.find((r) => r.end === "2020-09-30").change_pct, 10);
+  assert.equal(first.find((r) => r.end === "2018-09-30").change_pct, null, "no earlier year in the rows");
+  const latest = byCol(out(await toolHistory(s, { company: "FIX", concept: "revenue", basis: "latest" })));
+  assert.equal(latest.find((r) => r.end === "2019-09-30").first_val, 100);
+  assert.equal(latest.find((r) => r.end === "2020-09-30").change_pct, 22.2222);
+  const asOf = out(await toolHistory(s, { company: "FIX", concept: "revenue", as_of: "2020-06-30" }));
+  assert.ok(!asOf.columns.includes("latest_val") && !asOf.columns.includes("first_val"), "as_of never shows a later value");
+});
+
 test("a plain name follows the measure across a tag change, and each value names its tag", async () => {
   const { s } = session();
-  const first = out(await toolHistory(s, { company: "FIX", concept: "revenue" }));
+  const first = out(await toolHistory(s, { company: "FIX", concept: "revenue", basis: "first_reported" }));
   assert.deepEqual(first.concept.tags, ["Revenues", "SalesRevenueNet"]);
   assert.deepEqual(byCol(first).map((r) => [r.end, r.val, r.filed, r.tag, r.changed]), [
     ["2020-09-30", 110, "2020-10-29", "Revenues", false],
@@ -113,10 +129,10 @@ test("an XBRL tag the company stopped using points to the series that continues 
 
 test("a tag in two taxonomies is one measure; a taxonomy prefix picks one", async () => {
   const { s } = session();
-  const exact = out(await toolHistory(s, { company: "FIX", concept: "Assets" }));
+  const exact = out(await toolHistory(s, { company: "FIX", concept: "Assets", basis: "first_reported" }));
   assert.deepEqual(exact.concept.tags, ["ifrs-full:Assets", "Assets"], "the IFRS series, still reported, comes first");
   assert.deepEqual(byCol(exact).map((r) => [r.end, r.val, r.tag]), [["2021-09-30", 700, "ifrs-full:Assets"], ["2020-09-30", 600, "Assets"], ["2019-09-30", 500, "Assets"]]);
-  assert.deepEqual(byCol(out(await toolHistory(s, { company: "FIX", concept: "assets" }))).map((r) => r.val), [700, 600, 500]);
+  assert.deepEqual(byCol(out(await toolHistory(s, { company: "FIX", concept: "assets", basis: "first_reported" }))).map((r) => r.val), [700, 600, 500]);
   const usgaap = out(await toolHistory(s, { company: "FIX", concept: "us-gaap:Assets" }));
   assert.deepEqual(usgaap.concept.tags, ["Assets"]);
 });
@@ -235,8 +251,8 @@ test("find_company: best match first, resolved only when one is clearly best, an
   assert.equal(out(await toolFindCompany(s, { query: "Exxon Mobil Corp" })).resolved.match, "name");
   assert.equal(out(await toolFindCompany(s, { query: "Meta", limit: 1 })).rows.length, 1);
   // Several at the best level: the one with a current ticker is the one meant.
-  assert.deepEqual(out(await toolFindCompany(s, { query: "Alphabet" })).resolved, { cik: "0001652044", name: "Alphabet Inc.", match: "name" });
-  assert.deepEqual(out(await toolFindCompany(s, { query: "Toyota" })).resolved, { cik: "0001094517", name: "TOYOTA MOTOR CORP/", match: "name_start" });
+  assert.deepEqual(out(await toolFindCompany(s, { query: "Alphabet" })).resolved, { cik: "0001652044", name: "Alphabet Inc.", match: "name", also_matching: [{ cik: "0002100000", name: "Alphabet Holding Company, Inc.", tickers: [] }] });
+  assert.deepEqual(out(await toolFindCompany(s, { query: "Toyota" })).resolved, { cik: "0001094517", name: "TOYOTA MOTOR CORP/", match: "name_start", also_matching: [{ cik: "0000834071", name: "Toyota Motor Credit Corporation", tickers: [] }] });
   assert.equal(out(await toolFindCompany(s, { query: "JPMorgan Chase" })).resolved.match, "name", "& Co drops like Inc");
   // The start of one name and no other: resolved. A word inside names is used only when it is the
   // single match at all.
@@ -406,4 +422,40 @@ test("a quarter is stale once a later fiscal year has been filed: the fourth qua
   assert.deepEqual(await quarter("2020-11-01"), ["2020-04-21", true]);
   const xs = out(await toolCrossSection(s, { companies: ["FIX"], concept: "revenue", as_of: "2020-11-01", periods: "quarterly" }));
   assert.equal(byCol(xs)[0].stale, true);
+});
+
+test("two filers with the same name: the listed one is used, and the answer names the other", async () => {
+  const { s } = session();
+  const r = await resolveCompany(s, "Star Equity Holdings");
+  assert.equal(r.cik, "0001210708");
+  assert.match(r.matched.note, /Also named "Star Equity Holdings": Star Equity Holdings, Inc\. \(CIK 0000707388, no current ticker\)\. This is STAR EQUITY HOLDINGS, INC\. \(CIK 0001210708\), the one with a current ticker; pass another CIK/);
+  assert.equal((await resolveCompany(s, "Twitter")).matched.note, undefined, "a single best match carries no note");
+});
+
+test("history takes several concepts in one call, each series as a single call gives it", async () => {
+  const { s } = session();
+  const both = out(await toolHistory(s, { company: "FIX", concepts: ["revenue", "assets"], basis: "latest" }));
+  assert.deepEqual(both.series.map((x) => x.concept.name), ["revenue", "assets"]);
+  const alone = out(await toolHistory(s, { company: "FIX", concept: "assets", basis: "latest" }));
+  assert.deepEqual(both.series[1].rows, alone.rows);
+  assert.equal(both.company.cik, alone.company.cik);
+  await assert.rejects(toolHistory(s, { company: "FIX" }), /send concept \(one measure\) or concepts/);
+  await assert.rejects(toolHistory(s, { company: "FIX", concept: "assets", concepts: ["revenue", "assets"] }), /not both/);
+});
+
+test("history says what span the data covers, so a question outside it is answered as not reported", async () => {
+  const { s } = session();
+  const r = out(await toolHistory(s, { company: "FIX", concept: "revenue" }));
+  assert.equal(r.covers.first_end, "2018-09-30"); assert.equal(r.covers.last_end, "2020-09-30");
+  assert.match(r.covers.note, /No annual value for this measure before 2018-09-30/);
+});
+
+test("history defaults to the latest value; as_of is a filing date, and a period ending on it is pointed out", async () => {
+  const { s } = session();
+  const r = out(await toolHistory(s, { company: "FIX", concept: "revenue" }));
+  assert.equal(r.basis, "latest");
+  assert.equal(byCol(r).find((x) => x.end === "2019-09-30").val, 90);
+  const trap = out(await toolHistory(s, { company: "FIX", concept: "revenue", as_of: "2020-09-30" }));
+  assert.match(trap.as_of_note, /A period ends on 2020-09-30, but it was filed after that date/);
+  assert.equal(out(await toolHistory(s, { company: "FIX", concept: "revenue", as_of: "2020-06-30" })).as_of_note, undefined);
 });

@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { createSession, NotFound } from "../src/sources.mjs";
-import { buildRows, financialStatements, pruneHeadings, rowKeys } from "../src/statements.mjs";
+import { buildRows, financialStatements, pruneHeadings, rowKeys, unitScale } from "../src/statements.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
 
 const session = () => createSession({ fetchImpl: replayFetch().fetchImpl, env: {}, now: () => NOW, sleep: async () => {} });
@@ -16,6 +16,7 @@ test("Microsoft: two 10-Ks give four years of income and cash flows and three ba
   assert.deepEqual(r.filings.rows.map((x) => x.slice(0, 4)), [["0001193125-26-323660", "10-K", "2026-07-29", "2026-06-30"], ["0000950170-25-100235", "10-K", "2025-07-30", "2025-06-30"]]);
   assert.deepEqual(r.income.columns, ["line", "concept", "12 months to 2026-06-30", "12 months to 2025-06-30", "12 months to 2024-06-30", "12 months to 2023-06-30"]);
   assert.equal(r.income.units, "USD ($) shares in Millions, $ in Millions");
+  assert.equal(r.income.money_scale, 1e6); assert.equal(r.income.shares_scale, 1e6);
   assert.deepEqual(line(r.income, "Revenue").slice(1), ["us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax", 331839, 281724, 245122, 211915]);
   assert.deepEqual(line(r.income, "Diluted").slice(2), [17.95, 13.64, 11.8, 9.68]);
   // The breakdown under the statement keeps its member headings: Product, then Service and Other.
@@ -118,4 +119,12 @@ test("rows from one filing never merge, however alike; a concept renamed across 
     entry("Interest expense", "a:New", [["12|2024-12-31", [{ value: -7, filing: 0 }]]]),
   ], cols);
   assert.equal(disagree.rows.length, 2);
+});
+
+test("a statement title's scale for money and for shares", () => {
+  assert.equal(unitScale("USD ($) shares in Thousands, $ in Thousands", "\\$"), 1e3);
+  assert.equal(unitScale("USD ($) shares in Millions, $ in Billions", "\\$"), 1e9);
+  assert.equal(unitScale("USD ($) shares in Millions, $ in Billions", "shares"), 1e6);
+  assert.equal(unitScale("USD ($)", "\\$"), 1);
+  assert.equal(unitScale(null, "shares"), 1);
 });

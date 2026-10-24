@@ -10,6 +10,11 @@ export const ARMS = {
   "canli-after": [["canli", process.execPath, [CANLI], {}]],
   // After every fix (also result refs, nested run_tool, named yields and spreads, price returns).
   "canli-final": [["canli", process.execPath, [CANLI], {}]],
+  // The published flagship as a user installs it from npm (CANLI_FLAGSHIP_SERVER, default ~/canli-bench-flagship).
+  "canli-0.6.0": [["canli", process.execPath, [process.env.CANLI_FLAGSHIP_SERVER ?? `${process.env.HOME}/canli-bench-flagship/node_modules/canli-mcp/src/server.mjs`], {}]],
+  // This branch's flagship: the published packages with this branch's canli-mcp, fundamentals and
+  // markets sources copied over (CANLI_DEV_SERVER, default ~/canli-bench-flagship-dev).
+  "canli-dev": [["canli", process.execPath, [process.env.CANLI_DEV_SERVER ?? `${process.env.HOME}/canli-bench-flagship-dev/node_modules/canli-mcp/src/server.mjs`], {}]],
   openbb: [["openbb", `${R}/.venv/bin/openbb-mcp`, ["--transport", "stdio", "--tool-discovery"], {}]],
   edgartools: [["edgar", `${R}/.venv-edgar/bin/edgartools-mcp`, [], ID]],
   yahoo: [["yahoo", `${R}/yfmcp/.venv313/bin/python`, [`${R}/yfmcp/server.py`], {}]],

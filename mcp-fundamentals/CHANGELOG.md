@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- `history` returns the latest value by default (first-reported is `basis: "first_reported"`), and
+  every row shows the other version when a later filing changed it, plus `change_pct` from the year
+  before. `concepts` takes two to six measures in one call; `covers` states the span the data covers.
+  An `as_of` equal to a period end filed later is pointed out: `as_of` is a filing date.
+- A company name that two filers share resolves to the one with a current ticker and names the
+  other, with its CIK.
+
 ## 0.6.0
 
 - Three guided workflows: what a company knew on a date, which numbers were restated, and how

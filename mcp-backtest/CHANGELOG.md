@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+- The breadth lab: `breadth_signals` (24 cross-sectional signals with their sources),
+  `breadth_book` (a sleeve for every signal in every group of names from your price panel, hedged
+  and scaled, traded as one netted account; the book netted and standalone, the netting ratio,
+  effective bets and ideas, and every sleeve's returns written as a dataset with its specs) and
+  `effective_bets` (independent bets in any set of return series).
+- `price_panel`: a price panel from free sources for the breadth lab or `backtest_signal`: the
+  tickers you name or an index fund's current holdings, daily adjusted closes and dollar volume, and
+  each company's Fama-French industry from its SEC SIC code (QQQ's 100 largest: 93 matched, 70 s).
+- Annotation: `annotation_packet` (figures, or every figure in a draft such as an AI's answer,
+  checked by machine against the filings and written as blind CSV packets for people to label), `annotation_agreement` (Cohen's kappa between people and
+  against the machine) and `annotation_gold` (a gold JSONL set with a datasheet and hashes).
+
 ## 0.1.2
 
 - Fix: a NUL character in `prices_file`, `signal_file` or `out_file` reached the file system, which
