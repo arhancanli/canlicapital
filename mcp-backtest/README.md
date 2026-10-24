@@ -77,3 +77,15 @@ ledger), [canli-fundamentals-mcp](https://www.npmjs.com/package/canli-fundamenta
 point in time), [canli-research-mcp](https://www.npmjs.com/package/canli-research-mcp) (the open research
 record). Source: [github.com/arhancanli/canlicapital](https://github.com/arhancanli/canlicapital/tree/main/mcp-backtest).
 MIT licensed. Built by Arhan Canli.
+
+## Breadth lab, sweeps and labelled data
+
+| tool | what it does |
+|---|---|
+| `price_panel` | A price, dollar-volume and industry-group panel built from a fund's holdings (IVV for the S&P 500), ready for the tools below |
+| `breadth_signals` | The 24 cross-sectional signals the lab builds sleeves from, each with its reference |
+| `breadth_book` | Every signal inside every group of names as a sleeve, traded as one netted account: the book's Sharpe after costs, the netting saved, and its effective independent bets; writes the sleeves as a CSV with their specs |
+| `breadth_sweep` | A grid of book settings run in parallel on every core, or as shards other machines run and merge back (inputs, grid, gaps and duplicates checked); the best Sharpe is set against what the best of that many trials reaches by luck, and with `split_date` the chosen settings are scored after it |
+| `effective_bets` | How many independent bets a set of return series holds (the participation ratio of their correlations), by series and by family |
+| `annotation_packet`, `annotation_agreement`, `annotation_gold` | Blind labelling packets of figures (or of a draft's figures) with guidelines and an answer key; agreement between labellers (Cohen's kappa); and a gold set with its datasheet |
+
