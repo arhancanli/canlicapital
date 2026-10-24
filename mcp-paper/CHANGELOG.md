@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.1
+
+- A preview's rows add `price` (the quote's mid, or a limit order's limit) and `notional`, so an
+  order ticket shows what each order costs before it is sent. Both are left out in private mode.
+
 ## 0.3.0
 
 - Attestations are signed twice on Node 24.7+: Ed25519 and post-quantum ML-DSA-65 (FIPS 204), over

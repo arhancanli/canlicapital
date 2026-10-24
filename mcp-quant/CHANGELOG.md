@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0
+
+- Backtests can return their path: `curve: true` adds the equity curve (from 1) against buy-and-hold,
+  the drawdown from the running peak and the exposure at each close (at most 1,000 rows, evenly
+  thinned, the last kept), and every weight change as a trade with its price (the last 1,000).
+  `dates` labels both. The default answer is unchanged, and strategy_sweep never builds curves.
+
 ## 0.1.3
 
 - zod 4.6.7 (a high advisory in earlier zod: memory exhaustion on oversized constrained collections). No code change.

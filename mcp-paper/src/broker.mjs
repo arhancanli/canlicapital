@@ -146,8 +146,13 @@ export function createBroker({ env = process.env, home, fetchImpl = globalThis.f
     });
     return {
       paper: true, accepted, market_open: s.clock.is_open, limits_file: file.path, private: privateMode,
-      columns: ["symbol", "side", "qty", "accepted", "reasons", "est_cost_bps"],
-      rows: out.rows.map((r) => [r.symbol, r.side, request.hideQty ? null : r.qty, r.accepted, redactAll(r.reasons), r.cost?.total_bps_base ?? null]),
+      // The price is the quote's mid (a limit order's limit); the notional is that times the shares.
+      // In private mode both are left out with the size.
+      columns: ["symbol", "side", "qty", "accepted", "reasons", "est_cost_bps", "price", "notional"],
+      rows: out.rows.map((r, i) => {
+        const o = orders[i], px = o?.symbol === r.symbol ? (o.type === "limit" ? o.limit_price : market[r.symbol]?.price) ?? null : null;
+        return [r.symbol, r.side, request.hideQty ? null : r.qty, r.accepted, redactAll(r.reasons), r.cost?.total_bps_base ?? null, request.hideQty ? null : px, request.hideQty || px == null ? null : Math.round(px * r.qty * 100) / 100];
+      }),
       attestation,
       warnings: redactAll(out.warnings), not_modelled: out.not_modelled, checks_skipped: out.checks_skipped, systemic_breach: out.systemic_breach,
       token, expires_at,

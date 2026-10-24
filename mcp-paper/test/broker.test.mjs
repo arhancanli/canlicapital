@@ -69,6 +69,8 @@ test("preview checks against the paper account and returns a token only when eve
   const ok = await s.broker.preview({ orders: [{ symbol: "AAPL", side: "buy", qty: 10 }] });
   assert.equal(ok.accepted, true, JSON.stringify(ok.rows));
   assert.match(ok.token, /^[\w-]+\.[\w-]+$/);
+  const at = (c) => ok.rows[0][ok.columns.indexOf(c)];
+  assert.ok(at("price") > 0 && Math.abs(at("notional") - at("price") * 10) < 0.01, "the ticket shows the mid and the notional");
   const big = await s.broker.preview({ orders: [{ symbol: "AAPL", side: "buy", qty: 1000 }] });
   assert.equal(big.accepted, false);
   assert.equal(big.token, null);

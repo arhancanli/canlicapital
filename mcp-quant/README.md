@@ -429,6 +429,8 @@ randomness is the sleeve bootstrap, drawn from a stated seed.
 
 <details><summary><b>strategies</b>: Strategy backtests (20)</summary>
 
+Every recipe and `backtest_weights` take `curve: true` (and optional `dates`) to add the equity curve against buy-and-hold, the drawdown, the exposure and every trade, for charts.
+
 | tool | what it does |
 |---|---|
 | `backtest_ma_crossover` | Backtest a fast/slow moving-average crossover on your prices with costs and no lookahead: CAGR, Sharpe, drawdown, turnover, cost drag and buy-and-hold for comparison. |
