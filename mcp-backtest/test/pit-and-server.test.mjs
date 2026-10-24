@@ -81,7 +81,7 @@ test("over stdio: backtest_signal runs on CSV files and records every run in the
   await client.connect(new StdioClientTransport({ command: process.execPath, args: [path.join(HERE, "../src/server.mjs")], env: { ...process.env, CANLI_LEDGER_DIR: dir } }));
   t.after(() => client.close());
   const { tools } = await client.listTools();
-  assert.deepEqual(tools.map((x) => x.name).sort(), ["annotation_agreement", "annotation_gold", "annotation_packet", "backtest_signal", "breadth_book", "breadth_signals", "effective_bets", "list_factors", "pit_factor", "price_panel"]);
+  assert.deepEqual(tools.map((x) => x.name).sort(), ["annotation_agreement", "annotation_gold", "annotation_packet", "backtest_signal", "breadth_book", "breadth_signals", "breadth_sweep", "effective_bets", "list_factors", "pit_factor", "price_panel"]);
   for (const q of [0.2, 0.33]) {
     const res = await client.callTool({ name: "backtest_signal", arguments: { prices_file: path.join(dir, "prices.csv"), signal_file: path.join(dir, "signal.csv"), quantile: q, ledger: "test-search" } });
     assert.ok(!res.isError, JSON.stringify(res.content));

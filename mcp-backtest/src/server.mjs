@@ -24,6 +24,7 @@ import { BREADTH_LIMITS_TEXT, effectiveBets, runBreadth, signalCatalog } from ".
 import { buildPanel, panelInput } from "./panel.mjs";
 import { ENGINE_LIMITS_TEXT, describe, runBacktest } from "./engine.mjs";
 import { readPanel, writePanel } from "./panel-io.mjs";
+import { breadthSweep, sweepInput } from "./sweep.mjs";
 import { FACTORS, PIT_LIMITS_TEXT, buildFactorPanel } from "./pit.mjs";
 
 export const SERVER_NAME = "canli-backtest-mcp";
@@ -109,6 +110,7 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   annotation_agreement: "Read filled annotation packets: how often the people agree (Cohen's kappa), how often they agree with the machine, and every disagreement.",
   annotation_gold: "Merge filled annotation packets and a reviewer's decisions into a gold dataset (JSONL: each item's label, who decided it, the machine label and source) with a datasheet of agreement and hashes.",
   price_panel: "Build a price panel from free sources for breadth_book or backtest_signal: the tickers you name or an index fund's current holdings, daily adjusted closes and dollar volume, and each company's Fama-French industry from its SEC SIC code, written as CSV files.",
+  breadth_sweep: "Run a grid of breadth-book settings (signal sets, smoothing, target volatility, costs, minimum names) in parallel on every core of this machine, or as shards other machines run and merge_files joins. Every combination counts as a trial: the best Sharpe is set against what the best of that many trials reaches by luck, and with split_date the chosen settings are scored after the split.",
   effective_bets: "How many independent bets a set of return series holds: the participation ratio of their weekly correlations (n for unrelated series, 1 for copies), and with families, the families' bets and the ideas they cluster into.",
   list_factors: "The point-in-time factors pit_factor builds from SEC filings, and what each measures.",
   pit_factor: `Build a factor from SEC filings for a list of tickers, monthly from start to end, using only what had been filed by each date (restatements invisible until filed). Writes a signal CSV for backtest_signal. ${PIT_LIMITS_TEXT[0]}`,
@@ -225,6 +227,7 @@ export function registerTools(server, session) {
   tool("price_panel", "Build a price panel", panelInput, { ...WRITES_LOCAL, openWorldHint: true }, async (args) => text(await buildPanel(session.markets ??= marketsSession(), args)));
   tool("breadth_signals", "Breadth lab signals", z.object({}).strict(), READ_ONLY, async () => text({ signals: signalCatalog(), next: "breadth_book with your prices_file (and groups_file, dollar_volume_file) builds a sleeve per signal per group.", limits: BREADTH_LIMITS_TEXT }));
   tool("breadth_book", "Breadth book of sleeves", breadthInput, WRITES_LOCAL, (args) => toolBreadthBook(session, args));
+  tool("breadth_sweep", "Parallel sweep of breadth settings", sweepInput, WRITES_LOCAL, async (args) => text(await breadthSweep(session, args)));
   tool("effective_bets", "Effective independent bets", betsInput, READ_ONLY, (args) => toolEffectiveBets(args));
   tool("annotation_packet", "Annotation packets", packetInput, { ...WRITES_LOCAL, openWorldHint: true }, async (args) => text(await annotationPacket(session.markets ??= marketsSession(), args)));
   tool("annotation_agreement", "Annotation agreement", agreementInput, READ_ONLY, async (args) => text(annotationAgreement(args)));
