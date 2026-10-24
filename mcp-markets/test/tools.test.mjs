@@ -114,6 +114,15 @@ test("treasury_yields: the latest par curve, from the Treasury, with a plain Use
   assert.ok(range.rows.length >= 5 && range.rows[0][0] === "2026-10-01");
 });
 
+test("treasury_yields: years with different maturities join by name, in maturity order", () => {
+  const newer = { header: ["Date", "1 Mo", "1.5 Month", "2 Mo", "4 Mo", "10 Yr"], rows: [["2025-03-03", 4.3, 4.31, 4.32, 4.33, 4.2]] };
+  const older = { header: ["Date", "1 Mo", "2 Mo", "10 Yr", "30 Yr"], rows: [["2021-10-01", 0.08, 0.04, 1.48, 2.04]] };
+  const { names, rows } = T.joinYears([newer, older]);
+  assert.deepEqual(names, ["1 Mo", "1.5 Month", "2 Mo", "4 Mo", "10 Yr", "30 Yr"]);
+  assert.deepEqual(rows[0], ["2021-10-01", 0.08, null, 0.04, null, 1.48, 2.04]);
+  assert.deepEqual(rows[1], ["2025-03-03", 4.3, 4.31, 4.32, 4.33, 4.2, null]);
+});
+
 test("economic_series: CPI year over year from words; values line up with dates", async () => {
   const { s } = session();
   const r = await T.economicSeries(s, { series: "cpi inflation", transform: "yoy", start: "2025-01-01" });

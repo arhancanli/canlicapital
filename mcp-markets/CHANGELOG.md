@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.4
+
+- `treasury_yields` over several years lines each maturity up by name. The Treasury added the 4-month
+  bill in 2022 and the 6-week in 2025, so a range across those years had shorter rows under the newest
+  year's headings (a 2021 row's 10-year yield sat under "7 Yr"). Columns are now every maturity in any
+  year asked for, in maturity order, with null where a year did not publish one.
+
 ## 0.7.3
 
 - `news` and `explain_move` search for a company by its plain name when its SEC name ends in "/NEW"
