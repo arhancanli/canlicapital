@@ -1,6 +1,6 @@
 # canli-mcp
 
-Every Canli Capital MCP server in one: 315 finance tools for Claude, Cursor or any MCP client.
+Every Canli Capital MCP server in one: 332 finance tools for Claude, Cursor or any MCP client.
 
 - Quant finance: 235 tools covering performance and risk, options and exotics, fixed income,
   portfolios, econometrics, indicators, and a library of 399 strategy sleeves with
@@ -20,13 +20,17 @@ Every Canli Capital MCP server in one: 315 finance tools for Claude, Cursor or a
   positioning, executive pay, revenue by segment, options chains and volatility surfaces, the VIX
   futures curve, Fed decisions and projections, the economic calendar, Treasury yields and auctions,
   the federal debt, FRED, World Bank and OECD data, and prices for stocks, currencies, futures,
-  indices and crypto.
+  indices and crypto. New in 0.7.0: what changed between two filings, the live filing feed, peer
+  comparisons, debt profiles, accounting red-flag scores (Beneish, Piotroski, Altman), 13F ownership
+  breadth, a portfolio X-ray, why a stock moved, the news and crypto funding rates.
 - Beyond the US, from the publishers: European companies' annual reports as they filed them
   (ESEF), central-bank rates (SOFR, the euro short-term rate, SONIA, the ECB's and the Bank of
   England's rates, and about forty policy rates the BIS collects), what Polymarket and Kalshi
   traders pay for an outcome, and DeFi value locked, fees and stablecoin supply from DefiLlama.
 - Canli Capital's open research record.
-- Factor backtests without lookahead.
+- Factor backtests without lookahead, a breadth lab (24 signals built into a multi-sleeve book, with
+  a count of its truly independent bets), price panels from fund holdings, and data annotation
+  (blind labelling packets, agreement between labellers, gold sets with a datasheet).
 - Alpaca paper trading behind pre-trade checks.
 
 Each pack is a published, separately tested server. This package loads them into one process and
@@ -78,7 +82,7 @@ markets server's list grew by 1,915 tokens.
   written before measuring found the right tool first 36 times and in the top three 38 times; two
   words they used were then added to the index (38 and 40). `test/search.test.mjs` holds these and
   176 more.
-- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 315 tools; a pack's
+- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 332 tools; a pack's
   code loads the first time one of its tools runs.
 - **Data by file, not by pasting.** Any argument can be `{"$file": "prices.csv", "column": "close"}`
   (or `"columns": ["SPY", "TLT"]` or `"all"`). For 1,000 prices that is 23 tokens instead of 4,893,
@@ -92,7 +96,7 @@ markets server's list grew by 1,915 tokens.
 
 ## Workflows as prompts
 
-Clients that show MCP prompts (Claude Desktop and Claude Code list them as slash commands) offer ten
+Clients that show MCP prompts (Claude Desktop and Claude Code list them as slash commands) offer fifteen
 workflows. Each one runs a single batched `run_tool` call and says what to write from the results:
 
 | prompt | asks for | runs |
@@ -106,6 +110,11 @@ workflows. Each one runs a single batched `run_tool` call and says what to write
 | `european_company` | a company's name or LEI | its latest ESEF annual report: revenue, profit, EPS, assets, equity, cash flows and dividends beside the prior years, linked to the report |
 | `defi_snapshot` | a protocol (optional) | stablecoin supply and its change, value locked on Ethereum and Solana, the protocol's value locked, fees and revenue |
 | `ownership` | a ticker | 5% holders and activists, insider buying and selling, short interest |
+| `filing_changes` | a ticker | the latest 10-K's risk factors and MD&A against the one before: new, dropped and rewritten paragraphs, words rising |
+| `why_it_moved` | a ticker and a date | the day's move beyond the market, how unusual it was, the filings and news around it |
+| `portfolio_xray` | symbols and weights | look-through positions across funds, overlap between them, the largest exposures |
+| `peers_and_red_flags` | a ticker | industry peers, debt and borrowing, institutional ownership breadth, Beneish, Piotroski and Altman screens |
+| `human_check` | a company and a draft | a blind labelling packet of the draft's figures, with guidelines and an answer key |
 | `backtest_check` | a returns file | deflated Sharpe for the variants tried, the track record needed, then leakage and placebo plans |
 
 A prompt is offered only when every tool it names is in an enabled pack (`CANLI_PACKS`,
@@ -113,7 +122,7 @@ A prompt is offered only when every tool it names is in an enabled pack (`CANLI_
 Prompts are requested separately from `tools/list`. Their context cost depends on how the client
 includes prompt and resource metadata.
 
-The packs also bring their own 25 prompts, so the full server offers 35. Their names identify the
+The packs also bring their own 25 prompts, so the full server offers 40. Their names identify the
 pack, such as `fundamentals.known_on_date`, `quant.audit_backtest`,
 `validation.stress_my_strategy` and `research.literature_review`. They route tool calls through
 `run_tool`, preserve the source pack's prompt argument checks, and forward its completion helpers.
@@ -210,8 +219,8 @@ Order-sending tools never run inside a batch: preview first, then send on its ow
 | validation | [canli-validation-mcp](https://www.npmjs.com/package/canli-validation-mcp) | 17 | the Null Zoo benchmark of 160,000 simulated searches |
 | fundamentals | [canli-fundamentals-mcp](https://www.npmjs.com/package/canli-fundamentals-mcp) | 7 | SEC XBRL filings |
 | research | [canli-research-mcp](https://www.npmjs.com/package/canli-research-mcp) | 6 | the published research record and its hash chain |
-| backtest | [canli-backtest-mcp](https://www.npmjs.com/package/canli-backtest-mcp) | 3 | point-in-time SEC data |
-| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 43 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank, Cboe, ECB, Bank of England, BIS, filings.xbrl.org, Polymarket, Kalshi and DefiLlama: a 13F's total equals its cover page; ESEF figures equal the same companies' Form 20-F at the SEC; central-bank rates agree with the BIS |
+| backtest | [canli-backtest-mcp](https://www.npmjs.com/package/canli-backtest-mcp) | 10 | point-in-time SEC data and the breadth lab's own checks |
+| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 53 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank, Cboe, ECB, Bank of England, BIS, filings.xbrl.org, Polymarket, Kalshi and DefiLlama: a 13F's total equals its cover page; ESEF figures equal the same companies' Form 20-F at the SEC; central-bank rates agree with the BIS |
 | paper | [canli-paper-trading-mcp](https://www.npmjs.com/package/canli-paper-trading-mcp) | 4 | a simulated Alpaca paper API |
 
 Two tools differ from their standalone servers. Validation's `stress_test` is `strategy_stress_test`

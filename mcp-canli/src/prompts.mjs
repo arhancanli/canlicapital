@@ -123,6 +123,55 @@ export const PROMPTS = Object.freeze({
     ],
     ask: (a) => `Fact-check this draft about ${a.ticker} with canli-mcp before it is used. ${batch(PROMPTS.fact_check.calls(a))}\nThen give the draft back corrected: keep confirmed figures; replace each contradicted one with the filed figure, saying what the wrong one was (another year, a quarter, a unit slip); remove or mark claims the filings do not report; and list figures that could not be checked (non-GAAP, guidance, segment data) so they can be checked another way. Cite each figure's source URL.`,
   },
+  filing_changes: {
+    title: "What changed in the 10-K",
+    description: "What a company changed in its latest annual report against the one before: new, dropped and rewritten risk factors and MD&A paragraphs, and the words whose use rose most.",
+    args: { ticker: TICKER },
+    calls: ({ ticker }) => [
+      { name: "filing_diff", arguments: { company: ticker, section: "risk factors" } },
+      { name: "filing_diff", arguments: { company: ticker, section: "md&a" } },
+    ],
+    ask: (a) => `Show me what ${a.ticker} changed in its latest 10-K with canli-mcp. ${batch(PROMPTS.filing_changes.calls(a))}\nThen write: the risks it added, dropped and rewrote (quoting the changed sentences), what changed in how management describes the business and results, and the words whose use rose most, with the two filings' dates. Say plainly where a section could not be matched. ${SOURCES}`,
+  },
+  why_it_moved: {
+    title: "Why did the stock move?",
+    description: "A day's move against the market, how unusual it was from a one-year market model, and the filings and news around it.",
+    args: { ticker: TICKER, date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "a date as YYYY-MM-DD").describe("The trading day of the move, e.g. 2026-10-23.") },
+    calls: ({ ticker, date }) => [
+      { name: "explain_move", arguments: { symbol: ticker, date } },
+    ],
+    ask: (a) => `Explain ${a.ticker}'s move on ${a.date} with canli-mcp. ${batch(PROMPTS.why_it_moved.calls(a))}\nThen write: the day's return, the market's, and the move beyond the market with how unusual it was (its z-score); the filings and headlines around the day with their times; and which of them plausibly explains the move, saying plainly when nothing does. ${SOURCES}`,
+  },
+  portfolio_xray: {
+    title: "Portfolio X-ray",
+    description: "What a portfolio of stocks and funds really holds: the look-through positions across every fund, the overlap between the funds, and the largest exposures.",
+    args: { holdings: z.string().min(2).max(600).regex(/^[A-Za-z0-9.\- ]+:\s*\d+(\.\d+)?(\s*,\s*[A-Za-z0-9.\- ]+:\s*\d+(\.\d+)?)*$/, "symbol:weight pairs, e.g. VOO:60, QQQ:30, AAPL:10").describe("Symbols and weights (or values), e.g. VOO:60, QQQ:30, AAPL:10.") },
+    calls: ({ holdings }) => [
+      { name: "portfolio_xray", arguments: { holdings: String(holdings).split(",").map((x) => x.split(":")).map(([s, w]) => ({ symbol: s.trim().toUpperCase(), weight: Number(w) || 1 })) } },
+    ],
+    ask: (a) => `X-ray this portfolio with canli-mcp: ${a.holdings}. ${batch(PROMPTS.portfolio_xray.calls(a))}\nThen write: the largest look-through positions with their weights, how much the funds overlap with each other, and anything concentrated that the fund names hide. Name the date of each fund's holdings report. ${SOURCES}`,
+  },
+  peers_and_red_flags: {
+    title: "Peers and red flags",
+    description: "A company against its industry peers, its debt and borrowing, how many institutions hold it quarter by quarter, and three accounting screens (Beneish, Piotroski, Altman) with every input named.",
+    args: { ticker: TICKER },
+    calls: ({ ticker }) => [
+      { name: "comps", arguments: { company: ticker } },
+      { name: "debt_profile", arguments: { company: ticker } },
+      { name: "ownership_breadth", arguments: { company: ticker } },
+      { name: "forensic_scores", arguments: { company: ticker } },
+    ],
+    ask: (a) => `Compare ${a.ticker} with its peers and check it for red flags with canli-mcp. ${batch(PROMPTS.peers_and_red_flags.calls(a))}\nThen write: where it ranks against its peers on growth, margins and valuation; its debt, maturities and implied borrowing cost; whether institutions are adding or leaving it; and each accounting screen's reading with the inputs behind it. These are screens from past studies, not verdicts. ${SOURCES}`,
+  },
+  human_check: {
+    title: "Check an AI answer with people",
+    description: "Turn a draft about a company into a blind labelling packet: every figure as an item people check against the filings, with guidelines and an answer key, so the agreement between them can be measured.",
+    args: { company: z.string().min(1).max(120).describe("The company the draft is about (ticker or name)."), draft: z.string().min(10).max(6000).describe("The draft whose figures people should check.") },
+    calls: ({ company, draft }) => [
+      { name: "annotation_packet", arguments: { task: "draft-check", text: draft, company } },
+    ],
+    ask: (a) => `Make a human check of this draft about ${a.company} with canli-mcp. ${batch(PROMPTS.human_check.calls(a))}\nThen say where the packet's files are, how many figures it holds, how to hand the blind sheets to two or more people, and that annotation_agreement measures their agreement once they return them, and annotation_gold turns the agreed labels into a gold set.`,
+  },
   backtest_check: {
     title: "Is my backtest real?",
     description: "Audit a strategy's daily returns for overfitting: deflated Sharpe for the number of variants tried, the minimum track record, and what to run next (leakage and placebo checks).",
