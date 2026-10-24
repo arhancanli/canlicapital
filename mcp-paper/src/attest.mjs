@@ -18,21 +18,28 @@
 // learns it, and the checks themselves are trusted to this server's code. Brokers take API keys, not
 // proofs; the keys stay in the environment and are never shown to the model either way.
 import { createHash, createPrivateKey, createPublicKey, generateKeyPairSync, randomBytes, sign, verify } from "node:crypto";
-import { appendFileSync, existsSync, readFileSync, writeFileSync } from "node:fs";
+import { appendFileSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 export const canonical = (v) => (v === null || typeof v !== "object" ? JSON.stringify(v) : Array.isArray(v) ? `[${v.map(canonical).join(",")}]` : `{${Object.keys(v).sort().map((k) => `${JSON.stringify(k)}:${canonical(v[k])}`).join(",")}}`);
 const sha256 = (s) => createHash("sha256").update(s).digest("hex");
 
-// The trader's signing key, made once (mode 0600, never overwritten).
+// The trader's signing key, made once (mode 0600, never overwritten). It is read first; only when
+// there is none is a key made, created exclusively ("wx"), so two processes starting together end
+// up with one key and no check-then-write gap.
 export function attestKey(home) {
   const priv = join(home, "attest-ed25519.pem"), pub = join(home, "attest-ed25519.pub.pem");
-  if (!existsSync(priv)) {
+  let pem;
+  try { pem = readFileSync(priv); } catch (e) {
+    if (e.code !== "ENOENT") throw e;
     const { privateKey, publicKey } = generateKeyPairSync("ed25519");
-    try { writeFileSync(priv, privateKey.export({ type: "pkcs8", format: "pem" }), { flag: "wx", mode: 0o600 }); writeFileSync(pub, publicKey.export({ type: "spki", format: "pem" }), { flag: "wx", mode: 0o644 }); } catch (e) { if (e.code !== "EEXIST") throw e; }
+    try { writeFileSync(priv, privateKey.export({ type: "pkcs8", format: "pem" }), { flag: "wx", mode: 0o600 }); } catch (w) { if (w.code !== "EEXIST") throw w; }
+    pem = readFileSync(priv);
   }
-  const key = createPrivateKey(readFileSync(priv));
+  const key = createPrivateKey(pem);
   const publicPem = createPublicKey(key).export({ type: "spki", format: "pem" });
+  // The public half is derived from the private key each time, so a missing or stale copy is rewritten.
+  writeFileSync(pub, publicPem, { mode: 0o644 });
   return { key, publicPem, keyId: sha256(publicPem).slice(0, 16), publicPath: pub };
 }
 
