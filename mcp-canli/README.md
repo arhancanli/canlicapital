@@ -1,6 +1,6 @@
 # canli-mcp
 
-Every Canli Capital MCP server in one: 332 finance tools for Claude, Cursor or any MCP client.
+Every Canli Capital MCP server in one: 343 finance tools for Claude, Cursor or any MCP client.
 
 - Quant finance: 235 tools covering performance and risk, options and exotics, fixed income,
   portfolios, econometrics, indicators, and a library of 399 strategy sleeves with
@@ -22,7 +22,11 @@ Every Canli Capital MCP server in one: 332 finance tools for Claude, Cursor or a
   the federal debt, FRED, World Bank and OECD data, and prices for stocks, currencies, futures,
   indices and crypto. New in 0.7.0: what changed between two filings, the live filing feed, peer
   comparisons, debt profiles, accounting red-flag scores (Beneish, Piotroski, Altman), 13F ownership
-  breadth, a portfolio X-ray, why a stock moved, the news and crypto funding rates.
+  breadth, a portfolio X-ray, why a stock moved, the news and crypto funding rates. New in 0.8.0:
+  US federal contracts (USAspending), drug pipelines with trial readouts and FDA approvals, SEC
+  comment letters, the growth a share price implies (reverse DCF from the filings), bank call
+  reports (FDIC), how a 10-K's language drifted over the years, planned insider sales (Form 144),
+  the IPO pipeline, and GPU compute prices across the clouds with a daily index of them.
 - Beyond the US, from the publishers: European companies' annual reports as they filed them
   (ESEF), central-bank rates (SOFR, the euro short-term rate, SONIA, the ECB's and the Bank of
   England's rates, and about forty policy rates the BIS collects), what Polymarket and Kalshi
@@ -30,8 +34,15 @@ Every Canli Capital MCP server in one: 332 finance tools for Claude, Cursor or a
 - Canli Capital's open research record.
 - Factor backtests without lookahead, a breadth lab (24 signals built into a multi-sleeve book, with
   a count of its truly independent bets), price panels from fund holdings, and data annotation
-  (blind labelling packets, agreement between labellers, gold sets with a datasheet).
-- Alpaca paper trading behind pre-trade checks.
+  (blind labelling packets, agreement between labellers, gold sets with a datasheet). Parameter
+  sweeps run on every core (or as shards other machines run and merge, checked), with the best
+  result set against the luck of picking the best of many.
+- Alpaca paper trading behind pre-trade checks, each check signed (Ed25519 and post-quantum
+  ML-DSA-65) so an auditor can verify it, and a private mode in which the model never sees the
+  account's figures.
+- For firms: a policy file (which tools may run, orders off, calls a minute) and a tamper-evident
+  audit log of every call, signed with Ed25519 and post-quantum ML-DSA-65; and a live feed of SEC
+  filings as they arrive.
 
 Each pack is a published, separately tested server. This package loads them into one process and
 puts three tools in front of them.
@@ -82,7 +93,7 @@ markets server's list grew by 1,915 tokens.
   written before measuring found the right tool first 36 times and in the top three 38 times; two
   words they used were then added to the index (38 and 40). `test/search.test.mjs` holds these and
   176 more.
-- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 332 tools; a pack's
+- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 343 tools; a pack's
   code loads the first time one of its tools runs.
 - **Data by file, not by pasting.** Any argument can be `{"$file": "prices.csv", "column": "close"}`
   (or `"columns": ["SPY", "TLT"]` or `"all"`). For 1,000 prices that is 23 tokens instead of 4,893,
@@ -96,7 +107,7 @@ markets server's list grew by 1,915 tokens.
 
 ## Workflows as prompts
 
-Clients that show MCP prompts (Claude Desktop and Claude Code list them as slash commands) offer fifteen
+Clients that show MCP prompts (Claude Desktop and Claude Code list them as slash commands) offer twenty-two
 workflows. Each one runs a single batched `run_tool` call and says what to write from the results:
 
 | prompt | asks for | runs |
@@ -115,6 +126,13 @@ workflows. Each one runs a single batched `run_tool` call and says what to write
 | `portfolio_xray` | symbols and weights | look-through positions across funds, overlap between them, the largest exposures |
 | `peers_and_red_flags` | a ticker | industry peers, debt and borrowing, institutional ownership breadth, Beneish, Piotroski and Altman screens |
 | `human_check` | a company and a draft | a blind labelling packet of the draft's figures, with guidelines and an answer key |
+| `valuation_check` | a ticker | the free-cash-flow growth the share price implies (from the latest year and the three-year average), its sensitivity, and the company's peers |
+| `language_drift` | a ticker and a theme (optional) | year-by-year similarity of the risk factors and MD&A, the biggest rewrite and its rising words, the theme's frequency |
+| `biotech_catalysts` | a ticker | trials with primary completions due in the next year, the pipeline by phase, FDA approvals, recent 8-K news |
+| `government_exposure` | a ticker | federal contract obligations by agency and the largest awards, against revenue; SEC comment-letter topics |
+| `bank_health` | a bank | eight quarters of FDIC call-report figures: deposits and the uninsured share, capital, loan quality, unrealized losses, return on assets |
+| `insider_watch` | a ticker | planned sales (Form 144) beside reported trades (Form 4) |
+| `ipo_watch` | days (optional) | S-1 and F-1 filers apart from SPACs, funds and follow-ons, and the deals that priced |
 | `backtest_check` | a returns file | deflated Sharpe for the variants tried, the track record needed, then leakage and placebo plans |
 
 A prompt is offered only when every tool it names is in an enabled pack (`CANLI_PACKS`,
@@ -122,7 +140,7 @@ A prompt is offered only when every tool it names is in an enabled pack (`CANLI_
 Prompts are requested separately from `tools/list`. Their context cost depends on how the client
 includes prompt and resource metadata.
 
-The packs also bring their own 25 prompts, so the full server offers 40. Their names identify the
+The packs also bring their own 25 prompts, so the full server offers 47. Their names identify the
 pack, such as `fundamentals.known_on_date`, `quant.audit_backtest`,
 `validation.stress_my_strategy` and `research.literature_review`. They route tool calls through
 `run_tool`, preserve the source pack's prompt argument checks, and forward its completion helpers.
@@ -192,13 +210,14 @@ Everything runs on your machine. `canli://privacy` states, per pack, what leaves
 | fundamentals | public SEC data from canlicapital.com (the company and measure you ask for) | caches that public data in `~/.cache/canli-fundamentals` (`CANLI_CACHE_DIR=""` keeps nothing) |
 | research | public research pages from canlicapital.com (your search words) | none |
 | backtest | public SEC data, as fundamentals; your prices and signals stay local | your trial ledgers in `~/.canli/ledgers` |
-| markets | SEC EDGAR and the SEC's adviser database, the US Treasury, FRED, FINRA, the CFTC, the Federal Reserve and the New York Fed, BLS, BEA, the Census Bureau, the OECD, the World Bank, Cboe, filings.xbrl.org (European filings), the ECB, the Bank of England, the BIS, Polymarket, Kalshi and DefiLlama directly (the company, form, dates, search words, rate or series you ask for); Yahoo Finance's public chart data for prices, or for US stocks Alpaca or Tiingo with your key | none |
+| markets | SEC EDGAR and the SEC's adviser database, the US Treasury, FRED, FINRA, the CFTC, the Federal Reserve and the New York Fed, BLS, BEA, the Census Bureau, the OECD, the World Bank, Cboe, filings.xbrl.org (European filings), the ECB, the Bank of England, the BIS, Polymarket, Kalshi, DefiLlama, OKX, GDELT (news), USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index directly (the company, form, dates, search words, rate or series you ask for); Yahoo Finance's public chart data for prices, or for US stocks Alpaca or Tiingo with your key | none |
 | paper | Alpaca's paper API only, with your paper keys | a hash-chained order log in `~/.canli` |
 
 `CANLI_OFFLINE=1` enables only the packs with no network, and no other pack's code is even loaded.
 `test/privacy.test.mjs` runs the server that way with `fetch` and every network module made to
-throw, and the quant and validation tools still answer. The server itself has no network, write or
-logging code (also tested). Opt-in receipts (`receipt: true`) carry hashes, never data.
+throw, and the quant and validation tools still answer. The server itself has no network or logging
+code, and writes only the audit log a policy file asks for (both tested). Opt-in receipts
+(`receipt: true`) carry hashes, never data.
 
 ## Configuration
 
@@ -207,9 +226,81 @@ logging code (also tested). Opt-in receipts (`receipt: true`) carry hashes, neve
 | `CANLI_PACKS` | Packs to enable: `quant,validation,fundamentals,research,backtest,markets,paper` or `all`. Default: all but paper. |
 | `CANLI_OFFLINE` | `1` keeps only `quant` and `validation`. |
 | `ALPACA_PAPER_KEY_ID`, `ALPACA_PAPER_SECRET_KEY` | Paper keys (starting `PK`); setting them enables the paper pack. Live keys are refused. |
-| `CANLI_HOME` | Where the paper pack keeps its limits file, kill switch and order log; default `~/.canli`. |
+| `CANLI_HOME` | Where the paper pack keeps its limits file, kill switch and order log, and the audit log and its keys are kept; default `~/.canli`. |
+| `CANLI_POLICY` | A policy file (below). Unset: no policy and no audit log. |
+| `CANLI_PLUGINS` | Plugin packs to load (below): package names or `.mjs` paths, comma-separated. |
 
 Order-sending tools never run inside a batch: preview first, then send on its own.
+
+## For firms: policy and audit log
+
+A compliance team sets what the server may do in one file and points `CANLI_POLICY` at it:
+
+```json
+{
+  "tools": { "allow": ["markets:*", "fundamentals:*", "history"], "deny": ["news"] },
+  "orders": "off",
+  "calls_per_minute": 120,
+  "audit": { "arguments": "hash" }
+}
+```
+
+A tool is named by itself or by pack (`markets:*`). With an allow list only those run; deny wins;
+`"orders": "off"` refuses every tool that sends orders. A refused call returns the reason and is
+logged like any other.
+
+With `audit`, every call is written to `CANLI_HOME/audit/` (one JSONL file per server process): the
+tool, the time, the outcome and the SHA-256 of the arguments and the result (the arguments
+themselves only with `"arguments": "full"`). Each record carries the hash of the one before it, so
+an edited, removed or inserted record breaks the chain. Every 20 records a checkpoint is signed
+with an Ed25519 key and, on Node 24.7 or later, also with an ML-DSA-65 key (FIPS 204, a
+post-quantum signature); both must verify. The keys are made on your machine the first time and
+never leave it; give an auditor the public halves (`CANLI_HOME/audit-keys/*.pub.pem`), and they
+check a log with
+
+```bash
+npx canli-mcp audit verify path/to/audit --ed25519 audit-ed25519.pub.pem --ml-dsa audit-ml-dsa-65.pub.pem
+```
+
+which exits 1 and names the record when anything was changed. Inside a session, `audit_log`
+(through `run_tool`) shows the log's state, signs a checkpoint now (`action: "checkpoint"`) or
+checks it (`action: "verify"`). Records after the last checkpoint are chained but not yet signed,
+and verify says how many; a log cut short after a checkpoint loses that tail without a trace.
+
+## Plugins
+
+Anyone can add a pack. `CANLI_PLUGINS` names packages installed beside canli-mcp, or paths to
+`.mjs` files, comma-separated. A plugin exports `registerTools(server)` and registers tools the way
+the Canli packs do; it may also export `pack` (its short name), `title`, and `network` and `disk`
+(what it sends and keeps, shown in `canli://privacy`):
+
+```js
+import { z } from "zod";
+export const pack = "weather", network = "api.weather.gov", disk = "none";
+export function registerTools(server) {
+  server.registerTool("degree_days", { title: "Heating degree days", description: "...",
+    inputSchema: z.object({ station: z.string() }) }, async ({ station }) => ({ structuredContent: { /* ... */ }, content: [] }));
+}
+```
+
+Its tools are found by `find_tool`, run in `run_tool` batches with `$file` and `$result`, and fall
+under the policy file (`"weather:*"`) and the audit log like any other. A clash with an existing
+tool name stops the start with the reason. A plugin is code you chose to install and runs with the
+server's rights; none loads unless named, and none loads with `CANLI_OFFLINE=1`.
+
+## Live filings feed
+
+`canli-mcp watch` reads EDGAR's latest-filings feed every 60 seconds (`--every`, at least 15) and
+prints each new filing once, as a line of JSON, oldest first:
+
+```bash
+npx canli-mcp watch --forms 8-K,SC\ 13D --event earnings
+npx canli-mcp watch --company "bancorp" | while read -r l; do curl -s -d "$l" "$WEBHOOK"; done
+```
+
+EDGAR posts a filing about a minute after accepting it, so most filings arrive within two minutes.
+The first read only marks what is already there. Lines of type `error` report a failed read; the
+feed carries on.
 
 ## Packs and what each is checked against
 
@@ -219,12 +310,13 @@ Order-sending tools never run inside a batch: preview first, then send on its ow
 | validation | [canli-validation-mcp](https://www.npmjs.com/package/canli-validation-mcp) | 17 | the Null Zoo benchmark of 160,000 simulated searches |
 | fundamentals | [canli-fundamentals-mcp](https://www.npmjs.com/package/canli-fundamentals-mcp) | 7 | SEC XBRL filings |
 | research | [canli-research-mcp](https://www.npmjs.com/package/canli-research-mcp) | 6 | the published research record and its hash chain |
-| backtest | [canli-backtest-mcp](https://www.npmjs.com/package/canli-backtest-mcp) | 10 | point-in-time SEC data and the breadth lab's own checks |
-| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 53 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank, Cboe, ECB, Bank of England, BIS, filings.xbrl.org, Polymarket, Kalshi and DefiLlama: a 13F's total equals its cover page; ESEF figures equal the same companies' Form 20-F at the SEC; central-bank rates agree with the BIS |
-| paper | [canli-paper-trading-mcp](https://www.npmjs.com/package/canli-paper-trading-mcp) | 4 | a simulated Alpaca paper API |
+| backtest | [canli-backtest-mcp](https://www.npmjs.com/package/canli-backtest-mcp) | 11 | point-in-time SEC data and the breadth lab's own checks |
+| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 62 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank, Cboe, ECB, Bank of England, BIS, filings.xbrl.org, Polymarket, Kalshi, DefiLlama, USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index: a 13F's total equals its cover page; ESEF figures equal the same companies' Form 20-F at the SEC; central-bank rates agree with the BIS |
+| paper | [canli-paper-trading-mcp](https://www.npmjs.com/package/canli-paper-trading-mcp) | 5 | a simulated Alpaca paper API |
 
 Two tools differ from their standalone servers. Validation's `stress_test` is `strategy_stress_test`
-here, because the quant pack has a portfolio `stress_test`. Validation's `get_key` and
+here, because the quant pack has a portfolio `stress_test`; markets' `reverse_dcf` (which reads the
+filings) is `company_reverse_dcf`, because the quant pack's `reverse_dcf` takes the figures you give it. Validation's `get_key` and
 `service_status` are left out, because validation runs locally here. `canli://packs` lists both.
 
 ## Development

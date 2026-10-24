@@ -23,6 +23,13 @@ test("src imports only the SDK, zod, the published packs and file, path, os, url
     const text = readFileSync(path.join(SRC, f), "utf8");
     for (const m of text.matchAll(/(?:from\s+|import\()\s*"([^"]+)"/g)) if (!m[1].startsWith(".")) assert.match(m[1], allowed, `${f} imports ${m[1]}`);
     const code = text.split("\n").filter((l) => !l.trim().startsWith("//")).join("\n");
+    // The opt-in audit log (CANLI_POLICY) is the one writer: owner-only files, and keys created exclusively.
+    if (f === "governance.mjs") {
+      assert.doesNotMatch(code, /\bfetch\s*\(|XMLHttpRequest|WebSocket|child_process|worker_threads|createWriteStream|unlink|\beval\s*\(|new Function|console\./, f);
+      for (const m of code.matchAll(/(?:appendFileSync|mkdirSync)\(([^;]*?)\);/g)) assert.match(m[1], /mode: 0o[67]00/, `${f}: ${m[0]}`);
+      for (const m of code.matchAll(/writeFileSync\(([^;]*?)\);/g)) assert.match(m[1], /flag: "wx", mode: 0o600|pub, publicPem, \{ mode: 0o644 \}/, `${f}: ${m[0]}`);
+      continue;
+    }
     assert.doesNotMatch(code, /\bfetch\s*\(|XMLHttpRequest|WebSocket|child_process|worker_threads|writeFile|appendFile|createWriteStream|mkdir|unlink|\beval\s*\(|new Function|console\.(log|error|warn|info)/, f);
     for (const n of (text.match(/import\s*\{([^}]*)\}\s*from\s*"node:fs"/)?.[1] ?? "").split(",").map((s) => s.trim()).filter(Boolean)) assert.ok(["closeSync", "fstatSync", "openSync", "readFileSync", "realpathSync", "statSync"].includes(n), `${f} imports ${n} from node:fs`);
     for (const m of code.matchAll(/openSync\(([^)]*)\)/g)) assert.match(m[1], /,\s*"r"\s*$/, `${f} opens a file for writing`);

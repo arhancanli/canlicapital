@@ -174,6 +174,76 @@ export const PROMPTS = Object.freeze({
     ],
     ask: (a) => `Make a human check of this draft about ${a.company} with canli-mcp. ${batch(PROMPTS.human_check.calls(a))}\nThen say where the packet's files are, how many figures it holds, how to hand the blind sheets to two or more people, and that annotation_agreement measures their agreement once they return them, and annotation_gold turns the agreed labels into a gold set.`,
   },
+  valuation_check: {
+    title: "What is the price assuming?",
+    description: "The growth in free cash flow that today's share price implies (a reverse DCF from the filings), set beside the company's own past growth and its peers' valuations.",
+    args: { ticker: TICKER },
+    calls: ({ ticker }) => [
+      { name: "company_reverse_dcf", arguments: { company: ticker } },
+      { name: "company_reverse_dcf", arguments: { company: ticker, base: "average_3y" } },
+      { name: "comps", arguments: { company: ticker } },
+    ],
+    ask: (a) => `Show me what ${a.ticker}'s share price assumes with canli-mcp. ${batch(PROMPTS.valuation_check.calls(a))}\nThen write: the yearly free-cash-flow growth the price implies over the forecast years, from the latest year and from the three-year average, against the growth the company actually delivered; how sensitive that is to the discount rate (the sensitivity table); and how its valuation compares with its peers. Name the inputs (cash flow, debt, cash, shares) and their filings. This is arithmetic on stated assumptions, not a price target. ${SOURCES}`,
+  },
+  language_drift: {
+    title: "How the 10-K's language drifted",
+    description: "How much a company rewrote its 10-K year by year (similarity of each section to the year before, from the Lazy Prices study), which sections changed most, and how often a theme of your choosing comes up.",
+    args: { ticker: TICKER, theme: z.string().min(3).max(60).regex(/^[A-Za-z0-9 &.\-]+$/, "a short phrase").optional().describe("A phrase to follow through the years, e.g. tariff or supply chain.") },
+    calls: ({ ticker, theme }) => [
+      { name: "filing_drift", arguments: { company: ticker, section: "risk factors", ...(theme ? { theme } : {}) } },
+      { name: "filing_drift", arguments: { company: ticker, section: "md&a" } },
+    ],
+    ask: (a) => `Show me how ${a.ticker}'s 10-K language drifted with canli-mcp. ${batch(PROMPTS.language_drift.calls(a))}\nThen write: each year's similarity to the year before for the risk factors and MD&A, the year with the largest rewrite and what it added (quote the rising words), any flags raised${a.theme ? `, and how often "${a.theme}" appears year by year` : ""}. In the study, firms that changed their reports most later did worse on average; say that this is a tendency across many firms, not a forecast for this one. ${SOURCES}`,
+  },
+  biotech_catalysts: {
+    title: "Biotech catalysts",
+    description: "A drug company's clinical trials with primary completions due (the readouts to come), its pipeline by phase, and its FDA approvals, from ClinicalTrials.gov and openFDA.",
+    args: { ticker: TICKER },
+    calls: ({ ticker }) => [
+      { name: "drug_pipeline", arguments: { company: ticker, months: 12 } },
+      { name: "company_events", arguments: { company: ticker, limit: 6 } },
+    ],
+    ask: (a) => `Show me ${a.ticker}'s biotech catalysts with canli-mcp. ${batch(PROMPTS.biotech_catalysts.calls(a))}\nThen write: the trials whose primary completion falls in the next year (drug, condition, phase, date, and whether the date is an estimate), the pipeline counted by phase, the FDA approvals with dates, and recent 8-K news. A completion date is when data collection ends, not when results are announced. ${SOURCES}`,
+  },
+  government_exposure: {
+    title: "Government exposure",
+    description: "How much a company earns from US federal contracts (by agency and its largest awards) and what the SEC's staff has asked it about in comment letters.",
+    args: { ticker: TICKER },
+    calls: ({ ticker }) => [
+      { name: "federal_contracts", arguments: { company: ticker } },
+      { name: "comment_letters", arguments: { company: ticker } },
+      { name: "company_report", arguments: { company: ticker } },
+    ],
+    ask: (a) => `Show me ${a.ticker}'s government exposure with canli-mcp. ${batch(PROMPTS.government_exposure.calls(a))}\nThen write: federal obligations in the last fiscal year by agency and the largest awards, as a share of the company's revenue; and the topics the SEC's staff raised in its comment letters, with the threads' dates and how they closed. Obligations are money committed, not revenue booked. ${SOURCES}`,
+  },
+  bank_health: {
+    title: "Bank health check",
+    description: "A bank's quarterly call-report figures from the FDIC: deposits and how many are uninsured, capital ratios, loan quality, unrealized securities losses and profitability, quarter by quarter.",
+    args: { bank: z.string().min(1).max(120).describe("The bank or its holding company: ticker or name, e.g. WAL or Zions.") },
+    calls: ({ bank }) => [
+      { name: "bank_financials", arguments: { company: bank, quarters: 8 } },
+    ],
+    ask: (a) => `Check ${a.bank}'s health with canli-mcp. ${batch(PROMPTS.bank_health.calls(a))}\nThen write: deposits and their trend, the uninsured share, capital ratios, loan quality (noncurrent loans and charge-offs), unrealized losses on securities against capital, and return on assets, over the last eight quarters, naming the FDIC certificate read. Say which figures moved most and that these are reported figures, not a rating. ${SOURCES}`,
+  },
+  insider_watch: {
+    title: "Insider watch",
+    description: "Insiders' planned sales (Form 144 notices, often filed before the sale) beside the trades they reported afterwards (Form 4).",
+    args: { ticker: TICKER },
+    calls: ({ ticker }) => [
+      { name: "planned_insider_sales", arguments: { company: ticker } },
+      { name: "insider_trades", arguments: { company: ticker } },
+    ],
+    ask: (a) => `Watch ${a.ticker}'s insiders with canli-mcp. ${batch(PROMPTS.insider_watch.calls(a))}\nThen write: who has filed notices of planned sales, how many shares and their value, under a 10b5-1 plan or not; which of those sales then appear in Form 4; and open-market buying, separated from grants and tax withholding. A notice states an intention; the sale can be smaller or not happen. ${SOURCES}`,
+  },
+  ipo_watch: {
+    title: "IPO watch",
+    description: "Companies that filed to go public in the last weeks (S-1 and F-1 and their amendments), separated from SPACs, funds and follow-ons, and the deals that priced with their price and size.",
+    args: { days: z.string().regex(/^\d{1,3}$/, "a whole number of days").optional().describe("Filings in the last this many days; default 30.") },
+    calls: ({ days }) => [
+      { name: "ipo_pipeline", arguments: { days: Math.min(120, Math.max(1, Number(days ?? 30) || 30)) } },
+    ],
+    ask: (a) => `Show me the IPO pipeline with canli-mcp. ${batch(PROMPTS.ipo_watch.calls(a))}\nThen write: the companies that filed or amended a registration in the window (an amendment usually means the deal is moving), with their industries and locations; how many filers were SPACs, funds and listed companies; and the deals that priced, with price, shares and gross proceeds. Most large IPOs file confidentially first and appear here only weeks before pricing. ${SOURCES}`,
+  },
   backtest_check: {
     title: "Is my backtest real?",
     description: "Audit a strategy's daily returns for overfitting: deflated Sharpe for the number of variants tried, the minimum track record, and what to run next (leakage and placebo checks).",
