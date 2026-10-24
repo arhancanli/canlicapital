@@ -1,16 +1,21 @@
 # Changelog
 
 
-## 0.9.0 (in progress)
+## 0.9.0
 
-- `research_report` prompt: a full research note on a company in one batched call (business and
-  segments, statements as filed, results against guidance, peers, implied growth, debt, accounting
-  screens, risk-factor changes, ownership breadth, insiders, news). Twenty-three prompts.
-- `CANLI_POLICY` takes the policy itself as JSON as well as a file's path.
+- Packs: canli-markets-mcp 0.7.3, with two new tools: `shareholder_returns` (dividends per share and in
+  total, buybacks and shares issued, the diluted share count, payout ratios, a split-adjusted dividend
+  record and the dividend and shareholder yields) and `market_overview` (US indices and the VIX, the
+  sectors ranked by the month, yields, the dollar, commodities, crypto and markets abroad, over a day to a
+  year, in one call). `ownership_breadth` now finds the CUSIP from a company's name for many more
+  companies, and `news` waits out GDELT's rate limit and searches companies by their plain names. 345 tools.
+- Three prompts: `research_report` (a full research note in one batched call), `market_today` and
+  `dividend_check`. Twenty-five of its own, fifty with the packs'.
+- `CANLI_POLICY` takes the policy itself as JSON as well as a file's path, for a desktop app's config.
 - The audit log signs a checkpoint when the server exits, so a log that ends cleanly ends signed;
-  `audit verify` on a missing log answers plainly.
-- markets 0.7.2: `ownership_breadth` finds the CUSIP for many more companies (Costco, JPMorgan, Bank of
-  America), and `news` waits out GDELT's rate limit.
+  `audit verify` on a missing log answers plainly instead of failing.
+- The registry description gives the current counts.
+
 ## 0.8.0
 
 - Packs: canli-markets-mcp 0.7.1 (nine new tools: federal contracts, drug pipelines and FDA
