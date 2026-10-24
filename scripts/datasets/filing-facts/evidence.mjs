@@ -11,7 +11,9 @@ export const SCORING_SOURCE_FILES = Object.freeze([
   "eval.mjs", "evidence.mjs", "generate.mjs", "check.mjs", "templates.mjs",
   "../../canonical-json.mjs", "replay-evaluation.mjs",
 ]);
-const KINDS = { lookup: "number", change: "percent", ratio: "ratio", net_assets: "number", unanswerable: "not_reported" };
+const KINDS = { lookup: "number", change: "percent", ratio: "ratio", net_assets: "number", unanswerable: "not_reported", restatement: "number" };
+// v1 adds restatement items and the fresh split (generate-v1.mjs); a dataset file holds one schema.
+const ITEM_SCHEMAS = new Set(["canli.filing-facts-item.v0", "canli.filing-facts-item.v1"]);
 export const sha256 = (data) => createHash("sha256").update(data).digest("hex");
 const digest = (value) => sha256(canonicalJson(value));
 const nonempty = (value) => typeof value === "string" && Boolean(value.trim());
@@ -24,7 +26,7 @@ export function readDataset(bytes) {
   const items = lines.map((line) => JSON.parse(line));
   const ids = new Set();
   for (const item of items) {
-    if (item.schema !== "canli.filing-facts-item.v0" || !nonempty(item.id) || ids.has(item.id) ||
+    if (!ITEM_SCHEMAS.has(item.schema) || item.schema !== items[0].schema || !nonempty(item.id) || ids.has(item.id) ||
       !Object.hasOwn(KINDS, item.template) || item.answer?.kind !== KINDS[item.template] ||
       !nonempty(item.question) || !nonempty(item.company?.cik) ||
       (item.answer.kind === "not_reported" ? item.answer.value !== null : !Number.isFinite(item.answer.value))) {
@@ -91,7 +93,7 @@ export function evaluateCapture(bytes, capture) {
     scoring: { version: SCORING_VERSION, scorer_sha256: sha256(readFileSync(new URL("./eval.mjs", import.meta.url))),
       evidence_runner_sha256: sha256(readFileSync(new URL("./evidence.mjs", import.meta.url))),
       sources: Object.fromEntries(SCORING_SOURCE_FILES.map((path) => [path, sha256(readFileSync(new URL(path, import.meta.url)))])) },
-    dataset: { schema: "canli.filing-facts-item.v0", sha256: dataset.sha256, bytes: dataset.bytes, items: dataset.items.length },
+    dataset: { schema: dataset.items[0].schema, sha256: dataset.sha256, bytes: dataset.bytes, items: dataset.items.length },
     capture_sha256: digest(capture), capture,
     summary: { model: capture.model, arm: capture.arm, items: sample.length, accuracy: correct / sample.length,
       coverage: { expected: sample.length, captured: supplied.size, responses: responses.length,
