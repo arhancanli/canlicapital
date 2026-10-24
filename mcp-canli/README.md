@@ -268,7 +268,8 @@ check a log with
 npx canli-mcp audit verify path/to/audit --ed25519 audit-ed25519.pub.pem --ml-dsa audit-ml-dsa-65.pub.pem
 ```
 
-which exits 1 and names the record when anything was changed. Inside a session, `audit_log`
+which exits 1 and names the record when anything was changed. Without the flags it uses the public
+keys beside the log (a copied `CANLI_HOME`'s `audit-keys`), then this machine's. Inside a session, `audit_log`
 (through `run_tool`) shows the log's state, signs a checkpoint now (`action: "checkpoint"`) or
 checks it (`action: "verify"`). Records after the last checkpoint are chained but not yet signed,
 and verify says how many; a log cut short after a checkpoint loses that tail without a trace.

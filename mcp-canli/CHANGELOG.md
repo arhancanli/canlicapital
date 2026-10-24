@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.9.1 (in progress)
+
+- `audit verify` finds the public keys beside the log (its `CANLI_HOME`'s `audit-keys`) before this
+  machine's, so a copied log checks without flags.
+- The package description gives the current counts; the context cost re-measured for 0.9.0: 2,319
+  tokens up front with every pack, against 53,974 for the seven servers run separately.
+
 
 ## 0.9.0
 

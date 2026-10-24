@@ -78,6 +78,9 @@ test("audit log: chained, signed at checkpoints with Ed25519 and ML-DSA-65, and 
   writeFileSync(bad, edited.join("\n"));
   assert.equal(JSON.parse(execFileSync(process.execPath, [SERVER, "audit", "verify", audit.path], { env: { ...process.env, CANLI_HOME: home } }).toString()).valid, true);
   assert.equal(spawnSync(process.execPath, [SERVER, "audit", "verify", bad], { env: { ...process.env, CANLI_HOME: home } }).status, 1);
+  // A log checked from another CANLI_HOME finds the keys beside it (its home's audit-keys).
+  const elsewhere = { ...process.env, CANLI_HOME: tmp("elsewhere") };
+  for (const target of [path.dirname(audit.path), audit.path]) assert.equal(JSON.parse(execFileSync(process.execPath, [SERVER, "audit", "verify", target], { env: elsewhere }).toString()).valid, true, target);
 });
 
 test("server: without CANLI_POLICY nothing is written; with one, refusals and calls are logged and verify", async (t) => {
