@@ -14,7 +14,11 @@ import { minVariance } from "./portfolio.mjs";
 const pricesArg = z.array(z.number().positive()).min(30).max(MAX_SERIES).describe("Prices oldest first (daily closes by default).");
 const matrixArg = z.array(z.array(z.number().positive()).min(2).max(200)).min(30).max(MAX_SERIES).describe("Prices, one row per period, one column per asset.");
 const costArg = z.number().min(0).max(1000).optional().describe("Cost in basis points per unit of turnover (one-way); default 5.");
-const common = { cost_bps: costArg, periods_per_year: ppyArg, risk_free: z.number().gt(-1).lt(1).optional().describe("Annual rate earned on cash; default 0."), long_only: z.boolean().optional().describe("Long-only (true) or long-short (false); default true.") };
+const curveArgs = {
+  curve: z.boolean().optional().describe("Also return the equity curve against buy-and-hold, the drawdown, the exposure and the trade log, for charts; default false."),
+  dates: z.array(z.string().min(1).max(40)).min(30).max(MAX_SERIES).optional().describe("Dates of the price rows (same length), to label the curve and trades."),
+};
+const common = { ...curveArgs, cost_bps: costArg, periods_per_year: ppyArg, risk_free: z.number().gt(-1).lt(1).optional().describe("Annual rate earned on cash; default 0."), long_only: z.boolean().optional().describe("Long-only (true) or long-short (false); default true.") };
 const int = (d, lo = 1, hi = 5000) => z.number().int().min(lo).max(hi).optional().describe(`Default ${d}.`);
 const fractionArg = z.number().gt(0).max(1).optional().describe("Fraction of the universe to hold, e.g. 0.25 for the top quarter; overrides top.");
 // Number of assets a fraction of the universe selects: rounded, at least one.
@@ -42,11 +46,12 @@ export function runEngine(P, targets, { cost_bps = 5, periods_per_year: ppy = 25
   let w = new Array(N).fill(0);
   const net = [], gross = [], turnovers = [], exposures = [];
   let trades = 0;
+  const log = [];
   for (let t = 0; t < T - 1; t++) {
     const tgt = targets[t];
     let to = 0;
     if (tgt) {
-      for (let i = 0; i < N; i++) { const d = Math.abs(tgt[i] - w[i]); to += d; if (d > 1e-12) trades++; }
+      for (let i = 0; i < N; i++) { const d = Math.abs(tgt[i] - w[i]); to += d; if (d > 1e-12) { trades++; log.push([t, i, w[i], tgt[i]]); } }
       w = [...tgt];
     }
     const r = P[t + 1].map((p, i) => p / P[t][i] - 1);
@@ -57,7 +62,7 @@ export function runEngine(P, targets, { cost_bps = 5, periods_per_year: ppy = 25
     const growth = 1 + g;
     w = w.map((x, i) => (growth > 0 ? x * (1 + r[i]) / growth : 0));
   }
-  return { net, gross, turnovers, exposures, trades, final_weights: w };
+  return { net, gross, turnovers, exposures, trades, log, final_weights: w };
 }
 
 export function statsOf(rets, ppy) {
@@ -81,7 +86,31 @@ function report(P, targets, a, rule, params) {
     buy_and_hold: { cagr: b.cagr, sharpe: b.sharpe, max_drawdown: b.max_drawdown, note: N > 1 ? "Equal weights at the start, never rebalanced." : undefined },
     returns_tail: eng.net.slice(-5),
     caution: "One backtest of one parameter set. If you tried others, count them and use strategy_sweep or deflated_sharpe_ratio.",
+    ...(a.curve ? curveOf(P, eng, bench, a.dates) : {}),
     _net: eng.net,
+  };
+}
+
+// The curve for charts: equity (from 1) of the strategy and of buy-and-hold at each close, the
+// strategy's drawdown from its running peak, and the gross exposure held into the next period, at
+// most CURVE_POINTS rows (evenly spaced, the last always kept); and every weight change as a trade
+// (the last TRADES_KEPT if there are more), at the close it was decided.
+export const CURVE_POINTS = 1000, TRADES_KEPT = 1000;
+export function curveOf(P, eng, bench, dates) {
+  const T = P.length, N = P[0].length;
+  if (dates && dates.length !== T) throw new Error(`dates has ${dates.length} entries and prices ${T}.`);
+  const at = (t) => (dates ? dates[t] : t);
+  let e = 1, b = 1, peak = 1;
+  const all = [[at(0), 1, 1, 0, eng.exposures[0] ?? 0]];
+  for (let t = 1; t < T; t++) {
+    e *= 1 + eng.net[t - 1]; b *= 1 + bench.net[t - 1]; peak = Math.max(peak, e);
+    all.push([at(t), e, b, e / peak - 1, eng.exposures[t] ?? eng.exposures.at(-1) ?? 0]);
+  }
+  const step = Math.max(1, Math.ceil(T / CURVE_POINTS)), rows = all.filter((_, t) => t % step === 0 || t === T - 1);
+  const trades = eng.log.slice(-TRADES_KEPT).map(([t, i, from, to]) => [at(t), ...(N > 1 ? [i] : []), P[t][i], from, to, to > from ? "buy" : "sell"]);
+  return {
+    curve: { columns: [dates ? "date" : "period", "strategy", "buy_and_hold", "drawdown", "exposure"], rows, ...(step > 1 ? { every: step } : {}) },
+    trades: { columns: [dates ? "date" : "period", ...(N > 1 ? ["asset"] : []), "price", "weight_before", "weight_after", "side"], rows: trades, total: eng.log.length },
   };
 }
 
@@ -334,7 +363,7 @@ function sweep(recipe, base, grid, ppy) {
   if (combos.length > 400) throw new Error(`The grid has ${combos.length} combinations; keep it to 400 or fewer.`);
   const rows = [];
   for (const c of combos) {
-    try { const b = RECIPES[recipe].build({ ...base, ...c }); const r = report(b.P, b.targets, { ...base, ...c }, b.rule, b.params); rows.push({ params: c, sharpe: r.sharpe, cagr: r.cagr, max_drawdown: r.max_drawdown, annual_turnover: r.annual_turnover, net: r._net }); }
+    try { const b = RECIPES[recipe].build({ ...base, ...c }); const r = report(b.P, b.targets, { ...base, ...c, curve: false }, b.rule, b.params); rows.push({ params: c, sharpe: r.sharpe, cagr: r.cagr, max_drawdown: r.max_drawdown, annual_turnover: r.annual_turnover, net: r._net }); }
     catch (e) { rows.push({ params: c, error: e.message }); }
   }
   const ok = rows.filter((r) => r.sharpe !== null && r.sharpe !== undefined);
