@@ -32,7 +32,7 @@
     "canli-quant-mcp": "0.1.2",
     "canli-research-mcp": "0.3.0",
     "canli-validation-mcp": "0.14.0",
-    "zod": "4.6.5"
+    "zod": "4.6.7"
   },
   "mcpName": "io.github.arhancanli/canli-mcp",
   "repository": {
@@ -77,6 +77,7 @@
   "overrides": {
     "canli-backtest-mcp": {
       "canli-validation-mcp": "$canli-validation-mcp"
-    }
+    },
+    "zod": "4.6.7"
   }
 }

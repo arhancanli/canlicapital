@@ -19,7 +19,7 @@ test("src/core mirrors the repository's pre-trade cores byte for byte", { skip: 
 });
 
 test("pinned dependencies and no lifecycle scripts", () => {
-  assert.deepEqual(pkg.dependencies, { "@modelcontextprotocol/server": "2.3.1", zod: "4.6.5" });
+  assert.deepEqual(pkg.dependencies, { "@modelcontextprotocol/server": "2.3.1", zod: "4.6.7" });
   for (const hook of ["preinstall", "install", "postinstall", "prepare", "prepublish", "prepublishOnly", "prepack", "postpack"]) assert.equal(pkg.scripts?.[hook], undefined, hook);
 });
 
