@@ -459,3 +459,22 @@ test("history defaults to the latest value; as_of is a filing date, and a period
   assert.match(trap.as_of_note, /A period ends on 2020-09-30, but it was filed after that date/);
   assert.equal(out(await toolHistory(s, { company: "FIX", concept: "revenue", as_of: "2020-06-30" })).as_of_note, undefined);
 });
+
+test("history lists balances an annual report carries on a date that is not a year end, apart from the yearly rows", async () => {
+  const { createHash } = await import("node:crypto");
+  const { FACTS, SNAPSHOT_PATH } = await import("./fixture.mjs");
+  const facts = structuredClone(FACTS);
+  // The 10-K for 2020 also carries the 2019-12-31 balance (an opening balance after a new standard).
+  const assets = facts.facts["us-gaap"].Assets.units.USD;
+  assets.push({ ...assets.find((r) => r.end === "2019-12-31"), val: 515, filed: "2020-10-29", form: "10-K", accn: "0000123456-20-000020", fy: 2020, fp: "FY" });
+  const raw = Buffer.from(JSON.stringify(facts)), sha = createHash("sha256").update(raw).digest("hex");
+  const map = files({ sha });
+  map[SNAPSHOT_PATH] = gzipSync(raw);
+  const s = createSession({ base: "https://example.test", fetchImpl: fakeFetch(map).impl, cacheDir: "" });
+  const r = out(await toolHistory(s, { company: "FIX", concept: "assets" }));
+  assert.deepEqual(byCol(r).map((x) => x.end), ["2021-09-30", "2020-09-30", "2019-09-30"], "year ends only in the rows");
+  assert.equal(byCol(r).find((x) => x.end === "2020-09-30").change_pct, 15.3846, "change against the year end before (520), never the other date");
+  assert.deepEqual(r.other_dates.rows.map((x) => [x[0], x[1], x[3]]), [["2019-12-31", 515, "10-K"]]);
+  // Without an annual report carrying it, an interim balance stays out.
+  assert.equal(out(await toolHistory(session().s, { company: "FIX", concept: "assets" })).other_dates, undefined);
+});

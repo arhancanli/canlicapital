@@ -15,12 +15,12 @@ async function connect() {
   return c;
 }
 
-test("sixty-one tools, byte-identical across launches, all read-only", async () => {
+test("sixty-two tools, byte-identical across launches, all read-only", async () => {
   const lists = [];
   for (let i = 0; i < 2; i++) { const c = await connect(); lists.push(JSON.stringify(await c.listTools())); await c.close(); }
   assert.equal(lists[0], lists[1]);
   const tools = JSON.parse(lists[0]).tools;
-  assert.deepEqual(tools.map((t) => t.name).sort(), ["bank_financials", "comment_letters", "company_events", "company_profile", "company_report", "comps", "crypto_fundamentals", "debt_profile", "drug_pipeline", "earnings_calendar", "earnings_release", "economic_calendar", "economic_outlook", "economic_series", "european_filings", "event_study", "executive_pay", "explain_move", "fails_to_deliver", "federal_contracts", "federal_debt", "filing_diff", "filing_drift", "filing_tables", "financial_statements", "fomc", "forensic_scores", "fund_holdings", "fund_portfolio", "funding_rates", "futures_curve", "futures_positioning", "index_constituents", "insider_trades", "investment_advisers", "ipo_pipeline", "large_holders", "latest_filings", "list_filings", "mentions_trend", "news", "off_exchange_volume", "options_chain", "ownership_breadth", "planned_insider_sales", "portfolio_xray", "prediction_markets", "price_history", "private_offerings", "read_filing", "reference_rates", "reverse_dcf", "screen_companies", "search_filings", "segment_revenue", "short_interest", "treasury_auctions", "treasury_yields", "verify_claims", "volatility_surface", "world_economy"]);
+  assert.deepEqual(tools.map((t) => t.name).sort(), ["bank_financials", "comment_letters", "company_events", "company_profile", "company_report", "comps", "compute_prices", "crypto_fundamentals", "debt_profile", "drug_pipeline", "earnings_calendar", "earnings_release", "economic_calendar", "economic_outlook", "economic_series", "european_filings", "event_study", "executive_pay", "explain_move", "fails_to_deliver", "federal_contracts", "federal_debt", "filing_diff", "filing_drift", "filing_tables", "financial_statements", "fomc", "forensic_scores", "fund_holdings", "fund_portfolio", "funding_rates", "futures_curve", "futures_positioning", "index_constituents", "insider_trades", "investment_advisers", "ipo_pipeline", "large_holders", "latest_filings", "list_filings", "mentions_trend", "news", "off_exchange_volume", "options_chain", "ownership_breadth", "planned_insider_sales", "portfolio_xray", "prediction_markets", "price_history", "private_offerings", "read_filing", "reference_rates", "reverse_dcf", "screen_companies", "search_filings", "segment_revenue", "short_interest", "treasury_auctions", "treasury_yields", "verify_claims", "volatility_surface", "world_economy"]);
   for (const t of tools) {
     assert.equal(t.annotations.readOnlyHint, true, t.name);
     assert.equal(t.annotations.openWorldHint, true, t.name);

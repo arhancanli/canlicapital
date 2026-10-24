@@ -47,6 +47,7 @@ export const INPUTS = {
   verify_attestation: z.object({
     attestation: z.looseObject({}).describe("An attestation object a check or send returned."),
     public_key_pem: z.string().max(2000).optional().describe("The signer's public key (PEM); default this machine's CANLI_HOME/attest-ed25519.pub.pem."),
+    pq_public_key_pem: z.string().max(6000).optional().describe("The signer's ML-DSA-65 public key (PEM), for an attestation also signed post-quantum; default this machine's CANLI_HOME/attest-ml-dsa-65.pub.pem."),
     openings: z.array(z.object({ label: z.string().max(40), commitment: z.string().regex(/^[0-9a-f]{64}$/), salt: z.string().regex(/^[0-9a-f]{32}$/), value: z.unknown() }).strict()).max(10).optional().describe("Commitments to open: label, commitment, salt and value, from the trader's commitments.jsonl."),
   }).strict(),
   send_paper_orders: z.object({ token: z.string().max(4000).optional().describe("Confirmation token from preview_paper_orders or rebalance_to_weights."), cancel_order_ids: z.array(z.string().max(64)).max(100).optional().describe("Open paper order ids to cancel instead (no token needed).") }).strict(),
@@ -56,7 +57,7 @@ const DESCRIPTIONS = {
   paper_account: "Read your Alpaca paper account: equity, cash, buying power, positions, open orders, the market clock, the kill switch and the local order log's verified head.",
   preview_paper_orders: "Check orders against your paper account, live quotes, the market clock, your limits file and the kill switch; when every order passes, return a five-minute confirmation token for exactly these orders.",
   rebalance_to_weights: "Turn target portfolio weights into the whole-share orders that move your paper account there (sells first), check them, and return a confirmation token when all pass.",
-  verify_attestation: "Check an attestation a pre-trade check or send returned: that it was signed by the trader's key and not altered, and, given openings from the trader's commitments file, that committed account figures are what they claim. Offline; reads nothing from Alpaca.",
+  verify_attestation: "Check an attestation a pre-trade check or send returned: that it was signed by the trader's keys (Ed25519 and, where present, post-quantum ML-DSA-65; both must hold) and not altered, and, given openings from the trader's commitments file, that committed account figures are what they claim. Offline; reads nothing from Alpaca.",
   send_paper_orders: "Send previewed orders to your Alpaca paper account with their confirmation token (the kill switch is read again first), or cancel open paper orders by id. Every send is logged, hash-chained.",
 };
 const ANNOTATIONS = {
@@ -69,7 +70,7 @@ const ANNOTATIONS = {
 const TITLES = { paper_account: "Paper account", preview_paper_orders: "Preview paper orders", rebalance_to_weights: "Rebalance to weights", send_paper_orders: "Send paper orders", verify_attestation: "Verify an attestation" };
 
 export function registerAll(server, { broker, home }) {
-  const run = { paper_account: () => broker.account(), preview_paper_orders: (a) => broker.preview(a), rebalance_to_weights: (a) => broker.rebalance(a), send_paper_orders: (a) => broker.send(a), verify_attestation: (a) => verifyAttestation(a.attestation, a.public_key_pem ?? readFileSync(join(home ?? join(homedir(), ".canli"), "attest-ed25519.pub.pem"), "utf8"), a.openings ?? []) };
+  const run = { paper_account: () => broker.account(), preview_paper_orders: (a) => broker.preview(a), rebalance_to_weights: (a) => broker.rebalance(a), send_paper_orders: (a) => broker.send(a), verify_attestation: (a) => { const dir = home ?? join(homedir(), ".canli"), local = (f) => { try { return readFileSync(join(dir, f), "utf8"); } catch { return null; } }; return verifyAttestation(a.attestation, a.public_key_pem ?? local("attest-ed25519.pub.pem"), a.openings ?? [], a.pq_public_key_pem ?? (a.public_key_pem ? null : local("attest-ml-dsa-65.pub.pem"))); } };
   for (const name of Object.keys(INPUTS)) {
     server.registerTool(name, { title: TITLES[name], description: DESCRIPTIONS[name], annotations: { title: TITLES[name], ...ANNOTATIONS[name] }, inputSchema: INPUTS[name], outputSchema: z.looseObject({}) }, async (args) => {
       try { const v = await run[name](args ?? {}); return { content: [{ type: "text", text: JSON.stringify(v) }], structuredContent: v }; }

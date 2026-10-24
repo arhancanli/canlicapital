@@ -435,6 +435,9 @@ export const FRIENDLY = Object.freeze({
   diluted_shares: ["us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding", "ifrs-full:AdjustedWeightedAverageShares"],
   shares_outstanding: ["dei:EntityCommonStockSharesOutstanding", "us-gaap:CommonStockSharesOutstanding"],
   capex: ["us-gaap:PaymentsToAcquirePropertyPlantAndEquipment", "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities", "us-gaap:PaymentsToAcquireProductiveAssets"],
+  // Long-term debt is the total, current portion included; the noncurrent part is its own name.
+  long_term_debt: ["us-gaap:LongTermDebt"],
+  long_term_debt_noncurrent: ["us-gaap:LongTermDebtNoncurrent"],
 });
 const SYNONYMS = Object.freeze({
   revenues: "revenue", sales: "revenue", net_sales: "revenue", turnover: "revenue", total_revenue: "revenue",
@@ -444,6 +447,7 @@ const SYNONYMS = Object.freeze({
   cash_and_cash_equivalents: "cash", cash_and_equivalents: "cash", cfo: "operating_cash_flow", cash_from_operations: "operating_cash_flow",
   capital_expenditures: "capex", capital_expenditure: "capex", capital_spending: "capex",
   shares_diluted: "diluted_shares", weighted_diluted_shares: "diluted_shares", shares: "shares_outstanding",
+  total_long_term_debt: "long_term_debt", noncurrent_long_term_debt: "long_term_debt_noncurrent", long_term_debt_net_of_current_portion: "long_term_debt_noncurrent",
 });
 // known_as_of reads these when no concepts are named.
 export const DEFAULT_CONCEPTS = Object.freeze(["revenue", "net_income", "operating_income", "eps_diluted", "assets", "liabilities", "equity", "cash", "operating_cash_flow", "diluted_shares"]);
@@ -736,6 +740,14 @@ export async function toolHistory(session, args) {
   const rows = picked.slice(0, limit).map(({ p, sel }, i, all) => [p.end, p.start, sel.v.val, sel.v.filed, sel.v.form, sel.v.accn, latestBasis ? p.restated : sel.changedLater,
     ...otherOf(p, sel), changePct(p, sel.v.val, all.slice(i + 1), periods), ...(s.multi ? [tagName(sel.v.tag)] : [])]);
   const shown = fit(rows);
+  // Balances an annual report carries on a date that is not a year end (an opening balance after a
+  // new accounting standard, the end of a transition period). They are first reported in a 10-Q, so
+  // the annual rows leave them out; listed apart, so year-on-year changes never use them.
+  const onYearEnds = new Set(picked.map((r) => r.p.end));
+  const otherDates = periods === "annual" ? s.periods
+    .filter((p) => !p.start && p.kind !== "annual" && !onYearEnds.has(p.end) && p.vintages.some((v) => ANNUAL_FORM.test(v.form ?? "")))
+    .map((p) => ({ p, sel: select(p, basis, asOf) })).filter((r) => r.sel).slice(0, 10)
+    .map(({ p, sel }) => [p.end, sel.v.val, sel.v.filed, sel.v.form, sel.v.accn]) : [];
   return asText({
     ...head(e, asOf),
     concept: { name: s.name, label: s.label, unit: s.unit, units: s.units, tags: s.tags.map(tagName) },
@@ -751,6 +763,7 @@ export async function toolHistory(session, args) {
     columns,
     ...shown,
     ...(s.newer ? { newer_series: s.newer } : {}),
+    ...(otherDates.length ? { other_dates: { note: "Balances annual reports also carry on dates that are not year ends (an opening balance after a new accounting standard, a transition period's end); not used in change_pct.", columns: ["end", "val", "filed", "form", "accn"], rows: otherDates } } : {}),
     meaning: (latestBasis
       ? "changed: the latest value differs from the period's first report; first_val and first_filed give that first report."
       : `changed: a filing after the one shown reported a different value for the period (restatements and vintages show which).${other ? " latest_val and latest_filed give the latest value when it differs." : ""}`) +
