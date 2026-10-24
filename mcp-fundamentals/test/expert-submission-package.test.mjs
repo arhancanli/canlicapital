@@ -175,7 +175,7 @@ function audit(entries) {
   const metadata = JSON.parse(entries.get('package/package.json').bytes);
   assert.deepEqual(metadata.bin, BIN, 'PACKAGE_BIN');
   assert.deepEqual(metadata.files, ['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md', 'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md', 'EXPERT_INTAKE_STDIO.md'], 'PACKAGE_FILES');
-  assert.equal(metadata.name, 'canli-fundamentals-mcp'); assert.equal(metadata.version, '0.6.0');
+  assert.equal(metadata.name, 'canli-fundamentals-mcp'); assert.equal(metadata.version, '0.7.0');
   assert.deepEqual(metadata.dependencies, { '@modelcontextprotocol/server': '2.3.1', zod: '4.6.7', '@modelcontextprotocol/client': '2.3.1' });
   for (const [filename, row] of entries) assert.deepEqual(row.bytes, expectedBytes.get(filename), 'EXACT_FROZEN_BYTES');
   assert.match(entries.get('package/src/expert-submission-stdio.mjs').bytes.toString(), /^#!\/usr\/bin\/env node\n/);

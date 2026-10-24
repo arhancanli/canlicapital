@@ -179,7 +179,7 @@ function auditPackage(entries) {
   assert.deepEqual(packageJson.bin, { 'canli-fundamentals-mcp': 'src/server.mjs', 'canli-fundamentals-audit': 'src/audit-inputs-stdio.mjs', 'canli-expert-submission-audit': 'src/expert-submission-stdio.mjs', 'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs', 'canli-expert-submission-files': 'src/expert-submission-files.mjs', 'canli-expert-submission-client': 'src/expert-submission-client.mjs', 'canli-expert-intake-files': 'src/expert-intake-files.mjs', 'canli-expert-intake-prepare': 'src/expert-intake-stdio.mjs' }, 'PACKAGE_BIN');
   assert.deepEqual(packageJson.files, ['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md', 'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md', 'EXPERT_INTAKE_STDIO.md']);
   assert.equal(packageJson.name, 'canli-fundamentals-mcp');
-  assert.equal(packageJson.version, '0.6.0');
+  assert.equal(packageJson.version, '0.7.0');
   assert.deepEqual(packageJson.dependencies, { '@modelcontextprotocol/server': '2.3.1', zod: '4.6.7', '@modelcontextprotocol/client': '2.3.1' });
   assert.match(entries.get('package/src/audit-inputs-stdio.mjs').bytes.toString(), /^#!\/usr\/bin\/env node\n/);
   assert.match(entries.get('package/src/expert-submission-stdio.mjs').bytes.toString(), /^#!\/usr\/bin\/env node\n/);
@@ -543,7 +543,7 @@ test('audit package: actual default command in the same tarball still lists exac
   await withPackedClient(async client => {
     const { tools } = await client.listTools();
     assert.deepEqual(tools.map(t => t.name).sort(), ['cross_section', 'find_company', 'history', 'known_as_of', 'list_concepts', 'restatements', 'vintages']);
-    assert.equal(client.getServerVersion().version, '0.6.0');
+    assert.equal(client.getServerVersion().version, '0.7.0');
     assert.ok(!tools.some(t => t.name === 'audit_inputs'));
   }, { defaultServer: true });
 });

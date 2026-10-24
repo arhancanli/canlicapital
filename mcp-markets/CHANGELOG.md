@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.6.0
 
 - `latest_filings`: what has just been filed across every company, from EDGAR's live feed, by form,
   8-K event, filer name and time.
