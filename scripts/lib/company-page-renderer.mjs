@@ -8,6 +8,8 @@ import { fitDescription } from './descriptions.mjs';
 import { historySummary, summaryDescription, summarySentences } from './company-history-summary.mjs';
 import { relatedConcepts, shareSentence } from './company-concept-groups.mjs';
 import { overviewDescription, overviewTitle } from './company-overview-search.mjs';
+import { companyLastmod } from './company-markup-date.mjs';
+import { heroArt } from './site-hero.mjs';
 const origin = 'https://canlicapital.com';
 const pathFor = (company) => `/companies/${company.cik}`;
 const dataFor = (company) => `/company-data/${company.cik}.json`;
@@ -48,8 +50,7 @@ ${renderProductShellStylesheet()}
 <script type="application/ld+json">${JSON.stringify([schema, breadcrumbs]).replaceAll('<', '\\u003c')}</script></head>
 <body class="paper"><a class="paper__skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: 'companies' })}
-<main class="company-reference" id="content" tabindex="-1"><nav class="company-reference__breadcrumbs" aria-label="Breadcrumb"><ol>${crumbs.map((crumb, i) => `<li>${i === crumbs.length - 1 ? `<span aria-current="page">${esc(crumb.name)}</span>` : `<a href="${crumb.path}">${esc(crumb.name)}</a>`}</li>`).join('')}</ol></nav>
-<header class="cc-film-head"><h1>${headingHtml(heading)}</h1><p class="company-reference__intro">${esc(introduction)}</p></header>${body}</main>
+<main class="company-reference" id="content" tabindex="-1"><header class="cc-hero" data-scene="district">${heroArt('district')}<div class="cc-hero__inner"><nav class="cc-crumbs company-reference__breadcrumbs" aria-label="Breadcrumb"><ol>${crumbs.map((crumb, i) => `<li>${i === crumbs.length - 1 ? `<span aria-current="page">${esc(crumb.name)}</span>` : `<a href="${crumb.path}">${esc(crumb.name)}</a>`}</li>`).join('')}</ol></nav><h1>${headingHtml(heading)}</h1><p class="company-reference__intro">${esc(introduction)}</p></div></header>${body}</main>
 ${renderProductShellFooter({ developerStrip: false })}</body></html>\n`;
   return { path, html, lastmod, loc: origin + path };
 }
@@ -69,6 +70,7 @@ export function provenance(company) {
 <p><a href="/methodology">Research methodology</a> · <a href="/costs">Execution and cost assumptions</a> · <a href="/tools/backtest-overfitting">Check backtest overfitting</a></p>
 <h3>Build with the open-source tools</h3><p>Use these accounting records as inspectable inputs. When you have constructed a return series, the validation tools can help test its statistical evidence and preserve the result with its limitations.</p>
 <ul><li><a href="/developers#quickstart">Get an API key and run your first validation</a></li><li><a href="/developers#ai-assistant">Connect the MCP server to your coding assistant</a></li><li><a href="https://github.com/arhancanli/alphac" rel="noreferrer">Inspect the ALPHAC engine on GitHub</a></li><li><a href="https://github.com/arhancanli/canlicapital/tree/main/mcp" rel="noreferrer">Read the MCP server source and integration examples</a></li></ul>
+<p class="company-reference__star">The MCP server is free and MIT-licensed: <code>npx -y canli-mcp</code>. If these records help your research, a star on <a href="https://github.com/arhancanli/canlicapital" rel="noreferrer">GitHub</a> helps other researchers find them.</p>
 <details><summary>Read the published dataset with Python</summary><pre><code>${esc(`import json\nfrom urllib.request import urlopen\n\nwith urlopen("${origin}${dataFor(company)}") as response:\n    record = json.load(response)\nprint(record["fetched_at"])\nprint(record["policy"])\nfor concept in record["concepts"]:\n    print(concept["tag"], next(iter(concept["observations"])))`)}</code></pre></details></section>`;
 }
 
@@ -113,7 +115,7 @@ export function renderCompanyPages(company, { target = 'all', filings = null, li
   const matches = matchingHistoryConcepts(company.concepts);
   const pages = [];
   const page = options => pages.push(renderReferenceDocument({ ...options, robots }));
-  const lastmod = (company.content_updated_at ?? company.fetched_at).slice(0, 10);
+  const lastmod = companyLastmod((company.content_updated_at ?? company.fetched_at).slice(0, 10));
   const sources = [`company-data/${company.cik}.json`];
   const historicalNote = historicalFiler(company) ? historicalFilerNotice(company.name, latestFiling(company), company.fetched_at) : '';
   const editorialNote = company.editorial_exclusions?.length ? `<section aria-labelledby="editorial-scope"><h2 id="editorial-scope">Limits of the selected measures</h2>${withholdingNotices(company.editorial_exclusions)}</section>` : '';

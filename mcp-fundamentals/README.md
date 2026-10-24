@@ -294,3 +294,9 @@ serialization, followed by a fresh observation immediately before its native
 write. The guide documents bounded owned-child closure. This opt-in command is
 separate from the existing default tool surface and does not fetch sources,
 recruit reviewers, dispatch packets, or make rights/admission decisions.
+
+## Prompts and resources (Unreleased)
+
+Three prompts do the common jobs in one step: `known_on_date` (company, as_of), `restatement_review` (company, optional concept) and `peers_as_of` (companies, concept, as_of). In clients that support completion, `company` completes from the SEC ticker list and `concept` from the plain names.
+
+Resources: `canli://concepts` lists every plain name and the tags behind it; `canli://limits` gives the limits to quote; `canli://schemas/{tool}` gives a tool's exact JSON Schemas; `canli://examples/{language}/{tool}` gives a working call in `python`, `javascript` or `curl`.

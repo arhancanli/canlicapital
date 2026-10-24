@@ -3,6 +3,9 @@
 **Open quant research where every published number comes with the file that produced it, including
 the strategies that failed.** Live at **[canlicapital.com](https://canlicapital.com)**.
 
+If a check here stopped you from trusting a backtest that wasn't real, a ⭐ helps other quants find it.
+
+[![GitHub stars](https://img.shields.io/github/stars/arhancanli/canlicapital?style=social)](https://github.com/arhancanli/canlicapital/stargazers)
 [![npm](https://img.shields.io/npm/v/canli-validation-mcp?label=canli-validation-mcp)](https://www.npmjs.com/package/canli-validation-mcp)
 [![npm](https://img.shields.io/npm/v/canli-fundamentals-mcp?label=canli-fundamentals-mcp)](https://www.npmjs.com/package/canli-fundamentals-mcp)
 [![npm](https://img.shields.io/npm/v/canli-research-mcp?label=canli-research-mcp)](https://www.npmjs.com/package/canli-research-mcp)
@@ -121,7 +124,7 @@ hand. They are the machine-readable form of every claim the pages make. Current 
 derived during the build from `public/research-index.json`,
 `public/glassbox/trial_packet_manifest.json`, and the generated measurement directory; the sitemap
 is generated from the same files rather than maintained separately. The present build contains
-341 canonical URLs in the sitemap (all indexable), plus a public noindex evidence page for every incomplete registered
+348 canonical URLs in the sitemap (all indexable), plus a public noindex evidence page for every incomplete registered
 trial and one archival HTML paper per registered sleeve. It publishes
 identity-level packets for all 228 recorded hypotheses, while
 honestly marking 226 of those packets incomplete.

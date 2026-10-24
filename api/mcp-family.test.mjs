@@ -48,6 +48,31 @@ const researchFetch = async (url) => {
 };
 const research = () => createResearchHandler({ session: researchSession({ base: "https://example.test", fetchImpl: researchFetch }) });
 
+test("hosted fundamentals exposes the released prompts, schemas and completions", async () => {
+  await withHandler(fundamentals(), "/mcp/fundamentals", async (url) => {
+    const init = await rpc(url, "initialize", INIT);
+    assert.ok(init.json.result.capabilities.prompts);
+    assert.ok(init.json.result.capabilities.completions);
+    const prompts = await rpc(url, "prompts/list", {});
+    assert.deepEqual(prompts.json.result.prompts.map((p) => p.name).sort(), ["known_on_date", "peers_as_of", "restatement_review"]);
+    const schema = await rpc(url, "resources/read", { uri: "canli://schemas/cross_section" });
+    assert.equal(JSON.parse(schema.json.result.contents[0].text).tool, "cross_section");
+    const done = await rpc(url, "completion/complete", { ref: { type: "ref/resource", uri: "canli://schemas/{tool}" }, argument: { name: "tool", value: "re" } });
+    assert.deepEqual(done.json.result.completion.values, ["restatements"]);
+  });
+});
+
+test("hosted research exposes its released research workflows and rejects inherited resource names", async () => {
+  await withHandler(research(), "/mcp/research", async (url) => {
+    const prompts = await rpc(url, "prompts/list", {});
+    assert.deepEqual(prompts.json.result.prompts.map((p) => p.name).sort(), ["audit_canli_record", "literature_review", "preflight_idea"]);
+    const schema = await rpc(url, "resources/read", { uri: "canli://schemas/search_research" });
+    assert.equal(JSON.parse(schema.json.result.contents[0].text).tool, "search_research");
+    const refused = await rpc(url, "resources/read", { uri: "canli://schemas/constructor" });
+    assert.match(refused.json.error.message, /No tool/);
+  });
+});
+
 test("the hosted fundamentals server introduces itself and answers a point-in-time call", async () => {
   await withHandler(fundamentals(), "/mcp/fundamentals", async (url) => {
     const init = await rpc(url, "initialize", INIT);

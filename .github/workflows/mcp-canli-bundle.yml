@@ -1,0 +1,51 @@
+name: Release flagship desktop bundle
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Published canli-mcp-v release tag to bundle
+        required: true
+
+permissions: read-all
+
+jobs:
+  bundle:
+    if: startsWith(github.event.release.tag_name || inputs.tag, 'canli-mcp-v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    env:
+      TAG: ${{ github.event.release.tag_name || inputs.tag }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Validate the release tag
+        run: '[[ "$TAG" =~ ^canli-mcp-v[0-9]+\.[0-9]+\.[0-9]+$ ]] || exit 1'
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.release.tag_name || inputs.tag }}
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - name: Build exact tagged package and dependencies
+        run: |
+          version="$(node -p "require('./mcp-canli/package.json').version")"
+          test "canli-mcp-v$version" = "$TAG"
+          node mcp-canli/mcpb/build.mjs dist
+          (cd dist && sha256sum *.mcpb > SHA256SUMS.txt)
+      - id: attest
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-path: dist/*.mcpb
+      - name: Attach bundle and provenance to the published release
+        env:
+          BUNDLE: ${{ steps.attest.outputs.bundle-path }}
+        run: |
+          cp "$BUNDLE" dist/canli-mcp.mcpb.sigstore.json
+          jq -c '.dsseEnvelope' "$BUNDLE" > dist/canli-mcp.mcpb.intoto.jsonl
+          gh release upload "$TAG" dist/*.mcpb dist/SHA256SUMS.txt dist/canli-mcp.mcpb.sigstore.json dist/canli-mcp.mcpb.intoto.jsonl --clobber --repo "$GITHUB_REPOSITORY"

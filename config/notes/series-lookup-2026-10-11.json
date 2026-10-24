@@ -1,0 +1,90 @@
+{
+ "title": "economic_series plain-word lookup: canli-markets-mcp 0.1.0 against the current rule",
+ "measured": "2026-10-11",
+ "method": "Both resolvers run offline on the same requests: the 0.1.0 rule (share of request words found in a series description, at least half) over its 47-series list, and the current matchWords rule (every specific word must match) over the current list.",
+ "old_rule": {
+  "series": 47,
+  "minimum_share_of_words": 0.5
+ },
+ "current_rule": {
+  "series": 73,
+  "tests": {
+   "refused_requests": 9,
+   "resolved_requests": 42
+  }
+ },
+ "rows": [
+  {
+   "request": "silver price",
+   "v0_1_0": "CPIAUCSL",
+   "v0_1_0_share_of_words": 0.5,
+   "v0_1_0_description": "cpi consumer price index inflation all items",
+   "now": null,
+   "now_description": null
+  },
+  {
+   "request": "copper price",
+   "v0_1_0": "CPIAUCSL",
+   "v0_1_0_share_of_words": 0.5,
+   "v0_1_0_description": "cpi consumer price index inflation all items",
+   "now": null,
+   "now_description": null
+  },
+  {
+   "request": "bitcoin price",
+   "v0_1_0": "CPIAUCSL",
+   "v0_1_0_share_of_words": 0.5,
+   "v0_1_0_description": "cpi consumer price index inflation all items",
+   "now": null,
+   "now_description": null
+  },
+  {
+   "request": "japan inflation",
+   "v0_1_0": "CPIAUCSL",
+   "v0_1_0_share_of_words": 0.5,
+   "v0_1_0_description": "cpi consumer price index inflation all items",
+   "now": null,
+   "now_description": null
+  },
+  {
+   "request": "uk unemployment rate",
+   "v0_1_0": "UNRATE",
+   "v0_1_0_share_of_words": 0.6666666666666666,
+   "v0_1_0_description": "unemployment rate",
+   "now": null,
+   "now_description": null
+  },
+  {
+   "request": "wage growth",
+   "v0_1_0": "A191RL1Q225SBEA",
+   "v0_1_0_share_of_words": 0.5,
+   "v0_1_0_description": "real gdp growth rate quarterly annualized",
+   "now": "CES0500000003",
+   "now_description": "average hourly earnings wages pay"
+  },
+  {
+   "request": "house prices",
+   "v0_1_0": null,
+   "v0_1_0_share_of_words": null,
+   "v0_1_0_description": null,
+   "now": "CSUSHPINSA",
+   "now_description": "case shiller home house price index"
+  },
+  {
+   "request": "inflation",
+   "v0_1_0": "CPIAUCSL",
+   "v0_1_0_share_of_words": 1,
+   "v0_1_0_description": "cpi consumer price index inflation all items",
+   "now": "CPIAUCSL",
+   "now_description": "cpi consumer price index inflation all items"
+  },
+  {
+   "request": "10 year treasury yield",
+   "v0_1_0": "DGS10",
+   "v0_1_0_share_of_words": 1,
+   "v0_1_0_description": "10 year treasury yield",
+   "now": "DGS10",
+   "now_description": "10 year treasury note bond yield"
+  }
+ ]
+}

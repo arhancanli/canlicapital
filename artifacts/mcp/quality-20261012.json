@@ -1,0 +1,65 @@
+{
+  "schema": "canli.mcp.quality-check.v1",
+  "measured_at": "2026-10-12T18:34:12.976350+00:00",
+  "base_commit": "4f2acb67d9dcbc56c38740cad244c1f76663d191",
+  "node": "v24.19.0",
+  "local_tests": {
+    "mcp-canli": {
+      "tests": 33,
+      "pass": 33,
+      "fail": 0
+    },
+    "mcp-markets": {
+      "tests": 93,
+      "pass": 93,
+      "fail": 0
+    },
+    "mcp-quant": {
+      "tests": 45,
+      "pass": 45,
+      "fail": 0
+    },
+    "mcp-backtest": {
+      "tests": 14,
+      "pass": 14,
+      "fail": 0
+    },
+    "mcp-fundamentals": {
+      "tests": 465,
+      "pass": 465,
+      "fail": 0
+    }
+  },
+  "quant_reference_cases": 465,
+  "regressions": {
+    "combined_before": {
+      "tests": 10,
+      "pass": 4,
+      "fail": 6
+    },
+    "combined_after": {
+      "tests": 10,
+      "pass": 10,
+      "fail": 0
+    },
+    "fundamentals_baseline": {
+      "tests": 464,
+      "pass": 461,
+      "fail": 3
+    },
+    "fundamentals_concept_before": {
+      "tests": 24,
+      "pass": 23,
+      "fail": 1
+    }
+  },
+  "source_sha256": {
+    "mcp-canli/src/server.mjs": "f04d13f92e62240e6ffc7fd8b9d42b30f0f9744137c7dfab73e185b4d72a5d48",
+    "mcp-fundamentals/src/server.mjs": "a39e3bc2c17801f842788755c10e63628d13e1878cdcda98b55ebfe6d463d73b"
+  },
+  "limitations": [
+    "Local deterministic package validation, not a worldwide finance ranking.",
+    "No new paid model comparison, user adoption measurement or financial-performance result.",
+    "Release and distribution parity remain pending."
+  ]
+}

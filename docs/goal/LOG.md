@@ -19614,3 +19614,93 @@ Actual all91 charge ORIGINAL 10155611B/STORED 4774055B includes literal and mani
 This documentary assembly is repository source work. The forthcoming signed documentaryhead and automatic newHEAD CI are separate from historical e10 source-time38PASS/full2259/all7/testedfdf57/RAW24. Newhead outcomes remain UNKNOWN until retained originals and separate PRIMARY+THIRD FINAL SOURCE_ARCHIVE/currentCI gates; allfour actual final personal intakes precede unchangedREADY/PRIMARYsoleordinaryheadlockedmerge/pairedACTUALcustody/publication. All FINAL proofs external/no92nd. No npm installation, live human/expert/rights/labels/adjudication/adoption/indexing or strategy outcome inferred.
 
 Entire owner hierarchy remains ACTIVE/outcomesUNKNOWNNULL: efficient differentiated Sovereignfinancial MCP/API/developer-repository adoption/substantialUnreleased; consenting vetted independent rights-cleared realexpert doubleannotation/refinery/sourcegovernance/agreement-adjudication/reproducible research; governed ALPHAC netforwardSharpe>2/14economically distinct qualifiedsleeves/DD<=10%after actual costs/privatepaper/lawfulcapital;10MACTUALLYindexed useful maintained source-backed canonical qualitySEO/keywords/design3D-understandability/graph-social/a11y-security-performance analyzers. Owner cinematic TraceAxiom/GIMBIX/editableFigma website refinement remains active in the reserved separate lane. PRIMARYguide/date/focus/live/privatejournal/reconciliation/release/solemergepub;LeadCPU127/SAMEroles-thread-model-goal. No local project Node/import/SDK/test/CLI/npm/pack/install/helper/build/browser/GET/probe/job/manualrerun/grant/provider-model-resource-spend/publication.
+
+
+## 2026-10-13 Dubai — current finance MCP delivery
+
+Three npm/Registry releases, three release mirrors/attested desktop bundles, two signed GitHub source releases with npm pending, and hosted467/all7CI merge are verified. Combined0.4 private candidate passes33 tests on each Node20/22/24 and has307 tools/five prompts; context and raw robustness findings are captured. Research feature-version descriptions corrected against actual npm0.2 tarball. Current state and finite next steps: MCP_RUN_20261012.md. No worldwide ranking, adoption, indexing, annotation or investment outcome claim.
+
+
+## 2026-10-13 — real registry flagship and full pack guides preflight
+
+Owner-confirmed publisher changes succeeded: quant0.1.2 run38411507515 and backtest0.1.2
+run38296417389 attempt2 completed successfully. Actual npm metadata includes provenance,
+and official Registry identifiers/versions were independently verified. Quant npmSHA1
+86c1f9048d2ecf04bb0736ee8558866b37924d1d; backtest009ba7542f1d4b52f656e84680652e193e77c952.
+Combined0.4 now uses exact real npm dependencies, with no file fixtures. New lazy guide
+bridge forwards published native handlers:307 tools/30 prompts/14 static resources/9
+templates; disabled packs hidden, renamed/encoded tool paths handled, omitted tools
+refused.38 tests pass on Node20.20.2/22.23.2/24.19.0; actual packaged MCPB SDK smokes pass
+on all3.22 registry signatures/14 npm attestations verified; audit0 vulnerabilities.
+All-pack context comparison fixes paper-selection asymmetry:1113 vs35142 tokens,
+75ms vs64–90ms each, initial tools/instructions only. Earlier1109 measurements retain
+the default6-pack scope. No total-cost or worldwide ranking is inferred. New FEATURES
+matrix cites current primary peer docs and retains news/transcripts/chart/provider
+gaps, no new paid model benchmark. Desktop release workflow prepared with exact
+dependencies and pinned MCPB2.1.2; attested public bundle and combined publication
+still pending CI/release. Candidate branch mcp/flagship-release-20261013, basis16bab.
+Evidence: artifacts/mcp/flagship-preflight-20261013.json and bench/context-2026-10-13.json.
+Glama/Smithery access discovery found no installed authenticated browser; no duplicate
+TinyFish suggestion. Existing directory/next-daily hosted gates remain separate.
+All indexed-page/quality/SEO/keyword/adoption/expert/governed-ALPHAC objectives preserved.
+
+
+## 2026-10-14 — MCP new-level Phase 1: analyst-grade filings (canli-markets-mcp, Unreleased)
+
+Owner direction: bring the MCP servers, the flagship first, to a new level, measured on
+independent questions. Phase 1 adds three tools to canli-markets-mcp (no version bump; the
+flagship picks them up at the next markets release): financial_statements (statements exactly as
+filed from SEC's rendered XBRL reports; filings joined by period; restated or split-changed lines
+shown beside their first-reported figures, never mixed), filing_tables (the table that holds a
+figure, in XBRL detail reports and document tables, followed through earlier filings) and
+earnings_release (results and guidance as ranges with quotes; the previous release's guidance for
+the same quarter against these results). Tests 146/146 on Node 20.20.2, 22.23.2 and 24.19.0,
+including a hostile-argument sweep and stdio schema checks over captured responses.
+
+Bench mcp-markets/bench/analyst: 62 questions checked against truths built without the tools
+(companyfacts XBRL, a separate row reader, the releases' words). First run: dev 21/21, fresh
+26/32 (kept as results-2026-10-14-first-run.json). Four general gaps fixed; fresh 32/32 after
+(no longer held out); fresh-2 run once afterwards, not tuned on: 9/9. Flagship check (scratch,
+not committed): index 310 tools; analyst search queries put the new tools first 13/14 and in the
+top three 14/14; existing flagship search tests unchanged; initial context still 3 tools and
+1,113 o200k tokens against 37,263 for the seven servers separately. Tool level only: no model
+benchmark (API credit empty), no release, no deployment.
+
+
+## 2026-10-14 — MCP new-level Phase 2: fact-check layer (canli-markets-mcp, Unreleased)
+
+verify_claims checks a draft's figures (structured claims or a paragraph) against SEC XBRL
+company-concept facts for the period as the company labels it: confirmed at the claim's own
+precision; contradicted with the filed figure and what the wrong one matches (another year, a
+quarter, a unit slip, the first-reported figure); not reported for periods and measures the
+filings lack; not checkable for non-GAAP. Margins and growth from two facts; Q4 derived from the
+year less nine months. SEC's company-concept endpoint answered Coca-Cola's Revenues and
+NetIncomeLoss with an empty units object on 2026-10-14; the companyfacts file is read instead.
+Tests 155/155. Bench: verify set first run 15/19 (the crash and a diagnosis defect), now 19/19;
+traps 6/6 first run; all 87 questions pass. Tool level only; no release.
+
+## 2026-10-14T18:50Z — earnings_release results reviewed row by row (added to PR #473)
+
+The analyst bench checks that the right figure is in an answer, not that no wrong one is. Every
+results row earnings_release gave for the 26 bench releases was read by hand, parser before
+against after, on the same live EDGAR pages. Wrong rows found and fixed: segment results read
+as the company's (NVIDIA's Data Center bullets under their heading), last year's figures
+("compared to", "versus ... for the prior quarter and ... last year", "This compares to"),
+guidance, assumptions, impacts, headwinds and "About" sections read as results, and figures
+under the wrong measure (shares outstanding as EPS, credit capacity as cash, a rate's bps
+change as gross profit, "respectively" pairs given both bases). Beat-or-miss rows changed in
+five releases, each now right: Qualcomm's non-GAAP EPS guide had been set against GAAP EPS (a
+false miss), Intuit's quarterly EPS guide against full-year EPS (a false beat), Accenture's
+local-currency guide against US-dollar growth; Salesforce and Dell gained a comparison.
+Results now carry section and versus. Commits a9b99eae and 8027e001; tests 159/159 on Node
+20/22/24; bench 87/87. Found by reading, not a measured error rate. No release.
+
+## 2026-10-15 — MCP new-level: Phases 1 and 2 released; flagship 0.5.0 prepared
+
+Owner approved the merges and asked to carry the goal through. #472 and #473 merged (squash
+c088c446, a0107383). canli-markets-mcp 0.4.0 released (#477, tag markets-mcp-v0.4.0, workflow
+38684639084): npm latest with SLSA provenance, MCP Registry latest. canli-mcp 0.5.0 prepared:
+markets 0.4.0 pinned, 311 tools, 32 prompts, the MCP Apps result viewer; 48 tests on Node
+20/22/24; context 1,160 tokens against 38,047 for seven servers; bundle validated and smoked in
+three configurations; robustness 0 findings on 536 hostile calls. Preflight:
+artifacts/mcp/flagship-preflight-20261015.json.

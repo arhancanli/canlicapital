@@ -1,0 +1,149 @@
+{
+  "status": "review candidate; not yet published",
+  "captured_at": "2026-10-15T05:08:39.561419+00:00",
+  "basis_main": "93a691e18622d10631605d9dfda9b0c3987c26e4",
+  "package": {
+    "name": "canli-mcp",
+    "version": "0.5.0",
+    "tarball_sha1": "dc371cdc86f9beef92f5f2abd75c327af1c1b2bd",
+    "file_count": 17
+  },
+  "pack_versions": {
+    "quant": "0.1.2",
+    "validation": "0.14.0",
+    "fundamentals": "0.6.0",
+    "research": "0.3.0",
+    "backtest": "0.1.2",
+    "markets": "0.4.0",
+    "paper": "0.1.0"
+  },
+  "interfaces": {
+    "tools": 311,
+    "front_tools": 3,
+    "prompts": 32,
+    "resources": 15,
+    "resource_templates": 9,
+    "ui_resources": [
+      "ui://canli/view"
+    ]
+  },
+  "checks": {
+    "tests_per_node": 48,
+    "nodes": [
+      "20.20.2",
+      "22.23.2",
+      "24.19.0"
+    ],
+    "network_poisoned_offline_guides": "pass",
+    "desktop_packaged_stdio_smokes": "3 pass (all packs: 3 tools, 15 resources, 32 prompts; offline: 12, 20; markets only: 4, 6; run_tool names ui://canli/view in each)",
+    "mcpb_validate": "pass (mcpb 2.1.2 validate)",
+    "registry_signatures": 22,
+    "npm_attestations": 14,
+    "high_audit_vulnerabilities": 0,
+    "robustness_markets": {
+      "tools": 39,
+      "calls": 536,
+      "refused_by_validation": 899,
+      "findings": 0
+    },
+    "mcp_apps_reference_host": "viewer rendered in modelcontextprotocol/ext-apps examples/basic-host (82221c0, 2.0.3): earnings release, fact check, price chart; light and dark; no console errors; after the origin checks: handshake, fact check and theme change pass",
+    "analyst_bench_markets": "87 of 87 (tool level; no model graded the answers)"
+  },
+  "context": {
+    "measured": "2026-10-15",
+    "node": "v24.19.0",
+    "tokenizer": "o200k_base",
+    "configuration": {
+      "CANLI_PACKS": "all",
+      "scope": "initial tool list and instructions; no tool execution"
+    },
+    "rows": {
+      "canli-mcp": {
+        "version": "0.5.0",
+        "tools": 3,
+        "tool_tokens": 961,
+        "instruction_tokens": 199,
+        "total_tokens": 1160,
+        "startup_ms": 73
+      },
+      "canli-quant-mcp": {
+        "version": "0.1.2",
+        "tools": 3,
+        "tool_tokens": 731,
+        "instruction_tokens": 201,
+        "total_tokens": 932,
+        "startup_ms": 89
+      },
+      "canli-validation-mcp": {
+        "version": "0.14.0",
+        "tools": 19,
+        "tool_tokens": 9702,
+        "instruction_tokens": 200,
+        "total_tokens": 9902,
+        "startup_ms": 83
+      },
+      "canli-fundamentals-mcp": {
+        "version": "0.6.0",
+        "tools": 7,
+        "tool_tokens": 3143,
+        "instruction_tokens": 121,
+        "total_tokens": 3264,
+        "startup_ms": 74
+      },
+      "canli-research-mcp": {
+        "version": "0.3.0",
+        "tools": 6,
+        "tool_tokens": 1539,
+        "instruction_tokens": 76,
+        "total_tokens": 1615,
+        "startup_ms": 62
+      },
+      "canli-backtest-mcp": {
+        "version": "0.1.2",
+        "tools": 3,
+        "tool_tokens": 1010,
+        "instruction_tokens": 72,
+        "total_tokens": 1082,
+        "startup_ms": 67
+      },
+      "canli-markets-mcp": {
+        "version": "0.4.0",
+        "tools": 39,
+        "tool_tokens": 19259,
+        "instruction_tokens": 583,
+        "total_tokens": 19842,
+        "startup_ms": 87
+      },
+      "canli-paper-trading-mcp": {
+        "version": "0.1.0",
+        "tools": 4,
+        "tool_tokens": 1351,
+        "instruction_tokens": 59,
+        "total_tokens": 1410,
+        "startup_ms": 64
+      }
+    },
+    "seven_separately": {
+      "tools": 81,
+      "total_tokens": 38047,
+      "startup_ms": [
+        62,
+        89
+      ]
+    }
+  },
+  "source_files": {
+    "package.json": "c99a6118dabea729943618eaffb157412d2f30abdaaea12943fee2810d44db5e",
+    "package-lock.json": "82101d51594081cc9fee81b4313a44257f578b0c856c7038ef881fc286c721b7",
+    "src/server.mjs": "207e3af0bdfa727a39129e5dcea8581fbcaf420506654cbcd7b6a1396a2f1143",
+    "src/prompts.mjs": "97ce8237f4899014040583fd50930d47ae5da715cbec71358fce30539bd647ce",
+    "src/view.mjs": "c98279504aa238230a2974580e8ec5f601feaafa16d6ea56afa06ed80dfd1edc",
+    "src/view/render.js": "45684e88f21b459b91d1f0d8cbdcdbf43884926fa00d9559c7d7eac5d63c2f2d",
+    "src/view/app.js": "63af2e7d6dc16a078dccb0410c938078e5377907e5ea330ded0843a0e5aab17e",
+    "src/guides.mjs": "c2d80cde514647bf80e0f791627136fadc1db3b4b3d00dd1ca33e0d57b2d5236",
+    "src/guides.json": "29ea4c0b885a28780dd9d8ec4cd74b1bd551cdc58c06f3ca1ece5d98e99b15e0",
+    "src/index.json": "fa686f1fe0fadeef5448c8ddc07b35d6cbb56f7fb5007bdf7459168622605b02",
+    "server.json": "83b857c21c02e6fa8bacda4ea669e09f811a7de9c5d62acf432143c5d0cdff49",
+    "mcpb/manifest.json": "ce31e0d4c66867c311998e153cb8f9b8c2f2c6a5a00d0f64066d44bbd519c39c"
+  }
+}

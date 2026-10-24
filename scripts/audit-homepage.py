@@ -1,4 +1,5 @@
-"""Browser-level regression audit for the evidence-first Canli Capital homepage."""
+"""Browser-level regression audit for the ALPHAC record page (/record), which carries the live
+console, status strip and cards that were on the homepage until 2026-10-10."""
 
 from __future__ import annotations
 
@@ -33,9 +34,9 @@ def audit_page(
     page.on("console", lambda message: console_errors.append(message.text) if message.type == "error" else None)
     page.on("pageerror", lambda error: page_errors.append(str(error)))
     page.set_viewport_size({"width": width, "height": height})
-    page.goto(ORIGIN, wait_until="networkidle")
+    page.goto(f"{ORIGIN}/record", wait_until="networkidle")
 
-    hero = page.locator("#hero-title")
+    hero = page.locator("#record-title")
     # The status strip is the first text in the document. It shipped as four
     # "Loading..." placeholders, which is what a crawler, a social-card generator
     # and anyone with scripts blocked saw as the opening line of the site.
@@ -52,7 +53,7 @@ def audit_page(
     # This same comparison, once widened, immediately found three drawdowns
     # published a hundred times too small and a compact-currency formatter whose
     # output depends on whether Node or Chrome ran it.
-    static_html = (ROOT / "index.html").read_text(encoding="utf-8")
+    static_html = (ROOT / "record.html").read_text(encoding="utf-8")
     PLACEHOLDER = re.compile(
         r"^(?:loading|pending|checking(?:\s+scope)?|unavailable|tbd|n/a)\b"
         r"|\b(?:loading|unavailable)\b\.?$",
