@@ -5,6 +5,8 @@
 import { z } from "zod";
 
 const TICKER = z.string().min(1).max(12).regex(/^[A-Za-z0-9.\-^=/]+$/, "a ticker such as AAPL").describe("A ticker, e.g. AAPL.");
+// One "symbol:weight" pair; checked part by part so the match time stays linear in the input.
+const HOLDING = /^\s*[A-Za-z0-9.\-]{1,20}\s*:\s*\d{1,12}(\.\d{1,8})?\s*$/;
 const json = (v) => JSON.stringify(v);
 const batch = (calls) => `In one run_tool call, run these together:\n${json({ calls })}`;
 const SOURCES = "Give each figure's source URL from the results, say which figures are estimates, and say where a tool returned nothing rather than filling the gap.";
@@ -145,7 +147,7 @@ export const PROMPTS = Object.freeze({
   portfolio_xray: {
     title: "Portfolio X-ray",
     description: "What a portfolio of stocks and funds really holds: the look-through positions across every fund, the overlap between the funds, and the largest exposures.",
-    args: { holdings: z.string().min(2).max(600).regex(/^[A-Za-z0-9.\- ]+:\s*\d+(\.\d+)?(\s*,\s*[A-Za-z0-9.\- ]+:\s*\d+(\.\d+)?)*$/, "symbol:weight pairs, e.g. VOO:60, QQQ:30, AAPL:10").describe("Symbols and weights (or values), e.g. VOO:60, QQQ:30, AAPL:10.") },
+    args: { holdings: z.string().min(2).max(600).refine((v) => v.split(",").every((part) => HOLDING.test(part)), "symbol:weight pairs, e.g. VOO:60, QQQ:30, AAPL:10").describe("Symbols and weights (or values), e.g. VOO:60, QQQ:30, AAPL:10.") },
     calls: ({ holdings }) => [
       { name: "portfolio_xray", arguments: { holdings: String(holdings).split(",").map((x) => x.split(":")).map(([s, w]) => ({ symbol: s.trim().toUpperCase(), weight: Number(w) || 1 })) } },
     ],
