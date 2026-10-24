@@ -10,6 +10,12 @@ import { screenCompanies } from "../../src/research.mjs";
 import { createSession } from "../../src/sources.mjs";
 import { portfolioXray } from "../../src/xray.mjs";
 import { comps } from "../../src/comps.mjs";
+import { federalContracts } from "../../src/contracts.mjs";
+import { commentLetters } from "../../src/letters.mjs";
+import { drugPipeline } from "../../src/pipeline.mjs";
+import { reverseDcf } from "../../src/valuation.mjs";
+import { bankFinancials } from "../../src/banks.mjs";
+import { filingDrift } from "../../src/drift.mjs";
 import { debtProfile } from "../../src/credit.mjs";
 import { ownershipBreadth } from "../../src/breadth.mjs";
 import { forensicScores } from "../../src/forensic.mjs";
@@ -29,6 +35,13 @@ const CHECKS = [
   ["debt_profile", () => debtProfile(s, { company: "T" }), (r) => r.debt.total > 5e10 && r.maturities.ladder_total > 0 && r.cost_and_cover.interest_coverage > 0],
   ["ownership_breadth", () => ownershipBreadth(s, { company: "AAPL", quarters: 2 }), (r) => r.cusip === "037833100" && r.rows[1][3] > 3000],
   ["forensic_scores", () => forensicScores(s, { company: "CAT" }), (r) => Number.isFinite(r.beneish.m_score) && Number.isInteger(r.piotroski.f_score) && Number.isFinite(r.altman.z_score)],
+  ["federal_contracts", () => federalContracts(s, { company: "LMT", limit: 3 }), (r) => r.obligated_total > 1e10 && r.agencies.rows[0][0] === "Department of Defense" && r.largest_contracts.rows.length === 3],
+  ["drug_pipeline", () => drugPipeline(s, { company: "VRTX" }), (r) => r.active_trials >= 10 && r.by_phase.some(([p]) => p === "Phase 3") && r.fda_approvals.rows.length >= 5],
+  ["comment_letters", () => commentLetters(s, { company: "AAPL", read: 2 }), (r) => r.staff_letters >= 1 && r.company_replies >= 1 && r.recent.rows.length >= 1],
+  ["reverse_dcf", () => reverseDcf(s, { company: "MSFT" }), (r) => typeof r.implied_growth === "number" && r.implied_growth > -0.2 && r.implied_growth < 0.6 && r.sensitivity.rows.length >= 3],
+  ["bank_financials", () => bankFinancials(s, { company: "WAL", quarters: 4 }), (r) => r.bank.cert === 57512 && r.rows.length === 4 && r.rows.every((x) => x[1] > 1e7)],
+  ["bank_failures", () => bankFinancials(s, { failures: 3 }), (r) => r.failures.rows.length === 3 && /^\d{4}-\d{2}-\d{2}$/.test(r.failures.rows[0][3])],
+  ["filing_drift", () => filingDrift(s, { company: "NVDA", years: 3, theme: "export" }), (r) => r.rows.length === 3 && r.rows[0][2] > 5000 && r.rows[0][4] != null],
   ["funding_rates", () => fundingRates(s, { coins: ["BTC", "ETH"], days: 7 }), (r) => r.rows.length === 2 && r.rows.every((x) => x[7] >= 15)],
   ["screen_window", () => screenCompanies(s, { fiscal_year_end: [day(500), day(120)], filters: [{ metric: "revenue", op: ">", value: 1e11 }], limit: 50 }), (r) => r.matched >= 10 && r.rows.every((x) => x[4] >= day(500) && x[4] <= day(120))],
 ];

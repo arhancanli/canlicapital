@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Every preview, rebalance and send returns an Ed25519-signed attestation (orders, limits and
+  verdict hashed, account committed); `verify_attestation` checks one offline, and opens commitments.
+- `CANLI_PAPER_PRIVATE=1`: the model sees commitments instead of the account's figures; order sizes
+  from a rebalance and numbers in check messages are hidden too.
+
 ## 0.1.1
 
 - zod 4.6.7 (a high advisory in earlier zod: memory exhaustion on oversized constrained collections). No code change.

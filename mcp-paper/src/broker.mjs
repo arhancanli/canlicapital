@@ -13,11 +13,14 @@
 //
 // The trader's directory (CANLI_HOME, default ~/.canli) holds limits.json (caps the checks enforce;
 // a call can only tighten them), KILL (while it exists nothing is sent), and paper-orders.jsonl, a
-// hash-chained record of every send and cancel this server made.
+// hash-chained record of every send and cancel this server made. Every check and send also returns an
+// attestation signed with the trader's local key, and CANLI_PAPER_PRIVATE=1 keeps the account's
+// numbers from the model entirely (src/attest.mjs).
 import { createHash, createHmac, randomBytes, timingSafeEqual } from "node:crypto";
 import { appendFileSync, existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
+import { attest, attestKey, committer } from "./attest.mjs";
 import { checkOrders, effectiveLimits, LIMIT_KEYS } from "./core/js/pretrade-core.js";
 
 const PAPER_TRADING = "https://paper-api.alpaca.markets";
@@ -77,6 +80,13 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export function createBroker({ env = process.env, home, fetchImpl = globalThis.fetch, now = () => new Date(), timeoutMs = 10000 } = {}) {
   const secret = randomBytes(32), used = new Set(), log = orderLog(home);
+  const privateMode = env.CANLI_PAPER_PRIVATE === "1";
+  let signer = null;
+  const signed = (statement) => attest((signer ??= attestKey(home)), statement);
+  const commit = committer(home, now);
+  // In private mode a reason or warning keeps its words and loses its figures ("exceeds 5% of equity").
+  const redact = (t) => (privateMode && typeof t === "string" ? t.replace(/\d[\d,.]*/g, "#") : t);
+  const redactAll = (v) => (Array.isArray(v) ? v.map(redactAll) : redact(v));
   // Every request times out after 10 s. Reads retry twice on network errors, 429 and 5xx (with
   // backoff); writes never retry here, because send() resolves uncertain orders by client order id.
   async function call(base, path, { method = "GET", body, retries = method === "GET" ? 2 : 0 } = {}) {
@@ -129,11 +139,17 @@ export function createBroker({ env = process.env, home, fetchImpl = globalThis.f
       token = `${payload}.${sign(payload)}`;
       expires_at = new Date(exp * 1000).toISOString();
     }
+    const attestation = signed({
+      kind: "pretrade", at: now().toISOString(), accepted, orders_hash: sha256(canonical(orders)), limits_hash: sha256(canonical(limits)),
+      kill_switch: killState(home).engaged, token_hash: token ? sha256(token) : null,
+      account: { equity: commit("equity", Number(s.account.equity)), positions: commit("positions", positions) },
+    });
     return {
-      paper: true, accepted, market_open: s.clock.is_open, limits_file: file.path,
+      paper: true, accepted, market_open: s.clock.is_open, limits_file: file.path, private: privateMode,
       columns: ["symbol", "side", "qty", "accepted", "reasons", "est_cost_bps"],
-      rows: out.rows.map((r) => [r.symbol, r.side, r.qty, r.accepted, r.reasons, r.cost?.total_bps_base ?? null]),
-      warnings: out.warnings, not_modelled: out.not_modelled, checks_skipped: out.checks_skipped, systemic_breach: out.systemic_breach,
+      rows: out.rows.map((r) => [r.symbol, r.side, request.hideQty ? null : r.qty, r.accepted, redactAll(r.reasons), r.cost?.total_bps_base ?? null]),
+      attestation,
+      warnings: redactAll(out.warnings), not_modelled: out.not_modelled, checks_skipped: out.checks_skipped, systemic_breach: out.systemic_breach,
       token, expires_at,
       next: accepted ? "send_paper_orders with this token within five minutes sends exactly these orders to the paper account." : "Not every order passed; nothing can be sent. Fix the reasons and preview again.",
     };
@@ -144,6 +160,17 @@ export function createBroker({ env = process.env, home, fetchImpl = globalThis.f
   return {
     async account() {
       const s = await snapshot(), a = s.account;
+      if (privateMode) {
+        const positions = Object.fromEntries(s.positions.map((p) => [p.symbol, Number(p.qty)]));
+        return {
+          paper: true, private: true, status: a.status, currency: a.currency,
+          commitments: { equity: commit("equity", Number(a.equity)), cash: commit("cash", Number(a.cash)), buying_power: commit("buying_power", Number(a.buying_power)), positions: commit("positions", positions) },
+          positions_held: s.positions.length, open_orders: s.orders.length,
+          market_open: s.clock.is_open, next_open: s.clock.next_open, next_close: s.clock.next_close, kill_switch: killState(home).engaged ? "engaged" : "clear",
+          order_log: log.head(), attestation_key: (signer ??= attestKey(home)).publicPath,
+          note: "Private mode (CANLI_PAPER_PRIVATE=1): the account's figures are committed, not shown. Their salts are in the trader's commitments.jsonl; rebalance_to_weights sizes orders from them without showing them.",
+        };
+      }
       return {
         paper: true, status: a.status, currency: a.currency, equity: Number(a.equity), cash: Number(a.cash), buying_power: Number(a.buying_power),
         market_open: s.clock.is_open, next_open: s.clock.next_open, next_close: s.clock.next_close, kill_switch: killState(home).engaged ? "engaged" : "clear",
@@ -177,7 +204,8 @@ export function createBroker({ env = process.env, home, fetchImpl = globalThis.f
         if (d !== 0 && Math.abs(d) * market[sym].price >= minUsd) orders.push({ symbol: sym, side: d > 0 ? "buy" : "sell", qty: Math.abs(d), type: "market", tif: "day" });
       }
       orders.sort((a, b) => (a.side === b.side ? 0 : a.side === "sell" ? -1 : 1)); // sells first free cash
-      const result = orders.length ? check(orders, s, market, request) : { paper: true, accepted: true, token: null, rows: [], note: "Already at target within min_trade_usd; nothing to send." };
+      const result = orders.length ? check(orders, s, market, { ...request, hideQty: privateMode }) : { paper: true, accepted: true, token: null, rows: [], note: "Already at target within min_trade_usd; nothing to send." };
+      if (privateMode) return { private: true, plan: { columns: ["symbol", "target_weight", "side"], rows: plan.map(([sym, w, , , d]) => [sym, w, d > 0 ? "buy" : d < 0 ? "sell" : "hold"]) }, plan_commitment: commit("rebalance_plan", plan), ...result };
       return { equity, plan: { columns: ["symbol", "target_weight", "held", "target_shares", "change"], rows: plan }, orders, ...result };
     },
 
@@ -213,7 +241,8 @@ export function createBroker({ env = process.env, home, fetchImpl = globalThis.f
         }
       }
       log.append({ at: now().toISOString(), kind: "send", token_hash: sha256(mac), rows });
-      return { paper: true, columns: ["symbol", "side", "qty", "order_id", "status", "client_order_id"], rows, order_log: log.head(), note: "Each order carries a client_order_id; Alpaca refuses a repeated id, so a retry cannot fill twice." };
+      const attestation = signed({ kind: "send", at: now().toISOString(), token_hash: sha256(request.token), orders_hash: sha256(canonical(orders)), placed: rows.filter((r) => r[3]).length, of: rows.length, log_head: log.head().head ?? null });
+      return { paper: true, columns: ["symbol", "side", "qty", "order_id", "status", "client_order_id"], rows: privateMode ? rows.map((r) => [r[0], r[1], null, r[3], redact(r[4]), r[5]]) : rows, order_log: log.head(), attestation, note: "Each order carries a client_order_id; Alpaca refuses a repeated id, so a retry cannot fill twice." };
     },
   };
 }

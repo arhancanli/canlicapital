@@ -29,6 +29,17 @@ Three mistakes make most agent-run backtests look better than they are:
 | `pit_factor` | A factor (`roa`, `gross_margin`, `operating_margin`, `revenue_growth`, `asset_growth`, `accruals`, or `level:<measure>`) for your tickers, monthly, as known on each date. Writes a signal CSV. |
 | `backtest_signal` | Rank on the signal, long the top quantile (and short the bottom), rebalance weekly, monthly, quarterly or every N days, with `lag_days`, `cost_bps` and an optional `ledger`. |
 
+## Breadth lab, sweeps and labelled data
+
+| tool | what it does |
+|---|---|
+| `price_panel` | A price, dollar-volume and industry-group panel built from a fund's holdings (IVV for the S&P 500), ready for the tools below |
+| `breadth_signals` | The 24 cross-sectional signals the lab builds sleeves from, each with its reference |
+| `breadth_book` | Every signal inside every group of names as a sleeve, traded as one netted account: the book's Sharpe after costs, the netting saved, and its effective independent bets; writes the sleeves as a CSV with their specs |
+| `breadth_sweep` | A grid of book settings run in parallel on every core, or as shards other machines run and merge back (inputs, grid, gaps and duplicates checked); the best Sharpe is set against what the best of that many trials reaches by luck, and with `split_date` the chosen settings are scored after it |
+| `effective_bets` | How many independent bets a set of return series holds (the participation ratio of their correlations), by series and by family |
+| `annotation_packet`, `annotation_agreement`, `annotation_gold` | Blind labelling packets of figures (or of a draft's figures) with guidelines and an answer key; agreement between labellers (Cohen's kappa); and a gold set with its datasheet |
+
 ## Quick start
 
 ```bash

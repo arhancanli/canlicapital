@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- `breadth_sweep`: a grid of breadth-book settings run in parallel on every core (or as shards other
+  machines run, merged with checks on inputs, grid, gaps and duplicates); the best Sharpe is set
+  against the best-of-N luck benchmark, and with `split_date` the chosen settings are scored after it.
+
 ## 0.2.0
 
 - The breadth lab: `breadth_signals` (24 cross-sectional signals with their sources),

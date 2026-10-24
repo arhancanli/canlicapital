@@ -12,17 +12,17 @@ branch and the latest npm release are supported.
 `npx -y canli-markets-mcp` runs `src/server.mjs` over stdio. It:
 
 - reads its own `package.json`, to report its version, and no other file of yours;
-- sends GET requests (and to `api.finra.org`, whose query API takes its filters only in a request body,
+- sends GET requests (and to `api.finra.org` and `api.usaspending.gov`, whose query APIs take their filters only in a request body,
   read-only POST queries), only when a tool is called, and only to these hosts: `www.sec.gov`,
   `data.sec.gov` and `efts.sec.gov` (SEC EDGAR), `home.treasury.gov` (Treasury rates),
   `api.fiscaldata.treasury.gov` (Treasury auctions and the federal debt), `api.worldbank.org`
   (World Bank indicators), `sdmx.oecd.org` (OECD Economic Outlook), `api.finra.org` (short interest), `publicreporting.cftc.gov` (Commitments of
-  Traders), `www.federalreserve.gov` (FOMC calendar, statements and projections), `www.bls.gov`, `www.bea.gov` and `www.census.gov` (release schedules), `api.adviserinfo.sec.gov` (investment advisers), `cdn-api.cboe.com` and `www.cboe.com` (Cboe's delayed option quotes and futures settlements; `CANLI_KEYLESS_OPTIONS=0` turns them off), `fred.stlouisfed.org` (FRED), `markets.newyorkfed.org` (New York Fed reference rates), `data-api.ecb.europa.eu` (ECB rates), `www.bankofengland.co.uk` (Bank of England rates), `stats.bis.org` (central banks' policy rates), `filings.xbrl.org` (ESEF annual reports), `gamma-api.polymarket.com` and `api.elections.kalshi.com` (prediction market prices), `api.llama.fi` and `stablecoins.llama.fi` (DefiLlama's crypto data), `api.gdeltproject.org` (the GDELT Project's news index, for `news`), `www.okx.com` (perpetual funding rates, for `funding_rates`), and, for `price_history` only, `query1.finance.yahoo.com` (Yahoo
+  Traders), `www.federalreserve.gov` (FOMC calendar, statements and projections), `www.bls.gov`, `www.bea.gov` and `www.census.gov` (release schedules), `api.adviserinfo.sec.gov` (investment advisers), `cdn-api.cboe.com` and `www.cboe.com` (Cboe's delayed option quotes and futures settlements; `CANLI_KEYLESS_OPTIONS=0` turns them off), `fred.stlouisfed.org` (FRED), `markets.newyorkfed.org` (New York Fed reference rates), `data-api.ecb.europa.eu` (ECB rates), `www.bankofengland.co.uk` (Bank of England rates), `stats.bis.org` (central banks' policy rates), `filings.xbrl.org` (ESEF annual reports), `gamma-api.polymarket.com` and `api.elections.kalshi.com` (prediction market prices), `api.llama.fi` and `stablecoins.llama.fi` (DefiLlama's crypto data), `api.gdeltproject.org` (the GDELT Project's news index, for `news`), `www.okx.com` (perpetual funding rates, for `funding_rates`), `api.usaspending.gov` (federal contracts), `clinicaltrials.gov` (clinical trials) `api.fda.gov` (Drugs@FDA approvals) and `api.fdic.gov` (bank call reports and failures), and, for `price_history` only, `query1.finance.yahoo.com` (Yahoo
   Finance's public chart data) for currencies, futures, indices, crypto and stocks listed abroad,
   and for US stocks unless you set a key, in which case `data.alpaca.markets` or `api.tiingo.com`
   (`CANLI_KEYLESS_PRICES=0` turns Yahoo off). Nothing goes to Canli Capital;
 - sends what the tool needs and nothing else: the company, form, dates, search words or series
-  asked for. Results link to the publishers' own pages (`fiscaldata.treasury.gov`, `data.worldbank.org`, `data-explorer.oecd.org`, `adviserinfo.sec.gov`, `files.adviserinfo.sec.gov`, `reports.adviserinfo.sec.gov`, `polymarket.com`),
+  asked for. Results link to the publishers' own pages (`www.usaspending.gov`, `banks.data.fdic.gov`, `fiscaldata.treasury.gov`, `data.worldbank.org`, `data-explorer.oecd.org`, `adviserinfo.sec.gov`, `files.adviserinfo.sec.gov`, `reports.adviserinfo.sec.gov`, `polymarket.com`),
   which the server never requests, nor `www.finra.org`. SEC requests carry a User-Agent naming this package (or `SEC_USER_AGENT`, which SEC
   asks for: your name and email); other hosts get `canli-markets-mcp`;
 - keeps SEC requests at most 8 a second (SEC's limit is 10), refuses redirects, gives every

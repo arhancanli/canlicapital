@@ -1,5 +1,25 @@
 # Changelog
 
+## Unreleased
+
+- `federal_contracts`: the US government's obligations to a company in a fiscal year, by agency and
+  industry code, with its recipient entities and largest contracts, from USAspending.gov (no key).
+- `drug_pipeline`: a drug company's active trials by phase, readouts due, late-stage trials and FDA
+  approvals, from ClinicalTrials.gov and Drugs@FDA (no key). A sponsor that lists trials under
+  another name (ModernaTX for Moderna) is found by full text, kept only when its name begins with the
+  company's.
+- `comment_letters`: SEC comment letters and replies grouped into reviews, with the topics of the
+  newest letters and excerpts.
+- `bank_financials`: a US bank's quarterly call-report condition from the FDIC (uninsured deposits,
+  noncurrent loans, capital ratios, margin, returns), or the latest bank failures and their cost.
+- `filing_drift`: a 10-K section followed over several years: change from the year before (Lazy
+  Prices), hedging and adverse words, readability, a named theme's share and rewording, and flags.
+- `read_filing` (and `filing_diff`, `filing_drift`): a 10-K that heads its items with a
+  cross-reference index (Intel's, at the end of the document) is read from the section in the body,
+  found by its repeated page title, instead of the one-line index entry.
+- `reverse_dcf`: the free-cash-flow growth a share price implies, with a sensitivity table, the
+  company's own growth, and every input's tag; `base: "average_3y"` smooths an unusual year.
+
 ## 0.6.0
 
 - `latest_filings`: what has just been filed across every company, from EDGAR's live feed, by form,
