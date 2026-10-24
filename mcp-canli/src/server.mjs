@@ -16,6 +16,8 @@
 // packs that never use the network, and their code is the only code loaded.
 import { createHash } from "node:crypto";
 import { readFileSync, realpathSync } from "node:fs";
+import { homedir } from "node:os";
+import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/server";
@@ -23,11 +25,14 @@ import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { z } from "zod";
 
 import { resolveRefs } from "./files.mjs";
-import { OMITTED, PACKS, RENAMES, enabledPacks, loadPack } from "./packs.mjs";
+import { OMITTED, PACKS, PLUGINS, RENAMES, enabledPacks, loadPack, loadPlugins, packInfo } from "./packs.mjs";
+import { signature } from "./signature.mjs";
 import { buildIndex, search } from "./search.mjs";
 import { registerPrompts } from "./prompts.mjs";
 import { registerView, VIEW_URI } from "./view.mjs";
 import { registerPackGuides } from "./guides.mjs";
+import { governance, publicKeys, verifyAudit } from "./governance.mjs";
+import { watchFilings } from "./watch.mjs";
 
 const PKG = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
 const INDEX = JSON.parse(readFileSync(new URL("./index.json", import.meta.url), "utf8"));
@@ -41,7 +46,18 @@ export const SERVER_INFO = Object.freeze({
 
 export const ENTRIES = INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args }));
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
-const SEARCH = buildIndex(ENTRIES);
+let SEARCH = buildIndex(ENTRIES);
+
+// Adds plugin packs' tools (CANLI_PLUGINS) to the catalog and the search; returns their packs.
+export async function addPlugins(env = process.env) {
+  const plugins = await loadPlugins(env, new Set(BY_NAME.keys()));
+  for (const { pack, tools } of plugins) for (const t of tools) {
+    const e = { name: t.name, pack, toolset: pack, title: t.title, description: t.description, keywords: t.keywords, args: signature(t.input) };
+    ENTRIES.push(e); BY_NAME.set(e.name, e);
+  }
+  if (plugins.length) SEARCH = buildIndex(ENTRIES);
+  return plugins.map((p) => p.pack);
+}
 
 // The most asked-for tools, which run_tool takes without a find_tool first: each saves the model a
 // search turn on the commonest questions. Only tools in enabled packs are named.
@@ -223,8 +239,21 @@ const RUN_INPUT = z.object({
       receipt: z.boolean().optional().describe("Add input and output SHA-256 and pack versions so the result can be recomputed and compared."),
     }).strict();
 
-async function runOne(packs, { name, arguments: args }, { digits }, files) {
+export const canliHome = (env = process.env) => env.CANLI_HOME ?? join(homedir(), ".canli");
+
+// Every pack tool call passes the policy (CANLI_POLICY) first and is written to its audit log,
+// refusals and failures too.
+async function runOne(packs, { name, arguments: args }, opts, files, gov) {
   const tool = await toolFor(name, packs);
+  if (!gov?.policy) return execute(tool, name, args, opts, files);
+  try {
+    gov.check(BY_NAME.get(name), { destructive: Boolean(tool.annotations?.destructiveHint) });
+    const result = await execute(tool, name, args, opts, files);
+    gov.record({ tool: name, pack: tool.pack, args, result });
+    return result;
+  } catch (e) { gov.record({ tool: name, pack: tool.pack, args, error: e.message }); throw e; }
+}
+async function execute(tool, name, args, { digits }, files) {
   const parsed = tool.input.safeParse(resolveRefs(args ?? {}, files));
   if (!parsed.success) throw new Error(`${name}: ${parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "arguments"}: ${i.message}`).join("; ")}. Arguments: ${BY_NAME.get(name).args}. describe_tool ${name} explains each one.`);
   // Packs return full precision (quant's own default); rounding happens once, here.
@@ -248,7 +277,7 @@ async function describeTool(packs, { name }) {
   return { name: t.name, pack: t.pack, title: t.title, description: t.description, input_schema: schema, ...(t.annotations?.destructiveHint ? { destructive: true } : {}) };
 }
 
-export function registerAll(server, packs = enabledPacks()) {
+export function registerAll(server, packs = enabledPacks(), gov = governance(process.env, canliHome())) {
   const keeper = createKeeper();
   server.registerTool("find_tool", {
     title: "Find a tool",
@@ -289,8 +318,8 @@ export function registerAll(server, packs = enabledPacks()) {
     if (a.calls && a.name) throw new Error("Pass either name or calls, not both.");
     const calls = a.calls ?? [{ name: a.name, arguments: a.arguments }], files = [], opts = { digits: a.digits };
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
-    const SELF = { show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}) };
-    const run = (c, args) => (SELF[c.name] ? Promise.resolve().then(() => SELF[c.name](args)) : runOne(packs, { name: c.name, arguments: args }, opts, files));
+    const SELF = { show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
+    const run = (c, args) => (SELF[c.name] ? Promise.resolve().then(() => SELF[c.name](args)) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov));
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
     if (calls.length > 1 && destructive.some(Boolean)) throw new Error("A tool that sends orders cannot run inside a batch; call it on its own after previewing.");
     const done = [];
@@ -325,28 +354,38 @@ export function registerAll(server, packs = enabledPacks()) {
     const results = (a.return === "last" ? done.slice(-1) : done).map(({ name, ref, result, error }) => ({ name, ...(ref ? { ref } : {}), ...(error ? { error } : { result }) }));
     return { results, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) };
   }));
-  registerResources(server, packs);
+  registerResources(server, packs, gov);
   registerView(server);
   registerPrompts(server, BY_NAME, packs);
   registerPackGuides(server, packs);
 }
 
-export const PRIVACY = (packs) => ({
-  packs: Object.fromEntries(packs.map((p) => [p, { network: PACKS[p].network, disk: PACKS[p].disk }])),
+// audit_log (through run_tool, when the policy keeps a log): its state, a signed checkpoint now, or
+// a check of the whole log.
+function auditLog(gov, args) {
+  const a = z.object({ action: z.enum(["status", "checkpoint", "verify"]).optional() }).strict().parse(args ?? {});
+  if (a.action === "checkpoint") gov.audit.checkpoint();
+  if (a.action === "verify") return { ...verifyAudit(gov.audit.path, publicKeys(canliHome())), status: gov.audit.status() };
+  return gov.audit.status();
+}
+
+export const PRIVACY = (packs, gov) => ({
+  packs: Object.fromEntries(packs.map((p) => [p, { network: packInfo(p).network, disk: packInfo(p).disk, ...(PLUGINS.has(p) ? { plugin: packInfo(p).package } : {}) }])),
   files: "{\"$file\": ...} arguments are read on this machine; nothing is uploaded and nothing is written by the reader",
   telemetry: "none: no analytics, logging or crash reporting",
   offline: "CANLI_OFFLINE=1 enables only the packs whose network is none (quant, validation), and no other pack's code is loaded",
   receipts: "opt-in receipts carry SHA-256 hashes, never the data",
+  policy: gov?.policy ? { tools: gov.policy.tools ?? "all", orders: gov.policy.orders ?? "on", calls_per_minute: gov.policy.calls_per_minute ?? null, audit_log: gov.audit ? { file: gov.audit.path, arguments: gov.policy.audit.arguments ?? "hash" } : "off" } : "none (CANLI_POLICY unset): no policy and no audit log",
 });
 
-function registerResources(server, packs) {
+function registerResources(server, packs, gov) {
   const json = (uri, v) => ({ contents: [{ uri, mimeType: "application/json", text: JSON.stringify(v) }] });
   server.registerResource("catalog", "canli://catalog", { title: "Tool catalog", description: "Every tool: name, pack and title.", mimeType: "application/json" },
     (uri) => json(uri.href, { tools: ENTRIES.filter((e) => packs.includes(e.pack)).length, columns: ["name", "pack", "title"], rows: ENTRIES.filter((e) => packs.includes(e.pack)).map((e) => [e.name, e.pack, e.title]) }));
   server.registerResource("packs", "canli://packs", { title: "Packs", description: "Each pack: its source package and version, tool count, network and disk use, and renamed or omitted tools.", mimeType: "application/json" },
-    (uri) => json(uri.href, { enabled: packs, packs: Object.fromEntries(Object.entries(PACKS).map(([k, p]) => [k, { ...p, version: INDEX.versions[k], tools: ENTRIES.filter((e) => e.pack === k).length, renamed: RENAMES[k] ?? {}, omitted: OMITTED[k] ?? {} }])) }));
+    (uri) => json(uri.href, { enabled: packs, packs: Object.fromEntries([...Object.entries(PACKS), ...PLUGINS].map(([k, p]) => [k, { ...p, version: INDEX.versions[k] ?? null, tools: ENTRIES.filter((e) => e.pack === k).length, renamed: RENAMES[k] ?? {}, omitted: OMITTED[k] ?? {} }])) }));
   server.registerResource("privacy", "canli://privacy", { title: "Privacy", description: "What each enabled pack sends off this machine and keeps on disk.", mimeType: "application/json" },
-    (uri) => json(uri.href, PRIVACY(packs)));
+    (uri) => json(uri.href, PRIVACY(packs, gov)));
   server.registerResource("tool-schema", new ResourceTemplate("canli://tools/{name}", { list: undefined, complete: { name: (v) => ENTRIES.filter((e) => packs.includes(e.pack)).map((e) => e.name).filter((n) => n.startsWith(v ?? "")).slice(0, 50) } }), { title: "Tool schema", description: "One tool's description and input JSON Schema.", mimeType: "application/json" },
     async (uri, { name }) => { const t = await toolFor(String(name), packs), s = z.toJSONSchema(t.input, { io: "input" }); delete s.$schema; return json(uri.href, { name: t.name, pack: t.pack, description: t.description, input_schema: s }); });
 }
@@ -359,23 +398,44 @@ export function frontTools(packs, env = process.env) {
   const names = env.CANLI_FRONT === undefined ? FRONT_DEFAULT : env.CANLI_FRONT.split(",").map((x) => x.trim()).filter(Boolean);
   return [...new Set(names)].filter((n) => BY_NAME.has(n) && packs.includes(BY_NAME.get(n).pack));
 }
-export async function registerFront(server, packs, names = frontTools(packs)) {
+export async function registerFront(server, packs, names = frontTools(packs), gov = null) {
   for (const name of names) {
     const t = await toolFor(name, packs);
     server.registerTool(name, {
       title: t.title, description: t.description, inputSchema: t.input, outputSchema: open,
       annotations: { title: t.title, ...(t.annotations ?? READ_ONLY) },
-    }, guard(async (args) => trimmed(await runOne(packs, { name, arguments: args }, {}, []))));
+    }, guard(async (args) => trimmed(await runOne(packs, { name, arguments: args }, {}, [], gov))));
   }
   return names;
 }
 
 const isMain = (() => { try { return realpathSync(process.argv[1] ?? "") === realpathSync(fileURLToPath(import.meta.url)); } catch { return false; } })();
-if (isMain) {
-  const packs = enabledPacks();
+// Besides serving MCP over stdio: `canli-mcp audit verify [log] [--ed25519 pub.pem] [--ml-dsa pub.pem]`
+// checks an audit log, and `canli-mcp watch [--forms 8-K,4] [--company words] [--event earnings]
+// [--every 60]` prints each new EDGAR filing as a line of JSON.
+const flag = (argv, name) => { const i = argv.indexOf(name); return i >= 0 ? argv[i + 1] : undefined; };
+if (isMain && process.argv[2] === "audit") {
+  const argv = process.argv.slice(3), home = canliHome();
+  if (argv[0] !== "verify") { process.stderr.write("usage: canli-mcp audit verify [file or directory] [--ed25519 pub.pem] [--ml-dsa pub.pem]\n"); process.exit(2); }
+  const target = argv[1] && !argv[1].startsWith("--") ? argv[1] : join(home, "audit");
+  const keys = publicKeys(home), read = (p) => (p ? readFileSync(p, "utf8") : undefined);
+  const out = verifyAudit(target, { ed25519: read(flag(argv, "--ed25519")) ?? keys.ed25519, ml_dsa_65: read(flag(argv, "--ml-dsa")) ?? keys.ml_dsa_65 });
+  process.stdout.write(`${JSON.stringify(out, null, 2)}\n`);
+  process.exit(out.valid ? 0 : 1);
+} else if (isMain && process.argv[2] === "watch") {
+  const argv = process.argv.slice(3);
+  const tool = await toolFor("latest_filings", enabledPacks({ ...process.env, CANLI_PACKS: "markets" }));
+  await watchFilings((args) => tool.run(tool.input.parse(args)), {
+    forms: flag(argv, "--forms")?.split(",").map((s) => s.trim()).filter(Boolean),
+    company: flag(argv, "--company"), event: flag(argv, "--event"),
+    every: Number(flag(argv, "--every") ?? 60),
+  }, (line) => process.stdout.write(`${line}\n`));
+} else if (isMain) {
+  const packs = [...enabledPacks(), ...await addPlugins()];
   const front = frontTools(packs);
+  const gov = governance(process.env, canliHome());
   const server = new McpServer(SERVER_INFO, { instructions: instructions(packs, front) });
-  registerAll(server, packs);
-  await registerFront(server, packs, front);
+  registerAll(server, packs, gov);
+  await registerFront(server, packs, front, gov);
   await server.connect(new StdioServerTransport());
 }

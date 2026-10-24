@@ -134,3 +134,30 @@ an item); branch 0.935 (149/160, 38/40, 2 at the limit, 11,350 tokens). Paired: 
 branch 19, only with 0.6.0 6, one-sided exact McNemar p = 0.007. The larger catalog (332 tools) did
 not cost plain questions. Rounds 5 to 7 together (600 items, none seen before): branch 0.928 against
 0.868, 53 against 17.
+
+## Round 8 (planned before any run, 2026-10-24 ~16:30 Dubai)
+
+Since round 7 the flagship was released as 0.7.1, and this branch (0.8.0) adds nine markets tools
+(federal contracts, drug pipelines, comment letters, a reverse DCF from filings, bank call reports,
+filing drift, planned insider sales, the IPO pipeline; compute prices comes with markets 0.7.1 and
+is not in this arm), seven prompts, the policy file and audit log (off here), plugins (none here)
+and the federal_contracts search words. A check that plain questions keep their level against the
+published release: v0 items outside every earlier sample, 40 per template, seed 20261131 (200
+items, from `v0-heldout8.jsonl`: `v0-heldout7.jsonl` less round 7's 200); arms canli-mcp 0.7.1 as
+published and this branch at c1d2612a (its own node_modules: markets 0.7.0, backtest 0.2.0, paper
+0.1.1); deepseek-flash, same eval and limits; reported as in rounds 4 to 7.
+
+## Round 8 results (2026-10-24 ~15:01 Dubai)
+
+v0 (200 items): canli-mcp 0.7.1 0.920 (answerable 146/160, unanswerable 38/40, 4 at the limit,
+11,267 tokens an item); branch 0.920 (146/160, 38/40, 3 at the limit, 11,621 tokens). Paired: right
+only with the branch 3, only with 0.7.1 3 (p = 0.66). The 0.8.0 additions cost plain questions
+nothing. DeepSeek cost: USD 0.10 for both arms.
+
+The branch's misses, read one by one: a balance on a date that is not a year end (Booking's
+receivables on 2018-01-01, its opening balance after ASC 606; Mitek's at a transition date), which
+history left out because a 10-Q reported it first: fixed in canli-fundamentals-mcp 0.7.1
+(`other_dates`; Booking then gives the key's 16.83%). "Long-term debt" read as the noncurrent part
+(PriceSmart): `long_term_debt` now names the total. The rest are the model's choices (net income
+with noncontrolling interests, a combined basic-and-diluted share count for "basic", a presented
+sign) or answer keys built on a filer's tagging (Cousins' taxes paid in thousands tagged as USD).

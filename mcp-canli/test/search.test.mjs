@@ -297,3 +297,50 @@ test("requests for the 0.5.0 and 0.6.0 tools: a right tool first in at least 36 
 test("a request word that is a built-in property name (\"constructor\") is an ordinary word", () => {
   for (const q of ["constructor", "portfolio constructor", "__proto__ value"]) assert.doesNotThrow(() => search(INDEX, q, { limit: 3 }), q);
 });
+
+// Requests for the 0.7.0 and 0.8.0 tools, written before the tools' descriptions were checked against them.
+const Q08 = [
+  ["how much does lockheed get from government contracts", ["federal_contracts"]],
+  ["palantir federal contract awards by agency", ["federal_contracts"]],
+  ["usaspending obligations for raytheon last fiscal year", ["federal_contracts"]],
+  ["which agencies pay booz allen the most", ["federal_contracts"]],
+  ["vertex pharmaceuticals clinical trials coming up", ["drug_pipeline"]],
+  ["phase 3 trials and fda approvals for a biotech", ["drug_pipeline"]],
+  ["when are moderna's trial readouts due", ["drug_pipeline"]],
+  ["drug pipeline by phase for eli lilly", ["drug_pipeline"]],
+  ["what has the sec asked tesla in its comment letters", ["comment_letters"]],
+  ["sec staff correspondence with apple about revenue recognition", ["comment_letters"]],
+  ["corresp letters from the sec review of a 10-k", ["comment_letters"]],
+  ["what growth is priced into nvidia's stock", ["company_reverse_dcf", "reverse_dcf"]],
+  ["implied growth rate from the current share price of costco", ["company_reverse_dcf", "reverse_dcf"]],
+  ["reverse dcf for microsoft from its filings", ["company_reverse_dcf"]],
+  ["uninsured deposits at western alliance", ["bank_financials"]],
+  ["call report data for a regional bank", ["bank_financials"]],
+  ["fdic bank failures this year", ["bank_financials"]],
+  ["capital ratios and bad loans for zions bancorp", ["bank_financials"]],
+  ["how much did apple rewrite its risk factors over five years", ["filing_drift"]],
+  ["lazy prices text similarity of 10-k filings year over year", ["filing_drift"]],
+  ["how often does tariff appear in a company's annual reports over time", ["filing_drift", "mentions_trend"]],
+  ["readability and hedging words trend in md&a", ["filing_drift"]],
+  ["form 144 planned stock sales by insiders", ["planned_insider_sales"]],
+  ["is the ceo planning to sell shares", ["planned_insider_sales", "insider_trades"]],
+  ["10b5-1 plan sales notices for nvidia executives", ["planned_insider_sales"]],
+  ["companies that filed s-1 to go public this month", ["ipo_pipeline"]],
+  ["upcoming ipos and recently priced deals", ["ipo_pipeline"]],
+  ["new spac registrations", ["ipo_pipeline"]],
+  ["sweep the parameters of my breadth book on all cores", ["breadth_sweep"]],
+  ["grid search of strategy settings with a luck benchmark for the best sharpe", ["breadth_sweep"]],
+  ["check a signed pre-trade attestation", ["verify_attestation"]],
+];
+
+test("requests for the 0.7.0 and 0.8.0 tools: a right tool first in at least 29 of 31, in the top three in all", () => {
+  let top1 = 0, top3 = 0;
+  const misses = [];
+  for (const [q, want] of Q08) {
+    const r = search(INDEX, q, { limit: 3 }).map((t) => t.name);
+    if (want.includes(r[0])) top1++; else misses.push(`${q} -> ${r.join(", ")}`);
+    if (r.some((n) => want.includes(n))) top3++;
+  }
+  console.log(JSON.stringify({ top1, top3, of: Q08.length, misses }));
+  assert.ok(top1 >= 29 && top3 === Q08.length, JSON.stringify({ top1, top3, misses }));
+});

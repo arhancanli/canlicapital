@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.8.0
+
+- Packs: canli-markets-mcp 0.7.1 (nine new tools: federal contracts, drug pipelines and FDA
+  approvals, SEC comment letters, a reverse DCF from the filings, FDIC bank call reports, language
+  drift across 10-Ks, planned insider sales from Form 144, the IPO pipeline, and GPU compute prices
+  with the Cirrun GPU Index), canli-backtest-mcp 0.3.0 (`breadth_sweep`: parameter sweeps on every
+  core or as checked shards, against the best-of-N luck benchmark) and canli-paper-trading-mcp
+  0.3.0 (pre-trade attestations signed with Ed25519 and post-quantum ML-DSA-65,
+  `verify_attestation`, and a private mode in which the model never sees account figures): 343
+  tools. Markets' `reverse_dcf` is `company_reverse_dcf` here, beside quant's `reverse_dcf`.
+- For firms: `CANLI_POLICY` names a policy file (tools allowed and denied by name or pack, orders
+  off, calls a minute) and turns on a tamper-evident audit log: each call's tool, time, outcome and
+  the SHA-256 of its arguments and result, hash-chained, with checkpoints signed by Ed25519 and, on
+  Node 24.7+, post-quantum ML-DSA-65. `canli-mcp audit verify` checks a log; `audit_log` (through
+  `run_tool`) shows, signs or checks it in a session. Without `CANLI_POLICY` nothing changes and
+  nothing is written.
+- Plugins: `CANLI_PLUGINS` loads other people's packs (an export of `registerTools(server)`); their
+  tools join the search, batches, the policy file and the audit log, and `canli://privacy` shows
+  what each says it sends and keeps.
+- `canli-mcp watch`: a live feed of new SEC filings as lines of JSON, by form, 8-K event and filer.
+- Seven new prompts: `valuation_check`, `language_drift`, `biotech_catalysts`,
+  `government_exposure`, `bank_health`, `insider_watch` and `ipo_watch` (twenty-two in all).
+
 ## 0.7.1
 
 - The packs move to zod 4.6.7 (validation 0.14.1, research 0.3.1, quant 0.1.3, paper trading
