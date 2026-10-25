@@ -4,7 +4,7 @@
 // The pages that show a video read index.json, so a video that was not recorded is not offered.
 // Needs a built site served locally: npm run build && npx vite preview --port 4417, then
 // node scripts/record-mcp-videos.mjs [http://localhost:4417] [id ...]
-import { mkdirSync, statSync, writeFileSync, readFileSync, existsSync, readdirSync, rmSync } from 'node:fs';
+import { mkdirSync, statSync, writeFileSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { homedir } from 'node:os';
 import { dirname, resolve } from 'node:path';
@@ -43,7 +43,8 @@ const SCRIPTS = {
 
 const { demos } = JSON.parse(readFileSync(resolve(ROOT, 'public/demos/canli-mcp/index.json'), 'utf8'));
 const indexPath = resolve(OUT, 'index.json');
-const index = existsSync(indexPath) ? JSON.parse(readFileSync(indexPath, 'utf8')) : { videos: {} };
+let index = { videos: {} };
+try { index = JSON.parse(readFileSync(indexPath, 'utf8')); } catch { /* the first recording starts the index */ }
 mkdirSync(OUT, { recursive: true });
 // The installed Google Chrome, so recording downloads no browser.
 const browser = await chromium.launch({ channel: 'chrome' });
