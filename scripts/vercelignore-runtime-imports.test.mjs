@@ -70,3 +70,12 @@ test("the files the /developers generator reads from the released MCP family pac
   assert.deepEqual(ignoredByVercel(inputs), [], "these build inputs are excluded by .vercelignore");
   assert.deepEqual(ignoredByVercel(["mcp-fundamentals/test/tools.test.mjs", "mcp-research/README.md"]).length, 2, "the rest of each package stays out of the upload");
 });
+
+test("the files the /mcp-servers generator reads from canli-mcp are uploaded", () => {
+  // 2026-10-25: the build read mcp-canli/src/index.json while .vercelignore left out all of
+  // mcp-canli, so the production build failed with ENOENT after every check had passed.
+  const inputs = ["mcp-canli/package.json", "mcp-canli/src/index.json"];
+  for (const file of inputs) assert.ok(existsSync(join(ROOT, file)), `${file} is missing`);
+  assert.deepEqual(ignoredByVercel(inputs), [], "these build inputs are excluded by .vercelignore");
+  assert.deepEqual(ignoredByVercel(["mcp-canli/src/server.mjs", "mcp-canli/README.md"]).length, 2, "the rest of the package stays out of the upload");
+});

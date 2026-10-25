@@ -69,7 +69,12 @@ mcp-quant
 mcp-paper
 mcp-backtest
 mcp-markets
-mcp-canli
+# The /mcp-servers generator reads canli-mcp's tool index and version (scripts/build-mcp-pages.mjs).
+mcp-canli/*
+!mcp-canli/package.json
+!mcp-canli/src
+mcp-canli/src/*
+!mcp-canli/src/index.json
 !mcp/README.md
 !mcp/package.json
 !mcp/package-lock.json
