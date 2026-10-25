@@ -51,7 +51,31 @@ Post-mortems and derivations. These describe method and engineering; none is a p
 ## Machine interfaces
 
 - [Read API](https://canlicapital.com/developers): static JSON over the published record. Every response carries its sources with SHA-256 hashes, its claim class, and what it cannot be used to claim.
-- [Finance MCP servers](https://canlicapital.com/mcp-servers): compare the released hosted [validation](https://canlicapital.com/mcp-servers/validation), [SEC fundamentals](https://canlicapital.com/mcp-servers/fundamentals) and [research](https://canlicapital.com/mcp-servers/research) servers, with tool lists, examples, source commits and evidence limits.
+- [canli-mcp](https://canlicapital.com/mcp-servers): the flagship finance MCP server. Install: `npx -y canli-mcp` (stdio), or add the hosted URL https://canlicapital.com/mcp/canli as a connector. The page also covers the released hosted [validation](https://canlicapital.com/mcp-servers/validation), [SEC fundamentals](https://canlicapital.com/mcp-servers/fundamentals) and [research](https://canlicapital.com/mcp-servers/research) servers.
+- [Finance questions canli-mcp answers](https://canlicapital.com/mcp-servers/answers): one page per question, each with the call it makes and a recorded result:
+  - [How do I get stock prices in Claude?](https://canlicapital.com/mcp-servers/answers/stock-prices-in-claude)
+  - [How can an AI agent read a company's financial statements from SEC filings?](https://canlicapital.com/mcp-servers/answers/sec-financial-statements-for-ai)
+  - [How do I backtest a trading strategy in Claude?](https://canlicapital.com/mcp-servers/answers/backtest-a-strategy-in-claude)
+  - [Is there an MCP server for options chains?](https://canlicapital.com/mcp-servers/answers/options-chain-mcp-server)
+  - [How do I get an implied volatility surface into an AI chat?](https://canlicapital.com/mcp-servers/answers/implied-volatility-surface-ai)
+  - [How can an AI agent get the Treasury yield curve?](https://canlicapital.com/mcp-servers/answers/treasury-yield-curve-ai)
+  - [How do I compare several stocks' returns and correlation in Claude?](https://canlicapital.com/mcp-servers/answers/compare-stocks-in-claude)
+  - [How do I get today's market overview in an AI chat?](https://canlicapital.com/mcp-servers/answers/market-overview-in-claude)
+  - [How do I see insider trading (Form 4 filings) with an AI agent?](https://canlicapital.com/mcp-servers/answers/insider-trades-ai-agent)
+  - [How can an AI agent read a hedge fund's 13F holdings?](https://canlicapital.com/mcp-servers/answers/hedge-fund-13f-holdings-ai)
+  - [How do I fact-check the financial figures an AI wrote?](https://canlicapital.com/mcp-servers/answers/fact-check-financial-figures)
+  - [How do I tell whether a backtest is overfit?](https://canlicapital.com/mcp-servers/answers/is-my-backtest-overfit)
+  - [How can an AI agent get economic data like inflation and unemployment?](https://canlicapital.com/mcp-servers/answers/economic-data-for-ai-agents)
+  - [How can an AI agent look up Federal Reserve rate decisions?](https://canlicapital.com/mcp-servers/answers/fomc-decisions-ai)
+  - [How do I get an earnings calendar in an AI chat?](https://canlicapital.com/mcp-servers/answers/earnings-calendar-ai)
+  - [How can an AI agent check a stock's short interest?](https://canlicapital.com/mcp-servers/answers/short-interest-ai-agent)
+  - [How do I get point-in-time fundamentals without lookahead bias?](https://canlicapital.com/mcp-servers/answers/point-in-time-fundamentals)
+  - [Can an AI agent screen stocks by fundamentals?](https://canlicapital.com/mcp-servers/answers/stock-screener-ai-agent)
+  - [How can an AI agent see what an ETF or mutual fund holds?](https://canlicapital.com/mcp-servers/answers/etf-holdings-ai-agent)
+  - [How do I price an option with Black-Scholes in Claude?](https://canlicapital.com/mcp-servers/answers/black-scholes-in-claude)
+  - [How can an AI agent compute technical indicators like RSI and MACD?](https://canlicapital.com/mcp-servers/answers/technical-indicators-ai-agent)
+  - [How can an AI agent search SEC filings?](https://canlicapital.com/mcp-servers/answers/search-sec-filings-ai)
+  - [How can an AI agent tell what growth a stock price implies?](https://canlicapital.com/mcp-servers/answers/company-valuation-reverse-dcf)
 - [Local paper execution MCP workflow](https://canlicapital.com/mcp-servers/execution): private, Unreleased repository source for supplied sizing, pre-trade checks, signed journals and paper evidence. Explicit local writes; no broker connection or order placement.
 - [OpenAPI 3.1 document](https://canlicapital.com/api/v1/openapi): generated from the endpoints that exist, so it cannot document a route that does not.
 - [Discovery document](https://canlicapital.com/api/v1): every endpoint, with the limits of the API as a whole.
@@ -92,7 +116,7 @@ The research corpus is 114 documents across 13 topics, including work that faile
 
 ## Machine-readable
 
-- [Sitemap](https://canlicapital.com/sitemap.xml): all 348 indexable routes.
+- [Sitemap](https://canlicapital.com/sitemap.xml): all 372 indexable routes.
 - [Full text](https://canlicapital.com/llms-full.txt): every research document, engineering note and paper abstract concatenated into one file, so a model can read the whole corpus without sampling it.
 - [Paper state](https://canlicapital.com/paper-state.json): the live record as JSON, the source every page renders from.
 - [Research index](https://canlicapital.com/research-index.json): 114 documents with citation metadata.

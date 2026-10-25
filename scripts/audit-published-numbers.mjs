@@ -117,10 +117,13 @@ for (const extra of [
   "datasets/filing-facts/v0/leaderboard.json",
   "benchmarks/finance-mcp-servers.json",
   "demos/canli-mcp/index.json",
+  "demos/canli-mcp/tools.json",
 ]) {
   const file = resolve(DIST, extra);
   if (existsSync(file)) artifacts.push(file);
 }
+// The question pages' recorded results (/mcp-servers/answers), one artifact per page.
+if (existsSync(resolve(DIST, "demos/canli-mcp/answers"))) artifacts.push(...walk(resolve(DIST, "demos/canli-mcp/answers"), ".json"));
 
 // PER-ARTIFACT, NOT ONE POOL. Tracing every page against every number in every artifact was the
 // first design, and it has an expiry date: the corpus grows on every publish, so a figure that

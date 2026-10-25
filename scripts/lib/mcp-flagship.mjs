@@ -4,6 +4,7 @@
 // (public/benchmarks/finance-mcp-servers.json: the flagship's packs, tool counts, search and context measurements,
 // and every server's results) and the npm counts the build reads (public/stats/adoption.json). A package that is
 // not on npm yet is never offered as an install line without saying so.
+import { cursorConfigLink, vscodeInstallLink } from "./mcp-install-links.mjs";
 
 const esc = (v) => String(v).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
 const integer = new Intl.NumberFormat("en-US");
@@ -68,6 +69,14 @@ function contextTable(h2h) {
 <tbody>${h2h.context.rows.map((r) => `<tr${r.arm === h2h.headline.ours ? ' class="is-ours"' : ""}><th scope="row">${esc(r.label)}</th><td>${integer.format(r.tools)}</td><td>${integer.format(r.reaches)}</td><td>${integer.format(r.tokens)}</td><td>${secs(r.seconds)}</td></tr>`).join("")}</tbody></table></div>`;
 }
 
+// One-click installs of the local server: both open the editor, which asks before adding it.
+export function installLinks(f) {
+  const [command, ...args] = f.install.npx.split(" ");
+  return [["Add to Cursor", cursorConfigLink(f.package, { command, args })], ["Add to VS Code", vscodeInstallLink(f.package, { command, args })]];
+}
+// In a hero they sit in its actions row (cls "dev-actions"), the row the shared design keeps there.
+export const installButtons = (f, cls = "flagship-oneclick") => `<div class="${cls}">${installLinks(f).map(([label, href], i) => `<a class="dev-button${i ? "" : " dev-button--primary"}" href="${esc(href)}" rel="nofollow">${esc(label)}</a>`).join("")}</div>`;
+
 // What a reader can run today: canli-mcp's own lines once it is on npm, and until then each server it combines.
 function install(h2h, npm) {
   const f = h2h.flagship;
@@ -75,7 +84,7 @@ function install(h2h, npm) {
   if (f.install.hosted) lines.push(["claude.ai, ChatGPT or any client that takes a URL", f.install.hosted]);
   const cmds = lines.map(([where, cmd]) => `<figure class="flagship-cmd"><figcaption>${esc(where)}</figcaption><pre tabindex="0"><code>${esc(cmd)}</code></pre></figure>`).join("");
   const hosted = f.install.hosted_note ? `<p class="flagship-note">${esc(f.install.hosted_note)}</p>` : "";
-  if (f.npm_published) return `<div class="flagship-install">${cmds}</div>${hosted}`;
+  if (f.npm_published) return `${installButtons(f)}<div class="flagship-install">${cmds}</div>${hosted}`;
   const live = f.packs.filter((p) => npm.has(p.package));
   return `<div class="flagship-install">${cmds}</div><p class="flagship-note">canli-mcp is being published to npm now, so these lines will work once it is. Until then each server it combines installs on its own:</p>
 <ul class="flagship-packages">${live.map((p) => `<li><code>${esc(`claude mcp add ${p.package.replace(/-mcp$/, "")} -- npx -y ${p.package}`)}</code><span>${esc(p.label)}, ${esc(npm.get(p.package).latest_version)} on npm</span></li>`).join("")}</ul>`;
@@ -83,7 +92,7 @@ function install(h2h, npm) {
 
 // The views, played in the page: the real view in a sandboxed frame, answered from recordings
 // (js/mcp-demo.js; public/demos/canli-mcp, written by mcp-canli/bench/record-site-demos.mjs).
-function views(f, demos) {
+function views(f, demos, videos = {}, videoTag = null) {
   const by = new Map(demos.map((d) => [d.id, d]));
   const shown = (f.views ?? []).filter((v) => by.has(v.id));
   if (!shown.length) return "";
@@ -91,6 +100,7 @@ function views(f, demos) {
 <div class="mcp-demo" data-mcp-demo><div class="mcp-demo__tabs" role="tablist" aria-label="Views">${shown.map((v, i) => `<button type="button" role="tab" data-demo="${esc(v.id)}" data-prompt="${esc(v.prompt)}" aria-selected="${i === 0}">${esc(v.label)}</button>`).join("")}</div>
 <div class="mcp-demo__frame" role="tabpanel" aria-label="The view"><p class="mcp-demo__loading">The view loads here.</p><noscript><p class="mcp-demo__loading">The demo needs JavaScript; the views themselves run in your MCP host.</p></noscript></div>
 <p class="mcp-demo__facts" aria-live="polite"></p><p class="mcp-demo__said" aria-live="polite" hidden></p></div>
+${videoTag && shown.some((v) => videos[v.id]) ? `<h3>Short clips</h3><div class="flagship-clips">${shown.filter((v) => videos[v.id]).map((v) => videoTag(v, videos[v.id])).join("")}</div>` : ""}
 <ul class="flagship-views">${shown.map((v) => `<li><h3>${esc(v.label)}</h3><p>${esc(v.does)}</p><p class="flagship-views__ratio">${integer.format(by.get(v.id).model_chars)} characters for the model, ${integer.format(by.get(v.id).view_chars)} drawn · prompt <code>${esc(v.prompt)}</code></p></li>`).join("")}</ul>
 <p class="flagship-note">The view runs in the host's sandbox and sends nothing anywhere. A control that needs new data asks the host to run a tool, which the host may ask you to allow. This page plays recordings; the backtest's sliders rerun the quant pack's own code in your browser, and a control whose answer was not recorded says so.</p></section>`;
 }
@@ -116,13 +126,19 @@ function cloud(f, tiers) {
 <p class="flagship-note">These are the limits the hosted server enforces. Paid plans open when billing goes live, and their prices come with them; a key is sent as <code>Authorization: Bearer</code>. ${esc(f.install.hosted_note.replace(/^Hosted, no install: [^.]+\. /, ""))} The local server stays free and MIT-licensed, limited only by your machine and the sources.</p></section>`;
 }
 
-export function renderFlagship(h2h, { npmRows = [], hosted = [], demos = [], tiers = null } = {}) {
+// The question pages (/mcp-servers/answers): each a finance question and the call that answers it.
+function asked(answers) {
+  if (!answers.length) return "";
+  return `<section class="dev-section flagship-section" id="answers"><p class="eyebrow">Questions it answers</p><h2>Ask in plain words</h2><p class="flagship-intro">Each page shows the question, the call canli-mcp makes and what came back when we ran it, with no API key.</p><ul class="flagship-answers">${answers.map((a) => `<li><a href="${esc(a.route)}">${esc(a.question)}</a></li>`).join("")}</ul><p><a href="/mcp-servers/answers">Every question</a></p></section>`;
+}
+
+export function renderFlagship(h2h, { npmRows = [], hosted = [], demos = [], tiers = null, answers = [], videos = {}, videoTag = null } = {}) {
   const f = h2h.flagship;
   const npm = new Map(npmRows.map((r) => [r.name, r]));
   const hostedBy = new Map(hosted.map((s) => [s.package, s]));
   const caveat = `${h2h.status === "interim" ? "Interim result" : "Result"} of ${h2h.captured}: ${h2h.setup.model}, ${h2h.setup.runs_per_question} runs per question, no API keys for any server. We wrote the questions, in areas our servers were built for, and what the others do well beyond them, such as news and options, is not scored.`;
   return `<section class="flagship-figures" aria-label="canli-mcp in figures"><ul>${flagshipFigures(h2h, { demos }).map(([value, label]) => `<li><b>${esc(value)}</b><span>${esc(label)}</span></li>`).join("")}</ul></section>
-${views(f, demos)}
+${views(f, demos, videos, videoTag)}
 <section class="dev-section flagship-section" id="does"><p class="eyebrow">What it does</p><h2>Seven packs, one process</h2><p class="flagship-intro">Each pack is also its own server, on npm and in the open. canli-mcp loads them together, so an agent reaches all ${integer.format(f.tools)} tools through one connection${f.current?.prompts ? `, with ${integer.format(f.current.prompts)} ready-made prompts` : ""}.</p>
 <ul class="flagship-packs">${f.packs.map((p) => {
     const row = npm.get(p.package), host = hostedBy.get(p.package);
@@ -142,6 +158,7 @@ ${bars(h2h)}
 <h3>By kind of question</h3>${kindsTable(h2h)}
 <h3>What each costs before the question</h3>${contextTable(h2h)}
 <p class="flagship-note">${esc(caveat)} <a href="/benchmarks/finance-mcp-servers">Every run, the method and the caveats</a>.</p></section>
+${asked(answers)}
 <section class="dev-section flagship-section" id="install"><p class="eyebrow">Install</p><h2>Add it in one line</h2><p class="flagship-intro">Free and MIT-licensed. It needs Node.js ${esc(String(f.node_minimum))} or later and no account; the quant and validation tools run on your machine.</p>${install(h2h, npm)}</section>`;
 }
 

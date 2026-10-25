@@ -1,0 +1,173 @@
+{
+ "version": "0.11.1",
+ "recorded": "2026-10-25T07:27:06.270Z",
+ "call": {
+  "name": "price_history",
+  "arguments": {
+   "symbol": "NVDA",
+   "start": "2026-07-01",
+   "interval": "1Week"
+  }
+ },
+ "model_chars": 1903,
+ "ms": 668,
+ "result": {
+  "ref": "r1",
+  "symbol": "NVDA",
+  "interval": "1Week",
+  "adjusted": true,
+  "start": "2026-07-06",
+  "end": "2026-10-23",
+  "count": 17,
+  "change": {
+   "from": "2026-07-06",
+   "to": "2026-10-23",
+   "total_return": 0.00111897
+  },
+  "dates": [
+   "2026-07-06",
+   "2026-07-13",
+   "2026-07-20",
+   "2026-07-27",
+   "2026-08-03",
+   "2026-08-10",
+   "2026-08-17",
+   "2026-08-24",
+   "2026-08-31",
+   "2026-09-07",
+   "2026-09-14",
+   "2026-09-21",
+   "2026-09-28",
+   "2026-10-05",
+   "2026-10-12",
+   "2026-10-19",
+   "2026-10-23"
+  ],
+  "open": [
+   194.203,
+   208.307,
+   205.64,
+   207.967,
+   197.469,
+   223.15,
+   225.727,
+   215.289,
+   218.625,
+   233.11,
+   211.24,
+   222.94,
+   229.75,
+   236.09,
+   228.73,
+   218.1,
+   210.94
+  ],
+  "high": [
+   210.764,
+   213.571,
+   214.15,
+   208.517,
+   224.509,
+   227.236,
+   227.665,
+   230.212,
+   234.498,
+   233.71,
+   222.73,
+   229.98,
+   237.88,
+   243.37,
+   228.86,
+   222.19,
+   213.85
+  ],
+  "low": [
+   190.926,
+   197.749,
+   202.054,
+   189.798,
+   196.63,
+   215.958,
+   214.26,
+   207.018,
+   214.86,
+   217.2,
+   208.93,
+   221.09,
+   227.03,
+   229.11,
+   212.85,
+   210.18,
+   210.18
+  ],
+  "close": [
+   210.724,
+   202.583,
+   206.609,
+   200.526,
+   223.71,
+   224.908,
+   214.48,
+   217.307,
+   230.102,
+   218.29,
+   222.27,
+   225.07,
+   233.95,
+   229.28,
+   214.13,
+   210.96,
+   210.96
+  ],
+  "volume": [
+   661031100,
+   637855800,
+   560374800,
+   705117400,
+   641126300,
+   500451400,
+   484930500,
+   931422500,
+   661597600,
+   400749200,
+   601369200,
+   462517700,
+   599330600,
+   513988800,
+   521797700,
+   470774300,
+   79740563
+  ],
+  "currency": "USD",
+  "exchange": "NasdaqGS",
+  "asset_class": "equity",
+  "name": "NVIDIA Corporation",
+  "dividends": [
+   [
+    "2026-09-10",
+    0.25
+   ]
+  ],
+  "splits": [],
+  "source": "Yahoo Finance chart data (no key)",
+  "limits": [
+   "Yahoo Finance's public chart data: unofficial, for personal use under Yahoo's terms, and it can change or stop without notice. Set ALPACA_API_KEY_ID/ALPACA_API_SECRET_KEY or TIINGO_API_KEY to use your own account instead, or CANLI_KEYLESS_PRICES=0 to turn it off.",
+   "Not investment advice."
+  ],
+  "evidence": {
+   "documents": 1,
+   "columns": [
+    "url",
+    "sha256_16",
+    "retrieved_at"
+   ],
+   "rows": [
+    [
+     "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?period1=1782864000&period2=1792972799&interval=1wk&events=div%2Csplit&includeAdjustedClose=true",
+     "6273473559829bab",
+     "2026-10-25T07:27:06.266Z"
+    ]
+   ]
+  }
+ }
+}

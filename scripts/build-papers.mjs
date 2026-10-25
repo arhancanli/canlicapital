@@ -210,6 +210,8 @@ const STATIC_ROUTES = [
   { path: "/vision", priority: "0.9", changefreq: "monthly" },
   { path: "/stats", priority: "0.7", changefreq: "daily" },
   ...['validation', 'fundamentals', 'research', 'execution'].map(name => ({ path: `/mcp-servers/${name}`, priority: "0.9", changefreq: "weekly" })),
+  { path: "/mcp-servers/answers", priority: "0.8", changefreq: "weekly" },
+  ...JSON.parse(readFileSync(resolve(ROOT, "config/mcp-answers.json"), "utf8")).answers.map(a => ({ path: `/mcp-servers/answers/${a.slug}`, priority: "0.8", changefreq: "monthly" })),
   { path: "/costs", priority: "0.9", changefreq: "weekly" },
   { path: "/standards/paper-evidence", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/deflated-sharpe", priority: "0.9", changefreq: "weekly" },

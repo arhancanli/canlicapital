@@ -1,0 +1,97 @@
+{
+ "version": "0.11.1",
+ "recorded": "2026-10-25T07:27:19.368Z",
+ "call": {
+  "name": "verify_claims",
+  "arguments": {
+   "company": "AAPL",
+   "text": "Apple's revenue was $391 billion in fiscal 2024, and its net income was $120 billion."
+  }
+ },
+ "model_chars": 2167,
+ "ms": 2183,
+ "result": {
+  "ref": "r13",
+  "company": {
+   "cik": 320193,
+   "name": "Apple Inc.",
+   "ticker": "AAPL"
+  },
+  "summary": {
+   "claims": 2,
+   "confirmed": 1,
+   "contradicted": 1,
+   "not_reported": 0,
+   "not_checkable": 0
+  },
+  "columns": [
+   "claim",
+   "measure",
+   "period",
+   "claimed",
+   "unit",
+   "verdict",
+   "filed",
+   "difference",
+   "note",
+   "source"
+  ],
+  "rows": [
+   [
+    "Apple's revenue was $391 billion in fiscal 2024, and its net income was $120 billion.",
+    "revenue",
+    "fiscal 2024",
+    391,
+    "USD billion",
+    "confirmed",
+    391.035,
+    null,
+    null,
+    "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/0000320193-25-000079-index.htm"
+   ],
+   [
+    "Apple's revenue was $391 billion in fiscal 2024, and its net income was $120 billion.",
+    "net_income",
+    "fiscal 2024",
+    120,
+    "USD billion",
+    "contradicted",
+    93.736,
+    26.264,
+    null,
+    "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/0000320193-25-000079-index.htm"
+   ]
+  ],
+  "note": "Confirmed means the filed figure rounds to the claim at the claim's own precision (391 billion: within 0.5 billion). Fiscal years and quarters are as the company labels them in its annual and quarterly reports; a year written plainly (\"in 2025\") is that fiscal year. Filed figures are in the currency the claim names, or else the one the company reports in (each row's note says when that is not US dollars).",
+  "limits": [
+   "Checked against the US GAAP and IFRS figures companies tag in their SEC filings (10-K, 10-Q, 20-F, 40-F, and 6-K reports that carry tags); non-GAAP and adjusted figures, guidance and segment figures are not checked here.",
+   "A figure converted to another currency is not judged: the company's own figure is shown beside it.",
+   "A claim's measure and period are read from its words; read each row's measure and period before relying on a verdict."
+  ],
+  "evidence": {
+   "documents": 3,
+   "columns": [
+    "url",
+    "sha256_16",
+    "retrieved_at"
+   ],
+   "rows": [
+    [
+     "https://www.sec.gov/files/company_tickers.json",
+     "6f9cc4500a98fb4c",
+     "2026-10-25T07:27:06.908Z"
+    ],
+    [
+     "https://data.sec.gov/api/xbrl/companyconcept/CIK0000320193/us-gaap/RevenueFromContractWithCustomerExcludingAssessedTax.json",
+     "4495f7a16b4ade43",
+     "2026-10-25T07:27:17.704Z"
+    ],
+    [
+     "https://data.sec.gov/api/xbrl/companyconcept/CIK0000320193/us-gaap/NetIncomeLoss.json",
+     "9b6ac23b024662c9",
+     "2026-10-25T07:27:18.162Z"
+    ]
+   ]
+  }
+ }
+}

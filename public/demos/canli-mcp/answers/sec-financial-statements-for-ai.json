@@ -1,0 +1,306 @@
+{
+ "version": "0.11.1",
+ "recorded": "2026-10-25T07:27:09.005Z",
+ "call": {
+  "name": "financial_statements",
+  "arguments": {
+   "company": "AAPL",
+   "statement": "income",
+   "period": "annual",
+   "filings": 2
+  }
+ },
+ "model_chars": 4636,
+ "ms": 2733,
+ "result": {
+  "ref": "r2",
+  "company": {
+   "cik": 320193,
+   "name": "Apple Inc.",
+   "ticker": "AAPL"
+  },
+  "period": "annual",
+  "filings": {
+   "columns": [
+    "accession",
+    "form",
+    "filed",
+    "period",
+    "index"
+   ],
+   "rows": [
+    [
+     "0000320193-25-000079",
+     "10-K",
+     "2025-10-31",
+     "2025-09-27",
+     "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/0000320193-25-000079-index.htm"
+    ],
+    [
+     "0000320193-24-000123",
+     "10-K",
+     "2024-11-01",
+     "2024-09-28",
+     "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/0000320193-24-000123-index.htm"
+    ]
+   ]
+  },
+  "income": {
+   "title": "CONSOLIDATED STATEMENTS OF OPERATIONS",
+   "units": "USD ($) shares in Thousands, $ in Millions",
+   "money_scale": 1000000,
+   "shares_scale": 1000,
+   "columns": [
+    "line",
+    "concept",
+    "12 months to 2025-09-27",
+    "12 months to 2024-09-28",
+    "12 months to 2023-09-30",
+    "12 months to 2022-09-24"
+   ],
+   "rows": [
+    [
+     "Net sales",
+     "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     416161,
+     391035,
+     383285,
+     394328
+    ],
+    [
+     "Cost of sales",
+     "us-gaap:CostOfGoodsAndServicesSold",
+     220960,
+     210352,
+     214137,
+     223546
+    ],
+    [
+     "Gross margin",
+     "us-gaap:GrossProfit",
+     195201,
+     180683,
+     169148,
+     170782
+    ],
+    [
+     "Operating expenses:",
+     "us-gaap:OperatingExpensesAbstract",
+     null,
+     null,
+     null,
+     null
+    ],
+    [
+     "Research and development",
+     "us-gaap:ResearchAndDevelopmentExpense",
+     34550,
+     31370,
+     29915,
+     26251
+    ],
+    [
+     "Selling, general and administrative",
+     "us-gaap:SellingGeneralAndAdministrativeExpense",
+     27601,
+     26097,
+     24932,
+     25094
+    ],
+    [
+     "Total operating expenses",
+     "us-gaap:OperatingExpenses",
+     62151,
+     57467,
+     54847,
+     51345
+    ],
+    [
+     "Operating income",
+     "us-gaap:OperatingIncomeLoss",
+     133050,
+     123216,
+     114301,
+     119437
+    ],
+    [
+     "Other income/(expense), net",
+     "us-gaap:NonoperatingIncomeExpense",
+     -321,
+     269,
+     -565,
+     -334
+    ],
+    [
+     "Income before provision for income taxes",
+     "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     132729,
+     123485,
+     113736,
+     119103
+    ],
+    [
+     "Provision for income taxes",
+     "us-gaap:IncomeTaxExpenseBenefit",
+     20719,
+     29749,
+     16741,
+     19300
+    ],
+    [
+     "Net income",
+     "us-gaap:NetIncomeLoss",
+     112010,
+     93736,
+     96995,
+     99803
+    ],
+    [
+     "Earnings per share:",
+     "us-gaap:EarningsPerShareAbstract",
+     null,
+     null,
+     null,
+     null
+    ],
+    [
+     "Basic (in dollars per share)",
+     "us-gaap:EarningsPerShareBasic",
+     7.49,
+     6.11,
+     6.16,
+     6.15
+    ],
+    [
+     "Diluted (in dollars per share)",
+     "us-gaap:EarningsPerShareDiluted",
+     7.46,
+     6.08,
+     6.13,
+     6.11
+    ],
+    [
+     "Shares used in computing earnings per share:",
+     "us-gaap:WeightedAverageNumberOfSharesOutstandingAbstract",
+     null,
+     null,
+     null,
+     null
+    ],
+    [
+     "Basic (in shares)",
+     "us-gaap:WeightedAverageNumberOfSharesOutstandingBasic",
+     14948500,
+     15343783,
+     15744231,
+     16215963
+    ],
+    [
+     "Diluted (in shares)",
+     "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     15004697,
+     15408095,
+     15812547,
+     16325819
+    ],
+    [
+     "Products",
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    [
+     "Net sales",
+     "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     307003,
+     294866,
+     298085,
+     316199
+    ],
+    [
+     "Cost of sales",
+     "us-gaap:CostOfGoodsAndServicesSold",
+     194116,
+     185233,
+     189282,
+     201471
+    ],
+    [
+     "Services",
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    [
+     "Net sales",
+     "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     109158,
+     96169,
+     85200,
+     78129
+    ],
+    [
+     "Cost of sales",
+     "us-gaap:CostOfGoodsAndServicesSold",
+     26844,
+     25119,
+     24855,
+     22075
+    ]
+   ],
+   "sources": [
+    "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/R3.htm",
+    "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/R3.htm"
+   ]
+  },
+  "units_note": "Values are as each statement shows them: units gives the scale of money and shares (\"$ in Millions\"), and money_scale and shares_scale are the multipliers to full amounts (a money value of 705 with money_scale 1000000 is 705000000); per-share amounts, percentages and rows labeled with their own unit are not scaled. Signs are as the statement presents them: a line shown negated (a cash outflow, an increase in receivables in the cash flow statement) has the opposite sign in its XBRL fact, which the fundamentals history tool returns.",
+  "limits": [
+   "From the XBRL statements the company filed, as SEC renders them; Canli Capital does not edit or verify them. Labels are the company's own.",
+   "Not investment advice."
+  ],
+  "evidence": {
+   "documents": 6,
+   "columns": [
+    "url",
+    "sha256_16",
+    "retrieved_at"
+   ],
+   "rows": [
+    [
+     "https://www.sec.gov/files/company_tickers.json",
+     "6f9cc4500a98fb4c",
+     "2026-10-25T07:27:06.908Z"
+    ],
+    [
+     "https://data.sec.gov/submissions/CIK0000320193.json",
+     "5891cf875f690e38",
+     "2026-10-25T07:27:07.849Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/FilingSummary.xml",
+     "f5e632bd6de8965a",
+     "2026-10-25T07:27:07.892Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/FilingSummary.xml",
+     "3cb2e2ec5cad2f16",
+     "2026-10-25T07:27:08.018Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/R3.htm",
+     "ac461987ec60e70b",
+     "2026-10-25T07:27:08.150Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/320193/000032019324000123/R3.htm",
+     "45faa1b8d03800a5",
+     "2026-10-25T07:27:09.002Z"
+    ]
+   ]
+  }
+ }
+}

@@ -1,0 +1,139 @@
+{
+ "version": "0.11.1",
+ "recorded": "2026-10-25T07:27:24.083Z",
+ "call": {
+  "name": "earnings_calendar",
+  "arguments": {
+   "company": "MSFT",
+   "quarters": 4
+  }
+ },
+ "model_chars": 2744,
+ "ms": 1222,
+ "result": {
+  "ref": "r16",
+  "company": {
+   "cik": 789019,
+   "name": "MICROSOFT CORP",
+   "ticker": "MSFT",
+   "fiscal_year_end": "0630"
+  },
+  "as_of": "2026-10-25",
+  "next": {
+   "expected": "2026-10-28",
+   "weekday": "Wednesday",
+   "window_days": 3,
+   "earliest": "2026-10-25",
+   "latest": "2026-10-31",
+   "basis": "52 weeks after 2025-10-29, the release that followed the same quarter a year earlier",
+   "based_on": "2025-10-29",
+   "status": "due now",
+   "year_on_year_moves_days": [
+    8,
+    1,
+    6,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "last_year_timing": "after the close"
+  },
+  "releases": {
+   "columns": [
+    "date",
+    "weekday",
+    "accepted_et",
+    "timing",
+    "quarter_ended",
+    "accession",
+    "url"
+   ],
+   "rows": [
+    [
+     "2026-07-29",
+     "Wednesday",
+     "16:04",
+     "after the close",
+     "2026-06-30",
+     "0001193125-26-323632",
+     "https://www.sec.gov/Archives/edgar/data/789019/000119312526323632/msft-20260729.htm"
+    ],
+    [
+     "2026-04-29",
+     "Wednesday",
+     "16:03",
+     "after the close",
+     "2026-03-31",
+     "0001193125-26-191457",
+     "https://www.sec.gov/Archives/edgar/data/789019/000119312526191457/msft-20260429.htm"
+    ],
+    [
+     "2026-01-28",
+     "Wednesday",
+     "16:04",
+     "after the close",
+     "2025-12-31",
+     "0001193125-26-027198",
+     "https://www.sec.gov/Archives/edgar/data/789019/000119312526027198/msft-20260128.htm"
+    ],
+    [
+     "2025-10-29",
+     "Wednesday",
+     "16:07",
+     "after the close",
+     "2025-09-30",
+     "0001193125-25-256310",
+     "https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-20251028.htm"
+    ]
+   ]
+  },
+  "note": "Dates are when the company filed its results 8-K (Item 2.02); accepted_et is when EDGAR accepted it, usually minutes after the press release. The next date is an estimate from the company's own history, not an announcement: companies move dates, and a release can come before its 8-K.",
+  "source": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=789019&type=8-K&dateb=&owner=include&count=40",
+  "limits": [
+   "From the company's own 8-K filings on EDGAR, as filed. Foreign private issuers furnish results on Form 6-K, which has no item numbers, and are not covered.",
+   "Not investment advice."
+  ],
+  "evidence": {
+   "documents": 6,
+   "columns": [
+    "url",
+    "sha256_16",
+    "retrieved_at"
+   ],
+   "rows": [
+    [
+     "https://www.sec.gov/files/company_tickers.json",
+     "6f9cc4500a98fb4c",
+     "2026-10-25T07:27:06.908Z"
+    ],
+    [
+     "https://data.sec.gov/submissions/CIK0000789019.json",
+     "22800a3276f133e7",
+     "2026-10-25T07:27:23.193Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/0001193125-25-256310-index.htm",
+     "0a297c226eba2ff9",
+     "2026-10-25T07:27:23.380Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/789019/000119312526027198/0001193125-26-027198-index.htm",
+     "c4f5cf0628da1e27",
+     "2026-10-25T07:27:23.450Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/789019/000119312526191457/0001193125-26-191457-index.htm",
+     "bf368d778b884ec7",
+     "2026-10-25T07:27:23.659Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/789019/000119312526323632/0001193125-26-323632-index.htm",
+     "2588079e72145d58",
+     "2026-10-25T07:27:24.082Z"
+    ]
+   ]
+  }
+ }
+}
