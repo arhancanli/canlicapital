@@ -8,15 +8,51 @@ import { renderReferenceDocument, provenance, historicalFilerNotice } from './co
 import { historicalCutoff } from './company-coverage.mjs';
 import { filingPath, filingsIndexPath } from './company-filings.mjs';
 import { escapeXml as esc } from './sitemaps.mjs';
-import { companyLabel, titleLabel } from './company-label.mjs';
+import { companyLabel, primaryTicker, titleLabel } from './company-label.mjs';
+import { compactAmount } from './company-history-summary.mjs';
+import { DESCRIPTION_MAX } from './descriptions.mjs';
 
 const number = value => new Intl.NumberFormat('en-US', { maximumFractionDigits: 12 }).format(value);
-const label = company => companyLabel(company.name);
+const label = company => companyLabel(company.name, primaryTicker(company.cik));
 const period = fact => fact.start ? `${esc(fact.start)} to ${esc(fact.end)}` : `At ${esc(fact.end)}`;
 const formName = form => ({ '10-K': 'annual report', '10-K/A': 'annual report amendment', '10-Q': 'quarterly report', '10-Q/A': 'quarterly report amendment', '20-F': 'annual report (foreign private issuer)', '20-F/A': 'annual report amendment (foreign private issuer)', '40-F': 'annual report (Canadian issuer)', '40-F/A': 'annual report amendment (Canadian issuer)' })[form] ?? form;
 // "2019 " for an annual period, "Q2 2019 " for a quarter, nothing when the filing tags no fiscal year.
 const fiscalTitle = filing => (filing.fiscal_year ? `${filing.fiscal_period && filing.fiscal_period !== 'FY' ? `${filing.fiscal_period} ` : ''}${filing.fiscal_year} ` : '');
 const fiscal = filing => filing.fiscal_year ? `fiscal ${filing.fiscal_period ?? ''} ${filing.fiscal_year}`.replace(/\s+/g, ' ').trim() : 'fiscal period not tagged';
+
+// The figures a reader searches a filing for, in this order, each from the filing's own latest
+// period: a quarter (80-100 days) in a 10-Q, a year (350-380 days) in an annual report, the balance
+// at the period end for a balance. Only what the filing tagged; nothing is computed or carried over.
+const KEY_FIGURES = Object.freeze([
+  { tags: ['Revenues', 'RevenueFromContractWithCustomerExcludingAssessedTax', 'SalesRevenueNet', 'RevenueFromContractWithCustomerIncludingAssessedTax'], word: 'revenue' },
+  { tags: ['NetIncomeLoss', 'ProfitLoss'], word: 'net income', negative: 'net loss' },
+  { tags: ['EarningsPerShareDiluted', 'EarningsPerShareBasic'], word: 'diluted EPS' },
+  { tags: ['Assets'], word: 'total assets' },
+  { tags: ['CashAndCashEquivalentsAtCarryingValue'], word: 'cash' },
+]);
+const annual = form => !/^10-Q/.test(form);
+function ownPeriod(concept, form) {
+  const facts = concept.facts.filter(f => f.unit === 'USD' || f.unit === 'USD/shares');
+  if (!facts.length) return null;
+  const durations = facts.filter(f => f.start);
+  const pool = durations.length ? durations.filter(f => (annual(form) ? f.days >= 350 && f.days <= 380 : f.days >= 80 && f.days <= 100)) : facts;
+  return [...pool].sort((a, b) => b.end.localeCompare(a.end))[0] ?? null;
+}
+export function keyFigures(filing) {
+  const out = [];
+  for (const { tags, word, negative } of KEY_FIGURES) {
+    for (const tag of tags) {
+      const concept = filing.concepts.find(c => c.tag === tag);
+      const fact = concept && ownPeriod(concept, filing.form);
+      if (!fact) continue;
+      const name = fact.val < 0 && negative ? negative : word;
+      // "diluted EPS $2.01": the measure already says per share.
+      out.push({ tag, word: name, fact, text: compactAmount(negative && fact.val < 0 ? -fact.val : fact.val, fact.unit).replace(/ per share$/, '') });
+      break;
+    }
+  }
+  return out;
+}
 
 function validate(document) {
   if (document.schema !== 'canli.company-filings.v1' || !/^\d{10}$/.test(document.cik) || !/^[a-f0-9]{64}$/.test(document.source_sha256) || !Array.isArray(document.filings)) throw new Error('Invalid company filings document');
@@ -64,9 +100,30 @@ export function renderFilingPage(document, accession, { linkConcept = () => true
     robots,
     path: filingPath(document.cik, accession), lastmod: companyLastmod(document.fetched_at.slice(0, 10)), dataset, sources: [`company-data/${document.cik}.json`],
     title: `${titleLabel(dataset)} ${fiscalTitle(filing)}${filing.form} filed ${filing.filed}`, heading: `${dataset.name}: ${filing.form} filed ${filing.filed}`,
-    description: `What ${dataset.name} reported in its ${formName(filing.form)} filed ${filing.filed} (${fiscal(filing)}): ${filing.concept_count} published measures, ${filing.fact_count} facts as tagged in accession ${filing.accession}.`,
-    body: `${amendment}<section><h2>This filing</h2><dl><dt>Form</dt><dd>${esc(filing.form)} (${esc(formName(filing.form))})</dd><dt>Filed</dt><dd>${esc(filing.filed)}</dd><dt>Fiscal period</dt><dd>${esc(fiscal(filing))}</dd><dt>Accession</dt><dd><a href="${esc(filing.sec_index_url)}" rel="noreferrer">${esc(filing.accession)}</a> on SEC EDGAR</dd></dl><p>Values are as tagged in this filing. A later filing can restate them; a measure with a published history links to it, and the history shows the latest-filed value per period. <a href="${filingsIndexPath(document.cik)}">All ${esc(dataset.name)} filings</a>.</p></section><section><h2>Reported measures</h2>${sections}</section>${adjacent}${provenance(dataset)}`,
+    description: filingDescription(dataset, filing),
+    body: `${amendment}${keyFiguresSection(filing)}<section><h2>This filing</h2><dl><dt>Form</dt><dd>${esc(filing.form)} (${esc(formName(filing.form))})</dd><dt>Filed</dt><dd>${esc(filing.filed)}</dd><dt>Fiscal period</dt><dd>${esc(fiscal(filing))}</dd><dt>Accession</dt><dd><a href="${esc(filing.sec_index_url)}" rel="noreferrer">${esc(filing.accession)}</a> on SEC EDGAR</dd></dl><p>Values are as tagged in this filing. A later filing can restate them; a measure with a published history links to it, and the history shows the latest-filed value per period. <a href="${filingsIndexPath(document.cik)}">All ${esc(dataset.name)} filings</a>.</p></section><section><h2>Reported measures</h2>${sections}</section>${adjacent}${provenance(dataset)}`,
   });
+}
+
+// The snippet leads with what the filing reported, the way people search a 10-Q or 10-K:
+// "<Company> Q1 2024 10-Q: revenue $1.2 million, net loss $0.8 million, total assets ...".
+// Figures are added while the sentence fits; without any, it says what the page holds.
+export function filingDescription(dataset, filing) {
+  const name = label(dataset);
+  const lead = `${name} ${fiscalTitle(filing)}${filing.form} (filed ${filing.filed})`;
+  const figures = keyFigures(filing);
+  const tail = ` Every figure as tagged, ${filing.concept_count} measures in all.`;
+  if (!figures.length) return `What ${name} reported in its ${formName(filing.form)} filed ${filing.filed} (${fiscal(filing)}): ${filing.concept_count} financial measures, each with its period, as tagged in the filing.`;
+  let text = `${lead}: ${figures[0].word} ${figures[0].text}`;
+  for (const f of figures.slice(1)) { const next = `${text}, ${f.word} ${f.text}`; if (`${next}.${tail}`.length <= DESCRIPTION_MAX || `${next}.`.length <= DESCRIPTION_MAX - 20) text = next; }
+  return `${text}.${`${text}.${tail}`.length <= DESCRIPTION_MAX ? tail : ''}`;
+}
+
+function keyFiguresSection(filing) {
+  const figures = keyFigures(filing);
+  if (!figures.length) return '';
+  const when = f => (f.fact.start ? `${esc(f.fact.start)} to ${esc(f.fact.end)}` : `at ${esc(f.fact.end)}`);
+  return `<section aria-labelledby="key-figures"><h2 id="key-figures">Key figures</h2><dl class="company-reference__key">${figures.map(f => `<div><dt>${esc(f.word.charAt(0).toUpperCase() + f.word.slice(1))}</dt><dd><strong>${esc(f.text)}</strong> <span>${when(f)}</span></dd></div>`).join('')}</dl><p class="company-reference__note">As tagged in this filing; the full values and every other measure are below.</p></section>`;
 }
 
 export function renderFilingPages(document, { target = 'all', linkConcept = () => true, robots = 'index, follow' } = {}) {

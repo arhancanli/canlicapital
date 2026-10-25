@@ -93,3 +93,9 @@ html[data-page="companies"] .company-reference__notice h2 { margin-bottom: 6px; 
   .company-reference__related { columns: 1; }
   .company-reference__directory li { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
 }
+html[data-page="companies"] .company-reference__key { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 14px 0 10px; }
+html[data-page="companies"] .company-reference__key > div { padding: 14px 16px; border: 1px solid var(--line); background: var(--void-raised); }
+html[data-page="companies"] .company-reference__key dt { color: var(--muted); font-size: .82rem; }
+html[data-page="companies"] .company-reference__key dd { margin: 4px 0 0; }
+html[data-page="companies"] .company-reference__key dd strong { display: block; font: 500 1.25rem/1.25 var(--display); color: var(--ink); }
+html[data-page="companies"] .company-reference__key dd span { font-size: .8rem; color: var(--muted); }
