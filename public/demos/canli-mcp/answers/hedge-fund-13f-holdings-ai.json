@@ -1,0 +1,354 @@
+{
+ "version": "0.11.1",
+ "recorded": "2026-10-25T07:27:17.185Z",
+ "call": {
+  "name": "fund_holdings",
+  "arguments": {
+   "manager": "Berkshire Hathaway",
+   "top": 10,
+   "compare": true
+  }
+ },
+ "model_chars": 4304,
+ "ms": 1856,
+ "result": {
+  "ref": "r12",
+  "counts_note": "entries_total counts the filing's information-table rows (as on its cover page); positions_total merges rows of the same security; rows lists the largest positions only.",
+  "manager": {
+   "cik": 1067983,
+   "name": "BERKSHIRE HATHAWAY INC",
+   "ticker": "BRK-B",
+   "matched_by": "name"
+  },
+  "period": "2026-06-30",
+  "filed": "2026-08-14",
+  "accession": "0001193125-26-352200",
+  "total_value": 299253556246,
+  "entries_total": 89,
+  "positions_total": 29,
+  "rows_shown": 10,
+  "matches_cover_page": true,
+  "cover_page": {
+   "entries": 89,
+   "value": 299253556246
+  },
+  "columns": [
+   "issuer",
+   "class",
+   "cusip",
+   "put_call",
+   "value",
+   "shares",
+   "weight"
+  ],
+  "rows": [
+   [
+    "APPLE INC",
+    "COM",
+    "037833100",
+    null,
+    65950296923,
+    227917808,
+    0.2204
+   ],
+   [
+    "AMERICAN EXPRESS CO",
+    "COM",
+    "025816109",
+    null,
+    51282319275,
+    151610700,
+    0.1714
+   ],
+   [
+    "COCA COLA CO",
+    "COM",
+    "191216100",
+    null,
+    32508000000,
+    400000000,
+    0.1086
+   ],
+   [
+    "ALPHABET INC",
+    "CAP STK CL A",
+    "02079K305",
+    null,
+    28157599351,
+    78791167,
+    0.0941
+   ],
+   [
+    "BANK OF AMER CORP",
+    "COM",
+    "060505104",
+    null,
+    27543790975,
+    483394015,
+    0.092
+   ],
+   [
+    "CHEVRON CORPORATION",
+    "COM",
+    "166764100",
+    null,
+    13986141890,
+    84375856,
+    0.0467
+   ],
+   [
+    "OCCIDENTAL PETE CORP",
+    "COM",
+    "674599105",
+    null,
+    12868205304,
+    264941431,
+    0.043
+   ],
+   [
+    "CHUBB LIMITED",
+    "COM",
+    "H1467J104",
+    null,
+    11670066615,
+    34249183,
+    0.039
+   ],
+   [
+    "MOODYS CORP",
+    "COM",
+    "615369105",
+    null,
+    11173435852,
+    24669778,
+    0.0373
+   ],
+   [
+    "ALPHABET INC",
+    "CAP STK CL C",
+    "02079K107",
+    null,
+    9606489032,
+    27188433,
+    0.0321
+   ]
+  ],
+  "changes_since": {
+   "period": "2026-03-31",
+   "accession": "0001193125-26-226661",
+   "columns": [
+    "change",
+    "issuer",
+    "cusip",
+    "put_call",
+    "shares_before",
+    "shares_now",
+    "value_now"
+   ],
+   "rows": [
+    [
+     "new",
+     "D R HORTON INC",
+     "23331A109",
+     null,
+     0,
+     3564,
+     580504
+    ],
+    [
+     "exited",
+     "CONSTELLATION BRANDS INC",
+     "21036P108",
+     null,
+     632890,
+     0,
+     0
+    ],
+    [
+     "added",
+     "ALPHABET INC",
+     "02079K305",
+     null,
+     54249798,
+     78791167,
+     28157599351
+    ],
+    [
+     "added",
+     "ALPHABET INC",
+     "02079K107",
+     null,
+     3585215,
+     27188433,
+     9606489032
+    ],
+    [
+     "added",
+     "DELTA AIR LINES INC",
+     "247361702",
+     null,
+     39809456,
+     57320000,
+     5368591200
+    ],
+    [
+     "added",
+     "LENNAR CORP",
+     "526057104",
+     null,
+     10099642,
+     13111741,
+     1186481443
+    ],
+    [
+     "added",
+     "NEW YORK TIMES CO MTN BE",
+     "650111107",
+     null,
+     15146535,
+     15700000,
+     1098686000
+    ],
+    [
+     "added",
+     "MACYS INC",
+     "55616P104",
+     null,
+     3038355,
+     7347426,
+     173031882
+    ],
+    [
+     "added",
+     "LENNAR CORP",
+     "526057302",
+     null,
+     237703,
+     298117,
+     26445959
+    ],
+    [
+     "reduced",
+     "BANK OF AMER CORP",
+     "060505104",
+     null,
+     513624165,
+     483394015,
+     27543790975
+    ],
+    [
+     "reduced",
+     "DAVITA INC",
+     "23918K108",
+     null,
+     30100585,
+     28880209,
+     6425268898
+    ],
+    [
+     "reduced",
+     "KROGER CO",
+     "501044101",
+     null,
+     50000000,
+     39000000,
+     2165670000
+    ],
+    [
+     "reduced",
+     "ALLY FINL INC",
+     "02005N100",
+     null,
+     29000000,
+     27000000,
+     1240650000
+    ],
+    [
+     "reduced",
+     "CAPITAL ONE FINL CORP",
+     "14040H105",
+     null,
+     7150000,
+     3000000,
+     601860000
+    ],
+    [
+     "reduced",
+     "NUCOR CORP",
+     "670346105",
+     null,
+     3907075,
+     1857752,
+     413814258
+    ]
+   ],
+   "counts": {
+    "new": 1,
+    "exited": 1,
+    "added": 7,
+    "reduced": 6
+   }
+  },
+  "source": "https://www.sec.gov/Archives/edgar/data/1067983/000119312526352200/56757.xml",
+  "limits": [
+   "From SEC EDGAR as filed; Canli Capital does not edit or verify the filers' statements.",
+   "Not investment advice.",
+   "A 13F lists long positions in US-listed equities and options at quarter end, filed up to 45 days later; it omits shorts, cash, most non-US holdings and positions granted confidential treatment. Values are in dollars as filed; amendments (13F-HR/A) are not merged."
+  ],
+  "evidence": {
+   "documents": 9,
+   "columns": [
+    "url",
+    "sha256_16",
+    "retrieved_at"
+   ],
+   "rows": [
+    [
+     "https://www.sec.gov/files/company_tickers.json",
+     "6f9cc4500a98fb4c",
+     "2026-10-25T07:27:06.908Z"
+    ],
+    [
+     "https://www.sec.gov/files/company_tickers_mf.json",
+     "9e376ab376494057",
+     "2026-10-25T07:27:16.065Z"
+    ],
+    [
+     "https://data.sec.gov/submissions/CIK0001067983.json",
+     "ebd391c56996d0d2",
+     "2026-10-25T07:27:16.520Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/1067983/000119312526352200/0001193125-26-352200-index.htm",
+     "ea47098d0ef20285",
+     "2026-10-25T07:27:16.581Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/1067983/000119312526352200/56757.xml",
+     "6a2798aa0fa9731c",
+     "2026-10-25T07:27:16.736Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/1067983/000119312526352200/primary_doc.xml",
+     "7e7b3a8f87a290f5",
+     "2026-10-25T07:27:16.809Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/1067983/000119312526226661/0001193125-26-226661-index.htm",
+     "a23ea96942ca4e4c",
+     "2026-10-25T07:27:16.946Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/1067983/000119312526226661/53405.xml",
+     "47b2bdae43512763",
+     "2026-10-25T07:27:17.076Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/1067983/000119312526226661/primary_doc.xml",
+     "a3898f9f1e9defe2",
+     "2026-10-25T07:27:17.184Z"
+    ]
+   ]
+  }
+ }
+}

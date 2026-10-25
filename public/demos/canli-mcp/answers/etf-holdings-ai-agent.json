@@ -1,0 +1,587 @@
+{
+ "version": "0.11.1",
+ "recorded": "2026-10-25T07:27:46.210Z",
+ "call": {
+  "name": "fund_portfolio",
+  "arguments": {
+   "fund": "IVV",
+   "top": 10
+  }
+ },
+ "model_chars": 5743,
+ "ms": 1772,
+ "result": {
+  "ref": "r2",
+  "fund": {
+   "name": "iShares Core S&P 500 ETF",
+   "ticker": "IVV",
+   "series_id": "S000004310",
+   "class_id": "C000012040",
+   "registrant": "iShares Trust",
+   "registrant_cik": 1100663
+  },
+  "period": "2026-06-30",
+  "filed": "2026-08-25",
+  "accession": "0002071691-26-019760",
+  "net_assets": 888128937468,
+  "total_assets": 889637196077,
+  "positions": 508,
+  "weights_add_to": 1.0012,
+  "columns": [
+   "name",
+   "title",
+   "cusip",
+   "isin",
+   "value_usd",
+   "weight",
+   "asset_category",
+   "issuer_category",
+   "country",
+   "payoff"
+  ],
+  "rows": [
+   [
+    "NVIDIA Corp.",
+    "NVIDIA Corp.",
+    "67066G104",
+    "US67066G1040",
+    66662358368,
+    0.075059,
+    "EC",
+    "CORP",
+    "US",
+    "Long"
+   ],
+   [
+    "Apple, Inc.",
+    "Apple, Inc.",
+    "037833100",
+    "US0378331005",
+    58459130827,
+    0.065823,
+    "EC",
+    "CORP",
+    "US",
+    "Long"
+   ],
+   [
+    "Microsoft Corp.",
+    "Microsoft Corp.",
+    "594918104",
+    "US5949181045",
+    38115446952,
+    0.042917,
+    "EC",
+    "CORP",
+    "US",
+    "Long"
+   ],
+   [
+    "Amazon.com, Inc.",
+    "Amazon.com, Inc.",
+    "023135106",
+    "US0231351067",
+    32092599932,
+    0.036135,
+    "EC",
+    "CORP",
+    "US",
+    "Long"
+   ],
+   [
+    "Alphabet, Inc.",
+    "Alphabet, Inc., Class A",
+    "02079K305",
+    "US02079K3059",
+    28824129780,
+    0.032455,
+    "EC",
+    "CORP",
+    "US",
+    "Long"
+   ],
+   [
+    "Broadcom, Inc.",
+    "Broadcom, Inc.",
+    "11135F101",
+    "US11135F1012",
+    24601641523,
+    0.027701,
+    "EC",
+    "CORP",
+    "US",
+    "Long"
+   ],
+   [
+    "Alphabet, Inc.",
+    "Alphabet, Inc., Class C",
+    "02079K107",
+    "US02079K1079",
+    22970989937,
+    0.025864,
+    "EC",
+    "CORP",
+    "US",
+    "Long"
+   ],
+   [
+    "Micron Technology, Inc.",
+    "Micron Technology, Inc.",
+    "595112103",
+    "US5951121038",
+    17907142555,
+    0.020163,
+    "EC",
+    "CORP",
+    "US",
+    "Long"
+   ],
+   [
+    "Meta Platforms, Inc.",
+    "Meta Platforms, Inc., Class A",
+    "30303M102",
+    "US30303M1027",
+    17015876149,
+    0.019159,
+    "EC",
+    "CORP",
+    "US",
+    "Long"
+   ],
+   [
+    "Tesla, Inc.",
+    "Tesla, Inc.",
+    "88160R101",
+    "US88160R1014",
+    16287661816,
+    0.018339,
+    "EC",
+    "CORP",
+    "US",
+    "Long"
+   ]
+  ],
+  "exposure": {
+   "asset_category": {
+    "columns": [
+     "code",
+     "meaning",
+     "weight"
+    ],
+    "rows": [
+     [
+      "EC",
+      "equity, common",
+      0.9983
+     ],
+     [
+      "STIV",
+      "short-term investment vehicle (money market fund, cash sweep)",
+      0.0028
+     ],
+     [
+      "DE",
+      "derivative, equity",
+      0
+     ],
+     [
+      "OTHER",
+      "other",
+      0
+     ]
+    ]
+   },
+   "issuer_category": {
+    "columns": [
+     "code",
+     "meaning",
+     "weight"
+    ],
+    "rows": [
+     [
+      "CORP",
+      "corporate",
+      0.9983
+     ],
+     [
+      "RF",
+      "registered fund",
+      0.0028
+     ],
+     [
+      "OTHER",
+      "other",
+      0
+     ]
+    ]
+   },
+   "country": {
+    "columns": [
+     "country",
+     "weight"
+    ],
+    "rows": [
+     [
+      "US",
+      0.9717
+     ],
+     [
+      "IE",
+      0.02
+     ],
+     [
+      "CH",
+      0.0027
+     ],
+     [
+      "BM",
+      0.0016
+     ],
+     [
+      "NL",
+      0.0013
+     ],
+     [
+      "LR",
+      0.0012
+     ],
+     [
+      "CW",
+      0.0011
+     ],
+     [
+      "SG",
+      0.0009
+     ],
+     [
+      "JE",
+      0.0005
+     ]
+    ]
+   },
+   "currency": {
+    "columns": [
+     "currency",
+     "weight"
+    ],
+    "rows": [
+     [
+      "USD",
+      1.0012
+     ]
+    ]
+   }
+  },
+  "monthly_returns": {
+   "class_id": "C000012040",
+   "columns": [
+    "month",
+    "total_return"
+   ],
+   "rows": [
+    [
+     "2026-04",
+     0.104916
+    ],
+    [
+     "2026-05",
+     0.052632
+    ],
+    [
+     "2026-06",
+     -0.009562
+    ]
+   ]
+  },
+  "flows": {
+   "units": "US dollars",
+   "columns": [
+    "month",
+    "sales",
+    "reinvestment",
+    "redemption",
+    "net"
+   ],
+   "rows": [
+    [
+     "2026-04",
+     16417602043,
+     0,
+     14720875334,
+     1696726709
+    ],
+    [
+     "2026-05",
+     30594589402,
+     0,
+     15266607536,
+     15327981866
+    ],
+    [
+     "2026-06",
+     114335801884,
+     0,
+     70740612096,
+     43595189788
+    ]
+   ]
+  },
+  "changes_since": {
+   "period": "2026-03-31",
+   "accession": "0002071691-26-012459",
+   "columns": [
+    "change",
+    "name",
+    "cusip",
+    "balance_before",
+    "balance_now",
+    "value_now"
+   ],
+   "rows": [
+    [
+     "new",
+     "Marvell Technology, Inc.",
+     "573874104",
+     0,
+     12043614,
+     3587672174
+    ],
+    [
+     "new",
+     "Honeywell International, Inc.",
+     "438516205",
+     0,
+     4366671,
+     977697525
+    ],
+    [
+     "new",
+     "Honeywell Aerospace, Inc.",
+     "43849R105",
+     0,
+     4366671,
+     965383514
+    ],
+    [
+     "new",
+     "Flex Ltd.",
+     "N/A",
+     0,
+     5057856,
+     819726722
+    ],
+    [
+     "new",
+     "Carnival Corp. Ltd.",
+     "N/A",
+     0,
+     17695832,
+     505569920
+    ],
+    [
+     "new",
+     "Casey's General Stores, Inc.",
+     "147528103",
+     0,
+     507738,
+     403545085
+    ],
+    [
+     "new",
+     "Veeva Systems, Inc.",
+     "922475108",
+     0,
+     2064903,
+     366458335
+    ],
+    [
+     "new",
+     "DuPont de Nemours, Inc.",
+     "26614N201",
+     0,
+     1876644,
+     254548037
+    ],
+    [
+     "new",
+     "Fedex Freight Holding Co., Inc.",
+     "314352105",
+     0,
+     1492751,
+     225405401
+    ],
+    [
+     "new",
+     "Hologic, Inc.",
+     "436CVR021",
+     0,
+     2843388,
+     28433.9
+    ],
+    [
+     "exited",
+     "Pool Corp.",
+     "73278L105",
+     421906,
+     0,
+     0
+    ],
+    [
+     "exited",
+     "EPAM Systems, Inc.",
+     "29414B104",
+     710801,
+     0,
+     0
+    ],
+    [
+     "exited",
+     "Hologic, Inc.",
+     "436440101",
+     2862758,
+     0,
+     0
+    ],
+    [
+     "exited",
+     "Carnival Corp.",
+     "143658300",
+     14792594,
+     0,
+     0
+    ],
+    [
+     "exited",
+     "Conagra Brands, Inc.",
+     "205887102",
+     6161537,
+     0,
+     0
+    ],
+    [
+     "exited",
+     "Campbell's Co. (The)",
+     "134429109",
+     2530283,
+     0,
+     0
+    ],
+    [
+     "exited",
+     "DuPont de Nemours, Inc.",
+     "26614N102",
+     5263241,
+     0,
+     0
+    ],
+    [
+     "exited",
+     "Coterra Energy, Inc.",
+     "127097103",
+     9756609,
+     0,
+     0
+    ],
+    [
+     "exited",
+     "Honeywell International, Inc.",
+     "438516106",
+     8165151,
+     0,
+     0
+    ],
+    [
+     "added",
+     "NVIDIA Corp.",
+     "67066G104",
+     312526688,
+     333161869,
+     66662358368
+    ],
+    [
+     "added",
+     "Apple, Inc.",
+     "037833100",
+     188816321,
+     202029067,
+     58459130827
+    ],
+    [
+     "added",
+     "Microsoft Corp.",
+     "594918104",
+     95502629,
+     102180706,
+     38115446952
+    ],
+    [
+     "added",
+     "Amazon.com, Inc.",
+     "023135106",
+     125637966,
+     134650499,
+     32092599932
+    ],
+    [
+     "added",
+     "Alphabet, Inc.",
+     "02079K305",
+     74878135,
+     80656266,
+     28824129780
+    ],
+    [
+     "added",
+     "Broadcom, Inc.",
+     "11135F101",
+     60978921,
+     65126781,
+     24601641523
+    ]
+   ],
+   "counts": {
+    "new": 10,
+    "exited": 9,
+    "added": 490,
+    "reduced": 6
+   }
+  },
+  "source": "https://www.sec.gov/Archives/edgar/data/1100663/000207169126019760/0002071691-26-019760-index.htm",
+  "limits": [
+   "From the fund's Form N-PORT as filed with the SEC; funds file it monthly, and only the last month of each fiscal quarter is made public, 60 days after that month ends.",
+   "Weights are percentages of net assets as filed; short positions and derivatives can make them add to more or less than 100 percent. Balances are shares, principal amounts or contracts, as each position's units say.",
+   "Sales and redemptions are shares issued and redeemed in dollars (creations and redemptions for an ETF); monthly returns are the share class's total returns as filed.",
+   "Not investment advice."
+  ],
+  "evidence": {
+   "documents": 4,
+   "columns": [
+    "url",
+    "sha256_16",
+    "retrieved_at"
+   ],
+   "rows": [
+    [
+     "https://www.sec.gov/files/company_tickers_mf.json",
+     "9e376ab376494057",
+     "2026-10-25T07:27:45.203Z"
+    ],
+    [
+     "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=S000004310&type=NPORT-P&dateb=&owner=include&count=12&output=atom",
+     "fb5114f74bc4a054",
+     "2026-10-25T07:27:46.019Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/1100663/000207169126019760/primary_doc.xml",
+     "9924e5b86bf304d0",
+     "2026-10-25T07:27:46.102Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/1100663/000207169126012459/primary_doc.xml",
+     "b7acb48358d9d7d5",
+     "2026-10-25T07:27:46.198Z"
+    ]
+   ]
+  }
+ }
+}

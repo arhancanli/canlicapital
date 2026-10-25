@@ -240,6 +240,9 @@ html[data-design]:not([data-design="home"]) main .cc-table-scroll caption { capt
 .flagship-table td.zero { color: #c2412f; background: #fdf0ee; font-weight: 600; }
 .flagship-table td.none { color: #8a97a6; font-size: 0.78rem; }
 
+.flagship-answers { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px 22px; margin: 22px 0 14px; padding: 0; list-style: none; }
+.flagship-answers a { display: block; padding: 12px 0; border-top: 1px solid var(--cc-line); font-weight: 500; }
+.flagship-oneclick { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 0; }
 .flagship-install { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 26px; }
 .flagship-cmd { margin: 0; border-radius: 14px; overflow: hidden; background: #0a0f17; border: 1px solid #0a0f17; }
 .flagship-cmd figcaption { padding: 10px 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font: 500 0.68rem/1.2 var(--cc-mono); letter-spacing: 0.1em; text-transform: uppercase; color: #8b9bae; }
@@ -382,3 +385,19 @@ main:not(.paper__main):has(> .cc-hero) > .reader-index nav { display: flex; flex
 main:not(.paper__main):has(> .cc-hero) > .reader-index nav a { flex: none; padding: 7px 13px; border: 1px solid var(--cc-line); border-radius: 999px; background: #fff; color: var(--cc-ink); text-decoration: none; white-space: nowrap; }
 main:not(.paper__main):has(> .cc-hero) > .reader-index nav a:hover, main:not(.paper__main):has(> .cc-hero) > .reader-index nav a[aria-current] { border-color: var(--cc-blue); color: var(--cc-blue); text-decoration: none; }
 main:not(.paper__main):has(> .cc-hero) > .reader-index .reader-index__verify { margin-left: auto; padding-left: 16px; }
+
+/* /mcp-servers/answers: the question pages */
+.mcp-answer__ask { margin: 18px 0; padding: 18px 22px; border-left: 3px solid var(--cc-blue); background: var(--cc-paper); border-radius: 0 12px 12px 0; font-size: 1.08rem; }
+.mcp-answer__ask p { margin: 0; }
+.mcp-answer__json { margin: 14px 0; }
+.mcp-answer__json summary { cursor: pointer; font-weight: 500; padding: 8px 0; }
+.mcp-answer__json pre { max-height: 460px; overflow: auto; }
+.mcp-answers { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.mcp-answers li { padding: 20px 0; border-top: 1px solid var(--cc-line); }
+.mcp-answers h2 { margin: 0 0 6px; font-size: 1.15rem; }
+.mcp-answers p { margin: 0; color: var(--cc-muted); }
+.mcp-video { margin: 22px 0; }
+.mcp-video video { display: block; width: 100%; height: auto; border-radius: 14px; background: var(--cc-night); }
+.mcp-video figcaption { margin-top: 8px; font-size: 0.9rem; color: var(--cc-muted); }
+.flagship-clips { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin: 14px 0 26px; }
+.flagship-clips .mcp-video { margin: 0; }

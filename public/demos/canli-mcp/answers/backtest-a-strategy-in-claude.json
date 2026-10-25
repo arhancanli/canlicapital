@@ -1,0 +1,72 @@
+{
+ "version": "0.11.1",
+ "recorded": "2026-10-25T07:27:09.771Z",
+ "call": {
+  "calls": [
+   {
+    "name": "price_history",
+    "arguments": {
+     "symbol": "SPY",
+     "start": "2010-01-01"
+    }
+   },
+   {
+    "name": "backtest_ma_crossover",
+    "arguments": {
+     "prices": {
+      "$result": 0,
+      "path": "close"
+     },
+     "dates": {
+      "$result": 0,
+      "path": "dates"
+     },
+     "fast": 50,
+     "slow": 200
+    }
+   }
+  ],
+  "return": "last"
+ },
+ "model_chars": 673,
+ "ms": 765,
+ "result": {
+  "results": [
+   {
+    "name": "backtest_ma_crossover",
+    "ref": "r4",
+    "result": {
+     "rule": "Long when SMA(50) > SMA(200), else flat.",
+     "parameters": {
+      "fast": 50,
+      "slow": 200
+     },
+     "total_return": 3.36815,
+     "cagr": 0.0918739,
+     "volatility": 0.139311,
+     "sharpe": 0.700949,
+     "max_drawdown": -0.337171,
+     "periods": 4227,
+     "calmar": 0.272484,
+     "annual_turnover": 0.894251,
+     "average_exposure": 0.801041,
+     "weight_changes": 15,
+     "cost_drag_annual": 0.000447126,
+     "buy_and_hold": {
+      "cagr": 0.140016,
+      "sharpe": 0.85516,
+      "max_drawdown": -0.337171
+     },
+     "returns_tail": [
+      0.0042319,
+      0.00335299,
+      0.00525323,
+      -0.0118098,
+      -0.00522279
+     ],
+     "caution": "One backtest of one parameter set. If you tried others, count them and use strategy_sweep or deflated_sharpe_ratio."
+    }
+   }
+  ]
+ }
+}

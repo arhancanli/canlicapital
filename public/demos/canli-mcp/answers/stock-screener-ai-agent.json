@@ -1,0 +1,222 @@
+{
+ "version": "0.11.1",
+ "recorded": "2026-10-25T07:27:31.205Z",
+ "call": {
+  "name": "screen_companies",
+  "arguments": {
+   "filters": [
+    {
+     "metric": "revenue",
+     "op": ">",
+     "value": 100000000000
+    }
+   ],
+   "sort_by": "revenue",
+   "limit": 10
+  }
+ },
+ "model_chars": 4213,
+ "ms": 3399,
+ "result": {
+  "ref": "r19",
+  "period": "FY2025 (calendar frame CY2025)",
+  "universe": 3861,
+  "matched": 36,
+  "columns": [
+   "ticker",
+   "name",
+   "cik",
+   "exchange",
+   "period_end",
+   "revenue"
+  ],
+  "rows": [
+   [
+    "AMZN",
+    "AMAZON COM INC",
+    1018724,
+    "Nasdaq",
+    "2025-12-31",
+    716924000000
+   ],
+   [
+    "WMT",
+    "Walmart Inc.",
+    104169,
+    "Nasdaq",
+    "2026-01-31",
+    713163000000
+   ],
+   [
+    "UNH",
+    "UNITEDHEALTH GROUP INC",
+    731766,
+    "NYSE",
+    "2025-12-31",
+    447567000000
+   ],
+   [
+    "AAPL",
+    "Apple Inc.",
+    320193,
+    "Nasdaq",
+    "2025-09-27",
+    416161000000
+   ],
+   [
+    "MCK",
+    "MCKESSON CORP",
+    927653,
+    "NYSE",
+    "2026-03-31",
+    403430000000
+   ],
+   [
+    "GOOGL",
+    "Alphabet Inc.",
+    1652044,
+    "Nasdaq",
+    "2025-12-31",
+    402836000000
+   ],
+   [
+    "CVS",
+    "CVS HEALTH Corp",
+    64803,
+    "NYSE",
+    "2025-12-31",
+    402067000000
+   ],
+   [
+    "BRK-B",
+    "BERKSHIRE HATHAWAY INC",
+    1067983,
+    "NYSE",
+    "2025-12-31",
+    371444000000
+   ],
+   [
+    "COR",
+    "Cencora, Inc.",
+    1140859,
+    "NYSE",
+    "2025-09-30",
+    321332819000
+   ],
+   [
+    "MSFT",
+    "MICROSOFT CORP",
+    789019,
+    "Nasdaq",
+    "2025-06-30",
+    281724000000
+   ]
+  ],
+  "corrected": {
+   "reason": "a figure from a different filing (often a proxy statement) disagreed with the company's own 10-K or 10-Q, which was used",
+   "columns": [
+    "ticker",
+    "metric",
+    "frame_value",
+    "report_value",
+    "report"
+   ],
+   "rows": [
+    [
+     "CVX",
+     "net_income",
+     12300000000,
+     12299000000,
+     "10-K 0000093410-26-000078"
+    ]
+   ]
+  },
+  "definitions": {
+   "revenue": "XBRL Revenues or RevenueFromContractWithCustomerExcludingAssessedTax, else SalesRevenueNet, else RevenueFromContractWithCustomerIncludingAssessedTax (the larger within \"or\"), USD"
+  },
+  "sources": [
+   "https://data.sec.gov/api/xbrl/frames/us-gaap/Revenues/USD/CY2025.json",
+   "https://data.sec.gov/api/xbrl/frames/us-gaap/RevenueFromContractWithCustomerExcludingAssessedTax/USD/CY2025.json",
+   "https://data.sec.gov/api/xbrl/frames/us-gaap/RevenueFromContractWithCustomerIncludingAssessedTax/USD/CY2025.json",
+   "https://data.sec.gov/api/xbrl/frames/us-gaap/NetIncomeLoss/USD/CY2025.json",
+   "https://data.sec.gov/api/xbrl/frames/us-gaap/ProfitLoss/USD/CY2025.json",
+   "https://data.sec.gov/api/xbrl/frames/us-gaap/Assets/USD/CY2025Q4I.json"
+  ],
+  "limits": [
+   "From SEC EDGAR and the other named sources as published; Canli Capital does not edit or verify the filers' statements.",
+   "Not investment advice.",
+   "XBRL frames give one value per filer for the fiscal period that best overlaps the calendar period, as most recently filed; filers tag line items differently, so a missing or unusual tag drops or skews a company. Check a shortlisted company's filing before relying on a figure.",
+   "Listing is SEC's ticker-and-exchange file: a company that has just moved its ticker to a new holding company (Exxon Mobil, 2026) is listed under the new filer, which may not have filed financial statements yet."
+  ],
+  "evidence": {
+   "documents": 16,
+   "columns": [
+    "url",
+    "sha256_16",
+    "retrieved_at"
+   ],
+   "rows": [
+    [
+     "https://www.sec.gov/files/company_tickers_exchange.json",
+     "f5a8b5c09137999c",
+     "2026-10-25T07:27:28.293Z"
+    ],
+    [
+     "https://data.sec.gov/api/xbrl/frames/us-gaap/Revenues/USD/CY2025.json",
+     "bdd39e56abfef565",
+     "2026-10-25T07:27:28.421Z"
+    ],
+    [
+     "https://data.sec.gov/api/xbrl/frames/us-gaap/RevenueFromContractWithCustomerExcludingAssessedTax/USD/CY2025.json",
+     "f565c9c174075f98",
+     "2026-10-25T07:27:28.720Z"
+    ],
+    [
+     "https://data.sec.gov/api/xbrl/frames/us-gaap/RevenueFromContractWithCustomerIncludingAssessedTax/USD/CY2025.json",
+     "356cb1414f8d7575",
+     "2026-10-25T07:27:28.817Z"
+    ],
+    [
+     "https://data.sec.gov/api/xbrl/frames/us-gaap/NetIncomeLoss/USD/CY2025.json",
+     "a23e056c7aed990f",
+     "2026-10-25T07:27:28.992Z"
+    ],
+    [
+     "https://data.sec.gov/api/xbrl/frames/us-gaap/Assets/USD/CY2025Q4I.json",
+     "d3f0b9fd4794d16f",
+     "2026-10-25T07:27:29.191Z"
+    ],
+    [
+     "https://data.sec.gov/api/xbrl/frames/us-gaap/ProfitLoss/USD/CY2025.json",
+     "684eb5a5b4874978",
+     "2026-10-25T07:27:29.650Z"
+    ],
+    [
+     "https://data.sec.gov/api/xbrl/companyconcept/CIK0001018724/us-gaap/NetIncomeLoss.json",
+     "08c3252d36571c67",
+     "2026-10-25T07:27:30.081Z"
+    ],
+    [
+     "https://data.sec.gov/api/xbrl/companyconcept/CIK0000104169/us-gaap/NetIncomeLoss.json",
+     "88c5de6fdf963a3b",
+     "2026-10-25T07:27:30.260Z"
+    ],
+    [
+     "https://data.sec.gov/api/xbrl/companyconcept/CIK0000927653/us-gaap/NetIncomeLoss.json",
+     "38ee16c403b18c22",
+     "2026-10-25T07:27:30.369Z"
+    ],
+    [
+     "https://data.sec.gov/api/xbrl/companyconcept/CIK0001652044/us-gaap/NetIncomeLoss.json",
+     "aad83d2faf3004a2",
+     "2026-10-25T07:27:30.494Z"
+    ],
+    [
+     "https://data.sec.gov/api/xbrl/companyconcept/CIK0000789019/us-gaap/NetIncomeLoss.json",
+     "d1c78414ff34e324",
+     "2026-10-25T07:27:30.616Z"
+    ]
+   ]
+  }
+ }
+}

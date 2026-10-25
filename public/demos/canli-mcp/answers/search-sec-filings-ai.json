@@ -1,0 +1,104 @@
+{
+ "version": "0.11.1",
+ "recorded": "2026-10-25T07:27:32.583Z",
+ "call": {
+  "name": "search_filings",
+  "arguments": {
+   "query": "tariffs",
+   "forms": [
+    "10-Q"
+   ],
+   "company": "AAPL",
+   "limit": 5
+  }
+ },
+ "model_chars": 1752,
+ "ms": 775,
+ "result": {
+  "ref": "r23",
+  "query": "tariffs",
+  "total": 56,
+  "columns": [
+   "filed",
+   "form",
+   "filer",
+   "period",
+   "accession",
+   "document",
+   "url"
+  ],
+  "rows": [
+   [
+    "2025-05-02",
+    "10-Q",
+    "Apple Inc. (AAPL) (CIK 0000320193)",
+    "2025-03-29",
+    "0000320193-25-000057",
+    "aapl-20250329.htm",
+    "https://www.sec.gov/Archives/edgar/data/320193/000032019325000057/aapl-20250329.htm"
+   ],
+   [
+    "2025-08-01",
+    "10-Q",
+    "Apple Inc. (AAPL) (CIK 0000320193)",
+    "2025-06-28",
+    "0000320193-25-000073",
+    "aapl-20250628.htm",
+    "https://www.sec.gov/Archives/edgar/data/320193/000032019325000073/aapl-20250628.htm"
+   ],
+   [
+    "2026-01-30",
+    "10-Q",
+    "Apple Inc. (AAPL) (CIK 0000320193)",
+    "2025-12-27",
+    "0000320193-26-000006",
+    "aapl-20251227.htm",
+    "https://www.sec.gov/Archives/edgar/data/320193/000032019326000006/aapl-20251227.htm"
+   ],
+   [
+    "2026-05-01",
+    "10-Q",
+    "Apple Inc. (AAPL) (CIK 0000320193)",
+    "2026-03-28",
+    "0000320193-26-000013",
+    "aapl-20260328.htm",
+    "https://www.sec.gov/Archives/edgar/data/320193/000032019326000013/aapl-20260328.htm"
+   ],
+   [
+    "2026-07-31",
+    "10-Q",
+    "Apple Inc. (AAPL) (CIK 0000320193)",
+    "2026-06-27",
+    "0000320193-26-000020",
+    "aapl-20260627.htm",
+    "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm"
+   ]
+  ],
+  "next": "read_filing with company and accession (and document for an exhibit) returns the text.",
+  "source": "https://efts.sec.gov/LATEST/search-index (EDGAR full-text search, filings from 2001)",
+  "limits": [
+   "From SEC EDGAR as filed; Canli Capital does not edit or verify the filers' statements.",
+   "Not investment advice."
+  ],
+  "evidence": {
+   "documents": 2,
+   "columns": [
+    "url",
+    "sha256_16",
+    "retrieved_at"
+   ],
+   "rows": [
+    [
+     "https://www.sec.gov/files/company_tickers.json",
+     "6f9cc4500a98fb4c",
+     "2026-10-25T07:27:06.908Z"
+    ],
+    [
+     "https://efts.sec.gov/LATEST/search-index?q=tariffs&forms=10-Q&ciks=0000320193",
+     "d1d738f3996cdb80",
+     "2026-10-25T07:27:32.583Z"
+    ]
+   ]
+  }
+ }
+}

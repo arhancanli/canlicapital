@@ -1,0 +1,176 @@
+{
+ "version": "0.11.1",
+ "recorded": "2026-10-25T07:27:33.250Z",
+ "call": {
+  "name": "company_reverse_dcf",
+  "arguments": {
+   "company": "MSFT"
+  }
+ },
+ "model_chars": 2959,
+ "ms": 666,
+ "result": {
+  "ref": "r24",
+  "company": {
+   "cik": 789019,
+   "name": "Microsoft Corporation",
+   "ticker": "MSFT"
+  },
+  "fiscal_year_end": "2026-06-30",
+  "implied_growth": 0.1971,
+  "reading": "At 524.51 a share, the market's enterprise value needs free cash flow to grow about 19.7% a year for 10 years, then 2.5% for ever, discounted at 9.0%.",
+  "history": {
+   "fcf_cagr_3y": 0.0404,
+   "fcf_cagr_5y": 0.036,
+   "revenue_cagr_3y": 0.1612,
+   "revenue_cagr_5y": 0.1457,
+   "free_cash_flow": {
+    "columns": [
+     "fiscal_year_end",
+     "operating_cash_flow",
+     "capex",
+     "free_cash_flow"
+    ],
+    "rows": [
+     [
+      "2021-06-30",
+      76740000000,
+      20622000000,
+      56118000000
+     ],
+     [
+      "2022-06-30",
+      89035000000,
+      23886000000,
+      65149000000
+     ],
+     [
+      "2023-06-30",
+      87582000000,
+      28107000000,
+      59475000000
+     ],
+     [
+      "2024-06-30",
+      118548000000,
+      44477000000,
+      74071000000
+     ],
+     [
+      "2025-06-30",
+      136162000000,
+      64551000000,
+      71611000000
+     ],
+     [
+      "2026-06-30",
+      182935000000,
+      115948000000,
+      66987000000
+     ]
+    ]
+   }
+  },
+  "sensitivity": {
+   "note": "Implied yearly growth for each discount rate (rows) and terminal growth (columns).",
+   "columns": [
+    "discount_rate",
+    "terminal_0.02",
+    "terminal_0.025",
+    "terminal_0.03"
+   ],
+   "rows": [
+    [
+     0.07,
+     0.151,
+     0.1406,
+     0.1289
+    ],
+    [
+     0.08,
+     0.179,
+     0.1704,
+     0.1608
+    ],
+    [
+     0.09,
+     0.2045,
+     0.1971,
+     0.189
+    ],
+    [
+     0.1,
+     0.228,
+     0.2216,
+     0.2146
+    ],
+    [
+     0.11,
+     0.2502,
+     0.2444,
+     0.2383
+    ]
+   ]
+  },
+  "inputs": {
+   "price": 524.51,
+   "price_date": "2026-10-23",
+   "shares_outstanding": 7425545491,
+   "equity_value": 3894772865484,
+   "debt": 40294000000,
+   "cash_and_investments": 76843000000,
+   "enterprise_value": 3858223865484,
+   "base_free_cash_flow": 66987000000,
+   "base": "latest",
+   "discount_rate": 0.09,
+   "terminal_growth": 0.025,
+   "years": 10,
+   "tags": {
+    "operating_cash_flow": "NetCashProvidedByUsedInOperatingActivities",
+    "capex": "PaymentsToAcquirePropertyPlantAndEquipment",
+    "cash": "CashAndCashEquivalentsAtCarryingValue",
+    "investments": "ShortTermInvestments",
+    "debt": [
+     "LongTermDebtCurrent",
+     "LongTermDebtNoncurrent"
+    ],
+    "shares": "dei:EntityCommonStockSharesOutstanding"
+   }
+  },
+  "sources": [
+   "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json",
+   "Yahoo Finance chart data (no key)"
+  ],
+  "meaning": "A reverse DCF asks what the price already assumes. Compare the implied growth with the company's own history and its industry: an implied rate far above what it has done is a demanding price, far below is a cheap one, if the cash flows and the discount rate are right.",
+  "limits": [
+   "Free cash flow here is operating cash flow less capital spending, before share-based pay and acquisitions; one year's figure is the base, so an unusual year moves the result.",
+   "Debt is the tagged borrowings; leases, pensions and minority interests are not added.",
+   "Not investment advice."
+  ],
+  "evidence": {
+   "documents": 3,
+   "columns": [
+    "url",
+    "sha256_16",
+    "retrieved_at"
+   ],
+   "rows": [
+    [
+     "https://www.sec.gov/files/company_tickers.json",
+     "6f9cc4500a98fb4c",
+     "2026-10-25T07:27:06.908Z"
+    ],
+    [
+     "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json",
+     "dd0308149a8e9649",
+     "2026-10-25T07:27:33.038Z"
+    ],
+    [
+     "https://query1.finance.yahoo.com/v8/finance/chart/MSFT?period1=1791849600&period2=1792972799&interval=1d&events=div%2Csplit&includeAdjustedClose=true",
+     "19d04af7611b3b3d",
+     "2026-10-25T07:27:33.248Z"
+    ]
+   ]
+  }
+ }
+}

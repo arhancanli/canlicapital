@@ -2,6 +2,17 @@
 
 Every Canli Capital MCP server in one: 345 finance tools for Claude, Cursor or any MCP client.
 
+```bash
+claude mcp add canli -- npx -y canli-mcp
+```
+
+No key and no account. [Add to VS Code](https://insiders.vscode.dev/redirect/mcp/install?name=canli-mcp&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22canli-mcp%22%5D%7D)
+· [Try the views in your browser](https://canlicapital.com/mcp-servers#views)
+· [Questions it answers](https://canlicapital.com/mcp-servers/answers)
+· hosted, nothing to install: `https://canlicapital.com/mcp/canli`
+
+![canli-mcp's market map in the chat: every index, sector, rate, currency and commodity as a tile](https://raw.githubusercontent.com/arhancanli/canlicapital/main/public/videos/canli-mcp/market.jpg)
+
 - Interactive views in the chat: candlestick charts you zoom and pan with moving averages,
   Bollinger bands, RSI and MACD; option chains with any expiration a click away; backtest
   dashboards whose sliders rerun the backtest and count every setting tried; treemaps; a paper order
@@ -54,7 +65,7 @@ Every Canli Capital MCP server in one: 345 finance tools for Claude, Cursor or a
   filings as they arrive.
 
 Each pack is a published, separately tested server. This package loads them into one process and
-puts three tools in front of them.
+puts five tools in front of them.
 
 ```bash
 npx -y canli-mcp

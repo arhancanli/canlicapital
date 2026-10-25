@@ -1,0 +1,56 @@
+{
+ "version": "0.11.1",
+ "recorded": "2026-10-25T07:27:31.808Z",
+ "call": {
+  "calls": [
+   {
+    "name": "price_history",
+    "arguments": {
+     "symbol": "AAPL",
+     "start": "2026-06-01"
+    }
+   },
+   {
+    "name": "rsi",
+    "arguments": {
+     "close": {
+      "$result": 0,
+      "path": "close"
+     },
+     "period": 14,
+     "tail": 10
+    }
+   }
+  ],
+  "return": "last"
+ },
+ "model_chars": 192,
+ "ms": 590,
+ "result": {
+  "results": [
+   {
+    "name": "rsi",
+    "ref": "r22",
+    "result": {
+     "rsi": [
+      60.1829,
+      60.4573,
+      62.0444,
+      60.5575,
+      62.0471,
+      61.1612,
+      55.5139,
+      60.6244,
+      64.7346,
+      63.9025
+     ],
+     "latest": {
+      "rsi": 63.9025
+     },
+     "bars": 102,
+     "first_index": 92
+    }
+   }
+  ]
+ }
+}

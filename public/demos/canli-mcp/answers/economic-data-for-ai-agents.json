@@ -1,0 +1,79 @@
+{
+ "version": "0.11.1",
+ "recorded": "2026-10-25T07:27:20.043Z",
+ "call": {
+  "name": "economic_series",
+  "arguments": {
+   "series": "CPIAUCSL",
+   "transform": "yoy",
+   "last": 12
+  }
+ },
+ "model_chars": 1060,
+ "ms": 646,
+ "result": {
+  "ref": "r14",
+  "series": "CPIAUCSL",
+  "title": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average (CPIAUCSL)",
+  "transform": "yoy",
+  "count": 12,
+  "latest": {
+   "date": "2026-09-01",
+   "value": 0.037173
+  },
+  "dates": [
+   "2025-09-01",
+   "2025-11-01",
+   "2025-12-01",
+   "2026-01-01",
+   "2026-02-01",
+   "2026-03-01",
+   "2026-04-01",
+   "2026-05-01",
+   "2026-06-01",
+   "2026-07-01",
+   "2026-08-01",
+   "2026-09-01"
+  ],
+  "values": [
+   0.030226,
+   0.026964,
+   0.026533,
+   0.023912,
+   0.02434,
+   0.03286,
+   0.037792,
+   0.041666,
+   0.034635,
+   0.033039,
+   0.03353,
+   0.037173
+  ],
+  "source": "https://fred.stlouisfed.org/series/CPIAUCSL",
+  "limits": [
+   "Federal Reserve Bank of St. Louis (FRED) as published; recent values of many series are revised later.",
+   "Some series are copyrighted by their sources; see the source page before republishing.",
+   "Not investment advice."
+  ],
+  "evidence": {
+   "documents": 2,
+   "columns": [
+    "url",
+    "sha256_16",
+    "retrieved_at"
+   ],
+   "rows": [
+    [
+     "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL",
+     "8556b710094027fa",
+     "2026-10-25T07:27:19.883Z"
+    ],
+    [
+     "https://fred.stlouisfed.org/series/CPIAUCSL",
+     "c3eb61b1359b764d",
+     "2026-10-25T07:27:20.042Z"
+    ]
+   ]
+  }
+ }
+}

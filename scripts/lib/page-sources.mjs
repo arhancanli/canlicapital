@@ -3,6 +3,11 @@
 // two can never disagree. Moved here from build-papers.mjs unchanged on 2026-09-28.
 import { resolveLastmod } from "../lastmod.mjs";
 import { EXECUTION_SOURCE_PATHS } from './execution-workflow.mjs';
+import { readFileSync } from 'node:fs';
+
+// The question pages (/mcp-servers/answers): each dates from its question and its recording.
+const ANSWER_SLUGS = JSON.parse(readFileSync(new URL('../../config/mcp-answers.json', import.meta.url), 'utf8')).answers.map((a) => a.slug);
+const ANSWER_SOURCES = ['scripts/build-mcp-pages.mjs', 'scripts/lib/mcp-answers.mjs', 'config/mcp-answers.json', 'public/videos/canli-mcp/index.json'];
 
 // =============================================================================
 // LASTMOD SOURCES for every STATIC_ROUTES page.
@@ -97,6 +102,8 @@ export const PAGE_SOURCES = {
     'scripts/build-mcp-pages.mjs', 'config/mcp-discovery.json', 'config/mcp-hosted-releases.json',
     ...(suffix ? [`mcp-released${suffix}`] : ['mcp-released']),
   ]])),
+  "/mcp-servers/answers": [...ANSWER_SOURCES, ...ANSWER_SLUGS.map((slug) => `public/demos/canli-mcp/answers/${slug}.json`)],
+  ...Object.fromEntries(ANSWER_SLUGS.map((slug) => [`/mcp-servers/answers/${slug}`, [...ANSWER_SOURCES, `public/demos/canli-mcp/answers/${slug}.json`]])),
   "/mcp-servers/execution": [
     "scripts/build-mcp-pages.mjs", "scripts/lib/execution-workflow.mjs",
     "config/execution-workflow-source.json", ...EXECUTION_SOURCE_PATHS,

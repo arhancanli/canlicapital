@@ -1,0 +1,2431 @@
+{
+ "package": "canli-mcp",
+ "version": "0.11.1",
+ "packs": {
+  "quant": "0.2.0",
+  "validation": "0.14.1",
+  "fundamentals": "0.7.1",
+  "research": "0.3.1",
+  "backtest": "0.3.0",
+  "markets": "0.7.4",
+  "paper": "0.3.1"
+ },
+ "count": 345,
+ "tools": [
+  {
+   "name": "return_stats",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Return statistics",
+   "description": "Summarize a return series: periods, annualized geometric return (CAGR) and volatility, Sharpe, max drawdown, skew, excess kurtosis, best and worst period, share positive."
+  },
+  {
+   "name": "sharpe_ratio",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Sharpe ratio with standard error",
+   "description": "Compute the annualized Sharpe ratio with its standard error and 95% interval, under iid normal returns (Lo 2002) and allowing skew and fat tails (Mertens 2002). For the probability it beats luck across many trials, use canli-validation-mcp."
+  },
+  {
+   "name": "sortino_ratio",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Sortino ratio",
+   "description": "Compute the annualized Sortino ratio: mean return above a target over downside deviation below it, with the downside deviation itself."
+  },
+  {
+   "name": "max_drawdown",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Drawdowns",
+   "description": "Find the maximum drawdown and the worst drawdown episodes: depth, peak, trough, recovery and length in periods, plus time under water."
+  },
+  {
+   "name": "calmar_ratio",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Calmar ratio",
+   "description": "Compute the Calmar ratio: annualized geometric return over the absolute maximum drawdown of the whole series."
+  },
+  {
+   "name": "omega_ratio",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Omega ratio",
+   "description": "Compute the Omega ratio at a threshold: the sum of gains above it over the sum of losses below it."
+  },
+  {
+   "name": "value_at_risk",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Value at risk",
+   "description": "Estimate value at risk as a positive loss fraction: historical, Gaussian and Cornish-Fisher (skew and kurtosis adjusted), over one or more periods."
+  },
+  {
+   "name": "expected_shortfall",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Expected shortfall (CVaR)",
+   "description": "Estimate expected shortfall (CVaR): the average loss beyond value at risk, historical and Gaussian, as a positive loss fraction."
+  },
+  {
+   "name": "capm_regression",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Alpha and beta (CAPM)",
+   "description": "Regress excess returns on benchmark excess returns: beta, alpha (annualized), their t-stats and p-values, R-squared, correlation and residual (idiosyncratic) volatility."
+  },
+  {
+   "name": "information_ratio",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Information ratio and tracking error",
+   "description": "Compute active return, tracking error and the information ratio of a strategy against its benchmark, annualized."
+  },
+  {
+   "name": "treynor_ratio",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Treynor ratio",
+   "description": "Compute the Treynor ratio: annualized excess return per unit of beta to the benchmark."
+  },
+  {
+   "name": "m2_measure",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Modigliani M-squared",
+   "description": "Compute Modigliani's M-squared: the return the strategy would have earned levered to the benchmark's volatility, and its difference from the benchmark."
+  },
+  {
+   "name": "capture_ratios",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Up and down capture",
+   "description": "Compute up-market and down-market capture: the strategy's annualized return in benchmark up periods and down periods, relative to the benchmark's."
+  },
+  {
+   "name": "ulcer_index",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Ulcer index and Martin ratio",
+   "description": "Compute the Ulcer index (root-mean-square drawdown), the Martin (ulcer performance) ratio, and the pain index and pain ratio (mean drawdown)."
+  },
+  {
+   "name": "drawdown_at_risk",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Conditional drawdown at risk",
+   "description": "Estimate drawdown at risk (a drawdown quantile across periods) and conditional drawdown at risk (the mean drawdown beyond it), as positive fractions."
+  },
+  {
+   "name": "tail_ratio",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Tail and Rachev ratios",
+   "description": "Compute the tail ratio (95th percentile return over the absolute 5th) and the Rachev ratio (mean of the best tail over the mean loss of the worst tail)."
+  },
+  {
+   "name": "gain_to_pain",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Gain-to-pain ratio",
+   "description": "Compute Schwager's gain-to-pain ratio: the sum of returns over the absolute sum of losing returns."
+  },
+  {
+   "name": "trade_stats",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Trade statistics",
+   "description": "Summarize closed-trade results: win rate, profit factor, payoff ratio, expectancy, largest win and loss, and longest winning and losing streaks."
+  },
+  {
+   "name": "kelly_fraction",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Kelly fraction",
+   "description": "Compute the growth-optimal (Kelly) fraction: from a return series (continuous, (mean - rf) / variance), or from a win probability and payoff odds. Also gives half Kelly."
+  },
+  {
+   "name": "autocorrelation",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Autocorrelation and Ljung-Box",
+   "description": "Test a return series for serial correlation: autocorrelations at each lag and the Ljung-Box Q statistic with its p-value."
+  },
+  {
+   "name": "normality_test",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Normality (Jarque-Bera)",
+   "description": "Test whether returns are normal with the Jarque-Bera test, with skew and excess kurtosis."
+  },
+  {
+   "name": "autocorrelation_adjusted_sharpe",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Sharpe adjusted for autocorrelation",
+   "description": "Annualize a Sharpe ratio allowing for serial correlation (Lo 2002): smoothed or autocorrelated returns overstate the usual sqrt(time) Sharpe."
+  },
+  {
+   "name": "rolling_sharpe",
+   "pack": "quant",
+   "group": "performance",
+   "title": "Rolling Sharpe summary",
+   "description": "Summarize the rolling Sharpe ratio over a window: latest, min, max, median and the share of windows below zero; shows whether performance is stable or decaying."
+  },
+  {
+   "name": "black_scholes",
+   "pack": "quant",
+   "group": "options",
+   "title": "Black-Scholes price and Greeks",
+   "description": "Price a European option under Black-Scholes-Merton with a dividend yield, with delta, gamma, vega, theta, rho, vanna, volga, charm, speed and the risk-neutral probability of finishing in the money."
+  },
+  {
+   "name": "implied_volatility",
+   "pack": "quant",
+   "group": "options",
+   "title": "Implied volatility",
+   "description": "Solve for the Black-Scholes-Merton implied volatility of a European option from its price, refusing prices outside no-arbitrage bounds."
+  },
+  {
+   "name": "black76",
+   "pack": "quant",
+   "group": "options",
+   "title": "Black-76 (options on futures)",
+   "description": "Price a European option on a futures or forward with Black-76, with delta, gamma and vega; also used for caps, floors and swaptions on a forward rate."
+  },
+  {
+   "name": "bachelier",
+   "pack": "quant",
+   "group": "options",
+   "title": "Bachelier (normal model)",
+   "description": "Price a European option under the Bachelier normal model, which allows negative forwards (rates, spreads), with delta, gamma and vega."
+  },
+  {
+   "name": "american_option",
+   "pack": "quant",
+   "group": "options",
+   "title": "American option (binomial tree)",
+   "description": "Price an American option with a dividend yield (binomial Black-Scholes with Richardson extrapolation), with the European price and the early-exercise premium."
+  },
+  {
+   "name": "digital_option",
+   "pack": "quant",
+   "group": "options",
+   "title": "Digital (binary) option",
+   "description": "Price a European cash-or-nothing or asset-or-nothing digital option under Black-Scholes-Merton, with delta."
+  },
+  {
+   "name": "put_call_parity",
+   "pack": "quant",
+   "group": "options",
+   "title": "Put-call parity check",
+   "description": "Check put-call parity for a European pair: the parity gap, the implied forward and the implied rate-minus-yield, to spot mispricing or stale quotes."
+  },
+  {
+   "name": "option_strategy_payoff",
+   "pack": "quant",
+   "group": "options",
+   "title": "Multi-leg strategy payoff",
+   "description": "Evaluate a multi-leg options position at expiry (calls, puts, underlying): net premium, payoff and profit at chosen prices, breakevens, and maximum profit and loss."
+  },
+  {
+   "name": "option_portfolio_greeks",
+   "pack": "quant",
+   "group": "options",
+   "title": "Portfolio Greeks",
+   "description": "Aggregate Black-Scholes-Merton Greeks across many option positions on one underlying: net delta, gamma, vega, theta, rho and the dollar delta and gamma."
+  },
+  {
+   "name": "volatility_conversions",
+   "pack": "quant",
+   "group": "options",
+   "title": "Volatility conversions",
+   "description": "Convert volatility between periods and forms: annual to daily, weekly or monthly, the expected move over a horizon, and lognormal to approximate normal (basis point) volatility."
+  },
+  {
+   "name": "vix_style_index",
+   "pack": "quant",
+   "group": "options",
+   "title": "Model-free implied volatility (VIX method)",
+   "description": "Compute a VIX-style model-free implied volatility from option chains with the CBOE method: forward from put-call parity, out-of-the-money strips with the two-zero-bid cutoff, per-expiry variance, and interpolation to a constant maturity (30 days by default)."
+  },
+  {
+   "name": "risk_neutral_density",
+   "pack": "quant",
+   "group": "options",
+   "title": "Risk-neutral density from option prices",
+   "description": "Recover the market's risk-neutral distribution from call prices across strikes (Breeden-Litzenberger): density and cumulative probability at each strike, its mean, volatility, skewness and kurtosis, probabilities beyond chosen levels, and strikes where the density is negative (butterfly arbitrage)."
+  },
+  {
+   "name": "sma",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Simple moving average",
+   "description": "Compute the simple moving average of closing prices over a lookback."
+  },
+  {
+   "name": "ema",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Exponential moving average",
+   "description": "Compute the exponential moving average (seeded with the simple average, as TA-Lib does)."
+  },
+  {
+   "name": "wma",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Weighted moving average",
+   "description": "Compute the linearly weighted moving average (latest price weighted most)."
+  },
+  {
+   "name": "dema",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Double exponential moving average",
+   "description": "Compute the double exponential moving average (2 EMA - EMA of EMA), which lags less than an EMA."
+  },
+  {
+   "name": "tema",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Triple exponential moving average",
+   "description": "Compute the triple exponential moving average (3 EMA - 3 EMA2 + EMA3)."
+  },
+  {
+   "name": "hull_moving_average",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Hull moving average",
+   "description": "Compute the Hull moving average, WMA(2 WMA(n/2) - WMA(n), sqrt n), a fast, smooth trend line."
+  },
+  {
+   "name": "kama",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Kaufman adaptive moving average",
+   "description": "Compute Kaufman's adaptive moving average, which speeds up in trends and slows in noise (efficiency ratio, fast 2, slow 30)."
+  },
+  {
+   "name": "rsi",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Relative strength index",
+   "description": "Compute Wilder's relative strength index (0-100): above 70 often read as overbought, below 30 as oversold."
+  },
+  {
+   "name": "macd",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "MACD",
+   "description": "Compute MACD (fast EMA - slow EMA), its signal line and histogram, as TA-Lib does."
+  },
+  {
+   "name": "bollinger_bands",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Bollinger Bands",
+   "description": "Compute Bollinger Bands: a moving average with bands k population standard deviations above and below, plus %B and bandwidth."
+  },
+  {
+   "name": "stochastic",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Stochastic oscillator",
+   "description": "Compute the slow stochastic oscillator: %K (smoothed position of the close in the high-low range) and %D."
+  },
+  {
+   "name": "williams_r",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Williams %R",
+   "description": "Compute Williams %R (-100 to 0): where the close sits in the recent high-low range."
+  },
+  {
+   "name": "cci",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Commodity channel index",
+   "description": "Compute the commodity channel index: typical price's distance from its average in units of mean absolute deviation."
+  },
+  {
+   "name": "atr",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Average true range",
+   "description": "Compute Wilder's average true range and its percent of price (NATR), the standard volatility measure for stops and sizing."
+  },
+  {
+   "name": "adx",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Average directional index",
+   "description": "Compute Wilder's ADX trend strength with +DI and -DI (TA-Lib's smoothing): ADX above 25 is usually read as trending."
+  },
+  {
+   "name": "obv",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "On-balance volume",
+   "description": "Compute on-balance volume, the running sum of volume signed by the close's direction."
+  },
+  {
+   "name": "money_flow_index",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Money flow index",
+   "description": "Compute the money flow index (volume-weighted RSI, 0-100) from typical price and volume."
+  },
+  {
+   "name": "rate_of_change",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Rate of change and momentum",
+   "description": "Compute rate of change (percent change over n bars) and momentum (price difference over n bars)."
+  },
+  {
+   "name": "trix",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "TRIX",
+   "description": "Compute TRIX, the one-bar percent change of a triple-smoothed EMA, a filtered momentum oscillator."
+  },
+  {
+   "name": "aroon",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Aroon indicator",
+   "description": "Compute Aroon up and down (0-100: how recently the highest high and lowest low occurred) and the Aroon oscillator."
+  },
+  {
+   "name": "chande_momentum",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Chande momentum oscillator",
+   "description": "Compute the Chande momentum oscillator (-100 to 100) with Wilder smoothing, as TA-Lib does."
+  },
+  {
+   "name": "ultimate_oscillator",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Ultimate oscillator",
+   "description": "Compute Williams' ultimate oscillator, blending buying pressure over three horizons (7, 14, 28 by default)."
+  },
+  {
+   "name": "accumulation_distribution",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Accumulation/distribution and Chaikin oscillator",
+   "description": "Compute the Chaikin accumulation/distribution line and the Chaikin oscillator (fast EMA - slow EMA of the line)."
+  },
+  {
+   "name": "donchian_channels",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Donchian channels",
+   "description": "Compute Donchian channels: the highest high and lowest low over a lookback and their midpoint (breakout systems)."
+  },
+  {
+   "name": "keltner_channels",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Keltner channels",
+   "description": "Compute Keltner channels: an EMA of the close with bands a multiple of ATR above and below."
+  },
+  {
+   "name": "vwap",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Volume-weighted average price",
+   "description": "Compute the cumulative volume-weighted average price from typical price, or a rolling VWAP over a window."
+  },
+  {
+   "name": "ichimoku_cloud",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Ichimoku cloud",
+   "description": "Compute the Ichimoku lines: conversion (tenkan), base (kijun), leading spans A and B (shown at the bar they are computed, not shifted forward) and lagging span."
+  },
+  {
+   "name": "rolling_zscore",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Rolling z-score",
+   "description": "Compute each price's z-score against its rolling mean and sample standard deviation, the basic mean-reversion signal."
+  },
+  {
+   "name": "stochastic_rsi",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Stochastic RSI",
+   "description": "Compute the stochastic RSI: where RSI sits in its own recent range (%K, unsmoothed by default as in TA-Lib) and its moving average %D."
+  },
+  {
+   "name": "parabolic_sar",
+   "pack": "quant",
+   "group": "indicators",
+   "title": "Parabolic SAR",
+   "description": "Compute Wilder's parabolic stop-and-reverse trailing stop with its trend direction (acceleration 0.02 step, 0.2 max by default)."
+  },
+  {
+   "name": "linear_regression",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Linear regression with robust errors",
+   "description": "Fit ordinary least squares of y on several regressors with classical, heteroskedasticity-robust (HC1) or Newey-West HAC standard errors, R-squared, F-test and AIC."
+  },
+  {
+   "name": "factor_regression",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Factor model regression (alpha and betas)",
+   "description": "Regress a strategy's excess returns on factor returns (e.g. Fama-French market, size, value, momentum) with Newey-West errors: annualized alpha, its t-stat, factor betas and R-squared."
+  },
+  {
+   "name": "adf_test",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Augmented Dickey-Fuller unit root test",
+   "description": "Test a price, spread or rate series for a unit root (non-stationarity) with the Augmented Dickey-Fuller test: statistic, MacKinnon p-value, critical values and the AIC-chosen lag."
+  },
+  {
+   "name": "kpss_test",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "KPSS stationarity test",
+   "description": "Test the null that a series is level- or trend-stationary with the KPSS test (Hobijn lag rule), complementing ADF; p-values are table-interpolated within 0.01-0.10."
+  },
+  {
+   "name": "variance_ratio_test",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Lo-MacKinlay variance ratio test",
+   "description": "Test the random-walk hypothesis on prices with the Lo-MacKinlay variance ratio at one or more horizons (overlapping, de-biased, heteroskedasticity-robust): above 1 means trending, below 1 mean-reverting."
+  },
+  {
+   "name": "cointegration_test",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Engle-Granger cointegration test",
+   "description": "Test whether two or more price series are cointegrated (Engle-Granger): hedge ratios, ADF on the residual spread with MacKinnon p-value and critical values, and the spread's half-life."
+  },
+  {
+   "name": "mean_reversion_fit",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Mean reversion (Ornstein-Uhlenbeck) fit",
+   "description": "Fit an AR(1) / Ornstein-Uhlenbeck model to a spread or price series: half-life, mean, speed of reversion, equilibrium volatility and the current z-score."
+  },
+  {
+   "name": "garch_volatility",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "GARCH(1,1) volatility model",
+   "description": "Fit a GARCH(1,1) model with constant mean by maximum likelihood: omega, alpha, beta, persistence, long-run volatility, volatility half-life and the next-period volatility forecast."
+  },
+  {
+   "name": "ewma_volatility",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "EWMA (RiskMetrics) volatility",
+   "description": "Compute exponentially weighted volatility (RiskMetrics, lambda 0.94 by default): the current annualized estimate and optionally the full series."
+  },
+  {
+   "name": "range_volatility",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Range-based volatility (OHLC)",
+   "description": "Estimate volatility from open, high, low and close prices with close-to-close, Parkinson, Garman-Klass, Rogers-Satchell and Yang-Zhang estimators, annualized."
+  },
+  {
+   "name": "probabilistic_sharpe_ratio",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Probabilistic Sharpe ratio",
+   "description": "Compute the probability that the true Sharpe ratio exceeds a benchmark given the track record's length, skewness and kurtosis (Bailey and López de Prado), and the minimum track record length needed. Takes returns or prices, or just the observed Sharpe and the number of observations."
+  },
+  {
+   "name": "deflated_sharpe_ratio",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Deflated Sharpe ratio",
+   "description": "Deflate a backtest's Sharpe ratio for the number of strategies tried (Bailey and López de Prado 2014): the expected maximum Sharpe under the null and the probability the result beats it. Takes returns or prices, or just the observed Sharpe and the number of observations, with the trials' Sharpe variance or Sharpes."
+  },
+  {
+   "name": "pca_factors",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Principal components of returns",
+   "description": "Run principal component analysis on asset returns (correlation or covariance): explained variance per component, cumulative share and each component's loadings."
+  },
+  {
+   "name": "rolling_beta",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Rolling beta",
+   "description": "Compute a rolling-window beta (and correlation) of returns against a benchmark: latest, average, minimum and maximum, optionally the full series."
+  },
+  {
+   "name": "granger_causality",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Granger causality test",
+   "description": "Test whether past values of x help predict y beyond y's own past (Granger causality), with the F-test at each lag up to a maximum."
+  },
+  {
+   "name": "arch_effects_test",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "ARCH effects (Engle LM) test",
+   "description": "Test demeaned returns for volatility clustering with Engle's ARCH Lagrange multiplier test: LM statistic, chi-squared p-value, and the F version."
+  },
+  {
+   "name": "mean_return_test",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Test that mean return is zero",
+   "description": "Test whether a strategy's mean return differs from zero (or a target) with a one-sample t-test and a Newey-West t-statistic robust to autocorrelation."
+  },
+  {
+   "name": "compare_sharpe_ratios",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Compare two Sharpe ratios",
+   "description": "Test whether two strategies' Sharpe ratios differ (Jobson-Korkie with Memmel's correction) using their returns over the same periods."
+  },
+  {
+   "name": "welch_t_test",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Welch two-sample t-test",
+   "description": "Test whether two samples (e.g. returns in two regimes, before and after a change) have different means, without assuming equal variances (Welch)."
+  },
+  {
+   "name": "markov_regime_switching",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Markov regime-switching model",
+   "description": "Fit a Hamilton Markov-switching model with a mean and volatility per regime (2 or 3 regimes) by maximum likelihood: regime means and volatilities, transition probabilities, expected durations, the current regime probabilities and how much time was spent in each."
+  },
+  {
+   "name": "johansen_cointegration",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Johansen cointegration test",
+   "description": "Test how many cointegrating relationships tie several price series together (Johansen trace and maximum-eigenvalue tests with Osterwald-Lenum critical values), with the rank chosen at 5% and the normalized cointegrating vectors."
+  },
+  {
+   "name": "recursive_stability_test",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Parameter stability (CUSUM)",
+   "description": "Check whether a regression's coefficients stayed stable over time: recursive least squares coefficient paths, and the CUSUM and CUSUM-of-squares tests of Brown, Durbin and Evans with 5% bounds and the first period each one crosses."
+  },
+  {
+   "name": "chow_break_test",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Structural break (Chow) test",
+   "description": "Test for a structural break in a regression at a known period (Chow F-test), or scan every candidate break inside a trimmed range for the largest F statistic and where it falls."
+  },
+  {
+   "name": "har_rv_forecast",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "HAR realized-volatility forecast",
+   "description": "Fit Corsi's heterogeneous autoregressive (HAR) model of realized variance on its daily, weekly and monthly averages, with Newey-West errors, and forecast variance and volatility over the next horizon."
+  },
+  {
+   "name": "realized_volatility_measures",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Realized volatility and jumps",
+   "description": "From intraday returns per day, compute realized variance, bipower variation, the jump component and the Barndorff-Nielsen-Shephard jump test (tripower quarticity), realized semivariances, realized skewness and kurtosis, and the daily series for HAR forecasts."
+  },
+  {
+   "name": "dependence_measures",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Dependence beyond correlation",
+   "description": "Measure how two series move together: Pearson, Spearman and Kendall correlations with p-values, distance correlation (catches nonlinear dependence), and empirical lower and upper tail dependence (do they crash together?)."
+  },
+  {
+   "name": "bootstrap_confidence_interval",
+   "pack": "quant",
+   "group": "econometrics",
+   "title": "Block-bootstrap confidence interval",
+   "description": "Put a confidence interval on a performance statistic (Sharpe, Sortino, CAGR, volatility, max drawdown, Calmar, mean) with the stationary block bootstrap, which keeps autocorrelation and volatility clustering; also gives the bootstrap standard error and the share of resamples at or below zero."
+  },
+  {
+   "name": "barrier_option",
+   "pack": "quant",
+   "group": "exotics",
+   "title": "Barrier option (knock-in, knock-out)",
+   "description": "Price a continuously monitored single-barrier option (down/up, in/out, call/put, with rebate) in closed form (Reiner-Rubinstein), with the vanilla price and the barrier discount."
+  },
+  {
+   "name": "asian_option_geometric",
+   "pack": "quant",
+   "group": "exotics",
+   "title": "Geometric average Asian option",
+   "description": "Price a continuously averaged geometric-average-price Asian option in closed form (Kemna-Vorst); a lower bound and control variate for the arithmetic Asian."
+  },
+  {
+   "name": "heston_option",
+   "pack": "quant",
+   "group": "exotics",
+   "title": "Heston stochastic volatility option",
+   "description": "Price a European option under the Heston stochastic-volatility model by Fourier integration of its characteristic function, with delta, in-the-money probability and the Feller condition."
+  },
+  {
+   "name": "sabr_volatility",
+   "pack": "quant",
+   "group": "exotics",
+   "title": "SABR implied volatility",
+   "description": "Compute the Black implied volatility of a strike under the SABR model (Hagan et al. 2002) from alpha, beta, nu and rho, optionally across several strikes for a smile."
+  },
+  {
+   "name": "spread_option",
+   "pack": "quant",
+   "group": "exotics",
+   "title": "Spread option (Kirk)",
+   "description": "Price a European option on the spread between two futures (F1 - F2 - K) with Kirk's approximation, as used for crack and spark spreads."
+  },
+  {
+   "name": "exchange_option",
+   "pack": "quant",
+   "group": "exotics",
+   "title": "Exchange option (Margrabe)",
+   "description": "Price the option to exchange one asset for another, max(Q1 S1 - Q2 S2, 0), in closed form (Margrabe), with dividend yields on both."
+  },
+  {
+   "name": "lookback_option",
+   "pack": "quant",
+   "group": "exotics",
+   "title": "Floating-strike lookback option",
+   "description": "Price a continuously monitored floating-strike lookback option (Goldman-Sosin-Gatto): a call pays the final price minus the minimum, a put the maximum minus the final price."
+  },
+  {
+   "name": "chooser_option",
+   "pack": "quant",
+   "group": "exotics",
+   "title": "Simple chooser option",
+   "description": "Price a simple chooser option, which lets the holder decide at a choice date whether it is a call or a put with the same strike and expiry (Rubinstein)."
+  },
+  {
+   "name": "jump_diffusion_option",
+   "pack": "quant",
+   "group": "exotics",
+   "title": "Merton jump-diffusion option",
+   "description": "Price a European option under Merton's jump-diffusion model (lognormal jumps) as a Poisson-weighted sum of Black-Scholes prices."
+  },
+  {
+   "name": "bond_price",
+   "pack": "quant",
+   "group": "rates",
+   "title": "Bond price, duration and convexity",
+   "description": "Price a fixed-rate bond from its yield on real dates and a day count: clean and dirty price, accrued interest, Macaulay and modified duration, convexity and DV01."
+  },
+  {
+   "name": "bond_yield",
+   "pack": "quant",
+   "group": "rates",
+   "title": "Bond yield to maturity",
+   "description": "Solve a fixed-rate bond's yield to maturity from its clean price, with duration, convexity and DV01 at that yield."
+  },
+  {
+   "name": "zero_coupon_bond",
+   "pack": "quant",
+   "group": "rates",
+   "title": "Zero-coupon bond price and yield",
+   "description": "Price a zero-coupon bond from its yield or solve the yield from its price, under annual, periodic or continuous compounding, with duration and convexity."
+  },
+  {
+   "name": "bootstrap_zero_curve",
+   "pack": "quant",
+   "group": "rates",
+   "title": "Bootstrap a zero curve from par yields",
+   "description": "Bootstrap discount factors, zero rates (continuous and periodic) and period forward rates from par yields, interpolating par yields linearly onto the coupon grid."
+  },
+  {
+   "name": "forward_rate",
+   "pack": "quant",
+   "group": "rates",
+   "title": "Forward rate between two dates",
+   "description": "Compute the forward rate between two maturities implied by their zero rates, under continuous, periodic or simple compounding, with the forward discount factor."
+  },
+  {
+   "name": "nelson_siegel_fit",
+   "pack": "quant",
+   "group": "rates",
+   "title": "Nelson-Siegel yield curve fit",
+   "description": "Fit a Nelson-Siegel curve (level, slope, curvature, decay tau) to observed yields by least squares, with fitted yields and RMSE; tau is searched when not given."
+  },
+  {
+   "name": "interest_rate_swap",
+   "pack": "quant",
+   "group": "rates",
+   "title": "Interest rate swap value and par rate",
+   "description": "Value a spot-starting fixed-for-floating swap on a zero curve (single curve): par swap rate, value to the fixed payer, fixed-leg annuity and DV01s."
+  },
+  {
+   "name": "forward_rate_agreement",
+   "pack": "quant",
+   "group": "rates",
+   "title": "Forward rate agreement value",
+   "description": "Value a forward rate agreement on a zero curve: the simple forward rate for the period and the value to the party that pays the fixed rate."
+  },
+  {
+   "name": "z_spread",
+   "pack": "quant",
+   "group": "rates",
+   "title": "Z-spread over a zero curve",
+   "description": "Solve a fixed-rate bond's z-spread: the constant spread over a continuously compounded zero curve that reprices its cash flows to the market dirty price."
+  },
+  {
+   "name": "credit_hazard_rate",
+   "pack": "quant",
+   "group": "rates",
+   "title": "Hazard rate and default probability from a spread",
+   "description": "Convert a credit spread and recovery rate into a constant hazard rate (credit triangle), survival and default probabilities over a horizon, and the reverse."
+  },
+  {
+   "name": "short_rate_bond_price",
+   "pack": "quant",
+   "group": "rates",
+   "title": "Vasicek or CIR zero-coupon bond",
+   "description": "Price a zero-coupon bond and its yield under the Vasicek or Cox-Ingersoll-Ross short-rate model in closed form."
+  },
+  {
+   "name": "treasury_bill_yields",
+   "pack": "quant",
+   "group": "rates",
+   "title": "Treasury bill yields",
+   "description": "Convert a T-bill's price or bank discount rate into the discount yield, bond-equivalent (investment) yield, money-market yield and effective annual yield."
+  },
+  {
+   "name": "key_rate_durations",
+   "pack": "quant",
+   "group": "rates",
+   "title": "Key rate durations",
+   "description": "Measure a fixed-rate bond's sensitivity to each pillar of a zero curve: bump one pillar by 1 bp (triangular bump, linear in between) and reprice, giving key rate DV01s and durations that sum to the parallel figure."
+  },
+  {
+   "name": "breakeven_inflation",
+   "pack": "quant",
+   "group": "rates",
+   "title": "Breakeven inflation",
+   "description": "Compute breakeven inflation from a nominal and a real (inflation-linked) yield of the same maturity, exactly (Fisher) and approximately, and the real yield implied by an inflation view."
+  },
+  {
+   "name": "merton_credit_risk",
+   "pack": "quant",
+   "group": "rates",
+   "title": "Merton structural credit risk",
+   "description": "Back out a firm's asset value and asset volatility from its equity value and equity volatility with Merton's model (equity as a call on assets), then the distance to default, default probability, the implied credit spread and the value of the debt."
+  },
+  {
+   "name": "portfolio_var",
+   "pack": "quant",
+   "group": "risk",
+   "title": "Portfolio VaR and expected shortfall",
+   "description": "Compute a positions portfolio's historical and parametric (normal) value at risk and expected shortfall from asset return history, with each position's contribution and the diversification benefit."
+  },
+  {
+   "name": "stress_test",
+   "pack": "quant",
+   "group": "risk",
+   "title": "Scenario stress test",
+   "description": "Apply named scenarios (a return shock per position, or a market shock passed through each position's beta) to a portfolio and report the P&L of each scenario and the worst position."
+  },
+  {
+   "name": "option_scenario_grid",
+   "pack": "quant",
+   "group": "risk",
+   "title": "Option book scenario grid",
+   "description": "Revalue a book of European options and stock under a grid of spot moves and volatility shifts (full Black-Scholes revaluation), with P&L per cell and the book's current Greeks."
+  },
+  {
+   "name": "exposure_and_hedge",
+   "pack": "quant",
+   "group": "risk",
+   "title": "Gross, net and beta-adjusted exposure",
+   "description": "Summarize a long/short book's gross, net and beta-adjusted exposure and size an index hedge (futures contracts or ETF shares) that neutralizes the beta."
+  },
+  {
+   "name": "concentration_metrics",
+   "pack": "quant",
+   "group": "risk",
+   "title": "Concentration metrics",
+   "description": "Measure how concentrated a portfolio is: Herfindahl index, effective number of positions, largest and top-k shares, and the Gini coefficient of weights."
+  },
+  {
+   "name": "liquidation_horizon",
+   "pack": "quant",
+   "group": "risk",
+   "title": "Liquidation horizon",
+   "description": "Estimate how many days each position takes to exit at a maximum share of average daily volume, and how much of the book can be liquidated within 1, 5 and 20 days."
+  },
+  {
+   "name": "extreme_value_tail",
+   "pack": "quant",
+   "group": "risk",
+   "title": "Extreme value tail risk (EVT)",
+   "description": "Model the loss tail with extreme value theory: fit a generalized Pareto distribution to losses beyond a high threshold (peaks over threshold) and estimate value at risk and expected shortfall far into the tail, with the Hill tail index."
+  },
+  {
+   "name": "convert_returns",
+   "pack": "quant",
+   "group": "returns",
+   "title": "Convert prices and returns",
+   "description": "Convert between prices, simple returns and log returns, or rebase a price series to start at 100; returns the converted series."
+  },
+  {
+   "name": "resample_returns",
+   "pack": "quant",
+   "group": "returns",
+   "title": "Resample returns to weeks, months or years",
+   "description": "Compound periodic returns into calendar weeks (ISO), months, quarters or years using their dates."
+  },
+  {
+   "name": "monthly_returns_table",
+   "pack": "quant",
+   "group": "returns",
+   "title": "Calendar monthly returns table",
+   "description": "Build the year-by-month return table from periodic returns and dates, with each year's compounded total, the best and worst months and the share of positive months."
+  },
+  {
+   "name": "brinson_attribution",
+   "pack": "quant",
+   "group": "returns",
+   "title": "Brinson-Fachler performance attribution",
+   "description": "Attribute active return to allocation, selection and interaction effects by segment (Brinson-Fachler) from portfolio and benchmark weights and returns."
+  },
+  {
+   "name": "portfolio_risk",
+   "pack": "quant",
+   "group": "portfolio",
+   "title": "Portfolio risk decomposition",
+   "description": "Decompose a portfolio's volatility into each asset's risk contribution, with marginal risk, diversification ratio, effective number of assets, parametric VaR and ex-ante tracking error to a benchmark."
+  },
+  {
+   "name": "min_variance_portfolio",
+   "pack": "quant",
+   "group": "portfolio",
+   "title": "Minimum variance portfolio",
+   "description": "Find the fully invested minimum-variance portfolio, long-only with an optional weight cap (exact active-set solution) or unconstrained (closed form)."
+  },
+  {
+   "name": "max_sharpe_portfolio",
+   "pack": "quant",
+   "group": "portfolio",
+   "title": "Maximum Sharpe (tangency) portfolio",
+   "description": "Find the portfolio with the highest Sharpe ratio, long-only (exact) or unconstrained (closed form tangency), with its expected return, volatility and Sharpe."
+  },
+  {
+   "name": "mean_variance_portfolio",
+   "pack": "quant",
+   "group": "portfolio",
+   "title": "Mean-variance portfolio for a target",
+   "description": "Find the minimum-variance portfolio that reaches a target expected return, or the utility-maximizing portfolio for a risk aversion, long-only or unconstrained."
+  },
+  {
+   "name": "risk_parity_portfolio",
+   "pack": "quant",
+   "group": "portfolio",
+   "title": "Risk parity (equal risk contribution)",
+   "description": "Find long-only weights where every asset contributes equally (or by a given budget) to portfolio volatility, solved by Newton's method."
+  },
+  {
+   "name": "inverse_volatility_weights",
+   "pack": "quant",
+   "group": "portfolio",
+   "title": "Inverse volatility weights",
+   "description": "Weight assets in proportion to the inverse of their volatility (or variance), the simple risk-balancing heuristic."
+  },
+  {
+   "name": "hierarchical_risk_parity",
+   "pack": "quant",
+   "group": "portfolio",
+   "title": "Hierarchical risk parity",
+   "description": "Allocate with López de Prado's hierarchical risk parity: single-linkage clustering on correlation distance, quasi-diagonal ordering and recursive bisection."
+  },
+  {
+   "name": "efficient_frontier",
+   "pack": "quant",
+   "group": "portfolio",
+   "title": "Efficient frontier",
+   "description": "Trace the efficient frontier: minimum volatility at evenly spaced target returns from the minimum-variance portfolio to the highest-return asset, with weights."
+  },
+  {
+   "name": "black_litterman",
+   "pack": "quant",
+   "group": "portfolio",
+   "title": "Black-Litterman posterior returns",
+   "description": "Blend market-implied equilibrium returns with your views (absolute or relative, with confidence) into Black-Litterman posterior returns and the unconstrained optimal weights."
+  },
+  {
+   "name": "covariance_shrinkage",
+   "pack": "quant",
+   "group": "portfolio",
+   "title": "Ledoit-Wolf covariance shrinkage",
+   "description": "Estimate a well-conditioned covariance matrix by Ledoit-Wolf shrinkage toward a scaled identity, with the shrinkage intensity and condition numbers before and after."
+  },
+  {
+   "name": "correlation_matrix",
+   "pack": "quant",
+   "group": "portfolio",
+   "title": "Correlation matrix",
+   "description": "Compute Pearson or Spearman rank correlations between assets, with the average pairwise correlation and the largest eigenvalue's share (how much one factor drives everything)."
+  },
+  {
+   "name": "rebalance_trades",
+   "pack": "quant",
+   "group": "portfolio",
+   "title": "Rebalancing trades",
+   "description": "Turn current holdings and target weights into the share trades that rebalance the portfolio, with turnover, optional no-trade bands, and cash left over."
+  },
+  {
+   "name": "kelly_portfolio",
+   "pack": "quant",
+   "group": "portfolio",
+   "title": "Multi-asset Kelly weights",
+   "description": "Compute growth-optimal (Kelly) weights across assets, inverse covariance times excess returns, with half-Kelly and the implied leverage and growth rate."
+  },
+  {
+   "name": "max_diversification_portfolio",
+   "pack": "quant",
+   "group": "portfolio",
+   "title": "Maximum diversification portfolio",
+   "description": "Find the long-only portfolio with the highest diversification ratio (weighted average volatility over portfolio volatility), Choueifaty and Coignard's most-diversified portfolio."
+  },
+  {
+   "name": "index_tracking_portfolio",
+   "pack": "quant",
+   "group": "portfolio",
+   "title": "Index tracking portfolio",
+   "description": "Find long-only weights in a subset of assets that minimize ex-ante tracking error to a benchmark's weights, with an optional per-asset cap."
+  },
+  {
+   "name": "almgren_chriss_schedule",
+   "pack": "quant",
+   "group": "execution",
+   "title": "Almgren-Chriss optimal execution",
+   "description": "Compute the Almgren-Chriss optimal liquidation schedule for a block: holdings and trades per period, expected impact cost and its standard deviation for a given risk aversion."
+  },
+  {
+   "name": "market_impact_estimate",
+   "pack": "quant",
+   "group": "execution",
+   "title": "Square-root market impact",
+   "description": "Estimate the cost of an order with the square-root impact law (cost = Y x volatility x sqrt(order / daily volume)) plus half the spread, in basis points and currency."
+  },
+  {
+   "name": "implementation_shortfall",
+   "pack": "quant",
+   "group": "execution",
+   "title": "Implementation shortfall",
+   "description": "Measure an executed order's implementation shortfall against the decision price, split into delay, execution (impact), opportunity cost of unfilled shares and fees."
+  },
+  {
+   "name": "execution_schedule",
+   "pack": "quant",
+   "group": "execution",
+   "title": "TWAP / VWAP order schedule",
+   "description": "Split an order across time buckets evenly (TWAP) or by an expected volume profile (VWAP), capped at a maximum participation rate, with what cannot be done within the horizon."
+  },
+  {
+   "name": "spread_estimators",
+   "pack": "quant",
+   "group": "execution",
+   "title": "Bid-ask spread from prices (Roll, Corwin-Schultz)",
+   "description": "Estimate the effective bid-ask spread from trade prices alone (Roll 1984) and from daily highs and lows (Corwin-Schultz 2012) when quotes are not available."
+  },
+  {
+   "name": "liquidity_measures",
+   "pack": "quant",
+   "group": "execution",
+   "title": "Amihud illiquidity and Kyle's lambda",
+   "description": "Measure price impact per unit of trading: Amihud illiquidity (|return| per currency traded) and Kyle's lambda (price change per signed volume, by regression)."
+  },
+  {
+   "name": "order_book_analysis",
+   "pack": "quant",
+   "group": "execution",
+   "title": "Order book walk and microprice",
+   "description": "Analyze an order book snapshot: mid, spread, microprice, depth imbalance, and the average fill price and slippage of a market order of a given size walking the book."
+  },
+  {
+   "name": "position_size_from_stop",
+   "pack": "quant",
+   "group": "sizing",
+   "title": "Position size from a stop loss",
+   "description": "Size a trade so that hitting the stop loses a fixed fraction of equity: shares, notional, capital at risk and leverage, optionally capped by a maximum position weight."
+  },
+  {
+   "name": "volatility_target_size",
+   "pack": "quant",
+   "group": "sizing",
+   "title": "Volatility-targeted position",
+   "description": "Scale a position so its expected volatility matches a target: the weight (leverage) from the asset's volatility, shares for a given equity, optionally capped."
+  },
+  {
+   "name": "optimal_f",
+   "pack": "quant",
+   "group": "sizing",
+   "title": "Optimal f (Ralph Vince)",
+   "description": "Find the fraction f of the largest loss to risk per trade that maximizes terminal wealth over a list of trade results (Vince's optimal f), with the geometric mean and the f-based position size."
+  },
+  {
+   "name": "trade_expectancy",
+   "pack": "quant",
+   "group": "sizing",
+   "title": "Trade expectancy and break-even win rate",
+   "description": "Compute a trading rule's expectancy per trade after costs, the break-even win rate for its payoff, and the payoff needed at its win rate."
+  },
+  {
+   "name": "drawdown_probability",
+   "pack": "quant",
+   "group": "sizing",
+   "title": "Probability of a drawdown",
+   "description": "Estimate the probability that a strategy with a given return and volatility ever falls a given fraction below its starting equity (drifted Brownian motion, continuous), and within a horizon."
+  },
+  {
+   "name": "leverage_and_margin",
+   "pack": "quant",
+   "group": "sizing",
+   "title": "Leverage, margin and liquidation distance",
+   "description": "Compute leverage, initial and maintenance margin, free margin, and the adverse price move that triggers a margin call for a leveraged position."
+  },
+  {
+   "name": "var_position_limit",
+   "pack": "quant",
+   "group": "sizing",
+   "title": "Position limit from a VaR budget",
+   "description": "Find the largest position whose one-day (or n-day) parametric value at risk stays within a budget, given the asset's volatility."
+  },
+  {
+   "name": "funding_rate_carry",
+   "pack": "quant",
+   "group": "crypto_fx",
+   "title": "Perpetual funding rate carry",
+   "description": "Annualize perpetual-futures funding rates (simple APR and compounded APY) and compute the funding a position pays or earns over a holding period; accepts one rate or a history."
+  },
+  {
+   "name": "futures_basis",
+   "pack": "quant",
+   "group": "crypto_fx",
+   "title": "Futures basis and implied rate",
+   "description": "Compute a dated future's basis to spot, its annualized carry (simple and compounded) and the implied financing rate, for cash-and-carry trades."
+  },
+  {
+   "name": "liquidation_price",
+   "pack": "quant",
+   "group": "crypto_fx",
+   "title": "Isolated-margin liquidation price",
+   "description": "Estimate a leveraged position's liquidation price under isolated margin: initial margin = 1/leverage, liquidated when equity falls to the maintenance rate (exchange formulas add fees and tiers)."
+  },
+  {
+   "name": "fx_forward",
+   "pack": "quant",
+   "group": "crypto_fx",
+   "title": "FX forward by covered interest parity",
+   "description": "Price an FX forward from spot and the two currencies' money-market rates (covered interest parity, ACT/360 or ACT/365), with forward points in pips, or back out the implied rate from a quoted forward."
+  },
+  {
+   "name": "fx_cross_rate",
+   "pack": "quant",
+   "group": "crypto_fx",
+   "title": "FX cross rate with bid and ask",
+   "description": "Derive a cross rate's bid and ask from two quotes against a common currency (e.g. EURJPY from EURUSD and USDJPY), handling which side each leg is quoted on."
+  },
+  {
+   "name": "triangular_arbitrage",
+   "pack": "quant",
+   "group": "crypto_fx",
+   "title": "Triangular arbitrage check",
+   "description": "Check three currency (or crypto) quotes for triangular arbitrage after spreads and fees: the return of each direction around the triangle."
+  },
+  {
+   "name": "pip_value",
+   "pack": "quant",
+   "group": "crypto_fx",
+   "title": "FX pip value and position size",
+   "description": "Compute the value of one pip for a lot size in the account currency, and the lot size that risks a given amount over a stop distance in pips."
+  },
+  {
+   "name": "carry_trade_return",
+   "pack": "quant",
+   "group": "crypto_fx",
+   "title": "Currency carry trade return",
+   "description": "Decompose a carry trade's return into the interest differential and the spot move, and find the break-even depreciation of the high-yield currency."
+  },
+  {
+   "name": "impermanent_loss",
+   "pack": "quant",
+   "group": "crypto_fx",
+   "title": "AMM impermanent loss",
+   "description": "Compute impermanent (divergence) loss of a liquidity position versus holding, for a constant-product pool or a concentrated range (Uniswap v3 style), given the price change."
+  },
+  {
+   "name": "backtest_ma_crossover",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest a moving-average crossover",
+   "description": "Backtest a fast/slow moving-average crossover on your prices with costs and no lookahead: CAGR, Sharpe, drawdown, turnover, cost drag and buy-and-hold for comparison."
+  },
+  {
+   "name": "backtest_time_series_momentum",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest time-series momentum",
+   "description": "Backtest time-series (absolute) momentum: hold the asset when its trailing return is positive, optionally volatility-targeted, with costs and no lookahead."
+  },
+  {
+   "name": "backtest_breakout",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest a channel breakout",
+   "description": "Backtest a Donchian channel breakout (turtle-style entries on new highs, exits on shorter lows) with costs and no lookahead."
+  },
+  {
+   "name": "backtest_zscore_reversion",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest z-score mean reversion",
+   "description": "Backtest mean reversion on a rolling z-score of price: buy stretched lows (and short stretched highs), exit near the mean, with costs."
+  },
+  {
+   "name": "backtest_rsi_reversion",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest RSI mean reversion",
+   "description": "Backtest a classic RSI oversold strategy: buy when RSI is below a threshold, sell when it recovers, with costs and no lookahead."
+  },
+  {
+   "name": "backtest_volatility_target",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest volatility targeting",
+   "description": "Backtest holding an asset scaled to a constant volatility target with trailing realized volatility, leverage cap and rebalance frequency."
+  },
+  {
+   "name": "backtest_cross_sectional_momentum",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest cross-sectional momentum",
+   "description": "Backtest cross-sectional (relative) momentum across a universe: periodically hold the top assets by trailing return (skipping the latest month), optionally short the bottom."
+  },
+  {
+   "name": "backtest_dual_momentum",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest dual momentum",
+   "description": "Backtest dual momentum (Antonacci): hold the best-performing risky asset when it beats cash or a safe asset, otherwise move to safety."
+  },
+  {
+   "name": "backtest_risk_parity_rebalance",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest inverse-volatility risk parity",
+   "description": "Backtest a multi-asset inverse-volatility (naive risk parity) portfolio rebalanced periodically, optionally scaled to a volatility target."
+  },
+  {
+   "name": "backtest_trend_ensemble",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest a trend ensemble",
+   "description": "Backtest a multi-horizon trend signal: the average of time-series momentum signs over several lookbacks, optionally volatility-targeted, with costs and no lookahead."
+  },
+  {
+   "name": "backtest_macd_trend",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest MACD trend following",
+   "description": "Backtest the MACD line against its signal line (long above, flat or short below) with costs and no lookahead."
+  },
+  {
+   "name": "backtest_equal_weight_rebalance",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest an equal-weight portfolio",
+   "description": "Backtest equal weights across a universe rebalanced on a fixed schedule; the 1/N benchmark that optimized portfolios must beat."
+  },
+  {
+   "name": "backtest_min_variance_rebalance",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest minimum variance",
+   "description": "Backtest the long-only minimum-variance portfolio re-estimated from trailing sample covariance on a fixed schedule, with costs."
+  },
+  {
+   "name": "backtest_low_volatility",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest the low-volatility anomaly",
+   "description": "Backtest holding the lowest-volatility fraction of a universe, re-ranked on a schedule, with costs and no lookahead."
+  },
+  {
+   "name": "backtest_short_term_reversal",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest short-term reversal",
+   "description": "Backtest buying the recent biggest losers in a universe (and optionally shorting the winners), re-ranked on a schedule, with costs."
+  },
+  {
+   "name": "backtest_trend_filter_allocation",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest a trend-filtered allocation",
+   "description": "Backtest tactical asset allocation where each asset is held only while above its moving average (Faber-style), equal or inverse-volatility weighted."
+  },
+  {
+   "name": "backtest_high_proximity",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest 52-week-high momentum",
+   "description": "Backtest holding the assets trading closest to their trailing high (George-Hwang 52-week-high momentum), re-ranked on a schedule."
+  },
+  {
+   "name": "backtest_pairs_trading",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest pairs trading",
+   "description": "Backtest a pairs trade on two price series: rolling hedge ratio, z-score of the residual spread, market-neutral entries and exits, with costs."
+  },
+  {
+   "name": "backtest_weights",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Backtest your own target weights",
+   "description": "Backtest any strategy from your own target weights per period (decided at each close, applied to the next period) with the same costed, drift-aware engine; null rows mean hold."
+  },
+  {
+   "name": "strategy_sweep",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Parameter sweep with deflated Sharpe",
+   "description": "Run one strategy recipe over a parameter grid (up to 400 variants), rank the variants by Sharpe, and deflate the best one for the number tried, so tuning cannot pass off luck as skill."
+  },
+  {
+   "name": "list_sleeves",
+   "pack": "quant",
+   "group": "sleeves",
+   "title": "List strategy sleeves",
+   "description": "Browse the library of 399 pre-defined strategy sleeves (18 families: trend, momentum, reversion, volatility, allocation, pairs). Each is a fixed rule with a spec hash; filter by family, data shape or words."
+  },
+  {
+   "name": "describe_sleeve",
+   "pack": "quant",
+   "group": "sleeves",
+   "title": "Describe a sleeve",
+   "description": "One sleeve's exact rule, parameters, warm-up, rationale, published references, known risks and spec SHA-256."
+  },
+  {
+   "name": "run_sleeve",
+   "pack": "quant",
+   "group": "sleeves",
+   "title": "Run a sleeve on your prices",
+   "description": "Backtest one library sleeve on your prices with costs and no lookahead: CAGR, Sharpe, drawdown, turnover, cost drag, and the target weights as of the latest close (ready for a paper rebalance)."
+  },
+  {
+   "name": "sleeve_tournament",
+   "pack": "quant",
+   "group": "sleeves",
+   "title": "Run every sleeve, corrected for multiple testing",
+   "description": "Run all library sleeves that fit your prices (up to 399) on a common window and rank them, then correct for the search: deflated Sharpe (raw and effective number of trials), White's Reality Check, re-studentized Hansen SPA and Romano-Wolf StepM against a benchmark, and the probability of backtest overfitting (CSCV)."
+  },
+  {
+   "name": "sleeve_walk_forward",
+   "pack": "quant",
+   "group": "sleeves",
+   "title": "Walk-forward sleeve selection",
+   "description": "Test the selection process itself: at each refit pick the top sleeves by trailing Sharpe, hold them for the next window, repeat. Compares the out-of-sample result with what the picks showed in sample, with holding every sleeve, and with the benchmark."
+  },
+  {
+   "name": "combine_sleeves",
+   "pack": "quant",
+   "group": "sleeves",
+   "title": "Combine sleeves into one book",
+   "description": "Blend chosen sleeves (equal or trailing inverse-volatility weights, no lookahead) into one book: its statistics, each sleeve's, their correlations, the diversification ratio, and the book's combined asset target weights as of the latest close."
+  },
+  {
+   "name": "sleeve_clusters",
+   "pack": "quant",
+   "group": "sleeves",
+   "title": "Cluster sleeves by behavior",
+   "description": "Group the sleeves that ran on your prices by return correlation (average linkage on sqrt((1 - rho) / 2)), to see how many genuinely different bets the library makes on this data and the best sleeve of each group."
+  },
+  {
+   "name": "sleeve_regime_map",
+   "pack": "quant",
+   "group": "sleeves",
+   "title": "Sleeve performance by market regime",
+   "description": "Score every sleeve that fits your prices in each regime of the benchmark: calm, normal and turbulent volatility (terciles of trailing volatility) and up or down trend (above or below its moving average). Finds sleeves that held up in every regime."
+  },
+  {
+   "name": "check_price_series",
+   "pack": "quant",
+   "group": "data_checks",
+   "title": "Check a price series",
+   "description": "Check a price series for errors before using it: non-positive or missing values, unadjusted splits, outlier returns, stale runs, duplicate, unsorted or gapped timestamps."
+  },
+  {
+   "name": "check_ohlc_bars",
+   "pack": "quant",
+   "group": "data_checks",
+   "title": "Check OHLC bars",
+   "description": "Check open-high-low-close-volume bars for impossible values: high below open/close, low above them, negative volume, zero-range bars, and extreme overnight gaps."
+  },
+  {
+   "name": "check_option_chain",
+   "pack": "quant",
+   "group": "data_checks",
+   "title": "Check an option chain for arbitrage and bad quotes",
+   "description": "Check one expiry of an option chain: crossed or negative quotes, prices outside no-arbitrage bounds, non-monotone or non-convex prices across strikes, put-call parity breaks, and quotes with no implied volatility."
+  },
+  {
+   "name": "check_yield_curve",
+   "pack": "quant",
+   "group": "data_checks",
+   "title": "Check a yield curve",
+   "description": "Check a zero curve for problems: unsorted tenors, discount factors that rise with maturity, negative or jumpy implied forward rates, and kinks far from neighbouring points."
+  },
+  {
+   "name": "check_funding_rates",
+   "pack": "quant",
+   "group": "data_checks",
+   "title": "Check perpetual funding data",
+   "description": "Check a perpetual-futures funding history: irregular intervals, rates beyond the venue's cap, outliers, and long one-sided runs, with the annualized range."
+  },
+  {
+   "name": "check_cross_venue_prices",
+   "pack": "quant",
+   "group": "data_checks",
+   "title": "Check prices across venues",
+   "description": "Compare the same instrument's prices across venues at the same times: deviation of each venue from the cross-venue median, venues that stop updating, and the worst divergences."
+  },
+  {
+   "name": "check_timestamps",
+   "pack": "quant",
+   "group": "data_checks",
+   "title": "Check timestamps",
+   "description": "Check a column of timestamps: unparseable values, duplicates, out-of-order rows, mixed time-zone offsets, dates in the future and weekend entries, with the spacing distribution."
+  },
+  {
+   "name": "check_returns_series",
+   "pack": "quant",
+   "group": "data_checks",
+   "title": "Check a returns series",
+   "description": "Check a returns series for the usual mistakes: percents instead of fractions, impossible simple returns below -100%, constant or zero-filled stretches, extreme values and smoothing (high lag-1 autocorrelation)."
+  },
+  {
+   "name": "check_fundamentals",
+   "pack": "quant",
+   "group": "data_checks",
+   "title": "Check financial statement identities",
+   "description": "Check reported fundamentals against accounting identities: assets = liabilities + equity, current within total, gross profit = revenue - cost of revenue, cash-flow sections summing to the change in cash, and EPS x shares close to net income."
+  },
+  {
+   "name": "check_corporate_actions",
+   "pack": "quant",
+   "group": "data_checks",
+   "title": "Detect corporate actions from raw and adjusted prices",
+   "description": "Detect splits and dividends by comparing raw and adjusted close series: each change in the adjustment factor, classified as a split (ratio) or a dividend (percent), with mismatches flagged."
+  },
+  {
+   "name": "cusum_filter_events",
+   "pack": "quant",
+   "group": "labeling",
+   "title": "Sample events with a CUSUM filter",
+   "description": "Sample the periods worth labeling with the symmetric CUSUM filter on log prices: an event fires when the cumulative up or down move since the last event exceeds a threshold (fixed, or a multiple of recent volatility), so labels concentrate on meaningful moves instead of every bar."
+  },
+  {
+   "name": "triple_barrier_labels",
+   "pack": "quant",
+   "group": "labeling",
+   "title": "Triple-barrier labels",
+   "description": "Label events with the triple-barrier method: a profit-take and a stop-loss set as multiples of recent volatility, and a time limit; each label is which barrier was touched first (+1, -1, or the sign at the time limit), with the touch period so overlapping labels can be purged. With a side per period it produces meta-labels (1 = the bet paid)."
+  },
+  {
+   "name": "fixed_horizon_labels",
+   "pack": "quant",
+   "group": "labeling",
+   "title": "Fixed-horizon labels",
+   "description": "Label each period by its forward return over a fixed horizon: +1 above a threshold, -1 below minus the threshold, 0 between; the threshold can be fixed or scaled by recent volatility. Includes the class balance and the forward span each label covers."
+  },
+  {
+   "name": "trend_scanning_labels",
+   "pack": "quant",
+   "group": "labeling",
+   "title": "Trend-scanning labels",
+   "description": "Label each period by the strongest forward trend: regress prices on time over every forward window in a range, keep the window with the largest |t-statistic| of the slope, and label by its sign with the t-statistic as confidence (Lopez de Prado's trend scanning)."
+  },
+  {
+   "name": "sample_weights",
+   "pack": "quant",
+   "group": "labeling",
+   "title": "Weights for overlapping labels",
+   "description": "Weight labels whose spans overlap so a model does not over-count the same information: concurrency per period, each label's average uniqueness, return-attribution weights, and optional time decay (Lopez de Prado, chapter 4)."
+  },
+  {
+   "name": "purged_cv_splits",
+   "pack": "quant",
+   "group": "labeling",
+   "title": "Purged, embargoed cross-validation",
+   "description": "Build k-fold cross-validation splits for labels that span time without leakage: training labels whose spans overlap a test fold are purged, and labels starting just after a test fold are embargoed. Reports what each fold removed, and optionally the indices."
+  },
+  {
+   "name": "annotate_price_series",
+   "pack": "quant",
+   "group": "labeling",
+   "title": "Annotate a price series",
+   "description": "Annotate every period of a price series and list the notable ones: robust-z outlier moves, stale (repeated) prices, gaps (jumps across a period), drawdown episodes with peak, trough and recovery, new all-time highs, and the causal volatility regime (calm, normal, turbulent). Gives per-period tags for joining onto your own data."
+  },
+  {
+   "name": "net_present_value",
+   "pack": "quant",
+   "group": "tvm",
+   "title": "Net present value",
+   "description": "Compute the NPV of periodic cash flows (first at time 0), with the profitability index, discounted payback and the IRR when one exists."
+  },
+  {
+   "name": "internal_rate_of_return",
+   "pack": "quant",
+   "group": "tvm",
+   "title": "Internal rate of return",
+   "description": "Solve the IRR of periodic cash flows, warning when sign changes allow several IRRs, with the NPV profile at a few rates."
+  },
+  {
+   "name": "modified_irr",
+   "pack": "quant",
+   "group": "tvm",
+   "title": "Modified internal rate of return",
+   "description": "Compute the MIRR: negative flows discounted at a finance rate, positive flows compounded at a reinvestment rate, one unambiguous return."
+  },
+  {
+   "name": "xnpv_xirr",
+   "pack": "quant",
+   "group": "tvm",
+   "title": "Dated NPV and IRR (XNPV, XIRR)",
+   "description": "Compute NPV and IRR for cash flows on irregular dates (ACT/365 from the first date), as spreadsheet XNPV and XIRR do."
+  },
+  {
+   "name": "time_value_solver",
+   "pack": "quant",
+   "group": "tvm",
+   "title": "Time value of money solver",
+   "description": "Solve for any one of rate, number of periods, payment, present value or future value given the other four (loans, savings, annuities), payments at period end or start."
+  },
+  {
+   "name": "amortization_schedule",
+   "pack": "quant",
+   "group": "tvm",
+   "title": "Loan amortization schedule",
+   "description": "Build a level-payment loan schedule: payment, interest and principal per period, remaining balance, and total interest."
+  },
+  {
+   "name": "rate_conversion",
+   "pack": "quant",
+   "group": "tvm",
+   "title": "Interest rate conversion",
+   "description": "Convert a nominal rate between compounding frequencies, to effective annual and continuous rates, and remove inflation (exact Fisher real rate)."
+  },
+  {
+   "name": "growing_annuity",
+   "pack": "quant",
+   "group": "tvm",
+   "title": "Growing annuity and perpetuity",
+   "description": "Value a growing annuity (present and future value) or a growing perpetuity whose first payment arrives in one period."
+  },
+  {
+   "name": "payback_period",
+   "pack": "quant",
+   "group": "tvm",
+   "title": "Payback and discounted payback",
+   "description": "Compute simple and discounted payback periods, interpolated within the period that recovers the investment."
+  },
+  {
+   "name": "equivalent_annual_annuity",
+   "pack": "quant",
+   "group": "tvm",
+   "title": "Equivalent annual annuity",
+   "description": "Convert a project's NPV into an equivalent level annual amount, to compare projects with different lives."
+  },
+  {
+   "name": "wacc",
+   "pack": "quant",
+   "group": "tvm",
+   "title": "Weighted average cost of capital",
+   "description": "Compute WACC from market values and costs of equity, debt and preferred, with after-tax cost of debt; cost of equity can come from CAPM."
+  },
+  {
+   "name": "levered_beta",
+   "pack": "quant",
+   "group": "tvm",
+   "title": "Unlever and relever beta",
+   "description": "Unlever an observed equity beta to an asset beta and relever it at a target debt-to-equity ratio (Hamada), for comparable-company cost of equity."
+  },
+  {
+   "name": "break_even",
+   "pack": "quant",
+   "group": "tvm",
+   "title": "Break-even and operating leverage",
+   "description": "Compute break-even units and revenue, contribution margin, margin of safety and degree of operating leverage from price, variable cost and fixed costs."
+  },
+  {
+   "name": "loan_true_cost",
+   "pack": "quant",
+   "group": "tvm",
+   "title": "Loan APR with fees",
+   "description": "Find a loan's true annual cost when upfront fees reduce the cash received: the payment, the nominal APR and effective annual rate implied by the fees, and the total cost."
+  },
+  {
+   "name": "retirement_projection",
+   "pack": "quant",
+   "group": "tvm",
+   "title": "Savings and withdrawal projection",
+   "description": "Project a savings balance with yearly contributions growing with salary, then sustainable inflation-adjusted withdrawals; reports the balance at retirement, how long withdrawals last and the safe level spending."
+  },
+  {
+   "name": "dcf_valuation",
+   "pack": "quant",
+   "group": "valuation",
+   "title": "Discounted cash flow valuation",
+   "description": "Value a business from forecast free cash flows with a Gordon-growth or exit-multiple terminal value: enterprise and equity value, per-share value and a discount-rate by growth sensitivity grid."
+  },
+  {
+   "name": "reverse_dcf",
+   "pack": "quant",
+   "group": "valuation",
+   "title": "Reverse DCF (implied growth)",
+   "description": "Solve the free-cash-flow growth rate the current share price implies over a forecast horizon, given a discount rate and terminal growth."
+  },
+  {
+   "name": "dividend_discount_model",
+   "pack": "quant",
+   "group": "valuation",
+   "title": "Dividend discount models",
+   "description": "Value a share with the Gordon growth, two-stage or H-model dividend discount model, or back out the required return the price implies (Gordon)."
+  },
+  {
+   "name": "residual_income_valuation",
+   "pack": "quant",
+   "group": "valuation",
+   "title": "Residual income valuation",
+   "description": "Value equity as book value plus discounted residual income (earnings above the cost of equity on opening book), with clean-surplus book values and a terminal value."
+  },
+  {
+   "name": "enterprise_value_multiples",
+   "pack": "quant",
+   "group": "valuation",
+   "title": "Enterprise value bridge and multiples",
+   "description": "Build enterprise value from market cap, debt, preferred, minority interest and cash, then EV/EBITDA, EV/EBIT, EV/sales, P/E, P/B, earnings yield and FCF yield."
+  },
+  {
+   "name": "altman_z_score",
+   "pack": "quant",
+   "group": "valuation",
+   "title": "Altman Z-score",
+   "description": "Compute the Altman Z-score bankruptcy predictor (public manufacturing, private-firm Z', or non-manufacturing Z'') with its five ratios and zone."
+  },
+  {
+   "name": "piotroski_f_score",
+   "pack": "quant",
+   "group": "valuation",
+   "title": "Piotroski F-score",
+   "description": "Score a company's financial strength 0-9 from two years of statements: profitability, leverage and liquidity, and operating efficiency signals, each shown."
+  },
+  {
+   "name": "beneish_m_score",
+   "pack": "quant",
+   "group": "valuation",
+   "title": "Beneish M-score",
+   "description": "Compute the eight-variable Beneish M-score earnings-manipulation screen from two years of statements, with every index; above -1.78 flags likely manipulation."
+  },
+  {
+   "name": "dupont_analysis",
+   "pack": "quant",
+   "group": "valuation",
+   "title": "DuPont ROE decomposition",
+   "description": "Decompose return on equity into margin, asset turnover and leverage (three-step), and into tax burden, interest burden, operating margin, turnover and leverage (five-step)."
+  },
+  {
+   "name": "graham_valuation",
+   "pack": "quant",
+   "group": "valuation",
+   "title": "Graham number and growth formula",
+   "description": "Compute Benjamin Graham's number (sqrt 22.5 x EPS x book value per share) and his revised growth formula value, with margin of safety against a price."
+  },
+  {
+   "name": "validate_deflated_sharpe",
+   "pack": "validation",
+   "group": "validation",
+   "title": "Validate deflated Sharpe",
+   "description": "Deflated Sharpe ratio: the probability (0 to 1) that the selected strategy's Sharpe beats the best that luck gives across the variants tried, with the probabilistic Sharpe and that luck benchmark. Send the seven statistics or a return series. With every variant's returns use validate_overfitting; luck as a trial count, validate_luck_trials; a multiple-testing haircut, validate_haircut_sharpe. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
+  },
+  {
+   "name": "validate_overfitting",
+   "pack": "validation",
+   "group": "validation",
+   "title": "Validate overfitting (CSCV)",
+   "description": "Probability of backtest overfitting (0 to 1) by CSCV: how often the in-sample best variant falls below the out-of-sample median. Needs every variant's returns (periods by variants); with summary statistics only, use validate_deflated_sharpe. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
+  },
+  {
+   "name": "validate_reality_check",
+   "pack": "validation",
+   "group": "validation",
+   "title": "Data-snooping tests (SPA, Reality Check, StepM)",
+   "description": "Data-snooping tests on every variant a search tried: Hansen's SPA p-value that the best beat the benchmark only by luck, White's Reality Check, and the variants Romano-Wolf StepM finds better. Send all variants tried, not only the winners. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
+  },
+  {
+   "name": "validate_paper_evidence",
+   "pack": "validation",
+   "group": "validation",
+   "title": "Validate paper evidence",
+   "description": "Checks paper-evidence.v0 structure and disclosures. With CANLI_LOCAL=1, record_file reads an export bundle and journal_file verifies signatures, source hashes and recomputed claims. Without a journal, source facts and signatures are unchecked. Local files are never uploaded. This verdict is about the series exactly as submitted. The service never saw the data source, its costs, survivorship, or any lookahead in how the series was built."
+  },
+  {
+   "name": "validate_breadth",
+   "pack": "validation",
+   "group": "validation",
+   "title": "Validate breadth ceiling",
+   "description": "Book Sharpe ceiling from adding sleeves of this quality and correlation, the Sharpe at a sleeve count, and the sleeves a target needs. For portfolio construction; it validates no single strategy. This verdict is about the series exactly as submitted. The service never saw the data source, its costs, survivorship, or any lookahead in how the series was built."
+  },
+  {
+   "name": "validate_track_record",
+   "pack": "validation",
+   "group": "validation",
+   "title": "Minimum track record length",
+   "description": "Minimum track record length (observations and years) for an observed Sharpe to beat a benchmark at a confidence level; with observations, the record's probabilistic Sharpe so far. For live or paper records; to size a backtest for its trials, use validate_backtest_length. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
+  },
+  {
+   "name": "validate_backtest_length",
+   "pack": "validation",
+   "group": "validation",
+   "title": "Minimum backtest length",
+   "description": "Minimum backtest length (years) before the best of N independent trials is not expected to reach a target Sharpe by luck; with backtest_years, the most trials those years allow. For planning a search; once it has a result, use validate_deflated_sharpe. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
+  },
+  {
+   "name": "validate_haircut_sharpe",
+   "pack": "validation",
+   "group": "validation",
+   "title": "Haircut Sharpe ratio",
+   "description": "Haircut Sharpe for multiple testing (Harvey and Liu 2015): the Sharpe a single test would have needed, by Bonferroni and independent tests, and with the other tests' Sharpes, Holm and BHY. For the probability the Sharpe is real, use validate_deflated_sharpe. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
+  },
+  {
+   "name": "validate_luck_trials",
+   "pack": "validation",
+   "group": "validation",
+   "title": "Luck-equivalent trials",
+   "description": "How many skill-less strategies a search would need for its best to reach this Sharpe by luck (Monte Carlo), and with a trial count, the chance it did. States luck as the best of N random tries; for the probability the Sharpe is real, use validate_deflated_sharpe. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
+  },
+  {
+   "name": "audit_backtest",
+   "pack": "validation",
+   "group": "validation",
+   "title": "Audit a backtest",
+   "description": "One-call audit of a strategy's returns. Headline: one test whose false-positive rate was measured on nine return shapes (White's Reality Check with variants, luck trials with Lo's correction without). Then deflated Sharpe, minimum track record and, with variants, overfitting and out-of-sample decay, each with its receipt, plus fix_next. Send every variant tried (variants_file) so trials are counted; point returns_file at a CSV instead of pasting. A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast."
+  },
+  {
+   "name": "verify_receipt",
+   "pack": "validation",
+   "group": "validation",
+   "title": "Verify a receipt",
+   "description": "Verify a receipt offline: its Ed25519 signature against the bundled canlicapital.com key, its output hash and its id. Send an id to fetch it first, or the receipt itself. The receipt is content-hashed, reproducible from the open-source core it names, and signed with Ed25519 by a key published at https://canlicapital.com/.well-known/canli-receipt-keys.json."
+  },
+  {
+   "name": "backtest_strategy",
+   "pack": "validation",
+   "group": "validation",
+   "title": "Backtest a rule over a parameter grid, validated",
+   "description": "Backtest a rule on your prices over a whole parameter grid, then validate the best with the count of variants actually run: deflated Sharpe, overfitting probability, minimum track record, vs buy and hold, after costs. A backtest, deflated or not, is not a forecast and not advice."
+  },
+  {
+   "name": "summarize_series",
+   "pack": "validation",
+   "group": "validation",
+   "title": "Summarize a price or return series",
+   "description": "A long price or return series in about 100 words plus fields: growth, risk, dated drawdowns, trend, volatility regime, tails, jumps, stale data. Use instead of reading raw bars. Nothing here is a forecast or advice."
+  },
+  {
+   "name": "strategy_stress_test",
+   "pack": "validation",
+   "group": "validation",
+   "title": "Stress-test a strategy's returns",
+   "description": "Stress a strategy's returns: bootstrap histories (how often the drawdown limit breaks or Sharpe turns negative) and named crash, volatility, repeat and stuck-position scenarios, with a fragility share. Frequencies over resampled histories are not forecasts of the future."
+  },
+  {
+   "name": "check_feasibility",
+   "pack": "validation",
+   "group": "validation",
+   "title": "Check a plan against broker limits and impact",
+   "description": "Check a trading plan before it trades: broker order-rate and minimum-order limits, 2026 US day-trading rules, square-root market impact with crowding, and the capital where costs eat the return. Checks the plan as described against published broker limits and a market-impact model; it never contacts a broker or sees an account."
+  },
+  {
+   "name": "check_leakage",
+   "pack": "validation",
+   "group": "validation",
+   "title": "Check a signal for lookahead",
+   "description": "Does a signal look ahead? plan gives cuts; rerun your code on the first cut rows for each, then compare. Rows that changed used later rows; the result names the pattern and horizon. No code is sent. A pass covers only these cuts: the columns are the caller's, and survivorship, vendor revisions or a leak no cut reaches leave no trace."
+  },
+  {
+   "name": "placebo_test",
+   "pack": "validation",
+   "group": "validation",
+   "title": "Test a research pipeline on placebo data",
+   "description": "Does your pipeline find edges in noise? plan writes placebo files (your data's returns in random orders, so nothing is predictable); run the whole pipeline on real.csv and on each, then compare for a p-value that counts every choice it makes. Beating the placebos shows the pipeline finds more in the real order of the returns than in random orders of the same returns; it does not show the edge survives costs, capacity or the future."
+  },
+  {
+   "name": "known_as_of",
+   "pack": "fundamentals",
+   "group": "fundamentals",
+   "title": "Known as of a date",
+   "description": "Get what a company had reported as of a date: per measure, the latest period filed by then, its value, and whether it was later restated; optionally ratios from those filings. For point-in-time backtests."
+  },
+  {
+   "name": "history",
+   "pack": "fundamentals",
+   "group": "fundamentals",
+   "title": "Measure history",
+   "description": "Get a measure (or several, with concepts) over time, newest first: latest (default), first reported, or as known on a filing date, with its filing, other version and yearly change."
+  },
+  {
+   "name": "restatements",
+   "pack": "fundamentals",
+   "group": "fundamentals",
+   "title": "Restated periods",
+   "description": "List periods whose value changed in a later filing, with first and latest values, % change and cause (stock splits left out by default). Omit concept to scan everything."
+  },
+  {
+   "name": "vintages",
+   "pack": "fundamentals",
+   "group": "fundamentals",
+   "title": "Filing vintages",
+   "description": "List every filing that reported one period of one measure, oldest first: the revision history behind a number."
+  },
+  {
+   "name": "list_concepts",
+   "pack": "fundamentals",
+   "group": "fundamentals",
+   "title": "List concepts",
+   "description": "List the XBRL concepts a company reports and the plain names it supports, with units, periods, date range and restated-period counts."
+  },
+  {
+   "name": "find_company",
+   "pack": "fundamentals",
+   "group": "fundamentals",
+   "title": "Find a company",
+   "description": "Find a company's SEC CIK and tickers by name, ticker or CIK. The other tools also take a name as company."
+  },
+  {
+   "name": "cross_section",
+   "pack": "fundamentals",
+   "group": "fundamentals",
+   "title": "Cross-section as of a date",
+   "description": "Get one measure for up to 50 companies as filed by a date: each one's latest period, its value then, and whether it was later restated. For point-in-time peer and factor work."
+  },
+  {
+   "name": "search_research",
+   "pack": "research",
+   "group": "research",
+   "title": "Search research",
+   "description": "Find Canli Capital research papers (strategy tests, killed candidates, literature reviews, feasibility protocols) by words in their titles and summaries. Use it to find a paper's slug, then read it with get_paper; to browse by subject instead, use list_topics."
+  },
+  {
+   "name": "list_topics",
+   "pack": "research",
+   "group": "research",
+   "title": "Research topics",
+   "description": "The research topics, with how many papers each holds and what it covers."
+  },
+  {
+   "name": "get_paper",
+   "pack": "research",
+   "group": "research",
+   "title": "Read a paper",
+   "description": "A research paper's text as published, by slug, with its headings; send section for one part, and max_chars to cap the length. Find the slug with search_research or list_topics first."
+  },
+  {
+   "name": "trial_ledger",
+   "pack": "research",
+   "group": "research",
+   "title": "Trial ledger",
+   "description": "How many distinct hypotheses Canli Capital has tried against its declared budget, and how many were killed or survived. Use it to judge any published result against the size of the search behind it."
+  },
+  {
+   "name": "live_record",
+   "pack": "research",
+   "group": "research",
+   "title": "Live paper record",
+   "description": "The live paper-trading record (returns, costs, risk, corrections, provenance) and each sleeve's paper equity, with their limits. Use it for how the strategies are doing now; for why they exist, read the papers."
+  },
+  {
+   "name": "chain_head",
+   "pack": "research",
+   "group": "research",
+   "title": "Verification chain head",
+   "description": "The head of the tamper-evident chain that shows the published record was not rewritten after publication, with where to verify it. Use it to check that a figure you read was not changed later."
+  },
+  {
+   "name": "list_factors",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Point-in-time factors",
+   "description": "The point-in-time factors pit_factor builds from SEC filings, and what each measures."
+  },
+  {
+   "name": "pit_factor",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Build a point-in-time factor",
+   "description": "Build a factor from SEC filings for a list of tickers, monthly from start to end, using only what had been filed by each date (restatements invisible until filed). Writes a signal CSV for backtest_signal. Values are what companies reported to the SEC in XBRL, as filed by each date; a company that files late, files outside XBRL or changes its tags can be missing."
+  },
+  {
+   "name": "backtest_signal",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Backtest a signal without lookahead",
+   "description": "Backtest a signal against your prices: rank, long and short quantiles, rebalance, trading only on what was known lag_days earlier, costs on actual trades. Pass ledger to judge the best of a search against all of it. A backtest measures one path of history under these costs; it does not establish that the signal will keep working."
+  },
+  {
+   "name": "price_panel",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Build a price panel",
+   "description": "Build a price panel from free sources for breadth_book or backtest_signal: the tickers you name or an index fund's current holdings, daily adjusted closes and dollar volume, and each company's Fama-French industry from its SEC SIC code, written as CSV files."
+  },
+  {
+   "name": "breadth_signals",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Breadth lab signals",
+   "description": "The cross-sectional signals breadth_book builds sleeves from: momentum, reversal, low volatility and beta, idiosyncratic risk, lottery demand, skewness, price delay, seasonality and liquidity, each with its formula's source and the data it needs."
+  },
+  {
+   "name": "breadth_book",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Breadth book of sleeves",
+   "description": "Build many weakly correlated sleeves (every signal inside every group of names) from your price panel and trade them as one netted account, ALPHAC's breadth lab: rank-weighted within each group, overlapping portfolios, hedged and scaled to a volatility target, costs on actual trades. Returns the book netted and standalone, the netting ratio, effective independent bets and ideas, and writes every sleeve's returns as a training dataset. A sleeve built on many signals and groups is a search: report the number of sleeves, keep a period untouched for the test, and judge the book there, not on the years used to choose it."
+  },
+  {
+   "name": "breadth_sweep",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Parallel sweep of breadth settings",
+   "description": "Run a grid of breadth-book settings (signal sets, smoothing, target volatility, costs, minimum names) in parallel on every core of this machine, or as shards other machines run and merge_files joins. Every combination counts as a trial: the best Sharpe is set against what the best of that many trials reaches by luck, and with split_date the chosen settings are scored after the split."
+  },
+  {
+   "name": "effective_bets",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Effective independent bets",
+   "description": "How many independent bets a set of return series holds: the participation ratio of their weekly correlations (n for unrelated series, 1 for copies), and with families, the families' bets and the ideas they cluster into."
+  },
+  {
+   "name": "annotation_packet",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Annotation packets",
+   "description": "Start a labelled dataset: figures (company, measure, period, value) are checked by machine against the SEC filings and written as blind CSV packets for two or more people to label, with guidelines and a key holding the machine labels."
+  },
+  {
+   "name": "annotation_agreement",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Annotation agreement",
+   "description": "Read filled annotation packets: how often the people agree (Cohen's kappa), how often they agree with the machine, and every disagreement."
+  },
+  {
+   "name": "annotation_gold",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Annotation gold set",
+   "description": "Merge filled annotation packets and a reviewer's decisions into a gold dataset (JSONL: each item's label, who decided it, the machine label and source) with a datasheet of agreement and hashes."
+  },
+  {
+   "name": "verify_claims",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Verify claims against filings",
+   "description": "Check a draft answer's figures against the company's own filings before using them: revenue, net income, EPS, operating income, margins, growth, cash flow, assets, debt and more, for a fiscal year or quarter as the company labels it. US and foreign filers (20-F, IFRS), in their own currency. Each claim comes back confirmed, contradicted (with the filed figure and what the claimed one matches instead: another year, a quarter, a unit slip), not reported or not checkable."
+  },
+  {
+   "name": "european_filings",
+   "pack": "markets",
+   "group": "markets",
+   "title": "European filings (ESEF)",
+   "description": "A European company's annual financial report as it filed it in the European Single Electronic Format (ESEF): revenue, operating and net profit, EPS, assets, equity, cash, cash flows and dividends as the company tagged them (IFRS concepts, its currency, full scale), with the comparatives, the report's viewer link and the other years on file. Issuers on EU and EEA regulated markets, found by name or LEI; words find any other tagged figure."
+  },
+  {
+   "name": "reference_rates",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Reference and policy rates",
+   "description": "Money-market and policy rates from the central banks themselves: SOFR, TGCR, BGCR, EFFR and OBFR from the New York Fed (with percentiles and volume), the euro short-term rate and the ECB's policy rates, SONIA and Bank Rate from the Bank of England, and about forty central banks' policy rates as the BIS collects them (policy:JP, policy:Brazil). Dates and rates, oldest first."
+  },
+  {
+   "name": "prediction_markets",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Prediction markets",
+   "description": "What traders on Polymarket and Kalshi are paying for an outcome, found by words (a Fed decision, a recession, an election, a price level): each market's probability (the middle of bid and ask, else the last trade), bid, ask, volume and closing date, with the event's resolution rules."
+  },
+  {
+   "name": "crypto_fundamentals",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Crypto fundamentals (DefiLlama)",
+   "description": "A DeFi protocol's total value locked (now, by chain, and its history), the fees users pay it and the revenue it keeps (24 hours to all time); a chain's total value locked; or a stablecoin's supply in circulation and its change, by chain. From DefiLlama's open data."
+  },
+  {
+   "name": "financial_statements",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Financial statements as filed",
+   "description": "A company's financial statements exactly as filed: income statement, balance sheet, cash flow and equity statement from its 10-K (or 10-Q), with its own line labels, each line's XBRL concept and the values as the filing shows them (units say the scale). Joins several filings by period; a line a later filing restated, or that a stock split changed, is shown beside its first-reported figure, never mixed in."
+  },
+  {
+   "name": "filing_tables",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Tables in filings",
+   "description": "The table in a filing that holds a figure, found by words (\"paid members\", \"revenue by region\", \"guidance\"): XBRL statement and detail reports and the tables in the document itself (MD&A figures such as members, stores or ARPU), or an 8-K press release's tables. With filings above one, the same words in each earlier filing, to follow a figure over the years. Without words, lists the tables."
+  },
+  {
+   "name": "earnings_release",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Earnings release and guidance",
+   "description": "A quarter's results press release (8-K Item 2.02): the headline, the results it states (each with the part of the business it belongs to and what a change is measured against), its guidance parsed into ranges (low, high, midpoint, unit, measure, basis, period, and the sentence or table row), and the previous release's guidance for this quarter set against the company's results: above, within or below the range, in basis points for rates."
+  },
+  {
+   "name": "screen_companies",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Screen companies",
+   "description": "Screen every US-listed company (thousands, from SEC XBRL frames) on fundamentals: revenue, growth, margins, ROE, ROA, free cash flow, R&D intensity, leverage and more, for a calendar year or each company's fiscal year ending in a date window, with filters, ranking and optional valuation (price, market cap, P/E, P/S, FCF yield). Implausible figures (tagging slips) are held out and listed apart."
+  },
+  {
+   "name": "company_report",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Company report",
+   "description": "One company in one call: profile, five fiscal years of financials (revenue, growth, margins, net income, EPS, cash flow, ROE, leverage), price and risk over a year (return, volatility, drawdown, beta), valuation (market cap, P/E, P/S, FCF yield), insider buying and selling, and recent filings, each from its source."
+  },
+  {
+   "name": "event_study",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Event study",
+   "description": "How a stock's price reacted to events: earnings releases (8-K item 2.02), insider purchases or sales (Form 4), any 8-K, or given dates. Abnormal returns against a market model, cumulative abnormal return per event and on average, with a t test across events."
+  },
+  {
+   "name": "mentions_trend",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Mentions over time",
+   "description": "How often a word or phrase appears in SEC filings over time (by month, quarter or year), across all filers or one company, from EDGAR full-text search: for themes such as \"tariffs\", \"agentic AI\" or \"going concern\"."
+  },
+  {
+   "name": "company_profile",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Company profile",
+   "description": "A company's or fund's SEC profile by ticker, CIK or name: tickers, exchange, industry (SIC), fiscal year end, state, address, former names, and its latest 10-K, 10-Q, 8-K and 13F."
+  },
+  {
+   "name": "list_filings",
+   "pack": "markets",
+   "group": "markets",
+   "title": "List filings",
+   "description": "A company's SEC filings, newest first, filtered by form type (10-K, 10-Q, 8-K, DEF 14A, S-1, 4, 13F-HR...) and dates, with links. Use read_filing to read one."
+  },
+  {
+   "name": "read_filing",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Read a filing",
+   "description": "The text of an SEC filing: the latest of a form, or one by accession. For a 10-K or 10-Q, section returns one item (\"risk factors\", \"md&a\", \"business\", \"market risk\", \"legal proceedings\", or a number such as \"1A\"); without it the result lists the items and their lengths. document reads an exhibit, such as an 8-K's press release (\"EX-99.1\"). find returns only the passages with given words (\"employees\", \"buyback\"), the fastest way to a fact in a long filing; otherwise long text pages with offset."
+  },
+  {
+   "name": "search_filings",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Search filings",
+   "description": "Full-text search across all SEC filings since 2001 (EDGAR full-text search): which companies mention a phrase, filtered by form, filer and dates. Quote phrases."
+  },
+  {
+   "name": "insider_trades",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Insider trades",
+   "description": "Insider transactions at a company from its Form 4 filings: who (officers, directors, 10% owners), what (open-market buys and sales, option exercises, tax withholding, gifts), shares, price, value, holdings after, and 10b5-1 plan flags, with a buy/sell summary. Default: the last 90 days."
+  },
+  {
+   "name": "fund_holdings",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Fund holdings (13F)",
+   "description": "A fund manager's 13F holdings for a quarter (latest by default): positions by value with portfolio weights, the total checked against the filing's cover page, and what changed since the previous quarter (new, exited, added, reduced)."
+  },
+  {
+   "name": "treasury_yields",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Treasury yields",
+   "description": "US Treasury daily yields from the Treasury itself: the par yield curve (1 month to 30 years), real (TIPS) yields or bill rates, for the latest day, a date, or a date range. In percent."
+  },
+  {
+   "name": "economic_series",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Economic series (FRED)",
+   "description": "Any FRED economic series (inflation, unemployment, GDP, payrolls, rates, credit spreads, oil, FX, money supply, recession indicators) by id or plain words, as dates and values, optionally as changes or year-over-year rates. Feed values straight into analysis tools."
+  },
+  {
+   "name": "price_history",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Price history",
+   "description": "Price bars (open, high, low, close, volume), daily to hourly, for US stocks and ETFs, stocks listed abroad (SAP.DE, 7203.T), currency pairs (EUR/USD), futures (crude oil, gold), indices and yields (S&P 500, VIX, 10 year yield) and crypto (bitcoin), by symbol or plain name. Stocks adjust for splits and dividends by default, with dividends, splits and the total return; returns: true adds daily returns. No key needed; uses the user's Alpaca or Tiingo key for US stocks when set."
+  },
+  {
+   "name": "fund_portfolio",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Fund or ETF portfolio (N-PORT)",
+   "description": "What a US mutual fund or ETF holds, from its own SEC Form N-PORT (VOO, IVV, QQQ, AGG, FXAIX): every position with value and weight, exposure by asset type, issuer, country and currency, a bond fund's coupon and maturity profile, its monthly returns, the money that came in and went out each month, and what changed since the previous quarter."
+  },
+  {
+   "name": "options_chain",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Options chain (Cboe)",
+   "description": "An option chain from Cboe's delayed data for a stock, ETF or index (AAPL, SPY, SPX, VIX): bids, asks, implied volatility, greeks, open interest and volume by strike for one expiration, every expiration with its open interest, put/call ratios, max pain and the move the at-the-money straddle prices in."
+  },
+  {
+   "name": "volatility_surface",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Volatility surface (Cboe)",
+   "description": "The implied volatility surface from Cboe's delayed option data: at-the-money IV by expiration (term structure), 25-delta put and call IV with the risk reversal and butterfly (skew), and IV at fixed moneyness from 80 to 120 percent of the price (smile)."
+  },
+  {
+   "name": "futures_curve",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Futures curve (Cboe)",
+   "description": "A Cboe futures curve from its daily settlements: VIX futures by expiration with the VIX index, contango or backwardation and the front month's premium; also mini VIX, variance, bitcoin and iBoxx bond index futures."
+  },
+  {
+   "name": "segment_revenue",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Revenue by segment",
+   "description": "Where a company's revenue comes from, read from the XBRL of its latest 10-K (or 10-Q): revenue and operating income by business segment, revenue by product or service and by region, for up to three years, with the company's own labels and each breakdown checked against total revenue."
+  },
+  {
+   "name": "index_constituents",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Index constituents",
+   "description": "The members of a stock index (S&P 500, Nasdaq 100, Russell 2000, S&P 400, MSCI EAFE) with their weights, read from the N-PORT of an ETF that tracks it, with the report date, the number of members and how concentrated the top ten are."
+  },
+  {
+   "name": "fomc",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Fed rate decisions (FOMC)",
+   "description": "The Federal Reserve's rate decisions from its own record: each FOMC meeting of a year (held and scheduled), the action, change and target range, the vote with dissenters and their reasons, links to statements and minutes, the latest statement, and the median projections (dot plot) for GDP, unemployment, inflation and the federal funds rate."
+  },
+  {
+   "name": "economic_calendar",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Economic calendar",
+   "description": "The US economic calendar from the agencies' own schedules: when BLS (jobs, CPI, PPI, JOLTS), BEA (GDP, personal income and PCE, trade), the Census Bureau (retail sales, housing starts, durable goods) and the Fed (FOMC decisions) release, with times in US Eastern and the market-moving releases flagged."
+  },
+  {
+   "name": "executive_pay",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Executive pay vs performance",
+   "description": "What a company's executives are paid against how it did, from the pay-versus-performance table in its proxy: the CEO's reported pay and the pay actually earned, the other executives' averages, shareholder return against peers, net income and the company's chosen measure, five years; or every company's CEO pay ranked, with mis-scaled filings held out."
+  },
+  {
+   "name": "short_interest",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Short interest (FINRA)",
+   "description": "Short interest in US stocks from FINRA, twice a month: shares short, the change, average daily volume and days to cover over several reports, and the share of shares outstanding from the company's latest SEC cover page; or, with no stock, the market ranked by days to cover, change or size."
+  },
+  {
+   "name": "off_exchange_volume",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Dark pool and OTC volume (FINRA)",
+   "description": "How much of a US stock trades away from the exchanges, from FINRA's OTC transparency data: weekly shares and trades in dark pools (ATSs) and with other off-exchange dealers, and the largest dark pools and dealers in the latest week."
+  },
+  {
+   "name": "fails_to_deliver",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Fails to deliver (SEC)",
+   "description": "Shares that failed to settle, from the SEC's fails-to-deliver data (NSCC): a stock's outstanding fail balance on each settlement date over the latest half-month files, with prices and dollar values, or the securities with the largest fails across the market."
+  },
+  {
+   "name": "futures_positioning",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Futures positioning (CFTC COT)",
+   "description": "Who holds what in a futures market, from the CFTC's weekly Commitments of Traders: long, short and net positions of producers, swap dealers, managed money and others (or dealers, asset managers and leveraged funds for financial futures), with weekly changes and where the speculators sit in their range, by market name (gold, crude oil, 10 year note, euro, bitcoin)."
+  },
+  {
+   "name": "private_offerings",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Private offerings (Form D)",
+   "description": "Private markets from Form D, filed when startups and funds sell securities without registering: amount offered and sold, number of investors, minimum investment, exemption (Rule 506(b) or 506(c)), industry, fund type and the people behind it, for one issuer or across the market (newest first, filtered by industry or amount sold)."
+  },
+  {
+   "name": "company_events",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Company events (8-K)",
+   "description": "Company news from the source: the events companies must report on Form 8-K (earnings, deals, executive changes, restatements, auditor changes, bankruptcies, cyber incidents, layoffs, delisting notices), for one company or, by event, across the whole market, each with the headline of the press release it attached and the opening of what the filing says."
+  },
+  {
+   "name": "latest_filings",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Latest filings (EDGAR feed)",
+   "description": "What has just been filed with the SEC, across every company: EDGAR's latest-filings feed, newest first by acceptance time, filtered by form (8-K, 10-K, 4, SC 13D, S-1...), 8-K event (earnings, executive change, restatement, bankruptcy), words in the filer's name and time. For watching what comes in today and over the last few business days; list_filings and company_events reach further back."
+  },
+  {
+   "name": "filing_diff",
+   "pack": "markets",
+   "group": "markets",
+   "title": "What changed in a filing",
+   "description": "What changed in a company's 10-K (or 10-Q) against the one before, section by section (risk factors by default, MD&A, business, legal proceedings): new and dropped paragraphs, the sentences changed in the rest, and the words whose use rose or fell most."
+  },
+  {
+   "name": "news",
+   "pack": "markets",
+   "group": "markets",
+   "title": "News and tone (GDELT)",
+   "description": "News about a company or a topic from the world's press (the GDELT Project's open index, no key): articles newest first with outlet and country, and the daily average tone of the coverage."
+  },
+  {
+   "name": "explain_move",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Explain a stock move",
+   "description": "Why a stock moved on a day, in one call: its return against the market and how rare it was for this stock (a market model fitted on the year before, with a z-score), the company's SEC filings around the day (8-K items named), and the press's headlines from those days."
+  },
+  {
+   "name": "portfolio_xray",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Portfolio X-ray (look-through)",
+   "description": "A portfolio seen through its funds: each ETF or mutual fund opened into the positions of its latest SEC N-PORT and added to the stocks held directly, giving the real exposure to each company, the overlap between funds and the effective number of positions."
+  },
+  {
+   "name": "comps",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Comparable companies",
+   "description": "A comparable-companies table: the company beside its NYSE- and Nasdaq-listed peers in the same SEC industry code, the nearest in revenue, on revenue, growth, margins, ROE, R&D intensity and FCF margin (or measures you pick), with the peers' median and the company's rank on each."
+  },
+  {
+   "name": "debt_profile",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Debt profile",
+   "description": "A company's debt from its annual reports' XBRL: total and net debt, the maturity ladder from the debt note (next 12 months to after five years), lease payments, interest expense, the implied interest rate, interest coverage and debt to EBITDA, with five years of debt and cash."
+  },
+  {
+   "name": "ownership_breadth",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Breadth of institutional ownership (13F)",
+   "description": "How many institutions hold a stock, quarter by quarter: 13F filers whose holdings tables list its CUSIP (EDGAR full-text search), with the change and a sample of holders. A fall in breadth predicted lower returns (Chen, Hong and Stein 2002)."
+  },
+  {
+   "name": "forensic_scores",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Forensic accounting screens",
+   "description": "Three accounting screens in one call from the company's own annual XBRL for its last two years: Beneish's M-score (earnings manipulation), Piotroski's F-score (financial strength) and Altman's Z-score (distress), every input with its tag."
+  },
+  {
+   "name": "funding_rates",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Crypto funding rates (OKX)",
+   "description": "Crypto perpetual funding on OKX's USDT perpetuals, no key: each coin's latest eight-hour rate, the window's mean and its annualized carry (short the perpetual against long spot), the last week's, and the share of positive periods."
+  },
+  {
+   "name": "compute_prices",
+   "pack": "markets",
+   "group": "markets",
+   "title": "GPU compute prices (Cirrun index)",
+   "description": "Compute as a market, no key: the on-demand hourly price of each data-centre GPU (B200, H200, H100, A100, L40S...) across the clouds and GPU marketplaces, the cheapest, median and dearest offer with who offers it, every provider's offer for one model, recent list-price changes, and the Cirrun GPU Index (a daily chained index of those prices). Each price is the provider's own list price with the date it was confirmed."
+  },
+  {
+   "name": "shareholder_returns",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Dividends and buybacks",
+   "description": "What a company has paid its shareholders, year by year from its annual XBRL: dividends per share (split-adjusted record: years raised in a row, 5- and 10-year growth) and in total, buybacks and shares issued for cash, the diluted share count and its change, the payout ratio and the share of free cash flow paid out, and at the last close the dividend yield and shareholder yield."
+  },
+  {
+   "name": "market_overview",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Market overview",
+   "description": "The market at a glance, no key: the S&P 500, Nasdaq, Dow, Russell 2000 and VIX, the eleven S&P sectors (SPDR funds) ranked by the month, Treasury yields from 13 weeks to 30 years, the dollar and major currencies, oil, gas, gold, silver and copper, bitcoin and ether, and the main markets in Europe and Asia, each with its last close and its change over a day, a week, a month, three months, the year to date and a year."
+  },
+  {
+   "name": "federal_contracts",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Federal contracts (USAspending)",
+   "description": "What the US government obligated to a company in a fiscal year, no key: the total, by agency and industry code, its recipient entities, and its largest contracts with links, from USAspending.gov."
+  },
+  {
+   "name": "drug_pipeline",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Drug pipeline and FDA approvals",
+   "description": "A drug company's pipeline, no key: active clinical trials by phase, the readouts (primary completions) due in the coming months, late-stage trials, and its FDA approvals, from ClinicalTrials.gov and Drugs@FDA."
+  },
+  {
+   "name": "comment_letters",
+   "pack": "markets",
+   "group": "markets",
+   "title": "SEC comment letters",
+   "description": "What the SEC's staff questioned in a company's filings and how it answered: comment letters (UPLOAD) and replies (CORRESP) grouped into reviews, with the topics of the newest (non-GAAP, revenue recognition, segments...) and excerpts."
+  },
+  {
+   "name": "company_reverse_dcf",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Reverse DCF (implied growth)",
+   "description": "The free-cash-flow growth a share price implies: solves a discounted cash flow model for the growth that reaches the market's enterprise value, from the company's annual XBRL and the last close, with a sensitivity table and the company's own history beside it."
+  },
+  {
+   "name": "bank_financials",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Bank financials (FDIC call reports)",
+   "description": "A US bank's condition quarter by quarter from its call reports (FDIC, no key): assets, deposits and the share uninsured, loans and the share noncurrent, equity, earnings, ROA, ROE, net interest margin and capital ratios. With no bank, the latest bank failures and their cost."
+  },
+  {
+   "name": "filing_drift",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Language drift across filings",
+   "description": "How a 10-K section's language drifts over several years: each year's change from the year before (the Lazy Prices measure), hedging and adverse words, readability, and how much it says about a theme you name and how that wording moves, with flags for the years and themes that moved most."
+  },
+  {
+   "name": "planned_insider_sales",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Planned insider sales (Form 144)",
+   "description": "Insiders' planned sales from Form 144, filed before they sell: seller, role, shares, market value, share of the company, approximate sale date, how the shares were acquired and any 10b5-1 plan date, with totals by seller."
+  },
+  {
+   "name": "ipo_pipeline",
+   "pack": "markets",
+   "group": "markets",
+   "title": "IPO pipeline (S-1, F-1, 424B4)",
+   "description": "The IPO pipeline from EDGAR: companies that filed or amended a registration (S-1, F-1) in a window, labelled IPO candidate, SPAC, fund or already listed, and offerings priced (424B4) with price, shares and proceeds from the prospectus cover."
+  },
+  {
+   "name": "large_holders",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Large holders (13D/13G)",
+   "description": "Who owns more than 5 percent of a company, from Schedules 13D and 13G: each holder's latest stake (shares, percent of class, voting power), whether it is passive (13G) or may seek to influence control (13D, with its stated purpose); or, with no company, the newest 13D stakes across the whole market."
+  },
+  {
+   "name": "earnings_calendar",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Earnings calendar",
+   "description": "Earnings dates from the companies' own 8-Ks (Item 2.02, results of operations). For a company: its recent results releases with the quarter each covered and whether it came before the open or after the close (EDGAR's acceptance time), and the next release estimated from the same quarter a year earlier, with a window. Across the market: who is due to report in a window, from when they reported in the same weeks last year, marked once they have. Estimates, not announcements."
+  },
+  {
+   "name": "investment_advisers",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Investment advisers (Form ADV)",
+   "description": "Investment advisers from the SEC's Form ADV database (IAPD) by name or CRD: matching firms with SEC file numbers, status, whether they report disclosure events, offices and branch counts, then the best match in full: registration and since when, other names and relying advisers, its latest ADV date, and links to its Form ADV and brochures."
+  },
+  {
+   "name": "world_economy",
+   "pack": "markets",
+   "group": "markets",
+   "title": "World economy (World Bank)",
+   "description": "Any country's or region's economy from the World Bank's World Development Indicators (200+ countries, the euro area, the world, income groups): GDP and growth, inflation, unemployment, government debt and deficits, the current account, trade, reserves, interest rates, population and more, by plain words or indicator code, as a year-by-country table with each country's latest value."
+  },
+  {
+   "name": "economic_outlook",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Economic outlook (OECD projections)",
+   "description": "The OECD's projections for the next two years from its Economic Outlook, for 50+ economies, the euro area, the OECD and the world: GDP growth, inflation (harmonised for the euro area), core inflation, unemployment, budget balance, government debt, current account and short- and long-term interest rates, beside its estimates for the two years before."
+  },
+  {
+   "name": "treasury_auctions",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Treasury auctions",
+   "description": "US Treasury auction results, or the auctions announced next, from the Treasury itself: bills, notes, bonds, TIPS and FRNs by term (\"10-year\", \"13-week bill\"), with the rate each cleared at, coupon, bid-to-cover, size and the shares taken by indirect bidders (foreign and other), direct bidders and primary dealers, plus averages to compare the latest auction with recent ones."
+  },
+  {
+   "name": "federal_debt",
+   "pack": "markets",
+   "group": "markets",
+   "title": "US federal debt",
+   "description": "The US federal debt each business day from the Treasury's Debt to the Penny (total, held by the public, intragovernmental) over any window since 1993, its change over the window, and the average interest rate the Treasury pays on each type of security."
+  },
+  {
+   "name": "paper_account",
+   "pack": "paper",
+   "group": "paper",
+   "title": "Paper account",
+   "description": "Read your Alpaca paper account: equity, cash, buying power, positions, open orders, the market clock, the kill switch and the local order log's verified head."
+  },
+  {
+   "name": "preview_paper_orders",
+   "pack": "paper",
+   "group": "paper",
+   "title": "Preview paper orders",
+   "description": "Check orders against your paper account, live quotes, the market clock, your limits file and the kill switch; when every order passes, return a five-minute confirmation token for exactly these orders."
+  },
+  {
+   "name": "rebalance_to_weights",
+   "pack": "paper",
+   "group": "paper",
+   "title": "Rebalance to weights",
+   "description": "Turn target portfolio weights into the whole-share orders that move your paper account there (sells first), check them, and return a confirmation token when all pass."
+  },
+  {
+   "name": "verify_attestation",
+   "pack": "paper",
+   "group": "paper",
+   "title": "Verify an attestation",
+   "description": "Check an attestation a pre-trade check or send returned: that it was signed by the trader's keys (Ed25519 and, where present, post-quantum ML-DSA-65; both must hold) and not altered, and, given openings from the trader's commitments file, that committed account figures are what they claim. Offline; reads nothing from Alpaca."
+  },
+  {
+   "name": "send_paper_orders",
+   "pack": "paper",
+   "group": "paper",
+   "title": "Send paper orders",
+   "description": "Send previewed orders to your Alpaca paper account with their confirmation token (the kill switch is read again first), or cancel open paper orders by id. Every send is logged, hash-chained."
+  }
+ ]
+}
