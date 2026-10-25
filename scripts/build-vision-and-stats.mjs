@@ -13,6 +13,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { renderProductShellFooter, renderProductShellHeader, renderProductShellStylesheet } from "./product-shell.mjs";
+import { liveContext } from "./lib/mcp-flagship.mjs";
 import { OUT as STATS } from "./build-adoption-stats.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -153,7 +154,7 @@ const pct = (x) => `${Math.round(x * 100)}%`;
 export function visionFigures({ h2h, stats, leaderboard }) {
   const ours = h2h.arms.find((a) => a.id === h2h.headline.ours);
   const best = h2h.arms.find((a) => a.id === h2h.headline.best_rival);
-  const ctx = h2h.context.rows.find((r) => r.arm === ours.id);
+  const ctx = liveContext(h2h);
   const row = leaderboard.rows.find((r) => r.mcp && r.model === "gpt-5-mini") ?? leaderboard.rows.find((r) => r.mcp);
   const npm = stats.npm?.rows ?? [];
   return { tools: number(h2h.flagship.tools), front: h2h.flagship.front.length, tokens: number(ctx.tokens), onNpm: npm.length,

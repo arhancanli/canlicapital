@@ -3,7 +3,7 @@
  "purpose": "The homepage's opening answer, its comparison table and its FAQ. scripts/build-home-answers.mjs writes all three into index.html and builds the FAQPage JSON-LD from the same entries, so the markup can never say something the page does not.",
  "reviewed": "2026-10-11",
  "definition": "Canli Capital is an open-source lab that connects AI agents to financial data and quant tools they can check.",
- "answer": "Its flagship MCP server, canli-mcp, reads SEC filings, market data and economic statistics at the source and puts 306 finance tools behind three. The code is free and MIT-licensed.",
+ "answer": "Its flagship MCP server, canli-mcp, reads SEC filings, market data and economic statistics at the source and puts 345 finance tools behind five, with interactive charts in the chat. The code is free and MIT-licensed.",
  "comparison": {
   "id": "compare",
   "eyebrow": "Side by side",
@@ -129,7 +129,7 @@
   },
   {
    "question": "What is canli-mcp?",
-   "answer": "canli-mcp is one MCP server that loads every Canli Capital server in one process. The model sees three tools, find_tool, describe_tool and run_tool, and behind them sit 306 tools for quant finance, backtest validation, SEC filings and fundamentals, ownership, funds, options, the Fed, economic data, prices and paper trading.",
+   "answer": "canli-mcp is one MCP server that loads every Canli Capital server in one process. The model sees five tools, find_tool, describe_tool, run_tool and the two it asks for most, and behind them sit 345 tools for quant finance, backtest validation, SEC filings and fundamentals, ownership, funds, options, the Fed, economic data, prices and paper trading.",
    "link": {
     "href": "/mcp-servers",
     "text": "See every server it combines."

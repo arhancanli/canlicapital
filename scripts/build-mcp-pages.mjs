@@ -11,6 +11,7 @@ import { fitDescription } from './lib/descriptions.mjs';
 import { sourceDate } from './lib/page-sources.mjs';
 import { EXECUTION_ROUTE, executionSource, executionSourceHref } from './lib/execution-workflow.mjs';
 import { renderFlagship } from './lib/mcp-flagship.mjs';
+import { TIERS } from '../api/_lib/tiers.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://canlicapital.com';
@@ -52,7 +53,7 @@ function breadcrumbs(route, label) {
   if (route !== MCP_ROUTE) parts.push([label, route]);
   return { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: parts.map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, item: ORIGIN + path })) };
 }
-function document({ route, title, description, structured, body, sources = 'mcp_discovery.json' }) {
+function document({ route, title, description, structured, body, sources = 'mcp_discovery.json', scripts = [] }) {
   const modified = sourceDate(ROOT, route);
   const page = { '@context': 'https://schema.org', '@type': route === MCP_ROUTE ? 'CollectionPage' : 'WebPage', '@id': ORIGIN + route, url: ORIGIN + route, name: title, description, ...(modified ? { dateModified: modified } : {}), publisher: { '@id': ORIGIN + '/#organization' } };
   return `<!doctype html>
@@ -81,7 +82,7 @@ ${renderProductShellHeader({ active: 'mcp-servers' })}
 <main id="content" tabindex="-1">${body}</main>
 ${renderProductShellFooter()}
 <script type="module" src="/js/main.js"></script>
-</body></html>\n`;
+${scripts.map((src) => `<script type="module" src="${esc(src)}"></script>\n`).join('')}</body></html>\n`;
 }
 const links = entries => entries.map(({ path, label }) => `<li><a href="${esc(path)}">${esc(label)}</a></li>`).join('\n');
 const sourceHref = s => `https://github.com/arhancanli/canlicapital/tree/${s.commit}/${s.dir}`;
@@ -176,19 +177,22 @@ export function serverPage(s, servers) {
 }
 
 // The directory is canli-mcp's page: the flagship first (scripts/lib/mcp-flagship.mjs), then each server on its own.
-export function directoryPage(servers, { h2h = read('public/benchmarks/finance-mcp-servers.json'), npmRows = read('public/stats/adoption.json').npm?.rows ?? [] } = {}) {
+// The recorded views the page plays (mcp-canli/bench/record-site-demos.mjs); none if they are absent.
+const recordedDemos = () => { try { return read('public/demos/canli-mcp/index.json').demos; } catch { return []; } };
+
+export function directoryPage(servers, { h2h = read('public/benchmarks/finance-mcp-servers.json'), npmRows = read('public/stats/adoption.json').npm?.rows ?? [], demos = recordedDemos(), tiers = TIERS } = {}) {
   const title = 'Finance MCP servers: canli-mcp and the family';
   const f = h2h.flagship;
-  const summary = `canli-mcp is one open-source MCP server for SEC filings, company fundamentals, Treasury and FRED data, prices, quant analytics, backtest validation and paper trading: ${f.tools} tools behind ${f.front.length}.`;
+  const summary = `canli-mcp is one open-source MCP server for SEC filings, company fundamentals, Treasury and FRED data, prices, quant analytics, backtest validation and paper trading: ${f.tools} tools behind ${f.front.length}, with interactive views in the chat.`;
   const list = { '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: servers.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.package, url: ORIGIN + s.route })) };
   const app = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', '@id': `${ORIGIN}${MCP_ROUTE}#canli-mcp`, name: f.package, description: summary, url: ORIGIN + MCP_ROUTE, applicationCategory: 'DeveloperApplication', operatingSystem: 'Any MCP client (stdio)', codeRepository: `${f.source.repository}/tree/main/${f.source.path}`, license: 'https://opensource.org/licenses/MIT', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, author: { '@id': ORIGIN + '/#arhan-canli' } };
-  const body = `<section class="dev-hero">${nav(MCP_ROUTE, servers)}<p class="dev-kicker">canli-mcp / The flagship MCP server</p><h1>canli-mcp: every finance tool an agent needs, behind three</h1><p class="dev-lead">${esc(summary)} The model sees ${f.front.length} tools; the rest wait behind them.</p><div class="dev-actions"><a class="dev-button dev-button--primary" href="#install">Add canli-mcp to your agent</a><a class="dev-button" href="/benchmarks/finance-mcp-servers">See the benchmark</a></div><p class="dev-hero-note">canli-mcp loads every Canli Capital server in one process. Each of them also runs on its own, below.</p></section>
-${renderFlagship(h2h, { npmRows, hosted: servers })}
+  const body = `<section class="dev-hero">${nav(MCP_ROUTE, servers)}<p class="dev-kicker">canli-mcp${f.current ? ` ${esc(f.current.version)}` : ''} / The flagship MCP server</p><h1>canli-mcp: every finance tool an agent needs, drawn in the chat</h1><p class="dev-lead">${esc(summary)} The model sees ${f.front.length} tools; the rest wait behind them, and a chart costs it a summary.</p><div class="dev-actions"><a class="dev-button dev-button--primary" href="#install">Add canli-mcp to your agent</a>${demos.length ? '<a class="dev-button" href="#views">Try the views</a>' : ''}<a class="dev-button" href="#cloud">Hosted plans</a><a class="dev-button" href="/benchmarks/finance-mcp-servers">See the benchmark</a></div><p class="dev-hero-note">canli-mcp loads every Canli Capital server in one process. Each of them also runs on its own, below.</p></section>
+${renderFlagship(h2h, { npmRows, hosted: servers, demos, tiers })}
 <section class="dev-section" id="servers"><p class="eyebrow">Each server on its own</p><h2>Hosted servers, nothing to install</h2><div class="mcp-cards">${servers.map(s => `<article><p class="mcp-count">${s.tools.length} tools / Hosted ${esc(s.version)}</p><h3><a href="${s.route}">${esc(s.title)}</a></h3><p>${esc(s.summary)}</p><p><code>${esc(s.package)}</code></p><a href="${s.route}#connect">Connect ${esc(s.id)}</a></article>`).join('')}</div></section>
 <section class="dev-section"><h2>Using them together</h2><p>Start with research to see what has been tried and what failed. Use fundamentals to rebuild what a company had reported by your decision date. Once you have built a strategy's returns, with your own care for costs and look-ahead, use validation to check whether the result could be luck.</p><p>Each answers a different question. Accounting numbers are not returns, a paper can describe a failed test, and no statistic promises future profit.</p></section>
 <section class="dev-section"><h2>Source data, datasets and reproduction</h2><ul class="mcp-related">${links([{path:'/companies',label:'SEC company reference and source filings'},{path:'/research/filing-facts-v0',label:'FilingFacts dataset: financial questions with source evidence'},{path:'/annotate',label:'FilingFacts review and annotation workspace'},{path:'/research/null-zoo-v0',label:'Null Zoo research benchmark'},{path:'/standards/paper-evidence',label:'Open paper evidence reporting standard'},{path:'/engineering',label:'ALPHAC, point-in-time lake and backtester repositories'}])}</ul><p>FilingFacts v0 is machine-checked; its review packet does not establish independently adjudicated human gold. The paper evidence standard is a proposal with disclosed implementation and review limits.</p></section>
 <section class="dev-section"><h2>Versions, privacy and trading</h2><p>The hosted servers run the released version shown on each card; npm can lag behind it for a short while. Read the setup guide before sending private strategy data anywhere.</p><p>The research and fundamentals servers read public records only. Hosted validation stores a signed receipt of each check under the free-key quotas; the npm server in local mode keeps your returns on your machine. A separate, unreleased <a href="${EXECUTION_ROUTE}">local paper-trading workflow</a> handles position sizing, pre-trade checks and signed trade journals. It connects to no broker. The <a href="/tools/execution">execution-cost calculator</a> is available in the browser. Download the <a href="/glassbox/mcp_discovery.json">discovery record with the hosted release pins and examples</a>.</p></section>`;
-  return document({ route: MCP_ROUTE, title, description: fitDescription(summary), structured: [list, app], body, sources: 'mcp_discovery.json benchmarks/finance-mcp-servers.json stats/adoption.json' });
+  return document({ route: MCP_ROUTE, title, description: fitDescription(summary), structured: [list, app], body, sources: 'mcp_discovery.json benchmarks/finance-mcp-servers.json stats/adoption.json demos/canli-mcp/index.json', scripts: demos.length ? ['/js/mcp-demo.js'] : [] });
 }
 
 export function buildMcpPages({ loadExecution = executionSource, write = writeFileSync, makeDir = mkdirSync } = {}) {
