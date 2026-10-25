@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.11.1
+
+- A view's own follow-up calls ask as a view does (`view: true`), so a long answer comes back whole.
+  Before, "Compare with the S&P 500" on a backtest since 2010 asked for 4,228 days of SPY, got the
+  shortened preview a model gets above 200,000 characters, and drew no line.
+
 ## 0.11.0
 
 - More interactive views (`src/view/atlas.js`, in the same page): a market map from `market_overview`

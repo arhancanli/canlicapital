@@ -82,10 +82,10 @@ test("holdings carry their return on cost; shorts keep their size", () => {
 test("a view's call again patches its own call and cuts the batch after it", () => {
   const input = { calls: [{ name: "price_history", arguments: { symbol: "SPY" } }, { name: "backtest_ma_crossover", arguments: { prices: { $result: 0, path: "close" }, fast: 20, slow: 100 } }, { name: "return_stats", arguments: {} }], return: "all" };
   assert.deepEqual(againInput({ input, call: { name: "backtest_ma_crossover", index: 1 } }, { fast: 30, curve: true }), {
-    calls: [input.calls[0], { name: "backtest_ma_crossover", arguments: { prices: { $result: 0, path: "close" }, fast: 30, slow: 100, curve: true } }], return: "last", digits: 6,
+    calls: [input.calls[0], { name: "backtest_ma_crossover", arguments: { prices: { $result: 0, path: "close" }, fast: 30, slow: 100, curve: true } }], return: "last", digits: 6, view: true,
   });
-  assert.deepEqual(againInput({ input: { name: "options_chain", arguments: { symbol: "AAPL" } }, call: { name: "options_chain", index: null } }, { expiration: "2026-11-20" }), { name: "options_chain", arguments: { symbol: "AAPL", expiration: "2026-11-20" }, digits: 6 });
-  assert.deepEqual(againInput({ input: {}, call: null }, { symbol: "SPY" }, "price_history"), { name: "price_history", arguments: { symbol: "SPY" }, digits: 6 });
+  assert.deepEqual(againInput({ input: { name: "options_chain", arguments: { symbol: "AAPL" } }, call: { name: "options_chain", index: null } }, { expiration: "2026-11-20" }), { name: "options_chain", arguments: { symbol: "AAPL", expiration: "2026-11-20" }, digits: 6, view: true });
+  assert.deepEqual(againInput({ input: {}, call: null }, { symbol: "SPY" }, "price_history"), { name: "price_history", arguments: { symbol: "SPY" }, digits: 6, view: true });
 });
 
 test("sliders span sensible ranges; a sweep over two parameters is a grid", () => {
