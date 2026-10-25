@@ -77,7 +77,7 @@ test("the checks refuse a config that would publish a weaker claim", () => {
     assert.throws(() => checkConfig(c, flagship), message, name);
   }
   const f = structuredClone(flagship);
-  f.packs[0].tools += 1;
-  assert.throws(() => checkConfig(config, f), /must equal the packs/);
+  f.benchmarked.tools += 1;
+  assert.throws(() => checkConfig(config, f), /must equal the benchmarked/);
   assert.doesNotThrow(() => checkConfig(clone(), flagship));
 });

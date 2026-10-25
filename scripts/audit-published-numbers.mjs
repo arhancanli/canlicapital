@@ -116,6 +116,7 @@ for (const extra of [
   "stats/adoption.json",
   "datasets/filing-facts/v0/leaderboard.json",
   "benchmarks/finance-mcp-servers.json",
+  "demos/canli-mcp/index.json",
 ]) {
   const file = resolve(DIST, extra);
   if (existsSync(file)) artifacts.push(file);

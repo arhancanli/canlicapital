@@ -78,9 +78,11 @@ export function checkConfig(config, flagship) {
   }
   need(Array.isArray(config?.caveats) && config.caveats.length >= 3, "the caveats must be stated");
   need(flagship?.schema === "canli.flagship-mcp.v1", "flagship schema must be canli.flagship-mcp.v1");
-  const packTools = (flagship?.packs ?? []).reduce((s, p) => s + p.tools, 0);
+  // The benchmark ran an earlier release: its context row is checked against the count it ran with.
+  const packTools = flagship?.benchmarked?.tools;
+  need(Number.isInteger(packTools), "flagship.benchmarked.tools must say how many tools the benchmark ran with");
   const ours = config?.context?.rows?.find((r) => r.arm === OURS);
-  need(ours && ours.reaches === packTools, `the context row's ${ours?.reaches} tools must equal the packs' ${packTools}`);
+  need(ours && ours.reaches === packTools, `the context row's ${ours?.reaches} tools must equal the benchmarked ${packTools}`);
   if (problems.length) throw new Error(`build-mcp-head-to-head: not publishable:\n- ${problems.join("\n- ")}`);
 }
 
@@ -173,6 +175,7 @@ export function summarize(config, flagship) {
       install: flagship.install, front: flagship.front, packs: flagship.packs,
       tools: flagship.packs.reduce((s, p) => s + p.tools, 0),
       search: flagship.search, file_reference: flagship.file_reference, batch: flagship.batch, example: flagship.example,
+      benchmarked: flagship.benchmarked, current: flagship.current, views: flagship.views, firms: flagship.firms,
       ...(flagship.coverage ? { coverage: flagship.coverage } : {}),
     },
   };

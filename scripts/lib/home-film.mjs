@@ -4,6 +4,8 @@
 // summary (public/benchmarks/finance-mcp-servers.json). js/home-film.js plays the film behind the words
 // from the same numbers, which it reads from the #film-data block this module writes.
 
+import { liveContext } from "./mcp-flagship.mjs";
+
 const esc = (v) => String(v).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
 const integer = new Intl.NumberFormat("en-US");
 const pct = (x) => `${Math.round(x * 100)}%`;
@@ -77,7 +79,7 @@ export function renderHomeFilm(h2h, leaderboard) {
   const best = h2h.arms.find((a) => a.id === h2h.headline.best_rival);
   const fair = fairArms(h2h);
   const rivals = fair.filter((a) => !a.ours);
-  const oursCtx = ctx(ours.id), openbb = ctx("openbb");
+  const openbb = ctx("openbb"), live = liveContext(h2h);
   const zeroCats = h2h.categories.filter((c) => rivals.some((a) => a.categories[c.id].runs && a.categories[c.id].correct === 0)).map((c) => c.label.replace(/^([A-Z])(?=[a-z])/, (m) => m.toLowerCase()));
   const listing = (items) => (items.length < 2 ? items.join("") : `${items.slice(0, -1).join(", ")} or ${items.at(-1)}`);
   const f = h2h.flagship;
@@ -127,7 +129,7 @@ export function renderHomeFilm(h2h, leaderboard) {
 </figure>`, "dense"),
 
     chapter(5, "The flagship", `<h2 id="ch-5-h" class="display">canli-mcp</h2>
-<p class="lede">Every Canli Capital server in one process. ${f.front.length} tools in front, ${integer.format(f.tools)} behind them, ${integer.format(oursCtx.tokens)} tokens of context, ready in ${secs(oursCtx.seconds)} seconds.</p>
+<p class="lede">Every Canli Capital server in one process. ${f.front.length} tools in front, ${integer.format(f.tools)} behind them, ${integer.format(live.tokens)} tokens of context, ready in ${secs(live.seconds)} seconds.</p>
 <ul class="packs" aria-label="The packs canli-mcp loads">${f.packs.map((p) => `<li data-pack="${esc(p.id)}"><span class="n">${p.tools}</span><b>${esc(p.label)}</b><span class="covers">${esc(p.covers)}</span></li>`).join("")}</ul>
 <p>Ask for a tool in plain words and the right one comes first ${f.search.first} times in ${f.search.requests}. Pass a file instead of pasting data, and ${integer.format(f.file_reference.prices)} prices cost ${f.file_reference.tokens} tokens instead of ${integer.format(f.file_reference.pasted_tokens)}.</p>
 <p class="links"><a href="#ch-11">Add it to your agent</a><a href="/mcp-servers">Every server it combines</a></p>`, "dense"),
