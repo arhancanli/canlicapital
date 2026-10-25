@@ -10,6 +10,7 @@ import { InMemoryTransport, McpServer } from "@modelcontextprotocol/server";
 import { registerAll } from "../src/server.mjs";
 import { chart, claims, esc, fmt, ranges, releaseTable, renderResult, renderRunResult, seriesFromTable, table } from "../src/view/render.js";
 import { VIEW_MIME, VIEW_URI, viewHtml } from "../src/view.mjs";
+import { againInput } from "../src/view/studio.js";
 
 test("the page is one self-contained file: no network, no external script, the protocol in it", () => {
   const html = viewHtml();
@@ -227,4 +228,9 @@ test("view: true draws the whole result for the person and gives the model a sum
   const p = await plain.callTool(call);
   assert.equal(JSON.parse(p.content[0].text).curve.rows.length, 400, "without apps the model gets the whole result");
   assert.equal(JSON.parse(p.content[0].text).viewed, undefined);
+  // A view's own follow-up (againInput) comes back whole even when it is above the model's limit.
+  const long = Array.from({ length: 30000 }, (_, i) => 100 + Math.sin(i / 9));
+  const again = await apps.callTool({ name: "run_tool", arguments: againInput({ input: {}, call: null }, { values: long, from: "prices", to: "simple" }, "convert_returns") });
+  assert.equal(again.structuredContent.values.length, 29999, "the view gets every value");
+  assert.equal(again.structuredContent.preview_only, undefined);
 });

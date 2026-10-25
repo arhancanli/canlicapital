@@ -215,14 +215,15 @@ export function resultOf(res) {
   try { return JSON.parse(text); } catch { return text; }
 }
 // The input to call again: the call this view came from with its arguments patched (and the batch
-// cut after it, so its answer is the last), or another tool on its own.
+// cut after it, so its answer is the last), or another tool on its own. It asks as a view does
+// (view: true), so a long answer, such as SPY since 2010 beside a backtest, comes back whole.
 export function againInput(p, patch, name) {
   const inp = p.input || {};
   if (Array.isArray(inp.calls) && p.call && p.call.index !== null && p.call.index !== undefined) {
     const calls = inp.calls.slice(0, p.call.index + 1).map((c, i) => (i === p.call.index ? { name: name ?? c.name, arguments: { ...(c.arguments || {}), ...patch } } : c));
-    return { calls, return: "last", digits: 6 };
+    return { calls, return: "last", digits: 6, view: true };
   }
-  return { name: name ?? inp.name ?? (p.call && p.call.name), arguments: { ...(inp.arguments || {}), ...patch }, digits: 6 };
+  return { name: name ?? inp.name ?? (p.call && p.call.name), arguments: { ...(inp.arguments || {}), ...patch }, digits: 6, view: true };
 }
 export async function callAgain(host, p, patch, name) {
   const r = resultOf(await host.call("run_tool", againInput(p, patch, name)));
