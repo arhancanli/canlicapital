@@ -3,7 +3,7 @@ import { companyFilingNotes } from './company-filing-notes.mjs';
 import { companyCoverage, coverageByUnit, historicalFiler, latestFiling, latestObservationsByUnit } from './company-coverage.mjs';
 import { renderProductShellHeader, renderProductShellFooter, renderProductShellStylesheet } from '../product-shell.mjs';
 import { escapeXml as esc } from './sitemaps.mjs';
-import { companyLabel, titleLabel } from './company-label.mjs';
+import { companyLabel, displayCase, primaryTicker, titleLabel } from './company-label.mjs';
 import { fitDescription } from './descriptions.mjs';
 import { historySummary, summaryDescription, summarySentences } from './company-history-summary.mjs';
 import { relatedConcepts, shareSentence } from './company-concept-groups.mjs';
@@ -17,20 +17,24 @@ const metricPath = (company, concept) => `${pathFor(company)}/${concept.tag}`;
 const number = (value) => new Intl.NumberFormat('en-US', { maximumFractionDigits: 12 }).format(value);
 const numberCell = (value) => `<td class="company-reference__num">${number(value)}</td>`;
 const periodStartCell = (row) => row.start ? `<td>${esc(row.start)}</td>` : '<td class="company-reference__na">-</td>';
-const label = (company) => companyLabel(company.name);
+const label = (company) => companyLabel(company.name, primaryTicker(company.cik));
 const headingHtml = (heading) => esc(heading).replace(/\d{4}-\d{2}-\d{2}|\b\d{1,2}-[KQF](?:\/A)?(?=\s|$)/g, token => `<span class="company-reference__nobreak">${token}</span>`);
 const accessionLink = (company, observation) => `https://www.sec.gov/Archives/edgar/data/${Number(company.cik)}/${observation.accn.replaceAll('-', '')}/${observation.accn}-index.html`;
 
 // robots: the page's own robots directive. A runtime page the server marks noindex says so in the
 // HTML too, so the two signals never disagree.
 export function renderReferenceDocument({ path, title, description, heading, body, sources, lastmod, dataset, coverage, robots = 'index, follow' }) {
+  // The heading as read: an all-capitals SEC name in ordinary case (company-label.mjs). The
+  // breadcrumb below still cuts the filed name off the heading it was built from.
+  const filedHeading = heading;
+  if (dataset && heading.startsWith(dataset.name)) heading = displayCase(dataset.name, primaryTicker(dataset.cik)) + heading.slice(dataset.name.length);
   if (!['index, follow', 'noindex'].includes(robots)) throw new Error('Invalid robots directive');
   const introduction = description.endsWith('…') && description.includes('. ') ? description.slice(0, description.lastIndexOf('. ') + 1) : description;
   const titleText = title.length <= 49 ? `${title} | Canli Capital` : title;
   const crumbs = [{ name: 'Home', path: '/' }, { name: 'Company reference', path: '/companies' }];
   if (!dataset && /^\/companies\/page\/\d+$/.test(path)) crumbs.push({ name: `Page ${path.split('/').at(-1)}`, path });
-  if (dataset) crumbs.push({ name: dataset.name, path: pathFor(dataset) });
-  if (dataset && path !== pathFor(dataset)) crumbs.push({ name: heading.slice(dataset.name.length + 2), path });
+  if (dataset) crumbs.push({ name: displayCase(dataset.name, primaryTicker(dataset.cik)), path: pathFor(dataset) });
+  if (dataset && path !== pathFor(dataset)) crumbs.push({ name: filedHeading.slice(dataset.name.length + 2), path });
   const breadcrumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs.map((crumb, i) => ({ '@type': 'ListItem', position: i + 1, name: crumb.name, item: origin + crumb.path })) };
   const schema = dataset ? { '@context': 'https://schema.org', '@type': 'Dataset', name: heading, description, url: origin + path, license: 'https://creativecommons.org/licenses/by/4.0/', creator: { '@type': 'Organization', name: dataset.name }, provider: { '@type': 'Organization', name: 'U.S. Securities and Exchange Commission' }, isBasedOn: dataset.source_url, distribution: { '@type': 'DataDownload', contentUrl: origin + dataFor(dataset), encodingFormat: 'application/json' }, dateModified: lastmod, ...(coverage ? { temporalCoverage: `${coverage.first}/${coverage.last}` } : {}) } : { '@context': 'https://schema.org', '@type': 'CollectionPage', name: heading, url: origin + path };
   const html = `<!doctype html>

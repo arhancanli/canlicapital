@@ -9,7 +9,9 @@
 // 2026-10-07: page dates follow this markup date (this module).
 // 2026-10-20: film-still bands (#444), titles and snippets that lead with the latest figures (#428),
 // the free MCP install line and star ask (#487).
-export const COMPANY_MARKUP_DATE = '2026-10-20';
+// 2026-10-25: company names in ordinary case, filing snippets and a Key figures box that lead with
+// the filing's own figures, hub snippets without "Free JSON.", the plain top navigation.
+export const COMPANY_MARKUP_DATE = '2026-10-25';
 
 export const COMPANY_MARKUP_SOURCES = [
   'scripts/lib/company-page-renderer.mjs',

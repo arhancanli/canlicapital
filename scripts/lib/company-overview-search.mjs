@@ -78,7 +78,7 @@ export function overviewDescription(label, concepts, measures, fetchedAt) {
   const facts = `${measures} measures from SEC filings, each linked to its filing.`;
   if (!first) return fitDescription(`Explore ${label} financial histories from SEC filings, with original units, reporting periods, filing dates and downloadable source data.`, [facts]);
   const same = second && second.summary.latest.end === first.summary.latest.end && second.concept.kind === first.concept.kind;
-  const sentences = [headlineSentence(first, `${label} `, false, historical), second ? headlineSentence(second, '', same) : null, facts, 'Free JSON.'].filter(Boolean);
+  const sentences = [headlineSentence(first, `${label} `, false, historical), second ? headlineSentence(second, '', same) : null, facts].filter(Boolean);
   let out = sentences[0];
   for (const sentence of sentences.slice(1)) if (`${out} ${sentence}`.length <= DESCRIPTION_MAX) out = `${out} ${sentence}`;
   return out;
