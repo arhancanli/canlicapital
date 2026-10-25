@@ -88,6 +88,8 @@ export function checkAnswers(config, recorded, toolNames) {
     if (!/^[a-z0-9-]+$/.test(a.slug) || slugs.has(a.slug)) throw new Error(`answer slug must be unique kebab-case: ${a.slug}`);
     slugs.add(a.slug);
     if (!a.question.endsWith("?")) throw new Error(`${a.slug}: a question ends with a question mark`);
+    // " | Canli Capital" makes sixteen more; search results cut a title past sixty-five.
+    if ((a.title ?? a.question).length > 49) throw new Error(`${a.slug}: the page title needs a short title of at most 49 characters`);
     for (const t of toolsOf(a.call)) if (!toolNames.includes(t)) throw new Error(`${a.slug}: no tool ${t}`);
     const r = recorded.get(a.slug);
     if (!r) throw new Error(`${a.slug}: not recorded; run mcp-canli/bench/record-site-answers.mjs`);

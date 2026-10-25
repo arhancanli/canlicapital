@@ -226,7 +226,7 @@ ${demoView(flagship.views ?? [], a.demo, videos[a.demo])}
 ${related.length ? `<section class="dev-section"><h2>Related questions</h2><ul class="mcp-related">${links(related.map((x) => ({ path: x.route, label: x.question })))}</ul></section>` : ''}`;
   const view = (flagship.views ?? []).find((v) => v.id === a.demo);
   const video = view && videos[a.demo] ? [videoObject(view, videos[a.demo], a.route)] : [];
-  return document({ route: a.route, title: a.question, description: fitDescription(a.answer), structured: [faq, ...video], body, sources: `${answerFile(a)} demos/canli-mcp/index.json demos/canli-mcp/tools.json`, scripts: a.demo ? ['/js/mcp-demo.js'] : [] });
+  return document({ route: a.route, title: a.title ?? a.question, description: fitDescription(a.answer), structured: [faq, ...video], body, sources: `${answerFile(a)} demos/canli-mcp/index.json demos/canli-mcp/tools.json`, scripts: a.demo ? ['/js/mcp-demo.js'] : [] });
 }
 
 export function answersIndexPage(all, { flagship }) {

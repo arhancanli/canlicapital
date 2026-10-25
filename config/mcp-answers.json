@@ -1,221 +1,537 @@
 {
   "schema": "canlicapital.mcp-answers/v1",
-  "purpose": "Question pages under /mcp-servers/answers: one real finance question each, answered with the canli-mcp call that answers it and the result that call returned when it was recorded (mcp-canli/bench/record-site-answers.mjs writes public/demos/canli-mcp/answers/<slug>.json). Re-record after tool changes.",
+  "purpose": "Question pages under /mcp-servers/answers: one real finance question each, answered with the canli-mcp call that answers it and the result that call returned when it was recorded (mcp-canli/bench/record-site-answers.mjs writes public/demos/canli-mcp/answers/<slug>.json). Re-record after tool changes. title, when given, is the page's short title (search results cut titles past 65 characters, the site name included); the question stays the heading.",
   "answers": [
     {
       "slug": "stock-prices-in-claude",
       "question": "How do I get stock prices in Claude?",
       "short": "Stock prices",
       "answer": "Add canli-mcp to Claude and ask for the prices. It reads daily, weekly or monthly bars for US stocks, ETFs and indexes with no API key, and draws them as a candlestick chart with moving averages, RSI and MACD in hosts that show MCP Apps.",
-      "call": { "name": "price_history", "arguments": { "symbol": "NVDA", "start": "2026-07-01", "interval": "1Week" } },
+      "call": {
+        "name": "price_history",
+        "arguments": {
+          "symbol": "NVDA",
+          "start": "2026-07-01",
+          "interval": "1Week"
+        }
+      },
       "ask": "Show me NVDA's weekly prices since July.",
       "demo": "chart",
-      "related": ["options-chain-mcp-server", "compare-stocks-in-claude", "technical-indicators-ai-agent"]
+      "related": [
+        "options-chain-mcp-server",
+        "compare-stocks-in-claude",
+        "technical-indicators-ai-agent"
+      ]
     },
     {
       "slug": "sec-financial-statements-for-ai",
       "question": "How can an AI agent read a company's financial statements from SEC filings?",
+      "title": "SEC financial statements for AI agents",
       "short": "Financial statements",
       "answer": "canli-mcp's financial_statements tool reads the income statement, balance sheet and cash flow straight from the XBRL a company filed with the SEC. Several years come joined in one table, and a restated figure is shown beside the one first reported, so the agent quotes the filing rather than its memory.",
-      "call": { "name": "financial_statements", "arguments": { "company": "AAPL", "statement": "income", "period": "annual", "filings": 2 } },
+      "call": {
+        "name": "financial_statements",
+        "arguments": {
+          "company": "AAPL",
+          "statement": "income",
+          "period": "annual",
+          "filings": 2
+        }
+      },
       "ask": "Give me Apple's income statement for the last few years, from the filings.",
       "demo": "statements",
-      "related": ["fact-check-financial-figures", "point-in-time-fundamentals", "search-sec-filings-ai"]
+      "related": [
+        "fact-check-financial-figures",
+        "point-in-time-fundamentals",
+        "search-sec-filings-ai"
+      ]
     },
     {
       "slug": "backtest-a-strategy-in-claude",
       "question": "How do I backtest a trading strategy in Claude?",
       "short": "Backtests",
       "answer": "Ask Claude to backtest it with canli-mcp. The backtest runs on your machine over real prices, reports return, Sharpe and drawdown, and counts every setting you tried, so it can tell you how much of the result luck would explain. In hosts that draw MCP Apps the sliders rerun it in place.",
-      "call": { "calls": [{ "name": "price_history", "arguments": { "symbol": "SPY", "start": "2010-01-01" } }, { "name": "backtest_ma_crossover", "arguments": { "prices": { "$result": 0, "path": "close" }, "dates": { "$result": 0, "path": "dates" }, "fast": 50, "slow": 200 } }], "return": "last" },
+      "call": {
+        "calls": [
+          {
+            "name": "price_history",
+            "arguments": {
+              "symbol": "SPY",
+              "start": "2010-01-01"
+            }
+          },
+          {
+            "name": "backtest_ma_crossover",
+            "arguments": {
+              "prices": {
+                "$result": 0,
+                "path": "close"
+              },
+              "dates": {
+                "$result": 0,
+                "path": "dates"
+              },
+              "fast": 50,
+              "slow": 200
+            }
+          }
+        ],
+        "return": "last"
+      },
       "ask": "Backtest a 50/200-day moving-average crossover on SPY since 2010.",
       "demo": "backtest",
-      "related": ["is-my-backtest-overfit", "stock-prices-in-claude", "compare-stocks-in-claude"]
+      "related": [
+        "is-my-backtest-overfit",
+        "stock-prices-in-claude",
+        "compare-stocks-in-claude"
+      ]
     },
     {
       "slug": "options-chain-mcp-server",
       "question": "Is there an MCP server for options chains?",
       "short": "Options chains",
       "answer": "Yes. canli-mcp's options_chain tool returns calls and puts for a US stock or ETF with bid, ask, volume, open interest and implied volatility, for any listed expiration, with no API key. volatility_surface puts the whole chain on one surface.",
-      "call": { "name": "options_chain", "arguments": { "symbol": "SPY", "window": 0.03, "type": "both" } },
+      "call": {
+        "name": "options_chain",
+        "arguments": {
+          "symbol": "SPY",
+          "window": 0.03,
+          "type": "both"
+        }
+      },
       "ask": "Show me SPY's nearest option chain around the money.",
       "demo": "chart",
-      "related": ["implied-volatility-surface-ai", "black-scholes-in-claude", "stock-prices-in-claude"]
+      "related": [
+        "implied-volatility-surface-ai",
+        "black-scholes-in-claude",
+        "stock-prices-in-claude"
+      ]
     },
     {
       "slug": "implied-volatility-surface-ai",
       "question": "How do I get an implied volatility surface into an AI chat?",
+      "title": "Implied volatility surface in an AI chat",
       "short": "Volatility surface",
       "answer": "Ask for it through canli-mcp. volatility_surface reads every listed expiration of a US option chain and returns the smile at each one and the at-the-money term structure, drawn as a heatmap and curves in hosts that show MCP Apps.",
-      "call": { "name": "volatility_surface", "arguments": { "symbol": "SPY" } },
+      "call": {
+        "name": "volatility_surface",
+        "arguments": {
+          "symbol": "SPY"
+        }
+      },
       "ask": "Show me SPY's implied volatility surface.",
       "demo": "surface",
-      "related": ["options-chain-mcp-server", "black-scholes-in-claude", "treasury-yield-curve-ai"]
+      "related": [
+        "options-chain-mcp-server",
+        "black-scholes-in-claude",
+        "treasury-yield-curve-ai"
+      ]
     },
     {
       "slug": "treasury-yield-curve-ai",
       "question": "How can an AI agent get the Treasury yield curve?",
       "short": "Yield curve",
       "answer": "canli-mcp's treasury_yields tool reads the daily par yield curve from the US Treasury itself: nominal, real or bills, for any date or range. In hosts that draw MCP Apps the curve is drawn against earlier dates and can be played through time.",
-      "call": { "name": "treasury_yields", "arguments": { "curve": "nominal", "start": "2026-10-01" } },
+      "call": {
+        "name": "treasury_yields",
+        "arguments": {
+          "curve": "nominal",
+          "start": "2026-10-01"
+        }
+      },
       "ask": "Show me the Treasury yield curve this month.",
       "demo": "curve",
-      "related": ["fomc-decisions-ai", "economic-data-for-ai-agents", "market-overview-in-claude"]
+      "related": [
+        "fomc-decisions-ai",
+        "economic-data-for-ai-agents",
+        "market-overview-in-claude"
+      ]
     },
     {
       "slug": "compare-stocks-in-claude",
       "question": "How do I compare several stocks' returns and correlation in Claude?",
+      "title": "Compare stock returns and correlation in Claude",
       "short": "Compare stocks",
       "answer": "Use canli-mcp's compare_stocks prompt, or ask for the prices of each ticker. You get growth of one dollar, return and risk statistics side by side, a correlation heatmap and the number of independent bets the set adds up to.",
-      "call": { "calls": [{ "name": "price_history", "arguments": { "symbol": "SPY", "start": "2024-01-01", "interval": "1Week" } }, { "name": "price_history", "arguments": { "symbol": "GLD", "start": "2024-01-01", "interval": "1Week" } }], "return": "all" },
+      "call": {
+        "calls": [
+          {
+            "name": "price_history",
+            "arguments": {
+              "symbol": "SPY",
+              "start": "2024-01-01",
+              "interval": "1Week"
+            }
+          },
+          {
+            "name": "price_history",
+            "arguments": {
+              "symbol": "GLD",
+              "start": "2024-01-01",
+              "interval": "1Week"
+            }
+          }
+        ],
+        "return": "all"
+      },
       "ask": "Compare SPY, AAPL, NVDA, GLD and TLT over five years.",
       "demo": "compare",
-      "related": ["stock-prices-in-claude", "backtest-a-strategy-in-claude", "etf-holdings-ai-agent"]
+      "related": [
+        "stock-prices-in-claude",
+        "backtest-a-strategy-in-claude",
+        "etf-holdings-ai-agent"
+      ]
     },
     {
       "slug": "market-overview-in-claude",
       "question": "How do I get today's market overview in an AI chat?",
+      "title": "Today's market overview in an AI chat",
       "short": "Market overview",
       "answer": "Ask for it with canli-mcp's market_overview tool. It returns the main US and world indexes, rates, commodities, currencies and crypto with the day's moves, as a market map whose tiles open their charts in hosts that draw MCP Apps.",
-      "call": { "name": "market_overview", "arguments": {} },
+      "call": {
+        "name": "market_overview",
+        "arguments": {}
+      },
       "ask": "How are markets doing today?",
       "demo": "market",
-      "related": ["treasury-yield-curve-ai", "earnings-calendar-ai", "stock-prices-in-claude"]
+      "related": [
+        "treasury-yield-curve-ai",
+        "earnings-calendar-ai",
+        "stock-prices-in-claude"
+      ]
     },
     {
       "slug": "insider-trades-ai-agent",
       "question": "How do I see insider trading (Form 4 filings) with an AI agent?",
+      "title": "Insider trades (Form 4) with an AI agent",
       "short": "Insider trades",
       "answer": "canli-mcp's insider_trades tool reads a company's Form 4 filings from SEC EDGAR: who traded, buy or sell, shares, price and what they hold after, each linked to its filing. planned_insider_sales adds the sales announced ahead on Form 144.",
-      "call": { "name": "insider_trades", "arguments": { "company": "NVDA", "max_filings": 10 } },
+      "call": {
+        "name": "insider_trades",
+        "arguments": {
+          "company": "NVDA",
+          "max_filings": 10
+        }
+      },
       "ask": "Who at NVIDIA has bought or sold shares lately?",
-      "related": ["hedge-fund-13f-holdings-ai", "search-sec-filings-ai", "short-interest-ai-agent"]
+      "related": [
+        "hedge-fund-13f-holdings-ai",
+        "search-sec-filings-ai",
+        "short-interest-ai-agent"
+      ]
     },
     {
       "slug": "hedge-fund-13f-holdings-ai",
       "question": "How can an AI agent read a hedge fund's 13F holdings?",
+      "title": "Hedge fund 13F holdings for AI agents",
       "short": "13F holdings",
       "answer": "Ask canli-mcp's fund_holdings tool for the manager. It reads the 13F filings on SEC EDGAR, lists the top positions with value and share counts, and can compare a quarter with the one before to show what was bought and sold.",
-      "call": { "name": "fund_holdings", "arguments": { "manager": "Berkshire Hathaway", "top": 10, "compare": true } },
+      "call": {
+        "name": "fund_holdings",
+        "arguments": {
+          "manager": "Berkshire Hathaway",
+          "top": 10,
+          "compare": true
+        }
+      },
       "ask": "What does Berkshire Hathaway hold, and what changed last quarter?",
-      "related": ["insider-trades-ai-agent", "etf-holdings-ai-agent", "search-sec-filings-ai"]
+      "related": [
+        "insider-trades-ai-agent",
+        "etf-holdings-ai-agent",
+        "search-sec-filings-ai"
+      ]
     },
     {
       "slug": "fact-check-financial-figures",
       "question": "How do I fact-check the financial figures an AI wrote?",
+      "title": "Fact-check the financial figures an AI wrote",
       "short": "Fact checks",
       "answer": "Give the draft to canli-mcp's verify_claims tool with the company. It finds each figure in the text and checks it against the filings: confirmed, contradicted (with the filed figure and what the wrong number matches) or not reported.",
-      "call": { "name": "verify_claims", "arguments": { "company": "AAPL", "text": "Apple's revenue was $391 billion in fiscal 2024, and its net income was $120 billion." } },
+      "call": {
+        "name": "verify_claims",
+        "arguments": {
+          "company": "AAPL",
+          "text": "Apple's revenue was $391 billion in fiscal 2024, and its net income was $120 billion."
+        }
+      },
       "ask": "Check these Apple figures against the filings.",
-      "related": ["sec-financial-statements-for-ai", "point-in-time-fundamentals", "search-sec-filings-ai"]
+      "related": [
+        "sec-financial-statements-for-ai",
+        "point-in-time-fundamentals",
+        "search-sec-filings-ai"
+      ]
     },
     {
       "slug": "is-my-backtest-overfit",
       "question": "How do I tell whether a backtest is overfit?",
       "short": "Overfit backtests",
       "answer": "Count how many settings were tried and correct the Sharpe ratio for it. canli-mcp's validate_deflated_sharpe gives the probability that the true Sharpe is above zero after that many trials, and validate_overfitting, validate_reality_check and placebo_test go further, all on your machine.",
-      "call": { "name": "validate_deflated_sharpe", "arguments": { "observed_sharpe_annualized": 1.4, "observations": 1260, "periods_per_year": 252, "skew": -0.3, "non_excess_kurtosis": 5, "effective_independent_trials": 40, "cross_trial_sharpe_sd_annualized": 0.5 } },
+      "call": {
+        "name": "validate_deflated_sharpe",
+        "arguments": {
+          "observed_sharpe_annualized": 1.4,
+          "observations": 1260,
+          "periods_per_year": 252,
+          "skew": -0.3,
+          "non_excess_kurtosis": 5,
+          "effective_independent_trials": 40,
+          "cross_trial_sharpe_sd_annualized": 0.5
+        }
+      },
       "ask": "My strategy has a Sharpe of 1.4 over five years, and I tried about 40 versions. Is it real?",
-      "related": ["backtest-a-strategy-in-claude", "compare-stocks-in-claude", "technical-indicators-ai-agent"]
+      "related": [
+        "backtest-a-strategy-in-claude",
+        "compare-stocks-in-claude",
+        "technical-indicators-ai-agent"
+      ]
     },
     {
       "slug": "economic-data-for-ai-agents",
       "question": "How can an AI agent get economic data like inflation and unemployment?",
+      "title": "Inflation and unemployment data for AI agents",
       "short": "Economic data",
       "answer": "canli-mcp's economic_series tool reads official statistics such as CPI, unemployment and GDP at the source, with year-on-year and other changes computed for you. economic_calendar lists the releases coming up and world_economy covers other countries.",
-      "call": { "name": "economic_series", "arguments": { "series": "CPIAUCSL", "transform": "yoy", "last": 12 } },
+      "call": {
+        "name": "economic_series",
+        "arguments": {
+          "series": "CPIAUCSL",
+          "transform": "yoy",
+          "last": 12
+        }
+      },
       "ask": "What has US inflation been over the last year?",
-      "related": ["fomc-decisions-ai", "treasury-yield-curve-ai", "earnings-calendar-ai"]
+      "related": [
+        "fomc-decisions-ai",
+        "treasury-yield-curve-ai",
+        "earnings-calendar-ai"
+      ]
     },
     {
       "slug": "fomc-decisions-ai",
       "question": "How can an AI agent look up Federal Reserve rate decisions?",
+      "title": "Federal Reserve rate decisions for AI agents",
       "short": "Fed decisions",
       "answer": "canli-mcp's fomc tool lists the FOMC meetings for a year with the target range decided at each one and the projections published with them, read from the Federal Reserve.",
-      "call": { "name": "fomc", "arguments": { "year": 2026 } },
+      "call": {
+        "name": "fomc",
+        "arguments": {
+          "year": 2026
+        }
+      },
       "ask": "What has the Fed decided at its meetings this year?",
-      "related": ["treasury-yield-curve-ai", "economic-data-for-ai-agents", "market-overview-in-claude"]
+      "related": [
+        "treasury-yield-curve-ai",
+        "economic-data-for-ai-agents",
+        "market-overview-in-claude"
+      ]
     },
     {
       "slug": "earnings-calendar-ai",
       "question": "How do I get an earnings calendar in an AI chat?",
       "short": "Earnings calendar",
       "answer": "Ask canli-mcp's earnings_calendar tool, for one company or the market. earnings_release then reads the release itself, with guidance as ranges and last quarter's guidance set against the results.",
-      "call": { "name": "earnings_calendar", "arguments": { "company": "MSFT", "quarters": 4 } },
+      "call": {
+        "name": "earnings_calendar",
+        "arguments": {
+          "company": "MSFT",
+          "quarters": 4
+        }
+      },
       "ask": "When does Microsoft report earnings, and when did it report before?",
-      "related": ["market-overview-in-claude", "sec-financial-statements-for-ai", "economic-data-for-ai-agents"]
+      "related": [
+        "market-overview-in-claude",
+        "sec-financial-statements-for-ai",
+        "economic-data-for-ai-agents"
+      ]
     },
     {
       "slug": "short-interest-ai-agent",
       "question": "How can an AI agent check a stock's short interest?",
+      "title": "Check a stock's short interest with an AI agent",
       "short": "Short interest",
       "answer": "canli-mcp's short_interest tool reads the short positions exchanges report twice a month, with days to cover and the change from the last report, for one stock or ranked across the market.",
-      "call": { "name": "short_interest", "arguments": { "symbol": "TSLA", "periods": 6 } },
+      "call": {
+        "name": "short_interest",
+        "arguments": {
+          "symbol": "TSLA",
+          "periods": 6
+        }
+      },
       "ask": "How has Tesla's short interest changed lately?",
-      "related": ["insider-trades-ai-agent", "options-chain-mcp-server", "stock-prices-in-claude"]
+      "related": [
+        "insider-trades-ai-agent",
+        "options-chain-mcp-server",
+        "stock-prices-in-claude"
+      ]
     },
     {
       "slug": "point-in-time-fundamentals",
       "question": "How do I get point-in-time fundamentals without lookahead bias?",
+      "title": "Point-in-time fundamentals without lookahead bias",
       "short": "Point-in-time data",
       "answer": "Ask canli-mcp what was known on a date. known_as_of returns a company's figures as they had been filed by then, so a backtest never uses a number the market had not seen, and restatements shows every later change.",
-      "call": { "name": "known_as_of", "arguments": { "company": "AAPL", "as_of": "2020-03-01", "periods": "annual" } },
+      "call": {
+        "name": "known_as_of",
+        "arguments": {
+          "company": "AAPL",
+          "as_of": "2020-03-01",
+          "periods": "annual"
+        }
+      },
       "ask": "What were Apple's reported figures as of March 2020?",
-      "related": ["sec-financial-statements-for-ai", "backtest-a-strategy-in-claude", "fact-check-financial-figures"]
+      "related": [
+        "sec-financial-statements-for-ai",
+        "backtest-a-strategy-in-claude",
+        "fact-check-financial-figures"
+      ]
     },
     {
       "slug": "stock-screener-ai-agent",
       "question": "Can an AI agent screen stocks by fundamentals?",
       "short": "Stock screens",
       "answer": "Yes. canli-mcp's screen_companies tool screens every US-listed company on figures from their filings, such as revenue growth, margins or valuation, and sorts the result.",
-      "call": { "name": "screen_companies", "arguments": { "filters": [{ "metric": "revenue", "op": ">", "value": 100000000000 }], "sort_by": "revenue", "limit": 10 } },
+      "call": {
+        "name": "screen_companies",
+        "arguments": {
+          "filters": [
+            {
+              "metric": "revenue",
+              "op": ">",
+              "value": 100000000000
+            }
+          ],
+          "sort_by": "revenue",
+          "limit": 10
+        }
+      },
       "ask": "Which US companies have more than $100 billion in revenue?",
-      "related": ["sec-financial-statements-for-ai", "company-valuation-reverse-dcf", "hedge-fund-13f-holdings-ai"]
+      "related": [
+        "sec-financial-statements-for-ai",
+        "company-valuation-reverse-dcf",
+        "hedge-fund-13f-holdings-ai"
+      ]
     },
     {
       "slug": "etf-holdings-ai-agent",
       "question": "How can an AI agent see what an ETF or mutual fund holds?",
+      "title": "What an ETF or mutual fund holds, for AI agents",
       "short": "Fund holdings",
       "answer": "canli-mcp's fund_portfolio tool reads a fund's N-PORT filings on SEC EDGAR and lists its top holdings with weights, and can compare a period with the one before.",
-      "call": { "name": "fund_portfolio", "arguments": { "fund": "IVV", "top": 10 } },
+      "call": {
+        "name": "fund_portfolio",
+        "arguments": {
+          "fund": "IVV",
+          "top": 10
+        }
+      },
       "ask": "What are the top holdings of the iShares Core S&P 500 ETF?",
-      "related": ["hedge-fund-13f-holdings-ai", "compare-stocks-in-claude", "stock-screener-ai-agent"]
+      "related": [
+        "hedge-fund-13f-holdings-ai",
+        "compare-stocks-in-claude",
+        "stock-screener-ai-agent"
+      ]
     },
     {
       "slug": "black-scholes-in-claude",
       "question": "How do I price an option with Black-Scholes in Claude?",
+      "title": "Price an option with Black-Scholes in Claude",
       "short": "Option pricing",
       "answer": "canli-mcp's black_scholes tool prices a European call or put and returns its greeks, computed exactly on your machine rather than estimated by the model. implied_volatility, american_option and option_strategy_payoff cover the rest.",
-      "call": { "name": "black_scholes", "arguments": { "type": "call", "spot": 100, "strike": 105, "years": 0.5, "rate": 0.04, "volatility": 0.25 } },
+      "call": {
+        "name": "black_scholes",
+        "arguments": {
+          "type": "call",
+          "spot": 100,
+          "strike": 105,
+          "years": 0.5,
+          "rate": 0.04,
+          "volatility": 0.25
+        }
+      },
       "ask": "Price a six-month call, strike 105, spot 100, 25% volatility.",
-      "related": ["options-chain-mcp-server", "implied-volatility-surface-ai", "is-my-backtest-overfit"]
+      "related": [
+        "options-chain-mcp-server",
+        "implied-volatility-surface-ai",
+        "is-my-backtest-overfit"
+      ]
     },
     {
       "slug": "technical-indicators-ai-agent",
       "question": "How can an AI agent compute technical indicators like RSI and MACD?",
+      "title": "RSI and MACD for AI agents, computed exactly",
       "short": "Indicators",
       "answer": "canli-mcp computes them exactly on your machine: rsi, macd, bollinger_bands and dozens more, from prices it reads itself or you pass in, so the model never estimates an indicator in its head.",
-      "call": { "calls": [{ "name": "price_history", "arguments": { "symbol": "AAPL", "start": "2026-06-01" } }, { "name": "rsi", "arguments": { "close": { "$result": 0, "path": "close" }, "period": 14, "tail": 10 } }], "return": "last" },
+      "call": {
+        "calls": [
+          {
+            "name": "price_history",
+            "arguments": {
+              "symbol": "AAPL",
+              "start": "2026-06-01"
+            }
+          },
+          {
+            "name": "rsi",
+            "arguments": {
+              "close": {
+                "$result": 0,
+                "path": "close"
+              },
+              "period": 14,
+              "tail": 10
+            }
+          }
+        ],
+        "return": "last"
+      },
       "ask": "What is Apple's 14-day RSI?",
-      "related": ["stock-prices-in-claude", "backtest-a-strategy-in-claude", "black-scholes-in-claude"]
+      "related": [
+        "stock-prices-in-claude",
+        "backtest-a-strategy-in-claude",
+        "black-scholes-in-claude"
+      ]
     },
     {
       "slug": "search-sec-filings-ai",
       "question": "How can an AI agent search SEC filings?",
       "short": "Filing search",
       "answer": "canli-mcp's search_filings tool runs a full-text search over SEC EDGAR filings by phrase, form, company and date, and read_filing opens any result by section, so the agent quotes the filing it found.",
-      "call": { "name": "search_filings", "arguments": { "query": "tariffs", "forms": ["10-Q"], "company": "AAPL", "limit": 5 } },
+      "call": {
+        "name": "search_filings",
+        "arguments": {
+          "query": "tariffs",
+          "forms": [
+            "10-Q"
+          ],
+          "company": "AAPL",
+          "limit": 5
+        }
+      },
       "ask": "What has Apple said about tariffs in its 10-Qs?",
-      "related": ["sec-financial-statements-for-ai", "insider-trades-ai-agent", "fact-check-financial-figures"]
+      "related": [
+        "sec-financial-statements-for-ai",
+        "insider-trades-ai-agent",
+        "fact-check-financial-figures"
+      ]
     },
     {
       "slug": "company-valuation-reverse-dcf",
       "question": "How can an AI agent tell what growth a stock price implies?",
+      "title": "What growth a stock price implies, for AI agents",
       "short": "Reverse DCF",
       "answer": "canli-mcp's company_reverse_dcf works back from today's price to the cash-flow growth it implies, using the company's own filed cash flows, with the discount rate and terminal growth you choose.",
-      "call": { "name": "company_reverse_dcf", "arguments": { "company": "MSFT" } },
+      "call": {
+        "name": "company_reverse_dcf",
+        "arguments": {
+          "company": "MSFT"
+        }
+      },
       "ask": "What growth is priced into Microsoft?",
-      "related": ["stock-screener-ai-agent", "sec-financial-statements-for-ai", "compare-stocks-in-claude"]
+      "related": [
+        "stock-screener-ai-agent",
+        "sec-financial-statements-for-ai",
+        "compare-stocks-in-claude"
+      ]
     }
   ]
 }
