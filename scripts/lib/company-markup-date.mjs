@@ -11,7 +11,9 @@
 // the free MCP install line and star ask (#487).
 // 2026-10-25: company names in ordinary case, filing snippets and a Key figures box that lead with
 // the filing's own figures, hub snippets without "Free JSON.", the plain top navigation.
-export const COMPANY_MARKUP_DATE = '2026-10-25';
+// 2026-10-26: the same ordinary case in filing-index snippets and the "All ... filings" and
+// "All ... financial histories" links, which still printed the SEC's all-capitals name.
+export const COMPANY_MARKUP_DATE = '2026-10-26';
 
 export const COMPANY_MARKUP_SOURCES = [
   'scripts/lib/company-page-renderer.mjs',
