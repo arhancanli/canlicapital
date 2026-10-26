@@ -8,7 +8,7 @@ import { renderReferenceDocument, provenance, historicalFilerNotice } from './co
 import { historicalCutoff } from './company-coverage.mjs';
 import { filingPath, filingsIndexPath } from './company-filings.mjs';
 import { escapeXml as esc } from './sitemaps.mjs';
-import { companyLabel, primaryTicker, titleLabel } from './company-label.mjs';
+import { companyLabel, displayCase, primaryTicker, titleLabel } from './company-label.mjs';
 import { compactAmount } from './company-history-summary.mjs';
 import { DESCRIPTION_MAX } from './descriptions.mjs';
 
@@ -76,7 +76,7 @@ export function renderFilingsIndexPage(document, { robots = 'index, follow' } = 
     robots,
     path: filingsIndexPath(document.cik), lastmod: companyLastmod(document.fetched_at.slice(0, 10)), dataset, sources: [`company-data/${document.cik}.json`],
     title: `${titleLabel(dataset)}: SEC filings`, heading: `${dataset.name}: filings`,
-    description: `Every ${dataset.name} annual and quarterly report in the SEC record with the published financial measures it tagged, ${document.filings.length} filings, each linked to its SEC index.`,
+    description: `Every ${displayCase(dataset.name, primaryTicker(dataset.cik))} annual and quarterly report in the SEC record with the published financial measures it tagged, ${document.filings.length} filings, each linked to its SEC index.`,
     body: `${historicalNote}<section><h2>Filings with published measures</h2><p>Each page shows what one filing reported, as tagged in that filing, with the periods it covered. Later filings can restate a value; the <a href="/companies/${document.cik}">company overview</a> shows the latest-filed value per period.</p><div class="company-reference__table"><table><thead><tr><th scope="col">Form</th><th scope="col">Filed</th><th scope="col">Fiscal period</th><th scope="col" class="company-reference__num">Measures</th><th scope="col" class="company-reference__num">Facts</th><th scope="col">SEC accession</th></tr></thead><tbody>${rows}</tbody></table></div>${thin}</section>${withheld}${provenance(dataset)}`,
   });
 }
@@ -101,7 +101,7 @@ export function renderFilingPage(document, accession, { linkConcept = () => true
     path: filingPath(document.cik, accession), lastmod: companyLastmod(document.fetched_at.slice(0, 10)), dataset, sources: [`company-data/${document.cik}.json`],
     title: `${titleLabel(dataset)} ${fiscalTitle(filing)}${filing.form} filed ${filing.filed}`, heading: `${dataset.name}: ${filing.form} filed ${filing.filed}`,
     description: filingDescription(dataset, filing),
-    body: `${amendment}${keyFiguresSection(filing)}<section><h2>This filing</h2><dl><dt>Form</dt><dd>${esc(filing.form)} (${esc(formName(filing.form))})</dd><dt>Filed</dt><dd>${esc(filing.filed)}</dd><dt>Fiscal period</dt><dd>${esc(fiscal(filing))}</dd><dt>Accession</dt><dd><a href="${esc(filing.sec_index_url)}" rel="noreferrer">${esc(filing.accession)}</a> on SEC EDGAR</dd></dl><p>Values are as tagged in this filing. A later filing can restate them; a measure with a published history links to it, and the history shows the latest-filed value per period. <a href="${filingsIndexPath(document.cik)}">All ${esc(dataset.name)} filings</a>.</p></section><section><h2>Reported measures</h2>${sections}</section>${adjacent}${provenance(dataset)}`,
+    body: `${amendment}${keyFiguresSection(filing)}<section><h2>This filing</h2><dl><dt>Form</dt><dd>${esc(filing.form)} (${esc(formName(filing.form))})</dd><dt>Filed</dt><dd>${esc(filing.filed)}</dd><dt>Fiscal period</dt><dd>${esc(fiscal(filing))}</dd><dt>Accession</dt><dd><a href="${esc(filing.sec_index_url)}" rel="noreferrer">${esc(filing.accession)}</a> on SEC EDGAR</dd></dl><p>Values are as tagged in this filing. A later filing can restate them; a measure with a published history links to it, and the history shows the latest-filed value per period. <a href="${filingsIndexPath(document.cik)}">All ${esc(displayCase(dataset.name, primaryTicker(dataset.cik)))} filings</a>.</p></section><section><h2>Reported measures</h2>${sections}</section>${adjacent}${provenance(dataset)}`,
   });
 }
 
