@@ -63,6 +63,18 @@ mcp-execution/examples/*
 !mcp-execution/test
 mcp-execution/test/*
 !mcp-execution/test/paper-journal-example.test.mjs
+# npm packages built in this repository that the site neither runs nor reads: their pages come
+# from config/, and their sources are linked on GitHub.
+mcp-quant
+mcp-paper
+mcp-backtest
+mcp-markets
+# The /mcp-servers generator reads canli-mcp's tool index and version (scripts/build-mcp-pages.mjs).
+mcp-canli/*
+!mcp-canli/package.json
+!mcp-canli/src
+mcp-canli/src/*
+!mcp-canli/src/index.json
 !mcp/README.md
 !mcp/package.json
 !mcp/package-lock.json

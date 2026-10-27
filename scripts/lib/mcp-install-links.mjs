@@ -12,9 +12,16 @@ export const MCP_INSTALL_NAME = "canli-validation";
 export const CLAUDE_DESKTOP_BUNDLE_URL =
   "https://github.com/arhancanli/canli-validation-mcp/releases/latest/download/canli-validation.mcpb";
 
-export function cursorInstallLink(name = MCP_INSTALL_NAME, url = HOSTED_MCP_URL) {
-  const config = Buffer.from(JSON.stringify({ url })).toString("base64");
+// Any server entry ({url} or {command, args}): Cursor takes it as base64 JSON; VS Code's install
+// redirect (the link GitHub's own MCP README uses) takes it as URL-encoded JSON.
+export function cursorConfigLink(name, entry) {
+  const config = Buffer.from(JSON.stringify(entry)).toString("base64");
   return `cursor://anysphere.cursor-deeplink/mcp/install?name=${encodeURIComponent(name)}&config=${encodeURIComponent(config)}`;
+}
+export const vscodeInstallLink = (name, entry) => `https://insiders.vscode.dev/redirect/mcp/install?name=${encodeURIComponent(name)}&config=${encodeURIComponent(JSON.stringify(entry))}`;
+
+export function cursorInstallLink(name = MCP_INSTALL_NAME, url = HOSTED_MCP_URL) {
+  return cursorConfigLink(name, { url });
 }
 
 export function vscodeAddCommand(name = MCP_INSTALL_NAME, url = HOSTED_MCP_URL) {

@@ -21,7 +21,7 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { gunzipSync, gzipSync } from "node:zlib";
 
-import { McpServer } from "@modelcontextprotocol/server";
+import { McpServer, ResourceTemplate, completable } from "@modelcontextprotocol/server";
 import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { z } from "zod";
 
@@ -231,10 +231,13 @@ export async function findCompanies(session, query, limit = 8) {
   const tied = best ? ranked.filter((r) => r.level === best.level) : [];
   const listed = tied.filter((r) => r.c.tickers.length);
   const pick = !best ? null : ranked.length === 1 ? best : best.level > 4 ? null : tied.length === 1 ? best : listed.length === 1 ? listed[0] : null;
+  // Companies as good a match as the one used (the same name, another filer): the answer names them,
+  // since a question about the other one would otherwise get this one's figures without a word.
+  const alike = pick && tied.length > 1 ? tied.filter((r) => r !== pick).map(({ c }) => ({ cik: c.cik, name: c.name, tickers: c.tickers })) : [];
   return {
     matches: ranked.slice(0, limit).map(({ c, level }) => ({ cik: c.cik, name: c.name, tickers: c.tickers, match: MATCH_LEVELS[level] })),
     total: ranked.length,
-    resolved: pick ? { cik: pick.c.cik, name: pick.c.name, match: MATCH_LEVELS[pick.level] } : null,
+    resolved: pick ? { cik: pick.c.cik, name: pick.c.name, match: MATCH_LEVELS[pick.level], ...(alike.length ? { also_matching: alike } : {}) } : null,
     outside,
     captured: names.captured,
   };
@@ -257,7 +260,9 @@ export async function resolveCompany(session, company) {
   }
   const heldBy = found.outside ? `${found.outside.ticker} is the SEC's ticker for ${found.outside.name} (CIK ${found.outside.cik}), which the Canli company reference does not cover` : null;
   if (found.resolved) {
-    const note = found.resolved.match === "same_name_as_ticker_holder" ? `${heldBy}; the covered filer with the same name was used.` : undefined;
+    const alike = found.resolved.also_matching?.map((m) => `${m.name} (CIK ${m.cik}${m.tickers.length ? `, ${m.tickers.join("/")}` : ", no current ticker"})`).join("; ");
+    const note = [found.resolved.match === "same_name_as_ticker_holder" ? `${heldBy}; the covered filer with the same name was used.` : null,
+      alike ? `Also named "${text}": ${alike}. This is ${found.resolved.name} (CIK ${found.resolved.cik}), the one with a current ticker; pass another CIK as company for a different filer, such as a former company of that name.` : null].filter(Boolean).join(" ") || undefined;
     return { cik: found.resolved.cik, ticker: null, matched: { query: text, by: found.resolved.match, ...(note ? { note } : {}) } };
   }
   const options = found.matches.map((m) => `${m.name} (CIK ${m.cik}${m.tickers.length ? `, ${m.tickers.join("/")}` : ""})`).join("; ");
@@ -430,6 +435,9 @@ export const FRIENDLY = Object.freeze({
   diluted_shares: ["us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding", "ifrs-full:AdjustedWeightedAverageShares"],
   shares_outstanding: ["dei:EntityCommonStockSharesOutstanding", "us-gaap:CommonStockSharesOutstanding"],
   capex: ["us-gaap:PaymentsToAcquirePropertyPlantAndEquipment", "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities", "us-gaap:PaymentsToAcquireProductiveAssets"],
+  // Long-term debt is the total, current portion included; the noncurrent part is its own name.
+  long_term_debt: ["us-gaap:LongTermDebt"],
+  long_term_debt_noncurrent: ["us-gaap:LongTermDebtNoncurrent"],
 });
 const SYNONYMS = Object.freeze({
   revenues: "revenue", sales: "revenue", net_sales: "revenue", turnover: "revenue", total_revenue: "revenue",
@@ -439,6 +447,7 @@ const SYNONYMS = Object.freeze({
   cash_and_cash_equivalents: "cash", cash_and_equivalents: "cash", cfo: "operating_cash_flow", cash_from_operations: "operating_cash_flow",
   capital_expenditures: "capex", capital_expenditure: "capex", capital_spending: "capex",
   shares_diluted: "diluted_shares", weighted_diluted_shares: "diluted_shares", shares: "shares_outstanding",
+  total_long_term_debt: "long_term_debt", noncurrent_long_term_debt: "long_term_debt_noncurrent", long_term_debt_net_of_current_portion: "long_term_debt_noncurrent",
 });
 // known_as_of reads these when no concepts are named.
 export const DEFAULT_CONCEPTS = Object.freeze(["revenue", "net_income", "operating_income", "eps_diluted", "assets", "liabilities", "equity", "cash", "operating_cash_flow", "diluted_shares"]);
@@ -524,7 +533,7 @@ export function resolveSeries(entry, name, unit, { keep = true } = {}) {
   const raw = name.trim();
   const key = normalize(raw);
   const plain = !raw.includes(":") && !/[A-Z]/.test(raw);
-  const friendlyKey = FRIENDLY[key] ? key : SYNONYMS[key];
+  const friendlyKey = Object.hasOwn(FRIENDLY, key) ? key : Object.hasOwn(SYNONYMS, key) ? SYNONYMS[key] : undefined;
   let exact = [];
   if (!(plain && friendlyKey)) {
     const lower = raw.toLowerCase();
@@ -582,6 +591,20 @@ function select(p, basis, asOf) {
   const i = basis === "first_reported" ? 0 : last;
   const v = p.vintages[i];
   return { v, changedLater: p.vintages.slice(i + 1).some((x) => x.val !== v.val) };
+}
+
+// Percent change of val from the period of the same length that ends one period earlier (about a
+// year for annual figures, a quarter for quarterly), among the older rows shown; null for mixed
+// period lists, instants without a matching earlier date, or a zero base. Computed here so a model
+// does not do the arithmetic by hand.
+function changePct(p, val, older, periods) {
+  if (periods === "all") return null;
+  const gap = periods === "quarterly" ? [80, 100] : [350, 380];
+  const days = (a, b) => (Date.parse(a) - Date.parse(b)) / DAY_MS;
+  const prev = older.find(({ p: q }) => { const d = days(p.end, q.end); return d >= gap[0] && d <= gap[1]; });
+  const base = prev?.sel.v.val;
+  if (!Number.isFinite(base) || base === 0 || !Number.isFinite(val)) return null;
+  return Math.round(((val - base) / Math.abs(base)) * 1e6) / 1e4;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -671,17 +694,32 @@ export async function toolListConcepts(session, args) {
 
 export const historyInput = z.object({
   company,
-  concept: conceptArg,
-  basis: z.enum(["first_reported", "latest", "as_of"]).optional().describe("first_reported (default), latest, or as_of (default when as_of is set)."),
-  as_of: date.optional().describe("Only filings made on or before this date count, for every basis."),
+  concept: conceptArg.optional(),
+  concepts: z.array(z.string().min(1).max(200)).min(2).max(6).optional().describe("Instead of concept: 2-6 measures."),
+  basis: z.enum(["first_reported", "latest", "as_of"]).optional().describe("latest (default), first_reported, or as_of (default with as_of)."),
+  as_of: date.optional().describe("A filing date, not a period end: only filings made by then count."),
   periods: periodsArg,
   unit: unitArg,
   limit: z.number().int().min(1).max(400).optional().describe("Default 20, newest first."),
 }).strict();
 
 export async function toolHistory(session, args) {
-  const { company: who, concept, basis: basisArg, as_of: asOf, periods = "annual", unit, limit = 20 } = parse(historyInput, args, "history");
-  const basis = basisArg ?? (asOf ? "as_of" : "first_reported");
+  const parsed = parse(historyInput, args, "history");
+  if (Boolean(parsed.concept) === Boolean(parsed.concepts)) throw new Error("history: send concept (one measure) or concepts (two to six), not both or neither.");
+  // Several measures: each series as one call would give it, under one company header.
+  if (parsed.concepts) {
+    const series = [];
+    for (const c of parsed.concepts) series.push((await toolHistory(session, { ...args, concepts: undefined, concept: c })).structuredContent);
+    const [first] = series;
+    return asText({
+      company: first.company, snapshot: first.snapshot, ...(first.snapshot_note ? { snapshot_note: first.snapshot_note } : {}),
+      basis: first.basis, ...(first.as_of ? { as_of: first.as_of } : {}), periods: first.periods,
+      series: series.map(({ company: _c, snapshot: _s, snapshot_note: _n, basis: _b, as_of: _a, periods: _p, meaning: _m, limits: _l, ...rest }) => rest),
+      meaning: first.meaning, limits: LIMITS,
+    });
+  }
+  const { company: who, concept, basis: basisArg, as_of: asOf, periods = "annual", unit, limit = 20 } = parsed;
+  const basis = basisArg ?? (asOf ? "as_of" : "latest");
   if (basis === "as_of" && !asOf) throw new Error("history: basis as_of needs an as_of date.");
   const e = await loadCompany(session, who);
   const s = resolveSeries(e, concept, unit);
@@ -689,21 +727,47 @@ export async function toolHistory(session, args) {
     .filter((p) => matchesKind(p, periods))
     .map((p) => ({ p, sel: select(p, basis, asOf) }))
     .filter((r) => r.sel);
-  const columns = ["end", "start", "val", "filed", "form", "accn", "changed", ...(s.multi ? ["tag"] : [])];
-  const shown = fit(picked.slice(0, limit).map(({ p, sel }) => [p.end, p.start, sel.v.val, sel.v.filed, sel.v.form, sel.v.accn, basis === "latest" && !asOf ? p.restated : sel.changedLater, ...(s.multi ? [tagName(sel.v.tag)] : [])]));
+  // The other vintage beside the one shown, so a question about either needs no second call: the
+  // latest value beside a first report, the first report beside a latest value. Never with as_of,
+  // where a later value would be look-ahead.
+  const latestBasis = basis === "latest" && !asOf, other = asOf ? null : latestBasis ? "first" : "latest";
+  const otherOf = (p, sel) => {
+    if (!other) return [];
+    const v = other === "first" ? p.vintages[0] : p.vintages[p.vintages.length - 1];
+    return v.val === sel.v.val ? [null, null] : [v.val, v.filed];
+  };
+  const columns = ["end", "start", "val", "filed", "form", "accn", "changed", ...(other ? [`${other}_val`, `${other}_filed`] : []), "change_pct", ...(s.multi ? ["tag"] : [])];
+  const rows = picked.slice(0, limit).map(({ p, sel }, i, all) => [p.end, p.start, sel.v.val, sel.v.filed, sel.v.form, sel.v.accn, latestBasis ? p.restated : sel.changedLater,
+    ...otherOf(p, sel), changePct(p, sel.v.val, all.slice(i + 1), periods), ...(s.multi ? [tagName(sel.v.tag)] : [])]);
+  const shown = fit(rows);
+  // Balances an annual report carries on a date that is not a year end (an opening balance after a
+  // new accounting standard, the end of a transition period). They are first reported in a 10-Q, so
+  // the annual rows leave them out; listed apart, so year-on-year changes never use them.
+  const onYearEnds = new Set(picked.map((r) => r.p.end));
+  const otherDates = periods === "annual" ? s.periods
+    .filter((p) => !p.start && p.kind !== "annual" && !onYearEnds.has(p.end) && p.vintages.some((v) => ANNUAL_FORM.test(v.form ?? "")))
+    .map((p) => ({ p, sel: select(p, basis, asOf) })).filter((r) => r.sel).slice(0, 10)
+    .map(({ p, sel }) => [p.end, sel.v.val, sel.v.filed, sel.v.form, sel.v.accn]) : [];
   return asText({
     ...head(e, asOf),
     concept: { name: s.name, label: s.label, unit: s.unit, units: s.units, tags: s.tags.map(tagName) },
     basis,
     ...(asOf ? { as_of: asOf } : {}),
+    // as_of is a filing date; a question "as of" a date usually means the period ending then.
+    ...(asOf && s.periods.some((p) => p.end === asOf && matchesKind(p, periods) && !select(p, basis, asOf)) ? { as_of_note: `A period ends on ${asOf}, but it was filed after that date, so as_of leaves it out. For the value at the period ending ${asOf}, call again without as_of.` } : {}),
     periods,
     total: picked.length,
+    // The span the company's XBRL data covers for this measure: a question about a period outside
+    // it has no answer here, which a model should say rather than search further.
+    ...(picked.length ? { covers: { first_end: picked.at(-1).p.end, last_end: picked[0].p.end, note: `No ${periods === "all" ? "" : `${periods} `}value for this measure before ${picked.at(-1).p.end} or after ${picked[0].p.end} is in this company's XBRL data (SEC XBRL starts in 2009 to 2011, by filer size).` } } : {}),
     columns,
     ...shown,
     ...(s.newer ? { newer_series: s.newer } : {}),
-    meaning: basis === "latest" && !asOf
-      ? "changed: the latest value differs from the period's first report."
-      : "changed: a filing after the one shown reported a different value for the period (restatements and vintages show which).",
+    ...(otherDates.length ? { other_dates: { note: "Balances annual reports also carry on dates that are not year ends (an opening balance after a new accounting standard, a transition period's end); not used in change_pct.", columns: ["end", "val", "filed", "form", "accn"], rows: otherDates } } : {}),
+    meaning: (latestBasis
+      ? "changed: the latest value differs from the period's first report; first_val and first_filed give that first report."
+      : `changed: a filing after the one shown reported a different value for the period (restatements and vintages show which).${other ? " latest_val and latest_filed give the latest value when it differs." : ""}`) +
+      " change_pct: percent change of val from the same kind of period a year (or, for quarters, a quarter) earlier, against the earlier value's absolute size; null when that period is not in the rows.",
     limits: LIMITS,
   });
 }
@@ -996,7 +1060,7 @@ function conceptFilter(name) {
   const raw = name.trim();
   const key = normalize(raw);
   const plain = !raw.includes(":") && !/[A-Z]/.test(raw);
-  const friendlyKey = FRIENDLY[key] ? key : SYNONYMS[key];
+  const friendlyKey = Object.hasOwn(FRIENDLY, key) ? key : Object.hasOwn(SYNONYMS, key) ? SYNONYMS[key] : undefined;
   const friendly = new Set(friendlyKey ? FRIENDLY[friendlyKey] : []);
   if (plain && friendlyKey) return (taxonomy, tag) => friendly.has(`${taxonomy}:${tag}`);
   const lower = raw.toLowerCase();
@@ -1049,16 +1113,198 @@ export async function toolCrossSection(session, args) {
   });
 }
 
+// ---------------------------------------------------------------------------------------------
+// Guides: prompts, reference resources and completions
+// ---------------------------------------------------------------------------------------------
+// Prompts are the three jobs this server exists for: what a company had reported on a date, which
+// of its numbers were restated, and how peers compared as of a date. Resources give the plain
+// concept names and the tags behind each, every tool's exact JSON Schemas, a working call in
+// Python, JavaScript or curl against the hosted endpoint, and the limits every result carries.
+// Prompt arguments complete: company from the SEC ticker list, concept from the plain names.
+export const HOSTED_URL = "https://canlicapital.com/mcp/fundamentals";
+export const EXAMPLE_LANGUAGES = Object.freeze(["python", "javascript", "curl"]);
+
+// Valid arguments for each tool (a test parses every one against the tool's input schema).
+export const EXAMPLE_ARGS = Object.freeze({
+  known_as_of: { company: "AAPL", as_of: "2019-01-01", concepts: ["eps_diluted", "revenue"] },
+  history: { company: "AAPL", concept: "revenue" },
+  restatements: { company: "AAPL", concept: "eps_diluted" },
+  vintages: { company: "AAPL", concept: "eps_diluted", end: "2018-09-29" },
+  list_concepts: { company: "AAPL", search: "revenue" },
+  find_company: { query: "Exxon Mobil" },
+  cross_section: { companies: ["AAPL", "MSFT", "GOOGL"], concept: "net_income", as_of: "2024-06-30" },
+});
+
+const prefix = (list) => (value) => {
+  const v = String(value ?? "").toLowerCase();
+  return list.filter((n) => n.toLowerCase().startsWith(v)).slice(0, 20);
+};
+
+// Tickers first (what people type), then names; a lookup that fails completes to nothing.
+function companyCompleter(session, findCompanies) {
+  return async (value) => {
+    const v = String(value ?? "").trim();
+    if (!v) return [];
+    try {
+      const found = await findCompanies(session, v, 8);
+      const out = [];
+      for (const m of found.matches) {
+        const ticker = (m.tickers ?? []).find((t) => t.toUpperCase().startsWith(v.toUpperCase()));
+        out.push(ticker ?? m.name);
+      }
+      return [...new Set(out)];
+    } catch {
+      return [];
+    }
+  };
+}
+
+// deps: { session, findCompanies, plainNames } from server.mjs (passed in, so the two modules do
+// not import each other).
+export function registerPrompts(server, { session, findCompanies, plainNames }) {
+  const company = completable(z.string().describe("Ticker, CIK or company name, such as AAPL"), companyCompleter(session, findCompanies));
+  const concept = completable(z.string().describe("A plain name such as revenue or eps_diluted, or an XBRL tag"), prefix([...plainNames].sort()));
+  const date = z.string().describe("A date, YYYY-MM-DD");
+  const prompt = (name, title, description, argsSchema, lines) => server.registerPrompt(name, { title, description, argsSchema }, (args) => ({
+    messages: [{ role: "user", content: { type: "text", text: lines(args ?? {}).filter(Boolean).join("\n") } }],
+  }));
+  prompt(
+    "known_on_date",
+    "What did a company report as of a date?",
+    "A point-in-time snapshot for a backtest or a decision: each measure as it stood on the date, the filing behind it, ratios, and which values were later restated.",
+    { company, as_of: date },
+    ({ company: c, as_of: d }) => [
+      `Call known_as_of with company "${c}", as_of "${d}" and ratios true.`,
+      "For each measure, report the value, the period it covers (start and end), the filed date and the form. Treat a value as known from the next trading day after its filed date, not from the period end.",
+      "List every value with changed_after true; for one or two of them, call vintages to show the first and the latest figure.",
+      "Say if any value is stale (its period ended long before the date). Quote the limits.",
+    ],
+  );
+  prompt(
+    "restatement_review",
+    "Which of a company's numbers were restated?",
+    "Every period whose value changed after its first report, why it changed, and the filings behind the biggest changes.",
+    { company, concept: concept.optional() },
+    ({ company: c, concept: k }) => [
+      k ? `Call restatements with company "${c}" and concept "${k}".` : `Call restatements with company "${c}" and no concept, to scan every measure.`,
+      "Group the changes by cause (tag_change, or null: a restatement, reclassification or correction) and give the largest by absolute change_pct first.",
+      "For the three largest, call vintages with the same concept and the period's end (and start) to show each filing that reported it, with dates and accession numbers.",
+      "Say what this means for a backtest that used the latest values instead of the first-reported ones. Quote the limits.",
+    ],
+  );
+  prompt(
+    "peers_as_of",
+    "How did peers compare as of a date?",
+    "One measure across several companies, each as filed by the date, with fiscal period ends lined up and later restatements flagged.",
+    { companies: z.string().describe("Tickers or names, separated by commas, such as AAPL, MSFT, GOOGL"), concept, as_of: date },
+    ({ companies, concept: k, as_of: d }) => [
+      `Call cross_section with companies [${String(companies ?? "").split(",").map((s) => JSON.stringify(s.trim())).filter((s) => s !== '""').join(", ")}], concept "${k}" and as_of "${d}".`,
+      "Rank the companies by value, but show each one's period end and filed date next to it: fiscal years end on different dates, so say which values cover different periods.",
+      "Flag rows with changed_after or stale true, and name any company in missing and why.",
+      "Quote the limits.",
+    ],
+  );
+}
+
+export function exampleCode(language, tool) {
+  if (!Object.hasOwn(EXAMPLE_ARGS, tool)) throw new Error(`No tool ${tool}; tools are ${Object.keys(EXAMPLE_ARGS).join(", ")}`);
+  const args = EXAMPLE_ARGS[tool] ?? {};
+  const json = JSON.stringify(args, null, 2);
+  if (language === "python") {
+    return [
+      "# pip install mcp",
+      "# The hosted endpoint: no install of this server and no key.",
+      "import asyncio",
+      "from mcp import ClientSession",
+      "from mcp.client.streamable_http import streamablehttp_client",
+      "",
+      "async def main():",
+      `    async with streamablehttp_client("${HOSTED_URL}") as (read, write, _):`,
+      "        async with ClientSession(read, write) as session:",
+      "            await session.initialize()",
+      `            result = await session.call_tool("${tool}", ${json.replace(/\n/g, "\n            ").replace(/\btrue\b/g, "True").replace(/\bfalse\b/g, "False").replace(/\bnull\b/g, "None")})`,
+      "            print(result.structuredContent)",
+      "",
+      "asyncio.run(main())",
+      "",
+    ].join("\n");
+  }
+  if (language === "javascript") {
+    return [
+      "// npm install @modelcontextprotocol/sdk",
+      "// The hosted endpoint: no install of this server and no key.",
+      'import { Client } from "@modelcontextprotocol/sdk/client/index.js";',
+      'import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";',
+      "",
+      'const client = new Client({ name: "example", version: "1.0.0" });',
+      `await client.connect(new StreamableHTTPClientTransport(new URL("${HOSTED_URL}")));`,
+      `const result = await client.callTool({ name: "${tool}", arguments: ${json} });`,
+      "console.log(result.structuredContent);",
+      "await client.close();",
+      "",
+    ].join("\n");
+  }
+  if (language === "curl") {
+    const body = JSON.stringify({ jsonrpc: "2.0", id: 1, method: "tools/call", params: { name: tool, arguments: args } });
+    return [
+      "# The hosted endpoint is stateless: one POST per call, no session and no key.",
+      `curl -s ${HOSTED_URL} \\`,
+      "  -H 'content-type: application/json' -H 'accept: application/json, text/event-stream' \\",
+      `  --data '${body.replace(/'/g, "'\\''")}'`,
+      "",
+    ].join("\n");
+  }
+  throw new Error(`No example language ${language}; choose ${EXAMPLE_LANGUAGES.join(", ")}`);
+}
+
+// catalog: { toolName: { description, inputSchema, outputSchema } } for every tool the server lists.
+// data: { friendly, defaultConcepts, limits } from server.mjs.
+export function registerResources(server, catalog, { friendly, defaultConcepts, limits }) {
+  const names = Object.keys(catalog).sort();
+  server.registerResource(
+    "concepts",
+    "canli://concepts",
+    { title: "Plain concept names and their XBRL tags", description: "Every plain name the tools accept (revenue, eps_diluted, ...), the US GAAP and IFRS tags it follows in order, and the ten known_as_of reads by default.", mimeType: "application/json" },
+    (uri) => ({ contents: [{ uri: uri.href, mimeType: "application/json", text: JSON.stringify({ plain_names: friendly, default_concepts: defaultConcepts, note: "Any XBRL tag also works as a concept, such as us-gaap:ResearchAndDevelopmentExpense; list_concepts shows what one company reports." }, null, 2) }] }),
+  );
+  server.registerResource(
+    "limits",
+    "canli://limits",
+    { title: "What a result does not establish", description: "The limits every fundamentals result carries; quote them with any finding.", mimeType: "application/json" },
+    (uri) => ({ contents: [{ uri: uri.href, mimeType: "application/json", text: JSON.stringify({ limits }, null, 2) }] }),
+  );
+  server.registerResource(
+    "tool-schema",
+    new ResourceTemplate("canli://schemas/{tool}", { list: undefined, complete: { tool: prefix(names) } }),
+    { title: "A tool's exact JSON Schemas", description: "Input and output JSON Schema and the description of one tool, for writing code against it.", mimeType: "application/json" },
+    (uri, { tool }) => {
+      const entry = Object.hasOwn(catalog, tool) ? catalog[tool] : undefined;
+      if (!entry) throw new Error(`No tool ${tool}; tools are ${names.join(", ")}`);
+      const body = { tool, description: entry.description, input_schema: z.toJSONSchema(entry.inputSchema, { io: "input" }), output_schema: z.toJSONSchema(entry.outputSchema, { io: "output" }) };
+      return { contents: [{ uri: uri.href, mimeType: "application/json", text: JSON.stringify(body, null, 2) }] };
+    },
+  );
+  server.registerResource(
+    "example",
+    new ResourceTemplate("canli://examples/{language}/{tool}", { list: undefined, complete: { language: prefix([...EXAMPLE_LANGUAGES]), tool: prefix(names) } }),
+    { title: "A working call, in Python, JavaScript or curl", description: "Runnable client code calling one tool on the hosted endpoint with valid example arguments.", mimeType: "text/plain" },
+    (uri, { language, tool }) => {
+      if (!Object.hasOwn(catalog, tool)) throw new Error(`No tool ${tool}; tools are ${names.join(", ")}`);
+      return { contents: [{ uri: uri.href, mimeType: "text/plain", text: exampleCode(language, tool) }] };
+    },
+  );
+}
+
 const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true };
 
 export const TOOL_DESCRIPTIONS = Object.freeze({
-  known_as_of: "What a company had reported as of a date: per measure, the latest period filed by then, its value, and whether it was later restated; optionally ratios from those filings. For point-in-time backtests.",
-  history: "One measure over time, newest first: as first reported (default), as latest filed, or as known on as_of, each with its filing and whether it later changed.",
-  restatements: "Periods whose value changed in a later filing, with first and latest values, % change and cause (stock splits left out by default). Omit concept to scan everything.",
-  vintages: "Every filing that reported one period of one measure, oldest first: the revision history behind a number.",
-  list_concepts: "The XBRL concepts a company reports and the plain names it supports, with units, periods, date range and restated-period counts.",
+  known_as_of: "Get what a company had reported as of a date: per measure, the latest period filed by then, its value, and whether it was later restated; optionally ratios from those filings. For point-in-time backtests.",
+  history: "Get a measure (or several, with concepts) over time, newest first: latest (default), first reported, or as known on a filing date, with its filing, other version and yearly change.",
+  restatements: "List periods whose value changed in a later filing, with first and latest values, % change and cause (stock splits left out by default). Omit concept to scan everything.",
+  vintages: "List every filing that reported one period of one measure, oldest first: the revision history behind a number.",
+  list_concepts: "List the XBRL concepts a company reports and the plain names it supports, with units, periods, date range and restated-period counts.",
   find_company: "Find a company's SEC CIK and tickers by name, ticker or CIK. The other tools also take a name as company.",
-  cross_section: "One measure for up to 50 companies as filed by a date: each one's latest period, its value then, and whether it was later restated. For point-in-time peer and factor work.",
+  cross_section: "Get one measure for up to 50 companies as filed by a date: each one's latest period, its value then, and whether it was later restated. For point-in-time peer and factor work.",
 });
 
 // Output schemas: published OPEN (extra fields always pass), every field optional. A client
@@ -1069,7 +1315,7 @@ const common = { company: z.looseObject({}).optional(), snapshot: z.looseObject(
 export const OUTPUT_SCHEMAS = Object.freeze({
   known_as_of: z.looseObject({ ...common, as_of: z.string().optional(), ...table, missing: z.array(z.string()).optional(), ratios: z.looseObject({}).optional() })
     .describe("rows: one per measure in the order of columns, the value as it stood on as_of; changed_after flags values later restated."),
-  history: z.looseObject({ ...common, concept: z.looseObject({}).optional(), basis: z.string().optional(), total: z.number().optional(), ...table })
+  history: z.looseObject({ ...common, concept: z.looseObject({}).optional(), basis: z.string().optional(), total: z.number().optional(), series: z.array(z.looseObject({})).optional(), ...table })
     .describe("rows: one per period, newest first, in the order of columns."),
   restatements: z.looseObject({ ...common, scanned: z.number().optional(), changed: z.number().optional(), ...table })
     .describe("rows: one per restated period, newest first, with first and latest values, change_pct and cause."),
@@ -1083,8 +1329,13 @@ export const OUTPUT_SCHEMAS = Object.freeze({
     .describe("rows: one per company found, in the order asked, in the order of columns; missing names the others and why."),
 });
 
+// Returns { toolName: { description, inputSchema, outputSchema } } for the schema and example resources.
 export function registerTools(server, session) {
-  const tool = (name, title, inputSchema, fn) => server.registerTool(name, { title, annotations: { title, ...READ_ONLY }, description: TOOL_DESCRIPTIONS[name], inputSchema, outputSchema: OUTPUT_SCHEMAS[name] }, fn);
+  const catalog = {};
+  const tool = (name, title, inputSchema, fn) => {
+    catalog[name] = { description: TOOL_DESCRIPTIONS[name], inputSchema, outputSchema: OUTPUT_SCHEMAS[name] };
+    return server.registerTool(name, { title, annotations: { title, ...READ_ONLY }, description: TOOL_DESCRIPTIONS[name], inputSchema, outputSchema: OUTPUT_SCHEMAS[name] }, fn);
+  };
   tool("known_as_of", "Known as of a date", knownInput, (args) => toolKnownAsOf(session, args));
   tool("history", "Measure history", historyInput, (args) => toolHistory(session, args));
   tool("restatements", "Restated periods", restatementsInput, (args) => toolRestatements(session, args));
@@ -1092,6 +1343,15 @@ export function registerTools(server, session) {
   tool("list_concepts", "List concepts", listInput, (args) => toolListConcepts(session, args));
   tool("find_company", "Find a company", findInput, (args) => toolFindCompany(session, args));
   tool("cross_section", "Cross-section as of a date", crossSectionInput, (args) => toolCrossSection(session, args));
+  return catalog;
+}
+
+// Tools, the three guided prompts (with completions) and the reference resources.
+export function registerAll(server, session) {
+  const catalog = registerTools(server, session);
+  registerPrompts(server, { session, findCompanies, plainNames: Object.keys(FRIENDLY) });
+  registerResources(server, catalog, { friendly: FRIENDLY, defaultConcepts: DEFAULT_CONCEPTS, limits: LIMITS });
+  return catalog;
 }
 
 const isMain = (() => {
@@ -1104,6 +1364,6 @@ const isMain = (() => {
 
 if (isMain) {
   const server = new McpServer(SERVER_INFO, { instructions: SERVER_INSTRUCTIONS });
-  registerTools(server, createSession());
+  registerAll(server, createSession());
   await server.connect(new StdioServerTransport());
 }

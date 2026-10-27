@@ -101,6 +101,18 @@ jobs:
       - run: npm ci --prefix mcp-backtest
       - run: npm audit --prefix mcp-backtest --audit-level=high
       - run: npm test --prefix mcp-backtest
+      - run: npm ci --prefix mcp-quant
+      - run: npm audit --prefix mcp-quant --audit-level=high
+      - run: npm test --prefix mcp-quant
+      - run: npm ci --prefix mcp-paper
+      - run: npm audit --prefix mcp-paper --audit-level=high
+      - run: npm test --prefix mcp-paper
+      - run: npm ci --prefix mcp-markets
+      - run: npm audit --prefix mcp-markets --audit-level=high
+      - run: npm test --prefix mcp-markets
+      - run: npm ci --prefix mcp-canli
+      - run: npm audit --prefix mcp-canli --audit-level=high
+      - run: npm test --prefix mcp-canli
       - run: npm ci --prefix mcp-fundamentals
       - run: npm audit --prefix mcp-fundamentals --audit-level=high
       - run: npm test --prefix mcp-fundamentals
@@ -138,4 +150,6 @@ jobs:
           psql -X -v ON_ERROR_STOP=1 -f supabase/migrations/20260905_validation_api.sql
           psql -X -v ON_ERROR_STOP=1 -f supabase/migrations/20260920_key_revocation.sql
           psql -X -v ON_ERROR_STOP=1 -f supabase/tests/key_revocation.sql
+          psql -X -v ON_ERROR_STOP=1 -f supabase/migrations/20261024_cloud_tiers.sql
+          psql -X -v ON_ERROR_STOP=1 -f supabase/tests/cloud_tiers.sql
           python3 scripts/test-key-revocation-race.py

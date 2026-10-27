@@ -3,11 +3,13 @@ import { companyFilingNotes } from './company-filing-notes.mjs';
 import { companyCoverage, coverageByUnit, historicalFiler, latestFiling, latestObservationsByUnit } from './company-coverage.mjs';
 import { renderProductShellHeader, renderProductShellFooter, renderProductShellStylesheet } from '../product-shell.mjs';
 import { escapeXml as esc } from './sitemaps.mjs';
-import { companyLabel, titleLabel } from './company-label.mjs';
+import { companyLabel, displayCase, primaryTicker, titleLabel } from './company-label.mjs';
 import { fitDescription } from './descriptions.mjs';
 import { historySummary, summaryDescription, summarySentences } from './company-history-summary.mjs';
 import { relatedConcepts, shareSentence } from './company-concept-groups.mjs';
 import { overviewDescription, overviewTitle } from './company-overview-search.mjs';
+import { companyLastmod } from './company-markup-date.mjs';
+import { heroArt } from './site-hero.mjs';
 const origin = 'https://canlicapital.com';
 const pathFor = (company) => `/companies/${company.cik}`;
 const dataFor = (company) => `/company-data/${company.cik}.json`;
@@ -15,20 +17,24 @@ const metricPath = (company, concept) => `${pathFor(company)}/${concept.tag}`;
 const number = (value) => new Intl.NumberFormat('en-US', { maximumFractionDigits: 12 }).format(value);
 const numberCell = (value) => `<td class="company-reference__num">${number(value)}</td>`;
 const periodStartCell = (row) => row.start ? `<td>${esc(row.start)}</td>` : '<td class="company-reference__na">-</td>';
-const label = (company) => companyLabel(company.name);
+const label = (company) => companyLabel(company.name, primaryTicker(company.cik));
 const headingHtml = (heading) => esc(heading).replace(/\d{4}-\d{2}-\d{2}|\b\d{1,2}-[KQF](?:\/A)?(?=\s|$)/g, token => `<span class="company-reference__nobreak">${token}</span>`);
 const accessionLink = (company, observation) => `https://www.sec.gov/Archives/edgar/data/${Number(company.cik)}/${observation.accn.replaceAll('-', '')}/${observation.accn}-index.html`;
 
 // robots: the page's own robots directive. A runtime page the server marks noindex says so in the
 // HTML too, so the two signals never disagree.
 export function renderReferenceDocument({ path, title, description, heading, body, sources, lastmod, dataset, coverage, robots = 'index, follow' }) {
+  // The heading as read: an all-capitals SEC name in ordinary case (company-label.mjs). The
+  // breadcrumb below still cuts the filed name off the heading it was built from.
+  const filedHeading = heading;
+  if (dataset && heading.startsWith(dataset.name)) heading = displayCase(dataset.name, primaryTicker(dataset.cik)) + heading.slice(dataset.name.length);
   if (!['index, follow', 'noindex'].includes(robots)) throw new Error('Invalid robots directive');
   const introduction = description.endsWith('…') && description.includes('. ') ? description.slice(0, description.lastIndexOf('. ') + 1) : description;
   const titleText = title.length <= 49 ? `${title} | Canli Capital` : title;
   const crumbs = [{ name: 'Home', path: '/' }, { name: 'Company reference', path: '/companies' }];
   if (!dataset && /^\/companies\/page\/\d+$/.test(path)) crumbs.push({ name: `Page ${path.split('/').at(-1)}`, path });
-  if (dataset) crumbs.push({ name: dataset.name, path: pathFor(dataset) });
-  if (dataset && path !== pathFor(dataset)) crumbs.push({ name: heading.slice(dataset.name.length + 2), path });
+  if (dataset) crumbs.push({ name: displayCase(dataset.name, primaryTicker(dataset.cik)), path: pathFor(dataset) });
+  if (dataset && path !== pathFor(dataset)) crumbs.push({ name: filedHeading.slice(dataset.name.length + 2), path });
   const breadcrumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs.map((crumb, i) => ({ '@type': 'ListItem', position: i + 1, name: crumb.name, item: origin + crumb.path })) };
   const schema = dataset ? { '@context': 'https://schema.org', '@type': 'Dataset', name: heading, description, url: origin + path, license: 'https://creativecommons.org/licenses/by/4.0/', creator: { '@type': 'Organization', name: dataset.name }, provider: { '@type': 'Organization', name: 'U.S. Securities and Exchange Commission' }, isBasedOn: dataset.source_url, distribution: { '@type': 'DataDownload', contentUrl: origin + dataFor(dataset), encodingFormat: 'application/json' }, dateModified: lastmod, ...(coverage ? { temporalCoverage: `${coverage.first}/${coverage.last}` } : {}) } : { '@context': 'https://schema.org', '@type': 'CollectionPage', name: heading, url: origin + path };
   const html = `<!doctype html>
@@ -48,8 +54,7 @@ ${renderProductShellStylesheet()}
 <script type="application/ld+json">${JSON.stringify([schema, breadcrumbs]).replaceAll('<', '\\u003c')}</script></head>
 <body class="paper"><a class="paper__skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: 'companies' })}
-<main class="company-reference" id="content" tabindex="-1"><nav class="company-reference__breadcrumbs" aria-label="Breadcrumb"><ol>${crumbs.map((crumb, i) => `<li>${i === crumbs.length - 1 ? `<span aria-current="page">${esc(crumb.name)}</span>` : `<a href="${crumb.path}">${esc(crumb.name)}</a>`}</li>`).join('')}</ol></nav>
-<header class="cc-film-head"><h1>${headingHtml(heading)}</h1><p class="company-reference__intro">${esc(introduction)}</p></header>${body}</main>
+<main class="company-reference" id="content" tabindex="-1"><header class="cc-hero" data-scene="district">${heroArt('district')}<div class="cc-hero__inner"><nav class="cc-crumbs company-reference__breadcrumbs" aria-label="Breadcrumb"><ol>${crumbs.map((crumb, i) => `<li>${i === crumbs.length - 1 ? `<span aria-current="page">${esc(crumb.name)}</span>` : `<a href="${crumb.path}">${esc(crumb.name)}</a>`}</li>`).join('')}</ol></nav><h1>${headingHtml(heading)}</h1><p class="company-reference__intro">${esc(introduction)}</p></div></header>${body}</main>
 ${renderProductShellFooter({ developerStrip: false })}</body></html>\n`;
   return { path, html, lastmod, loc: origin + path };
 }
@@ -69,6 +74,7 @@ export function provenance(company) {
 <p><a href="/methodology">Research methodology</a> · <a href="/costs">Execution and cost assumptions</a> · <a href="/tools/backtest-overfitting">Check backtest overfitting</a></p>
 <h3>Build with the open-source tools</h3><p>Use these accounting records as inspectable inputs. When you have constructed a return series, the validation tools can help test its statistical evidence and preserve the result with its limitations.</p>
 <ul><li><a href="/developers#quickstart">Get an API key and run your first validation</a></li><li><a href="/developers#ai-assistant">Connect the MCP server to your coding assistant</a></li><li><a href="https://github.com/arhancanli/alphac" rel="noreferrer">Inspect the ALPHAC engine on GitHub</a></li><li><a href="https://github.com/arhancanli/canlicapital/tree/main/mcp" rel="noreferrer">Read the MCP server source and integration examples</a></li></ul>
+<p class="company-reference__star">The MCP server is free and MIT-licensed: <code>npx -y canli-mcp</code>. If these records help your research, a star on <a href="https://github.com/arhancanli/canlicapital" rel="noreferrer">GitHub</a> helps other researchers find them.</p>
 <details><summary>Read the published dataset with Python</summary><pre><code>${esc(`import json\nfrom urllib.request import urlopen\n\nwith urlopen("${origin}${dataFor(company)}") as response:\n    record = json.load(response)\nprint(record["fetched_at"])\nprint(record["policy"])\nfor concept in record["concepts"]:\n    print(concept["tag"], next(iter(concept["observations"])))`)}</code></pre></details></section>`;
 }
 
@@ -113,7 +119,7 @@ export function renderCompanyPages(company, { target = 'all', filings = null, li
   const matches = matchingHistoryConcepts(company.concepts);
   const pages = [];
   const page = options => pages.push(renderReferenceDocument({ ...options, robots }));
-  const lastmod = (company.content_updated_at ?? company.fetched_at).slice(0, 10);
+  const lastmod = companyLastmod((company.content_updated_at ?? company.fetched_at).slice(0, 10));
   const sources = [`company-data/${company.cik}.json`];
   const historicalNote = historicalFiler(company) ? historicalFilerNotice(company.name, latestFiling(company), company.fetched_at) : '';
   const editorialNote = company.editorial_exclusions?.length ? `<section aria-labelledby="editorial-scope"><h2 id="editorial-scope">Limits of the selected measures</h2>${withholdingNotices(company.editorial_exclusions)}</section>` : '';
@@ -145,7 +151,7 @@ export function renderCompanyPages(company, { target = 'all', filings = null, li
     const glanceSection = glance.length ? `<section aria-labelledby="at-a-glance"><h2 id="at-a-glance">At a glance</h2><p>${glance.map(esc).join(' ')}</p><p class="company-reference__note">Computed from the values in the table below${summary.unit ? `, in ${esc(summary.unit)}` : ''}; each links to the filing it came from.</p></section>` : '';
     const rows = concept.observations.map((row) => `<tr>${periodStartCell(row)}<th scope="row">${esc(row.end)}</th>${numberCell(row.val)}<td>${esc(row.unit)}</td><td>${esc(row.filed)}</td><td>${filingLink(row.accn) ? `<a href="${filingLink(row.accn)}">${esc(row.form)} · ${esc(row.accn)}</a> <a href="${accessionLink(company, row)}" rel="noreferrer">SEC</a>` : `<a href="${accessionLink(company, row)}">${esc(row.form)} · ${esc(row.accn)}</a>`}</td></tr>`).join('');
     page({ path: metricPath(company, concept), title, description: summaryDescription(summary, { company: label(company), label: concept.label, kind: concept.kind }) ?? fitDescription(`${concept.label} for ${company.name.replace(/\.$/, '')}. Inspect selected reporting periods, original units and SEC filing links; download the financial history.`, ['Each value links to the filing it came from.']), heading: `${company.name}: ${concept.label.toLowerCase()}`, sources, lastmod, dataset: company, coverage,
-      body: `<p><a href="${pathFor(company)}">All ${esc(company.name)} financial histories</a></p>${glanceSection}<section><h2>What this measure means</h2><p>${esc(concept.meaning)}</p><p>Exact concept: <code>us-gaap:${esc(concept.tag)}</code>. ${concept.kind === 'duration' ? 'Each value covers an annual-duration reporting interval, shown with both start and end dates.' : 'Each value is a balance at the reporting date, not a flow earned over a year.'} Different units remain separate; no currency conversion or interpolation is applied.</p></section>${coverageNote}${observationNote}${historyContext}${filingNotes.length ? `<section aria-labelledby="filing-context"><h2 id="filing-context">Context from the filing</h2>${filingNotes.map(note => `<p>${esc(note.text)} <a href="${esc(note.filing_url)}">Read the source filing</a>.</p>`).join('')}</section>` : ''}<section><h2>Selected filing history</h2><div class="company-reference__table" role="region" aria-label="${esc(concept.label)} filing history" tabindex="0"><table><caption>${esc(concept.label)} in original reported units, latest-filed observation per period</caption><thead><tr><th scope="col">Period start</th><th scope="col">Period end</th><th scope="col" class="company-reference__num">Value</th><th scope="col">Unit</th><th scope="col">Filed</th><th scope="col">Source filing</th></tr></thead><tbody>${rows}</tbody></table></div></section><section><h2>Related ${esc(company.name)} histories</h2><ul class="company-reference__related">${relatedConcepts(company.concepts, concept, { linkable: linkConcept }).map(other => `<li>${conceptRef(other)}</li>`).join('')}</ul><p><a href="${pathFor(company)}">All ${company.concepts.length} ${esc(label(company))} histories</a></p></section>${provenance(company)}` });
+      body: `<p><a href="${pathFor(company)}">All ${esc(displayCase(company.name, primaryTicker(company.cik)))} financial histories</a></p>${glanceSection}<section><h2>What this measure means</h2><p>${esc(concept.meaning)}</p><p>Exact concept: <code>us-gaap:${esc(concept.tag)}</code>. ${concept.kind === 'duration' ? 'Each value covers an annual-duration reporting interval, shown with both start and end dates.' : 'Each value is a balance at the reporting date, not a flow earned over a year.'} Different units remain separate; no currency conversion or interpolation is applied.</p></section>${coverageNote}${observationNote}${historyContext}${filingNotes.length ? `<section aria-labelledby="filing-context"><h2 id="filing-context">Context from the filing</h2>${filingNotes.map(note => `<p>${esc(note.text)} <a href="${esc(note.filing_url)}">Read the source filing</a>.</p>`).join('')}</section>` : ''}<section><h2>Selected filing history</h2><div class="company-reference__table" role="region" aria-label="${esc(concept.label)} filing history" tabindex="0"><table><caption>${esc(concept.label)} in original reported units, latest-filed observation per period</caption><thead><tr><th scope="col">Period start</th><th scope="col">Period end</th><th scope="col" class="company-reference__num">Value</th><th scope="col">Unit</th><th scope="col">Filed</th><th scope="col">Source filing</th></tr></thead><tbody>${rows}</tbody></table></div></section><section><h2>Related ${esc(company.name)} histories</h2><ul class="company-reference__related">${relatedConcepts(company.concepts, concept, { linkable: linkConcept }).map(other => `<li>${conceptRef(other)}</li>`).join('')}</ul><p><a href="${pathFor(company)}">All ${company.concepts.length} ${esc(label(company))} histories</a></p></section>${provenance(company)}` });
   }
   return pages;
 }

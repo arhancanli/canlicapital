@@ -1,6 +1,6 @@
 {
   "name": "canli-backtest-mcp",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "MCP server for backtests that refuse lookahead: point-in-time factors from SEC filings, cross-sectional backtests of any signal on your own prices, costs on actual trades, and every variant counted in a trial ledger.",
   "private": false,
   "type": "module",
@@ -20,9 +20,10 @@
   },
   "dependencies": {
     "@modelcontextprotocol/server": "2.3.1",
-    "canli-fundamentals-mcp": "^0.5.0",
+    "canli-fundamentals-mcp": "^0.7.0",
+    "canli-markets-mcp": "^0.7.0",
     "canli-validation-mcp": "^0.14.0",
-    "zod": "4.6.5"
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@modelcontextprotocol/client": "2.3.1"
@@ -37,5 +38,22 @@
   "bugs": {
     "url": "https://github.com/arhancanli/canlicapital/issues"
   },
-  "keywords": ["mcp", "model-context-protocol", "backtesting", "quant", "quantitative-finance", "point-in-time", "sec", "xbrl", "lookahead-bias", "deflated-sharpe", "overfitting", "factor-investing", "ai-agents"]
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "backtesting",
+    "quant",
+    "quantitative-finance",
+    "point-in-time",
+    "sec",
+    "xbrl",
+    "lookahead-bias",
+    "deflated-sharpe",
+    "overfitting",
+    "factor-investing",
+    "ai-agents"
+  ],
+  "overrides": {
+    "zod": "4.6.7"
+  }
 }

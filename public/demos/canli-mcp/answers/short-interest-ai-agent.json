@@ -1,0 +1,128 @@
+{
+ "version": "0.11.1",
+ "recorded": "2026-10-25T07:27:26.545Z",
+ "call": {
+  "name": "short_interest",
+  "arguments": {
+   "symbol": "TSLA",
+   "periods": 6
+  }
+ },
+ "model_chars": 2128,
+ "ms": 2462,
+ "result": {
+  "ref": "r17",
+  "symbol": "TSLA",
+  "name": "Tesla, Inc. Common Stock",
+  "market": "NNM",
+  "latest": {
+   "settlement_date": "2026-09-30",
+   "short_position": 70931312,
+   "change": 2068955,
+   "change_pct": 0.03,
+   "average_daily_volume": 36582381,
+   "days_to_cover": 1.94,
+   "pct_of_shares_outstanding": 0.017945,
+   "shares_outstanding": {
+    "shares": 3952757946,
+    "as_of": "2026-10-15",
+    "form": "10-Q",
+    "filed": "2026-10-22"
+   }
+  },
+  "columns": [
+   "settlement_date",
+   "short_position",
+   "change",
+   "change_pct",
+   "average_daily_volume",
+   "days_to_cover"
+  ],
+  "rows": [
+   [
+    "2026-07-15",
+    70646375,
+    -8462882,
+    -0.107,
+    39663962,
+    1.78
+   ],
+   [
+    "2026-07-31",
+    68501639,
+    -2144736,
+    -0.0304,
+    44213010,
+    1.55
+   ],
+   [
+    "2026-08-14",
+    69196896,
+    695257,
+    0.0101,
+    32128184,
+    2.15
+   ],
+   [
+    "2026-08-31",
+    74230933,
+    5034037,
+    0.0727,
+    36423555,
+    2.04
+   ],
+   [
+    "2026-09-15",
+    68862357,
+    -5368576,
+    -0.0723,
+    40108176,
+    1.72
+   ],
+   [
+    "2026-09-30",
+    70931312,
+    2068955,
+    0.03,
+    36582381,
+    1.94
+   ]
+  ],
+  "source": "https://www.finra.org/finra-data/browse-catalog/equity-short-interest/data",
+  "limits": [
+   "FINRA consolidated short interest as reported by broker-dealers under FINRA Rule 4560, twice a month, published about seven business days after each settlement date; days to cover is short interest over average daily volume, as FINRA computes it.",
+   "Not investment advice.",
+   "pct_of_shares_outstanding divides by the shares outstanding on the company's latest SEC cover page (as_of), not by the float."
+  ],
+  "evidence": {
+   "documents": 4,
+   "columns": [
+    "url",
+    "sha256_16",
+    "retrieved_at"
+   ],
+   "rows": [
+    [
+     "https://api.finra.org/partitions/group/otcMarket/name/consolidatedShortInterest",
+     "d78b1d395a947752",
+     "2026-10-25T07:27:25.690Z"
+    ],
+    [
+     "POST https://api.finra.org/data/group/otcMarket/name/consolidatedShortInterest {\"limit\":100,\"compareFilters\":[{\"fieldName\":\"symbolCode\",\"fieldValue\":\"TSLA\",\"compareType\":\"EQUAL\"}],\"dateRangeFilters\":[{\"fieldName\":\"settlementDate\",\"startDate\":\"2026-07-15\",\"endDate\":\"2026-09-30\"}]}",
+     "15f7f59015a523b8",
+     "2026-10-25T07:27:26.180Z"
+    ],
+    [
+     "https://www.sec.gov/files/company_tickers.json",
+     "6f9cc4500a98fb4c",
+     "2026-10-25T07:27:06.908Z"
+    ],
+    [
+     "https://data.sec.gov/api/xbrl/companyconcept/CIK0001318605/dei/EntityCommonStockSharesOutstanding.json",
+     "6deb024415846b87",
+     "2026-10-25T07:27:26.544Z"
+    ]
+   ]
+  }
+ }
+}

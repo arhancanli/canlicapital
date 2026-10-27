@@ -47,13 +47,14 @@ test("phase 4 keeps dynamic status out of the stable top row", () => {
   assert.match(html,/data-shell-revision="5"/);
   assert.ok(html.indexOf('cc-shell__panel-foot') < html.indexOf('id="header-broker-status"'));
   assert.match(html,/<script type="module" src="\/js\/navigation.js"><\/script>/);
-  assert.match(html,/Live record <span aria-hidden="true">↗<\/span>/);
+  assert.match(html,/<a class="cc-shell__cta" href="\/mcp-servers#install">Add canli-mcp<\/a>/);
+  assert.match(html,/href="https:\/\/app.canlicapital.com\/dashboard" rel="noreferrer"[^>]*>Live record</,'the live record stays one click away');
 });
 
-test("primary navigation follows research, the ALPHAC record and developer tools", () => {
+test("primary navigation names what a visitor comes for in plain words: the MCP server, company data, research, performance and developers", () => {
   const html=renderProductShellHeader({active:'research'});
   const primary=html.match(/<nav class="cc-shell__primary"[^>]*>([\s\S]*?)<\/nav>/)[1];
-  assert.deepEqual([...primary.matchAll(/href="([^"]+)"/g)].map(m=>m[1]),['/research','/performance','/developers']);
+  assert.deepEqual([...primary.matchAll(/href="([^"]+)"/g)].map(m=>m[1]),['/mcp-servers','/companies','/research','/performance','/developers']);
   assert.doesNotMatch(primary,/aria-current="page"/,'A parent-family match is not necessarily the current page');
 });
 
@@ -65,18 +66,19 @@ test("repeated footer workflow is optional, native and preserves its evidence ro
   assert.match(html,/A receipt is not proof of future returns/);
 });
 
-test("the footer promotes the MCP server, every public repository and the API key", () => {
+test("the footer promotes canli-mcp, every public repository and the API key", () => {
   const strip = renderProductShellFooter().match(/<section class="cc-footer__dev"[\s\S]*?<\/section>/)?.[0];
   assert.ok(strip, "the developer strip is missing from the footer");
   for (const href of [
-    "https://www.npmjs.com/package/canli-validation-mcp",
-    "https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp",
+    "https://www.npmjs.com/package/canli-mcp",
+    "https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-mcp",
+    "/mcp-servers/answers",
     "https://github.com/arhancanli/alphac",
     "https://github.com/arhancanli/canli-pit-lake",
     "https://github.com/arhancanli/canli-backtest",
     "/developers#quickstart",
   ]) assert.ok(strip.includes(`href="${href}"`), `the developer strip does not link ${href}`);
-  assert.match(strip, /<code>npx -y canli-validation-mcp<\/code>/);
+  assert.match(strip, /<code>npx -y canli-mcp<\/code>/);
 });
 
 test("company pages keep their released footer bytes", () => {
@@ -88,4 +90,13 @@ test("the shared footer follows the public paper record without freezing its sta
   assert.match(html, /href="\/performance">public paper record and its observation dates<\/a>/);
   assert.doesNotMatch(html, /\b\d{4}-\d{2}-\d{2}\b/);
   assert.match(html, /since July 2024/);
+});
+
+test("the Explore menu groups every destination once, by what a visitor wants to do", () => {
+  const html = renderProductShellHeader({ active: "" });
+  const panel = html.match(/<div class="cc-shell__panel">([\s\S]*?)<div class="cc-shell__panel-foot">/)[1];
+  const hrefs = [...panel.matchAll(/class="cc-shell__panel-link" href="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(hrefs, [...new Set(hrefs)], "a destination appears twice in the menu");
+  assert.deepEqual([...panel.matchAll(/cc-shell__panel-label">([^<]+)</g)].map((m) => m[1]), ["Use it", "Research and record", "About and trust", "Source code"]);
+  for (const href of ["/mcp-servers/answers", "/companies", "/benchmarks/finance-mcp-servers", "/vision", "/verify"]) assert.ok(hrefs.includes(href), href);
 });

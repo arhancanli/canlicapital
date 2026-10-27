@@ -1,19 +1,40 @@
 # Changelog
 
-## Unreleased
+## 0.7.1
 
-- Prepare a separate opt-in `canli-fundamentals-audit` package command with its
-  own exact canonical-helper copy and the included audit input contract. The actual
-  candidate tarball is checked for runtime source closure, bin links and complete
-  supplied-input behavior in remote CI. Package/default version and the existing
-  seven-tool command stay unchanged; npm publication remains a later release step.
+- `history` lists `other_dates`: balances annual reports also carry on dates that are not year ends,
+  such as the opening balance after a new accounting standard (Booking's receivables on 2018-01-01)
+  or a transition period's end. They were left out because a 10-Q reported them first; they are
+  kept apart from the yearly rows so `change_pct` never uses them.
+- Plain names `long_term_debt` (LongTermDebt: the total, current portion included) and
+  `long_term_debt_noncurrent`.
 
-- Add a repository-checkout `audit_inputs` stdio example over the supplied-vintage audit core.
-  Strict exact-byte inputs, full selected-row compact or complete evidence results, explicit
-  unknown outcomes and bounded refusals. The published seven-tool server stays unchanged.
-  This example requires the repository canonical helper and is not an npm-package command.
+## 0.7.0
+
+- `history` returns the latest value by default (first-reported is `basis: "first_reported"`), and
+  every row shows the other version when a later filing changed it, plus `change_pct` from the year
+  before. `concepts` takes two to six measures in one call; `covers` states the span the data covers.
+  An `as_of` equal to a period end filed later is pointed out: `as_of` is a filing date.
+- A company name that two filers share resolves to the one with a current ticker and names the
+  other, with its CIK.
+
+## 0.6.0
+
+- Three guided workflows: what a company knew on a date, which numbers were restated, and how
+  peers compared as of a date. Concept names, limits, exact schemas and runnable Python,
+  JavaScript and curl examples are available as MCP resources; prompt and resource arguments
+  complete from the supported names.
+
+- Concept lookup reads only declared aliases. `constructor` and `__proto__` previously reached
+  Object's prototype and crashed `cross_section`; they now return the same unknown-concept
+  message as other unreported names. The same guard applies to history and vintage lookup.
+
 
 ## 0.5.0
+
+- Packaging clarification: the npm release includes the opt-in supplied-input audit and expert
+  intake commands and their contracts (verified against the published 0.5.0 package). The
+  repository audit example that imports the repository canonical helper still requires a checkout.
 
 - Security: the MCP SDK (`@modelcontextprotocol/server` and `/client`) moves from 2.1.0 to 2.3.1 for
   GHSA-6qxp-vccf-f47h (high: the SDK's OAuth client could send credentials to an authorization server

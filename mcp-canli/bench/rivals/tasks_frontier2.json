@@ -1,0 +1,58 @@
+[
+ {
+  "id": "z_max_net_margin_100b",
+  "cat": "screen",
+  "truth": "max_net_margin_pct_rev_over_100b",
+  "rel": 0.002,
+  "prompt": "Among companies listed on the NYSE or Nasdaq with revenue above $100 billion for a fiscal year ending between February 1, 2025 and January 31, 2026, what is the highest net margin (net income divided by revenue, from their 10-K filings)? Answer in percent, e.g. 12.34."
+ },
+ {
+  "id": "z_count_capex_20b",
+  "cat": "screen",
+  "truth": "count_capex_over_20b",
+  "rel": 0,
+  "prompt": "How many companies listed on the NYSE or Nasdaq reported capital expenditures (payments to acquire property, plant and equipment, or productive assets) above $20 billion for a fiscal year ending between February 1, 2025 and January 31, 2026, according to their 10-K filings? Answer with the count."
+ },
+ {
+  "id": "z_jpm_assets_growth",
+  "cat": "fundamentals",
+  "truth": "jpm_assets_growth_pct_2025",
+  "rel": 0.002,
+  "prompt": "By what percentage did JPMorgan Chase's total assets grow from December 31, 2024 to December 31, 2025, according to its 10-K filings? Answer in percent, e.g. 4.56."
+ },
+ {
+  "id": "z_tsla_502_2025",
+  "cat": "filings",
+  "truth": "tsla_8k_item_502_2025",
+  "rel": 0,
+  "prompt": "How many Form 8-K filings did Tesla, Inc. file during calendar year 2025 that report Item 5.02 (departure or appointment of directors or officers)? Answer with the count."
+ },
+ {
+  "id": "z_ust10_sep2026",
+  "cat": "rates_macro",
+  "truth": "ust10_par_avg_2026_09",
+  "abs": 0.005,
+  "prompt": "What was the average of the U.S. Treasury's daily 10-year par yield curve rate over the trading days of September 2026? Answer in percent to two decimals, e.g. 4.12."
+ },
+ {
+  "id": "z_msft_eps_growth",
+  "cat": "fundamentals",
+  "truth": "msft_diluted_eps_growth_pct_fy2025",
+  "rel": 0.002,
+  "prompt": "By what percentage did Microsoft's diluted earnings per share grow from fiscal 2024 (ended June 30, 2024) to fiscal 2025 (ended June 30, 2025), as reported in its 10-K? Answer in percent, e.g. 15.5."
+ },
+ {
+  "id": "z_tariff_10k_h1_2026",
+  "cat": "filings",
+  "truth": "reciprocal_tariffs_10k_docs_2026h1",
+  "rel": 0,
+  "prompt": "Using EDGAR full-text search, how many 10-K filing documents filed between January 1 and June 30, 2026 contain the exact phrase \"reciprocal tariffs\"? Answer with the count of documents EDGAR full-text search reports."
+ },
+ {
+  "id": "z_aapl_insider_sales_q3",
+  "cat": "insiders",
+  "truth": "aapl_form4_s_transactions_2026q3",
+  "rel": 0,
+  "prompt": "How many open-market or private sale transactions (transaction code S) did Apple insiders report on Form 4 filings filed between July 1 and September 30, 2026? Count each non-derivative transaction line with code S. Answer with the count."
+ }
+]

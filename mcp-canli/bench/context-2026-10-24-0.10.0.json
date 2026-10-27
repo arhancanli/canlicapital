@@ -1,0 +1,83 @@
+{
+  "measured": "2026-10-24",
+  "node": "v24.19.0",
+  "tokenizer": "o200k_base",
+  "configuration": {
+    "CANLI_PACKS": "all",
+    "scope": "initial tool list and instructions; no tool execution"
+  },
+  "rows": {
+    "canli-mcp": {
+      "version": "0.10.0",
+      "tools": 5,
+      "tool_tokens": 2005,
+      "instruction_tokens": 390,
+      "total_tokens": 2395,
+      "startup_ms": 151
+    },
+    "canli-quant-mcp": {
+      "version": "0.2.0",
+      "tools": 3,
+      "tool_tokens": 731,
+      "instruction_tokens": 201,
+      "total_tokens": 932,
+      "startup_ms": 126
+    },
+    "canli-validation-mcp": {
+      "version": "0.14.1",
+      "tools": 19,
+      "tool_tokens": 9702,
+      "instruction_tokens": 200,
+      "total_tokens": 9902,
+      "startup_ms": 117
+    },
+    "canli-fundamentals-mcp": {
+      "version": "0.7.1",
+      "tools": 7,
+      "tool_tokens": 3214,
+      "instruction_tokens": 121,
+      "total_tokens": 3335,
+      "startup_ms": 92
+    },
+    "canli-research-mcp": {
+      "version": "0.3.1",
+      "tools": 6,
+      "tool_tokens": 1539,
+      "instruction_tokens": 76,
+      "total_tokens": 1615,
+      "startup_ms": 87
+    },
+    "canli-backtest-mcp": {
+      "version": "0.3.0",
+      "tools": 11,
+      "tool_tokens": 4164,
+      "instruction_tokens": 159,
+      "total_tokens": 4323,
+      "startup_ms": 111
+    },
+    "canli-markets-mcp": {
+      "version": "0.7.3",
+      "tools": 64,
+      "tool_tokens": 30845,
+      "instruction_tokens": 1130,
+      "total_tokens": 31975,
+      "startup_ms": 139
+    },
+    "canli-paper-trading-mcp": {
+      "version": "0.3.1",
+      "tools": 5,
+      "tool_tokens": 1799,
+      "instruction_tokens": 93,
+      "total_tokens": 1892,
+      "startup_ms": 89
+    }
+  },
+  "seven_separately": {
+    "tools": 115,
+    "total_tokens": 53974,
+    "startup_ms": [
+      87,
+      139
+    ]
+  }
+}

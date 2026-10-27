@@ -1,5 +1,14 @@
 # Persistent CanliCapital goal
 
+Current finance MCP continuation (2026-10-13 Dubai): [MCP_RUN_20261012.md](MCP_RUN_20261012.md).
+Quant0.1.2/backtest0.1.2 npm and official Registry releases are verified after the
+owner configured both Trusted Publishers. Combined0.4 with full pack guides is a
+review candidate:307 tools/30 prompts/14 resources/9 templates;38 tests on Node20/22/24.
+Evidence: artifacts/mcp/flagship-preflight-20261013.json. Hosted three-server rollout
+is verified; next daily discovery documentation and directory account parity remain open. The owner October6 reset
+uses ordinary PRs/tests/CI; the older custody/checkpoint entries below are history.
+All owner requirements remain active; global ranking and adoption are unestablished.
+
 Current continuation (2026-10-02): actual main64d81591 contains delivered PR358
 052c4d60 and PR35764d81591, with their reviewed trees and independent final
 source/archive/current-CI evidence. The current primary worktree is

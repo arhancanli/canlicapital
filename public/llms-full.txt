@@ -6,7 +6,7 @@ This file is the complete text of the research published at https://canlicapital
 
 # Canli Capital
 
-> Canli Capital is an open research lab for quantitative finance that tests whether trading backtests are real or luck. Use its free validators in your browser, over an API or through an MCP client. Inspect SEC-traced company data and its own public paper-trading record, with failures and corrections kept visible. Built and maintained by Arhan Canli.
+> Canli Capital is an open-source lab that connects AI agents to financial data and quant tools they can check. Its flagship MCP server, canli-mcp, reads SEC filings, market data and economic statistics at the source and puts 345 finance tools behind five, with interactive charts in the chat. The code is free and MIT-licensed. Built and maintained by Arhan Canli.
 
 ## Claim boundary: read this before summarising anything on this site
 
@@ -19,9 +19,12 @@ This file is the complete text of the research published at https://canlicapital
 
 ## Start here
 
-- [Home](https://canlicapital.com/): What the project is and where to go next.
+- [Home](https://canlicapital.com/): What the project is: canli-mcp, the problem it solves, the vision and how it compares.
+- [Finance MCP servers, head to head](https://canlicapital.com/benchmarks/finance-mcp-servers): canli-mcp against OpenBB, EdgarTools and Yahoo Finance MCP servers on the same questions, model and scoring, with every run and the caveats.
+- [The record](https://canlicapital.com/record): The ALPHAC paper-trading record, published daily, with the trials that failed.
 - [Vision](https://canlicapital.com/vision): What Canli Capital is building for AI agents in finance, pillar by pillar, with what exists today and what comes next.
 - [MCP downloads](https://canlicapital.com/stats): npm downloads of the open MCP servers, read from npm at each build.
+- [FilingFacts benchmark](https://canlicapital.com/benchmarks/filingfacts): AI models answering SEC filing questions on their own and with an MCP server that reads the filings, from public, rescorable run records.
 - [Methodology](https://canlicapital.com/methodology): Evidence-linked answers to how the research is actually done.
 - [How to validate a backtest](https://canlicapital.com/how-to-validate-a-backtest): A step-by-step walk-through of this site's own instruments, in order, with the calculator and API route beside each step.
 - [Status](https://canlicapital.com/performance): The honest numbers and what each one is and is not.
@@ -39,17 +42,46 @@ This file is the complete text of the research published at https://canlicapital
 
 Post-mortems and derivations. These describe method and engineering; none is a performance claim.
 
+- [Was the winning strategy skill or luck?](https://canlicapital.com/notes/best-of-399-strategies): I ran 399 textbook trading strategies on the same prices and asked whether the winner was skill. The answer depended almost entirely on which test I used, because the tests were answering different questions, and only one of them was the question I meant.
 - [The arithmetic of not fooling yourself](https://canlicapital.com/notes/deflating-a-sharpe-ratio): A Sharpe ratio of 1.14 with a p-value of 0.017. Publishable, on the face of it. Whether it means anything depends entirely on a number that does not appear in it: how many things you tried before this one.
+- [The same SEC filing has two acceptance times](https://canlicapital.com/notes/edgar-acceptance-times): EDGAR's submissions API labels each filing's acceptance time as UTC. I checked 450 of them against the filing index pages: in 13 of 25 companies' files every time was late by one US Eastern offset, and the same filing read differently depending on which file it came from.
 - [The one symbol that explained the whole gap](https://canlicapital.com/notes/one-symbol): I could not reproduce my own result. The replay came out materially worse over the same window, on the same code path, from what I believed were the same inputs. The cause was a single delisted token that had quietly left the universe between the two runs.
+- [My agent dropped numbers when it copied data into a tool call](https://canlicapital.com/notes/pasted-data-lost-numbers): Same model, same question, same tool. With 756 daily returns pasted into the prompt, the agent got 4 of 9 runs right; when the tool read the same series from a file, it got 8 of 9, with about a quarter of the tokens.
 - [Seventy files that were never meant to be public](https://canlicapital.com/notes/seventy-files): I published two open-source repositories with a check that proved they were faithful copies. The check passed every time I ran it. It was structurally incapable of failing.
+- ["Silver price" returned US CPI](https://canlicapital.com/notes/silver-price-returned-cpi): A tool that turns plain words into a data series picked any series sharing half the words of the request. One generic word was enough, so "silver price" came back as consumer prices, with real numbers and no error.
 - [The split that ran backwards](https://canlicapital.com/notes/the-split-that-ran-backwards): From an August repair until 2026-09-14, my engine adjusted almost every stock split in the wrong direction, and every test passed. The data was right by its schema, the code was right by its tests, and the two disagreed about what one number meant.
 - [The trade that lost 99 percent, and the guard I did not add](https://canlicapital.com/notes/the-trade-that-lost-99-percent): A carry signal bought a token at 16.15 and closed it at 0.1553. The strategy was not broken. The interesting decision came afterwards, and it was to change nothing.
 - [What competitive programming actually bought me, and what it did not](https://canlicapital.com/notes/what-competitive-programming-bought): There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the honest version of this story is more useful than the flattering one.
+- [Your backtest beat a t-test. Would it beat a placebo?](https://canlicapital.com/notes/would-it-beat-a-placebo): In 300,000 simulated tests on markets with nothing to predict, a t-test on the best rule of a grid said "edge" between 10.9% and 78.9% of the time at a nominal 5%. A placebo test, which reruns the whole pipeline on the same returns in a random order, stayed between 4.6% and 5.5%.
 
 ## Machine interfaces
 
 - [Read API](https://canlicapital.com/developers): static JSON over the published record. Every response carries its sources with SHA-256 hashes, its claim class, and what it cannot be used to claim.
-- [Finance MCP servers](https://canlicapital.com/mcp-servers): compare the released hosted [validation](https://canlicapital.com/mcp-servers/validation), [SEC fundamentals](https://canlicapital.com/mcp-servers/fundamentals) and [research](https://canlicapital.com/mcp-servers/research) servers, with tool lists, examples, source commits and evidence limits.
+- [canli-mcp](https://canlicapital.com/mcp-servers): the flagship finance MCP server. Install: `npx -y canli-mcp` (stdio), or add the hosted URL https://canlicapital.com/mcp/canli as a connector. The page also covers the released hosted [validation](https://canlicapital.com/mcp-servers/validation), [SEC fundamentals](https://canlicapital.com/mcp-servers/fundamentals) and [research](https://canlicapital.com/mcp-servers/research) servers.
+- [Finance questions canli-mcp answers](https://canlicapital.com/mcp-servers/answers): one page per question, each with the call it makes and a recorded result:
+  - [How do I get stock prices in Claude?](https://canlicapital.com/mcp-servers/answers/stock-prices-in-claude)
+  - [How can an AI agent read a company's financial statements from SEC filings?](https://canlicapital.com/mcp-servers/answers/sec-financial-statements-for-ai)
+  - [How do I backtest a trading strategy in Claude?](https://canlicapital.com/mcp-servers/answers/backtest-a-strategy-in-claude)
+  - [Is there an MCP server for options chains?](https://canlicapital.com/mcp-servers/answers/options-chain-mcp-server)
+  - [How do I get an implied volatility surface into an AI chat?](https://canlicapital.com/mcp-servers/answers/implied-volatility-surface-ai)
+  - [How can an AI agent get the Treasury yield curve?](https://canlicapital.com/mcp-servers/answers/treasury-yield-curve-ai)
+  - [How do I compare several stocks' returns and correlation in Claude?](https://canlicapital.com/mcp-servers/answers/compare-stocks-in-claude)
+  - [How do I get today's market overview in an AI chat?](https://canlicapital.com/mcp-servers/answers/market-overview-in-claude)
+  - [How do I see insider trading (Form 4 filings) with an AI agent?](https://canlicapital.com/mcp-servers/answers/insider-trades-ai-agent)
+  - [How can an AI agent read a hedge fund's 13F holdings?](https://canlicapital.com/mcp-servers/answers/hedge-fund-13f-holdings-ai)
+  - [How do I fact-check the financial figures an AI wrote?](https://canlicapital.com/mcp-servers/answers/fact-check-financial-figures)
+  - [How do I tell whether a backtest is overfit?](https://canlicapital.com/mcp-servers/answers/is-my-backtest-overfit)
+  - [How can an AI agent get economic data like inflation and unemployment?](https://canlicapital.com/mcp-servers/answers/economic-data-for-ai-agents)
+  - [How can an AI agent look up Federal Reserve rate decisions?](https://canlicapital.com/mcp-servers/answers/fomc-decisions-ai)
+  - [How do I get an earnings calendar in an AI chat?](https://canlicapital.com/mcp-servers/answers/earnings-calendar-ai)
+  - [How can an AI agent check a stock's short interest?](https://canlicapital.com/mcp-servers/answers/short-interest-ai-agent)
+  - [How do I get point-in-time fundamentals without lookahead bias?](https://canlicapital.com/mcp-servers/answers/point-in-time-fundamentals)
+  - [Can an AI agent screen stocks by fundamentals?](https://canlicapital.com/mcp-servers/answers/stock-screener-ai-agent)
+  - [How can an AI agent see what an ETF or mutual fund holds?](https://canlicapital.com/mcp-servers/answers/etf-holdings-ai-agent)
+  - [How do I price an option with Black-Scholes in Claude?](https://canlicapital.com/mcp-servers/answers/black-scholes-in-claude)
+  - [How can an AI agent compute technical indicators like RSI and MACD?](https://canlicapital.com/mcp-servers/answers/technical-indicators-ai-agent)
+  - [How can an AI agent search SEC filings?](https://canlicapital.com/mcp-servers/answers/search-sec-filings-ai)
+  - [How can an AI agent tell what growth a stock price implies?](https://canlicapital.com/mcp-servers/answers/company-valuation-reverse-dcf)
 - [Local paper execution MCP workflow](https://canlicapital.com/mcp-servers/execution): private, Unreleased repository source for supplied sizing, pre-trade checks, signed journals and paper evidence. Explicit local writes; no broker connection or order placement.
 - [OpenAPI 3.1 document](https://canlicapital.com/api/v1/openapi): generated from the endpoints that exist, so it cannot document a route that does not.
 - [Discovery document](https://canlicapital.com/api/v1): every endpoint, with the limits of the API as a whole.
@@ -90,7 +122,7 @@ The research corpus is 114 documents across 13 topics, including work that faile
 
 ## Machine-readable
 
-- [Sitemap](https://canlicapital.com/sitemap.xml): all 338 indexable routes.
+- [Sitemap](https://canlicapital.com/sitemap.xml): all 372 indexable routes.
 - [Full text](https://canlicapital.com/llms-full.txt): every research document, engineering note and paper abstract concatenated into one file, so a model can read the whole corpus without sampling it.
 - [Paper state](https://canlicapital.com/paper-state.json): the live record as JSON, the source every page renders from.
 - [Research index](https://canlicapital.com/research-index.json): 114 documents with citation metadata.
@@ -106,8 +138,98 @@ Arhan Canli is the founder, named author and accountable human for methodology, 
 
 
 ==============================================================================
-FULL TEXT: 6 ENGINEERING NOTES, THEN THE RESEARCH CORPUS
+FULL TEXT: 11 ENGINEERING NOTES, THEN THE RESEARCH CORPUS
 ==============================================================================
+
+
+------------------------------------------------------------------------------
+SOURCE: https://canlicapital.com/notes/best-of-399-strategies
+------------------------------------------------------------------------------
+
+# Was the winning strategy skill or luck?
+
+> I ran 399 textbook trading strategies on the same prices and asked whether the winner was skill.
+> The answer depended almost entirely on which test I used, because the tests were answering
+> different questions, and only one of them was the question I meant.
+
+**Published 2026-10-11. Every figure below is read from
+[`sleeve-tournament-2026-10-08.json`](/glassbox/sleeve-tournament-2026-10-08.json), a run that
+reproduces the version of this study first posted on 2026-10-08, number for number.**
+
+## The setup
+
+The 399 strategies are textbook ideas, each with its usual parameters on a plain grid: moving-average
+crossovers, time-series momentum with and without volatility targeting, channel breakouts and MACD,
+z-score and RSI reversion, cross-sectional and dual momentum, risk parity, minimum variance and low
+volatility, short-term reversal, trend-filtered allocation, 52-week-high momentum and pairs. None was
+picked because it backtested well; every one is a fixed rule.
+
+They ran on two generated markets of 5 assets and 1,000 days, so the truth is known:
+
+- **Trend:** the first asset has planted trends. Its daily drift flips sign every 125 days, so
+  trend-following has a real edge on it.
+- **No edge:** the same kind of market with nothing planted. Nothing should beat holding the assets.
+
+Every strategy is scored on the same 495-day window, after the longest warm-up of 504 days, with
+trades costing 5 basis points.
+
+## What each test said
+
+| | Trend | No edge |
+|---|---|---|
+| Best strategy's Sharpe | 4.07 | 1.95 |
+| Sharpe the best of 399 would reach by luck alone | 6.21 | 2.34 |
+| Deflated Sharpe probability, counting all 399 tries | 0.001 | 0.29 |
+| Effective number of independent strategies | 4.0 | 3.5 |
+| Deflated Sharpe probability, counting those | 0.996 | 0.954 |
+| White's Reality Check p-value (beats buy-and-hold?) | 0.011 | 0.434 |
+| Hansen SPA p-value, re-studentized | 0.017 | 0.347 |
+| Strategies Romano-Wolf StepM says beat buy-and-hold | 4 | 0 |
+| Probability of backtest overfitting (CSCV) | 0.24 | 0.76 |
+
+**Counting all 399 tries rejected the real edge.** On the trend market the best Sharpe, 4.07, is
+below the 6.21 that the best of 399 independent skill-less strategies would reach, so the deflated
+Sharpe ratio says luck (0.001). But these strategies are not independent: most are near-copies of
+each other, and their returns behave like about four independent bets. Counted that way the same
+result passes easily (0.996).
+
+**Counting four tries passed the no-edge winner.** On the no-edge market the effective count gives
+0.954, just over the usual 0.95 bar, with no edge to find. The deflated Sharpe ratio tests
+whether the Sharpe ratio is above zero, and in a market that drifts upward a long-only strategy's
+Sharpe really is above zero: it just holds the market. The question that mattered was whether it
+beats holding the market, and the Reality Check, SPA and StepM answer that one: no (0.434 and
+0.347, and no survivors).
+
+**The overfitting probability moved the right way on both.** CSCV splits the history into halves
+many ways, picks the in-sample winner and checks where it ranks out of sample. On the trend market
+the winner landed below the median out of sample 24% of the time; on the no-edge market, 76%, worse
+than picking at random.
+
+## What picking the winners was worth
+
+The selection process itself can be tested: every 63 days, rank the strategies by trailing one-year
+Sharpe, hold the top five for the next 63 days, and repeat.
+
+- **Trend:** the picks averaged a Sharpe of 4.69 in sample and 3.76 out of sample. They kept most of
+  their edge.
+- **No edge:** 2.81 in sample and 1.29 out of sample, below simply holding all 399 strategies
+  equally (1.90) and below buy-and-hold (1.90).
+
+The gap between the in-sample and out-of-sample Sharpe is roughly how much of the picks' Sharpe was
+luck.
+
+## What I do now
+
+1. **Report the deflated Sharpe under both counts.** The raw count is the conservative bound and the
+   effective count the optimistic one. A result that passes only the optimistic one is not proven.
+2. **Ask the benchmark question separately.** For a long-only strategy in a rising market, "Sharpe
+   above zero" is nearly free; the Reality Check, SPA and StepM against buy-and-hold ask whether it
+   beats doing nothing clever.
+3. **Test the picking, not just the pick.** A walk-forward over the selection rule shows how much
+   edge survives once you cannot see the future.
+
+The tournament, the walk-forward and the 399 strategy definitions are tools in
+[canli-mcp](/mcp-servers), which runs them locally on the prices you send.
 
 
 ------------------------------------------------------------------------------
@@ -284,6 +406,124 @@ no edge and then deflates whatever you find against your own search.*
 
 
 ------------------------------------------------------------------------------
+SOURCE: https://canlicapital.com/notes/edgar-acceptance-times
+------------------------------------------------------------------------------
+
+# The same SEC filing has two acceptance times
+
+> EDGAR's submissions API labels each filing's acceptance time as UTC. I checked 450 of them
+> against the filing index pages: in 13 of 25 companies' files every time was late by one US
+> Eastern offset, and the same filing read differently depending on which file it came from.
+
+**Published 2026-10-11. Every figure below is read from
+[`edgar-acceptance-times-2026-10-11.json`](/glassbox/edgar-acceptance-times-2026-10-11.json),
+which holds all 450 measured filings, the per-file results and the checks quoted here.**
+
+## Why the time of day matters
+
+Each filing in `data.sec.gov/submissions/CIK##########.json` carries an `acceptanceDateTime` such
+as `2026-07-14T14:30:38.000Z`. The trailing `Z` says UTC. Whether a results release came out
+before the open or after the close, which trading day an insider purchase belongs to, and an
+event study's day 0 all depend on that time.
+
+## What I measured
+
+On 2026-10-11 I took 25 companies' submissions files: the 12 newest filings in each, plus 6
+accepted in December, January or February to cover standard time. That is 450 filings across 34
+form types, 98 filing agents and the years 2024 to 2026.
+
+For each one I compared `acceptanceDateTime` with the "Accepted" time printed on the filing's index
+page (`{accession}-index.htm`). That page is in US Eastern time and matches the filing's own SGML
+header, so converting it with the New York rules gives the true moment.
+
+## What I found
+
+**Each file was either right for every filing in it, or late by exactly one Eastern offset for
+every filing in it:** 4 hours for filings accepted in daylight time, 5 hours in standard time. No
+other difference appeared, whatever the form, the filing agent or the time of day. Of the 450
+filings, 216 were right and 234 were late.
+
+- **Right:** MSFT, GOOGL, XOM, PFE, KO, TSLA, NFLX, INTC, GE, F, O and SPY.
+- **Late by one offset:** AAPL, NVDA, AMZN, META, JPM, BAC, WMT, BRK, TSM, GME, PLTR, MRNA and
+  Vanguard.
+
+So JPMorgan's results 8-K of 2026-07-14, accepted at 06:30:38 Eastern (10:30:38 UTC), reads
+`2026-07-14T14:30:38.000Z` in its file: after the open instead of before it.
+
+**The same filing reads differently in two files.** A Form 4 sits in both the company's file and
+the insider's own. Apple's director Form 4s of 2026-02-26 are a clean example:
+
+| Accession | Apple's file | Director's file | Index page (Eastern) |
+|---|---|---|---|
+| 0001059235-26-000004 | 2026-02-27T04:34:19Z | 2026-02-26T23:34:19Z | 2026-02-26 18:34:19 |
+| 0001216519-26-000004 | 2026-02-27T04:33:49Z | 2026-02-26T23:33:49Z | 2026-02-26 18:33:49 |
+
+The directors' files are right. Apple's file is 5 hours late, because February is standard time.
+
+**The split follows each file's newest filing.** Every file whose newest filing was accepted on or
+before 2026-10-02 18:13:44 Eastern was right. Every file whose newest filing was accepted on or
+after 2026-10-05 19:17:25 Eastern was late, including its filings from February. My reading is
+that files rebuilt since early October are written with the extra offset. The API sends no
+Last-Modified header, so I cannot see rebuild times, and that remains a hypothesis rather than a
+finding.
+
+I was not the first to notice. An edgartools issue
+([dgunning/edgartools#1501](https://github.com/dgunning/edgartools/issues/1501)) reported Apple
+four hours late and, a day earlier, some files that gave Eastern time labelled as UTC. I added
+these measurements there.
+
+## How to correct it
+
+Read the time from the index page or the SGML header whenever it matters. That costs one request
+per filing.
+
+Because a file is uniform, one request per file is enough. Measure the file's error on one filing,
+then correct every other time in it:
+
+```python
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
+
+ET = ZoneInfo("America/New_York")
+
+def file_shift(api_iso, accepted_et):
+    """A submissions file's error in Eastern offsets (-1, 0 or 1), from one filing's index-page time."""
+    api = datetime.fromisoformat(api_iso.replace("Z", "+00:00"))
+    true = datetime.strptime(accepted_et, "%Y-%m-%d %H:%M:%S").replace(tzinfo=ET)
+    k = (api - true) / -true.utcoffset()  # the offset is 4 h (EDT) or 5 h (EST)
+    if k not in (-1, 0, 1):
+        raise ValueError(f"unexpected shift {k}")
+    return int(k)
+
+def corrected(api_iso, k):
+    """The true acceptance time of any filing in a file whose shift is k."""
+    api = datetime.fromisoformat(api_iso.replace("Z", "+00:00"))
+    if k == 0:
+        return api
+    for h in (4, 5):
+        t = api - k * timedelta(hours=h)
+        if -t.astimezone(ET).utcoffset() == timedelta(hours=h):
+            return t
+```
+
+Calibrate on two filings from different seasons, and read every filing from its own index page if
+the two disagree. Recalibrate whenever the file is downloaded again, because a rebuild can change
+it.
+
+## Where it bit us
+
+In [canli-mcp](/mcp-servers), the new `earnings_calendar` tool already read times from the index
+pages. The released `event_study` did not: it used `acceptanceDateTime` to decide whether a filing
+came before or after the 16:00 close.
+
+With the files as they are today the damage is small, because only afternoon filings move to the
+next day. Since 2025 that is 1 of 31 JPMorgan 8-Ks, none of 21 NVIDIA 8-Ks and none of 55 NVIDIA
+insider sales. A file that gives Eastern time labelled as UTC would be worse: every results release
+after the close would land on its own day. `event_study` now calibrates each file this way, with
+two extra requests, and says in its result which it did. Both changes ship in the next release.
+
+
+------------------------------------------------------------------------------
 SOURCE: https://canlicapital.com/notes/one-symbol
 ------------------------------------------------------------------------------
 
@@ -446,6 +686,83 @@ rebuild it, and by then the inputs are gone.
 
 
 ------------------------------------------------------------------------------
+SOURCE: https://canlicapital.com/notes/pasted-data-lost-numbers
+------------------------------------------------------------------------------
+
+# My agent dropped numbers when it copied data into a tool call
+
+> Same model, same question, same tool. With 756 daily returns pasted into the prompt, the agent
+> got 4 of 9 runs right; when the tool read the same series from a file, it got 8 of 9, with about
+> a quarter of the tokens.
+
+**Short title:** Pasted data lost numbers in tool calls
+
+**Published 2026-10-11. Every figure below is read from
+[`audit-file-experiment-2026-09-26.json`](/glassbox/audit-file-experiment-2026-09-26.json), which
+holds every run of the experiment, first published on 2026-09-26 with its records in
+[the repository](https://github.com/arhancanli/canlicapital/tree/main/mcp/bench/agent/experiments/2026-09-26-audit-file).**
+
+## The setup
+
+The validation tools that are now part of [canli-mcp](/mcp-servers) check backtests: given a
+strategy's daily returns, they say, among other things, how long a track record has to be before
+its Sharpe ratio means anything. This experiment ran them as canli-validation-mcp 0.5.0. The obvious way to use them is to paste the returns into the chat and let the agent pass
+them on. That turned out to be the worst way.
+
+Three questions each needed the whole audit chain, for example: how many years of track record
+does this return series need before its Sharpe beats a bar at 95% confidence? The series had 504,
+756 and 400 daily returns. Each question was asked 3 times of the same model (gpt-5.4-mini), so
+each arm has 9 runs. The ground truth is the same local computation the tools run, and an answer
+counts as right within 2 percent.
+
+- **Validators only, returns pasted:** the server before the one-call audit tool existed, so the
+  agent had to chain several validators itself.
+- **Audit tool, returns pasted:** the series sits in the prompt as a JSON array, and the agent
+  copies it into the tool call.
+- **Audit tool, file path:** the series is in a CSV, the prompt names the file, and the tool reads
+  it.
+
+## The result
+
+| Arm | Right | Median tokens per task | Median time per task |
+|---|---|---|---|
+| Validators only, pasted | 0 of 9 | 11,180 | 2,434 ms |
+| Audit tool, pasted | 4 of 9 | 27,036 | 10,046 ms |
+| Audit tool, file path | 8 of 9 | 6,524 | 2,374 ms |
+
+Moving the data out of the prompt doubled the accuracy and cut the median tokens to about a
+quarter.
+
+## How the pasted runs failed
+
+On the 756-return question, all three pasted runs gave the same wrong answer: 0.1718 years instead
+of 0.1452. That is not three different mistakes but one, three times, which is what values going
+missing on the way into the call looks like. The model re-types 756 numbers as output tokens,
+skips some, and the tool computes the right answer for the wrong series. Nothing errors, and the
+agent reports the figure with full confidence.
+
+Pasting also costs twice: every number is paid for as input in the prompt and again as output
+when the model writes the call. One pasted run used 76,930 tokens for a single question.
+
+The one miss in the file arm was different. The agent answered 388, the right length in
+observations (1.54 years at 252 trading days), where years were asked. That is a unit slip, not
+lost data.
+
+## What changed
+
+- The audit tool takes `returns_file`, a path to a CSV, on the local server. It reads numbers only,
+  caps the file size, and reports errors by row position, never by echoing the file back into the
+  context.
+- The tool descriptions say plainly that a long series should go in as a file.
+- The hosted version cannot read your disk, so it refuses file input instead of pretending.
+
+This was one small model on synthetic series, 9 runs per arm, so read it as "this failure is real
+and easy to hit", not as a fixed rate. The general lesson holds beyond this tool: if a tool needs a
+lot of data, do not make the model carry it. Pass a reference, such as a path, an ID or a URL, and
+let the tool fetch it.
+
+
+------------------------------------------------------------------------------
 SOURCE: https://canlicapital.com/notes/seventy-files
 ------------------------------------------------------------------------------
 
@@ -566,6 +883,106 @@ green is worth nothing.
 [canli-pit-lake](https://github.com/arhancanli/canli-pit-lake) and
 [canli-backtest](https://github.com/arhancanli/canli-backtest). Both READMEs describe this
 incident, because a repository that only documents its successes is a brochure.*
+
+
+------------------------------------------------------------------------------
+SOURCE: https://canlicapital.com/notes/silver-price-returned-cpi
+------------------------------------------------------------------------------
+
+# "Silver price" returned US CPI
+
+> A tool that turns plain words into a data series picked any series sharing half the words of the
+> request. One generic word was enough, so "silver price" came back as consumer prices, with real
+> numbers and no error.
+
+**Published 2026-10-11. The before-and-after results are read from
+[`series-lookup-2026-10-11.json`](/glassbox/series-lookup-2026-10-11.json), produced by running
+both versions of the lookup on the same requests.**
+
+## The bug
+
+Agents rarely pass the exact identifier a data source wants. They pass words: "10 year treasury
+yield", "core inflation", "silver price". So most tools that wrap a data source carry a small
+resolver from words to an identifier.
+
+In canli-markets-mcp 0.1.0, `economic_series` took a FRED series ID or plain words. The plain-word
+path scored each of its 47 common series by the share of the request's words found in the series
+description, and took the best one if at least half matched:
+
+```js
+const words = s.toLowerCase().match(/[a-z0-9&]+/g) ?? [];
+const scored = COMMON_SERIES
+  .map(([id, text]) => [id, words.filter((w) => text.split(" ").includes(w)).length / words.length])
+  .sort((a, b) => b[1] - a[1]);
+if (!scored.length || scored[0][1] < 0.5) throw new NotFound(/* ... */);
+return { id: scored[0][0] };
+```
+
+A request of two words needs only one shared word to reach half. The consumer price index is
+described as "cpi consumer price index inflation all items", so "price" alone was enough:
+
+| Request | 0.1.0 returned | Now |
+|---|---|---|
+| silver price | CPIAUCSL (US consumer prices) | refused, pointing to `price_history` |
+| copper price | CPIAUCSL | refused |
+| bitcoin price | CPIAUCSL | refused |
+| japan inflation | CPIAUCSL | refused, pointing to `world_economy` |
+| uk unemployment rate | UNRATE (US unemployment) | refused |
+| wage growth | A191RL1Q225SBEA (real GDP growth) | CES0500000003 (average hourly earnings) |
+| house prices | refused | CSUSHPINSA (Case-Shiller home prices) |
+| inflation | CPIAUCSL | CPIAUCSL |
+| 10 year treasury yield | DGS10 | DGS10 |
+
+Every wrong answer came back as a real series with real numbers. The result did carry the series
+title, so the mistake was there for anyone who read it. Nothing made an agent read it.
+
+The words that decide each question ("silver", "japan", "uk") are the ones that matched nothing.
+The words that did match ("price", "inflation", "rate") say what kind of number is wanted, not
+which one.
+
+## The rule that replaced it
+
+One function now serves three resolvers: FRED series, World Bank indicators and OECD outlook
+measures. Each word of a request falls into one of three groups:
+
+- **Filler** is ignored: "what is", "show me", "since", "this year", and four-digit years.
+- **Kind words** say what sort of number: rate, growth, index, level, daily, monthly. They count
+  toward the best match but are never required.
+- **Specific words** are everything else, and every one of them must appear in the entry.
+
+```js
+export function matchWords(entries, textOf, request, vocab) {
+  const asked = split(request).filter((w) => !vocab.filler.has(w) && !/^(1[89]|20)\d\d$/.test(w) && !/^[a-z]$/.test(w));
+  const specific = asked.filter((w) => !vocab.kind.has(w));
+  if (!specific.length) return null;
+  let best = null, most = 0;
+  for (const entry of entries) {
+    const has = new Set(split(textOf(entry)));
+    if (!specific.every((w) => has.has(w))) continue;
+    const shared = asked.filter((w) => has.has(w)).length;
+    if (shared > most) { best = entry; most = shared; }
+  }
+  return best;
+}
+```
+
+When nothing qualifies, the tool says so and says where to look: another country's economy is in
+`world_economy` or `economic_outlook`, and the price of a commodity, currency, crypto or stock is in
+`price_history`. An agent that gets that refusal can call the right tool next. An agent that got
+consumer prices had nothing telling it to.
+
+## Test the refusals first
+
+The old tests checked that good requests found their series, and they all passed. None asked
+whether a request for something the tool does not have gets refused. The test file now opens with
+9 requests that must be refused, then 42 plain requests that must each resolve to one exact series.
+The list of common series grew to 73 at the same time.
+
+A resolver from words to identifiers is a search engine that returns one result. It needs a way
+to return none, and the tests that prove it can are the ones to write first. The code is in
+`mcp-markets/src/words.mjs` in the
+[canlicapital repository](https://github.com/arhancanli/canlicapital), and the tool is part of
+[canli-mcp](/mcp-servers).
 
 
 ------------------------------------------------------------------------------
@@ -974,6 +1391,95 @@ absence of it.
 and [`data/universe/store.py`](https://github.com/arhancanli/canli-pit-lake/blob/main/src/alphaforge/data/universe/store.py)
 in `canli-pit-lake`. Both are byte-identical to the engine behind the public record, and CI
 proves it on every push.*
+
+
+------------------------------------------------------------------------------
+SOURCE: https://canlicapital.com/notes/would-it-beat-a-placebo
+------------------------------------------------------------------------------
+
+# Your backtest beat a t-test. Would it beat a placebo?
+
+> In 300,000 simulated tests on markets with nothing to predict, a t-test on the best rule of a
+> grid said "edge" between 10.9% and 78.9% of the time at a nominal 5%. A placebo test, which
+> reruns the whole pipeline on the same returns in a random order, stayed between 4.6% and 5.5%.
+
+**Short title:** Would your backtest beat a placebo?
+
+**Published 2026-10-11. The rule, the run and the evaluation were pre-registered and are in
+[the repository](https://github.com/arhancanli/canlicapital/tree/main/scripts/research/placebo/v1);
+every rate below is read from
+[`placebo-v1-evaluation.json`](/glassbox/research/placebo-v1-evaluation.json).**
+
+## Two things that look like skill
+
+You test 11 moving-average crossovers on five years of daily prices. The best one has a Sharpe of
+1.2, and a t-test on its returns says p = 0.01. Is it real? Two things can produce that result
+without any skill.
+
+**The search.** The best of 11 rules is the best of 11 draws, and even with no edge the maximum is
+high. On flat simulated markets, an 11-rule SMA grid's best Sharpe averaged 0.30 with nothing to
+find. That is what Bonferroni and the deflated Sharpe ratio correct for, if you know how many
+rules you really tried.
+
+**What the market does on its own.** A long-only rule earns the drift of a rising market without
+predicting anything. A cross-sectional ranking that buys past winners earns the gap between assets
+with different long-run average returns, again without predicting anything. A t-test on a
+strategy's returns asks "did it make money?", not "did it predict?", so drift and dispersion pass
+for skill, and dividing the significance level by the number of rules does nothing about that.
+
+## The placebo
+
+Keep your data's returns, but put the days in a random order, the same order for every asset. Each
+asset keeps its own returns, fat tails and average; each day keeps its cross-section; but nothing
+about one day tells you anything about the next. That is a placebo: a market with the same raw
+material and nothing to predict.
+
+Then run the whole pipeline on the real data and on 19 placebos: the same search, the same filters,
+the same parameter choices. If the real result beats all 19, the chance of that by luck is 1 in 20,
+a p-value of 0.05. Every choice the pipeline makes is counted, because it makes it again on every
+placebo, and drift and dispersion are in the placebos too, so they stop looking like skill.
+
+When the days are interchangeable this p-value is exact, because the real ordering is just one of
+the orderings. Volatility clustering breaks that, so the study measured it.
+
+## The study
+
+The rules were written down before anything ran: three ways of reordering (a full permutation, a
+permutation of blocks of days, and a stationary bootstrap), a bar of at most 6% false positives at a
+nominal 5% in every simulated market, and the rule that picks the winner.
+
+- **Markets with nothing to predict:** five return shapes (normal, fat-tailed, negatively skewed,
+  GARCH volatility clustering, volatility regimes), each flat or drifting, or, for the
+  cross-section, with equal or dispersed average returns.
+- **Pipelines:** an SMA crossover grid, a time-series momentum grid and a cross-sectional momentum
+  grid, each reporting its best Sharpe.
+- **30 combinations with 10,000 tests each,** with 19 placebos per test, and planted trends with
+  2,000 tests each to measure power.
+
+The full permutation met the bar in all 30: 4.6% to 5.5%, including the GARCH and regime markets.
+The block permutation also met it, at 5.8% at worst, with less power. The stationary bootstrap was
+far too cautious, never above 1.5%, so it would miss real edges.
+
+The usual fix for testing many rules, Bonferroni, held in flat markets but said "edge" 8.0% to
+10.3% of the time when the market drifted upward, and 58.5% to 59.7% of the time when assets
+differed only in their average returns.
+
+How often does the placebo catch a real edge? With a planted trend that a perfect forecaster would
+trade at a Sharpe of about 2, the SMA grid beat all 19 placebos 45.1% of the time and the
+time-series grid 47.3%; at a Sharpe of about 1, both were near 14.8%. The cross-sectional grid
+caught its strongest planted trend 89.0% of the time. With only 19 placebos, Bonferroni catches some
+trends more often in flat markets, where it is valid; more placebos give a finer p-value.
+
+## What it does not tell you
+
+Beating the placebos shows that the real order of your returns holds more than random orders of
+the same returns. It says nothing about costs, capacity or whether the edge lasts. And it counts
+only the search this pipeline runs: if you tried and dropped other pipelines before this one, those
+trials are not in the number.
+
+The placebo is the `placebo_test` tool in [canli-mcp](/mcp-servers): `plan` writes your price file
+and the placebo files, you run your pipeline on each, and `compare` returns the p-value. It runs on
+your machine, so your code never leaves it.
 
 
 ==============================================================================

@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { gunzipSync } from 'node:zlib';
 import { companyFilings, filingPath, filingsIndexPath } from './lib/company-filings.mjs';
 import { renderFilingPage, renderFilingPages, renderFilingsIndexPage } from './lib/company-filing-page-renderer.mjs';
+import { companyLastmod } from './lib/company-markup-date.mjs';
 
 function pilotFilings(cik) {
   const record = JSON.parse(readFileSync(new URL(`../public/company-data/${cik}.json`, import.meta.url)));
@@ -26,7 +27,7 @@ test('every filing page carries its facts, provenance, canonical and links, with
     const page = renderFilingPage(document, filing.accession);
     assert.equal(page.path, filingPath(record.cik, filing.accession));
     assert.equal(page.loc, `https://canlicapital.com${page.path}`);
-    assert.equal(page.lastmod, record.fetched_at.slice(0, 10));
+    assert.equal(page.lastmod, companyLastmod(record.fetched_at.slice(0, 10)));
     assert.ok(page.html.includes(`<link rel="canonical" href="${page.loc}" />`));
     assert.ok(page.html.includes('<meta name="robots" content="index, follow" />'));
     assert.ok(page.html.includes(filing.sec_index_url));
@@ -69,4 +70,17 @@ test('filing titles carry the ticker and the fiscal period searchers type', () =
   assert.match(title(renderFilingsIndexPage(document).html), /^Apple \(AAPL\): SEC filings/);
   const untagged = { ...document, filings: document.filings.map(filing => (filing.accession === annual.accession ? { ...filing, fiscal_year: null, fiscal_period: null } : filing)) };
   assert.equal(title(renderFilingPage(untagged, annual.accession).html), `Apple (AAPL) 10-K filed ${annual.filed}`);
+});
+
+test('filing pages name the company in ordinary case wherever a reader sees it', () => {
+  // 2026-10-26: titles and headings already read "JPMorgan Chase & Co", but the filings-index
+  // snippet and the "All ... filings" link still printed the SEC's "JPMORGAN CHASE & CO".
+  const { document } = pilotFilings('0000019617');
+  const [filing] = document.filings;
+  const page = renderFilingPage(document, filing.accession).html;
+  assert.match(page, />All JPMorgan Chase &amp; Co filings<\/a>/);
+  const description = renderFilingsIndexPage(document).html.match(/<meta name="description" content="([^"]*)"/)[1];
+  assert.match(description, /^Every JPMorgan Chase &amp; Co annual/);
+  // The source line keeps the name as the SEC registered it.
+  assert.match(page, /<dt>Entity<\/dt><dd>JPMORGAN CHASE &amp; CO \/ CIK/);
 });

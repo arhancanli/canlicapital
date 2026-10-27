@@ -7,7 +7,7 @@ import { z } from 'zod';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 export const EXECUTION_ROUTE = '/mcp-servers/execution';
-export const EXECUTION_SOURCE_COMMIT = '00cab512f9102019e0abdedc2e2db464dc536294';
+export const EXECUTION_SOURCE_COMMIT = '83d96a61757a756fbc51835e045b53d1bff8bba4';
 export const EXECUTION_SOURCE_PATHS = Object.freeze([
   'mcp-execution/EXAMPLES.md',
   'mcp-execution/JOURNAL_STORAGE.md',
@@ -87,7 +87,7 @@ export const EXECUTION_SOURCE_PATHS = Object.freeze([
   'standards/trade-journal/EXPORT.md',
 ]);
 // A changed file plus a rehashed editable config cannot retain the old source claim.
-const REVIEWED_HASH_PAIRS = '8a00fa167dc040df2c5b1ff05fa9fcfc2bc74fed31cb1e100373546f6b67c96a';
+const REVIEWED_HASH_PAIRS = '0698f7544d7afd6bf07a9400457dd54274a9bbedcb6f2552b4c525252006ed17';
 const names = ['size_position', 'check_orders', 'measure_shortfall', 'journal'];
 const recordSchema = z.object({
   schema: z.literal('canli.execution-workflow-source.v1'),

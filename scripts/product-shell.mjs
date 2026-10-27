@@ -55,6 +55,48 @@ const TOOLS_LINKS = Object.freeze([
   { key: "contributors", label: "Contributors", href: "/contributors" },
 ]);
 
+//: The top bar names the four things a visitor comes for, in plain words, and the record behind
+//: them: the MCP server, the company data most searches land on, the research, the strategy
+//: record, and the developer docs. Everything else is one click away in Explore, grouped by what
+//: a visitor wants to do rather than by how the site was built.
+const TOP_LINKS = Object.freeze([
+  { key: "mcp-servers", label: "canli-mcp", href: "/mcp-servers" },
+  { key: "companies", label: "Company data", href: "/companies" },
+  { key: "research", label: "Research", href: "/research" },
+  { key: "performance", label: "Performance", href: "/performance" },
+  { key: "developers", label: "Developers", href: "/developers" },
+]);
+
+const MENU = Object.freeze([
+  { label: "Use it", aria: "Products and tools", links: [
+    { key: "mcp-servers", label: "canli-mcp, the MCP server", href: "/mcp-servers" },
+    { key: "mcp-answers", label: "Questions it answers", href: "/mcp-servers/answers" },
+    { key: "companies", label: "Company reference", href: "/companies" },
+    { key: "datasets", label: "Financial datasets", href: "/datasets/filing-facts" },
+    { key: "tools", label: "Calculators", href: "/tools" },
+    { key: "developers", label: "Developer API", href: "/developers" },
+  ] },
+  { label: "Research and record", aria: "Research and record", links: [
+    PRIMARY_LINKS.find((link) => link.key === "research"),
+    { key: "benchmark", label: "MCP benchmark", href: "/benchmarks/finance-mcp-servers" },
+    SECONDARY_LINKS.find((link) => link.key === "performance"),
+    { key: "live", label: "Live record", href: "https://app.canlicapital.com/dashboard", external: true },
+    PRIMARY_LINKS.find((link) => link.key === "trials"),
+    PRIMARY_LINKS.find((link) => link.key === "methodology"),
+    SECONDARY_LINKS.find((link) => link.key === "measurements"),
+    TOOLS_LINKS.find((link) => link.key === "how-to-validate-a-backtest"),
+  ] },
+  { label: "About and trust", aria: "About and trust", links: [
+    SECONDARY_LINKS.find((link) => link.key === "vision"),
+    SECONDARY_LINKS.find((link) => link.key === "founder"),
+    PRIMARY_LINKS.find((link) => link.key === "verify"),
+    PRIMARY_LINKS.find((link) => link.key === "systems"),
+    SECONDARY_LINKS.find((link) => link.key === "progress"),
+    SECONDARY_LINKS.find((link) => link.key === "open"),
+    TOOLS_LINKS.find((link) => link.key === "contributors"),
+  ] },
+]);
+
 const GITHUB_MARK =
   '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false">' +
   '<path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 ' +
@@ -98,25 +140,17 @@ export function renderProductShellHeader({ active = "", dynamicStatus = false } 
     <span>Canli Capital</span>
   </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-${renderLinks([PRIMARY_LINKS.find(link => link.key === "research"), {key:"performance",label:"ALPHAC",href:"/performance"}, PRIMARY_LINKS.find(link => link.key === "developers")], active, "cc-shell__link")}
+${renderLinks(TOP_LINKS, active, "cc-shell__link")}
   </nav>
   <details class="cc-shell__index">
     <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
     <div class="cc-shell__panel">
+${MENU.map((group) => `      <div>
+        <span class="cc-shell__panel-label">${group.label}</span>
+        <nav aria-label="${group.aria}">${renderLinks(group.links, active, "cc-shell__panel-link")}</nav>
+      </div>`).join("\n")}
       <div>
-        <span class="cc-shell__panel-label">Research &amp; strategies</span>
-        <nav aria-label="Core routes">${renderLinks([...PRIMARY_LINKS.filter(link => !["developers", "verify"].includes(link.key)), ...SECONDARY_LINKS.filter(link => link.key === "performance")], active, "cc-shell__panel-link")}</nav>
-      </div>
-      <div>
-        <span class="cc-shell__panel-label">Evidence &amp; accountability</span>
-        <nav aria-label="Institution routes">${renderLinks([...PRIMARY_LINKS.filter(link => link.key === "verify"), ...SECONDARY_LINKS.filter(link => link.key !== "performance")], active, "cc-shell__panel-link")}</nav>
-      </div>
-      <div>
-        <span class="cc-shell__panel-label">Build &amp; reproduce</span>
-        <nav aria-label="Tools">${renderLinks([...PRIMARY_LINKS.filter(link => link.key === "developers"), ...TOOLS_LINKS, {key:"mcp-servers",label:"MCP servers",href:"/mcp-servers"}, {key:"datasets",label:"Financial datasets",href:"/datasets/filing-facts"}], active, "cc-shell__panel-link")}</nav>
-      </div>
-      <div>
-        <span class="cc-shell__panel-label">Reproducible code</span>
+        <span class="cc-shell__panel-label">Source code</span>
         <nav aria-label="Source code">${SOURCE_REPOS.map((r) => `<a class="cc-shell__panel-link" href="${r.href}"${r.external ? ' rel="noreferrer"' : ""}>${r.label}</a>`).join("\n")}</nav>
       </div>
       <div class="cc-shell__panel-foot">
@@ -126,7 +160,7 @@ ${renderLinks([PRIMARY_LINKS.find(link => link.key === "research"), {key:"perfor
     </div>
   </details>
   ${renderSourceLink(active)}
-  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
+  <a class="cc-shell__cta" href="/mcp-servers#install">Add canli-mcp</a>
   <script type="module" src="/js/navigation.js"></script>
 </header>`;
 }
@@ -138,9 +172,9 @@ const DEVELOPER_STRIP = `  <section class="cc-footer__dev" aria-labelledby="cc-f
     <h2 id="cc-footer-dev-title">Build on it</h2>
     <div class="cc-footer__dev-item">
       <span>MCP server</span>
-      <p>Validate a backtest from Claude, Cursor or any MCP client.</p>
-      <code>npx -y canli-validation-mcp</code>
-      <nav aria-label="MCP server listings"><a href="/mcp-servers">Finance MCP servers</a><a href="/developers#ai-assistant">Setup guide</a><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-validation-mcp" rel="noreferrer">MCP Registry</a></nav>
+      <p>Finance tools for Claude, Cursor or any MCP client: filings, markets, quant and backtests.</p>
+      <code>npx -y canli-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">canli-mcp</a><a href="/mcp-servers/answers">Questions it answers</a><a href="https://www.npmjs.com/package/canli-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-mcp" rel="noreferrer">MCP Registry</a></nav>
     </div>
     <div class="cc-footer__dev-item">
       <span>Open source</span>
@@ -169,7 +203,9 @@ ${companies.map(company => `      <a href="${company.href}">${company.label.repl
 `;
 }
 
-export function renderProductShellFooter({ developerStrip = true, companies = [] } = {}) {
+// motion: false leaves out js/site-motion.js (and the GSAP it imports) for a page that runs its own
+// motion, as the film homepage does.
+export function renderProductShellFooter({ developerStrip = true, companies = [], motion = true } = {}) {
   return `<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
 ${developerStrip ? DEVELOPER_STRIP : ""}  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary>${renderOpticalHandoff()}</details>
   <div class="cc-footer__lead">
@@ -180,8 +216,10 @@ ${developerStrip ? DEVELOPER_STRIP : ""}  <details class="cc-footer__context"><s
     <nav aria-label="Portfolio and research">
       <span>Research system</span>
       <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/record">Paper record</a>
       <a href="/systems">ALPHAC systems</a>
       <a href="/research">Research papers</a>
+      <a href="/benchmarks/finance-mcp-servers">Finance MCP benchmark</a>
       <a href="/benchmarks/filingfacts">FilingFacts benchmark</a>
       <a href="/trials">Trial union</a>
     </nav>
@@ -234,8 +272,7 @@ ${renderDemandCompanies(companies)}  </div>
     <span>Copyright Arhan Canli</span>
   </div>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
-  <script type="module" src="/js/site-motion.js"></script>
-</footer>`;
+${motion ? '  <script type="module" src="/js/site-motion.js"></script>\n' : ""}</footer>`;
 }
 
 export const PRODUCT_SHELL_PRIMARY_LINKS = PRIMARY_LINKS;

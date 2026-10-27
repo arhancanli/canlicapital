@@ -1,0 +1,60 @@
+{
+  "manifest_version": "0.3",
+  "name": "canli-mcp",
+  "display_name": "Canli Capital Finance",
+  "version": "0.11.1",
+  "description": "Finance research and quantitative analysis through one Canli MCP connection.",
+  "author": { "name": "Canli Capital", "url": "https://canlicapital.com" },
+  "homepage": "https://canlicapital.com/developers",
+  "documentation": "https://github.com/arhancanli/canlicapital/tree/main/mcp-canli",
+  "support": "https://github.com/arhancanli/canlicapital/issues",
+  "license": "MIT",
+  "server": {
+    "type": "node",
+    "entry_point": "src/server.mjs",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/src/server.mjs"],
+      "env": {
+        "CANLI_PACKS": "${user_config.packs}",
+        "CANLI_OFFLINE": "${user_config.offline}",
+        "ALPACA_PAPER_KEY_ID": "${user_config.paper_key_id}",
+        "ALPACA_PAPER_SECRET_KEY": "${user_config.paper_secret_key}"
+      }
+    }
+  },
+  "tools_generated": true,
+  "compatibility": { "runtimes": { "node": ">=20.10" } },
+  "user_config": {
+    "packs": {
+      "type": "string",
+      "title": "Enabled finance packs",
+      "description": "Comma-separated packs: quant, validation, fundamentals, research, backtest, markets. Paper trading can be added with your paper credentials.",
+      "default": "quant,validation,fundamentals,research,backtest,markets",
+      "required": false
+    },
+    "paper_key_id": {
+      "type": "string",
+      "title": "Optional Alpaca paper key ID",
+      "description": "For your paper account; add paper to Enabled finance packs to use it.",
+      "sensitive": true,
+      "default": "",
+      "required": false
+    },
+    "paper_secret_key": {
+      "type": "string",
+      "title": "Optional Alpaca paper secret",
+      "description": "Your paper account's secret, stored in the local client's configuration.",
+      "sensitive": true,
+      "default": "",
+      "required": false
+    },
+    "offline": {
+      "type": "boolean",
+      "title": "Offline mode",
+      "description": "Enable only local quant and validation tools; market-data packs stay disabled.",
+      "default": false,
+      "required": false
+    }
+  }
+}

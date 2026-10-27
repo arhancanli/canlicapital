@@ -1,4 +1,40 @@
-# Registry listings for canli-validation-mcp
+# Registry listings for CanliCapital MCP servers
+
+## Current distribution checkpoint: 2026-10-24 Dubai
+
+npm and official MCP Registry: canli-markets-mcp 0.6.0, canli-fundamentals-mcp 0.7.0,
+canli-backtest-mcp 0.2.0 and canli-mcp 0.7.0. `canli-validation-mcp@0.14.1`, research 0.3.1,
+quant 0.1.3 and paper trading 0.1.1 move to zod 4.6.7 (a high advisory in earlier zod) with no
+code change, so an installed canli-mcp audits clean.
+
+## Earlier checkpoint: 2026-10-13 Dubai
+
+Verified npm and official MCP Registry releases: validation 0.14.0, markets 0.3.0,
+fundamentals 0.6.0 and research 0.3.0. Validation's npm version is unchanged in this batch.
+Standalone validation/fundamentals/research mirrors and their attested desktop bundles
+now match those versions. Evidence: [release receipts](../artifacts/mcp/releases-20261012.json).
+
+Hosted fundamentals 0.6.0 and research 0.3.0 are merged in #467 and queued in the clean
+production source for the daily publisher. Live deployment verification remains pending.
+
+Quant 0.1.1 and backtest 0.1.2 have signed source releases and npm-compatible GitHub
+tarballs, but npm rejected their trusted-publisher jobs with E404. Quant 0.1.2 now
+gathers the unpublished statistical fixes and numerical-result guards into one intended
+npm update; its 0.1.1 source archive stays immutable. Backtest 0.1.2 and combined 0.4.0
+also await npm authorization. Combined 0.4.0 has a private tested candidate with
+307 tools and five prompts; it awaits those registry dependencies before publication.
+Its [candidate measurements](../artifacts/mcp/combined-candidate-20261013.json) do not
+establish a worldwide ranking.
+
+Glama lists the three standalone servers; this audit did not confirm its latest release
+refresh. Smithery configurations exist, but an authenticated listing update and public
+listing parity have not been verified. Configuration alone is not publication.
+
+Research's workflows and code resources already shipped in npm 0.2.0. Version 0.3.0
+adds resource lookup guards; its release descriptions and source changelog now say so.
+
+The older dated checkpoints and manual bootstrap commands below are historical. Use
+the package-specific tag workflows for current publication; do not re-publish old versions.
 
 Release checkpoint, September 20, 2026: `canli-validation-mcp@0.1.2` is published
 on npm and is the latest version. The downloaded registry tarball matches the
@@ -125,9 +161,9 @@ Publisher for `canli-research-mcp` and `canli-fundamentals-mcp`, and the tags `r
 `canli-validation-mcp@0.13.1` (MCP SDK 2.3.1; corrected `audit_backtest` description) was published on
 October 7, 2026 from the tag `mcp-v0.13.1`.
 
-Next release, not yet published: `canli-validation-mcp@0.14.0`, the trial ledger (opt-in toolset
-`ledger`: `ledger_record_trial`, `ledger_summary`, `ledger_export`). It publishes from
-`mcp-publish.yml` on the tag `mcp-v0.14.0`.
+Release checkpoint: `canli-validation-mcp@0.14.0`, the trial ledger (opt-in toolset
+`ledger`: `ledger_record_trial`, `ledger_summary`, `ledger_export`), is published. Its
+workflow is `mcp-publish.yml`, triggered by the signed tag `mcp-v0.14.0`.
 
 ## Official registry (registry.modelcontextprotocol.io)
 

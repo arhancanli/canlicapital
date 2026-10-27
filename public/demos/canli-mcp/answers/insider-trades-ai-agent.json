@@ -1,0 +1,464 @@
+{
+ "version": "0.11.1",
+ "recorded": "2026-10-25T07:27:15.329Z",
+ "call": {
+  "name": "insider_trades",
+  "arguments": {
+   "company": "NVDA",
+   "max_filings": 10
+  }
+ },
+ "model_chars": 6207,
+ "ms": 1714,
+ "result": {
+  "ref": "r11",
+  "cik": 1045810,
+  "name": "NVIDIA CORP",
+  "ticker": "NVDA",
+  "window": {
+   "since": "2026-07-27",
+   "until": "2026-10-25"
+  },
+  "form4_filings": {
+   "in_window": 17,
+   "read": 10,
+   "not_read": 7,
+   "hint": "raise max_filings or narrow the dates"
+  },
+  "summary": {
+   "open_market_purchases": {
+    "transactions": 0,
+    "shares": 0,
+    "value": 0,
+    "insiders": 0
+   },
+   "open_market_sales": {
+    "transactions": 8,
+    "shares": 1431378,
+    "value": 314582260,
+    "insiders": 3
+   },
+   "tax_withholding": {
+    "transactions": 5,
+    "shares": 160153,
+    "value": 33979662,
+    "insiders": 5
+   },
+   "option_exercises": {
+    "transactions": 0,
+    "shares": 0,
+    "value": 0,
+    "insiders": 0
+   },
+   "grants": {
+    "transactions": 2,
+    "shares": 332925,
+    "value": 0,
+    "insiders": 1
+   }
+  },
+  "columns": [
+   "date",
+   "insider",
+   "role",
+   "code",
+   "meaning",
+   "acq_disp",
+   "shares",
+   "price",
+   "value",
+   "owned_after",
+   "ownership",
+   "kind",
+   "plan_10b5_1",
+   "amendment",
+   "filed",
+   "accession"
+  ],
+  "rows": [
+   [
+    "2026-10-07",
+    "COXE TENCH",
+    "director",
+    "G",
+    "gift",
+    "D",
+    500000,
+    0,
+    0,
+    23671360,
+    "indirect",
+    "stock",
+    true,
+    false,
+    "2026-10-09",
+    "0001197647-26-000011"
+   ],
+   [
+    "2026-09-21",
+    "Teter Timothy S.",
+    "EVP, General Counsel and Sec",
+    "S",
+    "open-market or private sale",
+    "D",
+    12483,
+    222.193,
+    2773638,
+    2705637,
+    "indirect",
+    "stock",
+    true,
+    false,
+    "2026-09-23",
+    "0001696841-26-000014"
+   ],
+   [
+    "2026-09-21",
+    "Teter Timothy S.",
+    "EVP, General Counsel and Sec",
+    "S",
+    "open-market or private sale",
+    "D",
+    13478,
+    223.049,
+    3006253,
+    2692159,
+    "indirect",
+    "stock",
+    true,
+    false,
+    "2026-09-23",
+    "0001696841-26-000014"
+   ],
+   [
+    "2026-09-21",
+    "Teter Timothy S.",
+    "EVP, General Counsel and Sec",
+    "S",
+    "open-market or private sale",
+    "D",
+    4499,
+    223.748,
+    1006642,
+    2687660,
+    "indirect",
+    "stock",
+    true,
+    false,
+    "2026-09-23",
+    "0001696841-26-000014"
+   ],
+   [
+    "2026-09-18",
+    "STEVENS MARK A",
+    "director",
+    "S",
+    "open-market or private sale",
+    "D",
+    1356000,
+    219.722,
+    297942896,
+    980531,
+    "indirect",
+    "stock",
+    false,
+    false,
+    "2026-09-22",
+    "0001199039-26-000016"
+   ],
+   [
+    "2026-09-18",
+    "STEVENS MARK A",
+    "director",
+    "S",
+    "open-market or private sale",
+    "D",
+    10000,
+    220.42,
+    2204199,
+    970531,
+    "indirect",
+    "stock",
+    false,
+    false,
+    "2026-09-22",
+    "0001199039-26-000016"
+   ],
+   [
+    "2026-09-17",
+    "Kress Colette",
+    "EVP & Chief Financial Officer",
+    "S",
+    "open-market or private sale",
+    "D",
+    4681,
+    218.014,
+    1020525,
+    795340,
+    "direct",
+    "stock",
+    true,
+    false,
+    "2026-09-18",
+    "0001588670-26-000014"
+   ],
+   [
+    "2026-09-17",
+    "Kress Colette",
+    "EVP & Chief Financial Officer",
+    "S",
+    "open-market or private sale",
+    "D",
+    20369,
+    219.017,
+    4461161,
+    774971,
+    "direct",
+    "stock",
+    true,
+    false,
+    "2026-09-18",
+    "0001588670-26-000014"
+   ],
+   [
+    "2026-09-17",
+    "Kress Colette",
+    "EVP & Chief Financial Officer",
+    "S",
+    "open-market or private sale",
+    "D",
+    9868,
+    219.593,
+    2166946,
+    765103,
+    "direct",
+    "stock",
+    true,
+    false,
+    "2026-09-18",
+    "0001588670-26-000014"
+   ],
+   [
+    "2026-09-17",
+    "HUANG JEN HSUN",
+    "director; President and CEO",
+    "G",
+    "gift",
+    "D",
+    438000,
+    0,
+    0,
+    467693547,
+    "indirect",
+    "stock",
+    false,
+    false,
+    "2026-09-18",
+    "0001197649-26-000012"
+   ],
+   [
+    "2026-09-16",
+    "GAWEL SCOTT",
+    "Principal Accounting Officer",
+    "F",
+    "tax withholding on vesting or exercise",
+    "D",
+    2932,
+    212.17,
+    622082,
+    56577,
+    "direct",
+    "stock",
+    false,
+    false,
+    "2026-09-18",
+    "0001243821-26-000007"
+   ],
+   [
+    "2026-09-16",
+    "Shoquist Debora",
+    "EVP, Operations",
+    "F",
+    "tax withholding on vesting or exercise",
+    "D",
+    35008,
+    212.17,
+    7427647,
+    299428,
+    "direct",
+    "stock",
+    false,
+    false,
+    "2026-09-18",
+    "0001283854-26-000010"
+   ],
+   [
+    "2026-09-16",
+    "Teter Timothy S.",
+    "EVP, General Counsel and Sec",
+    "F",
+    "tax withholding on vesting or exercise",
+    "D",
+    35738,
+    212.17,
+    7582531,
+    298698,
+    "direct",
+    "stock",
+    false,
+    false,
+    "2026-09-18",
+    "0001696841-26-000012"
+   ],
+   [
+    "2026-09-16",
+    "Kress Colette",
+    "EVP & Chief Financial Officer",
+    "F",
+    "tax withholding on vesting or exercise",
+    "D",
+    40747,
+    212.17,
+    8645291,
+    800021,
+    "direct",
+    "stock",
+    true,
+    false,
+    "2026-09-18",
+    "0001588670-26-000014"
+   ],
+   [
+    "2026-09-16",
+    "HUANG JEN HSUN",
+    "director; President and CEO",
+    "F",
+    "tax withholding on vesting or exercise",
+    "D",
+    45728,
+    212.17,
+    9702110,
+    70100666,
+    "direct",
+    "stock",
+    false,
+    false,
+    "2026-09-18",
+    "0001197649-26-000012"
+   ],
+   [
+    "2026-09-09",
+    "Parker Nicholas P.",
+    "EVP, Worldwide Field Ops",
+    "A",
+    "grant or award",
+    "A",
+    160418,
+    0,
+    0,
+    160418,
+    "direct",
+    "stock",
+    false,
+    true,
+    "2026-10-13",
+    "0002152188-26-000007"
+   ],
+   [
+    "2026-09-09",
+    "Parker Nicholas P.",
+    "EVP, Worldwide Field Ops",
+    "A",
+    "grant or award",
+    "A",
+    172507,
+    0,
+    0,
+    172507,
+    "direct",
+    "stock",
+    false,
+    false,
+    "2026-09-11",
+    "0002152188-26-000005"
+   ]
+  ],
+  "meaning": "Only code P (purchase) and S (sale) are open-market decisions; A, M, F and G are grants, exercises, tax withholding and gifts. A sale under a 10b5-1 plan was scheduled in advance.",
+  "source": "https://www.sec.gov/cgi-bin/own-disp?action=getissuer&CIK=0001045810",
+  "limits": [
+   "From SEC EDGAR as filed; Canli Capital does not edit or verify the filers' statements.",
+   "Not investment advice.",
+   "Form 4 is due within two business days of a trade; earlier trades may still be unreported, and Form 5 (annual) filings are not read."
+  ],
+  "evidence": {
+   "documents": 12,
+   "columns": [
+    "url",
+    "sha256_16",
+    "retrieved_at"
+   ],
+   "rows": [
+    [
+     "https://www.sec.gov/files/company_tickers.json",
+     "6f9cc4500a98fb4c",
+     "2026-10-25T07:27:06.908Z"
+    ],
+    [
+     "https://data.sec.gov/submissions/CIK0001045810.json",
+     "d0d8527d09b31831",
+     "2026-10-25T07:27:14.165Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/1045810/000215218826000007/wk-form4a_1791925767.xml",
+     "2ac0f16ab6661c9c",
+     "2026-10-25T07:27:14.332Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/1045810/000119764726000011/wk-form4_1791579847.xml",
+     "708b054a77a77701",
+     "2026-10-25T07:27:14.499Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/1045810/000169684126000014/wk-form4_1790196985.xml",
+     "87b3a8f9f46990cc",
+     "2026-10-25T07:27:14.500Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/1045810/000119903926000016/wk-form4_1790110579.xml",
+     "872cdb869ad15f7a",
+     "2026-10-25T07:27:14.640Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/1045810/000124382126000007/wk-form4_1789766132.xml",
+     "3b434b21cb3b6e0d",
+     "2026-10-25T07:27:14.722Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/1045810/000128385426000010/wk-form4_1789766082.xml",
+     "9030fa885d369e1b",
+     "2026-10-25T07:27:14.839Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/1045810/000169684126000012/wk-form4_1789766007.xml",
+     "7f70894a4cf33199",
+     "2026-10-25T07:27:14.978Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/1045810/000158867026000014/wk-form4_1789765959.xml",
+     "1f019bc438b26956",
+     "2026-10-25T07:27:15.092Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/1045810/000119764926000012/wk-form4_1789765856.xml",
+     "822eaaac11fc1cd8",
+     "2026-10-25T07:27:15.220Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/1045810/000215218826000005/wk-form4_1789160684.xml",
+     "21657169ed85656c",
+     "2026-10-25T07:27:15.325Z"
+    ]
+   ]
+  }
+ }
+}

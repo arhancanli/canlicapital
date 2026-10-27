@@ -3,6 +3,11 @@
 // two can never disagree. Moved here from build-papers.mjs unchanged on 2026-09-28.
 import { resolveLastmod } from "../lastmod.mjs";
 import { EXECUTION_SOURCE_PATHS } from './execution-workflow.mjs';
+import { readFileSync } from 'node:fs';
+
+// The question pages (/mcp-servers/answers): each dates from its question and its recording.
+const ANSWER_SLUGS = JSON.parse(readFileSync(new URL('../../config/mcp-answers.json', import.meta.url), 'utf8')).answers.map((a) => a.slug);
+const ANSWER_SOURCES = ['scripts/build-mcp-pages.mjs', 'scripts/lib/mcp-answers.mjs', 'config/mcp-answers.json', 'public/videos/canli-mcp/index.json'];
 
 // =============================================================================
 // LASTMOD SOURCES for every STATIC_ROUTES page.
@@ -27,7 +32,8 @@ import { EXECUTION_SOURCE_PATHS } from './execution-workflow.mjs';
 // under test.
 // =============================================================================
 export const PAGE_SOURCES = {
-  "/": ["index.html", "config/home-answers.json", "scripts/build-home-answers.mjs", "scripts/build-hero-fallbacks.mjs", "scripts/lib/paper-curve-controls.mjs"],
+  "/": ["index.html", "config/home-answers.json", "scripts/build-home-answers.mjs", "scripts/build-home-film.mjs", "scripts/lib/home-film.mjs", "config/mcp-head-to-head.json", "config/canli-mcp.json", "public/datasets/filing-facts/v0/leaderboard.json"],
+  "/record": ["record.html", "scripts/build-hero-fallbacks.mjs", "scripts/lib/paper-curve-controls.mjs"],
   "/systems": ["systems.html"],
   "/performance": ["performance.html"],
   "/progress": ["progress.html"],
@@ -74,6 +80,7 @@ export const PAGE_SOURCES = {
   "/vision": ["scripts/build-vision-and-stats.mjs"],
   "/stats": ["scripts/build-vision-and-stats.mjs", "scripts/build-adoption-stats.mjs", "public/stats/adoption.json"],
   "/benchmarks/filingfacts": ["scripts/build-filingfacts-leaderboard.mjs", "public/datasets/filing-facts/v0/leaderboard.json"],
+  "/benchmarks/finance-mcp-servers": ["scripts/build-mcp-head-to-head.mjs", "config/mcp-head-to-head.json", "config/canli-mcp.json"],
   "/annotate": ["scripts/build-annotate.mjs", "js/annotate.js", "js/annotate-core.js", "js/filing-facts-packet.js", "scripts/canonical-json.mjs", "public/datasets/filing-facts/v0/gold-packet-v0.json"],
   "/developers": [
     // Owned by another generator (scripts/build-standards-and-developers.mjs) this fix does not
@@ -95,6 +102,8 @@ export const PAGE_SOURCES = {
     'scripts/build-mcp-pages.mjs', 'config/mcp-discovery.json', 'config/mcp-hosted-releases.json',
     ...(suffix ? [`mcp-released${suffix}`] : ['mcp-released']),
   ]])),
+  "/mcp-servers/answers": [...ANSWER_SOURCES, ...ANSWER_SLUGS.map((slug) => `public/demos/canli-mcp/answers/${slug}.json`)],
+  ...Object.fromEntries(ANSWER_SLUGS.map((slug) => [`/mcp-servers/answers/${slug}`, [...ANSWER_SOURCES, `public/demos/canli-mcp/answers/${slug}.json`]])),
   "/mcp-servers/execution": [
     "scripts/build-mcp-pages.mjs", "scripts/lib/execution-workflow.mjs",
     "config/execution-workflow-source.json", ...EXECUTION_SOURCE_PATHS,

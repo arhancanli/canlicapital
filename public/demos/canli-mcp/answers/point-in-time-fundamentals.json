@@ -1,0 +1,184 @@
+{
+ "version": "0.11.1",
+ "recorded": "2026-10-25T07:27:27.805Z",
+ "call": {
+  "name": "known_as_of",
+  "arguments": {
+   "company": "AAPL",
+   "as_of": "2020-03-01",
+   "periods": "annual"
+  }
+ },
+ "model_chars": 3023,
+ "ms": 1260,
+ "result": {
+  "ref": "r18",
+  "company": {
+   "cik": "0000320193",
+   "name": "Apple Inc.",
+   "ticker": "AAPL",
+   "page": "https://canlicapital.com/companies/0000320193"
+  },
+  "snapshot": {
+   "fetched_at": "2026-09-19T09:30:25.021Z",
+   "sha256": "73a86c6aedc31f77cac2ea4df5f80f0b3bd7e6eb58bb4e01444fbedf3afb9c43",
+   "url": "https://canlicapital.com/company-data/sources/73a86c6aedc31f77cac2ea4df5f80f0b3bd7e6eb58bb4e01444fbedf3afb9c43.json.gz",
+   "sec_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json",
+   "age_days": 35
+  },
+  "as_of": "2020-03-01",
+  "periods": "annual",
+  "columns": [
+   "concept",
+   "tag",
+   "end",
+   "start",
+   "val",
+   "unit",
+   "filed",
+   "form",
+   "accn",
+   "changed_after",
+   "stale"
+  ],
+  "rows": [
+   [
+    "revenue",
+    "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "2019-09-28",
+    "2018-09-30",
+    260174000000,
+    "USD",
+    "2019-10-31",
+    "10-K",
+    "0000320193-19-000119",
+    false,
+    false
+   ],
+   [
+    "net_income",
+    "NetIncomeLoss",
+    "2019-09-28",
+    "2018-09-30",
+    55256000000,
+    "USD",
+    "2019-10-31",
+    "10-K",
+    "0000320193-19-000119",
+    false,
+    false
+   ],
+   [
+    "operating_income",
+    "OperatingIncomeLoss",
+    "2019-09-28",
+    "2018-09-30",
+    63930000000,
+    "USD",
+    "2019-10-31",
+    "10-K",
+    "0000320193-19-000119",
+    false,
+    false
+   ],
+   [
+    "eps_diluted",
+    "EarningsPerShareDiluted",
+    "2019-09-28",
+    "2018-09-30",
+    11.89,
+    "USD/shares",
+    "2019-10-31",
+    "10-K",
+    "0000320193-19-000119",
+    true,
+    false
+   ],
+   [
+    "assets",
+    "Assets",
+    "2019-09-28",
+    null,
+    338516000000,
+    "USD",
+    "2020-01-29",
+    "10-Q",
+    "0000320193-20-000010",
+    false,
+    false
+   ],
+   [
+    "liabilities",
+    "Liabilities",
+    "2019-09-28",
+    null,
+    248028000000,
+    "USD",
+    "2020-01-29",
+    "10-Q",
+    "0000320193-20-000010",
+    false,
+    false
+   ],
+   [
+    "equity",
+    "StockholdersEquity",
+    "2019-09-28",
+    null,
+    90488000000,
+    "USD",
+    "2020-01-29",
+    "10-Q",
+    "0000320193-20-000010",
+    false,
+    false
+   ],
+   [
+    "cash",
+    "CashAndCashEquivalentsAtCarryingValue",
+    "2019-09-28",
+    null,
+    48844000000,
+    "USD",
+    "2020-01-29",
+    "10-Q",
+    "0000320193-20-000010",
+    true,
+    false
+   ],
+   [
+    "operating_cash_flow",
+    "NetCashProvidedByUsedInOperatingActivities",
+    "2019-09-28",
+    "2018-09-30",
+    69391000000,
+    "USD",
+    "2019-10-31",
+    "10-K",
+    "0000320193-19-000119",
+    false,
+    false
+   ],
+   [
+    "diluted_shares",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "2019-09-28",
+    "2018-09-30",
+    4648913000,
+    "shares",
+    "2019-10-31",
+    "10-K",
+    "0000320193-19-000119",
+    true,
+    false
+   ]
+  ],
+  "meaning": "Each row is the most recent period whose value had been filed on or before as_of, with the value as it stood then. changed_after: a later filing reported a different value, so a backtest reading today's data would use a number nobody knew on as_of. stale: the period ended long before as_of, so the company may have stopped reporting this measure; or, for a quarter, a later fiscal year has been filed, whose fourth quarter the company reports only inside the annual report.",
+  "limits": [
+   "Values are as the SEC's XBRL companyfacts API reported them for this company in the snapshot named here; filings made after the snapshot date are missing.",
+   "filed is the date the filing reached EDGAR. To avoid lookahead in a backtest, treat a value as known from the next trading day after it was filed.",
+   "A value that changed in a later filing may be a restatement, a reclassification or a correction; accn names the filing to read.",
+   "Company-reported data, not investment advice."
+  ]
+ }
+}

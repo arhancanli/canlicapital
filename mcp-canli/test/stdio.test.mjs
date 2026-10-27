@@ -1,0 +1,134 @@
+// Over stdio: three discovery tools, byte-stable across launches; batches with $file and $result;
+// per-call errors that name the fix; order-sending tools refused inside a batch; receipts stable.
+import assert from "node:assert/strict";
+import { mkdtempSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import path from "node:path";
+import test from "node:test";
+import { fileURLToPath } from "node:url";
+
+import { Client } from "@modelcontextprotocol/client";
+import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
+
+const ENTRY = path.join(path.dirname(fileURLToPath(import.meta.url)), "../src/server.mjs");
+const base = { PATH: process.env.PATH ?? "", HOME: process.env.HOME ?? "", CANLI_CACHE_DIR: "" };
+async function connect(env = {}) {
+  const c = new Client({ name: "stdio-test", version: "0" });
+  await c.connect(new StdioClientTransport({ command: process.execPath, args: [ENTRY], env: { ...base, ...env } }));
+  return c;
+}
+const CSV = path.join(mkdtempSync(path.join(tmpdir(), "canli-stdio-")), "prices.csv");
+writeFileSync(CSV, `date,close,other\n${Array.from({ length: 500 }, (_, i) => `d${i},${(100 * Math.exp(0.0006 * i + 0.03 * Math.sin(i / 9))).toFixed(4)},${i}`).join("\n")}\n`);
+
+test("three discovery tools and the two front tools, byte-identical across launches; CANLI_FRONT empty lists only the three", async () => {
+  const lists = [];
+  for (let i = 0; i < 2; i++) { const c = await connect(); lists.push(JSON.stringify(await c.listTools())); await c.close(); }
+  assert.equal(lists[0], lists[1]);
+  const tools = JSON.parse(lists[0]).tools;
+  assert.deepEqual(tools.map((t) => t.name), ["find_tool", "describe_tool", "run_tool", "history", "financial_statements"]);
+  assert.ok(lists[0].length < 9000, `${lists[0].length} bytes`);
+  const c = await connect({ CANLI_FRONT: "" });
+  const bare = JSON.stringify(await c.listTools()), said = c.getInstructions();
+  await c.close();
+  assert.match(said, /^Canli Capital's finance tools in one server: \d+ tools in \d+ packs \([^)]+\)\. Common tools, which run_tool takes without a search first/);
+  assert.deepEqual(JSON.parse(bare).tools.map((t) => t.name), ["find_tool", "describe_tool", "run_tool"]);
+  assert.ok(bare.length < 4500, `${bare.length} bytes`);
+});
+
+test("a front tool runs as run_tool runs it", async () => {
+  const c = await connect({ CANLI_OFFLINE: "1", CANLI_FRONT: "sharpe_ratio" });
+  const prices = Array.from({ length: 300 }, (_, i) => 100 * Math.exp(0.0005 * i + 0.01 * Math.sin(i)));
+  const direct = await c.callTool({ name: "sharpe_ratio", arguments: { prices } });
+  const viaRun = await c.callTool({ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { prices } } });
+  assert.equal(direct.isError, undefined);
+  const strip = (r) => { const { ref, ...rest } = JSON.parse(r.content[0].text); return rest; };
+  const said = c.getInstructions();
+  const viaRunFind = await c.callTool({ name: "run_tool", arguments: { name: "find_tool", arguments: { query: "sharpe ratio" } } });
+  await c.close();
+  assert.deepEqual(strip(direct), strip(viaRun));
+  assert.match(said, /sharpe_ratio is a tool of its own here: call it directly\./);
+  assert.equal(viaRunFind.isError, undefined, "find_tool runs through run_tool too");
+  assert.ok(JSON.parse(viaRunFind.content[0].text).rows.some((r) => r[0] === "sharpe_ratio"));
+});
+
+test("find, describe and run across packs; a batch with $file, $result, return last and digits", async (t) => {
+  const c = await connect(); t.after(() => c.close());
+  const f = await c.callTool({ name: "find_tool", arguments: { query: "triple barrier labels" } });
+  assert.equal(f.structuredContent.rows[0][0], "triple_barrier_labels");
+  const d = await c.callTool({ name: "describe_tool", arguments: { name: "validate_haircut_sharpe" } });
+  assert.equal(d.structuredContent.pack, "validation");
+  assert.ok(d.structuredContent.input_schema.properties);
+  const one = await c.callTool({ name: "run_tool", arguments: { name: "max_drawdown", arguments: { prices: { $file: CSV, column: "close" } } } });
+  assert.ok(!one.isError, one.content[0].text);
+  assert.deepEqual(one.structuredContent.files_read, [{ path: CSV, values: 500 }]);
+  const batch = await c.callTool({ name: "run_tool", arguments: { calls: [
+    { name: "triple_barrier_labels", arguments: { prices: { $file: CSV, column: "close" } } },
+    { name: "sample_weights", arguments: { prices: { $file: CSV, column: "close" }, spans: { $result: 0, path: "rows", pick: [0, 1] } } },
+  ], return: "last", digits: 4 } });
+  assert.ok(!batch.isError, batch.content[0].text);
+  assert.equal(batch.structuredContent.results.length, 1);
+  const w = batch.structuredContent.results[0].result;
+  assert.ok(w.labels > 100);
+  assert.ok(String(w.mean_uniqueness).replace(/^0\./, "").length <= 4);
+});
+
+test("find_tool rows carry argument signatures; select returns only the named fields", async (t) => {
+  const c = await connect(); t.after(() => c.close());
+  const f = await c.callTool({ name: "find_tool", arguments: { query: "sortino ratio" } });
+  assert.deepEqual(f.structuredContent.columns, ["name", "pack", "args", "description"]);
+  assert.match(f.structuredContent.rows[0][2], /returns\?: number\[\]/);
+  const r = await c.callTool({ name: "run_tool", arguments: { name: "max_drawdown", arguments: { prices: { $file: CSV, column: "close" } }, select: ["max_drawdown", "nope"] } });
+  assert.deepEqual(Object.keys(r.structuredContent).filter((k) => k !== "files_read" && k !== "ref"), ["max_drawdown", "nope", "available_fields"]);
+  assert.equal(r.structuredContent.nope, null);
+  assert.ok(r.structuredContent.available_fields.includes("max_drawdown"));
+  const lifted = await c.callTool({ name: "run_tool", arguments: { name: "max_drawdown", arguments: { prices: { $file: CSV, column: "close" }, select: ["max_drawdown"], digits: 3 } } });
+  assert.ok(!lifted.isError, lifted.content[0].text);
+  assert.deepEqual(Object.keys(lifted.structuredContent).filter((k) => k !== "files_read" && k !== "ref"), ["max_drawdown"]);
+  const listCol = await c.callTool({ name: "run_tool", arguments: { name: "correlation_matrix", arguments: { returns: { $file: CSV, column: ["close", "other"] } } } });
+  assert.ok(!listCol.isError, listCol.content[0].text);
+});
+
+test("a result's ref feeds a later run_tool call; a batch index outside its batch says to use the ref", async (t) => {
+  const c = await connect(); t.after(() => c.close());
+  const first = await c.callTool({ name: "run_tool", arguments: { name: "convert_returns", arguments: { values: { $file: CSV, column: "close" }, from: "prices", to: "simple" } } });
+  assert.ok(!first.isError, first.content[0].text);
+  const ref = first.structuredContent.ref;
+  assert.match(ref, /^r\d+$/);
+  const field = Object.keys(first.structuredContent).find((k) => Array.isArray(first.structuredContent[k]) && typeof first.structuredContent[k][0] === "number");
+  const second = await c.callTool({ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { returns: { $result: ref, path: field } } } });
+  assert.ok(!second.isError, second.content[0].text);
+  const direct = await c.callTool({ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { returns: first.structuredContent[field] } } });
+  assert.equal(second.structuredContent.sharpe_ratio ?? JSON.stringify(second.structuredContent.result), direct.structuredContent.sharpe_ratio ?? JSON.stringify(direct.structuredContent.result));
+  const wrong = await c.callTool({ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { returns: { $result: 0, path: field } } } });
+  assert.equal(wrong.isError, true);
+  assert.match(wrong.content[0].text, /pass its ref/);
+  const gone = await c.callTool({ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { returns: { $result: "r999" } } } });
+  assert.match(gone.content[0].text, /not kept/);
+  const nested = await c.callTool({ name: "run_tool", arguments: { name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { returns: { $result: ref, path: field } } } } });
+  assert.ok(!nested.isError, nested.content[0].text);
+  const nestedBatch = await c.callTool({ name: "run_tool", arguments: { calls: [{ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { returns: [0.01, -0.02, 0.03] } } }] } });
+  assert.ok(nestedBatch.structuredContent.results[0].result, JSON.stringify(nestedBatch.structuredContent));
+});
+
+test("errors are per call and say what to do", async (t) => {
+  const c = await connect(); t.after(() => c.close());
+  const r = await c.callTool({ name: "run_tool", arguments: { calls: [{ name: "sharpe_ratio", arguments: { returns: [0.01, -0.02, 0.03] } }, { name: "sharpe_ratoi" }, { name: "sortino_ratio", arguments: { nope: 1 } }] } });
+  const [a, b, e] = r.structuredContent.results;
+  assert.ok(a.result);
+  assert.match(b.error, /No tool sharpe_ratoi\. Closest: .*sharpe_ratio/);
+  assert.match(e.error, /Arguments: .*returns\?: number\[\].*describe_tool sortino_ratio/);
+  const bad = await c.callTool({ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { prices: { $file: CSV, column: "volume" } } } });
+  assert.match(bad.content[0].text, /no column "volume"; columns are date, close, other/);
+  const ref = await c.callTool({ name: "run_tool", arguments: { calls: [{ name: "sharpe_ratio", arguments: { returns: { $result: 1, path: "x" } } }] } });
+  assert.match(ref.structuredContent.results[0].error, /refers to a call that has not run/);
+});
+
+test("order-sending tools never run inside a batch; receipts are stable", async (t) => {
+  const c = await connect({ ALPACA_PAPER_KEY_ID: "PKTEST000000", ALPACA_PAPER_SECRET_KEY: "x", CANLI_HOME: tmpdir() }); t.after(() => c.close());
+  const r = await c.callTool({ name: "run_tool", arguments: { calls: [{ name: "kelly_fraction", arguments: { win_probability: 0.6, payoff: 1 } }, { name: "send_paper_orders", arguments: { token: "x" } }] } });
+  assert.match(r.content[0].text, /cannot run inside a batch/);
+  const args = { name: "kelly_fraction", arguments: { win_probability: 0.6, payoff: 1 }, receipt: true };
+  const a = await c.callTool({ name: "run_tool", arguments: args }), b = await c.callTool({ name: "run_tool", arguments: args });
+  assert.deepEqual(a.structuredContent.receipt, b.structuredContent.receipt);
+  assert.equal(a.structuredContent.receipt.packs.quant, "0.2.0");
+});

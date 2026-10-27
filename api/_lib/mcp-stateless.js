@@ -21,13 +21,15 @@ function corsHeaders(res) {
   res.setHeader("X-Robots-Tag", "noindex");
 }
 
-function rpcError(res, status, code, message) {
+function rpcError(res, status, code, message, id = null) {
   res.statusCode = status;
   res.setHeader("Content-Type", "application/json; charset=utf-8");
-  res.end(`${JSON.stringify({ jsonrpc: "2.0", error: { code, message }, id: null })}\n`);
+  res.end(`${JSON.stringify({ jsonrpc: "2.0", error: { code, message }, id })}\n`);
 }
 
-export function createStatelessMcpHandler({ serverInfo, instructions, register, path }) {
+// `screen(body, req)` (which may be async) may refuse a request before any tool sees it: it returns
+// { status, code, message, headers?, id? } to refuse, or nothing to let it through.
+export function createStatelessMcpHandler({ serverInfo, instructions, register, path, maxBodyBytes = MAX_READ_ONLY_MCP_BODY_BYTES, screen }) {
   return async function handler(req, res) {
     corsHeaders(res);
     if (req.method === "OPTIONS") { res.statusCode = 204; return res.end(); }
@@ -36,9 +38,15 @@ export function createStatelessMcpHandler({ serverInfo, instructions, register, 
       return rpcError(res, 405, -32000, "This endpoint is stateless: send MCP requests with POST. There is no server-initiated stream.");
     }
     let body;
-    try { body = await readJsonBody(req, MAX_READ_ONLY_MCP_BODY_BYTES); } catch (e) {
+    // A function gives each request its own limit (the hosted server's paid tiers allow more).
+    try { body = await readJsonBody(req, typeof maxBodyBytes === "function" ? await maxBodyBytes(req) : maxBodyBytes); } catch (e) {
       if (e instanceof BodyError) return rpcError(res, e.status, -32700, e.message);
       return rpcError(res, 400, -32700, "Could not read the request body");
+    }
+    const refusal = screen ? await screen(body, req) : null;
+    if (refusal) {
+      for (const [name, value] of Object.entries(refusal.headers ?? {})) res.setHeader(name, value);
+      return rpcError(res, refusal.status, refusal.code, refusal.message, refusal.id ?? null);
     }
     const server = new McpServer(serverInfo, instructions ? { instructions } : undefined);
     register(server);

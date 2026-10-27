@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.1
+
+- zod 4.6.7 (a high advisory in earlier zod: memory exhaustion on oversized constrained collections). No code change.
+
 ## Unreleased
 
 ## 0.14.0 (2026-10-07)

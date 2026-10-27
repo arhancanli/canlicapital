@@ -45,3 +45,36 @@ test('every MCP answer has its own metadata, canonical, crawlable siblings and h
   }
   assert.equal(titles.size, pages.length); assert.equal(descriptions.size, pages.length);
 });
+
+test('each question page answers in its first paragraph, shows the recorded result and marks up one FAQ', async () => {
+  const { loadAnswers, answerPage, answersIndexPage } = await import('./build-mcp-pages.mjs');
+  const answers = loadAnswers();
+  assert.ok(answers.length >= 20);
+  const h2h = JSON.parse(readFileSync(new URL('../public/benchmarks/finance-mcp-servers.json', import.meta.url), 'utf8'));
+  const flagship = { ...h2h.flagship, views: JSON.parse(readFileSync(new URL('../config/canli-mcp.json', import.meta.url), 'utf8')).views };
+  const titles = new Set(), descriptions = new Set();
+  for (const a of answers) {
+    const html = answerPage(a, answers, { flagship });
+    const meta = inspectHtml(html, `https://canlicapital.com${a.route}`);
+    assert.equal(meta.canonical, meta.requested_url, a.slug);
+    assert.deepEqual(meta.h1.map((h) => h.replaceAll('&#39;', "'")), [a.question], a.slug);
+    assert.match(meta.robots, /^index, follow/);
+    assert.ok(meta.description.length >= 100 && meta.description.length <= 160, `${a.slug}: description ${meta.description.length}`);
+    titles.add(meta.title); descriptions.add(meta.description);
+    assert.deepEqual(jsonLdProblems(html), [], a.slug);
+    const ld = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+    const faq = ld.find((n) => n['@type'] === 'FAQPage');
+    assert.equal(faq.mainEntity.length, 1);
+    assert.equal(faq.mainEntity[0].name, a.question);
+    assert.equal(faq.mainEntity[0].acceptedAnswer.text, a.answer);
+    assert.ok(html.includes(`canli-mcp ${a.recorded.version} on ${a.recorded.recorded.slice(0, 10)}`), `${a.slug}: says what was recorded and when`);
+    for (const slug of a.related) assert.ok(html.includes(`href="/mcp-servers/answers/${slug}"`), `${a.slug} links ${slug}`);
+    const cursor = new URL(html.match(/href="(cursor:[^"]+)"/)[1].replaceAll('&amp;', '&'));
+    assert.deepEqual(JSON.parse(Buffer.from(cursor.searchParams.get('config'), 'base64').toString('utf8')), { command: 'npx', args: ['-y', 'canli-mcp'] });
+    assert.equal(html.includes('data-mcp-demo'), Boolean(a.demo), `${a.slug}: a view only where one was recorded`);
+  }
+  assert.equal(titles.size, answers.length); assert.equal(descriptions.size, answers.length);
+  const index = answersIndexPage(answers, { flagship });
+  for (const a of answers) assert.ok(index.includes(`href="${a.route}"`));
+  assert.ok(directoryPage(releasedCatalog(), { answers }).includes('href="/mcp-servers/answers"'), 'the flagship page links the questions');
+});

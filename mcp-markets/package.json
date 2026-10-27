@@ -1,0 +1,79 @@
+{
+  "name": "canli-markets-mcp",
+  "version": "0.7.4",
+  "description": "MCP server for markets, funds and the economy from the sources themselves, no key: European companies' ESEF annual reports, central-bank rates (SOFR, €STR, SONIA, 40 policy rates), Polymarket and Kalshi odds, DeFi value locked and fees, financial statements as filed, the tables in filings, earnings guidance as ranges and a draft's figures checked against the filings, options chains and volatility, short interest, dark pools, futures positioning, fund and ETF holdings, 13D/13G, earnings dates and 8-K press-release headlines, segment revenue, executive pay, Form D, the Fed, Treasury auctions, World Bank and OECD macro, screens, filings and prices. Every result cites its sources.",
+  "private": false,
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "canli-markets-mcp": "src/server.mjs"
+  },
+  "engines": {
+    "node": ">=20.10"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.3.1",
+    "zod": "4.6.7"
+  },
+  "mcpName": "io.github.arhancanli/canli-markets-mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arhancanli/canlicapital.git",
+    "directory": "mcp-markets"
+  },
+  "homepage": "https://canlicapital.com/developers",
+  "bugs": {
+    "url": "https://github.com/arhancanli/canlicapital/issues"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "sec",
+    "edgar",
+    "sec-filings",
+    "10-k",
+    "insider-trading",
+    "13f",
+    "treasury-yields",
+    "fred",
+    "economic-data",
+    "market-data",
+    "finance",
+    "stock-prices",
+    "stock-screener",
+    "event-study",
+    "fundamentals",
+    "company-research",
+    "options",
+    "option-chain",
+    "implied-volatility",
+    "short-interest",
+    "dark-pools",
+    "cot",
+    "etf-holdings",
+    "n-port",
+    "13d",
+    "fomc",
+    "world-bank",
+    "oecd",
+    "economic-calendar",
+    "executive-compensation",
+    "form-d",
+    "fx",
+    "futures",
+    "crypto"
+  ],
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.3.1"
+  }
+}

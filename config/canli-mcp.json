@@ -1,0 +1,207 @@
+{
+ "schema": "canli.flagship-mcp.v1",
+ "purpose": "Facts about canli-mcp, the flagship server, as measured in its own repository folder. scripts/build-mcp-head-to-head.mjs publishes them with the benchmark in public/benchmarks/finance-mcp-servers.json, and the homepage prints only what that file holds. The 'current' block is the latest release as measured in its folder; 'benchmarked' is what the head-to-head benchmark ran.",
+ "package": "canli-mcp",
+ "npm_published": true,
+ "license": "MIT",
+ "source": {
+  "repository": "https://github.com/arhancanli/canlicapital",
+  "path": "mcp-canli",
+  "measured": "2026-10-24",
+  "note": "Tool counts come from mcp-canli/src/index.json at release 0.11; the context figures from mcp-canli/bench/context-2026-10-24-0.11.0.json; the search figures are the 48 held-out everyday requests in mcp-canli/test/search.test.mjs (measured once, untuned, at 0.3.0); the file and batch figures from the README's measurements."
+ },
+ "install": {
+  "npx": "npx -y canli-mcp",
+  "claude_code": "claude mcp add canli -- npx -y canli-mcp",
+  "json": "{ \"mcpServers\": { \"canli\": { \"command\": \"npx\", \"args\": [\"-y\", \"canli-mcp\"] } } }",
+  "hosted": "https://canlicapital.com/mcp/canli",
+  "hosted_note": "Hosted, no install: add the URL as a connector in claude.ai, ChatGPT or any client that takes one. It serves the public-data and computing tools; file arguments, prices and paper trading need the local server."
+ },
+ "front": [
+  {
+   "name": "find_tool",
+   "does": "searches every tool by what you ask for"
+  },
+  {
+   "name": "describe_tool",
+   "does": "reads one tool's arguments"
+  },
+  {
+   "name": "run_tool",
+   "does": "runs any tool, or up to 25 in one round trip, and draws the result as a view"
+  },
+  {
+   "name": "history",
+   "does": "a company's reported figure over time, as first reported or as known on a date"
+  },
+  {
+   "name": "financial_statements",
+   "does": "a company's statements exactly as filed"
+  }
+ ],
+ "packs": [
+  {
+   "id": "quant",
+   "label": "Quant finance",
+   "tools": 235,
+   "package": "canli-quant-mcp",
+   "covers": "performance and risk, options, fixed income, portfolios, econometrics, indicators and a library of 399 strategy sleeves"
+  },
+  {
+   "id": "validation",
+   "label": "Backtest validation",
+   "tools": 17,
+   "package": "canli-validation-mcp",
+   "covers": "deflated Sharpe ratio, overfitting probability, data-snooping tests, leakage checks and placebo tests"
+  },
+  {
+   "id": "markets",
+   "label": "Markets",
+   "tools": 64,
+   "package": "canli-markets-mcp",
+   "covers": "SEC filings and statements as filed, insider trades, 13F and 5% holders, fund portfolios, options chains and volatility surfaces, the Fed, Treasury yields and auctions, FRED, World Bank and OECD data, central banks abroad, prediction markets, prices and a whole-market overview"
+  },
+  {
+   "id": "fundamentals",
+   "label": "SEC fundamentals",
+   "tools": 7,
+   "package": "canli-fundamentals-mcp",
+   "covers": "company financials as first reported, with later restatements flagged"
+  },
+  {
+   "id": "research",
+   "label": "Research record",
+   "tools": 6,
+   "package": "canli-research-mcp",
+   "covers": "Canli Capital's open research record"
+  },
+  {
+   "id": "paper",
+   "label": "Paper trading",
+   "tools": 5,
+   "package": "canli-paper-trading-mcp",
+   "covers": "Alpaca paper orders behind pre-trade checks, each check signed"
+  },
+  {
+   "id": "backtest",
+   "label": "Factor backtests",
+   "tools": 11,
+   "package": "canli-backtest-mcp",
+   "covers": "factor backtests that refuse lookahead, a breadth lab that counts its independent bets, parameter sweeps on every core and data annotation"
+  }
+ ],
+ "search": {
+  "requests": 48,
+  "first": 46,
+  "top_three": 47
+ },
+ "file_reference": {
+  "prices": 1000,
+  "tokens": 23,
+  "pasted_tokens": 4893
+ },
+ "batch": {
+  "tokens": 72,
+  "chained_tokens": 31917
+ },
+ "node_minimum": "20.10",
+ "example": {
+  "note": "One real call, run through canli-mcp on 2026-10-10 and copied from its output: run_tool read_filing with the arguments below.",
+  "ran": "2026-10-10",
+  "tool": "read_filing",
+  "arguments": {
+   "company": "NVDA",
+   "form": "10-K",
+   "find": "employees"
+  },
+  "company": "NVIDIA CORP",
+  "ticker": "NVDA",
+  "form": "10-K",
+  "filed": "2026-02-25",
+  "accession": "0001045810-26-000021",
+  "match": "As of the end of fiscal year 2026, we had approximately 42,000 employees in 38 countries",
+  "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+  "evidence_documents": 3,
+  "evidence_sha256_16": "f192181c12dad789",
+  "milliseconds": 764
+ },
+ "coverage": {
+  "questions": 53,
+  "keyless_tool": {
+   "canli-mcp": 49,
+   "OpenBB": 39,
+   "EdgarTools": 11,
+   "Yahoo Finance MCP": 13
+  },
+  "checked": "2026-10-11",
+  "method": "A question counts when the server lists a tool for it that needs no API key, checked against each server's own tool list. It does not say the answer is right; the head-to-head benchmark measures that.",
+  "source": "mcp-canli/bench/rivals/COVERAGE.md"
+ },
+ "benchmarked": {
+  "tools": 306,
+  "front": 3,
+  "note": "The head-to-head benchmark and its context table measured canli-mcp with 306 tools behind three (config/mcp-head-to-head.json)."
+ },
+ "current": {
+  "version": "0.11.1",
+  "measured": "2026-10-24",
+  "tokens": 2408,
+  "startup_ms": 149,
+  "separately_tokens": 53974,
+  "prompts": 56,
+  "tokenizer": "o200k_base",
+  "source": "mcp-canli/bench/context-2026-10-24-0.11.0.json",
+  "separately_note": "the seven Canli Capital servers run side by side, each listing its own tools",
+  "startup_seconds": 0.149
+ },
+ "views": [
+  {
+   "id": "market",
+   "label": "Market map",
+   "prompt": "market_today",
+   "does": "Every index, sector, yield, currency, commodity and crypto as a tile, coloured by its move over a day to a year. Rank them, and a tile opens its chart."
+  },
+  {
+   "id": "curve",
+   "label": "Yield curve",
+   "prompt": "yield_curve",
+   "does": "The Treasury curve against a month, a year and five years ago, played through five years, with the 10Y-2Y and 10Y-3M spreads and how often it was inverted."
+  },
+  {
+   "id": "compare",
+   "label": "Compare stocks",
+   "prompt": "compare_stocks",
+   "does": "Up to eight tickers: growth of 1, a sortable table of return, volatility, Sharpe, drawdown and beta, and a correlation heatmap that counts the independent bets."
+  },
+  {
+   "id": "statements",
+   "label": "Statements",
+   "prompt": "statement_charts",
+   "does": "A company's statements as filed, a trend on every line, and one click to margins or growth. Click lines to chart them."
+  },
+  {
+   "id": "surface",
+   "label": "Volatility surface",
+   "prompt": "volatility_surface",
+   "does": "Implied volatility across strikes for each expiry, the term structure, the skew and the whole surface as a heatmap."
+  },
+  {
+   "id": "chart",
+   "label": "Chart and options",
+   "prompt": "stock_chart",
+   "does": "Candlesticks you zoom and pan, with moving averages, Bollinger bands, RSI and MACD, and the option chain for any expiry."
+  },
+  {
+   "id": "backtest",
+   "label": "Backtest lab",
+   "prompt": "strategy_lab",
+   "does": "Growth of 1 against buy-and-hold and the S&P 500, drawdown and trades, sliders that rerun it, and a luck check of every setting tried."
+  }
+ ],
+ "firms": [
+  "A policy file: which tools and packs may run, orders off, calls a minute.",
+  "A tamper-evident audit log of every call, signed with Ed25519 and post-quantum ML-DSA-65, with a signed checkpoint at shutdown; canli-mcp audit verify checks it.",
+  "No telemetry. It runs on your machine, keyless by default, and canli://privacy says what each pack sends and stores.",
+  "A live feed of SEC filings as they arrive: canli-mcp watch."
+ ]
+}

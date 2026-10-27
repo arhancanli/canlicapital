@@ -1,90 +1,140 @@
 {
   "schema": "canli.adoption-stats.v1",
-  "generated_at": "2026-10-06T18:43Z",
-  "note": "npm counts every download, including CI runs, mirrors and bots; it is an upper bound on people. Stars and forks are GitHub's own counters. Validations are calls to the hosted API, which also counts the site's own smoke tests.",
+  "generated_at": "2026-10-25T09:11Z",
+  "note": "npm counts package downloads, including CI runs, mirrors and bots. Distinct users and installations are not measured by this counter. Stars and forks are GitHub's own counters. Validations are calls to the hosted API, which also counts the site's own smoke tests.",
   "windows_days": {
     "last_week": 7,
     "last_month": 30
   },
   "npm": {
-    "fetched_at": "2026-10-06T18:43Z",
+    "fetched_at": "2026-10-25T09:11Z",
     "stale": false,
     "rows": [
       {
+        "name": "canli-mcp",
+        "latest_version": "0.11.1",
+        "latest_published": "2026-10-25",
+        "first_published": "2026-10-10",
+        "npm_url": "https://www.npmjs.com/package/canli-mcp",
+        "downloads_last_week": 116,
+        "downloads_last_month": 772,
+        "downloads_total": 772
+      },
+      {
         "name": "canli-validation-mcp",
-        "latest_version": "0.13.0",
-        "latest_published": "2026-10-04",
+        "latest_version": "0.14.1",
+        "latest_published": "2026-10-24",
         "first_published": "2026-09-06",
-        "downloads_last_week": 1408,
-        "downloads_last_month": 4028,
-        "downloads_total": 4028,
-        "npm_url": "https://www.npmjs.com/package/canli-validation-mcp"
+        "npm_url": "https://www.npmjs.com/package/canli-validation-mcp",
+        "downloads_last_week": 97,
+        "downloads_last_month": 4084,
+        "downloads_total": 4790
       },
       {
         "name": "canli-fundamentals-mcp",
-        "latest_version": "0.5.0",
-        "latest_published": "2026-10-06",
+        "latest_version": "0.7.1",
+        "latest_published": "2026-10-24",
         "first_published": "2026-09-27",
-        "downloads_last_week": 69,
-        "downloads_last_month": 236,
-        "downloads_total": 236,
-        "npm_url": "https://www.npmjs.com/package/canli-fundamentals-mcp"
+        "npm_url": "https://www.npmjs.com/package/canli-fundamentals-mcp",
+        "downloads_last_week": 80,
+        "downloads_last_month": 647,
+        "downloads_total": 647
       },
       {
         "name": "canli-research-mcp",
-        "latest_version": "0.2.0",
-        "latest_published": "2026-10-06",
+        "latest_version": "0.3.1",
+        "latest_published": "2026-10-24",
         "first_published": "2026-09-26",
-        "downloads_last_week": 47,
-        "downloads_last_month": 247,
-        "downloads_total": 247,
-        "npm_url": "https://www.npmjs.com/package/canli-research-mcp"
+        "npm_url": "https://www.npmjs.com/package/canli-research-mcp",
+        "downloads_last_week": 32,
+        "downloads_last_month": 625,
+        "downloads_total": 625
+      },
+      {
+        "name": "canli-markets-mcp",
+        "latest_version": "0.7.4",
+        "latest_published": "2026-10-24",
+        "first_published": "2026-10-10",
+        "npm_url": "https://www.npmjs.com/package/canli-markets-mcp",
+        "downloads_last_week": 145,
+        "downloads_last_month": 899,
+        "downloads_total": 899
+      },
+      {
+        "name": "canli-quant-mcp",
+        "latest_version": "0.2.0",
+        "latest_published": "2026-10-24",
+        "first_published": "2026-10-08",
+        "npm_url": "https://www.npmjs.com/package/canli-quant-mcp",
+        "downloads_last_week": 66,
+        "downloads_last_month": 557,
+        "downloads_total": 557
+      },
+      {
+        "name": "canli-backtest-mcp",
+        "latest_version": "0.3.0",
+        "latest_published": "2026-10-24",
+        "first_published": "2026-10-07",
+        "npm_url": "https://www.npmjs.com/package/canli-backtest-mcp",
+        "downloads_last_week": 64,
+        "downloads_last_month": 589,
+        "downloads_total": 589
+      },
+      {
+        "name": "canli-paper-trading-mcp",
+        "latest_version": "0.3.1",
+        "latest_published": "2026-10-24",
+        "first_published": "2026-10-08",
+        "npm_url": "https://www.npmjs.com/package/canli-paper-trading-mcp",
+        "downloads_last_week": 38,
+        "downloads_last_month": 394,
+        "downloads_total": 394
       }
     ],
-    "downloads_last_month_all_packages": 4511
+    "downloads_last_month_all_packages": 8567
   },
   "github": {
-    "fetched_at": "2026-10-06T18:43Z",
-    "stale": true,
+    "fetched_at": "2026-10-25T09:11Z",
+    "stale": false,
     "rows": [
       {
         "name": "arhancanli/canlicapital",
-        "stars": 0,
-        "forks": 1,
-        "open_issues": 21,
-        "pushed_at": "2026-10-06",
+        "stars": 5,
+        "forks": 2,
+        "open_issues": 32,
+        "pushed_at": "2026-10-25",
         "url": "https://github.com/arhancanli/canlicapital"
       },
       {
         "name": "arhancanli/alphac",
-        "stars": 0,
+        "stars": 1,
         "forks": 0,
-        "open_issues": 2,
-        "pushed_at": "2026-10-06",
+        "open_issues": 10,
+        "pushed_at": "2026-10-24",
         "url": "https://github.com/arhancanli/alphac"
       },
       {
         "name": "arhancanli/canli-validation-mcp",
-        "stars": 0,
+        "stars": 1,
         "forks": 0,
-        "open_issues": 3,
-        "pushed_at": "2026-10-05",
+        "open_issues": 8,
+        "pushed_at": "2026-10-16",
         "url": "https://github.com/arhancanli/canli-validation-mcp"
       },
       {
         "name": "arhancanli/canli-fundamentals-mcp",
-        "stars": 0,
+        "stars": 1,
         "forks": 0,
-        "open_issues": 3,
-        "pushed_at": "2026-10-04",
+        "open_issues": 7,
+        "pushed_at": "2026-10-18",
         "url": "https://github.com/arhancanli/canli-fundamentals-mcp"
       },
       {
         "name": "arhancanli/canli-research-mcp",
-        "stars": 0,
+        "stars": 1,
         "forks": 0,
-        "open_issues": 3,
-        "pushed_at": "2026-10-04",
+        "open_issues": 7,
+        "pushed_at": "2026-10-18",
         "url": "https://github.com/arhancanli/canli-research-mcp"
       },
       {
@@ -103,14 +153,13 @@
         "pushed_at": "2026-09-26",
         "url": "https://github.com/arhancanli/canli-backtest"
       }
-    ],
-    "error": "https://api.github.com/repos/arhancanli/canli-backtest: HTTP 403"
+    ]
   },
   "hosted_api": {
-    "fetched_at": "2026-10-06T18:43Z",
+    "fetched_at": "2026-10-25T09:11Z",
     "stale": false,
     "rows": {
-      "validations_total": 48,
+      "validations_total": 75,
       "source": "https://canlicapital.com/api/v1/validate/status"
     }
   }
