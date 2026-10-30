@@ -3,7 +3,7 @@
  "purpose": "The homepage's opening answer, its comparison table and its FAQ. scripts/build-home-answers.mjs writes all three into index.html and builds the FAQPage JSON-LD from the same entries, so the markup can never say something the page does not.",
  "reviewed": "2026-10-30",
  "definition": "Canli Capital is an open-source lab that connects AI agents to financial data and quant tools they can check.",
- "answer": "Its flagship MCP server, canli-mcp, reads SEC filings, market data and economic statistics at the source and puts 345 finance tools behind five, with interactive charts in the chat. The code is free and MIT-licensed.",
+ "answer": "Its flagship MCP server, canli-mcp, reads SEC filings, market data and economic statistics at the source and puts 355 finance tools behind five, with interactive charts in the chat. The code is free and MIT-licensed.",
  "comparison": {
   "id": "compare",
   "eyebrow": "Side by side",
@@ -29,7 +29,7 @@
    {
     "question": "Tools sent to the model on every request",
     "cells": [
-     "5, in front of 345",
+     "5, in front of 355",
      "1,056, or 14 in its tool-discovery mode",
      "13",
      "9"
@@ -129,7 +129,7 @@
   },
   {
    "question": "What is canli-mcp?",
-   "answer": "canli-mcp is one MCP server that loads every Canli Capital server in one process. The model sees five tools, find_tool, describe_tool, run_tool and the two it asks for most, and behind them sit 345 tools for quant finance, backtest validation, SEC filings and fundamentals, ownership, funds, options, the Fed, economic data, prices and paper trading.",
+   "answer": "canli-mcp is one MCP server that loads every Canli Capital server in one process. The model sees five tools, find_tool, describe_tool, run_tool and the two it asks for most, and behind them sit 355 tools for quant finance, backtest validation, SEC filings and fundamentals, ownership, funds, options, the Fed, economic data, prices and paper trading.",
    "link": {
     "href": "/mcp-servers",
     "text": "See every server it combines."
@@ -145,7 +145,7 @@
   },
   {
    "question": "How does canli-mcp compare with OpenBB, EdgarTools and Yahoo Finance MCP?",
-   "answer": "With the same model and questions, canli-mcp answered 79% of the questions every server finished correctly, against 54% for the best of the others, in the version tested, which sent the model 859 tokens of tools on every request; canli-mcp 0.11 sends 2,408 with more tools and charts. We wrote the questions, so read the caveats too.",
+   "answer": "With the same model and questions, canli-mcp answered 79% of the questions every server finished correctly, against 54% for the best of the others, in the version tested, which sent the model 859 tokens of tools on every request; canli-mcp 0.12 sends 2,403 with more tools and charts. We wrote the questions, so read the caveats too.",
    "link": {
     "href": "/benchmarks/finance-mcp-servers",
     "text": "See every run and the caveats."
