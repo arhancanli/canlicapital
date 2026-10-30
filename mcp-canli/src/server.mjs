@@ -25,6 +25,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { z } from "zod";
 
 import { resolveRefs } from "./files.mjs";
+import { DESK, runBrief, runSwarm } from "./desk.mjs";
 import { OMITTED, PACKS, PLUGINS, RENAMES, enabledPacks, loadPack, loadPlugins, packInfo } from "./packs.mjs";
 import { signature } from "./signature.mjs";
 import { buildIndex, search } from "./search.mjs";
@@ -44,7 +45,7 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-export const ENTRIES = INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args }));
+export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
 
@@ -85,6 +86,8 @@ const fail = (err) => ({ isError: true, content: [{ type: "text", text: String(e
 const guard = (fn) => async (args) => { try { return ok(await fn(args)); } catch (err) { return fail(err); } };
 
 async function toolFor(name, packs) {
+  const desk = DESK.find((t) => t.name === name);
+  if (desk) return desk;
   const e = BY_NAME.get(name);
   if (!e || !packs.includes(e.pack)) {
     const near = search(SEARCH, name.replace(/_/g, " "), { packs, limit: 3 }).map((t) => t.name);
@@ -286,7 +289,7 @@ async function execute(tool, name, args, { digits }, files) {
 // that fitted its inputs in another.
 function findTool(packs, { query, limit }) {
   if (typeof query !== "string" || !query.trim()) throw new Error("find_tool: query is what you need, in plain words.");
-  const found = search(SEARCH, query, { packs, limit: Math.min(Math.max(Number(limit) || 6, 1), 50) });
+  const found = search(SEARCH, query, { packs: [...packs, "desk"], limit: Math.min(Math.max(Number(limit) || 6, 1), 50) });
   return { columns: ["name", "pack", "args", "description"], rows: found.map((t) => [t.name, t.pack, t.args, t.description.split(/(?<=\.)\s/)[0]]), next: "run_tool with these args (? = optional); describe_tool only if you need each argument's meaning or limits." };
 }
 async function describeTool(packs, { name }) {
@@ -343,7 +346,8 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const viewing = Boolean(a.view) && clientDrawsApps(server);
     if (a.view) for (const c of calls) if (/^backtest_/.test(c.name) && !(c.arguments && "curve" in c.arguments)) { try { if ((await toolFor(c.name, packs)).input?.shape?.curve) c.arguments = { ...(c.arguments ?? {}), curve: true }; } catch { /* reported when it runs */ } }
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
-    const SELF = { show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
+    const desk = { call: (name, args) => runOne(packs, { name, arguments: args }, {}, [], gov), keep: (r) => keeper.put(r), get: (ref) => keeper.get(ref), at, toolFor: (name) => toolFor(name, packs), hosted: Boolean(readOnly) };
+    const SELF = { brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
     const run = (c, args) => (SELF[c.name] ? Promise.resolve().then(() => SELF[c.name](args)) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov));
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
     if (calls.length > 1 && destructive.some(Boolean)) throw new Error("A tool that sends orders cannot run inside a batch; call it on its own after previewing.");

@@ -1,8 +1,13 @@
 import assert from "node:assert/strict";
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { test } from "node:test";
 
 import { factBook, ratioFromText } from "../src/listing.mjs";
+import { createDiskCache, freshFor } from "../src/disk-cache.mjs";
 import { releasesFrom } from "../src/earnings.mjs";
+import { createSession, getText } from "../src/sources.mjs";
 
 const named = "American Depositary Shares. American Depositary Shares. American Depositary Shares. ";
 
@@ -13,6 +18,26 @@ test("ratioFromText reads the ratio in the forms 20-Fs state it, and refuses to 
   assert.equal(ratioFromText("Ordinary shares listed in New York as registry shares.").shares_per_listed_share, 1, "no depositary shares named");
   assert.equal(ratioFromText(`${named}The depositary holds them.`), null, "depositary shares named, no ratio stated");
   assert.equal(ratioFromText(`${named}Each ADS represents five shares. Each ADS represents two shares.`), null, "a tie is no answer");
+});
+
+test("the disk cache keeps public data between sessions, serves it fresh, and falls back when a source is down", async () => {
+  const dir = mkdtempSync(join(tmpdir(), "canli-disk-"));
+  const url = "https://www.sec.gov/Archives/edgar/data/1/a/x.htm", key = url;
+  const disk = createDiskCache({ dir });
+  const now = Date.now();
+  await disk.write(key, { at: now, text: "filing text", record: { sha256: "a", bytes: 11, retrieved_at: new Date(now).toISOString() } });
+  let calls = 0;
+  const session = createSession({ fetchImpl: async () => { calls += 1; throw new Error("no network"); }, env: {} });
+  session.disk = disk;
+  assert.equal(await getText(session, url), "filing text");
+  assert.equal(calls, 0, "fresh on disk: no request");
+  assert.equal(freshFor("https://query1.finance.yahoo.com/v8/finance/chart/AAPL"), 0, "prices are never kept");
+  const stale = "https://data.sec.gov/submissions/CIK0000000001.json";
+  await disk.write(stale, { at: now - 86400000, text: "{\"old\":true}", record: { sha256: "b", bytes: 12, retrieved_at: new Date(now - 86400000).toISOString() } });
+  const quick = createSession({ fetchImpl: async () => { throw new Error("no network"); }, env: {}, sleep: async () => {} });
+  quick.disk = disk;
+  assert.equal(await getText(quick, stale), "{\"old\":true}", "a source that is down is answered from the older copy");
+  rmSync(dir, { recursive: true, force: true });
 });
 
 test("factBook takes the taxonomy of the latest balance sheet and its currency", () => {

@@ -27,7 +27,10 @@ branch and the latest npm release are supported.
   asks for: your name and email); other hosts get `canli-markets-mcp`;
 - keeps SEC requests at most 8 a second (SEC's limit is 10), refuses redirects, gives every
   request a 20 second deadline and discards responses above a size cap;
-- keeps responses in memory for 10 minutes and writes no files;
+- keeps responses in memory for 10 minutes, and keeps public SEC, FRED and Treasury responses compressed in
+  `~/.cache/canli-markets` (at most 512 MB, oldest out first) so later sessions answer at once. Prices, news and
+  anything sent with a key are never written. It writes no other files. The folder shows which companies you looked
+  up, on your own machine; `CANLI_DISK_CACHE=0` turns it off and `CANLI_CACHE_DIR` moves it;
 - reads `ALPACA_API_KEY_ID`/`ALPACA_API_SECRET_KEY` (or the paper pair `ALPACA_PAPER_KEY_ID`/
   `ALPACA_PAPER_SECRET_KEY`) or `TIINGO_API_KEY` only for `price_history`; keys travel only in
   request headers, never in URLs or error messages;

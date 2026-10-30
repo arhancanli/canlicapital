@@ -7,6 +7,7 @@ import { createHash } from "node:crypto";
 import { inflateRawSync } from "node:zlib";
 
 import { BoundedCache } from "./bounded-cache.mjs";
+import { createDiskCache, freshFor } from "./disk-cache.mjs";
 import { readBoundedResponse, fetchBoundedText, ResponseReadError } from "./bounded-response.mjs";
 
 // SEC asks every client to identify itself with a contact; SEC_USER_AGENT replaces the default.
@@ -25,6 +26,8 @@ export function createSession({ fetchImpl, env = process.env, now = () => Date.n
     sleep: sleep ?? ((ms) => new Promise((r) => setTimeout(r, ms))),
     userAgent: String(env.SEC_USER_AGENT ?? "").trim() || DEFAULT_USER_AGENT,
     cache: new BoundedCache(),
+    // On your machine, not for sessions with their own fetch (tests) or on the hosted server.
+    disk: fetchImpl || env.CANLI_DISK_CACHE === "0" || env.VERCEL ? null : createDiskCache({ env }),
     hashes: new Map(),
     secNext: 0,
   };
@@ -80,6 +83,17 @@ export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024
   const cacheKey = variant ? `${key}#${variant}` : key;
   const hit = session.cache.lookup(cacheKey, session.now());
   if (hit) { witness(session, key, session.hashes.get(key)); return parse(hit.text); }
+  // Public data fetched in an earlier session, when still fresh for what it is.
+  const keepsOnDisk = session.disk && method === "GET" && !secret && !Object.keys(headers).length && freshFor(url) > 0;
+  const copy = keepsOnDisk ? await session.disk.read(cacheKey) : null;
+  const useCopy = () => {
+    session.hashes.delete(key);
+    session.hashes.set(key, copy.record);
+    witness(session, key, copy.record);
+    session.cache.set(cacheKey, { at: session.now(), text: copy.text });
+    return parse(copy.text);
+  };
+  if (copy && session.now() - copy.at < freshFor(url)) return useCopy();
   let text;
   // Server errors are often momentary (EDGAR full-text search answered 1 request in 12 with HTTP 500
   // on 2026-10-09): retry them, and dropped connections, twice with a short backoff.
@@ -93,6 +107,8 @@ export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024
     } catch (error) {
       const transient = !signal.aborted && (error instanceof ResponseReadError ? error.code === "HTTP" && error.status >= 500 : true);
       if (transient && attempt < retries) { await session.sleep((isOecd(url) ? 4000 : 500) * 3 ** attempt); continue; }
+      // The source is down: an older copy is better than nothing, and its retrieved_at says how old.
+      if (copy && (signal.aborted || transient)) return useCopy();
       throw fetchError(error, { url, secret, aborted: signal.aborted, maxBytes, timeoutMs });
     }
   }
@@ -104,6 +120,7 @@ export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024
   if (transform) text = transform(text);
   const value = parse(text);
   session.cache.set(cacheKey, { at: session.now(), text });
+  if (keepsOnDisk) session.disk.write(cacheKey, { at: session.now(), text, record });
   return value;
 }
 

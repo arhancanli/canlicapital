@@ -31,6 +31,7 @@ test("the code reaches only the hosts SECURITY.md lists", () => {
       assert.ok(allowed.includes(m[1]), `${f} reaches ${m[1]}`);
       if (m[1] !== "canlicapital.com") assert.ok(security.includes(m[1]), `SECURITY.md does not name ${m[1]}`);
     }
-    assert.doesNotMatch(text, /writeFile|appendFile|createWriteStream|child_process|\beval\s*\(|new Function|console\.log/, f);
+    // Only the disk cache writes files, and only in its own folder.
+    assert.doesNotMatch(text, f === "disk-cache.mjs" ? /child_process|\beval\s*\(|new Function|console\.log/ : /writeFile|appendFile|createWriteStream|child_process|\beval\s*\(|new Function|console\.log/, f);
   }
 });
