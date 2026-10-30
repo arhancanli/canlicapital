@@ -80,6 +80,7 @@ export const PAGE_SOURCES = {
   "/vision": ["scripts/build-vision-and-stats.mjs"],
   "/stats": ["scripts/build-vision-and-stats.mjs", "scripts/build-adoption-stats.mjs", "public/stats/adoption.json"],
   "/benchmarks/filingfacts": ["scripts/build-filingfacts-leaderboard.mjs", "public/datasets/filing-facts/v0/leaderboard.json"],
+  "/datasets/filing-facts": ["scripts/build-datasets-page.mjs", "public/datasets/filing-facts/v1/SHA256SUMS", "public/datasets/filing-facts/v1/ERRATA.md"],
   "/benchmarks/finance-mcp-servers": ["scripts/build-mcp-head-to-head.mjs", "config/mcp-head-to-head.json", "config/canli-mcp.json"],
   "/annotate": ["scripts/build-annotate.mjs", "js/annotate.js", "js/annotate-core.js", "js/filing-facts-packet.js", "scripts/canonical-json.mjs", "public/datasets/filing-facts/v0/gold-packet-v0.json"],
   "/developers": [

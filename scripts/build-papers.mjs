@@ -205,6 +205,7 @@ const STATIC_ROUTES = [
   { path: "/developers", priority: "0.9", changefreq: "weekly" },
   { path: "/mcp-servers", priority: "0.9", changefreq: "weekly" },
   { path: "/benchmarks/filingfacts", priority: "0.9", changefreq: "weekly" },
+  { path: "/datasets/filing-facts", priority: "0.8", changefreq: "monthly" },
   { path: "/benchmarks/finance-mcp-servers", priority: "0.9", changefreq: "weekly" },
   { path: "/record", priority: "0.8", changefreq: "daily" },
   { path: "/vision", priority: "0.9", changefreq: "monthly" },
@@ -760,8 +761,10 @@ function relatedSection(paper, papers) {
   if (!kind && !subjects.length && !siblings.length) return "";
 
   const hubs = [
-    ...(kind ? [{ href: `/research/topics/${kind.slug}`, label: kind.label }] : []),
-    ...subjects.map((s) => ({ href: `/research/topics/${s.slug}`, label: s.label })),
+    // Only hubs that get a page (see the three-member rule where the hubs are written).
+    ...(kind && papers.filter((other) => other.taxonomy.kind === kind).length >= 3 ? [{ href: `/research/topics/${kind.slug}`, label: kind.label }] : []),
+    ...subjects.filter((s) => papers.filter((other) => other.taxonomy.subjects.some((t) => t.slug === s.slug)).length >= 3)
+      .map((s) => ({ href: `/research/topics/${s.slug}`, label: s.label })),
   ];
 
   const parts = [];

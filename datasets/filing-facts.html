@@ -1,0 +1,251 @@
+<!doctype html>
+<html data-design="chapter" lang="en" data-page="dataset-filingfacts">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FilingFacts: open dataset of SEC filing questions | Canli Capital</title>
+<meta name="description" content="2,243 questions on 402 companies with answers computed from SEC XBRL filings, for testing whether AI models get finance numbers right. Free under CC BY 4.0." />
+<link rel="canonical" href="https://canlicapital.com/datasets/filing-facts" />
+<meta name="author" content="Arhan Canli" />
+<meta name="canli:sources" content="datasets/filing-facts/index.json" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="FilingFacts: an open dataset of SEC filing questions for AI" />
+<meta property="og:description" content="2,243 questions on 402 companies with answers computed from SEC XBRL filings, for testing whether AI models get finance numbers right. Free under CC BY 4.0." />
+<meta property="og:url" content="https://canlicapital.com/datasets/filing-facts" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Dataset","name":"FilingFacts","alternateName":"FilingFacts SEC filing questions","description":"2,243 questions on 402 companies with answers computed from SEC XBRL filings, for testing whether AI models get finance numbers right. Free under CC BY 4.0.","url":"https://canlicapital.com/datasets/filing-facts","sameAs":"https://canlicapital.com/benchmarks/filingfacts","license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"version":"1","creator":{"@type":"Person","name":"Arhan Canli","url":"https://canlicapital.com/founder"},"dateModified":"2026-10-23","keywords":["SEC filings","XBRL","financial benchmark","LLM evaluation","finance question answering","restatements"],"distribution":[{"@type":"DataDownload","name":"v1, all","contentUrl":"https://canlicapital.com/datasets/filing-facts/v1/filing-facts-v1-all.jsonl","encodingFormat":"application/jsonl"},{"@type":"DataDownload","name":"v1, fresh","contentUrl":"https://canlicapital.com/datasets/filing-facts/v1/filing-facts-v1-fresh.jsonl","encodingFormat":"application/jsonl"},{"@type":"DataDownload","name":"v0","contentUrl":"https://canlicapital.com/datasets/filing-facts/v0/filing-facts-v0.jsonl","encodingFormat":"application/jsonl"}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com/"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"FilingFacts dataset","item":"https://canlicapital.com/datasets/filing-facts"}]}]}</script>
+<!-- site-design:start -->
+<link rel="stylesheet" href="/css/product-shell.css" />
+<!-- site-design:end -->
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="/mcp-servers">canli-mcp</a>
+<a class="cc-shell__link" href="/companies">Company data</a>
+<a class="cc-shell__link" href="/research" data-current="true">Research</a>
+<a class="cc-shell__link" href="/performance">Performance</a>
+<a class="cc-shell__link" href="/developers">Developers</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Use it</span>
+        <nav aria-label="Products and tools"><a class="cc-shell__panel-link" href="/mcp-servers">canli-mcp, the MCP server</a>
+<a class="cc-shell__panel-link" href="/mcp-servers/answers">Questions it answers</a>
+<a class="cc-shell__panel-link" href="/companies">Company reference</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a>
+<a class="cc-shell__panel-link" href="/tools">Calculators</a>
+<a class="cc-shell__panel-link" href="/developers">Developer API</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Research and record</span>
+        <nav aria-label="Research and record"><a class="cc-shell__panel-link" href="/research" data-current="true">Research</a>
+<a class="cc-shell__panel-link" href="/benchmarks/finance-mcp-servers">MCP benchmark</a>
+<a class="cc-shell__panel-link" href="/performance">Performance</a>
+<a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live record</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">About and trust</span>
+        <nav aria-label="About and trust"><a class="cc-shell__panel-link" href="/vision">Vision</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/contributors">Contributors</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Source code</span>
+        <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
+<a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
+<a class="cc-shell__panel-link" href="/standards/paper-evidence">Evidence standard</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac (engine)</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
+      </div>
+      <div class="cc-shell__panel-foot">
+        <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span>Public paper record</span></a>
+        <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      </div>
+    </div>
+  </details>
+  <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
+  <a class="cc-shell__cta" href="/mcp-servers#install">Add canli-mcp</a>
+  <script type="module" src="/js/navigation.js"></script>
+</header>
+<main class="paper__main" id="content"><header class="cc-hero" data-scene="canyon"><picture class="cc-hero__art" aria-hidden="true"><source type="image/avif" media="(max-width: 768px)" srcset="/scenes/canyon-900.avif"><source type="image/webp" media="(max-width: 768px)" srcset="/scenes/canyon-900.webp"><source type="image/avif" srcset="/scenes/canyon-1600.avif 1600w, /scenes/canyon-2400.avif 2400w" sizes="100vw"><source type="image/webp" srcset="/scenes/canyon-1600.webp 1600w, /scenes/canyon-2400.webp 2400w" sizes="100vw"><img src="/scenes/canyon-1600.webp" alt="" width="1600" height="560" fetchpriority="high" decoding="async"></picture><div class="cc-hero__inner"><nav class="paper__crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Canli Capital</a></li><li><a href="/research">Research</a></li><li><span aria-current="page">FilingFacts dataset</span></li></ol></nav><p class="paper__eyebrow">Dataset</p><h1 class="paper__title">FilingFacts: an open dataset of SEC filing questions for AI</h1><p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital. Free under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p></div></header>
+  <article class="paper__article">
+
+
+
+
+    <div class="paper__body">
+      <p class="hub__standfirst">2,243 questions on 402 companies with answers computed from SEC XBRL filings, for testing whether AI models get finance numbers right. Free under CC BY 4.0.</p>
+      <h2>Download</h2>
+      <div class="ds__wrap" role="region" aria-label="FilingFacts releases" tabindex="0"><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="ds__table">
+        <caption>Each release is one JSON Lines file, with one question on each line</caption>
+        <thead><tr><th scope="col">Release</th><th scope="col">Questions</th><th scope="col">Companies</th><th scope="col">What it is</th><th scope="col">File and SHA256</th></tr></thead>
+        <tbody><tr><th scope="row">v1, all</th><td>2,243</td><td>402</td><td>v0's question types plus restatements: what a company first reported for a period, against what it reports now.</td><td><a href="/datasets/filing-facts/v1/filing-facts-v1-all.jsonl">filing-facts-v1-all.jsonl</a> (2.1 MB)<code class="ds__hash">889b70205de40640b52c7f343d92bf5c638edc0ec61cbee08ec6cc7884b3a8a0</code></td></tr><tr><th scope="row">v1, fresh</th><td>241</td><td>55</td><td>Only facts filed after 2026-04-01, for testing models on filings newer than their training data.</td><td><a href="/datasets/filing-facts/v1/filing-facts-v1-fresh.jsonl">filing-facts-v1-fresh.jsonl</a> (0.2 MB)<code class="ds__hash">4587aa097b2182e6c901d02d439ba3b63eae6eee7a1608731ee454f196fe65de</code></td></tr><tr><th scope="row">v0</th><td>1,882</td><td>402</td><td>The first release. The published benchmark runs use this set.</td><td><a href="/datasets/filing-facts/v0/filing-facts-v0.jsonl">filing-facts-v0.jsonl</a> (1.7 MB)<code class="ds__hash">c01b9e3e660ff341017532718e6bc8f7fe96d1ffa68d86236c53e73ae3149d7d</code></td></tr></tbody>
+      </table></div><!-- design-table:end --></div>
+      <h2>Question types</h2>
+      <div class="ds__wrap" role="region" aria-label="Question types in each release" tabindex="0"><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="ds__table">
+        <caption>Number of questions of each type in each release</caption>
+        <thead><tr><th scope="col">Type</th><th scope="col">What it asks</th><th scope="col">v1, all</th><th scope="col">v1, fresh</th><th scope="col">v0</th></tr></thead>
+        <tbody><tr><th scope="row">lookup</th><td>One value as reported in a named filing.</td><td>402</td><td>55</td><td>402</td></tr><tr><th scope="row">change</th><td>The percent change of one figure between two years or balance dates.</td><td>402</td><td>55</td><td>402</td></tr><tr><th scope="row">ratio</th><td>A ratio of two figures for the same period, such as a margin.</td><td>402</td><td>54</td><td>402</td></tr><tr><th scope="row">net assets</th><td>Total assets minus total liabilities at one date.</td><td>338</td><td>47</td><td>338</td></tr><tr><th scope="row">restatement</th><td>The value first reported for a year, which the company may have changed since.</td><td>361</td><td>15</td><td>None</td></tr><tr><th scope="row">unanswerable</th><td>A period the XBRL filings do not cover. The right answer is to say so.</td><td>338</td><td>15</td><td>338</td></tr></tbody>
+      </table></div><!-- design-table:end --></div>
+      <h2>One question from the fresh set</h2>
+      <p>Using AAR CORP.'s annual XBRL data, by what percentage did net deferred tax assets change from its balance as of 2025-05-31 to its balance as of 2026-05-31? Give the change relative to the earlier value's magnitude, as a percent to two decimals.</p>
+      <p><strong>Answer:</strong> 14.72 percent.</p>
+      <div class="ds__wrap" role="region" aria-label="The filing facts behind this answer" tabindex="0"><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="ds__table">
+        <caption>The filing facts behind this answer</caption>
+        <thead><tr><th scope="col">Figure</th><th scope="col">Period end</th><th scope="col">Value</th><th scope="col">Filed</th><th scope="col">Accession number</th></tr></thead>
+        <tbody><tr><th scope="row">DeferredTaxAssetsNet</th><td>2025-05-31</td><td>48900000</td><td>2026-07-22</td><td>0001104659-26-085459</td></tr><tr><th scope="row">DeferredTaxAssetsNet</th><td>2026-05-31</td><td>56100000</td><td>2026-07-22</td><td>0001104659-26-085459</td></tr></tbody>
+      </table></div><!-- design-table:end --></div>
+      <p>Every answer names the filing facts it comes from, down to the accession number, so you can check any item at the SEC.</p>
+      <h2>Load it</h2>
+      <pre class="ds__code" tabindex="0"><code>curl -O https://canlicapital.com/datasets/filing-facts/v1/filing-facts-v1-all.jsonl
+shasum -a 256 filing-facts-v1-all.jsonl
+
+python3 -c "
+import json
+items = [json.loads(line) for line in open('filing-facts-v1-all.jsonl')]
+print(len(items), items[0]['question'])"</code></pre>
+      <h2>Results and tools</h2>
+      <ul>
+        <li><a href="/benchmarks/filingfacts">The FilingFacts benchmark</a> scores AI models on the v0 questions, with and without a tool that reads the filings.</li>
+        <li><a href="/mcp-servers">canli-mcp</a> gives a model the filings themselves, so it can answer from the source.</li>
+        <li><a href="https://github.com/arhancanli/canlicapital/tree/main/scripts/datasets/filing-facts">The generator and scoring harness</a> are open source.</li>
+        <li><a href="/research/filing-facts-v0">The v0 dataset card</a> has its method in full, and <a href="/research/citations/filing-facts-v0.bib">a citation</a>.</li>
+      </ul>
+      <h2>Limits</h2>
+      <ul>
+        <li>Answers are computed from the companies' XBRL data and rechecked by a separate program. No expert has reviewed them yet; <a href="/annotate">you can help check them</a>.</li>
+        <li>XBRL can differ from the filing's text, and a company can tag a figure wrongly. A computed answer inherits that.</li>
+        <li>15 restatement items in v1 ask for a year's figure but cite a shorter period. <a href="/datasets/filing-facts/v1/ERRATA.md">The errata</a> lists them; score them out.</li>
+      </ul>
+    </div>
+  </article>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
+  <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
+    <h2 id="cc-footer-dev-title">Build on it</h2>
+    <div class="cc-footer__dev-item">
+      <span>MCP server</span>
+      <p>Finance tools for Claude, Cursor or any MCP client: filings, markets, quant and backtests.</p>
+      <code>npx -y canli-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">canli-mcp</a><a href="/mcp-servers/answers">Questions it answers</a><a href="https://www.npmjs.com/package/canli-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-mcp" rel="noreferrer">MCP Registry</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Open source</span>
+      <p>The engine, the point-in-time lake and the backtester, in public.</p>
+      <nav aria-label="GitHub repositories"><a href="https://github.com/arhancanli/alphac" rel="noreferrer">arhancanli/alphac</a><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">arhancanli/canli-pit-lake</a><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">arhancanli/canli-backtest</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Validation API</span>
+      <p>Free API key. Deflated Sharpe, overfitting and cost checks over HTTP.</p>
+      <nav aria-label="Validation API"><a class="cc-footer__dev-cta" href="/developers#quickstart">Get a free API key</a></nav>
+    </div>
+  </section>
+  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
+    <div class="cc-handoff__viewport">
+      <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
+      <div class="cc-handoff__stage" aria-hidden="true">
+        <svg class="cc-handoff__route" viewBox="0 0 1000 300" preserveAspectRatio="none"><path class="cc-handoff__track" d="M120 210C280 210 310 85 500 85S720 210 880 210"/><path class="cc-handoff__trace" pathLength="1" d="M120 210C280 210 310 85 500 85S720 210 880 210"/></svg>
+        <div class="cc-handoff__dock cc-handoff__dock--inputs"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__gate"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__dock cc-handoff__dock--record"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__packet">
+          <img src="/cinema/optical-master-v3-1536.webp" width="1536" height="1536" loading="lazy" alt="" />
+        </div>
+      </div>
+      <div class="cc-handoff__steps">
+        <a href="/research" data-handoff-step="0"><span>Define</span><strong>The research packet</strong><small>Inputs, rules and the failed trials.</small><em>Inspect the research ↗</em></a>
+        <a href="/developers#validation" data-handoff-step="1"><span>Reproduce</span><strong>The calculation receipt</strong><small>Your inputs. Declared arithmetic.</small><em>Explore the validation API ↗</em></a>
+        <a href="/verify" data-handoff-step="2"><span>Inspect</span><strong>The published record</strong><small>Sources, corrections and boundaries.</small><em>Verify the evidence ↗</em></a>
+      </div>
+      <p class="cc-handoff__boundary">Conceptual workflow. This animation sends no request. A receipt is not proof of future returns.</p>
+    </div>
+  </section></details>
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/record">Paper record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/benchmarks/finance-mcp-servers">Finance MCP benchmark</a>
+      <a href="/benchmarks/filingfacts">FilingFacts benchmark</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/costs">What costs are charged</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+      <a href="/companies">Company reference</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/vision">Vision</a>
+      <a href="/stats">MCP downloads</a>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Performance</a>
+      <a href="/founder">Arhan Canli</a>
+    </nav>
+    <nav aria-label="Calculators">
+      <span>Run it yourself</span>
+      <a href="/tools">All calculators</a>
+      <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/backtest-overfitting">Backtest overfitting calculator</a>
+      <a href="/tools/selection-risk">Selection Risk Lab</a>
+      <a href="/tools/breadth">Breadth Lab</a>
+      <a href="/tools/execution">Execution Reality Lab</a>
+      <a href="/tools/trial-accounting">Trial accounting</a>
+      <a href="/tools/evidence-chain">Evidence chain</a>
+    </nav>
+    <nav aria-label="Open source">
+      <span>Source code</span>
+      <a href="/developers">Developers</a>
+      <a href="/developers#quickstart">Get an API key</a>
+      <a href="/developers#ai-assistant">Connect the MCP server</a>
+      <a href="/engineering">Engineering</a>
+      <a href="/notes">Engineering notes</a>
+      <a href="/standards/paper-evidence">Evidence standard</a>
+      <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
+      <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+      <a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Engineered independently by Arhan Canli in Dubai since July 2024. Inspect the
+    <a href="/performance">public paper record and its observation dates</a>.
+    Earlier engineering is not a track record.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+  <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
+  <script type="module" src="/js/site-motion.js"></script>
+</footer>
+</body>
+</html>

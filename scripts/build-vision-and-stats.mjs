@@ -165,7 +165,7 @@ export function visionFigures({ h2h, stats, leaderboard }) {
 export function renderVision({ h2h, stats, leaderboard }) {
   const route = "/vision";
   const title = "What Canli Capital is building";
-  const description = "Canli Capital is building the research platform for quants and AI agents in finance, in the open, in five branches (MCP servers, data and annotation, a sleeve library, the ALPHAC engine and a breakthroughs lab) feeding flagship funds from the US.";
+  const description = "Canli Capital is building an open research platform for quants and AI agents in five branches: MCP servers, data, a sleeve library, ALPHAC and a breakthroughs lab.";
   const f = visionFigures({ h2h, stats, leaderboard });
   const schema = { "@context": "https://schema.org", "@graph": [ORGANIZATION,
     { "@type": "AboutPage", name: title, description, url: `${ORIGIN}${route}`, about: { "@id": `${ORIGIN}/#organization` } }, breadcrumbList(VISION_TRAIL)] };
