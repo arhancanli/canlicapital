@@ -13,6 +13,8 @@ Ten new tools, 74 in all, each from the body that keeps the record and without a
 - World: `world_yields` (US, euro area, UK, Japan and Canada side by side, each curve's date and basis
   stated) and `credit_cycle` (the BIS credit-to-GDP gap).
 - `dividend_history`: payments, totals by year, trailing yield, growth, streak and splits.
+- With prices off, as on the hosted server, `market_overview` says so instead of answering with empty
+  lists, and the price tools' message tells a hosted user to run the local server.
 - Names match only when every word of the name is in the record, so a near miss is refused. Each tool
   says what it cannot show: an empty sanctions answer is not clearance, complaints are unverified and
   not adjusted for size, enforcement feeds reach back only so far.

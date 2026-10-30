@@ -621,7 +621,7 @@ export async function priceHistory(session, args) {
   // and stocks listed abroad come from Yahoo's chart data unless keyless prices are turned off.
   if (p && p.name !== "yahoo" && !want.us_listed) p = priceProvider({ ...session.env, ALPACA_API_KEY_ID: "", APCA_API_KEY_ID: "", ALPACA_PAPER_KEY_ID: "", TIINGO_API_KEY: "" });
   if (!p) throw new Error(want.us_listed
-    ? "Keyless prices are off (CANLI_KEYLESS_PRICES=0). Set ALPACA_API_KEY_ID and ALPACA_API_SECRET_KEY (a free Alpaca account; paper keys work) or TIINGO_API_KEY, or pass prices to the analysis tools as a CSV file."
+    ? "Prices are off on this server (CANLI_KEYLESS_PRICES=0). On the hosted server, run the local one for prices: npx -y canli-mcp. Locally, set ALPACA_API_KEY_ID and ALPACA_API_SECRET_KEY (a free Alpaca account; paper keys work) or TIINGO_API_KEY, or pass prices to the analysis tools as a CSV file."
     : `${want.symbol} is not a US-listed stock, and its prices come only from Yahoo's chart data, which is off (CANLI_KEYLESS_PRICES=0).`);
   const symbol = want.symbol;
   const start = a.start ?? daysAgo(session, 365), end = a.end ?? today(session);
