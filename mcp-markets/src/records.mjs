@@ -11,7 +11,9 @@ import { getEncodedText, getJson, getText, NotFound, own, resolveEntity } from "
 const DATE = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "a date as YYYY-MM-DD");
 const NOISE = new Set(["inc", "incorporated", "corp", "corporation", "co", "company", "ltd", "limited", "llc", "plc", "lp", "the", "of", "and", "sa", "ag", "nv", "se"]);
 const TICKER = /^[A-Z]{1,5}(?:[.-][A-Z])?$/;
-const decode = (s) => String(s).replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, "\"").replace(/&#0?39;|&apos;/g, "'").trim();
+const ENTITIES = { amp: "&", lt: "<", gt: ">", quot: "\"", apos: "'", "#39": "'", "#039": "'" };
+// One pass, so "&amp;lt;" stays "&lt;".
+const decode = (s) => String(s).replace(/&(amp|lt|gt|quot|apos|#0?39);/g, (_, name) => ENTITIES[name]).trim();
 const clip = (s, n) => { const t = String(s ?? "").replace(/\s+/g, " ").trim(); return t.length > n ? `${t.slice(0, n).replace(/\s+\S*$/, "")} ...` : t; };
 const iso = (ms) => new Date(ms).toISOString().slice(0, 10);
 

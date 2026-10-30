@@ -22,6 +22,10 @@ const session = (rules) => createSession({
   },
 });
 
+test("feed entities decode once", () => {
+  assert.equal(parseFeed("<item><title>A &amp; B &amp;lt;x</title><link>u</link></item>")[0].respondents, "A & B &lt;x");
+});
+
 test("names match only when every word is there, whole", () => {
   assert.deepEqual(keyWords("Apple Inc."), ["apple"]);
   assert.equal(namesMatch("Newell Brands, Inc. and Michael B. Polk", "Newell Brands"), true);
@@ -50,7 +54,7 @@ const CFPB_AGG = (n) => ({ hits: { total: { value: n } }, _meta: { last_indexed:
   timely: { timely: { buckets: [{ key: "Yes", doc_count: 90 }, { key: "No", doc_count: 10 }] } }, company_response: { company_response: { buckets: [{ key: "Closed with explanation", doc_count: 80 }] } },
 } });
 test("consumer_complaints: a whole-word company, in-time share, and the limit on comparing counts", async () => {
-  const s = session([[/date_received_min/, CFPB_AGG(25)], [/consumerfinance\.gov/, CFPB_AGG(100)]]);
+  const s = session([[/date_received_min/, CFPB_AGG(25)], [/^https:\/\/www\.consumerfinance\.gov\//, CFPB_AGG(100)]]);
   const r = await consumerComplaints(s, { company: "Wells Fargo" });
   assert.equal(r.company, "WELLS FARGO & COMPANY");
   assert.deepEqual([r.complaints, r.last_12_months, r.answered_in_time_pct], [100, 25, 90]);
@@ -97,7 +101,7 @@ test("the one redirect allowed goes to the named host only; evidence never holds
 });
 
 test("federal_rules: fields read, unknown agency refused", async () => {
-  const s = session([[/federalregister\.gov/, fixture("fedreg.json")]]);
+  const s = session([[/^https:\/\/www\.federalregister\.gov\//, fixture("fedreg.json")]]);
   const r = await federalRules(s, { query: "climate disclosure", agency: "sec" });
   assert.ok(r.matched >= 2);
   assert.ok(r.rows.every((x) => /^\d{4}-\d{2}-\d{2}$/.test(x[0]) && x[7].startsWith("https://www.federalregister.gov/")));
@@ -126,9 +130,9 @@ test("identifiers: check digits, kinds, and a mistyped one refused before any re
   const counting = createSession({ env: {}, now: () => NOW, fetchImpl: async () => { calls++; return new Response("[]"); } });
   await assert.rejects(securityIdentifiers(counting, { id: "US0378331006" }), /check digit is wrong/);
   assert.equal(calls, 0);
-  const r = await securityIdentifiers(session([[/openfigi/, fixture("figi.json")]]), { id: "us0378331005" });
+  const r = await securityIdentifiers(session([[/^https:\/\/api\.openfigi\.com\//, fixture("figi.json")]]), { id: "us0378331005" });
   assert.deepEqual(r.rows[0].slice(0, 3), ["BBG000B9XRY4", "APPLE INC", "AAPL"]);
-  await assert.rejects(securityIdentifiers(session([[/openfigi/, [{ warning: "No identifier found." }]]]), { id: "AAPL" }), /no security for AAPL/);
+  await assert.rejects(securityIdentifiers(session([[/^https:\/\/api\.openfigi\.com\//, [{ warning: "No identifier found." }]]]), { id: "AAPL" }), /no security for AAPL/);
 });
 
 test("legal_entity: the exact name first, its parents and children; a partial name refused", async () => {
@@ -149,7 +153,7 @@ test("world curves parse each source's format, and one that fails leaves the oth
   assert.deepEqual([jp.as_of, jp.yields["10Y"]], ["2026-10-29", 2.876]);
   const uk = boeCurve("DATE,IUDSNZC,IUDMNZC,IUDLNZC\n01 Oct 2026,4.9,5.424,5.7\n28 Oct 2026,4.964,5.322,5.78\n");
   assert.deepEqual([uk.as_of, uk.yields["10Y"], uk.yields["20Y"]], ["2026-10-28", 5.322, 5.78]);
-  const s = session([[/data-api\.ecb/, fixture("ecb.csv")], [/bankofcanada/, fixture("boc.json")]]);
+  const s = session([[/^https:\/\/data-api\.ecb\.europa\.eu\//, fixture("ecb.csv")], [/^https:\/\/www\.bankofcanada\.ca\//, fixture("boc.json")]]);
   const r = await worldYields(s, { countries: ["euro", "canada", "japan"] });
   assert.deepEqual(r.columns, ["maturity", "euro", "canada"]);
   assert.ok(r.curves.japan.error, "the failed curve says so");
@@ -169,7 +173,7 @@ test("credit_cycle: ratio, trend and gap by quarter; a country with none is name
 test("dividend_history: Apple's two splits, split-adjusted payments, and a streak that stops at a gap", async () => {
   assert.equal(growthStreak({ 2021: 1, 2022: 2, 2023: 3, 2025: 4 }, 2025), 0, "a missing year ends it");
   assert.equal(growthStreak({ 2021: 1, 2022: 2, 2023: 3 }, 2023), 2);
-  const r = await dividendHistory(session([[/finance\.yahoo\.com/, fixture("yahoo-aapl.json")]]), { symbol: "aapl", years: 15 });
+  const r = await dividendHistory(session([[/^https:\/\/query1\.finance\.yahoo\.com\//, fixture("yahoo-aapl.json")]]), { symbol: "aapl", years: 15 });
   assert.equal(r.symbol, "AAPL");
   assert.deepEqual(r.splits.rows, [["2020-08-31", "4:1"], ["2014-06-09", "7:1"]]);
   assert.equal(r.rows.at(-1)[0] <= r.rows[0][0], true);
