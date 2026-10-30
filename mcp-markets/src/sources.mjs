@@ -7,7 +7,8 @@ import { createHash } from "node:crypto";
 import { inflateRawSync } from "node:zlib";
 
 import { BoundedCache } from "./bounded-cache.mjs";
-import { fetchBoundedText, ResponseReadError } from "./bounded-response.mjs";
+import { createDiskCache, freshFor } from "./disk-cache.mjs";
+import { readBoundedResponse, fetchBoundedText, ResponseReadError } from "./bounded-response.mjs";
 
 // SEC asks every client to identify itself with a contact; SEC_USER_AGENT replaces the default.
 // Other hosts get the plain product name: Treasury's servers hold any request whose User-Agent
@@ -25,6 +26,8 @@ export function createSession({ fetchImpl, env = process.env, now = () => Date.n
     sleep: sleep ?? ((ms) => new Promise((r) => setTimeout(r, ms))),
     userAgent: String(env.SEC_USER_AGENT ?? "").trim() || DEFAULT_USER_AGENT,
     cache: new BoundedCache(),
+    // On your machine, not for sessions with their own fetch (tests) or on the hosted server.
+    disk: fetchImpl || env.CANLI_DISK_CACHE === "0" || env.VERCEL ? null : createDiskCache({ env }),
     hashes: new Map(),
     secNext: 0,
   };
@@ -75,11 +78,29 @@ function witness(session, url, record) {
 // `variant` caches a second form of the same document under its own name (a filing's text for
 // read_filing, its parsed tables for filing_tables); the evidence still names the URL.
 // timeoutMs and retries: a source that can stall (GDELT) asks for less waiting than the default.
-export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false, method = "GET", body, variant, timeoutMs = TIMEOUT_MS, retries = 2 } = {}) {
+// A company that has just moved under a new holding company files its reports under the old CIK until the
+// new one's first annual report: Exxon Mobil's ticker moved in 2026 to ExxonMobil Holdings Corp. Its XBRL
+// history is read from the old filer. Remove an entry once the new filer has an annual report in XBRL.
+export const FACTS_FROM = Object.freeze(new Map([[2115436, 34088]]));
+const factsHome = (url) => url.replace(/^(https:\/\/data\.sec\.gov\/api\/xbrl\/(?:companyfacts|companyconcept)\/CIK)(\d{10})/, (whole, head, cik) => (FACTS_FROM.has(Number(cik)) ? `${head}${String(FACTS_FROM.get(Number(cik))).padStart(10, "0")}` : whole));
+
+export async function getText(session, rawUrl, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false, method = "GET", body, variant, timeoutMs = TIMEOUT_MS, retries = 2 } = {}) {
+  const url = factsHome(rawUrl);
   const key = method === "GET" ? url : `${method} ${url} ${body ?? ""}`;
   const cacheKey = variant ? `${key}#${variant}` : key;
   const hit = session.cache.lookup(cacheKey, session.now());
   if (hit) { witness(session, key, session.hashes.get(key)); return parse(hit.text); }
+  // Public data fetched in an earlier session, when still fresh for what it is.
+  const keepsOnDisk = session.disk && method === "GET" && !secret && !Object.keys(headers).length && freshFor(url) > 0;
+  const copy = keepsOnDisk ? await session.disk.read(cacheKey) : null;
+  const useCopy = () => {
+    session.hashes.delete(key);
+    session.hashes.set(key, copy.record);
+    witness(session, key, copy.record);
+    session.cache.set(cacheKey, { at: session.now(), text: copy.text });
+    return parse(copy.text);
+  };
+  if (copy && session.now() - copy.at < freshFor(url)) return useCopy();
   let text;
   // Server errors are often momentary (EDGAR full-text search answered 1 request in 12 with HTTP 500
   // on 2026-10-09): retry them, and dropped connections, twice with a short backoff.
@@ -93,6 +114,8 @@ export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024
     } catch (error) {
       const transient = !signal.aborted && (error instanceof ResponseReadError ? error.code === "HTTP" && error.status >= 500 : true);
       if (transient && attempt < retries) { await session.sleep((isOecd(url) ? 4000 : 500) * 3 ** attempt); continue; }
+      // The source is down: an older copy is better than nothing, and its retrieved_at says how old.
+      if (copy && (signal.aborted || transient)) return useCopy();
       throw fetchError(error, { url, secret, aborted: signal.aborted, maxBytes, timeoutMs });
     }
   }
@@ -104,6 +127,7 @@ export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024
   if (transform) text = transform(text);
   const value = parse(text);
   session.cache.set(cacheKey, { at: session.now(), text });
+  if (keepsOnDisk) session.disk.write(cacheKey, { at: session.now(), text, record });
   return value;
 }
 
@@ -158,6 +182,35 @@ export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024 } =
   session.hashes.set(url, record);
   witness(session, url, record);
   const text = unzipFirst(bytes);
+  session.cache.set(url, { at: session.now(), text });
+  return text;
+}
+
+// A public file that is not UTF-8 (Japan's Ministry of Finance) or that sits behind one redirect to a
+// host named here (OFAC's lists, to a signed storage address that is never shown or kept). Every
+// other fetch refuses redirects. Evidence is recorded under the stable address.
+export async function getEncodedText(session, url, { encoding = "utf-8", redirectHost = null, maxBytes = 16 * 1024 * 1024, timeoutMs = TIMEOUT_MS } = {}) {
+  const hit = session.cache.lookup(url, session.now());
+  if (hit) { witness(session, url, session.hashes.get(url)); return hit.text; }
+  const signal = AbortSignal.timeout(timeoutMs);
+  const headers = { "User-Agent": PLAIN_USER_AGENT };
+  let bytes;
+  try {
+    let response = await session.fetchImpl(url, { signal, redirect: "manual", headers });
+    if (response.status >= 300 && response.status < 400) {
+      const target = new URL(response.headers.get("location") ?? "", url);
+      await response.body?.cancel?.();
+      if (!redirectHost || !redirectHost.test(target.hostname) || target.protocol !== "https:") throw new Error(`${url} redirected to an unexpected host.`);
+      response = await session.fetchImpl(target.href, { signal, redirect: "error", headers });
+    }
+    bytes = await readBoundedResponse(response, { signal, maxBytes, as: "bytes" });
+  } catch (error) {
+    throw error instanceof Error && /unexpected host/.test(error.message) ? error : fetchError(error, { url, aborted: signal.aborted, maxBytes, timeoutMs });
+  }
+  const record = { sha256: createHash("sha256").update(bytes).digest("hex"), bytes: bytes.byteLength, retrieved_at: new Date(session.now()).toISOString() };
+  session.hashes.set(url, record);
+  witness(session, url, record);
+  const text = new TextDecoder(encoding).decode(bytes);
   session.cache.set(url, { at: session.now(), text });
   return text;
 }
@@ -239,7 +292,16 @@ export async function resolveEntity(session, query) {
   if (funds && /^\$?[A-Z]{1,5}([.-][A-Z])?$/.test(q)) throw new NotFound(`${want} is not a ticker in the SEC's files of listed companies, mutual funds and ETFs (a delisted or changed ticker, or a foreign listing). Pass the company's name or CIK instead.`);
   const filer = knownAs(nameWords(q).join(" "));
   if (filer && typeof filer !== "string") return { cik: filer.cik, name: filer.name, ticker: null, matched_by: "name" };
-  const listed = listedByName(table, q);
+  // Fund reports write names their own way: "TJX Cos Inc/The", "Lowe's Cos Inc", "Hess Corp/DE".
+  const tidied = q.replace(/\s*\/\s*(?:the|[a-z]{2,3})\s*\/?\s*$/i, "").replace(/['\u2019]/g, "").replace(/\bcos\b/i, "Companies").trim();
+  const asWritten = listedByName(table, q);
+  let listed = asWritten.length ? asWritten : listedByName(table, tidied);
+  // SEC often writes a person's name family name first ("SCHWAB CHARLES CORP"): every word, any order, if only one company fits.
+  if (!listed.length) {
+    const words = nameWords(tidied);
+    const anyOrder = words.length >= 2 ? [...new Map(Object.values(table).filter((row) => { const title = nameWords(row.title); return words.every((w) => title.includes(w)); }).map((row) => [row.cik_str, row])).values()] : [];
+    if (anyOrder.length === 1) listed = anyOrder;
+  }
   if (listed.length) {
     const [top, ...others] = listed;
     return {

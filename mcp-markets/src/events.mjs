@@ -86,6 +86,8 @@ export function pressHeadline(html, company = null) {
     if (/^(unaudited |audited )?(condensed |interim )?(consolidated |combined )?(financial (statements?|information|data)\b|financial$|balance sheets?\b|statements? of (operations|income|cash flows|financial (position|condition)))/i.test(l)) return null;
     // A dateline ("NEW YORK, June 18, 2026") or a date alone is not the headline.
     if (/^[A-Z][A-Za-z .,'&-]*,\s+[A-Z][a-z]+\.? \d{1,2},? \d{4}\b/.test(l) || /^[A-Z][a-z]+\.? \d{1,2},? \d{4}$/.test(l)) continue;
+    // A letterhead's street address is not the headline ("2929 Walnut Street").
+    if (/^\d{1,6}\s+[A-Z][\w .'-]*\b(?:street|avenue|ave|road|boulevard|blvd|drive|lane|plaza|parkway|suite)\b\.?$/i.test(l)) continue;
     const words = l.split(" ").length;
     if (words < 3 || words > 40 || l.length > 300 || !/[A-Za-z]{4,}/.test(l)) continue;
     return l;

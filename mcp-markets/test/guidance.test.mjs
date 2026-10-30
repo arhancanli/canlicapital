@@ -4,7 +4,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { compareGuidance, figuresIn, guidanceFromSentence, guidanceFromTable, guidanceFromText, measureOf, periodOf, quarterOf, resultsFromText, unglue } from "../src/guidance.mjs";
+import { compareGuidance, figuresIn, guidanceFromSentence, guidanceFromTable, guidanceFromText, measureOf, periodOf, quarterOf, resultsFromText, unglue, resultsFromTables } from "../src/guidance.mjs";
 
 const brief = (items) => items.map((x) => [x.measure ?? x.label, x.low, x.high, x.unit]);
 
@@ -249,4 +249,63 @@ test("a rate's change, a margin in dollars, a share of revenue and a change in d
   ]);
   assert.deepEqual(facts("GAAP and non-GAAP earnings per diluted share were $2.46 and $2.22, respectively.\nFor the quarter, GAAP and non-GAAP gross margins were both 75.0%.").map((x) => [x[0], x[1], x[3]]),
     [["eps", 2.46, "GAAP"], ["eps", 2.22, "non-GAAP"], ["gross_margin", 75, "GAAP and non-GAAP"]], "respectively gives one basis each; both gives both");
+});
+
+test("a guidance table whose footnote starts left of its labels (Lockheed Martin, 2026-10-22)", async () => {
+  const { parseTable } = await import("../src/tables.mjs");
+  // The release's own layout: an empty spacer cell before every label, the footnote marker in that spacer.
+  const cell = (t, span = 3) => `<td colspan="${span}">${t}</td>`;
+  const row = (...c) => `<tr>${c.join("")}</tr>`;
+  const html = `<table>${[
+    row(cell(""), cell("(in millions, except per share data)"), cell(""), cell("Current Update"), cell(""), cell("July 2026"), cell("")),
+    row(cell(""), cell("Sales"), cell(""), cell("~$80,000 - $82,000"), cell(""), cell("$79,750 - $81,750"), cell("")),
+    row(cell(""), cell("Diluted earnings per share"), cell(""), cell("~$30.35 - $30.75"), cell(""), cell("$29.95 - $30.65"), cell("")),
+    row(cell("1"), cell("Business segment operating profit and free cash flow are non-GAAP measures. See the section of this news release.", 15), cell("")),
+  ].join("")}</table>`;
+  const t = parseTable(html, "Refer to the section for factors that may impact the company's ability to achieve guidance.");
+  assert.deepEqual(t.rows.map((r) => r[0]), ["Sales", "Diluted earnings per share"], "labels survive the footnote row");
+  assert.equal(t.notes.length, 1);
+  assert.deepEqual(brief(guidanceFromTable(t)), [["revenue", 80000, 82000, "USD million"], ["revenue", 79750, 81750, "USD million"], ["eps", 30.35, 30.75, "USD per share"], ["eps", 29.95, 30.65, "USD per share"]],
+    "both columns, in millions from the table's own title row");
+});
+
+test("a results column beside the outlook is not guidance", () => {
+  const t = { caption: "Selected Financial Data", columns: ["line", "2026 Outlook", "2025 Actual"], rows: [["FAS pension expense", -370, -924]] };
+  const items = guidanceFromTable(t);
+  assert.deepEqual(items.map((x) => [x.label, x.low, x.period]), [["FAS pension expense", -370, "2026"]], "only the outlook column");
+});
+
+test("Q3 2026 releases: outlook headings, sign words, replaced ranges, results set against the outlook", () => {
+  const rows = (text) => guidanceFromText(text, { company: "x" }).map((g) => [g.measure, g.low, g.high, g.period]);
+  // A heading longer than most, "Updated", and bullets that name no verb.
+  const fnd = rows("Updated Outlook for the Fiscal Year Ending December 31, 2026\nNet sales of approximately $4,765 million to $4,835 million\nComparable store sales of approximately (3.5)% to (2.0)%\nThe 53rd week is expected to contribute approximately $65 million to net sales");
+  assert.deepEqual(fnd.map((x) => x.slice(0, 3)), [["revenue", 4765, 4835], ["comparable_sales", -3.5, -2]]);
+  // Two periods in a heading, each with lines under its own name; "between" and "and".
+  const dxc = rows("Full Fiscal Year 2027 and Third Quarter Fiscal Year 2027 Guidance\nFull Fiscal Year 2027\nTotal revenue in the range of $11.91 billion and $11.98 billion.\nAdjusted EBIT margin in the range of 5.75% to 6.25%.\nThird Quarter Fiscal 2027\nTotal revenue of $2.98 billion.");
+  assert.deepEqual(dxc, [["revenue", 11.91, 11.98, "Fiscal Year 2027"], ["ebit_margin", 5.75, 6.25, "Fiscal Year 2027"], ["revenue", 2.98, 2.98, "Third Quarter Fiscal 2027"]]);
+  assert.deepEqual(rows("Outlook\nFull year free cash flow now expected to be negative $350 million to negative $150 million.").map((x) => x.slice(0, 3)), [["free_cash_flow", -350, -150]]);
+  assert.deepEqual(rows("For the full year 2026, the Company raised its core revenue growth to a range of 4.2% to 4.5%, up from the prior guidance range of 4.0% to 4.5%.").map((x) => x.slice(1, 3)), [[4.2, 4.5]]);
+  assert.deepEqual(rows("2026 Outlook\nFFO between $2.95 and $2.99 per share, up from $2.92 and $2.98 per share.").map((x) => x.slice(0, 3)), [["ffo", 2.95, 2.99]]);
+  assert.deepEqual(rows("Adjusted EBITDAre: $107.9 million, $11.4 million above the high end of the outlook, for the quarter."), []);
+  assert.deepEqual(rows("Updates fiscal 2027 reported EPS outlook to $11.85 - $12.55.").map((x) => x.slice(1, 3)), [[11.85, 12.55]]);
+  assert.deepEqual(figuresIn("The forecasted full year tax rates are 14.5 percent and 15.5 percent in 2026 and 2025.").map((f) => [f.low, f.high]), [[14.5, 14.5], [15.5, 15.5]]);
+  assert.deepEqual(figuresIn("+6.1% to +6.5%").map((f) => [f.low, f.high]), [[6.1, 6.5]]);
+});
+
+test("an assumptions column is not its row's measure; a column per date keeps the latest; Low and High under one heading are a range", () => {
+  const ir = guidanceFromTable({ caption: "2026 Guidance", columns: ["line", "Full Year 2026", "Full Year Assumptions"], rows: [["Adjusted EPS", "$3.58 to $3.70", "Net interest expense $230M"]] });
+  assert.deepEqual(ir.map((x) => [x.measure, x.low, x.high]), [["eps", 3.58, 3.7]]);
+  const dlr = guidanceFromTable({ caption: "2026 Outlook", columns: ["line", "As of", "As of", "As of"], rows: [["Adjusted EBITDA", "$3.600 - $3.700 billion", "$3.650 - $3.750 billion", "$3.800 - $3.850 billion"]] });
+  assert.deepEqual(dlr.map((x) => [x.low, x.high]), [[3.8, 3.85]]);
+  const dxc = guidanceFromTable({ caption: "Guidance", columns: ["line", "FY27 Guidance", "FY27 Guidance"], rows: [["YoY Organic Revenue %", "-5.5%", "-5%"]] });
+  assert.deepEqual(dxc.map((x) => [x.low, x.high]), [[-5.5, -5]]);
+});
+
+test("results a release states only in a table: the newest column, whole-company rows, each measure once", () => {
+  const tables = [
+    { heading: "(In millions, except per share amounts; unaudited)", columns: ["line", "3Q26", "3Q25"], rows: [["Sales revenue", 2385, 2202], ["Enterprise revenue", 200, 60], ["Adjusted earnings per diluted share*", 1.84, 1.14]] },
+    { heading: "Statements of Earnings", columns: ["line", "Third Quarter 2025", "Third Quarter 2026"], rows: [["Net income", 10, 20], ["Sales", 1, 2]] },
+    { heading: "No years here", columns: ["line", "A", "B"], rows: [["Net income", 1, 2]] },
+  ];
+  assert.deepEqual(resultsFromTables(tables).map((r) => [r.measure, r.value, r.unit, r.basis]), [["revenue", 2385, "USD million", null], ["eps", 1.84, "USD per share", "adjusted"], ["net_income", 20, null, null]]);
 });

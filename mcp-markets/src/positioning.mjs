@@ -3,7 +3,8 @@
 // group). No key.
 import { z } from "zod";
 
-import { getJson, getText, getZipText, NotFound, own, pad10, postJson, resolveEntity } from "./sources.mjs";
+import { listedShareRatio } from "./listing.mjs";
+import { getJson, getText, getZipText, NotFound, own, pad10, postJson, resolveEntity, submissions } from "./sources.mjs";
 
 const round = (x, d = 4) => (x == null || !Number.isFinite(x) ? null : Math.round(x * 10 ** d) / 10 ** d);
 const n = (s) => (s == null || s === "" || !Number.isFinite(Number(s)) ? null : Number(s));
@@ -58,14 +59,22 @@ export async function shortInterest(session, args) {
     if (!Array.isArray(rows) || !rows.length) throw new NotFound(`FINRA has no short interest for ${symbol} on its last ${periods} settlement dates (${window[window.length - 1]} to ${window[0]}).`);
     rows.sort((x, y) => x.settlementDate.localeCompare(y.settlementDate));
     const last = rows[rows.length - 1];
-    let outstanding = null;
-    try { outstanding = await sharesOutstanding(session, (await resolveEntity(session, symbol)).cik); } catch (err) { if (!(err instanceof NotFound)) throw err; }
+    let outstanding = null, listedEquivalents = null;
+    try {
+      const { cik } = await resolveEntity(session, symbol);
+      outstanding = await sharesOutstanding(session, cik);
+      // The short position counts listed shares; a depositary share stands for several of the cover page's.
+      if (outstanding) {
+        const ratio = await listedShareRatio(session, cik, await submissions(session, cik).catch((err) => { if (err instanceof NotFound) return null; throw err; }));
+        if (ratio) listedEquivalents = outstanding.shares / ratio.shares_per_listed_share; else outstanding = null;
+      }
+    } catch (err) { if (!(err instanceof NotFound)) throw err; }
     return {
       symbol, name: last.issueName, market: last.marketClassCode,
       latest: {
         settlement_date: last.settlementDate, short_position: n(last.currentShortPositionQuantity), change: n(last.changePreviousNumber), change_pct: round(n(last.changePercent) / 100, 6),
         average_daily_volume: n(last.averageDailyVolumeQuantity), days_to_cover: n(last.daysToCoverQuantity),
-        ...(outstanding ? { pct_of_shares_outstanding: round(n(last.currentShortPositionQuantity) / outstanding.shares, 6), shares_outstanding: outstanding } : {}),
+        ...(outstanding ? { pct_of_shares_outstanding: round(n(last.currentShortPositionQuantity) / listedEquivalents, 6), shares_outstanding: outstanding } : {}),
       },
       columns: ["settlement_date", "short_position", "change", "change_pct", "average_daily_volume", "days_to_cover"],
       rows: rows.map((r) => [r.settlementDate, n(r.currentShortPositionQuantity), n(r.changePreviousNumber), round(n(r.changePercent) / 100, 6), n(r.averageDailyVolumeQuantity), n(r.daysToCoverQuantity)]),

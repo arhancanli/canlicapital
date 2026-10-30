@@ -1,5 +1,88 @@
 # Changelog
 
+## 0.8.2
+
+- Foreign issuers' results: `earnings_release` and `earnings_calendar` read Form 6-K, which has no item numbers, by
+  recognising a results release from how its documents open. TSMC, ASML, SAP, Shell, Alibaba and Novo Nordisk read.
+- A figure in NT$, HK$, A$, C$, S$, R$, RMB, won or rupees keeps its currency: TSMC's NT$29.43 had read as US dollars.
+
+## 0.8.1
+
+Wrong figures, found by asking analysts' questions across the market.
+
+- Net income. Since the 2025 reports many 10-Ks tag only the common-stockholders line or `ProfitLoss`, and
+  `NetIncomeLoss` comes from the proxy's pay table, sometimes in rounded units. `company_report` showed no net income
+  for Booking, and screens read Arista's $3.5114 billion as 3,511. The line is now followed through its tags, and a
+  figure a thousand or a million times smaller than another of the same line is passed over. `verify_claims` no longer
+  calls a true claim about such a company "not reported".
+- P/E survives a stock split the last annual EPS predates: Booking's read 0.91 and now reads 20.92.
+- Share counts tagged in thousands (Camtek, Nova) are caught against diluted shares or profit over EPS.
+- Berkshire's market value counts its A-share equivalents at 1,500 B shares each. Exxon Mobil's history is read from
+  its old filer until its new holding company has an annual report.
+- `screen_companies` filters and ranks on P/E, P/S, FCF yield and market cap across the whole market in seconds, at
+  20 prices a request. Figures no company could have are held out by name instead of ranking first.
+
+## 0.8.0
+
+Foreign filers read properly. `company_report` showed TSMC at USD 11.2 trillion: a depositary share's price times
+ordinary shares. Market value, P/E, P/S, FCF yield, short interest and yields now use the ratio from the 20-F (36 of
+39 right against the banks' published ratios, 3 unread and left blank, none wrong; `bench/listing/run.mjs`) and the
+filing's currency, with share counts checked against profit over EPS. `company_report`, `reverse_dcf`,
+`forensic_scores` and `comps` read IFRS; `comps` takes `companies`, named peers from any country.
+
+- `european_filings` was down: its source caps page size at 1,000 now, so it reads pages.
+- Event studies and the earnings calendar took Tesla's deliveries, filed under Item 2.02, for earnings. Now one
+  release a quarter.
+- Banks, brokers and insurers get "not applicable" from the accounting screens rather than a list of missing inputs.
+- `news` answers from Yahoo Finance's headlines when GDELT is over its limit, instead of waiting over a minute.
+- Fund-report names resolve: "TJX Cos Inc/The", "Lowe's Cos Inc", "Charles Schwab Corp/The".
+- Public SEC, FRED and Treasury data stays on disk between sessions (`~/.cache/canli-markets`, 512 MB at most;
+  `CANLI_DISK_CACHE=0` turns it off): `company_report` on a new session went from 7.6 s to 0.6 s, and a source that is
+  down is answered from an older copy, dated. Prices, news and keyed requests are never written.
+
+Ten new tools, 74 in all, each from the body that keeps the record and without a key:
+
+- Public records: `enforcement_actions` (SEC litigation releases and administrative proceedings),
+  `consumer_complaints` (CFPB), `product_recalls` (FDA drugs, devices and food; NHTSA vehicles),
+  `sanctions_check` (the Treasury's SDN list and aliases), `federal_rules` (Federal Register, with comment
+  deadlines). `bank_financials` lists failures by year and state.
+- Identity: `security_identifiers` (ticker, ISIN, CUSIP, SEDOL and FIGI through OpenFIGI; check digits
+  tested first) and `legal_entity` (the Global LEI register: legal name, jurisdiction, parents, children).
+- World: `world_yields` (US, euro area, UK, Japan and Canada side by side, each curve's date and basis
+  stated) and `credit_cycle` (the BIS credit-to-GDP gap).
+- `dividend_history`: payments, totals by year, trailing yield, growth, streak and splits.
+- With prices off, as on the hosted server, `market_overview` says so instead of answering with empty
+  lists, and the price tools' message tells a hosted user to run the local server.
+- Names match only when every word of the name is in the record, so a near miss is refused. Each tool
+  says what it cannot show: an empty sanctions answer is not clearance, complaints are unverified and
+  not adjusted for size, enforcement feeds reach back only so far.
+
+And `earnings_release`, read against 21 third-quarter releases filed on 2026-10-29, each keyed from its
+text first:
+
+- `earnings_release` with no accession read a quarter's first 8-K, so FMC's preliminary 8-K of
+  2026-10-15 was served instead of its results of 2026-10-29, and an accession named in the same
+  quarter was replaced by the first. It now reads the one asked for, else the newest.
+- Guidance a release gave and the tool missed: an "Updated Outlook for the Fiscal Year Ending ..."
+  heading (Floor & Decor, all of it), two periods in one heading with lines under each (DXC), a
+  footnote left of an outlook table's labels (Lockheed Martin), ranges in rows above the first plain
+  number (Sandisk's margin and expenses), "raised ... to a range of" (Veralto).
+- Wrong figures it gave: "negative $350 million to negative $150 million" came back positive and
+  split; "(3.5)% to (2.0)%" as positive or not at all; "14.5 percent and 15.5 percent" for two years
+  as one range; `Net interest expense $230M` in an assumptions column as EPS of $230 (Ingersoll Rand).
+- What is not guidance is no longer listed as guidance: the prior range it replaced, results set
+  against the outlook ("$11.4 million above the high end of the outlook"), the size of an impact,
+  "expected to contribute", a sentence that opens by reporting, footnotes. A table with a column for
+  each date the outlook was given keeps the latest (Digital Realty). "2026 Outlook | 2025 Actual"
+  leaves out the actuals.
+- `results` adds what a release states only in a comparison table (revenue, EPS, FFO), with the
+  column read and the prior year's beside it in the quote. New measures: FFO, AFFO, NOI, RevPAR, EBIT,
+  EBIT margin, net interest income and margin, combined ratio, book value per share, assets under
+  management. A range's period is the one named nearest it; a table's letterhead address is not the
+  headline.
+- Measured: `bench/analyst` 119 of 119. The new sets: fresh-4 would have scored 7 of 12 on its first run under this strict scoring, then 12
+  of 12; fresh-5, keyed before running and run once after the fixes, 6 of 6.
+
 ## 0.7.4
 
 - `treasury_yields` over several years lines each maturity up by name. The Treasury added the 4-month
@@ -93,6 +176,10 @@
   line shown negated has the opposite sign in its XBRL fact.
 - `event_study` says how day 0 is chosen.
 
+- `earnings_release` reads outlook tables whose footnote sits left of the labels (Lockheed Martin's
+  2026 outlook came back with no guidance), takes "in millions" from a table's own title row, and no
+  longer lists a results column ("2025 Actual") beside the outlook as guidance. Found by 14 new
+  questions on Q3 2026 releases, keyed before the first run (12 of 14, now 14 of 14).
 - `verify_claims` checks foreign companies: IFRS and US GAAP facts from 20-F and 40-F annual
   reports and tagged 6-K quarters, in the currency the company reports in (Novo Nordisk in DKK,
   TSMC in TWD and in its US-dollar translation, ASML's US GAAP in euros). Before, every foreign

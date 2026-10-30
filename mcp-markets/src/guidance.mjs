@@ -8,6 +8,17 @@ const SCALE = { thousand: "thousand", k: "thousand", million: "million", m: "mil
 
 // Measures people guide on, most specific first. A label that is none of these is kept as written.
 const MEASURES = [
+  ["affo", /\badjusted funds from operations\b|\baffo\b/],
+  ["ffo", /\bfunds from operations\b|\bffo\b/],
+  ["noi", /\bnet operating income\b|\bnoi\b/],
+  ["ebit_margin", /\bebit margins?\b/],
+  ["ebit", /\bebit\b|\bearnings before interest and (?:income )?taxes\b/],
+  ["revpar", /\brevpar\b/],
+  ["net_interest_income", /\bnet interest income\b/],
+  ["net_interest_margin", /\bnet interest margin\b/],
+  ["combined_ratio", /\bcombined ratio\b/],
+  ["book_value_per_share", /\bbook value per (?:common )?share\b/],
+  ["assets_under_management", /\bassets under management\b/],
   ["pretax_margin", /\bpre-?tax (?:profit |income )?margins?\b/],
   ["gross_margin", /\bgross (?:profit )?(?:margins?|rate)\b/],
   ["operating_margin", /\b(?:operating|op\.?) (?:income |profit )?margins?(?: rate)?\b/],
@@ -85,15 +96,28 @@ export function periodOf(text) {
   return null;
 }
 
+// The period named last in a text, the longest where two end together: "third quarter revenue of
+// $377 million and narrowed full year 2026 revenue outlook to" is about the full year.
+function lastPeriodIn(text) {
+  let best = null;
+  for (const re of PERIOD_RES) for (const m of String(text).matchAll(new RegExp(re.source, `${re.flags.replace("g", "")}g`))) {
+    const end = m.index + m[0].length;
+    if (!best || end > best.end + 25 || (end >= best.end - 25 && m[0].length > best.text.length)) best = { end, text: m[0] };
+  }
+  return best ? best.text.replace(/^the /i, "").trim() : null;
+}
+
 const NUM = String.raw`\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?`;
 // One figure: an optional currency, the number, an optional scale and unit.
-const FIG = new RegExp(String.raw`(?:(\$|US\$|€|£)\s?)?(?:(?<![\d.])([-−]))?(${NUM})\s?(thousand|million|billion|trillion|bn|mn|[KMBT](?![A-Za-z]))?\s?(%|percent(?:age points?)?|per cent|pts?\b|points?\b|basis points|bps)?`, "gi");
-const CONNECT = /^\s*(?:to|-|–|—|and|through)\s*$/i;
+const OTHER_DOLLARS = Object.freeze({ "NT$": "TWD", "HK$": "HKD", "A$": "AUD", "C$": "CAD", "S$": "SGD", "R$": "BRL", RMB: "CNY", "₩": "KRW", "₹": "INR" });
+// Longest first: NT$ is New Taiwan dollars, and must not read as a bare $.
+const FIG = new RegExp(String.raw`(?:(NT\$|HK\$|A\$|C\$|S\$|R\$|US\$|RMB|\$|€|£|¥|₩|₹)\s?)?(?:(?<![\d.])([-−]))?(${NUM})\s?(thousand|million|billion|trillion|bn|mn|[KMBT](?![A-Za-z]))?\s?(%|percent(?:age points?)?|per cent|pts?\b|points?\b|basis points|bps)?`, "gi");
+const CONNECT = /^\s*(?:to|-|–|—|and|through)\s*(?:\+|negative)?\s*$/i;
 const APPROX = /(?:approximately|approx\.?|about|around|roughly|nearly|close to|~|in a range around|in the range of approximately)\s*$/i;
 
 function unitOf(f, measure) {
   if (f.pct) return /basis|bps/.test(f.pct) ? "bps" : /point|pts?\b/.test(f.pct) ? "percentage points" : "%";
-  const cur = f.cur === "$" || f.cur === "US$" ? "USD" : f.cur;
+  const cur = f.cur === "$" || f.cur === "US$" ? "USD" : OTHER_DOLLARS[f.cur] ?? f.cur;
   const per = String(f.after ?? "").match(/^\s*per (?:diluted |basic )?(\w+)/)?.[1];
   if (f.cur) return per && per !== "share" ? `${cur} per ${per}` : measure === "eps" || per === "share" ? `${cur} per share` : `${cur}${f.scale ? ` ${f.scale}` : ""}`;
   return f.scale ? f.scale : null;
@@ -102,7 +126,8 @@ function unitOf(f, measure) {
 // The figures in a sentence, joined into ranges where two are linked by "to", "-" or "and",
 // with "plus or minus" applied and "approximately" noted.
 export function figuresIn(sentence, { bare = false } = {}) {
-  const s = String(sentence);
+  // "(3.5)%" is -3.5%, written so positions in the sentence stay the same.
+  const s = String(sentence).replace(/\((\d[\d,]*(?:\.\d+)?)\)\s?%/g, (m, n) => `-${n} `.padEnd(m.length - 1) + "%");
   const raw = [];
   for (const m of s.matchAll(FIG)) {
     if (!m[3]) continue;
@@ -111,7 +136,9 @@ export function figuresIn(sentence, { bare = false } = {}) {
     if (/[A-Za-z]/.test(before) && !m[1]) continue;
     const n = Number(m[3].replace(/,/g, ""));
     if (!m[1] && !m[4] && !m[5] && /^(19|20)\d{2}$/.test(m[3])) continue;
-    raw.push({ decimals: (m[3].split(".")[1] ?? "").length, at: m.index, end: m.index + m[0].length, cur: m[1] ?? null, neg: Boolean(m[2]), n: m[2] ? -n : n, scale: m[4] ? SCALE[m[4].toLowerCase()] ?? null : null, pct: m[5]?.toLowerCase() ?? null, text: m[0].trim() });
+    // "negative $350 million to negative $150 million".
+    const negative = Boolean(m[2]) || /\bnegative\s*$/i.test(s.slice(Math.max(0, m.index - 10), m.index));
+    raw.push({ decimals: (m[3].split(".")[1] ?? "").length, at: m.index, end: m.index + m[0].length, cur: m[1] ?? null, neg: negative, n: negative ? -n : n, scale: m[4] ? SCALE[m[4].toLowerCase()] ?? null : null, pct: m[5]?.toLowerCase() ?? null, text: m[0].trim() });
   }
   for (let i = 0; i < raw.length; i++) raw[i].after = s.slice(raw[i].end, raw[i].end + 30).toLowerCase();
   const out = [];
@@ -149,7 +176,11 @@ export function figuresIn(sentence, { bare = false } = {}) {
     let item;
     // A range joins figures of one kind: "4% to $2.4 billion" is a change and an amount, not a range.
     const sameKind = b && !((a.pct && (b.cur || b.scale)) || (b.pct && (a.cur || a.scale)) || (a.pct && b.pct && /basis|bps/.test(a.pct) !== /basis|bps/.test(b.pct)));
-    if (b && sameKind && CONNECT.test(s.slice(a.end, b.at)) && (a.cur || b.cur || a.pct || b.pct || a.scale || b.scale)) {
+    const joined = s.slice(a.end, b?.at ?? a.end);
+    // "and" makes a range only after "between" or "range of"; "14.5 percent and 15.5 percent in 2026
+    // and 2025" is two values.
+    const andRange = !/\band\b/i.test(joined) || /\b(?:between|range(?:\s+of)?)\b[^,;]{0,40}$/i.test(s.slice(Math.max(0, a.at - 60), a.at));
+    if (b && sameKind && andRange && CONNECT.test(joined) && (a.cur || b.cur || a.pct || b.pct || a.scale || b.scale)) {
       // "$60-65 billion", "11% - 12%", "3.0 to 3.75 percent": the second figure's unit covers both.
       const cur = a.cur ?? b.cur, scale = a.scale ?? b.scale, pct = a.pct ?? b.pct;
       item = { at: a.at, end: b.end, low: Math.min(a.n, b.n), high: Math.max(a.n, b.n), decimals: Math.max(a.decimals, b.decimals), f: { cur, scale, pct, after: b.after } };
@@ -274,7 +305,7 @@ const NOT_A_PART = /^(?:Q[1-4]|FY|Fiscal|First|Second|Third|Fourth|Full|Quarter|
 
 const pick = (low, high) => (low === null || high === null ? null : round((low + high) / 2));
 
-const DECLINE = /\b(?:decline[sd]?|declining|down|decrease[sd]?|decreasing|lower|drop(?:ped)?|fall|fell|slipped|contract(?:ed|ion)?)\b(?:\s+(?:of|by))?(?:\s+(?:approximately|about|around|roughly))?\s*$/i;
+const DECLINE = /\b(?:decline[sd]?|declining|down|decrease[sd]?|decreasing|lower|drop(?:ped)?|fall|fell|slipped|contract(?:ed|ion)?)\b(?:\s+(?:of|by))?(?:\s+(?:approximately|about|around|roughly|~))?\s*$/i;
 const signed = (f, sentence) => DECLINE.test(sentence.slice(Math.max(0, f.at - 40), f.at)) && f.f.pct && !/basis|bps/.test(f.f.pct);
 // A change in points or basis points that is a decrease ("operating margin decreased 190 basis points").
 const fallsBy = (f, sentence) => DECLINE.test(sentence.slice(Math.max(0, f.at - 40), f.at));
@@ -302,11 +333,18 @@ const QUALITATIVE = /\b(?:(?:low|mid|high)[- ](?:single|double)[- ]digits?|(?:lo
 // The guidance items in sentences: each figure with the measure, basis and period it is for.
 export function guidanceFromSentence(sentence, context = {}) {
   const out = [];
+  let replaced = null;
   const own = new Set(String(context.company ?? "").toLowerCase().replace(/[^a-z0-9 ]+/g, " ").split(/\s+/).filter((w) => w.length > 2));
   for (const f of figuresIn(sentence)) {
     // Outside an outlook section a figure is guidance only when an expectation is stated before it
     // in its sentence ("Revenue was $89 billion" is a result; "we expect $108 billion" is not).
     if (!context.section && !FORWARD.test(sentence.slice(0, f.at))) continue;
+    // "a $639 million negative impact" is what moved a figure, not a figure guided.
+    if (/^\s*(?:negative |positive |adverse |unfavorable |favorable )?impacts?\b/i.test(sentence.slice(f.end, f.end + 30))) continue;
+    // "up from $2.92 and $2.98" is what it replaced, both figures of it.
+    if (/(?<!\brang(?:e|es|ing)\s)\bfrom\s*(?:a\s+)?$/i.test(sentence.slice(Math.max(0, f.at - 16), f.at)) || (replaced !== null && /^\s*and\s*$/i.test(sentence.slice(replaced, f.at)))) { replaced = f.end; continue; }
+    // "up from the prior guidance range of 4.0% to 4.5%" is what it replaced.
+    if (/\b(?:from|versus|compared (?:to|with)|previous(?:ly)?|prior)\b[^,;]{0,30}\b(?:prior|previous)?\s*(?:guidance|outlook|range|forecast|estimate)\b[^,;$%\d]{0,20}$/i.test(sentence.slice(Math.max(0, f.at - 60), f.at))) continue;
     const { measure, label } = measureNear(sentence, f.at, own);
     // A figure with no measure is kept only when an expectation is stated before it ("an ASR of
     // $25 billion is expected" is not guidance on a measure; "$200M raise ... reflects" neither).
@@ -320,7 +358,7 @@ export function guidanceFromSentence(sentence, context = {}) {
       ...(label && !measure ? { label } : {}),
       ...item,
       basis: basis ?? context.basis ?? null,
-      period: periodOf(sentence.slice(f.end, f.end + 40).match(/^\s*,?\s*(?:for|in|during)\s+(?:the\s+)?[^,.;]{2,36}/i)?.[0] ?? "") ?? periodOf(local) ?? periodOf(sentence.slice(f.end, f.end + 60)) ?? context.period ?? periodOf(sentence.slice(0, f.at)) ?? null,
+      period: periodOf(sentence.slice(f.end, f.end + 40).match(/^\s*,?\s*(?:for|in|during)\s+(?:the\s+)?[^,.;]{2,36}/i)?.[0] ?? "") ?? lastPeriodIn(local) ?? periodOf(sentence.slice(f.end, f.end + 60)) ?? context.period ?? periodOf(sentence.slice(0, f.at)) ?? null,
       quote: sentence.trim(),
     });
   }
@@ -341,14 +379,26 @@ export function sentences(line) {
     .reduce((acc, x) => { if (acc.length && /\b(?:U\.S|No|approx|vs|e\.g|i\.e)\.$/.test(acc[acc.length - 1])) acc[acc.length - 1] += ` ${x}`; else acc.push(x); return acc; }, []);
 }
 
-const HEADING = /^(?:[\w&,.' -]{0,40}\s)?(?:business |financial |fiscal |full[- ]year |quarterly |current |updated |annual )?(?:outlook|guidance|expectations|looking ahead)(?:\s[\w&,.' -]{0,40})?:?$/i;
+const HEADING = /^(?:[\w&,.' -]{0,70}\s)?(?:business |financial |fiscal |full[- ]year |quarterly |current |updated |annual )?(?:outlook|guidance|expectations|looking ahead)(?:\s[\w&,.' -]{0,60})?:?$/i;
 const STOP = /^(?:about |forward[- ]looking|conference call|webcast|use of non-gaap|non-gaap (?:financial )?measures?|reconciliation|safe harbor|investor (?:relations|contact)|media (?:relations|contact)|contacts?:?$|additional information|supplemental|condensed consolidated|consolidated (?:statements|balance))/i;
-const FORWARD = /\b(?:expects?|expected|expecting|expectations?|estimates?|estimated|anticipates?|anticipated|projects?|projected|forecasts?|forecasted|forecasting|guid(?:ance|es|ed|ing)|outlook|reaffirm\w*|sees|targets?|will|to be|plans? to)\b/i;
+const FORWARD = /\b(?:expects?|expected|expecting|expectations?|estimates?|estimated|anticipates?|anticipated|projects?|projected|forecasts?|forecasted|forecasting|guid(?:ance|es|ed|ing)|outlook|reaffirm\w*|sees|targets?|will|to be|plans? to|raised|raises|raising|lowered|lowers|narrowed|narrows|range of)\b/i;
 const VERBS = /\b(?:expects?|expected|expecting|anticipates?|anticipated|projects?|projected|forecasts?|forecasted|forecasting|guid(?:ance|es|ed|ing)|outlook|reaffirm\w*|raises?|raising|initiates?|maintains?|sees|targets?)\b/i;
 const BOILERPLATE = /forward-looking|risks and uncertainties|actual results (?:could|may)|undue reliance|could cause|safe harbor|based on the following|is based on (?:the )?(?:prior|last)[- ]year/i;
 
 // A line that heads a new part of a release ("Highlights", "Data Center", "Quarterly Dividend").
-const HEADING_LIKE = (line) => line.length < 60 && !/[.:;,]$/.test(line) && !/^[•▪●*-]/.test(line) && !/\d{3,}|\$/.test(line.replace(/\b20\d{2}\b/g, "")) && /^[A-Z0-9]/.test(line) && line.split(/\s+/).length <= 8;
+// A line naming only a period, under an outlook heading: "Full Fiscal Year 2027", "Third Quarter".
+const PERIOD_ONLY = /^(?:(?:for|the|full|fiscal|year|quarter|first|second|third|fourth|q[1-4]|fy ?\d{2,4}|20\d{2}|ending|and)[\s:-]*)+$/i;
+// A figure set against the outlook is a result: "$107.9 million, $11.4 million above the high end of the outlook".
+const VERSUS_OUTLOOK = /\b(?:above|below|exceed\w*|beat|ahead of|more than|high end|low end|better than)\b[^.;]{0,40}\b(?:outlook|guidance|expectations?)\b/i;
+// A part of the whole rather than the guide: "The 53rd week is expected to contribute $65 million",
+// "bookings that are expected to generate $855 million".
+const COMPONENT = /\bexpected to (?:contribute|generate|add)\b/i;
+const PAST = /\b(?:increased|decreased|jumped|grew|rose|fell|declined|was|were|signed|achieved|recorded|incurred)\b/i;
+// The verb: "reported EPS of $11.85 - $12.55" can be guidance.
+const REPORTED = /\b(?:today|we|company|corporation|inc\.?|corp\.?|llc) reported\b|\b(?:recorded|incurred)\b/i;
+const FOOTNOTE = /^\(?\d{1,2}\)\s*\S/;
+const JOINS_PERIODS = /(?:20\d{2}|fy ?\d{2,4}|year|quarter|q[1-4])\s+(?:and|&)\s+(?:the\s+)?(?:full|fiscal|first|second|third|fourth|q[1-4]|fy|20\d{2})/i;
+const HEADING_LIKE = (line) => line.length < 60 && !/[.:;,]$/.test(line) && !/^[•▪●*-]/.test(line) && !/\d{3,}|\$|%/.test(line.replace(/\b20\d{2}\b/g, "")) && /^[A-Z0-9]/.test(line) && line.split(/\s+/).length <= 8;
 
 // The outlook in a release's text: lines under an outlook heading (to the next heading), and
 // anywhere else, sentences that state an expectation with a figure. Table rows are left to
@@ -360,20 +410,29 @@ export function guidanceFromText(text, context = {}) {
   let section = null;
   const last = { quarter: null, year: null };
   lines.forEach((line, i) => {
-    if (line.length < 90 && HEADING.test(line) && !/^(?:reaffirm|raise|update|initiate|maintain|provide|issue|lower|cut|narrow|withdraw|reiterate)\w*\b/i.test(line) && !/[$%]|\d+\.\d|\d{3,}/.test(line.replace(/\b20\d{2}\b|\bfy ?\d{2,4}\b|\bq[1-4]\b/gi, ""))) {
+    if (line.length < 90 && !/\.$/.test(line) && HEADING.test(line) && !/^(?!updated\s)(?:reaffirm|raise|update|initiate|maintain|provide|issue|lower|cut|narrow|withdraw|reiterate)\w*\b/i.test(line) && !/[$%]|\d+\.\d|\d{3,}/.test(line.replace(/\b20\d{2}\b|\bfy ?\d{2,4}\b|\bq[1-4]\b/gi, ""))) {
       // "Revenue Environment and Outlook" mixes results with the outlook: its figures need an
       // expectation stated before them, as outside a section.
-      section = { heading: line, period: periodOf(line), from: i, body: 0, pure: !/\b(?:and|results|performance|environment|highlights|review|summary|recap)\b/i.test(line) };
+      section = { heading: line, period: periodOf(line), from: i, body: 0, pure: !/\b(?:and|results|performance|environment|highlights|review|summary|recap)\b/i.test(JOINS_PERIODS.test(line) ? line.replace(/\s(?:and|&)\s/gi, " ") : line) };
       return;
     }
+    // "Full Fiscal Year 2027" under a heading names the period of the lines below it.
+    const bare = line.replace(/^[•▪●◦*-]\s*/, "");
+    if (section && bare.length < 50 && PERIOD_ONLY.test(bare) && periodOf(bare)) { section.period = periodOf(bare); return; }
     if (section && (STOP.test(line) || i - section.from > 30 || (section.body > 0 && HEADING_LIKE(line)))) section = null;
     if (section) section.body++;
     // "NVIDIA's outlook for the third quarter of fiscal 2027 is as follows:" names the section's period.
     if (section && /\b(?:outlook|guidance)\b/i.test(line) && /:$/.test(line) && periodOf(line)) section.period = periodOf(line);
     if (line.includes(" | ")) return;
+    if (!section?.pure && FOOTNOTE.test(line)) return;
     for (const s of sentences(line)) {
       if (BOILERPLATE.test(s) || seen.has(s)) continue;
       const pure = Boolean(section?.pure);
+      if (COMPONENT.test(s) || (VERSUS_OUTLOOK.test(s) && !/\b(?:expects?|anticipates?|raises?|raised)\b/i.test(s))) continue;
+      if (pure && PAST.test(s) && !FORWARD.test(s)) continue;
+      // A sentence that opens by reporting: its figures are results, whatever it says of the outlook after.
+      const reportedAt = s.search(REPORTED), forwardAt = s.search(FORWARD);
+      if (reportedAt >= 0 && (forwardAt < 0 || reportedAt < forwardAt)) continue;
       if (!pure && !VERBS.test(s)) continue;
       if (!pure && !/\b(?:quarter|year|annual|fiscal|fy|q[1-4]|20\d{2}|month|period|next|full)\b/i.test(s)) continue;
       const items = guidanceFromSentence(s, { period: section?.period ?? null, section: pure, company: context.company }).filter((x) => x.measure || (x.label && x.label.length > 2));
@@ -399,16 +458,20 @@ export function isGuidanceTable(t) {
   const headings = t.rows.filter((r) => r.slice(1).every((v) => v === null || v === "")).map((r) => r[0]).slice(0, 6);
   // "Cisco expects to achieve the following results for the first quarter:" introduces one too.
   const intro = /:\s*$/.test(lastLine) && /\b(?:expects?|expected|anticipates?|outlook|guidance|forecasts?|estimates?)\b/i.test(lastLine);
-  return intro || /\b(?:outlook|guidance)\b/i.test([lastLine, t.heading ?? "", ...t.columns, ...(t.notes ?? []), ...headings].join(" "));
+  return intro || /\b(?:outlook|guidance)\b/i.test([lastLine, t.heading ?? "", ...t.columns, ...(t.notes ?? []), ...headings].join(" ").replace(new RegExp(VERSUS_OUTLOOK.source, "gi"), ""));
 }
 
 // Guidance tables (rows of measures, columns of periods or bases): each cell's figures parsed.
 export function guidanceFromTable(t) {
   const out = [];
   const head = t.columns.slice(1);
-  const ctx = `${t.caption ?? ""} ${(t.notes ?? []).join(" ")}`;
+  // The table's own title row ("(in millions, except per share data)") counts as context too.
+  const ctx = `${t.caption ?? ""} ${t.heading ?? ""} ${(t.notes ?? []).join(" ")}`;
   // "($ in billions)" in a header or caption is the scale of its dollar figures.
   const scaleIn = (text) => { const m = String(text).match(/\$\s*in\s+(thousands|millions|billions)|in\s+(thousands|millions|billions)\b/i); return m ? (m[1] ?? m[2]).toLowerCase().replace(/s$/, "") : null; };
+  // Digital Realty's outlook table: "As of" over all four columns, the dates in the row below.
+  const named = head.filter(Boolean);
+  const repeats = head.length >= 3 && named.length === head.length && new Set(named).size === 1;
   let heading = null;
   for (const raw of t.rows) {
     const label = unglue(String(raw[0] ?? "")).trim();
@@ -421,10 +484,22 @@ export function guidanceFromTable(t) {
       if (/^(?:\+\/-|±|plus or minus)$/i.test(String(raw[k] ?? "").trim()) && row.length > 1 && raw[k + 1] != null) { row[row.length - 1] = `${row[row.length - 1]} +/- ${raw[k + 1]}`; row.push(null, null); k++; continue; }
       row.push(raw[k]);
     }
+    // "Low | High" under one heading, each a single figure, is one range ("FY27 Guidance: -5.5% | -5%").
+    for (let j = 1; j + 1 < row.length; j++) {
+      const [x, y] = [row[j], row[j + 1]];
+      const single = (v) => typeof v === "number" || (typeof v === "string" && figuresIn(v).length === 1 && !/\d\s*(?:-|–|—|to)\s*[$\d]/.test(v));
+      if (head[j - 1] && head[j - 1] === head[j] && !repeats && single(x) && single(y)) { row[j] = `${x} to ${y}`; row[j + 1] = null; j++; }
+    }
     row.slice(1).forEach((cell, j) => {
       if (cell === null || cell === "" || /^unchanged$/i.test(String(cell))) return;
+      // A column for each date the outlook was given, oldest first: the last is the current one.
+      if (repeats && j < head.length - 1 && row.slice(1).filter((v) => /\d\s*(?:-|–|—|to)\s*[($+]?\d/.test(String(v ?? ""))).length >= 2) return;
       const text = typeof cell === "number" ? String(cell) : String(cell);
       const header = head[j] ?? "";
+      // A results column beside the outlook ("2026 Outlook | 2025 Actual") is not guidance.
+      if (/\b(?:actual|actuals|reported|results?)\b/i.test(header) && !/\b(?:outlook|guidance|forecast|expected)\b/i.test(header)) return;
+      // An assumptions column holds other measures' figures, not this row's ("Net interest expense $230M").
+      if (/\bassumptions?\b/i.test(header)) return;
       const sentence = `${label}: ${text}`;
       const measure = measureOf(label) ?? measureOf(header);
       const figures = typeof cell === "number" ? [{ at: label.length + 2, end: sentence.length, low: cell, high: cell, f: { cur: null, scale: null, pct: null, after: "" } }] : figuresIn(text, { bare: /\+\/-|±/.test(text) }).map((f) => ({ ...f, at: f.at + label.length + 2, end: f.end + label.length + 2 }));
@@ -547,6 +622,49 @@ export function resultsFromText(text, max = 400) {
         prev = { end: f.end, negative, measure, named };
         out.push({ measure, value, unit, basis, change, versus: change ? versusOf(s, f.end) : null, section: part, scope: scopeOf(clause) ?? scope, decimals: f.decimals, quote: s });
       }
+    }
+  }
+  return out;
+}
+
+const TABLE_RESULTS = new Set(["revenue", "gross_profit", "operating_income", "net_income", "eps", "ebitda", "ffo", "affo", "noi", "free_cash_flow", "operating_cash_flow", "net_interest_income"]);
+// Words a summary row can hold besides its measure's: "Enterprise revenue" is a part, not the total.
+const PLAIN_ROW = /\b(?:total|net|sales|revenues?|gaap|non-gaap|adjusted|core|consolidated|operating|income|loss|earnings|per|common|diluted|share|attributable|to|available|stockholders|shareholders|funds|from|operations|cash|flow|free|provided|by|activities|gross|profit|ebitda|ebitdar?e?|ffo|affo|noi|the|company|\(loss\))\b/gi;
+const yearOfHeader = (h) => {
+  const m = String(h).match(/\b(20\d{2})\b|\b[1-4]Q(\d{2})\b|\bQ[1-4][ '’-]*(\d{2})\b|\bFY ?(\d{2})\b|-(\d{2})$/i);
+  if (!m) return null;
+  const y = m.slice(1).find(Boolean);
+  return y.length === 4 ? Number(y) : 2000 + Number(y);
+};
+
+// Results in a release's comparison tables, for what its sentences leave out: many releases state
+// revenue or EPS only in a table. A table counts when its headers name at least two years, and the
+// newest column is read. Each measure once, the first table's, whole-company rows only.
+export function resultsFromTables(tables) {
+  const out = [];
+  const seen = new Set();
+  for (const t of tables) {
+    if (isGuidanceTable(t)) continue;
+    const head = t.columns.slice(1);
+    const years = head.map(yearOfHeader);
+    const known = years.filter(Boolean);
+    if (known.length < 2 || new Set(known).size < 2) continue;
+    const col = years.indexOf(Math.max(...known));
+    const prior = years.findIndex((y) => y && y < years[col]);
+    const ctx = `${t.heading ?? ""} ${String(t.caption ?? "").split(" / ").at(-1)}`;
+    const scale = ctx.match(/\b(?:in|\$) ?(thousands|millions|billions)\b/i)?.[1]?.toLowerCase().replace(/s$/, "") ?? null;
+    for (const row of t.rows) {
+      const label = unglue(String(row[0] ?? "")).replace(/[*†]+/g, "").trim();
+      const measure = measureOf(label);
+      const value = row[col + 1];
+      if (!TABLE_RESULTS.has(measure) || typeof value !== "number" || /\bbasic\b/i.test(label)) continue;
+      if (label.replace(PLAIN_ROW, "").replace(/[^A-Za-z]/g, "")) continue;
+      const basis = basisOf(label);
+      const key = `${measure}|${basis}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      const perShare = measure === "eps" || /\bper\b/i.test(label);
+      out.push({ measure, value, unit: perShare ? "USD per share" : scale ? `USD ${scale}` : null, basis, change: null, versus: null, section: null, scope: null, from: "table", quote: `${label} | ${head[col]}: ${value}${prior >= 0 ? `; ${head[prior]}: ${row[prior + 1]}` : ""}` });
     }
   }
   return out;

@@ -8,7 +8,7 @@
 // this year, marked when they have already reported. Estimates, not announcements. No key.
 import { z } from "zod";
 
-import { archiveBase, filings, getJson, getText, NotFound, resolveEntity, tickerTable } from "./sources.mjs";
+import { archiveBase, filingDocuments, filings, getJson, getText, NotFound, resolveEntity, tickerTable } from "./sources.mjs";
 
 const DAY = 86400000;
 const DATE = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "a date as YYYY-MM-DD");
@@ -33,16 +33,67 @@ export function timing(minutes) {
   return minutes < 9 * 60 + 30 ? "before the open" : minutes >= 16 * 60 ? "after the close" : "during market hours";
 }
 
-// The releases: 8-Ks carrying Item 2.02, oldest first. A second one within 20 days (a correction,
-// a supplement) belongs to the same quarter and is not a new release.
+// The releases: 8-Ks carrying Item 2.02, oldest first. A second one within 20 days (a preliminary
+// result and then the full one, a correction, a supplement) belongs to the same quarter and is not
+// a new release; members lists them all.
 export function releasesFrom(rows) {
   const out = [];
-  for (const r of [...rows].filter((x) => x.form === "8-K" && String(x.items ?? "").split(",").map((s) => s.trim()).includes("2.02")).sort((x, y) => x.filingDate.localeCompare(y.filingDate))) {
+  const eightKs = [...rows].filter((x) => x.form === "8-K" && String(x.items ?? "").split(",").map((s) => s.trim()).includes("2.02")).sort((x, y) => x.filingDate.localeCompare(y.filingDate));
+  // Between two periodic reports there is one quarter's results. An Item 2.02 8-K more than 20 days
+  // before a later one in that stretch is not them: Tesla files its quarterly deliveries this way.
+  const periodic = rows.filter((x) => /^(10-Q|10-K|20-F|40-F)/.test(x.form ?? "")).map((x) => x.filingDate).sort();
+  const nextReport = (d) => periodic.find((p) => p >= d) ?? null;
+  const interim = (r, i) => nextReport(r.filingDate) && eightKs.slice(i + 1).some((s) => nextReport(s.filingDate) === nextReport(r.filingDate) && between(r.filingDate, s.filingDate) > 20);
+  // Days into the calendar quarter. With the quarter's report yet to come, an 8-K as early in the
+  // quarter as earlier interim ones is another of them, not the results.
+  const dayOfQuarter = (d) => { const t = new Date(`${d}T00:00:00Z`); return between(`${t.getUTCFullYear()}-${String(Math.floor(t.getUTCMonth() / 3) * 3 + 1).padStart(2, "0")}-01`, d); };
+  const early = eightKs.filter(interim).map((r) => dayOfQuarter(r.filingDate));
+  const kept = eightKs.filter((r, i) => !interim(r, i) && (nextReport(r.filingDate) || !early.some((d) => Math.abs(d - dayOfQuarter(r.filingDate)) <= 5)));
+  for (const r of kept) {
     const last = out[out.length - 1];
-    if (last && between(last.date, r.filingDate) <= 20) { last.also.push(r.accessionNumber); continue; }
-    out.push({ date: r.filingDate, accession: r.accessionNumber, document: r.primaryDocument, also: [] });
+    if (last && between(last.date, r.filingDate) <= 20) {
+      last.members.push({ date: r.filingDate, accession: r.accessionNumber });
+      // Two weeks on, the later one is the full results (a preliminary figure or Tesla's deliveries came first); sooner, a correction.
+      if (between(last.date, r.filingDate) >= 14) { last.also.push(last.accession); last.date = r.filingDate; last.accession = r.accessionNumber; last.document = r.primaryDocument; }
+      else last.also.push(r.accessionNumber);
+      continue;
+    }
+    out.push({ date: r.filingDate, accession: r.accessionNumber, document: r.primaryDocument, also: [], members: [{ date: r.filingDate, accession: r.accessionNumber }] });
   }
   return out;
+}
+
+// Foreign issuers furnish results on Form 6-K, which has no item numbers, among monthly sales, dividends
+// and meeting notices. A 6-K is a results release when one of its documents opens by saying so.
+const QUARTER = "(?:first|second|third|fourth|1st|2nd|3rd|4th|march|june|september|december)[- ]quarter";
+const SAYS_RESULTS = [
+  new RegExp(`\\b${QUARTER}(?:\\s+(?:of\\s+)?(?:fiscal\\s+|fy\\s*)?\\d{4})?[^.]{0,50}\\b(?:results|earnings|eps|profit|net income|financial statements)\\b`, "i"),
+  new RegExp(`\\b(?:reports?|announces?)\\b[^.]{0,70}\\b${QUARTER}`, "i"),
+  /\bq[1-4][ -]?(?:fy)?\d{2,4}\b[^.]{0,50}\b(?:results|earnings)\b|\b(?:results|financial statements)\b[^.]{0,40}\bq[1-4][ -]?(?:fy)?\d{2,4}\b/i,
+  /\b(?:half[- ]year|first half|nine[- ]months?|interim)\b[^.]{0,40}\b(?:results|financial report)\b/i,
+  /\bquarterly statement\b/i,
+  /\bfinancial report for the (?:period|first|nine|three|six)\b/i,
+];
+const plainStart = (html) => String(html).slice(0, 40000).replace(/<[^>]+>/g, " ").replace(/&#160;|&nbsp;/g, " ").replace(/\s+/g, " ").slice(0, 4000);
+export const saysResults = (html) => { const t = plainStart(html); return !/\bmonthly revenue\b/i.test(t.slice(0, 300)) && SAYS_RESULTS.some((p) => p.test(t)); };
+
+// Up to 40 of a foreign issuer's latest 6-Ks read, as rows releasesFrom takes.
+export async function foreignResults(session, cik, rows) {
+  const sixK = rows.filter((r) => r.form === "6-K").sort((x, y) => y.filingDate.localeCompare(x.filingDate)).slice(0, 40);
+  const found = await Promise.all(sixK.map(async (r) => {
+    try {
+      const docs = (await filingDocuments(session, cik, r.accessionNumber)).filter((d) => /\.html?$/i.test(d.name) && !(d.size > 12e6));
+      for (const d of docs.slice(0, 4)) {
+        const html = await getText(session, `${archiveBase(cik, r.accessionNumber)}/${d.name}`, { maxBytes: 16 * 1024 * 1024 });
+        if (saysResults(html)) { (session.resultsDocs ??= new Map()).set(r.accessionNumber, d.name); return { ...r, form: "8-K", items: "2.02" }; }
+      }
+    } catch { /* an unreadable 6-K is passed over */ }
+    return null;
+  }));
+  // One a quarter, the first: a later 6-K with the board's approval of the same statements is not a release.
+  const kept = [];
+  for (const r of found.filter(Boolean).sort((x, y) => x.filingDate.localeCompare(y.filingDate))) if (!kept.length || between(kept.at(-1).filingDate, r.filingDate) >= 60 || r.filingDate === kept.at(-1).filingDate) kept.push(r);
+  return kept;
 }
 
 // The next release, from the release that followed the same quarter a year earlier; failing that,
@@ -88,7 +139,8 @@ async function companyCalendar(session, a) {
   const today = iso(session.now());
   // The quarters shown, and at least five, so the release a year before the latest is in hand.
   const { sub, rows } = await filings(session, e.cik, { since: plus(today, -(Math.max(a.quarters ?? 8, 5) + 1) * 92) });
-  const releases = releasesFrom(rows);
+  let releases = releasesFrom(rows);
+  if (!releases.length) releases = releasesFrom(await foreignResults(session, e.cik, rows));
   if (!releases.length) throw new NotFound(`${sub.name} has filed no 8-K under Item 2.02 (results of operations) in the period read${sub.category?.includes("foreign") || (sub.filings?.recent?.form ?? []).includes("6-K") ? "; foreign private issuers furnish results on Form 6-K, which has no item numbers" : ""}.`);
   // The quarter each release covered: the latest fiscal period end from its 10-Qs and 10-Ks in the
   // 100 days before it.

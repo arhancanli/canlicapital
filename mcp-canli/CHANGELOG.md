@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.12.2
+
+The markets pack moves to 0.8.2: `brief`, `earnings_release` and `earnings_calendar` now read foreign issuers' results
+from Form 6-K, and figures in other currencies keep them.
+
+## 0.12.1
+
+Wrong figures fixed, in the fundamentals pack (0.7.2) and the markets pack (0.8.1). `history` read proxy statements as
+filings, so Arista's latest net income came back as 3,511. `company_report` showed no net income for Booking, whose P/E
+read 0.91. Share counts tagged in thousands and Berkshire's two classes are handled, and Exxon Mobil's history is back.
+`screen_companies` now filters and ranks on P/E, P/S, FCF yield and market cap across the whole market in seconds.
+
+## 0.12.0
+
+The markets pack moves to 0.8.0: ten new tools (355 in all), and foreign filers read properly (see its changelog).
+
+- `brief`: one call on one company runs a dozen tools at once and returns one digest with flags that name their
+  evidence, each full answer under a ref. NVDA: 12 workers, 3.9K characters against 43K for the answers themselves.
+- `swarm`: one read-only tool over up to 500 companies, one ranked table back, resumable. The S&P 500 through
+  `forensic_scores`: 69 seconds, 2.6K characters returned, 480 finished, 20 failures named.
+- `stress_worlds`: a portfolio through thousands of synthetic worlds, real history resampled in blocks with real
+  crises dropped in, alone or combined, or your own shocks. 5,000 worlds across 7 scenarios in 2 seconds. Scenarios,
+  not forecasts.
+- All three are ordinary code, not model calls, so the workers cost no model tokens.
+- `run_tool` is marked destructive only when the paper pack is on: without it nothing can change an
+  account, and clients asked for confirmation on every call for no reason. The hosted server, where
+  nothing outlives a request, marks it read-only.
+
 ## 0.11.1
 
 - A view's own follow-up calls ask as a view does (`view: true`), so a long answer comes back whole.

@@ -1,6 +1,15 @@
 # canli-mcp
 
-Every Canli Capital MCP server in one: 345 finance tools for Claude, Cursor or any MCP client.
+[![npm](https://img.shields.io/npm/v/canli-mcp)](https://www.npmjs.com/package/canli-mcp)
+[![npm downloads](https://img.shields.io/npm/dw/canli-mcp)](https://www.npmjs.com/package/canli-mcp)
+[![MCP Registry](https://img.shields.io/badge/MCP_Registry-listed-blue)](https://registry.modelcontextprotocol.io/v0/servers?search=canli-mcp)
+[![Glama score](https://glama.ai/mcp/servers/arhancanli/canli-mcp/badges/score.svg)](https://glama.ai/mcp/servers/arhancanli/canli-mcp)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/arhancanli/canli-mcp/badge)](https://scorecard.dev/viewer/?uri=github.com/arhancanli/canli-mcp)
+[![CI](https://github.com/arhancanli/canli-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/arhancanli/canli-mcp/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/arhancanli/canli-mcp/actions/workflows/codeql.yml/badge.svg)](https://github.com/arhancanli/canli-mcp/actions/workflows/codeql.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue)](https://github.com/arhancanli/canli-mcp/blob/main/LICENSE)
+
+Every Canli Capital MCP server in one: 355 finance tools for Claude, Cursor or any MCP client.
 
 ```bash
 claude mcp add canli -- npx -y canli-mcp
@@ -115,7 +124,7 @@ lists grew from 39,962 to 53,974 tokens. The interactive views of 0.10.0 added 7
   words they used were then added to the index (38 and 40). For the 0.7.0 to 0.9.0 tools, 43 requests
   written before measuring: 41 first, 42 in the top three. `test/search.test.mjs` holds these and
   176 more.
-- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 345 tools; a pack's
+- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 355 tools; a pack's
   code loads the first time one of its tools runs.
 - **Data by file, not by pasting.** Any argument can be `{"$file": "prices.csv", "column": "close"}`
   (or `"columns": ["SPY", "TLT"]` or `"all"`). For 1,000 prices that is 23 tokens instead of 4,893,
@@ -126,6 +135,22 @@ lists grew from 39,962 to 53,974 tokens. The interactive views of 0.10.0 added 7
   1,000 prices and then weighting the labels took 72 tokens of tool input this way, against 31,917
   to read the labels and type them into the next call.
 - **Shorter numbers when they are enough.** `digits: 5` rounds every result.
+
+## One call, many workers
+
+Three tools fan out on the server, so the model asks once and reads one short answer. The workers are ordinary code,
+not model calls, so they cost no model tokens.
+
+- `brief` on a company runs a dozen tools at once (accounts, latest results and guidance, segments, valuation, debt,
+  accounting screens, peers, shorts, options, news, and pipelines for drug makers or call reports for banks) and
+  returns a digest with flags that name their evidence. Each full answer stays under a ref for `show_result`.
+- `swarm` runs one read-only tool over up to 500 companies and returns one ranked table, with medians and failures.
+  Long runs come back in parts with a `resume` ref. Take the names from another tool:
+  `{"tool": "forensic_scores", "over": {"tool": "index_constituents", "arguments": {"index": "VOO", "limit": 510}, "column": "name"}, "sort_by": "altman.z_score", "order": "asc"}`.
+- `stress_worlds` runs a portfolio through thousands of worlds: real market history resampled in blocks, with real
+  crises dropped in at random times and sizes, alone or together (`"bank_crisis+compute_bust"`), or your own shocks.
+  It shows the range of outcomes and how far to trust the answer. These are scenarios, not forecasts: they say what
+  a portfolio does in such a world, not how likely that world is.
 
 ## Workflows as prompts
 
@@ -395,7 +420,7 @@ feed carries on.
 | fundamentals | [canli-fundamentals-mcp](https://www.npmjs.com/package/canli-fundamentals-mcp) | 7 | SEC XBRL filings |
 | research | [canli-research-mcp](https://www.npmjs.com/package/canli-research-mcp) | 6 | the published research record and its hash chain |
 | backtest | [canli-backtest-mcp](https://www.npmjs.com/package/canli-backtest-mcp) | 11 | point-in-time SEC data and the breadth lab's own checks |
-| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 64 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank, Cboe, ECB, Bank of England, BIS, filings.xbrl.org, Polymarket, Kalshi, DefiLlama, USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index: a 13F's total equals its cover page; ESEF figures equal the same companies' Form 20-F at the SEC; central-bank rates agree with the BIS |
+| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 74 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank, Cboe, ECB, Bank of England, BIS, filings.xbrl.org, Polymarket, Kalshi, DefiLlama, USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index: a 13F's total equals its cover page; ESEF figures equal the same companies' Form 20-F at the SEC; central-bank rates agree with the BIS |
 | paper | [canli-paper-trading-mcp](https://www.npmjs.com/package/canli-paper-trading-mcp) | 5 | a simulated Alpaca paper API |
 
 Two tools differ from their standalone servers. Validation's `stress_test` is `strategy_stress_test`
