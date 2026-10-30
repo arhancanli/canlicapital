@@ -259,7 +259,7 @@ export function installPage({ flagship, install = read('config/canli-mcp.json').
   const title = 'Add canli-mcp to Claude, Cursor or VS Code';
   const description = 'Install the canli-mcp finance MCP server in Claude, Cursor, VS Code, ChatGPT, Codex, Gemini CLI, Windsurf, Cline or Zed. Free, with no API key.';
   const clients = installClients(flagship, install);
-  const howTo = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: clients.filter((c) => c.id !== 'other').map((c) => ({ '@type': 'Question', name: `How do I add canli-mcp to ${c.name}?`, acceptedAnswer: { '@type': 'Answer', text: `${c.steps.replace(/<[^>]+>/g, '')} ${c.code}` } })) };
+  const howTo = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: clients.filter((c) => c.id !== 'other').map((c) => ({ '@type': 'Question', name: `How do I add canli-mcp to ${c.name}?`, acceptedAnswer: { '@type': 'Answer', text: `${c.steps.replaceAll('<code>', '').replaceAll('</code>', '')} ${c.code}` } })) };
   const body = installBody({ nav: navOf(INSTALL_ROUTE, MCP_ROUTE, ANSWERS_ROUTE), flagship, install, buttons: installButtons(flagship, 'dev-actions'), tested: { clients: 'Claude Code, Codex and Gemini CLI', date: '2026-10-30' } });
   return document({ route: INSTALL_ROUTE, title, description, structured: [howTo], body, sources: 'benchmarks/finance-mcp-servers.json' });
 }
