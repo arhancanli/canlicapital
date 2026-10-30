@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.2
+
+- Foreign issuers' results: `earnings_release` and `earnings_calendar` read Form 6-K, which has no item numbers, by
+  recognising a results release from how its documents open. TSMC, ASML, SAP, Shell, Alibaba and Novo Nordisk read.
+- A figure in NT$, HK$, A$, C$, S$, R$, RMB, won or rupees keeps its currency: TSMC's NT$29.43 had read as US dollars.
+
 ## 0.8.1
 
 Wrong figures, found by asking analysts' questions across the market.

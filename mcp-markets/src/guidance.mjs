@@ -109,13 +109,15 @@ function lastPeriodIn(text) {
 
 const NUM = String.raw`\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?`;
 // One figure: an optional currency, the number, an optional scale and unit.
-const FIG = new RegExp(String.raw`(?:(\$|US\$|€|£)\s?)?(?:(?<![\d.])([-−]))?(${NUM})\s?(thousand|million|billion|trillion|bn|mn|[KMBT](?![A-Za-z]))?\s?(%|percent(?:age points?)?|per cent|pts?\b|points?\b|basis points|bps)?`, "gi");
+const OTHER_DOLLARS = Object.freeze({ "NT$": "TWD", "HK$": "HKD", "A$": "AUD", "C$": "CAD", "S$": "SGD", "R$": "BRL", RMB: "CNY", "₩": "KRW", "₹": "INR" });
+// Longest first: NT$ is New Taiwan dollars, and must not read as a bare $.
+const FIG = new RegExp(String.raw`(?:(NT\$|HK\$|A\$|C\$|S\$|R\$|US\$|RMB|\$|€|£|¥|₩|₹)\s?)?(?:(?<![\d.])([-−]))?(${NUM})\s?(thousand|million|billion|trillion|bn|mn|[KMBT](?![A-Za-z]))?\s?(%|percent(?:age points?)?|per cent|pts?\b|points?\b|basis points|bps)?`, "gi");
 const CONNECT = /^\s*(?:to|-|–|—|and|through)\s*(?:\+|negative)?\s*$/i;
 const APPROX = /(?:approximately|approx\.?|about|around|roughly|nearly|close to|~|in a range around|in the range of approximately)\s*$/i;
 
 function unitOf(f, measure) {
   if (f.pct) return /basis|bps/.test(f.pct) ? "bps" : /point|pts?\b/.test(f.pct) ? "percentage points" : "%";
-  const cur = f.cur === "$" || f.cur === "US$" ? "USD" : f.cur;
+  const cur = f.cur === "$" || f.cur === "US$" ? "USD" : OTHER_DOLLARS[f.cur] ?? f.cur;
   const per = String(f.after ?? "").match(/^\s*per (?:diluted |basic )?(\w+)/)?.[1];
   if (f.cur) return per && per !== "share" ? `${cur} per ${per}` : measure === "eps" || per === "share" ? `${cur} per share` : `${cur}${f.scale ? ` ${f.scale}` : ""}`;
   return f.scale ? f.scale : null;

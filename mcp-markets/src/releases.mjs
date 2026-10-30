@@ -4,7 +4,7 @@
 // it holds, and the previous release's guidance for this quarter lined up against these results.
 import { z } from "zod";
 
-import { releasesFrom } from "./earnings.mjs";
+import { foreignResults, releasesFrom } from "./earnings.mjs";
 import { pressHeadline } from "./events.mjs";
 import { documentTables } from "./filing-tables.mjs";
 import { compareGuidance, guidanceFromTable, guidanceFromText, isGuidanceTable, quarterOf, resultsFromTables, resultsFromText } from "./guidance.mjs";
@@ -27,7 +27,8 @@ async function readRelease(session, cik, accession, company) {
   const docs = await filingDocuments(session, cik, accession);
   const html = (d) => /\.(htm|html)$/i.test(d.name);
   const exhibits = docs.filter((d) => /^EX-99/.test(d.type ?? "") && html(d));
-  const main = exhibits[0] ?? docs.find((d) => /^8-K/.test(d.type ?? "") && html(d));
+  const matched = session.resultsDocs?.get(accession);
+  const main = exhibits[0] ?? docs.find((d) => d.name === matched) ?? docs.find((d) => /^(8-K|6-K)/.test(d.type ?? "") && html(d));
   if (!main) throw new NotFound(`${accession} has no press release in HTML; read_filing lists its documents.`);
   const raw = await getText(session, main.url, { maxBytes: 16 * 1024 * 1024 });
   const text = htmlToText(raw);
@@ -59,6 +60,8 @@ async function readRelease(session, cik, accession, company) {
   const results = resultsFromText(text);
   const stated = new Set(results.filter((r) => !r.section && !r.change).map((r) => `${r.measure}|${r.basis}`));
   results.push(...resultsFromTables(tables).filter((r) => !stated.has(`${r.measure}|${r.basis}`)));
+  // A table's figures say nothing of their currency, and a foreign issuer's need not be dollars.
+  if (matched) for (const r of results) if (r.from === "table" && /^USD/.test(r.unit ?? "")) r.unit = r.unit.replace("USD", "reported currency,");
   return { main, read, raw, text, tables, guidance, headline: pressHeadline(raw, company), results };
 }
 
@@ -69,8 +72,9 @@ export async function earningsRelease(session, args) {
   const e = await resolveEntity(session, a.company);
   const year = a.accession ? 2000 + Number(a.accession.slice(11, 13)) : Number((a.filed_before ?? new Date(session.now()).toISOString()).slice(0, 4));
   const { sub, rows } = await filings(session, e.cik, { since: `${year - 2}-01-01` });
-  const releases = releasesFrom(rows);
-  if (!releases.length) throw new NotFound(`${sub.name} filed no results release (8-K Item 2.02) since ${year - 2}; foreign issuers furnish results on Form 6-K.`);
+  let releases = releasesFrom(rows);
+  if (!releases.length) releases = releasesFrom(await foreignResults(session, e.cik, rows));
+  if (!releases.length) throw new NotFound(`${sub.name} filed no results release since ${year - 2}: no 8-K under Item 2.02, and none of its latest 6-Ks opens as one.`);
   let at = releases.length - 1;
   if (a.accession) {
     at = releases.findIndex((r) => r.accession === a.accession || r.also.includes(a.accession));
@@ -87,7 +91,8 @@ export async function earningsRelease(session, args) {
   let now, target;
   for (const m of candidates) {
     target = m;
-    now = await readRelease(session, e.cik, m.accession, sub.name);
+    // A foreign issuer's 6-K can be a notice that only mentions the results, next to the real one.
+    try { now = await readRelease(session, e.cik, m.accession, sub.name); } catch (err) { if (m === candidates.at(-1) && !now) throw err; continue; }
     if (now.results.length || now.guidance.length) break;
   }
   const max = a.max_lines ?? 12;

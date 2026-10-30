@@ -5,9 +5,10 @@ import { join } from "node:path";
 import { test } from "node:test";
 
 import { ifrsDebtRows } from "../src/credit.mjs";
+import { resultsFromText } from "../src/guidance.mjs";
 import { asDollarShaped, factBook, isScaleSlip, priceToEarnings, ratioFromText } from "../src/listing.mjs";
 import { createDiskCache, freshFor } from "../src/disk-cache.mjs";
-import { releasesFrom } from "../src/earnings.mjs";
+import { releasesFrom, saysResults } from "../src/earnings.mjs";
 import { choose, latestPrices, METRICS } from "../src/research.mjs";
 import { createSession, getText } from "../src/sources.mjs";
 
@@ -74,6 +75,18 @@ test("net income: a proxy's rounded figure gives way to the same line in dollars
   assert.equal(choose(def, { NetIncomeLoss: { val: 27900 }, ProfitLoss: { val: 27891000 } }).val, 27891000, "J.Jill");
   assert.equal(choose(def, { NetIncomeLoss: { val: 100 }, NetIncomeLossAvailableToCommonStockholdersBasic: { val: 90 }, ProfitLoss: { val: 110 } }).tag, "NetIncomeLoss", "preferred dividends and minorities are not a slip");
   assert.equal(choose(def, { NetIncomeLossAvailableToCommonStockholdersBasic: { val: 5404 } }).val, 5404, "only that line in the 10-K: Booking");
+});
+
+test("a 6-K is a results release when it opens by saying so, and not when it is a monthly sales report or a notice", () => {
+  for (const yes of ["TSMC Reports Third Quarter EPS of NT$29", "ASML 2026 third-quarter results", "Financial Statements US GAAP Q2 2026", "filed a quarterly statement with Deutsche Boerse AG", "Alibaba Group Announces June Quarter 2026 Results", "Financial report for the period 1 January 2026 to 30 September 2026"]) assert.ok(saysResults(`<p>${yes}</p>`), yes);
+  for (const no of ["TSMC September 2026 Revenue Report", "Notice of annual general meeting", "Transactions in own shares", "Shell plc Third Quarter 2026 Interim Dividend"]) assert.equal(saysResults(`<p>${no}</p>`), false, no);
+});
+
+test("a figure in New Taiwan dollars is not a figure in US dollars", () => {
+  const rows = resultsFromText("Net income was NT$763.06 billion and diluted earnings per share were NT$29.43. Hong Kong revenue was HK$12 billion. Costs were $5 billion.");
+  const units = rows.map((r) => r.unit).join(" | ");
+  assert.match(units, /TWD/);
+  assert.doesNotMatch(rows.filter((r) => r.value === 763.06).map((r) => r.unit).join(), /USD/);
 });
 
 test("latestPrices reads many tickers in batches, and leaves out what fails", async () => {
