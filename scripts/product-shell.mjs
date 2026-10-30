@@ -70,6 +70,8 @@ const TOP_LINKS = Object.freeze([
 const MENU = Object.freeze([
   { label: "Use it", aria: "Products and tools", links: [
     { key: "mcp-servers", label: "canli-mcp, the MCP server", href: "/mcp-servers" },
+    { key: "mcp-tools", label: "Every tool", href: "/mcp-servers/tools" },
+    { key: "mcp-how", label: "How it works and is tested", href: "/mcp-servers/how-it-works" },
     { key: "mcp-answers", label: "Questions it answers", href: "/mcp-servers/answers" },
     { key: "companies", label: "Company reference", href: "/companies" },
     { key: "datasets", label: "Financial datasets", href: "/datasets/filing-facts" },

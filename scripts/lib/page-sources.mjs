@@ -103,6 +103,8 @@ export const PAGE_SOURCES = {
     'scripts/build-mcp-pages.mjs', 'config/mcp-discovery.json', 'config/mcp-hosted-releases.json',
     ...(suffix ? [`mcp-released${suffix}`] : ['mcp-released']),
   ]])),
+  "/mcp-servers/tools": ["scripts/lib/mcp-catalog.mjs", "config/mcp-catalog.json", "mcp-canli/src/index.json"],
+  "/mcp-servers/how-it-works": ["scripts/lib/mcp-catalog.mjs", "config/mcp-testing.json", "config/canli-mcp.json"],
   "/mcp-servers/answers": [...ANSWER_SOURCES, ...ANSWER_SLUGS.map((slug) => `public/demos/canli-mcp/answers/${slug}.json`)],
   ...Object.fromEntries(ANSWER_SLUGS.map((slug) => [`/mcp-servers/answers/${slug}`, [...ANSWER_SOURCES, `public/demos/canli-mcp/answers/${slug}.json`]])),
   "/mcp-servers/execution": [

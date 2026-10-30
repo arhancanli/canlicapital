@@ -140,6 +140,7 @@ export function renderFlagship(h2h, { npmRows = [], hosted = [], demos = [], tie
   return `<section class="flagship-figures" aria-label="canli-mcp in figures"><ul>${flagshipFigures(h2h, { demos }).map(([value, label]) => `<li><b>${esc(value)}</b><span>${esc(label)}</span></li>`).join("")}</ul></section>
 ${views(f, demos, videos, videoTag)}
 <section class="dev-section flagship-section" id="does"><p class="eyebrow">What it does</p><h2>Seven packs, one process</h2><p class="flagship-intro">Each pack is also its own server, on npm and in the open. canli-mcp loads them together, so an agent reaches all ${integer.format(f.tools)} tools through one connection${f.current?.prompts ? `, with ${integer.format(f.current.prompts)} ready-made prompts` : ""}.</p>
+<p><a href="/mcp-servers/tools">See every tool, what it does and its arguments</a>. <a href="/mcp-servers/how-it-works">How it works and how it is tested</a>.</p>
 <ul class="flagship-packs">${f.packs.map((p) => {
     const row = npm.get(p.package), host = hostedBy.get(p.package);
     return `<li data-pack="${esc(p.id)}"><b class="flagship-packs__n">${p.tools}</b><h3>${esc(p.label)}</h3><p>${esc(p.covers)}</p><p class="flagship-packs__pkg"><a href="https://www.npmjs.com/package/${esc(p.package)}" rel="noreferrer"><code>${esc(p.package)}</code></a>${row ? ` ${esc(row.latest_version)}` : ""}${host ? ` · <a href="${esc(host.route)}">hosted server</a>` : ""}</p></li>`;
