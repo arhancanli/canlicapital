@@ -3,9 +3,18 @@
 **Open quant research where every published number comes with the file that produced it, including
 the strategies that failed.** Live at **[canlicapital.com](https://canlicapital.com)**.
 
-If a check here stopped you from trusting a backtest that wasn't real, a ⭐ helps other quants find it.
+**[canli-mcp](mcp-canli/README.md): 315 free finance tools for Claude, Cursor or any MCP client, behind
+three.** SEC filings and financial statements as filed, insider trades, 13F and 5% holders, options,
+FOMC decisions, macro data, quant analytics and backtest validation. MIT, no API key, runs locally:
+
+```bash
+claude mcp add canli -- npx -y canli-mcp
+```
+
+⭐ **If canli-mcp or a check here saved you time, star the repo:** stars are how other developers find it.
 
 [![GitHub stars](https://img.shields.io/github/stars/arhancanli/canlicapital?style=social)](https://github.com/arhancanli/canlicapital/stargazers)
+[![npm](https://img.shields.io/npm/v/canli-mcp?label=canli-mcp)](https://www.npmjs.com/package/canli-mcp)
 [![npm](https://img.shields.io/npm/v/canli-validation-mcp?label=canli-validation-mcp)](https://www.npmjs.com/package/canli-validation-mcp)
 [![npm](https://img.shields.io/npm/v/canli-fundamentals-mcp?label=canli-fundamentals-mcp)](https://www.npmjs.com/package/canli-fundamentals-mcp)
 [![npm](https://img.shields.io/npm/v/canli-research-mcp?label=canli-research-mcp)](https://www.npmjs.com/package/canli-research-mcp)
@@ -19,9 +28,12 @@ If a check here stopped you from trusting a backtest that wasn't real, a ⭐ hel
 ## Try it in a minute
 
 ```bash
-# Ask your AI assistant whether a backtest is real (Claude Code shown; Cursor, VS Code and
-# Claude Desktop setups are in mcp/README.md)
-claude mcp add canli -- npx -y canli-validation-mcp
+# All 315 tools in your AI assistant (Claude Code shown; Cursor, VS Code and Claude Desktop
+# setups are in mcp-canli/README.md)
+claude mcp add canli -- npx -y canli-mcp
+
+# Only the backtest validators
+claude mcp add canli-validation -- npx -y canli-validation-mcp
 
 # Or call the free API: get a key, then deflate a Sharpe ratio for the number of trials you ran
 curl -X POST https://canlicapital.com/api/v1/keys -H "Content-Type: application/json" -d '{"label":"readme"}'
