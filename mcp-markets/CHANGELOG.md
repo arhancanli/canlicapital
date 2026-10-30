@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.8.0
+
+Found by reading 21 third-quarter releases filed on 2026-10-29, each keyed from its text first.
+
+- `earnings_release` with no accession read a quarter's first 8-K, so FMC's preliminary 8-K of
+  2026-10-15 was served instead of its results of 2026-10-29, and an accession named in the same
+  quarter was replaced by the first. It now reads the one asked for, else the newest.
+- Guidance a release gave and the tool missed: an "Updated Outlook for the Fiscal Year Ending ..."
+  heading (Floor & Decor, all of it), two periods in one heading with lines under each (DXC), a
+  footnote left of an outlook table's labels (Lockheed Martin), ranges in rows above the first plain
+  number (Sandisk's margin and expenses), "raised ... to a range of" (Veralto).
+- Wrong figures it gave: "negative $350 million to negative $150 million" came back positive and
+  split; "(3.5)% to (2.0)%" as positive or not at all; "14.5 percent and 15.5 percent" for two years
+  as one range; `Net interest expense $230M` in an assumptions column as EPS of $230 (Ingersoll Rand).
+- What is not guidance is no longer listed as guidance: the prior range it replaced, results set
+  against the outlook ("$11.4 million above the high end of the outlook"), the size of an impact,
+  "expected to contribute", a sentence that opens by reporting, footnotes. A table with a column for
+  each date the outlook was given keeps the latest (Digital Realty). "2026 Outlook | 2025 Actual"
+  leaves out the actuals.
+- `results` adds what a release states only in a comparison table (revenue, EPS, FFO), with the
+  column read and the prior year's beside it in the quote. New measures: FFO, AFFO, NOI, RevPAR, EBIT,
+  EBIT margin, net interest income and margin, combined ratio, book value per share, assets under
+  management. A range's period is the one named nearest it; a table's letterhead address is not the
+  headline.
+- Measured: `bench/analyst` 119 of 119. The new sets: fresh-4 scored 9 of 12 on its first run, then 12
+  of 12; fresh-5, keyed before running and run once after the fixes, 6 of 6.
+
 ## 0.7.4
 
 - `treasury_yields` over several years lines each maturity up by name. The Treasury added the 4-month

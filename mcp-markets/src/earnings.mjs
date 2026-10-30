@@ -33,14 +33,15 @@ export function timing(minutes) {
   return minutes < 9 * 60 + 30 ? "before the open" : minutes >= 16 * 60 ? "after the close" : "during market hours";
 }
 
-// The releases: 8-Ks carrying Item 2.02, oldest first. A second one within 20 days (a correction,
-// a supplement) belongs to the same quarter and is not a new release.
+// The releases: 8-Ks carrying Item 2.02, oldest first. A second one within 20 days (a preliminary
+// result and then the full one, a correction, a supplement) belongs to the same quarter and is not
+// a new release; members lists them all.
 export function releasesFrom(rows) {
   const out = [];
   for (const r of [...rows].filter((x) => x.form === "8-K" && String(x.items ?? "").split(",").map((s) => s.trim()).includes("2.02")).sort((x, y) => x.filingDate.localeCompare(y.filingDate))) {
     const last = out[out.length - 1];
-    if (last && between(last.date, r.filingDate) <= 20) { last.also.push(r.accessionNumber); continue; }
-    out.push({ date: r.filingDate, accession: r.accessionNumber, document: r.primaryDocument, also: [] });
+    if (last && between(last.date, r.filingDate) <= 20) { last.also.push(r.accessionNumber); last.members.push({ date: r.filingDate, accession: r.accessionNumber }); continue; }
+    out.push({ date: r.filingDate, accession: r.accessionNumber, document: r.primaryDocument, also: [], members: [{ date: r.filingDate, accession: r.accessionNumber }] });
   }
   return out;
 }

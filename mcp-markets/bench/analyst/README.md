@@ -1,6 +1,6 @@
 # Analyst questions for the filings tools
 
-87 questions an analyst asks of filings, run through `financial_statements`, `filing_tables`,
+119 questions an analyst asks of filings, run through `financial_statements`, `filing_tables`,
 `earnings_release` and `verify_claims` live against SEC EDGAR, each checked against a truth built
 without the tools.
 
@@ -32,6 +32,8 @@ expected position. This is tool level: no model reads the answers.
 | fresh-3 | 14 outlooks from 12 releases filed 2026-10-19 to 10-22 (Q3 season), keyed from the releases before the first run | 12 of 14 | 14 of 14 |
 | verify | claims for `verify_claims` on companies it was not built on | 15 of 19 | 19 of 19 |
 | trap | false premises: a year not reported, a company that does not exist, a table no filing has, a release that does not exist, a dividend never paid; pass = a refusal or an empty answer, never a figure | 6 of 6 | 6 of 6 |
+| fresh-4 | Q3 2026 releases filed 2026-10-29, keyed before the first run | 9 of 12 | 12 of 12 |
+| fresh-5 | more of that day's releases, keyed before running, run once after the fixes, not tuned on | 6 of 6 | |
 
 The fresh run found four general gaps, fixed in the tools: a guidance table introduced by a
 sentence ("Cisco expects to achieve the following results:") or named by a heading row inside it;
