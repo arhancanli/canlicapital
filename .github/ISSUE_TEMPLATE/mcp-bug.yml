@@ -1,0 +1,46 @@
+name: MCP server or API bug
+description: A tool or API call returned an error, a wrong number or a confusing result
+title: "mcp: "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: server
+    attributes:
+      label: Server or API
+      options:
+        - canli-validation-mcp
+        - canli-fundamentals-mcp
+        - canli-research-mcp
+        - Validation API (HTTP)
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version and how you ran it
+      description: The npm version, the hosted endpoint or a repository checkout, plus your MCP client.
+      placeholder: canli-validation-mcp 0.13.0 with npx in Claude Code
+    validations:
+      required: true
+  - type: input
+    id: tool
+    attributes:
+      label: Tool or route
+      placeholder: validate_deflated_sharpe
+    validations:
+      required: true
+  - type: textarea
+    id: arguments
+    attributes:
+      label: Arguments or request body
+      description: Remove private data first. Never include an API key.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: What happened, and what you expected
+      description: Paste the result or error. If a number looks wrong, say what you expected and why, for example a paper's worked example, another implementation or your own calculation.
+    validations:
+      required: true
