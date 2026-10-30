@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "build-index": "node scripts/build-index.mjs",
-    "test": "node --test test/*.test.mjs"
+    "test": "node --test test/*.test.mjs test/*.test.js"
   },
   "dependencies": {
     "@modelcontextprotocol/client": "2.3.1",
