@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.12.1
+
+Wrong figures fixed, in the fundamentals pack (0.7.2) and the markets pack (0.8.1). `history` read proxy statements as
+filings, so Arista's latest net income came back as 3,511. `company_report` showed no net income for Booking, whose P/E
+read 0.91. Share counts tagged in thousands and Berkshire's two classes are handled, and Exxon Mobil's history is back.
+`screen_companies` now filters and ranks on P/E, P/S, FCF yield and market cap across the whole market in seconds.
+
 ## 0.12.0
 
 The markets pack moves to 0.8.0: ten new tools (355 in all), and foreign filers read properly (see its changelog).
