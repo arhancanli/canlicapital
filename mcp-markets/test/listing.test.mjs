@@ -94,6 +94,7 @@ test("a figure in New Taiwan dollars is not a figure in US dollars", () => {
 test("units in a title with no currency code: NXP's two currencies", () => {
   assert.equal(splitTitle("CONSOLIDATED BALANCE SHEETS - € in Millions, $ in Millions").units, "€ in Millions, $ in Millions");
   assert.equal(unitScale(splitTitle("CONSOLIDATED BALANCE SHEETS - € in Millions, $ in Millions").units, "\\$"), 1e6);
+  assert.equal(unitScale(splitTitle("CONSOLIDATED BALANCE SHEETS € in Millions, $ in Millions").units, "\\$"), 1e6, "with no dash");
 });
 
 test("latestPrices reads many tickers in batches, and leaves out what fails", async () => {
