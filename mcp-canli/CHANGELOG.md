@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.13.0
+
+- `triangulate`: a company's revenue, net income, EPS, operating income, assets, equity and cash reached by three
+  separate roads, with any disagreement named. `brief` runs it, and `swarm` runs it across an index.
+- Run across the S&P 500 (3,112 figures, 49 lines flagged), it found bugs now fixed in the markets (0.8.3) and
+  fundamentals (0.7.3) packs: names that found the wrong company, American Express's and Republic Services' revenue,
+  Comfort Systems' history and NXP's scale.
+
 ## 0.12.2
 
 The markets pack moves to 0.8.2: `brief`, `earnings_release` and `earnings_calendar` now read foreign issuers' results
