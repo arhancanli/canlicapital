@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.2
+
+- `history`, `known_as_of` and the rest no longer read proxy statements as filings of a company's results. Their
+  pay tables repeat net income in rounded units: Arista's 2025 net income came back as 3,511 rather than $3.5114
+  billion.
+- Net income follows the many 10-Ks that, since the 2025 reports, tag the common-stockholders line rather than
+  `NetIncomeLoss`.
+
 ## 0.7.1
 
 - `history` lists `other_dates`: balances annual reports also carry on dates that are not year ends,

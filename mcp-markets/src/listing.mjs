@@ -35,6 +35,8 @@ export function ratioFromText(html) {
 // One listed share in ordinary shares, read once a session from the latest 20-F. Companies filing 10-Ks
 // or 40-Fs list their shares themselves. null: the report's text gave no clear ratio.
 export async function listedShareRatio(session, cik, sub) {
+  // Berkshire reports in A-share equivalents and its listed ticker here is the B share, 1,500 to an A.
+  if (Number(cik) === 1067983) return { shares_per_listed_share: 1 / 1500, basis: "one Class A share converts into 1,500 Class B shares" };
   session.adsRatios ??= new Map();
   if (session.adsRatios.has(cik)) return session.adsRatios.get(cik);
   const rec = sub?.filings?.recent ?? {};
@@ -108,6 +110,12 @@ export async function marketValue(session, cik, sub, price, shares, { book = nul
   const ratio = await listedShareRatio(session, cik, sub);
   if (!ratio) return { market_cap: null, price_per_share: null, ratio: null, note: "This company lists depositary shares, and its annual report gave no clear ratio of ordinary shares to each, so market value is not computed." };
   const per = price / ratio.shares_per_listed_share;
+  // A count tagged in thousands or millions (Camtek's, Nova's) sits an exact power of a thousand from what
+  // profit over earnings per share implies. Any filer's slip is caught this way, whatever its accounts.
+  const earned = implied ?? (book ? sharesFromEarnings(book) : null);
+  if (shares && earned && isScaleSlip(shares, earned)) {
+    return { market_cap: per * earned, price_per_share: per, ratio, shares_used: Math.round(earned), note: `The filing's cover page tags ${shares.toLocaleString("en-US")} shares, a scale slip against the ${Math.round(earned).toLocaleString("en-US")} that its profit over earnings per share implies, so that count is used.` };
+  }
   // A 20-F's cover page can count one class of several (Alibaba's tagged count is a tenth of its shares).
   // Profit over earnings per share gives the real count: well apart, that one is used and named.
   const abroad = (sub?.filings?.recent?.form ?? []).includes("20-F");
@@ -118,12 +126,31 @@ export async function marketValue(session, cik, sub, price, shares, { book = nul
   return { market_cap: shares ? per * shares : null, price_per_share: per, ratio };
 }
 
+// Two counts apart by a thousand or a million, give or take a third.
+export function isScaleSlip(a, b) {
+  const r = a / b;
+  return [1e-6, 1e-3, 1e3, 1e6].some((k) => r / k > 2 / 3 && r / k < 1.5);
+}
+
+// P/E from the price and earnings per share, unless the market value and profit disagree with it: EPS
+// from before a stock split (Booking's, 2026) would otherwise give a P/E of 1. Market value over profit
+// holds whatever a share is.
+export function priceToEarnings({ price_per_share: per, eps, market_cap: cap, net_income: profit }) {
+  const byShare = per > 0 && eps > 0 ? per / eps : null, whole = cap > 0 && profit > 0 ? cap / profit : null;
+  if (byShare == null) return whole == null || !(eps == null) ? null : whole;
+  if (whole == null) return byShare;
+  // Apart by a thousand or a million, one of the figures is in other units, and a price is never in the wrong units.
+  if (isScaleSlip(byShare, whole)) return byShare;
+  const r = byShare / whole;
+  return r > 1.5 || r < 2 / 3 ? whole : byShare;
+}
+
 // Shares implied by the latest annual profit and earnings per share.
 export function sharesFromEarnings(book) {
   const annualRows = (tag, unit) => (book.facts[tag]?.units?.[unit] ?? []).filter((x) => /^(10-K|20-F|40-F)/.test(x.form ?? "") && x.start && (Date.parse(x.end) - Date.parse(x.start)) / 86400000 > 330);
   const latest = (tags, unit) => { for (const t of tags) { const rows = annualRows(t, unit); if (rows.length) return rows.reduce((b, x) => (x.end > b.end || (x.end === b.end && x.filed > b.filed) ? x : b)); } return null; };
   const ifrs = book.taxonomy === "ifrs-full";
-  const profit = latest(ifrs ? ["ProfitLossAttributableToOwnersOfParent"] : ["NetIncomeLoss"], book.currency);
+  const profit = latest(ifrs ? ["ProfitLossAttributableToOwnersOfParent"] : ["NetIncomeLoss", "NetIncomeLossAvailableToCommonStockholdersBasic", "ProfitLoss"], book.currency);
   const eps = latest(ifrs ? ["DilutedEarningsLossPerShare", "BasicEarningsLossPerShare"] : ["EarningsPerShareDiluted", "EarningsPerShareBasic"], `${book.currency}/shares`);
   return profit && eps && profit.end === eps.end && eps.val > 0 && profit.val > 0 ? profit.val / eps.val : null;
 }

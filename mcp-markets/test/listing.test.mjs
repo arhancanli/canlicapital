@@ -5,9 +5,11 @@ import { join } from "node:path";
 import { test } from "node:test";
 
 import { ifrsDebtRows } from "../src/credit.mjs";
-import { asDollarShaped, factBook, ratioFromText } from "../src/listing.mjs";
+import { resultsFromText } from "../src/guidance.mjs";
+import { asDollarShaped, factBook, isScaleSlip, priceToEarnings, ratioFromText } from "../src/listing.mjs";
 import { createDiskCache, freshFor } from "../src/disk-cache.mjs";
-import { releasesFrom } from "../src/earnings.mjs";
+import { releasesFrom, saysResults } from "../src/earnings.mjs";
+import { choose, latestPrices, METRICS } from "../src/research.mjs";
 import { createSession, getText } from "../src/sources.mjs";
 
 const named = "American Depositary Shares. American Depositary Shares. American Depositary Shares. ";
@@ -53,6 +55,63 @@ test("IFRS debt: the filer's total where it gives one, else loans, bonds and the
   const tsmc = { currency: "TWD", facts: { LongtermBorrowings: row(31), NoncurrentPortionOfNoncurrentBondsIssued: row(926), CurrentPortionOfLongtermBorrowings: row(59), CurrentBondsIssuedAndCurrentPortionOfNoncurrentBondsIssued: row(57) } };
   assert.equal(ifrsDebtRows(tsmc)[0].val, 31 + 926 + 59, "the current bonds are inside the current portion");
   assert.equal(ifrsDebtRows({ currency: "TWD", facts: { Borrowings: row(100), LongtermBorrowings: row(90) } })[0].val, 100);
+});
+
+test("P/E survives a stock split that the last annual EPS predates, and a share count tagged in thousands is caught", () => {
+  assert.equal(priceToEarnings({ price_per_share: 100, eps: 5, market_cap: 2000, net_income: 100 }), 20, "agreeing: price over EPS");
+  assert.equal(priceToEarnings({ price_per_share: 150, eps: 165, market_cap: 113e9, net_income: 5.4e9 }), 113e9 / 5.4e9, "EPS from before a 25-for-1 split");
+  assert.equal(priceToEarnings({ price_per_share: 100, eps: 5, market_cap: null, net_income: null }), 20);
+  assert.equal(priceToEarnings({ price_per_share: 100, eps: -1, market_cap: 2000, net_income: -50 }), null, "no earnings, no P/E");
+  assert.equal(priceToEarnings({ price_per_share: 120, eps: 2, market_cap: 5.7e9, net_income: 98000 }), 60, "profit in the proxy's thousands: the price stands");
+  assert.ok(isScaleSlip(50000, 50e6));
+  assert.ok(isScaleSlip(50e9, 50e6));
+  assert.equal(isScaleSlip(50e6, 45e6), false);
+  assert.equal(isScaleSlip(25e7, 1e7), false, "a 25-for-1 split is not a scale slip");
+});
+
+test("net income: a proxy's rounded figure gives way to the same line in dollars, and the first tag is kept otherwise", () => {
+  const def = METRICS.net_income;
+  assert.equal(choose(def, { NetIncomeLoss: { val: 3511 }, NetIncomeLossAvailableToCommonStockholdersBasic: { val: 3511400000 } }).val, 3511400000, "Arista");
+  assert.equal(choose(def, { NetIncomeLoss: { val: 27900 }, ProfitLoss: { val: 27891000 } }).val, 27891000, "J.Jill");
+  assert.equal(choose(def, { NetIncomeLoss: { val: 100 }, NetIncomeLossAvailableToCommonStockholdersBasic: { val: 90 }, ProfitLoss: { val: 110 } }).tag, "NetIncomeLoss", "preferred dividends and minorities are not a slip");
+  assert.equal(choose(def, { NetIncomeLossAvailableToCommonStockholdersBasic: { val: 5404 } }).val, 5404, "only that line in the 10-K: Booking");
+});
+
+test("a 6-K is a results release when it opens by saying so, and not when it is a monthly sales report or a notice", () => {
+  for (const yes of ["TSMC Reports Third Quarter EPS of NT$29", "ASML 2026 third-quarter results", "Financial Statements US GAAP Q2 2026", "filed a quarterly statement with Deutsche Boerse AG", "Alibaba Group Announces June Quarter 2026 Results", "Financial report for the period 1 January 2026 to 30 September 2026"]) assert.ok(saysResults(`<p>${yes}</p>`), yes);
+  for (const no of ["TSMC September 2026 Revenue Report", "Notice of annual general meeting", "Transactions in own shares", "Shell plc Third Quarter 2026 Interim Dividend"]) assert.equal(saysResults(`<p>${no}</p>`), false, no);
+});
+
+test("a figure in New Taiwan dollars is not a figure in US dollars", () => {
+  const rows = resultsFromText("Net income was NT$763.06 billion and diluted earnings per share were NT$29.43. Hong Kong revenue was HK$12 billion. Costs were $5 billion.");
+  const units = rows.map((r) => r.unit).join(" | ");
+  assert.match(units, /TWD/);
+  assert.doesNotMatch(rows.filter((r) => r.value === 763.06).map((r) => r.unit).join(), /USD/);
+});
+
+test("latestPrices reads many tickers in batches, and leaves out what fails", async () => {
+  const seen = [];
+  const session = createSession({ env: {}, sleep: async () => {}, fetchImpl: async (url) => {
+    seen.push(String(url));
+    const symbols = decodeURIComponent(String(url).match(/symbols=([^&]+)/)[1]).split(",");
+    return new Response(JSON.stringify({ spark: { result: symbols.filter((s) => s !== "GONE").map((s) => ({ symbol: s, response: [{ meta: { regularMarketPrice: 10, regularMarketTime: 1793304001 } }] })) } }), { status: 200, headers: { "content-type": "application/json" } });
+  } });
+  const tickers = [...Array.from({ length: 45 }, (_, i) => `T${i}`), "GONE"];
+  const p = await latestPrices(session, tickers);
+  assert.equal(seen.length, 3, "20 to a request");
+  assert.equal(p.size, 45);
+  assert.equal(p.get("T3").price, 10);
+  assert.equal(p.has("GONE"), false);
+  await assert.rejects(latestPrices(createSession({ env: { CANLI_KEYLESS_PRICES: "0" }, fetchImpl: async () => { throw new Error("none"); } }), ["A"]), /prices/);
+});
+
+test("a company moved under a new holding company reads its XBRL from the old filer", async () => {
+  const seen = [];
+  const session = createSession({ env: {}, fetchImpl: async (url) => { seen.push(String(url)); return new Response("{}", { status: 200 }); } });
+  await getText(session, "https://data.sec.gov/api/xbrl/companyfacts/CIK0002115436.json");
+  assert.match(seen[0], /CIK0000034088/);
+  await getText(session, "https://data.sec.gov/submissions/CIK0002115436.json");
+  assert.match(seen[1], /submissions\/CIK0002115436/, "its filings stay its own");
 });
 
 test("factBook takes the taxonomy of the latest balance sheet and its currency", () => {

@@ -351,7 +351,9 @@ const INTERIM_FORM = /^(10-Q|6-K)/;
 // look like revisions (two prospectuses on one day with different fee tables), so they are left
 // out of every chain.
 const SKIP_TAXONOMIES = new Set(["ffd"]);
-const NON_PERIODIC_FORM = /^(424B|S-\d|F-\d|POS )/;
+// Proxy statements too: their pay-versus-performance tables repeat net income in the proxy's own rounded
+// units (Arista's 2025 net income as 3,511), which read as the latest filing would replace the real figure.
+const NON_PERIODIC_FORM = /^(424B|S-\d|F-\d|POS |DEF|PRE|DFAN|ARS)/;
 
 // A duration is annual at 350 to 380 days (52- and 53-week years included) and quarterly at 80 to
 // 125 days, which covers 12- to 17-week quarters (Kroger's first quarter is 16 weeks, Costco's
@@ -422,7 +424,8 @@ export function indexFacts(facts, only) {
 // followed across the switch, and every value names the tag it came from.
 export const FRIENDLY = Object.freeze({
   revenue: ["us-gaap:Revenues", "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax", "us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax", "us-gaap:SalesRevenueNet", "ifrs-full:Revenue", "ifrs-full:RevenueFromContractsWithCustomers"],
-  net_income: ["us-gaap:NetIncomeLoss", "ifrs-full:ProfitLossAttributableToOwnersOfParent", "us-gaap:ProfitLoss", "ifrs-full:ProfitLoss"],
+  // Since the 2025 reports many 10-Ks tag the common-stockholders line or ProfitLoss and not NetIncomeLoss.
+  net_income: ["us-gaap:NetIncomeLoss", "ifrs-full:ProfitLossAttributableToOwnersOfParent", "us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic", "us-gaap:ProfitLoss", "ifrs-full:ProfitLoss"],
   operating_income: ["us-gaap:OperatingIncomeLoss", "ifrs-full:ProfitLossFromOperatingActivities"],
   gross_profit: ["us-gaap:GrossProfit", "ifrs-full:GrossProfit"],
   eps_diluted: ["us-gaap:EarningsPerShareDiluted", "ifrs-full:DilutedEarningsLossPerShare"],

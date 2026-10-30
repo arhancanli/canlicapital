@@ -8,7 +8,7 @@
 // this year, marked when they have already reported. Estimates, not announcements. No key.
 import { z } from "zod";
 
-import { archiveBase, filings, getJson, getText, NotFound, resolveEntity, tickerTable } from "./sources.mjs";
+import { archiveBase, filingDocuments, filings, getJson, getText, NotFound, resolveEntity, tickerTable } from "./sources.mjs";
 
 const DAY = 86400000;
 const DATE = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "a date as YYYY-MM-DD");
@@ -63,6 +63,39 @@ export function releasesFrom(rows) {
   return out;
 }
 
+// Foreign issuers furnish results on Form 6-K, which has no item numbers, among monthly sales, dividends
+// and meeting notices. A 6-K is a results release when one of its documents opens by saying so.
+const QUARTER = "(?:first|second|third|fourth|1st|2nd|3rd|4th|march|june|september|december)[- ]quarter";
+const SAYS_RESULTS = [
+  new RegExp(`\\b${QUARTER}(?:\\s+(?:of\\s+)?(?:fiscal\\s+|fy\\s*)?\\d{4})?[^.]{0,50}\\b(?:results|earnings|eps|profit|net income|financial statements)\\b`, "i"),
+  new RegExp(`\\b(?:reports?|announces?)\\b[^.]{0,70}\\b${QUARTER}`, "i"),
+  /\bq[1-4][ -]?(?:fy)?\d{2,4}\b[^.]{0,50}\b(?:results|earnings)\b|\b(?:results|financial statements)\b[^.]{0,40}\bq[1-4][ -]?(?:fy)?\d{2,4}\b/i,
+  /\b(?:half[- ]year|first half|nine[- ]months?|interim)\b[^.]{0,40}\b(?:results|financial report)\b/i,
+  /\bquarterly statement\b/i,
+  /\bfinancial report for the (?:period|first|nine|three|six)\b/i,
+];
+const plainStart = (html) => String(html).slice(0, 40000).replace(/<[^>]+>/g, " ").replace(/&#160;|&nbsp;/g, " ").replace(/\s+/g, " ").slice(0, 4000);
+export const saysResults = (html) => { const t = plainStart(html); return !/\bmonthly revenue\b/i.test(t.slice(0, 300)) && SAYS_RESULTS.some((p) => p.test(t)); };
+
+// Up to 40 of a foreign issuer's latest 6-Ks read, as rows releasesFrom takes.
+export async function foreignResults(session, cik, rows) {
+  const sixK = rows.filter((r) => r.form === "6-K").sort((x, y) => y.filingDate.localeCompare(x.filingDate)).slice(0, 40);
+  const found = await Promise.all(sixK.map(async (r) => {
+    try {
+      const docs = (await filingDocuments(session, cik, r.accessionNumber)).filter((d) => /\.html?$/i.test(d.name) && !(d.size > 12e6));
+      for (const d of docs.slice(0, 4)) {
+        const html = await getText(session, `${archiveBase(cik, r.accessionNumber)}/${d.name}`, { maxBytes: 16 * 1024 * 1024 });
+        if (saysResults(html)) { (session.resultsDocs ??= new Map()).set(r.accessionNumber, d.name); return { ...r, form: "8-K", items: "2.02" }; }
+      }
+    } catch { /* an unreadable 6-K is passed over */ }
+    return null;
+  }));
+  // One a quarter, the first: a later 6-K with the board's approval of the same statements is not a release.
+  const kept = [];
+  for (const r of found.filter(Boolean).sort((x, y) => x.filingDate.localeCompare(y.filingDate))) if (!kept.length || between(kept.at(-1).filingDate, r.filingDate) >= 60 || r.filingDate === kept.at(-1).filingDate) kept.push(r);
+  return kept;
+}
+
 // The next release, from the release that followed the same quarter a year earlier; failing that,
 // from the usual gap between releases. The window is how far the company's dates have moved from
 // one year to the next.
@@ -106,7 +139,8 @@ async function companyCalendar(session, a) {
   const today = iso(session.now());
   // The quarters shown, and at least five, so the release a year before the latest is in hand.
   const { sub, rows } = await filings(session, e.cik, { since: plus(today, -(Math.max(a.quarters ?? 8, 5) + 1) * 92) });
-  const releases = releasesFrom(rows);
+  let releases = releasesFrom(rows);
+  if (!releases.length) releases = releasesFrom(await foreignResults(session, e.cik, rows));
   if (!releases.length) throw new NotFound(`${sub.name} has filed no 8-K under Item 2.02 (results of operations) in the period read${sub.category?.includes("foreign") || (sub.filings?.recent?.form ?? []).includes("6-K") ? "; foreign private issuers furnish results on Form 6-K, which has no item numbers" : ""}.`);
   // The quarter each release covered: the latest fiscal period end from its 10-Qs and 10-Ks in the
   // 100 days before it.

@@ -35,7 +35,7 @@ test("screen_companies: R&D takes the larger of the filer's R&D tags; growth use
   assert.equal(g.rows[0][0], "QXO");
   assert.ok(g.rows[0][col(g, "revenue_growth")] > 100);
   assert.ok(g.sources.some((u) => u.includes("/CY2024.json")));
-  await assert.rejects(R.screenCompanies(s, { sort_by: "pe" }), /Valuation metrics need a price/);
+  await assert.rejects(R.screenCompanies(s, { sort_by: "pe" }), /No prices came back/);
   await assert.rejects(R.screenCompanies(s, { period: "2025" }), /not like FY2025/);
 });
 
