@@ -108,7 +108,7 @@ export function createCanliHandler({ limiter = createLimiter(), tierOf = createT
   return createStatelessMcpHandler({
     serverInfo: canli.SERVER_INFO,
     instructions: `${canli.instructions(HOSTED_PACKS)}${HOSTED_NOTE}`,
-    register: (server) => canli.registerAll(server, HOSTED_PACKS),
+    register: (server) => canli.registerAll(server, HOSTED_PACKS, undefined, { readOnly: true }),
     path: "/mcp/canli",
     maxBodyBytes: async (req) => tierLimits((await admit(req)).tier).max_body_bytes,
     screen,

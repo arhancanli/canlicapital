@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- `run_tool` is marked destructive only when the paper pack is on: without it nothing can change an
+  account, and clients asked for confirmation on every call for no reason. The hosted server, where
+  nothing outlives a request, marks it read-only.
+
 ## 0.11.1
 
 - A view's own follow-up calls ask as a view does (`view: true`), so a long answer comes back whole.

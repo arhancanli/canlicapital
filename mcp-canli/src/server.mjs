@@ -295,7 +295,9 @@ async function describeTool(packs, { name }) {
   return { name: t.name, pack: t.pack, title: t.title, description: t.description, input_schema: schema, ...(t.annotations?.destructiveHint ? { destructive: true } : {}) };
 }
 
-export function registerAll(server, packs = enabledPacks(), gov = governance(process.env, canliHome())) {
+// readOnly: the hosted server, where a call changes nothing that outlives its request, says so, so a
+// client need not ask before each one.
+export function registerAll(server, packs = enabledPacks(), gov = governance(process.env, canliHome()), { readOnly = false } = {}) {
   const keeper = createKeeper();
   server.registerTool("find_tool", {
     title: "Find a tool",
@@ -314,7 +316,8 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
   server.registerTool("run_tool", {
     title: "Run tools",
     description: "Run one tool ({name, arguments}) or several in one call ({calls: [...]}). Any argument can be {\"$file\": \"path.csv\", \"column\": \"close\"} (or \"columns\": [...] / \"all\") instead of pasted numbers. {\"$result\": i, \"path\": \"close\"} passes batch call i's output into a later call; every result also has a ref (\"r1\", \"r2\", ...) that later run_tool calls can pass the same way, {\"$result\": \"r1\", \"path\": \"close\"}, so data never needs to be copied.",
-    annotations: { title: "Run tools", readOnlyHint: false, destructiveHint: true, idempotentHint: false, openWorldHint: true },
+    // Only the paper pack can send anything that changes an account; without it nothing here is destructive.
+    annotations: { title: "Run tools", readOnlyHint: Boolean(readOnly), destructiveHint: packs.includes("paper"), idempotentHint: false, openWorldHint: true },
     inputSchema: RUN_INPUT,
     outputSchema: open,
     // Hosts that draw MCP Apps show the result in the viewer; others ignore this.
