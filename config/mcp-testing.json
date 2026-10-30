@@ -1,0 +1,75 @@
+{
+ "schema": "canlicapital.mcp-testing/v1",
+ "purpose": "What /mcp-servers/how-it-works says about testing. Every figure is a run's result, with what it was run on. Update it from the bench's output with each release, never by hand from memory.",
+ "measured": "2026-10-30",
+ "package": "canli-markets-mcp 0.8.0",
+ "analyst": {
+  "total": 119,
+  "passed": 119,
+  "note": "Run live against SEC EDGAR. Tool level: no model reads the answers. The expected figures come from sources the tools do not read: SEC's XBRL API, a separate table parser, and the releases' own words.",
+  "sets": [
+   {
+    "set": "dev",
+    "what": "Companies and releases the tools were built on",
+    "first_run": "21 of 21",
+    "after": null
+   },
+   {
+    "set": "fresh",
+    "what": "Releases never used while building",
+    "first_run": "26 of 32",
+    "after": "32 of 32"
+   },
+   {
+    "set": "fresh-2",
+    "what": "More releases, run once after those fixes",
+    "first_run": "9 of 9",
+    "after": null
+   },
+   {
+    "set": "verify",
+    "what": "Claims to fact-check, some true and some wrong on purpose",
+    "first_run": "15 of 19",
+    "after": "19 of 19"
+   },
+   {
+    "set": "trap",
+    "what": "False premises, such as a year not reported. Passing means refusing",
+    "first_run": "6 of 6",
+    "after": null
+   },
+   {
+    "set": "fresh-3",
+    "what": "Outlooks from 12 releases of the third-quarter season",
+    "first_run": "12 of 14",
+    "after": "14 of 14"
+   },
+   {
+    "set": "fresh-4",
+    "what": "12 questions on releases filed 2026-10-29, scored on the row's own low and high",
+    "first_run": "7 of 12",
+    "after": "12 of 12"
+   },
+   {
+    "set": "fresh-5",
+    "what": "6 more from that day, written first and run once after the fixes",
+    "first_run": "6 of 6",
+    "after": null
+   }
+  ]
+ },
+ "global_crosscheck": {
+  "passed": 21,
+  "of": 21,
+  "what": "European filings, central-bank rates, odds and crypto set against sources those tools do not read."
+ },
+ "unit_tests": {
+  "markets": 235
+ },
+ "found_by_testing": [
+  "earnings_release could read a company's preliminary 8-K instead of its results (FMC, October 2026). Fixed in 0.8.0.",
+  "A guidance of \"negative $350 million\" came back positive, and interest expense of $230 million in an assumptions column was read as earnings per share. Fixed in 0.8.0.",
+  "\"Silver price\" once returned US inflation, because a plain-word search matched part of the words. Now every specific word must match.",
+  "An earlier loose scoring rule passed two questions the strict rule fails, because it accepted the numbers in the quote. The first-run score above uses the strict rule."
+ ]
+}
