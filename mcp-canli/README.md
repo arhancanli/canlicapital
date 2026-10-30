@@ -1,5 +1,14 @@
 # canli-mcp
 
+[![npm](https://img.shields.io/npm/v/canli-mcp)](https://www.npmjs.com/package/canli-mcp)
+[![npm downloads](https://img.shields.io/npm/dw/canli-mcp)](https://www.npmjs.com/package/canli-mcp)
+[![MCP Registry](https://img.shields.io/badge/MCP_Registry-listed-blue)](https://registry.modelcontextprotocol.io/v0/servers?search=canli-mcp)
+[![Glama score](https://glama.ai/mcp/servers/arhancanli/canli-mcp/badges/score.svg)](https://glama.ai/mcp/servers/arhancanli/canli-mcp)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/arhancanli/canli-mcp/badge)](https://scorecard.dev/viewer/?uri=github.com/arhancanli/canli-mcp)
+[![CI](https://github.com/arhancanli/canli-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/arhancanli/canli-mcp/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/arhancanli/canli-mcp/actions/workflows/codeql.yml/badge.svg)](https://github.com/arhancanli/canli-mcp/actions/workflows/codeql.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue)](https://github.com/arhancanli/canli-mcp/blob/main/LICENSE)
+
 Every Canli Capital MCP server in one: 345 finance tools for Claude, Cursor or any MCP client.
 
 ```bash

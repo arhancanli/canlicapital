@@ -1,5 +1,7 @@
 # canli-markets-mcp
 
+[![npm](https://img.shields.io/npm/v/canli-markets-mcp)](https://www.npmjs.com/package/canli-markets-mcp) [![npm downloads](https://img.shields.io/npm/dw/canli-markets-mcp)](https://www.npmjs.com/package/canli-markets-mcp) [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](https://github.com/arhancanli/canlicapital/blob/main/LICENSE)
+
 Public market data for AI agents, read from the sources themselves: SEC EDGAR, the US Treasury,
 FRED, the World Bank, the New York Fed, the ECB, the Bank of England and the BIS, European companies'
 ESEF reports, prediction markets, DeFi data and prices for stocks, currencies, futures, indices and
