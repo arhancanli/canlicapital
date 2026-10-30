@@ -19,6 +19,7 @@
     "LICENSE"
   ],
   "scripts": {
+    "build": "node -e \"console.log('Plain JavaScript: nothing to build.')\"",
     "build-index": "node scripts/build-index.mjs",
     "test": "node --test test/*.test.mjs test/*.test.js"
   },
