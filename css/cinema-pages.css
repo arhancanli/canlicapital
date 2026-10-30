@@ -426,3 +426,6 @@ main:not(.paper__main):has(> .cc-hero) > .reader-index .reader-index__verify { m
 .mcp-tools__list p.mcp-tool__args { margin-top: .6rem; font-size: .8rem; opacity: .8; }
 .mcp-how__steps { display: grid; gap: 1rem; margin: 1rem 0 0; padding-left: 1.4rem; max-width: 52rem; }
 html[data-page="mcp-discovery"] #testing .mcp-table table { width: 100%; }
+.mcp-install__jump { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; margin: 0; padding: 0; list-style: none; }
+.mcp-install__client { scroll-margin-top: 6rem; }
+.mcp-install__client pre { overflow-x: auto; }

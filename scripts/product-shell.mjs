@@ -70,6 +70,7 @@ const TOP_LINKS = Object.freeze([
 const MENU = Object.freeze([
   { label: "Use it", aria: "Products and tools", links: [
     { key: "mcp-servers", label: "canli-mcp, the MCP server", href: "/mcp-servers" },
+    { key: "mcp-install", label: "Add it to your client", href: "/mcp-servers/install" },
     { key: "mcp-tools", label: "Every tool", href: "/mcp-servers/tools" },
     { key: "mcp-how", label: "How it works and is tested", href: "/mcp-servers/how-it-works" },
     { key: "mcp-answers", label: "Questions it answers", href: "/mcp-servers/answers" },
@@ -230,6 +231,7 @@ ${developerStrip ? DEVELOPER_STRIP : ""}  <details class="cc-footer__context"><s
       <a href="/methodology">Methodology</a>
       <a href="/costs">What costs are charged</a>
       <a href="/verify">Verify record</a>
+      <a href="/privacy">Privacy policy</a>
       <a href="/measurements">Measurements</a>
       <a href="/open">Open data</a>
       <a href="/companies">Company reference</a>

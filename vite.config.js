@@ -188,6 +188,8 @@ export default defineConfig({
         stats: resolve(root, "stats.html"),
         ...Object.fromEntries(['validation', 'fundamentals', 'research', 'execution'].map(name => [`mcp-${name}`, resolve(root, 'mcp-servers', `${name}.html`)])),
         mcpAnswers: resolve(root, "mcp-servers/answers.html"),
+        mcpInstall: resolve(root, "mcp-servers/install.html"),
+        privacy: resolve(root, "privacy.html"),
         mcpTools: resolve(root, "mcp-servers/tools.html"),
         mcpHow: resolve(root, "mcp-servers/how-it-works.html"),
         ...Object.fromEntries(MCP_ANSWER_SLUGS.map(slug => [`mcp-answer-${slug}`, resolve(root, 'mcp-servers', 'answers', `${slug}.html`)])),

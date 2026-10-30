@@ -12,7 +12,7 @@ import { sourceDate } from './lib/page-sources.mjs';
 import { EXECUTION_ROUTE, executionSource, executionSourceHref } from './lib/execution-workflow.mjs';
 import { installButtons, renderFlagship } from './lib/mcp-flagship.mjs';
 import { ANSWERS_ROUTE, answerFile, answerRoute, callsOf, checkAnswers, compactJson, firstTable, resultsOf, tableHtml, toolsNamed, toolsOf, withTools } from './lib/mcp-answers.mjs';
-import { HOW_ROUTE, howBody, navOf, TOOLS_ROUTE, toolsBody } from './lib/mcp-catalog.mjs';
+import { HOW_ROUTE, howBody, INSTALL_ROUTE, installBody, installClients, navOf, TOOLS_ROUTE, toolsBody } from './lib/mcp-catalog.mjs';
 import { TIERS } from '../api/_lib/tiers.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -254,6 +254,15 @@ export function howPage({ flagship, testing = read('config/mcp-testing.json') })
   const body = howBody({ nav: navOf(HOW_ROUTE, MCP_ROUTE, ANSWERS_ROUTE), flagship, testing, install: installButtons(flagship, 'dev-actions') });
   return document({ route: HOW_ROUTE, title, description, structured: [], body, sources: 'benchmarks/finance-mcp-servers.json benchmarks/mcp-testing.json' });
 }
+// How to add it, client by client.
+export function installPage({ flagship, install = read('config/canli-mcp.json').install }) {
+  const title = 'Add canli-mcp to Claude, Cursor or VS Code';
+  const description = 'Install the canli-mcp finance MCP server in Claude, Cursor, VS Code, ChatGPT, Codex, Gemini CLI, Windsurf, Cline or Zed. Free, with no API key.';
+  const clients = installClients(flagship, install);
+  const howTo = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: clients.filter((c) => c.id !== 'other').map((c) => ({ '@type': 'Question', name: `How do I add canli-mcp to ${c.name}?`, acceptedAnswer: { '@type': 'Answer', text: `${c.steps.replace(/<[^>]+>/g, '')} ${c.code}` } })) };
+  const body = installBody({ nav: navOf(INSTALL_ROUTE, MCP_ROUTE, ANSWERS_ROUTE), flagship, install, buttons: installButtons(flagship, 'dev-actions'), tested: { clients: 'Claude Code, Codex and Gemini CLI', date: '2026-10-30' } });
+  return document({ route: INSTALL_ROUTE, title, description, structured: [howTo], body, sources: 'benchmarks/finance-mcp-servers.json' });
+}
 // The directory is canli-mcp's page: the flagship first (scripts/lib/mcp-flagship.mjs), then each server on its own.
 // The recorded views the page plays (mcp-canli/bench/record-site-demos.mjs); none if they are absent.
 const recordedDemos = () => { try { return read('public/demos/canli-mcp/index.json').demos; } catch { return []; } };
@@ -293,10 +302,11 @@ export function buildMcpPages({ loadExecution = executionSource, write = writeFi
   write(resolve(ROOT, `${ANSWERS_ROUTE.slice(1)}.html`), answersIndexPage(answers, { flagship }));
   write(resolve(ROOT, `${TOOLS_ROUTE.slice(1)}.html`), toolsPage({ tools: index.tools, version: read('mcp-canli/package.json').version, flagship }));
   write(resolve(ROOT, `${HOW_ROUTE.slice(1)}.html`), howPage({ flagship }));
+  write(resolve(ROOT, `${INSTALL_ROUTE.slice(1)}.html`), installPage({ flagship }));
   write(resolve(ROOT, 'public/benchmarks/mcp-testing.json'), JSON.stringify(read('config/mcp-testing.json'), null, 1) + '\n');
   for (const server of servers) write(resolve(ROOT, `${server.route.slice(1)}.html`), serverPage(server, servers));
   write(resolve(ROOT, `${EXECUTION_ROUTE.slice(1)}.html`), executionPage(execution, servers));
   write(resolve(ROOT, 'public/glassbox/execution_workflow_source.json'), JSON.stringify(execution, null, 2) + '\n');
-  return { pages: servers.length + 5 + answers.length, answers: answers.length, hosted_tools: Object.fromEntries(servers.map(s => [s.id, s.tools.length])), private_source_tools: execution.default_tools.length };
+  return { pages: servers.length + 6 + answers.length, answers: answers.length, hosted_tools: Object.fromEntries(servers.map(s => [s.id, s.tools.length])), private_source_tools: execution.default_tools.length };
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) console.log('MCP discovery:', buildMcpPages());

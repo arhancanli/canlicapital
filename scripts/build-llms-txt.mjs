@@ -130,6 +130,8 @@ say("## Machine interfaces");
 say();
 say(`- [Read API](${ORIGIN}/developers): static JSON over the published record. Every response carries its sources with SHA-256 hashes, its claim class, and what it cannot be used to claim.`);
 say(`- [canli-mcp](${ORIGIN}/mcp-servers): the flagship finance MCP server. Install: \`npx -y canli-mcp\` (stdio), or add the hosted URL ${ORIGIN}/mcp/canli as a connector. The page also covers the released hosted [validation](${ORIGIN}/mcp-servers/validation), [SEC fundamentals](${ORIGIN}/mcp-servers/fundamentals) and [research](${ORIGIN}/mcp-servers/research) servers.`);
+say(`- [Add canli-mcp to your client](${ORIGIN}/mcp-servers/install): steps for Claude, Claude Code, Cursor, VS Code, ChatGPT, Codex, Gemini CLI, Windsurf, Cline and Zed.`);
+say(`- [Privacy policy](${ORIGIN}/privacy): what the site, the hosted servers and the package collect, send and keep.`);
 say(`- [Every canli-mcp tool](${ORIGIN}/mcp-servers/tools): all the tools by pack, with what each does and its arguments.`);
 say(`- [How canli-mcp works and is tested](${ORIGIN}/mcp-servers/how-it-works): what happens on a question, where the data comes from, test scores including first runs, and limits.`);
 say(`- [Finance questions canli-mcp answers](${ORIGIN}/mcp-servers/answers): one page per question, each with the call it makes and a recorded result:`);

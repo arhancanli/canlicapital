@@ -160,7 +160,7 @@ ${bars(h2h)}
 <h3>What each costs before the question</h3>${contextTable(h2h)}
 <p class="flagship-note">${esc(caveat)} <a href="/benchmarks/finance-mcp-servers">Every run, the method and the caveats</a>.</p></section>
 ${asked(answers)}
-<section class="dev-section flagship-section" id="install"><p class="eyebrow">Install</p><h2>Add it in one line</h2><p class="flagship-intro">Free and MIT-licensed. It needs Node.js ${esc(String(f.node_minimum))} or later and no account; the quant and validation tools run on your machine.</p>${install(h2h, npm)}</section>`;
+<section class="dev-section flagship-section" id="install"><p class="eyebrow">Install</p><h2>Add it in one line</h2><p class="flagship-intro">Free and MIT-licensed. It needs Node.js ${esc(String(f.node_minimum))} or later and no account; the quant and validation tools run on your machine.</p>${install(h2h, npm)}<p><a href="/mcp-servers/install">Steps for Claude, Cursor, VS Code, ChatGPT, Codex, Gemini CLI, Windsurf, Cline and Zed</a></p></section>`;
 }
 
 // The benchmark page's opening figures: the gap in accuracy, cost and coverage, each against the others' best.
