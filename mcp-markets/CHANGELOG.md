@@ -24,7 +24,7 @@ Found by reading 21 third-quarter releases filed on 2026-10-29, each keyed from 
   EBIT margin, net interest income and margin, combined ratio, book value per share, assets under
   management. A range's period is the one named nearest it; a table's letterhead address is not the
   headline.
-- Measured: `bench/analyst` 119 of 119. The new sets: fresh-4 scored 9 of 12 on its first run, then 12
+- Measured: `bench/analyst` 119 of 119. The new sets: fresh-4 would have scored 7 of 12 on its first run under this strict scoring, then 12
   of 12; fresh-5, keyed before running and run once after the fixes, 6 of 6.
 
 ## 0.7.4
