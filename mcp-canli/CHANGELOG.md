@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.12.2
+
+The markets pack moves to 0.8.2: `brief`, `earnings_release` and `earnings_calendar` now read foreign issuers' results
+from Form 6-K, and figures in other currencies keep them.
+
 ## 0.12.1
 
 Wrong figures fixed, in the fundamentals pack (0.7.2) and the markets pack (0.8.1). `history` read proxy statements as
