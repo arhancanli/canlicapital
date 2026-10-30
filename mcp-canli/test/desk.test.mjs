@@ -141,4 +141,6 @@ test("triangulate: rounding agrees, scales and signs are named, and the parent's
   assert.equal(fromStatement(table, m).value, 4341e6);
   const only = { ...table, rows: [["Revenue", "us-gaap:Revenues", 29553], ["Profit", "us-gaap:ProfitLoss", 1758], ["Revenue", "us-gaap:Revenues", 19331], ["Net income", "us-gaap:NetIncomeLoss", 440]] };
   assert.equal(fromStatement(only, m), null, "a subsidiary's line is not the parent's");
+  const two = fromStatement({ ...table, rows: [["Net income", "us-gaap:NetIncomeLoss", 57], ["To common", "us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic", -59]] }, { statement: "income", tags: ["us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic", "us-gaap:NetIncomeLoss"] });
+  assert.deepEqual(two.lines.map((l) => l.value), [-59e6, 57e6], "both lines of the measure, for either road to agree with");
 });

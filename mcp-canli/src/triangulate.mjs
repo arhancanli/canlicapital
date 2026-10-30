@@ -35,11 +35,10 @@ export function fromStatement(table, m) {
   const rows = closing > 0 ? table.rows.slice(0, closing) : table.rows;
   const column = table.columns.findIndex((c, i) => i >= 2 && endOf(c) && (m.statement === "balance_sheet" || /^12 months/.test(c)));
   if (column < 0) return null;
-  for (const tag of m.tags) {
-    const row = rows.find((r) => r[1] === tag && typeof r[column] === "number");
-    if (row) return { value: m.perShare ? row[column] : row[column] * (table.money_scale ?? 1), end: endOf(table.columns[column]), tag };
-  }
-  return null;
+  // Every line of the measure on the statement: net income before and after preferred dividends are both the
+  // company's own, and either may be the one the other roads carry.
+  const lines = m.tags.flatMap((tag) => rows.filter((r) => r[1] === tag && typeof r[column] === "number").slice(0, 1).map((r) => ({ tag, value: m.perShare ? r[column] : r[column] * (table.money_scale ?? 1) })));
+  return lines.length ? { value: lines[0].value, tag: lines[0].tag, end: endOf(table.columns[column]), lines } : null;
 }
 
 // How two figures for one line stand: the same within rounding, apart by a whole scale, or just apart. A
@@ -59,10 +58,12 @@ export function compare(a, b, { perShare, scale = 1 } = {}) {
 export async function runTriangulate(ctx, args) {
   const a = triangulateInput.parse(args);
   const attempt = (name, input) => ctx.call(name, input).catch(() => null);
-  const [statements, report, ...histories] = await Promise.all([
-    attempt("financial_statements", { company: a.company, statement: "core", period: "annual", filings: 1 }),
-    attempt("company_report", { company: a.company, years: 2 }),
-    ...MEASURES.map((m) => attempt("history", { company: a.company, concept: m.history, periods: "annual", limit: 3 })),
+  // One company on every road: the ticker the report resolved, since each road reads names its own way.
+  const report = await attempt("company_report", { company: a.company, years: 2 });
+  const who = report?.company?.ticker ?? a.company;
+  const [statements, ...histories] = await Promise.all([
+    attempt("financial_statements", { company: who, statement: "core", period: "annual", filings: 1 }),
+    ...MEASURES.map((m) => attempt("history", { company: who, concept: m.history, periods: "annual", limit: 3 })),
   ]);
   const reportRow = (end) => {
     const f = report?.financials;
@@ -78,7 +79,9 @@ export async function runTriangulate(ctx, args) {
     const hist = histories[i]?.rows?.find((x) => x[0] === at)?.[2] ?? null;
     const rep = m.report && at ? reportRow(at)?.[m.report] ?? null : null;
     const scale = s && !m.perShare ? statements[m.statement].money_scale ?? 1 : 1;
-    const verdicts = [["facts", compare(s?.value, rep, { perShare: m.perShare, scale })], ["history", compare(s?.value, hist, { perShare: m.perShare, scale })]];
+    // Agreement with any of the statement's lines for the measure counts.
+    const against = (other) => { const v = compare(s?.value, other, { perShare: m.perShare, scale }); return v && v !== "agree" && s.lines.some((l) => compare(l.value, other, { perShare: m.perShare, scale }) === "agree") ? "agree" : v; };
+    const verdicts = [["facts", against(rep)], ["history", against(hist)]];
     if (s == null) verdicts.push(["facts and history", compare(rep, hist, { perShare: m.perShare })]);
     const off = verdicts.filter(([, v]) => v && v !== "agree");
     const roads = [s?.value, rep, hist].filter((v) => v != null).length;

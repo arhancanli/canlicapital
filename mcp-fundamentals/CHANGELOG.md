@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.7.4
+
+- A name finds the listed company: "T Rowe Price Group Inc" had read a private credit fund of that family, and "Southern
+  Co/The" another filer.
+
 ## 0.7.3
 
 Found by checking the S&P 500 against its own statements.

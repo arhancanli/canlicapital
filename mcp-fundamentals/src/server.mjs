@@ -203,7 +203,8 @@ async function nameIndex(session) {
 const MATCH_LEVELS = ["ticker", "cik", "name", "same_name_as_ticker_holder", "name_start", "name_words", "name_contains"];
 
 export async function findCompanies(session, query, limit = 8) {
-  const text = String(query).trim().replace(/^\$/, "");
+  // Fund reports write names their own way: "Southern Co/The", "Hess Corp/DE".
+  const text = String(query).trim().replace(/^\$/, "").replace(/\s*\/\s*(?:the|[a-z]{2,3})\s*\/?\s*$/i, "");
   const ticker = text.toUpperCase();
   const names = await nameIndex(session);
   const found = new Map();
@@ -230,7 +231,10 @@ export async function findCompanies(session, query, limit = 8) {
   const best = ranked[0];
   const tied = best ? ranked.filter((r) => r.level === best.level) : [];
   const listed = tied.filter((r) => r.c.tickers.length);
-  const pick = !best ? null : ranked.length === 1 ? best : best.level > 4 ? null : tied.length === 1 ? best : listed.length === 1 ? listed[0] : null;
+  // A listed company beats an unlisted filer that only fits by its first words: "T Rowe Price Group" is PRICE T
+  // ROWE GROUP INC, not T. ROWE PRICE OHA SELECT PRIVATE CREDIT FUND.
+  const listedFits = ranked.filter((r) => r.level <= 5 && r.c.tickers.length);
+  const pick = !best ? null : best.level >= 4 && !best.c.tickers.length && listedFits.length === 1 ? listedFits[0] : ranked.length === 1 ? best : best.level > 4 ? null : tied.length === 1 ? best : listed.length === 1 ? listed[0] : null;
   // Companies as good a match as the one used (the same name, another filer): the answer names them,
   // since a question about the other one would otherwise get this one's figures without a word.
   const alike = pick && tied.length > 1 ? tied.filter((r) => r !== pick).map(({ c }) => ({ cik: c.cik, name: c.name, tickers: c.tickers })) : [];
