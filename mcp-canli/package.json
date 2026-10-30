@@ -1,7 +1,7 @@
 {
   "name": "canli-mcp",
-  "version": "0.11.1",
-  "description": "Every Canli Capital MCP server in one: 345 finance tools (SEC filings and XBRL, statements as filed, figures checked against the filings, markets, ownership, options, the Fed and macro, dividends, quant, backtest validation, paper trading) behind five tools in context (2,408 tokens instead of 53,974). Interactive charts, market maps, yield curves, statements, volatility surfaces, stock comparisons, option chains, backtest dashboards with sliders and a paper order ticket in the chat (MCP Apps), firm policy and signed audit log, batch calls, offline mode, local by default.",
+  "version": "0.12.0",
+  "description": "Every Canli Capital MCP server in one: 355 finance tools (SEC filings and XBRL, statements as filed, figures checked against the filings, markets, ownership, options, the Fed and macro, dividends, quant, backtest validation, paper trading) behind five tools in context (2,408 tokens instead of 53,974). Interactive charts, market maps, yield curves, statements, volatility surfaces, stock comparisons, option chains, backtest dashboards with sliders and a paper order ticket in the chat (MCP Apps), firm policy and signed audit log, batch calls, offline mode, local by default.",
   "private": false,
   "type": "module",
   "license": "MIT",
@@ -27,7 +27,7 @@
     "@modelcontextprotocol/server": "2.3.1",
     "canli-backtest-mcp": "0.3.0",
     "canli-fundamentals-mcp": "0.7.1",
-    "canli-markets-mcp": "0.7.4",
+    "canli-markets-mcp": "0.8.0",
     "canli-paper-trading-mcp": "0.3.1",
     "canli-quant-mcp": "0.2.0",
     "canli-research-mcp": "0.3.1",
@@ -79,5 +79,8 @@
       "canli-validation-mcp": "$canli-validation-mcp"
     },
     "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "fast-check": "4.10.2"
   }
 }

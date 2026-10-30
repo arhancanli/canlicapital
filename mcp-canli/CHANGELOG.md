@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.12.0
+
+The markets pack moves to 0.8.0: ten new tools (355 in all), and foreign filers read properly (see its changelog).
 
 - `brief`: one call on one company runs a dozen tools at once and returns one digest with flags that name their
   evidence, each full answer under a ref. NVDA: 12 workers, 3.9K characters against 43K for the answers themselves.

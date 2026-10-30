@@ -42,6 +42,7 @@ export const KEYWORDS = Object.freeze({
     sleeve_tournament: "which sleeves work best on my data test all compare",
   },
   markets: {
+    private_offerings: "regulation d reg d form d exempt offering raise",
     // The series it resolves from plain words (canli-markets-mcp's COMMON_SERIES), less the words
     // every price or rate tool shares.
     economic_series: "us united states core cpi pce ppi consumer producer price index final demand expectations growth quarterly annualized mortgage payrolls nonfarm jobless claims continuing job openings jolts quits average hourly earnings wages labor force participation personal income consumption spending disposable saving corporate profits trade balance sofr prime overnight repo m1 m2 money supply balance sheet consumer credit bank loans lending financial conditions stress industrial production retail sales durable goods orders housing starts building permits new home sales case shiller sentiment michigan recession nber credit spread high yield investment grade breakeven real yield tips gasoline henry hub natural gas",
