@@ -112,6 +112,10 @@ const DIGESTS = {
     const recent = r.recent?.rows?.[0]?.[0];
     out.sec_staff_letters = { since: r.since, staff_letters: r.staff_letters ?? 0, latest: recent ?? null };
   },
+  cross_check(r, out, flag) {
+    out.figures_cross_checked = { fiscal_year_end: r.fiscal_year_end, checked: r.checked, agree: r.agreements };
+    if (r.disagreements) flag("watch", `Separate roads to the figures disagree: ${r.disagreement_text}.`, "cross_check");
+  },
   news(r, out) {
     const t = r.articles;
     out.headlines = (t?.rows ?? []).slice(0, 4).map((x) => ({ seen: x[0], title: x[1], outlet: x[2], url: x[5] }));
@@ -159,6 +163,7 @@ export async function runBrief(ctx, args) {
     { id: "peers", tool: "comps", args: { company: c, peers: 5 } },
     { id: "letters", tool: "comment_letters", args: { company: c, years: 3 } },
     { id: "news", tool: "news", args: { company: c, days: 14, limit: 6, tone: false }, budget: 15 },
+    { id: "cross_check", tool: "triangulate", args: { company: c } },
   ];
   // Tickers take the symbol tools; a name or CIK is resolved by the report first.
   const ticker = /^[A-Za-z][A-Za-z.\-]{0,6}$/.test(c) ? c.toUpperCase() : null;
@@ -229,6 +234,7 @@ const DEFAULT_FIELDS = {
   company_report: ["market.market_cap", "market.pe", "market.ps", "market.fcf_yield", "market.total_return_1y", "market.beta_1y_vs_spy"],
   options_chain: ["summary.atm_iv", "summary.expected_move.fraction_of_price", "summary.put_call_open_interest_ratio"],
   ownership_breadth: ["change_latest_vs_prior"],
+  triangulate: ["fiscal_year_end", "checked", "disagreements", "disagreement_text"],
   segment_revenue: ["total_revenue.values.0"],
 };
 

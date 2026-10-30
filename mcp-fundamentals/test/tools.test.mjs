@@ -486,3 +486,9 @@ test("a proxy statement's pay table is not a filing of the results: Arista's 3,5
   const vintages = index.get("us-gaap:NetIncomeLoss").units.USD[0].vintages;
   assert.deepEqual(vintages.map((v) => [v.val, v.form]), [[3511400000, "10-K"]]);
 });
+
+test("a 10-Q does not restate a full year: Comfort Systems' $1.83 billion never replaces the 10-K's $9.1 billion", () => {
+  const row = (val, form, filed) => ({ start: "2025-01-01", end: "2025-12-31", val, form, filed, accn: `a-${filed}`, fy: 2025, fp: "FY" });
+  const index = indexFacts({ facts: { "us-gaap": { Revenues: { units: { USD: [row(9101641000, "10-K", "2026-02-19"), row(1831286000, "10-Q", "2026-04-23")] } } } } });
+  assert.deepEqual(index.get("us-gaap:Revenues").units.USD[0].vintages.map((v) => v.val), [9101641000]);
+});

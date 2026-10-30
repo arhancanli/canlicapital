@@ -93,7 +93,7 @@ export function columnOf(parts) {
 // The units in a report's title: "Consolidated Statements of Income - USD ($) shares in
 // Millions, $ in Millions" -> title and units.
 export function splitTitle(text) {
-  const m = String(text).match(/^(.*?)\s+-\s+((?:[A-Z]{3}\s*\(.{1,5}\)|[$€£¥]\s*\/|shares\b|pure\b).*)$/);
+  const m = String(text).match(/^(.*?)\s+-\s+((?:[A-Z]{3}\s*\(.{1,5}\)|[$€£¥]\s*(?:\/|in\b)|shares\b|pure\b).*)$/);
   return m ? { title: m[1].trim(), units: m[2].trim() } : { title: String(text).trim(), units: null };
 }
 

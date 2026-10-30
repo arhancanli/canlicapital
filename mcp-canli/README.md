@@ -138,7 +138,7 @@ lists grew from 39,962 to 53,974 tokens. The interactive views of 0.10.0 added 7
 
 ## One call, many workers
 
-Three tools fan out on the server, so the model asks once and reads one short answer. The workers are ordinary code,
+Four tools work on the server, so the model asks once and reads one short answer. The workers are ordinary code,
 not model calls, so they cost no model tokens.
 
 - `brief` on a company runs a dozen tools at once (accounts, latest results and guidance, segments, valuation, debt,
@@ -147,6 +147,8 @@ not model calls, so they cost no model tokens.
 - `swarm` runs one read-only tool over up to 500 companies and returns one ranked table, with medians and failures.
   Long runs come back in parts with a `resume` ref. Take the names from another tool:
   `{"tool": "forensic_scores", "over": {"tool": "index_constituents", "arguments": {"index": "VOO", "limit": 510}, "column": "name"}, "sort_by": "altman.z_score", "order": "asc"}`.
+- `triangulate` reaches a company's headline figures by three separate roads (the statement as filed, the XBRL facts,
+  the point-in-time history) and says where they disagree. `brief` runs it too, and `swarm` runs it across an index.
 - `stress_worlds` runs a portfolio through thousands of worlds: real market history resampled in blocks, with real
   crises dropped in at random times and sizes, alone or together (`"bank_crisis+compute_bust"`), or your own shocks.
   It shows the range of outcomes and how far to trust the answer. These are scenarios, not forecasts: they say what

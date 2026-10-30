@@ -241,6 +241,8 @@ export async function tickerTable(session) {
 // Names people use that are not the registered name: listed companies by ticker, and fund managers
 // by the filer their 13Fs come from (checked on EDGAR 2026-10-11).
 const KNOWN_AS = Object.freeze({
+  // Renamed, and still written the old way in fund reports and by people.
+  "franklin resources": "BEN", "hartford financial services group": "HIG", "blackrock funding": "BLK",
   google: "GOOGL", youtube: "GOOGL", facebook: "META", instagram: "META", whatsapp: "META", "p and g": "PG", bofa: "BAC", tsmc: "TSM",
   vanguard: { cik: 102909, name: "VANGUARD GROUP INC" }, fidelity: { cik: 315066, name: "FMR LLC" }, "fidelity investments": { cik: 315066, name: "FMR LLC" },
   citadel: { cik: 1423053, name: "CITADEL ADVISORS LLC" }, "de shaw": { cik: 1009207, name: "D. E. Shaw & Co., Inc." }, "d e shaw": { cik: 1009207, name: "D. E. Shaw & Co., Inc." },
@@ -252,6 +254,14 @@ const KNOWN_AS = Object.freeze({
   baupost: { cik: 1061768, name: "BAUPOST GROUP LLC/MA" }, "lone pine": { cik: 1061165, name: "LONE PINE CAPITAL LLC" },
 });
 const SUFFIXES = new Set(["inc", "corp", "corporation", "co", "company", "companies", "plc", "ltd", "limited", "the", "holdings", "holding", "group", "sa", "nv", "ag", "se"]);
+// A title's words, with initials written apart joined up: "HORTON D R INC" also holds "dr".
+const titleWords = (title) => {
+  const raw = String(title).toLowerCase().replace(/[^a-z0-9 ]+/g, " ").split(/\s+/).filter(Boolean);
+  const out = new Set(nameWords(title));
+  for (let i = 0; i + 1 < raw.length; i += 1) if (raw[i].length === 1 && raw[i + 1].length === 1) out.add(raw[i] + raw[i + 1]);
+  return out;
+};
+const FUND_LIKE = /\b(etf|fund|funds|trust|bitcoin|ethereum|crypto|portfolio)\b/i;
 const knownAs = (name) => (Object.hasOwn(KNOWN_AS, name) ? KNOWN_AS[name] : null);
 const nameWords = (s) => String(s).toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9 ]+/g, " ").split(/\s+/).filter((w) => w && !SUFFIXES.has(w));
 
@@ -296,11 +306,13 @@ export async function resolveEntity(session, query) {
   const tidied = q.replace(/\s*\/\s*(?:the|[a-z]{2,3})\s*\/?\s*$/i, "").replace(/['\u2019]/g, "").replace(/\bcos\b/i, "Companies").trim();
   const asWritten = listedByName(table, q);
   let listed = asWritten.length ? asWritten : listedByName(table, tidied);
-  // SEC often writes a person's name family name first ("SCHWAB CHARLES CORP"): every word, any order, if only one company fits.
-  if (!listed.length) {
-    const words = nameWords(tidied);
-    const anyOrder = words.length >= 2 ? [...new Map(Object.values(table).filter((row) => { const title = nameWords(row.title); return words.every((w) => title.includes(w)); }).map((row) => [row.cik_str, row])).values()] : [];
-    if (anyOrder.length === 1) listed = anyOrder;
+  // SEC often writes a person's name family name first ("SCHWAB CHARLES CORP", "HORTON D R INC", "PRICE T ROWE
+  // GROUP INC"): every word in any order, initials joined, for a handful of companies at most. It also beats a
+  // name that only found funds: "T Rowe Price Group" is the company, not its crypto ETF.
+  if (!listed.length || listed.every((r) => FUND_LIKE.test(r.title))) {
+    const want = nameWords(tidied);
+    const anyOrder = want.length >= 2 ? [...new Map(Object.values(table).filter((row) => !FUND_LIKE.test(row.title) && want.every((w) => titleWords(row.title).has(w))).map((row) => [row.cik_str, row])).values()] : [];
+    if (anyOrder.length && anyOrder.length <= 3) listed = anyOrder;
   }
   if (listed.length) {
     const [top, ...others] = listed;
@@ -312,7 +324,20 @@ export async function resolveEntity(session, query) {
   const found = await getJson(session, `https://efts.sec.gov/LATEST/search-index?keysTyped=${encodeURIComponent(q)}`);
   const hits = found?.hits?.hits ?? [];
   if (!hits.length) throw new NotFound(`No SEC filer matches "${q}". Try the ticker, the CIK, or the name as registered (for example "Berkshire Hathaway").`);
-  const top = hits[0];
+  // EDGAR's search returns any filer whose name resembles the words: individuals, shells and funds. A name must
+  // hold every word asked for, and a listed company comes first. Anything else is said to be no match, because
+  // the wrong company's figures look exactly like the right one's.
+  const listedCiks = new Set(Object.values(table).map((r) => r.cik_str));
+  const asked = nameWords(tidied);
+  const fits = hits.filter((h) => { const t = titleWords(String(h._source?.entity ?? "").replace(/\s*\(.*$/, "")); return asked.every((w) => t.has(w)); });
+  if (!fits.length) throw new NotFound(`No SEC filer is named "${q}". Closest: ${hits.slice(0, 3).map((h) => h._source?.entity).filter(Boolean).join("; ") || "none"}. Try the ticker or the CIK; a company that was renamed files under its new name.`);
+  const exact = (h) => { const t = nameWords(String(h._source?.entity ?? "").replace(/\s*\(.*$/, "")); return t.length === asked.length; };
+  fits.sort((x, y) => Number(exact(y)) - Number(exact(x)) || Number(listedCiks.has(Number(y._id))) - Number(listedCiks.has(Number(x._id))) || Number(/^[A-Z]+ [A-Z] /.test(x._source?.entity ?? "")) - Number(/^[A-Z]+ [A-Z] /.test(y._source?.entity ?? "")));
+  const top = fits[0];
+  // Every word somewhere in the name is not enough for an unlisted filer: "Equity Residential" is not "CA
+  // Residential Preferred Equity, LLC". Its name must hold them in the order asked.
+  const inOrder = (h) => { const t = nameWords(String(h._source?.entity ?? "").replace(/\s*\(.*$/, "")); let i = 0; for (const w of t) if (w === asked[i]) i += 1; return i === asked.length; };
+  if (!exact(top) && !listedCiks.has(Number(top._id)) && !inOrder(top)) throw new NotFound(`No SEC filer is named "${q}". Closest: ${fits.slice(0, 3).map((h) => h._source?.entity).join("; ")}. Try the ticker or the CIK; a company that was renamed files under its new name.`);
   // A company's common shares come first in the ticker file.
   const byCik = new Map();
   for (const r of Object.values(table)) if (!byCik.has(r.cik_str)) byCik.set(r.cik_str, r.ticker);

@@ -19,7 +19,7 @@ const SCALE = { thousand: 1e3, million: 1e6, billion: 1e9, trillion: 1e12 };
 // Measures checked against tagged facts: their US GAAP concepts, then their IFRS ones (the first with
 // a fact for the period wins), whether they are balances at a date, and whether they are per share.
 const FACTS = Object.freeze({
-  revenue: { concepts: ["RevenueFromContractWithCustomerExcludingAssessedTax", "Revenues", "SalesRevenueNet", "RevenueFromContractWithCustomerIncludingAssessedTax", "RevenuesNetOfInterestExpense"], ifrs: ["Revenue", "RevenueFromContractsWithCustomers"] },
+  revenue: { concepts: ["RevenueFromContractWithCustomerExcludingAssessedTax", "RevenuesNetOfInterestExpense", "Revenues", "SalesRevenueNet", "RevenueFromContractWithCustomerIncludingAssessedTax", "RevenuesNetOfInterestExpense"], ifrs: ["Revenue", "RevenueFromContractsWithCustomers"] },
   net_income: { concepts: ["NetIncomeLoss", "NetIncomeLossAvailableToCommonStockholdersBasic", "ProfitLoss"], ifrs: ["ProfitLossAttributableToOwnersOfParent", "ProfitLoss"] },
   eps: { concepts: ["EarningsPerShareDiluted", "EarningsPerShareBasicAndDiluted"], ifrs: ["DilutedEarningsLossPerShare"], perShare: true },
   eps_basic: { concepts: ["EarningsPerShareBasic", "EarningsPerShareBasicAndDiluted"], ifrs: ["BasicEarningsLossPerShare"], perShare: true },

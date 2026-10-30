@@ -10,6 +10,8 @@ import { asDollarShaped, factBook, isScaleSlip, priceToEarnings, ratioFromText }
 import { createDiskCache, freshFor } from "../src/disk-cache.mjs";
 import { releasesFrom, saysResults } from "../src/earnings.mjs";
 import { choose, latestPrices, METRICS } from "../src/research.mjs";
+import { splitTitle } from "../src/reports.mjs";
+import { unitScale } from "../src/statements.mjs";
 import { createSession, getText } from "../src/sources.mjs";
 
 const named = "American Depositary Shares. American Depositary Shares. American Depositary Shares. ";
@@ -87,6 +89,11 @@ test("a figure in New Taiwan dollars is not a figure in US dollars", () => {
   const units = rows.map((r) => r.unit).join(" | ");
   assert.match(units, /TWD/);
   assert.doesNotMatch(rows.filter((r) => r.value === 763.06).map((r) => r.unit).join(), /USD/);
+});
+
+test("units in a title with no currency code: NXP's two currencies", () => {
+  assert.equal(splitTitle("CONSOLIDATED BALANCE SHEETS - € in Millions, $ in Millions").units, "€ in Millions, $ in Millions");
+  assert.equal(unitScale(splitTitle("CONSOLIDATED BALANCE SHEETS - € in Millions, $ in Millions").units, "\\$"), 1e6);
 });
 
 test("latestPrices reads many tickers in batches, and leaves out what fails", async () => {
