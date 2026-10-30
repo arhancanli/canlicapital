@@ -4,7 +4,8 @@
 // yield (dividends plus net buybacks over the market value). Each figure names its tag.
 import { z } from "zod";
 
-import { getJson, resolveEntity, tickerTable } from "./sources.mjs";
+import { marketValue } from "./listing.mjs";
+import { getJson, resolveEntity, submissions, tickerTable } from "./sources.mjs";
 import { priceHistory } from "./tools.mjs";
 
 export const payoutsInput = z.object({
@@ -115,11 +116,12 @@ export async function shareholderReturns(session, args) {
       const today = new Date(session.now()).toISOString().slice(0, 10);
       const px = await priceHistory(session, { symbol, start: new Date(session.now() - 12 * 86400000).toISOString().slice(0, 10), end: today, adjusted: false }).catch(() => null);
       const price = px?.close?.at(-1) ?? null, end = ends.at(-1);
-      if (price) {
-        const cap = price * shares, div = v("dividends_paid", end) ?? 0, net = (v("buybacks", end) ?? 0) - (v("issued", end) ?? 0);
+      const mv = price ? await marketValue(session, e.cik, await submissions(session, e.cik), price, shares) : null;
+      if (mv?.market_cap) {
+        const cap = mv.market_cap, div = v("dividends_paid", end) ?? 0, net = (v("buybacks", end) ?? 0) - (v("issued", end) ?? 0);
         yields = {
           price, price_date: px?.dates?.at(-1) ?? px?.date?.at(-1) ?? null, market_value: round(cap, 0), fiscal_year_end: end,
-          dividend_yield: dps?.values.has(end) ? round(dps.values.get(end) / price) : round(div / cap),
+          dividend_yield: dps?.values.has(end) ? round(dps.values.get(end) / mv.price_per_share) : round(div / cap),
           net_buyback_yield: round(net / cap), shareholder_yield: round((div + net) / cap),
           source: px?.source ?? null,
         };
