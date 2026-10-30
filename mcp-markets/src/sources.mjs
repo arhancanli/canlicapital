@@ -285,7 +285,16 @@ export async function resolveEntity(session, query) {
   if (funds && /^\$?[A-Z]{1,5}([.-][A-Z])?$/.test(q)) throw new NotFound(`${want} is not a ticker in the SEC's files of listed companies, mutual funds and ETFs (a delisted or changed ticker, or a foreign listing). Pass the company's name or CIK instead.`);
   const filer = knownAs(nameWords(q).join(" "));
   if (filer && typeof filer !== "string") return { cik: filer.cik, name: filer.name, ticker: null, matched_by: "name" };
-  const listed = listedByName(table, q);
+  // Fund reports write names their own way: "TJX Cos Inc/The", "Lowe's Cos Inc", "Hess Corp/DE".
+  const tidied = q.replace(/\s*\/\s*(?:the|[a-z]{2,3})\s*\/?\s*$/i, "").replace(/['\u2019]/g, "").replace(/\bcos\b/i, "Companies").trim();
+  const asWritten = listedByName(table, q);
+  let listed = asWritten.length ? asWritten : listedByName(table, tidied);
+  // SEC often writes a person's name family name first ("SCHWAB CHARLES CORP"): every word, any order, if only one company fits.
+  if (!listed.length) {
+    const words = nameWords(tidied);
+    const anyOrder = words.length >= 2 ? [...new Map(Object.values(table).filter((row) => { const title = nameWords(row.title); return words.every((w) => title.includes(w)); }).map((row) => [row.cik_str, row])).values()] : [];
+    if (anyOrder.length === 1) listed = anyOrder;
+  }
   if (listed.length) {
     const [top, ...others] = listed;
     return {

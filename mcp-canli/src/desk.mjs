@@ -242,7 +242,7 @@ export async function runSwarm(ctx, args) {
     if (!job?.swarm) throw new Error(`swarm: "${a.resume}" is not a swarm to resume; it may have aged out, so start again.`);
   } else {
     if (!a.tool) throw new Error("swarm: name a tool to run for each company.");
-    if (["brief", "swarm", "find_tool", "describe_tool", "run_tool", "show_result"].includes(a.tool)) throw new Error(`swarm cannot run ${a.tool}; name a data tool.`);
+    if (["brief", "swarm", "stress_worlds", "find_tool", "describe_tool", "run_tool", "show_result"].includes(a.tool)) throw new Error(`swarm cannot run ${a.tool}; name a data tool.`);
     const tool = await ctx.toolFor(a.tool);
     if (tool.annotations?.destructiveHint) throw new Error(`swarm runs read-only tools; ${a.tool} changes an account.`);
     if (!a.companies && !a.over) throw new Error("swarm: pass companies, or over to take them from another tool's table.");

@@ -25,7 +25,8 @@ import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { z } from "zod";
 
 import { resolveRefs } from "./files.mjs";
-import { DESK, runBrief, runSwarm } from "./desk.mjs";
+import { DESK as FANOUT, runBrief, runSwarm } from "./desk.mjs";
+import { runWorlds, WORLDS_TOOL } from "./worlds.mjs";
 import { OMITTED, PACKS, PLUGINS, RENAMES, enabledPacks, loadPack, loadPlugins, packInfo } from "./packs.mjs";
 import { signature } from "./signature.mjs";
 import { buildIndex, search } from "./search.mjs";
@@ -45,6 +46,7 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
+const DESK = [...FANOUT, WORLDS_TOOL];
 export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
@@ -347,7 +349,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     if (a.view) for (const c of calls) if (/^backtest_/.test(c.name) && !(c.arguments && "curve" in c.arguments)) { try { if ((await toolFor(c.name, packs)).input?.shape?.curve) c.arguments = { ...(c.arguments ?? {}), curve: true }; } catch { /* reported when it runs */ } }
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
     const desk = { call: (name, args) => runOne(packs, { name, arguments: args }, {}, [], gov), keep: (r) => keeper.put(r), get: (ref) => keeper.get(ref), at, toolFor: (name) => toolFor(name, packs), hosted: Boolean(readOnly) };
-    const SELF = { brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
+    const SELF = { brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), stress_worlds: (args) => runWorlds(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
     const run = (c, args) => (SELF[c.name] ? Promise.resolve().then(() => SELF[c.name](args)) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov));
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
     if (calls.length > 1 && destructive.some(Boolean)) throw new Error("A tool that sends orders cannot run inside a batch; call it on its own after previewing.");

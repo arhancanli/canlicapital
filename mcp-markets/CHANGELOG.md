@@ -2,6 +2,22 @@
 
 ## 0.8.0
 
+Foreign filers read properly. `company_report` showed TSMC at USD 11.2 trillion: a depositary share's price times
+ordinary shares. Market value, P/E, P/S, FCF yield, short interest and yields now use the ratio from the 20-F (36 of
+39 right against the banks' published ratios, 3 unread and left blank, none wrong; `bench/listing/run.mjs`) and the
+filing's currency, with share counts checked against profit over EPS. `company_report`, `reverse_dcf`,
+`forensic_scores` and `comps` read IFRS; `comps` takes `companies`, named peers from any country.
+
+- `european_filings` was down: its source caps page size at 1,000 now, so it reads pages.
+- Event studies and the earnings calendar took Tesla's deliveries, filed under Item 2.02, for earnings. Now one
+  release a quarter.
+- Banks, brokers and insurers get "not applicable" from the accounting screens rather than a list of missing inputs.
+- `news` answers from Yahoo Finance's headlines when GDELT is over its limit, instead of waiting over a minute.
+- Fund-report names resolve: "TJX Cos Inc/The", "Lowe's Cos Inc", "Charles Schwab Corp/The".
+- Public SEC, FRED and Treasury data stays on disk between sessions (`~/.cache/canli-markets`, 512 MB at most;
+  `CANLI_DISK_CACHE=0` turns it off): `company_report` on a new session went from 7.6 s to 0.6 s, and a source that is
+  down is answered from an older copy, dated. Prices, news and keyed requests are never written.
+
 Ten new tools, 74 in all, each from the body that keeps the record and without a key:
 
 - Public records: `enforcement_actions` (SEC litigation releases and administrative proceedings),
