@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.8.1
+
+Wrong figures, found by asking analysts' questions across the market.
+
+- Net income. Since the 2025 reports many 10-Ks tag only the common-stockholders line or `ProfitLoss`, and
+  `NetIncomeLoss` comes from the proxy's pay table, sometimes in rounded units. `company_report` showed no net income
+  for Booking, and screens read Arista's $3.5114 billion as 3,511. The line is now followed through its tags, and a
+  figure a thousand or a million times smaller than another of the same line is passed over. `verify_claims` no longer
+  calls a true claim about such a company "not reported".
+- P/E survives a stock split the last annual EPS predates: Booking's read 0.91 and now reads 20.92.
+- Share counts tagged in thousands (Camtek, Nova) are caught against diluted shares or profit over EPS.
+- Berkshire's market value counts its A-share equivalents at 1,500 B shares each. Exxon Mobil's history is read from
+  its old filer until its new holding company has an annual report.
+- `screen_companies` filters and ranks on P/E, P/S, FCF yield and market cap across the whole market in seconds, at
+  20 prices a request. Figures no company could have are held out by name instead of ranking first.
+
 ## 0.8.0
 
 Foreign filers read properly. `company_report` showed TSMC at USD 11.2 trillion: a depositary share's price times

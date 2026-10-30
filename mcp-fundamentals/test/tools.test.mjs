@@ -22,6 +22,7 @@ import {
   toolVintages,
 } from "../src/server.mjs";
 import { CIK, EXXON, RAW, SHA, fakeFetch, files } from "./fixture.mjs";
+import { indexFacts } from "../src/server.mjs";
 
 const session = (map) => {
   const f = fakeFetch(map);
@@ -477,4 +478,11 @@ test("history lists balances an annual report carries on a date that is not a ye
   assert.deepEqual(r.other_dates.rows.map((x) => [x[0], x[1], x[3]]), [["2019-12-31", 515, "10-K"]]);
   // Without an annual report carrying it, an interim balance stays out.
   assert.equal(out(await toolHistory(session().s, { company: "FIX", concept: "assets" })).other_dates, undefined);
+});
+
+test("a proxy statement's pay table is not a filing of the results: Arista's 3,511 never replaces $3.5114 billion", () => {
+  const row = (val, form, filed) => ({ start: "2025-01-01", end: "2025-12-31", val, form, filed, accn: `a-${filed}`, fy: 2025, fp: "FY" });
+  const index = indexFacts({ facts: { "us-gaap": { NetIncomeLoss: { units: { USD: [row(3511400000, "10-K", "2026-02-17"), row(3511, "DEF 14A", "2026-04-16")] } } } } });
+  const vintages = index.get("us-gaap:NetIncomeLoss").units.USD[0].vintages;
+  assert.deepEqual(vintages.map((v) => [v.val, v.form]), [[3511400000, "10-K"]]);
 });

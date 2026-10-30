@@ -78,7 +78,14 @@ function witness(session, url, record) {
 // `variant` caches a second form of the same document under its own name (a filing's text for
 // read_filing, its parsed tables for filing_tables); the evidence still names the URL.
 // timeoutMs and retries: a source that can stall (GDELT) asks for less waiting than the default.
-export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false, method = "GET", body, variant, timeoutMs = TIMEOUT_MS, retries = 2 } = {}) {
+// A company that has just moved under a new holding company files its reports under the old CIK until the
+// new one's first annual report: Exxon Mobil's ticker moved in 2026 to ExxonMobil Holdings Corp. Its XBRL
+// history is read from the old filer. Remove an entry once the new filer has an annual report in XBRL.
+export const FACTS_FROM = Object.freeze(new Map([[2115436, 34088]]));
+const factsHome = (url) => url.replace(/^(https:\/\/data\.sec\.gov\/api\/xbrl\/(?:companyfacts|companyconcept)\/CIK)(\d{10})/, (whole, head, cik) => (FACTS_FROM.has(Number(cik)) ? `${head}${String(FACTS_FROM.get(Number(cik))).padStart(10, "0")}` : whole));
+
+export async function getText(session, rawUrl, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false, method = "GET", body, variant, timeoutMs = TIMEOUT_MS, retries = 2 } = {}) {
+  const url = factsHome(rawUrl);
   const key = method === "GET" ? url : `${method} ${url} ${body ?? ""}`;
   const cacheKey = variant ? `${key}#${variant}` : key;
   const hit = session.cache.lookup(cacheKey, session.now());

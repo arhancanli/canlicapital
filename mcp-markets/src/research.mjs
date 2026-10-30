@@ -5,8 +5,8 @@ import { z } from "zod";
 
 import { parseForm4 } from "./forms.mjs";
 import { releasesFrom } from "./earnings.mjs";
-import { factBook, marketValue, usdPer } from "./listing.mjs";
-import { acceptanceTimes, archiveBase, filings, getJson, getText, NotFound, resolveEntity, submissions } from "./sources.mjs";
+import { factBook, isScaleSlip, marketValue, priceToEarnings, usdPer } from "./listing.mjs";
+import { acceptanceTimes, archiveBase, FACTS_FROM, filings, getJson, getText, NotFound, resolveEntity, submissions } from "./sources.mjs";
 import { priceHistory } from "./tools.mjs";
 
 const DATE = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "a date as YYYY-MM-DD");
@@ -30,7 +30,10 @@ const metric = (kind, unit, groups) => ({ kind, unit, groups, tags: groups.flat(
 const one = (...tags) => tags.map((t) => [t]);
 export const METRICS = Object.freeze({
   revenue: metric(D, "USD", [["Revenues", "RevenueFromContractWithCustomerExcludingAssessedTax"], ["SalesRevenueNet"], ["RevenueFromContractWithCustomerIncludingAssessedTax"]]),
-  net_income: metric(D, "USD", one("NetIncomeLoss", "ProfitLoss")),
+  // In order, as a company's own figure of one line. Since the 2025 reports many 10-Ks tag only the
+  // common-stockholders line or ProfitLoss, and NetIncomeLoss comes from the proxy's pay table, sometimes in
+  // the proxy's rounded units: Arista's 3,511 for $3.5114 billion, J.Jill's 27,900 for $27.891 million.
+  net_income: { ...metric(D, "USD", [["NetIncomeLoss", "NetIncomeLossAvailableToCommonStockholdersBasic", "ProfitLoss"]]), ordered: true },
   operating_income: metric(D, "USD", one("OperatingIncomeLoss")),
   gross_profit: metric(D, "USD", one("GrossProfit")),
   eps_diluted: metric(D, "USD/shares", one("EarningsPerShareDiluted")),
@@ -68,6 +71,14 @@ export const IFRS_METRICS = Object.freeze({
 export function choose(def, byTag, preferTag) {
   if (!byTag) return null;
   if (preferTag && byTag[preferTag]) return { ...byTag[preferTag], tag: preferTag };
+  if (def.ordered) {
+    const have = def.tags.filter((t) => byTag[t]);
+    if (!have.length) return null;
+    // A value a thousand or a million times smaller than another of the same line is in other units.
+    const small = (t) => have.some((u) => u !== t && byTag[t].val && [1e3, 1e6, 1e9].some((k) => Math.abs(Math.abs(byTag[u].val / byTag[t].val) / k - 1) < 0.005));
+    const t = have.find((x) => !small(x)) ?? have[0];
+    return { ...byTag[t], tag: t };
+  }
   for (const g of def.groups) {
     const have = g.filter((t) => byTag[t]).sort((a, b) => Math.abs(byTag[b].val) - Math.abs(byTag[a].val));
     if (!have.length) continue;
@@ -195,6 +206,8 @@ async function listedCompanies(session) {
   const t = await getJson(session, "https://www.sec.gov/files/company_tickers_exchange.json");
   const by = new Map();
   for (const [cik, name, ticker, exchange] of t.data ?? []) if (!by.has(cik)) by.set(cik, { name, ticker, exchange });
+  // The old filer's figures in the frames belong to the listed company that replaced it.
+  for (const [now, before] of FACTS_FROM) if (by.has(now) && !by.has(before)) by.set(before, by.get(now));
   return by;
 }
 
@@ -232,9 +245,12 @@ export async function screenCompanies(session, args, opts = {}) {
     ? Array.from({ length: Number(win[1].slice(0, 4)) - Number(win[0].slice(0, 4)) + 2 }, (_, i) => parsePeriod(`FY${Number(win[0].slice(0, 4)) - 1 + i}`))
     : [parsePeriod(a.period ?? `FY${year}`)];
   const per = win ? { ...pers.at(-1), label: `each company's fiscal year ending ${win[0]} to ${win[1]}` } : pers[0];
-  const filters = a.filters ?? [];
-  const sortBy = a.sort_by ?? filters[0]?.metric ?? "revenue";
-  if (VALUATION.includes(sortBy) || filters.some((f) => VALUATION.includes(f.metric))) throw new Error("Valuation metrics need a price per company, so they apply to the returned rows only: filter and sort on fundamentals, and set valuation: true.");
+  // Valuation needs a price per company, so it is applied after the fundamentals, to whatever they leave.
+  const asked = a.filters ?? [];
+  const filters = asked.filter((f) => !VALUATION.includes(f.metric)), priceFilters = asked.filter((f) => VALUATION.includes(f.metric));
+  const askedSort = a.sort_by ?? asked[0]?.metric ?? "revenue";
+  const priceSort = VALUATION.includes(askedSort) ? askedSort : null;
+  const sortBy = priceSort ? "revenue" : askedSort;
   const shown = [...new Set([...filters.map((f) => f.metric), sortBy, ...(a.columns ?? []).filter((c) => !VALUATION.includes(c))])];
   // Base metrics needed, with @prev for growth.
   const base = new Set(["revenue", "net_income", "assets"]);
@@ -302,17 +318,19 @@ export async function screenCompanies(session, args, opts = {}) {
   if (corrections) meets = rank(universe.filter((r) => filters.every((f) => test(value(r, f.metric), f))));
   const held = a.include_suspect ? [] : meets.filter((r) => suspect(r.m).length);
   const passing = a.include_suspect ? meets : meets.filter((r) => !suspect(r.m).length);
-  const top = passing.slice(0, a.limit ?? 25);
+  const screened = priceFilters.length || priceSort ? await priceScreen(session, passing, per, priceFilters, priceSort, a.order ?? (priceSort === "market_cap" || priceSort === "fcf_yield" ? "desc" : "asc")) : null;
+  const top = (screened ? screened.rows : passing).slice(0, a.limit ?? 25);
   const out = {
     period: per.label,
-    universe: universe.length, matched: passing.length,
+    universe: universe.length, matched: screened ? screened.rows.length : passing.length,
+    ...(screened ? { priced: screened.note } : {}),
     columns: ["ticker", "name", "cik", "exchange", "period_end", ...shown],
     rows: top.map((r) => [r.ticker, r.name, r.cik, r.exchange, r.end, ...shown.map((m) => round(value(r, m), DERIVED[m] ? 6 : 4))]),
     ...(toCheck.some((r) => r.corrected) ? { corrected: { reason: "a figure from a different filing (often a proxy statement) disagreed with the company's own 10-K or 10-Q, which was used", columns: ["ticker", "metric", "frame_value", "report_value", "report"], rows: toCheck.filter((r) => r.corrected).flatMap((r) => r.corrected.map((c) => [r.ticker, ...c])).slice(0, 20) } } : {}),
     ...(held.length ? { held_out: { reason: "failed a plausibility check (usually a tagging slip in the filing); pass include_suspect: true to keep them", columns: ["ticker", "name", "cik", "checks"], rows: held.slice(0, 10).map((r) => [r.ticker, r.name, r.cik, suspect(r.m).join("; ")]), count: held.length } } : {}),
   };
-  if (a.valuation && top.length) {
-    const val = await valuationFor(session, top.slice(0, 50), per);
+  if ((a.valuation || screened) && top.length) {
+    const val = screened ? new Map(top.map((r) => [r.cik, r.val])) : await valuationFor(session, top.slice(0, 50), per);
     out.valuation = { columns: ["ticker", ...VALUATION, "price_date", "shares_basis"], rows: top.slice(0, 50).map((r) => [r.ticker, ...VALUATION.map((k) => val.get(r.cik)?.[k] ?? null), val.get(r.cik)?.price_date ?? null, val.get(r.cik)?.shares_basis ?? null]) };
   }
   out.definitions = Object.fromEntries(shown.map((m) => [m, DERIVED[m] ? `derived from ${DERIVED[m].needs.join(", ")}` : `XBRL ${METRICS[m].groups.map((g) => g.join(" or ")).join(", else ")} (the larger within "or"), ${METRICS[m].unit}`]));
@@ -321,8 +339,8 @@ export async function screenCompanies(session, args, opts = {}) {
   return out;
 }
 
-// Latest close, market cap, P/E, P/S and FCF yield for up to 50 companies.
-async function valuationFor(session, rows, per) {
+// What valuation reads from the frames, for every filer at once.
+async function valuationInputs(session, per) {
   const y = Number(per.duration.slice(2, 6));
   const shareFrames = await Promise.all([`CY${y}Q4I`, `CY${y + 1}Q1I`, `CY${y + 1}Q2I`].map((f) => frame(session, "EntityCommonStockSharesOutstanding", "shares", f, "dei")));
   const shares = new Map(), abroad = new Set();
@@ -330,10 +348,30 @@ async function valuationFor(session, rows, per) {
   // Companies with several share classes report cover-page counts per class, which frames leave
   // out; the period's diluted weighted-average share count stands in for them.
   const diluted = await frame(session, "WeightedAverageNumberOfDilutedSharesOutstanding", "shares", per.duration);
+  const dilutedBy = new Map((diluted?.data ?? []).map((r) => [r.cik, r.val]));
   for (const r of diluted?.data ?? []) if (!shares.has(r.cik)) shares.set(r.cik, { val: r.val, end: r.end, basis: "diluted weighted average" });
   const fund = await Promise.all(["revenue", "eps_diluted", "operating_cash_flow", "capex"].map((m) => metricFrame(session, m, per.duration)));
-  const pick = (f) => ({ get: (cik) => chosen(f, cik) ?? undefined });
-  const [rev, eps, ocf, capex] = fund.map(pick);
+  const [rev, eps, ocf, capex] = fund.map((f) => ({ get: (cik) => chosen(f, cik) ?? undefined }));
+  return { shares, abroad, dilutedBy, rev, eps, ocf, capex };
+}
+
+// One company's valuation from a price. A filer abroad may list depositary shares, whose price and share
+// count stand on different footings: its ratio is read from its 20-F.
+async function valueOne(session, r, price, priceDate, inp) {
+  const sh = inp.shares.get(r.cik)?.val, e = inp.eps.get(r.cik)?.val, profit = r.m.net_income;
+  // Two checks on the cover page's count: the year's diluted shares, else profit over earnings per share.
+  const earned = inp.dilutedBy.get(r.cik) ?? (e > 0 && profit > 0 ? profit / e : null);
+  const twoClasses = r.cik === 1067983 || Number(r.cik) === 1067983;
+  const mv = inp.abroad.has(r.cik) || twoClasses ? await marketValue(session, r.cik, await submissions(session, r.cik), price, sh, { implied: earned ?? inp.dilutedBy.get(r.cik) })
+    : { market_cap: sh ? price * (earned && isScaleSlip(sh, earned) ? earned : sh) : null, price_per_share: price };
+  const mcap = mv.market_cap;
+  const rv = inp.rev.get(r.cik)?.val, fcf = inp.ocf.get(r.cik) ? inp.ocf.get(r.cik).val - (inp.capex.get(r.cik)?.val ?? 0) : null;
+  return { price, price_date: priceDate, shares_basis: inp.shares.get(r.cik)?.basis ?? null, market_cap: mcap ? Math.round(mcap) : null, pe: e > 0 ? round(priceToEarnings({ price_per_share: mv.price_per_share, eps: e, market_cap: mcap, net_income: profit }), 2) : null, ps: mcap && rv > 0 ? round(mcap / rv, 2) : null, fcf_yield: mcap && fcf != null ? round(fcf / mcap, 4) : null };
+}
+
+// Latest close, market cap, P/E, P/S and FCF yield for up to 50 companies.
+async function valuationFor(session, rows, per) {
+  const inp = await valuationInputs(session, per);
   const out = new Map();
   const queue = [...rows];
   const worker = async () => {
@@ -341,17 +379,55 @@ async function valuationFor(session, rows, per) {
       if (!r.ticker) continue;
       try {
         const p = await priceHistory(session, { symbol: r.ticker, start: daysAgo(session, 10), end: today(session) });
-        const price = p.close.at(-1), sh = shares.get(r.cik)?.val;
-        // A filer abroad may list depositary shares: its price and share count are then on different footings.
-        const mv = abroad.has(r.cik) ? await marketValue(session, r.cik, await submissions(session, r.cik), price, sh, { implied: diluted?.data?.find((d) => d.cik === r.cik)?.val }) : { market_cap: sh ? price * sh : null, price_per_share: price };
-        const mcap = mv.market_cap;
-        const e = eps.get(r.cik)?.val, rv = rev.get(r.cik)?.val, fcf = ocf.get(r.cik) ? ocf.get(r.cik).val - (capex.get(r.cik)?.val ?? 0) : null;
-        out.set(r.cik, { price, price_date: p.dates.at(-1), shares_basis: shares.get(r.cik)?.basis ?? null, market_cap: mcap ? Math.round(mcap) : null, pe: e > 0 && mv.price_per_share ? round(mv.price_per_share / e, 2) : null, ps: mcap && rv > 0 ? round(mcap / rv, 2) : null, fcf_yield: mcap && fcf != null ? round(fcf / mcap, 4) : null });
+        out.set(r.cik, await valueOne(session, r, p.close.at(-1), p.dates.at(-1), inp));
       } catch { /* no price for this ticker: its valuation stays empty */ }
     }
   };
   await Promise.all(Array.from({ length: 4 }, worker));
   return out;
+}
+
+// Latest prices for many tickers at once, 20 to a request: the whole market in seconds.
+export async function latestPrices(session, tickers) {
+  if (session.env?.CANLI_KEYLESS_PRICES === "0") throw new Error("Valuation filters need prices, which are off on this server (CANLI_KEYLESS_PRICES=0). On the hosted server, run the local one: npx -y canli-mcp.");
+  const out = new Map(), batches = [];
+  for (let i = 0; i < tickers.length; i += 20) batches.push(tickers.slice(i, i + 20));
+  const worker = async () => {
+    for (let b; (b = batches.shift());) {
+      try {
+        const d = await getJson(session, `https://query1.finance.yahoo.com/v7/finance/spark?symbols=${encodeURIComponent(b.join(","))}&range=1d&interval=1d`, { timeoutMs: 12000 });
+        for (const x of d?.spark?.result ?? []) {
+          const m = x?.response?.[0]?.meta;
+          if (m?.regularMarketPrice > 0) out.set(x.symbol, { price: m.regularMarketPrice, date: m.regularMarketTime ? new Date(m.regularMarketTime * 1000).toISOString().slice(0, 10) : null });
+        }
+      } catch { /* a failed batch leaves its tickers unpriced, and the count says so */ }
+    }
+  };
+  await Promise.all(Array.from({ length: 6 }, worker));
+  return out;
+}
+
+// Valuation over every company the fundamentals left. Filers abroad cost a 20-F each to read, so the 40
+// largest are read and the others counted.
+const ABROAD_READ = 40;
+async function priceScreen(session, rows, per, filters, sortBy, order) {
+  const named = rows.filter((r) => r.ticker);
+  const [prices, inp] = await Promise.all([latestPrices(session, named.map((r) => r.ticker)), valuationInputs(session, per)]);
+  if (named.length && !prices.size) throw new Error("No prices came back for this screen; the price source may be limiting requests. Ask again in a minute.");
+  const test = (v, f) => v != null && (f.op === ">" ? v > f.value : f.op === ">=" ? v >= f.value : f.op === "<" ? v < f.value : f.op === "<=" ? v <= f.value : Array.isArray(f.value) && v >= f.value[0] && v <= f.value[1]);
+  const home = named.filter((r) => !inp.abroad.has(r.cik)), abroad = named.filter((r) => inp.abroad.has(r.cik) && prices.has(r.ticker)).sort((x, y) => (y.m.revenue ?? 0) - (x.m.revenue ?? 0));
+  const out = [];
+  for (const r of home) { const p = prices.get(r.ticker); if (p) out.push({ ...r, val: await valueOne(session, r, p.price, p.date, inp) }); }
+  const queue = abroad.slice(0, ABROAD_READ);
+  await Promise.all(Array.from({ length: 4 }, async () => { for (let r; (r = queue.shift());) { const p = prices.get(r.ticker); try { out.push({ ...r, val: await valueOne(session, r, p.price, p.date, inp) }); } catch { /* left out, and counted */ } } }));
+  // Figures no company has, usually a tagging slip that no check could place: held apart, not ranked first.
+  const odd = out.filter((r) => r.val.fcf_yield > 1 || (r.val.ps != null && r.val.ps < 0.01));
+  const oddSet = new Set(odd.map((r) => r.cik));
+  const kept = out.filter((r) => !oddSet.has(r.cik) && filters.every((f) => test(r.val[f.metric], f)));
+  const by = sortBy ?? filters[0]?.metric;
+  const dir = order === "asc" ? 1 : -1;
+  if (by) kept.sort((x, y) => { const p = x.val[by], q = y.val[by]; if (p == null) return 1; if (q == null) return -1; return dir * (p - q); });
+  return { rows: kept, note: { companies: named.length, with_a_price: prices.size, abroad_read: Math.min(abroad.length, ABROAD_READ), abroad_left_out: Math.max(0, abroad.length - ABROAD_READ), ...(odd.length ? { held_out_as_implausible: odd.slice(0, 20).map((r) => r.ticker) } : {}), meaning: "P/E, P/S and FCF yield set the latest price against the fiscal-year figures of this screen; market cap uses the latest cover-page share count. Companies with no positive earnings have no P/E and fail a P/E filter.", source: "Yahoo Finance quote data (no key)" } };
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -440,7 +516,7 @@ export async function companyReport(session, args) {
         volatility_1y: round(sd(r.values) * Math.sqrt(252), 4), max_drawdown_1y: round(mdd, 4), beta_1y_vs_spy: round(beta, 3),
         high_52w: Math.max(...p.high.filter((v) => v != null)), low_52w: Math.min(...p.low.filter((v) => v != null)),
         shares_outstanding: mv.shares_used ?? sh?.val ?? null, shares_as_of: mv.shares_used ? null : sh?.end ?? null, market_cap: mcap ? Math.round(mcap) : null,
-        pe: last.eps_diluted > 0 && rate && mv.price_per_share ? round(mv.price_per_share / (last.eps_diluted * rate), 2) : null, ps: mcap && rate && last.revenue > 0 ? round(mcap / (last.revenue * rate), 2) : null, fcf_yield: mcap && rate && fcf != null ? round((fcf * rate) / mcap, 6) : null,
+        pe: last.eps_diluted > 0 && rate && mv.price_per_share ? round(priceToEarnings({ price_per_share: mv.price_per_share, eps: last.eps_diluted * rate, market_cap: mcap, net_income: last.net_income * rate }), 2) : null, ps: mcap && rate && last.revenue > 0 ? round(mcap / (last.revenue * rate), 2) : null, fcf_yield: mcap && rate && fcf != null ? round((fcf * rate) / mcap, 6) : null,
         ...(mv.ratio && mv.ratio.shares_per_listed_share !== 1 ? { listed_share: { ordinary_shares_each: mv.ratio.shares_per_listed_share, basis: mv.ratio.basis, source: mv.ratio.source } } : {}),
         ...(book.currency !== "USD" ? { fx: fx ? { pair: fx.pair, rate: round(fx.rate, 6), date: fx.date } : { note: `No ${book.currency} rate was available, so the multiples are not computed.` } } : {}),
         ...(mv.note ? { note: mv.note } : {}),

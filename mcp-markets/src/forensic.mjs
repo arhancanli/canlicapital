@@ -20,7 +20,7 @@ const TAGS = {
   ppe: ["PropertyPlantAndEquipmentNet"], securities: ["MarketableSecuritiesNoncurrent", "LongTermInvestments", "AvailableForSaleSecuritiesDebtSecuritiesNoncurrent"],
   depreciation: ["Depreciation", "DepreciationDepletionAndAmortization", "DepreciationAndAmortization", "DepreciationAmortizationAndAccretionNet", "DepreciationDepletionAndAmortizationPropertyPlantAndEquipment"],
   sga: ["SellingGeneralAndAdministrativeExpense", "GeneralAndAdministrativeExpense"],
-  net_income: ["NetIncomeLoss", "ProfitLoss"], cfo: ["NetCashProvidedByUsedInOperatingActivities"],
+  net_income: ["NetIncomeLoss", "NetIncomeLossAvailableToCommonStockholdersBasic", "ProfitLoss"], cfo: ["NetCashProvidedByUsedInOperatingActivities"],
   long_term_debt: ["LongTermDebtNoncurrent", "LongTermDebt"], retained_earnings: ["RetainedEarningsAccumulatedDeficit"],
   equity_total: ["StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest", "StockholdersEquity"],
   ebit: ["OperatingIncomeLoss"], shares: ["CommonStockSharesOutstanding", "WeightedAverageNumberOfDilutedSharesOutstanding"],
