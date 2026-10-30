@@ -406,7 +406,8 @@ export function isGuidanceTable(t) {
 export function guidanceFromTable(t) {
   const out = [];
   const head = t.columns.slice(1);
-  const ctx = `${t.caption ?? ""} ${(t.notes ?? []).join(" ")}`;
+  // The table's own title row ("(in millions, except per share data)") counts as context too.
+  const ctx = `${t.caption ?? ""} ${t.heading ?? ""} ${(t.notes ?? []).join(" ")}`;
   // "($ in billions)" in a header or caption is the scale of its dollar figures.
   const scaleIn = (text) => { const m = String(text).match(/\$\s*in\s+(thousands|millions|billions)|in\s+(thousands|millions|billions)\b/i); return m ? (m[1] ?? m[2]).toLowerCase().replace(/s$/, "") : null; };
   let heading = null;
@@ -425,6 +426,8 @@ export function guidanceFromTable(t) {
       if (cell === null || cell === "" || /^unchanged$/i.test(String(cell))) return;
       const text = typeof cell === "number" ? String(cell) : String(cell);
       const header = head[j] ?? "";
+      // A results column beside the outlook ("2026 Outlook | 2025 Actual") is not guidance.
+      if (/\b(?:actual|actuals|reported|results?)\b/i.test(header) && !/\b(?:outlook|guidance|forecast|expected)\b/i.test(header)) return;
       const sentence = `${label}: ${text}`;
       const measure = measureOf(label) ?? measureOf(header);
       const figures = typeof cell === "number" ? [{ at: label.length + 2, end: sentence.length, low: cell, high: cell, f: { cur: null, scale: null, pct: null, after: "" } }] : figuresIn(text, { bare: /\+\/-|±/.test(text) }).map((f) => ({ ...f, at: f.at + label.length + 2, end: f.end + label.length + 2 }));

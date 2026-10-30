@@ -93,6 +93,10 @@
   line shown negated has the opposite sign in its XBRL fact.
 - `event_study` says how day 0 is chosen.
 
+- `earnings_release` reads outlook tables whose footnote sits left of the labels (Lockheed Martin's
+  2026 outlook came back with no guidance), takes "in millions" from a table's own title row, and no
+  longer lists a results column ("2025 Actual") beside the outlook as guidance. Found by 14 new
+  questions on Q3 2026 releases, keyed before the first run (12 of 14, now 14 of 14).
 - `verify_claims` checks foreign companies: IFRS and US GAAP facts from 20-F and 40-F annual
   reports and tagged 6-K quarters, in the currency the company reports in (Novo Nordisk in DKK,
   TSMC in TWD and in its US-dollar translation, ASML's US GAAP in euros). Before, every foreign
