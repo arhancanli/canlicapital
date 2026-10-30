@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.13.1
+
+- `triangulate` holds one company on every road, and counts agreement with any of a statement's lines for a measure, so
+  net income before and after preferred dividends is not called a disagreement.
+- The fundamentals pack (0.7.4) finds the listed company for a name: "T Rowe Price Group Inc" had read a credit fund.
+
 ## 0.13.0
 
 - `triangulate`: a company's revenue, net income, EPS, operating income, assets, equity and cash reached by three
