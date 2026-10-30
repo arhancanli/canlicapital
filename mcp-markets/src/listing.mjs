@@ -54,15 +54,38 @@ export async function listedShareRatio(session, cik, sub) {
 // Which accounts a filer's XBRL facts hold: the taxonomy of its latest balance sheet and that sheet's
 // currency. A filer that moved from US GAAP to IFRS (Toyota, 2021) is read under IFRS.
 export function factBook(cf) {
+  // Some 20-Fs add a dollar translation of the latest year (TSMC does): the reporting currency is the
+  // one with the longest record, not whichever came first.
   const newest = (name) => {
-    let best = null;
-    for (const [unit, rows] of Object.entries(cf?.facts?.[name]?.Assets?.units ?? {})) for (const r of rows) if (!best || r.filed > best.filed || (r.filed === best.filed && r.end > best.end)) best = { ...r, unit };
+    let best = null, count = 0;
+    for (const [unit, rows] of Object.entries(cf?.facts?.[name]?.Assets?.units ?? {})) {
+      const latest = rows.reduce((b, r) => (!b || r.filed > b.filed || (r.filed === b.filed && r.end > b.end) ? r : b), null);
+      if (latest && (!best || latest.filed > best.filed || (latest.filed === best.filed && rows.length > count))) { best = { ...latest, unit }; count = rows.length; }
+    }
     return best;
   };
   const g = newest("us-gaap"), i = newest("ifrs-full");
   const useIfrs = i && (!g || i.filed >= g.filed);
   const chosen = useIfrs ? i : g;
   return { taxonomy: useIfrs ? "ifrs-full" : "us-gaap", facts: cf?.facts?.[useIfrs ? "ifrs-full" : "us-gaap"] ?? {}, currency: chosen?.unit ?? "USD" };
+}
+
+// A filer's facts in the shape of US GAAP dollars, for code that reads those tags: IFRS tags under their
+// US GAAP names, and the filing's currency under "USD". The figures stay in that currency; callers say so.
+export function asDollarShaped(book, ifrsToGaap = {}) {
+  if (book.taxonomy === "us-gaap" && book.currency === "USD") return book.facts;
+  // Only the reporting currency's rows: a dollar translation must not stand in for them.
+  const rename = (rows) => {
+    const c = book.currency;
+    return { ...(rows[c] ? { USD: rows[c] } : {}), ...(rows[`${c}/shares`] ? { "USD/shares": rows[`${c}/shares`] } : {}), ...(rows.shares ? { shares: rows.shares } : {}) };
+  };
+  const out = {};
+  if (book.taxonomy === "us-gaap") { for (const [tag, fact] of Object.entries(book.facts)) out[tag] = { ...fact, units: rename(fact.units ?? {}) }; return out; }
+  for (const [gaap, tags] of Object.entries(ifrsToGaap)) {
+    const found = tags.map((t) => book.facts[t]).find(Boolean);
+    if (found) out[gaap] = { ...found, units: rename(found.units ?? {}) };
+  }
+  return out;
 }
 
 // Dollars per unit of a currency, the latest close. null when no price source is available (the hosted

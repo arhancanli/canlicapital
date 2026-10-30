@@ -31,6 +31,18 @@ test("brief: a failed worker costs only its part, flags name their evidence, and
   assert.equal(row("segments")[3], "failed");
 });
 
+test("brief: a bank gets no free-cash-flow or debt reading", async () => {
+  const answers = {
+    company_report: { company: { ticker: "B", industry: "National Commercial Banks" }, financials: { columns: ["fiscal_year_end", "net_income", "operating_cash_flow", "free_cash_flow"], rows: [["2025-12-31", 50, -100, -100]] }, market: { price: 1, fcf_yield: -0.2 } },
+    debt_profile: { debt: { total: 5 }, cash_and_equivalents: 1, maturities: { next_12_months: 9 }, cost_and_cover: {} },
+  };
+  const r = await runBrief(context(async (name) => { if (!answers[name]) throw new Error("none"); return answers[name]; }), { company: "B", seconds: 5 });
+  assert.equal(r.debt, undefined);
+  assert.equal(r.market.fcf_yield, undefined);
+  assert.equal(r.flags.rows.length, 0);
+  assert.match(r.financial_company, /left out/);
+});
+
 test("brief: a slow worker is named and does not hold the digest past the limit", async () => {
   const r = await runBrief(context((name) => (name === "company_report" ? new Promise(() => {}) : Promise.resolve({}))), { company: "X", seconds: 5 });
   assert.equal(r.workers.rows.find((x) => x[0] === "report")[3], "still running");

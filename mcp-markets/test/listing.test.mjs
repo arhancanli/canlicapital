@@ -4,7 +4,8 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
 
-import { factBook, ratioFromText } from "../src/listing.mjs";
+import { ifrsDebtRows } from "../src/credit.mjs";
+import { asDollarShaped, factBook, ratioFromText } from "../src/listing.mjs";
 import { createDiskCache, freshFor } from "../src/disk-cache.mjs";
 import { releasesFrom } from "../src/earnings.mjs";
 import { createSession, getText } from "../src/sources.mjs";
@@ -38,6 +39,20 @@ test("the disk cache keeps public data between sessions, serves it fresh, and fa
   quick.disk = disk;
   assert.equal(await getText(quick, stale), "{\"old\":true}", "a source that is down is answered from the older copy");
   rmSync(dir, { recursive: true, force: true });
+});
+
+test("a dollar translation in a 20-F does not stand in for the reporting currency", () => {
+  const assets = { units: { TWD: [{ filed: "2025-04-17", end: "2024-12-31", val: 6000 }, { filed: "2024-04-01", end: "2023-12-31", val: 5000 }], USD: [{ filed: "2025-04-17", end: "2024-12-31", val: 200 }] } };
+  const book = factBook({ facts: { "ifrs-full": { Assets: assets, CashAndCashEquivalents: { units: { TWD: [{ end: "2024-12-31", val: 2000 }], USD: [{ end: "2017-12-31", val: 1 }] } } } } });
+  assert.equal(book.currency, "TWD");
+  assert.deepEqual(asDollarShaped(book, { Cash: ["CashAndCashEquivalents"] }).Cash.units.USD, [{ end: "2024-12-31", val: 2000 }]);
+});
+
+test("IFRS debt: the filer's total where it gives one, else loans, bonds and the current portion", () => {
+  const row = (val) => ({ units: { TWD: [{ end: "2024-12-31", val, form: "20-F", filed: "2025-04-17", fp: "FY" }] } });
+  const tsmc = { currency: "TWD", facts: { LongtermBorrowings: row(31), NoncurrentPortionOfNoncurrentBondsIssued: row(926), CurrentPortionOfLongtermBorrowings: row(59), CurrentBondsIssuedAndCurrentPortionOfNoncurrentBondsIssued: row(57) } };
+  assert.equal(ifrsDebtRows(tsmc)[0].val, 31 + 926 + 59, "the current bonds are inside the current portion");
+  assert.equal(ifrsDebtRows({ currency: "TWD", facts: { Borrowings: row(100), LongtermBorrowings: row(90) } })[0].val, 100);
 });
 
 test("factBook takes the taxonomy of the latest balance sheet and its currency", () => {

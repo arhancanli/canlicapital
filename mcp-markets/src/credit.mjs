@@ -3,6 +3,7 @@
 // costs it (interest, coverage, leverage), with the tag behind every figure.
 import { z } from "zod";
 
+import { asDollarShaped, factBook } from "./listing.mjs";
 import { getJson, resolveEntity } from "./sources.mjs";
 
 export const debtInput = z.object({
@@ -24,6 +25,31 @@ function at(facts, tag, end, { duration = false } = {}) {
 const first = (facts, tags, end, opts) => { for (const t of tags) { const v = at(facts, t, end, opts); if (v) return v; } return null; };
 const round = (x, d = 4) => (Number.isFinite(x) ? Math.round(x * 10 ** d) / 10 ** d : null);
 
+// The same lines in the IFRS taxonomy. IFRS has no standard tags for the yearly maturity ladder.
+const IFRS_DEBT = {
+  LongTermDebtCurrent: ["CurrentPortionOfLongtermBorrowings", "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings", "CurrentBorrowings"],
+  CashAndCashEquivalentsAtCarryingValue: ["CashAndCashEquivalents"], MarketableSecuritiesCurrent: ["CurrentFinancialAssets", "OtherCurrentFinancialAssets"],
+  InterestExpense: ["InterestExpense", "FinanceCosts"], OperatingIncomeLoss: ["ProfitLossFromOperatingActivities"],
+  DepreciationAndAmortization: ["DepreciationAndAmortisationExpense", "AdjustmentsForDepreciationAndAmortisationExpense"],
+};
+// Total debt as IFRS filers tag it: their total where they give one; else long-term loans, bonds and the
+// current portion added up (TSMC tags its bonds apart, nearly all its debt).
+export function ifrsDebtRows(book) {
+  const f = book.facts, rows = (tag) => (f[tag]?.units?.[book.currency] ?? []).filter((x) => !x.start && ANNUAL.has(x.form));
+  const latest = (tag, end) => rows(tag).filter((x) => x.end === end).sort((p, q) => (p.filed < q.filed ? 1 : -1))[0] ?? null;
+  const parts = ["LongtermBorrowings", "NoncurrentPortionOfNoncurrentBorrowings", "NoncurrentPortionOfNoncurrentBondsIssued", "CurrentPortionOfLongtermBorrowings", "CurrentBondsIssuedAndCurrentPortionOfNoncurrentBondsIssued"];
+  const ends = new Set(["Borrowings", ...parts].flatMap((t) => rows(t).map((x) => x.end)));
+  return [...ends].map((end) => {
+    const whole = latest("Borrowings", end);
+    if (whole) return whole;
+    const loans = latest("LongtermBorrowings", end) ?? latest("NoncurrentPortionOfNoncurrentBorrowings", end);
+    const bonds = latest("NoncurrentPortionOfNoncurrentBondsIssued", end);
+    const current = latest("CurrentPortionOfLongtermBorrowings", end) ?? latest("CurrentBondsIssuedAndCurrentPortionOfNoncurrentBondsIssued", end);
+    const have = [loans, bonds, current].filter(Boolean);
+    return { end, val: have.reduce((s, x) => s + x.val, 0), form: have[0].form, filed: have[0].filed, accn: have[0].accn, fp: have[0].fp };
+  });
+}
+
 const LADDER = [["next_12_months", "InNextTwelveMonths"], ["year_2", "InYearTwo"], ["year_3", "InYearThree"], ["year_4", "InYearFour"], ["year_5", "InYearFive"], ["after_year_5", "AfterYearFive"]];
 const LEASES = [["next_12_months", "NextTwelveMonths"], ["year_2", "YearTwo"], ["year_3", "YearThree"], ["year_4", "YearFour"], ["year_5", "YearFive"], ["after_year_5", "AfterYearFive"]];
 
@@ -38,7 +64,8 @@ export async function debtProfile(session, args) {
 // The profile from a companyfacts document (pure, for tests).
 export function profileFromFacts(cf, { entity: e = {}, url = null, years = 5, company = null } = {}) {
   const a = { years, company };
-  const f = cf.facts?.["us-gaap"] ?? {};
+  const book = factBook(cf), f = asDollarShaped(book, IFRS_DEBT);
+  if (book.taxonomy === "ifrs-full") f.LongTermDebt = { units: { USD: ifrsDebtRows(book) } };
   // Annual balance-sheet dates the company reported debt or cash at, newest first.
   const ends = [...new Set(["LongTermDebt", "LongTermDebtNoncurrent", "LongTermDebtCurrent", "CashAndCashEquivalentsAtCarryingValue"]
     .flatMap((t) => (f[t]?.units?.USD ?? []).filter((x) => ANNUAL.has(x.form) && !x.start && x.fp === "FY").map((x) => x.end)))].sort().reverse();
@@ -66,7 +93,7 @@ export function profileFromFacts(cf, { entity: e = {}, url = null, years = 5, co
   const netDebt = d.val != null ? d.val - (cash?.val ?? 0) - (securities?.val ?? 0) : null;
   const history = ends.slice(0, a.years ?? 5).map((x) => { const y = debtAt(x); return [x, y.val, first(f, ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"], x)?.val ?? null]; });
   return {
-    company: { cik: e.cik, name: cf.entityName ?? e.name, ticker: e.ticker ?? null },
+    company: { cik: e.cik, name: cf.entityName ?? e.name, ticker: e.ticker ?? null, ...(book.currency !== "USD" || book.taxonomy === "ifrs-full" ? { accounts: { standard: book.taxonomy === "ifrs-full" ? "IFRS" : "US GAAP", currency: book.currency } } : {}) },
     as_of: end,
     debt: { total: d.val, ...Object.fromEntries(Object.entries(d.parts).map(([k, v]) => [k, v ? v.val : null])) },
     cash_and_equivalents: cash?.val ?? null, current_marketable_securities: securities?.val ?? null, net_debt: netDebt,
@@ -82,6 +109,8 @@ export function profileFromFacts(cf, { entity: e = {}, url = null, years = 5, co
     },
     history: { columns: ["end", "total_debt", "cash"], rows: history },
     tags: Object.fromEntries([...Object.entries(d.parts).map(([k, v]) => [k, v?.tag ?? null]), ["cash", cash?.tag ?? null], ["depreciation", da?.tag ?? null]]),
+    ...(book.currency !== "USD" ? { in: book.currency } : {}),
+    ...(book.taxonomy === "ifrs-full" ? { ifrs: "Total debt is the filer's own Borrowings tag where it has one, else its long-term loans, bonds and current portion added up. IFRS has no standard tags for yearly maturities, so the ladder is empty; read the notes to the accounts for it." } : {}),
     ...(d.val == null ? { note: "No standard (us-gaap) debt tag at this year-end: the company tags its debt with its own extension, which SEC's company facts leave out. filing_tables with find \"debt\" reads the debt note from the filing itself." } : {}),
     source: url,
     meaning: "Figures from the company's annual reports as tagged in XBRL, at its latest annual balance-sheet date. total debt = long-term debt (current and noncurrent) + commercial paper + short-term borrowings. maturities are the principal the debt note says falls due in each year. implied_interest_rate = interest expense / average total debt of the last two year-ends; interest_coverage = operating income / interest expense.",

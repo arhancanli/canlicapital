@@ -194,6 +194,16 @@ export async function runBrief(ctx, args) {
     refs[id] = ctx.keep(result);
     try { DIGESTS[id]?.(result, out, flag); } catch (e) { flag("info", `The ${id} worker's answer could not be digested: ${String(e.message).slice(0, 100)}.`, id); }
   }
+  // Free cash flow and debt mean something else at a bank or an insurer: deposits are its raw material, and
+  // its cash flow swings with its balance sheet. Those figures would mislead here.
+  const financial = /bank|savings institution|insurance|security brokers|finance services|credit institution/i.test(industry);
+  if (financial) {
+    delete out.debt; delete out.priced_in;
+    if (out.market) delete out.market.fcf_yield;
+    if (out.latest_year) delete out.latest_year.free_cash_flow;
+    for (let i = flags.length - 1; i >= 0; i -= 1) if (["debt", "valuation"].includes(flags[i].from) || /Operating cash flow/.test(flags[i].what)) flags.splice(i, 1);
+    out.financial_company = "Free cash flow, debt ratios and the implied-growth model are left out: they do not read a financial company properly. Their workers' answers are still under refs.";
+  }
   const order = { high: 0, watch: 1, info: 2 };
   flags.sort((x, y) => order[x.level] - order[y.level]);
   const { company, ...rest } = out;
