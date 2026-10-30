@@ -1,5 +1,7 @@
 # canli-markets-mcp
 
+[![npm](https://img.shields.io/npm/v/canli-markets-mcp)](https://www.npmjs.com/package/canli-markets-mcp) [![npm downloads](https://img.shields.io/npm/dw/canli-markets-mcp)](https://www.npmjs.com/package/canli-markets-mcp) [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](https://github.com/arhancanli/canlicapital/blob/main/LICENSE)
+
 Public market data for AI agents, read from the sources themselves: SEC EDGAR, the US Treasury,
 FRED, the World Bank, the New York Fed, the ECB, the Bank of England and the BIS, European companies'
 ESEF reports, prediction markets, DeFi data and prices for stocks, currencies, futures, indices and
@@ -90,6 +92,16 @@ against the BIS (21 of 21 agreed on 2026-10-15).
 | `compute_prices` | Compute as a market: the on-demand hourly price of each data-centre GPU across the clouds (cheapest, median and dearest, and who offers them), every provider's offer for one model, recent list-price changes, and the Cirrun GPU Index (H100 SXM, 2026-10-24: $1.99 to $12.29 an hour, median $3.95) | Cirrun's GPU price index (no key, CC BY 4.0) |
 | `federal_contracts` | What the US government obligated to a company in a fiscal year: the total, by agency and industry code, the entities it contracts under, and its largest contracts with links (Lockheed Martin, fiscal 2026: $53.2 billion from Defense) | USAspending.gov (no key) |
 | `drug_pipeline` | A drug company's active clinical trials by phase, the primary completions due in the coming months (the next readouts), its late-stage trials and its FDA approvals (Vertex: 31 active trials, 16 in phase 3) | ClinicalTrials.gov and Drugs@FDA (no key) |
+| `enforcement_actions` | The SEC's latest litigation releases and administrative proceedings, across the market or for one company or person. |
+| `consumer_complaints` | Complaints to the CFPB about a bank, lender or credit bureau: totals, the last 12 months, products, issues, and how often it answered in time. Unverified and not adjusted for size. |
+| `product_recalls` | A firm's FDA recalls of drugs, devices and food with class and reason, and a vehicle's NHTSA recalls. |
+| `sanctions_check` | The Treasury's SDN list and aliases by whole words. Not a compliance screening: no match is not clearance. |
+| `federal_rules` | Federal Register rules, proposed rules and notices by words and agency, with comment deadlines; can list only those still open. |
+| `security_identifiers` | One security's FIGIs, listings and type from a ticker, ISIN, CUSIP, SEDOL or FIGI; check digits tested first. |
+| `legal_entity` | The Global LEI register: legal name, jurisdiction, status, former names, parents and children, worldwide. |
+| `world_yields` | US, euro area, UK, Japan and Canada government yields by maturity, with each curve's date, basis and slope, and 10-year spreads to the US. |
+| `credit_cycle` | The BIS credit-to-GDP ratio, trend and gap by country. |
+| `dividend_history` | Payments by ex-date, totals by year, trailing yield, five-year growth, the streak of rising totals and splits. |
 | `comment_letters` | What the SEC's staff questioned in a company's filings and how it answered, grouped into reviews, with the topics of the newest letters (Apple, 2024: revenue recognition, segments, MD&A) | SEC EDGAR forms UPLOAD and CORRESP |
 | `shareholder_returns` | What a company has paid its owners each year: dividends per share (with its split-adjusted record: years raised in a row, 5- and 10-year growth) and in total, buybacks and shares issued, the diluted share count, the payout ratio and the share of free cash flow paid out, and the dividend and shareholder yields at the last close | SEC XBRL company facts, the last close |
 | `reverse_dcf` | The free-cash-flow growth a share price implies: a DCF solved for the growth that reaches the market's enterprise value, every input from the annual XBRL with its tag, a sensitivity table and the company's own growth beside it | SEC XBRL company facts, the last close |

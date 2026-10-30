@@ -7,7 +7,7 @@ import { z } from "zod";
 import { releasesFrom } from "./earnings.mjs";
 import { pressHeadline } from "./events.mjs";
 import { documentTables } from "./filing-tables.mjs";
-import { compareGuidance, guidanceFromTable, guidanceFromText, isGuidanceTable, quarterOf, resultsFromText } from "./guidance.mjs";
+import { compareGuidance, guidanceFromTable, guidanceFromText, isGuidanceTable, quarterOf, resultsFromTables, resultsFromText } from "./guidance.mjs";
 import { htmlToText } from "./html.mjs";
 import { filingDocuments, filings, getText, NotFound, resolveEntity } from "./sources.mjs";
 
@@ -55,7 +55,11 @@ async function readRelease(session, cik, accession, company) {
     if (g.from === "table" && g.low !== null && g.low === g.high && guidance.some((b) => b.from !== "table" && b.measure && b.measure === g.measure && b.unit === g.unit && b.low < b.high && Math.abs((b.low + b.high) / 2 - g.low) < 1e-9 && covers(b.basis ?? null, g.basis ?? null) && sameQuarter(b.period, g.period))) return false;
     return true;
   });
-  return { main, read, raw, text, tables, guidance, headline: pressHeadline(raw, company), results: resultsFromText(text) };
+  // Its sentences first; a comparison table supplies what they leave out.
+  const results = resultsFromText(text);
+  const stated = new Set(results.filter((r) => !r.section && !r.change).map((r) => `${r.measure}|${r.basis}`));
+  results.push(...resultsFromTables(tables).filter((r) => !stated.has(`${r.measure}|${r.basis}`)));
+  return { main, read, raw, text, tables, guidance, headline: pressHeadline(raw, company), results };
 }
 
 const gRow = (g) => [g.measure ?? g.label ?? null, g.basis ?? null, g.period ?? null, g.low, g.high, g.mid, g.unit, g.approximate ? true : null, g.change ?? g.words ?? null, g.width_pct_of_mid ?? null, g.quote];
@@ -75,17 +79,29 @@ export async function earningsRelease(session, args) {
     at = releases.map((r) => r.date <= a.filed_before).lastIndexOf(true);
     if (at < 0) throw new NotFound(`${sub.name} filed no results release on or before ${a.filed_before} in the period read.`);
   }
-  const target = releases[at];
-  const now = await readRelease(session, e.cik, target.accession, sub.name);
+  // Of a quarter's 8-Ks, the one asked for, else the newest: FMC's preliminary 8-K of 2026-10-15 is
+  // not its results of 2026-10-29. One with nothing to read gives way to the one before it.
+  const members = releases[at].members;
+  const asked = a.accession ?? null;
+  const candidates = asked ? [members.find((m) => m.accession === asked)] : members.filter((m) => !a.filed_before || m.date <= a.filed_before).reverse();
+  let now, target;
+  for (const m of candidates) {
+    target = m;
+    now = await readRelease(session, e.cik, m.accession, sub.name);
+    if (now.results.length || now.guidance.length) break;
+  }
   const max = a.max_lines ?? 12;
   const seenQuotes = new Set();
-  // The company's own results first, then its parts' ("Data Center"), each in the release's order.
+  // The company's own results first, then its parts' ("Data Center"), then what only a table gave,
+  // each in the release's order.
+  const rank = (r) => (r.from === "table" ? 2 : r.section ? 1 : 0);
   const results = now.results.filter((r) => { const k = `${r.measure}|${r.value}|${r.unit}|${r.versus}|${r.section}`; if (seenQuotes.has(k)) return false; seenQuotes.add(k); return true; })
-    .map((r, i) => [r, i]).sort((a, b) => (a[0].section ? 1 : 0) - (b[0].section ? 1 : 0) || a[1] - b[1]).map(([r]) => r).slice(0, max);
+    .map((r, i) => [r, i]).sort((a, b) => rank(a[0]) - rank(b[0]) || a[1] - b[1]).map(([r]) => r).slice(0, max);
   let comparison;
   if (a.compare !== false && at > 0) {
     const prev = releases[at - 1];
-    const before = await readRelease(session, e.cik, prev.accession, sub.name);
+    // The last 8-K of that quarter: the full release, where a preliminary one came first.
+    const before = await readRelease(session, e.cik, prev.members.at(-1).accession, sub.name);
     // Guidance for a quarter is set against this quarter's results; guidance for the year only when
     // this release reports the year.
     // Only guidance for the quarter these results cover: the guided period must name the same
@@ -103,7 +119,7 @@ export async function earningsRelease(session, args) {
     const ranged = new Set(forThis.filter((g) => g.low !== g.high).map((g) => `${g.measure}|${g.basis}|${g.unit}`));
     const rowsOut = compareGuidance(forThis.filter((g) => g.low !== g.high || !ranged.has(`${g.measure}|${g.basis}|${g.unit}`)), now.results);
     comparison = {
-      previous_release: { filed: prev.date, accession: prev.accession, url: before.main.url },
+      previous_release: { filed: prev.members.at(-1).date, accession: prev.members.at(-1).accession, url: before.main.url },
       quarter: here ?? null,
       guided_items: forThis.length,
       ...(rowsOut.length

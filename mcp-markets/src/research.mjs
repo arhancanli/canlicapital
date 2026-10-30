@@ -4,6 +4,8 @@
 import { z } from "zod";
 
 import { parseForm4 } from "./forms.mjs";
+import { releasesFrom } from "./earnings.mjs";
+import { factBook, marketValue, usdPer } from "./listing.mjs";
 import { acceptanceTimes, archiveBase, filings, getJson, getText, NotFound, resolveEntity, submissions } from "./sources.mjs";
 import { priceHistory } from "./tools.mjs";
 
@@ -41,6 +43,24 @@ export const METRICS = Object.freeze({
   equity: metric(I, "USD", one("StockholdersEquity", "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest")),
   cash: metric(I, "USD", one("CashAndCashEquivalentsAtCarryingValue")),
   long_term_debt: metric(I, "USD", one("LongTermDebtNoncurrent", "LongTermDebt")),
+});
+
+// The same measures in the IFRS taxonomy, which foreign filers use on their 20-Fs. Owners' profit comes
+// first, to match US GAAP's NetIncomeLoss and the per-share figures.
+export const IFRS_METRICS = Object.freeze({
+  revenue: metric(D, "USD", [["Revenue", "RevenueFromContractsWithCustomers"]]),
+  net_income: metric(D, "USD", one("ProfitLossAttributableToOwnersOfParent", "ProfitLoss")),
+  operating_income: metric(D, "USD", one("ProfitLossFromOperatingActivities")),
+  gross_profit: metric(D, "USD", one("GrossProfit")),
+  eps_diluted: metric(D, "USD/shares", one("DilutedEarningsLossPerShare", "BasicEarningsLossPerShare")),
+  rd_expense: metric(D, "USD", one("ResearchAndDevelopmentExpense")),
+  operating_cash_flow: metric(D, "USD", one("CashFlowsFromUsedInOperatingActivities")),
+  capex: metric(D, "USD", one("PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities", "PurchaseOfPropertyPlantAndEquipment")),
+  assets: metric(I, "USD", one("Assets")),
+  liabilities: metric(I, "USD", one("Liabilities")),
+  equity: metric(I, "USD", one("EquityAttributableToOwnersOfParent", "Equity")),
+  cash: metric(I, "USD", one("CashAndCashEquivalents")),
+  long_term_debt: metric(I, "USD", one("NoncurrentPortionOfNoncurrentBorrowings", "LongtermBorrowings")),
 });
 
 // A company's value for a metric from its values by tag: the preferred tag if it has one (so growth
@@ -305,8 +325,8 @@ export async function screenCompanies(session, args, opts = {}) {
 async function valuationFor(session, rows, per) {
   const y = Number(per.duration.slice(2, 6));
   const shareFrames = await Promise.all([`CY${y}Q4I`, `CY${y + 1}Q1I`, `CY${y + 1}Q2I`].map((f) => frame(session, "EntityCommonStockSharesOutstanding", "shares", f, "dei")));
-  const shares = new Map();
-  for (const f of shareFrames) for (const r of f?.data ?? []) { const cur = shares.get(r.cik); if (!cur || r.end > cur.end) shares.set(r.cik, { val: r.val, end: r.end, basis: "cover page" }); }
+  const shares = new Map(), abroad = new Set();
+  for (const f of shareFrames) for (const r of f?.data ?? []) { if (r.loc && !String(r.loc).startsWith("US")) abroad.add(r.cik); const cur = shares.get(r.cik); if (!cur || r.end > cur.end) shares.set(r.cik, { val: r.val, end: r.end, basis: "cover page" }); }
   // Companies with several share classes report cover-page counts per class, which frames leave
   // out; the period's diluted weighted-average share count stands in for them.
   const diluted = await frame(session, "WeightedAverageNumberOfDilutedSharesOutstanding", "shares", per.duration);
@@ -321,9 +341,12 @@ async function valuationFor(session, rows, per) {
       if (!r.ticker) continue;
       try {
         const p = await priceHistory(session, { symbol: r.ticker, start: daysAgo(session, 10), end: today(session) });
-        const price = p.close.at(-1), sh = shares.get(r.cik)?.val, mcap = sh ? price * sh : null;
+        const price = p.close.at(-1), sh = shares.get(r.cik)?.val;
+        // A filer abroad may list depositary shares: its price and share count are then on different footings.
+        const mv = abroad.has(r.cik) ? await marketValue(session, r.cik, await submissions(session, r.cik), price, sh, { implied: diluted?.data?.find((d) => d.cik === r.cik)?.val }) : { market_cap: sh ? price * sh : null, price_per_share: price };
+        const mcap = mv.market_cap;
         const e = eps.get(r.cik)?.val, rv = rev.get(r.cik)?.val, fcf = ocf.get(r.cik) ? ocf.get(r.cik).val - (capex.get(r.cik)?.val ?? 0) : null;
-        out.set(r.cik, { price, price_date: p.dates.at(-1), shares_basis: shares.get(r.cik)?.basis ?? null, market_cap: mcap ? Math.round(mcap) : null, pe: e > 0 ? round(price / e, 2) : null, ps: mcap && rv > 0 ? round(mcap / rv, 2) : null, fcf_yield: mcap && fcf != null ? round(fcf / mcap, 4) : null });
+        out.set(r.cik, { price, price_date: p.dates.at(-1), shares_basis: shares.get(r.cik)?.basis ?? null, market_cap: mcap ? Math.round(mcap) : null, pe: e > 0 && mv.price_per_share ? round(mv.price_per_share / e, 2) : null, ps: mcap && rv > 0 ? round(mcap / rv, 2) : null, fcf_yield: mcap && fcf != null ? round(fcf / mcap, 4) : null });
       } catch { /* no price for this ticker: its valuation stays empty */ }
     }
   };
@@ -340,12 +363,13 @@ export const reportInput = z.object({
 }).strict();
 
 // Fiscal-year values of one metric from companyfacts: end date -> { byTag }, each tag's latest filed
-// value (restated if a later 10-K changed it). The value for a year is chosen by choose().
-function annual(facts, def) {
+// value (restated if a later annual report changed it). The value for a year is chosen by choose().
+function annual(facts, def, currency = "USD") {
   const out = new Map();
+  const unit = def.unit.replace("USD", currency);
   for (const tag of def.tags) {
-    for (const x of facts?.[tag]?.units?.[def.unit] ?? []) {
-      if (!/^10-K/.test(x.form ?? "")) continue;
+    for (const x of facts?.[tag]?.units?.[unit] ?? []) {
+      if (!/^(10-K|20-F|40-F)/.test(x.form ?? "")) continue;
       if (def.kind === D) {
         if (!x.start) continue;
         const days = (Date.parse(x.end) - Date.parse(x.start)) / 86400000;
@@ -365,27 +389,32 @@ export async function companyReport(session, args) {
   const a = reportInput.parse(args);
   const e = await resolveEntity(session, a.company);
   const [sub, cf] = await Promise.all([submissions(session, e.cik), getJson(session, `https://data.sec.gov/api/xbrl/companyfacts/CIK${String(e.cik).padStart(10, "0")}.json`, { maxBytes: 64 * 1024 * 1024 }).catch((err) => { if (err instanceof NotFound) return null; throw err; })]);
-  const g = cf?.facts?.["us-gaap"] ?? {};
-  const series = Object.fromEntries(Object.entries(METRICS).map(([k, def]) => [k, annual(g, def)]));
+  const book = factBook(cf), defs = book.taxonomy === "ifrs-full" ? IFRS_METRICS : METRICS;
+  const series = Object.fromEntries(Object.entries(defs).map(([k, def]) => [k, annual(book.facts, def, book.currency)]));
   const all = [...new Set([...series.revenue.keys(), ...series.net_income.keys()])].sort();
   const ends = all.slice(-(a.years ?? 5));
   const yearsRows = ends.map((end) => {
     const m = {}, tag = {}, restated = [];
-    for (const k of Object.keys(METRICS)) {
-      const c = choose(METRICS[k], series[k].get(end)?.byTag);
+    for (const k of Object.keys(defs)) {
+      const c = choose(defs[k], series[k].get(end)?.byTag);
       m[k] = c?.val ?? null; tag[k] = c?.tag;
       if (c?.restated) restated.push(k);
     }
     const prevEnd = all.filter((d) => d < end).at(-1);
-    for (const k of ["revenue", "net_income"]) m[`${k}@prev`] = prevEnd ? choose(METRICS[k], series[k].get(prevEnd)?.byTag, tag[k])?.val ?? null : null;
+    for (const k of ["revenue", "net_income"]) m[`${k}@prev`] = prevEnd ? choose(defs[k], series[k].get(prevEnd)?.byTag, tag[k])?.val ?? null : null;
     return { end, m, restated };
   });
+  // A newer annual report than the facts reach: the figures are a year behind, which must be said.
+  const newestAnnual = (sub.filings?.recent?.form ?? []).findIndex((f) => /^(10-K|20-F|40-F)$/.test(f));
+  const annualFiled = newestAnnual >= 0 ? sub.filings.recent.filingDate[newestAnnual] : null;
+  const lastFiled = ends.length ? Object.values(series.revenue.get(ends.at(-1))?.byTag ?? {}).reduce((m, x) => (x.filed > m ? x.filed : m), "") : "";
+  const behind = annualFiled && lastFiled && annualFiled > lastFiled;
   const finCols = ["revenue", "revenue_growth", "gross_margin", "operating_margin", "net_income", "net_margin", "eps_diluted", "operating_cash_flow", "free_cash_flow", "roe", "liabilities_to_equity", "cash"];
   const val = (m, k) => (DERIVED[k] ? round(DERIVED[k].f(m), 6) : m[k]);
   const ticker = sub.tickers?.[0] ?? e.ticker;
   const report = {
-    company: { cik: e.cik, name: sub.name, ticker, exchange: sub.exchanges?.[0] ?? null, industry: sub.sicDescription || null, fiscal_year_end: sub.fiscalYearEnd ? `${sub.fiscalYearEnd.slice(0, 2)}-${sub.fiscalYearEnd.slice(2)}` : null, state_of_incorporation: sub.stateOfIncorporation || null },
-    financials: { basis: "fiscal years from 10-K XBRL facts, latest filed value (restated where a later 10-K changed it)", columns: ["fiscal_year_end", ...finCols, "restated"], rows: yearsRows.map((y) => [y.end, ...finCols.map((k) => val(y.m, k)), y.restated.length ? y.restated.join(",") : null]) },
+    company: { cik: e.cik, name: sub.name, ticker, exchange: sub.exchanges?.[0] ?? null, industry: sub.sicDescription || null, fiscal_year_end: sub.fiscalYearEnd ? `${sub.fiscalYearEnd.slice(0, 2)}-${sub.fiscalYearEnd.slice(2)}` : null, state_of_incorporation: sub.stateOfIncorporation || null, ...(book.taxonomy === "ifrs-full" || book.currency !== "USD" ? { accounts: { standard: book.taxonomy === "ifrs-full" ? "IFRS" : "US GAAP", currency: book.currency } } : {}) },
+    financials: { basis: `fiscal years from annual-report XBRL facts (10-K, 20-F or 40-F), latest filed value (restated where a later report changed it), in ${book.currency}`, columns: ["fiscal_year_end", ...finCols, "restated"], rows: yearsRows.map((y) => [y.end, ...finCols.map((k) => val(y.m, k)), y.restated.length ? y.restated.join(",") : null]), ...(behind ? { behind: `An annual report was filed on ${annualFiled}, but SEC's XBRL facts for this company stop at the report filed on ${lastFiled}. Use financial_statements for the newer figures.` } : {}) },
   };
   // Price, risk and valuation over the last year, against SPY.
   if (ticker) {
@@ -400,14 +429,21 @@ export async function companyReport(session, args) {
       const last = yearsRows.at(-1)?.m ?? {};
       const sharesFacts = cf?.facts?.dei?.EntityCommonStockSharesOutstanding?.units?.shares ?? [];
       const sh = sharesFacts.reduce((b, s) => (!b || s.end > b.end ? s : b), null);
-      const price = p.close.at(-1), mcap = sh ? price * sh.val : null;
+      const price = p.close.at(-1);
+      // The listed share against the filing's ordinary shares, and the filing's currency against the
+      // dollar price: a foreign filer's multiples need both.
+      const [mv, fx] = await Promise.all([marketValue(session, e.cik, sub, price, sh?.val, { book }), usdPer(session, book.currency)]);
+      const mcap = mv.market_cap, rate = fx?.rate;
       const fcf = DERIVED.free_cash_flow.f(last);
       report.market = {
         price, price_date: p.dates.at(-1), total_return_1y: p.change?.total_return ?? null,
         volatility_1y: round(sd(r.values) * Math.sqrt(252), 4), max_drawdown_1y: round(mdd, 4), beta_1y_vs_spy: round(beta, 3),
         high_52w: Math.max(...p.high.filter((v) => v != null)), low_52w: Math.min(...p.low.filter((v) => v != null)),
-        shares_outstanding: sh?.val ?? null, shares_as_of: sh?.end ?? null, market_cap: mcap ? Math.round(mcap) : null,
-        pe: last.eps_diluted > 0 ? round(price / last.eps_diluted, 2) : null, ps: mcap && last.revenue > 0 ? round(mcap / last.revenue, 2) : null, fcf_yield: mcap && fcf != null ? round(fcf / mcap, 6) : null,
+        shares_outstanding: mv.shares_used ?? sh?.val ?? null, shares_as_of: mv.shares_used ? null : sh?.end ?? null, market_cap: mcap ? Math.round(mcap) : null,
+        pe: last.eps_diluted > 0 && rate && mv.price_per_share ? round(mv.price_per_share / (last.eps_diluted * rate), 2) : null, ps: mcap && rate && last.revenue > 0 ? round(mcap / (last.revenue * rate), 2) : null, fcf_yield: mcap && rate && fcf != null ? round((fcf * rate) / mcap, 6) : null,
+        ...(mv.ratio && mv.ratio.shares_per_listed_share !== 1 ? { listed_share: { ordinary_shares_each: mv.ratio.shares_per_listed_share, basis: mv.ratio.basis, source: mv.ratio.source } } : {}),
+        ...(book.currency !== "USD" ? { fx: fx ? { pair: fx.pair, rate: round(fx.rate, 6), date: fx.date } : { note: `No ${book.currency} rate was available, so the multiples are not computed.` } } : {}),
+        ...(mv.note ? { note: mv.note } : {}),
         price_source: p.source,
       };
     } catch (err) {
@@ -428,10 +464,10 @@ export async function companyReport(session, args) {
   }));
   report.insiders_180d = { form4_filings: f4.length, open_market_purchases: { transactions: tally.P[0], shares: round(tally.P[1], 2), value: round(tally.P[2], 2), insiders: people.P.size }, open_market_sales: { transactions: tally.S[0], shares: round(tally.S[1], 2), value: round(tally.S[2], 2), insiders: people.S.size }, ...(f4.length === 30 ? { note: "the 30 most recent Form 4 filings were read" } : {}) };
   // Recent periodic and current reports.
-  const keep = new Set(["10-K", "10-Q", "8-K", "DEF 14A", "10-K/A", "10-Q/A", "S-1", "S-3", "SC 13D", "SC 13G"]);
+  const keep = new Set(["10-K", "10-Q", "8-K", "DEF 14A", "10-K/A", "10-Q/A", "S-1", "S-3", "20-F", "20-F/A", "40-F", "6-K", "F-1", "F-3", "SC 13D", "SC 13G", "SCHEDULE 13D", "SCHEDULE 13G"]);
   report.recent_filings = { columns: ["filed", "form", "items", "url"], rows: (rec.form ?? []).map((f, i) => [rec.filingDate[i], f, rec.items[i] || null, `${archiveBase(e.cik, rec.accessionNumber[i])}/${String(rec.primaryDocument[i]).replace(/^xsl[^/]*\//, "")}`]).filter((r) => keep.has(r[1])).slice(0, 8) };
   report.sources = [`https://data.sec.gov/api/xbrl/companyfacts/CIK${String(e.cik).padStart(10, "0")}.json`, `https://data.sec.gov/submissions/CIK${String(e.cik).padStart(10, "0")}.json`];
-  report.limits = [...LIMITS, "Financials are XBRL facts as tagged by the company (the first of several revenue tags it uses); market figures use the latest close and the latest cover-page share count."];
+  report.limits = [...LIMITS, "Financials are XBRL facts as tagged by the company (the first of several revenue tags it uses); market figures use the latest close and the latest cover-page share count.", ...(book.currency !== "USD" ? ["Multiples convert the filing's currency to dollars at the latest close, not at each year's rate."] : [])];
   return report;
 }
 
@@ -518,7 +554,9 @@ export async function eventStudy(session, args) {
     const { sub, rows } = await filings(session, e.cik, { since });
     source = `https://data.sec.gov/submissions/CIK${String(e.cik).padStart(10, "0")}.json`;
     if (a.event_type === "earnings" || a.event_type === "8k") {
-      for (const f of rows) if (f.form === "8-K" && f.filingDate >= since && (a.event_type === "8k" || String(f.items ?? "").split(",").includes("2.02"))) raw.push({ accession: f.accessionNumber, filed: f.filingDate, kind: "filing", label: `${f.form} ${f.accessionNumber}` });
+      // One event a quarter for earnings: Tesla also files its deliveries under Item 2.02.
+      const results = a.event_type === "earnings" ? new Set(releasesFrom(rows).map((r) => r.accession)) : null;
+      for (const f of rows) if (f.form === "8-K" && f.filingDate >= since && (!results || results.has(f.accessionNumber))) raw.push({ accession: f.accessionNumber, filed: f.filingDate, kind: "filing", label: `${f.form} ${f.accessionNumber}` });
     } else {
       const code = a.event_type === "insider_buys" ? "P" : "S";
       const f4 = rows.filter((f) => f.form === "4" && f.filingDate >= since).slice(0, 120);
@@ -643,4 +681,20 @@ export async function mentionsTrend(session, args) {
     sources: ["https://efts.sec.gov/LATEST/search-index (EDGAR full-text search, filings from 2001)"],
     limits: [...LIMITS, "Counts follow filing volume too: more filings in a quarter (10-K season) means more matches; compare like quarters or use by: year."],
   };
+}
+
+// One company's latest fiscal year from its own facts, in dollars at the latest rate (growth and margins
+// are unmoved by that): what comps uses for a company the US-GAAP dollar frames do not hold.
+export async function fiscalRow(session, query) {
+  const e = await resolveEntity(session, query);
+  const [sub, cf] = await Promise.all([submissions(session, e.cik), getJson(session, `https://data.sec.gov/api/xbrl/companyfacts/CIK${String(e.cik).padStart(10, "0")}.json`, { maxBytes: 96 * 1024 * 1024 })]);
+  const book = factBook(cf), defs = book.taxonomy === "ifrs-full" ? IFRS_METRICS : METRICS;
+  const series = Object.fromEntries(Object.entries(defs).map(([k, def]) => [k, annual(book.facts, def, book.currency)]));
+  const all = [...new Set([...series.revenue.keys(), ...series.net_income.keys()])].sort(), end = all.at(-1);
+  if (!end) throw new NotFound(`${sub.name ?? query} has no annual revenue or profit in its XBRL.`);
+  const fx = await usdPer(session, book.currency);
+  const scale = fx?.rate ?? 1, m = {}, tag = {}, prev = all.at(-2);
+  for (const k of Object.keys(defs)) { const c = choose(defs[k], series[k].get(end)?.byTag); m[k] = c?.val == null ? null : c.val * scale; tag[k] = c?.tag; }
+  for (const k of ["revenue", "net_income"]) { const c = prev ? choose(defs[k], series[k].get(prev)?.byTag, tag[k]) : null; m[`${k}@prev`] = c?.val == null ? null : c.val * scale; }
+  return { cik: Number(e.cik), name: sub.name, ticker: sub.tickers?.[0] ?? e.ticker ?? null, sic: sub.sic, period_end: end, currency: book.currency, standard: book.taxonomy === "ifrs-full" ? "IFRS" : "US GAAP", converted: book.currency !== "USD" && fx?.rate ? { pair: fx.pair, rate: round(fx.rate, 6), date: fx.date } : null, get: (k) => (DERIVED[k] ? round(DERIVED[k].f(m), 6) : m[k] ?? null) };
 }

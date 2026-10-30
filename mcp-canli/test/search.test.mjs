@@ -352,7 +352,7 @@ const Q09 = [
   ["s&p 500 nasdaq and vix this week", ["market_overview"]],
   ["give me a market snapshot with oil gold and bitcoin", ["market_overview"]],
   ["how did european and asian markets do", ["market_overview"]],
-  ["coca cola dividend history", ["shareholder_returns"]],
+  ["coca cola dividend history", ["shareholder_returns", "dividend_history"]],
   ["how much has apple spent on buybacks", ["shareholder_returns"]],
   ["is johnson and johnson's dividend safe payout ratio", ["shareholder_returns"]],
   ["dividend growth rate over ten years for pepsi", ["shareholder_returns"]],

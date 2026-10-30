@@ -33,14 +33,32 @@ export function timing(minutes) {
   return minutes < 9 * 60 + 30 ? "before the open" : minutes >= 16 * 60 ? "after the close" : "during market hours";
 }
 
-// The releases: 8-Ks carrying Item 2.02, oldest first. A second one within 20 days (a correction,
-// a supplement) belongs to the same quarter and is not a new release.
+// The releases: 8-Ks carrying Item 2.02, oldest first. A second one within 20 days (a preliminary
+// result and then the full one, a correction, a supplement) belongs to the same quarter and is not
+// a new release; members lists them all.
 export function releasesFrom(rows) {
   const out = [];
-  for (const r of [...rows].filter((x) => x.form === "8-K" && String(x.items ?? "").split(",").map((s) => s.trim()).includes("2.02")).sort((x, y) => x.filingDate.localeCompare(y.filingDate))) {
+  const eightKs = [...rows].filter((x) => x.form === "8-K" && String(x.items ?? "").split(",").map((s) => s.trim()).includes("2.02")).sort((x, y) => x.filingDate.localeCompare(y.filingDate));
+  // Between two periodic reports there is one quarter's results. An Item 2.02 8-K more than 20 days
+  // before a later one in that stretch is not them: Tesla files its quarterly deliveries this way.
+  const periodic = rows.filter((x) => /^(10-Q|10-K|20-F|40-F)/.test(x.form ?? "")).map((x) => x.filingDate).sort();
+  const nextReport = (d) => periodic.find((p) => p >= d) ?? null;
+  const interim = (r, i) => nextReport(r.filingDate) && eightKs.slice(i + 1).some((s) => nextReport(s.filingDate) === nextReport(r.filingDate) && between(r.filingDate, s.filingDate) > 20);
+  // Days into the calendar quarter. With the quarter's report yet to come, an 8-K as early in the
+  // quarter as earlier interim ones is another of them, not the results.
+  const dayOfQuarter = (d) => { const t = new Date(`${d}T00:00:00Z`); return between(`${t.getUTCFullYear()}-${String(Math.floor(t.getUTCMonth() / 3) * 3 + 1).padStart(2, "0")}-01`, d); };
+  const early = eightKs.filter(interim).map((r) => dayOfQuarter(r.filingDate));
+  const kept = eightKs.filter((r, i) => !interim(r, i) && (nextReport(r.filingDate) || !early.some((d) => Math.abs(d - dayOfQuarter(r.filingDate)) <= 5)));
+  for (const r of kept) {
     const last = out[out.length - 1];
-    if (last && between(last.date, r.filingDate) <= 20) { last.also.push(r.accessionNumber); continue; }
-    out.push({ date: r.filingDate, accession: r.accessionNumber, document: r.primaryDocument, also: [] });
+    if (last && between(last.date, r.filingDate) <= 20) {
+      last.members.push({ date: r.filingDate, accession: r.accessionNumber });
+      // Two weeks on, the later one is the full results (a preliminary figure or Tesla's deliveries came first); sooner, a correction.
+      if (between(last.date, r.filingDate) >= 14) { last.also.push(last.accession); last.date = r.filingDate; last.accession = r.accessionNumber; last.document = r.primaryDocument; }
+      else last.also.push(r.accessionNumber);
+      continue;
+    }
+    out.push({ date: r.filingDate, accession: r.accessionNumber, document: r.primaryDocument, also: [], members: [{ date: r.filingDate, accession: r.accessionNumber }] });
   }
   return out;
 }

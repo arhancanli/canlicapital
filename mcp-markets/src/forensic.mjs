@@ -4,7 +4,8 @@
 // fiscal year end). Each input names its tag, and a screen whose inputs are missing says which.
 import { z } from "zod";
 
-import { getJson, resolveEntity } from "./sources.mjs";
+import { factBook, marketValue as listedValue, usdPer } from "./listing.mjs";
+import { getJson, resolveEntity, submissions } from "./sources.mjs";
 import { priceHistory } from "./tools.mjs";
 
 export const forensicInput = z.object({ company: z.string().min(1).max(120).describe("Ticker, CIK or name.") }).strict();
@@ -24,11 +25,25 @@ const TAGS = {
   equity_total: ["StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest", "StockholdersEquity"],
   ebit: ["OperatingIncomeLoss"], shares: ["CommonStockSharesOutstanding", "WeightedAverageNumberOfDilutedSharesOutstanding"],
 };
+// The same inputs in the IFRS taxonomy.
+const IFRS_TAGS = {
+  sales: ["Revenue", "RevenueFromContractsWithCustomers"],
+  cogs: ["CostOfSales"],
+  receivables: ["TradeAndOtherCurrentReceivables", "CurrentTradeReceivables", "TradeReceivables"],
+  current_assets: ["CurrentAssets"], current_liabilities: ["CurrentLiabilities"], total_assets: ["Assets"], total_liabilities: ["Liabilities"],
+  ppe: ["PropertyPlantAndEquipment"], securities: ["NoncurrentFinancialAssets", "OtherNoncurrentFinancialAssets"],
+  depreciation: ["DepreciationAndAmortisationExpense", "DepreciationExpense", "AdjustmentsForDepreciationAndAmortisationExpense", "AdjustmentsForDepreciationExpense"],
+  sga: ["SellingGeneralAndAdministrativeExpense", "AdministrativeExpense", "GeneralAndAdministrativeExpense"],
+  net_income: ["ProfitLoss"], cfo: ["CashFlowsFromUsedInOperatingActivities"],
+  long_term_debt: ["NoncurrentPortionOfNoncurrentBorrowings", "LongtermBorrowings", "NoncurrentBorrowings"], retained_earnings: ["RetainedEarnings"],
+  equity_total: ["Equity"],
+  ebit: ["ProfitLossFromOperatingActivities"], shares: ["NumberOfSharesOutstanding", "WeightedAverageShares"],
+};
 const FLOW = new Set(["sales", "cogs", "depreciation", "sga", "net_income", "cfo", "ebit"]);
 
-function value(facts, name, end) {
-  for (const tag of TAGS[name]) {
-    const unit = name === "shares" ? "shares" : "USD";
+function value(facts, name, end, tags = TAGS, currency = "USD") {
+  for (const tag of tags[name]) {
+    const unit = name === "shares" ? "shares" : currency;
     const flow = FLOW.has(name) || tag.startsWith("WeightedAverage");
     const rows = (facts[tag]?.units?.[unit] ?? []).filter((x) => x.end === end && ANNUAL.has(x.form) && (flow ? x.start && days(x.end, x.start) >= 350 && days(x.end, x.start) <= 380 : !x.start));
     if (rows.length) return { tag, val: rows.sort((p, q) => (p.filed < q.filed ? 1 : -1))[0].val };
@@ -86,19 +101,24 @@ export async function forensicScores(session, args) {
   const e = await resolveEntity(session, a.company);
   const url = `https://data.sec.gov/api/xbrl/companyfacts/CIK${String(e.cik).padStart(10, "0")}.json`;
   const cf = await getJson(session, url, { maxBytes: 96 * 1024 * 1024 });
-  const f = cf.facts?.["us-gaap"] ?? {};
-  const ends = [...new Set((f.Assets?.units?.USD ?? []).filter((x) => ANNUAL.has(x.form) && x.fp === "FY" && !x.start).map((x) => x.end))].sort().reverse();
+  const book = factBook(cf), f = book.facts, TAGS_USED = book.taxonomy === "ifrs-full" ? IFRS_TAGS : TAGS;
+  const sub = await submissions(session, e.cik);
+  // Banks, brokers and insurers have no current assets, cost of sales or working capital in the sense
+  // these models read: their scores would be noise, and their debt is not "none" when untagged.
+  const sic = Number(sub.sic);
+  const financial = sic >= 6000 && sic <= 6411;
+  const ends = [...new Set((f.Assets?.units?.[book.currency] ?? []).filter((x) => ANNUAL.has(x.form) && x.fp === "FY" && !x.start).map((x) => x.end))].sort().reverse();
   const end = ends[0], prior = ends.find((x) => days(end, x) > 300 && days(end, x) < 430);
   if (!end || !prior) throw new Error(`${cf.entityName ?? a.company} has fewer than two annual balance sheets in its XBRL.`);
   // Inputs a company leaves untagged: liabilities as assets less equity; long-term debt as none.
   const read = (at) => {
     const out = {}, tags = {};
-    for (const k of Object.keys(TAGS)) { const v = value(f, k, at); out[k] = v?.val ?? null; tags[k] = v?.tag ?? null; }
+    for (const k of Object.keys(TAGS_USED)) { const v = value(f, k, at, TAGS_USED, book.currency); out[k] = v?.val ?? null; tags[k] = v?.tag ?? null; }
     if (out.total_liabilities == null && out.total_assets != null) {
-      const eq = value({ ...f }, "equity_total", at);
+      const eq = value({ ...f }, "equity_total", at, TAGS_USED, book.currency);
       if (eq) { out.total_liabilities = out.total_assets - eq.val; tags.total_liabilities = `Assets - ${eq.tag}`; }
     }
-    if (out.long_term_debt == null) { out.long_term_debt = 0; tags.long_term_debt = "not tagged: taken as 0"; }
+    if (out.long_term_debt == null && !financial) { out.long_term_debt = 0; tags.long_term_debt = "not tagged: taken as 0"; }
     return { out, tags };
   };
   const t = read(end), p = read(prior);
@@ -106,12 +126,17 @@ export async function forensicScores(session, args) {
   if (e.ticker && t.out.shares) {
     const px = await priceHistory(session, { symbol: e.ticker, start: new Date(Date.parse(end) - 10 * 86400000).toISOString().slice(0, 10), end, adjusted: false }).catch(() => null);
     price = px?.close?.at(-1) ?? null;
-    if (price) marketValue = price * t.out.shares;
+    // Altman sets market value against the filing's figures, so it is put in the filing's currency.
+    if (price) {
+      const [mv, fx] = await Promise.all([listedValue(session, e.cik, sub, price, t.out.shares, { book }), usdPer(session, book.currency)]);
+      if (mv.market_cap && fx?.rate) marketValue = mv.market_cap / fx.rate;
+    }
   }
+  const notFor = { not_applicable: `This model was built on non-financial companies; ${sub.sicDescription ?? "this industry"} does not have the line items it reads.` };
   return {
-    company: { cik: e.cik, name: cf.entityName ?? e.name, ticker: e.ticker ?? null }, fiscal_year_end: end, prior_year_end: prior,
-    beneish: beneish(t.out, p.out), piotroski: piotroski(t.out, p.out), altman: altman(t.out, marketValue),
-    inputs: { columns: ["input", "this_year", "prior_year", "tag"], rows: Object.keys(TAGS).filter((k) => k !== "equity_total").map((k) => [k, t.out[k], p.out[k], t.tags[k] ?? p.tags[k]]) },
+    company: { cik: e.cik, name: cf.entityName ?? e.name, ticker: e.ticker ?? null, ...(book.currency !== "USD" || book.taxonomy === "ifrs-full" ? { accounts: { standard: book.taxonomy === "ifrs-full" ? "IFRS" : "US GAAP", currency: book.currency } } : {}) }, fiscal_year_end: end, prior_year_end: prior,
+    beneish: financial ? notFor : beneish(t.out, p.out), piotroski: financial ? notFor : piotroski(t.out, p.out), altman: financial ? notFor : altman(t.out, marketValue),
+    inputs: { columns: ["input", "this_year", "prior_year", "tag"], rows: Object.keys(TAGS_USED).filter((k) => k !== "equity_total").map((k) => [k, t.out[k], p.out[k], t.tags[k] ?? p.tags[k]]) },
     ...(price ? { market_value: { price_at_year_end: price, shares: t.out.shares, value: marketValue } } : {}),
     sources: [url],
     meaning: "Each screen as its author published it, computed from the company's annual XBRL. A screen's missing inputs are named rather than guessed. These are screens from studies of past samples, not verdicts on a company.",

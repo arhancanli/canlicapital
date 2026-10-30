@@ -51,6 +51,8 @@ export async function marketOverview(session, args) {
     // Sectors are easiest read best to worst over the month.
     if (g === "sectors") out[g].sort((x, y) => (y[6] ?? -Infinity) - (x[6] ?? -Infinity));
   }));
+  // Nothing at all came back: say why rather than answer with empty lists.
+  if (missing.length && !sources.size) throw new Error(missing.some((m) => /CANLI_KEYLESS_PRICES=0/.test(m)) ? "Prices are off on this server (CANLI_KEYLESS_PRICES=0), so there is no market overview. On the hosted server, run the local one: npx -y canli-mcp." : missing[0].replace(/^[^:]+: /, ""));
   return {
     columns: ["symbol", "name", "date", "close", "day", "week", "month", "three_months", "year_to_date", "year"],
     ...Object.fromEntries(groups.map((g) => [g, out[g]])),
