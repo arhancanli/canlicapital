@@ -308,7 +308,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
   }, guard(({ query, limit }) => findTool(packs, { query, limit })));
   server.registerTool("describe_tool", {
     title: "Describe a tool",
-    description: "Get one tool's full description and exact input JSON Schema before calling run_tool.",
+    description: "One tool's full description and exact input JSON Schema.",
     annotations: { title: "Describe a tool", ...READ_ONLY },
     inputSchema: z.object({ name: z.string().max(100).describe("A tool name from find_tool.") }).strict(),
     outputSchema: open,
