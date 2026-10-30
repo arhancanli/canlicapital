@@ -181,6 +181,7 @@ export default defineConfig({
         developers: resolve(root, "developers.html"),
         mcpServers: resolve(root, "mcp-servers.html"),
         benchmarkFilingfacts: resolve(root, "benchmarks/filingfacts.html"),
+        datasetFilingFacts: resolve(root, "datasets/filing-facts.html"),
         benchmarkFinanceMcpServers: resolve(root, "benchmarks/finance-mcp-servers.html"),
         record: resolve(root, "record.html"),
         vision: resolve(root, "vision.html"),
