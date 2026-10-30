@@ -2,7 +2,23 @@
 
 ## 0.8.0
 
-Found by reading 21 third-quarter releases filed on 2026-10-29, each keyed from its text first.
+Ten new tools, 74 in all, each from the body that keeps the record and without a key:
+
+- Public records: `enforcement_actions` (SEC litigation releases and administrative proceedings),
+  `consumer_complaints` (CFPB), `product_recalls` (FDA drugs, devices and food; NHTSA vehicles),
+  `sanctions_check` (the Treasury's SDN list and aliases), `federal_rules` (Federal Register, with comment
+  deadlines). `bank_financials` lists failures by year and state.
+- Identity: `security_identifiers` (ticker, ISIN, CUSIP, SEDOL and FIGI through OpenFIGI; check digits
+  tested first) and `legal_entity` (the Global LEI register: legal name, jurisdiction, parents, children).
+- World: `world_yields` (US, euro area, UK, Japan and Canada side by side, each curve's date and basis
+  stated) and `credit_cycle` (the BIS credit-to-GDP gap).
+- `dividend_history`: payments, totals by year, trailing yield, growth, streak and splits.
+- Names match only when every word of the name is in the record, so a near miss is refused. Each tool
+  says what it cannot show: an empty sanctions answer is not clearance, complaints are unverified and
+  not adjusted for size, enforcement feeds reach back only so far.
+
+And `earnings_release`, read against 21 third-quarter releases filed on 2026-10-29, each keyed from its
+text first:
 
 - `earnings_release` with no accession read a quarter's first 8-K, so FMC's preliminary 8-K of
   2026-10-15 was served instead of its results of 2026-10-29, and an accession named in the same

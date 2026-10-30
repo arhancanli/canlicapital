@@ -7,7 +7,7 @@ import { createHash } from "node:crypto";
 import { inflateRawSync } from "node:zlib";
 
 import { BoundedCache } from "./bounded-cache.mjs";
-import { fetchBoundedText, ResponseReadError } from "./bounded-response.mjs";
+import { readBoundedResponse, fetchBoundedText, ResponseReadError } from "./bounded-response.mjs";
 
 // SEC asks every client to identify itself with a contact; SEC_USER_AGENT replaces the default.
 // Other hosts get the plain product name: Treasury's servers hold any request whose User-Agent
@@ -158,6 +158,35 @@ export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024 } =
   session.hashes.set(url, record);
   witness(session, url, record);
   const text = unzipFirst(bytes);
+  session.cache.set(url, { at: session.now(), text });
+  return text;
+}
+
+// A public file that is not UTF-8 (Japan's Ministry of Finance) or that sits behind one redirect to a
+// host named here (OFAC's lists, to a signed storage address that is never shown or kept). Every
+// other fetch refuses redirects. Evidence is recorded under the stable address.
+export async function getEncodedText(session, url, { encoding = "utf-8", redirectHost = null, maxBytes = 16 * 1024 * 1024, timeoutMs = TIMEOUT_MS } = {}) {
+  const hit = session.cache.lookup(url, session.now());
+  if (hit) { witness(session, url, session.hashes.get(url)); return hit.text; }
+  const signal = AbortSignal.timeout(timeoutMs);
+  const headers = { "User-Agent": PLAIN_USER_AGENT };
+  let bytes;
+  try {
+    let response = await session.fetchImpl(url, { signal, redirect: "manual", headers });
+    if (response.status >= 300 && response.status < 400) {
+      const target = new URL(response.headers.get("location") ?? "", url);
+      await response.body?.cancel?.();
+      if (!redirectHost || !redirectHost.test(target.hostname) || target.protocol !== "https:") throw new Error(`${url} redirected to an unexpected host.`);
+      response = await session.fetchImpl(target.href, { signal, redirect: "error", headers });
+    }
+    bytes = await readBoundedResponse(response, { signal, maxBytes, as: "bytes" });
+  } catch (error) {
+    throw error instanceof Error && /unexpected host/.test(error.message) ? error : fetchError(error, { url, aborted: signal.aborted, maxBytes, timeoutMs });
+  }
+  const record = { sha256: createHash("sha256").update(bytes).digest("hex"), bytes: bytes.byteLength, retrieved_at: new Date(session.now()).toISOString() };
+  session.hashes.set(url, record);
+  witness(session, url, record);
+  const text = new TextDecoder(encoding).decode(bytes);
   session.cache.set(url, { at: session.now(), text });
   return text;
 }
