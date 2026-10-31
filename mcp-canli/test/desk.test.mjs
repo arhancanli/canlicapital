@@ -4,7 +4,7 @@ import { test } from "node:test";
 import { z } from "zod";
 
 import { runBrief, runSwarm } from "../src/desk.mjs";
-import { compare, fromStatement } from "../src/triangulate.mjs";
+import { compare, differentMeasure, fromStatement } from "../src/triangulate.mjs";
 import { EPISODES, regress, rng, runWorlds, simulate } from "../src/worlds.mjs";
 
 const at = (v, path) => path.split(".").reduce((x, k) => x?.[k], v);
@@ -127,6 +127,13 @@ test("stress_worlds: combined crises hurt more than one alone; bad inputs are re
   await assert.rejects(runWorlds(c, { holdings: [{ symbol: "NOPE", weight: 1 }] }), /NOPE had none/);
   await assert.rejects(runWorlds(c, { holdings: [{ symbol: "SPY", weight: 1 }], scenarios: ["aliens"] }), /no scenario "aliens"/);
   await assert.rejects(runWorlds(c, { holdings: [{ symbol: "SPY", weight: 1 }], custom: [{ name: "x", moves: { MOON: -0.5 }, days: 5 }] }), /not MOON/);
+});
+
+test("triangulate: a gap between different tags is a different measure, and between one tag or an unknown one a disagreement", () => {
+  assert.equal(differentMeasure("CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents", ["us-gaap:CashAndCashEquivalentsAtCarryingValue"]), true);
+  assert.equal(differentMeasure("Revenues", ["us-gaap:Revenues"]), false);
+  assert.equal(differentMeasure(null, ["us-gaap:Revenues"]), false);
+  assert.equal(differentMeasure("Revenues", []), false);
 });
 
 test("triangulate: rounding agrees, scales and signs are named, and the parent's statement ends where a registrant's begins", () => {

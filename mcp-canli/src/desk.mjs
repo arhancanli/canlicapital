@@ -234,7 +234,7 @@ const DEFAULT_FIELDS = {
   company_report: ["market.market_cap", "market.pe", "market.ps", "market.fcf_yield", "market.total_return_1y", "market.beta_1y_vs_spy"],
   options_chain: ["summary.atm_iv", "summary.expected_move.fraction_of_price", "summary.put_call_open_interest_ratio"],
   ownership_breadth: ["change_latest_vs_prior"],
-  triangulate: ["fiscal_year_end", "checked", "disagreements", "disagreement_text"],
+  triangulate: ["fiscal_year_end", "checked", "disagreements", "disagreement_text", "different_measures", "different_measures_text"],
   segment_revenue: ["total_revenue.values.0"],
 };
 

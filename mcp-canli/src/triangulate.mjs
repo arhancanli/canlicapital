@@ -16,7 +16,7 @@ export const TRIANGULATE_TOOL = Object.freeze({
 const G = (...t) => t.flatMap((x) => [`us-gaap:${x}`]);
 const MEASURES = [
   { key: "revenue", statement: "income", history: "revenue", report: "revenue", tags: [...G("Revenues", "RevenueFromContractWithCustomerExcludingAssessedTax", "SalesRevenueNet", "RevenueFromContractWithCustomerIncludingAssessedTax", "RevenuesNetOfInterestExpense"), "ifrs-full:Revenue", "ifrs-full:RevenueFromContractsWithCustomers"] },
-  { key: "net_income", statement: "income", history: "net_income", report: "net_income", tags: [...G("NetIncomeLoss", "NetIncomeLossAvailableToCommonStockholdersBasic", "ProfitLoss"), "ifrs-full:ProfitLossAttributableToOwnersOfParent", "ifrs-full:ProfitLoss"] },
+  { key: "net_income", statement: "income", history: "net_income", report: "net_income", tags: [...G("NetIncomeLoss", "NetIncomeLossAvailableToCommonStockholdersBasic", "NetIncomeLossAvailableToCommonStockholdersDiluted", "ProfitLoss"), "ifrs-full:ProfitLossAttributableToOwnersOfParent", "ifrs-full:ProfitLoss"] },
   { key: "eps_diluted", statement: "income", history: "eps_diluted", report: "eps_diluted", perShare: true, tags: [...G("EarningsPerShareDiluted", "EarningsPerShareBasicAndDiluted"), "ifrs-full:DilutedEarningsLossPerShare"] },
   { key: "operating_income", statement: "income", history: "operating_income", tags: [...G("OperatingIncomeLoss"), "ifrs-full:ProfitLossFromOperatingActivities"] },
   { key: "assets", statement: "balance_sheet", history: "assets", tags: [...G("Assets"), "ifrs-full:Assets"] },
@@ -55,6 +55,15 @@ export function compare(a, b, { perShare, scale = 1 } = {}) {
   return `apart by ${(Math.abs(a - b) / Math.max(Math.abs(a), Math.abs(b)) * 100).toFixed(1)}%`;
 }
 
+// Two roads apart on one line are either two readings of one fact, which should match, or two measures under
+// different tags (cash with or without restricted cash; net income before or after preferred dividends), which
+// need not. Tags name which it is; a road whose tag is not known stays a disagreement.
+const shortTag = (t) => String(t ?? "").split(":").pop();
+export function differentMeasure(roadTag, otherTags) {
+  const others = otherTags.map(shortTag).filter(Boolean);
+  return Boolean(roadTag) && others.length > 0 && !others.includes(shortTag(roadTag));
+}
+
 export async function runTriangulate(ctx, args) {
   const a = triangulateInput.parse(args);
   const attempt = (name, input) => ctx.call(name, input).catch(() => null);
@@ -70,32 +79,41 @@ export async function runTriangulate(ctx, args) {
     const r = f?.rows?.find((x) => x[0] === end);
     return r ? Object.fromEntries(f.columns.map((c, i) => [c, r[i]])) : null;
   };
-  const rows = [], problems = [];
+  const rows = [], problems = [], measures = [];
+  // A filer whose statements cannot be read still has two roads, at the latest year in the facts.
   let end = null;
   MEASURES.forEach((m, i) => {
     const s = fromStatement(statements?.[m.statement], m);
     end = end ?? s?.end ?? null;
-    const at = s?.end ?? end;
-    const hist = histories[i]?.rows?.find((x) => x[0] === at)?.[2] ?? null;
+    const at = s?.end ?? end ?? report?.financials?.rows?.at(-1)?.[0] ?? null;
+    const history = histories[i];
+    const row = history?.rows?.find((x) => x[0] === at);
+    const hist = row?.[2] ?? null;
+    const histTag = row?.[history.columns?.indexOf("tag")] ?? null;
     const rep = m.report && at ? reportRow(at)?.[m.report] ?? null : null;
+    const repTag = report?.financials?.latest_tags?.[m.report] ?? null;
     const scale = s && !m.perShare ? statements[m.statement].money_scale ?? 1 : 1;
     // Agreement with any of the statement's lines for the measure counts.
     const against = (other) => { const v = compare(s?.value, other, { perShare: m.perShare, scale }); return v && v !== "agree" && s.lines.some((l) => compare(l.value, other, { perShare: m.perShare, scale }) === "agree") ? "agree" : v; };
-    const verdicts = [["facts", against(rep)], ["history", against(hist)]];
-    if (s == null) verdicts.push(["facts and history", compare(rep, hist, { perShare: m.perShare })]);
+    const lineTags = s?.lines.map((l) => l.tag) ?? [];
+    const verdicts = [["facts", against(rep), repTag, lineTags], ["history", against(hist), histTag, lineTags]];
+    if (s == null) verdicts.push(["facts and history", compare(rep, hist, { perShare: m.perShare }), repTag, [histTag]]);
     const off = verdicts.filter(([, v]) => v && v !== "agree");
+    const measure = off.filter(([, , tag, others]) => differentMeasure(tag, others)), real = off.filter((o) => !measure.includes(o));
     const roads = [s?.value, rep, hist].filter((v) => v != null).length;
-    rows.push([m.key, s?.value ?? null, rep, hist, roads, roads < 2 ? "one road only" : off.length ? off.map(([w, v]) => `${w}: ${v}`).join("; ") : "agree"]);
-    if (off.length) problems.push(`${m.key} (${off.map(([w, v]) => `${w} ${v}`).join(", ")})`);
+    const say = ([w, v, tag]) => `${w} ${v}${tag && measure.some((x) => x[0] === w) ? ` (reads ${shortTag(tag)})` : ""}`;
+    rows.push([m.key, s?.value ?? null, rep, hist, roads, roads < 2 ? "one road only" : off.length ? off.map(say).join("; ") : "agree"]);
+    if (real.length) problems.push(`${m.key} (${real.map(say).join(", ")})`);
+    if (measure.length) measures.push(`${m.key} (${measure.map(say).join(", ")})`);
   });
   const checked = rows.filter((r) => r[4] >= 2).length;
   return {
     company: report?.company ? { name: report.company.name, ticker: report.company.ticker, cik: report.company.cik } : { asked: a.company },
     fiscal_year_end: end,
     filing: statements?.filings?.rows?.[0] ? { form: statements.filings.rows[0][1], filed: statements.filings.rows[0][2], index: statements.filings.rows[0][4] } : null,
-    checked, agreements: checked - problems.length, disagreements: problems.length, disagreement_text: problems.join("; ") || null,
+    checked, agreements: checked - problems.length - measures.length, disagreements: problems.length, disagreement_text: problems.join("; ") || null, different_measures: measures.length, different_measures_text: measures.join("; ") || null,
     columns: ["measure", "statement_as_filed", "xbrl_facts", "point_in_time_history", "roads", "reading"], rows,
-    meaning: "Each figure reached by separate code from separate SEC files. Agreement is within the statement's rounding. A disagreement is a filer's tagging slip, a restatement, a measure defined differently, or a reading error here: open the filing to see which.",
+    meaning: "Each figure reached by separate code from separate SEC files. Agreement is within the statement's rounding. Different measures are one line read under different tags, such as cash with restricted cash: both can be right. A disagreement is left when the tags do not explain the gap: a filer's slip, a restatement or a reading error here. Open the filing to see which.",
     limits: ["The roads share one origin, the company's own filing: this finds inconsistency, not fraud or error in what the company reports.", "History comes from Canli Capital's dated company reference, which can lag a recent filing; its absence is shown, not counted against the figure.", "Not investment advice."],
   };
 }

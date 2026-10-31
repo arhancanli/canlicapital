@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.13.2
+
+- Clearer front tools: each description now says when to use it instead of its neighbours, what comes next, and how it
+  fails. `history` and `financial_statements` say which to prefer. Context at start-up rises from 2,403 to 2,524 tokens.
+- `triangulate` tells two readings of one fact from two measures under different tags: `different_measures` names a gap
+  the tags explain, such as cash with restricted cash, and `disagreements` keeps the rest. It also compares facts with
+  history when a filer's statements cannot be read, and reads a filer's diluted-common line (Hewlett Packard Enterprise).
+- Packs: canli-markets-mcp 0.8.4 (Exxon's statements and filings work again; Northern Trust's revenue reads $8.09 billion;
+  NXP's units), canli-fundamentals-mcp 0.7.5 ("BP" no longer reads BP Midstream Partners).
+
 ## 0.13.1
 
 - `triangulate` holds one company on every road, and counts agreement with any of a statement's lines for a measure, so

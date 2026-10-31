@@ -307,21 +307,21 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
   const keeper = createKeeper();
   server.registerTool("find_tool", {
     title: "Find a tool",
-    description: `Search the ${ENTRIES.filter((e) => packs.includes(e.pack)).length} finance tools (packs: ${packs.join(", ")}) by what you need, e.g. "deflated sharpe", "black scholes greeks", "revenue as of 2019". Returns names, packs, argument signatures and one-line descriptions, best first.`,
+    description: `Search the ${ENTRIES.filter((e) => packs.includes(e.pack)).length} finance tools (packs: ${packs.join(", ")}) in plain words, e.g. "deflated sharpe", "revenue as of 2019". Returns the closest matches first, with names, argument signatures and one line each, even when none fits, so check them. Next: run_tool, or describe_tool if an argument is unclear.`,
     annotations: { title: "Find a tool", ...READ_ONLY },
-    inputSchema: z.object({ query: z.string().max(200).describe("What you need, in plain words."), limit: z.number().int().min(1).max(50).optional().describe("Default 6.") }).strict(),
+    inputSchema: z.object({ query: z.string().max(200).describe("What you need, in plain words."), limit: z.number().int().min(1).max(50).optional().describe("1 to 50, default 6.") }).strict(),
     outputSchema: open,
   }, guard(({ query, limit }) => findTool(packs, { query, limit })));
   server.registerTool("describe_tool", {
     title: "Describe a tool",
-    description: "One tool's full description and exact input JSON Schema.",
+    description: "Read one tool's full description and input JSON Schema, between find_tool and run_tool, when find_tool's signature does not settle an argument. An unknown name returns an error.",
     annotations: { title: "Describe a tool", ...READ_ONLY },
-    inputSchema: z.object({ name: z.string().max(100).describe("A tool name from find_tool.") }).strict(),
+    inputSchema: z.object({ name: z.string().max(100).describe("The exact tool name, as find_tool returned it.") }).strict(),
     outputSchema: open,
   }, guard(({ name }) => describeTool(packs, { name })));
   server.registerTool("run_tool", {
     title: "Run tools",
-    description: "Run one tool ({name, arguments}) or several in one call ({calls: [...]}). Any argument can be {\"$file\": \"path.csv\", \"column\": \"close\"} (or \"columns\": [...] / \"all\") instead of pasted numbers. {\"$result\": i, \"path\": \"close\"} passes batch call i's output into a later call; every result also has a ref (\"r1\", \"r2\", ...) that later run_tool calls can pass the same way, {\"$result\": \"r1\", \"path\": \"close\"}, so data never needs to be copied.",
+    description: "Run a tool find_tool named: one ({name, arguments}), or up to 25 ({calls: [...]}). Independent calls run concurrently; a failed call returns its own error and the rest still run. Read-only unless the paper-trading pack is on. Any argument can be {\"$file\": \"path.csv\", \"column\": \"close\"} (or \"columns\": [...] / \"all\") instead of pasted numbers. {\"$result\": i, \"path\": \"close\"} passes batch call i's output into a later call; every result also has a ref (\"r1\", ...) later calls pass the same way, {\"$result\": \"r1\", \"path\": \"close\"}, so data never needs copying.",
     // Only the paper pack can send anything that changes an account; without it nothing here is destructive.
     annotations: { title: "Run tools", readOnlyHint: Boolean(readOnly), destructiveHint: packs.includes("paper"), idempotentHint: false, openWorldHint: true },
     inputSchema: RUN_INPUT,
@@ -434,6 +434,11 @@ function registerResources(server, packs, gov) {
 // tools: a model calls them in one step instead of searching first, for a few hundred more tokens of
 // tool list. CANLI_FRONT names them, comma-separated; set it empty to list only the three.
 export const FRONT_DEFAULT = Object.freeze(["history", "financial_statements"]);
+// Which of the two to reach for: both can give a company's revenue.
+const FRONT_GUIDE = {
+  history: " Use it for one measure across periods or as known on a past date; financial_statements for whole statements. Long answers come in pages.",
+  financial_statements: " Use it for every line in the company's own words; history for one measure over many years.",
+};
 export function frontTools(packs, env = process.env) {
   const names = env.CANLI_FRONT === undefined ? FRONT_DEFAULT : env.CANLI_FRONT.split(",").map((x) => x.trim()).filter(Boolean);
   return [...new Set(names)].filter((n) => BY_NAME.has(n) && packs.includes(BY_NAME.get(n).pack));
@@ -442,7 +447,7 @@ export async function registerFront(server, packs, names = frontTools(packs), go
   for (const name of names) {
     const t = await toolFor(name, packs);
     server.registerTool(name, {
-      title: t.title, description: t.description, inputSchema: t.input, outputSchema: open,
+      title: t.title, description: t.description + (FRONT_GUIDE[name] ?? ""), inputSchema: t.input, outputSchema: open,
       annotations: { title: t.title, ...(t.annotations ?? READ_ONLY) },
     }, guard(async (args) => trimmed(await runOne(packs, { name, arguments: args }, {}, [], gov))));
   }
