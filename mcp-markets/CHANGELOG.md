@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.8.4
+
+- Exxon Mobil's statements, filings, segments and everything else read from its filing record work again: the ticker
+  moved to a new holding company with no 10-K yet, and the record now continues from the old filer.
+- Northern Trust's revenue reads $8.09 billion, not $5.02 billion: a bank's fee line no longer corrects its total.
+- NXP's statements keep their scale when the title has no dash before the units.
+- company_report names the tag behind its latest revenue, net income and cash.
+
+## 0.8.3
+
+Found by checking the S&P 500 against its own statements (3,112 figures, 49 lines flagged).
+
+- A name no longer finds the wrong company. "DR Horton Inc" had resolved to an individual filer, "T Rowe Price Group" to
+  an ETF and "Equity Residential" to a small LLC. Names match listed companies first, in any word order, and a name
+  that fits nothing says so with the closest matches.
+- `company_report` takes the latest year's revenue from the income statement when the XBRL tag is another measure:
+  Republic Services' $16.6 billion, not $19.0 billion gross. American Express reads $72.2 billion, not $41.3 billion.
+- `financial_statements` reads "€ in Millions, $ in Millions": NXP's figures had come back with no scale.
+
 ## 0.8.2
 
 - Foreign issuers' results: `earnings_release` and `earnings_calendar` read Form 6-K, which has no item numbers, by

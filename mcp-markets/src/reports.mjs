@@ -93,8 +93,11 @@ export function columnOf(parts) {
 // The units in a report's title: "Consolidated Statements of Income - USD ($) shares in
 // Millions, $ in Millions" -> title and units.
 export function splitTitle(text) {
-  const m = String(text).match(/^(.*?)\s+-\s+((?:[A-Z]{3}\s*\(.{1,5}\)|[$€£¥]\s*\/|shares\b|pure\b).*)$/);
-  return m ? { title: m[1].trim(), units: m[2].trim() } : { title: String(text).trim(), units: null };
+  const m = String(text).match(/^(.*?)\s+-\s+((?:[A-Z]{3}\s*\(.{1,5}\)|[$€£¥]\s*(?:\/|in\b)|shares\b|pure\b).*)$/);
+  if (m) return { title: m[1].trim(), units: m[2].trim() };
+  // Some titles have no dash before the units: NXP's "CONSOLIDATED BALANCE SHEETS € in Millions, $ in Millions".
+  const bare = String(text).match(/^(.*?)\s+([$€£¥]\s+in\s+(?:thousands|millions|billions)\b.*)$/i);
+  return bare ? { title: bare[1].trim(), units: bare[2].trim() } : { title: String(text).trim(), units: null };
 }
 
 // "$ 45,183,036" -> 45183036; "(776,510)" -> -776510; "21.0%" -> 21 with a percent flag; text stays text.

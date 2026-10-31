@@ -10,6 +10,9 @@ import { asDollarShaped, factBook, isScaleSlip, priceToEarnings, ratioFromText }
 import { createDiskCache, freshFor } from "../src/disk-cache.mjs";
 import { releasesFrom, saysResults } from "../src/earnings.mjs";
 import { choose, latestPrices, METRICS } from "../src/research.mjs";
+import { archiveBase, continuedFrom } from "../src/sources.mjs";
+import { splitTitle } from "../src/reports.mjs";
+import { unitScale } from "../src/statements.mjs";
 import { createSession, getText } from "../src/sources.mjs";
 
 const named = "American Depositary Shares. American Depositary Shares. American Depositary Shares. ";
@@ -89,6 +92,12 @@ test("a figure in New Taiwan dollars is not a figure in US dollars", () => {
   assert.doesNotMatch(rows.filter((r) => r.value === 763.06).map((r) => r.unit).join(), /USD/);
 });
 
+test("units in a title with no currency code: NXP's two currencies", () => {
+  assert.equal(splitTitle("CONSOLIDATED BALANCE SHEETS - € in Millions, $ in Millions").units, "€ in Millions, $ in Millions");
+  assert.equal(unitScale(splitTitle("CONSOLIDATED BALANCE SHEETS - € in Millions, $ in Millions").units, "\\$"), 1e6);
+  assert.equal(unitScale(splitTitle("CONSOLIDATED BALANCE SHEETS € in Millions, $ in Millions").units, "\\$"), 1e6, "with no dash");
+});
+
 test("latestPrices reads many tickers in batches, and leaves out what fails", async () => {
   const seen = [];
   const session = createSession({ env: {}, sleep: async () => {}, fetchImpl: async (url) => {
@@ -128,4 +137,15 @@ test("an interim Item 2.02 8-K is not a quarter's results: Tesla's deliveries", 
   const rel = releasesFrom([k("2025-04-02", "deliveries-q1"), k("2025-04-22", "q1"), q("2025-04-23"), k("2025-07-02", "deliveries-q2"), k("2025-07-23", "q2"), q("2025-07-24"), k("2025-10-02", "deliveries-q3")]);
   assert.deepEqual(rel.map((r) => r.accession), ["q1", "q2"], "20 days apart, 21 days apart, and an early one with the quarter's report yet to come");
   assert.deepEqual(rel.map((r) => r.date), ["2025-04-22", "2025-07-23"]);
+});
+
+test("a filing record continues from the old filer under a new holding company, with documents in the old folder", () => {
+  const sub = { name: "New Holdings", filings: { recent: { accessionNumber: ["0000000001-26-000002"], filingDate: ["2026-09-01"], form: ["8-K"], primaryDocument: ["a.htm"] }, files: [] } };
+  const old = { name: "Old Co", filings: { recent: { accessionNumber: ["0000000034-26-000009", "0000000001-26-000002"], filingDate: ["2026-02-18", "2026-09-01"], form: ["10-K", "8-K"], primaryDocument: ["k.htm", "a.htm"] }, files: [{ name: "more.json" }] } };
+  const out = continuedFrom(sub, old, 34088);
+  assert.equal(out.name, "New Holdings");
+  assert.deepEqual(out.filings.recent.form, ["8-K", "10-K"]);
+  assert.deepEqual(out.filings.files, [{ name: "more.json" }]);
+  assert.match(archiveBase(2115436, "0000000034-26-000009"), /data\/34088\/000000003426000009$/);
+  assert.match(archiveBase(2115436, "0000000001-26-000002"), /data\/2115436\//);
 });

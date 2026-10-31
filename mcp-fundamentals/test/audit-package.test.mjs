@@ -22,7 +22,7 @@ const SOURCE_PINS = Object.freeze({
   'package/src/canonical-json.mjs': '881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b',
   'package/src/audit-inputs-core.mjs': 'e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059',
   'package/src/audit-inputs-stdio.mjs': '537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0',
-  'package/src/server.mjs': 'd0ba6ce62443f7694e365886fa75603e4df496b9c3f319c9c6e22729bde3d53a',
+  'package/src/server.mjs': '1d5c499fdb627ed52933c9236ebbe435a6fa8d44794caaa2328d2d882fa6d83b',
   'package/src/expert-submission-stdio.mjs': '56075a5daaa61bffbace0551aefe1220c372854ddca295b6adddd62abef65208',
   'package/src/expert-submission-audit-core.mjs': '4040abc8f142d77571117979b73790be5a7ddb9bbf8fe6eee2fcb686ea9099f3',
   'package/src/expert-intake-core.mjs': '5095379afe5ca5be2c2fc8dc2fac191025c454f87e135d036b307f84bb57d545',
@@ -179,7 +179,7 @@ function auditPackage(entries) {
   assert.deepEqual(packageJson.bin, { 'canli-fundamentals-mcp': 'src/server.mjs', 'canli-fundamentals-audit': 'src/audit-inputs-stdio.mjs', 'canli-expert-submission-audit': 'src/expert-submission-stdio.mjs', 'canli-fundamentals-audit-files': 'src/audit-inputs-client.mjs', 'canli-expert-submission-files': 'src/expert-submission-files.mjs', 'canli-expert-submission-client': 'src/expert-submission-client.mjs', 'canli-expert-intake-files': 'src/expert-intake-files.mjs', 'canli-expert-intake-prepare': 'src/expert-intake-stdio.mjs' }, 'PACKAGE_BIN');
   assert.deepEqual(packageJson.files, ['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md', 'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md', 'EXPERT_INTAKE_STDIO.md']);
   assert.equal(packageJson.name, 'canli-fundamentals-mcp');
-  assert.equal(packageJson.version, '0.7.2');
+  assert.equal(packageJson.version, '0.7.5');
   assert.deepEqual(packageJson.dependencies, { '@modelcontextprotocol/server': '2.3.1', zod: '4.6.7', '@modelcontextprotocol/client': '2.3.1' });
   assert.match(entries.get('package/src/audit-inputs-stdio.mjs').bytes.toString(), /^#!\/usr\/bin\/env node\n/);
   assert.match(entries.get('package/src/expert-submission-stdio.mjs').bytes.toString(), /^#!\/usr\/bin\/env node\n/);
@@ -543,7 +543,7 @@ test('audit package: actual default command in the same tarball still lists exac
   await withPackedClient(async client => {
     const { tools } = await client.listTools();
     assert.deepEqual(tools.map(t => t.name).sort(), ['cross_section', 'find_company', 'history', 'known_as_of', 'list_concepts', 'restatements', 'vintages']);
-    assert.equal(client.getServerVersion().version, '0.7.2');
+    assert.equal(client.getServerVersion().version, '0.7.5');
     assert.ok(!tools.some(t => t.name === 'audit_inputs'));
   }, { defaultServer: true });
 });

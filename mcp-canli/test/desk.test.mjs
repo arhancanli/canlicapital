@@ -4,6 +4,7 @@ import { test } from "node:test";
 import { z } from "zod";
 
 import { runBrief, runSwarm } from "../src/desk.mjs";
+import { compare, differentMeasure, fromStatement } from "../src/triangulate.mjs";
 import { EPISODES, regress, rng, runWorlds, simulate } from "../src/worlds.mjs";
 
 const at = (v, path) => path.split(".").reduce((x, k) => x?.[k], v);
@@ -126,4 +127,27 @@ test("stress_worlds: combined crises hurt more than one alone; bad inputs are re
   await assert.rejects(runWorlds(c, { holdings: [{ symbol: "NOPE", weight: 1 }] }), /NOPE had none/);
   await assert.rejects(runWorlds(c, { holdings: [{ symbol: "SPY", weight: 1 }], scenarios: ["aliens"] }), /no scenario "aliens"/);
   await assert.rejects(runWorlds(c, { holdings: [{ symbol: "SPY", weight: 1 }], custom: [{ name: "x", moves: { MOON: -0.5 }, days: 5 }] }), /not MOON/);
+});
+
+test("triangulate: a gap between different tags is a different measure, and between one tag or an unknown one a disagreement", () => {
+  assert.equal(differentMeasure("CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents", ["us-gaap:CashAndCashEquivalentsAtCarryingValue"]), true);
+  assert.equal(differentMeasure("Revenues", ["us-gaap:Revenues"]), false);
+  assert.equal(differentMeasure(null, ["us-gaap:Revenues"]), false);
+  assert.equal(differentMeasure("Revenues", []), false);
+});
+
+test("triangulate: rounding agrees, scales and signs are named, and the parent's statement ends where a registrant's begins", () => {
+  assert.equal(compare(47941000000, 47941200000, { scale: 1e6 }), "agree");
+  assert.equal(compare(3.04, 3.05, { perShare: true }), "agree");
+  assert.equal(compare(3511400000, 3511), "apart by a factor of 1,000,000");
+  assert.equal(compare(100, -100), "opposite signs");
+  assert.match(compare(100, 60), /apart by 40/);
+  assert.equal(compare(null, 5), null);
+  const table = { columns: ["line", "concept", "12 months to 2025-12-31"], money_scale: 1e6, rows: [["Revenue", "us-gaap:Revenues", 29553], ["Net income", "us-gaap:NetIncomeLoss", 4341], ["Revenue", "us-gaap:Revenues", 19331], ["Net income", "us-gaap:NetIncomeLoss", 440]] };
+  const m = { statement: "income", tags: ["us-gaap:NetIncomeLoss"] };
+  assert.equal(fromStatement(table, m).value, 4341e6);
+  const only = { ...table, rows: [["Revenue", "us-gaap:Revenues", 29553], ["Profit", "us-gaap:ProfitLoss", 1758], ["Revenue", "us-gaap:Revenues", 19331], ["Net income", "us-gaap:NetIncomeLoss", 440]] };
+  assert.equal(fromStatement(only, m), null, "a subsidiary's line is not the parent's");
+  const two = fromStatement({ ...table, rows: [["Net income", "us-gaap:NetIncomeLoss", 57], ["To common", "us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic", -59]] }, { statement: "income", tags: ["us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic", "us-gaap:NetIncomeLoss"] });
+  assert.deepEqual(two.lines.map((l) => l.value), [-59e6, 57e6], "both lines of the measure, for either road to agree with");
 });
