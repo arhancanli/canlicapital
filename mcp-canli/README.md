@@ -92,6 +92,8 @@ Claude Desktop, Cursor or any MCP client:
 { "mcpServers": { "canli": { "command": "npx", "args": ["-y", "canli-mcp"] } } }
 ```
 
+Docker: `docker run -i --rm ghcr.io/arhancanli/canli-mcp` (each GitHub release is also published there, with signed build provenance).
+
 Hosted, no install: add `https://canlicapital.com/mcp/canli` as a connector in claude.ai, ChatGPT
 or any client that takes a URL (`claude mcp add --transport http canli https://canlicapital.com/mcp/canli`).
 It runs this release with the quant, validation, fundamentals, research, backtest and markets
@@ -102,18 +104,19 @@ own broker keys. The hosted server keeps nothing between requests, so chain call
 
 ## Context and startup
 
-Measured on Node 24 on 2026-10-24 with `bench/context.py` (o200k tokens of the tool objects a
+Measured on Node 24 on 2026-10-31 with `bench/context.py` (o200k tokens of the tool objects a
 client receives, plus the server instructions; all seven packs enabled with `CANLI_PACKS=all`; start-up is the median time from launch to the
-tool list, on a machine running other work; `bench/context-2026-10-24-0.11.0.json`):
+tool list, on a machine running other work; `bench/context-2026-10-31-0.13.2.json`):
 
 | | seven servers separately | canli-mcp |
 |---|---|---|
-| initial tool list and instructions | 53,974 tokens (115 tools) | 2,408 tokens (5 tools) |
+| initial tool list and instructions | 57,701 tokens (125 tools) | 2,524 tokens (5 tools) |
 | processes | 7 | 1 |
-| start-up | 87-139 ms each | 149 ms |
+| start-up | 89-147 ms each | 162 ms |
 
 Tools the packs add cost the combined server nothing up front: since 0.6.0 the seven servers' own
-lists grew from 39,962 to 53,974 tokens. The interactive views of 0.10.0 added 76 tokens, those of 0.11.0 another 13.
+lists grew from 39,962 to 57,701 tokens. The interactive views of 0.10.0 added 76 tokens, those of 0.11.0 another 13, and
+the clearer tool descriptions of 0.13.2 another 121.
 
 - **Five tools in context.** The model searches with `find_tool`, reads one schema with
   `describe_tool`, and calls anything with `run_tool`; `history` and `financial_statements`, the
@@ -138,7 +141,7 @@ lists grew from 39,962 to 53,974 tokens. The interactive views of 0.10.0 added 7
 
 ## One call, many workers
 
-Three tools fan out on the server, so the model asks once and reads one short answer. The workers are ordinary code,
+Four tools work on the server, so the model asks once and reads one short answer. The workers are ordinary code,
 not model calls, so they cost no model tokens.
 
 - `brief` on a company runs a dozen tools at once (accounts, latest results and guidance, segments, valuation, debt,
@@ -147,6 +150,8 @@ not model calls, so they cost no model tokens.
 - `swarm` runs one read-only tool over up to 500 companies and returns one ranked table, with medians and failures.
   Long runs come back in parts with a `resume` ref. Take the names from another tool:
   `{"tool": "forensic_scores", "over": {"tool": "index_constituents", "arguments": {"index": "VOO", "limit": 510}, "column": "name"}, "sort_by": "altman.z_score", "order": "asc"}`.
+- `triangulate` reaches a company's headline figures by three separate roads (the statement as filed, the XBRL facts,
+  the point-in-time history) and says where they disagree. `brief` runs it too, and `swarm` runs it across an index.
 - `stress_worlds` runs a portfolio through thousands of worlds: real market history resampled in blocks, with real
   crises dropped in at random times and sizes, alone or together (`"bank_crisis+compute_bust"`), or your own shocks.
   It shows the range of outcomes and how far to trust the answer. These are scenarios, not forecasts: they say what

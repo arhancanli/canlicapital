@@ -182,7 +182,7 @@ export const NAMES = {
     [1652044, "Alphabet Inc.", ["GOOGL"]],
     [2100000, "Alphabet Holding Company, Inc.", []],
   ],
-  outside: { columns: ["ticker", "cik", "name"], rows: [["XOM", 2115436, "ExxonMobil Holdings Corp"], ["NEWCO", 2200000, "Brand New Holdings Inc"]] },
+  outside: { columns: ["ticker", "cik", "name"], rows: [["XOM", 2115436, "ExxonMobil Holdings Corp"], ["NEWCO", 2200000, "Brand New Holdings Inc"], ["META", 2300000, "Some Other Listed Plc"]] },
 };
 
 // extraCiks: more companies that share the same snapshot, to exercise the in-memory cache limit.

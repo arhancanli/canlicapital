@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.13.2
+
+- Clearer front tools: each description now says when to use it instead of its neighbours, what comes next, and how it
+  fails. `history` and `financial_statements` say which to prefer. Context at start-up rises from 2,403 to 2,524 tokens.
+- `triangulate` tells two readings of one fact from two measures under different tags: `different_measures` names a gap
+  the tags explain, such as cash with restricted cash, and `disagreements` keeps the rest. It also compares facts with
+  history when a filer's statements cannot be read, and reads a filer's diluted-common line (Hewlett Packard Enterprise).
+- Packs: canli-markets-mcp 0.8.4 (Exxon's statements and filings work again; Northern Trust's revenue reads $8.09 billion;
+  NXP's units), canli-fundamentals-mcp 0.7.5 ("BP" no longer reads BP Midstream Partners).
+
+## 0.13.1
+
+- `triangulate` holds one company on every road, and counts agreement with any of a statement's lines for a measure, so
+  net income before and after preferred dividends is not called a disagreement.
+- The fundamentals pack (0.7.4) finds the listed company for a name: "T Rowe Price Group Inc" had read a credit fund.
+
+## 0.13.0
+
+- `triangulate`: a company's revenue, net income, EPS, operating income, assets, equity and cash reached by three
+  separate roads, with any disagreement named. `brief` runs it, and `swarm` runs it across an index.
+- Run across the S&P 500 (3,112 figures, 49 lines flagged), it found bugs now fixed in the markets (0.8.3) and
+  fundamentals (0.7.3) packs: names that found the wrong company, American Express's and Republic Services' revenue,
+  Comfort Systems' history and NXP's scale.
+
 ## 0.12.2
 
 The markets pack moves to 0.8.2: `brief`, `earnings_release` and `earnings_calendar` now read foreign issuers' results

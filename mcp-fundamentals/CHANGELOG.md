@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.7.5
+
+- A ticker held by a company outside the reference is never read as another company's name: "BP" had returned BP
+  Midstream Partners' figures, and 96 such tickers could collide the same way. The answer now says who holds the
+  ticker and lists the names that fit.
+- A short capitalized query read as the start of a name says so ("BK" is BK Technologies, not BNY Mellon's former ticker).
+
+## 0.7.4
+
+- A name finds the listed company: "T Rowe Price Group Inc" had read a private credit fund of that family, and "Southern
+  Co/The" another filer.
+
+## 0.7.3
+
+Found by checking the S&P 500 against its own statements.
+
+- A 10-Q no longer restates a full year: Comfort Systems' April 2026 10-Q tagged a quarter's $1.83 billion as all of
+  2025, which replaced the 10-K's $9.1 billion in `history`.
+- Revenue follows `RevenuesNetOfInterestExpense`, a lender's total: American Express's reads $72.2 billion, not $41.3.
+
 ## 0.7.2
 
 - `history`, `known_as_of` and the rest no longer read proxy statements as filings of a company's results. Their

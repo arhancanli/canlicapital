@@ -206,6 +206,14 @@ test("unknown names get suggestions, plain names and current tags first", async 
   await assert.rejects(toolHistory(s, { company: "FIX", concept: "Revenues", unit: "EUR" }), /reported in USD, not EUR/);
 });
 
+test("a ticker held outside the reference is never read as another company's name", async () => {
+  const { s } = session();
+  await assert.rejects(toolListConcepts(s, { company: "META" }), /META is the SEC's ticker for Some Other Listed Plc \(CIK 0002300000\).*pass one CIK as company/);
+  // Not a ticker at all: a name's first word still finds the company, and the answer says how it was read.
+  assert.match((await resolveCompany(s, "STAR")).matched.note, /STAR is not a current ticker/);
+  assert.doesNotMatch((await resolveCompany(s, "Star")).matched.note ?? "", /not a current ticker/);
+});
+
 test("companies resolve by ticker, dotted ticker or CIK; unknown ones say what to do", async () => {
   const { s } = session();
   assert.equal(out(await toolListConcepts(s, { company: "fix" })).company.cik, CIK);
@@ -485,4 +493,10 @@ test("a proxy statement's pay table is not a filing of the results: Arista's 3,5
   const index = indexFacts({ facts: { "us-gaap": { NetIncomeLoss: { units: { USD: [row(3511400000, "10-K", "2026-02-17"), row(3511, "DEF 14A", "2026-04-16")] } } } } });
   const vintages = index.get("us-gaap:NetIncomeLoss").units.USD[0].vintages;
   assert.deepEqual(vintages.map((v) => [v.val, v.form]), [[3511400000, "10-K"]]);
+});
+
+test("a 10-Q does not restate a full year: Comfort Systems' $1.83 billion never replaces the 10-K's $9.1 billion", () => {
+  const row = (val, form, filed) => ({ start: "2025-01-01", end: "2025-12-31", val, form, filed, accn: `a-${filed}`, fy: 2025, fp: "FY" });
+  const index = indexFacts({ facts: { "us-gaap": { Revenues: { units: { USD: [row(9101641000, "10-K", "2026-02-19"), row(1831286000, "10-Q", "2026-04-23")] } } } } });
+  assert.deepEqual(index.get("us-gaap:Revenues").units.USD[0].vintages.map((v) => v.val), [9101641000]);
 });

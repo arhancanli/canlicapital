@@ -203,7 +203,8 @@ async function nameIndex(session) {
 const MATCH_LEVELS = ["ticker", "cik", "name", "same_name_as_ticker_holder", "name_start", "name_words", "name_contains"];
 
 export async function findCompanies(session, query, limit = 8) {
-  const text = String(query).trim().replace(/^\$/, "");
+  // Fund reports write names their own way: "Southern Co/The", "Hess Corp/DE".
+  const text = String(query).trim().replace(/^\$/, "").replace(/\s*\/\s*(?:the|[a-z]{2,3})\s*\/?\s*$/i, "");
   const ticker = text.toUpperCase();
   const names = await nameIndex(session);
   const found = new Map();
@@ -230,7 +231,12 @@ export async function findCompanies(session, query, limit = 8) {
   const best = ranked[0];
   const tied = best ? ranked.filter((r) => r.level === best.level) : [];
   const listed = tied.filter((r) => r.c.tickers.length);
-  const pick = !best ? null : ranked.length === 1 ? best : best.level > 4 ? null : tied.length === 1 ? best : listed.length === 1 ? listed[0] : null;
+  // A listed company beats an unlisted filer that only fits by its first words: "T Rowe Price Group" is PRICE T
+  // ROWE GROUP INC, not T. ROWE PRICE OHA SELECT PRIVATE CREDIT FUND.
+  const listedFits = ranked.filter((r) => r.level <= 5 && r.c.tickers.length);
+  // A ticker held by a company outside the reference is never read as another company's name: "BP" is BP plc, not
+  // BP Midstream Partners. The answer says who holds it and lists the names that fit.
+  const pick = !best || (outside && best.level >= 4) ? null : best.level >= 4 && !best.c.tickers.length && listedFits.length === 1 ? listedFits[0] : ranked.length === 1 ? best : best.level > 4 ? null : tied.length === 1 ? best : listed.length === 1 ? listed[0] : null;
   // Companies as good a match as the one used (the same name, another filer): the answer names them,
   // since a question about the other one would otherwise get this one's figures without a word.
   const alike = pick && tied.length > 1 ? tied.filter((r) => r !== pick).map(({ c }) => ({ cik: c.cik, name: c.name, tickers: c.tickers })) : [];
@@ -262,6 +268,7 @@ export async function resolveCompany(session, company) {
   if (found.resolved) {
     const alike = found.resolved.also_matching?.map((m) => `${m.name} (CIK ${m.cik}${m.tickers.length ? `, ${m.tickers.join("/")}` : ", no current ticker"})`).join("; ");
     const note = [found.resolved.match === "same_name_as_ticker_holder" ? `${heldBy}; the covered filer with the same name was used.` : null,
+      found.resolved.match === "name_start" && /^[A-Z]{1,5}$/.test(text) ? `${text} is not a current ticker in the reference, so it was read as the start of this company's name; a company's former ticker is not looked up.` : null,
       alike ? `Also named "${text}": ${alike}. This is ${found.resolved.name} (CIK ${found.resolved.cik}), the one with a current ticker; pass another CIK as company for a different filer, such as a former company of that name.` : null].filter(Boolean).join(" ") || undefined;
     return { cik: found.resolved.cik, ticker: null, matched: { query: text, by: found.resolved.match, ...(note ? { note } : {}) } };
   }
@@ -404,7 +411,12 @@ export function indexFacts(facts, only) {
         }
         const list = [...periods.values()];
         // Filing order: by date, then accession number, so the order never depends on the file.
-        for (const p of list) p.vintages.sort(byFiling);
+        for (const p of list) {
+          p.vintages.sort(byFiling);
+          // A 10-Q is not where a full year is restated: Comfort Systems' April 2026 10-Q tagged a quarter's
+          // $1.83 billion as all of 2025, which would have replaced the 10-K's $9.1 billion.
+          if (p.start && durationKind(p.start, p.end) === "annual" && p.vintages.some((v) => ANNUAL_FORM.test(v.form ?? ""))) p.vintages = p.vintages.filter((v) => !INTERIM_FORM.test(v.form ?? ""));
+        }
         list.sort((a, b) => b.end.localeCompare(a.end) || String(b.start).localeCompare(String(a.start)));
         if (list.length) units[unit] = list;
       }
@@ -423,7 +435,7 @@ export function indexFacts(facts, only) {
 // RevenueFromContractWithCustomerExcludingAssessedTax in 2018, Toyota from us-gaap to IFRS) is
 // followed across the switch, and every value names the tag it came from.
 export const FRIENDLY = Object.freeze({
-  revenue: ["us-gaap:Revenues", "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax", "us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax", "us-gaap:SalesRevenueNet", "ifrs-full:Revenue", "ifrs-full:RevenueFromContractsWithCustomers"],
+  revenue: ["us-gaap:RevenuesNetOfInterestExpense", "us-gaap:Revenues", "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax", "us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax", "us-gaap:SalesRevenueNet", "ifrs-full:Revenue", "ifrs-full:RevenueFromContractsWithCustomers"],
   // Since the 2025 reports many 10-Ks tag the common-stockholders line or ProfitLoss and not NetIncomeLoss.
   net_income: ["us-gaap:NetIncomeLoss", "ifrs-full:ProfitLossAttributableToOwnersOfParent", "us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic", "us-gaap:ProfitLoss", "ifrs-full:ProfitLoss"],
   operating_income: ["us-gaap:OperatingIncomeLoss", "ifrs-full:ProfitLossFromOperatingActivities"],

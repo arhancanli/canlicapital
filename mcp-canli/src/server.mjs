@@ -26,6 +26,7 @@ import { z } from "zod";
 
 import { resolveRefs } from "./files.mjs";
 import { DESK as FANOUT, runBrief, runSwarm } from "./desk.mjs";
+import { runTriangulate, TRIANGULATE_TOOL } from "./triangulate.mjs";
 import { runWorlds, WORLDS_TOOL } from "./worlds.mjs";
 import { OMITTED, PACKS, PLUGINS, RENAMES, enabledPacks, loadPack, loadPlugins, packInfo } from "./packs.mjs";
 import { signature } from "./signature.mjs";
@@ -46,7 +47,7 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-const DESK = [...FANOUT, WORLDS_TOOL];
+const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL];
 export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
@@ -306,21 +307,21 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
   const keeper = createKeeper();
   server.registerTool("find_tool", {
     title: "Find a tool",
-    description: `Search the ${ENTRIES.filter((e) => packs.includes(e.pack)).length} finance tools (packs: ${packs.join(", ")}) by what you need, e.g. "deflated sharpe", "black scholes greeks", "revenue as of 2019". Returns names, packs, argument signatures and one-line descriptions, best first.`,
+    description: `Search the ${ENTRIES.filter((e) => packs.includes(e.pack)).length} finance tools (packs: ${packs.join(", ")}) in plain words, e.g. "deflated sharpe", "revenue as of 2019". Returns the closest matches first, with names, argument signatures and one line each, even when none fits, so check them. Next: run_tool, or describe_tool if an argument is unclear.`,
     annotations: { title: "Find a tool", ...READ_ONLY },
-    inputSchema: z.object({ query: z.string().max(200).describe("What you need, in plain words."), limit: z.number().int().min(1).max(50).optional().describe("Default 6.") }).strict(),
+    inputSchema: z.object({ query: z.string().max(200).describe("What you need, in plain words."), limit: z.number().int().min(1).max(50).optional().describe("1 to 50, default 6.") }).strict(),
     outputSchema: open,
   }, guard(({ query, limit }) => findTool(packs, { query, limit })));
   server.registerTool("describe_tool", {
     title: "Describe a tool",
-    description: "One tool's full description and exact input JSON Schema.",
+    description: "Read one tool's full description and input JSON Schema, between find_tool and run_tool, when find_tool's signature does not settle an argument. An unknown name returns an error.",
     annotations: { title: "Describe a tool", ...READ_ONLY },
-    inputSchema: z.object({ name: z.string().max(100).describe("A tool name from find_tool.") }).strict(),
+    inputSchema: z.object({ name: z.string().max(100).describe("The exact tool name, as find_tool returned it.") }).strict(),
     outputSchema: open,
   }, guard(({ name }) => describeTool(packs, { name })));
   server.registerTool("run_tool", {
     title: "Run tools",
-    description: "Run one tool ({name, arguments}) or several in one call ({calls: [...]}). Any argument can be {\"$file\": \"path.csv\", \"column\": \"close\"} (or \"columns\": [...] / \"all\") instead of pasted numbers. {\"$result\": i, \"path\": \"close\"} passes batch call i's output into a later call; every result also has a ref (\"r1\", \"r2\", ...) that later run_tool calls can pass the same way, {\"$result\": \"r1\", \"path\": \"close\"}, so data never needs to be copied.",
+    description: "Run a tool find_tool named: one ({name, arguments}), or up to 25 ({calls: [...]}). Independent calls run concurrently; a failed call returns its own error and the rest still run. Read-only unless the paper-trading pack is on. Any argument can be {\"$file\": \"path.csv\", \"column\": \"close\"} (or \"columns\": [...] / \"all\") instead of pasted numbers. {\"$result\": i, \"path\": \"close\"} passes batch call i's output into a later call; every result also has a ref (\"r1\", ...) later calls pass the same way, {\"$result\": \"r1\", \"path\": \"close\"}, so data never needs copying.",
     // Only the paper pack can send anything that changes an account; without it nothing here is destructive.
     annotations: { title: "Run tools", readOnlyHint: Boolean(readOnly), destructiveHint: packs.includes("paper"), idempotentHint: false, openWorldHint: true },
     inputSchema: RUN_INPUT,
@@ -348,8 +349,8 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const viewing = Boolean(a.view) && clientDrawsApps(server);
     if (a.view) for (const c of calls) if (/^backtest_/.test(c.name) && !(c.arguments && "curve" in c.arguments)) { try { if ((await toolFor(c.name, packs)).input?.shape?.curve) c.arguments = { ...(c.arguments ?? {}), curve: true }; } catch { /* reported when it runs */ } }
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
-    const desk = { call: (name, args) => runOne(packs, { name, arguments: args }, {}, [], gov), keep: (r) => keeper.put(r), get: (ref) => keeper.get(ref), at, toolFor: (name) => toolFor(name, packs), hosted: Boolean(readOnly) };
-    const SELF = { brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), stress_worlds: (args) => runWorlds(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
+    const desk = { call: (name, args) => (name === "triangulate" ? runTriangulate(desk, args) : runOne(packs, { name, arguments: args }, {}, [], gov)), keep: (r) => keeper.put(r), get: (ref) => keeper.get(ref), at, toolFor: (name) => toolFor(name, packs), hosted: Boolean(readOnly) };
+    const SELF = { brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), stress_worlds: (args) => runWorlds(desk, args), triangulate: (args) => runTriangulate(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
     const run = (c, args) => (SELF[c.name] ? Promise.resolve().then(() => SELF[c.name](args)) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov));
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
     if (calls.length > 1 && destructive.some(Boolean)) throw new Error("A tool that sends orders cannot run inside a batch; call it on its own after previewing.");
@@ -433,6 +434,11 @@ function registerResources(server, packs, gov) {
 // tools: a model calls them in one step instead of searching first, for a few hundred more tokens of
 // tool list. CANLI_FRONT names them, comma-separated; set it empty to list only the three.
 export const FRONT_DEFAULT = Object.freeze(["history", "financial_statements"]);
+// Which of the two to reach for: both can give a company's revenue.
+const FRONT_GUIDE = {
+  history: " Use it for one measure across periods or as known on a past date; financial_statements for whole statements. Long answers come in pages.",
+  financial_statements: " Use it for every line in the company's own words; history for one measure over many years.",
+};
 export function frontTools(packs, env = process.env) {
   const names = env.CANLI_FRONT === undefined ? FRONT_DEFAULT : env.CANLI_FRONT.split(",").map((x) => x.trim()).filter(Boolean);
   return [...new Set(names)].filter((n) => BY_NAME.has(n) && packs.includes(BY_NAME.get(n).pack));
@@ -441,7 +447,7 @@ export async function registerFront(server, packs, names = frontTools(packs), go
   for (const name of names) {
     const t = await toolFor(name, packs);
     server.registerTool(name, {
-      title: t.title, description: t.description, inputSchema: t.input, outputSchema: open,
+      title: t.title, description: t.description + (FRONT_GUIDE[name] ?? ""), inputSchema: t.input, outputSchema: open,
       annotations: { title: t.title, ...(t.annotations ?? READ_ONLY) },
     }, guard(async (args) => trimmed(await runOne(packs, { name, arguments: args }, {}, [], gov))));
   }
