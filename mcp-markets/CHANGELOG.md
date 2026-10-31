@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.9.1
+
+verify_claims, fixed against claims people wrote in public posts. On 0.9.0, 14 of 29 settled answers on 64 real sentences were wrong, every one a false "contradicted"; all 12 confirmations were right.
+
+- A sentence's period reaches all its figures; "Q3 fiscal 2026" and calendar quarters are read.
+- Years ending early in the calendar year are checked under either label.
+- Parts are not read as the whole ("of which", product names, "Oracle Cloud's"); a company's name or ticker is not read as a part.
+- A figure cut short rather than rounded agrees, within 1%. Margins and revenue are checked on any revenue line the company tags.
+- No fourth-quarter per-share figure, a list of companies, a second value for one measure or a quarter with no year is judged.
+
 ## 0.9.0
 
 verify_claims reads claims as people say them, not only as press releases word them.
