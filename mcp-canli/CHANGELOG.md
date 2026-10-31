@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.14.0
+
+- `verify_claims` reads claims as people say them: "earned $9 per share", "lost $18.8 billion", "has $90 billion in cash",
+  "about", "over", "last year". A part of the business is no longer judged against the whole company, and a second
+  figure in a sentence is no longer dropped. Another company's figure, someone else's money and the future are not read.
+- Packs: canli-markets-mcp 0.9.0.
+- 0.13.3 was never on npm: a manual Glama build made that number there, so this release skips it.
+
 ## 0.13.2
 
 - Clearer front tools: each description now says when to use it instead of its neighbours, what comes next, and how it
