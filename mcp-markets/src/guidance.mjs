@@ -579,7 +579,7 @@ export function resultsFromText(text, max = 400) {
         // The words after a figure name that figure, not the next one: "$1.4 billion in cash and
         // cash equivalents and it had $593.7 million of available capacity".
         const between = k > 0 ? s.slice(figs[k - 1].end, f.at).split(/[,;)]|\band (?:it|we|the company|they)\b|\bwhile\b|\bwith\b/i)[0] : "";
-        if (/^\s*(?:in|of)\s/i.test(between) && measureOf(between) === measure && measureNear(s, figs[k - 1].at, new Set(), false).measure !== measure) continue;
+        if (/^\s*(?:in|of)\s/i.test(between) && !/\b(?:was|were|is|are|of|at|hit|reached|totaled)\s*$/i.test(between) && measureOf(between) === measure && measureNear(s, figs[k - 1].at, new Set(), false).measure !== measure) continue;
         // A measure named right after the figure is the figure's: "with a 4.6% operating margin".
         measure = measureAt(s.slice(f.end, f.end + 40)) ?? measure;
         let unit = unitOf(f.f, measure);
