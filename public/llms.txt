@@ -52,6 +52,10 @@ Post-mortems and derivations. These describe method and engineering; none is a p
 
 - [Read API](https://canlicapital.com/developers): static JSON over the published record. Every response carries its sources with SHA-256 hashes, its claim class, and what it cannot be used to claim.
 - [canli-mcp](https://canlicapital.com/mcp-servers): the flagship finance MCP server. Install: `npx -y canli-mcp` (stdio), or add the hosted URL https://canlicapital.com/mcp/canli as a connector. The page also covers the released hosted [validation](https://canlicapital.com/mcp-servers/validation), [SEC fundamentals](https://canlicapital.com/mcp-servers/fundamentals) and [research](https://canlicapital.com/mcp-servers/research) servers.
+- [Add canli-mcp to your client](https://canlicapital.com/mcp-servers/install): steps for Claude, Claude Code, Cursor, VS Code, ChatGPT, Codex, Gemini CLI, Windsurf, Cline and Zed.
+- [Privacy policy](https://canlicapital.com/privacy): what the site, the hosted servers and the package collect, send and keep.
+- [Every canli-mcp tool](https://canlicapital.com/mcp-servers/tools): all the tools by pack, with what each does and its arguments.
+- [How canli-mcp works and is tested](https://canlicapital.com/mcp-servers/how-it-works): what happens on a question, where the data comes from, test scores including first runs, and limits.
 - [Finance questions canli-mcp answers](https://canlicapital.com/mcp-servers/answers): one page per question, each with the call it makes and a recorded result:
   - [How do I get stock prices in Claude?](https://canlicapital.com/mcp-servers/answers/stock-prices-in-claude)
   - [How can an AI agent read a company's financial statements from SEC filings?](https://canlicapital.com/mcp-servers/answers/sec-financial-statements-for-ai)
@@ -116,7 +120,7 @@ The research corpus is 114 documents across 13 topics, including work that faile
 
 ## Machine-readable
 
-- [Sitemap](https://canlicapital.com/sitemap.xml): all 372 indexable routes.
+- [Sitemap](https://canlicapital.com/sitemap.xml): all 377 indexable routes.
 - [Full text](https://canlicapital.com/llms-full.txt): every research document, engineering note and paper abstract concatenated into one file, so a model can read the whole corpus without sampling it.
 - [Paper state](https://canlicapital.com/paper-state.json): the live record as JSON, the source every page renders from.
 - [Research index](https://canlicapital.com/research-index.json): 114 documents with citation metadata.

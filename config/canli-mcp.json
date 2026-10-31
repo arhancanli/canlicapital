@@ -15,6 +15,7 @@
   "claude_code": "claude mcp add canli -- npx -y canli-mcp",
   "json": "{ \"mcpServers\": { \"canli\": { \"command\": \"npx\", \"args\": [\"-y\", \"canli-mcp\"] } } }",
   "hosted": "https://canlicapital.com/mcp/canli",
+  "plugin_repo": "arhancanli/canli-mcp",
   "hosted_note": "Hosted, no install: add the URL as a connector in claude.ai, ChatGPT or any client that takes one. It serves the public-data and computing tools; file arguments, prices and paper trading need the local server."
  },
  "front": [
@@ -57,7 +58,7 @@
   {
    "id": "markets",
    "label": "Markets",
-   "tools": 64,
+   "tools": 74,
    "package": "canli-markets-mcp",
    "covers": "SEC filings and statements as filed, insider trades, 13F and 5% holders, fund portfolios, options chains and volatility surfaces, the Fed, Treasury yields and auctions, FRED, World Bank and OECD data, central banks abroad, prediction markets, prices and a whole-market overview"
   },
@@ -128,12 +129,12 @@
  "coverage": {
   "questions": 53,
   "keyless_tool": {
-   "canli-mcp": 49,
+   "canli-mcp": 51,
    "OpenBB": 39,
    "EdgarTools": 11,
    "Yahoo Finance MCP": 13
   },
-  "checked": "2026-10-11",
+  "checked": "2026-10-30",
   "method": "A question counts when the server lists a tool for it that needs no API key, checked against each server's own tool list. It does not say the answer is right; the head-to-head benchmark measures that.",
   "source": "mcp-canli/bench/rivals/COVERAGE.md"
  },
@@ -143,16 +144,16 @@
   "note": "The head-to-head benchmark and its context table measured canli-mcp with 306 tools behind three (config/mcp-head-to-head.json)."
  },
  "current": {
-  "version": "0.11.1",
-  "measured": "2026-10-24",
-  "tokens": 2408,
-  "startup_ms": 149,
-  "separately_tokens": 53974,
+  "version": "0.12.2",
+  "measured": "2026-10-30",
+  "tokens": 2403,
+  "startup_ms": 160,
+  "separately_tokens": 57701,
   "prompts": 56,
   "tokenizer": "o200k_base",
-  "source": "mcp-canli/bench/context-2026-10-24-0.11.0.json",
+  "source": "mcp-canli/bench/context-2026-10-30-0.12.2.json",
   "separately_note": "the seven Canli Capital servers run side by side, each listing its own tools",
-  "startup_seconds": 0.149
+  "startup_seconds": 0.16
  },
  "views": [
   {

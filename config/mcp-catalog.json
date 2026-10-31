@@ -1,0 +1,118 @@
+{
+ "schema": "canlicapital.mcp-catalog/v1",
+ "purpose": "How /mcp-servers/tools groups canli-mcp's tools, read with mcp-canli/src/index.json. A tool not named here falls under Other, so a new tool is never hidden.",
+ "toolsets": {
+  "performance": "Performance and risk ratios",
+  "options": "Options",
+  "indicators": "Technical indicators",
+  "econometrics": "Econometrics and tests",
+  "exotics": "Exotic options",
+  "rates": "Bonds and rates",
+  "risk": "Portfolio risk",
+  "returns": "Return series",
+  "portfolio": "Portfolio construction",
+  "execution": "Execution",
+  "sizing": "Position sizing",
+  "crypto_fx": "Crypto and currencies",
+  "strategies": "Strategy backtests",
+  "sleeves": "Strategy sleeve library",
+  "data_checks": "Data checks",
+  "labeling": "Machine-learning labels",
+  "tvm": "Time value of money",
+  "valuation": "Company valuation"
+ },
+ "markets_groups": {
+  "Filings and what they say": [
+   "list_filings",
+   "read_filing",
+   "search_filings",
+   "latest_filings",
+   "filing_tables",
+   "filing_diff",
+   "filing_drift",
+   "company_events",
+   "comment_letters",
+   "european_filings"
+  ],
+  "Results and valuation": [
+   "company_profile",
+   "company_report",
+   "financial_statements",
+   "segment_revenue",
+   "earnings_release",
+   "earnings_calendar",
+   "verify_claims",
+   "comps",
+   "screen_companies",
+   "debt_profile",
+   "forensic_scores",
+   "company_reverse_dcf",
+   "shareholder_returns",
+   "dividend_history",
+   "executive_pay",
+   "bank_financials"
+  ],
+  "Ownership and insiders": [
+   "insider_trades",
+   "planned_insider_sales",
+   "large_holders",
+   "fund_holdings",
+   "ownership_breadth",
+   "investment_advisers",
+   "private_offerings",
+   "ipo_pipeline"
+  ],
+  "Prices and trading": [
+   "price_history",
+   "market_overview",
+   "index_constituents",
+   "options_chain",
+   "volatility_surface",
+   "futures_curve",
+   "futures_positioning",
+   "short_interest",
+   "off_exchange_volume",
+   "fails_to_deliver",
+   "event_study",
+   "explain_move",
+   "portfolio_xray",
+   "prediction_markets"
+  ],
+  "Funds": [
+   "fund_portfolio"
+  ],
+  "Rates and the economy": [
+   "treasury_yields",
+   "treasury_auctions",
+   "federal_debt",
+   "world_yields",
+   "reference_rates",
+   "fomc",
+   "economic_series",
+   "economic_calendar",
+   "economic_outlook",
+   "world_economy",
+   "credit_cycle"
+  ],
+  "News and public records": [
+   "news",
+   "mentions_trend",
+   "enforcement_actions",
+   "consumer_complaints",
+   "product_recalls",
+   "sanctions_check",
+   "federal_rules",
+   "federal_contracts",
+   "drug_pipeline"
+  ],
+  "Who is who": [
+   "security_identifiers",
+   "legal_entity"
+  ],
+  "Crypto and compute": [
+   "crypto_fundamentals",
+   "funding_rates",
+   "compute_prices"
+  ]
+ }
+}

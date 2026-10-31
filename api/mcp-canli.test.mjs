@@ -57,7 +57,7 @@ test("a computation runs; paper trading and prices stay with the local server", 
     assert.doesNotMatch(found.content[0].text, /"pack":\s*"paper"|paper_account/);
     const price = await call(url, "price_history", { symbol: "SPY" });
     assert.equal(price.body.result.isError, true);
-    assert.match(text(price), /Keyless prices are off/, "no request to Yahoo is made");
+    assert.match(text(price), /Prices are off on this server/, "no request to Yahoo is made");
   });
 });
 

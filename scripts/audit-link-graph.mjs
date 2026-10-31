@@ -84,11 +84,19 @@ if (existsSync(publicationWrapperManifest)) {
 }
 
 // Edges: only links that resolve to a page we actually built. A link to a missing page is a
-// different defect and is caught per-page by verify-papers.mjs; here it simply is not an edge.
+// different defect, reported below; here it simply is not an edge.
 const edges = new Map();
 let edgeCount = 0;
+// Served by functions rather than files, so a missing file says nothing about these.
+const DYNAMIC = /^\/(?:companies|company-data|api|mcp|filings)(?:\/|$)/;
+const deadLinks = new Map();
+const isServed = (href) => routes.has(href) || DYNAMIC.test(href) || existsSync(join(DIST, decodeURI(href.split("?")[0])));
 for (const file of files) {
   const html = readFileSync(file, "utf8");
+  for (const m of html.matchAll(/(?:^|\s)href="(\/[^"]*)"/g)) {
+    const href = m[1].split("#")[0].replace(/\/$/, "") || "/";
+    if (!isServed(href)) deadLinks.set(href, (deadLinks.get(href) || 0) + 1);
+  }
   const targets = new Set(
     // UNANCHORED ONCE, and a mutation test caught it: `data-href="/x"` CONTAINS `href="/x"`, so
     // any attribute ending in -href counted as a link. The same substring trap as literature_dir
@@ -112,6 +120,10 @@ if (edgeCount < MIN_EDGES) {
   fail(`Only ${edgeCount} internal links exist across the whole site. The extractor has stopped ` +
     `matching, and an empty graph satisfies a depth bound perfectly`);
 }
+
+// "Financial datasets" pointed at a page that never existed, from the menu on 306 pages, and the
+// graph above could not see it because a link to nothing is not an edge.
+for (const [href, count] of deadLinks) fail(`${count} link(s) point at ${href}, which was not built. That is a published 404.`);
 
 // Breadth-first from the homepage, which is the only page a crawler is guaranteed to start at.
 const depth = new Map([["/", 0]]);
