@@ -54,3 +54,11 @@ test("the homepage does one job, in few words, and the privacy page says what is
   assert.match(privacy, /anonymous actions/);
   assert.doesNotMatch(privacy, /no analytics, advertising/);
 });
+
+// The production build runs build-site-design.mjs first, and that strips a stylesheet linked in this page's head:
+// on 2026-10-31 the homepage went live with no styles while every check passed.
+test("the homepage's styles survive the design step", () => {
+  const script = readFileSync(new URL("../js/check-home.js", import.meta.url), "utf8");
+  assert.match(script, /import "\.\.\/css\/check-home\.css"/);
+  assert.equal(readFileSync(new URL("../index.html", import.meta.url), "utf8").includes('href="/css/check-home.css"'), false);
+});

@@ -1,3 +1,5 @@
+// Imported here, not linked in the page: build-site-design.mjs rewrites each page's stylesheets in its head.
+import "../css/check-home.css";
 // The homepage's one job: take a claim or a company name and answer it from the filings.
 import "./navigation.js";
 import { findCompany, indexCompanies } from "./check-company.js";
@@ -46,7 +48,7 @@ const element = (tag, props = {}, ...children) => { const node = Object.assign(d
 function receipt(row, at, company, text) {
   const field = (name) => row[at[name]] ?? null, verdict = field("verdict");
   const figures = element("dl", {}, element("div", {}, element("dt", { textContent: "Claimed" }), element("dd", { textContent: money(field("claimed"), field("unit")) })), element("div", {}, element("dt", { textContent: "Filed" }), element("dd", { textContent: money(field("filed"), field("unit")) })));
-  const card = element("article", { className: "ck-receipt is-new" }, element("header", {}, element("b", { textContent: company }), element("span", { textContent: [field("measure")?.replaceAll("_", " "), field("period")].filter(Boolean).join(", ") })), element("p", { className: "ck-claim", textContent: field("claim") ?? text }), figures, element("p", { className: "ck-stamp", textContent: VERDICT[verdict] ?? verdict }));
+  const card = element("article", { className: "ck-receipt is-new" }, element("header", {}, element("b", { textContent: company }), element("span", { textContent: [(field("measure") === "eps" ? "earnings per share" : field("measure")?.replaceAll("_", " ")), field("period")].filter(Boolean).join(", ") })), element("p", { className: "ck-claim", textContent: field("claim") ?? text }), figures, element("p", { className: "ck-stamp", textContent: VERDICT[verdict] ?? verdict }));
   card.dataset.verdict = verdict.replace(" ", "-");
   if (field("note")) card.append(element("p", { className: "ck-note", textContent: field("note") }));
   if (field("source")) card.append(element("a", { className: "ck-source", href: field("source"), rel: "noreferrer", textContent: "Open the filing" }));
