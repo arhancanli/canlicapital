@@ -36,7 +36,7 @@ async function verify(company, text) {
   return JSON.parse(body);
 }
 
-const VERDICT = { confirmed: "Matches the filing", contradicted: "Doesn't match", "not reported": "Not in the filings", "not checkable": "Can't check this" };
+const VERDICT = { confirmed: "Matches the filing", contradicted: "Looks different from the filing", "not reported": "Not in the filings", "not checkable": "Can't check this" };
 const money = (value, unit) => {
   if (value == null) return "Not found";
   const [code, ...rest] = String(unit ?? "").split(" "), size = rest.join(" ");

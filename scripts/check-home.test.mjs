@@ -13,6 +13,13 @@ const index = indexCompanies([
   [21344, "COCA COLA CO", ["KO"]],
   [789019, "MICROSOFT CORP", ["MSFT"]],
   [1, "Apple Hospitality REIT, Inc.", ["APLE"]],
+  [1326801, "Meta Platforms, Inc.", ["META"]],
+  [1543151, "Uber Technologies, Inc", ["UBER"]],
+  [37996, "Ford Motor Co", ["F"]],
+  [2, "Q2 Holdings, Inc.", ["QTWO"]],
+  [3, "First Commonwealth Financial CORP", ["FCF"]],
+  [4, "58.com Inc.", []],
+  [5, "MARKET LEADER, INC.", []],
 ]);
 const named = (text) => findCompany(index, text)?.ticker ?? null;
 
@@ -29,6 +36,18 @@ test("the longest name wins, and a text naming no company finds none", () => {
   assert.equal(named("Apple Hospitality REIT made $1 billion"), "APLE");
   assert.equal(named("They made $10 billion in revenue in fiscal 2025."), null);
   assert.equal(named("Revenue was up in the US and the CEO said so"), null);
+});
+
+test("real sentences: the company named first, and figures or phrases never taken for a company", () => {
+  assert.equal(named("For context Meta had $61.8 billion revenue and $15.85 billion net income in Q2 2026."), "META");
+  assert.equal(named("Revenue came in at $12.56B against a consensus around $12.58-12.59B."), null);
+  assert.equal(named("FCF declined 14.7% year-over-year."), null);
+  assert.equal(named("EV market leader Tesla reported shrinking margins."), "TSLA");
+  assert.equal(named("Apple 2022: $99.8 billion profit. Google Q4 2022: $18.16 billion profit."), "AAPL");
+  assert.equal(named("Meta/Facebook made only $47 billion in revenue in 2024 vs Google's $72 billion."), "META");
+  assert.equal(named("Uber reported net income of $221 million."), "UBER");
+  assert.equal(named("Ford\u2019s profit in 2022 was $24 billion."), "F");
+  assert.equal(named("this meta analysis found a 5% margin"), null);
 });
 
 const call = async (req) => {
