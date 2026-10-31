@@ -187,6 +187,7 @@ const STATIC_ROUTES = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
   { path: "/systems", priority: "0.8", changefreq: "weekly" },
   { path: "/performance", priority: "0.8", changefreq: "weekly" },
+  { path: "/agents", priority: "0.8", changefreq: "weekly" },
   { path: "/progress", priority: "0.8", changefreq: "weekly" },
   { path: "/research", priority: "0.9", changefreq: "weekly" },
   { path: "/open", priority: "0.8", changefreq: "weekly" },
