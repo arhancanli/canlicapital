@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.9.0
+
+verify_claims reads claims as people say them, not only as press releases word them.
+
+- New wording: "earned $9 per share", "made $416 billion in revenue", "lost $18.8 billion", "has $90 billion in cash",
+  "profit fell 46%", "a 30% profit margin", "spent $34 billion on R&D".
+- Hedges count: "about" is within 5%, "over" and "under" are read as bounds.
+- "Last year" and "last quarter" are resolved; no period at all means the latest annual report. The row's note says so.
+- "Profit" matching another line of the accounts is named as that line. A cash or debt figure off the one tagged line
+  is not called wrong, because each sits on several lines.
+- A second figure in a sentence is no longer dropped. A year before a full stop is read.
+- Fixed: a part of the business ("Cloud revenue") was judged against the whole company's revenue. It now comes back
+  not checkable. Another company's figure, someone else's money ("Tim Cook earned") and the future are not read.
+- summary.figures_not_read counts the figures left unread.
+
 ## 0.8.4
 
 - Exxon Mobil's statements, filings, segments and everything else read from its filing record work again: the ticker
