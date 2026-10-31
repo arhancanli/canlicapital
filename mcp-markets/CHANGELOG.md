@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.4
+
+- Exxon Mobil's statements, filings, segments and everything else read from its filing record work again: the ticker
+  moved to a new holding company with no 10-K yet, and the record now continues from the old filer.
+- Northern Trust's revenue reads $8.09 billion, not $5.02 billion: a bank's fee line no longer corrects its total.
+- NXP's statements keep their scale when the title has no dash before the units.
+- company_report names the tag behind its latest revenue, net income and cash.
+
 ## 0.8.3
 
 Found by checking the S&P 500 against its own statements (3,112 figures, 49 lines flagged).

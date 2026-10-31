@@ -206,6 +206,14 @@ test("unknown names get suggestions, plain names and current tags first", async 
   await assert.rejects(toolHistory(s, { company: "FIX", concept: "Revenues", unit: "EUR" }), /reported in USD, not EUR/);
 });
 
+test("a ticker held outside the reference is never read as another company's name", async () => {
+  const { s } = session();
+  await assert.rejects(toolListConcepts(s, { company: "META" }), /META is the SEC's ticker for Some Other Listed Plc \(CIK 0002300000\).*pass one CIK as company/);
+  // Not a ticker at all: a name's first word still finds the company, and the answer says how it was read.
+  assert.match((await resolveCompany(s, "STAR")).matched.note, /STAR is not a current ticker/);
+  assert.doesNotMatch((await resolveCompany(s, "Star")).matched.note ?? "", /not a current ticker/);
+});
+
 test("companies resolve by ticker, dotted ticker or CIK; unknown ones say what to do", async () => {
   const { s } = session();
   assert.equal(out(await toolListConcepts(s, { company: "fix" })).company.cik, CIK);

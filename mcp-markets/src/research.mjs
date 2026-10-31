@@ -504,12 +504,17 @@ export async function companyReport(session, args) {
     const col = st?.income?.columns?.findIndex((c, i) => i >= 2 && String(c).includes(yearsRows.at(-1).end)) ?? -1;
     const line = col > 0 ? st.income.rows.find((r) => /:(Revenues|RevenuesNetOfInterestExpense|RevenueFromContractWithCustomerExcludingAssessedTax|RevenueFromContractWithCustomerIncludingAssessedTax|SalesRevenueNet|Revenue|RevenueFromContractsWithCustomers)$/.test(String(r[1])) && typeof r[col] === "number" && !st.income.rows.slice(0, st.income.rows.indexOf(r)).some((u) => u[1] === r[1])) : null;
     const m = yearsRows.at(-1)?.m, filed = line ? line[col] * (st.income.money_scale ?? 1) : null;
-    if (m && filed > 0 && m.revenue > 0 && Math.abs(filed / m.revenue - 1) > 0.01 && !/^(?:.*\bSegment\b)/i.test(String(line[0]))) {
+    // A bank's statement has no total of the two sides: a fee line tagged as contract revenue is Northern Trust's
+    // $5.0 billion of $8.1 billion, a part and not the figure to correct the total by.
+    const bankPart = line && st.income.rows.some((r) => /:(InterestIncomeExpenseNet|NoninterestIncome)$/.test(String(r[1]))) && !/:(Revenues|RevenuesNetOfInterestExpense)$/.test(String(line[1]));
+    if (!bankPart && m && filed > 0 && m.revenue > 0 && Math.abs(filed / m.revenue - 1) > 0.01 && !/^(?:.*\bSegment\b)/i.test(String(line[0]))) {
       const tagged = m.revenue;
       m.revenue = filed;
       yearsRows.at(-1).revenue_note = `Revenue is ${filed.toLocaleString("en-US")} as on the income statement; the XBRL facts' figure of ${tagged.toLocaleString("en-US")} (${tag0(series, defs, yearsRows.at(-1).end)}) is another measure.`;
     }
   } catch { /* the statement could not be read: the facts stand */ }
+  const latestEnd = yearsRows.at(-1)?.end;
+  if (latestEnd) report.financials.latest_tags = Object.fromEntries(["revenue", "net_income", "cash"].filter((k) => defs[k]).map((k) => [k, choose(defs[k], series[k]?.get(latestEnd)?.byTag)?.tag ?? null]));
   const revenueNote = yearsRows.at(-1)?.revenue_note;
   if (revenueNote) report.financials.note = revenueNote;
   if (revenueNote) report.financials.rows = yearsRows.map((y) => [y.end, ...finCols.map((k) => val(y.m, k)), y.restated.length ? y.restated.join(",") : null]);

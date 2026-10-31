@@ -234,7 +234,9 @@ export async function findCompanies(session, query, limit = 8) {
   // A listed company beats an unlisted filer that only fits by its first words: "T Rowe Price Group" is PRICE T
   // ROWE GROUP INC, not T. ROWE PRICE OHA SELECT PRIVATE CREDIT FUND.
   const listedFits = ranked.filter((r) => r.level <= 5 && r.c.tickers.length);
-  const pick = !best ? null : best.level >= 4 && !best.c.tickers.length && listedFits.length === 1 ? listedFits[0] : ranked.length === 1 ? best : best.level > 4 ? null : tied.length === 1 ? best : listed.length === 1 ? listed[0] : null;
+  // A ticker held by a company outside the reference is never read as another company's name: "BP" is BP plc, not
+  // BP Midstream Partners. The answer says who holds it and lists the names that fit.
+  const pick = !best || (outside && best.level >= 4) ? null : best.level >= 4 && !best.c.tickers.length && listedFits.length === 1 ? listedFits[0] : ranked.length === 1 ? best : best.level > 4 ? null : tied.length === 1 ? best : listed.length === 1 ? listed[0] : null;
   // Companies as good a match as the one used (the same name, another filer): the answer names them,
   // since a question about the other one would otherwise get this one's figures without a word.
   const alike = pick && tied.length > 1 ? tied.filter((r) => r !== pick).map(({ c }) => ({ cik: c.cik, name: c.name, tickers: c.tickers })) : [];
@@ -266,6 +268,7 @@ export async function resolveCompany(session, company) {
   if (found.resolved) {
     const alike = found.resolved.also_matching?.map((m) => `${m.name} (CIK ${m.cik}${m.tickers.length ? `, ${m.tickers.join("/")}` : ", no current ticker"})`).join("; ");
     const note = [found.resolved.match === "same_name_as_ticker_holder" ? `${heldBy}; the covered filer with the same name was used.` : null,
+      found.resolved.match === "name_start" && /^[A-Z]{1,5}$/.test(text) ? `${text} is not a current ticker in the reference, so it was read as the start of this company's name; a company's former ticker is not looked up.` : null,
       alike ? `Also named "${text}": ${alike}. This is ${found.resolved.name} (CIK ${found.resolved.cik}), the one with a current ticker; pass another CIK as company for a different filer, such as a former company of that name.` : null].filter(Boolean).join(" ") || undefined;
     return { cik: found.resolved.cik, ticker: null, matched: { query: text, by: found.resolved.match, ...(note ? { note } : {}) } };
   }

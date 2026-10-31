@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.5
+
+- A ticker held by a company outside the reference is never read as another company's name: "BP" had returned BP
+  Midstream Partners' figures, and 96 such tickers could collide the same way. The answer now says who holds the
+  ticker and lists the names that fit.
+- A short capitalized query read as the start of a name says so ("BK" is BK Technologies, not BNY Mellon's former ticker).
+
 ## 0.7.4
 
 - A name finds the listed company: "T Rowe Price Group Inc" had read a private credit fund of that family, and "Southern

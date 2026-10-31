@@ -225,7 +225,8 @@ export async function postJson(session, url, payload, opts = {}) {
 // ---------------------------------------------------------------------------------------------
 
 export const pad10 = (cik) => String(Number(cik)).padStart(10, "0");
-export const archiveBase = (cik, accession) => `https://www.sec.gov/Archives/edgar/data/${Number(cik)}/${String(accession).replace(/-/g, "")}`;
+const FILED_UNDER = new Map();
+export const archiveBase = (cik, accession) => { const a = String(accession).replace(/-/g, ""); return `https://www.sec.gov/Archives/edgar/data/${FILED_UNDER.get(a) ?? Number(cik)}/${a}`; };
 
 // Fund share classes by ticker (mutual funds and ETFs), from the SEC's fund ticker file.
 export async function fundTickers(session) {
@@ -347,8 +348,24 @@ export async function resolveEntity(session, query) {
   };
 }
 
+// A company newly under a holding company: its filing record continues from the old filer, whose documents stay
+// under the old CIK's folder (FILED_UNDER tells archiveBase which that is).
 export async function submissions(session, cik) {
-  return getJson(session, `https://data.sec.gov/submissions/CIK${pad10(cik)}.json`);
+  const sub = await getJson(session, `https://data.sec.gov/submissions/CIK${pad10(cik)}.json`);
+  const before = FACTS_FROM.get(Number(cik));
+  if (!before) return sub;
+  const old = await getJson(session, `https://data.sec.gov/submissions/CIK${pad10(before)}.json`).catch(() => null);
+  return old ? continuedFrom(sub, old, before) : sub;
+}
+
+export function continuedFrom(sub, old, before) {
+  const [now, then] = [sub.filings?.recent ?? {}, old.filings?.recent ?? {}];
+  const own = new Set(now.accessionNumber ?? []);
+  const rows = [...(now.accessionNumber ?? []).map((_, i) => [now, i]), ...(then.accessionNumber ?? []).map((_, i) => [then, i]).filter(([, i]) => !own.has(then.accessionNumber[i]))];
+  rows.sort(([a, i], [b, j]) => String(b.filingDate[j]).localeCompare(String(a.filingDate[i])));
+  for (const a of then.accessionNumber ?? []) if (!own.has(a)) FILED_UNDER.set(a.replace(/-/g, ""), before);
+  const recent = Object.fromEntries([...new Set([...Object.keys(now), ...Object.keys(then)])].map((k) => [k, rows.map(([block, i]) => block[k]?.[i] ?? null)]));
+  return { ...sub, filings: { ...sub.filings, recent, files: old.filings?.files ?? [] } };
 }
 
 const FILING_FIELDS = ["accessionNumber", "filingDate", "reportDate", "form", "primaryDocument", "primaryDocDescription", "items"];
