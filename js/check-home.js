@@ -30,7 +30,7 @@ async function verify(company, text) {
   if (response.status === 429) throw new Error("Too many checks in a minute. Wait a moment and press Check it again.");
   if (!response.ok) throw new Error("The check didn't finish. Press Check it to try again.");
   const result = (await response.json()).result, body = result?.content?.[0]?.text ?? "";
-  if (result?.isError) throw new Error(/No figure with a measure/.test(body) ? "No figure we can check was found. Name the figure and the year, like: Apple's revenue was $400 billion in fiscal 2025." : "The check didn't finish. Press Check it to try again.");
+  if (result?.isError) throw new Error(/No figure with a measure/.test(body) ? "We found no figure we can check. We check what companies file: revenue, profit, earnings per share, margins, cash and debt. Try: Apple made $400 billion in revenue in 2025." : "The check didn't finish. Press Check it to try again.");
   return JSON.parse(body);
 }
 
@@ -96,7 +96,8 @@ async function run(event) {
     slip.replaceChildren(...answer.rows.map((row) => receipt(row, columns, label, text)), shareButton(text, company.ticker ?? company.name));
     count("check_answered");
     const figures = answer.rows.length;
-    say(`Checked ${figures} figure${figures === 1 ? "" : "s"} for ${label}. Anything else in your text wasn't checked.`);
+    const unread = answer.summary?.figures_not_read ?? 0;
+    say(`Checked ${figures} figure${figures === 1 ? "" : "s"} for ${label}.${unread ? ` ${unread} other figure${unread === 1 ? " wasn't" : "s weren't"} checked, because the filings don't state ${unread === 1 ? "it" : "them"} or the sentence didn't say what ${unread === 1 ? "it was" : "they were"}.` : " Anything else in your text wasn't checked."}`);
     slip.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
   } catch (error) {
     count("check_failed");
