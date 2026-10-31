@@ -161,6 +161,7 @@ export default defineConfig({
       // share the same JS/CSS graph, so there is exactly one design system.
       input: {
         index: resolve(root, "index.html"),
+        agents: resolve(root, "agents.html"),
         systems: resolve(root, "systems.html"),
         performance: resolve(root, "performance.html"),
         progress: resolve(root, "progress.html"),

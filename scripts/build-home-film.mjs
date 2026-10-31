@@ -1,7 +1,7 @@
 // =============================================================================
 // CANLI CAPITAL / scripts/build-home-film.mjs
 // -----------------------------------------------------------------------------
-// Writes the homepage film's chapters 1 to 11 into index.html, between
+// Writes the homepage film's chapters 1 to 11 into agents.html, between
 // <!-- home-film:start --> and <!-- home-film:end -->, from two published files:
 // the FilingFacts leaderboard and the finance MCP head-to-head summary. Nothing in
 // the region is typed by hand, so a figure on the homepage moves when its file
@@ -17,7 +17,7 @@ import { fileURLToPath } from "node:url";
 import { renderHomeFilm } from "./lib/home-film.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-export const PAGE = "index.html";
+export const PAGE = "agents.html";
 export const SOURCES = Object.freeze({
   h2h: "public/benchmarks/finance-mcp-servers.json",
   leaderboard: "public/datasets/filing-facts/v0/leaderboard.json",

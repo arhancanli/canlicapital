@@ -8,7 +8,7 @@ import { applyHero } from './lib/site-hero.mjs';
 import { computedTrail, declaredTrail, pageLabel, visibleNav } from './lib/breadcrumbs.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const family = path => path === 'index.html' ? 'home'
+const family = path => path === 'index.html' || path === 'agents.html' ? 'home'
   : path.startsWith('tools/') || path === 'annotate.html' ? 'workbench'
   : path.startsWith('companies/') || path === 'companies.html' ? 'reference'
   : path.startsWith('mcp-servers') || path === 'developers.html' ? 'developer'
