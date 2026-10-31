@@ -1,6 +1,6 @@
 // Which company a pasted text is about, from the rows of /api/v1/company-names.json.
 const LEGAL = new Set(["inc", "incorporated", "corp", "corporation", "co", "company", "ltd", "limited", "plc", "llc", "lp", "nv", "sa", "ag", "holdings", "holding", "group", "the", "com", "de"]);
-const ALIASES = { google: "GOOGL", facebook: "META", meta: "META", instagram: "META", whatsapp: "META", youtube: "GOOGL", tsmc: "TSM", "coca cola": "KO", coke: "KO", amazon: "AMZN", aws: "AMZN", uber: "UBER", ford: "F", cisco: "CSCO", coinbase: "COIN", micron: "MU", spotify: "SPOT", palantir: "PLTR", disney: "DIS", exxon: "XOM", exxonmobil: "XOM", jpmorgan: "JPM", goldman: "GS", lilly: "LLY", berkshire: "BRK-B", procter: "PG", "p and g": "PG", citi: "C", citigroup: "C" };
+const ALIASES = { google: "GOOGL", facebook: "META", meta: "META", instagram: "META", whatsapp: "META", youtube: "GOOGL", tsmc: "TSM", "coca cola": "KO", coke: "KO", amazon: "AMZN", "t mobile": "TMUS", deere: "DE", dell: "DELL", "wells fargo": "WFC", raytheon: "RTX", lockheed: "LMT", comcast: "CMCSA", delta: "DAL", "american express": "AXP", "morgan stanley": "MS", "bank of america": "BAC", "home depot": "HD", "general motors": "GM", aws: "AMZN", uber: "UBER", ford: "F", cisco: "CSCO", coinbase: "COIN", micron: "MU", spotify: "SPOT", palantir: "PLTR", disney: "DIS", exxon: "XOM", exxonmobil: "XOM", jpmorgan: "JPM", goldman: "GS", lilly: "LLY", berkshire: "BRK-B", procter: "PG", "p and g": "PG", citi: "C", citigroup: "C" };
 const NOT_TICKERS = new Set(["A", "I", "AN", "AS", "AT", "BE", "BY", "DO", "GO", "IF", "IN", "IS", "IT", "ME", "MY", "NO", "OF", "ON", "OR", "SO", "TO", "UP", "US", "WE", "USD", "EPS", "CEO", "CFO", "SEC", "IPO", "FY", "GAAP", "ALL", "NOW", "NEW", "ONE", "CAN", "FOR", "ARE", "HAS", "THE", "AND", "BUT", "NOT", "YOU", "ANY", "OUT", "BIG", "LOW", "HIGH", "AI", "EV", "PE", "FCF", "EPS", "ROE", "ROI", "ROIC", "PE", "GAAP", "IFRS", "TTM", "YOY", "QOQ", "ARR", "ARPU", "EBIT", "EBITDA", "CAPEX", "FY", "IPO", "ETF", "USD", "EUR", "GBP", "SEC", "CEO", "CFO", "AI", "API", "GDP"]);
 const wordsOf = (text) => String(text).toLowerCase().replace(/['’]s\b/g, "").replace(/&/g, " and ").split(/[^a-z0-9]+/).filter(Boolean);
 
@@ -37,6 +37,6 @@ export function findCompany({ byTicker, byFirst }, text) {
     }
     if (best) return best;
   }
-  for (const token of text.match(/\b[A-Z]{1,5}\b/g) ?? []) if (!NOT_TICKERS.has(token) && byTicker.has(token)) return byTicker.get(token);
+  for (const token of text.match(/(?<![\w-])[A-Z]{1,5}(?![\w-])/g) ?? []) if (!NOT_TICKERS.has(token) && byTicker.has(token)) return byTicker.get(token);
   return null;
 }

@@ -20,6 +20,11 @@ const index = indexCompanies([
   [3, "First Commonwealth Financial CORP", ["FCF"]],
   [4, "58.com Inc.", []],
   [5, "MARKET LEADER, INC.", []],
+  [732717, "AT&T INC.", ["T"]],
+  [1283699, "T-MOBILE US, INC.", ["TMUS"]],
+  [936468, "LOCKHEED MARTIN CORP", ["LMT"]],
+  [315189, "DEERE & CO", ["DE"]],
+  [101829, "RTX Corp", ["RTX"]],
 ]);
 const named = (text) => findCompany(index, text)?.ticker ?? null;
 
@@ -48,6 +53,10 @@ test("real sentences: the company named first, and figures or phrases never take
   assert.equal(named("Uber reported net income of $221 million."), "UBER");
   assert.equal(named("Ford\u2019s profit in 2022 was $24 billion."), "F");
   assert.equal(named("this meta analysis found a 5% margin"), null);
+  assert.equal(named("T-Mobile\u2019s net income in 2021 was $3.024 billion."), "TMUS");
+  assert.equal(named("The F-35 jet program accounts for 27% of Lockheed's revenue."), "LMT");
+  assert.equal(named("John Deere had a net income of 5 billion in 2021."), "DE");
+  assert.equal(named("Raytheon does about $70 billion revenue a year."), "RTX");
 });
 
 const call = async (req) => {
