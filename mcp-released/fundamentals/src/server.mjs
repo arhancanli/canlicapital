@@ -203,7 +203,8 @@ async function nameIndex(session) {
 const MATCH_LEVELS = ["ticker", "cik", "name", "same_name_as_ticker_holder", "name_start", "name_words", "name_contains"];
 
 export async function findCompanies(session, query, limit = 8) {
-  const text = String(query).trim().replace(/^\$/, "");
+  // Fund reports write names their own way: "Southern Co/The", "Hess Corp/DE".
+  const text = String(query).trim().replace(/^\$/, "").replace(/\s*\/\s*(?:the|[a-z]{2,3})\s*\/?\s*$/i, "");
   const ticker = text.toUpperCase();
   const names = await nameIndex(session);
   const found = new Map();
@@ -230,11 +231,19 @@ export async function findCompanies(session, query, limit = 8) {
   const best = ranked[0];
   const tied = best ? ranked.filter((r) => r.level === best.level) : [];
   const listed = tied.filter((r) => r.c.tickers.length);
-  const pick = !best ? null : ranked.length === 1 ? best : best.level > 4 ? null : tied.length === 1 ? best : listed.length === 1 ? listed[0] : null;
+  // A listed company beats an unlisted filer that only fits by its first words: "T Rowe Price Group" is PRICE T
+  // ROWE GROUP INC, not T. ROWE PRICE OHA SELECT PRIVATE CREDIT FUND.
+  const listedFits = ranked.filter((r) => r.level <= 5 && r.c.tickers.length);
+  // A ticker held by a company outside the reference is never read as another company's name: "BP" is BP plc, not
+  // BP Midstream Partners. The answer says who holds it and lists the names that fit.
+  const pick = !best || (outside && best.level >= 4) ? null : best.level >= 4 && !best.c.tickers.length && listedFits.length === 1 ? listedFits[0] : ranked.length === 1 ? best : best.level > 4 ? null : tied.length === 1 ? best : listed.length === 1 ? listed[0] : null;
+  // Companies as good a match as the one used (the same name, another filer): the answer names them,
+  // since a question about the other one would otherwise get this one's figures without a word.
+  const alike = pick && tied.length > 1 ? tied.filter((r) => r !== pick).map(({ c }) => ({ cik: c.cik, name: c.name, tickers: c.tickers })) : [];
   return {
     matches: ranked.slice(0, limit).map(({ c, level }) => ({ cik: c.cik, name: c.name, tickers: c.tickers, match: MATCH_LEVELS[level] })),
     total: ranked.length,
-    resolved: pick ? { cik: pick.c.cik, name: pick.c.name, match: MATCH_LEVELS[pick.level] } : null,
+    resolved: pick ? { cik: pick.c.cik, name: pick.c.name, match: MATCH_LEVELS[pick.level], ...(alike.length ? { also_matching: alike } : {}) } : null,
     outside,
     captured: names.captured,
   };
@@ -257,7 +266,10 @@ export async function resolveCompany(session, company) {
   }
   const heldBy = found.outside ? `${found.outside.ticker} is the SEC's ticker for ${found.outside.name} (CIK ${found.outside.cik}), which the Canli company reference does not cover` : null;
   if (found.resolved) {
-    const note = found.resolved.match === "same_name_as_ticker_holder" ? `${heldBy}; the covered filer with the same name was used.` : undefined;
+    const alike = found.resolved.also_matching?.map((m) => `${m.name} (CIK ${m.cik}${m.tickers.length ? `, ${m.tickers.join("/")}` : ", no current ticker"})`).join("; ");
+    const note = [found.resolved.match === "same_name_as_ticker_holder" ? `${heldBy}; the covered filer with the same name was used.` : null,
+      found.resolved.match === "name_start" && /^[A-Z]{1,5}$/.test(text) ? `${text} is not a current ticker in the reference, so it was read as the start of this company's name; a company's former ticker is not looked up.` : null,
+      alike ? `Also named "${text}": ${alike}. This is ${found.resolved.name} (CIK ${found.resolved.cik}), the one with a current ticker; pass another CIK as company for a different filer, such as a former company of that name.` : null].filter(Boolean).join(" ") || undefined;
     return { cik: found.resolved.cik, ticker: null, matched: { query: text, by: found.resolved.match, ...(note ? { note } : {}) } };
   }
   const options = found.matches.map((m) => `${m.name} (CIK ${m.cik}${m.tickers.length ? `, ${m.tickers.join("/")}` : ""})`).join("; ");
@@ -346,7 +358,9 @@ const INTERIM_FORM = /^(10-Q|6-K)/;
 // look like revisions (two prospectuses on one day with different fee tables), so they are left
 // out of every chain.
 const SKIP_TAXONOMIES = new Set(["ffd"]);
-const NON_PERIODIC_FORM = /^(424B|S-\d|F-\d|POS )/;
+// Proxy statements too: their pay-versus-performance tables repeat net income in the proxy's own rounded
+// units (Arista's 2025 net income as 3,511), which read as the latest filing would replace the real figure.
+const NON_PERIODIC_FORM = /^(424B|S-\d|F-\d|POS |DEF|PRE|DFAN|ARS)/;
 
 // A duration is annual at 350 to 380 days (52- and 53-week years included) and quarterly at 80 to
 // 125 days, which covers 12- to 17-week quarters (Kroger's first quarter is 16 weeks, Costco's
@@ -397,7 +411,12 @@ export function indexFacts(facts, only) {
         }
         const list = [...periods.values()];
         // Filing order: by date, then accession number, so the order never depends on the file.
-        for (const p of list) p.vintages.sort(byFiling);
+        for (const p of list) {
+          p.vintages.sort(byFiling);
+          // A 10-Q is not where a full year is restated: Comfort Systems' April 2026 10-Q tagged a quarter's
+          // $1.83 billion as all of 2025, which would have replaced the 10-K's $9.1 billion.
+          if (p.start && durationKind(p.start, p.end) === "annual" && p.vintages.some((v) => ANNUAL_FORM.test(v.form ?? ""))) p.vintages = p.vintages.filter((v) => !INTERIM_FORM.test(v.form ?? ""));
+        }
         list.sort((a, b) => b.end.localeCompare(a.end) || String(b.start).localeCompare(String(a.start)));
         if (list.length) units[unit] = list;
       }
@@ -416,8 +435,9 @@ export function indexFacts(facts, only) {
 // RevenueFromContractWithCustomerExcludingAssessedTax in 2018, Toyota from us-gaap to IFRS) is
 // followed across the switch, and every value names the tag it came from.
 export const FRIENDLY = Object.freeze({
-  revenue: ["us-gaap:Revenues", "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax", "us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax", "us-gaap:SalesRevenueNet", "ifrs-full:Revenue", "ifrs-full:RevenueFromContractsWithCustomers"],
-  net_income: ["us-gaap:NetIncomeLoss", "ifrs-full:ProfitLossAttributableToOwnersOfParent", "us-gaap:ProfitLoss", "ifrs-full:ProfitLoss"],
+  revenue: ["us-gaap:RevenuesNetOfInterestExpense", "us-gaap:Revenues", "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax", "us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax", "us-gaap:SalesRevenueNet", "ifrs-full:Revenue", "ifrs-full:RevenueFromContractsWithCustomers"],
+  // Since the 2025 reports many 10-Ks tag the common-stockholders line or ProfitLoss and not NetIncomeLoss.
+  net_income: ["us-gaap:NetIncomeLoss", "ifrs-full:ProfitLossAttributableToOwnersOfParent", "us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic", "us-gaap:ProfitLoss", "ifrs-full:ProfitLoss"],
   operating_income: ["us-gaap:OperatingIncomeLoss", "ifrs-full:ProfitLossFromOperatingActivities"],
   gross_profit: ["us-gaap:GrossProfit", "ifrs-full:GrossProfit"],
   eps_diluted: ["us-gaap:EarningsPerShareDiluted", "ifrs-full:DilutedEarningsLossPerShare"],
@@ -430,6 +450,9 @@ export const FRIENDLY = Object.freeze({
   diluted_shares: ["us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding", "ifrs-full:AdjustedWeightedAverageShares"],
   shares_outstanding: ["dei:EntityCommonStockSharesOutstanding", "us-gaap:CommonStockSharesOutstanding"],
   capex: ["us-gaap:PaymentsToAcquirePropertyPlantAndEquipment", "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities", "us-gaap:PaymentsToAcquireProductiveAssets"],
+  // Long-term debt is the total, current portion included; the noncurrent part is its own name.
+  long_term_debt: ["us-gaap:LongTermDebt"],
+  long_term_debt_noncurrent: ["us-gaap:LongTermDebtNoncurrent"],
 });
 const SYNONYMS = Object.freeze({
   revenues: "revenue", sales: "revenue", net_sales: "revenue", turnover: "revenue", total_revenue: "revenue",
@@ -439,6 +462,7 @@ const SYNONYMS = Object.freeze({
   cash_and_cash_equivalents: "cash", cash_and_equivalents: "cash", cfo: "operating_cash_flow", cash_from_operations: "operating_cash_flow",
   capital_expenditures: "capex", capital_expenditure: "capex", capital_spending: "capex",
   shares_diluted: "diluted_shares", weighted_diluted_shares: "diluted_shares", shares: "shares_outstanding",
+  total_long_term_debt: "long_term_debt", noncurrent_long_term_debt: "long_term_debt_noncurrent", long_term_debt_net_of_current_portion: "long_term_debt_noncurrent",
 });
 // known_as_of reads these when no concepts are named.
 export const DEFAULT_CONCEPTS = Object.freeze(["revenue", "net_income", "operating_income", "eps_diluted", "assets", "liabilities", "equity", "cash", "operating_cash_flow", "diluted_shares"]);
@@ -584,6 +608,20 @@ function select(p, basis, asOf) {
   return { v, changedLater: p.vintages.slice(i + 1).some((x) => x.val !== v.val) };
 }
 
+// Percent change of val from the period of the same length that ends one period earlier (about a
+// year for annual figures, a quarter for quarterly), among the older rows shown; null for mixed
+// period lists, instants without a matching earlier date, or a zero base. Computed here so a model
+// does not do the arithmetic by hand.
+function changePct(p, val, older, periods) {
+  if (periods === "all") return null;
+  const gap = periods === "quarterly" ? [80, 100] : [350, 380];
+  const days = (a, b) => (Date.parse(a) - Date.parse(b)) / DAY_MS;
+  const prev = older.find(({ p: q }) => { const d = days(p.end, q.end); return d >= gap[0] && d <= gap[1]; });
+  const base = prev?.sel.v.val;
+  if (!Number.isFinite(base) || base === 0 || !Number.isFinite(val)) return null;
+  return Math.round(((val - base) / Math.abs(base)) * 1e6) / 1e4;
+}
+
 // ---------------------------------------------------------------------------------------------
 // Tools
 // ---------------------------------------------------------------------------------------------
@@ -671,17 +709,32 @@ export async function toolListConcepts(session, args) {
 
 export const historyInput = z.object({
   company,
-  concept: conceptArg,
-  basis: z.enum(["first_reported", "latest", "as_of"]).optional().describe("first_reported (default), latest, or as_of (default when as_of is set)."),
-  as_of: date.optional().describe("Only filings made on or before this date count, for every basis."),
+  concept: conceptArg.optional(),
+  concepts: z.array(z.string().min(1).max(200)).min(2).max(6).optional().describe("Instead of concept: 2-6 measures."),
+  basis: z.enum(["first_reported", "latest", "as_of"]).optional().describe("latest (default), first_reported, or as_of (default with as_of)."),
+  as_of: date.optional().describe("A filing date, not a period end: only filings made by then count."),
   periods: periodsArg,
   unit: unitArg,
   limit: z.number().int().min(1).max(400).optional().describe("Default 20, newest first."),
 }).strict();
 
 export async function toolHistory(session, args) {
-  const { company: who, concept, basis: basisArg, as_of: asOf, periods = "annual", unit, limit = 20 } = parse(historyInput, args, "history");
-  const basis = basisArg ?? (asOf ? "as_of" : "first_reported");
+  const parsed = parse(historyInput, args, "history");
+  if (Boolean(parsed.concept) === Boolean(parsed.concepts)) throw new Error("history: send concept (one measure) or concepts (two to six), not both or neither.");
+  // Several measures: each series as one call would give it, under one company header.
+  if (parsed.concepts) {
+    const series = [];
+    for (const c of parsed.concepts) series.push((await toolHistory(session, { ...args, concepts: undefined, concept: c })).structuredContent);
+    const [first] = series;
+    return asText({
+      company: first.company, snapshot: first.snapshot, ...(first.snapshot_note ? { snapshot_note: first.snapshot_note } : {}),
+      basis: first.basis, ...(first.as_of ? { as_of: first.as_of } : {}), periods: first.periods,
+      series: series.map(({ company: _c, snapshot: _s, snapshot_note: _n, basis: _b, as_of: _a, periods: _p, meaning: _m, limits: _l, ...rest }) => rest),
+      meaning: first.meaning, limits: LIMITS,
+    });
+  }
+  const { company: who, concept, basis: basisArg, as_of: asOf, periods = "annual", unit, limit = 20 } = parsed;
+  const basis = basisArg ?? (asOf ? "as_of" : "latest");
   if (basis === "as_of" && !asOf) throw new Error("history: basis as_of needs an as_of date.");
   const e = await loadCompany(session, who);
   const s = resolveSeries(e, concept, unit);
@@ -689,21 +742,47 @@ export async function toolHistory(session, args) {
     .filter((p) => matchesKind(p, periods))
     .map((p) => ({ p, sel: select(p, basis, asOf) }))
     .filter((r) => r.sel);
-  const columns = ["end", "start", "val", "filed", "form", "accn", "changed", ...(s.multi ? ["tag"] : [])];
-  const shown = fit(picked.slice(0, limit).map(({ p, sel }) => [p.end, p.start, sel.v.val, sel.v.filed, sel.v.form, sel.v.accn, basis === "latest" && !asOf ? p.restated : sel.changedLater, ...(s.multi ? [tagName(sel.v.tag)] : [])]));
+  // The other vintage beside the one shown, so a question about either needs no second call: the
+  // latest value beside a first report, the first report beside a latest value. Never with as_of,
+  // where a later value would be look-ahead.
+  const latestBasis = basis === "latest" && !asOf, other = asOf ? null : latestBasis ? "first" : "latest";
+  const otherOf = (p, sel) => {
+    if (!other) return [];
+    const v = other === "first" ? p.vintages[0] : p.vintages[p.vintages.length - 1];
+    return v.val === sel.v.val ? [null, null] : [v.val, v.filed];
+  };
+  const columns = ["end", "start", "val", "filed", "form", "accn", "changed", ...(other ? [`${other}_val`, `${other}_filed`] : []), "change_pct", ...(s.multi ? ["tag"] : [])];
+  const rows = picked.slice(0, limit).map(({ p, sel }, i, all) => [p.end, p.start, sel.v.val, sel.v.filed, sel.v.form, sel.v.accn, latestBasis ? p.restated : sel.changedLater,
+    ...otherOf(p, sel), changePct(p, sel.v.val, all.slice(i + 1), periods), ...(s.multi ? [tagName(sel.v.tag)] : [])]);
+  const shown = fit(rows);
+  // Balances an annual report carries on a date that is not a year end (an opening balance after a
+  // new accounting standard, the end of a transition period). They are first reported in a 10-Q, so
+  // the annual rows leave them out; listed apart, so year-on-year changes never use them.
+  const onYearEnds = new Set(picked.map((r) => r.p.end));
+  const otherDates = periods === "annual" ? s.periods
+    .filter((p) => !p.start && p.kind !== "annual" && !onYearEnds.has(p.end) && p.vintages.some((v) => ANNUAL_FORM.test(v.form ?? "")))
+    .map((p) => ({ p, sel: select(p, basis, asOf) })).filter((r) => r.sel).slice(0, 10)
+    .map(({ p, sel }) => [p.end, sel.v.val, sel.v.filed, sel.v.form, sel.v.accn]) : [];
   return asText({
     ...head(e, asOf),
     concept: { name: s.name, label: s.label, unit: s.unit, units: s.units, tags: s.tags.map(tagName) },
     basis,
     ...(asOf ? { as_of: asOf } : {}),
+    // as_of is a filing date; a question "as of" a date usually means the period ending then.
+    ...(asOf && s.periods.some((p) => p.end === asOf && matchesKind(p, periods) && !select(p, basis, asOf)) ? { as_of_note: `A period ends on ${asOf}, but it was filed after that date, so as_of leaves it out. For the value at the period ending ${asOf}, call again without as_of.` } : {}),
     periods,
     total: picked.length,
+    // The span the company's XBRL data covers for this measure: a question about a period outside
+    // it has no answer here, which a model should say rather than search further.
+    ...(picked.length ? { covers: { first_end: picked.at(-1).p.end, last_end: picked[0].p.end, note: `No ${periods === "all" ? "" : `${periods} `}value for this measure before ${picked.at(-1).p.end} or after ${picked[0].p.end} is in this company's XBRL data (SEC XBRL starts in 2009 to 2011, by filer size).` } } : {}),
     columns,
     ...shown,
     ...(s.newer ? { newer_series: s.newer } : {}),
-    meaning: basis === "latest" && !asOf
-      ? "changed: the latest value differs from the period's first report."
-      : "changed: a filing after the one shown reported a different value for the period (restatements and vintages show which).",
+    ...(otherDates.length ? { other_dates: { note: "Balances annual reports also carry on dates that are not year ends (an opening balance after a new accounting standard, a transition period's end); not used in change_pct.", columns: ["end", "val", "filed", "form", "accn"], rows: otherDates } } : {}),
+    meaning: (latestBasis
+      ? "changed: the latest value differs from the period's first report; first_val and first_filed give that first report."
+      : `changed: a filing after the one shown reported a different value for the period (restatements and vintages show which).${other ? " latest_val and latest_filed give the latest value when it differs." : ""}`) +
+      " change_pct: percent change of val from the same kind of period a year (or, for quarters, a quarter) earlier, against the earlier value's absolute size; null when that period is not in the rows.",
     limits: LIMITS,
   });
 }
@@ -1235,7 +1314,7 @@ const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: 
 
 export const TOOL_DESCRIPTIONS = Object.freeze({
   known_as_of: "Get what a company had reported as of a date: per measure, the latest period filed by then, its value, and whether it was later restated; optionally ratios from those filings. For point-in-time backtests.",
-  history: "Get one measure over time, newest first: as first reported (default), as latest filed, or as known on as_of, each with its filing and whether it later changed.",
+  history: "Get a measure (or several, with concepts) over time, newest first: latest (default), first reported, or as known on a filing date, with its filing, other version and yearly change.",
   restatements: "List periods whose value changed in a later filing, with first and latest values, % change and cause (stock splits left out by default). Omit concept to scan everything.",
   vintages: "List every filing that reported one period of one measure, oldest first: the revision history behind a number.",
   list_concepts: "List the XBRL concepts a company reports and the plain names it supports, with units, periods, date range and restated-period counts.",
@@ -1251,7 +1330,7 @@ const common = { company: z.looseObject({}).optional(), snapshot: z.looseObject(
 export const OUTPUT_SCHEMAS = Object.freeze({
   known_as_of: z.looseObject({ ...common, as_of: z.string().optional(), ...table, missing: z.array(z.string()).optional(), ratios: z.looseObject({}).optional() })
     .describe("rows: one per measure in the order of columns, the value as it stood on as_of; changed_after flags values later restated."),
-  history: z.looseObject({ ...common, concept: z.looseObject({}).optional(), basis: z.string().optional(), total: z.number().optional(), ...table })
+  history: z.looseObject({ ...common, concept: z.looseObject({}).optional(), basis: z.string().optional(), total: z.number().optional(), series: z.array(z.looseObject({})).optional(), ...table })
     .describe("rows: one per period, newest first, in the order of columns."),
   restatements: z.looseObject({ ...common, scanned: z.number().optional(), changed: z.number().optional(), ...table })
     .describe("rows: one per restated period, newest first, with first and latest values, change_pct and cause."),

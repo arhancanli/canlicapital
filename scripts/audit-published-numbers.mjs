@@ -115,7 +115,9 @@ for (const extra of [
   "system-films/state.json",
   "stats/adoption.json",
   "datasets/filing-facts/v0/leaderboard.json",
+  "datasets/filing-facts/index.json",
   "benchmarks/finance-mcp-servers.json",
+  "benchmarks/mcp-testing.json",
   "demos/canli-mcp/index.json",
   "demos/canli-mcp/tools.json",
 ]) {

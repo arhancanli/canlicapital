@@ -205,12 +205,17 @@ const STATIC_ROUTES = [
   { path: "/developers", priority: "0.9", changefreq: "weekly" },
   { path: "/mcp-servers", priority: "0.9", changefreq: "weekly" },
   { path: "/benchmarks/filingfacts", priority: "0.9", changefreq: "weekly" },
+  { path: "/datasets/filing-facts", priority: "0.8", changefreq: "monthly" },
   { path: "/benchmarks/finance-mcp-servers", priority: "0.9", changefreq: "weekly" },
   { path: "/record", priority: "0.8", changefreq: "daily" },
   { path: "/vision", priority: "0.9", changefreq: "monthly" },
   { path: "/stats", priority: "0.7", changefreq: "daily" },
   ...['validation', 'fundamentals', 'research', 'execution'].map(name => ({ path: `/mcp-servers/${name}`, priority: "0.9", changefreq: "weekly" })),
   { path: "/mcp-servers/answers", priority: "0.8", changefreq: "weekly" },
+  { path: "/mcp-servers/install", priority: "0.9", changefreq: "monthly" },
+  { path: "/privacy", priority: "0.3", changefreq: "yearly" },
+  { path: "/mcp-servers/tools", priority: "0.8", changefreq: "weekly" },
+  { path: "/mcp-servers/how-it-works", priority: "0.8", changefreq: "monthly" },
   ...JSON.parse(readFileSync(resolve(ROOT, "config/mcp-answers.json"), "utf8")).answers.map(a => ({ path: `/mcp-servers/answers/${a.slug}`, priority: "0.8", changefreq: "monthly" })),
   { path: "/costs", priority: "0.9", changefreq: "weekly" },
   { path: "/standards/paper-evidence", priority: "0.9", changefreq: "weekly" },
@@ -760,8 +765,10 @@ function relatedSection(paper, papers) {
   if (!kind && !subjects.length && !siblings.length) return "";
 
   const hubs = [
-    ...(kind ? [{ href: `/research/topics/${kind.slug}`, label: kind.label }] : []),
-    ...subjects.map((s) => ({ href: `/research/topics/${s.slug}`, label: s.label })),
+    // Only hubs that get a page (see the three-member rule where the hubs are written).
+    ...(kind && papers.filter((other) => other.taxonomy.kind === kind).length >= 3 ? [{ href: `/research/topics/${kind.slug}`, label: kind.label }] : []),
+    ...subjects.filter((s) => papers.filter((other) => other.taxonomy.subjects.some((t) => t.slug === s.slug)).length >= 3)
+      .map((s) => ({ href: `/research/topics/${s.slug}`, label: s.label })),
   ];
 
   const parts = [];
