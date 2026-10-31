@@ -3,25 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Canli Capital: financial data and quant tools for AI agents</title>
-  <meta name="description" content="canli-mcp gives AI agents SEC filings, Treasury and FRED data from the source and 355 finance tools behind five. Free, open source and benchmarked." />
+  <title>Check a stock claim against the filing, free | Canli Capital</title>
+  <meta name="description" content="Paste what you read about a public company. Canli Capital compares each figure with what the company filed with the SEC. Free, with no account." />
   <meta name="author" content="Arhan Canli" />
-  <!-- The published files every figure on this page is read from. Declaring them scopes
-       audit-published-numbers to these files, so each numeral is traced to what it claims. -->
-  <meta name="canli:sources" content="benchmarks/finance-mcp-servers.json datasets/filing-facts/v0/leaderboard.json" />
-  <meta name="theme-color" content="#04060a" />
-  <meta name="color-scheme" content="dark" />
+  <!-- The published file every figure on this page is read from. -->
+  <meta name="canli:sources" content="claim-check-example.json" />
+  <meta name="theme-color" content="#0016cb" />
   <link rel="canonical" href="https://canlicapital.com/" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Canli Capital" />
-  <meta property="og:title" content="Canli Capital: financial data and quant tools for AI agents" />
-  <meta property="og:description" content="canli-mcp gives AI agents SEC filings, Treasury and FRED data from the source and 355 finance tools behind five. Free, open source and benchmarked." />
+  <meta property="og:title" content="Check a stock claim against the filing, free | Canli Capital" />
+  <meta property="og:description" content="Paste what you read about a public company. Canli Capital compares each figure with what the company filed with the SEC. Free, with no account." />
   <meta property="og:url" content="https://canlicapital.com/" />
   <meta property="og:image" content="https://canlicapital.com/og.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Canli Capital: financial data and quant tools for AI agents" />
-  <meta name="twitter:description" content="canli-mcp gives AI agents SEC filings, Treasury and FRED data from the source and 355 finance tools behind five. Free, open source and benchmarked." />
+  <meta name="twitter:title" content="Check a stock claim against the filing, free | Canli Capital" />
+  <meta name="twitter:description" content="Paste what you read about a public company. Canli Capital compares each figure with what the company filed with the SEC. Free, with no account." />
   <meta name="twitter:image" content="https://canlicapital.com/og.png" />
   <link rel="preload" href="/fonts/bricolage-grotesque/Variable.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -42,17 +40,14 @@
     ]
   }
   </script>
-  <!-- home-ld:start -->
-  <script type="application/ld+json" id="home-faq-ld">{"@context":"https://schema.org","@type":"FAQPage","@id":"https://canlicapital.com/#faq","url":"https://canlicapital.com/","inLanguage":"en","isPartOf":{"@id":"https://canlicapital.com/#website"},"about":{"@id":"https://canlicapital.com/#organization"},"mainEntity":[{"@type":"Question","name":"What is Canli Capital?","acceptedAnswer":{"@type":"Answer","text":"Canli Capital is an open-source lab that connects AI agents to financial data and quant tools they can check. It publishes MCP servers, company financials traced to SEC filings, open benchmarks and its own paper-trading record, failures included. \u003ca href=\"https://canlicapital.com/open\">See what stays open.\u003c/a>"}},{"@type":"Question","name":"What is canli-mcp?","acceptedAnswer":{"@type":"Answer","text":"canli-mcp is one MCP server that loads every Canli Capital server in one process. The model sees five tools, find_tool, describe_tool, run_tool and the two it asks for most, and behind them sit 355 tools for quant finance, backtest validation, SEC filings and fundamentals, ownership, funds, options, the Fed, economic data, prices and paper trading. \u003ca href=\"https://canlicapital.com/mcp-servers\">See every server it combines.\u003c/a>"}},{"@type":"Question","name":"How do I add canli-mcp to Claude, Cursor or another AI assistant?","acceptedAnswer":{"@type":"Answer","text":"In Claude Code, run claude mcp add canli -- npx -y canli-mcp. In Cursor, Claude Desktop or any other MCP client, add a server named canli whose command is npx with the arguments -y and canli-mcp. It needs Node.js 20.10 or later and no account. \u003ca href=\"https://canlicapital.com/developers#ai-assistant\">Follow the setup guide.\u003c/a>"}},{"@type":"Question","name":"How does canli-mcp compare with OpenBB, EdgarTools and Yahoo Finance MCP?","acceptedAnswer":{"@type":"Answer","text":"With the same model and questions, canli-mcp answered 79% of the questions every server finished correctly, against 54% for the best of the others, in the version tested, which sent the model 859 tokens of tools on every request; canli-mcp 0.12 sends 2,524 with more tools and charts. We wrote the questions, so read the caveats too. \u003ca href=\"https://canlicapital.com/benchmarks/finance-mcp-servers\">See every run and the caveats.\u003c/a>"}},{"@type":"Question","name":"Where does the data come from?","acceptedAnswer":{"@type":"Answer","text":"From the original publishers: companies&#39; filings with the SEC, the US Treasury&#39;s daily yield curves, FRED for economic series and Yahoo Finance chart data for prices. Answers drawn from data name their source, and answers from a filing carry its accession number. \u003ca href=\"https://canlicapital.com/companies\">Browse the company pages.\u003c/a>"}},{"@type":"Question","name":"How do I check whether my backtest is overfit?","acceptedAnswer":{"@type":"Answer","text":"Send the returns your backtest produced to the validators. The deflated Sharpe ratio corrects for how many variants you tried, the probability of backtest overfitting compares those variants with each other, and the minimum track record length says how much history the Sharpe ratio needs. \u003ca href=\"https://canlicapital.com/how-to-validate-a-backtest\">Read the step-by-step guide.\u003c/a>"}},{"@type":"Question","name":"Is it free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The MCP servers and the code are free and MIT-licensed, the published data is CC BY 4.0, and the hosted API has fair-use limits. No paid plan is offered. \u003ca href=\"https://canlicapital.com/developers#quickstart\">Start with the developer quickstart.\u003c/a>"}},{"@type":"Question","name":"Does my data leave my computer?","acceptedAnswer":{"@type":"Answer","text":"The quant and validation tools run on your machine and send nothing anywhere. The data tools fetch public data from the SEC, the Treasury, FRED, Yahoo Finance or canlicapital.com, and send only the company, series or symbol you asked for. \u003ca href=\"https://canlicapital.com/developers#ai-assistant\">See the setup and local mode.\u003c/a>"}},{"@type":"Question","name":"Are your strategies trading real capital?","acceptedAnswer":{"@type":"Answer","text":"No. ALPHAC, Canli Capital&#39;s trading engine, runs its strategies on paper, and the record says so on every page. Paper results do not establish what real trading would return. \u003ca href=\"https://canlicapital.com/record\">Inspect the record and its basis.\u003c/a>"}},{"@type":"Question","name":"Can I invest or copy the trades?","acceptedAnswer":{"@type":"Answer","text":"Canli Capital is a research project, not a fund or investment adviser. This site does not offer managed capital or copy-trading. \u003ca href=\"https://canlicapital.com/open\">Read the project&#39;s boundaries.\u003c/a>"}}]}</script>
-  <!-- home-ld:end -->
+  <link rel="stylesheet" href="/css/check-home.css" />
 <!-- site-design:start -->
 <link rel="stylesheet" href="/css/product-shell.css" />
 <!-- site-design:end -->
 </head>
-<body class="film-home">
+<body class="check-home">
 
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="curtain" aria-hidden="true"><i></i><i></i></div>
 
   <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
@@ -123,167 +118,60 @@
 </header>
 
   <main id="main" tabindex="-1">
-    <section class="chapter opening" id="ch-0" data-chapter="0" aria-labelledby="hero-title"><div class="wrap chapter-inner">
-      <p class="kicker"><span class="ch-n">00</span>Canli Capital</p>
-      <h1 id="hero-title" class="display">Finance runs on numbers. <span class="accent">Left alone, AI models make them up.</span></h1>
-      <!-- home-answer:start -->
-        <p class="hero__lead">Canli Capital is an open-source lab that connects AI agents to financial data and quant tools they can check. Its flagship MCP server, canli-mcp, reads SEC filings, market data and economic statistics at the source and puts 355 finance tools behind five, with interactive charts in the chat. The code is free and MIT-licensed.</p>
-        <!-- home-answer:end -->
-      <p class="actions"><a class="btn primary" href="#ch-11">Add canli-mcp to your agent</a><a class="btn ghost" href="/mcp-servers#views">Try it in your browser</a></p>
-      <nav class="hero-doors" aria-label="What you can do here">
-        <a href="/mcp-servers"><b>Give your AI finance tools</b><span>canli-mcp brings filings, prices, rates, quant and backtests into Claude, Cursor or ChatGPT.</span></a>
-        <a href="/companies"><b>Look up a company&#39;s numbers</b><span>Revenue, profit and every SEC filing for US public companies, each figure linked to its source.</span></a>
-        <a href="/research"><b>See the research and the record</b><span>Open studies, and our own strategies tested in public, failures included.</span></a>
-      </nav>
-      <p class="scroll-cue" aria-hidden="true">Scroll to see why</p>
-    </div></section>
-<!-- home-film:start -->
-<section class="chapter" id="ch-1" data-chapter="1" aria-labelledby="ch-1-h"><div class="wrap chapter-inner">
-<p class="kicker"><span class="ch-n">01</span>The problem</p>
-<h2 id="ch-1-h">Ask a model for a company's numbers, and it guesses.</h2>
-<p class="big">We asked AI models 150 questions about what companies reported to the SEC, with no tools. GPT-5.4 mini gave 84 numbers. 96% of them were wrong.</p>
-<p>The wrong numbers read exactly like right ones. Nothing in the answer tells you which is which.</p>
-<ul class="stats" aria-label="FilingFacts, closed book"><li><b>84</b><span>numbers given</span></li><li class="red"><b>96%</b><span>of them wrong</span></li><li><b>150</b><span>questions</span></li></ul>
-<p class="links"><a href="/benchmarks/filingfacts">FilingFacts, our open benchmark of SEC filing questions</a></p>
-</div></section>
-<section class="chapter" id="ch-2" data-chapter="2" aria-labelledby="ch-2-h"><div class="wrap chapter-inner">
-<p class="kicker"><span class="ch-n">02</span>The tools</p>
-<h2 id="ch-2-h">The open tools hand the model a haystack.</h2>
-<p class="big">OpenBB's MCP server lists 1,056 tools. Sent in full, they cost 432,001 tokens on every request, before the model reads the question.</p>
-<p>And in our benchmark, every other server missed at least one kind of question entirely: SEC filings, rates and macro, prices or analytics.</p>
-<ul class="stats" aria-label="What the other servers cost"><li class="red"><b>1,056</b><span>tools in one list</span></li><li class="red"><b>432,001</b><span>tokens per request</span></li><li><b>4 of 4</b><span>left a kind of question at zero</span></li></ul>
-</div></section>
-<section class="chapter turn" id="ch-3" data-chapter="3" aria-labelledby="ch-3-h"><div class="wrap chapter-inner">
-<p class="kicker"><span class="ch-n">03</span>The solution</p>
-<h2 id="ch-3-h" class="display">One server between the model and <span class="accent">the market.</span></h2>
-<p class="lede">canli-mcp shows the model 5 tools and keeps 355 behind them. The model searches for what it needs, reads that tool's arguments and runs it. The data comes from where it was first published: SEC filings, the Treasury's yield curve and FRED.</p>
-<ol class="doors"><li><code>find_tool</code><span>searches every tool by what you ask for</span></li><li><code>describe_tool</code><span>reads one tool's arguments</span></li><li><code>run_tool</code><span>runs any tool, or up to 25 in one round trip, and draws the result as a view</span></li><li><code>history</code><span>a company's reported figure over time, as first reported or as known on a date</span></li><li><code>financial_statements</code><span>a company's statements exactly as filed</span></li></ol>
-<p>Give a model the filings and the numbers change. With a Canli MCP server reading them, gpt-5-mini answered 72% of the FilingFacts questions correctly, against 19% on its own.</p>
-</div></section>
-<section class="chapter dense" id="ch-4" data-chapter="4" aria-labelledby="ch-4-h"><div class="wrap chapter-inner">
-<p class="kicker"><span class="ch-n">04</span>The receipt</p>
-<h2 id="ch-4-h">An answer you can trace to the page it came from.</h2>
-<p class="big">Ask for NVIDIA's head count. canli-mcp opens the latest 10-K, finds the line and returns it with the filing's accession number, its link and a SHA-256 hash of each document it read.</p>
-<figure class="receipt" aria-label="A real canli-mcp result">
-<figcaption><span>read_filing</span><span class="tag">Real call, 10 October 2026</span></figcaption>
-<dl>
-<div><dt>asked</dt><dd>NVDA · 10-K · find "employees"</dd></div>
-<div><dt>filed</dt><dd><time datetime="2026-02-25">2026-02-25</time></dd></div>
-<div><dt>accession</dt><dd>0001045810-26-000021</dd></div>
-<div><dt>found</dt><dd>"As of the end of fiscal year 2026, we had approximately 42,000 employees in 38 countries"</dd></div>
-<div><dt>source</dt><dd><a href="https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm" rel="noreferrer">sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm</a></dd></div>
-<div><dt>evidence</dt><dd>3 documents, SHA-256 each · f192181c12dad789…</dd></div>
-<div><dt>time</dt><dd>764 ms</dd></div>
-</dl>
-</figure>
-</div></section>
-<section class="chapter dense" id="ch-5" data-chapter="5" aria-labelledby="ch-5-h"><div class="wrap chapter-inner">
-<p class="kicker"><span class="ch-n">05</span>The flagship</p>
-<h2 id="ch-5-h" class="display">canli-mcp</h2>
-<p class="lede">Every Canli Capital server in one process. 5 tools in front, 355 behind them, 2,524 tokens of context, ready in 0.15 seconds.</p>
-<ul class="packs" aria-label="The packs canli-mcp loads"><li data-pack="quant"><span class="n">235</span><b>Quant finance</b><span class="covers">performance and risk, options, fixed income, portfolios, econometrics, indicators and a library of 399 strategy sleeves</span></li><li data-pack="validation"><span class="n">17</span><b>Backtest validation</b><span class="covers">deflated Sharpe ratio, overfitting probability, data-snooping tests, leakage checks and placebo tests</span></li><li data-pack="markets"><span class="n">64</span><b>Markets</b><span class="covers">SEC filings and statements as filed, insider trades, 13F and 5% holders, fund portfolios, options chains and volatility surfaces, the Fed, Treasury yields and auctions, FRED, World Bank and OECD data, central banks abroad, prediction markets, prices and a whole-market overview</span></li><li data-pack="fundamentals"><span class="n">7</span><b>SEC fundamentals</b><span class="covers">company financials as first reported, with later restatements flagged</span></li><li data-pack="research"><span class="n">6</span><b>Research record</b><span class="covers">Canli Capital's open research record</span></li><li data-pack="paper"><span class="n">5</span><b>Paper trading</b><span class="covers">Alpaca paper orders behind pre-trade checks, each check signed</span></li><li data-pack="backtest"><span class="n">11</span><b>Factor backtests</b><span class="covers">factor backtests that refuse lookahead, a breadth lab that counts its independent bets, parameter sweeps on every core and data annotation</span></li></ul>
-<p>Ask for a tool in plain words and the right one comes first 46 times in 48. Pass a file instead of pasting data, and 1,000 prices cost 23 tokens instead of 4,893.</p>
-<p class="links"><a href="#ch-11">Add it to your agent</a><a href="/mcp-servers">Every server it combines</a></p>
-</div></section>
-<section class="chapter dense" id="ch-6" data-chapter="6" aria-labelledby="ch-6-h"><div class="wrap chapter-inner">
-<p class="kicker"><span class="ch-n">06</span>The gap</p>
-<h2 id="ch-6-h">Same model. Same questions. <span class="accent">Only the server changed.</span></h2>
-<p class="big">On the 14 questions every server finished, canli-mcp answered 79% correctly. The best of the others, EdgarTools + Yahoo Finance MCP, answered 54%.</p>
-<ol class="bars" aria-label="Correct answers on the 14 shared questions"><li class="bar is-ours" style="--v:0.7857"><span class="bar__name">canli-mcp</span><span class="bar__track" aria-hidden="true"><i></i></span><span class="bar__value">79%<small>22 of 28</small></span><small class="bar__note">answered every kind of question</small></li><li class="bar" style="--v:0.5357"><span class="bar__name">EdgarTools + Yahoo Finance MCP</span><span class="bar__track" aria-hidden="true"><i></i></span><span class="bar__value">54%<small>15 of 28</small></span><small class="bar__note">never answered: analytics</small></li><li class="bar" style="--v:0.5"><span class="bar__name">Yahoo Finance MCP</span><span class="bar__track" aria-hidden="true"><i></i></span><span class="bar__value">50%<small>14 of 28</small></span><small class="bar__note">never answered: analytics</small></li><li class="bar" style="--v:0.3929"><span class="bar__name">OpenBB MCP</span><span class="bar__track" aria-hidden="true"><i></i></span><span class="bar__value">39%<small>11 of 28</small></span><small class="bar__note">never answered: SEC filings, rates and macro · not run: prices, analytics</small></li><li class="bar" style="--v:0.3929"><span class="bar__name">EdgarTools MCP</span><span class="bar__track" aria-hidden="true"><i></i></span><span class="bar__value">39%<small>11 of 28</small></span><small class="bar__note">never answered: SEC filings, rates and macro, prices, analytics</small></li></ol>
-<p class="film-note">Interim result of 9 October 2026: gpt-5.4-mini, 2 runs per question, no API keys for any server. We wrote the questions, in areas our servers were built for, and what the others do well beyond them, such as news and options, is not scored.</p>
-<p class="links"><a href="/benchmarks/finance-mcp-servers">Every run, the method and the caveats</a></p>
-</div></section>
-<section class="chapter" id="ch-7" data-chapter="7" aria-labelledby="ch-7-h"><div class="wrap chapter-inner">
-<p class="kicker"><span class="ch-n">07</span>In the open</p>
-<h2 id="ch-7-h">We hold our own strategies to the same standard.</h2>
-<p class="big">ALPHAC, Canli Capital's trading engine, runs its strategies on paper and publishes every position, decision and broker reconciliation, daily. Its backtests face the same tests canli-mcp ships, such as the deflated Sharpe ratio, and the trials that failed stay on the record.</p>
-<p class="links"><a href="/record">The record</a><a href="/research">Research</a><a href="/trials">Every trial</a><a href="/progress">Corrections</a></p>
-</div></section>
-<section class="chapter" id="ch-8" data-chapter="8" aria-labelledby="ch-8-h"><div class="wrap chapter-inner">
-<p class="kicker"><span class="ch-n">08</span>Company data</p>
-<h2 id="ch-8-h">US public companies, each figure traced to its filing.</h2>
-<p class="big">Look up what a company reported, with every figure linked to the SEC filing it came from. An agent can ask for a value as it stood on a past date, with later restatements flagged.</p>
-<p class="links"><a href="/companies">Browse companies</a><a href="/datasets/filing-facts">Financial datasets</a></p>
-</div></section>
-<section class="chapter" id="ch-9" data-chapter="9" aria-labelledby="ch-9-h"><div class="wrap chapter-inner">
-<p class="kicker"><span class="ch-n">09</span>The builder</p>
-<h2 id="ch-9-h">Built by Arhan Canli.</h2>
-<p class="big">Founder and quantitative researcher, in Dubai, building since July 2024. Canli Capital began as an open lab for testing trading strategies honestly and grew into the tools AI agents need to work the same way.</p>
-<p>The site keeps the tools' rule. Every figure on it traces to a published file, and corrections stay visible.</p>
-<p class="links"><a href="/founder">About the founder</a><a href="https://github.com/arhancanli/canlicapital" rel="noreferrer">Source on GitHub</a></p>
-</div></section>
-<section class="chapter dense" id="ch-10" data-chapter="10" aria-labelledby="ch-10-h"><div class="wrap chapter-inner">
-<p class="kicker"><span class="ch-n">10</span>The vision</p>
-<h2 id="ch-10-h">Picture the market at dawn, <span class="accent">every agent working from checked numbers.</span></h2>
-<p class="big">Agents will research, test and trade at machine speed. Canli Capital is building the research platform they work on, in the open, in five branches that feed one destination.</p>
-<ol class="pillars">
-<li><b>MCP servers and API</b><span>Primary-source data and quant tools for agents, for few tokens.</span><em class="chip chip-live">Live</em></li>
-<li><b>Data and annotation</b><span>Datasets to train and test models, starting with FilingFacts. Expert labels come next.</span><em class="chip chip-next">Started</em></li>
-<li><b>The sleeve library</b><span>Where developers build, train and test millions of strategy sleeves, with honest statistics on each.</span><em class="chip chip-next">Started</em></li>
-<li><b>ALPHAC</b><span>One book from hundreds of thousands of weakly correlated sleeves. Correlation sets the ceiling.</span><em class="chip chip-next">Paper only</em></li>
-<li><b>The breakthroughs lab</b><span>New statistics that tell a real edge from luck, published with their code.</span><em class="chip chip-next">Started</em></li>
-<li><b>The flagship funds</b><span>From the US, trading the best of all five. Paper only until a licensed entity exists.</span><em class="chip chip-next">Paper only</em></li>
-</ol>
-<p class="links"><a href="/vision">Read the full vision</a></p>
-</div></section>
-<section class="chapter dense finale" id="ch-11" data-chapter="11" aria-labelledby="ch-11-h"><div class="wrap chapter-inner">
-<p class="kicker"><span class="ch-n">11</span>Start</p>
-<h2 id="ch-11-h" class="display">Give your agent <span class="accent">the market.</span></h2>
-<p class="lede">canli-mcp is free and open source under the MIT license. Add it to Claude Code, Cursor or any MCP client in one line.</p>
-<div class="install"><figure class="cmd"><figcaption>Claude Code</figcaption><pre tabindex="0"><code>claude mcp add canli -- npx -y canli-mcp</code></pre></figure><figure class="cmd"><figcaption>Cursor, Claude Desktop or any MCP client</figcaption><pre tabindex="0"><code>{ &quot;mcpServers&quot;: { &quot;canli&quot;: { &quot;command&quot;: &quot;npx&quot;, &quot;args&quot;: [&quot;-y&quot;, &quot;canli-mcp&quot;] } } }</code></pre></figure></div>
-<p class="links"><a href="/developers">Developer guide</a><a href="/mcp-servers">All MCP servers</a><a href="/benchmarks/finance-mcp-servers">The benchmark</a></p>
-</div></section>
-<script type="application/json" id="film-data">{"ticker":["NVDA 10-K  42,000 EMPLOYEES","AAPL FY2025  REVENUE $416.2B","MSFT FY2025  NET INCOME $101.8B","NVDA FY2026  DILUTED EPS $4.90","BRK 13F  227,917,808 AAPL SHARES","UST 10Y  5.22%","CPI-U AUG 2026  3.4% Y/Y","TSLA Q3 2026  486,000 DELIVERIES","UNEMPLOYMENT AUG 2026  4.1%","BRIDGEWATER 13F  997 ENTRIES"],"rain":{"questions":150,"given":84,"wrong":0.9643},"tangle":{"tools":1056,"tokens":432001},"core":{"front":5,"packs":[{"id":"quant","tools":235},{"id":"validation","tools":17},{"id":"markets","tools":64},{"id":"fundamentals","tools":7},{"id":"research","tools":6},{"id":"paper","tools":5},{"id":"backtest","tools":11}]},"gap":{"categories":["filings","fundamentals","insiders","13F","rates_macro","prices","analytics"],"arms":[{"id":"canli","label":"canli-mcp","ours":true,"accuracy":0.7857,"categories":[0.8333333333333334,0.5,1,0.6666666666666666,1,1,0.6]},{"id":"edgartools+yahoo","label":"EdgarTools + Yahoo Finance MCP","ours":false,"accuracy":0.5357,"categories":[0.16666666666666666,1,0.3333333333333333,0.6666666666666666,0.25,0.6666666666666666,0]},{"id":"yahoo","label":"Yahoo Finance MCP","ours":false,"accuracy":0.5,"categories":[0.3333333333333333,1,0.3333333333333333,0.3333333333333333,0.25,0.6666666666666666,0]},{"id":"openbb","label":"OpenBB MCP","ours":false,"accuracy":0.3929,"categories":[0,1,0.5,0.3333333333333333,0,-1,-1]},{"id":"edgartools","label":"EdgarTools MCP","ours":false,"accuracy":0.3929,"categories":[0,0.8333333333333334,0.3333333333333333,0.6666666666666666,0,0,0]}]}}</script>
-<!-- home-film:end -->
-
-<!-- home-compare:start -->
-    <section class="home-compare" id="compare" aria-labelledby="home-compare-title">
-      <div class="home-compare__heading"><p class="eyebrow">Side by side</p><h2 id="home-compare-title">canli-mcp, OpenBB, EdgarTools and Yahoo Finance MCP</h2><p>Each of these open-source servers gives an AI model finance data in its own way. This is what each one offers, checked against its own tool list: canli-mcp 0.11.1 and the other servers in the versions we benchmarked. How each one scored is in the benchmark above, which tested canli-mcp 0.1.0.</p></div>
-      <div class="home-compare__scroll cc-table-scroll" role="region" aria-label="What each MCP server offers, checked against its own tool list and source code" tabindex="0">
-        <table class="home-compare__table">
-          <caption>What each MCP server offers, checked against its own tool list and source code</caption>
-          <thead><tr><th scope="col">Question</th><th scope="col">Canli Capital</th><th scope="col">OpenBB</th><th scope="col">EdgarTools</th><th scope="col">Yahoo Finance MCP</th></tr></thead>
-          <tbody>
-          <tr><th scope="row">The version compared</th><td>canli-mcp 0.11.1</td><td>openbb-mcp-server 2.0.1 with openbb 5.0.0</td><td>edgartools 5.61.1</td><td>Alex2Yang97/yahoo-finance-mcp at commit b9c1765</td></tr>
-          <tr><th scope="row">Tools sent to the model on every request</th><td>5, in front of 355</td><td>1,056, or 14 in its tool-discovery mode</td><td>13</td><td>9</td></tr>
-          <tr><th scope="row">Finance question types it has a keyless tool for, of 53</th><td>51</td><td>39</td><td>11</td><td>13</td></tr>
-          <tr><th scope="row">SEC filings, Form 4 insider trades and 13F holdings</th><td>Yes, read from EDGAR</td><td>Yes, through its SEC tools</td><td>Yes</td><td>Yahoo&#39;s holder and insider summaries, not the filings</td></tr>
-          <tr><th scope="row">Treasury yields and FRED series</th><td>Yes, with no API key</td><td>Yes; its FRED tools need a FRED API key</td><td>No</td><td>No</td></tr>
-          <tr><th scope="row">Quant analytics and backtest validation</th><td>Yes: 235 quant tools and 17 validation tools, run on your machine</td><td>None in the version tested</td><td>No</td><td>No</td></tr>
-          <tr><th scope="row">News, options chains and analyst ratings</th><td>Options chains and volatility surfaces from Cboe&#39;s delayed data and news from the GDELT open index, no key; no analyst ratings</td><td>News and options tools, some needing provider keys</td><td>No</td><td>Yes</td></tr>
-          <tr><th scope="row">License</th><td>MIT</td><td>Apache-2.0</td><td>MIT</td><td>MIT</td></tr>
-          </tbody>
-        </table>
+    <section class="ck-hero" aria-labelledby="ck-title">
+      <div class="ck-hero__ask">
+        <h1 id="ck-title">Heard a stock tip? Check the number.</h1>
+        <p class="ck-lede">Paste what you read about a company. We compare the figure with what the company filed with the SEC. Free, with no account.</p>
+        <form class="ck-form" id="check-form" novalidate>
+          <label class="ck-label" for="check-text">A claim, or a company name</label>
+          <textarea id="check-text" name="text" rows="2" maxlength="1500" placeholder="Apple's revenue was $500 billion in fiscal 2025." required></textarea>
+          <div class="ck-company" id="check-company-row" hidden>
+            <label class="ck-label" for="check-company">Which company is this about?</label>
+            <input id="check-company" name="company" autocomplete="off" placeholder="Name or ticker" />
+          </div>
+          <button class="ck-go" type="submit">Check it</button>
+          <p class="ck-status" id="check-status" role="status" aria-live="polite"></p>
+        </form>
+        <div class="ck-tries" aria-label="Try an example">
+          <span>Try one:</span>
+          <button type="button" data-try="Apple's revenue was $500 billion in fiscal 2025.">Apple's revenue</button>
+          <button type="button" data-try="Nvidia's revenue was $130 billion in fiscal 2025.">Nvidia's revenue</button>
+          <button type="button" data-try="Tesla">Look up Tesla</button>
+        </div>
       </div>
-      <p class="home-compare__sources">Checked on <time datetime="2026-10-30">30 October 2026</time> against <a href="https://github.com/arhancanli/canlicapital/tree/main/mcp-canli" rel="noreferrer">canli-mcp source</a>, <a href="https://github.com/arhancanli/canlicapital/blob/main/mcp-canli/bench/rivals/COVERAGE.md" rel="noreferrer">the coverage map (53 finance questions, each server&#39;s own tool list)</a>, <a href="https://github.com/OpenBB-finance/OpenBB" rel="noreferrer">OpenBB MCP server</a>, <a href="https://github.com/dgunning/edgartools" rel="noreferrer">EdgarTools</a>, <a href="https://github.com/Alex2Yang97/yahoo-finance-mcp" rel="noreferrer">Yahoo Finance MCP</a>, <a href="https://canlicapital.com/benchmarks/finance-mcp-servers" rel="noreferrer">the head-to-head benchmark and its tool counts</a>. Each project changes over time; its own pages are the authority.</p>
+      <div class="ck-hero__slip" id="receipts" aria-live="polite">
+        <article class="ck-receipt" data-verdict="contradicted">
+          <header><b>Claim check</b><span>Example</span></header>
+          <p class="ck-claim">Apple's revenue was $500 billion in fiscal 2025.</p>
+          <dl>
+            <div><dt>Claimed</dt><dd>$500 billion</dd></div>
+            <div><dt>Filed</dt><dd>$416.161 billion</dd></div>
+          </dl>
+          <p class="ck-stamp">Doesn't match</p>
+          <a class="ck-source" href="https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/0000320193-25-000079-index.htm" rel="noreferrer">Open the filing</a>
+        </article>
+      </div>
     </section>
-    <!-- home-compare:end -->
 
-    <section class="home-questions" id="questions" aria-labelledby="home-questions-title"><div class="wrap">
-      <p class="kicker">Questions</p>
-      <h2 id="home-questions-title">Plain answers.</h2>
-      <div class="home-questions__list">
-        <!-- home-faq:start -->
-        <details><summary>What is Canli Capital?</summary><p>Canli Capital is an open-source lab that connects AI agents to financial data and quant tools they can check. It publishes MCP servers, company financials traced to SEC filings, open benchmarks and its own paper-trading record, failures included. <a href="/open">See what stays open.</a></p></details>
-        <details><summary>What is canli-mcp?</summary><p>canli-mcp is one MCP server that loads every Canli Capital server in one process. The model sees five tools, find_tool, describe_tool, run_tool and the two it asks for most, and behind them sit 355 tools for quant finance, backtest validation, SEC filings and fundamentals, ownership, funds, options, the Fed, economic data, prices and paper trading. <a href="/mcp-servers">See every server it combines.</a></p></details>
-        <details><summary>How do I add canli-mcp to Claude, Cursor or another AI assistant?</summary><p>In Claude Code, run claude mcp add canli -- npx -y canli-mcp. In Cursor, Claude Desktop or any other MCP client, add a server named canli whose command is npx with the arguments -y and canli-mcp. It needs Node.js 20.10 or later and no account. <a href="/developers#ai-assistant">Follow the setup guide.</a></p></details>
-        <details><summary>How does canli-mcp compare with OpenBB, EdgarTools and Yahoo Finance MCP?</summary><p>With the same model and questions, canli-mcp answered 79% of the questions every server finished correctly, against 54% for the best of the others, in the version tested, which sent the model 859 tokens of tools on every request; canli-mcp 0.12 sends 2,524 with more tools and charts. We wrote the questions, so read the caveats too. <a href="/benchmarks/finance-mcp-servers">See every run and the caveats.</a></p></details>
-        <details><summary>Where does the data come from?</summary><p>From the original publishers: companies&#39; filings with the SEC, the US Treasury&#39;s daily yield curves, FRED for economic series and Yahoo Finance chart data for prices. Answers drawn from data name their source, and answers from a filing carry its accession number. <a href="/companies">Browse the company pages.</a></p></details>
-        <details><summary>How do I check whether my backtest is overfit?</summary><p>Send the returns your backtest produced to the validators. The deflated Sharpe ratio corrects for how many variants you tried, the probability of backtest overfitting compares those variants with each other, and the minimum track record length says how much history the Sharpe ratio needs. <a href="/how-to-validate-a-backtest">Read the step-by-step guide.</a></p></details>
-        <details><summary>Is it free?</summary><p>Yes. The MCP servers and the code are free and MIT-licensed, the published data is CC BY 4.0, and the hosted API has fair-use limits. No paid plan is offered. <a href="/developers#quickstart">Start with the developer quickstart.</a></p></details>
-        <details><summary>Does my data leave my computer?</summary><p>The quant and validation tools run on your machine and send nothing anywhere. The data tools fetch public data from the SEC, the Treasury, FRED, Yahoo Finance or canlicapital.com, and send only the company, series or symbol you asked for. <a href="/developers#ai-assistant">See the setup and local mode.</a></p></details>
-        <details><summary>Are your strategies trading real capital?</summary><p>No. ALPHAC, Canli Capital&#39;s trading engine, runs its strategies on paper, and the record says so on every page. Paper results do not establish what real trading would return. <a href="/record">Inspect the record and its basis.</a></p></details>
-        <details><summary>Can I invest or copy the trades?</summary><p>Canli Capital is a research project, not a fund or investment adviser. This site does not offer managed capital or copy-trading. <a href="/open">Read the project&#39;s boundaries.</a></p></details>
-        <!-- home-faq:end -->
+    <section class="ck-scope" aria-labelledby="ck-scope-title">
+      <h2 id="ck-scope-title">Canli Capital checks claims about public companies against their SEC filings.</h2>
+      <ul>
+        <li><b>What it checks</b> Figures a company reports: revenue, profit, earnings per share, assets, cash and debt.</li>
+        <li><b>What it can't check</b> Forecasts, opinions, adjusted figures and companies that don't file with the SEC.</li>
+        <li><b>What it isn't</b> Advice. It shows what was filed, not what to buy.</li>
+      </ul>
+    </section>
+
+    <section class="ck-next" id="waitlist" aria-labelledby="ck-next-title">
+      <div>
+        <h2 id="ck-next-title">Hear when we add lessons and more markets.</h2>
+        <form class="access-form" id="waitlist-form" action="/api/waitlist" method="post" novalidate><label for="email">Your email</label><div class="access-form__control"><input id="email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="you@example.com" required aria-describedby="form-status" /><button type="submit">Keep me posted</button></div><div class="honeypot"><label for="company">Leave this field blank</label><input id="company" name="company" tabindex="-1" autocomplete="off" /></div><p id="form-status" role="status" aria-live="polite">Only notes about new lessons and markets. Everything here stays free either way.</p></form>
       </div>
-    </div></section>
-
-    <section class="access" id="access" aria-labelledby="access-title"><div class="wrap">
-      <p class="kicker">Release notes</p>
-      <h2 id="access-title">Hear when it ships.</h2>
-      <p>Everything here is free and needs no account. Leave an email only if you want a note when a server or a benchmark is released.</p>
-      <form class="access-form" id="waitlist-form" action="/api/waitlist" method="post" novalidate><label for="email">Your email</label><div class="access-form__control"><input id="email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="you@example.com" required aria-describedby="form-status" /><button type="submit">Join the release notes</button></div><div class="honeypot"><label for="company">Leave this field blank</label><input id="company" name="company" tabindex="-1" autocomplete="off" /></div><p id="form-status" role="status" aria-live="polite">Optional release notes only. Everything here stays open either way.</p></form>
-    </div></section>
+      <nav aria-label="More from Canli Capital">
+        <a href="/companies">Look up any company</a>
+        <a href="/agents">Add these checks to your AI agent</a>
+      </nav>
+    </section>
   </main>
 
   <footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
@@ -409,6 +297,6 @@
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
 </footer>
 
-  <script type="module" src="/js/home.js"></script>
+  <script type="module" src="/js/check-home.js"></script>
 </body>
 </html>

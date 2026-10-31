@@ -7,7 +7,7 @@
 // Canli Capital IS existed nowhere on it. A reader without JavaScript, a search
 // snippet and an AI assistant all had to guess the category from a headline.
 //
-// This writes four regions of index.html from config/home-answers.json:
+// This writes four regions of agents.html from config/home-answers.json:
 //
 //   1. the hero lead: the definition sentence ("Canli Capital is a ... that
 //      ...") followed by a short, self-contained answer, 40 to 60 words in all;
@@ -32,7 +32,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const CONFIG_PATH = resolve(ROOT, "config", "home-answers.json");
-const PAGE_PATH = resolve(ROOT, "index.html");
+const PAGE_PATH = resolve(ROOT, "agents.html");
 const SITE = "https://canlicapital.com";
 
 // Built from its code point so this file does not itself carry the character the writing audit counts.
@@ -190,7 +190,7 @@ export function renderJsonLd(config) {
 
 export function replaceRegion(source, [startMarker, endMarker], inner, indent = "") {
   const start = source.indexOf(startMarker);
-  if (start < 0) throw new Error(`build-home-answers: index.html has no ${startMarker}`);
+  if (start < 0) throw new Error(`build-home-answers: agents.html has no ${startMarker}`);
   if (source.indexOf(startMarker, start + 1) >= 0) throw new Error(`build-home-answers: ${startMarker} appears twice`);
   const contentStart = start + startMarker.length;
   const end = source.indexOf(endMarker, contentStart);

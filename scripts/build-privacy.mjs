@@ -67,7 +67,7 @@ ${renderProductShellHeader({ active: "developers" })}
         <li><strong>Conversations:</strong> the servers see only the calls your client sends, not your chat, memory or files.</li>
       </ul>
       <h2>This website</h2>
-      <p>The site has no analytics, advertising or tracking scripts and asks for no account. The waitlist form, where one is offered, stores the email address you enter so that we can write to you about what you signed up for.</p>
+      <p>The site has no advertising or tracking scripts and asks for no account. It counts a few anonymous actions a day, such as "a claim was checked": one number per action per day, with no cookies, no identifier, no address and none of what you typed. To count a return visit, your browser keeps the date of your last visit on your own device and sends only the word "returned". A claim you check is sent to our server to read the filings and is not kept. The waitlist form, where one is offered, stores the email address you enter so that we can write to you about what you signed up for.</p>
       <h2>Third parties</h2>
       <p>We do not sell or share personal data. The site and hosted servers run on Vercel, whose platform keeps its own standard request logs (method, path, status and time) under its own retention. API-key records are held in Supabase. When a hosted tool reads a public source, that source sees the request coming from our server, not from you.</p>
       <h2>Retention</h2>
