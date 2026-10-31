@@ -242,3 +242,7 @@ test("real wording: a percent on a dollar line is dropped, and other wordings ar
   assert.deepEqual(real("Salesforce made 37.9 billion in 2025 of revenue.", "Salesforce, Inc. CRM").map((c) => c[1]), [37.9]);
   assert.deepEqual(real("IBM still makes ~$70B in annual revenue.", "International Business Machines IBM").map((c) => c[1]), [70]);
 });
+test("real wording: a list of companies and a second value for one measure are not judged", () => {
+  assert.deepEqual(real("2025 net income for the big 3: AT&T: $22B Verizon: $17B T-Mobile: $11B.", "AT&T INC. T"), []);
+  assert.deepEqual(real("UnitedHealth's revenue was $500 billion (and net profits is 10 billion) for the year.", "UnitedHealth Group UNH").map((c) => c[1]).includes(10) && real("UnitedHealth's revenue was $500 billion (and net profits is 10 billion) for the year.", "UnitedHealth Group UNH").some((c) => c[0] === "revenue" && c[1] === 10), false);
+});

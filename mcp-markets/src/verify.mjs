@@ -309,7 +309,7 @@ function agrees(filed, claimed, tol, bound) {
   if (bound === "about") return Math.abs(filed - claimed) <= Math.max(tol, Math.abs(filed) * 0.05);
   if (Math.abs(filed - claimed) <= tol) return true;
   // People cut figures short as often as they round: 152.8 written as 152, and 12.285 as 12.2.
-  return Math.sign(filed) === Math.sign(claimed) && Math.abs(claimed) < Math.abs(filed) && Math.abs(filed) - Math.abs(claimed) < 2 * tol;
+  return Math.sign(filed) === Math.sign(claimed) && Math.abs(claimed) < Math.abs(filed) && Math.abs(filed) - Math.abs(claimed) < 2 * tol && Math.abs(filed - claimed) <= Math.abs(filed) * 0.01;
 }
 const HEDGED = { about: "Read as about the figure, within 5%.", over: "Read as more than the figure.", under: "Read as less than the figure." };
 // How far a figure that does not match is from the filed one, when it is a near miss.
@@ -465,7 +465,7 @@ export function claimsFromText(raw, name = null) {
     const unplaced = /\b(?:AWS|Azure|YouTube|Instagram|WhatsApp|Prime Video|iPhones?)\b/.test(s)
       || (!when && /\b(?:Q[1-4]|(?:first|second|third|fourth|[1-4](?:st|nd|rd|th))[- ]quarter)\b/i.test(s) && !plainYear(s))
       || (!quarterYear && /\bQ[1-4]\s+(?:19|20)\d\d\b/.test(s) && /(?<!Q[1-4]\s)\b(?:19|20)\d\d\b/.test(s));
-    if (unplaced) { unread += figuresIn(s).length; continue; }
+    if (unplaced || (s.match(/\b[A-Z][\w&-]*:\s*[$€£]?\d/g) ?? []).length >= 2) { unread += figuresIn(s).length; continue; }
     const plain = plainClaimsIn(s, { name, parts: true, whole: text });
     const elsewhere = notResults(s, { name, whole: text });
     const here = [];
@@ -481,6 +481,8 @@ export function claimsFromText(raw, name = null) {
     }
     // A percent is growth or a margin; on a figure in dollars it was read from something else ("1% of the world's CO2").
     for (let i = here.length - 1; i >= 0; i--) if (/%/.test(here[i].unit ?? "") && !here[i].change && !RATIOS[here[i].measure]) here.splice(i, 1);
+    // One measure for one period has one value: a second in the sentence is someone else's or a misreading.
+    for (let i = here.length - 1; i > 0; i--) if (here.slice(0, i).some((c) => c.measure === here[i].measure && Boolean(c.change) === Boolean(here[i].change) && !c.part && !here[i].part && c.value !== here[i].value)) here.splice(i, 1);
     // A relative period is this sentence's own; none at all falls to the latest annual report.
     for (const c of here) {
       const dated = (named && claimPeriod(named)) || plainYear(s);
