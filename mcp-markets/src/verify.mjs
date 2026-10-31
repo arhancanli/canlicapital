@@ -5,14 +5,15 @@
 // as the company labels it: fiscal year N is the year its annual report for fiscal N (10-K, 20-F or
 // 40-F) reports, a quarter the one its 10-Q (or a tagged 6-K) for that quarter reports; a year written
 // plainly ("in 2025", "2025 revenue") is that fiscal year, and "three months ended June 28, 2025" is
-// matched by its dates. The verdict carries the filed figure and its source; a number that does not
+// matched by its dates; "last year" and "last quarter" are resolved, and no period at all means the
+// latest annual report, each said in the row's note. The verdict carries the filed figure and its source; a number that does not
 // match is checked against what it might be instead (another year, a quarter, another tagged line, a
 // thousandfold slip, the figure before a restatement), because that is how wrong figures usually
 // arise. A figure in a currency the company does not report in is a conversion, and is called one.
 import { z } from "zod";
 
 import { figuresIn, measureOf, periodOf, quarterOf, resultsFromText, sentences, unglue } from "./guidance.mjs";
-import { notResults, plainClaimsIn, plainYear } from "./plainclaims.mjs";
+import { FUTURE, notResults, plainClaimsIn, plainYear } from "./plainclaims.mjs";
 import { getJson, NotFound, pad10, resolveEntity } from "./sources.mjs";
 
 const SCALE = { thousand: 1e3, million: 1e6, billion: 1e9, trillion: 1e12 };
@@ -421,11 +422,13 @@ export function claimsFromText(raw, name = null) {
     let period = named ? claimPeriod(named) : null;
     if (!period) { const plain = plainYear(s); period = plain ? claimPeriod(plain) : null; }
     if (period) last = period; else period = last;
+    // What a company may do is not a figure it has filed.
+    if (FUTURE.test(s)) continue;
     // A currency written as a code ("DKK 309.1 billion") is the sentence's when it names only one.
     const codes = [...new Set([...s.matchAll(new RegExp(CODES.source, "g"))].map((m) => m[1]))];
     const coded = (u) => (codes.length === 1 && !currencyOf(u) && !/%|bps|points/.test(u ?? "") ? `${codes[0]}${u ? ` ${u}` : ""}` : u);
-    const plain = plainClaimsIn(s, { name, parts: true });
-    const elsewhere = notResults(s);
+    const plain = plainClaimsIn(s, { name, parts: true, whole: text });
+    const elsewhere = notResults(s, { name, whole: text });
     const here = [];
     for (const r of resultsFromText(s)) {
       if (r.change === "change" || elsewhere.includes(Math.abs(r.value))) continue;
@@ -477,6 +480,7 @@ export async function verifyClaims(session, args) {
       "Checked against the US GAAP and IFRS figures companies tag in their SEC filings (10-K, 10-Q, 20-F, 40-F, and 6-K reports that carry tags); non-GAAP and adjusted figures, guidance and segment figures are not checked here.",
       "A figure converted to another currency is not judged: the company's own figure is shown beside it.",
       "A claim's measure and period are read from its words; read each row's measure and period before relying on a verdict.",
+      "A figure in a sentence is read only when the words beside it say what it is and that it is this company's; others are counted as figures_not_read. A sentence about the future is not read.",
     ],
   };
 }
