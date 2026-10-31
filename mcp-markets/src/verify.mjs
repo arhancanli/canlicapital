@@ -13,7 +13,7 @@
 import { z } from "zod";
 
 import { figuresIn, measureOf, periodOf, quarterOf, resultsFromText, sentences, unglue } from "./guidance.mjs";
-import { FUTURE, notResults, plainClaimsIn, plainYear } from "./plainclaims.mjs";
+import { FUTURE, notResults, plainClaimsIn, plainYear, relativeWhen } from "./plainclaims.mjs";
 import { getJson, NotFound, pad10, resolveEntity } from "./sources.mjs";
 
 const SCALE = { thousand: 1e3, million: 1e6, billion: 1e9, trillion: 1e12 };
@@ -247,12 +247,27 @@ async function check(session, cik, claim) {
   const { measure, value, unit } = claim;
   const read = claim.period || !claim.assume ? { period: claim.period ?? null } : await assumedPeriod(session, cik, measure, claim.assume);
   const period = read.period;
-  const row = await checkRead(session, cik, { ...claim, period });
+  let row = await checkRead(session, cik, { ...claim, period });
+  // A year ending in January to March goes by either label: Salesforce calls the year to January 2025 fiscal 2025
+  // and tags it 2024, Home Depot calls the year to February 2026 fiscal 2025.
+  if (period?.fp === "FY" && row.verdict === "contradicted" && row.period_end && Number(row.period_end.slice(0, 4)) === period.fy + 1 && Number(row.period_end.slice(5, 7)) <= 3) {
+    const own = await checkRead(session, cik, { ...claim, period: { fy: period.fy - 1, fp: "FY" } });
+    if (own.period_end?.startsWith(String(period.fy))) {
+      if (own.verdict === "confirmed") return { ...own, period: label(period), note: [`Read as the year ended ${own.period_end}.`, own.note].filter(Boolean).join(" ") };
+      row = { ...row, note: [row.note, `This company's year ends early in the calendar year; the year ended ${own.period_end} filed ${own.filed}.`].filter(Boolean).join(" ") };
+    }
+  }
   // "Last year" can be either fiscal label: Nvidia's fiscal 2026 is nearly all of calendar 2025.
   if (claim.assume === "last year" && period && row.verdict === "contradicted") {
     const later = { fy: period.fy + 1, fp: "FY" };
     const other = await checkRead(session, cik, { ...claim, period: later });
     if (other.verdict === "confirmed") return { ...other, note: [`"Last year" read as fiscal ${later.fy}.`, other.note].filter(Boolean).join(" ") };
+  }
+  // "Q4 2022" can be the calendar's: Visa's October-to-December quarter is its fiscal Q1 of 2023.
+  if (period?.fp && /^Q[1-4]$/.test(period.fp) && !claim.fiscal && row.verdict === "contradicted") {
+    const end = `${period.fy}-${{ Q1: "03-31", Q2: "06-30", Q3: "09-30", Q4: "12-31" }[period.fp]}`;
+    const other = await checkRead(session, cik, { ...claim, period: { end, months: 3, near: 16 } });
+    if (other.verdict === "confirmed") return { ...other, note: [`Read as calendar ${period.fp} ${period.fy}, which the company labels differently.`, other.note].filter(Boolean).join(" ") };
   }
   return read.note ? { ...row, note: [read.note, row.note].filter(Boolean).join(" ") } : row;
 }
@@ -292,7 +307,9 @@ function agrees(filed, claimed, tol, bound) {
   if (bound === "over") return filed >= claimed - tol;
   if (bound === "under") return filed <= claimed + tol;
   if (bound === "about") return Math.abs(filed - claimed) <= Math.max(tol, Math.abs(filed) * 0.05);
-  return Math.abs(filed - claimed) <= tol;
+  if (Math.abs(filed - claimed) <= tol) return true;
+  // People cut figures short as often as they round: 152.8 written as 152, and 12.285 as 12.2.
+  return Math.sign(filed) === Math.sign(claimed) && Math.abs(claimed) < Math.abs(filed) && Math.abs(filed) - Math.abs(claimed) < 2 * tol;
 }
 const HEDGED = { about: "Read as about the figure, within 5%.", over: "Read as more than the figure.", under: "Read as less than the figure." };
 // How far a figure that does not match is from the filed one, when it is a near miss.
@@ -309,14 +326,22 @@ async function checkRead(session, cik, claim) {
   if (period.instant) return { ...base, verdict: "not checkable", note: "Give the fiscal year whose end the balance is at (\"fiscal 2025\"); a bare date is not matched to a filing." };
   const tolerance = 0.5 * 10 ** -(claim.decimals ?? decimalsOf(value));
   const want = currencyOf(unit);
+  if (claim.change === "growth" && (RATIOS[measure] || DIFFERENCES[measure])) return { ...base, verdict: "not checkable", note: `Growth in ${measure.replace(/_/g, " ")} is not read here; ask for the figure for each year.` };
+  if (FACTS[measure]?.perShare && period.fp === "Q4") return { ...base, verdict: "not checkable", note: "A fourth quarter's per-share figure is not filed, and the year less nine months does not give it (share counts change, and splits restate them)." };
   // Ratios in percent, differences in the claim's scale.
   if (RATIOS[measure] || DIFFERENCES[measure]) {
     const [a, b] = RATIOS[measure] ?? DIFFERENCES[measure];
     const [fa, fb] = await Promise.all([lookup(session, cik, a, period, want), lookup(session, cik, b, period, want)]);
     if (!fa || !fb) return { ...base, verdict: "not reported", ...(await notReported(session, cik, measure, period)) };
     if (DIFFERENCES[measure] && want && fa.currency !== want) return { ...base, verdict: "not checkable", note: `the company reports in ${fa.currency}; a ${want} figure is a conversion at an exchange rate the claim does not give` };
-    const filed = RATIOS[measure] ? (fa.latest.val / fb.latest.val) * 100 : (fa.latest.val - fb.latest.val) / scaleOf(unit);
-    const ok = agrees(filed, value, tolerance + 1e-9, claim.bound);
+    let filed = RATIOS[measure] ? (fa.latest.val / fb.latest.val) * 100 : (fa.latest.val - fb.latest.val) / scaleOf(unit);
+    let ok = agrees(filed, value, tolerance + 1e-9, claim.bound);
+    // A company can tag more than one revenue line: Walmart's net sales and its total revenues.
+    if (!ok && RATIOS[measure]) for (const c of conceptsOf(FACTS[b]).filter((x) => x !== fb.concept)) {
+      const u = unitsFor(await conceptUnits(session, cik, c), false, fb.currency).find((x) => x.currency === fb.currency);
+      const other = u && (period.fp === "Q4" ? fourthQuarter(u.rows, period.fy, false) : factFor(u.rows, period, false));
+      if (other && agrees((fa.latest.val / other.latest.val) * 100, value, tolerance + 1e-9, claim.bound)) { filed = (fa.latest.val / other.latest.val) * 100; ok = true; break; }
+    }
     return { ...base, verdict: ok ? "confirmed" : "contradicted", filed: round(filed, 4), difference: round(value - filed, 4), ...(claim.bound ? { note: HEDGED[claim.bound] } : {}), how: RATIOS[measure] ? `${fa.concept} / ${fb.concept} x 100` : `${fa.concept} - ${fb.concept}`, source: sourceOf(cik, fa.latest.accn) };
   }
   // Growth over the prior year, in whatever currency both years are in.
@@ -350,6 +375,12 @@ async function checkRead(session, cik, claim) {
   }
   if (Math.abs(first - claimed) <= tol) {
     return { ...base, verdict: "confirmed as first reported", filed: shown(latest), first_reported: shown(first), note: [`matches the figure first reported in the ${f.first.form} filed ${f.first.filed}; a later filing revised it to ${shown(latest)}`, currency].filter(Boolean).join("; "), ...where, source: sourceOf(cik, f.first.accn) };
+  }
+  // Revenue can sit on more than one tagged line: a figure matching another is the company's own.
+  if (measure === "revenue") for (const c of conceptsOf(FACTS.revenue).filter((x) => x !== f.concept)) {
+    const u = unitsFor(await conceptUnits(session, cik, c), false, f.currency).find((x) => x.currency === f.currency);
+    const o = u && (period.fp === "Q4" ? fourthQuarter(u.rows, period.fy, false) : factFor(u.rows, period, false));
+    if (o && agrees(o.latest.val, claimed, tol, claim.bound)) return { ...base, verdict: "confirmed", filed: shown(o.latest.val), note: `Matches ${c}, the company's other revenue line.`, concept: c, period_end: o.latest.end, source: sourceOf(cik, o.latest.accn) };
   }
   // "Profit" can mean several lines: a figure matching another of them is that line, not a wrong figure.
   if (claim.loose === "profit") {
@@ -403,8 +434,8 @@ function precisionExample(rows, claims) {
 function partOf(section, name) {
   const own = String(name ?? "").toLowerCase().split(/[^a-z0-9&-]+/);
   const left = String(section ?? "").split(/\s+/).filter((w) => {
-    const word = w.toLowerCase().replace(/['’]s$/, "").replace(/[^a-z0-9&'’-]/g, "");
-    return word && !own.includes(word) && !/^(?:fy['’]?\d{2,4}|q[1-4]|(?:19|20)\d{2}|fiscal|year|quarter|its|their|the|our|annual|total|full-year)$/.test(word);
+    const word = w.toLowerCase().replace(/['’]s?$/, "").replace(/[^a-z0-9&'’-]/g, "");
+    return word && word !== "s" && !own.includes(word) && !/^(?:fy['’]?\d{2,4}|q[1-4]|(?:19|20)\d{2}|fiscal|year|quarter|its|their|the|our|annual|yearly|quarterly|overall|total|full-year|net|gross|operating|revenues?|sales|income|profits?|earnings|margins?|reporting|reported|while|and|with|had|has|was|were|for|of|on|in|at|a|an)$/.test(word);
   });
   return left.length ? left.join(" ") : undefined;
 }
@@ -418,7 +449,8 @@ export function claimsFromText(raw, name = null) {
   const text = unglue(raw).replace(/\n+/g, " ").replace(/\b(NT|HK|CA|C|AU|A|NZ|S)\$\s?/g, (m, p) => `${DOLLARS[p]} `);
   for (const s of sentences(text)) {
     // A sentence that names no period is about the last one named before it.
-    const named = periodOf(s);
+    const quarterYear = s.match(/\bQ[1-4]\s+(?:of\s+)?(?:fiscal|fy)\s*['’]?\d{2,4}\b/i);
+    const named = quarterYear ? quarterYear[0] : periodOf(s);
     let period = named ? claimPeriod(named) : null;
     if (!period) { const plain = plainYear(s); period = plain ? claimPeriod(plain) : null; }
     if (period) last = period; else period = last;
@@ -427,6 +459,13 @@ export function claimsFromText(raw, name = null) {
     // A currency written as a code ("DKK 309.1 billion") is the sentence's when it names only one.
     const codes = [...new Set([...s.matchAll(new RegExp(CODES.source, "g"))].map((m) => m[1]))];
     const coded = (u) => (codes.length === 1 && !currencyOf(u) && !/%|bps|points/.test(u ?? "") ? `${codes[0]}${u ? ` ${u}` : ""}` : u);
+    const when = relativeWhen(s);
+    // A product's figures are that product's, whichever words surround them; a quarter with no year, or a
+    // sentence setting a year beside a quarter, cannot be placed.
+    const unplaced = /\b(?:AWS|Azure|YouTube|Instagram|WhatsApp|Prime Video|iPhones?)\b/.test(s)
+      || (!when && /\b(?:Q[1-4]|(?:first|second|third|fourth|[1-4](?:st|nd|rd|th))[- ]quarter)\b/i.test(s) && !plainYear(s))
+      || (!quarterYear && /\bQ[1-4]\s+(?:19|20)\d\d\b/.test(s) && /(?<!Q[1-4]\s)\b(?:19|20)\d\d\b/.test(s));
+    if (unplaced) { unread += figuresIn(s).length; continue; }
     const plain = plainClaimsIn(s, { name, parts: true, whole: text });
     const elsewhere = notResults(s, { name, whole: text });
     const here = [];
@@ -440,9 +479,13 @@ export function claimsFromText(raw, name = null) {
         Object.assign(same, { measure: p.part || !p.loose ? same.measure : p.measure, value: p.value }, p.bound ? { bound: p.bound } : {}, p.loose ? { loose: p.loose } : {}, p.when ? { assume: p.when } : {}, p.part ? { part: p.part } : {});
       } else here.push({ measure: p.measure, period, value: p.value, decimals: p.decimals, unit: coded(p.unit), basis: p.basis ?? null, change: p.change ?? null, bound: p.bound, loose: p.loose, part: p.part, assume: p.when, quote: s.trim() });
     }
+    // A percent is growth or a margin; on a figure in dollars it was read from something else ("1% of the world's CO2").
+    for (let i = here.length - 1; i >= 0; i--) if (/%/.test(here[i].unit ?? "") && !here[i].change && !RATIOS[here[i].measure]) here.splice(i, 1);
     // A relative period is this sentence's own; none at all falls to the latest annual report.
     for (const c of here) {
-      if (c.assume && !named && !plainYear(s)) c.period = null;
+      const dated = (named && claimPeriod(named)) || plainYear(s);
+      if (when && !c.assume && !dated) c.assume = when;
+      if (c.assume && !dated) c.period = null;
       else if (!c.assume && !c.period) c.assume = "latest";
       if (c.period) delete c.assume;
     }
@@ -462,7 +505,7 @@ export async function verifyClaims(session, args) {
   for (const c of a.claims ?? []) claims.push({ measure: claimMeasure(c.measure), period: claimPeriod(c.period), value: c.value, unit: c.unit ?? (/margin|growth/i.test(c.measure) || c.growth ? "%" : null), basis: c.basis ?? (/adjusted|non-gaap/i.test(c.measure) ? "adjusted" : null), change: c.growth || /growth|grew|increase/i.test(c.measure) ? "growth" : null, quote: `${c.measure}, ${c.period}: ${c.value}${c.unit ? ` ${c.unit}` : ""}` });
   let unread = 0;
   if (a.text) {
-    const read = claimsFromText(a.text, e.name);
+    const read = claimsFromText(a.text, [e.name, e.ticker].filter(Boolean).join(" "));
     claims.push(...read.claims);
     unread = read.unread;
     if (!claims.length) throw new Error("No figure with a measure in the text; pass claims (measure, period, value) instead.");

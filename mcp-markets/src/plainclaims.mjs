@@ -42,12 +42,12 @@ const NOT_RESULT = /^\s*(?:dollars?\s+)?(?:(?:in|of|worth of)\s+)?(?:(?:its|thei
 // The figures in a sentence that the words after them say are something else.
 export function notResults(sentence, { name = null, whole = null } = {}) {
   const s = String(sentence), own = namesCompany(whole ?? s, name);
-  return figuresIn(s).filter((f) => NOT_RESULT.test(s.slice(f.end)) || anothers(s.slice(0, f.at), name, own)).map((f) => Math.abs(f.low));
+  return figuresIn(s).filter((f) => NOT_RESULT.test(s.slice(f.end)) || anothers(s.slice(0, f.at), name, own) || partsOf(s.slice(0, f.at), s.slice(f.end), name, own)).map((f) => Math.abs(f.low));
 }
 const VERB = "(?:was|were|is|are|came in at|came to|hit|reached|topped|totaled|totalled|stood at|amounted to|of|at)";
 const HEDGE = { about: /\b(?:about|around|roughly|approximately|approx\.?|nearly|almost|close to|some|~)\s*$/i, over: /\b(?:over|more than|above|at least|upwards of|north of|in excess of|exceeded|exceeding)\s*$/i, under: /\b(?:under|less than|below|at most)\s*$/i };
-const hedgeOf = (before) => Object.entries(HEDGE).find(([, re]) => re.test(before))?.[0] ?? null;
-const stripHedge = (before) => Object.values(HEDGE).reduce((t, re) => t.replace(re, ""), before);
+const hedgeOf = (before) => (/~\s*$/.test(before) ? "about" : Object.entries(HEDGE).find(([, re]) => re.test(before))?.[0] ?? null);
+const stripHedge = (before) => Object.values(HEDGE).reduce((t, re) => t.replace(re, ""), before.replace(/~\s*$/, ""));
 
 const unitOf = (f) => {
   if (f.pct) return "%";
@@ -64,7 +64,7 @@ export function plainYear(s) {
 }
 
 // When a sentence says "last year" or "last quarter" instead of naming one.
-const relativeWhen = (s) => { const m = String(s).match(/\b(?:last|past|most recent|latest) (quarter|year)\b/i); return m ? `last ${m[1].toLowerCase()}` : null; };
+export const relativeWhen = (s) => { const m = String(s).match(/\b(?:last|past|most recent|latest) (quarter|year)\b/i); return m ? `last ${m[1].toLowerCase()}` : null; };
 
 // The whole company's measure in the words just before a figure, joined by a verb: "Apple's profit
 // was", "revenue of". A word in front that is neither the company nor "its" names a part of it.
@@ -72,12 +72,12 @@ function before(clause, name, own) {
   const m = clause.match(new RegExp(`(?:^|[\\s,(])((?:[\\w&.’'-]+\\s+){0,2}?)(${MARGIN}|${WORD})(?:\\s+(?:last|this|past|latest|most recent)\\s+(?:year|quarter))?(?:\\s+(?:in|for|during)\\s+(?:fiscal\\s+|fy\\s?)?\\d{4})?\\s+${VERB}\\s*$`, "i"));
   if (!m) return null;
   const front = m[1].trim().split(/\s+/).filter(Boolean).pop() ?? "";
-  if (/['’]s$/.test(front) && !WHOLE.test(front) && isOtherCompany(front, name, own)) return null;
-  const known = !front || WHOLE.test(front) || front.endsWith("'s") || front.endsWith("’s") || isCompanyWord(front, name) || /^(?:and|with|while|but|that|had|has|a|an|posted|reported|generated|delivered|recorded|booked|achieved|saw|showed|announced|fiscal|fy['’]?\d{2,4}|q[1-4]|(?:19|20)\d{2})$/i.test(front);
+  if (/['’]s?$/.test(front) && !WHOLE.test(front) && isOtherCompany(front, name, own)) return null;
+  const known = !front || WHOLE.test(front) || /['’]s?$/.test(front) || isCompanyWord(front, name) || /^(?:gross|revenues?|sales|income|profits?|reporting|and|with|while|but|that|had|has|a|an|posted|reported|generated|delivered|recorded|booked|achieved|saw|showed|announced|fiscal|fy['’]?\d{2,4}|q[1-4]|(?:19|20)\d{2})$/i.test(front);
   return { word: m[2].toLowerCase(), margin: m[3] ? m[3].toLowerCase() : null, part: known ? null : front };
 }
 
-const isCompanyWord = (word, name) => String(name ?? "").toLowerCase().split(/[^a-z0-9&-]+/).includes(word.toLowerCase().replace(/['’]s$/, ""));
+const isCompanyWord = (word, name) => String(name ?? "").toLowerCase().split(/[^a-z0-9&-]+/).includes(word.toLowerCase().replace(/['’]s?$/, ""));
 // Whether a text names the company in its own words: if it does, another possessive is another company;
 // if not, it is what the writer calls this one ("Google's" for Alphabet).
 const namesCompany = (text, name) => String(text).split(/[^A-Za-z0-9&-]+/).some((w) => w.length > 1 && !/^(?:inc|corp|co|ltd|the|and|of|group|holdings|company|plc|llc|com)$/i.test(w) && isCompanyWord(w, name));
@@ -87,14 +87,20 @@ const anothers = (gap, name, own) => {
   const m = String(gap).match(/\b([A-Z][\w&-]*)['’]s\s+(?:(?:is|was|were|are|at)\s+)?(?:about |around |roughly |over |nearly |almost )?$/);
   return Boolean(m) && isOtherCompany(m[1], name, own);
 };
+// A figure that is a piece of the whole: "of which $209 billion came from advertising", "Oracle Cloud's revenue was $4.4 billion".
+const partsOf = (before, after, name, own) => {
+  if (/\bof which\s+\S*\s*$/i.test(before) || /^\s*of which\b/i.test(after) || /^\s*(?:(?:u\.?s\.?\s+)?dollars?\s+)?(?:came|comes|coming) from\b/i.test(after)) return true;
+  const m = before.match(new RegExp(`\\b([A-Z][\\w&-]*)['’]s?\\s+(?:${WORD})\\s+(?:${VERB})\\s*(?:about |around |roughly |nearly |almost )?$`, "i"));
+  return Boolean(m) && isOtherCompany(m[1], name, own);
+};
 // Who did it, when a verb says what the figure is: the company, "it" or one proper name. "Tim Cook
 // earned" and "Apple's services business made" are someone else's money.
 const VERBS_OF_MONEY = /\s*\b(?:is|was|has|had|have|did|does|made|makes|earned|earns|netted|nets|lost|loses|posted|reported|generated|brought in|brings in|pulled in|pulls in|raked in|took in|booked|recorded|delivered|carries|carried|holds|held|owes|owed|is sitting on|sits on|sat on|spent|spends|invested|put)\b.*$/i;
 function companyDidIt(clause, name, own) {
-  const subject = clause.split(/[,;]|\b(?:and|while|but)\b/i).pop().replace(VERBS_OF_MONEY, "").trim();
+  const subject = clause.split(/[,;]|\.\s|\b(?:and|while|but)\b/i).pop().replace(VERBS_OF_MONEY, "").replace(/\b(?:(?:in|for|during)\s+(?:fiscal\s+|fy\s?)?)?(?:19|20)\d\d\b|:|\b(?:only|just|still|also)\b/gi, " ").replace(/\/\S*/g, " ").replace(/\s+/g, " ").trim();
   if (!subject || /^(?:it|they|we|the (?:company|firm|group|business))$/i.test(subject)) return true;
   const words = subject.split(/\s+/);
-  if (words.every((w) => isCompanyWord(w, name))) return true;
+  if (!subject || words.every((w) => isCompanyWord(w, name))) return true;
   if (own) return false;
   return /^[A-Z][\w&-]*(?:['’]s)?$/.test(words[0]) && (words.length === 1 || (words.length === 2 && /^parent$/i.test(words[1])));
 }
@@ -146,13 +152,20 @@ export function plainClaimsIn(sentence, { name = null, parts = false, whole = nu
     }
     if (/^\s*(?:dividends?\b)/i.test(after) || (!f.cur && !f.scale)) continue;
     // After the figure: "$416 billion in revenue", "$100 billion profit", "112 billion dollars of sales".
-    const tail = after.match(new RegExp(`^\\s*(?:dollars?\\s+)?(?:(?:in|of)\\s+)?(?:(?:net|total|annual|quarterly|its|their)\\s+)*(${WORD})\\b(.{0,40})`, "i"));
+    const tail = after.match(new RegExp(`^\\s*(?:dollars?\\s+)?(?:(?:in|of|in\\s+(?:19|20)\\d\\d\\s+of)\\s+)?(?:(?:net|total|annual|quarterly|its|their)\\s+)*(${WORD})\\b(.{0,40})`, "i"));
     if (tail) {
       // "revenue from China", "sales in Europe": a part; "revenue in 2025", "sales in Q3": a period.
       if (/^\s*(?:from|in)\s+(?!(?:fiscal|fy|q[1-4]|the (?:first|second|third|fourth|last|past|latest)|20\d\d|19\d\d|its|last|this)\b)/i.test(tail[2])) continue;
       const m = measureOfWord(tail[1]);
-      if (m && !companyDidIt(clause, name, own)) continue;
+      // "$221 million net income on $9.29 billion in revenue": the second is the same company's.
+      if (m && !companyDidIt(clause, name, own) && !(out.length && /^(?:.*\s)?(?:on|for)\s*$/i.test(clause))) continue;
       if (m) { push({ ...base, measure: m.measure, ...(m.loose ? { loose: m.loose } : {}) }); continue; }
+    }
+    // A move and where it landed: "net income rose 19 percent year over year to $4.7 billion".
+    const landed = clause.match(new RegExp(`(?:^|\\s)((?:[\\w&.’'-]+\\s+)?)(${WORD})\\s+(?:rose|grew|climbed|increased|jumped|gained|surged|soared|fell|dropped|declined|decreased|slid|shrank)\\b[^.;]{0,50}\\bto\\s*$`, "i"));
+    if (landed) {
+      const front = landed[1].trim(), m = measureOfWord(landed[2]);
+      if (m && (!front || WHOLE.test(front) || /['’]s?$/.test(front) && !isOtherCompany(front, name, own) || isCompanyWord(front, name))) { push({ ...base, measure: m.measure, ...(m.loose ? { loose: m.loose } : {}) }); continue; }
     }
     // Before it: "Apple's profit was $112 billion", "net loss of $18.8 billion".
     const loss = clause.match(/\b(net|operating)?\s*loss(?:es)?\s+(?:was|were|of|at|hit|reached)\s*$/i);
