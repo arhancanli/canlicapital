@@ -75,7 +75,7 @@ test("paper is the default: the paper host, paper keys, and nothing near the liv
   const { home, file } = setup(t), s = alpacaStub();
   const r = await go({ file, home, http: s.http });
   assert.equal(r.sent, 1);
-  assert.ok(s.calls.every((c) => !c.url.startsWith("https://api.alpaca.markets")));
+  assert.ok(s.calls.every((c) => new URL(c.url).host !== "api.alpaca.markets"));
   assert.equal(s.orders()[0].url, "https://paper-api.alpaca.markets/v2/orders");
   assert.equal(s.orders()[0].headers["APCA-API-KEY-ID"], "PKTEST");
   assert.deepEqual({ ...s.orders()[0].body, client_order_id: undefined }, { symbol: "AAPL", side: "buy", type: "market", time_in_force: "day", qty: "2", client_order_id: undefined });
