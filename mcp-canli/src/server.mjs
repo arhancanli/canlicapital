@@ -457,7 +457,9 @@ export async function registerFront(server, packs, names = frontTools(packs), go
 const isMain = (() => { try { return realpathSync(process.argv[1] ?? "") === realpathSync(fileURLToPath(import.meta.url)); } catch { return false; } })();
 // Besides serving MCP over stdio: `canli-mcp audit verify [log] [--ed25519 pub.pem] [--ml-dsa pub.pem]`
 // checks an audit log, and `canli-mcp watch [--forms 8-K,4] [--company words] [--event earnings]
-// [--every 60]` prints each new EDGAR filing as a line of JSON.
+// [--every 60]` prints each new EDGAR filing as a line of JSON. `canli-mcp gui` opens the tools and
+// result views in a browser; `canli-mcp serve` offers MCP over Streamable HTTP and WebSocket. Both
+// answer only on the loopback address, and live apart in local/: nothing in src listens.
 const flag = (argv, name) => { const i = argv.indexOf(name); return i >= 0 ? argv[i + 1] : undefined; };
 if (isMain && process.argv[2] === "audit") {
   const argv = process.argv.slice(3), home = canliHome();
@@ -479,6 +481,21 @@ if (isMain && process.argv[2] === "audit") {
     company: flag(argv, "--company"), event: flag(argv, "--event"),
     every: Number(flag(argv, "--every") ?? 60),
   }, (line) => process.stdout.write(`${line}\n`));
+} else if (isMain && (process.argv[2] === "gui" || process.argv[2] === "serve")) {
+  const argv = process.argv.slice(3), packs = [...enabledPacks(), ...await addPlugins()], gov = governance(process.env, canliHome());
+  const makeServer = async () => { const server = new McpServer(SERVER_INFO, { instructions: instructions(packs, []) }); registerAll(server, packs, gov); return server; };
+  process.on("exit", () => gov.close());
+  for (const signal of ["SIGINT", "SIGTERM"]) process.on(signal, () => process.exit(0));
+  const port = Number(flag(argv, "--port") ?? 0);
+  if (process.argv[2] === "gui") {
+    const { startGui } = await import("../local/gui.mjs");
+    const gui = await startGui({ makeServer, port });
+    process.stdout.write(`Open this address in your browser:\n${gui.url}\nIt answers only on this machine. Press Ctrl-C to stop.\n`);
+  } else {
+    const { startServe } = await import("../local/serve.mjs");
+    const s = await startServe({ makeServer, port, token: process.env.CANLI_SERVE_TOKEN || undefined });
+    process.stdout.write(`${JSON.stringify({ http: s.http, websocket: s.ws, token: s.token, note: "Send Authorization: Bearer <token>. Loopback only." })}\n`);
+  }
 } else if (isMain) {
   const packs = [...enabledPacks(), ...await addPlugins()];
   const front = frontTools(packs);

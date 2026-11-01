@@ -81,7 +81,7 @@ test("over stdio: backtest_signal runs on CSV files and records every run in the
   await client.connect(new StdioClientTransport({ command: process.execPath, args: [path.join(HERE, "../src/server.mjs")], env: { ...process.env, CANLI_LEDGER_DIR: dir } }));
   t.after(() => client.close());
   const { tools } = await client.listTools();
-  assert.deepEqual(tools.map((x) => x.name).sort(), ["annotation_agreement", "annotation_gold", "annotation_packet", "backtest_signal", "breadth_book", "breadth_signals", "breadth_sweep", "effective_bets", "list_factors", "pit_factor", "price_panel"]);
+  assert.deepEqual(tools.map((x) => x.name).sort(), ["annotation_agreement", "annotation_gold", "annotation_packet", "backtest_signal", "breadth_book", "breadth_signals", "breadth_sweep", "cpcv", "crisis_replay", "effective_bets", "list_factors", "pit_factor", "price_panel"]);
   for (const q of [0.2, 0.33]) {
     const res = await client.callTool({ name: "backtest_signal", arguments: { prices_file: path.join(dir, "prices.csv"), signal_file: path.join(dir, "signal.csv"), quantile: q, ledger: "test-search" } });
     assert.ok(!res.isError, JSON.stringify(res.content));
@@ -90,6 +90,20 @@ test("over stdio: backtest_signal runs on CSV files and records every run in the
   const last = (await client.callTool({ name: "backtest_signal", arguments: { prices_file: path.join(dir, "prices.csv"), signal_file: path.join(dir, "signal.csv"), cost_bps: 0, ledger: "test-search" } })).structuredContent;
   assert.equal(last.search.trials, 3);
   assert.ok(last.search.deflated && last.search.plain_reading.includes("Across 3 recorded trials"));
+  // Size against the market, and the crises the dates do and do not cover.
+  assert.equal(last.crises.verdict, "untested", "2021-22 prices cover no crisis fully except by chance");
+  assert.deepEqual(last.fails, []);
+  assert.match(last.plain_reading, /untested/);
+  writeFileSync(path.join(dir, "volume.csv"), csv(names.map(() => dates.map(() => 2e6))));
+  const sized = (await client.callTool({ name: "backtest_signal", arguments: { prices_file: path.join(dir, "prices.csv"), signal_file: path.join(dir, "signal.csv"), dollar_volume_file: path.join(dir, "volume.csv"), capital_usd: 1e8 } })).structuredContent;
+  assert.equal(sized.liquidity.verdict, "too_big");
+  assert.match(sized.plain_reading, /^Too big to trade/);
+  assert.deepEqual(sized.capacity.map((c) => c.capital_usd), [1e5, 1e6, 1e7, 1e8, 1e9]);
+  assert.ok(sized.capacity[0].fill_ratio > sized.capacity[4].fill_ratio);
+  assert.equal(sized.fails.length, 1);
+  for (const c of sized.capacity) assert.equal(c.sharpe_annualized === null, c.verdict === "too_big", "no Sharpe for a book that could not fill");
+  const alone = await client.callTool({ name: "backtest_signal", arguments: { prices_file: path.join(dir, "prices.csv"), signal_file: path.join(dir, "signal.csv"), capital_usd: 1e6 } });
+  assert.ok(alone.isError && /needs dollar_volume_file/.test(JSON.stringify(alone.content)));
   // The breadth lab over the same files: three groups of ten names, a sleeve per signal per group.
   writeFileSync(path.join(dir, "groups.csv"), "ticker,group\n" + names.map((n, i) => `${n},G${i % 3}`).join("\n") + "\n");
   const out = path.join(dir, "sleeves.csv");
@@ -103,4 +117,14 @@ test("over stdio: backtest_signal runs on CSV files and records every run in the
   assert.ok(!bets.isError, JSON.stringify(bets.content));
   assert.equal(bets.structuredContent.series, 7);
   assert.ok(Array.isArray((await client.callTool({ name: "breadth_signals", arguments: {} })).structuredContent.signals));
+  // The search's trials through cross-validation and the crises, over the same connection.
+  const trials = path.join(dir, "trials.csv");
+  writeFileSync(trials, csv(px.map((p) => p.map((v, k) => (k ? v / p[k - 1] - 1 : "")))));
+  const held = await client.callTool({ name: "cpcv", arguments: { returns_file: trials, groups: 5, test_groups: 2, purge_days: 2, embargo_days: 2 } });
+  assert.ok(!held.isError, JSON.stringify(held.content));
+  assert.equal(held.structuredContent.paths, 4);
+  const replay = await client.callTool({ name: "crisis_replay", arguments: { returns_file: out } });
+  assert.ok(!replay.isError, JSON.stringify(replay.content));
+  assert.equal(replay.structuredContent.series.length, 7);
+  assert.ok(replay.structuredContent.series.every((x) => x.verdict === "untested" && x.untested.length === 11), "2021-22 dates fully cover none of the crises");
 });
