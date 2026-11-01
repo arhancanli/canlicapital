@@ -4,8 +4,11 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "nod
 import { tmpdir } from "node:os";
 import path from "node:path";
 
+import { createHash } from "node:crypto";
+
 import { arenaNew, arenaOrders, arenaStep, clearAuction, standings, stepOnce } from "../src/arena.mjs";
 import { leagueCommit, leagueNew, leagueScore, luckT, parseEntry, ranks, spearman } from "../src/league.mjs";
+import { appendRecords } from "../src/proof.mjs";
 
 const tempDir = (t) => { const d = mkdtempSync(path.join(tmpdir(), "canli-league-")); t.after(() => rmSync(d, { recursive: true, force: true })); return d; };
 
@@ -48,7 +51,7 @@ test("the league: commit first, reveal later, scored in the open, and the ways t
   const entry = (name, round, fn) => {
     const file = path.join(dir, `${name}-${round.id}.csv`);
     writeFileSync(file, `ticker,score\n${names.map((n, i) => `${n},${fn(i)}`).join("\n")}\n`);
-    leagueCommit({ league_dir: league, round: round.id, entrant: name, file, key_file: key }, () => new Date(`${round.closes.slice(0, 8)}01T00:00:00Z`));
+    leagueCommit({ league_dir: league, round: round.id, entrant: name, file, key_file: key, entrant_key_file: path.join(dir, `${name}.pem`) }, () => new Date(`${round.closes.slice(0, 8)}01T00:00:00Z`));
     return file;
   };
   const reveal = (name, round, file) => { mkdirSync(path.join(league, round.id), { recursive: true }); writeFileSync(path.join(league, round.id, `${name}.csv`), readFileSync(file)); };
@@ -58,8 +61,10 @@ test("the league: commit first, reveal later, scored in the open, and the ways t
     reveal("random2", round, entry("random2", round, () => u()));
   }
   const round = rules.rounds[0];
-  assert.throws(() => leagueCommit({ league_dir: league, round: round.id, entrant: "late", file: path.join(dir, "skilled-r001.csv"), key_file: key }, () => new Date(`${round.closes}T00:00:00Z`)), /closed on/, "the day it closes is too late");
-  assert.throws(() => leagueCommit({ league_dir: league, round: "r999", entrant: "x1", file: path.join(dir, "skilled-r001.csv"), key_file: key }), /no round/);
+  assert.throws(() => leagueCommit({ league_dir: league, round: round.id, entrant: "late", file: path.join(dir, "skilled-r001.csv"), key_file: key, entrant_key_file: path.join(dir, "late.pem") }, () => new Date(`${round.closes}T00:00:00Z`)), /closed on/, "the day it closes is too late");
+  assert.throws(() => leagueCommit({ league_dir: league, round: "r999", entrant: "x1", file: path.join(dir, "skilled-r001.csv"), key_file: key, entrant_key_file: path.join(dir, "x1.pem") }), /no round/);
+  // Someone else's key cannot commit under a name, so nobody can knock out another entrant's entry.
+  assert.throws(() => leagueCommit({ league_dir: league, round: rules.rounds[0].id, entrant: "skilled", file: path.join(dir, "random1-r001.csv"), key_file: key, entrant_key_file: path.join(dir, "random1.pem") }, () => new Date("2026-02-01T00:00:00Z")), /belongs to the key/);
   entry("swapper", rules.rounds[1], () => u());
   writeFileSync(path.join(league, "r002", "swapper.csv"), `ticker,score\n${names.map((n, i) => `${n},${i}`).join("\n")}\n`);
   entry("hider", rules.rounds[2], () => u());
@@ -83,6 +88,19 @@ test("the league: commit first, reveal later, scored in the open, and the ways t
   assert.ok(r.paper_book.average_round_return > 0, `${r.paper_book.average_round_return}`);
   assert.deepEqual(leagueScore({ league_dir: league, prices_file: f, book_size: 1 }).table, r.table, "same files, same table");
   assert.ok(r.limits.some((l) => /Paper only/.test(l)));
+  // A forged line in the ledger, sealed by whoever holds the league's key, still cannot take a name.
+  const forged = path.join(dir, "forged");
+  leagueNew({ league_dir: forged, name: "F", first_close: "2026-02-02", rounds: 1 });
+  const fr = JSON.parse(readFileSync(path.join(forged, "league.json"), "utf8")).rounds[0], ff = path.join(dir, "ff.csv");
+  writeFileSync(ff, `ticker,score\n${names.map((n, i) => `${n},${i}`).join("\n")}\n`);
+  leagueCommit({ league_dir: forged, round: fr.id, entrant: "owner1", file: ff, key_file: key, entrant_key_file: path.join(dir, "owner1.pem") }, () => new Date("2026-02-01T00:00:00Z"));
+  const digest = createHash("sha256").update(readFileSync(ff)).digest("hex");
+  appendRecords(path.join(forged, "ledger.jsonl"), [{ kind: "file", body: { id: "forged", sha256: digest, label: "x", kind: "league_entry", round: fr.id, entrant: "owner1", entrant_public_key: "nope", entrant_signature: "nope" } }], { keyFile: key, now: () => new Date("2026-02-01T00:00:00Z") });
+  mkdirSync(path.join(forged, fr.id));
+  writeFileSync(path.join(forged, fr.id, "owner1.csv"), readFileSync(ff));
+  const fs1 = leagueScore({ league_dir: forged, prices_file: f });
+  assert.ok(fs1.problems.some((p) => /not signed by the key/.test(p)));
+  assert.equal(fs1.table[0].entrant, "owner1", "the real commit still stands");
   const ledger = path.join(league, "ledger.jsonl"), lines = readFileSync(ledger, "utf8").trim().split("\n");
   writeFileSync(ledger, `${lines.slice(0, -2).join("\n")}\n${lines.at(-2).replace("entrant", "entrant2")}\n${lines.at(-1)}\n`);
   assert.throws(() => leagueScore({ league_dir: league, prices_file: f }), /ledger does not verify/, "a changed ledger scores nothing");
@@ -109,6 +127,7 @@ test("the arena: no borrowing, no shorting, money and shares conserved, the same
   assert.throws(() => arenaOrders({ arena_file: file, agent: "me", orders: [{ asset: "ART9", side: "buy", quantity: 1, limit: 1 }] }), /no asset ART9/);
   assert.throws(() => arenaOrders({ arena_file: file, agent: "me", orders: [{ asset: "AAPL", side: "buy", quantity: 1, limit: 1 }] }), /an arena asset/, "a real ticker cannot be named");
   assert.throws(() => arenaOrders({ arena_file: file, agent: "bot-noise-0", orders: [] }), /scripted traders/);
+  for (const reserved of ["constructor", "toString", "hasOwnProperty"]) assert.throws(() => arenaOrders({ arena_file: file, agent: reserved, orders: [] }), /reserved/, reserved);
   arenaOrders({ arena_file: file, agent: "me", orders: [{ asset: "ART1", side: "buy", quantity: 5, limit: 500 }] });
   const stepped = arenaStep({ arena_file: file, steps: 40 });
   assert.equal(stepped.step, 40);

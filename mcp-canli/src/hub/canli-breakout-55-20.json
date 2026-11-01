@@ -1,0 +1,19 @@
+{
+  "spec": "canli.sleeve.v1",
+  "id": "canli/breakout-55-20",
+  "title": "Channel breakout, 55 days in and 20 out",
+  "author": "arhancanli",
+  "recipe": "breakout",
+  "params": {
+    "entry": 55,
+    "exit": 20,
+    "long_only": true
+  },
+  "data": "single",
+  "rationale": "A new high over a long window can mark the start of a trend. The shorter exit window gets out before all of a move is given back. The rule was popularised by trend followers in commodity markets.",
+  "risks": "Many small losses from false breakouts between occasional large gains. It does poorly in choppy markets with no sustained moves.",
+  "references": [
+    "Donchian (1960), High Finance in Copper, Financial Analysts Journal"
+  ],
+  "license": "CC-BY-4.0"
+}

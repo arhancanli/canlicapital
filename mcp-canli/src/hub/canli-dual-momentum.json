@@ -1,0 +1,19 @@
+{
+  "spec": "canli.sleeve.v1",
+  "id": "canli/dual-momentum",
+  "title": "Dual momentum across assets",
+  "author": "arhancanli",
+  "recipe": "dual_momentum",
+  "params": {
+    "lookback": 252,
+    "rebalance_every": 21
+  },
+  "data": "universe",
+  "rationale": "Combines relative momentum, holding what has done best, with absolute momentum, holding it only if it has gone up at all. The second part is meant to step aside in long falls.",
+  "risks": "Few positions, so one wrong pick matters. Monthly switching can miss quick reversals and be late to come back after a fall.",
+  "references": [
+    "Antonacci (2014), Dual Momentum Investing, McGraw-Hill",
+    "Asness, Moskowitz and Pedersen (2013), Value and Momentum Everywhere, Journal of Finance"
+  ],
+  "license": "CC-BY-4.0"
+}

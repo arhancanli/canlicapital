@@ -15,7 +15,8 @@ export const ARENA_LIMITS_TEXT = Object.freeze([
 
 const file = z.string().min(1).max(1000);
 const assetId = z.string().regex(/^ART[0-9]{1,2}$/, "an arena asset, such as ART1");
-const agentId = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9_-]{1,39}$/);
+// Names become keys in the state file, so ones every JavaScript object already answers to are refused.
+const agentId = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9_-]{1,39}$/).refine((n) => !(n in {}), "that name is reserved");
 export const arenaNewInput = z.object({
   arena_file: file.describe("The arena's state file; must not exist yet."),
   seed: z.number().int().min(0).max(2 ** 31 - 2).optional().describe("The same seed and the same orders give the same market. Default 1."),
@@ -32,6 +33,8 @@ export const arenaStepInput = z.object({ arena_file: file, steps: z.number().int
 
 const SHARES_PER_AGENT = 100;
 const load = (f) => { if (!existsSync(f)) throw new RangeError(`${f} is not an arena yet: call arena_new`); const s = JSON.parse(readFileSync(f, "utf8")); if (s.schema !== "canli.arena.v1") throw new RangeError(`${f} is not an arena file`); return s; };
+// Every order in a step comes from an agent in the file, however the file was written.
+const orderLines = (state) => Object.entries(state.orders).filter(([agent]) => Object.hasOwn(state.agents, agent));
 const save = (f, s) => writeFileSync(f, JSON.stringify(s));
 function rng(state) { state.rng = (state.rng * 16807) % 2147483647; return state.rng / 2147483647; }
 const gauss = (s) => Math.sqrt(-2 * Math.log(rng(s))) * Math.cos(2 * Math.PI * rng(s));
@@ -52,7 +55,7 @@ export function arenaNew(args) {
 
 // Refused if the agent could not pay for its buys or deliver its sells even if all of them filled.
 export function checkOrders(state, agent, orders) {
-  const me = state.agents[agent] ?? newAgent(state), known = new Set(state.assets.map((x) => x.id));
+  const me = Object.hasOwn(state.agents, agent) ? state.agents[agent] : newAgent(state), known = new Set(state.assets.map((x) => x.id));
   let spend = 0;
   const selling = {};
   for (const o of orders) {
@@ -66,7 +69,7 @@ export function arenaOrders(args) {
   const a = arenaOrdersInput.parse(args), state = load(a.arena_file);
   if (state.bots.some((b) => b.name === a.agent)) throw new RangeError(`${a.agent} is one of the arena's scripted traders`);
   checkOrders(state, a.agent, a.orders);
-  state.agents[a.agent] ??= newAgent(state);
+  if (!Object.hasOwn(state.agents, a.agent)) state.agents[a.agent] = newAgent(state);
   state.orders[a.agent] = a.orders;
   save(a.arena_file, state);
   return { agent: a.agent, orders_waiting: a.orders.length, step: state.step, plain_reading: `${a.orders.length} paper orders wait for step ${state.step + 1}.`, limits: ARENA_LIMITS_TEXT };
@@ -109,7 +112,7 @@ export function stepOnce(state) {
   // Buys are held against cash across assets in this step, so no agent can overspend across auctions.
   const all = [];
   let at = 0;
-  for (const [agent, orders] of Object.entries(state.orders)) for (const o of orders) all.push({ ...o, agent, at: at++ });
+  for (const [agent, orders] of orderLines(state)) for (const o of orders) all.push({ ...o, agent, at: at++ });
   const previous = state.history.at(-1)?.prices_before ?? {};
   // What a bot could pay is held across its auctions in a step, as an agent's buys are at arena_orders.
   for (const bot of state.bots) { const left = { cash: state.agents[bot.name].cash }; for (const asset of state.assets) { const o = botOrders(state, bot, asset, previous[asset.id] ?? null, left); if (o) all.push({ ...o, agent: bot.name, at: at++ }); } }

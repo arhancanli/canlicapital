@@ -6,13 +6,13 @@
 // are combined into a paper book, so the league shows what a pool of them would have done.
 //
 // Paper only. There are no prizes, no stakes and nobody's money in it.
-import { createHash } from "node:crypto";
+import { createHash, createPublicKey, sign, verify } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { z } from "zod";
 
 import { readPanel } from "./panel-io.mjs";
-import { appendRecords, readLines, verifyLedger } from "./proof.mjs";
+import { appendRecords, loadKey, readLines, verifyLedger } from "./proof.mjs";
 
 export const LEAGUE_LIMITS_TEXT = Object.freeze([
   "Paper only: no prizes, no stakes, and nobody's money is in the league or its paper book.",
@@ -72,8 +72,14 @@ export const leagueCommitInput = z.object({
   round: z.string().regex(/^r\d{3}$/),
   entrant: entrantName,
   file: dir.describe("The entry: a CSV of ticker,score, higher meaning expected to do better. Only its hash is recorded now."),
-  key_file: dir.optional().describe("Signing key for the ledger (PEM); created if new."),
+  entrant_key_file: dir.describe("The entrant's own signing key (PEM), created if new. A name belongs to the key that first committed under it, so nobody else can replace an entrant's entry."),
+  key_file: dir.optional().describe("The league's signing key for its ledger (PEM); created if new."),
 }).strict();
+// What an entrant signs: which round, which name, which file, so a signature cannot be replayed elsewhere.
+const commitMessage = (round, entrant, digest) => Buffer.from(`canli.league.commit.v1|${round}|${entrant}|${digest}`);
+function commitIsSigned(c) {
+  try { return verify(null, commitMessage(c.round, c.entrant, c.sha256), createPublicKey(c.entrant_public_key), Buffer.from(c.entrant_signature, "base64")); } catch { return false; }
+}
 export function leagueCommit(args, now = () => new Date()) {
   const a = leagueCommitInput.parse(args);
   const rules = readRules(a.league_dir), round = rules.rounds.find((r) => r.id === a.round);
@@ -83,7 +89,10 @@ export function leagueCommit(args, now = () => new Date()) {
   const bytes = readFileSync(a.file);
   parseEntry(bytes.toString("utf8"), rules.min_names);
   const digest = sha256(bytes);
-  const r = appendRecords(join(a.league_dir, "ledger.jsonl"), [{ kind: "file", body: { id: `league|${a.round}|${a.entrant}|${digest}`, sha256: digest, label: `league entry ${a.round} ${a.entrant}`, kind: "league_entry", round: a.round, entrant: a.entrant } }], { keyFile: a.key_file, now });
+  const ledger = join(a.league_dir, "ledger.jsonl"), { key, publicPem } = loadKey(a.entrant_key_file);
+  const holder = existsSync(ledger) ? readLines(ledger).find((e) => e.kind === "file" && e.body?.kind === "league_entry" && e.body.entrant === a.entrant) : null;
+  if (holder && holder.body.entrant_public_key !== publicPem) throw new RangeError(`the name ${a.entrant} belongs to the key that first committed under it; this is another key`);
+  const r = appendRecords(ledger, [{ kind: "file", body: { id: `league|${a.round}|${a.entrant}|${digest}`, sha256: digest, label: `league entry ${a.round} ${a.entrant}`, kind: "league_entry", round: a.round, entrant: a.entrant, entrant_public_key: publicPem, entrant_signature: sign(null, commitMessage(a.round, a.entrant, digest), key).toString("base64") } }], { keyFile: a.key_file, now });
   return { round: a.round, entrant: a.entrant, sha256: digest, ...r, plain_reading: `Committed ${a.entrant}'s entry for ${a.round}. Keep the file unchanged and reveal it after ${round.ends}: put it at ${join(a.league_dir, a.round, `${a.entrant}.csv`)}.`, limits: LEAGUE_LIMITS_TEXT };
 }
 
@@ -152,6 +161,9 @@ export function leagueScore(args) {
   const check = existsSync(ledger) ? verifyLedger(ledger) : null;
   if (check && !check.valid) throw new RangeError(`the league's ledger does not verify: ${check.problems[0]}`);
   const commitLines = existsSync(ledger) ? readLines(ledger).filter((e) => e.kind === "file" && e.body?.kind === "league_entry").map((e) => ({ ...e.body, at: e.at })) : [];
+  // A name belongs to the first validly signed commit's key.
+  const owners = new Map();
+  for (const c of commitLines) if (commitIsSigned(c) && !owners.has(c.entrant)) owners.set(c.entrant, c.entrant_public_key);
   let open = 0;
   for (const round of rules.rounds) {
     if (round.ends > lastDate) { open += 1; continue; }
@@ -162,6 +174,7 @@ export function leagueScore(args) {
     for (const c of commitLines) {
       if (c.round !== round.id) continue;
       if (!NAME.test(c.entrant ?? "")) { problems.push(`A commit for ${round.id} has an unusable entrant name, not scored.`); continue; }
+      if (!commitIsSigned(c) || owners.get(c.entrant) !== c.entrant_public_key) { problems.push(`${c.entrant} ${round.id}: a commit not signed by the key that holds this name, not scored.`); continue; }
       if (String(c.at).slice(0, 10) >= round.closes) { problems.push(`${c.entrant} ${round.id}: committed on or after the close, not scored.`); continue; }
       latest.set(c.entrant, c);
     }
