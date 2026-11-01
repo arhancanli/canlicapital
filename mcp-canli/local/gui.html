@@ -57,7 +57,7 @@ iframe{width:100%;min-height:80px;border:1px solid var(--line);border-radius:10p
     <p class="foot">Answers only on this computer. Tools fetch what they need from public sources.</p>
   </aside>
   <main>
-    <p class="empty" id="empty">Search for a tool, or start with one on the left.</p>
+    <p class="empty" id="empty">Search for a tool, or pick one of the starting points.</p>
     <form class="form" id="form" hidden>
       <div><h2 id="name"></h2><p class="lede" id="about"></p></div>
       <div class="fields" id="fields"></div>
@@ -168,6 +168,8 @@ iframe{width:100%;min-height:80px;border:1px solid var(--line);border-radius:10p
     $("about").textContent = d.description ?? "";
     const main = [], rest = [];
     for (const [k, s] of Object.entries(props)) (need.has(k) || preset[k] !== undefined ? main : rest).push(field(k, s, need.has(k), preset[k]));
+    // A tool with nothing required shows its fields outright, so nobody meets an empty form.
+    if (!main.length) main.push(...rest.splice(0));
     $("fields").replaceChildren(...main);
     $("extra").replaceChildren(...rest);
     $("optional").hidden = rest.length === 0;
