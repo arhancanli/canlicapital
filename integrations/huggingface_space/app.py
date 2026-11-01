@@ -3,6 +3,7 @@ import csv
 import importlib.util
 import io
 import os
+import tempfile
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -50,11 +51,26 @@ def check(text: str, trials: int, periods_per_year: int = 252) -> str:
     return "\n".join(lines)
 
 
+MAX_BYTES = 5 * 1024 * 1024
+
+
+def read_upload(file_path: str) -> str:
+    """The uploaded file's text. Gradio keeps uploads under its temporary folder, so nothing else is read."""
+    root = os.path.realpath(os.environ.get("GRADIO_TEMP_DIR") or tempfile.gettempdir())
+    real = os.path.realpath(file_path)
+    if not real.startswith(root + os.sep):
+        raise ValueError("That file is not an upload.")
+    if os.path.getsize(real) > MAX_BYTES:
+        raise ValueError("That file is larger than 5 MB.")
+    with open(real, encoding="utf-8") as f:
+        return f.read()
+
+
 def run(file_path, trials):
     if not file_path:
         return "Upload a CSV of returns first."
     try:
-        return check(Path(file_path).read_text(), trials)
+        return check(read_upload(file_path), trials)
     except Exception as err:  # shown to the person using the page
         return f"This could not be checked: {err}"
 

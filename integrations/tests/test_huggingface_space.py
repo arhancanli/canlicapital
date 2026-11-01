@@ -48,6 +48,9 @@ class Check(unittest.TestCase):
         self.assertIn("could not be checked", app.run(f.name, 10))
         self.assertIn("Upload a CSV", app.run(None, 10))
 
+    def test_only_an_upload_is_read(self):
+        self.assertIn("not an upload", app.run("/etc/passwd", 10))
+
 
 if __name__ == "__main__":
     unittest.main()
