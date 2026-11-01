@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import { readdirSync } from "node:fs";
 import test from "node:test";
 
+import { runDraft } from "../src/draft.mjs";
 import { checkSpec, hubSleeves, runHubCheck, runHubList, runHubRun, specHash } from "../src/hub.mjs";
 
 const good = () => JSON.parse(JSON.stringify(hubSleeves().find((x) => x.spec.id === "canli/golden-cross").spec));
@@ -74,4 +75,21 @@ test("a sleeve's parameters cannot overwrite the caller's prices", async () => {
 test("check says what passing means", async () => {
   const r = await runHubCheck({ spec: good() });
   assert.match(r.plain_reading, /says nothing about whether it works/);
+});
+
+test("draft_orders writes the standard form with a hash, sends nothing, and refuses a malformed order", () => {
+  const r = runDraft({ reason: "a test of the form", orders: [{ symbol: "AAPL", side: "buy", quantity: 2, type: "limit", limit_price: 100 }, { symbol: "BTC/USD", side: "sell", notional_usd: 50, type: "market", time_in_force: "gtc" }] });
+  assert.equal(r.intent.schema, "canli.order-intent.v1");
+  assert.equal(r.intent.orders[0].time_in_force, "day");
+  assert.equal(r.sent, false);
+  assert.match(r.note, /cannot send/);
+  assert.match(r.sha256, /^[0-9a-f]{64}$/);
+  const bad = (o) => assert.throws(() => runDraft({ reason: "a test of the form", orders: [o] }));
+  bad({ symbol: "aapl", side: "buy", quantity: 1, type: "market" });
+  bad({ symbol: "AAPL", side: "short", quantity: 1, type: "market" });
+  bad({ symbol: "AAPL", side: "buy", type: "market" });
+  bad({ symbol: "AAPL", side: "buy", quantity: 1, notional_usd: 5, type: "market" });
+  bad({ symbol: "AAPL", side: "buy", quantity: 1, type: "limit" });
+  bad({ symbol: "AAPL", side: "buy", notional_usd: 5, type: "limit", limit_price: 1 });
+  bad({ symbol: "AAPL", side: "buy", quantity: 1, type: "market", webhook: "x" });
 });
