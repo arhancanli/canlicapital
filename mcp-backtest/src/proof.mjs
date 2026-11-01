@@ -28,12 +28,15 @@ export const entryHash = (e) => sha256(canonical({ seq: e.seq, at: e.at, kind: e
 const defaultKeyFile = () => join(process.env.CANLI_HOME || join(homedir(), ".canli"), "proof-key.pem");
 
 export function loadKey(file = defaultKeyFile()) {
-  if (!existsSync(file)) {
+  let pem;
+  try { pem = readFileSync(file, "utf8"); } catch (err) {
+    if (err.code !== "ENOENT") throw err;
     mkdirSync(dirname(file), { recursive: true, mode: 0o700 });
-    const { privateKey } = generateKeyPairSync("ed25519");
-    writeFileSync(file, privateKey.export({ type: "pkcs8", format: "pem" }), { flag: "wx", mode: 0o600 });
+    pem = generateKeyPairSync("ed25519").privateKey.export({ type: "pkcs8", format: "pem" });
+    // wx: if another process made the key first, that one is the key, and this one is dropped.
+    try { writeFileSync(file, pem, { flag: "wx", mode: 0o600 }); } catch (e) { if (e.code !== "EEXIST") throw e; pem = readFileSync(file, "utf8"); }
   }
-  const key = createPrivateKey(readFileSync(file, "utf8"));
+  const key = createPrivateKey(pem);
   return { key, publicPem: createPublicKey(key).export({ type: "spki", format: "pem" }) };
 }
 

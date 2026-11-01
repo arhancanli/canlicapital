@@ -36,12 +36,14 @@ export const leagueNewInput = z.object({
 export function leagueNew(args) {
   const a = leagueNewInput.parse(args);
   const file = join(a.league_dir, "league.json");
-  if (existsSync(file)) throw new RangeError(`${file} already exists; a league's rules do not change after it starts`);
   const step = a.days_per_round ?? 7, day = (d, n) => { const x = new Date(`${d}T00:00:00Z`); x.setUTCDate(x.getUTCDate() + n); return x.toISOString().slice(0, 10); };
   const rounds = Array.from({ length: a.rounds }, (_, i) => { const closes = day(a.first_close, i * step); return { id: `r${String(i + 1).padStart(3, "0")}`, closes, ends: day(closes, step) }; });
   mkdirSync(a.league_dir, { recursive: true });
   const rules = { schema: "canli.league.v1", name: a.name, min_names: a.min_names ?? 20, rounds };
-  writeFileSync(file, `${JSON.stringify(rules, null, 1)}\n`, { flag: "wx" });
+  try { writeFileSync(file, `${JSON.stringify(rules, null, 1)}\n`, { flag: "wx" }); } catch (err) {
+    if (err.code === "EEXIST") throw new RangeError(`${file} already exists; a league's rules do not change after it starts`);
+    throw err;
+  }
   return { league_dir: a.league_dir, rules_sha256: sha256(readFileSync(file)), rounds: rounds.length, first_round: rounds[0], last_round: rounds.at(-1), plain_reading: `${a.name}: ${rounds.length} rounds. Publish the rules' hash before the first close, so the schedule cannot quietly change.`, limits: LEAGUE_LIMITS_TEXT };
 }
 
