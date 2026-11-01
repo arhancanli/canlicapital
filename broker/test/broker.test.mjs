@@ -110,6 +110,20 @@ test("the day's cap counts what was already sent", async (t) => {
   assert.equal(s.orders().length, 1);
 });
 
+test("the day's cap covers every broker together, and counts an order whose outcome is unknown", async (t) => {
+  const a = setup(t, { limits: { ...LIMITS, max_day_usd: 1500 }, orders: [{ symbol: "AAPL", side: "buy", quantity: 10, type: "market" }] });
+  await go({ ...a, http: alpacaStub().http, live: true, env: LIVE });
+  const more = path.join(a.home, "tradier.json");
+  writeFileSync(more, JSON.stringify({ schema: "canli.order-intent.v1", reason: "x", orders: [{ symbol: "MSFT", side: "buy", quantity: 12, type: "market" }] }));
+  const quotes = async (u) => (u.includes("/markets/quotes") ? ok({ quotes: { quote: { last: 50 } } }) : ok({}, 404));
+  await assert.rejects(run({ command: "send", broker: "tradier", live: true, env: { TRADIER_TOKEN: "t", TRADIER_ACCOUNT: "a" }, file: more, home: a.home, http: quotes, ask: async () => true, print: () => {} }), /already sent today that is over max_day_usd/, "$1,000 at Alpaca and $600 at Tradier");
+  const b = setup(t, { limits: { ...LIMITS, max_day_usd: 1500 }, orders: [{ symbol: "AAPL", side: "buy", quantity: 10, type: "market" }] });
+  await assert.rejects(go({ ...b, http: alpacaStub({ boom: 1 }).http, live: true, env: LIVE }), /connection lost/);
+  const after = path.join(b.home, "next.json");
+  writeFileSync(after, JSON.stringify({ schema: "canli.order-intent.v1", reason: "x", orders: [{ symbol: "MSFT", side: "buy", quantity: 6, type: "market" }] }));
+  await assert.rejects(go({ file: after, home: b.home, http: alpacaStub().http, live: true, env: LIVE }), /over max_day_usd/, "the unknown order may have gone through");
+});
+
 test("live means typing a phrase tied to this file: --yes cannot skip it, and a wrong answer sends nothing", async (t) => {
   const a = setup(t, { limits: LIMITS }), s = alpacaStub();
   await assert.rejects(go({ ...a, http: s.http, live: true, env: LIVE, yes: true }), /--yes works only for paper/);

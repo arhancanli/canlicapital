@@ -49,7 +49,7 @@ export async function run({ command, file, broker: brokerName, live = false, lim
   }
 
   const journal = openJournal(home), day = now().toISOString().slice(0, 10);
-  if (live) problems.push(...checkLimits(priced, loadLimits(limitsFile ?? join(home, "broker-limits.json")), journal.spentOn(day, brokerName, mode)));
+  if (live) problems.push(...checkLimits(priced, loadLimits(limitsFile ?? join(home, "broker-limits.json")), journal.spentOn(day, mode)));
   const standing = journal.state(hash, brokerName, mode);
 
   print(`\n${mode === "live" ? "LIVE" : "Paper"} orders on ${brokerName}${brokerName === "coinbase" && !live ? " (preview only: Coinbase has no paper account)" : ""}:`);

@@ -24,7 +24,7 @@ It is a command a person runs, not a tool a model can call. A model reads text f
   ```json
   { "live_enabled": true, "max_order_usd": 500, "max_day_usd": 1000, "allowed_symbols": ["AAPL", "MSFT"] }
   ```
-  `allowed_symbols` can be `"any"`, but then you have to write that yourself. Nothing in an order file can change these.
+  `allowed_symbols` can be `"any"`, but then you have to write that yourself. `max_day_usd` covers all brokers together on this machine, and counts an order whose outcome is unknown. Nothing in an order file can change these.
 - **Live means typing a phrase** tied to that exact file, read from the terminal itself, so piped input cannot answer. `--yes` works only for paper. With no terminal, nothing is sent.
 - **No short selling.** A sell must be covered by what the account holds. If that cannot be read, a live order is refused.
 - **The whole file or nothing:** every check runs on every order before any goes out. A run stops at the first failure and says exactly what went out.

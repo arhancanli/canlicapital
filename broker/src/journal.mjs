@@ -22,8 +22,12 @@ export function openJournal(home) {
       for (const l of read()) if (l.intent === intentHash && l.broker === broker && l.mode === mode) out.set(l.index, l.event === "sending" ? "unknown" : l.event);
       return out;
     },
-    spentOn(day, broker, mode) {
-      return read().filter((l) => l.event === "sent" && l.broker === broker && l.mode === mode && String(l.at).startsWith(day)).reduce((n, l) => n + (l.value_usd ?? 0), 0);
+    // Everything that went out on a day, across all brokers, since the cap is on the person's money. An
+    // order whose outcome is unknown counts: it may well have gone through.
+    spentOn(day, mode) {
+      const last = new Map();
+      for (const l of read()) if (l.mode === mode && String(l.at).startsWith(day)) last.set(`${l.broker}|${l.intent}|${l.index}`, l);
+      return [...last.values()].filter((l) => l.event === "sent" || l.event === "sending").reduce((n, l) => n + (l.value_usd ?? 0), 0);
     },
   };
 }
