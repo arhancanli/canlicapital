@@ -461,6 +461,8 @@ const isMain = (() => { try { return realpathSync(process.argv[1] ?? "") === rea
 // [--every 60]` prints each new EDGAR filing as a line of JSON. `canli-mcp gui` opens the tools and
 // result views in a browser; `canli-mcp serve` offers MCP over Streamable HTTP and WebSocket. Both
 // answer only on the loopback address, and live apart in local/: nothing in src listens.
+// `canli-mcp check returns.csv --trials 40` is the luck check for a CI job, and `canli-mcp run <tool>
+// '<json>'` runs one tool from a shell.
 const flag = (argv, name) => { const i = argv.indexOf(name); return i >= 0 ? argv[i + 1] : undefined; };
 if (isMain && process.argv[2] === "audit") {
   const argv = process.argv.slice(3), home = canliHome();
@@ -482,6 +484,27 @@ if (isMain && process.argv[2] === "audit") {
     company: flag(argv, "--company"), event: flag(argv, "--event"),
     every: Number(flag(argv, "--every") ?? 60),
   }, (line) => process.stdout.write(`${line}\n`));
+} else if (isMain && process.argv[2] === "check") {
+  const argv = process.argv.slice(3), file = argv[0];
+  const trials = Number(flag(argv, "--trials"));
+  if (!file || file.startsWith("--") || !Number.isInteger(trials) || trials < 1) { process.stderr.write("usage: canli-mcp check returns.csv --trials <how many variants were tried> [--column name] [--periods 252] [--spread 0.5] [--format markdown|json] [--at-least 0.95]\n"); process.exit(2); }
+  const { asMarkdown, checkReport, readReturns } = await import("./check.mjs");
+  const bytes = readFileSync(file), { column, returns } = readReturns(bytes.toString("utf8"), flag(argv, "--column"));
+  const tool = await toolFor("validate_deflated_sharpe", enabledPacks({ ...process.env, CANLI_PACKS: "validation" }));
+  const result = await tool.run(tool.input.parse({ returns, periods_per_year: Number(flag(argv, "--periods") ?? 252), effective_independent_trials: Math.max(2, trials), cross_trial_sharpe_sd_annualized: Number(flag(argv, "--spread") ?? 0.5) }));
+  const report = checkReport({ file, bytes, column, count: returns.length, trials, result, version: SERVER_VERSION });
+  process.stdout.write(flag(argv, "--format") === "json" ? `${JSON.stringify(report, null, 2)}\n` : `${asMarkdown(report)}\n`);
+  // A floor is the caller's own choice for its own pipeline; the report itself never says passed.
+  const floor = flag(argv, "--at-least");
+  if (floor !== undefined && !(report.deflated_sharpe_probability >= Number(floor))) process.exit(1);
+} else if (isMain && process.argv[2] === "run") {
+  const [name, json] = process.argv.slice(3);
+  if (!name) { process.stderr.write("usage: canli-mcp run <tool> '<arguments as JSON>'\n"); process.exit(2); }
+  const packs = [...enabledPacks(), ...await addPlugins()];
+  const tool = await toolFor(name, packs);
+  if (tool.annotations?.destructiveHint) { process.stderr.write(`${name} sends orders, so it cannot run from the command line.\n`); process.exit(2); }
+  const out = await runOne(packs, { name, arguments: JSON.parse(json ?? "{}") }, {}, [], null);
+  process.stdout.write(`${JSON.stringify(out)}\n`);
 } else if (isMain && (process.argv[2] === "gui" || process.argv[2] === "serve")) {
   const argv = process.argv.slice(3), packs = [...enabledPacks(), ...await addPlugins()], gov = governance(process.env, canliHome());
   const makeServer = async () => { const server = new McpServer(SERVER_INFO, { instructions: instructions(packs, []) }); registerAll(server, packs, gov); return server; };

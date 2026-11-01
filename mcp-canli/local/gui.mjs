@@ -13,7 +13,7 @@ import { viewHtml } from "../src/view.mjs";
 
 const LOOPBACK = /^(?:127\.0\.0\.1|localhost)(?::\d+)?$/i;
 const MAX_BODY = 8 * 1024 * 1024;
-const ALLOWED = new Set(["find_tool", "describe_tool", "run_tool", "show_result"]);
+const ALLOWED = new Set(["find_tool", "describe_tool", "run_tool"]);
 const same = (a, b) => { const x = Buffer.from(String(a)), y = Buffer.from(String(b)); return x.length === y.length && timingSafeEqual(x, y); };
 const page = () => readFileSync(new URL("./gui.html", import.meta.url), "utf8");
 

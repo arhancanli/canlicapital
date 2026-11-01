@@ -26,7 +26,7 @@ const makeServer = async () => { const s = new McpServer(SERVER_INFO, {}); regis
 const LOCAL = new URL("../local/", import.meta.url);
 const raw = (port, path, { method = "GET", headers = {}, body } = {}) => fetch(`http://127.0.0.1:${port}${path}`, { method, headers, body });
 
-test("the browser page needs its token, and its calls are limited to the four read paths", async (t) => {
+test("the browser page needs its token, and its calls are limited to search, describe and run", async (t) => {
   const gui = await startGui({ makeServer });
   t.after(() => gui.close());
   const token = new URL(gui.url).searchParams.get("token");
