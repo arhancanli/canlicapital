@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- `figure_trace`: a reported figure followed down the filing's own calculation, each line's value, every sum recomputed, what it feeds into and how the filing splits it. It shows the filing agrees with itself, not that the figures are right.
+- `token_check`: what an ERC-20 token's contract can do (mint, pause, blacklist, upgrade, fees), its proxy, owner, supply and source verification, and an unlock schedule you give set against it. If the code cannot be read it says the powers are unknown. A clean reading never means safe.
+
 ## 0.9.0
 
 verify_claims reads claims as people say them, not only as press releases word them.

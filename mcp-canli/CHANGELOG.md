@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- `canli-mcp gui`: the tools and result views in a browser, on this machine. `canli-mcp serve`: MCP over Streamable HTTP and WebSocket for agents on this machine. Both answer only on the loopback address and need a token.
+- `canli-mcp check returns.csv --trials 40`: the luck check for a CI job on any platform, computed on the runner. It never says passed. `canli-mcp run <tool> '<json>'` runs one tool from a shell and refuses any that sends orders.
+- Views: a strategy against each crisis and at each size, the luck cliff of a deflated Sharpe, cross-validated paths, a figure traced down its filing, and clickable volatility surface cells.
+- The hub: `hub_list`, `hub_check`, `hub_run`. Strategies as data, a recipe with fixed parameters, checked for plain words and no performance claims. No contributor's code runs.
+- `draft_orders`: orders in a standard form with a hash, for a person to act on. It sends nothing.
+- Recipes in `recipes/`: plain code, Claude, LangGraph, OpenAI Agents and CrewAI, stopping at an order file for a person to read. Templates for GitLab CI and Hugging Face in `integrations/`.
+
 ## 0.14.0
 
 - `verify_claims` reads claims as people say them: "earned $9 per share", "lost $18.8 billion", "has $90 billion in cash",

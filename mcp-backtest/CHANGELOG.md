@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+- `backtest_signal` with `capital_usd` and `dollar_volume_file`: an order fills only up to a share of recent daily volume and pays square-root impact, read from the days before each trade. The reply shows the Sharpe at each size the market can take, and none for a book that could not fill.
+- Every `backtest_signal` reply replays the named crises its dates fully cover and lists the rest as untested. `fails` names what went wrong.
+- `crisis_replay`: the same for any returns file.
+- `cpcv`: combinatorial purged cross-validation of a search, with shards other machines can run and a merge that refuses other data, gaps and duplicates.
+- `proof_filings`, `proof_file`, `proof_verify`, `proof_find`: a signed, append-only ledger of what companies filed, their restatements and file hashes. It shows lines were not changed afterwards, not that a figure is right.
+- `league_new`, `league_commit`, `league_score`: a paper league. Commit a hash, reveal later, scored in the open against the best luck gives, with a paper book chosen on earlier rounds only. No prizes, no stakes, nobody's money.
+- `arena_new`, `arena_orders`, `arena_step`: a paper market for AI agents with made-up assets and money.
+
 ## 0.3.0
 
 - `breadth_sweep`: a grid of breadth-book settings run in parallel on every core (or as shards other
