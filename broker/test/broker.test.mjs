@@ -10,6 +10,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import { coinbaseToken } from "../src/adapters/coinbase.mjs";
+import { makeHttp } from "../src/http.mjs";
 import { readIntent } from "../src/intent.mjs";
 import { run, STOP_FILE } from "../src/send.mjs";
 import { clean, Refused } from "../src/util.mjs";
@@ -287,6 +288,13 @@ test("Coinbase: a token anyone can verify, and a paper run only previews", async
   const live = calls.find(([u]) => u.endsWith("/orders"));
   assert.equal(live[0], "https://api.coinbase.com/api/v3/brokerage/orders");
   assert.match(live[2].client_order_id, /^canli-/);
+});
+
+test("the local gateway is never simply trusted: no certificate file, no request", async () => {
+  const http = makeHttp({});
+  await assert.rejects(http("https://localhost:5000/v1/api/iserver/accounts"), /Set CANLI_IBKR_CA/);
+  await assert.rejects(makeHttp({ CANLI_IBKR_CA: "/no/such/file" })("https://localhost:5000/v1/api/iserver/accounts"), /could not be read/);
+  assert.doesNotMatch(readFileSync(fileURLToPath(new URL("../src/http.mjs", import.meta.url)), "utf8"), /rejectUnauthorized/);
 });
 
 test("the journal holds no secrets, and its file is private", async (t) => {

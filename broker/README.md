@@ -39,8 +39,15 @@ These lower the risk of a mistake. They do not make trading safe, and a market o
 |---|---|---|---|
 | `alpaca` | US stocks, crypto | Alpaca's paper host | `ALPACA_PAPER_KEY_ID`, `ALPACA_PAPER_SECRET_KEY`; live: `ALPACA_LIVE_KEY_ID`, `ALPACA_LIVE_SECRET_KEY` |
 | `tradier` | US stocks, whole shares | Tradier's sandbox | `TRADIER_SANDBOX_TOKEN`, `TRADIER_SANDBOX_ACCOUNT`; live: `TRADIER_TOKEN`, `TRADIER_ACCOUNT` |
-| `ibkr` | Stocks | Log the gateway in to your paper account | None: you log in to IBKR's Client Portal gateway on this machine. `IBKR_ACCOUNT` chooses among several |
+| `ibkr` | Stocks | Log the gateway in to your paper account | No keys: you log in to IBKR's Client Portal gateway on this machine. `CANLI_IBKR_CA` is a file holding the gateway's certificate, and `IBKR_ACCOUNT` chooses among several accounts |
 | `coinbase` | Crypto | None exists, so a paper run only previews | `COINBASE_KEY_NAME`, `COINBASE_KEY_SECRET` |
+
+The IBKR gateway uses a certificate it made itself, so it is checked against a copy you save once, while the gateway is running on your machine:
+
+```
+openssl s_client -connect localhost:5000 -showcerts </dev/null 2>/dev/null | openssl x509 > ~/.canli/ibkr-gateway.pem
+export CANLI_IBKR_CA=~/.canli/ibkr-gateway.pem
+```
 
 Brokers charge what they charge: spreads, commissions, data fees and taxes are between you and them.
 

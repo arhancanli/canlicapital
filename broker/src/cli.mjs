@@ -6,7 +6,7 @@ import { homedir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { http } from "./http.mjs";
+import { makeHttp } from "./http.mjs";
 import { BROKERS, run, STOP_FILE } from "./send.mjs";
 import { Refused } from "./util.mjs";
 
@@ -41,7 +41,7 @@ export async function main(argv, env = process.env) {
   const file = rest[0] && !rest[0].startsWith("--") ? rest[0] : null;
   if (!file) { process.stdout.write(`${USAGE}\n`); return 2; }
   try {
-    await run({ command, file, broker: flag("--broker"), live: has("--live"), limitsFile: flag("--limits"), yes: has("--yes"), unknownNotPlaced: has("--unknown-not-placed"), env, home, http, ask: async (q, want) => terminalAsk(q, want), print: (line) => process.stdout.write(`${line}\n`) });
+    await run({ command, file, broker: flag("--broker"), live: has("--live"), limitsFile: flag("--limits"), yes: has("--yes"), unknownNotPlaced: has("--unknown-not-placed"), env, home, http: makeHttp(env), ask: async (q, want) => terminalAsk(q, want), print: (line) => process.stdout.write(`${line}\n`) });
     return 0;
   } catch (err) {
     process.stderr.write(`${err instanceof Refused ? err.message : `Stopped: ${err.message}`}\n`);
