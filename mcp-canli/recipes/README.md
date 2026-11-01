@@ -37,4 +37,4 @@ A model wrote that file, and text it read on the way could have steered it, so t
 
 ## Why the agent cannot send orders
 
-Models read text from filings, news and web pages, and that text can contain instructions. A tool that can spend money is what makes that dangerous, so these recipes do not have one. To trade on paper, enable the paper pack yourself and approve each order in your client. The separate `canli-broker` command, for your own broker account, is one you run by hand.
+Models read text from filings, news and web pages, and that text can contain instructions. A tool that can spend money is what makes that dangerous, so these recipes do not have one. To trade on paper, enable the paper pack yourself and approve each order in your client.

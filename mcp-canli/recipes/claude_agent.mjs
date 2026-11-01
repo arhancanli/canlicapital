@@ -15,9 +15,12 @@ for await (const message of query({
     model: process.env.CANLI_MODEL ?? "claude-opus-5-5",
     systemPrompt: system,
     mcpServers: { canli: { command, args, env: { ...process.env, CANLI_PACKS: "markets,fundamentals,validation,backtest,quant", CANLI_POLICY: '{"orders":"off"}' } } },
-    // Only the server's tools: no shell or file tools, so nothing this agent reads can make it run anything else.
+    // Only the server's tools. Every built-in tool is off, anything not allowed here is refused rather
+    // than asked about, and no settings file can widen it, so what this agent reads cannot make it do more.
+    tools: [],
     allowedTools: ["mcp__canli__find_tool", "mcp__canli__describe_tool", "mcp__canli__run_tool"],
-    disallowedTools: ["Bash", "Write", "Edit", "WebFetch", "WebSearch", "Task"],
+    permissionMode: "dontAsk",
+    settingSources: [],
     maxTurns: 30,
   },
 })) {
