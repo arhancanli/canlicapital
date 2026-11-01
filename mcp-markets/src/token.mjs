@@ -68,14 +68,16 @@ const CLONE = /^(?:0x)?363d3d373d3d3d363d73([0-9a-f]{40})5af43d82803e903d91602b5
 const ZERO = /^0x0*$/;
 const addressOf = (word) => (word && word.length >= 42 && !ZERO.test(word) ? `0x${word.slice(-40).toLowerCase()}` : null);
 // An ABI string: a dynamic string, or the old bytes32 kind a few tokens return.
+// A contract's name is whatever its deployer wrote, so it is cut short and stripped of control characters.
+const clean = (t) => t.replace(/[\u0000-\u001f\u007f-\u009f]/g, "").trim().slice(0, 80) || null;
 export function decodeString(hex) {
   const h = (hex ?? "").replace(/^0x/, "");
   if (!h) return null;
   if (h.length >= 128) {
     const len = parseInt(h.slice(64, 128), 16);
-    if (Number.isFinite(len) && len > 0 && len < 200 && h.length >= 128 + len * 2) return Buffer.from(h.slice(128, 128 + len * 2), "hex").toString("utf8").replace(/\0+$/, "");
+    if (Number.isFinite(len) && len > 0 && len < 200 && h.length >= 128 + len * 2) return clean(Buffer.from(h.slice(128, 128 + len * 2), "hex").toString("utf8"));
   }
-  if (h.length === 64) return Buffer.from(h, "hex").toString("utf8").replace(/\0+$/, "").trim() || null;
+  if (h.length === 64) return clean(Buffer.from(h, "hex").toString("utf8"));
   return null;
 }
 const wholeTokens = (word, decimals) => {

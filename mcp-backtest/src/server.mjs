@@ -24,13 +24,16 @@ import { BREADTH_LIMITS_TEXT, effectiveBets, runBreadth, signalCatalog } from ".
 import { buildPanel, panelInput } from "./panel.mjs";
 import { CRISES, crisisReplay, ENGINE_LIMITS_TEXT, describe, runBacktest } from "./engine.mjs";
 import { cpcv, cpcvInput, CPCV_LIMITS_TEXT } from "./cpcv.mjs";
+import { arenaNew, arenaNewInput, arenaOrders, arenaOrdersInput, arenaStep, arenaStepInput } from "./arena.mjs";
+import { leagueCommit, leagueCommitInput, leagueNew, leagueNewInput, leagueScore, leagueScoreInput } from "./league.mjs";
+import { proofFile, proofFileInput, proofFilings, proofFilingsInput, proofFind, proofFindInput, proofVerifyInput, verifyLedger } from "./proof.mjs";
 import { readPanel, writePanel } from "./panel-io.mjs";
 import { breadthSweep, sweepInput } from "./sweep.mjs";
 import { FACTORS, PIT_LIMITS_TEXT, buildFactorPanel } from "./pit.mjs";
 
 export const SERVER_NAME = "canli-backtest-mcp";
 export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
-export const SERVER_INSTRUCTIONS = "Backtests that refuse lookahead. Build a point-in-time factor from SEC filings with pit_factor (or bring your own signal CSV, each row dated when it was known), then run backtest_signal against your own prices CSV. Pass the same ledger name to every backtest_signal call in one search: the reply judges the best variant against all of them. For breadth, price_panel builds a free price panel (an index fund's holdings, prices, dollar volume and industries), breadth_book builds a sleeve for every signal in every industry from one price panel and trades them as one netted account; effective_bets counts the independent bets in any set of return series. For a search, cpcv scores the chosen variant on held-out blocks across many paths, and crisis_replay holds any returns against named crises. For datasets, annotation_packet, annotation_agreement and annotation_gold turn figures into a gold set people have checked against the filings.";
+export const SERVER_INSTRUCTIONS = "Backtests that refuse lookahead. Build a point-in-time factor from SEC filings with pit_factor (or bring your own signal CSV, each row dated when it was known), then run backtest_signal against your own prices CSV. Pass the same ledger name to every backtest_signal call in one search: the reply judges the best variant against all of them. For breadth, price_panel builds a free price panel (an index fund's holdings, prices, dollar volume and industries), breadth_book builds a sleeve for every signal in every industry from one price panel and trades them as one netted account; effective_bets counts the independent bets in any set of return series. For a search, cpcv scores the chosen variant on held-out blocks across many paths, and crisis_replay holds any returns against named crises. proof_filings and proof_file keep a signed, append-only record; league_new, league_commit and league_score run a paper league scored after the fact; arena_new, arena_orders and arena_step are a paper market for agents, with made-up assets and money. For datasets, annotation_packet, annotation_agreement and annotation_gold turn figures into a gold set people have checked against the filings.";
 export const SERVER_INFO = Object.freeze({
   name: SERVER_NAME,
   version: SERVER_VERSION,
@@ -125,6 +128,16 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   effective_bets: "How many independent bets a set of return series holds: the participation ratio of their weekly correlations (n for unrelated series, 1 for copies), and with families, the families' bets and the ideas they cluster into.",
   list_factors: "The point-in-time factors pit_factor builds from SEC filings, and what each measures.",
   pit_factor: `Build a factor from SEC filings for a list of tickers, monthly from start to end, using only what had been filed by each date (restatements invisible until filed). Writes a signal CSV for backtest_signal. ${PIT_LIMITS_TEXT[0]}`,
+  proof_filings: "Add what companies filed to a signed, append-only ledger: each figure with its filing, and a restatement line whenever a later filing changes one. Re-running adds only what is new. It shows the lines were not altered afterwards, not that a figure is right.",
+  proof_file: "Record a file's hash in a signed, append-only ledger, a backtest result or a returns file, so anyone can later check this exact file existed by then. Nothing else about the file is claimed.",
+  proof_verify: "Check a proof ledger from the file alone: every hash, order and signature, and any heads published elsewhere. Says which line first fails.",
+  proof_find: "Look up a file, company or concept in a proof ledger. No record means only that this ledger holds none, not that anything is wrong.",
+  league_new: "Start a paper league: a schedule of rounds and rules with a hash to publish. No prizes, no stakes and nobody's money.",
+  league_commit: "Commit a league entry before its round closes: only the hash of its CSV of ticker,score goes in the ledger, and the file is shown after the round. Only the latest commit counts, so revealing whichever of several did best is refused.",
+  league_score: "Score a paper league from its files and prices, repeatable by anyone: each entrant's rank correlation with what followed, set against the best luck gives across that many entrants, how different each is from the rest, and a paper book of the top entrants chosen on earlier rounds only.",
+  arena_new: "Start a paper market for AI agents to trade in: made-up assets and made-up money, with scripted traders, reproducible from a seed. Nothing here represents or reaches a real security, token or currency.",
+  arena_orders: "Send paper orders for an agent in an arena, for the coming auction. No short selling and no borrowing.",
+  arena_step: "Clear a paper arena's next call auctions at one price per asset, and show prices and standings. Paper only.",
   crisis_replay: `Hold any strategy's daily returns against named market crises (${Object.values(CRISES).map((c) => c.what.replace(/^the /, "")).slice(0, 4).join(", ")} and others): its return, drawdown and worst day in each one its dates fully cover, and the crises it was not there for, listed as untested and never as passed.`,
   cpcv: `Combinatorial purged cross-validation of a search: choose the best trial on training days, score it on held-out blocks, with purge and embargo at the edges, for every choice of blocks, stitched into whole paths. Returns the spread of out-of-sample Sharpes against the in-sample one. Splits can run as shards on other machines and merge back. ${CPCV_LIMITS_TEXT[1]}`,
   backtest_signal: `Backtest a signal against your prices: rank, long and short quantiles, rebalance, trading only on what was known lag_days earlier, costs on actual trades. Every reply holds the result against the crises its dates cover and lists the ones it does not. With capital_usd and dollar_volume_file, orders fill only as far as the market traded, pay square-root impact, and the reply shows the Sharpe at each size the market can take. Pass ledger to judge the best of a search against all of it. ${ENGINE_LIMITS_TEXT[1]}`,
@@ -271,6 +284,16 @@ export function registerTools(server, session) {
   tool("list_factors", "Point-in-time factors", z.object({}).strict(), READ_ONLY, async () => text({ factors: Object.fromEntries(Object.entries(FACTORS).map(([k, v]) => [k, v.meaning])), plus: "level:<measure> for any annual measure (revenue, net_income, assets, equity, operating_cash_flow, ...)", limits: PIT_LIMITS_TEXT }));
   tool("pit_factor", "Build a point-in-time factor", pitInput, { ...WRITES_LOCAL, openWorldHint: true }, (args) => toolPitFactor(session, args));
   tool("backtest_signal", "Backtest a signal without lookahead", backtestInput, WRITES_LOCAL, (args) => toolBacktestSignal(session, args));
+  tool("proof_filings", "Add company filings to a proof ledger", proofFilingsInput, { ...WRITES_LOCAL, openWorldHint: true }, async (args) => text(await proofFilings(session.markets ??= marketsSession(), args)));
+  tool("proof_file", "Record a file in a proof ledger", proofFileInput, WRITES_LOCAL, async (args) => text(proofFile(args)));
+  tool("proof_verify", "Verify a proof ledger", proofVerifyInput, READ_ONLY, async (args) => { const a = proofVerifyInput.parse(args); return text(verifyLedger(a.ledger_file, a.anchors ?? [])); });
+  tool("proof_find", "Look up a proof ledger", proofFindInput, READ_ONLY, async (args) => text(proofFind(args)));
+  tool("league_new", "Start a paper league", leagueNewInput, WRITES_LOCAL, async (args) => text(leagueNew(args)));
+  tool("league_commit", "Commit a league entry", leagueCommitInput, WRITES_LOCAL, async (args) => text(leagueCommit(args)));
+  tool("league_score", "Score a paper league", leagueScoreInput, READ_ONLY, async (args) => text(leagueScore(args)));
+  tool("arena_new", "Start a paper arena", arenaNewInput, WRITES_LOCAL, async (args) => text(arenaNew(args)));
+  tool("arena_orders", "Send paper orders to an arena", arenaOrdersInput, WRITES_LOCAL, async (args) => text(arenaOrders(args)));
+  tool("arena_step", "Clear a paper arena", arenaStepInput, WRITES_LOCAL, async (args) => text(arenaStep(args)));
   tool("crisis_replay", "Replay strategies through named crises", crisisInput, READ_ONLY, (args) => toolCrisisReplay(args));
   tool("cpcv", "Combinatorial purged cross-validation", cpcvInput, WRITES_LOCAL, async (args) => text(cpcv(args)));
   tool("price_panel", "Build a price panel", panelInput, { ...WRITES_LOCAL, openWorldHint: true }, async (args) => text(await buildPanel(session.markets ??= marketsSession(), args)));

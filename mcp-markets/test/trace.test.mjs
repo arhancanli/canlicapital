@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { buildTree, figureTrace, parseCalculations, parseFacts, parseLabels, partition } from "../src/trace.mjs";
+import { buildTree, figureTrace, MAX_TREE_NODES, parseCalculations, parseFacts, parseLabels, partition } from "../src/trace.mjs";
 import { createSession } from "../src/sources.mjs";
 
 const context = (id, period, member = "") => `<xbrli:context id="${id}"><xbrli:entity><xbrli:identifier scheme="x">1</xbrli:identifier>${member ? `<xbrli:segment><xbrldi:explicitMember dimension="${member.split("=")[0]}">${member.split("=")[1]}</xbrldi:explicitMember></xbrli:segment>` : ""}</xbrli:entity><xbrli:period>${period}</xbrli:period></xbrli:context>`;
@@ -64,7 +64,7 @@ test("a filed sum that disagrees is said to disagree; a line with no value makes
 test("overlapping members: the largest set of lines that adds up is the one marked", () => {
   assert.deepEqual(partition([700, 500, 300, 200], 1000, 1), [false, true, true, true]);
   assert.equal(partition([700, 500], 1000, 1), null);
-  assert.equal(partition(Array(19).fill(1), 19, 1), null, "too many lines to try");
+  assert.equal(partition(Array(17).fill(1), 17, 1), null, "too many lines to try");
 });
 
 test("a cycle in a calculation cannot hang the tree", () => {
@@ -72,6 +72,21 @@ test("a cycle in a calculation cannot hang the tree", () => {
   const fact1 = (line) => ({ line, value: 1, decimals: 0, unit: "USD", start: "2024-01-01", end: "2024-12-31", instant: null });
   const t = buildTree("A", { start: "2024-01-01", end: "2024-12-31" }, { links, plain: new Map([["A", [fact1("A")]], ["B", [fact1("B")]]]), label: (c) => c });
   assert.equal(t.children[0].children[0].children.length, 0);
+});
+
+test("a hostile calculation cannot blow up the walk: each level repeated down two paths stays bounded", () => {
+  const arcs = [];
+  for (let i = 0; i < 60; i += 1) for (const side of ["a", "b"]) { arcs.push({ parent: `N${i}`, child: `${side}${i}`, weight: 1, order: 1 }, { parent: `${side}${i}`, child: `N${i + 1}`, weight: 1, order: 1 }); }
+  const fact1 = (line) => ({ line, value: 1, decimals: 0, unit: "USD", start: "2024-01-01", end: "2024-12-31", instant: null });
+  const plain = new Map(arcs.flatMap((a) => [a.parent, a.child]).map((c) => [c, [fact1(c)]]));
+  const began = Date.now(), budget = { nodes: MAX_TREE_NODES, cut: false };
+  const t = buildTree("N0", { start: "2024-01-01", end: "2024-12-31" }, { links: [{ role: "r", arcs }], plain, label: (c) => c, budget });
+  assert.equal(budget.cut, true);
+  assert.ok(Date.now() - began < 5000, `${Date.now() - began} ms`);
+  let nodes = 0;
+  const walk = (n) => { nodes += 1; n.children.forEach(walk); };
+  walk(t);
+  assert.ok(nodes <= MAX_TREE_NODES + 2, `${nodes} nodes`);
 });
 
 test("figure_trace end to end against a stand-in SEC: tree, what it feeds, breakdown, and the refusals", async () => {

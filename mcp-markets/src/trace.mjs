@@ -105,11 +105,16 @@ const halfUnit = (d) => (d === null || !Number.isFinite(d) ? 0.005 : 0.5 * 10 **
 
 // The tree under a line. Where several reports state a calculation for it, the one whose lines come
 // closest to the filed value is used (the income statement rather than a note, usually).
-export function buildTree(line, period, { links, plain, label, weight = null, seen = new Set() }) {
+// A filing's linkbase is the filer's text, so the walk is bounded: lines repeated down many paths
+// could otherwise grow it exponentially. A tree cut short says so.
+export const MAX_TREE_NODES = 2000, MAX_TREE_DEPTH = 16;
+export function buildTree(line, period, { links, plain, label, weight = null, seen = new Set(), budget = { nodes: MAX_TREE_NODES, cut: false } }) {
+  budget.nodes -= 1;
   const fact = (plain.get(line) ?? []).find((f) => samePeriod(f, period)) ?? null;
   const node = { concept: line, label: label(line), value: fact?.value ?? null, unit: fact?.unit ?? null, weight, children: [] };
   if (fact?.decimals !== undefined) node.decimals = fact.decimals;
   if (seen.has(line)) return node;
+  if (budget.nodes <= 0 || seen.size >= MAX_TREE_DEPTH) { budget.cut = true; node.cut_short = true; return node; }
   const next = new Set(seen).add(line);
   const options = links.map((l) => ({ role: l.role, arcs: l.arcs.filter((a) => a.parent === line).sort((a, b) => a.order - b.order) })).filter((o) => o.arcs.length);
   let best = null;
@@ -121,7 +126,7 @@ export function buildTree(line, period, { links, plain, label, weight = null, se
   }
   if (!best) return node;
   node.report = best.role;
-  node.children = best.arcs.map((a) => buildTree(a.child, period, { links, plain, label, weight: a.weight, seen: next }));
+  node.children = best.arcs.map((a) => buildTree(a.child, period, { links, plain, label, weight: a.weight, seen: next, budget }));
   const held = node.children.filter((c) => c.value !== null);
   node.lines_without_a_value = node.children.length - held.length;
   if (fact) {
@@ -153,7 +158,7 @@ const NOT_A_SPLIT = new Set(["ConsolidationItemsAxis", "StatementEquityComponent
 // Mac): which lines partition it. Null when none does, or there are too many lines to try.
 export function partition(values, total, tolerance) {
   const n = values.length;
-  if (n > 18) return null;
+  if (n > 16) return null;
   let best = null, bestCount = 0;
   for (let mask = 1; mask < 1 << n; mask += 1) {
     let sum = 0, count = 0;
@@ -194,12 +199,14 @@ export async function figureTrace(session, args) {
   const fact = dur ?? inst1;
   if (!fact) throw new NotFound(`${sub.name}'s ${form} reports ${line} for no ${form === "10-K" ? "year" : "quarter"}.`);
   const period = fact.instant ? { instant: fact.instant } : { start: fact.start, end: fact.end };
-  const tree = buildTree(line, period, { links, plain, label });
+  const budget = { nodes: MAX_TREE_NODES, cut: false };
+  const tree = buildTree(line, period, { links, plain, label, budget });
   const parents = [];
   for (const l of links) for (const arc of l.arcs) if (arc.child === line && !parents.some((p) => p.concept === arc.parent)) parents.push({ concept: arc.parent, label: label(arc.parent), value: (plain.get(arc.parent) ?? []).find((f) => samePeriod(f, period))?.value ?? null, weight: arc.weight, report: l.role });
   const axes = {};
   for (const f of split) if (f.line === line && samePeriod(f, period)) (axes[f.axis] ??= []).push(f);
-  const breakdowns = Object.entries(axes).filter(([axis]) => !NOT_A_SPLIT.has(axis)).map(([axis, list]) => {
+  // At most a dozen axes, each at most 16 lines for the overlap search: the filing sets how many there are.
+  const breakdowns = Object.entries(axes).filter(([axis]) => !NOT_A_SPLIT.has(axis)).slice(0, 12).map(([axis, list]) => {
     // Two members can carry one label and value (a standard member and the filer's own).
     const seen = new Set(), lines = [];
     for (const f of list.slice().sort((x, y) => Math.abs(y.value) - Math.abs(x.value))) {
@@ -212,11 +219,11 @@ export async function figureTrace(session, args) {
   }).filter((b) => b.lines.length >= 2).sort((x, y) => Number(y.adds_up) - Number(x.adds_up) || y.lines.length - x.lines.length);
   const checks = tally(tree);
   const reading = tree.children.length
-    ? `${tree.label} of ${fact.value.toLocaleString("en-US")} ${fact.unit ?? ""} is built from ${tree.children.length} lines in the filing's own calculation. ${checks.adding_up} of ${checks.sums} sums in the tree add up to what is filed${checks.incomplete ? `; ${checks.incomplete} could not be completed because a line is filed only split by member` : ""}${checks.not_adding_up.length ? `; ${checks.not_adding_up.length} did not add up` : ""}.`
+    ? `${tree.label} of ${fact.value.toLocaleString("en-US")} ${fact.unit ?? ""} is built from ${tree.children.length} lines in the filing's own calculation. ${checks.adding_up} of ${checks.sums} sums in the tree add up to what is filed${checks.incomplete ? `; ${checks.incomplete} could not be completed because a line is filed only split by member` : ""}${checks.not_adding_up.length ? `; ${checks.not_adding_up.length} did not add up` : ""}.${budget.cut ? " The tree is cut short: this filing's calculation is unusually large." : ""}`
     : `${tree.label} of ${fact.value.toLocaleString("en-US")} ${fact.unit ?? ""} has no lines adding up to it in the filing's calculation: the company reports it directly${breakdowns.length ? `, and splits it by ${breakdowns.map((b) => b.by).join(", ")}` : ""}.`;
   return {
     company: { cik: e.cik, name: e.name ?? sub.name ?? null, ticker: e.ticker ?? null },
     filing: { form: filing.form, accession: filing.accessionNumber, filed: filing.filingDate, report_date: filing.reportDate ?? null, url: `${base}/${filing.primaryDocument ?? ""}`, instance: `${base}/${inst.name}`, calculation: calFile ? `${base}/${calFile.name}` : xsd ? `${base}/${xsd.name}` : null },
-    measure: asked, concept: line, period, tree, feeds_into: parents, breakdowns, checks, plain_reading: reading.trim(), limits: TRACE_LIMITS_TEXT,
+    measure: asked, concept: line, period, tree, ...(budget.cut ? { cut_short: true } : {}), feeds_into: parents.slice(0, 40), breakdowns, checks, plain_reading: reading.trim(), limits: TRACE_LIMITS_TEXT,
   };
 }
