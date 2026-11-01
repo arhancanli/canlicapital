@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.4.0
 
 - `backtest_signal` with `capital_usd` and `dollar_volume_file`: an order fills only up to a share of recent daily volume and pays square-root impact, read from the days before each trade. The reply shows the Sharpe at each size the market can take, and none for a book that could not fill.
 - Every `backtest_signal` reply replays the named crises its dates fully cover and lists the rest as untested. `fails` names what went wrong.
