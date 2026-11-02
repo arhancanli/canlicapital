@@ -1,16 +1,16 @@
 {
  "package": "canli-mcp",
- "version": "0.11.1",
+ "version": "0.15.0",
  "packs": {
   "quant": "0.2.0",
   "validation": "0.14.1",
-  "fundamentals": "0.7.1",
+  "fundamentals": "0.7.5",
   "research": "0.3.1",
-  "backtest": "0.3.0",
-  "markets": "0.7.4",
+  "backtest": "0.4.0",
+  "markets": "0.10.0",
   "paper": "0.3.1"
  },
- "count": 345,
+ "count": 369,
  "tools": [
   {
    "name": "return_stats",
@@ -1886,7 +1886,91 @@
    "pack": "backtest",
    "group": "backtest",
    "title": "Backtest a signal without lookahead",
-   "description": "Backtest a signal against your prices: rank, long and short quantiles, rebalance, trading only on what was known lag_days earlier, costs on actual trades. Pass ledger to judge the best of a search against all of it. A backtest measures one path of history under these costs; it does not establish that the signal will keep working."
+   "description": "Backtest a signal against your prices: rank, long and short quantiles, rebalance, trading only on what was known lag_days earlier, costs on actual trades. Every reply holds the result against the crises its dates cover and lists the ones it does not. With capital_usd and dollar_volume_file, orders fill only as far as the market traded, pay square-root impact, and the reply shows the Sharpe at each size the market can take. Pass ledger to judge the best of a search against all of it. A backtest measures one path of history under these costs; it does not establish that the signal will keep working."
+  },
+  {
+   "name": "proof_filings",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Add company filings to a proof ledger",
+   "description": "Add what companies filed to a signed, append-only ledger: each figure with its filing, and a restatement line whenever a later filing changes one. Re-running adds only what is new. It shows the lines were not altered afterwards, not that a figure is right."
+  },
+  {
+   "name": "proof_file",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Record a file in a proof ledger",
+   "description": "Record a file's hash in a signed, append-only ledger, a backtest result or a returns file, so anyone can later check this exact file existed by then. Nothing else about the file is claimed."
+  },
+  {
+   "name": "proof_verify",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Verify a proof ledger",
+   "description": "Check a proof ledger from the file alone: every hash, order and signature, and any heads published elsewhere. Says which line first fails."
+  },
+  {
+   "name": "proof_find",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Look up a proof ledger",
+   "description": "Look up a file, company or concept in a proof ledger. No record means only that this ledger holds none, not that anything is wrong."
+  },
+  {
+   "name": "league_new",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Start a paper league",
+   "description": "Start a paper league: a schedule of rounds and rules with a hash to publish. No prizes, no stakes and nobody's money."
+  },
+  {
+   "name": "league_commit",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Commit a league entry",
+   "description": "Commit a league entry before its round closes: only the hash of its CSV of ticker,score goes in the ledger, and the file is shown after the round. Only the latest commit counts, so revealing whichever of several did best is refused."
+  },
+  {
+   "name": "league_score",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Score a paper league",
+   "description": "Score a paper league from its files and prices, repeatable by anyone: each entrant's rank correlation with what followed, set against the best luck gives across that many entrants, how different each is from the rest, and a paper book of the top entrants chosen on earlier rounds only."
+  },
+  {
+   "name": "arena_new",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Start a paper arena",
+   "description": "Start a paper market for AI agents to trade in: made-up assets and made-up money, with scripted traders, reproducible from a seed. Nothing here represents or reaches a real security, token or currency."
+  },
+  {
+   "name": "arena_orders",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Send paper orders to an arena",
+   "description": "Send paper orders for an agent in an arena, for the coming auction. No short selling and no borrowing."
+  },
+  {
+   "name": "arena_step",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Clear a paper arena",
+   "description": "Clear a paper arena's next call auctions at one price per asset, and show prices and standings. Paper only."
+  },
+  {
+   "name": "crisis_replay",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Replay strategies through named crises",
+   "description": "Hold any strategy's daily returns against named market crises (2000-02 dot-com bust, 2008-09 bank crisis, 2011 US downgrade and euro debt scare, 2013 taper tantrum in bonds and others): its return, drawdown and worst day in each one its dates fully cover, and the crises it was not there for, listed as untested and never as passed."
+  },
+  {
+   "name": "cpcv",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Combinatorial purged cross-validation",
+   "description": "Combinatorial purged cross-validation of a search: choose the best trial on training days, score it on held-out blocks, with purge and embargo at the edges, for every choice of blocks, stitched into whole paths. Returns the spread of out-of-sample Sharpes against the in-sample one. Splits can run as shards on other machines and merge back. Paths share days and data, so their spread is not a confidence interval and they are not independent tests."
   },
   {
    "name": "price_panel",
@@ -1943,6 +2027,76 @@
    "group": "backtest",
    "title": "Annotation gold set",
    "description": "Merge filled annotation packets and a reviewer's decisions into a gold dataset (JSONL: each item's label, who decided it, the machine label and source) with a datasheet of agreement and hashes."
+  },
+  {
+   "name": "enforcement_actions",
+   "pack": "markets",
+   "group": "markets",
+   "title": "SEC enforcement actions",
+   "description": "The SEC's latest enforcement: litigation releases and administrative proceedings, with who was named, the number and the document, across the market or filtered to a company or person (every word of the name must match). The feeds hold the latest actions only, so an empty answer is limited to what they reach."
+  },
+  {
+   "name": "consumer_complaints",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Consumer complaints (CFPB)",
+   "description": "Complaints consumers sent the CFPB about a bank, lender, card issuer or credit bureau: totals, the last 12 months, top products and issues, and how often the company answered in time. Complaints are unverified and not adjusted for size."
+  },
+  {
+   "name": "product_recalls",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Product recalls (FDA, NHTSA)",
+   "description": "Recalls: a firm's FDA recalls of drugs, devices and food with class, reason and status, and a vehicle's NHTSA safety recalls by make, model and year."
+  },
+  {
+   "name": "sanctions_check",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Sanctions list (OFAC SDN)",
+   "description": "Search the U.S. Treasury's Specially Designated Nationals list and its aliases for a person, company, bank or vessel, by whole words. Not a compliance screening: no match is not clearance, and a match needs checking against the entry."
+  },
+  {
+   "name": "federal_rules",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Federal Register rules",
+   "description": "Federal Register documents: final and proposed rules, notices and presidential documents by words and agency (SEC, CFTC, Fed, Treasury, CFPB, FDA and more), with comment deadlines, effective dates and abstracts. Can list only rules still open for comment."
+  },
+  {
+   "name": "security_identifiers",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Security identifiers (OpenFIGI)",
+   "description": "Map a ticker, ISIN, CUSIP, SEDOL or FIGI to one security through OpenFIGI: its name, FIGIs, listings, exchange and type. Check digits are tested first, so a mistyped ISIN or CUSIP is refused."
+  },
+  {
+   "name": "legal_entity",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Legal entity (LEI)",
+   "description": "Who a company legally is, from the Global LEI register: legal name, LEI, jurisdiction, status, addresses, former names, its direct and ultimate parents and how many entities it owns. By name or LEI; works for firms worldwide, listed or not."
+  },
+  {
+   "name": "world_yields",
+   "pack": "markets",
+   "group": "markets",
+   "title": "World government yields",
+   "description": "Government bond yields side by side: U.S. Treasury, euro area (ECB, AAA), UK (Bank of England), Japan (Ministry of Finance) and Canada (Bank of Canada), by maturity, with the date and basis of each curve, 10Y-2Y slopes and 10-year spreads to the U.S."
+  },
+  {
+   "name": "credit_cycle",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Credit cycle (BIS)",
+   "description": "The BIS credit cycle by country: private credit as a share of GDP, its long-run trend and the credit-to-GDP gap, an early-warning measure regulators use for banking stress. Up to 40 quarters."
+  },
+  {
+   "name": "dividend_history",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Dividend history",
+   "description": "A security's dividends and splits: each payment by ex-date, totals by year, the trailing 12-month yield, five-year growth and the streak of rising annual totals. Works for foreign listings."
   },
   {
    "name": "verify_claims",
@@ -2118,6 +2272,20 @@
    "group": "markets",
    "title": "Futures curve (Cboe)",
    "description": "A Cboe futures curve from its daily settlements: VIX futures by expiration with the VIX index, contango or backwardation and the front month's premium; also mini VIX, variance, bitcoin and iBoxx bond index futures."
+  },
+  {
+   "name": "figure_trace",
+   "pack": "markets",
+   "group": "markets",
+   "title": "figure_trace",
+   "description": "How a reported figure is built, from the filing itself: the lines the company's own XBRL calculation adds up to it, each line's value, every sum recomputed and checked, what the figure feeds into, and how the filing splits it by segment, product or region. It shows the filing agrees with itself, not that the figures are right."
+  },
+  {
+   "name": "token_check",
+   "pack": "markets",
+   "group": "markets",
+   "title": "token_check",
+   "description": "What an ERC-20 token's contract can do and how much of it exists, read from the chain: mint, pause, blacklist and upgrade powers, owner, proxy, source verification, supply, and an unlock schedule you give set against it. It names what the code allows. A clean reading never means safe, and it cannot detect a rug pull."
   },
   {
    "name": "segment_revenue",
@@ -2320,7 +2488,7 @@
    "pack": "markets",
    "group": "markets",
    "title": "Bank financials (FDIC call reports)",
-   "description": "A US bank's condition quarter by quarter from its call reports (FDIC, no key): assets, deposits and the share uninsured, loans and the share noncurrent, equity, earnings, ROA, ROE, net interest margin and capital ratios. With no bank, the latest bank failures and their cost."
+   "description": "A US bank's condition quarter by quarter from its call reports (FDIC, no key): assets, deposits and the share uninsured, loans and the share noncurrent, equity, earnings, ROA, ROE, net interest margin and capital ratios. With no bank, failures since 1934 and their cost, by year or state."
   },
   {
    "name": "filing_drift",
