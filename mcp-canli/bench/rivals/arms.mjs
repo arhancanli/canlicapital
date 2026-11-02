@@ -21,5 +21,7 @@ export const ARMS = {
   edgartools: [["edgar", `${R}/.venv-edgar/bin/edgartools-mcp`, [], ID]],
   "edgartools-5.62": [["edgar", `${R}/.venv-edgar-new/bin/edgartools-mcp`, [], ID]],
   yahoo: [["yahoo", `${R}/yfmcp/.venv313/bin/python`, [`${R}/yfmcp/server.py`], {}]],
+  // A hosted server that answers without an account. No code of theirs runs here.
+  drillr: [["drillr", "https://gateway.drillr.ai/mcp/data", [], {}]],
   "edgartools+yahoo": [["edgar", `${R}/.venv-edgar/bin/edgartools-mcp`, [], ID], ["yahoo", `${R}/yfmcp/.venv313/bin/python`, [`${R}/yfmcp/server.py`], {}]],
 };

@@ -8,7 +8,7 @@ import { execSync } from "node:child_process";
 
 import Anthropic from "@anthropic-ai/sdk";
 import OpenAI from "openai";
-import { Client } from "@modelcontextprotocol/client";
+import { Client, StreamableHTTPClientTransport } from "@modelcontextprotocol/client";
 import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
 
 import { ARMS } from "./arms.mjs";
@@ -76,7 +76,9 @@ async function connectArm(arm) {
   let instructions = "";
   for (const [key, command, args, env] of ARMS[arm]) {
     const c = new Client({ name: "rival-bench", version: "0" });
-    await c.connect(new StdioClientTransport({ command, args, env: { PATH: process.env.PATH, HOME: process.env.HOME, ...env }, stderr: "ignore" }));
+    await c.connect(/^https?:/.test(command)
+      ? new StreamableHTTPClientTransport(new URL(command))
+      : new StdioClientTransport({ command, args, env: { PATH: process.env.PATH, HOME: process.env.HOME, ...env }, stderr: "ignore" }));
     clients.push(c);
     const instr = c.getInstructions?.() ?? "";
     if (instr) instructions += `\n[${key}] ${instr}`;
@@ -156,8 +158,40 @@ async function runTaskClaude(ctx, task) {
   return { value: null, correct: false, final: "turn limit", input, cached, output, turns, calls, errors, seconds: (Date.now() - t0) / 1000, trace };
 }
 
+// GPT-5.5 and later take function tools with their reasoning on only through the Responses API.
+// REASONING sets the effort; left out, the model's own default, as a person calling it would get.
+const RESPONSES = /^gpt-(?:5\.[5-9]|[6-9])/.test(MODEL);
+async function runTaskResponses(ctx, task) {
+  const instructions = SYSTEM + (ctx.instructions ? `\n\nServer instructions:${ctx.instructions}` : "");
+  const tools = ctx.tools.map((t) => ({ type: "function", name: t.function.name, description: t.function.description, parameters: t.function.parameters }));
+  let input = 0, cached = 0, output = 0, calls = 0, errors = 0, turns = 0, previous, items = task.prompt;
+  const t0 = Date.now(), trace = [];
+  for (; turns < MAX_TURNS; turns++) {
+    const r = await openai.responses.create({ model: MODEL, instructions, input: items, tools, ...(previous ? { previous_response_id: previous } : {}), ...(process.env.REASONING ? { reasoning: { effort: process.env.REASONING } } : {}) });
+    input += r.usage.input_tokens; cached += r.usage.input_tokens_details?.cached_tokens ?? 0; output += r.usage.output_tokens;
+    previous = r.id;
+    const uses = r.output.filter((o) => o.type === "function_call");
+    if (!uses.length) {
+      const value = parseAnswer(r.output_text ?? "");
+      return { value, correct: grade(task, value), final: (r.output_text ?? "").slice(-400), input, cached, output, turns: turns + 1, calls, errors, seconds: (Date.now() - t0) / 1000, trace };
+    }
+    items = [];
+    for (const u of uses) {
+      calls++;
+      let args;
+      try { args = JSON.parse(u.arguments || "{}"); } catch { args = null; }
+      const { text, error } = args === null ? { text: "Error: arguments are not valid JSON", error: true } : await callTool(ctx, u.name, args);
+      if (error) errors++;
+      trace.push([u.name, String(u.arguments).slice(0, 300), text.slice(0, 200)]);
+      items.push({ type: "function_call_output", call_id: u.call_id, output: text });
+    }
+  }
+  return { value: null, correct: false, final: "turn limit", input, cached, output, turns, calls, errors, seconds: (Date.now() - t0) / 1000, trace };
+}
+
 async function runTask(ctx, task) {
   if (CLAUDE) return runTaskClaude(ctx, task);
+  if (RESPONSES) return runTaskResponses(ctx, task);
   const system = SYSTEM + (ctx.instructions ? `\n\nServer instructions:${ctx.instructions}` : "");
   const messages = [{ role: "system", content: system }, { role: "user", content: task.prompt }];
   let input = 0, cached = 0, output = 0, calls = 0, errors = 0, turns = 0;
