@@ -5,6 +5,7 @@ import { writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { jsonLd as breadcrumbLd } from "./lib/breadcrumbs.mjs";
 import { renderProductShellFooter, renderProductShellHeader, renderProductShellStylesheet } from "./product-shell.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -57,6 +58,7 @@ const html = `<!doctype html>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 ${renderProductShellStylesheet()}
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
+${breadcrumbLd([["Canli Capital", "/"], ["See what you really own", ROUTE]])}
 </head>
 <body class="check-home look-through">
 ${renderProductShellHeader({ active: "" })}

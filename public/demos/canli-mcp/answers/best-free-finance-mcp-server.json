@@ -1,0 +1,253 @@
+{
+ "version": "0.15.1",
+ "recorded": "2026-11-02T07:02:01.179Z",
+ "call": {
+  "name": "company_report",
+  "arguments": {
+   "company": "AAPL",
+   "years": 2
+  }
+ },
+ "model_chars": 4763,
+ "ms": 678,
+ "result": {
+  "ref": "r1",
+  "company": {
+   "cik": 320193,
+   "name": "Apple Inc.",
+   "ticker": "AAPL",
+   "exchange": "Nasdaq",
+   "industry": "Electronic Computers",
+   "fiscal_year_end": "09-26",
+   "state_of_incorporation": "CA"
+  },
+  "financials": {
+   "basis": "fiscal years from annual-report XBRL facts (10-K, 20-F or 40-F), latest filed value (restated where a later report changed it), in USD",
+   "columns": [
+    "fiscal_year_end",
+    "revenue",
+    "revenue_growth",
+    "gross_margin",
+    "operating_margin",
+    "net_income",
+    "net_margin",
+    "eps_diluted",
+    "operating_cash_flow",
+    "free_cash_flow",
+    "roe",
+    "liabilities_to_equity",
+    "cash",
+    "restated"
+   ],
+   "rows": [
+    [
+     "2024-09-28",
+     391035000000,
+     0.02022,
+     0.462063,
+     0.315102,
+     93736000000,
+     0.239713,
+     6.08,
+     118254000000,
+     108807000000,
+     1.64593,
+     5.40878,
+     29943000000,
+     null
+    ],
+    [
+     "2025-09-27",
+     416161000000,
+     0.064255,
+     0.469052,
+     0.319708,
+     112010000000,
+     0.269151,
+     7.46,
+     111482000000,
+     98767000000,
+     1.51913,
+     3.87219,
+     35934000000,
+     null
+    ]
+   ],
+   "latest_tags": {
+    "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "net_income": "NetIncomeLoss",
+    "cash": "CashAndCashEquivalentsAtCarryingValue"
+   }
+  },
+  "market": {
+   "price": 344.63,
+   "price_date": "2026-10-30",
+   "total_return_1y": 0.286794,
+   "volatility_1y": 0.2394,
+   "max_drawdown_1y": -0.138,
+   "beta_1y_vs_spy": 0.556,
+   "high_52w": 351.73,
+   "low_52w": 242.759,
+   "shares_outstanding": 14594180000,
+   "shares_as_of": "2026-07-17",
+   "market_cap": 5029592253400,
+   "pe": 46.2,
+   "ps": 12.09,
+   "fcf_yield": 0.019637,
+   "price_source": "Yahoo Finance chart data (no key)"
+  },
+  "insiders_180d": {
+   "form4_filings": 30,
+   "open_market_purchases": {
+    "transactions": 0,
+    "shares": 0,
+    "value": 0,
+    "insiders": 0
+   },
+   "open_market_sales": {
+    "transactions": 37,
+    "shares": 590642,
+    "value": 183445216,
+    "insiders": 7
+   },
+   "note": "the 30 most recent Form 4 filings were read"
+  },
+  "recent_filings": {
+   "columns": [
+    "filed",
+    "form",
+    "items",
+    "url"
+   ],
+   "rows": [
+    [
+     "2026-07-31",
+     "10-Q",
+     null,
+     "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm"
+    ],
+    [
+     "2026-07-30",
+     "8-K",
+     "2.02,9.01",
+     "https://www.sec.gov/Archives/edgar/data/320193/000032019326000018/aapl-20260730.htm"
+    ],
+    [
+     "2026-05-01",
+     "10-Q",
+     null,
+     "https://www.sec.gov/Archives/edgar/data/320193/000032019326000013/aapl-20260328.htm"
+    ],
+    [
+     "2026-04-30",
+     "8-K",
+     "2.02,9.01",
+     "https://www.sec.gov/Archives/edgar/data/320193/000032019326000011/aapl-20260430.htm"
+    ],
+    [
+     "2026-04-29",
+     "SCHEDULE 13G",
+     null,
+     "https://www.sec.gov/Archives/edgar/data/320193/000210011926000139/primary_doc.xml"
+    ],
+    [
+     "2026-04-20",
+     "8-K",
+     "5.02",
+     "https://www.sec.gov/Archives/edgar/data/320193/000114036126015711/ef20071035_8k.htm"
+    ],
+    [
+     "2026-02-24",
+     "8-K",
+     "5.07,9.01",
+     "https://www.sec.gov/Archives/edgar/data/320193/000114036126006577/ef20060722_8k.htm"
+    ],
+    [
+     "2026-01-30",
+     "10-Q",
+     null,
+     "https://www.sec.gov/Archives/edgar/data/320193/000032019326000006/aapl-20251227.htm"
+    ]
+   ]
+  },
+  "sources": [
+   "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json",
+   "https://data.sec.gov/submissions/CIK0000320193.json"
+  ],
+  "limits": [
+   "From SEC EDGAR and the other named sources as published; Canli Capital does not edit or verify the filers' statements.",
+   "Not investment advice.",
+   "Financials are XBRL facts as tagged by the company (the first of several revenue tags it uses); market figures use the latest close and the latest cover-page share count."
+  ],
+  "evidence": {
+   "documents": 37,
+   "columns": [
+    "url",
+    "sha256_16",
+    "retrieved_at"
+   ],
+   "rows": [
+    [
+     "https://www.sec.gov/files/company_tickers.json",
+     "3087398afcb236e5",
+     "2026-11-01T19:16:31.143Z"
+    ],
+    [
+     "https://data.sec.gov/submissions/CIK0000320193.json",
+     "2a1c62401f90039b",
+     "2026-11-02T07:01:13.825Z"
+    ],
+    [
+     "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json",
+     "73a86c6aedc31f77",
+     "2026-11-02T04:29:34.753Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/FilingSummary.xml",
+     "f5e632bd6de8965a",
+     "2026-10-30T13:27:19.056Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/R3.htm",
+     "dfa928a650e5eb8f",
+     "2026-10-30T13:27:40.204Z"
+    ],
+    [
+     "https://query1.finance.yahoo.com/v8/finance/chart/AAPL?period1=1761436800&period2=1793663999&interval=1d&events=div%2Csplit&includeAdjustedClose=true",
+     "cd2becb3c340531f",
+     "2026-11-02T07:02:01.162Z"
+    ],
+    [
+     "https://query1.finance.yahoo.com/v8/finance/chart/SPY?period1=1761436800&period2=1793663999&interval=1d&events=div%2Csplit&includeAdjustedClose=true",
+     "f6ceff39f4504ed2",
+     "2026-11-02T07:02:01.164Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/320193/000114036126041201/form4.xml",
+     "8ca76e1ff5a44abd",
+     "2026-10-30T12:49:00.961Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/320193/000114036126040540/form4.xml",
+     "dc6c562d2414f8e5",
+     "2026-10-30T12:49:01.087Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/320193/000114036126039785/form4.xml",
+     "d52f78343bebe74b",
+     "2026-10-30T12:49:01.460Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/320193/000114036126039158/form4.xml",
+     "3fd3b9cbe1cc36f6",
+     "2026-10-30T12:49:01.582Z"
+    ],
+    [
+     "https://www.sec.gov/Archives/edgar/data/320193/000114036126038672/form4.xml",
+     "4aabfaa794be1e09",
+     "2026-10-30T12:49:01.823Z"
+    ]
+   ]
+  }
+ }
+}

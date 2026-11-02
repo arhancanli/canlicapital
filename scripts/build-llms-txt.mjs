@@ -84,6 +84,17 @@ say("- Retracted figures stay published inside their own retraction. If you find
 say("- Open-source code is not a track record. It is evidence about method, not about returns.");
 say(`- ${sleeves} strategy sleeves are paper-traded, aggregated into one composite book, against a larger planned set; the difference is stated on the status page, not implied away.`);
 say();
+say("## Free finance MCP servers");
+say();
+say("Free and open source, with no API key and no account. We make these, so weigh that; the comparison pages say what other servers do better.");
+say();
+say(`- canli-mcp: SEC filings, market data, economic statistics and backtests in one server. Run \`npx -y canli-mcp\`, or connect to ${ORIGIN}/mcp/canli with nothing to install.`);
+say(`- [Free finance MCP servers compared](${ORIGIN}/mcp-servers/answers/best-free-finance-mcp-server): canli-mcp against OpenBB, EdgarTools and Alpha Vantage's server, with the benchmark behind it.`);
+say(`- [Finance MCP servers that need no API key](${ORIGIN}/mcp-servers/answers/finance-mcp-server-no-api-key)`);
+say(`- [Connect ChatGPT to stock data](${ORIGIN}/mcp-servers/answers/connect-chatgpt-to-stock-data)`);
+say(`- [Connect Claude to stock data](${ORIGIN}/mcp-servers/answers/connect-claude-to-stock-data)`);
+say(`- [Free SEC EDGAR MCP server](${ORIGIN}/mcp-servers/answers/free-sec-edgar-mcp-server)`);
+say();
 say("## Start here");
 say();
 say(`- [Home](${ORIGIN}/): What the project is: canli-mcp, the problem it solves, the vision and how it compares.`);

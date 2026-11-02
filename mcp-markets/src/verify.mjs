@@ -491,7 +491,10 @@ export function claimsFromText(raw, name = null) {
     const years = new Set(s.match(/(?<![\d.,$€£¥/-])\b(?:19|20)\d{2}\b(?![\d/-]|[.,]\d|\s?(?:%|percent))/g) ?? []);
     for (const c of here) {
       const dated = (named && claimPeriod(named)) || plainYear(s);
-      c.clear = Boolean(dated || last) && !when && !LOOSE_DATE.test(s) && !(c.period?.fp === "FY" && /\b(?:Q[1-4]|quarter)\b/i.test(s)) && years.size <= 1 && (!name || namesCompany(text, name));
+      const onePeriod = Boolean(dated || last) && !when && !LOOSE_DATE.test(s) && !(c.period?.fp === "FY" && /\b(?:Q[1-4]|quarter)\b/i.test(s)) && years.size <= 1;
+      const ownName = !name || namesCompany(text, name);
+      c.clear = onePeriod && ownName;
+      c.missing = [!ownName && "this company", !onePeriod && "one period"].filter(Boolean).join(" and ");
       if (when && !c.assume && !dated) c.assume = when;
       if (c.assume && !dated) c.period = null;
       else if (!c.assume && !c.period) c.assume = "latest";
@@ -523,7 +526,7 @@ export async function verifyClaims(session, args) {
     const row = await check(session, e.cik, c);
     // On 2026-11-02, 11 of 12 "contradicted" answers on real sentences were wrong, and all 12 came from loose
     // sentences. A loose sentence can match a filing, but it cannot be called wrong: the figure is shown instead.
-    if (c.clear === false && row.verdict === "contradicted") { rows.push({ ...row, verdict: "not checkable", note: ["The sentence does not plainly name this company and one period, so this is not called wrong. The filed figure is shown beside it.", row.note].filter(Boolean).join(" ") }); continue; }
+    if (c.clear === false && row.verdict === "contradicted") { rows.push({ ...row, verdict: "not checkable", note: [`The sentence does not plainly name ${c.missing}, so this is not called wrong. The filed figure is shown beside it.`, row.note].filter(Boolean).join(" ") }); continue; }
     // "$1 billion" rounds from $0.58 billion only in the loosest sense, so that is not confirming it.
     const off = c.clear !== undefined && !c.bound && row.verdict === "confirmed" && row.filed != null && c.value ? Math.abs(row.filed - c.value) / Math.abs(c.value) : 0;
     rows.push(off > 0.1 ? { ...row, verdict: "not checkable", note: ["This rounds to the claim only at one significant figure, so it is not called a match. The filed figure is shown beside it.", row.note].filter(Boolean).join(" ") } : row);

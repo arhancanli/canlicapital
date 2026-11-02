@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- verify_claims says what a loose sentence is missing: this company, one period, or both.
+
 ## 0.10.1
 
 verify_claims: on 0.10.0, 12 of 24 settled answers on 284 real sentences were wrong: 11 of 12 "contradicted" and 1 of 12 confirmations. Most read someone else's figure as this company's.

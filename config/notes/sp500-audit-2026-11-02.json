@@ -1,0 +1,4259 @@
+{
+ "schema": "canli.note.sp500-audit.v1",
+ "captured": "2026-11-02",
+ "method": "triangulate from canli-mcp 0.15.1, run with swarm over index_constituents for VOO. Each figure is reached by separate code from separate SEC files: the statement in the latest annual report, the filing's data tags, and the SEC's running history of reported values.",
+ "tool_version": "0.15.1",
+ "totals": {
+  "companies": 500,
+  "figures_compared": 3250,
+  "figures_disagreeing": 9,
+  "companies_with_a_disagreement": 6,
+  "different_measures": 21,
+  "companies_with_no_figures": 4,
+  "companies_compared": 496,
+  "companies_with_no_disagreement": 490
+ },
+ "disagreements": [
+  {
+   "company": "Aptiv",
+   "ticker": "APTV",
+   "year_end": "2025-12-31",
+   "measure": "cash",
+   "annual_report": {
+    "filed": "2026-02-06",
+    "form": "10-K",
+    "link": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000009/0001521332-26-000009-index.htm",
+    "in_dollars": 1851000000
+   },
+   "later_report": {
+    "filed": "2026-08-04",
+    "form": "10-Q",
+    "accession": "0001521332-26-000061",
+    "link": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000061/aptv-20260630.htm",
+    "in_dollars": 1575000000
+   },
+   "change_in_dollars": 276000000,
+   "tool_reading": "history apart by 14.9%",
+   "why": "Separated its Versigent business on April 1, 2026. The later report shows Versigent as a discontinued operation in every period, which moves its cash out of this line.",
+   "kind": "spin-off"
+  },
+  {
+   "company": "Becton Dickinson",
+   "ticker": "BDX",
+   "year_end": "2025-09-30",
+   "measure": "cash",
+   "annual_report": {
+    "filed": "2025-11-25",
+    "form": "10-K",
+    "link": "https://www.sec.gov/Archives/edgar/data/10795/000001079525000099/0000010795-25-000099-index.htm",
+    "in_dollars": 641000000
+   },
+   "later_report": {
+    "filed": "2026-05-07",
+    "form": "10-Q",
+    "accession": "0000010795-26-000026",
+    "link": "https://www.sec.gov/Archives/edgar/data/10795/000001079526000026/bdx-20260331.htm",
+    "in_dollars": 567000000
+   },
+   "change_in_dollars": 74000000,
+   "tool_reading": "history apart by 11.5%",
+   "why": "Spun off its Biosciences and Diagnostic Solutions business on February 9, 2026. The later report shows that business as discontinued operations in every period before the spin-off.",
+   "kind": "spin-off"
+  },
+  {
+   "company": "eBay",
+   "ticker": "EBAY",
+   "year_end": "2025-12-31",
+   "measure": "assets",
+   "annual_report": {
+    "filed": "2026-02-19",
+    "form": "10-K",
+    "link": "https://www.sec.gov/Archives/edgar/data/1065088/000106508826000027/0001065088-26-000027-index.htm",
+    "in_dollars": 17610000000
+   },
+   "later_report": {
+    "filed": "2026-04-29",
+    "form": "10-Q",
+    "accession": "0001065088-26-000093",
+    "link": "https://www.sec.gov/Archives/edgar/data/1065088/000106508826000093/ebay-20260331.htm",
+    "in_dollars": 17437000000
+   },
+   "change_in_dollars": 173000000,
+   "tool_reading": "history apart by 1.0%",
+   "why": "Adopted a new accounting standard on website software costs, ASU 2025-06, and applied it to past periods. Property and equipment fell by $173 million and retained earnings by $132 million.",
+   "kind": "new accounting standard"
+  },
+  {
+   "company": "eBay",
+   "ticker": "EBAY",
+   "year_end": "2025-12-31",
+   "measure": "equity",
+   "annual_report": {
+    "filed": "2026-02-19",
+    "form": "10-K",
+    "link": "https://www.sec.gov/Archives/edgar/data/1065088/000106508826000027/0001065088-26-000027-index.htm",
+    "in_dollars": 4615000000
+   },
+   "later_report": {
+    "filed": "2026-04-29",
+    "form": "10-Q",
+    "accession": "0001065088-26-000093",
+    "link": "https://www.sec.gov/Archives/edgar/data/1065088/000106508826000093/ebay-20260331.htm",
+    "in_dollars": 4483000000
+   },
+   "change_in_dollars": 132000000,
+   "tool_reading": "history apart by 2.9%",
+   "why": "Adopted a new accounting standard on website software costs, ASU 2025-06, and applied it to past periods. Property and equipment fell by $173 million and retained earnings by $132 million.",
+   "kind": "new accounting standard"
+  },
+  {
+   "company": "Zoetis",
+   "ticker": "ZTS",
+   "year_end": "2025-12-31",
+   "measure": "assets",
+   "annual_report": {
+    "filed": "2026-02-12",
+    "form": "10-K",
+    "link": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000011/0001555280-26-000011-index.htm",
+    "in_dollars": 15467000000
+   },
+   "later_report": {
+    "filed": "2026-05-07",
+    "form": "10-Q",
+    "accession": "0001555280-26-000024",
+    "link": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000024/zts-20260331.htm",
+    "in_dollars": 15490000000
+   },
+   "change_in_dollars": 23000000,
+   "tool_reading": "history apart by 0.1%",
+   "why": "Stopped reporting subsidiaries outside the U.S. one month behind the rest of the company, and recast earlier periods to match.",
+   "kind": "change in accounting principle"
+  },
+  {
+   "company": "Zoetis",
+   "ticker": "ZTS",
+   "year_end": "2025-12-31",
+   "measure": "equity",
+   "annual_report": {
+    "filed": "2026-02-12",
+    "form": "10-K",
+    "link": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000011/0001555280-26-000011-index.htm",
+    "in_dollars": 3331000000
+   },
+   "later_report": {
+    "filed": "2026-05-07",
+    "form": "10-Q",
+    "accession": "0001555280-26-000024",
+    "link": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000024/zts-20260331.htm",
+    "in_dollars": 3415000000
+   },
+   "change_in_dollars": 84000000,
+   "tool_reading": "history apart by 2.5%",
+   "why": "Stopped reporting subsidiaries outside the U.S. one month behind the rest of the company, and recast earlier periods to match.",
+   "kind": "change in accounting principle"
+  },
+  {
+   "company": "Zoetis",
+   "ticker": "ZTS",
+   "year_end": "2025-12-31",
+   "measure": "cash",
+   "annual_report": {
+    "filed": "2026-02-12",
+    "form": "10-K",
+    "link": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000011/0001555280-26-000011-index.htm",
+    "in_dollars": 2312000000
+   },
+   "later_report": {
+    "filed": "2026-05-07",
+    "form": "10-Q",
+    "accession": "0001555280-26-000024",
+    "link": "https://www.sec.gov/Archives/edgar/data/1555280/000155528026000024/zts-20260331.htm",
+    "in_dollars": 2450000000
+   },
+   "change_in_dollars": 138000000,
+   "tool_reading": "history apart by 5.6%",
+   "why": "Stopped reporting subsidiaries outside the U.S. one month behind the rest of the company, and recast earlier periods to match.",
+   "kind": "change in accounting principle"
+  },
+  {
+   "company": "W. R. Berkley",
+   "ticker": "WRB",
+   "year_end": "2025-12-31",
+   "measure": "assets",
+   "annual_report": {
+    "filed": "2026-02-27",
+    "form": "10-K",
+    "link": "https://www.sec.gov/Archives/edgar/data/11544/000001154426000005/0000011544-26-000005-index.htm",
+    "in_dollars": 44071071000
+   },
+   "later_report": {
+    "filed": "2026-05-01",
+    "form": "10-Q",
+    "accession": "0000011544-26-000011",
+    "link": "https://www.sec.gov/Archives/edgar/data/11544/000001154426000011/wrb-20260331.htm",
+    "in_dollars": 43926843000
+   },
+   "change_in_dollars": 144228000,
+   "tool_reading": "history apart by 0.3%",
+   "why": "Two income-tax asset lines in the annual report do not appear in the later report, and together they equal the whole gap. We found no sentence explaining this, so the link is our arithmetic.",
+   "kind": "presentation, inferred"
+  },
+  {
+   "company": "Carnival",
+   "ticker": "CCL",
+   "year_end": "2025-11-30",
+   "measure": "equity",
+   "annual_report": {
+    "filed": "2026-01-27",
+    "form": "10-K",
+    "link": "https://www.sec.gov/Archives/edgar/data/815097/000081509726000007/0000815097-26-000007-index.htm",
+    "in_dollars": 12284000000
+   },
+   "later_report": {
+    "filed": "2026-03-27",
+    "form": "10-Q",
+    "accession": "0000815097-26-000037",
+    "link": "https://www.sec.gov/Archives/edgar/data/815097/000081509726000037/ccl-20260228.htm",
+    "in_dollars": 12270000000
+   },
+   "change_in_dollars": 14000000,
+   "tool_reading": "history apart by 0.1%",
+   "why": "The total did not change. The later report splits it into equity attributable to Carnival and noncontrolling interest.",
+   "kind": "split of one total"
+  }
+ ],
+ "detail_in_dollars": {
+  "wrb_current_income_tax_asset": 2732000,
+  "wrb_deferred_income_tax_asset": 141496000,
+  "wrb_gap": 144228000,
+  "ccl_noncontrolling_interest": 14000000,
+  "ccl_attributable": 12270000000,
+  "ebay_property_and_equipment_change": 173000000,
+  "ebay_retained_earnings_change": 132000000
+ },
+ "no_figures": [
+  {
+   "name": "Hartford Financial Services Group Inc/The",
+   "why": "The SEC now lists it as Hartford Insurance Group, and it was looked up by the fund's older name."
+  },
+  {
+   "name": "Equity Residential",
+   "why": "The SEC now lists it as Vivmark Residential, and it was looked up by the fund's older name."
+  },
+  {
+   "name": "Clorox Co/The",
+   "why": "The SEC's company facts did not hold its latest annual report."
+  },
+  {
+   "name": "Honeywell Aerospace Inc",
+   "why": "It has not yet filed an annual report."
+  }
+ ],
+ "earlier_run": {
+  "version": "0.15.0",
+  "companies_flagged": 7,
+  "our_bug": "Lennox: we read the fourth-quarter revenue column as the full year. Fixed, and Lennox has no disagreement in this run."
+ },
+ "rows": [
+  {
+   "company": "3M Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "A O Smith Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "AES Corp/The",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "AMETEK Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "APA Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "AT&T Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "AbbVie Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Abbott Laboratories",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Accenture PLC",
+   "year_end": "2026-08-31",
+   "figures_compared": 4,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Adobe Inc",
+   "year_end": "2025-11-28",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Advanced Micro Devices Inc",
+   "year_end": "2025-12-27",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Aflac Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Agilent Technologies Inc",
+   "year_end": "2025-10-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Air Products and Chemicals Inc",
+   "year_end": "2025-09-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Airbnb Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Akamai Technologies Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Albemarle Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Alexandria Real Estate Equities Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Align Technology Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Allegion plc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Alliant Energy Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Allstate Corp/The",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Alphabet Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Altria Group Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Amazon.com Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Amcor PLC",
+   "year_end": "2026-06-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Ameren Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "American Electric Power Co Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "American Express Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "American International Group Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "American Tower Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "American Water Works Co Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Ameriprise Financial Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "Amgen Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Amphenol Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Analog Devices Inc",
+   "year_end": "2025-11-01",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Aon PLC",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Apollo Global Management Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "AppLovin Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Apple Inc",
+   "year_end": "2025-09-27",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Applied Materials Inc",
+   "year_end": "2025-10-26",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Aptiv Holdings Ltd",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 1,
+   "disagreement_text": "cash (history apart by 14.9%)",
+   "different_measures": 0
+  },
+  {
+   "company": "Arch Capital Group Ltd",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Archer-Daniels-Midland Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Ares Management Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 4,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "Arista Networks Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Arthur J Gallagher & Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Assurant Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Atmos Energy Corp",
+   "year_end": "2025-09-30",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "AutoZone Inc",
+   "year_end": "2026-08-29",
+   "figures_compared": 4,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Autodesk Inc",
+   "year_end": "2026-01-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Automatic Data Processing Inc",
+   "year_end": "2026-06-30",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "AvalonBay Communities Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Avery Dennison Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Axon Enterprise Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "BXP Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Baker Hughes Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Ball Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Bank of America Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Bank of New York Mellon Corp/The",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "Baxter International Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Becton Dickinson & Co",
+   "year_end": "2025-09-30",
+   "figures_compared": 7,
+   "disagreements": 1,
+   "disagreement_text": "cash (history apart by 11.5%)",
+   "different_measures": 0
+  },
+  {
+   "company": "Berkshire Hathaway Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "Best Buy Co Inc",
+   "year_end": "2026-01-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Bio-Techne Corp",
+   "year_end": "2026-06-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Biogen Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "BlackRock Funding Inc/DE",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Blackstone Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Block Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Boeing Co/The",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Booking Holdings Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Boston Scientific Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Bristol-Myers Squibb Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Broadcom Inc",
+   "year_end": "2025-11-02",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Broadridge Financial Solutions Inc",
+   "year_end": "2026-06-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Brown & Brown Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Brown-Forman Corp",
+   "year_end": "2026-04-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Builders FirstSource Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Bunge Global SA",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "CBRE Group Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "CDW Corp/DE",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "CF Industries Holdings Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "CH Robinson Worldwide Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "CME Group Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "CMS Energy Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "CRH PLC",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "CSX Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "CVS Health Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Cadence Design Systems Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Camden Property Trust",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Capital One Financial Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Cardinal Health Inc",
+   "year_end": "2026-06-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Carnival Corp Ltd",
+   "year_end": "2025-11-30",
+   "figures_compared": 7,
+   "disagreements": 1,
+   "disagreement_text": "equity (history apart by 0.1%)",
+   "different_measures": 0
+  },
+  {
+   "company": "Carrier Global Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Carvana Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Casey's General Stores Inc",
+   "year_end": "2026-04-30",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Caterpillar Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Cboe Global Markets Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Cencora Inc",
+   "year_end": "2025-09-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Centene Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "CenterPoint Energy Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Charles River Laboratories International Inc",
+   "year_end": "2025-12-27",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Charles Schwab Corp/The",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Charter Communications Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Chevron Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Chipotle Mexican Grill Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Chubb Ltd",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Church & Dwight Co Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Ciena Corp",
+   "year_end": "2025-11-01",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Cigna Group/The",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Cincinnati Financial Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Cintas Corp",
+   "year_end": "2026-05-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Cisco Systems Inc",
+   "year_end": "2026-07-25",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Citigroup Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Citizens Financial Group Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Clorox Co/The",
+   "year_end": "2026-06-30",
+   "figures_compared": 0,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "CoStar Group Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Coca-Cola Co/The",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Cognizant Technology Solutions Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Coherent Corp",
+   "year_end": "2026-06-30",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Coinbase Global Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Colgate-Palmolive Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Comcast Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Comfort Systems USA Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Conagra Brands Inc",
+   "year_end": "2026-05-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "ConocoPhillips",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Consolidated Edison Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "Constellation Brands Inc",
+   "year_end": "2026-02-28",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Constellation Energy Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Cooper Cos Inc/The",
+   "year_end": "2025-10-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Copart Inc",
+   "year_end": "2026-07-31",
+   "figures_compared": 3,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Corning Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Corpay Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Corteva Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Costco Wholesale Corp",
+   "year_end": "2026-08-30",
+   "figures_compared": 4,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Crowdstrike Holdings Inc",
+   "year_end": "2026-01-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Crown Castle Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Cummins Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "DR Horton Inc",
+   "year_end": "2025-09-30",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "DTE Energy Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "DaVita Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Danaher Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Darden Restaurants Inc",
+   "year_end": "2026-05-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Datadog Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Deckers Outdoor Corp",
+   "year_end": "2026-03-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Deere & Co",
+   "year_end": "2025-11-02",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Dell Technologies Inc",
+   "year_end": "2026-01-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Delta Air Lines Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Devon Energy Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "Dexcom Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Diamondback Energy Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Digital Realty Trust Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Dollar General Corp",
+   "year_end": "2026-01-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Dollar Tree Inc",
+   "year_end": "2026-01-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Dominion Energy Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Domino's Pizza Inc",
+   "year_end": "2025-12-28",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "DoorDash Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Dover Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Dow Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "DuPont de Nemours Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Duke Energy Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "EMCOR Group Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "EOG Resources Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "EQT Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Eaton Corp PLC",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "EchoStar Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Ecolab Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Edison International",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Edwards Lifesciences Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Electronic Arts Inc",
+   "year_end": "2026-03-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Elevance Health Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Eli Lilly & Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Emerson Electric Co",
+   "year_end": "2025-09-30",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Entergy Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Equifax Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Equinix Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Equity Residential",
+   "year_end": null,
+   "figures_compared": 0,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Erie Indemnity Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Essex Property Trust Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Estee Lauder Cos Inc/The",
+   "year_end": "2026-06-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Everest Group Ltd",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Evergy Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Eversource Energy",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Exelon Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Expand Energy Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Expedia Group Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Expeditors International of Washington Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Extra Space Storage Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Exxon Mobil Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "F5 Inc",
+   "year_end": "2025-09-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "FactSet Research Systems Inc",
+   "year_end": "2026-08-31",
+   "figures_compared": 4,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Fair Isaac Corp",
+   "year_end": "2025-09-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Fastenal Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "FedEx Corp",
+   "year_end": "2026-05-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Federal Realty Investment Trust",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Fedex Freight Holding Co Inc",
+   "year_end": "2026-05-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Fidelity National Information Services Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Fifth Third Bancorp",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "First Solar Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "FirstEnergy Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Fiserv Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Flex Ltd",
+   "year_end": "2026-03-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Ford Motor Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Fortinet Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Fortive Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Fox Corp",
+   "year_end": "2026-06-30",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Franklin Resources Inc",
+   "year_end": "2025-09-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "Freeport-McMoRan Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "GE HealthCare Technologies Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "GE Vernova Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 3,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Garmin Ltd",
+   "year_end": "2025-12-27",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Gartner Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Gen Digital Inc",
+   "year_end": "2026-04-03",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Generac Holdings Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "General Dynamics Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "General Electric Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "General Mills Inc",
+   "year_end": "2026-05-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "General Motors Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Genuine Parts Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Gilead Sciences Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Global Payments Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Globe Life Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "GoDaddy Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Goldman Sachs Group Inc/The",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "HCA Healthcare Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "HP Inc",
+   "year_end": "2025-10-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "Halliburton Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Hartford Financial Services Group Inc/The",
+   "year_end": null,
+   "figures_compared": 0,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Hasbro Inc",
+   "year_end": "2025-12-28",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "Healthpeak Properties Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Henry Schein Inc",
+   "year_end": "2025-12-27",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Hershey Co/The",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Hewlett Packard Enterprise Co",
+   "year_end": "2025-10-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Hilton Worldwide Holdings Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Home Depot Inc/The",
+   "year_end": "2026-02-01",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Honeywell Aerospace Inc",
+   "year_end": null,
+   "figures_compared": 0,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Honeywell International Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Hormel Foods Corp",
+   "year_end": "2025-10-26",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Host Hotels & Resorts Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Howmet Aerospace Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Hubbell Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Humana Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Huntington Bancshares Inc/OH",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Huntington Ingalls Industries Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "IDEX Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "IDEXX Laboratories Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "IQVIA Holdings Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Illinois Tool Works Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Incyte Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Ingersoll Rand Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Insulet Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Intel Corp",
+   "year_end": "2025-12-27",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Interactive Brokers Group Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Intercontinental Exchange Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "International Business Machines Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "International Flavors & Fragrances Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "International Paper Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Intuit Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Intuitive Surgical Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Invesco Ltd",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Invitation Homes Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Iron Mountain Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "J M Smucker Co/The",
+   "year_end": "2026-04-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "JB Hunt Transport Services Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "JPMorgan Chase & Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Jabil Inc",
+   "year_end": "2026-08-31",
+   "figures_compared": 4,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Jack Henry & Associates Inc",
+   "year_end": "2026-06-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Jacobs Solutions Inc",
+   "year_end": "2025-09-26",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Johnson & Johnson",
+   "year_end": "2025-12-28",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Johnson Controls International plc",
+   "year_end": "2025-09-30",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "KKR & Co Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "KLA Corp",
+   "year_end": "2026-06-30",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Kenvue Inc",
+   "year_end": "2025-12-28",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Keurig Dr Pepper Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "KeyCorp",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Keysight Technologies Inc",
+   "year_end": "2025-10-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Kimberly-Clark Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Kimco Realty Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "Kinder Morgan Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Kraft Heinz Co/The",
+   "year_end": "2025-12-27",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Kroger Co/The",
+   "year_end": "2026-01-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "L3Harris Technologies Inc",
+   "year_end": "2026-01-02",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Labcorp Holdings Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Lam Research Corp",
+   "year_end": "2026-06-28",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Las Vegas Sands Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Leidos Holdings Inc",
+   "year_end": "2026-01-02",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Lennar Corp",
+   "year_end": "2025-11-30",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "Lennox International Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Linde PLC",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Live Nation Entertainment Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Lockheed Martin Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Loews Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Lowe's Cos Inc",
+   "year_end": "2026-01-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Lululemon Athletica Inc",
+   "year_end": "2026-02-01",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Lumentum Holdings Inc",
+   "year_end": "2026-06-27",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "LyondellBasell Industries NV",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "M&T Bank Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "MGM Resorts International",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "MSCI Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Marathon Petroleum Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Marriott International Inc/MD",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Marsh & McLennan Cos Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Martin Marietta Materials Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Marvell Technology Inc",
+   "year_end": "2026-01-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Masco Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Mastercard Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "McCormick & Co Inc/MD",
+   "year_end": "2025-11-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "McDonald's Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "McKesson Corp",
+   "year_end": "2026-03-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Medtronic PLC",
+   "year_end": "2026-04-24",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Merck & Co Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "MetLife Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Meta Platforms Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Mettler-Toledo International Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Microchip Technology Inc",
+   "year_end": "2026-03-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Micron Technology Inc",
+   "year_end": "2026-09-03",
+   "figures_compared": 4,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Microsoft Corp",
+   "year_end": "2026-06-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Mid-America Apartment Communities Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Moderna Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Molson Coors Beverage Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Mondelez International Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Monolithic Power Systems Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Monster Beverage Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Moody's Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Morgan Stanley",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Mosaic Co/The",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Motorola Solutions Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "NIKE Inc",
+   "year_end": "2026-05-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "NRG Energy Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "NVIDIA Corp",
+   "year_end": "2026-01-25",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "NVR Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "NXP Semiconductors NV",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Nasdaq Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "NetApp Inc",
+   "year_end": "2026-04-24",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "Netflix Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Newmont Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "News Corp",
+   "year_end": "2026-06-30",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "NextEra Energy Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "NiSource Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Nordson Corp",
+   "year_end": "2025-10-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Norfolk Southern Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Northern Trust Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "Northrop Grumman Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Norwegian Cruise Line Holdings Ltd",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Nucor Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "O'Reilly Automotive Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "ON Semiconductor Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "ONEOK Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Occidental Petroleum Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "Old Dominion Freight Line Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Omnicom Group Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Oracle Corp",
+   "year_end": "2026-05-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Otis Worldwide Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "PACCAR Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "PG&E Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "PNC Financial Services Group Inc/The",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "PPG Industries Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "PPL Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "PTC Inc",
+   "year_end": "2025-09-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Packaging Corp of America",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Palantir Technologies Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Palo Alto Networks Inc",
+   "year_end": "2026-07-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Parker-Hannifin Corp",
+   "year_end": "2026-06-30",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "PayPal Holdings Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Paychex Inc",
+   "year_end": "2026-05-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Pentair PLC",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "PepsiCo Inc",
+   "year_end": "2025-12-27",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Pfizer Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Philip Morris International Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Phillips 66",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Pinnacle West Capital Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Principal Financial Group Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Procter & Gamble Co/The",
+   "year_end": "2026-06-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Progressive Corp/The",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Prologis Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Prudential Financial Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Public Service Enterprise Group Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Public Storage",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "PulteGroup Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "QUALCOMM Inc",
+   "year_end": "2025-09-28",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Qnity Electronics Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 4,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Quanta Services Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Quest Diagnostics Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "RTX Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Ralph Lauren Corp",
+   "year_end": "2026-03-28",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Raymond James Financial Inc",
+   "year_end": "2025-09-30",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Realty Income Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Regency Centers Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Regeneron Pharmaceuticals Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Regions Financial Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 4,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Republic Services Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "ResMed Inc",
+   "year_end": "2026-06-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Revvity Inc",
+   "year_end": "2025-12-28",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Robinhood Markets Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Rockwell Automation Inc",
+   "year_end": "2025-09-30",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Rollins Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Roper Technologies Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Ross Stores Inc",
+   "year_end": "2026-01-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Royal Caribbean Cruises Ltd",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "S&P Global Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "SBA Communications Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "SLB Ltd",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "STERIS PLC",
+   "year_end": "2026-03-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Salesforce Inc",
+   "year_end": "2026-01-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Sandisk Corp",
+   "year_end": "2026-07-03",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Seagate Technology Holdings PLC",
+   "year_end": "2026-07-03",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Sempra",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "ServiceNow Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Sherwin-Williams Co/The",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Simon Property Group Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Skyworks Solutions Inc",
+   "year_end": "2025-10-03",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Smurfit Westrock PLC",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Snap-on Inc",
+   "year_end": "2026-01-03",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Solventum Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Southern Co/The",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Southwest Airlines Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Stanley Black & Decker Inc",
+   "year_end": "2026-01-03",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Starbucks Corp",
+   "year_end": "2025-09-28",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "State Street Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Steel Dynamics Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Stryker Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Super Micro Computer Inc",
+   "year_end": "2026-06-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Synchrony Financial",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Synopsys Inc",
+   "year_end": "2025-10-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Sysco Corp",
+   "year_end": "2026-06-27",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "T Rowe Price Group Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "T-Mobile US Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "TE Connectivity PLC",
+   "year_end": "2025-09-26",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "TJX Cos Inc/The",
+   "year_end": "2026-01-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "TKO Group Holdings Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Take-Two Interactive Software Inc",
+   "year_end": "2026-03-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Tapestry Inc",
+   "year_end": "2026-06-27",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Targa Resources Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Target Corp",
+   "year_end": "2026-01-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Teledyne Technologies Inc",
+   "year_end": "2025-12-28",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Teradyne Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Tesla Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Texas Instruments Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Texas Pacific Land Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Textron Inc",
+   "year_end": "2026-01-03",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 1
+  },
+  {
+   "company": "Thermo Fisher Scientific Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Tractor Supply Co",
+   "year_end": "2025-12-27",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Trade Desk Inc/The",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Trane Technologies PLC",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "TransDigm Group Inc",
+   "year_end": "2025-09-30",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Travelers Cos Inc/The",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Trimble Inc",
+   "year_end": "2026-01-02",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Truist Financial Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 4,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Tyler Technologies Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Tyson Foods Inc",
+   "year_end": "2025-09-27",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "UDR Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "US Bancorp",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Uber Technologies Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Ulta Beauty Inc",
+   "year_end": "2026-01-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Union Pacific Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "United Airlines Holdings Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "United Parcel Service Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "United Rentals Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "UnitedHealth Group Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Universal Health Services Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "VICI Properties Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Valero Energy Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Veeva Systems Inc",
+   "year_end": "2026-01-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Ventas Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Veralto Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "VeriSign Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Verisk Analytics Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Verizon Communications Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Vertex Pharmaceuticals Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Vertiv Holdings Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Viatris Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Visa Inc",
+   "year_end": "2025-09-30",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Vistra Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Vulcan Materials Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "W R Berkley Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 1,
+   "disagreement_text": "assets (history apart by 0.3%)",
+   "different_measures": 0
+  },
+  {
+   "company": "WEC Energy Group Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "WW Grainger Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Walmart Inc",
+   "year_end": "2026-01-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Walt Disney Co/The",
+   "year_end": "2025-09-27",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Warner Bros Discovery Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Waste Management Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Waters Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Wells Fargo & Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 5,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Welltower Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "West Pharmaceutical Services Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Western Digital Corp",
+   "year_end": "2026-07-03",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Westinghouse Air Brake Technologies Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Weyerhaeuser Co",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Williams Cos Inc/The",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Williams-Sonoma Inc",
+   "year_end": "2026-02-01",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Willis Towers Watson PLC",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Workday Inc",
+   "year_end": "2026-01-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Wynn Resorts Ltd",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Xcel Energy Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Xylem Inc/NY",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Yum! Brands Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Zebra Technologies Corp",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Zimmer Biomet Holdings Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 0,
+   "disagreement_text": null,
+   "different_measures": 0
+  },
+  {
+   "company": "Zoetis Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 6,
+   "disagreements": 3,
+   "disagreement_text": "assets (history apart by 0.1%); equity (history apart by 2.5%); cash (history apart by 5.6%)",
+   "different_measures": 0
+  },
+  {
+   "company": "eBay Inc",
+   "year_end": "2025-12-31",
+   "figures_compared": 7,
+   "disagreements": 2,
+   "disagreement_text": "assets (history apart by 1.0%); equity (history apart by 2.9%)",
+   "different_measures": 0
+  }
+ ]
+}

@@ -3,6 +3,7 @@
 // hosted rules (no files, no paper trading, no prices, nothing kept, a per-caller rate). Nothing
 // here reaches the network.
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { createServer } from "node:http";
 import test from "node:test";
 
@@ -64,6 +65,16 @@ test("a computation runs; paper trading and prices stay with the local server", 
 test("a request naming a file is refused before any tool, with its own id; a body over the limit is refused", async () => {
   assert.equal(namesAFile({ name: "deflated_sharpe", arguments: { returns: { $file: "/etc/passwd", column: "x" } } }), true);
   assert.equal(namesAFile({ calls: [{ name: "a", arguments: { x: [1, 2, { $file: "a.csv" }] } }] }), true);
+  assert.equal(namesAFile({ name: "run_tool", arguments: { name: "effective_bets", arguments: { returns_file: "/proc/self/environ" } } }), true, "a tool's own path argument");
+  assert.equal(namesAFile({ arguments: { calls: [{ name: "proof_file", arguments: { file: "/etc/passwd", ledger_file: "/tmp/x" } }] } }), true);
+  assert.equal(namesAFile({ arguments: { name: "league_new", arguments: { league_dir: "/tmp/x" } } }), true);
+  assert.equal(namesAFile({ arguments: { name: "cpcv", arguments: { merge_files: ["/tmp/a"] } } }), true);
+  assert.equal(namesAFile({ arguments: { calls: [{ name: "a" }, { name: "effective_bets", arguments: { returns_file: { $result: 0 } } }] } }), true, "nor a path passed on from an earlier call");
+  assert.equal(namesAFile({ arguments: { name: "fails_to_deliver", arguments: { files: 6 } } }), false, "a count of files is not a file");
+  assert.equal(namesAFile({ arguments: { name: "read_filing", arguments: { company: "AAPL", filed_before: "2020-01-01" } } }), false);
+  let deep = { x: 1 };
+  for (let i = 0; i < 80; i += 1) deep = { deep };
+  assert.equal(namesAFile(deep), true, "too deep to read is refused");
   assert.equal(namesAFile({ name: "a", arguments: { note: "$file" } }), false, "the words alone are not a file argument");
   await withHandler(createCanliHandler(), async (url) => {
     const r = await rpc(url, "tools/call", { name: "run_tool", arguments: { name: "return_stats", arguments: { returns: { $file: "/etc/passwd", column: "x" } } } }, { id: 7 });
@@ -129,4 +140,14 @@ test("a key's tier is read once a minute per key", async () => {
   assert.equal(n, 1);
   t = 60_001; await resolve("h");
   assert.equal(n, 2);
+});
+
+test("every path argument of every tool in the catalog is caught by the gate", () => {
+  const { tools } = JSON.parse(readFileSync(new URL("../mcp-canli/src/index.json", import.meta.url), "utf8"));
+  const notPaths = new Set(["filed_before", "paths", "profile"]);
+  const missed = [];
+  for (const t of tools) for (const [, name] of t[6].matchAll(/\b([a-z_]*(?:file|dir|path|folder)[a-z_]*)\??:/g)) {
+    if (!notPaths.has(name) && !namesAFile({ [name]: "/etc/passwd" })) missed.push(`${t[0]}.${name}`);
+  }
+  assert.deepEqual(missed, []);
 });

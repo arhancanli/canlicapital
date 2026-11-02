@@ -532,6 +532,127 @@
         "sec-financial-statements-for-ai",
         "compare-stocks-in-claude"
       ]
+    },
+    {
+      "slug": "best-free-finance-mcp-server",
+      "cites": "benchmarks/finance-mcp-servers.json",
+      "title": "Free finance MCP servers compared",
+      "question": "What is the best free MCP server for finance?",
+      "short": "Free servers compared",
+      "answer": "We make canli-mcp, so weigh this accordingly: it is free, needs no API key, and in our open benchmark, with the same model and questions, it answered 79% of the questions every server finished, against 54% for the best other open setup. OpenBB covers far more if you hold data-provider keys, EdgarTools is strong on SEC filings alone, and Alpha Vantage's official server needs its own API key.",
+      "call": {
+        "name": "company_report",
+        "arguments": {
+          "company": "AAPL",
+          "years": 2
+        }
+      },
+      "ask": "Give me Apple's last two years from its filings.",
+      "related": [
+        "finance-mcp-server-no-api-key",
+        "free-sec-edgar-mcp-server",
+        "fact-check-financial-figures"
+      ]
+    },
+    {
+      "slug": "finance-mcp-server-no-api-key",
+      "title": "A finance MCP server with no API key",
+      "question": "Is there a finance MCP server that needs no API key?",
+      "short": "No API key",
+      "answer": "Yes. canli-mcp needs no API key and no account: it reads SEC filings, Treasury and FRED data and prices from their public sources, and it runs on your machine or at a free hosted address.",
+      "call": {
+        "name": "treasury_yields",
+        "arguments": {
+          "curve": "nominal",
+          "start": "2026-10-01"
+        }
+      },
+      "ask": "What has the Treasury yield curve done this month?",
+      "related": [
+        "best-free-finance-mcp-server",
+        "economic-data-for-ai-agents",
+        "treasury-yield-curve-ai"
+      ]
+    },
+    {
+      "slug": "connect-chatgpt-to-stock-data",
+      "title": "Connect ChatGPT to free stock market data",
+      "question": "How do I connect ChatGPT to free stock market data?",
+      "short": "ChatGPT",
+      "answer": "Add canli-mcp's free hosted server as a connector in ChatGPT, at https://canlicapital.com/mcp/canli. It needs no API key, and ChatGPT can then read prices, SEC filings and economic data. Custom connectors depend on your ChatGPT plan and settings, so check yours first.",
+      "call": {
+        "name": "price_history",
+        "arguments": {
+          "symbol": "AAPL",
+          "start": "2026-10-01",
+          "interval": "1Day"
+        }
+      },
+      "ask": "How has Apple's share price moved this month?",
+      "related": [
+        "connect-claude-to-stock-data",
+        "market-overview-in-claude",
+        "fact-check-financial-figures"
+      ]
+    },
+    {
+      "slug": "connect-claude-to-stock-data",
+      "title": "Connect Claude to free stock market data",
+      "question": "How do I connect Claude to free stock market data?",
+      "short": "Claude",
+      "answer": "Run claude mcp add canli -- npx -y canli-mcp in Claude Code, or add https://canlicapital.com/mcp/canli as a connector in claude.ai if your plan allows it. Both are free and need no API key, and Claude can then read prices, filings and economic data from their sources.",
+      "call": {
+        "name": "market_overview",
+        "arguments": {}
+      },
+      "ask": "What are the markets doing today?",
+      "related": [
+        "stock-prices-in-claude",
+        "connect-chatgpt-to-stock-data",
+        "sec-financial-statements-for-ai"
+      ]
+    },
+    {
+      "slug": "alpha-vantage-mcp-alternative",
+      "title": "A free alternative to the Alpha Vantage MCP",
+      "question": "Is there a free alternative to the Alpha Vantage MCP server?",
+      "short": "Alpha Vantage alternative",
+      "answer": "canli-mcp is one: it is free, needs no API key, and reads SEC filings, Treasury and FRED data from the sources themselves. Alpha Vantage's server uses your Alpha Vantage API key and follows that plan's limits, so compare what each covers for your use.",
+      "call": {
+        "name": "price_history",
+        "arguments": {
+          "symbol": "MSFT",
+          "start": "2026-10-01",
+          "interval": "1Day"
+        }
+      },
+      "ask": "How has Microsoft's share price moved this month?",
+      "related": [
+        "best-free-finance-mcp-server",
+        "finance-mcp-server-no-api-key",
+        "stock-prices-in-claude"
+      ]
+    },
+    {
+      "slug": "free-sec-edgar-mcp-server",
+      "title": "A free MCP server for SEC EDGAR filings",
+      "question": "What is a free MCP server for SEC EDGAR filings?",
+      "short": "SEC EDGAR",
+      "answer": "canli-mcp reads SEC filings for free with no API key: statements as filed, full-text search, insider trades, 13F holdings and a check of any figure against the filing. EdgarTools is another good option with no key, especially if you want a Python library first.",
+      "call": {
+        "name": "read_filing",
+        "arguments": {
+          "company": "NVDA",
+          "form": "10-K",
+          "find": "employees"
+        }
+      },
+      "ask": "How many employees does NVIDIA say it has in its annual report?",
+      "related": [
+        "search-sec-filings-ai",
+        "sec-financial-statements-for-ai",
+        "insider-trades-ai-agent"
+      ]
     }
   ]
 }

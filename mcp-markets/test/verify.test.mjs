@@ -46,7 +46,7 @@ test("a loose sentence shows the filed figure without calling the claim wrong; a
   const loose = await verifyClaims(session(), { company: "AAPL", text: "Apple's revenue was $500 billion." });
   assert.deepEqual(verdicts(loose), [["revenue", 500, "not checkable"]]);
   assert.ok(loose.rows[0][col(loose, "filed")] > 0, "the filed figure is still shown");
-  assert.match(loose.rows[0][col(loose, "note")], /not called wrong/);
+  assert.match(loose.rows[0][col(loose, "note")], /does not plainly name one period, so this is not called wrong/);
   const clear = await verifyClaims(session(), { company: "AAPL", text: "Apple's revenue was $500 billion in fiscal 2025." });
   assert.deepEqual(verdicts(clear), [["revenue", 500, "contradicted"]]);
   const right = await verifyClaims(session(), { company: "AAPL", text: "Apple's revenue was $416.2 billion." });
