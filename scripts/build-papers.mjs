@@ -1177,7 +1177,7 @@ function main() {
   // and summary are read from the page build-notes.mjs wrote, as noteRoutes() reads its routes.
   const unescapeHtml = (text) => text.replaceAll("&quot;", '"').replaceAll("&#39;", "'").replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&");
   const noteEntries = notes.map((route) => {
-    const html = readFileSync(resolve(ROOT, `notes/${route.loc.split("/").at(-1)}.html`), "utf8");
+    const html = readFileSync(resolve(ROOT, `${route.loc.slice(ORIGIN.length + 1)}.html`), "utf8");
     const title = html.match(/<meta property="og:title" content="([^"]*)"/)?.[1];
     const summary = html.match(/<meta name="description" content="([^"]*)"/)?.[1];
     if (!title || !summary) throw new Error(`${route.loc}: no og:title or description for the feed`);
