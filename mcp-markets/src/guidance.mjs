@@ -729,7 +729,7 @@ function measureAt(text) {
 // quarter revenue grew 14 percent, full year fiscal 2026 revenue grew 14 percent").
 function scopeOf(text) {
   let at = -1, scope = null;
-  for (const m of String(text).matchAll(/\b(?:full[- ](?:fiscal )?year|fiscal year|fiscal 20\d{2}|fy ?20\d{2}|for the year|twelve months|annual)\b|\b(?:quarter|q[1-4]|three months)\b/gi)) {
+  for (const m of String(text).matchAll(/\b(?:full[- ](?:fiscal )?year|fiscal year|(?<!(?:quarter|q[1-4]|months)(?: of(?: the)?)?\s)(?:fiscal 20\d{2}|fy ?20\d{2})|for the year|twelve months|annual)\b|\b(?:quarter|q[1-4]|three months)\b/gi)) {
     if (m.index > at) { at = m.index; scope = /quarter|q[1-4]|three months/i.test(m[0]) ? "quarter" : "year"; }
   }
   return scope;
