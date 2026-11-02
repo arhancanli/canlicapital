@@ -89,7 +89,7 @@ async function connectArm(arm) {
       claudeTools.push({ name: name.slice(0, 64), description: (t.description ?? "").slice(0, 1024), input_schema: params(t.inputSchema) });
     }
   }
-  return { clients, tools, claudeTools, route, instructions };
+  return { clients, tools, claudeTools, route, instructions, hosted: ARMS[arm].some(([, command]) => /^https?:/.test(command)) };
 }
 
 const SCALE = { thousand: 1e3, million: 1e6, billion: 1e9, trillion: 1e12 };
@@ -110,7 +110,10 @@ export function grade(task, value) {
 }
 
 // Runs one tool call through its MCP server; returns the text the model sees (capped).
+// A hosted arm is someone else's service: nothing here signs up, pays or trades on it.
+const SIDE_EFFECT = /regist|signup|sign_up|keys?_create|create_key|checkout|purchase|(^|_)buy|(^|_)pay|payment|(^|_)order|transfer|withdraw|deposit|billing|subscribe|credits?_/i;
 async function callTool(ctx, name, args) {
+  if (ctx.hosted && !/^(get|list|search|fetch|find|read|lookup)_/i.test(name) && SIDE_EFFECT.test(name)) return { text: "Not available in this test: this tool changes something on the service.", error: true };
   let text, error = false;
   const target = ctx.route.get(name);
   try {

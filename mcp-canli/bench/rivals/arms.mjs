@@ -31,3 +31,32 @@ export const ARMS = {
   "pit-fundamentals": [["pit", process.execPath, [`${R}/npm-pit/node_modules/pit-fundamentals-mcp/index.js`], { HOME: `${R}/home/pit` }]],
   "edgartools+yahoo": [["edgar", `${R}/.venv-edgar/bin/edgartools-mcp`, [], ID], ["yahoo", `${R}/yfmcp/.venv313/bin/python`, [`${R}/yfmcp/server.py`], {}]],
 };
+
+// Hosted servers that answered without an account in the census of 2026-11-02. No code of theirs runs here.
+const HOSTED = {
+  "signal8": "https://mcp.signal8.ai/mcp",
+  "cyanheads-hosted": "https://secedgar.caseyjhand.com/mcp",
+  "keyvex": "https://mcp.keyvex.com",
+  "pipeworx-edgar-hosted": "https://gateway.pipeworx.io/edgar/mcp",
+  "valuein": "https://mcp.valuein.biz/mcp",
+  "oxfordledge": "https://www.oxfordledge.com/mcp",
+  "beatandraise": "https://beatandraise.com/mcp",
+  "secfeed": "https://secfeedapi.com/mcp",
+  "stockfacts": "https://mcp.livermore.club/mcp",
+  "rockmoon": "https://mcp.rockmoon.ai/mcp",
+  "finbolt": "https://api.getfinbolt.com/mcp",
+  "stocklake": "https://api.stocklake.dev/mcp",
+  "dataporium": "https://mcp.dataporium.io/mcp",
+  "nexqual": "https://mcp.nexqual.com/mcp",
+  "usefulapi-finnhub": "https://finnhub.usefulapi.io/mcp",
+  "edgrapi": "https://api.edgrapi.com/mcp",
+  "filingstools": "https://filings.tools/mcp",
+  "filingapi": "https://mcp.filingapi.dev/mcp",
+  "quantsonar": "https://quantsonar.com/mcp",
+  "datakoot": "https://filings.datakoot.com/mcp",
+  "alphacreek": "https://mcp.alphacreek.ai/mcp",
+  "shibui": "https://mcp.shibui.finance/mcp",
+  "marketintel": "https://api.marketintelligenceapi.com/mcp",
+  "agentnewsstand": "https://api.agentnewsstand.com/mcp",
+};
+for (const [key, url] of Object.entries(HOSTED)) ARMS[key] = [[key, url, [], {}]];
