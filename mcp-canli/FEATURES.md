@@ -1,6 +1,6 @@
 # Finance coverage and quality, 0.6.0
 
-The flagship combines seven exact published Canli packages. Its full catalog has 385 tools;
+The flagship combines seven exact published Canli packages. Its full catalog has 386 tools;
 paper trading is enabled with paper credentials or an explicit pack selection. Five tools are
 advertised initially (three for discovery and running, two common ones). The 56 prompts, 15 static resources (one is the result viewer drawn by clients with MCP Apps) and nine resource templates
 appear only for enabled packs. This is a coverage inventory, not a worldwide ranking.
@@ -36,6 +36,8 @@ appear only for enabled packs. This is a coverage inventory, not a worldwide ran
 | Sharing strategies | `hub_list`, `hub_check`, `hub_run`: strategies as data, a recipe with fixed parameters and its reasons and risks | No contributor's code runs. Being listed is not a judgement that one works. |
 | Long memory | `filing_memory`: every annual report a company has on EDGAR, searched on your machine, with yearly counts and an optional test against a margin. Local embeddings with `canli-mcp models install` |
 | Management's word | `guidance_record`: guidance set against what then happened, quarter by quarter, from the company's own releases |
+| Who depends on whom | `exposure_map`: the companies whose annual reports name a supplier, customer or other company, with the passage |
+| Your week | `my_week`: how each holding moved, what it told the SEC and when it reports next, in plain words |
 | What happened next | `what_happened_next`: every past time a market or stock did this, what followed, against an ordinary day |
 | Watching | `sentinel_add`, `canli-mcp sentinel run`, `canli-mcp --channel`: conditions watched from your machine, and a block of context when one is met. A rule can only watch and tell |
 | The past, sealed | `canli-mcp --as-of <date>`: only what was public that day. `recipes/agent_backtest.mjs` scores a model on it and checks whether it remembers |
