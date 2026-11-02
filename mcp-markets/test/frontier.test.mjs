@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+
 import { attentionInput, pageAttention, shippingActivity } from "../src/alt.mjs";
+import { loadFloats, saveFloats } from "../src/disk-cache.mjs";
 import { latestFilings } from "../src/latest.mjs";
 import { annualPartOf, buildIndex, filingMemory, fuse, linkToMeasure, mentionTest, paragraphsOf, permutationP, score, spearman, stem, tokens } from "../src/memory.mjs";
 import { filingSentiment, INSTALL_HINT, modelsInstalled, sentencesOf } from "../src/models.mjs";
@@ -240,4 +245,15 @@ test("what_happened_next: cases, comparison, and it needs a percent", async () =
   assert.equal(r.episodes.rows[0][0], dates[400]);
   assert.equal(r.summary.rows.length, 4);
   assert.match(r.limits[0], /not a forecast and not advice/);
+});
+
+test("vectors go to their own folder and come back, and a wrong length or name is refused", () => {
+  const dir = mkdtempSync(join(tmpdir(), "vectors-")), env = { CANLI_CACHE_DIR: dir };
+  const v = Float32Array.from([0.5, -0.25, 1, 0]);
+  assert.equal(loadFloats(env, "v1-a", 4), null, "nothing yet");
+  saveFloats(env, "v1-a", v);
+  assert.deepEqual([...loadFloats(env, "v1-a", 4)], [...v]);
+  assert.equal(loadFloats(env, "v1-a", 5), null, "a change in how a report is split reads as missing");
+  assert.throws(() => saveFloats(env, "../../evil", v), /Not a vector file name/);
+  rmSync(dir, { recursive: true, force: true });
 });

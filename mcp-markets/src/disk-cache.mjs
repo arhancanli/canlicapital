@@ -4,9 +4,10 @@
 // turns it off, and CANLI_CACHE_DIR moves it. A source that is down is answered from an older copy,
 // whose retrieved_at says how old it is.
 import { createHash } from "node:crypto";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { mkdir, readFile, readdir, stat, unlink, writeFile, rename } from "node:fs/promises";
 import { homedir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { promisify } from "node:util";
 import { gunzip, gzip } from "node:zlib";
 

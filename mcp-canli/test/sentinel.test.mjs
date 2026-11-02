@@ -5,7 +5,9 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
 
-import { asBlock, channelSink, createSentinel, execSink, ruleInput, webhookSink } from "../src/sentinel.mjs";
+import { execSink } from "../local/commands.mjs";
+import { createSentinel, webhookSink } from "../local/sentinel.mjs";
+import { asBlock, channelSink, ruleInput } from "../src/sentinel.mjs";
 
 const setup = (over = {}) => {
   const home = mkdtempSync(join(tmpdir(), "sentinel-"));

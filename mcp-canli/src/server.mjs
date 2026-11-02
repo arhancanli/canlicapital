@@ -39,7 +39,8 @@ import { registerPackGuides } from "./guides.mjs";
 import { governance, publicKeys, verifyAudit } from "./governance.mjs";
 import { watchFilings } from "./watch.mjs";
 import { createTimeMachine } from "./timemachine.mjs";
-import { channelSink, CHANNEL_INSTRUCTIONS, createSentinel, execSink, SENTINEL_TOOLS, webhookSink } from "./sentinel.mjs";
+import { signedTrialCount, TRIALS_TOOL } from "./trials.mjs";
+import { channelSink, CHANNEL_INSTRUCTIONS, SENTINEL_TOOLS } from "./sentinel.mjs";
 
 const PKG = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
 const INDEX = JSON.parse(readFileSync(new URL("./index.json", import.meta.url), "utf8"));
@@ -51,7 +52,7 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS];
+const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL];
 export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
@@ -320,13 +321,14 @@ async function describeTool(packs, { name }) {
 export function selfTools(packs, gov, keeper, readOnly = false) {
   const desk = { call: (name, args) => (name === "triangulate" ? runTriangulate(desk, args) : runOne(packs, { name, arguments: args }, {}, [], gov)), keep: (r) => keeper.put(r), get: (ref) => keeper.get(ref), at, toolFor: (name) => toolFor(name, packs), hosted: Boolean(readOnly) };
   // A rule outlives the call that sets it, so it lives on your machine and never on the hosted server.
-  const sentinel = () => {
+  const sentinel = async () => {
     if (readOnly) throw new Error("The sentinel watches from your own machine. Run it locally: npx -y canli-mcp");
+    const { createSentinel } = await import("../local/sentinel.mjs");
     return createSentinel({ home: canliHome(), call: desk.call });
   };
   // A policy that bars these tools bars them here too, as it does for any pack's.
   const allowed = (name) => { if (gov?.policy) gov.check(BY_NAME.get(name), { destructive: false }); };
-  const tools = { sentinel_add: (args) => { allowed("sentinel_add"); return sentinel().add(args); }, sentinel_list: () => { allowed("sentinel_list"); return sentinel().list(); }, sentinel_remove: ({ id }) => { allowed("sentinel_remove"); return sentinel().remove(id); }, sentinel_events: (args) => { allowed("sentinel_events"); return sentinel().events(args ?? {}); }, brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), stress_worlds: (args) => runWorlds(desk, args), hub_list: (args) => runHubList(args), hub_check: (args) => runHubCheck(args), hub_run: (args) => runHubRun(desk, args), draft_orders: (args) => runDraft(args), triangulate: (args) => runTriangulate(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
+  const tools = { signed_trial_count: (args) => signedTrialCount(args, { dir: join(canliHome(), "audit"), keys: publicKeys(canliHome()) }), sentinel_add: async (args) => { allowed("sentinel_add"); return (await sentinel()).add(args); }, sentinel_list: async () => { allowed("sentinel_list"); return (await sentinel()).list(); }, sentinel_remove: async ({ id }) => { allowed("sentinel_remove"); return (await sentinel()).remove(id); }, sentinel_events: async (args) => { allowed("sentinel_events"); return (await sentinel()).events(args ?? {}); }, brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), stress_worlds: (args) => runWorlds(desk, args), hub_list: (args) => runHubList(args), hub_check: (args) => runHubCheck(args), hub_run: (args) => runHubRun(desk, args), draft_orders: (args) => runDraft(args), triangulate: (args) => runTriangulate(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
   if (!TIME_MACHINE) return tools;
   return Object.fromEntries(Object.entries(tools).map(([name, run]) => [name, TIME_MACHINE.selfAllowed(name) ? run : () => { throw TIME_MACHINE.refuse(name); }]));
 }
@@ -439,6 +441,8 @@ function auditLog(gov, args) {
 export const PRIVACY = (packs, gov) => ({
   packs: Object.fromEntries(packs.map((p) => [p, { network: packInfo(p).network, disk: packInfo(p).disk, ...(PLUGINS.has(p) ? { plugin: packInfo(p).package } : {}) }])),
   files: "{\"$file\": ...} arguments are read on this machine; nothing is uploaded and nothing is written by the reader",
+  sentinel: "off until you use it: rules and events are kept in CANLI_HOME/sentinel on this machine, and sent only where you say with --webhook, --exec or --channel",
+  local_models: "off until you run canli-mcp models install: they run on this machine, and no text leaves it",
   telemetry: "none: no analytics, logging or crash reporting",
   offline: "CANLI_OFFLINE=1 enables only the packs whose network is none (quant, validation), and no other pack's code is loaded",
   receipts: "opt-in receipts carry SHA-256 hashes, never the data",
@@ -518,6 +522,7 @@ if (isMain && process.argv[2] === "audit") {
   const packs = enabledPacks({ ...process.env, CANLI_PACKS: "markets" }), gov = governance(process.env, canliHome());
   process.on("exit", () => gov.close());
   const call = (name, args) => runOne(packs, { name, arguments: args }, {}, [], gov);
+  const { createSentinel, webhookSink } = await import("../local/sentinel.mjs");
   const s = createSentinel({ home: canliHome(), call, say: (m) => process.stderr.write(`${m}\n`) });
   const show = (x) => process.stdout.write(`${JSON.stringify(x)}\n`);
   if (verb === "add") show(s.add(JSON.parse(rest[0] ?? "{}")));
@@ -528,7 +533,7 @@ if (isMain && process.argv[2] === "audit") {
     if (!s.rules().length) { process.stderr.write("No rules yet. Add one: canli-mcp sentinel add '{\"kind\":\"price_move\",\"symbol\":\"BTC-USD\",\"percent\":2,\"within_minutes\":30}'\n"); process.exit(2); }
     s.sinks.add((event) => show(event));
     if (flag(rest, "--webhook")) s.sinks.add(webhookSink(flag(rest, "--webhook")));
-    if (flag(rest, "--exec")) s.sinks.add(execSink(flag(rest, "--exec")));
+    if (flag(rest, "--exec")) s.sinks.add((await import("../local/commands.mjs")).execSink(flag(rest, "--exec")));
     if (rest.includes("--once")) { await s.pollDue(); process.exit(0); }
     for (const signal of ["SIGINT", "SIGTERM"]) process.on(signal, () => { s.stop(); process.exit(0); });
     s.start();
@@ -540,10 +545,9 @@ if (isMain && process.argv[2] === "audit") {
   const [verb, ...rest] = process.argv.slice(3);
   const M = await import("canli-markets-mcp/src/models.mjs");
   if (verb === "install") {
-    const dir = M.modelsDir(), { spawnSync } = await import("node:child_process");
+    const dir = M.modelsDir(), { installPackage } = await import("../local/commands.mjs");
     process.stderr.write(`Installing ${M.RUNTIME_PACKAGE} into ${dir} (about 500 MB). Models come down from Hugging Face on first use (about 140 MB).\nFinBERT is licensed for non-commercial use: ${M.MODELS.sentiment.license}\n`);
-    const r = spawnSync("npm", ["install", "--prefix", dir, "--no-audit", "--no-fund", "--silent", M.RUNTIME_PACKAGE], { stdio: "inherit", shell: process.platform === "win32" });
-    process.exit(r.status ?? 1);
+    process.exit(installPackage(dir, M.RUNTIME_PACKAGE));
   } else if (verb === "status") {
     process.stdout.write(`${JSON.stringify({ installed: M.modelsInstalled(), at: M.modelsDir(), runtime: M.RUNTIME_PACKAGE, models: M.MODELS })}\n`);
   } else if (verb === "index" && rest[0]) {
@@ -554,7 +558,10 @@ if (isMain && process.argv[2] === "audit") {
   } else { process.stderr.write("usage: canli-mcp models install | status | index <company> [--years n]\n"); process.exit(2); }
 } else if (isMain && process.argv[2] === "check") {
   const argv = process.argv.slice(3), file = argv[0];
-  const trials = Number(flag(argv, "--trials"));
+  // --trials log: the number comes from the signed audit log, which someone else can check.
+  const fromLog = flag(argv, "--trials") === "log" ? signedTrialCount({ since: flag(argv, "--since") }, { dir: join(canliHome(), "audit"), keys: publicKeys(canliHome()) }) : null;
+  if (fromLog && !fromLog.log_on) { process.stderr.write(`${fromLog.how}\n`); process.exit(2); }
+  const trials = fromLog ? Math.max(fromLog.trials, 1) : Number(flag(argv, "--trials"));
   if (!file || file.startsWith("--") || !Number.isInteger(trials) || trials < 1) { process.stderr.write("usage: canli-mcp check returns.csv --trials <how many variants were tried> [--column name] [--periods 252] [--spread 0.5] [--format markdown|json] [--at-least 0.95]\n"); process.exit(2); }
   const { asMarkdown, checkReport, readReturns } = await import("./check.mjs");
   const bytes = readFileSync(file), { column, returns } = readReturns(bytes.toString("utf8"), flag(argv, "--column"));
@@ -606,6 +613,7 @@ if (isMain && process.argv[2] === "audit") {
   // Its reads go through the same policy and audit log as any call. It watches the present, so a server
   // running as of a past date never starts it.
   if (channel && !TIME_MACHINE) {
+    const { createSentinel } = await import("../local/sentinel.mjs");
     const s = createSentinel({ home: canliHome(), call: (name, args) => runOne(packs, { name, arguments: args }, {}, [], gov) });
     s.sinks.add(channelSink(server));
     s.start();

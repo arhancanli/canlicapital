@@ -73,3 +73,34 @@ test("what a model is told names the date and the limit of the lock", () => {
   assert.match(tm.instructions, /running as of 2020-03-01/);
   assert.match(tm.instructions, /training may include later events/);
 });
+
+// ---------------------------------------------------------------------------------------------
+test("signed trial count: different arguments count once each, others are not counted, a tampered log shows", async () => {
+  const { mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } = await import("node:fs");
+  const { tmpdir } = await import("node:os");
+  const { join } = await import("node:path");
+  const { createAudit, publicKeys, signingKeys } = await import("../src/governance.mjs");
+  const { signedTrialCount } = await import("../src/trials.mjs");
+  const home = mkdtempSync(join(tmpdir(), "trials-")), dir = join(home, "audit");
+  assert.equal(signedTrialCount({}, { dir }).log_on, false);
+  const audit = createAudit({ dir, keys: signingKeys(join(home, "audit-keys")) });
+  for (const args of [{ a: 1 }, { a: 2 }, { a: 2 }, { a: 3 }]) audit.record({ tool: "backtest_momentum", pack: "quant", args, result: { sharpe: 1 } });
+  audit.record({ tool: "cpcv", pack: "backtest", args: { a: 1 }, result: {} });
+  audit.record({ tool: "price_history", pack: "markets", args: { symbol: "AAPL" }, result: {} });
+  audit.record({ tool: "backtest_momentum", pack: "quant", args: { a: 9 }, error: "bad" });
+  audit.close();
+  const keys = publicKeys(home);
+  const r = signedTrialCount({}, { dir, keys });
+  assert.equal(r.trials, 4, "three different momentum runs and one cpcv; the repeat, the price read and the failure do not count");
+  assert.equal(r.calls, 6);
+  assert.equal(r.failed_calls, 1);
+  assert.equal(r.log_checks_out, true);
+  assert.deepEqual(r.rows[0], ["backtest_momentum", 3]);
+  assert.match(r.next, /Pass 4 as the number of trials/);
+  assert.equal(signedTrialCount({ since: "2999-01-01" }, { dir, keys }).trials, 0);
+  // Removing a run from the log to lower the count breaks the chain.
+  const file = join(dir, readdirSync(dir)[0]);
+  writeFileSync(file, readFileSync(file, "utf8").split("\n").filter((l) => !l.includes('"tool":"cpcv"')).join("\n"));
+  assert.equal(signedTrialCount({}, { dir, keys }).log_checks_out, false);
+  rmSync(home, { recursive: true, force: true });
+});
