@@ -1,7 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.15.1
 
+- `verify_claims`, through canli-markets-mcp 0.10.1: a sentence calls a figure wrong only if it names the company and one period of its own. Otherwise the filed figure is shown without a verdict against it. On 0.10.0, 12 of 24 settled answers on 284 real sentences were wrong, 11 of them false contradictions. The fix is not yet measured on new sentences.
+- `company_report`, through the same release: Lennox's fiscal 2025 revenue no longer reads as its fourth quarter.
+- The hub goes from 5 to 18 strategies.
 - `canli-mcp run` reaches the tools the server answers itself, such as `triangulate`, `brief`, `hub_list` and `find_tool`. It stopped with a TypeError on them in 0.15.0.
 
 ## 0.15.0
