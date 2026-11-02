@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.11.1
+
+- `shipping_activity` asks PortWatch less: every chokepoint in two queries, and one chokepoint in one. It took 18.8 seconds on the hosted server. PortWatch and Wikipedia answers are now kept on disk for six hours.
+- `portfolio_xray` adds up its holdings in `xray-merge.mjs`, which imports nothing, so the look-through page can run the same code in a browser. `openHolding` opens one holding.
+
 ## 0.11.0
 
 New tools: `filing_memory`, `filing_sentiment`, `guidance_record`, `what_happened_next`, `shipping_activity`, `page_attention`, `latest_price`.

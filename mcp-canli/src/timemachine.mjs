@@ -32,7 +32,6 @@ const HELD = {
   vintages: {},
   find_company: {},
   list_concepts: {},
-  company_profile: {},
   financial_statements: { args: filedBefore },
   filing_tables: { args: filedBefore },
   earnings_release: { args: filedBefore },
@@ -42,7 +41,6 @@ const HELD = {
   search_filings: { args: untilArg(0) },
   insider_trades: { args: untilArg(365) },
   company_events: { args: untilArg(365) },
-  earnings_calendar: { args: untilArg(90) },
   economic_calendar: { args: untilArg(90) },
   treasury_auctions: { args: untilArg(90) },
   mentions_trend: { args: endArg(365 * 3) },
@@ -52,7 +50,7 @@ const HELD = {
   treasury_yields: { args: (a, d) => (a.date ? { ...a, date: atMost(a.date, d) } : endArg(365)(a, d)) },
   reference_rates: { args: endArg(365) },
   economic_series: { args: endArg(365 * 5), warning: REVISED },
-  world_economy: { args: endArg(365 * 5), warning: REVISED },
+  world_economy: { args: (a, d) => { const year = Number(d.slice(0, 4)); return { ...a, end: Math.min(a.end ?? year, year), start: Math.min(a.start ?? year - 10, year) }; }, warning: REVISED },
   federal_debt: { args: endArg(365) },
   news: { args: endArg(30) },
   filing_memory: { args: (a, d) => { const { correlate_with: _dropped, ...rest } = a; return { ...rest, filed_before: atMost(a.filed_before, d) }; } },
@@ -62,7 +60,7 @@ const GIVEN_PACKS = new Set(["quant", "validation"]);
 const GIVEN = new Set(["list_factors", "cpcv", "crisis_replay", "effective_bets", "find_diversifiers", "agent_consensus", "breadth_signals", "league_new", "league_commit", "league_score", "proof_file", "proof_find", "proof_verify", "arena_new", "arena_orders", "arena_step", "exchange_new", "exchange_join", "exchange_view", "exchange_orders", "exchange_step", "exchange_report", "exchange_run"]);
 const SELF_ALLOWED = new Set(["find_tool", "describe_tool", "show_result", "swarm"]);
 // Fields that are not claims about the world's date: where a figure came from, and how to read it.
-const EXEMPT = new Set(["limits", "meaning", "note", "notes", "source", "sources", "url", "urls", "text", "next", "plain_reading", "how_to_check", "expiration", "expiry", "maturity", "maturity_date", "definitions", "time_machine", "snapshot", "fetched_at", "retrieved_at", "generated_at"]);
+const EXEMPT = new Set(["limits", "meaning", "note", "notes", "source", "sources", "url", "urls", "text", "next", "plain_reading", "how_to_check", "expiration", "expiry", "maturity", "maturity_date", "definitions", "time_machine", "fetched_at", "retrieved_at", "generated_at", "tickers_as_of"]);
 
 export function createTimeMachine(asOf) {
   const d = parseAsOf(asOf);
@@ -98,7 +96,7 @@ export function createTimeMachine(asOf) {
         if (isLate(value)) late.push(`${path} is ${value}`);
         return value;
       };
-      const { evidence: _when, ...rest } = result; // its retrieval times say what today is
+      const { evidence: _when, snapshot: _fetched, ...rest } = result; // their retrieval times say what today is
       const out = walk(rest, "", "");
       if (late.length) throw new Error(`${name} came back with something dated after ${d} (${late.slice(0, 3).join("; ")}), so the answer was stopped.`);
       return { ...out, time_machine: { as_of: d, ...(hidden ? { later_rows_hidden: hidden } : {}), ...(HELD[name].warning ? { warning: HELD[name].warning } : {}) } };

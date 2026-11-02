@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.1
+
+- A file path with a null byte is refused by name instead of crashing. Found by the robustness bench on `find_diversifiers`.
+
 ## 0.5.0
 
 New tools: `exchange_new`, `exchange_join`, `exchange_view`, `exchange_orders`, `exchange_step`, `exchange_report`, `exchange_run`, `agent_consensus`, `find_diversifiers`.

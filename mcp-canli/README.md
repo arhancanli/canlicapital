@@ -143,7 +143,7 @@ the clearer tool descriptions of 0.13.2 another 121.
   never passes through the model, and `return: "last"` sends back only the final answer. Labeling
   1,000 prices and then weighting the labels took 72 tokens of tool input this way, against 31,917
   to read the labels and type them into the next call.
-- **Shorter numbers when they are enough.** `digits: 5` rounds every result.
+- **Less to read in every result.** Numbers show six significant figures, a tool's limits come once a session, and the list of source documents becomes a count. The whole result stays under its ref for `show_result` and `$result`. `digits` shows more or fewer figures.
 
 ## One call, many workers
 

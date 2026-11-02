@@ -153,35 +153,43 @@ test("sentiment: counts, net tone and the model's licence, from a stand-in model
 });
 
 const CHOKE = (date, name = "Suez Canal", id = "chokepoint1", n = 40) => ({ attributes: { date, portid: id, portname: name, n_total: n, n_tanker: 10, n_container: 15, n_dry_bulk: 5, capacity: 1000 } });
-test("shipping: the service's first refusal of a query is tried again, and all chokepoints compare with a year ago", async () => {
-  let refused = 0;
+test("shipping: the service's first refusal of a query is tried again, and all chokepoints compare with a year ago in two queries", async () => {
+  let refused = 0, queries = 0;
   const s = sessionFor((url) => {
     if (!/Daily_Chokepoints_Data/.test(url)) return null;
+    queries += 1;
     const where = decodeURIComponent(url);
-    if (where.includes("chokepoint1' AND date >=") && refused === 0) { refused += 1; return json({ error: { code: 400, message: "Cannot perform query. Invalid query parameters." } }); }
-    if (where.includes("portid = 'chokepoint1'")) return json({ features: [CHOKE("2026-10-25"), CHOKE("2026-10-24")] });
-    if (where.includes("DATE '2026-10-19'")) return json({ features: [CHOKE("2026-10-25", "Suez Canal", "chokepoint1", 50), CHOKE("2026-10-25", "Malacca Strait", "chokepoint5", 200)] });
+    if (where.includes("DATE '2026-10-04'") && refused === 0) { refused += 1; queries -= 1; return json({ error: { code: 400, message: "Cannot perform query. Invalid query parameters." } }); }
+    if (where.includes("DATE '2026-10-04'")) return json({ features: [CHOKE("2026-10-25", "Suez Canal", "chokepoint1", 50), CHOKE("2026-10-25", "Malacca Strait", "chokepoint5", 200), CHOKE("2026-10-01", "Malacca Strait", "chokepoint5", 999)] });
     return json({ features: [CHOKE("2025-10-26", "Suez Canal", "chokepoint1", 40), CHOKE("2025-10-26", "Malacca Strait", "chokepoint5", 200)] });
   });
   const r = await shippingActivity(s, {});
   assert.equal(refused, 1);
+  assert.equal(queries, 2);
+  assert.equal(r.period.to, "2026-10-25");
   assert.equal(r.rows[0][0], "Malacca Strait");
+  assert.equal(r.rows[0][1], 200, "older days in the month are not in the seven");
   assert.equal(r.rows.find((x) => x[0] === "Suez Canal")[5], 25, "fifty against forty");
   assert.match(r.limits[0], /turns its signal off/);
 });
 
-test("shipping: one chokepoint by week, by part of its name, and a wrong name lists the right ones", async () => {
+test("shipping: one chokepoint by week in one query, by part of its name, and a wrong name lists the right ones", async () => {
+  let queries = 0;
   const s = sessionFor((url) => {
+    queries += 1;
     const where = decodeURIComponent(url);
-    if (where.includes("portid = 'chokepoint1' AND date >=")) return json({ features: [CHOKE("2026-10-25")] });
-    if (where.includes("date = DATE")) return json({ features: [CHOKE("2026-10-25"), CHOKE("2026-10-25", "Strait of Hormuz", "chokepoint6", 3)] });
-    if (where.includes("portid = 'chokepoint6'")) return json({ features: [CHOKE("2026-10-25", "Strait of Hormuz", "chokepoint6", 3), CHOKE("2026-10-24", "Strait of Hormuz", "chokepoint6", 4)] });
+    if (where.includes("LIKE '%hormuz%'")) return json({ features: [CHOKE("2026-10-25", "Strait of Hormuz", "chokepoint6", 3), CHOKE("2026-10-24", "Strait of Hormuz", "chokepoint6", 4)] });
+    if (where.includes("LIKE")) { assert.ok(!where.includes("1=1") && !where.includes("' OR"), where); return json({ features: [] }); }
+    if (where.includes("date = DATE")) return json({ features: [CHOKE("2026-10-19"), CHOKE("2026-10-19", "Strait of Hormuz", "chokepoint6", 3)] });
     return null;
   });
   const r = await shippingActivity(s, { chokepoint: "hormuz" });
+  assert.equal(queries, 1);
   assert.equal(r.chokepoint, "Strait of Hormuz");
+  assert.equal(r.latest_data, "2026-10-25");
   assert.equal(r.rows[0][2], 7);
   await assert.rejects(shippingActivity(s, { chokepoint: "atlantis" }), /Suez Canal, Strait of Hormuz/);
+  await assert.rejects(shippingActivity(s, { chokepoint: "' OR 1=1 --" }), /Suez Canal/, "only letters, spaces and hyphens reach the query");
 });
 
 test("attention: the article's title comes back, with the last week against normal", async () => {

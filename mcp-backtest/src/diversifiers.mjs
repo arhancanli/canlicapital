@@ -7,8 +7,8 @@ import { z } from "zod";
 import { readPanel } from "./panel-io.mjs";
 
 export const diversifiersInput = z.object({
-  book_file: z.string().min(1).max(1000).describe("A CSV of the book's daily returns: date, then one column per strategy or one for the whole book."),
-  candidates_file: z.string().min(1).max(1000).describe("A CSV of candidates' daily returns: date, then one column each."),
+  book_file: z.string().min(1).max(1000).regex(/^[^\0]+$/, "a file path").describe("A CSV of the book's daily returns: date, then one column per strategy or one for the whole book."),
+  candidates_file: z.string().min(1).max(1000).regex(/^[^\0]+$/, "a file path").describe("A CSV of candidates' daily returns: date, then one column each."),
   limit: z.number().int().min(1).max(100).optional().describe("How many to return; default 10."),
   min_days: z.number().int().min(60).max(100000).optional().describe("Days a candidate must share with the book; default 252."),
 }).strict();

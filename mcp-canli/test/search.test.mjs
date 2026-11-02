@@ -371,3 +371,18 @@ test("requests for the 0.9.0 tools: a right tool first in at least 11 of 12 (the
   console.log(JSON.stringify({ top1, of: Q09.length, misses }));
   assert.ok(top1 >= 11, JSON.stringify({ top1, misses }));
 });
+
+// The tools added in 0.16.0, asked the way people ask, measured once before any keywords were added for
+// them on 2026-11-02: 18 first and 22 in the top three of 26. Then tuned, so this set is no longer held out.
+const FRONTIER_Q = [["everything apple has said about supply chains over the years", ["filing_memory"]], ["search all of nvidia's 10-ks for mentions of export controls", ["filing_memory", "search_filings"]], ["what happened the last time the market dropped 20 percent", ["what_happened_next"]], ["should i worry the s&p fell 10 percent history", ["what_happened_next"]], ["did walmart hit its guidance", ["guidance_record", "earnings_release"]], ["management credibility track record against guidance", ["guidance_record"]], ["how many ships through the suez canal", ["shipping_activity"]], ["shipping traffic strait of hormuz", ["shipping_activity"]], ["port congestion shanghai", ["shipping_activity"]], ["wikipedia page views for tesla", ["page_attention"]], ["public interest in a stock", ["page_attention", "mentions_trend"]], ["what is nvidia trading at right now", ["latest_price", "price_history", "market_overview"]], ["current price of bitcoin", ["latest_price", "price_history", "crypto_fundamentals"]], ["finbert sentiment on an 8-k", ["filing_sentiment"]], ["tone of the earnings release", ["filing_sentiment", "earnings_release"]], ["alert me when nvda falls 5 percent", ["sentinel_add"]], ["wake me when a company files an 8-k", ["sentinel_add", "latest_filings"]], ["notify my agent on a volatility spike", ["sentinel_add"]], ["what alerts fired while i was away", ["sentinel_events"]], ["simulate ai agents trading against each other", ["exchange_new", "exchange_run", "arena_new"]], ["limit order book simulation with margin calls and cascades", ["exchange_run", "exchange_new"]], ["do my models really disagree or are they the same opinion", ["agent_consensus"]], ["combine forecasts from several ai models", ["agent_consensus"]], ["find strategies uncorrelated with my portfolio", ["find_diversifiers"]], ["what should i add to my book to diversify", ["find_diversifiers"]], ["how many backtests did i run honest count", ["signed_trial_count"]]];
+test("requests for the 0.16.0 tools: a right tool first in at least 23 of 26, in the top three in at least 25", () => {
+  let top1 = 0, top3 = 0;
+  const misses = [];
+  for (const [q, want] of FRONTIER_Q) {
+    const r = search(INDEX, q, { limit: 3 }).map((t) => t.name);
+    if (want.includes(r[0])) top1++; else misses.push(`${q} -> ${r.join(", ")}`);
+    if (r.some((n) => want.includes(n))) top3++;
+  }
+  console.log(JSON.stringify({ top1, top3, of: FRONTIER_Q.length, misses }));
+  assert.ok(top1 >= 23 && top3 >= 25, JSON.stringify({ top1, top3, misses }));
+});

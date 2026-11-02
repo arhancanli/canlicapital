@@ -28,8 +28,18 @@ test("arguments are held to the date, however they are asked for", () => {
   assert.equal(tm.admit("filing_memory", "markets", { company: "AAPL", query: "x", correlate_with: "gross_margin" }).correlate_with, undefined, "margins come from later filings");
 });
 
+test("tools with their own date rules are held to them: years for world_economy", () => {
+  assert.deepEqual([tm.admit("world_economy", "markets", { countries: ["US"], indicator: "gdp", end: 2024 }).end, tm.admit("world_economy", "markets", { countries: ["US"], indicator: "gdp" }).start], [2020, 2010]);
+});
+
+test("provenance fields do not say what today is", () => {
+  const r = tm.seal("known_as_of", { snapshot: { fetched_at: "2026-09-19T00:00:00Z" }, company: { name: "x" } });
+  assert.equal(r.snapshot, undefined);
+  assert.equal(tm.seal("find_company", { tickers_as_of: "2026-09-19", rows: [] }).tickers_as_of, "2026-09-19", "the date of a name list is not a claim about the market");
+});
+
 test("a tool that cannot be held to the date is off, and says why", () => {
-  for (const [name, pack] of [["company_report", "markets"], ["verify_claims", "markets"], ["market_overview", "markets"], ["latest_filings", "markets"], ["options_chain", "markets"], ["send_paper_orders", "paper"], ["screen_companies", "markets"]]) {
+  for (const [name, pack] of [["company_profile", "markets"], ["company_report", "markets"], ["verify_claims", "markets"], ["market_overview", "markets"], ["latest_filings", "markets"], ["options_chain", "markets"], ["send_paper_orders", "paper"], ["screen_companies", "markets"]]) {
     assert.throws(() => tm.admit(name, pack, {}), /cannot be held to 2020-03-01/, name);
   }
   assert.equal(tm.selfAllowed("brief"), false);

@@ -19,7 +19,7 @@ export const EXCHANGE_LIMITS_TEXT = Object.freeze([
   "Personas are simple scripts with parameters someone chose. Different parameters give different cascades, so a result here is a question to ask of a real system, not an answer about it.",
 ]);
 
-const file = z.string().min(1).max(1000);
+const file = z.string().min(1).max(1000).regex(/^[^\0]+$/, "a file path");
 const agentId = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9_-]{1,39}$/).refine((n) => !(n in {}), "that name is reserved");
 const assetId = z.string().regex(/^ART[0-9]{1,2}$/, "an exchange asset, such as ART1");
 const PERSONAS = ["market_maker", "value", "momentum", "noise", "deleverager", "stop_loss", "levered_long"];

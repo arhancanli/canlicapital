@@ -22,11 +22,7 @@ const features = async (session, url) => {
     await session.sleep(1000 * (attempt + 1));
   }
 };
-// Sorting the table on the server is slow, so the newest day is found among the last few weeks' rows.
-const latestDay = async (session) => {
-  const rows = await features(session, query("Daily_Chokepoints_Data", `portid = 'chokepoint1' AND date >= ${day(minusDays(dayOf(session.now()), 45))}`));
-  return rows.reduce((best, r) => (!best || r.date > best ? r.date : best), null);
-};
+const newest = (rows) => rows.reduce((best, r) => (!best || r.date > best ? r.date : best), null);
 const sum = (rows, key) => rows.reduce((a, x) => a + (Number(x[key]) || 0), 0);
 const pct = (now, was) => (was ? Number(((now / was - 1) * 100).toFixed(1)) : null);
 
@@ -40,8 +36,8 @@ const LIMITS = [
 export const shippingInput = z.object({
   chokepoint: z.string().min(2).max(60).optional().describe("A strait or canal, such as Suez Canal, Panama Canal, Malacca Strait or Strait of Hormuz. Without chokepoint or port you get every chokepoint."),
   port: z.string().min(2).max(60).optional().describe("A port by name, such as Shanghai or Rotterdam."),
-  start: DATE.optional().describe("First day; default 90 days before the latest."),
-  end: DATE.optional().describe("Last day; default the latest with data."),
+  start: DATE.optional().describe("First day; default about 100 days before the last."),
+  end: DATE.optional().describe("Last day; default today, and the data runs a week or more behind."),
 }).strict();
 
 const weekOf = (date) => { const t = Date.parse(`${date}T00:00:00Z`), d = new Date(t).getUTCDay(); return dayOf(t - ((d + 6) % 7) * 86400000); };
@@ -57,37 +53,41 @@ function weekly(rows, keys) {
   return [...weeks.values()].sort((a, b) => (a.week_of < b.week_of ? 1 : -1));
 }
 
+// The service is slow, so each answer asks as little as it can: every chokepoint's last month in one
+// query, and one chokepoint or port with its dates in the same query as its name.
 export async function shippingActivity(session, args) {
   const a = shippingInput.parse(args);
   if (a.chokepoint && a.port) throw new Error("Pass chokepoint or port, not both.");
   if (a.port) return portActivity(session, a);
-  const latest = await latestDay(session);
-  if (!latest) throw new Error("PortWatch returned no chokepoint data for the last 45 days.");
+  const today = dayOf(session.now());
   if (!a.chokepoint) {
-    const span = (end) => `date >= ${day(minusDays(end, 6))} AND date <= ${day(end)}`;
-    const [now, was] = await Promise.all([features(session, query("Daily_Chokepoints_Data", span(latest))), features(session, query("Daily_Chokepoints_Data", span(minusDays(latest, 364))))]);
+    const month = await features(session, query("Daily_Chokepoints_Data", `date >= ${day(minusDays(today, 29))}`));
+    const latest = newest(month);
+    if (!latest) throw new Error("PortWatch returned no chokepoint data for the last 30 days.");
+    const from = minusDays(latest, 6), yearAgo = minusDays(latest, 364);
+    const was = await features(session, query("Daily_Chokepoints_Data", `date >= ${day(minusDays(yearAgo, 6))} AND date <= ${day(yearAgo)}`));
     const byName = (rows) => { const m = new Map(); for (const r of rows) m.set(r.portname, [...(m.get(r.portname) ?? []), r]); return m; };
     const before = byName(was);
-    const rows = [...byName(now)].map(([name, list]) => {
+    const rows = [...byName(month.filter((r) => r.date >= from))].map(([name, list]) => {
       const old = before.get(name) ?? [], total = sum(list, "n_total"), tankers = sum(list, "n_tanker"), boxes = sum(list, "n_container");
       return [name, total, tankers, boxes, sum(old, "n_total"), pct(total, sum(old, "n_total")), pct(tankers, sum(old, "n_tanker"))];
     }).sort((x, y) => y[1] - x[1]);
     return {
-      period: { from: minusDays(latest, 6), to: latest, compared_with: `the same seven days of the week, 52 weeks earlier` },
+      period: { from, to: latest, compared_with: "the same seven days of the week, 52 weeks earlier" },
       columns: ["chokepoint", "ships", "tankers", "container_ships", "ships_a_year_earlier", "change_percent", "tankers_change_percent"],
       rows, meaning: "Ship transits in seven days. Name one chokepoint for its weekly series.", source: SOURCE, limits: LIMITS,
     };
   }
-  const end = a.end ?? latest, start = a.start ?? minusDays(end, 90);
-  const want = a.chokepoint.trim().toLowerCase();
-  const names = await features(session, query("Daily_Chokepoints_Data", `date = ${day(latest)}`));
-  const hit = names.find((n) => String(n.portname).toLowerCase() === want) ?? names.find((n) => String(n.portname).toLowerCase().includes(want));
-  if (!hit) throw new NotFound(`No chokepoint "${a.chokepoint}". PortWatch covers: ${names.map((n) => n.portname).join(", ")}.`);
-  const rows = await features(session, query("Daily_Chokepoints_Data", `portid = ${quote(hit.portid)} AND date >= ${day(start)} AND date <= ${day(end)}`));
-  const keys = ["n_total", "n_tanker", "n_container", "n_dry_bulk", "capacity"];
-  const weeks = weekly(rows, keys);
+  const end = a.end ?? today, start = a.start ?? minusDays(end, 100);
+  const want = a.chokepoint.trim().toLowerCase().replace(/[^a-z -]/g, "");
+  const rows = want ? await features(session, query("Daily_Chokepoints_Data", `LOWER(portname) LIKE ${quote(`%${want}%`)} AND date >= ${day(start)} AND date <= ${day(end)}`)) : [];
+  if (!rows.length) {
+    const names = await features(session, query("Daily_Chokepoints_Data", `date = ${day(minusDays(today, 14))}`));
+    throw new NotFound(`No figures for a chokepoint "${a.chokepoint}" in those dates. PortWatch covers: ${names.map((n) => n.portname).join(", ")}.`);
+  }
+  const weeks = weekly(rows, ["n_total", "n_tanker", "n_container", "n_dry_bulk", "capacity"]);
   return {
-    chokepoint: hit.portname, latest_data: latest,
+    chokepoint: rows[0].portname, latest_data: newest(rows),
     columns: ["week_of", "days", "ships", "tankers", "container_ships", "dry_bulk_ships", "capacity_metric_tons"],
     rows: weeks.map((w) => [w.week_of, w.days, w.n_total, w.n_tanker, w.n_container, w.n_dry_bulk, w.capacity]),
     meaning: "Transits per week, newest first; a week with fewer than seven days is only part of one. Capacity is PortWatch's estimate of the ships' carrying capacity.",
@@ -99,7 +99,7 @@ async function portActivity(session, a) {
   const found = await features(session, query("PortWatch_ports_database", `fullname LIKE ${quote(`${a.port.trim()}%`)}`, "&returnGeometry=false"));
   const port = found.sort((x, y) => (y.vessel_count_total ?? 0) - (x.vessel_count_total ?? 0))[0];
   if (!port) throw new NotFound(`PortWatch has no port named "${a.port}". Use the port's own name, such as Shanghai or Rotterdam.`);
-  const end = a.end ?? await latestDay(session), start = a.start ?? minusDays(end, 90);
+  const end = a.end ?? dayOf(session.now()), start = a.start ?? minusDays(end, 100);
   const rows = await features(session, query("Daily_Ports_Data", `portid = ${quote(port.portid)} AND date >= ${day(start)} AND date <= ${day(end)}`));
   if (!rows.length) throw new NotFound(`PortWatch has no daily figures for ${port.fullname} between ${start} and ${end}.`);
   const keys = ["portcalls", "portcalls_container", "portcalls_tanker", "import", "export"];
