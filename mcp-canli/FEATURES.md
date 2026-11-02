@@ -1,6 +1,6 @@
 # Finance coverage and quality, 0.6.0
 
-The flagship combines seven exact published Canli packages. Its full catalog has 355 tools;
+The flagship combines seven exact published Canli packages. Its full catalog has 369 tools;
 paper trading is enabled with paper credentials or an explicit pack selection. Five tools are
 advertised initially (three for discovery and running, two common ones). The 56 prompts, 15 static resources (one is the result viewer drawn by clients with MCP Apps) and nine resource templates
 appear only for enabled packs. This is a coverage inventory, not a worldwide ranking.
@@ -22,6 +22,10 @@ appear only for enabled packs. This is a coverage inventory, not a worldwide ran
 | Quantitative analytics | 235 tools for performance, risk, options, fixed income, portfolios, econometrics, indicators and labels | Quant 0.1.2 checks computed values before serialization; overflow is an error, not a missing value. |
 | Strategy research | 399 sleeves, tournaments, clustering, walk-forward analysis, purged CV; the breadth lab: `price_panel`, `breadth_signals`, `breadth_book`, `effective_bets` | A free price panel from an index fund's holdings, a sleeve for every cross-sectional signal in every industry traded as one netted account (the netting ratio reported), effective independent bets and ideas, and every sleeve's returns written as a dataset to train on. Numerical checks do not establish forward returns or eliminate selection bias. |
 | Backtest validation | DSR, PBO, track record, placebo and leakage checks, point-in-time factor construction | Inputs and the variants tried matter; insufficient evidence must remain visible. |
+| Costs, size and crises | `backtest_signal` with `capital_usd` and `dollar_volume_file`, `crisis_replay`, `cpcv` with shards | Fills are limited by daily volume, not order-book depth, which is paid data. Impact is a model with a stated coefficient. A crisis the dates do not cover is listed as untested. |
+| Signed ledger | `proof_filings`, `proof_file`, `proof_verify`, `proof_find` | It shows lines were not changed after they were sealed, not that a figure is right. |
+| Paper league and market | `league_new`, `league_commit`, `league_score`, `arena_new`, `arena_orders`, `arena_step` | Made-up money and assets. No prizes, no stakes, nobody's money. |
+| Filing trace and token check | `figure_trace`, `token_check` | The trace shows a filing agrees with itself, not that its figures are right. A clean token reading never means safe, and code that cannot be read is reported as unknown. |
 | Research record | Search/read the Canli public record and source limits | Expert labels and independent reproduction remain separately measured outcomes. |
 | Labelled datasets | `annotation_packet`, `annotation_agreement`, `annotation_gold` | Figures checked by machine against the filings and written as blind packets for people to label; agreement and Cohen's kappa between people and against the machine; a gold set with a datasheet and hashes. |
 | Execution | Alpaca paper accounts, previews, constrained submission and rebalancing | Paper only; order-sending tools cannot run in batches. Live capital is outside this release. |
