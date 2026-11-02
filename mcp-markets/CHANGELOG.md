@@ -1,6 +1,12 @@
 # Changelog
 
-## Unreleased
+## 0.10.1
+
+verify_claims: on 0.10.0, 12 of 24 settled answers on 284 real sentences were wrong: 11 of 12 "contradicted" and 1 of 12 confirmations. Most read someone else's figure as this company's.
+
+- A sentence calls a figure wrong only if it names the company and one period of its own. Otherwise, a figure that does not match comes back as not checkable, with the filed figure beside it. A match is still confirmed.
+- The name nearest before a figure decides whose it is, so another company's figure in the sentence is left out.
+- Figures for one country ("in the U.S.", "abroad") and for a rolling twelve months ("TTM", "past 12 months") are not read.
 
 - `company_report` read the year's revenue from the wrong column when a 10-K shows the four quarters beside the year: Lennox's fiscal 2025 came out as $1.195 billion, its fourth quarter, with a 77.6% fall, against $5.195 billion filed. Found by running `triangulate` across the S&P 500.
 

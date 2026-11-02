@@ -25,6 +25,12 @@ const index = indexCompanies([
   [936468, "LOCKHEED MARTIN CORP", ["LMT"]],
   [315189, "DEERE & CO", ["DE"]],
   [101829, "RTX Corp", ["RTX"]],
+  [310158, "MERCK & CO., INC.", ["MRK"]],
+  [1810806, "Unity Software Inc.", ["U"]],
+  [6, "Paid Inc", ["PAYD"]],
+  [1364954, "Chegg, Inc.", ["CHGG"]],
+  [92122, "SOUTHERN CO", ["SO"]],
+  [827052, "Edison International", ["EIX"]],
 ]);
 const named = (text) => findCompany(index, text)?.ticker ?? null;
 
@@ -41,6 +47,15 @@ test("the longest name wins, and a text naming no company finds none", () => {
   assert.equal(named("Apple Hospitality REIT made $1 billion"), "APLE");
   assert.equal(named("They made $10 billion in revenue in fiscal 2025."), null);
   assert.equal(named("Revenue was up in the US and the CEO said so"), null);
+});
+
+test("weak evidence is not a company: a country's initials, a common word, the start of a longer name", () => {
+  assert.equal(named("Merck reported a loss of almost $2 billion in the U.S. last year."), "MRK");
+  assert.equal(named("Earnings fell in the U.S. by $2 billion."), null);
+  assert.equal(named("Here is one example: Paid homework help hurt Chegg's revenue, down to $50 million."), "CHGG");
+  assert.equal(named("Southern California Edison's parent company, Edison International, reported net income of $4.5B."), "EIX");
+  assert.equal(named("U"), "U");
+  assert.equal(named("Southern reported net income of $4B."), "SO");
 });
 
 test("real sentences: the company named first, and figures or phrases never taken for a company", () => {
