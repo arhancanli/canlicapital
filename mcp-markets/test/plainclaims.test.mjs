@@ -208,3 +208,41 @@ for (const [sentence, name, want] of HELD) test(`held out: ${sentence}`, () => {
   const got = claimsFromText(sentence, name).claims.filter((c) => !c.part && !(c.basis && c.basis !== "GAAP")).map((c) => [c.measure, c.value]);
   assert.deepEqual(got, want);
 });
+
+// Measured 2026-10-31 on claims written by people in public posts. Short rewrites of the wordings that went wrong.
+const real = (text, name) => claimsFromText(text, name).claims.map((c) => [c.measure, c.value, c.period?.fy ?? null, c.period?.fp ?? null, c.assume ?? null, c.part ?? null]);
+test("real wording: figures that are a piece of the whole are not the whole", () => {
+  assert.deepEqual(real("Revenue for 2021 was 256.7 billion dollars, of which 209.49 billion dollars came from advertising.", "Alphabet Inc. GOOGL").map((c) => c[1]), [256.7]);
+  assert.deepEqual(real("Acme reported a profit of 5.2 billion on 18 billion in revenue from AWS in Q4 2021.", "Acme Inc"), []);
+  assert.deepEqual(real("Oracle Cloud's revenue was $4.4 billion for Q4 2023.", "Oracle Corp ORCL"), []);
+});
+test("real wording: a company's own name and plain possessives are not parts of it", () => {
+  for (const [text, name] of [["IBM revenue was $54.1 billion in 2021.", "International Business Machines Corp IBM"], ["GM profit for 2022 was $21B.", "General Motors Co GM"], ["Starbucks' revenue in 2022 was $33B.", "Starbucks Corp SBUX"], ["Shopify\u2019s revenue in 2021 was $4.6b.", "Shopify Inc. SHOP"], ["Cisco has a gross revenue of $51.557B for FY22.", "Cisco Systems SCO"]]) {
+    assert.equal(real(text, name)[0]?.[5] ?? null, null, text);
+    assert.equal(real(text, name).length, 1, text);
+  }
+});
+test("real wording: the sentence's period reaches each of its figures", () => {
+  const msft = real("Microsoft's revenue was $281.7 billion for the last year, up 15% on the previous year.", "Microsoft Corp MSFT");
+  assert.deepEqual(msft.map((c) => c[4]), ["last year", "last year"]);
+  const amd = real("AMD grew their revenue 50% last quarter from the year prior, for 11.5B in revenue.", "Advanced Micro Devices AMD");
+  assert.ok(amd.length && amd.every((c) => c[4] === "last quarter"));
+  const nvda = real("Nvidia generated $14.5 billion in cash from operations during Q3 fiscal 2026 while reporting net income of $19.3 billion.", "NVIDIA CORP NVDA");
+  assert.deepEqual(nvda.map((c) => [c[2], c[3], c[5]]), [[2026, "Q3", null], [2026, "Q3", null]]);
+});
+test("real wording: a quarter with no year, or a year set beside another quarter, is not placed", () => {
+  assert.deepEqual(real("Uber reported net income of $221 million on $9.29 billion in revenue in the third quarter.", "Uber Technologies UBER"), []);
+  assert.deepEqual(real("Apple 2022: $99.8 billion profit. ", "Apple Inc. AAPL").map((c) => c[1]), [99.8]);
+  assert.deepEqual(real("Apple 2022: $99.8 billion profit (over 1 year) Google Q4 2022: $18.16 billion profit on $76 billion in revenue.", "Apple Inc. AAPL"), []);
+});
+test("real wording: a percent on a dollar line is dropped, and other wordings are read", () => {
+  assert.deepEqual(real("Coca-Cola annual gross profit for 2022 was $25B, and they produce 1% of the entire world's CO2.", "Coca-Cola Co KO").map((c) => c[1]), [25]);
+  assert.deepEqual(real("In 2025 Microsoft reported $101.8 billion net income for $281.7 billion in revenue.", "Microsoft Corp MSFT").map((c) => [c[0], c[1]]), [["net_income", 101.8], ["revenue", 281.7]]);
+  assert.deepEqual(real("Meta/Facebook made only $47 billion in revenue in 2024.", "Meta Platforms META").map((c) => c[1]), [47]);
+  assert.deepEqual(real("Salesforce made 37.9 billion in 2025 of revenue.", "Salesforce, Inc. CRM").map((c) => c[1]), [37.9]);
+  assert.deepEqual(real("IBM still makes ~$70B in annual revenue.", "International Business Machines IBM").map((c) => c[1]), [70]);
+});
+test("real wording: a list of companies and a second value for one measure are not judged", () => {
+  assert.deepEqual(real("2025 net income for the big 3: AT&T: $22B Verizon: $17B T-Mobile: $11B.", "AT&T INC. T"), []);
+  assert.deepEqual(real("UnitedHealth's revenue was $500 billion (and net profits is 10 billion) for the year.", "UnitedHealth Group UNH").map((c) => c[1]).includes(10) && real("UnitedHealth's revenue was $500 billion (and net profits is 10 billion) for the year.", "UnitedHealth Group UNH").some((c) => c[0] === "revenue" && c[1] === 10), false);
+});

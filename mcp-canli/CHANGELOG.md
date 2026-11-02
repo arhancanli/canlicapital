@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.15.0
+
+- Backtests that meet the market, through canli-backtest-mcp 0.4.0: `backtest_signal` with `capital_usd` and `dollar_volume_file` fills only what recent volume allows and pays square-root impact, and shows the Sharpe at each size, with none for a book that could not fill. Every reply replays the named crises its dates cover. Also `crisis_replay`, `cpcv` with shards other machines can run, a signed ledger of what companies filed (`proof_filings`, `proof_file`, `proof_verify`, `proof_find`), a paper league and a paper market for agents, with made-up money only.
+- Through canli-markets-mcp 0.10.0: `figure_trace` follows a reported figure down the filing's own calculation and `token_check` reads what an ERC-20 contract can do. `verify_claims` fixes from claims people wrote in public posts: on 0.9.0, 14 of 29 settled answers on 64 real sentences were wrong, every one a false "contradicted"; a later sample on the first fixes had 4 of 13 wrong, and the last fixes are not yet measured.
+- Packs: canli-markets-mcp 0.10.0, canli-backtest-mcp 0.4.0. Context stays at 2,524 tokens.
+- `canli-mcp gui`: the tools and result views in a browser, on this machine. `canli-mcp serve`: MCP over Streamable HTTP and WebSocket for agents on this machine. Both answer only on the loopback address and need a token.
+- `canli-mcp check returns.csv --trials 40`: the luck check for a CI job on any platform, computed on the runner. It never says passed. `canli-mcp run <tool> '<json>'` runs one tool from a shell and refuses any that sends orders.
+- Views: a strategy against each crisis and at each size, the luck cliff of a deflated Sharpe, cross-validated paths, a figure traced down its filing, and clickable volatility surface cells.
+- The hub: `hub_list`, `hub_check`, `hub_run`. Strategies as data, a recipe with fixed parameters, checked for plain words and no performance claims. No contributor's code runs.
+- `draft_orders`: orders in a standard form with a hash, for a person to act on. It sends nothing.
+- Recipes in `recipes/`: plain code, Claude, LangGraph, OpenAI Agents and CrewAI, stopping at an order file for a person to read. Templates for GitLab CI and Hugging Face in `integrations/`.
+
 ## 0.14.0
 
 - `verify_claims` reads claims as people say them: "earned $9 per share", "lost $18.8 billion", "has $90 billion in cash",

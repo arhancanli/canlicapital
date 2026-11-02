@@ -28,6 +28,8 @@ import { resolveRefs } from "./files.mjs";
 import { DESK as FANOUT, runBrief, runSwarm } from "./desk.mjs";
 import { runTriangulate, TRIANGULATE_TOOL } from "./triangulate.mjs";
 import { runWorlds, WORLDS_TOOL } from "./worlds.mjs";
+import { HUB_TOOLS, runHubCheck, runHubList, runHubRun } from "./hub.mjs";
+import { DRAFT_TOOL, runDraft } from "./draft.mjs";
 import { OMITTED, PACKS, PLUGINS, RENAMES, enabledPacks, loadPack, loadPlugins, packInfo } from "./packs.mjs";
 import { signature } from "./signature.mjs";
 import { buildIndex, search } from "./search.mjs";
@@ -47,7 +49,7 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL];
+const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL];
 export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
@@ -350,7 +352,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     if (a.view) for (const c of calls) if (/^backtest_/.test(c.name) && !(c.arguments && "curve" in c.arguments)) { try { if ((await toolFor(c.name, packs)).input?.shape?.curve) c.arguments = { ...(c.arguments ?? {}), curve: true }; } catch { /* reported when it runs */ } }
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
     const desk = { call: (name, args) => (name === "triangulate" ? runTriangulate(desk, args) : runOne(packs, { name, arguments: args }, {}, [], gov)), keep: (r) => keeper.put(r), get: (ref) => keeper.get(ref), at, toolFor: (name) => toolFor(name, packs), hosted: Boolean(readOnly) };
-    const SELF = { brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), stress_worlds: (args) => runWorlds(desk, args), triangulate: (args) => runTriangulate(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
+    const SELF = { brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), stress_worlds: (args) => runWorlds(desk, args), hub_list: (args) => runHubList(args), hub_check: (args) => runHubCheck(args), hub_run: (args) => runHubRun(desk, args), draft_orders: (args) => runDraft(args), triangulate: (args) => runTriangulate(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
     const run = (c, args) => (SELF[c.name] ? Promise.resolve().then(() => SELF[c.name](args)) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov));
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
     if (calls.length > 1 && destructive.some(Boolean)) throw new Error("A tool that sends orders cannot run inside a batch; call it on its own after previewing.");
@@ -457,7 +459,11 @@ export async function registerFront(server, packs, names = frontTools(packs), go
 const isMain = (() => { try { return realpathSync(process.argv[1] ?? "") === realpathSync(fileURLToPath(import.meta.url)); } catch { return false; } })();
 // Besides serving MCP over stdio: `canli-mcp audit verify [log] [--ed25519 pub.pem] [--ml-dsa pub.pem]`
 // checks an audit log, and `canli-mcp watch [--forms 8-K,4] [--company words] [--event earnings]
-// [--every 60]` prints each new EDGAR filing as a line of JSON.
+// [--every 60]` prints each new EDGAR filing as a line of JSON. `canli-mcp gui` opens the tools and
+// result views in a browser; `canli-mcp serve` offers MCP over Streamable HTTP and WebSocket. Both
+// answer only on the loopback address, and live apart in local/: nothing in src listens.
+// `canli-mcp check returns.csv --trials 40` is the luck check for a CI job, and `canli-mcp run <tool>
+// '<json>'` runs one tool from a shell.
 const flag = (argv, name) => { const i = argv.indexOf(name); return i >= 0 ? argv[i + 1] : undefined; };
 if (isMain && process.argv[2] === "audit") {
   const argv = process.argv.slice(3), home = canliHome();
@@ -479,6 +485,42 @@ if (isMain && process.argv[2] === "audit") {
     company: flag(argv, "--company"), event: flag(argv, "--event"),
     every: Number(flag(argv, "--every") ?? 60),
   }, (line) => process.stdout.write(`${line}\n`));
+} else if (isMain && process.argv[2] === "check") {
+  const argv = process.argv.slice(3), file = argv[0];
+  const trials = Number(flag(argv, "--trials"));
+  if (!file || file.startsWith("--") || !Number.isInteger(trials) || trials < 1) { process.stderr.write("usage: canli-mcp check returns.csv --trials <how many variants were tried> [--column name] [--periods 252] [--spread 0.5] [--format markdown|json] [--at-least 0.95]\n"); process.exit(2); }
+  const { asMarkdown, checkReport, readReturns } = await import("./check.mjs");
+  const bytes = readFileSync(file), { column, returns } = readReturns(bytes.toString("utf8"), flag(argv, "--column"));
+  const tool = await toolFor("validate_deflated_sharpe", enabledPacks({ ...process.env, CANLI_PACKS: "validation" }));
+  const result = await tool.run(tool.input.parse({ returns, periods_per_year: Number(flag(argv, "--periods") ?? 252), effective_independent_trials: Math.max(2, trials), cross_trial_sharpe_sd_annualized: Number(flag(argv, "--spread") ?? 0.5) }));
+  const report = checkReport({ file, bytes, column, count: returns.length, trials, result, version: SERVER_VERSION });
+  process.stdout.write(flag(argv, "--format") === "json" ? `${JSON.stringify(report, null, 2)}\n` : `${asMarkdown(report)}\n`);
+  // A floor is the caller's own choice for its own pipeline; the report itself never says passed.
+  const floor = flag(argv, "--at-least");
+  if (floor !== undefined && !(report.deflated_sharpe_probability >= Number(floor))) process.exit(1);
+} else if (isMain && process.argv[2] === "run") {
+  const [name, json] = process.argv.slice(3);
+  if (!name) { process.stderr.write("usage: canli-mcp run <tool> '<arguments as JSON>'\n"); process.exit(2); }
+  const packs = [...enabledPacks(), ...await addPlugins()];
+  const tool = await toolFor(name, packs);
+  if (tool.annotations?.destructiveHint) { process.stderr.write(`${name} sends orders, so it cannot run from the command line.\n`); process.exit(2); }
+  const out = await runOne(packs, { name, arguments: JSON.parse(json ?? "{}") }, {}, [], null);
+  process.stdout.write(`${JSON.stringify(out)}\n`);
+} else if (isMain && (process.argv[2] === "gui" || process.argv[2] === "serve")) {
+  const argv = process.argv.slice(3), packs = [...enabledPacks(), ...await addPlugins()], gov = governance(process.env, canliHome());
+  const makeServer = async () => { const server = new McpServer(SERVER_INFO, { instructions: instructions(packs, []) }); registerAll(server, packs, gov); return server; };
+  process.on("exit", () => gov.close());
+  for (const signal of ["SIGINT", "SIGTERM"]) process.on(signal, () => process.exit(0));
+  const port = Number(flag(argv, "--port") ?? 0);
+  if (process.argv[2] === "gui") {
+    const { startGui } = await import("../local/gui.mjs");
+    const gui = await startGui({ makeServer, port });
+    process.stdout.write(`Open this address in your browser:\n${gui.url}\nIt answers only on this machine. Press Ctrl-C to stop.\n`);
+  } else {
+    const { startServe } = await import("../local/serve.mjs");
+    const s = await startServe({ makeServer, port, token: process.env.CANLI_SERVE_TOKEN || undefined });
+    process.stdout.write(`${JSON.stringify({ http: s.http, websocket: s.ws, token: s.token, note: "Send Authorization: Bearer <token>. Loopback only." })}\n`);
+  }
 } else if (isMain) {
   const packs = [...enabledPacks(), ...await addPlugins()];
   const front = frontTools(packs);

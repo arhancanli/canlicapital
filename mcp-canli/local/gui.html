@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Canli desk</title>
+<style nonce="__NONCE__">
+:root{--bg:#eef1f4;--panel:#fbfcfd;--ink:#16202b;--muted:#566474;--line:#d3dae1;--accent:#1f5fbf;--accent-ink:#fff;--bad:#b42318;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#10161d;--panel:#171f28;--ink:#e6ebf0;--muted:#9aa8b6;--line:#2a3541;--accent:#6ea8ff;--accent-ink:#0c1116;--bad:#f87171;color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+.app{display:grid;grid-template-columns:minmax(280px,340px) minmax(0,1fr);min-height:100%}
+.rail{padding:20px 16px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:14px;min-width:0}
+main{padding:20px 24px 40px;display:flex;flex-direction:column;gap:14px;min-width:0}
+h1{font-size:17px;margin:0;letter-spacing:-.01em}
+h2{font-size:17px;margin:0;font-family:var(--mono);font-weight:600;overflow-wrap:anywhere}
+.lede{margin:0;color:var(--muted);font-size:13px}
+label{display:block;font-size:13px;font-weight:600;margin:0 0 4px;overflow-wrap:anywhere}
+label small{font-weight:400;color:var(--muted)}
+input,select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:7px 9px}
+input[type=checkbox]{width:auto}
+textarea{font-family:var(--mono);font-size:13px;min-height:72px;resize:vertical}
+button{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:6px 10px;cursor:pointer}
+button.run{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600;padding:8px 18px}
+button:disabled{opacity:.55;cursor:default}
+:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.starts{display:flex;flex-direction:column;gap:6px}
+.starts button{text-align:left}
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.list button{width:100%;text-align:left;background:none;border:0;border-radius:6px;padding:6px 8px}
+.list button:hover,.list button[aria-current=true]{background:var(--panel)}
+.list b{display:block;font-family:var(--mono);font-weight:600;font-size:13px;overflow-wrap:anywhere}
+.list span{display:block;color:var(--muted);font-size:12.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.form{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.fields .wide{grid-column:1/-1}
+.hint{margin:3px 0 0;color:var(--muted);font-size:12px;overflow-wrap:anywhere}
+.more{font-size:13px;color:var(--muted)}
+.strip{font-family:var(--mono);font-size:12.5px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;border-top:2px solid var(--ink);border-bottom:1px solid var(--line);padding:7px 0;overflow-wrap:anywhere}
+.strip code{flex:1 1 300px;min-width:0;font:inherit;max-height:5.5em;overflow:auto}
+.strip .bad{color:var(--bad)}
+iframe{width:100%;min-height:80px;border:1px solid var(--line);border-radius:10px;background:var(--panel);display:block}
+.empty{color:var(--muted);margin:0}
+.foot{margin-top:auto;color:var(--muted);font-size:12px}
+[hidden]{display:none!important}
+@media (max-width:760px){.app{grid-template-columns:minmax(0,1fr)}.rail{border-right:0;border-bottom:1px solid var(--line)}main{padding:16px}.foot{margin-top:0}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="rail">
+    <div><h1>Canli desk</h1><p class="lede">Finance tools you can run and read, on this machine.</p></div>
+    <div><label for="q">What do you want to check?</label><input id="q" type="search" autocomplete="off" placeholder="revenue as of 2019, deflated sharpe…"></div>
+    <div class="starts" id="starts"></div>
+    <ul class="list" id="found" aria-live="polite"></ul>
+    <p class="foot">Answers only on this computer. Tools fetch what they need from public sources.</p>
+  </aside>
+  <main>
+    <p class="empty" id="empty">Search for a tool, or pick one of the starting points.</p>
+    <form class="form" id="form" hidden>
+      <div><h2 id="name"></h2><p class="lede" id="about"></p></div>
+      <div class="fields" id="fields"></div>
+      <details class="more" id="optional" hidden><summary>More options</summary><div class="fields" id="extra"></div></details>
+      <div><button class="run" id="run" type="submit">Run</button></div>
+    </form>
+    <div class="strip" id="strip" hidden><span id="took"></span><code id="sent"></code><button type="button" id="copy">Copy the call</button></div>
+    <iframe id="view" title="Result" src="/view" sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox" hidden></iframe>
+  </main>
+</div>
+<script nonce="__NONCE__">
+(function () {
+  const TOKEN = "__TOKEN__";
+  history.replaceState(null, "", "/");
+  const $ = (id) => document.getElementById(id);
+  const STARTS = [
+    ["Check a claim against the filing", "verify_claims", { company: "AAPL", text: "Apple's net income was $112 billion in fiscal 2025." }],
+    ["Trace a figure down the filing", "figure_trace", { company: "AAPL", measure: "net_income" }],
+    ["Is this Sharpe luck?", "validate_deflated_sharpe", { observed_sharpe_annualized: 1.8, observations: 1000, periods_per_year: 252, skew: -0.2, non_excess_kurtosis: 4, effective_independent_trials: 40, cross_trial_sharpe_sd_annualized: 0.5 }],
+    ["Volatility surface", "volatility_surface", { symbol: "SPY" }],
+    ["Statements as charts", "financial_statements", { company: "MSFT" }],
+  ];
+  const call = async (name, args) => {
+    const res = await fetch("/call", { method: "POST", headers: { "content-type": "application/json", "x-canli-token": TOKEN }, body: JSON.stringify({ name, arguments: args }) });
+    if (!res.ok && res.headers.get("content-type")?.includes("json") !== true) throw new Error(await res.text());
+    return res.json();
+  };
+  const dataOf = (r) => {
+    if (r.structuredContent !== undefined) return r.structuredContent;
+    try { return JSON.parse(r.content?.[0]?.text ?? "null"); } catch { return null; }
+  };
+  const element = (tag, props = {}, ...kids) => { const e = Object.assign(document.createElement(tag), props); e.append(...kids); return e; };
+
+  // The viewer's host: the MCP Apps handshake, results handed in, its height and tool calls answered.
+  const frame = $("view");
+  let ready = false, queued = null;
+  const post = (m) => frame.contentWindow?.postMessage(m, "*");
+  const deliver = (input, result) => {
+    if (!ready) { queued = [input, result]; return; }
+    post({ jsonrpc: "2.0", method: "ui/notifications/tool-input", params: { arguments: input } });
+    post({ jsonrpc: "2.0", method: "ui/notifications/tool-result", params: result });
+  };
+  addEventListener("message", async (event) => {
+    if (event.source !== frame.contentWindow) return;
+    const m = event.data;
+    if (!m || m.jsonrpc !== "2.0") return;
+    const reply = (result) => post({ jsonrpc: "2.0", id: m.id, result });
+    if (m.method === "ui/initialize") {
+      reply({ protocolVersion: "2026-01-26", hostInfo: { name: "canli-desk", version: "1" }, hostCapabilities: { serverTools: {} }, hostContext: { theme: matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light", displayMode: "inline", availableDisplayModes: ["inline"] } });
+    } else if (m.method === "ui/notifications/initialized") {
+      ready = true;
+      if (queued) { deliver(...queued); queued = null; }
+    } else if (m.method === "ui/notifications/size-changed") {
+      frame.style.height = `${Math.min(Math.max(80, Number(m.params?.height) || 80) + 4, 6000)}px`;
+    } else if (m.method === "tools/call") {
+      try { reply(await call(m.params.name, m.params.arguments)); } catch (err) { post({ jsonrpc: "2.0", id: m.id, error: { code: -32000, message: String(err.message) } }); }
+    } else if (m.id !== undefined) reply({});
+  });
+
+  // A form from a tool's schema: plain fields where the schema is plain, JSON where it is not.
+  const kindOf = (s) => {
+    if (!s) return "json";
+    if (s.enum) return "enum";
+    const t = Array.isArray(s.type) ? s.type.find((x) => x !== "null") : s.type;
+    if (t === "string") return "text";
+    if (t === "number" || t === "integer") return "number";
+    if (t === "boolean") return "bool";
+    if (t === "array" && s.items?.type === "string") return "list";
+    return "json";
+  };
+  let current = null;
+  const field = (key, s, required, preset) => {
+    const kind = kindOf(s), id = `f-${key}`;
+    const lab = element("label", { htmlFor: id, textContent: key.replace(/_/g, " ") });
+    if (!required) lab.append(" ", element("small", { textContent: "optional" }));
+    let input;
+    if (kind === "enum") { input = element("select", { id }); if (!required) input.append(element("option", { value: "", textContent: "" })); for (const v of s.enum) input.append(element("option", { value: String(v), textContent: String(v) })); if (preset !== undefined) input.value = String(preset); }
+    else if (kind === "bool") { input = element("select", { id }, element("option", { value: "", textContent: "" }), element("option", { value: "true", textContent: "yes" }), element("option", { value: "false", textContent: "no" })); if (preset !== undefined) input.value = String(preset); }
+    else if (kind === "json") { input = element("textarea", { id, spellcheck: false, value: preset === undefined ? "" : JSON.stringify(preset) }); }
+    else if (kind === "list") { input = element("input", { id, type: "text", placeholder: "comma separated", value: Array.isArray(preset) ? preset.join(", ") : "" }); }
+    else if (kind === "text" && (s.maxLength ?? 0) > 400) { input = element("textarea", { id, value: preset ?? "" }); }
+    else { input = element("input", { id, type: kind === "number" ? "number" : "text", step: "any", value: preset ?? "" }); }
+    const box = element("div", { className: kind === "json" || input.tagName === "TEXTAREA" ? "wide" : "" }, lab, input);
+    if (s?.description) box.append(element("p", { className: "hint", textContent: s.description }));
+    box.dataset.key = key; box.dataset.kind = kind;
+    return box;
+  };
+  const read = () => {
+    const args = {};
+    for (const box of document.querySelectorAll("[data-key]")) {
+      const el = box.querySelector("input,select,textarea"), raw = el.value.trim(), kind = box.dataset.kind;
+      if (raw === "") continue;
+      if (kind === "number") args[box.dataset.key] = Number(raw);
+      else if (kind === "bool") args[box.dataset.key] = raw === "true";
+      else if (kind === "list") args[box.dataset.key] = raw.split(",").map((x) => x.trim()).filter(Boolean);
+      else if (kind === "json") { try { args[box.dataset.key] = JSON.parse(raw); } catch { throw new Error(`${box.dataset.key} is not valid JSON.`); } }
+      else args[box.dataset.key] = raw;
+    }
+    return args;
+  };
+  const open = async (name, preset = {}) => {
+    const r = await call("describe_tool", { name });
+    if (r.isError) { showError(name, r.content?.[0]?.text ?? "This tool is not available."); return false; }
+    const d = dataOf(r), schema = d.input_schema ?? d.inputSchema ?? d.schema ?? {}, props = schema.properties ?? {}, need = new Set(schema.required ?? []);
+    current = name;
+    $("empty").hidden = true; $("form").hidden = false;
+    $("name").textContent = name;
+    $("about").textContent = d.description ?? "";
+    const main = [], rest = [];
+    for (const [k, s] of Object.entries(props)) (need.has(k) || preset[k] !== undefined ? main : rest).push(field(k, s, need.has(k), preset[k]));
+    // A tool with nothing required shows its fields outright, so nobody meets an empty form.
+    if (!main.length) main.push(...rest.splice(0));
+    $("fields").replaceChildren(...main);
+    $("extra").replaceChildren(...rest);
+    $("optional").hidden = rest.length === 0;
+    $("optional").open = false;
+    for (const b of document.querySelectorAll("#found button")) b.setAttribute("aria-current", String(b.dataset.tool === name));
+    return true;
+  };
+  const showError = (what, text) => {
+    $("strip").hidden = false; $("took").textContent = ""; $("took").className = "bad"; $("took").textContent = "Refused";
+    $("sent").textContent = `${what}: ${text}`;
+    $("view").hidden = true;
+  };
+  const run = async () => {
+    let args;
+    try { args = read(); } catch (err) { showError(current, err.message); return; }
+    const input = { name: current, arguments: args }, began = performance.now();
+    $("run").disabled = true; $("run").textContent = "Running…";
+    $("strip").hidden = false; $("took").className = ""; $("took").textContent = "Running";
+    $("sent").textContent = JSON.stringify(input);
+    frame.hidden = false;
+    try {
+      const result = await call("run_tool", input);
+      $("took").textContent = `${result.isError ? "Refused" : "Ran"} in ${((performance.now() - began) / 1000).toFixed(1)} s`;
+      $("took").className = result.isError ? "bad" : "";
+      deliver(input, result);
+    } catch (err) { showError(current, err.message); }
+    $("run").disabled = false; $("run").textContent = "Run";
+  };
+  $("form").addEventListener("submit", (e) => { e.preventDefault(); run(); });
+  $("copy").addEventListener("click", async () => { try { await navigator.clipboard.writeText($("sent").textContent); $("copy").textContent = "Copied"; setTimeout(() => { $("copy").textContent = "Copy the call"; }, 1200); } catch { $("copy").textContent = "Select and copy above"; } });
+
+  // Search as the words are typed, and the starting points the server actually has.
+  let timer = 0;
+  $("q").addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(search, 180); });
+  async function search() {
+    const query = $("q").value.trim();
+    if (!query) { $("found").replaceChildren(); return; }
+    const d = dataOf(await call("find_tool", { query, limit: 10 }));
+    const at = (k) => d?.columns?.indexOf(k) ?? -1;
+    const items = (d?.rows ?? []).map((row) => ({ name: row[at("name")], description: row[at("description")] }));
+    $("found").replaceChildren(...items.map((t) => {
+      const b = element("button", { type: "button" }, element("b", { textContent: t.name }), element("span", { textContent: t.description ?? "" }));
+      b.dataset.tool = t.name;
+      b.addEventListener("click", () => open(t.name));
+      return element("li", {}, b);
+    }));
+    if (!items.length) $("found").replaceChildren(element("li", { className: "lede", textContent: "Nothing matches those words." }));
+  }
+  (async () => {
+    for (const [label, name, preset] of STARTS) {
+      const r = await call("describe_tool", { name }).catch(() => ({ isError: true }));
+      if (r.isError) continue;
+      const b = element("button", { type: "button", textContent: label });
+      b.addEventListener("click", async () => { if (await open(name, preset)) run(); });
+      $("starts").append(b);
+    }
+  })();
+})();
+</script>
+</body>
+</html>

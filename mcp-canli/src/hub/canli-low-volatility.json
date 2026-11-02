@@ -1,0 +1,20 @@
+{
+  "spec": "canli.sleeve.v1",
+  "id": "canli/low-volatility",
+  "title": "Low volatility, the calmer half",
+  "author": "arhancanli",
+  "recipe": "low_volatility",
+  "params": {
+    "lookback": 63,
+    "top_fraction": 0.5,
+    "rebalance_every": 21
+  },
+  "data": "universe",
+  "rationale": "Calmer stocks have historically earned about as much as wilder ones, against what simple theory predicts, possibly because some investors overpay for lottery-like shares.",
+  "risks": "Lags in sharp rallies, and tends to crowd into a few sectors such as utilities and staples, so it carries interest rate exposure.",
+  "references": [
+    "Ang, Hodrick, Xing and Zhang (2006), The Cross-Section of Volatility and Expected Returns, Journal of Finance",
+    "Blitz and van Vliet (2007), The Volatility Effect, Journal of Portfolio Management"
+  ],
+  "license": "CC-BY-4.0"
+}

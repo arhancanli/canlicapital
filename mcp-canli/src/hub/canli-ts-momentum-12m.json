@@ -1,0 +1,18 @@
+{
+  "spec": "canli.sleeve.v1",
+  "id": "canli/ts-momentum-12m",
+  "title": "Twelve-month time-series momentum",
+  "author": "arhancanli",
+  "recipe": "time_series_momentum",
+  "params": {
+    "lookback": 252,
+    "long_only": true
+  },
+  "data": "single",
+  "rationale": "An asset's own return over the past year has tended to predict its next month across asset classes. This holds the asset only while that return is positive.",
+  "risks": "Sharp reversals at trend turns, known as momentum crashes, and long flat stretches in range-bound markets.",
+  "references": [
+    "Moskowitz, Ooi and Pedersen (2012), Time Series Momentum, Journal of Financial Economics"
+  ],
+  "license": "CC-BY-4.0"
+}

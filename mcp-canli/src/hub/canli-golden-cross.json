@@ -1,0 +1,19 @@
+{
+  "spec": "canli.sleeve.v1",
+  "id": "canli/golden-cross",
+  "title": "Golden cross, long or flat",
+  "author": "arhancanli",
+  "recipe": "ma_crossover",
+  "params": {
+    "fast": 50,
+    "slow": 200,
+    "long_only": true
+  },
+  "data": "single",
+  "rationale": "Prices trend more than a random walk allows at multi-month horizons, so a fast average above a slow one tends to mark an uptrend. Holding only in uptrends is meant to avoid the worst of long falls.",
+  "risks": "Whipsaws in sideways markets, and late exits around turning points. It sits out sharp rebounds until the averages cross again.",
+  "references": [
+    "Brock, Lakonishok and LeBaron (1992), Simple Technical Trading Rules and the Stochastic Properties of Stock Returns, Journal of Finance"
+  ],
+  "license": "CC-BY-4.0"
+}
