@@ -347,3 +347,9 @@ test("excluding special items is an adjusted figure; fiscal 2025 is a year (Pack
   assert.equal(compareGuidance([{ measure: "eps", basis: "GAAP", period: "Q4 FY25", unit: "USD per share", low: 2.23, high: 2.43, quote: "g" }], results).length, 0, "a year's result does not answer a quarter's guide");
 });
 
+test("GAAP and non-GAAP named apart still go one figure each with respectively (ON Semiconductor)", () => {
+  const rows = resultsFromText("Fourth quarter GAAP diluted earnings per share and non-GAAP diluted earnings per share of $0.45 and $0.64, respectively.");
+  assert.deepEqual(rows.filter((r) => r.measure === "eps").map((r) => [r.basis, r.value]), [["GAAP", 0.45], ["non-GAAP", 0.64]]);
+  assert.equal(basisOf("GAAP EPS was $1 and non-GAAP EPS was $2"), "non-GAAP", "without respectively the nearest word still decides");
+});
+

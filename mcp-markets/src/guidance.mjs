@@ -71,6 +71,8 @@ export function namesAPart(label, measure) {
 export function basisOf(text) {
   const t = String(text);
   if (/\bgaap and non-?gaap\b/i.test(t)) return "GAAP and non-GAAP";
+  // "GAAP diluted EPS and non-GAAP diluted EPS of $0.45 and $0.64, respectively" names both as well.
+  if (/\bgaap\b(?:(?!non-?gaap)[^.;]){0,70}\band non-?gaap\b[^.;]*\brespectively\b/i.test(t)) return "GAAP and non-GAAP";
   let best = null, at = -1;
   for (const [name, re] of BASIS) for (const m of t.matchAll(re)) if (m.index > at) { best = name; at = m.index; }
   return best;
