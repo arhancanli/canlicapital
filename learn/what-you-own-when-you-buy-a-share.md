@@ -2,6 +2,8 @@
 
 > A share is a small slice of a real business. This lesson shows what that slice earned and paid in one year, using the figures Apple filed with the SEC.
 
+**Sources:** learn-examples-2026-11-02.json
+
 **Lesson:** 1
 
 **Published 2026-11-02. Every figure comes from [the filings and prices saved here](/glassbox/learn-examples-2026-11-02.json).**

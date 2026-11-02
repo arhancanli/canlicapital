@@ -2,6 +2,8 @@
 
 > An income statement runs from what customers paid down to what was left for the owners. Here is every main line, using what Apple filed for the year to September 2025.
 
+**Sources:** learn-examples-2026-11-02.json
+
 **Lesson:** 2
 
 **Published 2026-11-02. Every figure comes from [Apple's annual report](https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm), [saved here](/glassbox/learn-examples-2026-11-02.json).**
