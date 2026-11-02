@@ -118,10 +118,10 @@ export function annualPartOf(submission) {
   return (keep.length ? keep : docs.map((m) => m[1])).map((d) => {
     const body = d.match(/<TEXT>([\s\S]*?)(?:<\/TEXT>|$)/i)?.[1] ?? d;
     if (/<(?:html|p|div)\b/i.test(body)) return htmlToText(body);
-    // Old filings mark pages and tables with their own tags. Repeated until nothing changes, so a tag
-    // split by another cannot survive one pass.
+    // Old filings mark pages and tables with their own tags. A few passes clear tags split by others,
+    // no more, since a filer could nest them to make this slow; any bracket left over is blanked.
     let plain = body;
-    for (let prev = null; prev !== plain;) { prev = plain; plain = plain.replace(/<\/?[a-z][^<>]*>/gi, ""); }
+    for (let pass = 0; pass < 3; pass += 1) plain = plain.replace(/<\/?[a-z][^<>]*>/gi, "");
     return decodeEntities(plain.replace(/[<>]/g, " "));
   }).join("\n\n");
 }

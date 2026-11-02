@@ -302,3 +302,12 @@ test("a filing whose listed document is gone is read from the whole submission",
   assert.equal(r.not_read, undefined);
   assert.equal(r.rows[0][4], 1);
 });
+
+test("a filing built to slow the tag stripper does not, and leaves no bracket", () => {
+  const nasty = `<DOCUMENT>\n<TYPE>10-K\n<TEXT>\n${"<a".repeat(200000)}${">".repeat(200000)} plain words\n</TEXT>\n</DOCUMENT>`;
+  const began = Date.now();
+  const out = annualPartOf(nasty);
+  assert.ok(Date.now() - began < 5000);
+  assert.ok(!/[<>]/.test(out));
+  assert.match(out, /plain words/);
+});
