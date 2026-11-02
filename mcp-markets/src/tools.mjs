@@ -56,15 +56,17 @@ export async function companyProfile(session, args) {
 export const listInput = z.object({
   company: COMPANY,
   forms: z.array(z.string().min(1).max(20)).max(20).optional().describe("Form types, for example [\"10-K\", \"8-K\"]; amendments (10-K/A) are included. Default: all."),
+  form: z.string().min(1).max(20).optional().describe("One form type, the same as forms with one entry."),
   since: DATE.optional().describe("Filed on or after this date."),
   until: DATE.optional().describe("Filed on or before this date."),
   limit: z.number().int().min(1).max(200).optional().describe("Most filings, newest first; default 20."),
 }).strict();
 export async function listFilings(session, args) {
-  const { company, forms, since, until, limit = 20 } = listInput.parse(args);
+  const { company, forms, form, since, until, limit = 20 } = listInput.parse(args);
   const e = await resolveEntity(session, company);
   const { sub, rows } = await filings(session, e.cik, { since });
-  const want = forms?.map((f) => f.toUpperCase());
+  const named = [...(forms ?? []), ...(form ? [form] : [])];
+  const want = named.length ? named.map((f) => f.toUpperCase()) : null;
   const picked = rows.filter((r) => (!want || want.some((f) => r.form === f || r.form === `${f}/A`)) && (!since || r.filingDate >= since) && (!until || r.filingDate <= until));
   return {
     ...entityOut(e, sub),
