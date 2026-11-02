@@ -223,7 +223,7 @@ test("a company outside the reference is read live from the SEC when the flagshi
     assert.equal(r.company.cik, "0002200000");
     assert.match(r.company.matched.note, /outside the Canli company reference, so its figures are read live from the SEC/);
     assert.equal(r.snapshot.read_live, true);
-    assert.match(r.snapshot.sec_url, /data\.sec\.gov\/api\/xbrl\/companyfacts\/CIK0002200000\.json/);
+    assert.equal(r.snapshot.sec_url, "https://data.sec.gov/api/xbrl/companyfacts/CIK0002200000.json");
   }
   assert.equal(calls.filter((c) => c.includes("companyfacts")).length, 1);
   assert.equal(out(await toolHistory(s, { company: "NEWCO", concept: "revenue" })).company.cik, "0002200000");

@@ -19,7 +19,7 @@ function yahoo({ missing = false } = {}) {
   const calls = [];
   const fetchImpl = async (url, opts = {}) => {
     calls.push([String(url), opts.headers ?? {}]);
-    if (String(url).startsWith("https://fc.yahoo.com")) return new Response("not found", { status: 404, headers: { "set-cookie": "A3=abc; Domain=.yahoo.com; Path=/" } });
+    if (new URL(url).hostname === "fc.yahoo.com") return new Response("not found", { status: 404, headers: { "set-cookie": "A3=abc; Domain=.yahoo.com; Path=/" } });
     if (String(url).includes("getcrumb")) return new Response("crumb-1");
     if (missing) return new Response(JSON.stringify({ quoteSummary: { result: null, error: { code: "Not Found" } } }), { status: 404 });
     return new Response(JSON.stringify({ quoteSummary: { result: [SUMMARY], error: null } }));
