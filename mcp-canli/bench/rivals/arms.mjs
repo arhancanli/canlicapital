@@ -23,5 +23,11 @@ export const ARMS = {
   yahoo: [["yahoo", `${R}/yfmcp/.venv313/bin/python`, [`${R}/yfmcp/server.py`], {}]],
   // A hosted server that answers without an account. No code of theirs runs here.
   drillr: [["drillr", "https://gateway.drillr.ai/mcp/data", [], {}]],
+  // Installed by hand at pinned versions after reading their source. Each runs with a throwaway HOME.
+  "sec-edgar-mcp": [["secedgar", `${R}/.venv-secedgar/bin/sec-edgar-mcp`, [], { HOME: `${R}/home/secedgar`, SEC_EDGAR_USER_AGENT: ID.EDGAR_IDENTITY }]],
+  yfmcp: [["yfmcp", `${R}/.venv-yfmcp/bin/yfmcp`, [], { HOME: `${R}/home/yfmcp` }]],
+  "cyanheads-secedgar": [["secedgar", process.execPath, [`${R}/npm-cyanheads/node_modules/@cyanheads/secedgar-mcp-server/dist/index.js`], { HOME: `${R}/home/cyanheads`, EDGAR_USER_AGENT: ID.EDGAR_IDENTITY, MCP_TRANSPORT_TYPE: "stdio" }]],
+  "pipeworx-edgar": [["edgar", process.execPath, [`${R}/npm-pipeworx/node_modules/@pipeworx/mcp-edgar/bin/cli.js`], { HOME: `${R}/home/pipeworx` }]],
+  "pit-fundamentals": [["pit", process.execPath, [`${R}/npm-pit/node_modules/pit-fundamentals-mcp/index.js`], { HOME: `${R}/home/pit` }]],
   "edgartools+yahoo": [["edgar", `${R}/.venv-edgar/bin/edgartools-mcp`, [], ID], ["yahoo", `${R}/yfmcp/.venv313/bin/python`, [`${R}/yfmcp/server.py`], {}]],
 };
