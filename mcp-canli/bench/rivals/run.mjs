@@ -54,7 +54,8 @@ const done = new Set(prior.trim().split("\n").filter(Boolean).map((l) => JSON.pa
 const BUDGET = Number(process.env.BUDGET_TOKENS ?? 0), BUDGET_FILE = process.env.BUDGET_FILE;
 // BUDGET_USD with USD_FILE caps the money spent across processes, at list prices per million tokens
 // (input, cached input, output). A run that started is finished, so the cap can pass by one run.
-const PRICES = { "gpt-6.1-terra": [1, 0.05, 5], "gpt-6.1-sol": [2, 0.1, 10], "gpt-5.6-terra": [0.5, 0.05, 3], "deepseek-flash": [0.3, 0.006, 1.2] };
+// Uncached input is billed as a cache write, 25% above the input price: USD 1.23 a million on the dashboard, against a listed USD 1.
+const PRICES = { "gpt-6.1-terra": [1.25, 0.05, 5], "gpt-6.1-sol": [2.5, 0.1, 10], "gpt-5.6-terra": [0.625, 0.05, 3], "deepseek-flash": [0.3, 0.006, 1.2] };
 const BUDGET_USD = Number(process.env.BUDGET_USD ?? 0), USD_FILE = process.env.USD_FILE;
 const spent = () => { try { return Number(readFileSync(USD_FILE, "utf8")) || 0; } catch { return 0; } };
 const costOf = (r) => { const [i, c, o] = PRICES[MODEL] ?? [0, 0, 0]; return (((r.input ?? 0) - (r.cached ?? 0)) * i + (r.cached ?? 0) * c + (r.output ?? 0) * o) / 1e6; };
