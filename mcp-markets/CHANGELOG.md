@@ -9,6 +9,8 @@ New tool: `exposure_map`, who depends on a company, from what others say in thei
 - A year's guide in a table column headed "Year ended December 31, 2026" was read as the quarter's: Eaton's $10.88 to $11.33 against a quarter's $3.15.
 - A part's guide in a table was read as the total's: Qualcomm's QCT revenues of $7.9B to $8.5B against total revenue of $9.9B.
 - A result too far from a dollar range to be the same thing is now not placed at all.
+- A guide that names no basis is not called a miss when the adjusted result lands elsewhere: Gen Digital's EPS guide of $0.68 to $0.70 against a diluted $0.36 and a non-GAAP figure inside the range.
+- "Excluding special items" now reads as adjusted, and "fiscal 2025" as a year.
 - `guidance_record` counts one line a quarter for each measure, and a line that was not placed counts for nothing.
 
 - `shipping_activity` asks PortWatch less: every chokepoint in two queries, and one chokepoint in one. It took 18.8 seconds on the hosted server. PortWatch and Wikipedia answers are now kept on disk for six hours.
