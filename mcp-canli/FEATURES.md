@@ -1,6 +1,6 @@
 # Finance coverage and quality, 0.6.0
 
-The flagship combines seven exact published Canli packages. Its full catalog has 369 tools;
+The flagship combines seven exact published Canli packages. Its full catalog has 385 tools;
 paper trading is enabled with paper credentials or an explicit pack selection. Five tools are
 advertised initially (three for discovery and running, two common ones). The 56 prompts, 15 static resources (one is the result viewer drawn by clients with MCP Apps) and nine resource templates
 appear only for enabled packs. This is a coverage inventory, not a worldwide ranking.
@@ -34,6 +34,14 @@ appear only for enabled packs. This is a coverage inventory, not a worldwide ran
 | Charts and providers | Results drawn in clients with MCP Apps: tables, statements, checked claims, guidance ranges, labelled figures, line charts, the Treasury and futures curves; interactive candlesticks with indicators, option chains, backtest dashboards with sliders and a luck check, sweep heatmaps, treemaps and a paper order ticket with Approve; a market map, the Treasury curve through time, statements with margins and growth, the volatility surface, stock comparisons with correlation heatmaps and independent bets, sortable tables; a strategy against each crisis and at each size, the luck cliff of a deflated Sharpe, cross-validated paths and a figure traced down its filing; `view: true` sends the model a summary instead of the data | Exported images and broader keyed providers are gaps against [OpenBB's MCP interface](https://docs.openbb.co/odp/python/extensions/interface/openbb-mcp); the views are tested in a local host that follows the MCP Apps protocol and in a headless browser, not yet in a commercial client. |
 | Without an MCP Apps client | `canli-mcp gui` for a browser, `canli-mcp serve` for Streamable HTTP and WebSocket, `canli-mcp check` for CI, `canli-mcp run` for a shell | Loopback only, with a token. gRPC is not offered: no MCP client here speaks it. |
 | Sharing strategies | `hub_list`, `hub_check`, `hub_run`: strategies as data, a recipe with fixed parameters and its reasons and risks | No contributor's code runs. Being listed is not a judgement that one works. |
+| Long memory | `filing_memory`: every annual report a company has on EDGAR, searched on your machine, with yearly counts and an optional test against a margin. Local embeddings with `canli-mcp models install` |
+| Management's word | `guidance_record`: guidance set against what then happened, quarter by quarter, from the company's own releases |
+| What happened next | `what_happened_next`: every past time a market or stock did this, what followed, against an ordinary day |
+| Watching | `sentinel_add`, `canli-mcp sentinel run`, `canli-mcp --channel`: conditions watched from your machine, and a block of context when one is met. A rule can only watch and tell |
+| The past, sealed | `canli-mcp --as-of <date>`: only what was public that day. `recipes/agent_backtest.mjs` scores a model on it and checks whether it remembers |
+| Agents together | `exchange_*`: a closed paper market with order books, margin and forced selling. `agent_consensus` counts independent views. `recipes/exchange_agents.mjs` runs different models against each other |
+| Honest counts | `signed_trial_count`: the backtests behind a result, from the signed audit log |
+| Alternative data | `shipping_activity` (IMF PortWatch), `page_attention` (Wikipedia), `filing_sentiment` (local FinBERT, non-commercial licence) |
 | Handing off orders | `draft_orders`: orders in a standard form with a hash | It sends nothing, and this server holds no broker key. |
 | Banking and accounting | No bank-ledger or accounting-system adapter | Additional connectors require explicit data contracts and authentication; they are not inferred from market-data coverage. |
 | Transport and distribution | Local stdio through npm; official MCP Registry and GitHub release; MCPB build workflow; hosted Streamable HTTP at `https://canlicapital.com/mcp/canli` | The hosted server runs the public-data and computing packs; file arguments, prices and paper trading stay local. Authenticated third-party directory parity is separate delivery work. |

@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.16.0
+
+With canli-markets-mcp 0.11.0 and canli-backtest-mcp 0.5.0, which add `filing_memory`, `guidance_record`, `what_happened_next`, `shipping_activity`, `page_attention`, `latest_price`, `filing_sentiment`, the `exchange_*` paper market, `agent_consensus` and `find_diversifiers`.
 
 - The sentinel watches for a price move or level, a move in implied volatility, or a new filing, and sends a block of context the moment one comes: `sentinel_add`, `canli-mcp sentinel run`, and `canli-mcp --channel`, which wakes a Claude Code session. Crypto streams from Coinbase and US stocks from Alpaca with your keys; the rest is read on a timer, and every event says how late it can be. A rule can only watch and tell. Where events go is set by whoever starts it, and no outside text reaches the block.
 - The time machine: `canli-mcp --as-of 2020-03-01` shows only what was public that day. Tools that cannot be held to the date are off, later rows are dropped, and any other later date stops the answer. `recipes/agent_backtest.mjs` backtests a model with it, and checks whether the model simply remembers the future.
