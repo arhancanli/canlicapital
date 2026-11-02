@@ -1,0 +1,176 @@
+# Runs the recipes and templates for real: the Kubernetes job on a cluster on the runner (kind), the
+# GitLab template in its own image, the Hugging Face Space started and used, and each framework recipe
+# through a small model on the runner, with no API key. Runs when they change, or on request. A pass says
+# the job finished, or that the model loop ran and the server received tool calls. It says nothing about
+# how good a small model's answers are, and none of this ran on GitLab's or Hugging Face's own servers.
+name: Agent recipes
+
+on:
+  pull_request:
+    paths:
+      - mcp-canli/recipes/**
+      - integrations/ci/**
+      - integrations/huggingface_space/**
+      - .github/workflows/recipes.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  kubernetes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Start a cluster
+        run: kind create cluster --name canli --wait 180s
+      - name: Give the job its volume and data
+        run: |
+          kubectl apply -f - <<'EOF'
+          apiVersion: v1
+          kind: PersistentVolumeClaim
+          metadata: { name: canli-cpcv-data }
+          spec:
+            accessModes: [ReadWriteOnce]
+            resources: { requests: { storage: 1Gi } }
+          ---
+          apiVersion: v1
+          kind: Pod
+          metadata: { name: loader }
+          spec:
+            containers:
+              - name: loader
+                image: node:24-slim
+                command: [sleep, "3600"]
+                volumeMounts: [{ name: data, mountPath: /data }]
+            volumes:
+              - name: data
+                persistentVolumeClaim: { claimName: canli-cpcv-data }
+          EOF
+          kubectl wait --for=condition=Ready pod/loader --timeout=300s
+          python3 - > returns.csv <<'EOF'
+          import datetime, random
+          random.seed(7)
+          names = [f"t{i}" for i in range(30)]
+          print("date," + ",".join(names))
+          day = datetime.date(2018, 1, 1)
+          for _ in range(1500):
+              while day.weekday() > 4:
+                  day += datetime.timedelta(days=1)
+              print(day.isoformat() + "," + ",".join(f"{random.gauss(0.0002, 0.01):.6f}" for _ in names))
+              day += datetime.timedelta(days=1)
+          EOF
+          kubectl cp returns.csv loader:/data/returns.csv
+      - name: Run the published job
+        run: |
+          kubectl apply -f mcp-canli/recipes/kubernetes/cpcv-indexed-job.yaml
+          kubectl wait --for=condition=complete job/canli-cpcv --timeout=1500s
+      - name: Merge the shards the job wrote
+        run: |
+          files="$(seq 0 7 | sed 's#.*#"/data/shard-&.json"#' | paste -sd, -)"
+          kubectl exec loader -- sh -c "cd /tmp && HOME=/tmp npx -y canli-mcp run cpcv '{\"merge_files\":[$files]}'" | tee merged.json
+          grep -Eq 'merged_from.{1,6}8' merged.json
+          grep -Eq 'splits.{1,6}220' merged.json
+          grep -Eq 'paths.{1,6}55' merged.json
+      - name: Say what happened
+        if: failure()
+        run: |
+          kubectl get pods -o wide || true
+          kubectl describe job canli-cpcv || true
+          kubectl logs -l job-name=canli-cpcv --tail=30 --prefix || true
+
+  gitlab-template:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - name: Run the template the way GitLab would, in its own image
+        run: |
+          python3 -c 'import random; random.seed(7); print("date,r"); [print(f"2024-{1+i//28:02d}-{1+i%28:02d},{random.gauss(0.0005, 0.01):.6f}") for i in range(300)]' > returns.csv
+          git add returns.csv
+          npx -y gitlab-ci-local@4.77.0 --file integrations/ci/gitlab-validate-backtest.yml --variable TRIALS=40 validate-backtest
+          report="$(find . -name canli-report.json -not -path './node_modules/*' | head -1)"
+          test -n "$report"
+          cat "$report"
+          grep -q sha256 "$report"
+
+  space:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Start the Hugging Face Space here and use it
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install --quiet -r integrations/huggingface_space/requirements.txt
+          python -c 'import random; random.seed(7); print("date,r"); [print(f"2024-{1+i//28:02d}-{1+i%28:02d},{random.gauss(0.0005, 0.01):.6f}") for i in range(300)]' > returns.csv
+          (cd integrations/huggingface_space && nohup ../../.venv/bin/python app.py > "$RUNNER_TEMP/space.log" 2>&1 &)
+          timeout 120 sh -c 'until curl -fs http://127.0.0.1:7860/ > /dev/null; do sleep 1; done'
+          .venv/bin/python - <<'EOF'
+          from gradio_client import Client, handle_file
+          out = Client("http://127.0.0.1:7860").predict(handle_file("returns.csv"), 40, api_name="/run")
+          print(out)
+          assert "Probability" in out, out
+          EOF
+      - name: Say what happened
+        if: failure()
+        run: tail -30 "$RUNNER_TEMP/space.log" || true
+
+  model-loop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { recipe: langgraph_agent.py, model: "ollama:qwen3:1.7b" }
+          - { recipe: openai_agents_agent.py, model: "qwen3:1.7b" }
+          - { recipe: crewai_agent.py, model: "ollama/qwen3:1.7b" }
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      # CrewAI's pinned version does not install on the newest Python.
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Start a small model on the runner
+        run: |
+          curl -fsSL -o ollama-linux-amd64.tar.zst https://github.com/ollama/ollama/releases/download/v0.40.13/ollama-linux-amd64.tar.zst
+          echo "c9490e0f520be21271d969e6703f012268b1d39f8b70dd58854e5bfef7a75bb6  ollama-linux-amd64.tar.zst" | sha256sum -c -
+          sudo tar --zstd -xf ollama-linux-amd64.tar.zst -C /usr/local
+          nohup ollama serve > ollama.log 2>&1 &
+          until curl -fs http://localhost:11434/api/version; do sleep 1; done
+          ollama pull qwen3:1.7b
+      - name: Install the frameworks
+        run: |
+          python3 -m venv .venv
+          .venv/bin/pip install --quiet -r mcp-canli/recipes/requirements.txt langchain-ollama
+      - name: Run the recipe and count the tool calls the server received
+        env:
+          CANLI_MODEL: ${{ matrix.model }}
+          OPENAI_BASE_URL: http://localhost:11434/v1
+          OPENAI_API_KEY: ollama
+          OPENAI_AGENTS_DISABLE_TRACING: "1"
+          CREWAI_DISABLE_TELEMETRY: "true"
+          OTEL_SDK_DISABLED: "true"
+          RECIPE: ${{ matrix.recipe }}
+        run: |
+          printf '#!/bin/sh\ntee -a %s/calls.log | npx -y canli-mcp\n' "$PWD" > wrap.sh
+          export CANLI_MCP_COMMAND="sh $PWD/wrap.sh"
+          # A model this small does not always use its tools, so it gets three tries. The test is that the loop works.
+          for try in 1 2 3; do
+            timeout 600 .venv/bin/python "mcp-canli/recipes/$RECIPE" "Use find_tool to find the tool for a company's filed financial statements, run it for AAPL, and give the latest annual revenue in one sentence." || true
+            calls="$(grep -c '"tools/call"' calls.log || true)"
+            [ "$calls" -ge 1 ] && break
+          done
+          echo "$RECIPE on $CANLI_MODEL: $calls tool calls" | tee -a "$GITHUB_STEP_SUMMARY"
+          [ "$calls" -ge 1 ]
