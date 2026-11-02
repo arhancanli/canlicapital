@@ -198,7 +198,7 @@ export default defineConfig({
         record: resolve(root, "record.html"),
         vision: resolve(root, "vision.html"),
         stats: resolve(root, "stats.html"),
-        ...Object.fromEntries(['validation', 'fundamentals', 'research', 'execution'].map(name => [`mcp-${name}`, resolve(root, 'mcp-servers', `${name}.html`)])),
+        ...Object.fromEntries(['validation', 'fundamentals', 'research', 'execution', 'markets', 'backtest', 'quant', 'paper-trading'].map(name => [`mcp-${name}`, resolve(root, 'mcp-servers', `${name}.html`)])),
         mcpAnswers: resolve(root, "mcp-servers/answers.html"),
         mcpInstall: resolve(root, "mcp-servers/install.html"),
         privacy: resolve(root, "privacy.html"),
