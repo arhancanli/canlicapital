@@ -1,0 +1,268 @@
+[
+ {
+  "id": "x_for_tsm",
+  "cat": "foreign",
+  "truth": "tsm_revenue_2025_twd",
+  "rel": 0.001,
+  "prompt": "What was TSMC's (Taiwan Semiconductor Manufacturing) net revenue for 2025 in New Taiwan dollars, from its annual report on Form 20-F? Answer as a plain number of New Taiwan dollars."
+ },
+ {
+  "id": "x_for_shel",
+  "cat": "foreign",
+  "truth": "shel_revenue_2025_usd",
+  "rel": 0.001,
+  "prompt": "What was Shell plc's revenue for 2025, from its annual report on Form 20-F? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "x_for_azn",
+  "cat": "foreign",
+  "truth": "azn_total_revenue_2025_usd",
+  "rel": 0.001,
+  "prompt": "What was AstraZeneca's total revenue for 2025, from its annual report on Form 20-F? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "x_for_sap",
+  "cat": "foreign",
+  "truth": "sap_revenue_2025_eur",
+  "rel": 0.001,
+  "prompt": "What was SAP's total revenue for 2025 in euros, from its annual report on Form 20-F? Answer as a plain number of euros."
+ },
+ {
+  "id": "x_for_toyota",
+  "cat": "foreign",
+  "truth": "tm_revenue_fy2026_jpy",
+  "rel": 0.001,
+  "prompt": "What were Toyota Motor's total sales revenues for the fiscal year ended March 31, 2026, in yen, from its Form 20-F? Answer as a plain number of yen."
+ },
+ {
+  "id": "x_for_baba",
+  "cat": "foreign",
+  "truth": "baba_revenue_fy2026_cny",
+  "rel": 0.001,
+  "prompt": "What was Alibaba's revenue for the fiscal year ended March 31, 2026, in Chinese renminbi, from its Form 20-F? Answer as a plain number of renminbi."
+ },
+ {
+  "id": "x_for_unilever",
+  "cat": "foreign",
+  "truth": "ul_turnover_2025_eur",
+  "rel": 0.001,
+  "prompt": "What was Unilever's turnover for 2025 in euros, from its annual report on Form 20-F? Answer as a plain number of euros."
+ },
+ {
+  "id": "x_for_bhp",
+  "cat": "foreign",
+  "truth": "bhp_revenue_fy2026_usd",
+  "rel": 0.001,
+  "prompt": "What was BHP's revenue for the fiscal year ended June 30, 2026, from its Form 20-F? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "x_for_infosys",
+  "cat": "foreign",
+  "truth": "infy_revenue_fy2026_usd",
+  "rel": 0.001,
+  "prompt": "What were Infosys's revenues for the fiscal year ended March 31, 2026, from its Form 20-F? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "x_for_novartis",
+  "cat": "foreign",
+  "truth": "nvs_net_sales_2025_usd",
+  "rel": 0.001,
+  "prompt": "What were Novartis's net sales from continuing operations for 2025, from its Form 20-F? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "x_for_sony",
+  "cat": "foreign",
+  "truth": "sony_sales_fy2026_jpy",
+  "rel": 0.001,
+  "prompt": "What were Sony Group's sales for the fiscal year ended March 31, 2026, in yen, on the income statement of its Form 20-F? Answer as a plain number of yen."
+ },
+ {
+  "id": "x_for_pdd_usd",
+  "cat": "foreign",
+  "truth": "pdd_revenue_2025_usd",
+  "rel": 0.001,
+  "prompt": "PDD Holdings' Form 20-F for 2025 translates its income statement into US dollars for convenience. What were its revenues for 2025 in that US dollar column? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "x_for_diageo",
+  "cat": "foreign",
+  "truth": "deo_sales_fy2026_usd",
+  "rel": 0.001,
+  "prompt": "What were Diageo's sales for the fiscal year ended June 30, 2026, on the income statement of its Form 20-F? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "x_fund_amzn",
+  "cat": "fundamentals",
+  "truth": "amzn_operating_income_2025",
+  "rel": 0.001,
+  "prompt": "What was Amazon's operating income for 2025, from its Form 10-K? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "x_fund_msft",
+  "cat": "fundamentals",
+  "truth": "msft_diluted_eps_fy2025",
+  "rel": 0.001,
+  "prompt": "What was Microsoft's diluted earnings per share for fiscal 2025 (ended June 30, 2025), from its Form 10-K? Answer in dollars per share."
+ },
+ {
+  "id": "x_fund_nvda",
+  "cat": "fundamentals",
+  "truth": "nvda_revenue_fy2026",
+  "rel": 0.001,
+  "prompt": "What was NVIDIA's revenue for fiscal 2026 (ended January 25, 2026), from its Form 10-K? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "x_fund_wmt",
+  "cat": "fundamentals",
+  "truth": "wmt_capex_fy2026",
+  "rel": 0.001,
+  "prompt": "How much did Walmart pay for property and equipment in fiscal 2026 (ended January 31, 2026), from the cash flow statement in its Form 10-K? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "x_fund_meta",
+  "cat": "fundamentals",
+  "truth": "meta_rnd_2025",
+  "rel": 0.001,
+  "prompt": "What was Meta Platforms' research and development expense for 2025, from its Form 10-K? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "x_fund_brk",
+  "cat": "fundamentals",
+  "truth": "brk_net_earnings_2025",
+  "rel": 0.001,
+  "prompt": "What were Berkshire Hathaway's net earnings attributable to its shareholders for 2025, from its Form 10-K? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "x_filing_tsla_tariff",
+  "cat": "filings",
+  "truth": "tsla_tariff_mentions_fy2025",
+  "abs": 2,
+  "prompt": "In Tesla's Form 10-K for fiscal 2025, how many times does \"tariff\" appear in the main document, counting \"tariffs\" and ignoring case? Answer with the count."
+ },
+ {
+  "id": "x_filing_msft_date",
+  "cat": "filings",
+  "truth": "msft_10k_filed_fy2025",
+  "abs": 0,
+  "prompt": "On what date did Microsoft file its Form 10-K for fiscal 2025 with the SEC? Answer as a number in the form YYYYMMDD."
+ },
+ {
+  "id": "x_filing_tsla_8k",
+  "cat": "filings",
+  "truth": "tsla_8k_count_2025",
+  "abs": 0,
+  "prompt": "How many Form 8-K filings did Tesla file with the SEC with a filing date in calendar 2025? Do not count 8-K/A amendments. Answer with the count."
+ },
+ {
+  "id": "x_filing_wmt_people",
+  "cat": "filings",
+  "truth": "wmt_associates_millions",
+  "rel": 0.005,
+  "prompt": "According to the Form 10-K Walmart filed for fiscal 2026, about how many associates did it have as of January 31, 2026? Answer with the number of people."
+ },
+ {
+  "id": "x_ins_msft_count",
+  "cat": "insiders",
+  "truth": "msft_form4_q2_2026",
+  "abs": 0,
+  "prompt": "How many Form 4 filings about Microsoft stock were filed with a filing date from April 1 to June 30, 2026, inclusive? Answer with the count."
+ },
+ {
+  "id": "x_ins_amd_sold",
+  "cat": "insiders",
+  "truth": "amd_open_market_shares_sold_aug_2026",
+  "rel": 0.005,
+  "prompt": "Across all Form 4 filings about Advanced Micro Devices filed in August 2026, how many shares were sold in transactions with code S (open-market sales)? Answer with the number of shares."
+ },
+ {
+  "id": "x_13f_brk_ko",
+  "cat": "13F",
+  "truth": "brk_ko_shares_2026q2",
+  "rel": 0.001,
+  "prompt": "How many shares of Coca-Cola did Berkshire Hathaway report holding in its Form 13F for June 30, 2026? Answer with the number of shares."
+ },
+ {
+  "id": "x_13f_appaloosa",
+  "cat": "13F",
+  "truth": "appaloosa_13f_entries_2026q2",
+  "abs": 0,
+  "prompt": "How many entries are in the information table of Appaloosa LP's Form 13F for June 30, 2026? Answer with the count."
+ },
+ {
+  "id": "x_rate_30y",
+  "cat": "rates_macro",
+  "truth": "ust_30y_2026_06_30",
+  "abs": 0.005,
+  "prompt": "What was the US Treasury 30-year par yield on June 30, 2026, from the Treasury's daily par yield curve? Answer in percent, e.g. 4.25."
+ },
+ {
+  "id": "x_rate_3m",
+  "cat": "rates_macro",
+  "truth": "ust_3m_2026_07_15",
+  "abs": 0.005,
+  "prompt": "What was the US Treasury 3-month par yield on July 15, 2026, from the Treasury's daily par yield curve? Answer in percent, e.g. 4.25."
+ },
+ {
+  "id": "x_macro_unrate",
+  "cat": "rates_macro",
+  "truth": "unrate_2026_08",
+  "abs": 0.05,
+  "prompt": "What was the US unemployment rate for August 2026 (seasonally adjusted, FRED series UNRATE)? Answer in percent, e.g. 4.2."
+ },
+ {
+  "id": "x_macro_mortgage",
+  "cat": "rates_macro",
+  "truth": "mortgage30_2026_09_03",
+  "abs": 0.005,
+  "prompt": "What was the average 30-year fixed mortgage rate in Freddie Mac's survey for the week of September 3, 2026 (FRED series MORTGAGE30US)? Answer in percent, e.g. 6.50."
+ },
+ {
+  "id": "x_price_amzn",
+  "cat": "prices",
+  "truth": "amzn_close_2026_09_15",
+  "rel": 0.002,
+  "prompt": "What was Amazon's (AMZN) closing price on September 15, 2026, not adjusted for dividends? Answer in dollars."
+ },
+ {
+  "id": "x_price_qqq",
+  "cat": "prices",
+  "truth": "qqq_total_return_pct_2026_ytd_sep",
+  "abs": 0.15,
+  "prompt": "What was QQQ's total return in 2026 through September 30, using adjusted closes from December 31, 2025 to September 30, 2026? Answer in percent, e.g. 12.3."
+ },
+ {
+  "id": "x_cry_eth",
+  "cat": "crypto_fx",
+  "truth": "eth_close_2026_08_31",
+  "rel": 0.01,
+  "prompt": "What was Ethereum's closing price in US dollars on August 31, 2026 (UTC)? Answer in dollars."
+ },
+ {
+  "id": "x_fx_gbp",
+  "cat": "crypto_fx",
+  "truth": "eurgbp_ecb_2026_09_15",
+  "abs": 0.0005,
+  "prompt": "What was the European Central Bank's euro reference rate against the British pound on September 15, 2026, in pounds per euro? Answer as a decimal."
+ },
+ {
+  "id": "x_ana_vol",
+  "cat": "analytics",
+  "truth": "nvda_ann_vol_2025",
+  "abs": 0.01,
+  "prompt": "What was NVDA's annualized volatility in 2025: the standard deviation of daily simple returns of adjusted closes from the close on December 31, 2024 to the close on December 31, 2025, times the square root of 252? Answer as a decimal, e.g. 0.25."
+ },
+ {
+  "id": "x_ana_corr",
+  "cat": "analytics",
+  "truth": "msft_googl_corr_2025",
+  "abs": 0.01,
+  "prompt": "What was the correlation of MSFT and GOOGL daily simple returns of adjusted closes in 2025, from the close on December 31, 2024 to the close on December 31, 2025? Answer as a decimal."
+ },
+ {
+  "id": "x_ana_put",
+  "cat": "analytics",
+  "truth": "bs_put_price",
+  "abs": 0.01,
+  "prompt": "What is the Black-Scholes price of a European put with spot 100, strike 95, one year to expiry, a risk-free rate of 3% continuous, no dividends and volatility 30%? Answer in dollars."
+ }
+]
