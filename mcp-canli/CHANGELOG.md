@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.15.1
+
+- `verify_claims`, through canli-markets-mcp 0.10.1: a sentence calls a figure wrong only if it names the company and one period of its own. Otherwise the filed figure is shown without a verdict against it. On 0.10.0, 12 of 24 settled answers on 284 real sentences were wrong, 11 of them false contradictions. The fix is not yet measured on new sentences.
+- `company_report`, through the same release: Lennox's fiscal 2025 revenue no longer reads as its fourth quarter.
+- The hub goes from 5 to 18 strategies.
+- `canli-mcp run` reaches the tools the server answers itself, such as `triangulate`, `brief`, `hub_list` and `find_tool`. It stopped with a TypeError on them in 0.15.0.
+
 ## 0.15.0
 
 - Backtests that meet the market, through canli-backtest-mcp 0.4.0: `backtest_signal` with `capital_usd` and `dollar_volume_file` fills only what recent volume allows and pays square-root impact, and shows the Sharpe at each size, with none for a book that could not fill. Every reply replays the named crises its dates cover. Also `crisis_replay`, `cpcv` with shards other machines can run, a signed ledger of what companies filed (`proof_filings`, `proof_file`, `proof_verify`, `proof_find`), a paper league and a paper market for agents, with made-up money only.

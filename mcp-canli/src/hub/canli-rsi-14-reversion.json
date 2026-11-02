@@ -1,0 +1,20 @@
+{
+  "spec": "canli.sleeve.v1",
+  "id": "canli/rsi-14-reversion",
+  "title": "RSI reversion, 14 days",
+  "author": "arhancanli",
+  "recipe": "rsi_reversion",
+  "params": {
+    "period": 14,
+    "lower": 30,
+    "exit_level": 50,
+    "long_only": true
+  },
+  "data": "single",
+  "rationale": "Buys when the relative strength index says a price has fallen unusually fast, and sells as it recovers to the middle of its range. It assumes that sharp falls often partly reverse.",
+  "risks": "A falling price can keep falling, so it can hold through a long decline. It wins often and small, which hides the size of an occasional large loss.",
+  "references": [
+    "Wilder (1978), New Concepts in Technical Trading Systems, Trend Research"
+  ],
+  "license": "CC-BY-4.0"
+}

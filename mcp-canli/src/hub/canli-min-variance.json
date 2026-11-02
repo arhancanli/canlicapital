@@ -1,0 +1,18 @@
+{
+  "spec": "canli.sleeve.v1",
+  "id": "canli/min-variance",
+  "title": "Minimum variance",
+  "author": "arhancanli",
+  "recipe": "min_variance_rebalance",
+  "params": {
+    "lookback": 252,
+    "rebalance_every": 21
+  },
+  "data": "universe",
+  "rationale": "Chooses the mix with the lowest volatility the past year's data can find, using only risk and no forecast of returns. It tests whether a portfolio can be made steadier by weights alone.",
+  "risks": "Estimates of risk are noisy and the mix can concentrate in a few holdings or one sector. Low volatility in the past does not ensure it in the future, and such portfolios can lag badly in strong rises.",
+  "references": [
+    "Clarke, de Silva and Thorley (2006), Minimum-Variance Portfolios in the U.S. Equity Market, Journal of Portfolio Management"
+  ],
+  "license": "CC-BY-4.0"
+}

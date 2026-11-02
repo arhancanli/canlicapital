@@ -54,6 +54,21 @@ test("from the command line: figures in words, JSON on request, and it fails onl
   assert.equal(cli("run").status, 2);
 });
 
+test("run reaches the tools the server answers itself, not only a pack's", () => {
+  const hub = cli("run", "hub_list", '{"query":"momentum"}');
+  assert.equal(hub.status, 0, hub.stderr);
+  assert.ok(JSON.parse(hub.stdout).rows.length > 0);
+  const found = cli("run", "find_tool", '{"query":"insider trades"}');
+  assert.equal(found.status, 0, found.stderr);
+  assert.match(found.stdout, /insider_trades/);
+});
+
+test("every desk tool has an answer here, so none falls through to a pack's runner", async () => {
+  const { ENTRIES, selfTools, createKeeper } = await import("../src/server.mjs");
+  const self = selfTools([], null, createKeeper());
+  for (const e of ENTRIES.filter((x) => x.pack === "desk")) assert.equal(typeof self[e.name], "function", e.name);
+});
+
 test("run refuses a tool that sends orders", () => {
   const r = spawnSync(process.execPath, [SERVER, "run", "send_paper_orders", "{}"], { encoding: "utf8", env: { ...process.env, CANLI_PACKS: "paper" } });
   assert.equal(r.status, 2, r.stderr);

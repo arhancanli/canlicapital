@@ -305,6 +305,13 @@ async function describeTool(packs, { name }) {
 
 // readOnly: the hosted server, where a call changes nothing that outlives its request, says so, so a
 // client need not ask before each one.
+// The tools this server answers itself rather than through a pack. run_tool and the shell command both
+// come here, so a desk tool is never handed to a pack's runner.
+export function selfTools(packs, gov, keeper, readOnly = false) {
+  const desk = { call: (name, args) => (name === "triangulate" ? runTriangulate(desk, args) : runOne(packs, { name, arguments: args }, {}, [], gov)), keep: (r) => keeper.put(r), get: (ref) => keeper.get(ref), at, toolFor: (name) => toolFor(name, packs), hosted: Boolean(readOnly) };
+  return { brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), stress_worlds: (args) => runWorlds(desk, args), hub_list: (args) => runHubList(args), hub_check: (args) => runHubCheck(args), hub_run: (args) => runHubRun(desk, args), draft_orders: (args) => runDraft(args), triangulate: (args) => runTriangulate(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
+}
+
 export function registerAll(server, packs = enabledPacks(), gov = governance(process.env, canliHome()), { readOnly = false } = {}) {
   const keeper = createKeeper();
   server.registerTool("find_tool", {
@@ -351,8 +358,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const viewing = Boolean(a.view) && clientDrawsApps(server);
     if (a.view) for (const c of calls) if (/^backtest_/.test(c.name) && !(c.arguments && "curve" in c.arguments)) { try { if ((await toolFor(c.name, packs)).input?.shape?.curve) c.arguments = { ...(c.arguments ?? {}), curve: true }; } catch { /* reported when it runs */ } }
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
-    const desk = { call: (name, args) => (name === "triangulate" ? runTriangulate(desk, args) : runOne(packs, { name, arguments: args }, {}, [], gov)), keep: (r) => keeper.put(r), get: (ref) => keeper.get(ref), at, toolFor: (name) => toolFor(name, packs), hosted: Boolean(readOnly) };
-    const SELF = { brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), stress_worlds: (args) => runWorlds(desk, args), hub_list: (args) => runHubList(args), hub_check: (args) => runHubCheck(args), hub_run: (args) => runHubRun(desk, args), draft_orders: (args) => runDraft(args), triangulate: (args) => runTriangulate(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
+    const SELF = selfTools(packs, gov, keeper, readOnly);
     const run = (c, args) => (SELF[c.name] ? Promise.resolve().then(() => SELF[c.name](args)) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov));
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
     if (calls.length > 1 && destructive.some(Boolean)) throw new Error("A tool that sends orders cannot run inside a batch; call it on its own after previewing.");
@@ -502,9 +508,9 @@ if (isMain && process.argv[2] === "audit") {
   const [name, json] = process.argv.slice(3);
   if (!name) { process.stderr.write("usage: canli-mcp run <tool> '<arguments as JSON>'\n"); process.exit(2); }
   const packs = [...enabledPacks(), ...await addPlugins()];
-  const tool = await toolFor(name, packs);
-  if (tool.annotations?.destructiveHint) { process.stderr.write(`${name} sends orders, so it cannot run from the command line.\n`); process.exit(2); }
-  const out = await runOne(packs, { name, arguments: JSON.parse(json ?? "{}") }, {}, [], null);
+  const args = JSON.parse(json ?? "{}"), self = selfTools(packs, null, createKeeper());
+  if (!self[name] && (await toolFor(name, packs)).annotations?.destructiveHint) { process.stderr.write(`${name} sends orders, so it cannot run from the command line.\n`); process.exit(2); }
+  const out = self[name] ? await self[name](args) : await runOne(packs, { name, arguments: args }, {}, [], null);
   process.stdout.write(`${JSON.stringify(out)}\n`);
 } else if (isMain && (process.argv[2] === "gui" || process.argv[2] === "serve")) {
   const argv = process.argv.slice(3), packs = [...enabledPacks(), ...await addPlugins()], gov = governance(process.env, canliHome());

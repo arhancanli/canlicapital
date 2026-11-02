@@ -246,3 +246,32 @@ test("real wording: a list of companies and a second value for one measure are n
   assert.deepEqual(real("2025 net income for the big 3: AT&T: $22B Verizon: $17B T-Mobile: $11B.", "AT&T INC. T"), []);
   assert.deepEqual(real("UnitedHealth's revenue was $500 billion (and net profits is 10 billion) for the year.", "UnitedHealth Group UNH").map((c) => c[1]).includes(10) && real("UnitedHealth's revenue was $500 billion (and net profits is 10 billion) for the year.", "UnitedHealth Group UNH").some((c) => c[0] === "revenue" && c[1] === 10), false);
 });
+
+// Paraphrased from the errors in the 2026-11-02 sample of real sentences: 8 of 12 wrong answers read someone else's figure.
+test("a figure for one country, or for a rolling twelve months, is not a filed company figure", () => {
+  for (const text of ["Zoetis reported a loss of $2 billion in the U.S. while making $9 billion abroad.", "Zoetis earned $2 billion overseas in 2024.", "Zoetis earned $3 billion in revenue over the past 12 months.", "Zoetis's revenue (TTM) is $9 B."]) {
+    const { claims, unread } = claimsFromText(text, "Zoetis Inc ZTS");
+    assert.deepEqual(claims, [], text);
+    assert.ok(unread > 0, text);
+  }
+});
+
+test("the name nearest before a figure decides whose it is", () => {
+  const read = (text, name) => claimsFromText(text, name).claims.map((c) => c.value);
+  assert.deepEqual(read("Acme Games has net revenue of $1.6B while Hasbro has revenue of $4.7B.", "Hasbro Inc HAS"), [4.7]);
+  assert.deepEqual(read("In 2021 Hasbro took in $3.5B in revenue, to Acme's $0.6B in revenue.", "Hasbro Inc HAS"), [3.5]);
+  assert.deepEqual(read("Tim Cook said revenue was $400 billion in 2025 at Apple.", "Apple Inc. AAPL"), []);
+  assert.deepEqual(read("Net income was $100 billion in 2025 at Apple.", "Apple Inc. AAPL"), [100], "a capital that opens a sentence names nobody");
+});
+
+test("only a sentence that names the company and one period can call a figure wrong", () => {
+  const clear = (text) => claimsFromText(text, "Apple Inc. AAPL").claims.map((c) => c.clear);
+  assert.deepEqual(clear("Apple's revenue was $500 billion in fiscal 2025."), [true]);
+  assert.deepEqual(clear("Apple's revenue was $500 billion."), [false], "no year");
+  assert.deepEqual(clear("Apple's revenue was $500 billion last year."), [false], "a year that depends on when it was written");
+  assert.deepEqual(clear("Not everyone has reported 2022 yet, but in 2021 Apple's revenue was $500 billion."), [false], "two years");
+  assert.deepEqual(clear("In fiscal 2025 Apple did well. Revenue was $500 billion."), [true], "a period carried from the sentence before");
+  assert.deepEqual(clear("Apple's revenue has been around $500 billion since 2020."), [false], "since a year is not that year");
+  assert.deepEqual(clear("Apple's net margin was 12% in December 2021."), [false], "a month is not the fiscal year");
+  assert.deepEqual(clear("For its second quarter, Apple reported revenue of $90 million, in Sept. 2022."), [false], "a quarter read as a year");
+});

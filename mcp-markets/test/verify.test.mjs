@@ -42,6 +42,19 @@ test("a draft answer: every figure found with its measure and period, each mista
   assert.deepEqual(r.rows.map((x) => x[col(r, "note")]), ["matches fiscal 2024 instead", "matches fiscal 2024 instead", "matches fiscal 2024 instead", "matches the filed figure times 0.001: a slip of units"]);
 });
 
+test("a loose sentence shows the filed figure without calling the claim wrong; a clear one is called wrong", async () => {
+  const loose = await verifyClaims(session(), { company: "AAPL", text: "Apple's revenue was $500 billion." });
+  assert.deepEqual(verdicts(loose), [["revenue", 500, "not checkable"]]);
+  assert.ok(loose.rows[0][col(loose, "filed")] > 0, "the filed figure is still shown");
+  assert.match(loose.rows[0][col(loose, "note")], /not called wrong/);
+  const clear = await verifyClaims(session(), { company: "AAPL", text: "Apple's revenue was $500 billion in fiscal 2025." });
+  assert.deepEqual(verdicts(clear), [["revenue", 500, "contradicted"]]);
+  const right = await verifyClaims(session(), { company: "AAPL", text: "Apple's revenue was $416.2 billion." });
+  assert.deepEqual(verdicts(right), [["revenue", 416.2, "confirmed"]], "a match needs no such care");
+  const round = await verifyClaims(session(), { company: "AAPL", text: "Apple's revenue was $500 billion, give or take, in fiscal 2025." });
+  assert.equal(verdicts(round)[0][2], "contradicted");
+});
+
 test("false premises come back as not reported, never as a number", async () => {
   const r = await verifyClaims(session(), { company: "TSLA", claims: [{ measure: "dividends per share", period: "fiscal 2024", value: 1.0 }, { measure: "revenue", period: "fiscal 2024", value: 97.7, unit: "USD billion" }] });
   assert.deepEqual(verdicts(r), [["dividends_per_share", 1, "not reported"], ["revenue", 97.7, "confirmed"]]);

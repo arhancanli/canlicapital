@@ -42,8 +42,11 @@ const NOT_RESULT = /^\s*(?:dollars?\s+)?(?:(?:in|of|worth of)\s+)?(?:(?:its|thei
 // The figures in a sentence that the words after them say are something else.
 export function notResults(sentence, { name = null, whole = null } = {}) {
   const s = String(sentence), own = namesCompany(whole ?? s, name);
-  return figuresIn(s).filter((f) => NOT_RESULT.test(s.slice(f.end)) || anothers(s.slice(0, f.at), name, own) || partsOf(s.slice(0, f.at), s.slice(f.end), name, own)).map((f) => Math.abs(f.low));
+  return figuresIn(s).filter((f) => NOT_RESULT.test(s.slice(f.end)) || anothers(s.slice(0, f.at), name, own) || someoneElse(s.slice(0, f.at), name, own) || partsOf(s.slice(0, f.at), s.slice(f.end), name, own)).map((f) => Math.abs(f.low));
 }
+// A rolling twelve months is no period a company files, and one country's profit is not the company's.
+export const NOT_A_FILED_WHOLE = /\b(?:ttm|trailing (?:twelve|12)[- ]months?|(?:past|last) (?:twelve|12) months)\b/i;
+export const ONE_PLACE = /\b(?:in the (?:U\.?S\.?|US)|in America|abroad|overseas|domestically|internationally|outside (?:of )?the (?:U\.?S\.?|US))(?![\w])/;
 const VERB = "(?:was|were|is|are|came in at|came to|hit|reached|topped|totaled|totalled|stood at|amounted to|of|at)";
 const HEDGE = { about: /\b(?:about|around|roughly|approximately|approx\.?|nearly|almost|close to|some|~)\s*$/i, over: /\b(?:over|more than|above|at least|upwards of|north of|in excess of|exceeded|exceeding)\s*$/i, under: /\b(?:under|less than|below|at most)\s*$/i };
 const hedgeOf = (before) => (/~\s*$/.test(before) ? "about" : Object.entries(HEDGE).find(([, re]) => re.test(before))?.[0] ?? null);
@@ -80,12 +83,29 @@ function before(clause, name, own) {
 const isCompanyWord = (word, name) => String(name ?? "").toLowerCase().split(/[^a-z0-9&-]+/).includes(word.toLowerCase().replace(/['’]s?$/, ""));
 // Whether a text names the company in its own words: if it does, another possessive is another company;
 // if not, it is what the writer calls this one ("Google's" for Alphabet).
-const namesCompany = (text, name) => String(text).split(/[^A-Za-z0-9&-]+/).some((w) => w.length > 1 && !/^(?:inc|corp|co|ltd|the|and|of|group|holdings|company|plc|llc|com)$/i.test(w) && isCompanyWord(w, name));
+export const namesCompany = (text, name) => String(text).split(/[^A-Za-z0-9&-]+/).some((w) => w.length > 1 && !/^(?:inc|corp|co|ltd|the|and|of|group|holdings|company|plc|llc|com)$/i.test(w) && isCompanyWord(w, name));
 const isOtherCompany = (word, name, own) => Boolean(name) && own && !isCompanyWord(word, name);
 // The last possessive just before a figure, if it is another company's: "bigger than Ford's $185 billion", "and Samsung's is $200 billion".
 const anothers = (gap, name, own) => {
   const m = String(gap).match(/\b([A-Z][\w&-]*)['’]s\s+(?:(?:is|was|were|are|at)\s+)?(?:about |around |roughly |over |nearly |almost )?$/);
   return Boolean(m) && isOtherCompany(m[1], name, own);
+};
+// Capitalised words that name nobody.
+const NOT_NAMES = /^(?:The|This|That|These|Those|It|Its|They|Their|We|Our|He|She|His|Her|I|A|An|And|But|Or|So|While|Then|In|On|At|For|From|By|With|To|Of|As|If|Not|No|Yes|Here|There|What|When|Why|How|Net|Gross|Total|Revenue|Revenues|Sales|Profit|Profits|Income|Earnings|Operating|Fiscal|Full|Annual|Cash|Debt|Last|Next|Q[1-4]|FY\S*|EPS|GAAP|CEO|CFO|USD|US|U|SEC|TTM|FTA|Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|June?|July?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)$/;
+// The name nearest before a figure, when it is not this company's: "Paradox has net revenue of $1.6B while Hasbro".
+const someoneElse = (text, name, own) => {
+  if (!name || !own) return false;
+  const t = String(text), found = [...t.matchAll(/(?<![\w.])[A-Z][\w&-]*/g)];
+  for (let i = found.length - 1; i >= 0; i--) {
+    const word = found.at(i)[0], at = found.at(i).index;
+    if (NOT_NAMES.test(word) || isCompanyWord(word, name)) { if (isCompanyWord(word, name)) return false; continue; }
+    // The sentence's first word is capitalised anyway: it is a name only if it then does something.
+    if (at === 0 && !new RegExp(`^${word}(?:['’]s\\b|\\s+(?:has|had|have|reported|reports|earned|earns|made|makes|posted|said|says|lost|loses|generated|booked)\\b)`).test(t)) continue;
+    // "Microsoft Cloud": a part of this company, which the reading below names as a part.
+    if (i > 0 && isCompanyWord(found.at(i - 1)[0], name)) return false;
+    return true;
+  }
+  return false;
 };
 // A figure that is a piece of the whole: "of which $209 billion came from advertising", "Oracle Cloud's revenue was $4.4 billion".
 const partsOf = (before, after, name, own) => {
@@ -109,14 +129,14 @@ function companyDidIt(clause, name, own) {
 // `when` is a relative period to resolve; a part of the business comes back only when `parts` asks.
 export function plainClaimsIn(sentence, { name = null, parts = false, whole = null } = {}) {
   const s = String(sentence);
-  if (FUTURE.test(s)) return [];
+  if (FUTURE.test(s) || NOT_A_FILED_WHOLE.test(s) || ONE_PLACE.test(s)) return [];
   const own = namesCompany(whole ?? s, name);
   const out = [];
   const figs = figuresIn(s);
   for (const [k, fig] of figs.entries()) {
     if (fig.low !== fig.high) continue;
     const f = fig.f, after = s.slice(fig.end), gap = s.slice(figs[k - 1]?.end ?? 0, fig.at);
-    if (anothers(s.slice(0, fig.at), name, own) || NOT_RESULT.test(after) || /\b(?:compared (?:to|with)|versus|vs\.?|from|against)\s*(?:about |around |roughly )?$/i.test(gap)) continue;
+    if (anothers(s.slice(0, fig.at), name, own) || someoneElse(s.slice(0, fig.at), name, own) || NOT_RESULT.test(after) || /\b(?:compared (?:to|with)|versus|vs\.?|from|against)\s*(?:about |around |roughly )?$/i.test(gap)) continue;
     const bound = hedgeOf(gap);
     const clause = stripHedge(gap).trim();
     const unit = unitOf(f);

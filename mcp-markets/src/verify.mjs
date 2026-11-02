@@ -13,7 +13,7 @@
 import { z } from "zod";
 
 import { figuresIn, measureOf, periodOf, quarterOf, resultsFromText, sentences, unglue } from "./guidance.mjs";
-import { FUTURE, notResults, plainClaimsIn, plainYear, relativeWhen } from "./plainclaims.mjs";
+import { FUTURE, notResults, plainClaimsIn, plainYear, relativeWhen, namesCompany, NOT_A_FILED_WHOLE, ONE_PLACE } from "./plainclaims.mjs";
 import { getJson, NotFound, pad10, resolveEntity } from "./sources.mjs";
 
 const SCALE = { thousand: 1e3, million: 1e6, billion: 1e9, trillion: 1e12 };
@@ -443,6 +443,9 @@ function partOf(section, name) {
 // A draft's figures as claims, each sentence read two ways: as a release words its results, and as
 // people say them. A figure both read is one claim, with what the plain reading adds. `unread` counts
 // the figures in the text that neither reading could name.
+// Years that are not the period of the figure: "since 2009", "in December 2021".
+const LOOSE_DATE = /\bsince\s+(?:19|20)\d\d\b|\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sept?(?:ember)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\.?\s+(?:19|20)\d\d\b/i;
+
 export function claimsFromText(raw, name = null) {
   const claims = [];
   let last = null, unread = 0;
@@ -465,7 +468,7 @@ export function claimsFromText(raw, name = null) {
     const unplaced = /\b(?:AWS|Azure|YouTube|Instagram|WhatsApp|Prime Video|iPhones?)\b/.test(s)
       || (!when && /\b(?:Q[1-4]|(?:first|second|third|fourth|[1-4](?:st|nd|rd|th))[- ]quarter)\b/i.test(s) && !plainYear(s))
       || (!quarterYear && /\bQ[1-4]\s+(?:19|20)\d\d\b/.test(s) && /(?<!Q[1-4]\s)\b(?:19|20)\d\d\b/.test(s));
-    if (unplaced || (s.match(/\b[A-Z][\w&-]*:\s*[$€£]?\d/g) ?? []).length >= 2) { unread += figuresIn(s).length; continue; }
+    if (unplaced || NOT_A_FILED_WHOLE.test(s) || ONE_PLACE.test(s) || (s.match(/\b[A-Z][\w&-]*:\s*[$€£]?\d/g) ?? []).length >= 2) { unread += figuresIn(s).length; continue; }
     const plain = plainClaimsIn(s, { name, parts: true, whole: text });
     const elsewhere = notResults(s, { name, whole: text });
     const here = [];
@@ -484,8 +487,11 @@ export function claimsFromText(raw, name = null) {
     // One measure for one period has one value: a second in the sentence is someone else's or a misreading.
     for (let i = here.length - 1; i > 0; i--) if (here.slice(0, i).some((c) => c.measure === here[i].measure && Boolean(c.change) === Boolean(here[i].change) && !c.part && !here[i].part && c.value !== here[i].value)) here.splice(i, 1);
     // A relative period is this sentence's own; none at all falls to the latest annual report.
+    // Only a sentence that names the company and one period of its own can call a figure wrong.
+    const years = new Set(s.match(/(?<![\d.,$€£¥/-])\b(?:19|20)\d{2}\b(?![\d/-]|[.,]\d|\s?(?:%|percent))/g) ?? []);
     for (const c of here) {
       const dated = (named && claimPeriod(named)) || plainYear(s);
+      c.clear = Boolean(dated || last) && !when && !LOOSE_DATE.test(s) && !(c.period?.fp === "FY" && /\b(?:Q[1-4]|quarter)\b/i.test(s)) && years.size <= 1 && (!name || namesCompany(text, name));
       if (when && !c.assume && !dated) c.assume = when;
       if (c.assume && !dated) c.period = null;
       else if (!c.assume && !c.period) c.assume = "latest";
@@ -513,7 +519,15 @@ export async function verifyClaims(session, args) {
     if (!claims.length) throw new Error("No figure with a measure in the text; pass claims (measure, period, value) instead.");
   }
   const rows = [];
-  for (const c of claims.slice(0, 25)) rows.push(await check(session, e.cik, c));
+  for (const c of claims.slice(0, 25)) {
+    const row = await check(session, e.cik, c);
+    // On 2026-11-02, 11 of 12 "contradicted" answers on real sentences were wrong, and all 12 came from loose
+    // sentences. A loose sentence can match a filing, but it cannot be called wrong: the figure is shown instead.
+    if (c.clear === false && row.verdict === "contradicted") { rows.push({ ...row, verdict: "not checkable", note: ["The sentence does not plainly name this company and one period, so this is not called wrong. The filed figure is shown beside it.", row.note].filter(Boolean).join(" ") }); continue; }
+    // "$1 billion" rounds from $0.58 billion only in the loosest sense, so that is not confirming it.
+    const off = c.clear !== undefined && !c.bound && row.verdict === "confirmed" && row.filed != null && c.value ? Math.abs(row.filed - c.value) / Math.abs(c.value) : 0;
+    rows.push(off > 0.1 ? { ...row, verdict: "not checkable", note: ["This rounds to the claim only at one significant figure, so it is not called a match. The filed figure is shown beside it.", row.note].filter(Boolean).join(" ") } : row);
+  }
   const count = (v) => rows.filter((r) => r.verdict === v).length;
   return {
     company: { cik: e.cik, name: e.name ?? null, ticker: e.ticker ?? null },
