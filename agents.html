@@ -238,13 +238,13 @@
 
 <!-- home-compare:start -->
     <section class="home-compare" id="compare" aria-labelledby="home-compare-title">
-      <div class="home-compare__heading"><p class="eyebrow">Side by side</p><h2 id="home-compare-title">canli-mcp, OpenBB, EdgarTools and Yahoo Finance MCP</h2><p>Each of these open-source servers gives an AI model finance data in its own way. This is what each one offers, checked against its own tool list: canli-mcp 0.11.1 and the other servers in the versions we benchmarked. How each one scored is in the benchmark above, which tested canli-mcp 0.1.0.</p></div>
+      <div class="home-compare__heading"><p class="eyebrow">Side by side</p><h2 id="home-compare-title">canli-mcp, OpenBB, EdgarTools and Yahoo Finance MCP</h2><p>Each of these open-source servers gives an AI model finance data in its own way. This is what each one offers, checked against its own tool list: canli-mcp 0.15.0 and the other servers in the versions we benchmarked. How each one scored is in the benchmark above, which tested canli-mcp 0.1.0.</p></div>
       <div class="home-compare__scroll cc-table-scroll" role="region" aria-label="What each MCP server offers, checked against its own tool list and source code" tabindex="0">
         <table class="home-compare__table">
           <caption>What each MCP server offers, checked against its own tool list and source code</caption>
           <thead><tr><th scope="col">Question</th><th scope="col">Canli Capital</th><th scope="col">OpenBB</th><th scope="col">EdgarTools</th><th scope="col">Yahoo Finance MCP</th></tr></thead>
           <tbody>
-          <tr><th scope="row">The version compared</th><td>canli-mcp 0.11.1</td><td>openbb-mcp-server 2.0.1 with openbb 5.0.0</td><td>edgartools 5.61.1</td><td>Alex2Yang97/yahoo-finance-mcp at commit b9c1765</td></tr>
+          <tr><th scope="row">The version compared</th><td>canli-mcp 0.15.0</td><td>openbb-mcp-server 2.0.1 with openbb 5.0.0</td><td>edgartools 5.61.1</td><td>Alex2Yang97/yahoo-finance-mcp at commit b9c1765</td></tr>
           <tr><th scope="row">Tools sent to the model on every request</th><td>5, in front of 369</td><td>1,056, or 14 in its tool-discovery mode</td><td>13</td><td>9</td></tr>
           <tr><th scope="row">Finance question types it has a keyless tool for, of 53</th><td>51</td><td>39</td><td>11</td><td>13</td></tr>
           <tr><th scope="row">SEC filings, Form 4 insider trades and 13F holdings</th><td>Yes, read from EDGAR</td><td>Yes, through its SEC tools</td><td>Yes</td><td>Yahoo&#39;s holder and insider summaries, not the filings</td></tr>
