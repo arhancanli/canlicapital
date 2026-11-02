@@ -24,9 +24,9 @@ import {
 import { CIK, EXXON, RAW, SHA, fakeFetch, files } from "./fixture.mjs";
 import { indexFacts } from "../src/server.mjs";
 
-const session = (map) => {
+const session = (map, opts = {}) => {
   const f = fakeFetch(map);
-  return { s: createSession({ base: "https://example.test", fetchImpl: f.impl, cacheDir: "" }), calls: f.calls };
+  return { s: createSession({ base: "https://example.test", fetchImpl: f.impl, cacheDir: "", ...opts }), calls: f.calls };
 };
 const out = (r) => r.structuredContent;
 const byCol = (res) => res.rows.map((row) => Object.fromEntries(res.columns.map((c, i) => [c, row[i]])));
@@ -208,16 +208,16 @@ test("unknown names get suggestions, plain names and current tags first", async 
 
 test("a ticker held outside the reference is never read as another company's name", async () => {
   const { s } = session();
-  await assert.rejects(toolListConcepts(s, { company: "META" }), /CIK 0002300000 is not in the Canli company reference, and the SEC has no XBRL facts for it/);
+  await assert.rejects(toolListConcepts(s, { company: "META" }), /META is the SEC's ticker for Some Other Listed Plc \(CIK 0002300000\).*pass one CIK as company/);
   // Not a ticker at all: a name's first word still finds the company, and the answer says how it was read.
   assert.match((await resolveCompany(s, "STAR")).matched.note, /STAR is not a current ticker/);
   assert.doesNotMatch((await resolveCompany(s, "Star")).matched.note ?? "", /not a current ticker/);
 });
 
-test("a company outside the reference is read live from the SEC, and the answer says so", async () => {
+test("a company outside the reference is read live from the SEC when the flagship turns that on, and the answer says so", async () => {
   const map = files();
   map["/api/xbrl/companyfacts/CIK0002200000.json"] = RAW;
-  const { s, calls } = session(map);
+  const { s, calls } = session(map, { secLive: true });
   for (const company of ["NEWCO", "Brand New"]) {
     const r = out(await toolListConcepts(s, { company }));
     assert.equal(r.company.cik, "0002200000");
@@ -228,6 +228,12 @@ test("a company outside the reference is read live from the SEC, and the answer 
   assert.equal(calls.filter((c) => c.includes("companyfacts")).length, 1);
   assert.equal(out(await toolHistory(s, { company: "NEWCO", concept: "revenue" })).company.cik, "0002200000");
   assert.equal(out(await toolFindCompany(s, { query: "Brand New" })).rows.length > 0, true);
+  // No SEC facts for the holder: says so. Off by default: only the reference is contacted.
+  const { s: empty } = session(files(), { secLive: true });
+  await assert.rejects(toolListConcepts(empty, { company: "NEWCO" }), /CIK 0002200000 is not in the Canli company reference, and the SEC has no XBRL facts for it/);
+  const { s: off, calls: offCalls } = session(map);
+  await assert.rejects(toolListConcepts(off, { company: "NEWCO" }), /does not cover/);
+  assert.equal(offCalls.some((c) => c.includes("companyfacts")), false);
 });
 
 test("names people use reach the listed company", async () => {
@@ -265,7 +271,7 @@ test("a company name resolves, and every result says how", async () => {
   assert.match(xom.matched.note, /XOM is the SEC's ticker for ExxonMobil Holdings Corp \(CIK 0002115436\), which the Canli company reference does not cover; the covered filer with the same name was used\./);
   // A name several companies start with is never guessed: the error lists them, best first.
   await assert.rejects(toolListConcepts(s, { company: "Meta" }), /"Meta" matches 3 companies; pass one CIK as company: Meta Platforms, Inc\. \(CIK 0001326801\); Meta Materials Inc\. \(CIK 0001431959\); Metallus Inc\. \(CIK 0001598014\)\./);
-  await assert.rejects(toolListConcepts(s, { company: "NEWCO" }), /CIK 0002200000 is not in the Canli company reference, and the SEC has no XBRL facts for it/);
+  await assert.rejects(toolListConcepts(s, { company: "NEWCO" }), /NEWCO is the SEC's ticker for Brand New Holdings Inc \(CIK 0002200000\), which the Canli company reference does not cover\. "NEWCO" is not a current ticker or a company name/);
   // A ticker or CIK is read as before, with nothing added.
   assert.equal(out(await toolListConcepts(s, { company: "FIX" })).company.matched, undefined);
 });

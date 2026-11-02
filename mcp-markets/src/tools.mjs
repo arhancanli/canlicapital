@@ -193,7 +193,8 @@ export async function readFiling(session, args) {
     ...(sections && !chosen ? { sections: { columns: ["item", "title", "chars"], rows: sections } } : {}),
     ...(docs ? { documents: { columns: ["name", "type", "description"], rows: docs.filter((d) => /\.(htm|html|txt|xml)$/i.test(d.name)).slice(0, 40).map((d) => [d.name, d.type, d.description]) } } : {}),
     total_chars: body.length,
-    ...(matches ? { find: a.find, matches: matches.length ? matches : "no passage contains every word; try fewer or other words, or read without find" } : { offset, ...(end < body.length ? { next_offset: end, more: `${body.length - end} more characters: pass offset ${end}, or use find to jump to the words you need` } : {}), text: slice }),
+    // How often each word appears, inside longer words too ("tariff" in "tariffs"): the passages stop at twelve.
+    ...(matches ? { find: a.find, occurrences_in_document: Object.fromEntries((a.find.match(/^"(.+)"$/)?.[1] ? [a.find.slice(1, -1).toLowerCase()] : a.find.toLowerCase().split(/\s+/).filter((w) => w.length > 1)).map((t) => [t, body.toLowerCase().split(t).length - 1])), matches: matches.length ? matches : "no passage contains every word; try fewer or other words, or read without find" } : { offset, ...(end < body.length ? { next_offset: end, more: `${body.length - end} more characters: pass offset ${end}, or use find to jump to the words you need` } : {}), text: slice }),
     url,
     limits: SEC_LIMITS,
   };

@@ -66,7 +66,9 @@ export const LIMITS = Object.freeze([
   "Company-reported data, not investment advice.",
 ]);
 
-export function createSession({ base, fetchImpl, cacheDir, now = () => Date.now() } = {}) {
+// secLive: companies outside the reference are read from the SEC itself. Off by default, so this server
+// alone contacts only CANLI_API_BASE; the canli-mcp flagship, which already reads the SEC, turns it on.
+export function createSession({ base, fetchImpl, cacheDir, now = () => Date.now(), secLive } = {}) {
   const envCache = process.env.CANLI_CACHE_DIR;
   return {
     base: base ?? process.env.CANLI_API_BASE ?? DEFAULT_BASE,
@@ -74,6 +76,7 @@ export function createSession({ base, fetchImpl, cacheDir, now = () => Date.now(
     // A path, or an empty value to keep nothing on disk.
     cacheDir: cacheDir !== undefined ? cacheDir : envCache !== undefined ? envCache : join(homedir(), ".cache", "canli-fundamentals"),
     now,
+    secLive: secLive ?? process.env.CANLI_SEC_LIVE === "1",
     companies: new Map(),
     tickers: null,
     names: null,
@@ -252,7 +255,7 @@ export async function findCompanies(session, query, limit = 8) {
   // Toyota Motor here; only the same name outside it can match then, not another name that starts the same.
   const nameFits = found.size > 0 && text !== ticker;
   widest = hits.some((r) => r.level === 4 && r.c.tickers.length) ? 3 : 5;
-  if (!hits.some((r) => r.level <= 3)) for (const c of names.outsideCompanies ?? []) if (!nameFits || !c.tickers.includes(ticker)) look(c);
+  if (session.secLive && !hits.some((r) => r.level <= 3)) for (const c of names.outsideCompanies ?? []) if (!nameFits || !c.tickers.includes(ticker)) look(c);
   const ranked = [...found.values()].sort((a, b) => a.level - b.level || (b.c.tickers.length > 0) - (a.c.tickers.length > 0) || a.c.words.length - b.c.words.length || a.c.cik.localeCompare(b.c.cik));
   const best = ranked[0];
   const tied = best ? ranked.filter((r) => r.level === best.level) : [];
@@ -394,8 +397,8 @@ export async function loadCompany(session, company) {
     session.companies.set(cik, cached);
     return ticker || matched ? { ...cached, ticker, matched } : cached;
   }
-  const entry = (await readCompany(session, cik, { ticker, matched })) ?? (await readFromSec(session, cik, { ticker, matched }));
-  if (!entry) throw new Error(`CIK ${cik} is not in the Canli company reference, and the SEC has no XBRL facts for it. The reference covers the SEC filers listed at ${session.base}/companies; find_company searches them by name.`);
+  const entry = (await readCompany(session, cik, { ticker, matched })) ?? (session.secLive ? await readFromSec(session, cik, { ticker, matched }) : null);
+  if (!entry) throw new Error(`CIK ${cik} is not in the Canli company reference${session.secLive ? ", and the SEC has no XBRL facts for it" : ""}. It covers the SEC filers listed at ${session.base}/companies; find_company searches them by name.`);
   // A large filer's index takes 12 to 15 MB of heap; keep the eight most recently used. Evicted
   // companies reload from the hash-named disk cache.
   if (session.companies.size >= MAX_COMPANIES) session.companies.delete(session.companies.keys().next().value);
