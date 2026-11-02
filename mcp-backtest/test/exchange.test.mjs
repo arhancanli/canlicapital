@@ -173,3 +173,10 @@ test("find_diversifiers ranks by bets added and worst days, not by return", () =
   assert.match(r.limits[0], /3 candidates were compared/);
   rmSync(d, { recursive: true, force: true });
 });
+
+test("a file that is not an exchange is refused without quoting it", () => {
+  const d = dir(), f = join(d, "private.txt");
+  writeFileSync(f, "the secret in this file");
+  assert.throws(() => exchangeReport({ exchange_file: f }), (e) => /not an agent exchange file/.test(e.message) && !e.message.includes("secret"));
+  rmSync(d, { recursive: true, force: true });
+});

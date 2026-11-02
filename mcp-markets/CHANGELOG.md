@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.11.0
+
+New tools: `filing_memory`, `filing_sentiment`, `what_happened_next`, `shipping_activity`, `page_attention`, `latest_price`.
+
+- `filing_memory` searches every annual report a company has on EDGAR. It reads them once, ranks paragraphs with BM25 on your machine, and counts mentions by a rule it states. Apple's 25 reports took 5.5 seconds the first time and under half a second after that. A local embedding model can rank by meaning too; on six test questions word search alone failed where the wording differed, and either supplied synonyms or embeddings fixed most of it, each winning on different ones.
+- Optional local models, installed only by `canli-mcp models install` and never by a tool. No vector database: at a few thousand paragraphs a company, a file of plain floats is as fast.
+- The filings feed was answered from the ten-minute cache, so `canli-mcp watch --every 60` saw new filings only every ten minutes against the two it claimed. It is now read on each poll.
+- Windows quotes and dashes in older filings (numeric entities 145 to 151) now read as quotes and dashes.
+
 ## 0.10.1
 
 verify_claims: on 0.10.0, 12 of 24 settled answers on 284 real sentences were wrong: 11 of 12 "contradicted" and 1 of 12 confirmations. Most read someone else's figure as this company's.

@@ -40,6 +40,10 @@ const SEEN = {
 const POLL_MS = { price: 30 * 1000, volatility: 5 * 60 * 1000, filing: 60 * 1000 };
 const STALL_MS = 90 * 1000;
 
+// A filer chooses its own name, so a name is outside text. It stays out of what a model reads, and what
+// is kept for a person's logs is held to plain characters and a short length.
+const plain = (v, max) => (v == null ? null : String(v).replace(/[^A-Za-z0-9 .,&'/-]/g, "").slice(0, max).trim() || null);
+const secLink = (u) => (/^https:\/\/www\.sec\.gov\/[A-Za-z0-9/_.?=&-]+$/.test(String(u ?? "")) ? u : null);
 const round = (x, d = 2) => (x == null || !Number.isFinite(x) ? null : Number(x.toFixed(d)));
 const upper = (s) => String(s).toUpperCase();
 const within = (promise, ms) => Promise.race([promise, new Promise((_, no) => { const t = setTimeout(() => no(new Error("timed out")), ms); t.unref?.(); })]);
@@ -82,7 +86,7 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
     const id = `${clean.kind}-${createHash("sha256").update(JSON.stringify(condition)).digest("hex").slice(0, 8)}`;
     const list = rules().filter((r) => r.id !== id);
     if (list.length >= 100) throw new Error("100 rules is the limit; remove one first.");
-    const saved = { id, ...clean, added: new Date(now()).toISOString() };
+    const saved = { id, ...clean, ...(clean.note ? { note: plain(clean.note, 200) } : {}), added: new Date(now()).toISOString() };
     save([...list, saved]);
     return { added: saved, watching: `${describeRule(saved)}. Nothing is watched until the sentinel runs: canli-mcp sentinel run, or canli-mcp --channel for a Claude Code session.` };
   }
@@ -123,7 +127,10 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
     const sd = Math.sqrt(rets.reduce((a, b) => a + (b - mean) ** 2, 0) / (rets.length - 1));
     return { daily_volatility_percent: round(sd * 100), sessions: rets.length, ...(seconds != null && sd ? { move_in_daily_volatilities: round(Math.abs(seconds) / (sd * 100)) } : {}) };
   });
-  const recentFilings = (company) => quiet("latest_filings", { company, limit: 5 }, (r) => ({ columns: r.columns?.filter((c) => ["form", "filed", "accepted", "url", "accession"].includes(c)), rows: (r.rows ?? []).slice(0, 5).map((row) => r.columns.map((c, i) => (["form", "filed", "accepted", "url", "accession"].includes(c) ? row[i] : undefined)).filter((v) => v !== undefined)) }));
+  const recentFilings = (company) => quiet("latest_filings", { company, limit: 5 }, (r) => {
+    const at = (name) => r.columns?.indexOf(name) ?? -1, form = at("form"), accepted = at("accepted"), url = at("url");
+    return { columns: ["form", "accepted", "url"], rows: (r.rows ?? []).slice(0, 5).map((row) => [plain(row[form], 20), plain(row[accepted], 30), secLink(row[url])]) };
+  });
   const coverage = (company) => quiet("news", { company, days: 3, limit: 1, tone: true }, (r) => ({ articles_found: r.total ?? r.rows?.length ?? null, average_tone: r.tone?.average ?? null }));
 
   async function onPrice(sym, price, t, via) {
@@ -181,7 +188,10 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
     for (const f of rows.filter((x) => x.accession && !s.seen.has(x.accession)).reverse()) {
       s.seen.add(f.accession);
       // The first read marks what is already there, so events start with what comes next.
-      if (!first) await fire(rule, `${f.company ?? "A company"} filed ${f.form ?? "a form"}${f.items ? ` (items ${f.items})` : ""}`, SEEN.edgar, { form: f.form ?? null, company: f.company ?? null, cik: f.cik ?? null, accession: f.accession, accepted: f.accepted ?? null, items: f.items ?? null, url: f.url ?? null }, async () => ({}));
+      if (!first) {
+        const form = plain(f.form, 20) ?? "a form", cik = plain(f.cik, 12), items = Array.isArray(f.items) ? f.items.filter((x) => /^\d\.\d{2}$/.test(x)) : [];
+        await fire(rule, `${rule.company ? plain(rule.company, 60) : cik ? `CIK ${cik}` : "A company"} filed ${form}${items.length ? ` (items ${items.join(", ")})` : ""}`, SEEN.edgar, { form, company_as_filed: plain(f.company, 40), cik, accession: plain(f.accession, 25), accepted: plain(f.accepted, 30), items, url: secLink(f.url) }, async () => ({ filing: { form, cik, accession: plain(f.accession, 25), items, url: secLink(f.url) } }));
+      }
     }
     if (s.seen.size > 5000) s.seen = new Set([...s.seen].slice(-3000));
   }

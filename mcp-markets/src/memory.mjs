@@ -5,13 +5,12 @@
 // this machine: no key, no service, nothing to install. A company rarely uses the caller's wording, so
 // the calling model supplies the other words for a subject (also, all_of); a local embedding model,
 // when one is installed, can re-rank too (models.mjs). Nothing here is ever sent anywhere.
-import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
 import { z } from "zod";
 
 import { decodeEntities, findSections, htmlToText } from "./html.mjs";
 import { factBook } from "./listing.mjs";
-import { embed, INSTALL_HINT, MODELS, modelsDir, modelsInstalled } from "./models.mjs";
+import { loadFloats, saveFloats } from "./disk-cache.mjs";
+import { embed, INSTALL_HINT, MODELS, modelsInstalled } from "./models.mjs";
 import { annualValues } from "./research.mjs";
 import { archiveBase, filingDocuments, filings, getJson, getText, NotFound, pad10, resolveEntity } from "./sources.mjs";
 
@@ -27,7 +26,7 @@ export const memoryInput = z.object({
   query: z.string().min(1).max(300).describe("The subject in plain words, for example \"supply chain problems in Southeast Asia\". Quote a phrase to keep its words together."),
   also: z.array(z.string().min(1).max(80)).max(40).optional().describe("Other words a company might use for the same subject, which you supply, such as contract manufacturer, Vietnam, Thailand. They help the ranking."),
   all_of: z.array(z.array(z.string().min(1).max(80)).min(1).max(40)).min(1).max(5).optional().describe("What counts as a mention: a paragraph must hold at least one term from every group, such as [[\"supply chain\",\"supplier\"],[\"Southeast Asia\",\"Vietnam\",\"Thailand\"]]. Without it, a paragraph counts if it holds most of the query's words."),
-  years: z.number().int().min(1).max(35).optional().describe("How many annual reports back; default 20."),
+  years: z.number().int().min(1).max(35).optional().describe("How many annual reports back; default 20, or 8 on the hosted server."),
   form: z.enum(["10-K", "20-F", "40-F"]).optional().describe("Annual report form; default 10-K."),
   section: z.string().min(1).max(40).optional().describe("Only one part of each report: \"risk factors\", \"md&a\", \"business\" or an item number such as 1A."),
   limit: z.number().int().min(1).max(30).optional().describe("Passages to return; default 8."),
@@ -186,17 +185,14 @@ export function mentionTest(index, query, allOf) {
 const VECTORS = "v1";
 async function semanticScores(session, reports, all, query, { budgetMs = 25000 } = {}) {
   if (!session.embedder && !modelsInstalled(session.env)) return { status: "not installed", how: INSTALL_HINT };
-  const d = MODELS.embedding.dimensions, dir = join(modelsDir(session.env), "vectors", VECTORS);
+  const d = MODELS.embedding.dimensions;
   const began = session.now(), held = new Array(reports.length).fill(null);
   for (let i = 0; i < reports.length; i += 1) {
-    const r = reports[i], file = join(dir, `${r.filing.accessionNumber}.f32`), bytes = r.paragraphs.length * d * 4;
-    if (!session.embedder && existsSync(file) && statSync(file).size === bytes) {
-      const b = readFileSync(file);
-      held[i] = new Float32Array(b.buffer, b.byteOffset, b.length / 4);
-    } else if (session.now() - began < budgetMs) {
-      held[i] = await embed(session, r.paragraphs.map((p) => p.text));
-      if (!session.embedder) { mkdirSync(dir, { recursive: true }); writeFileSync(file, Buffer.from(held[i].buffer)); }
-    }
+    const r = reports[i], name = `${VECTORS}-${r.filing.accessionNumber}`, length = r.paragraphs.length * d;
+    held[i] = session.embedder ? null : loadFloats(session.env, name, length);
+    if (held[i] || session.now() - began >= budgetMs) continue;
+    held[i] = await embed(session, r.paragraphs.map((p) => p.text));
+    if (!session.embedder) saveFloats(session.env, name, held[i]);
   }
   const q = await embed(session, [query.replace(/"/g, "")]);
   const scores = new Float64Array(all.length).fill(-1);
@@ -327,7 +323,7 @@ const SECTION_NAMES = { "risk factors": "1A", risks: "1A", business: "1", "md&a"
 
 export async function filingMemory(session, args) {
   const a = memoryInput.parse(args);
-  const form = a.form ?? "10-K", want = a.years ?? 20, limit = a.limit ?? 8, perYear = a.per_year ?? 2;
+  const form = a.form ?? "10-K", want = a.years ?? (session.env.VERCEL ? 8 : 20), limit = a.limit ?? 8, perYear = a.per_year ?? 2;
   const entity = await resolveEntity(session, a.company);
   const { sub, rows } = await filings(session, entity.cik, { since: "1993-01-01" });
   const annual = rows.filter((r) => FORMS[form].test(r.form) && (!a.filed_before || r.filingDate <= a.filed_before)).slice(0, want);

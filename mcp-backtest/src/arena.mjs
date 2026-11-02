@@ -32,7 +32,7 @@ export const arenaOrdersInput = z.object({
 export const arenaStepInput = z.object({ arena_file: file, steps: z.number().int().min(1).max(1000).optional().describe("Default 1.") }).strict();
 
 const SHARES_PER_AGENT = 100;
-const load = (f) => { if (!existsSync(f)) throw new RangeError(`${f} is not an arena yet: call arena_new`); const s = JSON.parse(readFileSync(f, "utf8")); if (s.schema !== "canli.arena.v1") throw new RangeError(`${f} is not an arena file`); return s; };
+const load = (f) => { if (!existsSync(f)) throw new RangeError(`${f} is not an arena yet: call arena_new`); let s = null; try { s = JSON.parse(readFileSync(f, "utf8")); } catch { /* a parse error quotes the file, so it stays here */ } if (s?.schema !== "canli.arena.v1") throw new RangeError(`${f} is not an arena file`); return s; };
 // Every order in a step comes from an agent in the file, however the file was written.
 const orderLines = (state) => Object.entries(state.orders).filter(([agent]) => Object.hasOwn(state.agents, agent));
 const save = (f, s) => writeFileSync(f, JSON.stringify(s));

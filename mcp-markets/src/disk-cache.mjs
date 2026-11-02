@@ -62,3 +62,21 @@ export function createDiskCache({ dir, maxBytes = 512 * 1024 * 1024, env = proce
     },
   };
 }
+
+// Vectors for filing_memory: one file of plain floats per report, in the models folder. A file of the
+// wrong length (a change in how a report is split) is treated as missing.
+const vectorFile = (env, name) => {
+  if (!/^[A-Za-z0-9._-]+$/.test(name)) throw new Error(`Not a vector file name: ${name}`);
+  return join(env.CANLI_CACHE_DIR ?? join(homedir(), ".cache", "canli-markets"), "models", "vectors", `${name}.f32`);
+};
+export function loadFloats(env, name, length) {
+  try {
+    const b = readFileSync(vectorFile(env, name));
+    return b.length === length * 4 ? new Float32Array(b.buffer.slice(b.byteOffset, b.byteOffset + b.length)) : null;
+  } catch { return null; }
+}
+export function saveFloats(env, name, floats) {
+  const file = vectorFile(env, name);
+  mkdirSync(dirname(file), { recursive: true });
+  writeFileSync(file, Buffer.from(floats.buffer, floats.byteOffset, floats.byteLength));
+}

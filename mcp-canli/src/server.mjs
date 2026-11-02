@@ -324,7 +324,9 @@ export function selfTools(packs, gov, keeper, readOnly = false) {
     if (readOnly) throw new Error("The sentinel watches from your own machine. Run it locally: npx -y canli-mcp");
     return createSentinel({ home: canliHome(), call: desk.call });
   };
-  const tools = { sentinel_add: (args) => sentinel().add(args), sentinel_list: () => sentinel().list(), sentinel_remove: ({ id }) => sentinel().remove(id), sentinel_events: (args) => sentinel().events(args ?? {}), brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), stress_worlds: (args) => runWorlds(desk, args), hub_list: (args) => runHubList(args), hub_check: (args) => runHubCheck(args), hub_run: (args) => runHubRun(desk, args), draft_orders: (args) => runDraft(args), triangulate: (args) => runTriangulate(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
+  // A policy that bars these tools bars them here too, as it does for any pack's.
+  const allowed = (name) => { if (gov?.policy) gov.check(BY_NAME.get(name), { destructive: false }); };
+  const tools = { sentinel_add: (args) => { allowed("sentinel_add"); return sentinel().add(args); }, sentinel_list: () => { allowed("sentinel_list"); return sentinel().list(); }, sentinel_remove: ({ id }) => { allowed("sentinel_remove"); return sentinel().remove(id); }, sentinel_events: (args) => { allowed("sentinel_events"); return sentinel().events(args ?? {}); }, brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), stress_worlds: (args) => runWorlds(desk, args), hub_list: (args) => runHubList(args), hub_check: (args) => runHubCheck(args), hub_run: (args) => runHubRun(desk, args), draft_orders: (args) => runDraft(args), triangulate: (args) => runTriangulate(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
   if (!TIME_MACHINE) return tools;
   return Object.fromEntries(Object.entries(tools).map(([name, run]) => [name, TIME_MACHINE.selfAllowed(name) ? run : () => { throw TIME_MACHINE.refuse(name); }]));
 }
@@ -512,8 +514,10 @@ if (isMain && process.argv[2] === "audit") {
   // `canli-mcp sentinel add '<rule as JSON>' | list | remove <id> | events | run [--webhook url] [--exec 'command'] [--once]`.
   // Where events go is set here, by whoever runs this, and never by a rule.
   const [verb, ...rest] = process.argv.slice(3);
-  const packs = enabledPacks({ ...process.env, CANLI_PACKS: "markets" });
-  const call = async (name, args) => { const t = await toolFor(name, packs); return t.run(t.input.parse(args)); };
+  if (TIME_MACHINE) { process.stderr.write("The sentinel watches the present, so it does not run as of a past date.\n"); process.exit(2); }
+  const packs = enabledPacks({ ...process.env, CANLI_PACKS: "markets" }), gov = governance(process.env, canliHome());
+  process.on("exit", () => gov.close());
+  const call = (name, args) => runOne(packs, { name, arguments: args }, {}, [], gov);
   const s = createSentinel({ home: canliHome(), call, say: (m) => process.stderr.write(`${m}\n`) });
   const show = (x) => process.stdout.write(`${JSON.stringify(x)}\n`);
   if (verb === "add") show(s.add(JSON.parse(rest[0] ?? "{}")));
@@ -599,9 +603,10 @@ if (isMain && process.argv[2] === "audit") {
   process.on("exit", () => gov.close());
   for (const signal of ["SIGINT", "SIGTERM"]) process.on(signal, () => process.exit(0));
   await server.connect(new StdioServerTransport());
-  if (channel) {
-    const call = async (name, args) => { const t = await toolFor(name, packs); return t.run(t.input.parse(args)); };
-    const s = createSentinel({ home: canliHome(), call });
+  // Its reads go through the same policy and audit log as any call. It watches the present, so a server
+  // running as of a past date never starts it.
+  if (channel && !TIME_MACHINE) {
+    const s = createSentinel({ home: canliHome(), call: (name, args) => runOne(packs, { name, arguments: args }, {}, [], gov) });
     s.sinks.add(channelSink(server));
     s.start();
   }

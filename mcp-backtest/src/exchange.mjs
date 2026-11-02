@@ -67,7 +67,7 @@ function locked(path, work) {
   }
   try { return work(); } finally { rmSync(lock, { force: true }); }
 }
-const load = (f) => { if (!existsSync(f)) throw new RangeError(`${f} is not an exchange yet: call exchange_new`); const s = JSON.parse(readFileSync(f, "utf8")); if (s.schema !== "canli.exchange.v1") throw new RangeError(`${f} is not an agent exchange file`); return s; };
+const load = (f) => { if (!existsSync(f)) throw new RangeError(`${f} is not an exchange yet: call exchange_new`); let s = null; try { s = JSON.parse(readFileSync(f, "utf8")); } catch { /* a parse error quotes the file, so it stays here */ } if (s?.schema !== "canli.exchange.v1") throw new RangeError(`${f} is not an agent exchange file`); return s; };
 const save = (f, s) => { const tmp = `${f}.${process.pid}.tmp`; writeFileSync(tmp, JSON.stringify(s)); renameSync(tmp, f); };
 
 const cents = (x) => Math.round(x * 100) / 100;
