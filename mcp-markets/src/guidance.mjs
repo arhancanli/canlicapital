@@ -72,7 +72,7 @@ export function basisOf(text) {
   const t = String(text);
   if (/\bgaap and non-?gaap\b/i.test(t)) return "GAAP and non-GAAP";
   // "GAAP diluted EPS and non-GAAP diluted EPS of $0.45 and $0.64, respectively" names both as well.
-  if (/\bgaap\b(?:(?!non-?gaap)[^.;]){0,70}\band non-?gaap\b[^.;]*\brespectively\b/i.test(t)) return "GAAP and non-GAAP";
+  if (/\bgaap\b(?:(?!non-?gaap)[^.;]){0,70}\band non-?gaap\b[^;]{0,120}\brespectively\b/i.test(t)) return "GAAP and non-GAAP";
   let best = null, at = -1;
   for (const [name, re] of BASIS) for (const m of t.matchAll(re)) if (m.index > at) { best = name; at = m.index; }
   return best;
@@ -627,7 +627,8 @@ export function resultsFromText(text, max = 400) {
         const from = Math.max(0, figs[k - 1]?.end ?? f.at - 120);
         const cut = s.slice(from, f.at).search(/[)(][^)(]*$/);
         const named = basisOf(s.slice(cut >= 0 ? from + cut + 1 : from, f.end) + after) ?? (prev?.measure === measure ? prev.named : null);
-        let basis = named;
+        // "GAAP diluted EPS and non-GAAP diluted EPS of $0.45 and $0.64, respectively" names both as well.
+        let basis = /\bgaap\b(?:(?!non-?gaap)[^.;]){0,70}\band non-?gaap\b[^;]{0,120}\brespectively\b/i.test(s) ? "GAAP and non-GAAP" : named;
         // "GAAP and non-GAAP earnings per diluted share were $2.46 and $2.22, respectively": one each.
         if (basis === "GAAP and non-GAAP" && /\brespectively\b/i.test(s)) {
           const n = paired[measure] ?? 0;
