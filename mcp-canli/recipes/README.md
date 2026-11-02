@@ -9,7 +9,7 @@ Starting points for three steps in order: read the data and check it against the
 | `langgraph_agent.py` | Python, a model key | Connects to the server and lists and calls tools; the model loop was not run |
 | `openai_agents_agent.py` | Python, a model key | Connects to the server and lists and calls tools; the model loop was not run |
 | `crewai_agent.py` | Python, a model key | Connects to the server and lists and calls tools; the model loop was not run |
-| `kubernetes/cpcv-indexed-job.yaml` | A cluster | The manifest parses and the shards and their merge are tested; it has not been run on a cluster |
+| `kubernetes/cpcv-indexed-job.yaml` | A cluster | CI runs this file on a kind cluster on one machine, then merges the eight shards. Not run on a multi-node cluster |
 
 These are starters, not production systems. Read them before you run them, and set your own limits.
 
