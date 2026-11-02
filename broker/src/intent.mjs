@@ -4,6 +4,7 @@ import { canonical, clean, Refused, sha256 } from "./util.mjs";
 
 const MAX_BYTES = 1024 * 1024, MAX_ORDERS = 50;
 const SYMBOL = /^[A-Z0-9][A-Z0-9.\-/]{0,14}$/;
+const USD_PAIR = /^[A-Z0-9]+\/USD$/;
 const FIELDS = new Set(["symbol", "side", "quantity", "notional_usd", "type", "limit_price", "time_in_force"]);
 const positive = (x) => typeof x === "number" && Number.isFinite(x) && x > 0 && x <= 1e9;
 
@@ -20,6 +21,8 @@ export function readIntent(text) {
     if (o === null || typeof o !== "object" || Array.isArray(o)) throw new Refused(`${at} is not an object.`);
     for (const k of Object.keys(o)) if (!FIELDS.has(k)) throw new Refused(`${at} has a field this does not understand: ${clean(k, 40)}.`);
     if (typeof o.symbol !== "string" || !SYMBOL.test(o.symbol)) throw new Refused(`${at}: the symbol must be upper case, such as AAPL or BTC/USD.`);
+    // Limits and notional_usd are in dollars. On ETH/BTC, a notional of 50 would be 50 BTC.
+    if (o.symbol.includes("/") && !USD_PAIR.test(o.symbol)) throw new Refused(`${at}: a crypto pair must be priced in USD, such as BTC/USD, because the limits are in dollars.`);
     if (o.side !== "buy" && o.side !== "sell") throw new Refused(`${at}: the side must be buy or sell.`);
     if (o.type !== "market" && o.type !== "limit") throw new Refused(`${at}: the type must be market or limit.`);
     if ((o.quantity === undefined) === (o.notional_usd === undefined)) throw new Refused(`${at}: give quantity or notional_usd, one of them.`);

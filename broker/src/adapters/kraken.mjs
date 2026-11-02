@@ -11,6 +11,7 @@ const NAMES = Object.freeze({ BTC: "XBT", DOGE: "XDG" });
 const nameOf = (coin) => (Object.hasOwn(NAMES, coin) ? NAMES[coin] : coin);
 const pairOf = (symbol) => symbol.split("/").map(nameOf).join("");
 const decimal = (x) => x.toLocaleString("en-US", { useGrouping: false, maximumFractionDigits: 12 });
+const REFUSED = /^(EOrder|EAPI):|^EGeneral:(Invalid arguments|Permission denied)/;
 
 // cl_ord_id takes a UUID, or text up to 18 characters, so the journal's id is hashed into a UUID's shape.
 // The same order always makes the same id.
@@ -64,8 +65,16 @@ export const kraken = {
       cl_ord_id: uuidOf(clientId),
       ...(check ? { validate: "true" } : {}),
     });
-    if (!r.ok || r.json?.error?.length) throw new Error(`Kraken said ${r.status}: ${clean(JSON.stringify(r.json?.error ?? r.text))}`);
+    const errors = r.json?.error ?? [];
+    if (errors.length) {
+      // Kraken says these before it places anything. A service error can come after it has, so that stays unknown.
+      if (errors.every((e) => REFUSED.test(e))) throw new Error(`Kraken rejected it: ${clean(JSON.stringify(errors))}`);
+      throw new Error(`Kraken's reply does not say if the order was placed: ${clean(JSON.stringify(errors))}`);
+    }
+    if (!r.ok) throw new Error(`Kraken said ${r.status}: ${clean(r.text)}`);
     if (check) return { id: null, status: `checked by Kraken, nothing placed (${clean(r.json?.result?.descr?.order ?? "no description")})` };
-    return { id: r.json?.result?.txid?.[0] ?? null, status: "accepted" };
+    const id = r.json?.result?.txid?.[0];
+    if (!id) throw new Error("Kraken's reply names no order, so it does not say if one was placed.");
+    return { id, status: "accepted" };
   },
 };

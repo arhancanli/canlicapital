@@ -336,6 +336,23 @@ test("Kraken: the signature matches Kraken's published example, and a paper run 
   const failing = async (u, o) => (u.endsWith("/AddOrder") ? ok({ error: ["EOrder:Insufficient funds"] }) : http(u, o));
   await run({ command: "send", broker: "kraken", env, ...rejected, http: failing, ask: async () => true, print: (l) => said.push(l) }).catch((e) => said.push(e.message));
   assert.ok(said.some((l) => /Insufficient funds/.test(l)), "an error in a 200 reply is an error");
+  assert.match(readFileSync(path.join(rejected.home, "broker-journal.jsonl"), "utf8"), /"event":"failed"/);
+  const busy = setup(t, { orders: [buy] });
+  const down = async (u, o) => (u.endsWith("/AddOrder") ? ok({ error: ["EService:Deadline elapsed"] }) : http(u, o));
+  await assert.rejects(run({ command: "send", broker: "kraken", env, ...busy, http: down, ask: async () => true, print: () => {} }), /does not say if the order was placed/);
+  assert.doesNotMatch(readFileSync(path.join(busy.home, "broker-journal.jsonl"), "utf8"), /"event":"failed"/, "a service error may have placed it, so it stays unknown");
+  await assert.rejects(run({ command: "send", broker: "kraken", env, ...busy, http, ask: async () => true, print: () => {} }), /never heard back.*--unknown-not-placed/s);
+});
+
+test("a crypto pair must be priced in USD: limits are in dollars, and 50 on ETH/BTC would be 50 BTC", async (t) => {
+  for (const symbol of ["ETH/BTC", "BTC/USDT", "X/BTUSD", "A/B/USD"]) {
+    for (const broker of ["coinbase", "kraken", "alpaca"]) {
+      const a = setup(t, { orders: [{ symbol, side: "buy", notional_usd: 50, type: "market", time_in_force: "gtc" }] }), calls = [];
+      const env = { ...PAPER, COINBASE_KEY_NAME: "k", COINBASE_KEY_SECRET: "s", KRAKEN_API_KEY: "k", KRAKEN_API_SECRET: "cw==" };
+      await assert.rejects(run({ command: "send", broker, env, ...a, http: async (u) => { calls.push(u); return ok({}); }, ask: async () => true, print: () => {} }), /priced in USD/, `${symbol} on ${broker}`);
+      assert.equal(calls.length, 0, "refused before any request");
+    }
+  }
 });
 
 test("the local gateway is never simply trusted: no certificate file, no request", async () => {
