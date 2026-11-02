@@ -36,6 +36,7 @@ const HELD = {
   financial_statements: { args: filedBefore },
   filing_tables: { args: filedBefore },
   earnings_release: { args: filedBefore },
+  guidance_record: { args: filedBefore },
   read_filing: { args: filedBefore },
   list_filings: { args: untilArg(365 * 5) },
   search_filings: { args: untilArg(0) },

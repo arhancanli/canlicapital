@@ -2,7 +2,7 @@
 
 ## 0.11.0
 
-New tools: `filing_memory`, `filing_sentiment`, `what_happened_next`, `shipping_activity`, `page_attention`, `latest_price`.
+New tools: `filing_memory`, `filing_sentiment`, `guidance_record`, `what_happened_next`, `shipping_activity`, `page_attention`, `latest_price`.
 
 - `filing_memory` searches every annual report a company has on EDGAR. It reads them once, ranks paragraphs with BM25 on your machine, and counts mentions by a rule it states. Apple's 25 reports took 5.5 seconds the first time and under half a second after that. A local embedding model can rank by meaning too; on six test questions word search alone failed where the wording differed, and either supplied synonyms or embeddings fixed most of it, each winning on different ones.
 - Optional local models, installed only by `canli-mcp models install` and never by a tool. No vector database: at a few thousand paragraphs a company, a file of plain floats is as fast.

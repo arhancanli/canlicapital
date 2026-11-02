@@ -11,6 +11,7 @@ import { latestFilings } from "../src/latest.mjs";
 import { annualPartOf, buildIndex, filingMemory, fuse, linkToMeasure, mentionTest, paragraphsOf, permutationP, score, spearman, stem, tokens } from "../src/memory.mjs";
 import { filingSentiment, INSTALL_HINT, modelsInstalled, sentencesOf } from "../src/models.mjs";
 import { episodes, summarize, whatHappenedNext } from "../src/nextmove.mjs";
+import { guidanceRecord, reading, summarizeRecord } from "../src/promises.mjs";
 import { createSession } from "../src/sources.mjs";
 import { latestPrice } from "../src/tools.mjs";
 
@@ -256,4 +257,35 @@ test("vectors go to their own folder and come back, and a wrong length or name i
   assert.equal(loadFloats(env, "v1-a", 5), null, "a change in how a report is split reads as missing");
   assert.throws(() => saveFloats(env, "../../evil", v), /Not a vector file name/);
   rmSync(dir, { recursive: true, force: true });
+});
+
+test("guidance record: it walks back through the releases and tallies each measure against its own range", async () => {
+  const COLS = ["measure", "basis", "period_guided", "unit", "guided_low", "guided_high", "actual", "position"];
+  const pages = [
+    { filed: "2026-08-26", q: 2, position: "above the range", actual: 96 },
+    { filed: "2026-05-20", q: 1, position: "above the range", actual: 80 },
+    { filed: "2026-02-20", q: 4, position: "within the range", actual: 65 },
+    { filed: "2025-11-20", q: 3, position: "below the range", actual: 50 },
+  ];
+  const asked = [];
+  const release = async (_s, a) => {
+    asked.push(a.filed_before ?? null);
+    const p = pages[asked.length - 1];
+    return { company: { name: "Acme" }, release: { filed: p.filed, url: `https://www.sec.gov/${p.q}` }, previous_guidance_vs_results: { quarter: { quarter: p.q, year: 2027 }, columns: COLS, rows: [["revenue", null, "next", "USD billion", 60, 70, p.actual, p.position], ["gross_margin", "GAAP", "next", "%", null, null, 70, "no range"]] } };
+  };
+  const r = await guidanceRecord({}, { company: "ACME", quarters: 4 }, { release });
+  assert.deepEqual(asked, [null, "2026-08-25", "2026-05-19", "2026-02-19"], "each step goes to the release before");
+  assert.deepEqual(r.record.rows[0].slice(0, 7), ["revenue", null, "USD billion", 4, 2, 1, 1]);
+  assert.equal(r.record.rows[0][7], "Q3 2027");
+  assert.match(r.reading, /Over 4 guided quarters, Acme's revenue came in above its own range 2 times, within it 1 and below it 1/);
+  assert.equal(r.guided_lines_matched, 4, "a line with no range does not count");
+  assert.equal(r.rows[0][5], 60);
+});
+
+test("guidance record: a release with no guidance shows nothing, and always beating is called what it may be", () => {
+  assert.match(reading("Acme", null), /Too few/);
+  const beats = summarizeRecord(Array.from({ length: 8 }, (_, i) => ({ quarter: `Q${i}`, measure: "revenue", unit: "USD", position: "above the range" })));
+  assert.match(reading("Acme", beats[0]), /may simply set it low/);
+  const misses = summarizeRecord(Array.from({ length: 4 }, (_, i) => ({ quarter: `Q${i}`, measure: "eps", unit: "USD", position: i < 2 ? "below the range" : "within the range" })));
+  assert.match(reading("Acme", misses[0]), /fell short 2 times: Q0, Q1/);
 });
