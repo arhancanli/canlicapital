@@ -43,7 +43,7 @@ const EXTRA = DEEPSEEK ? { thinking: { type: "disabled" }, temperature: 0 } : {}
 const anthropic = !CLAUDE ? null : MOCK ? mockAnthropic : new Anthropic({ maxRetries: 8, apiKey: key("anthropic_benchmark_key") });
 const RESULT_CAP = 30000;
 const MAX_TURNS = 12;
-const SYSTEM = "You are a financial research assistant with tools. Today is 2026-10-09. Get every figure from the tools, not from memory, and compute with the tools where you can. When you have the result, finish with one line 'ANSWER: <number>' in the units the question asks for.";
+const SYSTEM = "You are a financial research assistant with tools. Today is " + (process.env.BENCH_TODAY ?? "2026-10-09") + ". Get every figure from the tools, not from memory, and compute with the tools where you can. When you have the result, finish with one line 'ANSWER: <number>' in the units the question asks for.";
 
 // Finished runs are skipped on a resume; runs the harness could not finish are tried again.
 // Read without checking first: a check and a later append are two looks at a file that can change in between.
