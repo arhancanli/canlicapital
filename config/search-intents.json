@@ -448,6 +448,63 @@
         "best of many strategies skill or luck",
         "deflated sharpe effective number of trials"
       ]
+    },
+    {
+      "path": "/learn",
+      "intent": "Learn how the stock market works, starting from nothing",
+      "queries": [
+        "learn how the stock market works",
+        "stock market basics for beginners"
+      ]
+    },
+    {
+      "path": "/learn/what-you-own-when-you-buy-a-share",
+      "intent": "Understand what a share of stock actually is",
+      "queries": [
+        "what do you own when you buy a share",
+        "what is a share of stock"
+      ]
+    },
+    {
+      "path": "/learn/how-to-read-an-income-statement",
+      "intent": "Read a company's income statement line by line",
+      "queries": [
+        "how to read an income statement",
+        "income statement explained"
+      ]
+    },
+    {
+      "path": "/learn/what-a-pe-ratio-tells-you",
+      "intent": "Understand what a P/E ratio means and where it misleads",
+      "queries": [
+        "what does a p/e ratio tell you",
+        "p/e ratio explained"
+      ]
+    },
+    {
+      "path": "/learn/whats-inside-an-index-fund",
+      "intent": "See what an S&P 500 index fund actually holds",
+      "queries": [
+        "what is inside an index fund",
+        "what does an s&p 500 fund hold"
+      ]
+    },
+    {
+      "path": "/learn/why-a-great-track-record-can-be-luck",
+      "intent": "Tell whether a strategy's good results could be luck",
+      "queries": [
+        "can a good track record be luck",
+        "how to tell if an investment strategy is luck"
+      ]
+    },
+    {
+      "path": "/tools/look-through",
+      "intent": "See every company held across a portfolio of funds and shares",
+      "queries": [
+        "what do i really own in my etfs",
+        "etf overlap checker",
+        "portfolio look through tool"
+      ]
     }
   ],
   "expansion_policy": "Add a distinct canonical owner only when its useful answer and source evidence exist. Synonyms stay on the same page. No arbitrary company-by-keyword permutations. Gaps remain explicit until addressed.",

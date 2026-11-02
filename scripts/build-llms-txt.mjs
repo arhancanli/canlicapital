@@ -126,6 +126,16 @@ say("Post-mortems and derivations. These describe method and engineering; none i
 say();
 for (const n of notes) say(`- [${n.title}](${ORIGIN}/notes/${n.slug}): ${n.dek}`);
 say();
+say("## Lessons");
+say();
+say("Short lessons for people investing their own money, using figures from real filings. Education, not advice.");
+say();
+say(`- [Learn how the stock market works](${ORIGIN}/learn): The index of lessons.`);
+for (const f of readdirSync(resolve(ROOT, "learn")).filter((name) => name.endsWith(".md")).sort()) {
+  const md = readFileSync(resolve(ROOT, "learn", f), "utf8");
+  say(`- [${md.match(/^# (.+)$/m)[1]}](${ORIGIN}/learn/${f.slice(0, -3)}): ${md.match(/^> (.+)$/m)[1]}`);
+}
+say();
 say("## Machine interfaces");
 say();
 say(`- [Read API](${ORIGIN}/developers): static JSON over the published record. Every response carries its sources with SHA-256 hashes, its claim class, and what it cannot be used to claim.`);
@@ -148,6 +158,7 @@ say();
 say(`- [Corrections](${ORIGIN}/progress): What was published, found wrong, and withdrawn. Read this before trusting any other page.`);
 say(`- [Open data](${ORIGIN}/open): The kill log, the signed hash chain and the glass-box artifacts.`);
 say(`- [Trial accounting](${ORIGIN}/tools/trial-accounting): Every hypothesis ever tested, which is the denominator every Sharpe here is corrected by.`);
+say(`- [Portfolio look-through](${ORIGIN}/tools/look-through): List your funds and shares, and see every company inside them, added up from each fund's SEC report.`);
 say(`- [Deflated Sharpe calculator](${ORIGIN}/tools/deflated-sharpe): Run the correction yourself against a source-bound implementation.`);
 say(`- [Probability of backtest overfitting calculator](${ORIGIN}/tools/backtest-overfitting): Run Combinatorially Symmetric Cross-Validation on your own matrix of variant returns, the same core the validation API imports.`);
 say(`- [Execution Reality Lab](${ORIGIN}/tools/execution): the same strategy under six execution assumptions, measuring which are costs (negative on every series) and which are re-timings (sign unreliable per series). Educational, synthetic.`);

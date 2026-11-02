@@ -48,6 +48,17 @@ Post-mortems and derivations. These describe method and engineering; none is a p
 - [What competitive programming actually bought me, and what it did not](https://canlicapital.com/notes/what-competitive-programming-bought): There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the honest version of this story is more useful than the flattering one.
 - [Your backtest beat a t-test. Would it beat a placebo?](https://canlicapital.com/notes/would-it-beat-a-placebo): In 300,000 simulated tests on markets with nothing to predict, a t-test on the best rule of a grid said "edge" between 10.9% and 78.9% of the time at a nominal 5%. A placebo test, which reruns the whole pipeline on the same returns in a random order, stayed between 4.6% and 5.5%.
 
+## Lessons
+
+Short lessons for people investing their own money, using figures from real filings. Education, not advice.
+
+- [Learn how the stock market works](https://canlicapital.com/learn): The index of lessons.
+- [How to read an income statement](https://canlicapital.com/learn/how-to-read-an-income-statement): An income statement runs from what customers paid down to what was left for the owners. Here is every main line, using what Apple filed for the year to September 2025.
+- [What a P/E ratio tells you, and what it hides](https://canlicapital.com/learn/what-a-pe-ratio-tells-you): The price-to-earnings ratio says how many dollars buyers pay for one dollar of a company's yearly profit. Here is how to work it out from a filing, and how it can mislead you.
+- [What you own when you buy a share](https://canlicapital.com/learn/what-you-own-when-you-buy-a-share): A share is a small slice of a real business. This lesson shows what that slice earned and paid in one year, using the figures Apple filed with the SEC.
+- [What is inside an index fund](https://canlicapital.com/learn/whats-inside-an-index-fund): A fund that tracks the S&P 500 holds about 500 companies, but not in equal amounts. Here is what one of the largest, VOO, actually held, from the report it files with the SEC.
+- [Why a great track record can be luck](https://canlicapital.com/learn/why-a-great-track-record-can-be-luck): Try enough strategies and one will look brilliant by chance. Here is the arithmetic, and the questions to ask before you trust a result someone shows you.
+
 ## Machine interfaces
 
 - [Read API](https://canlicapital.com/developers): static JSON over the published record. Every response carries its sources with SHA-256 hashes, its claim class, and what it cannot be used to claim.
@@ -92,6 +103,7 @@ Post-mortems and derivations. These describe method and engineering; none is a p
 - [Corrections](https://canlicapital.com/progress): What was published, found wrong, and withdrawn. Read this before trusting any other page.
 - [Open data](https://canlicapital.com/open): The kill log, the signed hash chain and the glass-box artifacts.
 - [Trial accounting](https://canlicapital.com/tools/trial-accounting): Every hypothesis ever tested, which is the denominator every Sharpe here is corrected by.
+- [Portfolio look-through](https://canlicapital.com/tools/look-through): List your funds and shares, and see every company inside them, added up from each fund's SEC report.
 - [Deflated Sharpe calculator](https://canlicapital.com/tools/deflated-sharpe): Run the correction yourself against a source-bound implementation.
 - [Probability of backtest overfitting calculator](https://canlicapital.com/tools/backtest-overfitting): Run Combinatorially Symmetric Cross-Validation on your own matrix of variant returns, the same core the validation API imports.
 - [Execution Reality Lab](https://canlicapital.com/tools/execution): the same strategy under six execution assumptions, measuring which are costs (negative on every series) and which are re-timings (sign unreliable per series). Educational, synthetic.

@@ -1,6 +1,6 @@
 // Anonymous daily counts of what visitors do, to see whether the site works for them. Only the action's name
 // arrives; nothing about the person is read or kept. Without Supabase set, it answers and counts nothing.
-const ACTIONS = new Set(["check_started", "check_answered", "check_failed", "lookup", "share", "email_left", "install_copied", "returned"]);
+const ACTIONS = new Set(["check_started", "check_answered", "check_failed", "lookup", "share", "look_through", "email_left", "install_copied", "returned"]);
 
 export default async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
