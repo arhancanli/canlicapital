@@ -42,6 +42,7 @@ export const KEYWORDS = Object.freeze({
     sleeve_tournament: "which sleeves work best on my data test all compare",
   },
   markets: {
+    read_filing: "annual report read the annual report 10-k report",
     private_offerings: "regulation d reg d form d exempt offering raise",
     // The series it resolves from plain words (canli-markets-mcp's COMMON_SERIES), less the words
     // every price or rate tool shares.

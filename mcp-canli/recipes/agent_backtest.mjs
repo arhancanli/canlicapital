@@ -14,14 +14,17 @@ import { writeFileSync } from "node:fs";
 import { Client } from "@modelcontextprotocol/client";
 import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
 
+import { patientFetch } from "./model_call.mjs";
+
 const HOLD_DAYS = 91;
+const TOOL_RESULT_CHARS = 4000;
 const command = (process.env.CANLI_MCP_COMMAND ?? "npx -y canli-mcp").split(" ");
 
 // An OpenAI-compatible chat call, tools optional.
-export function modelFrom(env = process.env, fetchImpl = fetch) {
+export function modelFrom(env = process.env, fetchImpl = patientFetch) {
   const base = (env.MODEL_BASE_URL ?? "http://localhost:11434/v1").replace(/\/$/, "");
   return async (messages, tools) => {
-    const r = await fetchImpl(`${base}/chat/completions`, { method: "POST", headers: { "Content-Type": "application/json", ...(env.MODEL_API_KEY ? { Authorization: `Bearer ${env.MODEL_API_KEY}` } : {}) }, body: JSON.stringify({ model: env.MODEL_NAME, messages, temperature: 0, ...(tools?.length ? { tools } : {}) }) });
+    const r = await fetchImpl(`${base}/chat/completions`, { method: "POST", headers: { "Content-Type": "application/json", ...(env.MODEL_API_KEY ? { Authorization: `Bearer ${env.MODEL_API_KEY}` } : {}) }, body: JSON.stringify({ model: env.MODEL_NAME, messages, temperature: 0, max_tokens: 800, ...(tools?.length ? { tools } : {}) }) });
     if (!r.ok) throw new Error(`The model answered ${r.status}: ${(await r.text()).slice(0, 200)}`);
     return (await r.json()).choices[0].message;
   };
@@ -59,7 +62,7 @@ export async function decide({ model, listTools, callTool, date, symbols, maxTur
       calls += 1;
       let content;
       try { content = await callTool(c.function.name, JSON.parse(c.function.arguments || "{}")); } catch (e) { content = `Error: ${e.message}`; }
-      messages.push({ role: "tool", tool_call_id: c.id, content: String(content).slice(0, 12000) });
+      messages.push({ role: "tool", tool_call_id: c.id, content: String(content).slice(0, TOOL_RESULT_CHARS) });
     }
   }
   return { weights: {}, reasoning: "Ran out of turns.", tool_calls: calls };
@@ -101,7 +104,7 @@ export function summarize(rounds) {
 async function main() {
   const flag = (name, dflt) => { const i = process.argv.indexOf(name); return i >= 0 ? process.argv[i + 1] : dflt; };
   const dates = String(flag("--dates", "")).split(",").filter(Boolean), symbols = String(flag("--symbols", "")).split(",").filter(Boolean).map((s) => s.toUpperCase());
-  if (!dates.length || !symbols.length || !process.env.MODEL_NAME) { process.stderr.write("usage: MODEL_NAME=... [MODEL_BASE_URL=...] node recipes/agent_backtest.mjs --dates 2021-03-01,2021-06-01 --symbols AAPL,MSFT,XOM [--out results.json]\n"); process.exit(2); }
+  if (!dates.length || !symbols.length || !process.env.MODEL_NAME) { process.stderr.write("usage: MODEL_NAME=... [MODEL_BASE_URL=...] node recipes/agent_backtest.mjs --dates 2021-03-01,2021-06-01 --symbols AAPL,MSFT,XOM [--max-turns 8] [--out results.json]\n"); process.exit(2); }
   const model = modelFrom();
   const connect = async (extra) => { const client = new Client({ name: "agent-backtest", version: "1" }); await client.connect(new StdioClientTransport({ command: command[0], args: [...command.slice(1), ...extra], env: { ...process.env, CANLI_PACKS: "markets,fundamentals,validation,quant" } })); return client; };
   // Scoring reads what happened next, so it runs on a server that is not locked, which the agent never touches.
@@ -116,7 +119,7 @@ async function main() {
     const seal = await connect(["--as-of", date]);
     const listTools = async () => (await seal.listTools()).tools;
     const callTool = async (name, args) => (await seal.callTool({ name, arguments: args })).content.map((c) => c.text ?? "").join("\n");
-    const d = await decide({ model, listTools, callTool, date, symbols });
+    const d = await decide({ model, listTools, callTool, date, symbols, maxTurns: Number(flag("--max-turns", 8)) });
     await seal.close();
     const moves = Object.fromEntries((await Promise.all(symbols.map(async (s) => [s, await moveOf(s, date, plusDays(date, HOLD_DAYS))]))).filter(([, m]) => m !== undefined));
     const equal = Object.values(moves).reduce((a, b) => a + b, 0) / (Object.keys(moves).length || 1);
