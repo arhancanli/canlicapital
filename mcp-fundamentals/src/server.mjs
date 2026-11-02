@@ -44,6 +44,8 @@ export const SERVER_INFO = Object.freeze({
   ],
 });
 const DEFAULT_BASE = "https://canlicapital.com";
+// SEC asks every client to identify itself with a contact; SEC_USER_AGENT replaces the default.
+const SEC_USER_AGENT = String(process.env.SEC_USER_AGENT ?? "").trim() || "Canli Capital canli-fundamentals-mcp (+https://canlicapital.com/developers)";
 const REQUEST_TIMEOUT_MS = 30000;
 const MIB = 1024 * 1024;
 const MAX_RECORD_BYTES = 16 * MIB;
@@ -83,7 +85,7 @@ async function fetchBytes(session, path, maxBytes, headers) {
   let res;
   let body;
   try {
-    res = await session.fetchImpl(`${session.base}${path}`, { signal, redirect: "error", ...(headers ? { headers } : {}) });
+    res = await session.fetchImpl(/^https:/.test(path) ? path : `${session.base}${path}`, { signal, redirect: "error", ...(headers ? { headers } : {}) });
     const declared = Number(res.headers?.get?.("content-length"));
     if (declared > maxBytes) return { status: 413, body: null };
     body = Buffer.from(await res.arrayBuffer());
@@ -191,9 +193,22 @@ async function nameIndex(session) {
       outside: new Map((Array.isArray(json?.outside?.rows) ? json.outside.rows : []).map(([ticker, cik, name]) => [String(ticker), { ticker: String(ticker), cik: cik10(cik), name: String(name) }])),
       captured: json?.source?.captured ?? null,
     };
+    // Each company the SEC lists outside this release once, with all its tickers.
+    const held = new Map();
+    for (const { ticker, cik, name } of session.names.outside.values()) {
+      if (!held.has(cik)) {
+        const words = nameWords(name);
+        held.set(cik, { cik, name, tickers: [], words, key: words.join(""), outside: true });
+      }
+      held.get(cik).tickers.push(ticker);
+    }
+    session.names.outsideCompanies = [...held.values()];
   }
   return session.names;
 }
+
+// Names people use that are not in a filer's registered name.
+const KNOWN_AS = Object.freeze({ google: "GOOGL", youtube: "GOOGL", facebook: "META", instagram: "META", whatsapp: "META", "p and g": "PG", bofa: "BAC", tsmc: "TSM" });
 
 // How well a company matches, best first. A company is used for a query without asking only when
 // it is clearly the one meant: the single match at the best level, where that level is a ticker, a
@@ -208,7 +223,9 @@ export async function findCompanies(session, query, limit = 8) {
   const ticker = text.toUpperCase();
   const names = await nameIndex(session);
   const found = new Map();
+  let widest = 6;
   const add = (c, level) => {
+    if (level > widest) return;
     const prior = found.get(c.cik);
     if (!prior || level < prior.level) found.set(c.cik, { c, level });
   };
@@ -217,16 +234,25 @@ export async function findCompanies(session, query, limit = 8) {
   const outside = names.outside.get(ticker) ?? names.outside.get(ticker.replace(/\./g, "-")) ?? names.outside.get(ticker.replace(/-/g, ".")) ?? null;
   const holderKey = outside ? nameWords(outside.name).join("") : null;
   const cik = /^\d{1,10}$/.test(text) ? text.padStart(10, "0") : null;
-  for (const c of names.companies) {
+  const look = (c) => {
     if (c.tickers.includes(ticker) || c.tickers.includes(ticker.replace(/\./g, "-")) || c.tickers.includes(ticker.replace(/-/g, "."))) add(c, 0);
     if (cik && c.cik === cik) add(c, 1);
-    if (!qKey) continue;
+    if (!qKey) return;
     if (c.key === qKey) add(c, 2);
     else if (holderKey && c.key === holderKey) add(c, 3);
     else if (qWords.every((w, i) => c.words[i] === w)) add(c, 4);
     else if (qWords.every((w) => c.words.includes(w))) add(c, 5);
     else if (qKey.length >= 4 && c.key.includes(qKey)) add(c, 6);
-  }
+  };
+  for (const c of names.companies) look(c);
+  // Companies outside this release, read live from the SEC, when nothing here is clearly the one
+  // meant: "NVO" and "Shell plc", but "XOM" stays the covered filer of the same name.
+  const hits = [...found.values()];
+  // "Meta" written as a name, with names that fit, is not read as the ticker META. "Toyota" is the listed
+  // Toyota Motor here; only the same name outside it can match then, not another name that starts the same.
+  const nameFits = found.size > 0 && text !== ticker;
+  widest = hits.some((r) => r.level === 4 && r.c.tickers.length) ? 3 : 5;
+  if (!hits.some((r) => r.level <= 3)) for (const c of names.outsideCompanies ?? []) if (!nameFits || !c.tickers.includes(ticker)) look(c);
   const ranked = [...found.values()].sort((a, b) => a.level - b.level || (b.c.tickers.length > 0) - (a.c.tickers.length > 0) || a.c.words.length - b.c.words.length || a.c.cik.localeCompare(b.c.cik));
   const best = ranked[0];
   const tied = best ? ranked.filter((r) => r.level === best.level) : [];
@@ -235,15 +261,15 @@ export async function findCompanies(session, query, limit = 8) {
   // ROWE GROUP INC, not T. ROWE PRICE OHA SELECT PRIVATE CREDIT FUND.
   const listedFits = ranked.filter((r) => r.level <= 5 && r.c.tickers.length);
   // A ticker held by a company outside the reference is never read as another company's name: "BP" is BP plc, not
-  // BP Midstream Partners. The answer says who holds it and lists the names that fit.
+  // BP Midstream Partners.
   const pick = !best || (outside && best.level >= 4) ? null : best.level >= 4 && !best.c.tickers.length && listedFits.length === 1 ? listedFits[0] : ranked.length === 1 ? best : best.level > 4 ? null : tied.length === 1 ? best : listed.length === 1 ? listed[0] : null;
   // Companies as good a match as the one used (the same name, another filer): the answer names them,
   // since a question about the other one would otherwise get this one's figures without a word.
   const alike = pick && tied.length > 1 ? tied.filter((r) => r !== pick).map(({ c }) => ({ cik: c.cik, name: c.name, tickers: c.tickers })) : [];
   return {
-    matches: ranked.slice(0, limit).map(({ c, level }) => ({ cik: c.cik, name: c.name, tickers: c.tickers, match: MATCH_LEVELS[level] })),
+    matches: ranked.slice(0, limit).map(({ c, level }) => ({ cik: c.cik, name: c.name, tickers: c.tickers, match: MATCH_LEVELS[level], ...(c.outside ? { read_live_from_sec: true } : {}) })),
     total: ranked.length,
-    resolved: pick ? { cik: pick.c.cik, name: pick.c.name, match: MATCH_LEVELS[pick.level], ...(alike.length ? { also_matching: alike } : {}) } : null,
+    resolved: pick ? { cik: pick.c.cik, name: pick.c.name, match: MATCH_LEVELS[pick.level], ...(pick.c.outside ? { read_live_from_sec: true } : {}), ...(alike.length ? { also_matching: alike } : {}) } : null,
     outside,
     captured: names.captured,
   };
@@ -256,6 +282,11 @@ export async function resolveCompany(session, company) {
   const map = await tickerMap(session);
   const cik = map[ticker] ?? map[ticker.replace(/\./g, "-")] ?? map[ticker.replace(/-/g, ".")];
   if (cik) return { cik, ticker };
+  const knownTicker = Object.hasOwn(KNOWN_AS, nameWords(text).join(" ")) ? KNOWN_AS[nameWords(text).join(" ")] : null;
+  if (knownTicker) {
+    if (map[knownTicker]) return { cik: map[knownTicker], ticker: knownTicker, matched: { query: text, by: "known_name" } };
+    return resolveCompany(session, knownTicker);
+  }
   // Not a current ticker in the reference: a company name, a ticker whose holder the reference does
   // not cover, or a former company. A site without the name index still answers tickers and CIKs.
   let found;
@@ -269,6 +300,7 @@ export async function resolveCompany(session, company) {
     const alike = found.resolved.also_matching?.map((m) => `${m.name} (CIK ${m.cik}${m.tickers.length ? `, ${m.tickers.join("/")}` : ", no current ticker"})`).join("; ");
     const note = [found.resolved.match === "same_name_as_ticker_holder" ? `${heldBy}; the covered filer with the same name was used.` : null,
       found.resolved.match === "name_start" && /^[A-Z]{1,5}$/.test(text) ? `${text} is not a current ticker in the reference, so it was read as the start of this company's name; a company's former ticker is not looked up.` : null,
+      found.resolved.read_live_from_sec ? `${found.resolved.name} is outside the Canli company reference, so its figures are read live from the SEC.` : null,
       alike ? `Also named "${text}": ${alike}. This is ${found.resolved.name} (CIK ${found.resolved.cik}), the one with a current ticker; pass another CIK as company for a different filer, such as a former company of that name.` : null].filter(Boolean).join(" ") || undefined;
     return { cik: found.resolved.cik, ticker: null, matched: { query: text, by: found.resolved.match, ...(note ? { note } : {}) } };
   }
@@ -328,6 +360,31 @@ async function readCompany(session, cik, { ticker = null, matched, only } = {}) 
   };
 }
 
+// A company outside the reference: the SEC's own company facts, read live. The same index as a
+// snapshot, with no published hash to check against, which the snapshot block says. Null when the
+// SEC has no XBRL facts for the CIK.
+async function readFromSec(session, cik, { ticker = null, matched } = {}) {
+  const url = `https://data.sec.gov/api/xbrl/companyfacts/CIK${cik}.json`;
+  let res;
+  try {
+    res = await fetchBytes(session, url, MAX_RAW_BYTES, { "user-agent": SEC_USER_AGENT });
+  } catch {
+    return null;
+  }
+  if (res.status !== 200) return null;
+  const facts = parseJson(res.body, "The SEC's company facts");
+  return {
+    cik,
+    ticker,
+    matched,
+    name: facts.entityName ?? null,
+    index: indexFacts(facts),
+    page: `https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${cik}`,
+    snapshot: { fetched_at: new Date(session.now()).toISOString(), sha256: sha256(res.body), url, sec_url: url, read_live: true },
+    series: new Map(),
+  };
+}
+
 export async function loadCompany(session, company) {
   const { cik, ticker, matched } = await resolveCompany(session, company);
   const cached = session.companies.get(cik);
@@ -337,8 +394,8 @@ export async function loadCompany(session, company) {
     session.companies.set(cik, cached);
     return ticker || matched ? { ...cached, ticker, matched } : cached;
   }
-  const entry = await readCompany(session, cik, { ticker, matched });
-  if (!entry) throw new Error(`CIK ${cik} is not in the Canli company reference. It covers the SEC filers listed at ${session.base}/companies; find_company searches them by name.`);
+  const entry = (await readCompany(session, cik, { ticker, matched })) ?? (await readFromSec(session, cik, { ticker, matched }));
+  if (!entry) throw new Error(`CIK ${cik} is not in the Canli company reference, and the SEC has no XBRL facts for it. The reference covers the SEC filers listed at ${session.base}/companies; find_company searches them by name.`);
   // A large filer's index takes 12 to 15 MB of heap; keep the eight most recently used. Evicted
   // companies reload from the hash-named disk cache.
   if (session.companies.size >= MAX_COMPANIES) session.companies.delete(session.companies.keys().next().value);
@@ -351,6 +408,8 @@ export async function loadCompany(session, company) {
 // ---------------------------------------------------------------------------------------------
 
 const DAY_MS = 86400000;
+// Fifteen months: a year-end value still counts as current until the next annual report is well overdue.
+const STALE_AFTER_DAYS = 460;
 const ANNUAL_FORM = /^(10-K|10-KT|20-F|40-F)/;
 const INTERIM_FORM = /^(10-Q|6-K)/;
 // Filing-fee exhibits (the ffd taxonomy) and registration statements (S-3ASR, S-8, F-1, 424B
@@ -435,7 +494,7 @@ export function indexFacts(facts, only) {
 // RevenueFromContractWithCustomerExcludingAssessedTax in 2018, Toyota from us-gaap to IFRS) is
 // followed across the switch, and every value names the tag it came from.
 export const FRIENDLY = Object.freeze({
-  revenue: ["us-gaap:RevenuesNetOfInterestExpense", "us-gaap:Revenues", "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax", "us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax", "us-gaap:SalesRevenueNet", "ifrs-full:Revenue", "ifrs-full:RevenueFromContractsWithCustomers"],
+  revenue: ["us-gaap:RevenuesNetOfInterestExpense", "us-gaap:Revenues", "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax", "us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax", "us-gaap:SalesRevenueNet", "ifrs-full:Revenue", "ifrs-full:RevenueFromContractsWithCustomers", "ifrs-full:RevenueAndOperatingIncome", "ifrs-full:RevenueFromSaleOfGoods"],
   // Since the 2025 reports many 10-Ks tag the common-stockholders line or ProfitLoss and not NetIncomeLoss.
   net_income: ["us-gaap:NetIncomeLoss", "ifrs-full:ProfitLossAttributableToOwnersOfParent", "us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic", "us-gaap:ProfitLoss", "ifrs-full:ProfitLoss"],
   operating_income: ["us-gaap:OperatingIncomeLoss", "ifrs-full:ProfitLossFromOperatingActivities"],
@@ -536,7 +595,11 @@ function pickUnit(concepts, unit, label) {
     if (!counts.has(unit)) throw new Error(`${label} is reported in ${[...counts.keys()].join(", ")}, not ${unit}.`);
     return unit;
   }
-  return [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0][0];
+  // The unit of the latest period, so a company that changed its reporting currency (Diageo, pounds to dollars)
+  // reads to today; then the one with the most facts, so a convenience translation never replaces the books.
+  const latest = new Map();
+  for (const c of concepts) for (const [u, list] of Object.entries(c.units)) if (list[0].end > (latest.get(u) ?? "")) latest.set(u, list[0].end);
+  return [...counts].sort((a, b) => latest.get(b[0]).localeCompare(latest.get(a[0])) || b[1] - a[1] || a[0].localeCompare(b[0]))[0][0];
 }
 
 // A name becomes a series. A plain name (revenue, eps_diluted, and the synonyms above) reads its
@@ -720,11 +783,14 @@ export const historyInput = z.object({
 
 export async function toolHistory(session, args) {
   const parsed = parse(historyInput, args, "history");
-  if (Boolean(parsed.concept) === Boolean(parsed.concepts)) throw new Error("history: send concept (one measure) or concepts (two to six), not both or neither.");
+  // Both together mean all of them: some clients make a model fill every optional field.
+  const wanted = [...new Set([...(parsed.concept ? [parsed.concept] : []), ...(parsed.concepts ?? [])])];
+  if (!wanted.length) throw new Error("history: send concept (one measure) or concepts (two to six).");
+  if (wanted.length > 6) throw new Error("history: at most six measures in one call.");
   // Several measures: each series as one call would give it, under one company header.
-  if (parsed.concepts) {
+  if (wanted.length > 1) {
     const series = [];
-    for (const c of parsed.concepts) series.push((await toolHistory(session, { ...args, concepts: undefined, concept: c })).structuredContent);
+    for (const c of wanted) series.push((await toolHistory(session, { ...args, concepts: undefined, concept: c })).structuredContent);
     const [first] = series;
     return asText({
       company: first.company, snapshot: first.snapshot, ...(first.snapshot_note ? { snapshot_note: first.snapshot_note } : {}),
@@ -733,7 +799,8 @@ export async function toolHistory(session, args) {
       meaning: first.meaning, limits: LIMITS,
     });
   }
-  const { company: who, concept, basis: basisArg, as_of: asOf, periods = "annual", unit, limit = 20 } = parsed;
+  const { company: who, basis: basisArg, as_of: asOf, periods = "annual", unit, limit = 20 } = parsed;
+  const [concept] = wanted;
   const basis = basisArg ?? (asOf ? "as_of" : "latest");
   if (basis === "as_of" && !asOf) throw new Error("history: basis as_of needs an as_of date.");
   const e = await loadCompany(session, who);
@@ -775,6 +842,8 @@ export async function toolHistory(session, args) {
     // The span the company's XBRL data covers for this measure: a question about a period outside
     // it has no answer here, which a model should say rather than search further.
     ...(picked.length ? { covers: { first_end: picked.at(-1).p.end, last_end: picked[0].p.end, note: `No ${periods === "all" ? "" : `${periods} `}value for this measure before ${picked.at(-1).p.end} or after ${picked[0].p.end} is in this company's XBRL data (SEC XBRL starts in 2009 to 2011, by filer size).` } } : {}),
+    // The SEC's facts feed can miss a foreign issuer's newest annual report (Toyota's and TSMC's in 2026).
+    ...(picked.length && !asOf && session.now() - Date.parse(picked[0].p.end) > STALE_AFTER_DAYS * DAY_MS ? { stale_note: `The latest value here is for the period ending ${picked[0].p.end}. If the company has reported since, the SEC's facts feed has not carried it yet, as happens with foreign issuers: financial_statements reads the filing itself.` } : {}),
     columns,
     ...shown,
     ...(s.newer ? { newer_series: s.newer } : {}),

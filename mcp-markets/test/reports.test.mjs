@@ -40,6 +40,10 @@ test("statement names companies use", () => {
     "CONSOLIDATED STATEMENTS OF CASH FLOWS": "cash_flow", "Consolidated Statements of Changes in Stockholders' Equity": "equity",
     "CONSOLIDATED STATEMENTS OF SHAREOWNERS’ EQUITY": "equity", "Consolidated Statements of Partners' Capital": "equity",
     "Consolidated Balance Sheets (Parenthetical)": null, "Cover Page": null, "Revenue Recognition": null,
+    // One title for both statements: Novo Nordisk, TSMC.
+    "Income statement and Statement of comprehensive income": "income",
+    "Income statement and Statement of comprehensive income - Statement of comprehensive income": "comprehensive_income",
+    "CONSOLIDATED STATEMENTS OF PROFIT OR LOSS AND OTHER COMPREHENSIVE INCOME": "income",
   };
   for (const [name, kind] of Object.entries(cases)) assert.equal(statementKind(name), kind, name);
 });
@@ -134,4 +138,14 @@ test("titles, dates and column headers", () => {
 test("not a report", () => {
   assert.throws(() => parseReport("<html><body><table><tr><td>x</td></tr></table></body></html>"), /not a rendered XBRL report/);
   assert.deepEqual(reportList("<FilingSummary></FilingSummary>"), []);
+});
+
+test("a period repeated in a second currency stays its own column", () => {
+  const html = `<table class="report"><tr><th colspan="1" rowspan="2">Statements of profit or loss - $ in Millions</th><th colspan="4">12 Months Ended</th></tr>
+<tr><th>Dec. 31, 2025 TWD ($)</th><th>Dec. 31, 2025 USD ($)</th><th>Dec. 31, 2024 TWD ($)</th><th>Dec. 31, 2023 TWD ($)</th></tr>
+<tr><td><a href="#defref_ifrs-full_Revenue">NET REVENUE</a></td><td>$ 3,809,054.3</td><td>$ 121,423.5</td><td>$ 2,894,307.7</td><td>$ 2,161,735.8</td></tr></table>`;
+  const t = parseReport(html);
+  assert.equal(t.currency, "TWD");
+  assert.deepEqual(t.columns.map((c) => [c.end, c.currency]), [["2025-12-31", undefined], ["2025-12-31", "USD"], ["2024-12-31", undefined], ["2023-12-31", undefined]]);
+  assert.deepEqual(t.rows[0].values, [3809054.3, 121423.5, 2894307.7, 2161735.8]);
 });

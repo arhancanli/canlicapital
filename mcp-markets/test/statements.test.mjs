@@ -126,5 +126,10 @@ test("a statement title's scale for money and for shares", () => {
   assert.equal(unitScale("USD ($) shares in Millions, $ in Billions", "\\$"), 1e9);
   assert.equal(unitScale("USD ($) shares in Millions, $ in Billions", "shares"), 1e6);
   assert.equal(unitScale("USD ($)", "\\$"), 1);
+  // Money in any currency's sign, never the shares' scale.
+  assert.equal(unitScale("DKK (kr) kr in Millions", "money"), 1e6);
+  assert.equal(unitScale("JPY (¥) shares in Thousands, ¥ in Millions", "money"), 1e6);
+  assert.equal(unitScale("JPY (¥) shares in Thousands, ¥ in Millions", "shares"), 1e3);
+  assert.equal(unitScale("shares in Thousands", "money"), 1);
   assert.equal(unitScale(null, "shares"), 1);
 });
