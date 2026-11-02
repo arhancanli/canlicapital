@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.16.1
+
+With canli-markets-mcp 0.11.1, which adds `exposure_map` and reads guidance more carefully in `earnings_release` and `guidance_record`, and canli-backtest-mcp 0.5.1.
 
 - `my_week`: one plain summary across up to 25 holdings: how each moved, what it told the SEC about, and when it is expected to report next.
 - Less to read in every result: numbers show six significant figures, a tool's limits come once a session, and the list of source documents becomes a count. On the 33 recorded answers that is 15% fewer characters on a first call and 22% fewer when a tool is called again (`bench/result-chars.mjs`). The whole result stays under its ref.
