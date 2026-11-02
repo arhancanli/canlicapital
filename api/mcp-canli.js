@@ -5,8 +5,8 @@
 // connectors, ChatGPT, Cursor). It serves the packs that read public data or compute: quant,
 // validation, fundamentals, research, backtest and markets. Three things stay with a local install
 // (npx canli-mcp), and the server's instructions say so:
-// - files: a {"$file": ...} argument reads the disk, and here the disk is the server's, so a request
-//   that names one is refused before any tool sees it;
+// - files: a {"$file": ...} argument or a tool's path argument reads the disk, and here the disk is the
+//   server's, so a request that names one is refused before any tool sees it;
 // - paper trading, which needs the user's own broker keys;
 // - prices: the keyless source is Yahoo's chart data, for personal use under Yahoo's terms.
 // Nothing is kept between requests (each builds a fresh server), so one caller never sees another's
@@ -34,10 +34,18 @@ export const MAX_FLAGSHIP_BODY_BYTES = TIERS.free.max_body_bytes;
 export const REQUESTS_PER_MINUTE = TIERS.free.requests_per_minute;
 export const HOSTED_NOTE = " This is the hosted server (canlicapital.com/mcp/canli), and it keeps nothing between requests: chain tools inside one run_tool call ({\"calls\": [...]}, where {\"$result\": 0} passes the first call's output on); refs such as \"r1\" do not carry over. File arguments, paper trading and prices need the local server: npx canli-mcp.";
 
-// Whether a request's arguments name a file anywhere ({"$file": ...}), however deeply nested.
+// Whether a request's arguments name a file anywhere: a {"$file": ...}, or a tool's own path argument
+// (returns_file, league_dir, out_file and so on), however deeply nested. Either would read or write the
+// server's disk, not the caller's. `files` on fails_to_deliver is a count, so a number passes; text, or
+// anything passed on from an earlier call, does not. A request too deep to read is refused.
+const PATH_ARGUMENT = /^(?:file|files)$|_(?:file|files|dir)$/;
 export function namesAFile(value, depth = 0) {
-  if (depth > 64 || value === null || typeof value !== "object") return false;
-  if (!Array.isArray(value) && Object.hasOwn(value, "$file")) return true;
+  if (value === null || typeof value !== "object") return false;
+  if (depth > 64) return true;
+  if (!Array.isArray(value)) {
+    if (Object.hasOwn(value, "$file")) return true;
+    if (Object.entries(value).some(([k, v]) => PATH_ARGUMENT.test(k) && v !== null && v !== undefined && typeof v !== "number" && typeof v !== "boolean")) return true;
+  }
   return Object.values(value).some((v) => namesAFile(v, depth + 1));
 }
 
@@ -102,7 +110,7 @@ export function createCanliHandler({ limiter = createLimiter(), tierOf = createT
     if (wait) return { status: 429, code: -32000, message: `Too many requests: the hosted server takes ${perMinute} a minute from each ${a.tier === "free" ? "caller" : `${a.tier} key`}. Try again in ${wait} s${a.tier === "free" ? ", run the same server locally with npx canli-mcp, or use a paid key for more" : ""}.`, headers: { "Retry-After": String(wait) } };
     const calls = Array.isArray(body) ? body : [body];
     const named = calls.find((m) => m && typeof m === "object" && namesAFile(m.params));
-    if (named) return { status: 200, code: -32602, id: named.id ?? null, message: "The hosted server reads no files: a {\"$file\": ...} argument would read the server's disk, not yours. Pass the numbers inline, or run canli-mcp locally (npx canli-mcp), where $file reads your own files." };
+    if (named) return { status: 200, code: -32602, id: named.id ?? null, message: "The hosted server reads no files: a {\"$file\": ...} or path argument would read the server's disk, not yours. Pass the numbers inline, or run canli-mcp locally (npx canli-mcp), where $file reads your own files." };
     return null;
   };
   return createStatelessMcpHandler({
