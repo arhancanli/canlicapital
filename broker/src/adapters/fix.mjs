@@ -30,7 +30,7 @@ async function session(cfg, work) {
   let seq = 1, buffer = "", failed = null;
   const waiting = [];
   const queue = [];
-  const send = (type, fields = []) => { socket.write(encode(type, fields, { sender: cfg.sender, target: cfg.target, seq }), "latin1"); seq += 1; };
+  const send = (type, fields = []) => { const used = seq; socket.write(encode(type, fields, { sender: cfg.sender, target: cfg.target, seq }), "latin1"); seq += 1; return used; };
   const deliver = () => { while (queue.length && waiting.length) waiting.shift().ok(queue.shift()); };
   const fail = (err) => { failed = failed ?? err; for (const w of waiting.splice(0)) w.no(failed); };
   socket.setEncoding("latin1");
@@ -66,6 +66,13 @@ async function session(cfg, work) {
   } finally { socket.destroy(); }
 }
 
+// A number as plain digits. "1e+21" or "1e-7" could be read one way here and another at the gateway.
+export function plainNumber(x) {
+  if (!Number.isFinite(x) || x <= 0 || x >= 1e15) return null;
+  const text = x.toFixed(8).replace(/\.?0+$/, "");
+  return Number(text) === x && /^\d+(\.\d+)?$/.test(text) ? text : null;
+}
+
 export const fix = {
   name: "fix",
   async setup(mode, env) {
@@ -84,6 +91,8 @@ export const fix = {
     if (isCrypto(o.symbol)) return "This adapter sends only stocks over FIX.";
     if (o.type !== "limit") return "This adapter sends only limit orders over FIX, so each order's most is known before it goes.";
     if (o.notional_usd !== undefined) return "This adapter sends share quantities over FIX, not notional_usd.";
+    if (!Number.isInteger(o.quantity) || !plainNumber(o.quantity)) return "This adapter sends whole share quantities over FIX.";
+    if (!plainNumber(o.limit_price)) return "This limit price cannot be written plainly in eight decimals.";
     return null;
   },
   // Limit orders carry their own price, and positions live at the broker: a sell cannot be checked here.
@@ -91,11 +100,16 @@ export const fix = {
   async position() { return null; },
   async place(cfg, _http, o, clientId) {
     return session(cfg, async ({ send, next }) => {
-      send("D", [["11", clientId], ...(cfg.account ? [["1", cfg.account]] : []), ["55", o.symbol], ["54", SIDE[o.side]], ["60", fixTime()], ["38", o.quantity], ["40", "2"], ["44", o.limit_price], ["59", TIF[o.time_in_force]]]);
+      const quantity = plainNumber(o.quantity), price = plainNumber(o.limit_price);
+      if (!quantity || !price) throw new Refused("This order's numbers cannot be written plainly.");
+      const sent = send("D", [["11", clientId], ...(cfg.account ? [["1", cfg.account]] : []), ["55", o.symbol], ["54", SIDE[o.side]], ["60", fixTime()], ["38", quantity], ["40", "2"], ["44", price], ["59", TIF[o.time_in_force]]]);
       for (;;) {
         const m = await next(), type = m.get("35");
-        if (type === "3") throw new Error(`The FIX gateway rejected the message: ${clean(m.get("58") ?? "no reason given", 200)}`);
-        if (type === "5") throw new Error(`The FIX gateway logged off: ${clean(m.get("58") ?? "no reason given", 200)}`);
+        // A session reject counts as a no only if it names this order's message. Anything else leaves the
+        // order unknown, and no text from the gateway goes in that error, since send.mjs reads its words.
+        if (type === "3" && m.get("45") === String(sent)) throw new Refused(`The gateway refused this order's message: ${clean(m.get("58") ?? "no reason given", 200)}`);
+        if (type === "3") throw new Error("The FIX gateway refused another message in this session, so this order's fate is not known.");
+        if (type === "5") throw new Error("The FIX gateway logged off before answering about this order.");
         if (type !== "8" || m.get("11") !== clientId) continue;
         const status = m.get("39");
         if (status === "8") throw new Refused(`The order was rejected: ${clean(m.get("58") ?? "no reason given", 200)}`);

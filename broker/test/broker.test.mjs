@@ -404,10 +404,10 @@ test("from the command line: with no terminal, a person cannot be asked, so noth
 // FIX: real sockets on this machine, against a small simulator of a gateway.
 import { createServer as createTcpServer } from "node:net";
 import { decode, encode, fixTime } from "../src/fix.mjs";
-import { fix } from "../src/adapters/fix.mjs";
+import { fix, plainNumber } from "../src/adapters/fix.mjs";
 
 const SOH = "\x01";
-function fixSim({ onOrder = () => ({ status: "0", id: "FX1" }), refuseLogon = false, testRequest = false, dropOnOrder = false } = {}) {
+function fixSim({ onOrder = () => ({ status: "0", id: "FX1" }), refuseLogon = false, testRequest = false, dropOnOrder = false, sessionReject = null, logoffOnOrder = null } = {}) {
   const seen = [];
   const server = createTcpServer((socket) => {
     let buffer = "", seq = 1;
@@ -423,6 +423,8 @@ function fixSim({ onOrder = () => ({ status: "0", id: "FX1" }), refuseLogon = fa
         if (type === "A") { if (refuseLogon) reply("5", [["58", "bad password"]]); else { reply("A", [["98", "0"], ["108", "30"]]); if (testRequest) reply("1", [["112", "hello"]]); } }
         if (type === "D") {
           if (dropOnOrder) { socket.destroy(); return; }
+          if (logoffOnOrder) { reply("5", [["58", logoffOnOrder]]); return; }
+          if (sessionReject) { reply("3", [["45", sessionReject.ref === "order" ? m.get("34") : "1"], ["58", sessionReject.text]]); return; }
           const r = onOrder(m);
           reply("8", [["11", m.get("11")], ["37", r.id ?? "NONE"], ["150", r.status], ["39", r.status], ...(r.text ? [["58", r.text]] : [])]);
         }
@@ -479,4 +481,28 @@ test("FIX: paper needs a declared test venue, live a declared production one, an
   assert.match(fix.cannot({ ...ORDER, type: "market" }), /only limit orders/);
   assert.match(fix.cannot({ ...ORDER, symbol: "BTC/USD" }), /only stocks/);
   assert.equal(fix.cannot(ORDER), null);
+});
+
+test("FIX: a session reject is a no only if it names this order; a gateway's words cannot turn unknown into no", async () => {
+  const mine = await fixSim({ sessionReject: { ref: "order", text: "bad field" } });
+  await assert.rejects(fix.place(await fix.setup("paper", fixEnv(mine.port)), null, ORDER, "c"), (e) => e instanceof Refused && /bad field/.test(e.message));
+  await mine.close();
+  const other = await fixSim({ sessionReject: { ref: "other", text: "order rejected" } });
+  await assert.rejects(fix.place(await fix.setup("paper", fixEnv(other.port)), null, ORDER, "c"), (e) => !(e instanceof Refused) && !/rejected/.test(e.message));
+  await other.close();
+  const off = await fixSim({ logoffOnOrder: "all orders rejected" });
+  await assert.rejects(fix.place(await fix.setup("paper", fixEnv(off.port)), null, ORDER, "c"), (e) => !(e instanceof Refused) && !/rejected/.test(e.message));
+  await off.close();
+});
+
+test("FIX: numbers go as plain digits, or not at all", () => {
+  assert.equal(plainNumber(150.25), "150.25");
+  assert.equal(plainNumber(100), "100");
+  assert.equal(plainNumber(1e21), null);
+  assert.equal(plainNumber(1e-7), "0.0000001");
+  assert.equal(plainNumber(1.123456789), null, "more than eight decimals");
+  assert.equal(plainNumber(-1), null);
+  assert.match(fix.cannot({ ...ORDER, quantity: 1.5 }), /whole share/);
+  assert.match(fix.cannot({ ...ORDER, quantity: 1e21 }), /whole share/);
+  assert.match(fix.cannot({ ...ORDER, limit_price: 1e21 }), /cannot be written plainly/);
 });
