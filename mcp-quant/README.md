@@ -1,9 +1,5 @@
 # canli-quant-mcp
 
-Computed NaN and Infinity values are refused with a tool error naming the affected fields.
-They do not become unexplained nulls or receive a success receipt. Check the input scale
-and the calculation's domain. Ordinary finite answers and null warm-up positions are preserved.
-
 235 quant finance tools in one MCP server: performance and risk, options and exotics, fixed income,
 portfolio construction, econometrics, technical indicators, execution, sizing, crypto and FX,
 valuation, strategy backtests, a library of 399 strategy sleeves, data checks, and data annotation
@@ -14,6 +10,12 @@ empyrical, scipy, pandas, dcor): 465 reference cases, plus planted-defect tests 
 
 Local stdio, no key, no account, no network calls: your data never leaves your machine (see
 [Privacy](#privacy), enforced by tests).
+
+Computed NaN and Infinity values are refused with a tool error naming the affected fields.
+They do not become unexplained nulls or receive a success receipt. Check the input scale
+and the calculation's domain. Ordinary finite answers and null warm-up positions are preserved.
+
+**[canli-quant-mcp on canlicapital.com](https://canlicapital.com/mcp-servers/quant)** · [All Canli Capital MCP servers](https://canlicapital.com/mcp-servers). Free, MIT-licensed. For every server behind one install, use [canli-mcp](https://www.npmjs.com/package/canli-mcp).
 
 ## Three tools in context, 235 behind them
 

@@ -10,6 +10,8 @@ Every result carries the limits its source states, beside two of its own: these 
 documents, each with its own claim boundary, and everything here is paper execution, not funded
 performance or investment advice.
 
+**[canli-research-mcp on canlicapital.com](https://canlicapital.com/mcp-servers/research)** · [All Canli Capital MCP servers](https://canlicapital.com/mcp-servers). Free, MIT-licensed. For every server behind one install, use [canli-mcp](https://www.npmjs.com/package/canli-mcp).
+
 ## Tools
 
 | Tool | Reads | Returns |

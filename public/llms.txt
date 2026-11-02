@@ -16,6 +16,13 @@
 Free and open source, with no API key and no account. We make these, so weigh that; the comparison pages say what other servers do better.
 
 - canli-mcp: SEC filings, market data, economic statistics and backtests in one server. Run `npx -y canli-mcp`, or connect to https://canlicapital.com/mcp/canli with nothing to install.
+- [canli-markets-mcp](https://canlicapital.com/mcp-servers/markets): SEC filings and statements as filed, insider trades, 13F holders, options chains, Treasury yields, FRED and central banks, with no key. Run `npx -y canli-markets-mcp`.
+- [canli-backtest-mcp](https://canlicapital.com/mcp-servers/backtest): Point-in-time factors from SEC filings, backtests with lookahead blocked in code, costs on the actual trades, and a ledger of every variant. Run `npx -y canli-backtest-mcp`.
+- [canli-quant-mcp](https://canlicapital.com/mcp-servers/quant): 235 quant tools: performance and risk, options and exotics, fixed income, portfolios, econometrics, indicators and 399 strategy sleeves. Run `npx -y canli-quant-mcp`.
+- [canli-paper-trading-mcp](https://canlicapital.com/mcp-servers/paper-trading): An agent trades your Alpaca paper account behind your own limits, a kill switch and confirmation tokens. Live keys are refused. Run `npx -y canli-paper-trading-mcp`.
+- [canli-validation-mcp](https://canlicapital.com/mcp-servers/validation): Is your best backtest real? Deflated Sharpe, overfitting probability and data-snooping tests, with signed receipts. Run `npx -y canli-validation-mcp`.
+- [canli-fundamentals-mcp](https://canlicapital.com/mcp-servers/fundamentals): What a company reported, and when: first-reported values, what was known on any date, and later restatements flagged. Run `npx -y canli-fundamentals-mcp`.
+- [canli-research-mcp](https://canlicapital.com/mcp-servers/research): Canli Capital's open research record: every paper and failed candidate, the trial count, and the live paper record. Run `npx -y canli-research-mcp`.
 - [Free finance MCP servers compared](https://canlicapital.com/mcp-servers/answers/best-free-finance-mcp-server): canli-mcp against OpenBB, EdgarTools and Alpha Vantage's server, with the benchmark behind it.
 - [Finance MCP servers that need no API key](https://canlicapital.com/mcp-servers/answers/finance-mcp-server-no-api-key)
 - [Connect ChatGPT to stock data](https://canlicapital.com/mcp-servers/answers/connect-chatgpt-to-stock-data)
@@ -116,6 +123,12 @@ Short lessons for people investing their own money, using figures from real fili
   - [How can I search every annual report a company has filed for one subject?](https://canlicapital.com/mcp-servers/answers/search-every-annual-report)
   - [Which companies depend on a supplier like TSMC?](https://canlicapital.com/mcp-servers/answers/who-depends-on-a-company)
   - [Can AI tell me what happened to my stocks this week?](https://canlicapital.com/mcp-servers/answers/what-happened-to-my-stocks-this-week)
+  - [How do I test a stock factor without lookahead bias?](https://canlicapital.com/mcp-servers/answers/test-a-factor-without-lookahead)
+  - [How can AI agents trade against each other without real money?](https://canlicapital.com/mcp-servers/answers/ai-agents-trading-in-a-paper-market)
+  - [How do I calculate a deflated Sharpe ratio with AI?](https://canlicapital.com/mcp-servers/answers/deflated-sharpe-ratio-ai)
+  - [Which figures did a company restate after first reporting them?](https://canlicapital.com/mcp-servers/answers/company-restatements-ai)
+  - [Where can AI read about quant strategies that failed?](https://canlicapital.com/mcp-servers/answers/quant-strategies-that-failed)
+  - [How do I calculate a portfolio's value at risk with AI?](https://canlicapital.com/mcp-servers/answers/portfolio-value-at-risk-ai)
 - [Local paper execution MCP workflow](https://canlicapital.com/mcp-servers/execution): private, Unreleased repository source for supplied sizing, pre-trade checks, signed journals and paper evidence. Explicit local writes; no broker connection or order placement.
 - [OpenAPI 3.1 document](https://canlicapital.com/api/v1/openapi): generated from the endpoints that exist, so it cannot document a route that does not.
 - [Discovery document](https://canlicapital.com/api/v1): every endpoint, with the limits of the API as a whole.

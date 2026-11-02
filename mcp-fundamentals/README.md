@@ -41,6 +41,8 @@ Then ask things like "What did Apple report as of 31 December 2018?", "Which of 
 numbers were restated?", "Show Toyota's revenue since 2015" or "Show every filing that reported
 Apple's 2017 accounts payable".
 
+**[canli-fundamentals-mcp on canlicapital.com](https://canlicapital.com/mcp-servers/fundamentals)** · [All Canli Capital MCP servers](https://canlicapital.com/mcp-servers). Free, MIT-licensed. For every server behind one install, use [canli-mcp](https://www.npmjs.com/package/canli-mcp).
+
 ## Tools
 
 | Tool | What it returns |

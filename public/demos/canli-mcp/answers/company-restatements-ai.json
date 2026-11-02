@@ -1,0 +1,189 @@
+{
+ "version": "0.16.1",
+ "recorded": "2026-11-02T12:37:09.697Z",
+ "call": {
+  "name": "restatements",
+  "arguments": {
+   "company": "BDX",
+   "periods": "annual",
+   "limit": 10
+  }
+ },
+ "model_chars": 2912,
+ "ms": 1383,
+ "result": {
+  "ref": "r1",
+  "company": {
+   "cik": "0000010795",
+   "name": "BECTON, DICKINSON AND COMPANY",
+   "ticker": "BDX",
+   "page": "https://canlicapital.com/companies/0000010795"
+  },
+  "snapshot": {
+   "fetched_at": "2026-09-19T14:44:02.472Z",
+   "sha256": "2412ff584fd74aa61f919bc5813a0bb523fdf03f20d6104f3167cc19c3ba84b9",
+   "url": "https://canlicapital.com/company-data/sources/2412ff584fd74aa61f919bc5813a0bb523fdf03f20d6104f3167cc19c3ba84b9.json.gz",
+   "sec_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000010795.json",
+   "age_days": 43
+  },
+  "periods": "annual",
+  "scanned": 4329,
+  "changed": 661,
+  "splits_excluded": 1,
+  "changed_then_reverted": 1,
+  "columns": [
+   "concept",
+   "unit",
+   "end",
+   "start",
+   "first_val",
+   "first_filed",
+   "latest_val",
+   "latest_filed",
+   "change_pct",
+   "filings",
+   "cause"
+  ],
+  "rows": [
+   [
+    "ContractWithCustomerLiability",
+    "USD",
+    "2025-09-30",
+    null,
+    481000000,
+    "2025-11-25",
+    336000000,
+    "2026-08-06",
+    -30.15,
+    4,
+    null
+   ],
+   [
+    "InventoryWorkInProcessNetOfReserves",
+    "USD",
+    "2025-09-30",
+    null,
+    490000000,
+    "2025-11-25",
+    354000000,
+    "2026-08-06",
+    -27.76,
+    4,
+    null
+   ],
+   [
+    "TransferOfFinancialAssetsAccountedForAsSalesAmountDerecognized",
+    "USD",
+    "2025-09-30",
+    null,
+    389000000,
+    "2025-11-25",
+    289000000,
+    "2026-08-06",
+    -25.71,
+    4,
+    null
+   ],
+   [
+    "OtherAssetsNoncurrent",
+    "USD",
+    "2025-09-30",
+    null,
+    3056000000,
+    "2025-11-25",
+    2383000000,
+    "2026-08-06",
+    -22.02,
+    4,
+    null
+   ],
+   [
+    "AccountsReceivableNetCurrent",
+    "USD",
+    "2025-09-30",
+    null,
+    2994000000,
+    "2025-11-25",
+    2396000000,
+    "2026-08-06",
+    -19.97,
+    4,
+    null
+   ],
+   [
+    "InventoryNet",
+    "USD",
+    "2025-09-30",
+    null,
+    3894000000,
+    "2025-11-25",
+    3149000000,
+    "2026-08-06",
+    -19.13,
+    4,
+    null
+   ],
+   [
+    "InventoryFinishedGoodsNetOfReserves",
+    "USD",
+    "2025-09-30",
+    null,
+    2544000000,
+    "2025-11-25",
+    2071000000,
+    "2026-08-06",
+    -18.59,
+    4,
+    null
+   ],
+   [
+    "InventoryRawMaterialsNetOfReserves",
+    "USD",
+    "2025-09-30",
+    null,
+    860000000,
+    "2025-11-25",
+    724000000,
+    "2026-08-06",
+    -15.81,
+    4,
+    null
+   ],
+   [
+    "OtherIntangibleAssetsNet",
+    "USD",
+    "2025-09-30",
+    null,
+    523000000,
+    "2025-11-25",
+    456000000,
+    "2026-08-06",
+    -12.81,
+    4,
+    null
+   ],
+   [
+    "CashAndCashEquivalentsAtCarryingValue",
+    "USD",
+    "2025-09-30",
+    null,
+    641000000,
+    "2025-11-25",
+    567000000,
+    "2026-08-06",
+    -11.54,
+    4,
+    null
+   ]
+  ],
+  "truncated": false,
+  "next_offset": 10,
+  "meaning": "Periods whose latest filed value differs from the first report. change_pct is relative to the first value (null when that was zero). cause: split (a stock split the company reported), split_likely, tag_change (the value moved to another tag), or null (a restatement, reclassification or correction; read the filings). Periods that changed and later went back to the first value are counted in changed_then_reverted, not listed.",
+  "limits": [
+   "Values are as the SEC's XBRL companyfacts API reported them for this company in the snapshot named here; filings made after the snapshot date are missing.",
+   "filed is the date the filing reached EDGAR. To avoid lookahead in a backtest, treat a value as known from the next trading day after it was filed.",
+   "A value that changed in a later filing may be a restatement, a reclassification or a correction; accn names the filing to read.",
+   "Company-reported data, not investment advice."
+  ]
+ }
+}

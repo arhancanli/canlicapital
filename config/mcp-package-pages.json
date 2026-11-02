@@ -1,0 +1,298 @@
+{
+  "schema": "canli.mcp-package-pages.v1",
+  "purpose": "One page for each Canli Capital MCP server that runs on a person's own machine, and the words search engines and answer engines read about all of them. scripts/build-mcp-pages.mjs publishes this file to public/demos/canli-mcp/packages.json and takes tool lists and versions from mcp-canli/src/index.json, so a page cannot name a tool the release does not have.",
+  "pages": [
+    {
+      "id": "markets",
+      "package": "canli-markets-mcp",
+      "pack": "markets",
+      "dir": "mcp-markets",
+      "route": "/mcp-servers/markets",
+      "title": "Free market data and SEC filings MCP server",
+      "heading": "canli-markets-mcp: markets, filings and the economy from the sources",
+      "one_line": "SEC filings and statements as filed, insider trades, 13F holders, options chains, Treasury yields, FRED and central banks, with no key.",
+      "answer": "canli-markets-mcp is a free, open-source MCP server that reads public market data from the sources themselves: SEC filings, the US Treasury, FRED, the World Bank, central banks, European annual reports, prediction markets, DeFi data and prices. It needs no API key or account, and every result names the URL it came from.",
+      "asks": [
+        [
+          "Show Apple's income statement as filed",
+          "financial_statements"
+        ],
+        [
+          "Who at NVIDIA bought or sold shares lately?",
+          "insider_trades"
+        ],
+        [
+          "Did Walmart hit its guidance?",
+          "guidance_record"
+        ],
+        [
+          "Which companies depend on TSMC?",
+          "exposure_map"
+        ],
+        [
+          "Show SPY's options chain",
+          "options_chain"
+        ],
+        [
+          "How has the Treasury yield curve moved?",
+          "treasury_yields"
+        ],
+        [
+          "What do I really own through these funds?",
+          "portfolio_xray"
+        ]
+      ],
+      "faq": [
+        [
+          "Is canli-markets-mcp free?",
+          "Yes. It is MIT-licensed and needs no API key and no account. SEC's fair-access policy asks you to set SEC_USER_AGENT to your name and email. Keyless prices come from Yahoo Finance's public chart data, which is unofficial and for personal use; you can use your own Alpaca or Tiingo keys instead."
+        ],
+        [
+          "Where does the data come from?",
+          "Each request goes from your machine straight to the source, such as SEC EDGAR, the US Treasury, FRED or the ECB, and each result names the URL it came from, so an agent can cite it."
+        ],
+        [
+          "Which AI assistants can use it?",
+          "Claude, Claude Code, Cursor, VS Code, Codex, Gemini CLI, Windsurf, Cline, Zed and any other MCP client."
+        ],
+        [
+          "Should I install this or canli-mcp?",
+          "canli-mcp includes this server and six others, and lists only a few tools up front, so it costs your model far less context. Install this one if you want these tools listed directly and nothing else."
+        ],
+        [
+          "Is it investment advice?",
+          "No. It reports what public sources say, and it does not tell anyone what to buy or sell."
+        ]
+      ]
+    },
+    {
+      "id": "backtest",
+      "package": "canli-backtest-mcp",
+      "pack": "backtest",
+      "dir": "mcp-backtest",
+      "route": "/mcp-servers/backtest",
+      "title": "Backtesting MCP server with no lookahead",
+      "heading": "canli-backtest-mcp: backtests an AI agent can trust",
+      "one_line": "Point-in-time factors from SEC filings, backtests with lookahead blocked in code, costs on the actual trades, and a ledger of every variant.",
+      "answer": "canli-backtest-mcp is a free, open-source MCP server for backtests an AI agent can trust. It builds point-in-time factors from SEC filings, tests any signal on your own prices with lookahead blocked in code, charges costs on the actual trades, and records every variant, so the best result is judged against the whole search.",
+      "asks": [
+        [
+          "Build a gross-margin factor using only what had been filed by each date",
+          "pit_factor"
+        ],
+        [
+          "Backtest this signal on my prices with a one-day lag and costs",
+          "backtest_signal"
+        ],
+        [
+          "How would these returns have done through past crises?",
+          "crisis_replay"
+        ],
+        [
+          "Run purged cross-validation on my strategy",
+          "cpcv"
+        ],
+        [
+          "How many independent bets does this book really make?",
+          "effective_bets"
+        ],
+        [
+          "Run a paper market with market makers and a shock halfway",
+          "exchange_run"
+        ]
+      ],
+      "faq": [
+        [
+          "Is canli-backtest-mcp free?",
+          "Yes. It is MIT-licensed and needs no API key and no account."
+        ],
+        [
+          "How does it stop lookahead?",
+          "pit_factor uses only what had been filed with the SEC by each date, as it stood then. backtest_signal trades only on signal rows dated at least lag_days trading days earlier, and stops if anything reaches past that."
+        ],
+        [
+          "Does my data leave my machine?",
+          "It runs locally over stdio. Your prices, signals and ledgers stay on your machine."
+        ],
+        [
+          "Which AI assistants can use it?",
+          "Claude, Claude Code, Cursor, VS Code, Codex, Gemini CLI, Windsurf, Cline, Zed and any other MCP client."
+        ],
+        [
+          "Does a good result here mean a strategy works?",
+          "No. It removes common ways a backtest flatters itself, and it reports how much of a result luck could explain. Past results do not promise future ones, and this is not investment advice."
+        ]
+      ]
+    },
+    {
+      "id": "quant",
+      "package": "canli-quant-mcp",
+      "pack": "quant",
+      "dir": "mcp-quant",
+      "route": "/mcp-servers/quant",
+      "title": "Free quant finance MCP server",
+      "heading": "canli-quant-mcp: quant finance tools checked against independent libraries",
+      "one_line": "235 quant tools: performance and risk, options and exotics, fixed income, portfolios, econometrics, indicators and 399 strategy sleeves.",
+      "answer": "canli-quant-mcp is a free, open-source MCP server with 235 quant finance tools: performance and risk, options and exotics, fixed income, portfolios, econometrics, technical indicators and a library of 399 strategy sleeves. It runs on your machine with no key, no account and no network calls, and its results are checked against independent libraries such as QuantLib.",
+      "asks": [
+        [
+          "Price this option and give me the Greeks",
+          "black_scholes"
+        ],
+        [
+          "What is this portfolio's value at risk?",
+          "portfolio_var"
+        ],
+        [
+          "Build a risk parity portfolio from these returns",
+          "risk_parity_portfolio"
+        ],
+        [
+          "Is this price series stationary?",
+          "kpss_test"
+        ],
+        [
+          "Show the CAGR, Sharpe and drawdown of these returns",
+          "return_stats"
+        ],
+        [
+          "Work out RSI for these closes",
+          "rsi"
+        ]
+      ],
+      "faq": [
+        [
+          "Is canli-quant-mcp free?",
+          "Yes. It is MIT-licensed and needs no API key and no account."
+        ],
+        [
+          "Does my data leave my machine?",
+          "No. It makes no network calls, and every tool computes on the data you send it. Tests enforce this."
+        ],
+        [
+          "How do I know the numbers are right?",
+          "Each tool's results are checked in the test suite against an independent implementation, such as QuantLib, statsmodels, arch, TA-Lib, scikit-learn or scipy: 465 reference cases, plus planted-defect tests for the data checks."
+        ],
+        [
+          "Will 235 tools fill my model's context?",
+          "No. By default it lists three tools, find_tool, describe_tool and run_tool, and the model searches the rest in plain words."
+        ],
+        [
+          "Which AI assistants can use it?",
+          "Claude, Claude Code, Cursor, VS Code, Codex, Gemini CLI, Windsurf, Cline, Zed and any other MCP client."
+        ]
+      ]
+    },
+    {
+      "id": "paper-trading",
+      "package": "canli-paper-trading-mcp",
+      "pack": "paper",
+      "dir": "mcp-paper",
+      "route": "/mcp-servers/paper-trading",
+      "title": "Paper trading MCP server for AI agents",
+      "heading": "canli-paper-trading-mcp: an agent trades on paper, and cannot skip the checks",
+      "one_line": "An agent trades your Alpaca paper account behind your own limits, a kill switch and confirmation tokens. Live keys are refused.",
+      "answer": "canli-paper-trading-mcp lets an AI agent trade your Alpaca paper account without being able to skip the checks. Every order is previewed against your own limits, the market clock and a kill switch, and only orders that pass get a confirmation token. It is paper only: live keys are refused. It is free and open source.",
+      "asks": [
+        [
+          "What is in my paper account?",
+          "paper_account"
+        ],
+        [
+          "Preview these orders against my limits",
+          "preview_paper_orders"
+        ],
+        [
+          "Rebalance my paper account to these weights",
+          "rebalance_to_weights"
+        ],
+        [
+          "Send the orders that passed",
+          "send_paper_orders"
+        ],
+        [
+          "Check this signed record of a check",
+          "verify_attestation"
+        ]
+      ],
+      "faq": [
+        [
+          "Can it trade real money?",
+          "No. The package contains no live trading host, and live keys are refused."
+        ],
+        [
+          "What do I need?",
+          "Paper keys from your own Alpaca account, set in your environment. They stay there, and nothing goes anywhere except Alpaca's paper API."
+        ],
+        [
+          "How does it stop an agent going around the checks?",
+          "Each order is previewed against your limits, the market clock and a kill switch. Only orders that pass get a five-minute confirmation token, and only a token can send them."
+        ],
+        [
+          "Which AI assistants can use it?",
+          "Claude, Claude Code, Cursor, VS Code, Codex, Gemini CLI, Windsurf, Cline, Zed and any other MCP client."
+        ],
+        [
+          "Is it investment advice?",
+          "No. It places practice orders you or your agent decide on, with made-up money."
+        ]
+      ]
+    }
+  ],
+  "hosted": {
+    "validation": {
+      "one_line": "Is your best backtest real? Deflated Sharpe, overfitting probability and data-snooping tests, with signed receipts.",
+      "install": "canli-validation-mcp",
+      "faq": [
+        [
+          "Is canli-validation-mcp free?",
+          "Yes. It is MIT-licensed. The npm package computes on your machine with no key, and the hosted server has a free tier."
+        ],
+        [
+          "What does it check?",
+          "Whether a backtest's result could be luck, once you count the variants tried behind it: the deflated Sharpe ratio, the probability of backtest overfitting, the White and Hansen reality checks, placebo tests and leakage checks."
+        ],
+        [
+          "Is a pass proof that a strategy works?",
+          "No. Each check measures one way a result can mislead. It does not promise future returns and it is not investment advice."
+        ]
+      ]
+    },
+    "fundamentals": {
+      "one_line": "What a company reported, and when: first-reported values, what was known on any date, and later restatements flagged.",
+      "install": "canli-fundamentals-mcp",
+      "faq": [
+        [
+          "Is canli-fundamentals-mcp free?",
+          "Yes. It is MIT-licensed and needs no API key and no account."
+        ],
+        [
+          "Why does point-in-time data matter?",
+          "A figure can change after it is published. A backtest that reads today's value for an old decision uses a number nobody had then, so this server tells you what was first reported, what the latest filing says, and what was known on a given date."
+        ],
+        [
+          "Where does the data come from?",
+          "The SEC's XBRL company facts, with the filing behind each value."
+        ]
+      ]
+    },
+    "research": {
+      "one_line": "Canli Capital's open research record: every paper and failed candidate, the trial count, and the live paper record.",
+      "install": "canli-research-mcp",
+      "faq": [
+        [
+          "Is canli-research-mcp free?",
+          "Yes. It is MIT-licensed and needs no API key and no account."
+        ],
+        [
+          "What can it read?",
+          "What canlicapital.com publishes: research papers, candidates that failed, research topics, the count of hypotheses tried, the live paper-trading record and the head of the chain that shows the record was not rewritten."
+        ],
+        [
+          "Is this independent research?",
+          "No. It is our own record, so weigh that. Each result carries the limits its source states."
+        ]
+      ]
+    }
+  }
+}

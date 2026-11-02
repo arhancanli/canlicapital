@@ -1,0 +1,42 @@
+{
+ "version": "0.16.1",
+ "recorded": "2026-11-02T12:37:43.359Z",
+ "call": {
+  "name": "pit_factor",
+  "arguments": {
+   "factor": "gross_margin",
+   "tickers": [
+    "AAPL",
+    "MSFT"
+   ],
+   "start": "2024-01-01",
+   "end": "2024-03-31"
+  }
+ },
+ "model_chars": 757,
+ "ms": 880,
+ "result": {
+  "ref": "r1",
+  "factor": "gross_margin",
+  "meaning": "gross profit / revenue, same fiscal year",
+  "file": "/tmp/canli-pit-xtipDO/gross_margin.csv",
+  "dates": 3,
+  "tickers": 2,
+  "first_date": "2024-01-01",
+  "last_date": "2024-03-01",
+  "coverage": {
+   "min": 2,
+   "median": 2,
+   "max": 2
+  },
+  "matched": {
+   "AAPL": "Apple Inc.",
+   "MSFT": "MICROSOFT CORPORATION"
+  },
+  "next": "backtest_signal with signal_file /tmp/canli-pit-xtipDO/gross_margin.csv and your prices_file; lag_days 1 or more.",
+  "limits": [
+   "Values are what companies reported to the SEC in XBRL, as filed by each date; a company that files late, files outside XBRL or changes its tags can be missing.",
+   "Ticker symbols are resolved to today's SEC assignment; a ticker reused by another company maps to the current holder, so check the matched names."
+  ]
+ }
+}

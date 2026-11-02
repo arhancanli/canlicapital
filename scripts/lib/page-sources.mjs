@@ -105,6 +105,7 @@ export const PAGE_SOURCES = {
     'scripts/build-mcp-pages.mjs', 'config/mcp-discovery.json', 'config/mcp-hosted-releases.json',
     ...(suffix ? [`mcp-released${suffix}`] : ['mcp-released']),
   ]])),
+  ...Object.fromEntries(['markets', 'backtest', 'quant', 'paper-trading'].map((id) => [`/mcp-servers/${id}`, ["scripts/build-mcp-pages.mjs", "config/mcp-package-pages.json", "mcp-canli/src/index.json"]])),
   "/mcp-servers/install": ["scripts/lib/mcp-catalog.mjs", "config/canli-mcp.json"],
   "/privacy": ["scripts/build-privacy.mjs"],
   "/mcp-servers/tools": ["scripts/lib/mcp-catalog.mjs", "config/mcp-catalog.json", "mcp-canli/src/index.json"],

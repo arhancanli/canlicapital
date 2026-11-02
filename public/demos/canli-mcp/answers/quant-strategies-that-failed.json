@@ -1,0 +1,67 @@
+{
+ "version": "0.16.1",
+ "recorded": "2026-11-02T12:37:10.255Z",
+ "call": {
+  "name": "search_research",
+  "arguments": {
+   "query": "killed momentum",
+   "limit": 5
+  }
+ },
+ "model_chars": 1274,
+ "ms": 557,
+ "result": {
+  "ref": "r2",
+  "query": "killed momentum",
+  "matched": 5,
+  "columns": [
+   "slug",
+   "title",
+   "year",
+   "url",
+   "archival"
+  ],
+  "rows": [
+   [
+    "kill-alphamax-betaneutral",
+    "Beta-Neutral Momentum Construction (campaign): a killed candidate",
+    "2026",
+    "https://canlicapital.com/research/kill-alphamax-betaneutral",
+    false
+   ],
+   [
+    "kill-eq-52whigh",
+    "52-Week-High Momentum (campaign): a killed candidate",
+    "2026",
+    "https://canlicapital.com/research/kill-eq-52whigh",
+    false
+   ],
+   [
+    "kill-eq-mom-margin",
+    "Equity Momentum (with Margin Costs): a killed candidate",
+    "2026",
+    "https://canlicapital.com/research/kill-eq-mom-margin",
+    false
+   ],
+   [
+    "kill-prereg-momentum",
+    "Pre-Registered Momentum (deep history): a killed candidate",
+    "2026",
+    "https://canlicapital.com/research/kill-prereg-momentum",
+    false
+   ],
+   [
+    "kill-residual-momentum",
+    "Residual (beta-neutral) Momentum (campaign): a killed candidate",
+    "2026",
+    "https://canlicapital.com/research/kill-residual-momentum",
+    false
+   ]
+  ],
+  "next": "get_paper with a slug returns the paper, which states its own claim boundary; an archival publication has no slug and is read at its url.",
+  "limits": [
+   "These are research documents as Canli Capital published them; each paper states its own claim boundary, and a finding holds only within it.",
+   "Paper execution only: nothing here is funded performance or investment advice."
+  ]
+ }
+}

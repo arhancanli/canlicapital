@@ -19,6 +19,8 @@ unofficial and for personal use under Yahoo's terms. To use your own account ins
 `ALPACA_API_KEY_ID` and `ALPACA_API_SECRET_KEY` (paper keys work) or `TIINGO_API_KEY`;
 `CANLI_KEYLESS_PRICES=0` turns the keyless source off.
 
+**[canli-markets-mcp on canlicapital.com](https://canlicapital.com/mcp-servers/markets)** · [All Canli Capital MCP servers](https://canlicapital.com/mcp-servers). Free, MIT-licensed. For every server behind one install, use [canli-mcp](https://www.npmjs.com/package/canli-mcp).
+
 ## Research across the whole market
 
 Other finance servers answer one company at a time. These answer questions about the market:
