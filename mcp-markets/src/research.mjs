@@ -464,6 +464,9 @@ function annual(facts, def, currency = "USD") {
   return out;
 }
 
+// A 10-K can show the four quarters beside the year (Lennox), with the last quarter ending on the same day.
+export const annualColumn = (columns, end) => columns?.findIndex((c, i) => i >= 2 && /^12 months/.test(String(c)) && String(c).includes(end)) ?? -1;
+
 const tag0 = (series, defs, end) => choose(defs.revenue, series.revenue.get(end)?.byTag)?.tag ?? "revenue";
 
 export async function companyReport(session, args) {
@@ -501,7 +504,7 @@ export async function companyReport(session, args) {
   // $16.6 billion on its income statement. The statement as filed decides the latest year's revenue.
   try {
     const st = yearsRows.length ? await financialStatements(session, { company: a.company, statement: "income", period: "annual", filings: 1 }) : null;
-    const col = st?.income?.columns?.findIndex((c, i) => i >= 2 && String(c).includes(yearsRows.at(-1).end)) ?? -1;
+    const col = annualColumn(st?.income?.columns, yearsRows.at(-1).end);
     const line = col > 0 ? st.income.rows.find((r) => /:(Revenues|RevenuesNetOfInterestExpense|RevenueFromContractWithCustomerExcludingAssessedTax|RevenueFromContractWithCustomerIncludingAssessedTax|SalesRevenueNet|Revenue|RevenueFromContractsWithCustomers)$/.test(String(r[1])) && typeof r[col] === "number" && !st.income.rows.slice(0, st.income.rows.indexOf(r)).some((u) => u[1] === r[1])) : null;
     const m = yearsRows.at(-1)?.m, filed = line ? line[col] * (st.income.money_scale ?? 1) : null;
     // A bank's statement has no total of the two sides: a fee line tagged as contract revenue is Northern Trust's

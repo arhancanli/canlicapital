@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `company_report` read the year's revenue from the wrong column when a 10-K shows the four quarters beside the year: Lennox's fiscal 2025 came out as $1.195 billion, its fourth quarter, with a 77.6% fall, against $5.195 billion filed. Found by running `triangulate` across the S&P 500.
+
 ## 0.10.0
 
 Two new tools, and verify_claims fixed against claims people wrote in public posts.

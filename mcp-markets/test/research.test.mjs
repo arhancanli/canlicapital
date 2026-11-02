@@ -189,3 +189,11 @@ test("a fiscal-year-end window takes each company's year ending in it, and the b
   await assert.rejects(R.screenCompanies(s, { period: "FY2025", fiscal_year_end: ["2025-01-01", "2025-12-31"] }), /not both/);
   assert.deepEqual(R.quarterInstants(["2025-10-01", "2026-01-31"]), ["CY2025Q3I", "CY2025Q4I", "CY2026Q1I", "CY2026Q2I"]);
 });
+
+test("the year's column on a statement that also shows quarters: Lennox's fourth quarter ends on the same day", () => {
+  const columns = ["line", "concept", "3 months to 2025-12-31", "3 months to 2025-09-30", "12 months to 2025-12-31", "12 months to 2024-12-31"];
+  assert.equal(R.annualColumn(columns, "2025-12-31"), 4);
+  assert.equal(R.annualColumn(columns, "2024-12-31"), 5);
+  assert.equal(R.annualColumn(columns, "2023-12-31"), -1);
+  assert.equal(R.annualColumn(undefined, "2025-12-31"), -1);
+});
