@@ -4,7 +4,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { compareGuidance, figuresIn, guidanceFromSentence, guidanceFromTable, guidanceFromText, measureOf, periodOf, quarterOf, resultsFromText, unglue, resultsFromTables } from "../src/guidance.mjs";
+import { basisOf, compareGuidance, figuresIn, guidanceFromSentence, guidanceFromTable, guidanceFromText, measureOf, periodOf, quarterOf, resultsFromText, unglue, resultsFromTables } from "../src/guidance.mjs";
 
 const brief = (items) => items.map((x) => [x.measure ?? x.label, x.low, x.high, x.unit]);
 
@@ -309,3 +309,101 @@ test("results a release states only in a table: the newest column, whole-company
   ];
   assert.deepEqual(resultsFromTables(tables).map((r) => [r.measure, r.value, r.unit, r.basis]), [["revenue", 2385, "USD million", null], ["eps", 1.84, "USD per share", "adjusted"], ["net_income", 20, null, null]]);
 });
+
+test("a table's part is not the total, and a year's column is not the quarter's (Qualcomm, Eaton)", () => {
+  const qcom = guidanceFromTable({ caption: "Third quarter outlook", columns: ["line", "Q3 FY2026 Outlook"], rows: [["Revenues", "$9.2B - $10.0B"], ["QCT revenues", "$7.9B - $8.5B"], ["QTL revenues", "$1.15B - $1.35B"], ["Americas net sales", "$1.0B - $2.0B"], ["Comparable sales", "$1.0B - $2.0B"], ["Total revenue", "$9.2B - $10.0B"], ["GAAP net sales", "$9.2B - $10.0B"]] });
+  const named = (l) => qcom.find((g) => (g.label ?? "").includes(l) || g.quote?.startsWith(l));
+  assert.equal(named("Revenues").measure, "revenue");
+  for (const part of ["QCT revenues", "QTL revenues", "Americas net sales"]) assert.equal(named(part).measure, null, part);
+  assert.equal(named("Comparable sales").measure, "comparable_sales");
+  assert.equal(named("Total revenue").measure, "revenue");
+  assert.equal(named("GAAP net sales").measure, "revenue");
+  assert.equal(periodOf("Year ended December 31, 2026"), "Year ended December 31, 2026");
+  const etn = guidanceFromTable({ caption: "Second quarter guidance", columns: ["line", "Year ended December 31, 2026"], rows: [["Net income per share attributable to Eaton ordinary shareholders - diluted", "$10.88 - $11.33"]] });
+  assert.equal(etn[0].period, "Year ended December 31, 2026");
+});
+
+test("a result far from a dollar range is not placed against it", () => {
+  const guide = { measure: "eps", basis: "adjusted", period: "second quarter", unit: "USD per share", low: 10.88, high: 11.33, quote: "g" };
+  const [row] = compareGuidance([guide], [{ measure: "eps", value: 3.15, unit: "USD per share", basis: "adjusted", quote: "r" }]);
+  assert.match(row.position, /^not placed: the result is too far/);
+  const [near] = compareGuidance([{ ...guide, low: 3.5, high: 3.6 }], [{ measure: "eps", value: 3.15, unit: "USD per share", basis: "adjusted", quote: "r" }]);
+  assert.equal(near.position, "below the range", "a real miss is still a miss");
+  const [pct] = compareGuidance([{ measure: "revenue", period: "q2", unit: "%", low: 1, high: 2, quote: "g" }], [{ measure: "revenue", value: 9, unit: "%", change: "growth", quote: "r" }]);
+  assert.ok(!/too far/.test(pct?.position ?? ""), "the rule is for dollar ranges only");
+});
+
+test("a guide with no basis is not called a miss when the adjusted result lands elsewhere (Gen Digital)", () => {
+  const guide = { measure: "eps", basis: null, period: "Q1 FY27", unit: "USD per share", low: 0.68, high: 0.7, quote: "g" };
+  const results = [{ measure: "eps", value: 0.36, unit: "USD per share", basis: null, quote: "Diluted EPS of $0.36" }, { measure: "eps", value: 0.69, unit: "USD per share", basis: "non-GAAP", quote: "Non-GAAP EPS of $0.69" }];
+  assert.match(compareGuidance([guide], results)[0].position, /^not placed: the guide names no basis, and the non-GAAP result is within the range/);
+  const same = compareGuidance([guide], [results[0], { ...results[1], value: 0.5 }]);
+  assert.equal(same[0].position, "below the range", "both on one side: it can be said");
+});
+
+test("excluding special items is an adjusted figure; fiscal 2025 is a year (Packaging Corp, Qualcomm)", () => {
+  assert.equal(basisOf("we expect second quarter earnings of $2.33 per share, excluding special items."), "adjusted");
+  const results = [{ measure: "eps", value: 5.01, unit: "USD per share", basis: "GAAP", scope: "year", quote: "Fiscal 2025 GAAP EPS: $5.01" }];
+  assert.equal(compareGuidance([{ measure: "eps", basis: "GAAP", period: "Q4 FY25", unit: "USD per share", low: 2.23, high: 2.43, quote: "g" }], results).length, 0, "a year's result does not answer a quarter's guide");
+});
+
+test("GAAP and non-GAAP named apart still go one figure each with respectively (ON Semiconductor)", () => {
+  const rows = resultsFromText("Fourth quarter GAAP diluted earnings per share and non-GAAP diluted earnings per share of $0.45 and $0.64, respectively.");
+  assert.deepEqual(rows.filter((r) => r.measure === "eps").map((r) => [r.basis, r.value]), [["GAAP", 0.45], ["non-GAAP", 0.64]]);
+  assert.equal(basisOf("GAAP EPS was $1 and non-GAAP EPS was $2"), "non-GAAP", "without respectively the nearest word still decides");
+});
+
+test("last year's figure and a replaced range are not the guide (Ecolab, Essex)", () => {
+  const items = guidanceFromSentence("Ecolab expects third quarter 2026 adjusted diluted earnings per share in the $2.13 to $2.23 range, rising 3% to 8% compared with adjusted diluted earnings per share of $2.07 last year.");
+  const eps = items.filter((g) => g.measure === "eps" && g.unit === "USD per share");
+  assert.deepEqual(eps.map((g) => [g.low, g.high]), [[2.13, 2.23]]);
+  const table = guidanceFromTable({ caption: "Third quarter guidance", columns: ["line", "Previous Range", "Current Range"], rows: [["Revenues", "1.7% to 3.1%", "2.0% to 2.5%"]] });
+  assert.deepEqual(table.filter((g) => g.measure === "revenue").map((g) => [g.low, g.high]), [[2, 2.5]]);
+});
+
+test("organic growth is its own basis, on the guide and on the result", () => {
+  const organicGuide = guidanceFromSentence("First quarter 2026 organic sales projected to increase approximately 1% from the prior year period", { section: true });
+  assert.equal(organicGuide.find((g) => g.measure === "revenue").basis, "organic");
+  const results = resultsFromText("Sales of $887 million increased 9% on a reported basis and 5% organically.").filter((r) => r.measure === "revenue" && r.change === "growth");
+  assert.deepEqual(results.map((r) => [r.value, r.basis]), [[9, null], [5, "organic"]]);
+  const row = compareGuidance(organicGuide, results).find((r) => r.measure === "revenue");
+  assert.equal(row.actual, 5);
+  // Zebra: a guide for sales growth is not answered by organic growth alone.
+  const reported = guidanceFromSentence("The Company expects first quarter 2026 sales growth between 11% and 15% compared to the prior year.");
+  const zebra = resultsFromText("Net sales of $1,495 million; year-over-year increase of 14.3%\nConsolidated organic net sales for the first quarter of 2026 increased 4.3% year-over-year.");
+  const placed = compareGuidance(reported.filter((g) => g.measure === "revenue"), zebra);
+  assert.deepEqual(placed.map((r) => [r.actual, r.position]), [[14.3, "within the range"]]);
+});
+
+test("a range broken across lines is one range (Coherent), with its basis named after it", () => {
+  const text = "Business Outlook\nRevenue for the fourth quarter of fiscal 2026 is expected to be between $1.91 billion and\n$2.05 billion.\nEPS for the fourth quarter of fiscal 2026 is expected to be between $1.52 and $1.72 on a non-GAAP basis.";
+  const items = guidanceFromText(text);
+  assert.deepEqual(items.filter((g) => g.measure === "revenue").map((g) => [g.low, g.high]), [[1.91, 2.05]]);
+  assert.deepEqual(items.filter((g) => g.measure === "eps").map((g) => [g.low, g.high, g.basis]), [[1.52, 1.72, "non-GAAP"]]);
+});
+
+test("a table titled for the full year is not a quarter's because the prose above names one (Hershey)", () => {
+  const table = { caption: "This guidance only includes tariff expense, as understood today, expected for the second quarter of 2025.", heading: "2025 Full-Year Outlook", columns: ["line", "Guidance"], rows: [["Net sales growth*", "At least 2%"]] };
+  assert.ok(!quarterOf(guidanceFromTable(table)[0].period ?? ""));
+});
+
+test("excluding special items after the figure makes it adjusted (Packaging Corp)", () => {
+  const results = resultsFromText("Packaging Corporation of America today reported first quarter 2026 net income of $171 million, or $1.91 per share, and net income of $215 million, or $2.40 per share, excluding special items.").filter((r) => r.measure === "eps");
+  assert.deepEqual(results.map((r) => [r.value, r.basis]), [[1.91, null], [2.4, "adjusted"]]);
+  const row = compareGuidance([{ measure: "eps", low: 2.2, high: 2.2, unit: "USD per share", basis: null, period: "first quarter" }], results)[0];
+  assert.match(row.position, /^not placed/);
+});
+
+test("a bare year before the measure names the year, and sales volumes are not revenue (Vertiv, Mosaic)", () => {
+  const vertiv = guidanceFromSentence("This momentum is reflected in our projected 2025 organic sales growth of 24%.", { section: true, period: "Third Quarter 2025" });
+  assert.equal(vertiv[0].period, "2025");
+  assert.equal(quarterOf(vertiv[0].period), null);
+  assert.equal(guidanceFromSentence("Third quarter 2025 revenue is expected to be $5 billion to $6 billion.")[0].period.toLowerCase(), "third quarter 2025");
+  assert.equal(measureOf("Second quarter sales volumes are expected to be 1.9 million tonnes"), null);
+  assert.equal(measureOf("Net sales of $2 billion"), "revenue");
+});
+
+test("a revenue breakdown by currency is not growth (Equinix)", () => {
+  assert.deepEqual(resultsFromText("The Q3 2025 global revenue breakdown by currency for the Euro, British Pound and Singapore Dollar increased to 20%, 9% and 7%."), []);
+});
+

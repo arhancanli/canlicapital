@@ -40,6 +40,7 @@ import { governance, publicKeys, verifyAudit } from "./governance.mjs";
 import { watchFilings } from "./watch.mjs";
 import { createTimeMachine } from "./timemachine.mjs";
 import { signedTrialCount, TRIALS_TOOL } from "./trials.mjs";
+import { runWeek, WEEK_TOOL } from "./week.mjs";
 import { channelSink, CHANNEL_INSTRUCTIONS, SENTINEL_TOOLS } from "./sentinel.mjs";
 
 const PKG = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
@@ -52,7 +53,7 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL];
+const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL];
 export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
@@ -212,6 +213,28 @@ export function preview(v, path = "", cut = []) {
   }
   return v;
 }
+// What a model reads of a result. The whole result stays under its ref, so nothing is lost: show_result
+// gets it, and $result passes it on. On the 33 recorded answers this reads 15% fewer characters on a
+// first call and 22% fewer when a tool is called again (bench/result-chars.mjs).
+// - The list of source documents becomes a count and where to find it: a model rarely reads it.
+// - A tool's limits and meaning come once a session: the words do not change, and reading them twice costs tokens.
+// - Numbers show six significant figures unless digits says otherwise. Whole numbers stay exact.
+export const DEFAULT_DIGITS = 6;
+export function leanResult(result, { name, ref, seen, digits } = {}) {
+  if (!result || typeof result !== "object" || Array.isArray(result)) return result;
+  let out = result;
+  // Only where the list can still be had: the hosted server keeps nothing between requests.
+  if (ref && Array.isArray(out.evidence?.rows)) out = { ...out, evidence: { documents: out.evidence.documents ?? out.evidence.rows.length, list: `show_result with ref ${ref} and path evidence` } };
+  if (seen && name) {
+    if (seen.has(name) && (out.limits || out.meaning)) {
+      const { limits: _limits, meaning: _meaning, ...rest } = out;
+      out = { ...rest, limits_and_meaning: `As in your earlier call of ${name}.` };
+    }
+    seen.add(name);
+  }
+  return digits === undefined ? roundNumbers(out, DEFAULT_DIGITS) : out;
+}
+
 function trimmed(result, ref, limit = RESULT_CHARS) {
   const chars = JSON.stringify(result).length;
   if (chars <= limit) return result;
@@ -328,13 +351,14 @@ export function selfTools(packs, gov, keeper, readOnly = false) {
   };
   // A policy that bars these tools bars them here too, as it does for any pack's.
   const allowed = (name) => { if (gov?.policy) gov.check(BY_NAME.get(name), { destructive: false }); };
-  const tools = { signed_trial_count: (args) => { allowed("signed_trial_count"); if (readOnly) throw new Error("The signed log is on your own machine. Run it locally: npx -y canli-mcp"); return signedTrialCount(args, { dir: join(canliHome(), "audit"), keys: publicKeys(canliHome()) }); }, sentinel_add: async (args) => { allowed("sentinel_add"); return (await sentinel()).add(args); }, sentinel_list: async () => { allowed("sentinel_list"); return (await sentinel()).list(); }, sentinel_remove: async ({ id }) => { allowed("sentinel_remove"); return (await sentinel()).remove(id); }, sentinel_events: async (args) => { allowed("sentinel_events"); return (await sentinel()).events(args ?? {}); }, brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), stress_worlds: (args) => runWorlds(desk, args), hub_list: (args) => runHubList(args), hub_check: (args) => runHubCheck(args), hub_run: (args) => runHubRun(desk, args), draft_orders: (args) => runDraft(args), triangulate: (args) => runTriangulate(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
+  const tools = { my_week: (args) => { allowed("my_week"); return runWeek(desk, args); }, signed_trial_count: (args) => { allowed("signed_trial_count"); if (readOnly) throw new Error("The signed log is on your own machine. Run it locally: npx -y canli-mcp"); return signedTrialCount(args, { dir: join(canliHome(), "audit"), keys: publicKeys(canliHome()) }); }, sentinel_add: async (args) => { allowed("sentinel_add"); return (await sentinel()).add(args); }, sentinel_list: async () => { allowed("sentinel_list"); return (await sentinel()).list(); }, sentinel_remove: async ({ id }) => { allowed("sentinel_remove"); return (await sentinel()).remove(id); }, sentinel_events: async (args) => { allowed("sentinel_events"); return (await sentinel()).events(args ?? {}); }, brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), stress_worlds: (args) => runWorlds(desk, args), hub_list: (args) => runHubList(args), hub_check: (args) => runHubCheck(args), hub_run: (args) => runHubRun(desk, args), draft_orders: (args) => runDraft(args), triangulate: (args) => runTriangulate(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
   if (!TIME_MACHINE) return tools;
   return Object.fromEntries(Object.entries(tools).map(([name, run]) => [name, TIME_MACHINE.selfAllowed(name) ? run : () => { throw TIME_MACHINE.refuse(name); }]));
 }
 
 export function registerAll(server, packs = enabledPacks(), gov = governance(process.env, canliHome()), { readOnly = false } = {}) {
   const keeper = createKeeper();
+  const readLimits = new Set();
   server.registerTool("find_tool", {
     title: "Find a tool",
     description: `Search the ${ENTRIES.filter((e) => packs.includes(e.pack)).length} finance tools (packs: ${packs.join(", ")}) in plain words, e.g. "deflated sharpe", "revenue as of 2019". Returns the closest matches first, with names, argument signatures and one line each, even when none fits, so check them. Next: run_tool, or describe_tool if an argument is unclear.`,
@@ -410,6 +434,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     }
     const receipt = a.receipt ? { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(done.map(({ ref, ...d }) => d)) } : undefined;
     // After the receipt, which hashes the full results: an oversized one is sent as a preview.
+    if (!a.select) for (const d of done) if (d.result !== undefined && !SELF[d.name]) d.result = leanResult(d.result, { name: d.name, ref: readOnly ? undefined : d.ref, seen: readLimits, digits: a.digits });
     for (const d of done) if (d.result !== undefined) d.result = trimmed(d.result, d.ref, viewing ? VIEW_CHARS : RESULT_CHARS);
     const shown = (out) => {
       if (!viewing) return out;
@@ -441,6 +466,7 @@ function auditLog(gov, args) {
 export const PRIVACY = (packs, gov) => ({
   packs: Object.fromEntries(packs.map((p) => [p, { network: packInfo(p).network, disk: packInfo(p).disk, ...(PLUGINS.has(p) ? { plugin: packInfo(p).package } : {}) }])),
   files: "{\"$file\": ...} arguments are read on this machine; nothing is uploaded and nothing is written by the reader",
+  compile_cache: "Node keeps compiled JavaScript in its temp folder to start faster; it holds this server's code and nothing of yours",
   sentinel: "off until you use it: rules and events are kept in CANLI_HOME/sentinel on this machine, and sent only where you say with --webhook, --exec or --channel",
   local_models: "off until you run canli-mcp models install: they run on this machine, and no text leaves it",
   telemetry: "none: no analytics, logging or crash reporting",
@@ -474,18 +500,22 @@ export function frontTools(packs, env = process.env) {
   const names = env.CANLI_FRONT === undefined ? FRONT_DEFAULT : env.CANLI_FRONT.split(",").map((x) => x.trim()).filter(Boolean);
   return [...new Set(names)].filter((n) => BY_NAME.has(n) && packs.includes(BY_NAME.get(n).pack));
 }
-export async function registerFront(server, packs, names = frontTools(packs), gov = null) {
+export async function registerFront(server, packs, names = frontTools(packs), gov = null, shared = null) {
   for (const name of names) {
     const t = await toolFor(name, packs);
     server.registerTool(name, {
       title: t.title, description: t.description + (FRONT_GUIDE[name] ?? ""), inputSchema: t.input, outputSchema: open,
       annotations: { title: t.title, ...(t.annotations ?? READ_ONLY) },
-    }, guard(async (args) => trimmed(await runOne(packs, { name, arguments: args }, {}, [], gov))));
+    }, guard(async (args) => {
+      const full = await runOne(packs, { name, arguments: args }, {}, [], gov), ref = shared?.keeper.put(full) || undefined;
+      const shown = trimmed(leanResult(full, { name, ref, seen: shared?.readLimits }), ref);
+      return ref && shown && typeof shown === "object" && !Array.isArray(shown) ? { ref, ...shown } : shown;
+    }));
   }
   return names;
 }
 
-const isMain = (() => { try { return realpathSync(process.argv[1] ?? "") === realpathSync(fileURLToPath(import.meta.url)); } catch { return false; } })();
+const isMain = (() => { try { const run = realpathSync(process.argv[1] ?? ""); return run === realpathSync(fileURLToPath(import.meta.url)) || run === realpathSync(fileURLToPath(new URL("./start.mjs", import.meta.url))); } catch { return false; } })();
 // Besides serving MCP over stdio: `canli-mcp audit verify [log] [--ed25519 pub.pem] [--ml-dsa pub.pem]`
 // checks an audit log, and `canli-mcp watch [--forms 8-K,4] [--company words] [--event earnings]
 // [--every 60]` prints each new EDGAR filing as a line of JSON. `canli-mcp gui` opens the tools and
@@ -604,8 +634,7 @@ if (isMain && process.argv[2] === "audit") {
   const channel = process.argv.includes("--channel");
   const server = new McpServer(SERVER_INFO, { instructions: `${TIME_MACHINE ? `${TIME_MACHINE.instructions} ` : ""}${instructions(packs, front)}${channel ? ` ${CHANNEL_INSTRUCTIONS}` : ""}` });
   if (channel) server.server.registerCapabilities({ experimental: { "claude/channel": {} } });
-  registerAll(server, packs, gov);
-  await registerFront(server, packs, front, gov);
+  await registerFront(server, packs, front, gov, registerAll(server, packs, gov));
   // Signing is synchronous, so the last calls are signed even as the process exits.
   process.on("exit", () => gov.close());
   for (const signal of ["SIGINT", "SIGTERM"]) process.on(signal, () => process.exit(0));

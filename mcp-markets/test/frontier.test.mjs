@@ -11,6 +11,7 @@ import { latestFilings } from "../src/latest.mjs";
 import { annualPartOf, buildIndex, filingMemory, fuse, linkToMeasure, mentionTest, paragraphsOf, permutationP, score, spearman, stem, tokens } from "../src/memory.mjs";
 import { filingSentiment, INSTALL_HINT, modelsInstalled, sentencesOf } from "../src/models.mjs";
 import { episodes, summarize, whatHappenedNext } from "../src/nextmove.mjs";
+import { exposureMap, parseFiler, passagesAbout, relationIn } from "../src/exposure.mjs";
 import { guidanceRecord, reading, summarizeRecord } from "../src/promises.mjs";
 import { createSession } from "../src/sources.mjs";
 import { latestPrice } from "../src/tools.mjs";
@@ -153,35 +154,43 @@ test("sentiment: counts, net tone and the model's licence, from a stand-in model
 });
 
 const CHOKE = (date, name = "Suez Canal", id = "chokepoint1", n = 40) => ({ attributes: { date, portid: id, portname: name, n_total: n, n_tanker: 10, n_container: 15, n_dry_bulk: 5, capacity: 1000 } });
-test("shipping: the service's first refusal of a query is tried again, and all chokepoints compare with a year ago", async () => {
-  let refused = 0;
+test("shipping: the service's first refusal of a query is tried again, and all chokepoints compare with a year ago in two queries", async () => {
+  let refused = 0, queries = 0;
   const s = sessionFor((url) => {
     if (!/Daily_Chokepoints_Data/.test(url)) return null;
+    queries += 1;
     const where = decodeURIComponent(url);
-    if (where.includes("chokepoint1' AND date >=") && refused === 0) { refused += 1; return json({ error: { code: 400, message: "Cannot perform query. Invalid query parameters." } }); }
-    if (where.includes("portid = 'chokepoint1'")) return json({ features: [CHOKE("2026-10-25"), CHOKE("2026-10-24")] });
-    if (where.includes("DATE '2026-10-19'")) return json({ features: [CHOKE("2026-10-25", "Suez Canal", "chokepoint1", 50), CHOKE("2026-10-25", "Malacca Strait", "chokepoint5", 200)] });
+    if (where.includes("DATE '2026-10-04'") && refused === 0) { refused += 1; queries -= 1; return json({ error: { code: 400, message: "Cannot perform query. Invalid query parameters." } }); }
+    if (where.includes("DATE '2026-10-04'")) return json({ features: [CHOKE("2026-10-25", "Suez Canal", "chokepoint1", 50), CHOKE("2026-10-25", "Malacca Strait", "chokepoint5", 200), CHOKE("2026-10-01", "Malacca Strait", "chokepoint5", 999)] });
     return json({ features: [CHOKE("2025-10-26", "Suez Canal", "chokepoint1", 40), CHOKE("2025-10-26", "Malacca Strait", "chokepoint5", 200)] });
   });
   const r = await shippingActivity(s, {});
   assert.equal(refused, 1);
+  assert.equal(queries, 2);
+  assert.equal(r.period.to, "2026-10-25");
   assert.equal(r.rows[0][0], "Malacca Strait");
+  assert.equal(r.rows[0][1], 200, "older days in the month are not in the seven");
   assert.equal(r.rows.find((x) => x[0] === "Suez Canal")[5], 25, "fifty against forty");
   assert.match(r.limits[0], /turns its signal off/);
 });
 
-test("shipping: one chokepoint by week, by part of its name, and a wrong name lists the right ones", async () => {
+test("shipping: one chokepoint by week in one query, by part of its name, and a wrong name lists the right ones", async () => {
+  let queries = 0;
   const s = sessionFor((url) => {
+    queries += 1;
     const where = decodeURIComponent(url);
-    if (where.includes("portid = 'chokepoint1' AND date >=")) return json({ features: [CHOKE("2026-10-25")] });
-    if (where.includes("date = DATE")) return json({ features: [CHOKE("2026-10-25"), CHOKE("2026-10-25", "Strait of Hormuz", "chokepoint6", 3)] });
-    if (where.includes("portid = 'chokepoint6'")) return json({ features: [CHOKE("2026-10-25", "Strait of Hormuz", "chokepoint6", 3), CHOKE("2026-10-24", "Strait of Hormuz", "chokepoint6", 4)] });
+    if (where.includes("LIKE '%hormuz%'")) return json({ features: [CHOKE("2026-10-25", "Strait of Hormuz", "chokepoint6", 3), CHOKE("2026-10-24", "Strait of Hormuz", "chokepoint6", 4)] });
+    if (where.includes("LIKE")) { assert.ok(!where.includes("1=1") && !where.includes("' OR"), where); return json({ features: [] }); }
+    if (where.includes("date = DATE")) return json({ features: [CHOKE("2026-10-19"), CHOKE("2026-10-19", "Strait of Hormuz", "chokepoint6", 3)] });
     return null;
   });
   const r = await shippingActivity(s, { chokepoint: "hormuz" });
+  assert.equal(queries, 1);
   assert.equal(r.chokepoint, "Strait of Hormuz");
+  assert.equal(r.latest_data, "2026-10-25");
   assert.equal(r.rows[0][2], 7);
   await assert.rejects(shippingActivity(s, { chokepoint: "atlantis" }), /Suez Canal, Strait of Hormuz/);
+  await assert.rejects(shippingActivity(s, { chokepoint: "' OR 1=1 --" }), /Suez Canal/, "only letters, spaces and hyphens reach the query");
 });
 
 test("attention: the article's title comes back, with the last week against normal", async () => {
@@ -311,3 +320,45 @@ test("a filing built to slow the tag stripper does not, and leaves no bracket", 
   assert.ok(!/[<>]/.test(out));
   assert.match(out, /plain words/);
 });
+
+test("guidance record: one count a quarter, and a line that could not be placed counts for nothing", () => {
+  const [g] = summarizeRecord([
+    { quarter: "Q1 2026", measure: "revenue", unit: "USD", position: "above the range" },
+    { quarter: "Q1 2026", measure: "revenue", unit: "USD", position: "above the range" },
+    { quarter: "Q2 2026", measure: "revenue", unit: "USD", position: "not placed: the result is too far from the range to be the same thing" },
+    { quarter: "Q3 2026", measure: "revenue", unit: "USD", position: "below the range (the guide was approximate)" },
+    { quarter: "Q4 2026", measure: "revenue", unit: "USD", position: "within the range" },
+  ]);
+  assert.deepEqual([g.times, g.above, g.within, g.below, g.not_placed], [3, 1, 1, 1, 1]);
+  assert.deepEqual(g.misses, ["Q3 2026"]);
+});
+
+test("exposure: filers parsed, relations read from the words around the name", () => {
+  assert.deepEqual(parseFiler("KLA CORP (KLAC) (CIK 0000319201)"), { name: "KLA CORP", ticker: "KLAC", cik: "0000319201" });
+  assert.deepEqual(parseFiler("Some Fund (CIK 0000000009)"), { name: "Some Fund", ticker: null, cik: "0000000009" });
+  assert.equal(relationIn("We rely on Taiwan Semiconductor to manufacture our wafers"), "supplier");
+  assert.equal(relationIn("Taiwan Semiconductor accounted for 12% of our revenue, as our largest customer"), "customer");
+  assert.equal(relationIn("We compete with Taiwan Semiconductor and others"), "competitor");
+  assert.equal(relationIn("Our director also sat on the board of Taiwan Semiconductor"), "mentioned");
+  const p = passagesAbout("We also noted TSMC in passing. ".repeat(3) + "x ".repeat(400) + "We depend on TSMC as our sole supplier of chips.", ["TSMC"]);
+  assert.equal(p[0].relation, "supplier", "the passage that names a relation comes first");
+});
+
+test("exposure_map: each filer once, its latest report, with the passage; the company's own filings left out", async () => {
+  const s = sessionFor((url) => {
+    if (url.startsWith("https://efts.sec.gov/")) return json({ hits: { total: { value: 3 }, hits: [
+      { _id: "0000000001-26-000001:a.htm", _source: { display_names: ["Chip Buyer Inc (CHIP) (CIK 0000000001)"], file_date: "2026-02-01", form: "10-K", root_forms: ["10-K"], adsh: "0000000001-26-000001", ciks: ["0000000001"], period_ending: "2025-12-31" } },
+      { _id: "0000000001-25-000001:b.htm", _source: { display_names: ["Chip Buyer Inc (CHIP) (CIK 0000000001)"], file_date: "2025-02-01", form: "10-K", root_forms: ["10-K"], adsh: "0000000001-25-000001", ciks: ["0000000001"], period_ending: "2024-12-31" } },
+      { _id: "0001046179-26-000001:c.htm", _source: { display_names: ["TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD (TSM) (CIK 0001046179)"], file_date: "2026-03-01", form: "20-F", root_forms: ["20-F"], adsh: "0001046179-26-000001", ciks: ["0001046179"], period_ending: "2025-12-31" } },
+    ] } });
+    if (/a\.htm$/.test(url)) return text("<p>We rely on Taiwan Semiconductor to make our chips, and a disruption there would hurt us badly in any given year.</p>");
+    return null;
+  });
+  const r = await exposureMap(s, { name: "Taiwan Semiconductor" });
+  assert.equal(r.filers_found, 1);
+  assert.equal(r.rows.length, 1);
+  assert.deepEqual(r.rows[0].slice(0, 5), ["Chip Buyer Inc", "CHIP", "2026-02-01", "10-K", "supplier"]);
+  assert.match(r.rows[0][5], /rely on Taiwan Semiconductor/);
+  assert.equal(r.counts.supplier, 1);
+});
+

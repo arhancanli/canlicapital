@@ -11,10 +11,10 @@
   "license": "MIT",
   "server": {
     "type": "node",
-    "entry_point": "src/server.mjs",
+    "entry_point": "src/start.mjs",
     "mcp_config": {
       "command": "node",
-      "args": ["${__dirname}/src/server.mjs"],
+      "args": ["${__dirname}/src/start.mjs"],
       "env": {
         "CANLI_PACKS": "${user_config.packs}",
         "CANLI_OFFLINE": "${user_config.offline}",

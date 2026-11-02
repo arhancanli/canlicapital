@@ -41,7 +41,7 @@ const sharedKinds = "kind: price_move|price_level|volatility_move|filing, symbol
 export const SENTINEL_TOOLS = Object.freeze([
   { name: "sentinel_add", pack: "desk", toolset: "desk", title: "Watch for a market condition", input: ruleInput, annotations: { readOnlyHint: false, destructiveHint: false, openWorldHint: false },
     description: "Set a rule the sentinel watches from this machine: a price move or level (stocks, ETFs, crypto pairs), a move in 30-day implied volatility, or a new SEC filing. When it fires, the event arrives with a block of context: over Claude Code channels with canli-mcp --channel, or to a webhook or command with canli-mcp sentinel run. A rule only watches and tells; it cannot trade or send anything anywhere.",
-    keywords: "alert alarm trigger watch monitor notify wake sentinel stream websocket event live price move volatility spike vol new filing 8-k real time", args: sharedKinds },
+    keywords: "alert me when notify me wake me alarm trigger watch monitor sentinel stream websocket event live price falls drops rises move volatility spike vol new filing files an 8-k real time", args: sharedKinds },
   { name: "sentinel_list", pack: "desk", toolset: "desk", title: "List sentinel rules", input: z.object({}).strict(), annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
     description: "The rules the sentinel is set to watch.", keywords: "alerts rules watching list sentinel", args: "" },
   { name: "sentinel_remove", pack: "desk", toolset: "desk", title: "Remove a sentinel rule", input: z.object({ id: z.string().min(1).max(60) }).strict(), annotations: { readOnlyHint: false, destructiveHint: false, openWorldHint: false },

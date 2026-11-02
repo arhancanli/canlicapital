@@ -35,6 +35,10 @@ export const KEYWORDS = Object.freeze({
     vintages: "every filing versions revision history of one number vintage as filed each time",
   },
   backtest: {
+    exchange_run: "simulate ai agents trading against each other simulation market cascade flash crash margin calls forced selling limit order book liquidity withdrawal stress",
+    exchange_new: "ai agents trade against each other multi agent simulated order book personas paper market sandbox",
+    find_diversifiers: "uncorrelated strategies low correlation what should i add to my portfolio book diversify diversifier",
+    agent_consensus: "do my models disagree same opinion independent views ensemble of ai models combine forecasts wisdom of crowds",
     pit_factor: "build construct make factor value momentum quality from sec filings point in time without lookahead",
     backtest_signal: "test my signal csv prices backtest without lookahead",
   },
@@ -43,6 +47,8 @@ export const KEYWORDS = Object.freeze({
   },
   markets: {
     read_filing: "annual report read the annual report 10-k report",
+    latest_price: "what is it trading at right now stock price today how much is",
+    shipping_activity: "port congestion ports backlog ship traffic",
     private_offerings: "regulation d reg d form d exempt offering raise",
     // The series it resolves from plain words (canli-markets-mcp's COMMON_SERIES), less the words
     // every price or rate tool shares.

@@ -199,3 +199,10 @@ test("a book has a depth limit", () => {
   assert.equal(s.books.ART1.asks.length, 2000);
   assert.ok(s.rejected >= 250);
 });
+
+test("a path with a null byte is refused by name", async () => {
+  const { diversifiersInput } = await import("../src/diversifiers.mjs");
+  assert.equal(diversifiersInput.safeParse({ book_file: "\u0000", candidates_file: "a.csv" }).success, false);
+  assert.throws(() => exchangeNew({ exchange_file: "\u0000" }), /a file path/);
+});
+

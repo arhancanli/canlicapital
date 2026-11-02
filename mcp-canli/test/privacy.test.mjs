@@ -19,7 +19,9 @@ const SRC = path.join(ROOT, "src");
 
 test("src imports only the SDK, zod, the published packs and file, path, os, url and crypto helpers", () => {
   const allowed = /^(zod|@modelcontextprotocol\/client|@modelcontextprotocol\/server(\/stdio)?|node:(crypto|fs|os|path|url)|canli-[a-z-]+-mcp\/.+)$/;
-  for (const f of readdirSync(SRC).filter((f) => f.endsWith(".mjs"))) {
+  // start.mjs turns on Node's compile cache, and imports node:module for that alone.
+  assert.deepEqual([...readFileSync(path.join(SRC, "start.mjs"), "utf8").matchAll(/(?:from\s+|import\()\s*"([^"]+)"/g)].map((m) => m[1]), ["node:module", "./server.mjs"]);
+  for (const f of readdirSync(SRC).filter((f) => f.endsWith(".mjs") && f !== "start.mjs")) {
     const text = readFileSync(path.join(SRC, f), "utf8");
     for (const m of text.matchAll(/(?:from\s+|import\()\s*"([^"]+)"/g)) if (!m[1].startsWith(".")) assert.match(m[1], allowed, `${f} imports ${m[1]}`);
     const code = text.split("\n").filter((l) => !l.trim().startsWith("//")).join("\n");

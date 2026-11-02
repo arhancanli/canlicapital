@@ -25,6 +25,9 @@ export function freshFor(url) {
   if (/^https:\/\/www\.sec\.gov\/files\/|^https:\/\/www\.sec\.gov\/cgi-bin\/browse-edgar\?action=getcompany&SIC=/.test(url)) return DAY;
   if (/^https:\/\/filings\.xbrl\.org\//.test(url)) return DAY;
   if (/^https:\/\/fred\.stlouisfed\.org\/|^https:\/\/home\.treasury\.gov\//.test(url)) return HOUR;
+  // PortWatch answers slowly and changes weekly; page views change daily.
+  if (/^https:\/\/services9\.arcgis\.com\//.test(url)) return 6 * HOUR;
+  if (/^https:\/\/wikimedia\.org\/api\/rest_v1\/metrics\/pageviews\//.test(url)) return 6 * HOUR;
   return 0;
 }
 

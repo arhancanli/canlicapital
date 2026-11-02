@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.11.1
+
+New tool: `exposure_map`, who depends on a company, from what others say in their annual reports.
+
+`earnings_release` set some guides against the wrong results, found when a run over the S&P 500 said Eaton had missed its EPS guide 12 times in 13:
+
+- A year's guide in a table column headed "Year ended December 31, 2026" was read as the quarter's: Eaton's $10.88 to $11.33 against a quarter's $3.15.
+- A part's guide in a table was read as the total's: Qualcomm's QCT revenues of $7.9B to $8.5B against total revenue of $9.9B.
+- A result too far from a dollar range to be the same thing is now not placed at all.
+- A guide that names no basis is not called a miss when the adjusted result lands elsewhere: Gen Digital's EPS guide of $0.68 to $0.70 against a diluted $0.36 and a non-GAAP figure inside the range.
+- "Excluding special items" now reads as adjusted, and "fiscal 2025" as a year.
+- "GAAP diluted EPS and non-GAAP diluted EPS of $0.45 and $0.64, respectively" goes one figure each. Last year's figure after "compared with" and a "Previous Range" column are not read as the guide.
+- `guidance_record` counts one line a quarter for each measure, and a line that was not placed counts for nothing.
+
+- `shipping_activity` asks PortWatch less: every chokepoint in two queries, and one chokepoint in one. It took 18.8 seconds on the hosted server. PortWatch and Wikipedia answers are now kept on disk for six hours.
+- `portfolio_xray` adds up its holdings in `xray-merge.mjs`, which imports nothing, so the look-through page can run the same code in a browser. `openHolding` opens one holding.
+
 ## 0.11.0
 
 New tools: `filing_memory`, `filing_sentiment`, `guidance_record`, `what_happened_next`, `shipping_activity`, `page_attention`, `latest_price`.
