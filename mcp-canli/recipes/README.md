@@ -5,10 +5,10 @@ Starting points for three steps in order: read the data and check it against the
 | Recipe | Needs | What was tested |
 |---|---|---|
 | `pipeline.mjs` | Node | Runs end to end with no model. Start here: every step is plain code you can read |
-| `claude_agent.mjs` | Node, Claude Code or an API key | Types read from the SDK; the model loop was not run |
-| `langgraph_agent.py` | Python, a model key | Connects to the server and lists and calls tools; the model loop was not run |
-| `openai_agents_agent.py` | Python, a model key | Connects to the server and lists and calls tools; the model loop was not run |
-| `crewai_agent.py` | Python, a model key | Connects to the server and lists and calls tools; the model loop was not run |
+| `claude_agent.mjs` | Node, Claude Code or an API key | Run once on claude-haiku-5-5: the model found the tool, ran it and answered |
+| `langgraph_agent.py` | Python 3.12, a model key | CI runs the model loop with a small model on the runner, and counts the tool calls the server received. It does not judge the answers |
+| `openai_agents_agent.py` | Python 3.12, a model key | CI runs the model loop with a small model on the runner, and counts the tool calls the server received. It does not judge the answers |
+| `crewai_agent.py` | Python 3.12, a model key | CI runs the model loop with a small model on the runner, and counts the tool calls the server received. It does not judge the answers |
 | `kubernetes/cpcv-indexed-job.yaml` | A cluster | CI runs this file on a kind cluster on one machine, then merges the eight shards. Not run on a multi-node cluster |
 
 These are starters, not production systems. Read them before you run them, and set your own limits.
