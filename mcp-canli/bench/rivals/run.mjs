@@ -163,7 +163,8 @@ async function runTaskClaude(ctx, task) {
 const RESPONSES = /^gpt-(?:5\.[5-9]|[6-9])/.test(MODEL);
 async function runTaskResponses(ctx, task) {
   const instructions = SYSTEM + (ctx.instructions ? `\n\nServer instructions:${ctx.instructions}` : "");
-  const tools = ctx.tools.map((t) => ({ type: "function", name: t.function.name, description: t.function.description, parameters: t.function.parameters }));
+  // strict: false as MCP clients send it. Left out, this API defaults to strict and makes every optional field required.
+  const tools = ctx.tools.map((t) => ({ type: "function", name: t.function.name, description: t.function.description, parameters: t.function.parameters, strict: false }));
   let input = 0, cached = 0, output = 0, calls = 0, errors = 0, turns = 0, previous, items = task.prompt;
   const t0 = Date.now(), trace = [];
   for (; turns < MAX_TURNS; turns++) {
