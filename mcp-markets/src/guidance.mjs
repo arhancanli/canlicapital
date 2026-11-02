@@ -46,7 +46,8 @@ const MEASURES = [
   ["dividends_per_share", /\bdividends? (?:per share|declared)\b|\bquarterly dividend\b/],
   ["gross_profit", /\bgross profit\b/],
   ["income_tax", /\b(?:provision for income taxes|income tax expense)\b/],
-  ["revenue", /\b(?:total |net |consolidated |operating )?(?:revenues?|net sales|sales)\b/],
+  // "Sales volumes of 1.9 to 2.1 million tonnes" are not revenue.
+  ["revenue", /\b(?:total |net |consolidated |operating )?(?:revenues?|net sales|sales)\b(?!\s+(?:volumes?|tonnes|tons|units?)\b)/],
 ];
 const BASIS = [["constant currency", /\bconstant (?:currency|dollars?)\b|\blocal currenc(?:y|ies)\b|\(cc\)|\bin cc\b/gi], ["non-GAAP", /\bnon-?gaap\b/gi], ["adjusted", /\badjusted\b|\badj\.(?=\s)|\bexcluding (?:special|certain|non-?recurring) (?:items|charges)\b|\bbefore special items\b/gi], ["GAAP", /(?<!non-?)\bgaap\b/gi]];
 
@@ -90,6 +91,8 @@ const PERIOD_RES = [
   /\b(?:next|current|coming) (?:quarter|year)\b/i,
   /\bfor the (?:quarter|year)\b/i,
   /\b20\d{2}\b(?= (?:outlook|guidance|full[- ]year))/i,
+  // "our projected 2025 organic sales growth of 24%" is the year's, under any heading.
+  /\b20\d{2}\b(?= (?:(?:organic|net|total|adjusted|reported|diluted|gaap|non-gaap|consolidated) )*(?:sales|revenues?|eps|earnings|margins?)\b)/i,
 ];
 const ORDINAL = { first: 1, "1st": 1, second: 2, "2nd": 2, third: 3, "3rd": 3, fourth: 4, "4th": 4 };
 // The quarter a text names ("second quarter of fiscal 2027", "Q3 FY27", "2Q26") with its year when given.

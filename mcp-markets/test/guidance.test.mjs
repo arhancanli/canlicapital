@@ -394,3 +394,12 @@ test("excluding special items after the figure makes it adjusted (Packaging Corp
   assert.match(row.position, /^not placed/);
 });
 
+test("a bare year before the measure names the year, and sales volumes are not revenue (Vertiv, Mosaic)", () => {
+  const vertiv = guidanceFromSentence("This momentum is reflected in our projected 2025 organic sales growth of 24%.", { section: true, period: "Third Quarter 2025" });
+  assert.equal(vertiv[0].period, "2025");
+  assert.equal(quarterOf(vertiv[0].period), null);
+  assert.equal(guidanceFromSentence("Third quarter 2025 revenue is expected to be $5 billion to $6 billion.")[0].period.toLowerCase(), "third quarter 2025");
+  assert.equal(measureOf("Second quarter sales volumes are expected to be 1.9 million tonnes"), null);
+  assert.equal(measureOf("Net sales of $2 billion"), "revenue");
+});
+
