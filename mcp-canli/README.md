@@ -9,7 +9,7 @@
 [![CodeQL](https://github.com/arhancanli/canli-mcp/actions/workflows/codeql.yml/badge.svg)](https://github.com/arhancanli/canli-mcp/actions/workflows/codeql.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](https://github.com/arhancanli/canli-mcp/blob/main/LICENSE)
 
-Every Canli Capital MCP server in one: 355 finance tools for Claude, Cursor or any MCP client.
+Every Canli Capital MCP server in one: 369 finance tools for Claude, Cursor or any MCP client.
 
 ```bash
 claude mcp add canli -- npx -y canli-mcp
@@ -35,14 +35,19 @@ No key and no account. [Add to VS Code](https://insiders.vscode.dev/redirect/mcp
   portfolios, econometrics, indicators, and a library of 399 strategy sleeves with
   multiple-testing corrections.
 - Backtest validation: deflated Sharpe, overfitting probability, data-snooping tests, leakage checks
-  and placebo tests, run on your machine.
+  and placebo tests, run on your machine. New in 0.15.0: fills limited to what recent volume allows,
+  with square-root impact and the Sharpe at each size (none for a book that could not fill), the
+  named crises a strategy's dates cover, combinatorial purged cross-validation in shards other
+  machines can run, a signed append-only ledger of what companies filed and what later filings
+  changed, and a paper league and paper market for agents, with made-up money only.
 - Point-in-time SEC fundamentals.
 - An analyst's filings, and a check on the answer: financial statements exactly as filed (several
   years joined, restatements and splits shown beside the first-reported figures), the table in any
-  filing that holds a figure (followed through earlier filings), earnings releases with their
-  guidance as ranges and last quarter's guidance set against the results, and `verify_claims`,
-  which checks a draft's figures against the filings: confirmed, contradicted (with the filed
-  figure and what the wrong one matches) or not reported.
+  filing that holds a figure (followed through earlier filings), `figure_trace` (a figure followed
+  down the filing's own calculation, each sum recomputed), earnings releases with their guidance as
+  ranges and last quarter's guidance set against the results, and `verify_claims`, which checks a
+  draft's figures against the filings: confirmed, contradicted (with the filed figure and what the
+  wrong one matches) or not reported.
 - Markets from the sources, no key: screens of every US-listed company, company reports, event
   studies, SEC filings and their sections, insider trades, 13F and 5% holders, fund and ETF
   portfolios, index members, short interest, off-exchange volume, fails to deliver, futures
@@ -106,16 +111,16 @@ own broker keys. The hosted server keeps nothing between requests, so chain call
 
 Measured on Node 24 on 2026-10-31 with `bench/context.py` (o200k tokens of the tool objects a
 client receives, plus the server instructions; all seven packs enabled with `CANLI_PACKS=all`; start-up is the median time from launch to the
-tool list, on a machine running other work; `bench/context-2026-10-31-0.13.2.json`):
+tool list, on a machine running other work; `bench/context-2026-11-02-0.15.0.json`):
 
 | | seven servers separately | canli-mcp |
 |---|---|---|
-| initial tool list and instructions | 57,701 tokens (125 tools) | 2,524 tokens (5 tools) |
+| initial tool list and instructions | 62,539 tokens (139 tools) | 2,524 tokens (5 tools) |
 | processes | 7 | 1 |
-| start-up | 89-147 ms each | 162 ms |
+| start-up | 110-200 ms each | 212 ms |
 
 Tools the packs add cost the combined server nothing up front: since 0.6.0 the seven servers' own
-lists grew from 39,962 to 57,701 tokens. The interactive views of 0.10.0 added 76 tokens, those of 0.11.0 another 13, and
+lists grew from 39,962 to 62,539 tokens. The interactive views of 0.10.0 added 76 tokens, those of 0.11.0 another 13, and
 the clearer tool descriptions of 0.13.2 another 121.
 
 - **Five tools in context.** The model searches with `find_tool`, reads one schema with
@@ -127,7 +132,7 @@ the clearer tool descriptions of 0.13.2 another 121.
   words they used were then added to the index (38 and 40). For the 0.7.0 to 0.9.0 tools, 43 requests
   written before measuring: 41 first, 42 in the top three. `test/search.test.mjs` holds these and
   176 more.
-- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 355 tools; a pack's
+- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 369 tools; a pack's
   code loads the first time one of its tools runs.
 - **Data by file, not by pasting.** Any argument can be `{"$file": "prices.csv", "column": "close"}`
   (or `"columns": ["SPY", "TLT"]` or `"all"`). For 1,000 prices that is 23 tokens instead of 4,893,
@@ -435,8 +440,8 @@ feed carries on.
 | validation | [canli-validation-mcp](https://www.npmjs.com/package/canli-validation-mcp) | 17 | the Null Zoo benchmark of 160,000 simulated searches |
 | fundamentals | [canli-fundamentals-mcp](https://www.npmjs.com/package/canli-fundamentals-mcp) | 7 | SEC XBRL filings |
 | research | [canli-research-mcp](https://www.npmjs.com/package/canli-research-mcp) | 6 | the published research record and its hash chain |
-| backtest | [canli-backtest-mcp](https://www.npmjs.com/package/canli-backtest-mcp) | 11 | point-in-time SEC data and the breadth lab's own checks |
-| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 74 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank, Cboe, ECB, Bank of England, BIS, filings.xbrl.org, Polymarket, Kalshi, DefiLlama, USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index: a 13F's total equals its cover page; ESEF figures equal the same companies' Form 20-F at the SEC; central-bank rates agree with the BIS |
+| backtest | [canli-backtest-mcp](https://www.npmjs.com/package/canli-backtest-mcp) | 23 | point-in-time SEC data and the breadth lab's own checks |
+| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 76 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank, Cboe, ECB, Bank of England, BIS, filings.xbrl.org, Polymarket, Kalshi, DefiLlama, USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index: a 13F's total equals its cover page; ESEF figures equal the same companies' Form 20-F at the SEC; central-bank rates agree with the BIS |
 | paper | [canli-paper-trading-mcp](https://www.npmjs.com/package/canli-paper-trading-mcp) | 5 | a simulated Alpaca paper API |
 
 Two tools differ from their standalone servers. Validation's `stress_test` is `strategy_stress_test`
