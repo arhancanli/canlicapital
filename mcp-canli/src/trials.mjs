@@ -2,11 +2,9 @@
 // A deflated Sharpe ratio is only as honest as the number of trials put into it, and that number has
 // always been whatever the researcher says. Here every backtest that ran through the server is in a
 // hash-chained, signed log, so the count can be shown to someone else and checked by them.
-import { readdirSync, readFileSync } from "node:fs";
-import { join } from "node:path";
 import { z } from "zod";
 
-import { verifyAudit } from "./governance.mjs";
+import { auditRecords, verifyAudit } from "./governance.mjs";
 
 const DATE = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "a date as YYYY-MM-DD");
 export const trialsInput = z.object({
@@ -25,28 +23,22 @@ export const TRIALS_TOOL = Object.freeze({
 
 export function signedTrialCount(args, { dir, keys = {} }) {
   const a = trialsInput.parse(args ?? {});
-  let files = [];
-  try { files = readdirSync(dir).filter((f) => f.endsWith(".jsonl")).sort(); } catch { /* no log yet */ }
-  if (!files.length) return { log_on: false, how: "Nothing is counted until the audit log is on: set CANLI_POLICY to a JSON file holding {\"audit\": {\"arguments\": \"hash\"}}, then run your backtests through this server." };
+  const records = auditRecords(dir);
+  if (!records.length) return { log_on: false, how: "Nothing is counted until the audit log is on: set CANLI_POLICY to a JSON file holding {\"audit\": {\"arguments\": \"hash\"}}, then run your backtests through this server." };
   const check = verifyAudit(dir, keys);
   const counted = (t) => (a.tools ? a.tools.includes(t) : TESTS.test(t));
   const byTool = new Map();
   let calls = 0, failed = 0, first = null, last = null;
-  for (const f of files) {
-    for (const line of readFileSync(join(dir, f), "utf8").split("\n")) {
-      if (!line) continue;
-      let r;
-      try { r = JSON.parse(line); } catch { continue; }
-      if (r.type !== "call" || !counted(r.tool)) continue;
-      const day = String(r.at).slice(0, 10);
-      if ((a.since && day < a.since) || (a.until && day > a.until)) continue;
-      calls += 1;
-      if (!r.ok) { failed += 1; continue; }
-      first = !first || r.at < first ? r.at : first;
-      last = !last || r.at > last ? r.at : last;
-      if (!byTool.has(r.tool)) byTool.set(r.tool, new Set());
-      byTool.get(r.tool).add(r.args_sha256);
-    }
+  for (const r of records) {
+    if (r.type !== "call" || !counted(r.tool)) continue;
+    const day = String(r.at).slice(0, 10);
+    if ((a.since && day < a.since) || (a.until && day > a.until)) continue;
+    calls += 1;
+    if (!r.ok) { failed += 1; continue; }
+    first = !first || r.at < first ? r.at : first;
+    last = !last || r.at > last ? r.at : last;
+    if (!byTool.has(r.tool)) byTool.set(r.tool, new Set());
+    byTool.get(r.tool).add(r.args_sha256);
   }
   const trials = [...byTool.values()].reduce((n, s) => n + s.size, 0);
   const unsigned = check.files.reduce((n, x) => n + (x.unsigned ?? 0), 0);

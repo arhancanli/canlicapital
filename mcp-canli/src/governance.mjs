@@ -135,6 +135,18 @@ export function createAudit({ dir, keys, now = () => new Date(), args: mode = "h
 // sequence, and each checkpoint's signatures against the given public keys (default: the ones
 // beside the log's keys in CANLI_HOME). Every signature a checkpoint carries must verify, and a key
 // a checkpoint names must be supplied.
+// Every call record in a log folder, oldest file first; an empty list if there is no log.
+export function auditRecords(dir) {
+  let files = [];
+  try { files = readdirSync(dir).filter((f) => f.endsWith(".jsonl")).sort(); } catch { return []; }
+  const out = [];
+  for (const f of files) for (const line of readFileSync(join(dir, f), "utf8").split("\n")) {
+    if (!line) continue;
+    try { out.push(JSON.parse(line)); } catch { /* a torn line: verify reports it */ }
+  }
+  return out;
+}
+
 export function verifyAudit(target, publicPems = {}) {
   let isDir;
   try { isDir = statSync(target).isDirectory(); } catch { return { valid: false, files: [], error: `no audit log at ${target}` }; }
