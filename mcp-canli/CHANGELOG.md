@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- `my_week`: one plain summary across up to 25 holdings: how each moved, what it told the SEC about, and when it is expected to report next.
 - Less to read in every result: numbers show six significant figures, a tool's limits come once a session, and the list of source documents becomes a count. On the 33 recorded answers that is 15% fewer characters on a first call and 22% fewer when a tool is called again (`bench/result-chars.mjs`). The whole result stays under its ref.
 - Faster start: Node's compile cache takes start-up from about 200 ms to about 155 ms from the second run on (Node 22.1 or later).
 - `--as-of`: a live sweep of every tool found `earnings_calendar`, `world_economy` and `company_profile` wrong. The first and last are now off, the second is held to the year, and metadata no longer says what today is.

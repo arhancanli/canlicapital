@@ -2,6 +2,8 @@
 
 ## 0.11.1
 
+New tool: `exposure_map`, who depends on a company, from what others say in their annual reports.
+
 `earnings_release` set some guides against the wrong results, found when a run over the S&P 500 said Eaton had missed its EPS guide 12 times in 13:
 
 - A year's guide in a table column headed "Year ended December 31, 2026" was read as the quarter's: Eaton's $10.88 to $11.33 against a quarter's $3.15.

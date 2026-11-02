@@ -107,6 +107,7 @@ against the BIS (21 of 21 agreed on 2026-10-15).
 | `reverse_dcf` | The free-cash-flow growth a share price implies: a DCF solved for the growth that reaches the market's enterprise value, every input from the annual XBRL with its tag, a sensitivity table and the company's own growth beside it | SEC XBRL company facts, the last close |
 | `filing_memory` | Everything one company has said about a subject across every annual report it has on EDGAR, back to the 1990s where they exist: the best passages with links, how often it came up each year, and optionally how that moved with a margin, tested against chance. Runs on your machine; no key. |
 | `filing_sentiment` | The tone of a filing or any text, sentence by sentence, from FinBERT on your machine. Needs `canli-mcp models install`. The model is licensed for non-commercial use. |
+| `exposure_map` | Who depends on a company, from what others say in their annual reports: each filer that names it, with the passage, and whether it reads as a supplier, customer or competitor. |
 | `guidance_record` | A management team's record against its own guidance, quarter by quarter: above, within or below its range, from its own press releases. |
 | `what_happened_next` | Every past time a market or stock fell, rose or sat this far below its high: each case, what followed, and how that compares with an ordinary day. A record, not a forecast. |
 | `shipping_activity` | Ships through the world's straits, canals and ports, from the IMF's PortWatch, estimated from satellite tracking. No key. |

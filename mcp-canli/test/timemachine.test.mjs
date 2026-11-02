@@ -114,3 +114,21 @@ test("signed trial count: different arguments count once each, others are not co
   assert.equal(signedTrialCount({}, { dir, keys }).log_checks_out, false);
   rmSync(home, { recursive: true, force: true });
 });
+
+test("my_week: moves, filings and next report in plain words, and a broken source costs only its part", async () => {
+  const { runWeek } = await import("../src/week.mjs");
+  const NOW = Date.parse("2026-11-02T12:00:00Z");
+  const ctx = { call: async (name, args) => {
+    if (args.symbol === "BROKEN" || args.company === "BROKEN") throw new Error("down");
+    if (name === "price_history") return { dates: ["2026-10-20", "2026-10-26", "2026-10-30", "2026-11-02"], close: [100, 100, 95, 90] };
+    if (name === "company_events") return { columns: ["filed", "company", "items", "events"], rows: [["2026-10-30", "NVIDIA CORP", ["2.02"], ["earnings"]], ["2026-10-29", "NVIDIA CORP", ["8.01"], ["other_event", "new_thing"]]] };
+    if (name === "earnings_calendar") return { next: { expected: "2026-11-19", status: "upcoming" } };
+    throw new Error(name);
+  } };
+  const r = await runWeek(ctx, { holdings: ["nvda", "BROKEN"] }, { now: NOW });
+  assert.equal(r.summary[0], "NVDA: down 10%; told the SEC about its results, other news, new thing; expected to report around 2026-11-19.");
+  assert.equal(r.summary[1], "BROKEN: no price to hand.");
+  assert.deepEqual(r.biggest_move, { symbol: "NVDA", change_percent: -10 });
+  assert.match(r.limits[0], /no view on what to do/);
+});
+

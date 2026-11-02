@@ -11,6 +11,7 @@ import { latestFilings } from "../src/latest.mjs";
 import { annualPartOf, buildIndex, filingMemory, fuse, linkToMeasure, mentionTest, paragraphsOf, permutationP, score, spearman, stem, tokens } from "../src/memory.mjs";
 import { filingSentiment, INSTALL_HINT, modelsInstalled, sentencesOf } from "../src/models.mjs";
 import { episodes, summarize, whatHappenedNext } from "../src/nextmove.mjs";
+import { exposureMap, parseFiler, passagesAbout, relationIn } from "../src/exposure.mjs";
 import { guidanceRecord, reading, summarizeRecord } from "../src/promises.mjs";
 import { createSession } from "../src/sources.mjs";
 import { latestPrice } from "../src/tools.mjs";
@@ -330,5 +331,34 @@ test("guidance record: one count a quarter, and a line that could not be placed 
   ]);
   assert.deepEqual([g.times, g.above, g.within, g.below, g.not_placed], [3, 1, 1, 1, 1]);
   assert.deepEqual(g.misses, ["Q3 2026"]);
+});
+
+test("exposure: filers parsed, relations read from the words around the name", () => {
+  assert.deepEqual(parseFiler("KLA CORP (KLAC) (CIK 0000319201)"), { name: "KLA CORP", ticker: "KLAC", cik: "0000319201" });
+  assert.deepEqual(parseFiler("Some Fund (CIK 0000000009)"), { name: "Some Fund", ticker: null, cik: "0000000009" });
+  assert.equal(relationIn("We rely on Taiwan Semiconductor to manufacture our wafers"), "supplier");
+  assert.equal(relationIn("Taiwan Semiconductor accounted for 12% of our revenue, as our largest customer"), "customer");
+  assert.equal(relationIn("We compete with Taiwan Semiconductor and others"), "competitor");
+  assert.equal(relationIn("Our director also sat on the board of Taiwan Semiconductor"), "mentioned");
+  const p = passagesAbout("We also noted TSMC in passing. ".repeat(3) + "x ".repeat(400) + "We depend on TSMC as our sole supplier of chips.", ["TSMC"]);
+  assert.equal(p[0].relation, "supplier", "the passage that names a relation comes first");
+});
+
+test("exposure_map: each filer once, its latest report, with the passage; the company's own filings left out", async () => {
+  const s = sessionFor((url) => {
+    if (/efts\.sec\.gov/.test(url)) return json({ hits: { total: { value: 3 }, hits: [
+      { _id: "0000000001-26-000001:a.htm", _source: { display_names: ["Chip Buyer Inc (CHIP) (CIK 0000000001)"], file_date: "2026-02-01", form: "10-K", root_forms: ["10-K"], adsh: "0000000001-26-000001", ciks: ["0000000001"], period_ending: "2025-12-31" } },
+      { _id: "0000000001-25-000001:b.htm", _source: { display_names: ["Chip Buyer Inc (CHIP) (CIK 0000000001)"], file_date: "2025-02-01", form: "10-K", root_forms: ["10-K"], adsh: "0000000001-25-000001", ciks: ["0000000001"], period_ending: "2024-12-31" } },
+      { _id: "0001046179-26-000001:c.htm", _source: { display_names: ["TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD (TSM) (CIK 0001046179)"], file_date: "2026-03-01", form: "20-F", root_forms: ["20-F"], adsh: "0001046179-26-000001", ciks: ["0001046179"], period_ending: "2025-12-31" } },
+    ] } });
+    if (/a\.htm$/.test(url)) return text("<p>We rely on Taiwan Semiconductor to make our chips, and a disruption there would hurt us badly in any given year.</p>");
+    return null;
+  });
+  const r = await exposureMap(s, { name: "Taiwan Semiconductor" });
+  assert.equal(r.filers_found, 1);
+  assert.equal(r.rows.length, 1);
+  assert.deepEqual(r.rows[0].slice(0, 5), ["Chip Buyer Inc", "CHIP", "2026-02-01", "10-K", "supplier"]);
+  assert.match(r.rows[0][5], /rely on Taiwan Semiconductor/);
+  assert.equal(r.counts.supplier, 1);
 });
 
