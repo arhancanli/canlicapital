@@ -154,6 +154,8 @@ node mcp-execution/examples/paper-journal.mjs --home /absolute/private/example-h
   return document({ route: EXECUTION_ROUTE, title, description, structured: [software], body, sources: 'execution_workflow_source.json' });
 }
 
+// A stated price and a recent date both help a page get cited (arXiv 2605.25517), and readers want them.
+const priceAndDate = (route) => { const d = sourceDate(ROOT, route); return `Price: $0 to run.${d ? ` Updated ${d}.` : ''}`; };
 const faqObject = (route, faq) => ({ '@context': 'https://schema.org', '@type': 'FAQPage', '@id': `${ORIGIN}${route}#faq`, mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) });
 const faqSection = (faq) => `<section class="dev-section" id="questions"><h2>Common questions</h2>${faq.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join('')}</section>`;
 const answersSection = (used) => (used.length ? `<section class="dev-section" id="answers"><h2>Questions it has answered</h2><p>Each page shows the call and the recorded result.</p><ul class="mcp-related">${links(used.map((a) => ({ path: a.route, label: a.question })))}</ul></section>` : '');
@@ -183,7 +185,7 @@ export function packagePage(p, answers, { flagship }) {
   const tables = groups.size > 1 ? [...groups].map(([set, list]) => `<h3>${esc(set.replaceAll('_', ' '))}: ${list.length}</h3>${toolTable(list, `${p.package} ${set.replaceAll('_', ' ')} tools`)}`).join('') : toolTable(p.tools, `${p.package} ${p.version} tools`);
   const body = `<section class="dev-hero">${nav(p.route, [])}<p class="dev-kicker">${esc(p.package)} ${esc(p.version)} / Free and open source</p><h1>${esc(p.heading)}</h1><p class="dev-lead">${esc(p.answer)}</p>
 <div class="dev-actions"><a class="dev-button dev-button--primary" href="#add">Add this server</a><a class="dev-button" href="${npm}" rel="noreferrer">See it on npm</a><a class="dev-button" href="${source}" rel="noreferrer">Read the source</a></div>
-<p class="dev-hero-note">${p.tools.length} tools. MIT licence. Registry name <code>io.github.arhancanli/${esc(p.package)}</code>.</p></section>
+<p class="dev-hero-note">${priceAndDate(p.route)} ${p.tools.length} tools. MIT licence. Registry name <code>io.github.arhancanli/${esc(p.package)}</code>.</p></section>
 <nav class="dev-page-index" aria-label="Page sections"><a href="#add">Add it</a><a href="#ask">What to ask</a>${used.length ? '<a href="#answers">Recorded answers</a>' : ''}<a href="#questions">Questions</a><a href="#tools">Every tool</a></nav>
 <section class="dev-section" id="add"><h2>Add it to your AI assistant</h2><figure class="flagship-cmd"><figcaption>Claude Code</figcaption><pre tabindex="0"><code>${esc(`claude mcp add ${nameOf} -- npx -y ${p.package}`)}</code></pre></figure><figure class="flagship-cmd"><figcaption>Cursor, Claude Desktop or any MCP client</figcaption><pre tabindex="0"><code>${esc(JSON.stringify({ mcpServers: { [nameOf]: { command: 'npx', args: ['-y', p.package] } } }))}</code></pre></figure><p>Or take every Canli Capital server at once with <code>${esc(flagship.install.npx)}</code>: <a href="${MCP_ROUTE}">canli-mcp</a> puts them behind ${flagship.front.length} tools and ${integer.format(flagship.current.tokens)} tokens of context. <a href="${INSTALL_ROUTE}">Steps for each client</a>.</p></section>
 <section class="dev-section" id="ask"><h2>What to ask it</h2><ul class="mcp-related">${p.asks.map(([ask, tool]) => `<li>${esc(ask)} <a href="${TOOLS_ROUTE}#${esc(tool)}"><code>${esc(tool)}</code></a></li>`).join('')}</ul></section>
@@ -203,7 +205,7 @@ export function serverPage(s, servers, { answers = [], hosted = read('config/mcp
 <p class="dev-kicker">${esc(name)} / Hosted ${esc(s.version)}</p>
 <h1>${esc(s.heading)}</h1><p class="dev-lead">${esc(s.summary)}</p>
 <div class="dev-actions"><a class="dev-button dev-button--primary" href="#connect">Connect this server</a><a class="dev-button" href="${sourceHref(s)}" rel="noreferrer">Read the released source</a></div>
-<p class="dev-hero-note">${s.tools.length} tools in the hosted release. MIT source. Hosted and npm versions are distributed separately.</p></section>
+<p class="dev-hero-note">${priceAndDate(s.route)} ${s.tools.length} tools in the hosted release. MIT source. Hosted and npm versions are distributed separately.</p></section>
 <nav class="dev-page-index" aria-label="Page sections"><a href="#purpose">When to use it</a><a href="#connect">Connect</a><a href="#workflow">Workflow</a><a href="#tools">Tools</a><a href="#limits">Evidence limits</a></nav>
 <section class="dev-section" id="purpose"><h2>When to use this server</h2><p>${esc(s.purpose)}</p></section>
 <section class="dev-section" id="connect"><h2>Connect the hosted server</h2>
@@ -263,7 +265,7 @@ export function answerPage(a, all, { flagship, tools = toolIndex(), videos = rec
   const related = (a.related ?? []).map((slug) => all.find((x) => x.slug === slug)).filter(Boolean);
   const faq = { '@context': 'https://schema.org', '@type': 'FAQPage', '@id': `${ORIGIN}${a.route}#faq`, mainEntity: [{ '@type': 'Question', name: a.question, acceptedAnswer: { '@type': 'Answer', text: a.answer } }], about: { '@id': `${ORIGIN}${MCP_ROUTE}#canli-mcp` } };
   const body = `<section class="dev-hero">${answersNav(a.route)}<p class="dev-kicker">canli-mcp / ${esc(a.short)}</p><h1>${esc(a.question)}</h1><p class="dev-lead">${withTools(a.answer, names)}</p>
-${installButtons(flagship, 'dev-actions')}<p class="dev-hero-note">Free and MIT-licensed. No account and no API key. Or run <code>${esc(flagship.install.claude_code)}</code> in Claude Code.</p></section>
+${installButtons(flagship, 'dev-actions')}<p class="dev-hero-note">${priceAndDate(a.route)} Free and MIT-licensed, with no account and no API key. Or run <code>${esc(flagship.install.claude_code)}</code> in Claude Code.</p></section>
 <section class="dev-section" id="ask"><h2>Ask it</h2><blockquote class="mcp-answer__ask"><p>${esc(a.ask)}</p></blockquote><p>The agent finds the tool through canli-mcp's <code>find_tool</code> and runs it through <code>run_tool</code>. This is the call:</p><pre class="dev-code" tabindex="0" aria-label="The run_tool input"><code>${esc(JSON.stringify(a.call, null, 2))}</code></pre></section>
 <section class="dev-section" id="result"><h2>What came back</h2><p>Recorded from canli-mcp ${esc(r.version)} on ${esc(r.recorded.slice(0, 10))}, with no API key set. The model read ${integer.format(r.model_chars)} characters.</p>${shown}<p class="flagship-note">Prices, filings and statistics are as the sources published them on that day; run the call again for today's. Nothing here is investment advice.</p></section>
 ${demoView(flagship.views ?? [], a.demo, videos[a.demo])}
