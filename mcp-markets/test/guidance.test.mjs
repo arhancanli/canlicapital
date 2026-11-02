@@ -4,7 +4,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { compareGuidance, figuresIn, guidanceFromSentence, guidanceFromTable, guidanceFromText, measureOf, periodOf, quarterOf, resultsFromText, unglue, resultsFromTables } from "../src/guidance.mjs";
+import { basisOf, compareGuidance, figuresIn, guidanceFromSentence, guidanceFromTable, guidanceFromText, measureOf, periodOf, quarterOf, resultsFromText, unglue, resultsFromTables } from "../src/guidance.mjs";
 
 const brief = (items) => items.map((x) => [x.measure ?? x.label, x.low, x.high, x.unit]);
 
@@ -331,5 +331,19 @@ test("a result far from a dollar range is not placed against it", () => {
   assert.equal(near.position, "below the range", "a real miss is still a miss");
   const [pct] = compareGuidance([{ measure: "revenue", period: "q2", unit: "%", low: 1, high: 2, quote: "g" }], [{ measure: "revenue", value: 9, unit: "%", change: "growth", quote: "r" }]);
   assert.ok(!/too far/.test(pct?.position ?? ""), "the rule is for dollar ranges only");
+});
+
+test("a guide with no basis is not called a miss when the adjusted result lands elsewhere (Gen Digital)", () => {
+  const guide = { measure: "eps", basis: null, period: "Q1 FY27", unit: "USD per share", low: 0.68, high: 0.7, quote: "g" };
+  const results = [{ measure: "eps", value: 0.36, unit: "USD per share", basis: null, quote: "Diluted EPS of $0.36" }, { measure: "eps", value: 0.69, unit: "USD per share", basis: "non-GAAP", quote: "Non-GAAP EPS of $0.69" }];
+  assert.match(compareGuidance([guide], results)[0].position, /^not placed: the guide names no basis, and the non-GAAP result is within the range/);
+  const same = compareGuidance([guide], [results[0], { ...results[1], value: 0.5 }]);
+  assert.equal(same[0].position, "below the range", "both on one side: it can be said");
+});
+
+test("excluding special items is an adjusted figure; fiscal 2025 is a year (Packaging Corp, Qualcomm)", () => {
+  assert.equal(basisOf("we expect second quarter earnings of $2.33 per share, excluding special items."), "adjusted");
+  const results = [{ measure: "eps", value: 5.01, unit: "USD per share", basis: "GAAP", scope: "year", quote: "Fiscal 2025 GAAP EPS: $5.01" }];
+  assert.equal(compareGuidance([{ measure: "eps", basis: "GAAP", period: "Q4 FY25", unit: "USD per share", low: 2.23, high: 2.43, quote: "g" }], results).length, 0, "a year's result does not answer a quarter's guide");
 });
 

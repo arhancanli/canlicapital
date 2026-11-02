@@ -48,7 +48,7 @@ const MEASURES = [
   ["income_tax", /\b(?:provision for income taxes|income tax expense)\b/],
   ["revenue", /\b(?:total |net |consolidated |operating )?(?:revenues?|net sales|sales)\b/],
 ];
-const BASIS = [["constant currency", /\bconstant (?:currency|dollars?)\b|\blocal currenc(?:y|ies)\b|\(cc\)|\bin cc\b/gi], ["non-GAAP", /\bnon-?gaap\b/gi], ["adjusted", /\badjusted\b|\badj\.(?=\s)/gi], ["GAAP", /(?<!non-?)\bgaap\b/gi]];
+const BASIS = [["constant currency", /\bconstant (?:currency|dollars?)\b|\blocal currenc(?:y|ies)\b|\(cc\)|\bin cc\b/gi], ["non-GAAP", /\bnon-?gaap\b/gi], ["adjusted", /\badjusted\b|\badj\.(?=\s)|\bexcluding (?:special|certain|non-?recurring) (?:items|charges)\b|\bbefore special items\b/gi], ["GAAP", /(?<!non-?)\bgaap\b/gi]];
 
 export function measureOf(text) {
   const t = String(text).toLowerCase();
@@ -729,7 +729,7 @@ function measureAt(text) {
 // quarter revenue grew 14 percent, full year fiscal 2026 revenue grew 14 percent").
 function scopeOf(text) {
   let at = -1, scope = null;
-  for (const m of String(text).matchAll(/\b(?:full[- ](?:fiscal )?year|fiscal year|for the year|twelve months|annual)\b|\b(?:quarter|q[1-4]|three months)\b/gi)) {
+  for (const m of String(text).matchAll(/\b(?:full[- ](?:fiscal )?year|fiscal year|fiscal 20\d{2}|fy ?20\d{2}|for the year|twelve months|annual)\b|\b(?:quarter|q[1-4]|three months)\b/gi)) {
     if (m.index > at) { at = m.index; scope = /quarter|q[1-4]|three months/i.test(m[0]) ? "quarter" : "year"; }
   }
   return scope;
@@ -758,12 +758,18 @@ export function compareGuidance(guided, results) {
     // A result this far from a dollar range is a different thing, a year against a quarter or a part
     // against a whole, however alike their names. A company misses a guide by less than this.
     const middle = (g.low + g.high) / 2, far = !scale && middle > 0 && r.value > 0 && (r.value / middle < 0.4 || r.value / middle > 2.5);
-    const place = r.value > g.high ? "above the range" : r.value < g.low ? "below the range" : "within the range";
+    const placeOf = (v) => (v > g.high ? "above the range" : v < g.low ? "below the range" : "within the range");
+    const place = placeOf(r.value);
+    // A guide that names no basis can be either. If this release's GAAP and adjusted results land on
+    // different sides of it, nothing can be said: Gen Digital's "Q1 EPS of $0.68 to $0.70" against a
+    // diluted $0.36 and a non-GAAP $0.69 is not a miss.
+    const other = !g.basis ? results.find((x) => !x.section && x.measure === g.measure && x.unit === g.unit && x.value !== r.value && x.basis && x.basis !== "GAAP" && x.basis !== "constant currency" && (x.change ?? null) === (r.change ?? null) && !(quarterly && x.scope === "year") && !(yearly && x.scope === "quarter")) : null;
+    const unclear = other && placeOf(other.value) !== place;
     rows.push({
       measure: g.measure, basis: g.basis ?? null, period: g.period ?? null, unit: g.unit,
       guided_low: g.low, guided_high: g.high, actual: r.value,
       vs_low: vsLow, vs_high: vsHigh, ...(scale ? { vs_low_bps: round(vsLow * scale), vs_high_bps: round(vsHigh * scale) } : {}),
-      position: far ? "not placed: the result is too far from the range to be the same thing" : rounded ? `not placed: the result is stated to ${r.decimals} decimal${r.decimals === 1 ? "" : "s"}, the guide to ${g.decimals}` : g.approximate ? `${place} (the guide was approximate)` : place,
+      position: far ? "not placed: the result is too far from the range to be the same thing" : unclear ? `not placed: the guide names no basis, and the ${other.basis} result is ${placeOf(other.value)}` : rounded ? `not placed: the result is stated to ${r.decimals} decimal${r.decimals === 1 ? "" : "s"}, the guide to ${g.decimals}` : g.approximate ? `${place} (the guide was approximate)` : place,
       guidance_quote: g.quote, result_quote: r.quote,
     });
   }
