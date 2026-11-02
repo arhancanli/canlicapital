@@ -39,6 +39,12 @@ const esc = (v) =>
 // technical meta description).
 const TOOLS = [
   {
+    slug: "look-through",
+    title: "Portfolio look-through: see what you really own",
+    house: null,
+    sentence: "List your funds and shares, and see every company inside them, added up from each fund's own SEC report.",
+  },
+  {
     slug: "deflated-sharpe",
     title: "Deflated Sharpe ratio calculator (PSR and DSR)",
     house: "Deflated Sharpe calculator",

@@ -222,6 +222,7 @@ const STATIC_ROUTES = [
   { path: "/costs", priority: "0.9", changefreq: "weekly" },
   { path: "/standards/paper-evidence", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/deflated-sharpe", priority: "0.9", changefreq: "weekly" },
+  { path: "/tools/look-through", priority: "0.9", changefreq: "monthly" },
   { path: "/tools/evidence-chain", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/trial-accounting", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/selection-risk", priority: "0.9", changefreq: "weekly" },

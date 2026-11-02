@@ -209,6 +209,7 @@ export default defineConfig({
         costs: resolve(root, "costs.html"),
         paperEvidence: resolve(root, "standards", "paper-evidence.html"),
         deflatedSharpe: resolve(root, "tools", "deflated-sharpe.html"),
+        lookThrough: resolve(root, "tools", "look-through.html"),
         evidenceChain: resolve(root, "tools", "evidence-chain.html"),
         trialAccounting: resolve(root, "tools", "trial-accounting.html"),
         selectionRisk: resolve(root, "tools", "selection-risk.html"),

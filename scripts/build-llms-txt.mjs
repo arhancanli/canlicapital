@@ -158,6 +158,7 @@ say();
 say(`- [Corrections](${ORIGIN}/progress): What was published, found wrong, and withdrawn. Read this before trusting any other page.`);
 say(`- [Open data](${ORIGIN}/open): The kill log, the signed hash chain and the glass-box artifacts.`);
 say(`- [Trial accounting](${ORIGIN}/tools/trial-accounting): Every hypothesis ever tested, which is the denominator every Sharpe here is corrected by.`);
+say(`- [Portfolio look-through](${ORIGIN}/tools/look-through): List your funds and shares, and see every company inside them, added up from each fund's SEC report.`);
 say(`- [Deflated Sharpe calculator](${ORIGIN}/tools/deflated-sharpe): Run the correction yourself against a source-bound implementation.`);
 say(`- [Probability of backtest overfitting calculator](${ORIGIN}/tools/backtest-overfitting): Run Combinatorially Symmetric Cross-Validation on your own matrix of variant returns, the same core the validation API imports.`);
 say(`- [Execution Reality Lab](${ORIGIN}/tools/execution): the same strategy under six execution assumptions, measuring which are costs (negative on every series) and which are re-timings (sign unreliable per series). Educational, synthetic.`);
