@@ -289,3 +289,16 @@ test("guidance record: a release with no guidance shows nothing, and always beat
   const misses = summarizeRecord(Array.from({ length: 4 }, (_, i) => ({ quarter: `Q${i}`, measure: "eps", unit: "USD", position: i < 2 ? "below the range" : "within the range" })));
   assert.match(reading("Acme", misses[0]), /fell short 2 times: Q0, Q1/);
 });
+
+test("a filing whose listed document is gone is read from the whole submission", async () => {
+  const body = `<DOCUMENT>\n<TYPE>10-K\n<TEXT>\n${LONG}\n\n${OTHER}\n</TEXT>\n</DOCUMENT>`;
+  const s = sessionFor((url) => {
+    if (/company_tickers/.test(url)) return json({ 0: { cik_str: 1, ticker: "ACME", title: "Acme Corp" } });
+    if (/submissions\/CIK0000000001\.json/.test(url)) return json({ cik: "1", name: "Acme Corp", tickers: ["ACME"], filings: { recent: { accessionNumber: ["0000000001-01-000001"], filingDate: ["2001-03-07"], reportDate: ["2000-12-31"], form: ["10-K"], primaryDocument: ["0001.txt"] }, files: [] } });
+    if (url.endsWith("/0000000001-01-000001.txt")) return text(body);
+    return null;
+  });
+  const r = await filingMemory(s, { company: "ACME", query: "supply chain" });
+  assert.equal(r.not_read, undefined);
+  assert.equal(r.rows[0][4], 1);
+});

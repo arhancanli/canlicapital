@@ -2,12 +2,16 @@
 // each sees only what the protocol shows it. Give each agent its own model and brief; scripted traders
 // fill out the market, and a shock arrives partway through. Made-up assets and money.
 //
-//   node recipes/exchange_agents.mjs agents.json --steps 40
+//   export ANTHROPIC_BASE_URL=https://api.anthropic.com/v1 ANTHROPIC_API_KEY=...
+//   export OPENAI_BASE_URL=https://api.openai.com/v1 OPENAI_API_KEY=...
+//   node recipes/exchange_agents.mjs --steps 40 --agents '[
+//     {"name": "claude-analyst", "brief": "You are a fundamental analyst.", "provider": "ANTHROPIC", "model": "claude-haiku-5-5"},
+//     {"name": "gpt-risk", "brief": "You manage risk and hate drawdowns.", "provider": "OPENAI", "model": "..."}]'
 //
-// agents.json is a list: [{"name": "claude-analyst", "brief": "You are a fundamental analyst.", "base_url": "https://api.anthropic.com/v1", "model": "claude-haiku-5-5", "key_env": "ANTHROPIC_API_KEY"},
-//                         {"name": "gpt-risk", "brief": "You manage risk and hate drawdowns.", "base_url": "https://api.openai.com/v1", "model": "...", "key_env": "OPENAI_API_KEY"}]
-// Any OpenAI-compatible endpoint works, including a local model. Keys come from your environment.
-import { mkdtempSync, readFileSync } from "node:fs";
+// Any OpenAI-compatible endpoint works, including a local model. Where a request goes and which key it
+// carries come only from your environment, as <PROVIDER>_BASE_URL and <PROVIDER>_API_KEY, so an agent
+// list someone else wrote cannot send your key anywhere.
+import { mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -34,9 +38,11 @@ export const promptFor = (brief, view) => [
 ];
 
 export function chatWith(agent, env = process.env, fetchImpl = fetch) {
+  if (!/^[A-Z][A-Z0-9_]{1,30}$/.test(String(agent.provider))) throw new Error(`${agent.name}: provider must be a name such as OPENAI, not ${agent.provider}.`);
+  const base = env[`${agent.provider}_BASE_URL`], key = env[`${agent.provider}_API_KEY`];
+  if (!base) throw new Error(`${agent.name}: set ${agent.provider}_BASE_URL.`);
   return async (messages) => {
-    const key = agent.key_env ? env[agent.key_env] : undefined;
-    const r = await fetchImpl(`${agent.base_url.replace(/\/$/, "")}/chat/completions`, { method: "POST", headers: { "Content-Type": "application/json", ...(key ? { Authorization: `Bearer ${key}` } : {}) }, body: JSON.stringify({ model: agent.model, messages, temperature: 0.2, max_tokens: 400 }) });
+    const r = await fetchImpl(`${base.replace(/\/$/, "")}/chat/completions`, { method: "POST", headers: { "Content-Type": "application/json", ...(key ? { Authorization: `Bearer ${key}` } : {}) }, body: JSON.stringify({ model: agent.model, messages, temperature: 0.2, max_tokens: 400 }) });
     if (!r.ok) throw new Error(`${agent.name}'s model answered ${r.status}`);
     return (await r.json()).choices[0].message.content;
   };
@@ -44,9 +50,8 @@ export function chatWith(agent, env = process.env, fetchImpl = fetch) {
 
 async function main() {
   const flag = (name, dflt) => { const i = process.argv.indexOf(name); return i >= 0 ? process.argv[i + 1] : dflt; };
-  const file = process.argv[2];
-  if (!file || file.startsWith("--")) { process.stderr.write("usage: node recipes/exchange_agents.mjs agents.json [--steps 40] [--seed 1] [--shock-step 20]\n"); process.exit(2); }
-  const agents = JSON.parse(readFileSync(file, "utf8")), steps = Number(flag("--steps", 40)), shockAt = Number(flag("--shock-step", Math.floor(steps / 2)));
+  if (!flag("--agents")) { process.stderr.write("usage: node recipes/exchange_agents.mjs --agents '<JSON list>' [--steps 40] [--seed 1] [--shock-step 20]\n"); process.exit(2); }
+  const agents = JSON.parse(flag("--agents")), steps = Number(flag("--steps", 40)), shockAt = Number(flag("--shock-step", Math.floor(steps / 2)));
   const exchange_file = join(mkdtempSync(join(tmpdir(), "exchange-")), "exchange.json");
   const connect = async () => { const c = new Client({ name: "exchange-agent", version: "1" }); await c.connect(new StdioClientTransport({ command: command[0], args: command.slice(1), env: { ...process.env, CANLI_PACKS: "backtest" } })); return c; };
   const run = async (client, name, args) => {

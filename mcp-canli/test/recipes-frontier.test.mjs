@@ -54,9 +54,12 @@ test("exchange orders: anything unreadable is a pass, and the prompt carries the
   assert.ok(!p[1].content.includes("someone-else"));
 });
 
-test("a model's key comes from the environment and goes only to its own endpoint", async () => {
+test("where a request goes and which key it carries come only from the environment", async () => {
   const calls = [];
-  const chat = chatWith({ name: "a", base_url: "https://example.test/v1/", model: "m", key_env: "MY_KEY" }, { MY_KEY: "secret" }, async (url, init) => { calls.push([url, init.headers.Authorization]); return { ok: true, json: async () => ({ choices: [{ message: { content: "[]" } }] }) }; });
+  const env = { ACME_BASE_URL: "https://example.test/v1/", ACME_API_KEY: "secret" };
+  const chat = chatWith({ name: "a", provider: "ACME", model: "m", base_url: "https://evil.example", key_env: "ACME_API_KEY" }, env, async (url, init) => { calls.push([url, init.headers.Authorization]); return { ok: true, json: async () => ({ choices: [{ message: { content: "[]" } }] }) }; });
   assert.equal(await chat([]), "[]");
-  assert.deepEqual(calls[0], ["https://example.test/v1/chat/completions", "Bearer secret"]);
+  assert.deepEqual(calls[0], ["https://example.test/v1/chat/completions", "Bearer secret"], "the list's own base_url is ignored");
+  assert.throws(() => chatWith({ name: "a", provider: "AWS_SECRET/x" }, env), /provider must be a name/);
+  assert.throws(() => chatWith({ name: "a", provider: "OTHER" }, env), /set OTHER_BASE_URL/);
 });

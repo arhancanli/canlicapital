@@ -184,3 +184,18 @@ test("a file that is not an exchange is refused without quoting it", () => {
 test("one call cannot run an enormous market", () => {
   assert.throws(() => exchangeRun({ steps: 20000, assets: 10, personas: { noise: 200 } }), /agent-steps/);
 });
+
+test("with several assets, a market maker keeps quoting all of them", () => {
+  const s = createExchange({ seed: 4, assets: 3, personas: { market_maker: 4, value: 0, momentum: 0, noise: 0, deleverager: 0, stop_loss: 0, levered_long: 0 } });
+  stepExchange(s);
+  for (const a of s.assets) assert.ok(s.books[a.id].bids.length > 0 && s.books[a.id].asks.length > 0, a.id);
+});
+
+test("a book has a depth limit", () => {
+  const s = createExchange({ seed: 1, personas: { market_maker: 0, value: 0, momentum: 0, noise: 0, deleverager: 0, stop_loss: 0, levered_long: 0 } });
+  s.agents.me = { cash: 1e12, holdings: { ART1: 1e9 }, persona: "agent", forced: 0, trades: 0, start: 1e12 };
+  s.joined.push("me");
+  for (let i = 0; i < 45; i += 1) { s.pending.me = Array.from({ length: 50 }, (_, j) => ({ type: "limit", asset: "ART1", side: "sell", quantity: 1, price: s.assets[0].last + 1 + i + j / 100 })); stepExchange(s); }
+  assert.equal(s.books.ART1.asks.length, 2000);
+  assert.ok(s.rejected >= 250);
+});

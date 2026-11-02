@@ -208,8 +208,11 @@ function match(s, asset, side, agent, quantity, limit, forced) {
   }
   return left;
 }
+const MOST_RESTING = 2000;
 function rest(s, asset, side, agent, quantity, price) {
   const list = side === "buy" ? s.books[asset.id].bids : s.books[asset.id].asks;
+  // A book this deep is refused more orders, so no one can make matching slow for everyone.
+  if (list.length >= MOST_RESTING) { s.rejected += 1; return null; }
   const o = { id: s.next_order, agent, quantity, price };
   s.next_order += 1;
   let i = list.length;
@@ -282,12 +285,13 @@ function personaOrders(s, name, me) {
   const withdrawn = s.step < s.withdrawn_until;
   const equity = worth(s, me);
   if (equity <= 0) { me.bust = true; return [{ type: "cancel" }]; }
+  // Makers lift all their quotes once and post afresh, so quoting one asset does not cancel another's.
+  if (me.persona === "market_maker") out.push({ type: "cancel" });
   for (const asset of s.assets) {
     const last = asset.last, have = me.holdings[asset.id] ?? 0, id = asset.id;
     // A size as a share of this agent's own equity, in shares, at least one.
     const shares = (part) => Math.max(1, Math.floor(equity * part / s.assets.length / last));
     if (me.persona === "market_maker") {
-      out.push({ type: "cancel" });
       // Makers step back on their own when prices are moving fast, as well as when a shock tells them to.
       const moving = Math.abs(recentReturn(s, id, 3)) > 0.03;
       if (withdrawn || moving) continue;
@@ -418,12 +422,18 @@ export function exchangeReport(args) {
 // One whole run with only scripted personas, in one call: for comparing set-ups.
 export const exchangeRunInput = exchangeNewInput.omit({ exchange_file: true }).extend({ steps: z.number().int().min(1).max(20000).describe("How many steps to run.") }).strict();
 // About ten seconds of work: one call cannot hold a process, or the hosted server, for long.
-const MOST_WORK = 3e6;
+const MOST_WORK = 3e6, MOST_MS = 20000;
 export function exchangeRun(args) {
   const { steps, ...rest } = exchangeRunInput.parse(args);
   const s = createExchange(rest);
   const work = steps * Object.keys(s.agents).length * s.assets.length;
   if (work > MOST_WORK) throw new RangeError(`That is ${work.toLocaleString("en-US")} agent-steps, and one call does at most ${MOST_WORK.toLocaleString("en-US")}. Use fewer steps, agents or assets.`);
-  for (let i = 0; i < steps; i += 1) stepExchange(s);
+  // Steps with deep books cost more than the count above can see, so time is watched too. A run this
+  // slow fails whole: a part of a run would not match anyone's replay.
+  const began = Date.now();
+  for (let i = 0; i < steps; i += 1) {
+    stepExchange(s);
+    if (Date.now() - began > MOST_MS) throw new RangeError(`This run was still going at step ${s.step} after ${MOST_MS / 1000} seconds. Use fewer steps, agents or assets.`);
+  }
   return report(s);
 }

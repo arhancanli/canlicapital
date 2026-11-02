@@ -117,7 +117,12 @@ export function annualPartOf(submission) {
   const keep = docs.map((m) => m[1]).filter((d) => /<TYPE>\s*(10-K|20-F|40-F|EX-13)/i.test(d));
   return (keep.length ? keep : docs.map((m) => m[1])).map((d) => {
     const body = d.match(/<TEXT>([\s\S]*?)(?:<\/TEXT>|$)/i)?.[1] ?? d;
-    return /<(?:html|p|div|table)\b/i.test(body) ? htmlToText(body) : decodeEntities(body.replace(/<\/?(?:page|c|s|table|caption|fn)\b[^>]*>/gi, ""));
+    if (/<(?:html|p|div)\b/i.test(body)) return htmlToText(body);
+    // Old filings mark pages and tables with their own tags. Repeated until nothing changes, so a tag
+    // split by another cannot survive one pass.
+    let plain = body;
+    for (let prev = null; prev !== plain;) { prev = plain; plain = plain.replace(/<\/?[a-z][^<>]*>/gi, ""); }
+    return decodeEntities(plain.replace(/[<>]/g, " "));
   }).join("\n\n");
 }
 
@@ -293,7 +298,9 @@ async function reportParagraphs(session, cik, filing, form) {
   const name = String(filing.primaryDocument ?? "").replace(/^xsl[^/]*\//, "");
   const url = name ? `${base}/${name}` : `${base}/${filing.accessionNumber}.txt`;
   const plain = !name || /\.txt$/i.test(name);
-  let text = await getText(session, url, { maxBytes: 32 * 1024 * 1024, transform: (t) => (plain ? annualPartOf(t) : htmlToText(t)) });
+  const read1 = (u) => getText(session, u, { maxBytes: 32 * 1024 * 1024, transform: (t) => (plain ? annualPartOf(t) : htmlToText(t)) });
+  // Some filings around 2001 list a document EDGAR no longer serves; the whole submission still has it.
+  let text = await read1(url).catch((err) => { if (plain && err instanceof NotFound && name) return read1(`${base}/${filing.accessionNumber}.txt`); throw err; });
   let read = url;
   // A short 10-K usually incorporates its annual report to shareholders, filed as Exhibit 13.
   if (!plain && text.split(/\s+/).length < 12000) {
