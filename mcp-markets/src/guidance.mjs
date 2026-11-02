@@ -357,6 +357,8 @@ export function guidanceFromSentence(sentence, context = {}) {
     if (/^\s*(?:negative |positive |adverse |unfavorable |favorable )?impacts?\b/i.test(sentence.slice(f.end, f.end + 30))) continue;
     // "up from $2.92 and $2.98" is what it replaced, both figures of it.
     if (/(?<!\brang(?:e|es|ing)\s)\bfrom\s*(?:a\s+)?$/i.test(sentence.slice(Math.max(0, f.at - 16), f.at)) || (replaced !== null && /^\s*and\s*$/i.test(sentence.slice(replaced, f.at)))) { replaced = f.end; continue; }
+    // "rising 3% to 8% compared with adjusted diluted earnings per share of $2.07" is last year's figure.
+    if (/\bcompared (?:with|to)\b[^;,]{0,90}$/i.test(sentence.slice(0, f.at))) continue;
     // "up from the prior guidance range of 4.0% to 4.5%" is what it replaced.
     if (/\b(?:from|versus|compared (?:to|with)|previous(?:ly)?|prior)\b[^,;]{0,30}\b(?:prior|previous)?\s*(?:guidance|outlook|range|forecast|estimate)\b[^,;$%\d]{0,20}$/i.test(sentence.slice(Math.max(0, f.at - 60), f.at))) continue;
     const { measure, label } = measureNear(sentence, f.at, own);
@@ -512,6 +514,8 @@ export function guidanceFromTable(t) {
       const header = head[j] ?? "";
       // A results column beside the outlook ("2026 Outlook | 2025 Actual") is not guidance.
       if (/\b(?:actual|actuals|reported|results?)\b/i.test(header) && !/\b(?:outlook|guidance|forecast|expected)\b/i.test(header)) return;
+      // A guide already replaced is not the guide ("Previous Range | Current Range").
+      if (/\b(?:previous|prior|former|old)\b/i.test(header) && !/\b(?:current|updated|new)\b/i.test(header)) return;
       // An assumptions column holds other measures' figures, not this row's ("Net interest expense $230M").
       if (/\bassumptions?\b/i.test(header)) return;
       const sentence = `${label}: ${text}`;

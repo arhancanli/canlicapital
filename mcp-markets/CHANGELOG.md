@@ -11,6 +11,7 @@ New tool: `exposure_map`, who depends on a company, from what others say in thei
 - A result too far from a dollar range to be the same thing is now not placed at all.
 - A guide that names no basis is not called a miss when the adjusted result lands elsewhere: Gen Digital's EPS guide of $0.68 to $0.70 against a diluted $0.36 and a non-GAAP figure inside the range.
 - "Excluding special items" now reads as adjusted, and "fiscal 2025" as a year.
+- "GAAP diluted EPS and non-GAAP diluted EPS of $0.45 and $0.64, respectively" goes one figure each. Last year's figure after "compared with" and a "Previous Range" column are not read as the guide.
 - `guidance_record` counts one line a quarter for each measure, and a line that was not placed counts for nothing.
 
 - `shipping_activity` asks PortWatch less: every chokepoint in two queries, and one chokepoint in one. It took 18.8 seconds on the hosted server. PortWatch and Wikipedia answers are now kept on disk for six hours.

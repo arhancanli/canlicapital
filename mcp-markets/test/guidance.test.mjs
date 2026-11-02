@@ -353,3 +353,11 @@ test("GAAP and non-GAAP named apart still go one figure each with respectively (
   assert.equal(basisOf("GAAP EPS was $1 and non-GAAP EPS was $2"), "non-GAAP", "without respectively the nearest word still decides");
 });
 
+test("last year's figure and a replaced range are not the guide (Ecolab, Essex)", () => {
+  const items = guidanceFromSentence("Ecolab expects third quarter 2026 adjusted diluted earnings per share in the $2.13 to $2.23 range, rising 3% to 8% compared with adjusted diluted earnings per share of $2.07 last year.");
+  const eps = items.filter((g) => g.measure === "eps" && g.unit === "USD per share");
+  assert.deepEqual(eps.map((g) => [g.low, g.high]), [[2.13, 2.23]]);
+  const table = guidanceFromTable({ caption: "Third quarter guidance", columns: ["line", "Previous Range", "Current Range"], rows: [["Revenues", "1.7% to 3.1%", "2.0% to 2.5%"]] });
+  assert.deepEqual(table.filter((g) => g.measure === "revenue").map((g) => [g.low, g.high]), [[2, 2.5]]);
+});
+
