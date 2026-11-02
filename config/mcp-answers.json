@@ -680,7 +680,7 @@
       "title": "Does a company beat its own guidance?",
       "question": "How often does a company beat its own guidance?",
       "short": "Beating guidance",
-      "answer": "Over 12 guided quarters, NVIDIA's revenue came in above its own range 11 times and within it once. canli-mcp's guidance_record sets each quarter's guidance against what followed, from the company's own press releases, free with no key. A company that nearly always beats may simply set its range low.",
+      "answer": "Over 11 guided quarters, NVIDIA's revenue came in above its own range every time. canli-mcp's guidance_record sets each quarter's guidance against what followed, from the company's own press releases, free with no key. A company that nearly always beats may simply set its range low.",
       "call": {
         "name": "guidance_record",
         "arguments": {
@@ -736,6 +736,51 @@
         "does-a-company-beat-its-guidance",
         "free-sec-edgar-mcp-server",
         "sec-financial-statements-for-ai"
+      ]
+    },
+    {
+      "slug": "who-depends-on-a-company",
+      "title": "Which companies depend on TSMC?",
+      "question": "Which companies depend on a supplier like TSMC?",
+      "short": "Who depends on whom",
+      "answer": "canli-mcp's exposure_map reads what other companies say in their annual reports and lists every filer that names a company, with the passage, free with no key. For TSMC it found 64 filers; of the 20 it read, 19 describe TSMC as a supplier. It reads by rules on the words, so check the passage. Many companies keep suppliers unnamed.",
+      "call": {
+        "name": "exposure_map",
+        "arguments": {
+          "name": "TSMC",
+          "also": [
+            "Taiwan Semiconductor"
+          ]
+        }
+      },
+      "ask": "Which companies depend on TSMC?",
+      "related": [
+        "search-every-annual-report",
+        "does-a-company-beat-its-guidance",
+        "sec-financial-statements-for-ai"
+      ]
+    },
+    {
+      "slug": "what-happened-to-my-stocks-this-week",
+      "title": "What happened to my stocks this week?",
+      "question": "Can AI tell me what happened to my stocks this week?",
+      "short": "My week",
+      "answer": "canli-mcp's my_week sums up a week across what you hold in plain words: how each holding moved, what it told the SEC about, and when it is expected to report next, with no view on what to do. It runs on your own machine with npx canli-mcp, free with no key or account.",
+      "call": {
+        "name": "my_week",
+        "arguments": {
+          "holdings": [
+            "AAPL",
+            "NVDA",
+            "VOO"
+          ]
+        }
+      },
+      "ask": "What happened to my stocks this week? I hold Apple, NVIDIA and VOO.",
+      "related": [
+        "after-the-market-falls-10-percent",
+        "does-a-company-beat-its-guidance",
+        "connect-claude-to-stock-data"
       ]
     }
   ]

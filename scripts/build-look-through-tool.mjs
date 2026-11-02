@@ -78,7 +78,7 @@ ${renderProductShellHeader({ active: "" })}
   <section class="lt-about" aria-labelledby="lt-about-title">
     <h2 id="lt-about-title">Why look inside</h2>
     <p>Funds overlap. Own an S&amp;P 500 fund, a technology fund and a few shares you like, and you may hold the same few companies three times over without seeing it. This adds them up, so you can see where your money really sits.</p>
-    <p>It reads what each fund reported, which is a little old by the time it is public. Your holdings stay in your browser and are sent only to look up the funds. It shows what you hold, not what you should buy or sell. <a href="/learn/whats-inside-an-index-fund">Read the short lesson on what is inside an index fund</a>.</p>
+    <p>It reads what each fund reported, which is a little old by the time it is public. Only the tickers are sent, to look up each one. Your amounts stay in your browser. It shows what you hold, not what you should buy or sell. <a href="/learn/whats-inside-an-index-fund">Read the short lesson on what is inside an index fund</a>.</p>
   </section>
 </main>
 ${renderProductShellFooter()}

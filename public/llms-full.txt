@@ -56,6 +56,7 @@ Post-mortems and derivations. These describe method and engineering; none is a p
 - [Was the winning strategy skill or luck?](https://canlicapital.com/notes/best-of-399-strategies): I ran 399 textbook trading strategies on the same prices and asked whether the winner was skill. The answer depended almost entirely on which test I used, because the tests were answering different questions, and only one of them was the question I meant.
 - [The arithmetic of not fooling yourself](https://canlicapital.com/notes/deflating-a-sharpe-ratio): A Sharpe ratio of 1.14 with a p-value of 0.017. Publishable, on the face of it. Whether it means anything depends entirely on a number that does not appear in it: how many things you tried before this one.
 - [The same SEC filing has two acceptance times](https://canlicapital.com/notes/edgar-acceptance-times): EDGAR's submissions API labels each filing's acceptance time as UTC. I checked 450 of them against the filing index pages: in 13 of 25 companies' files every time was late by one US Eastern offset, and the same filing read differently depending on which file it came from.
+- [How often companies beat their own guidance](https://canlicapital.com/notes/how-often-companies-beat-their-guidance): We set what S&P 500 companies said they would report against what they then reported, quarter by quarter, from their own press releases. Given a range, they landed above it far more often than below it: revenue 170 times against 13, earnings per share 259 times against 24.
 - [The one symbol that explained the whole gap](https://canlicapital.com/notes/one-symbol): I could not reproduce my own result. The replay came out materially worse over the same window, on the same code path, from what I believed were the same inputs. The cause was a single delisted token that had quietly left the universe between the two runs.
 - [My agent dropped numbers when it copied data into a tool call](https://canlicapital.com/notes/pasted-data-lost-numbers): Same model, same question, same tool. With 756 daily returns pasted into the prompt, the agent got 4 of 9 runs right; when the tool read the same series from a file, it got 8 of 9, with about a quarter of the tokens.
 - [Seventy files that were never meant to be public](https://canlicapital.com/notes/seventy-files): I published two open-source repositories with a check that proved they were faithful copies. The check passed every time I ran it. It was structurally incapable of failing.
@@ -119,6 +120,8 @@ Short lessons for people investing their own money, using figures from real fili
   - [How often does a company beat its own guidance?](https://canlicapital.com/mcp-servers/answers/does-a-company-beat-its-guidance)
   - [How can I track ships through the Suez Canal, Panama Canal or Strait of Hormuz?](https://canlicapital.com/mcp-servers/answers/track-ships-suez-panama-hormuz)
   - [How can I search every annual report a company has filed for one subject?](https://canlicapital.com/mcp-servers/answers/search-every-annual-report)
+  - [Which companies depend on a supplier like TSMC?](https://canlicapital.com/mcp-servers/answers/who-depends-on-a-company)
+  - [Can AI tell me what happened to my stocks this week?](https://canlicapital.com/mcp-servers/answers/what-happened-to-my-stocks-this-week)
 - [Local paper execution MCP workflow](https://canlicapital.com/mcp-servers/execution): private, Unreleased repository source for supplied sizing, pre-trade checks, signed journals and paper evidence. Explicit local writes; no broker connection or order placement.
 - [OpenAPI 3.1 document](https://canlicapital.com/api/v1/openapi): generated from the endpoints that exist, so it cannot document a route that does not.
 - [Discovery document](https://canlicapital.com/api/v1): every endpoint, with the limits of the API as a whole.
@@ -176,7 +179,7 @@ Arhan Canli is the founder, named author and accountable human for methodology, 
 
 
 ==============================================================================
-FULL TEXT: 12 ENGINEERING NOTES, THEN THE RESEARCH CORPUS
+FULL TEXT: 13 ENGINEERING NOTES, THEN THE RESEARCH CORPUS
 ==============================================================================
 
 
@@ -559,6 +562,64 @@ next day. Since 2025 that is 1 of 31 JPMorgan 8-Ks, none of 21 NVIDIA 8-Ks and n
 insider sales. A file that gives Eastern time labelled as UTC would be worse: every results release
 after the close would land on its own day. `event_study` now calibrates each file this way, with
 two extra requests, and says in its result which it did. Both changes ship in the next release.
+
+
+------------------------------------------------------------------------------
+SOURCE: https://canlicapital.com/notes/how-often-companies-beat-their-guidance
+------------------------------------------------------------------------------
+
+# How often companies beat their own guidance
+
+> We set what S&P 500 companies said they would report against what they then reported, quarter by quarter, from their own press releases. Given a range, they landed above it far more often than below it: revenue 170 times against 13, earnings per share 259 times against 24.
+
+**Sources:** sp500-guidance-2026-11-02.json
+
+**Published 2026-11-02. Every figure is in [the saved run](/glassbox/sp500-guidance-2026-11-02.json), with a row for all 500 companies and a link to each release.**
+
+## What we ran
+
+Many companies tell investors what to expect next quarter, such as revenue in a given range. The next release says what happened, and the headline says the company beat or missed. We wanted to know how much a beat tells you.
+
+We took the 500 companies held by VOO, an S&P 500 fund, and ran the free `guidance_record` tool from [canli-mcp](/mcp-servers) on each one, reading up to 12 quarterly releases. It sets each guide against the next release, and matches the measure, the basis (adjusted against adjusted, GAAP against GAAP) and the unit.
+
+Only 140 of the 498 companies we could read had a figure in their releases that could be matched. Many give guidance on the call or not at all. Apple has no line here, for example. To keep one quarter from counting as a record, the totals use companies with at least 4 guided quarters: 47 for revenue and 54 for earnings per share.
+
+## What came back
+
+Where the guide was a range:
+
+| Measure | Guided quarters | Above the range | Within it | Below it |
+|---|---|---|---|---|
+| Revenue | 341 | 170 (49.9%) | 158 (46.3%) | 13 (3.8%) |
+| Earnings per share | 414 | 259 (62.6%) | 131 (31.6%) | 24 (5.8%) |
+
+Some companies guide to one figure instead, which a result rarely meets exactly, so we count those apart. Revenue came in above a single figure 58 times and below it 4 times. Earnings per share came in above 43 times and below 9 times.
+
+With both kinds together, revenue landed above the guide 55.7% of the time and below it 4.2%, over 409 quarters. Earnings per share landed above 64.8% of the time and below 7.1%, over 466 quarters.
+
+Most of these companies never fell short at all in what we read: 37 of the 47 on revenue and 35 of the 54 on earnings per share.
+
+## Why it matters
+
+If you read company news: a beat is the usual result for a company that guides, so on its own it says little. A company that nearly always beats may simply set its range low. A miss is the rarer event.
+
+If you test trading ideas: a guide is the company's own choice of number. A result above it is not the same as a result above what other people expected, and this study does not measure what the share price did next.
+
+## What went wrong, and the limits
+
+Reading this by rules is harder than it looks. We read random samples by hand before publishing, and each one found mistakes in our own reader. It took a range broken across two lines as one figure at Coherent, a full-year guide as a quarter's at Hershey, last year's figure as the guide at Ecolab, and sales volumes in tonnes as revenue at Mosaic. It also set organic growth against total growth at Zebra. All of these are fixed in the version used here.
+
+In the last sample, 29 of 30 lines were right. The wrong one, at Equinix, read a breakdown of revenue by currency as growth, and that is fixed too. We did not read every line, so expect a small share of the rest to be wrong, and open the link behind any line you rely on.
+
+This covers guidance stated in the release itself, not on a call. It covers companies in the index today, so ones that fell out after bad years are missing, and it reads 12 releases at most. For each company and measure it counts the basis and unit guided most often, one line a quarter. It does not say why a company landed where it did.
+
+Two names returned nothing, because we looked them up by the fund's older names: the SEC now lists Hartford as Hartford Insurance Group and Equity Residential as Vivmark Residential.
+
+This is a record of what was said and what came, not a forecast and not a view on any company.
+
+## Run it yourself
+
+[canli-mcp](/mcp-servers) is free and needs no API key or account. Run `npx -y canli-mcp`, connect it to your AI assistant and ask how often a company has beaten its own guidance. It will use `guidance_record`.
 
 
 ------------------------------------------------------------------------------

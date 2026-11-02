@@ -181,7 +181,9 @@ export function serverPage(s, servers) {
 }
 
 // The question pages: config/mcp-answers.json and their recordings (scripts/lib/mcp-answers.mjs).
-const toolIndex = () => new Map(read('mcp-canli/src/index.json').tools.map(([name, pack, , title, description]) => [name, { name, pack, title, description }]));
+// A tool that runs only on a person's own machine is in no pack's index.
+const LOCAL_TOOLS = [['my_week', 'desk', null, 'This week across what you hold', 'One plain summary across up to 25 holdings: how each moved over the week, what it told the SEC about, and when it is expected to report next. What happened, with no view on what to do.']];
+const toolIndex = () => new Map([...read('mcp-canli/src/index.json').tools, ...LOCAL_TOOLS].map(([name, pack, , title, description]) => [name, { name, pack, title, description }]));
 export function loadAnswers() {
   const config = read('config/mcp-answers.json');
   const recorded = new Map();
