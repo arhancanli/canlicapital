@@ -561,6 +561,38 @@
         "free sec edgar mcp server",
         "mcp server for sec filings"
       ]
+    },
+    {
+      "path": "/mcp-servers/answers/after-the-market-falls-10-percent",
+      "intent": "Learn what has usually happened after the stock market falls 10%",
+      "queries": [
+        "what happens after the stock market falls 10 percent",
+        "stock market correction history what happens next"
+      ]
+    },
+    {
+      "path": "/mcp-servers/answers/does-a-company-beat-its-guidance",
+      "intent": "See how often a company beats its own guidance",
+      "queries": [
+        "how often does a company beat its guidance",
+        "management guidance track record"
+      ]
+    },
+    {
+      "path": "/mcp-servers/answers/track-ships-suez-panama-hormuz",
+      "intent": "Track ship traffic through the Suez Canal, Panama Canal and Strait of Hormuz",
+      "queries": [
+        "ship traffic strait of hormuz data",
+        "suez canal transits per week"
+      ]
+    },
+    {
+      "path": "/mcp-servers/answers/search-every-annual-report",
+      "intent": "Search every annual report a company has filed for one subject",
+      "queries": [
+        "search all 10-k filings of a company",
+        "search a company's annual reports for a topic"
+      ]
     }
   ],
   "expansion_policy": "Add a distinct canonical owner only when its useful answer and source evidence exist. Synonyms stay on the same page. No arbitrary company-by-keyword permutations. Gaps remain explicit until addressed.",
