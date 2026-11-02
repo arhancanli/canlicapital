@@ -2,6 +2,7 @@
 import "../css/check-home.css";
 import "../css/look-through.css";
 import "./navigation.js";
+import { mergeOpened } from "canli-markets-mcp/src/xray-merge.mjs";
 import { fromLink, parseHoldings, toLink } from "./look-through-parse.js";
 
 const byId = (id) => document.getElementById(id);
@@ -11,14 +12,19 @@ const element = (tag, props = {}, ...children) => { const node = Object.assign(d
 const percent = (x) => `${(100 * x).toFixed(x >= 0.1 ? 1 : 2)}%`;
 const whole = (x) => Math.round(x).toLocaleString("en-US");
 
-// Through the same public server anyone's agent can use.
-async function lookThrough(holdings) {
-  const response = await fetch("/mcp/canli", { method: "POST", headers: { "content-type": "application/json", accept: "application/json, text/event-stream" }, body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "tools/call", params: { name: "run_tool", arguments: { name: "portfolio_xray", arguments: { holdings, top: 15 } } } }) });
+// Each holding is opened on the server, the same answer for everyone and kept by the CDN, and added up
+// here with the server's own arithmetic. Only tickers leave this page, never amounts.
+async function openOne(symbol) {
+  const response = await fetch(`/api/open-holding?symbol=${encodeURIComponent(symbol)}`);
   if (response.status === 429) throw new Error("Too many requests in a minute. Wait a moment and press Look inside again.");
   if (!response.ok) throw new Error("This didn't finish. Press Look inside to try again.");
-  const result = (await response.json()).result, body = result?.content?.[0]?.text ?? "";
-  if (result?.isError) throw new Error(body.slice(0, 240) || "This didn't finish. Press Look inside to try again.");
-  return JSON.parse(body);
+  return response.json();
+}
+
+async function lookThrough(holdings) {
+  const symbols = [...new Set(holdings.map((h) => h.symbol.toUpperCase()))];
+  const answers = new Map(await Promise.all(symbols.map(async (symbol) => [symbol, await openOne(symbol)])));
+  return { ...mergeOpened(holdings, (symbol) => answers.get(symbol).opened, { top: 15 }), limits: answers.get(symbols[0]).limits };
 }
 
 function draw(answer, holdings) {

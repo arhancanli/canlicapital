@@ -593,6 +593,30 @@
         "search all 10-k filings of a company",
         "search a company's annual reports for a topic"
       ]
+    },
+    {
+      "path": "/mcp-servers/answers/who-depends-on-a-company",
+      "intent": "Find which companies depend on a supplier or customer",
+      "queries": [
+        "which companies depend on tsmc",
+        "who are nvidia's customers from sec filings"
+      ]
+    },
+    {
+      "path": "/mcp-servers/answers/what-happened-to-my-stocks-this-week",
+      "intent": "Have an AI assistant sum up a week across a person's holdings",
+      "queries": [
+        "what happened to my stocks this week",
+        "ai weekly summary of my portfolio"
+      ]
+    },
+    {
+      "path": "/notes/how-often-companies-beat-their-guidance",
+      "intent": "Learn how often S&P 500 companies land above, within or below their own guidance",
+      "queries": [
+        "how often do companies beat their guidance",
+        "how often do s&p 500 companies beat earnings guidance"
+      ]
     }
   ],
   "expansion_policy": "Add a distinct canonical owner only when its useful answer and source evidence exist. Synonyms stay on the same page. No arbitrary company-by-keyword permutations. Gaps remain explicit until addressed.",

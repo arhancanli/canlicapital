@@ -22,6 +22,7 @@ import * as canli from "canli-mcp/src/server.mjs";
 import { bearerKey, hashKey } from "./_lib/auth.js";
 import { defaultStore } from "./_lib/handler.js";
 import { createStatelessMcpHandler } from "./_lib/mcp-stateless.js";
+import { slidingMinute } from "./_lib/limiter.js";
 import { TIERS, tierLimits } from "./_lib/tiers.js";
 
 // The markets pack reads this when it first loads, on the first request; with it off, price tools
@@ -49,24 +50,8 @@ export function namesAFile(value, depth = 0) {
   return Object.values(value).some((v) => namesAFile(v, depth + 1));
 }
 
-// A sliding minute per caller in this function instance; the oldest callers are forgotten past
-// maxCallers. Returns the seconds to wait, or 0 to go ahead. A call may pass its own limit (a tier's).
-export function createLimiter({ perMinute: defaultPerMinute = REQUESTS_PER_MINUTE, now = () => Date.now(), maxCallers = 10_000 } = {}) {
-  const seen = new Map();
-  return (key, perMinute = defaultPerMinute) => {
-    const t = now();
-    const recent = (seen.get(key) ?? []).filter((x) => t - x < 60_000);
-    seen.delete(key);
-    if (recent.length >= perMinute) {
-      seen.set(key, recent);
-      return Math.max(1, Math.ceil((60_000 - (t - recent[0])) / 1000));
-    }
-    recent.push(t);
-    seen.set(key, recent);
-    if (seen.size > maxCallers) seen.delete(seen.keys().next().value);
-    return 0;
-  };
-}
+// A sliding minute per caller in this function instance: _lib/limiter.js.
+export const createLimiter = (options = {}) => slidingMinute({ perMinute: REQUESTS_PER_MINUTE, ...options });
 
 // The caller: the first address of the X-Forwarded-For header Vercel sets, else the socket's.
 const callerOf = (req) => String(req.headers["x-forwarded-for"] ?? "").split(",")[0].trim() || req.socket?.remoteAddress || "unknown";

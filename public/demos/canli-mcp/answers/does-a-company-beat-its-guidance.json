@@ -1,6 +1,6 @@
 {
- "version": "0.16.0",
- "recorded": "2026-11-02T09:28:45.508Z",
+ "version": "0.16.1",
+ "recorded": "2026-11-02T12:05:41.292Z",
  "call": {
   "name": "guidance_record",
   "arguments": {
@@ -8,16 +8,16 @@
    "quarters": 12
   }
  },
- "model_chars": 7180,
- "ms": 984,
+ "model_chars": 5588,
+ "ms": 691,
  "result": {
-  "ref": "r2",
+  "ref": "r1",
   "company": "NVIDIA CORP",
   "releases_read": 12,
   "from": "2023-11-21",
   "to": "2026-08-26",
   "guided_lines_matched": 24,
-  "reading": "Over 12 guided quarters, NVIDIA CORP's revenue came in above its own range 11 times, within it 1 and below it 0. A company that nearly always beats its range may simply set it low, so its guidance says little on its own.",
+  "reading": "Over 11 guided quarters, NVIDIA CORP's revenue came in above its own range 11 times, within it 0 and below it 0. A company that nearly always beats its range may simply set it low, so its guidance says little on its own.",
   "record": {
    "columns": [
     "measure",
@@ -34,9 +34,9 @@
      "revenue",
      null,
      "USD billion",
-     12,
      11,
-     1,
+     11,
+     0,
      0,
      null
     ],
@@ -374,73 +374,7 @@
   ],
   "evidence": {
    "documents": 28,
-   "columns": [
-    "url",
-    "sha256_16",
-    "retrieved_at"
-   ],
-   "rows": [
-    [
-     "https://www.sec.gov/files/company_tickers.json",
-     "3087398afcb236e5",
-     "2026-11-01T19:16:31.143Z"
-    ],
-    [
-     "https://data.sec.gov/submissions/CIK0001045810.json",
-     "d0d8527d09b31831",
-     "2026-11-02T09:17:34.990Z"
-    ],
-    [
-     "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000073/0001045810-26-000073-index.htm",
-     "62590b389fd4feb9",
-     "2026-10-30T13:13:18.058Z"
-    ],
-    [
-     "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000073/q2fy27pr.htm",
-     "dd5aa8fff6bc2e12",
-     "2026-10-30T13:13:18.375Z"
-    ],
-    [
-     "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000051/0001045810-26-000051-index.htm",
-     "a382dfc4b612bc57",
-     "2026-10-30T13:13:18.451Z"
-    ],
-    [
-     "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000051/q1fy27pr.htm",
-     "e8cf1c4d63f4d41f",
-     "2026-11-02T08:20:04.483Z"
-    ],
-    [
-     "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000019/0001045810-26-000019-index.htm",
-     "80b8a460178dc944",
-     "2026-11-02T08:21:09.131Z"
-    ],
-    [
-     "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000019/q4fy26pr.htm",
-     "8843990f025abb82",
-     "2026-11-02T08:21:09.906Z"
-    ],
-    [
-     "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000228/0001045810-25-000228-index.htm",
-     "3d3255df478262f8",
-     "2026-11-02T08:20:04.821Z"
-    ],
-    [
-     "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000228/q3fy26pr.htm",
-     "88e651f0e91c107b",
-     "2026-11-02T08:20:05.295Z"
-    ],
-    [
-     "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000207/0001045810-25-000207-index.htm",
-     "328d65d0ae99a237",
-     "2026-11-02T08:20:05.637Z"
-    ],
-    [
-     "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000207/q2fy26pr.htm",
-     "210688ffd49b4875",
-     "2026-11-02T08:20:06.023Z"
-    ]
-   ]
+   "list": "show_result with ref r1 and path evidence"
   }
  }
 }
