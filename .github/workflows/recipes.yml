@@ -115,7 +115,7 @@ jobs:
           timeout 120 sh -c 'until curl -fs http://127.0.0.1:7860/ > /dev/null; do sleep 1; done'
           .venv/bin/python - <<'EOF'
           from gradio_client import Client, handle_file
-          out = Client("http://127.0.0.1:7860").predict(handle_file("returns.csv"), 40, api_name="/predict")
+          out = Client("http://127.0.0.1:7860").predict(handle_file("returns.csv"), 40, api_name="/run")
           print(out)
           assert "Probability" in out, out
           EOF
