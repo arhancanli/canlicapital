@@ -12,7 +12,7 @@ const family = path => path === 'index.html' || path === 'agents.html' ? 'home'
   : path.startsWith('tools/') || path === 'annotate.html' ? 'workbench'
   : path.startsWith('companies/') || path === 'companies.html' ? 'reference'
   : path.startsWith('mcp-servers') || path === 'developers.html' ? 'developer'
-  : /^(research|measurements|notes|trials|publication)\//.test(path) ? 'reader'
+  : /^(research|measurements|notes|learn|trials|publication)\//.test(path) ? 'reader'
   : 'chapter';
 
 // Runs after the source generators. Only the site's editable route documents are
@@ -98,7 +98,7 @@ function run() {
       else if (path.endsWith('.html')) files.push(path);
     }
   };
-  for (const dir of ['research','measurements','companies','publication','notes','trials','tools','standards','mcp-servers','datasets','benchmarks']) visit(resolve(root,dir));
+  for (const dir of ['research','measurements','companies','publication','notes','learn','trials','tools','standards','mcp-servers','datasets','benchmarks']) visit(resolve(root,dir));
   const routes = [];
   // every page's name, for the breadcrumb trails the headers carry
   const labels = new Map();

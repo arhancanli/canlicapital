@@ -64,6 +64,16 @@ const noteEntries = () => {
   );
 };
 
+const lessonEntries = () => {
+  const dir = resolve(root, "learn");
+  if (!existsSync(dir)) return {};
+  return Object.fromEntries(
+    readdirSync(dir)
+      .filter((name) => name.endsWith(".html"))
+      .map((name) => [`lesson-${name.slice(0, -5)}`, resolve(dir, name)]),
+  );
+};
+
 const paperEntries = () => {
   const dir = resolve(root, "research");
   if (!existsSync(dir)) return {};
@@ -179,6 +189,7 @@ export default defineConfig({
         annotate: resolve(root, "annotate.html"),
         engineering: resolve(root, "engineering.html"),
         notes: resolve(root, "notes.html"),
+        learn: resolve(root, "learn.html"),
         developers: resolve(root, "developers.html"),
         mcpServers: resolve(root, "mcp-servers.html"),
         benchmarkFilingfacts: resolve(root, "benchmarks/filingfacts.html"),
@@ -207,6 +218,7 @@ export default defineConfig({
         companies: resolve(root, "companies.html"),
         ...companyEntries(),
         ...noteEntries(),
+        ...lessonEntries(),
         ...paperEntries(),
         ...measurementEntries(),
         ...trialEntries(),

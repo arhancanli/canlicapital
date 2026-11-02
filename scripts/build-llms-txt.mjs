@@ -126,6 +126,16 @@ say("Post-mortems and derivations. These describe method and engineering; none i
 say();
 for (const n of notes) say(`- [${n.title}](${ORIGIN}/notes/${n.slug}): ${n.dek}`);
 say();
+say("## Lessons");
+say();
+say("Short lessons for people investing their own money, using figures from real filings. Education, not advice.");
+say();
+say(`- [Learn how the stock market works](${ORIGIN}/learn): The index of lessons.`);
+for (const f of readdirSync(resolve(ROOT, "learn")).filter((name) => name.endsWith(".md")).sort()) {
+  const md = readFileSync(resolve(ROOT, "learn", f), "utf8");
+  say(`- [${md.match(/^# (.+)$/m)[1]}](${ORIGIN}/learn/${f.slice(0, -3)}): ${md.match(/^> (.+)$/m)[1]}`);
+}
+say();
 say("## Machine interfaces");
 say();
 say(`- [Read API](${ORIGIN}/developers): static JSON over the published record. Every response carries its sources with SHA-256 hashes, its claim class, and what it cannot be used to claim.`);

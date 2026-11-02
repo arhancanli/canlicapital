@@ -1,0 +1,77 @@
+{
+  "schema": "canli.learn-examples.v1",
+  "note": "The figures the lessons at /learn use, as filed with the SEC or as computed from these figures. Prices are closing prices on the date given. Education, not advice.",
+  "apple": {
+    "company": "Apple Inc.",
+    "filing": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/aapl-20250927.htm",
+    "accession": "0000320193-25-000079",
+    "filed": "2025-10-31",
+    "units": "USD millions, except per share and shares in thousands",
+    "fiscal_2025": {
+      "year_ended": "2025-09-27",
+      "net_sales": 416161,
+      "cost_of_sales": 220960,
+      "gross_margin": 195201,
+      "research_and_development": 34550,
+      "selling_general_administrative": 27601,
+      "operating_income": 133050,
+      "other_income_net": -321,
+      "income_taxes": 20719,
+      "net_income": 112010,
+      "eps_diluted": 7.46,
+      "diluted_shares_thousands": 15004697,
+      "dividends_declared_per_share": 1.02,
+      "dividends_paid": 15421,
+      "gross_margin_percent": 46.9,
+      "operating_margin_percent": 32.0,
+      "net_margin_percent": 26.9
+    },
+    "fiscal_2024": { "year_ended": "2024-09-28", "operating_income": 123216, "income_taxes": 29749, "net_income": 93736, "eps_diluted": 6.08 },
+    "fiscal_2023": { "year_ended": "2023-09-30", "operating_income": 114301, "income_taxes": 16741, "net_income": 96995 },
+    "tax_note": "Apple's fiscal 2025 10-K says its effective tax rate fell compared to 2024 due to a $10.7 billion year-over-year decrease in the provision for income taxes related to the State Aid Decision.",
+    "tax_change_usd_billions": 10.7,
+    "close_2026_10_30": 344.63,
+    "pe_on_fiscal_2025": 46.2,
+    "pe_on_fiscal_2024": 56.7
+  },
+  "jpmorgan": {
+    "company": "JPMorgan Chase & Co",
+    "accession": "0001628280-26-008131",
+    "filed": "2026-02-13",
+    "fiscal_2025_eps_diluted": 20.02,
+    "close_2026_10_30": 337.04,
+    "pe_on_fiscal_2025": 16.8
+  },
+  "voo": {
+    "fund": "Vanguard 500 Index Fund (VOO)",
+    "report_as_of": "2026-06-30",
+    "report_filed": "2026-08-28",
+    "report_days_after_quarter": 60,
+    "filing": "https://www.sec.gov/Archives/edgar/data/36405/000003640526000473/0000036405-26-000473-index.htm",
+    "stock_lines": 506,
+    "top_10_percent": 36.49,
+    "holdings": [
+      { "name": "NVIDIA", "percent": 7.53, "per_1000_usd": 75 },
+      { "name": "Apple", "percent": 6.61, "per_1000_usd": 66 },
+      { "name": "Microsoft", "percent": 4.31, "per_1000_usd": 43 },
+      { "name": "Amazon", "percent": 3.63, "per_1000_usd": 36 },
+      { "name": "Alphabet class A", "percent": 3.26, "per_1000_usd": 33 },
+      { "name": "Broadcom", "percent": 2.78, "per_1000_usd": 28 },
+      { "name": "Alphabet class C", "percent": 2.6, "per_1000_usd": 26 },
+      { "name": "Micron", "percent": 2.02, "per_1000_usd": 20 },
+      { "name": "Meta", "percent": 1.92, "per_1000_usd": 19 },
+      { "name": "Tesla", "percent": 1.84, "per_1000_usd": 18 }
+    ],
+    "alphabet_both_classes_percent": 5.85,
+    "alphabet_both_classes_per_1000_usd": 58
+  },
+  "luck": {
+    "coin_flips": 10,
+    "people_for_one_run_of_heads": 1024,
+    "false_alarm_percent": 5,
+    "strategies_tried_a": 20,
+    "chance_one_looks_real_a_percent": 64,
+    "strategies_tried_b": 100,
+    "chance_one_looks_real_b_percent": 99.4
+  }
+}
