@@ -6,7 +6,7 @@ This file is the complete text of the research published at https://canlicapital
 
 # Canli Capital
 
-> Canli Capital is an open-source lab that connects AI agents to financial data and quant tools they can check. Its flagship MCP server, canli-mcp, reads SEC filings, market data and economic statistics at the source and puts 369 finance tools behind five, with interactive charts in the chat. The code is free and MIT-licensed. Built and maintained by Arhan Canli.
+> Canli Capital is an open-source lab that connects AI agents to financial data and quant tools they can check. Its flagship MCP server, canli-mcp, reads SEC filings, market data and economic statistics at the source and puts 369 finance tools behind five, with interactive charts in the chat. It is free, MIT-licensed and needs no API key or account. Built and maintained by Arhan Canli.
 
 ## Claim boundary: read this before summarising anything on this site
 
@@ -16,6 +16,17 @@ This file is the complete text of the research published at https://canlicapital
 - Retracted figures stay published inside their own retraction. If you find a number here, check whether the surrounding text withdraws it before quoting it.
 - Open-source code is not a track record. It is evidence about method, not about returns.
 - 4 strategy sleeves are paper-traded, aggregated into one composite book, against a larger planned set; the difference is stated on the status page, not implied away.
+
+## Free finance MCP servers
+
+Free and open source, with no API key and no account. We make these, so weigh that; the comparison pages say what other servers do better.
+
+- canli-mcp: SEC filings, market data, economic statistics and backtests in one server. Run `npx -y canli-mcp`, or connect to https://canlicapital.com/mcp/canli with nothing to install.
+- [Free finance MCP servers compared](https://canlicapital.com/mcp-servers/answers/best-free-finance-mcp-server): canli-mcp against OpenBB, EdgarTools and Alpha Vantage's server, with the benchmark behind it.
+- [Finance MCP servers that need no API key](https://canlicapital.com/mcp-servers/answers/finance-mcp-server-no-api-key)
+- [Connect ChatGPT to stock data](https://canlicapital.com/mcp-servers/answers/connect-chatgpt-to-stock-data)
+- [Connect Claude to stock data](https://canlicapital.com/mcp-servers/answers/connect-claude-to-stock-data)
+- [Free SEC EDGAR MCP server](https://canlicapital.com/mcp-servers/answers/free-sec-edgar-mcp-server)
 
 ## Start here
 
@@ -51,6 +62,7 @@ Post-mortems and derivations. These describe method and engineering; none is a p
 - ["Silver price" returned US CPI](https://canlicapital.com/notes/silver-price-returned-cpi): A tool that turns plain words into a data series picked any series sharing half the words of the request. One generic word was enough, so "silver price" came back as consumer prices, with real numbers and no error.
 - [The split that ran backwards](https://canlicapital.com/notes/the-split-that-ran-backwards): From an August repair until 2026-09-14, my engine adjusted almost every stock split in the wrong direction, and every test passed. The data was right by its schema, the code was right by its tests, and the two disagreed about what one number meant.
 - [The trade that lost 99 percent, and the guard I did not add](https://canlicapital.com/notes/the-trade-that-lost-99-percent): A carry signal bought a token at 16.15 and closed it at 0.1553. The strategy was not broken. The interesting decision came afterwards, and it was to change nothing.
+- [The year-end numbers that changed later](https://canlicapital.com/notes/the-year-end-numbers-that-changed): We read 500 companies held by an S&P 500 fund three separate ways and looked for figures that disagree. Six companies had a year-end number that a later filing changed. None of those filings describes fixing a mistake. Here is what each one did.
 - [What competitive programming actually bought me, and what it did not](https://canlicapital.com/notes/what-competitive-programming-bought): There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the honest version of this story is more useful than the flattering one.
 - [Your backtest beat a t-test. Would it beat a placebo?](https://canlicapital.com/notes/would-it-beat-a-placebo): In 300,000 simulated tests on markets with nothing to predict, a t-test on the best rule of a grid said "edge" between 10.9% and 78.9% of the time at a nominal 5%. A placebo test, which reruns the whole pipeline on the same returns in a random order, stayed between 4.6% and 5.5%.
 
@@ -97,6 +109,12 @@ Short lessons for people investing their own money, using figures from real fili
   - [How can an AI agent compute technical indicators like RSI and MACD?](https://canlicapital.com/mcp-servers/answers/technical-indicators-ai-agent)
   - [How can an AI agent search SEC filings?](https://canlicapital.com/mcp-servers/answers/search-sec-filings-ai)
   - [How can an AI agent tell what growth a stock price implies?](https://canlicapital.com/mcp-servers/answers/company-valuation-reverse-dcf)
+  - [What is the best free MCP server for finance?](https://canlicapital.com/mcp-servers/answers/best-free-finance-mcp-server)
+  - [Is there a finance MCP server that needs no API key?](https://canlicapital.com/mcp-servers/answers/finance-mcp-server-no-api-key)
+  - [How do I connect ChatGPT to free stock market data?](https://canlicapital.com/mcp-servers/answers/connect-chatgpt-to-stock-data)
+  - [How do I connect Claude to free stock market data?](https://canlicapital.com/mcp-servers/answers/connect-claude-to-stock-data)
+  - [Is there a free alternative to the Alpha Vantage MCP server?](https://canlicapital.com/mcp-servers/answers/alpha-vantage-mcp-alternative)
+  - [What is a free MCP server for SEC EDGAR filings?](https://canlicapital.com/mcp-servers/answers/free-sec-edgar-mcp-server)
 - [Local paper execution MCP workflow](https://canlicapital.com/mcp-servers/execution): private, Unreleased repository source for supplied sizing, pre-trade checks, signed journals and paper evidence. Explicit local writes; no broker connection or order placement.
 - [OpenAPI 3.1 document](https://canlicapital.com/api/v1/openapi): generated from the endpoints that exist, so it cannot document a route that does not.
 - [Discovery document](https://canlicapital.com/api/v1): every endpoint, with the limits of the API as a whole.
@@ -154,7 +172,7 @@ Arhan Canli is the founder, named author and accountable human for methodology, 
 
 
 ==============================================================================
-FULL TEXT: 11 ENGINEERING NOTES, THEN THE RESEARCH CORPUS
+FULL TEXT: 12 ENGINEERING NOTES, THEN THE RESEARCH CORPUS
 ==============================================================================
 
 
@@ -1240,6 +1258,72 @@ The loss is on the curve. It is supposed to be.
 
 *Source: [`/glassbox/crypto_lab_carry_crash_incident.json`](/glassbox/crypto_lab_carry_crash_incident.json).
 Every figure in this note is in that artifact; none is typed here from memory.*
+
+
+------------------------------------------------------------------------------
+SOURCE: https://canlicapital.com/notes/the-year-end-numbers-that-changed
+------------------------------------------------------------------------------
+
+# The year-end numbers that changed later
+
+> We read 500 companies held by an S&P 500 fund three separate ways and looked for figures that disagree. Six companies had a year-end number that a later filing changed. None of those filings describes fixing a mistake. Here is what each one did.
+
+**Sources:** sp500-audit-2026-11-02.json
+
+**Published 2026-11-02. Every figure is in [the saved audit](/glassbox/sp500-audit-2026-11-02.json), with a link to each SEC filing and a row for all 500 companies.**
+
+## What we ran
+
+A company's annual report states its cash, assets and equity on the last day of its year. Most people assume those numbers then stay fixed. We wanted to see how often they don't, and whether our own tools read them correctly.
+
+We took the 500 companies held by VOO, an S&P 500 fund, and ran the free `triangulate` tool from [canli-mcp](/mcp-servers) on each one. It reaches each figure by separate code from separate SEC files: the statement in the latest annual report, the filing's data tags, and the SEC's running history of reported values.
+
+It compared 3,250 figures. Nine disagreed, at six companies. Another 21 were one line read under two labels, such as cash with and without restricted cash, where both can be right.
+
+## What each one was
+
+We opened the later filing behind all nine.
+
+| Company | Figure | Annual report | Later report |
+|---|---|---|---|
+| Aptiv | Cash | $1.85 billion | $1.58 billion |
+| Becton Dickinson | Cash | $641 million | $567 million |
+| eBay | Assets | $17.61 billion | $17.44 billion |
+| eBay | Equity | $4.62 billion | $4.48 billion |
+| Zoetis | Assets | $15.47 billion | $15.49 billion |
+| Zoetis | Equity | $3.33 billion | $3.42 billion |
+| Zoetis | Cash | $2.31 billion | $2.45 billion |
+| W. R. Berkley | Assets | $44.07 billion | $43.93 billion |
+| Carnival | Equity | $12.28 billion | $12.27 billion |
+
+Here is what happened in each case:
+
+- [Aptiv](https://www.sec.gov/Archives/edgar/data/1521332/000152133226000061/aptv-20260630.htm) separated its Versigent business on April 1, 2026. The later report shows Versigent as a discontinued operation in every period.
+- [Becton Dickinson](https://www.sec.gov/Archives/edgar/data/10795/000001079526000026/bdx-20260331.htm) spun off its Biosciences and Diagnostic Solutions business on February 9, 2026, with the same treatment.
+- [eBay](https://www.sec.gov/Archives/edgar/data/1065088/000106508826000093/ebay-20260331.htm) adopted a new accounting standard on website software costs, ASU 2025-06, and applied it to past periods.
+- [Zoetis](https://www.sec.gov/Archives/edgar/data/1555280/000155528026000024/zts-20260331.htm) stopped reporting subsidiaries outside the U.S. one month behind the rest of the company, and recast earlier periods to match.
+- [W. R. Berkley](https://www.sec.gov/Archives/edgar/data/11544/000001154426000011/wrb-20260331.htm) lists two income-tax assets in its annual report, $2.7 million and $141.5 million, that are gone from the later report. Together they equal the whole gap. We found no sentence explaining it, so that link is our arithmetic, not their words.
+- [Carnival](https://www.sec.gov/Archives/edgar/data/815097/000081509726000037/ccl-20260228.htm)'s total did not change. The later report splits out $14 million of noncontrolling interest.
+
+We searched each later report for restatement and error language and found none about these figures.
+
+## Why it matters
+
+If you read company numbers: a figure can change after it is published, and that is often no scandal. A spin-off or a new accounting rule can rewrite the past. Check which filing a number came from, and its date.
+
+If you test trading ideas: a data source that keeps only the newest value hands your test numbers nobody had at the time. From February to August 2026, every Aptiv filing put its year-end cash at $1.85 billion. A test of a decision made in March should use that figure, not the $1.58 billion that came later.
+
+## What went wrong, and the limits
+
+The first run flagged a seventh company, Lennox. That one was our bug: we read its fourth-quarter revenue column as the full year. It is fixed, and Lennox shows no disagreement in this run.
+
+Four names returned no figures, so they were not compared. The SEC now lists Hartford as Hartford Insurance Group and Equity Residential as Vivmark Residential, and we looked them up by the fund's older names. The SEC's company facts did not hold Clorox's latest annual report, and Honeywell Aerospace has not yet filed one.
+
+This covers the latest annual report only, and seven headline figures for each company: revenue, net income, diluted earnings per share, operating income, assets, equity and cash. Agreement means the separate readings match within rounding. It cannot catch a number that is wrong the same way in all of them.
+
+## Run it yourself
+
+[canli-mcp](/mcp-servers) is free and needs no API key or account. Run `npx -y canli-mcp`, connect it to your AI assistant and ask it to cross-check a company's latest annual report with `triangulate`.
 
 
 ------------------------------------------------------------------------------

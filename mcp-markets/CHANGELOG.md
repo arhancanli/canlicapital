@@ -8,6 +8,7 @@ New tools: `filing_memory`, `filing_sentiment`, `guidance_record`, `what_happene
 - Optional local models, installed only by `canli-mcp models install` and never by a tool. No vector database: at a few thousand paragraphs a company, a file of plain floats is as fast.
 - The filings feed was answered from the ten-minute cache, so `canli-mcp watch --every 60` saw new filings only every ten minutes against the two it claimed. It is now read on each poll.
 - Windows quotes and dashes in older filings (numeric entities 145 to 151) now read as quotes and dashes.
+- `verify_claims` says what a loose sentence is missing: this company, one period, or both.
 
 ## 0.10.1
 
