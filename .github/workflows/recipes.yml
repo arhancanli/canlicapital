@@ -1,13 +1,16 @@
-# Runs the agent recipes for real: the Kubernetes job on a cluster on the runner (kind), and each
-# framework recipe through a small model on the runner, with no API key. Runs when they change, or on
-# request. A pass says the job finished, or that the model loop ran and the server received tool calls.
-# It says nothing about how good a small model's answers are.
+# Runs the recipes and templates for real: the Kubernetes job on a cluster on the runner (kind), the
+# GitLab template in its own image, the Hugging Face Space started and used, and each framework recipe
+# through a small model on the runner, with no API key. Runs when they change, or on request. A pass says
+# the job finished, or that the model loop ran and the server received tool calls. It says nothing about
+# how good a small model's answers are, and none of this ran on GitLab's or Hugging Face's own servers.
 name: Agent recipes
 
 on:
   pull_request:
     paths:
       - mcp-canli/recipes/**
+      - integrations/ci/**
+      - integrations/huggingface_space/**
       - .github/workflows/recipes.yml
   workflow_dispatch:
 
@@ -76,6 +79,49 @@ jobs:
           kubectl get pods -o wide || true
           kubectl describe job canli-cpcv || true
           kubectl logs -l job-name=canli-cpcv --tail=30 --prefix || true
+
+  gitlab-template:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - name: Run the template the way GitLab would, in its own image
+        run: |
+          python3 -c 'import random; random.seed(7); print("date,r"); [print(f"2024-{1+i//28:02d}-{1+i%28:02d},{random.gauss(0.0005, 0.01):.6f}") for i in range(300)]' > returns.csv
+          git add returns.csv
+          npx -y gitlab-ci-local@4.77.0 --file integrations/ci/gitlab-validate-backtest.yml --variable TRIALS=40 validate-backtest
+          report="$(find . -name canli-report.json -not -path './node_modules/*' | head -1)"
+          test -n "$report"
+          cat "$report"
+          grep -q sha256 "$report"
+
+  space:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Start the Hugging Face Space here and use it
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install --quiet -r integrations/huggingface_space/requirements.txt
+          python -c 'import random; random.seed(7); print("date,r"); [print(f"2024-{1+i//28:02d}-{1+i%28:02d},{random.gauss(0.0005, 0.01):.6f}") for i in range(300)]' > returns.csv
+          (cd integrations/huggingface_space && nohup ../../.venv/bin/python app.py > "$RUNNER_TEMP/space.log" 2>&1 &)
+          timeout 120 sh -c 'until curl -fs http://127.0.0.1:7860/ > /dev/null; do sleep 1; done'
+          .venv/bin/python - <<'EOF'
+          from gradio_client import Client, handle_file
+          out = Client("http://127.0.0.1:7860").predict(handle_file("returns.csv"), 40, api_name="/predict")
+          print(out)
+          assert "Probability" in out, out
+          EOF
+      - name: Say what happened
+        if: failure()
+        run: tail -30 "$RUNNER_TEMP/space.log" || true
 
   model-loop:
     runs-on: ubuntu-latest
