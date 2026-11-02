@@ -1,0 +1,32 @@
+/* The look-through: the homepage's cobalt desk, with the answer as a table on paper below it. */
+.lt-hero { background: var(--ck-cobalt); color: var(--ck-paper); padding: clamp(96px, 12vw, 136px) clamp(16px, 6vw, 96px) clamp(48px, 7vw, 80px); }
+.lt-hero h1 { font-family: var(--ck-display); font-size: clamp(2.5rem, 6vw, 4.25rem); line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 16px; max-width: 16ch; }
+.lt-hero p { margin: 0 0 24px; max-width: 34em; line-height: 1.5; font-size: 1.05rem; }
+.lt-form { display: grid; gap: 12px; max-width: 480px; }
+.lt-form label { font-weight: 600; font-size: 0.92rem; }
+.lt-form textarea { font: inherit; padding: 14px; border: 0; border-radius: 8px; min-height: 132px; color: var(--ck-ink); resize: vertical; }
+.lt-form textarea:focus-visible, .lt-form button:focus-visible, .lt-try button:focus-visible { outline: 3px solid #ffd84d; outline-offset: 2px; }
+.lt-form button[type="submit"] { justify-self: start; font: inherit; font-weight: 700; color: var(--ck-cobalt); background: var(--ck-paper); border: 0; border-radius: 8px; padding: 12px 24px; cursor: pointer; }
+.lt-status { min-height: 1.5em; margin: 0; }
+.lt-try { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 16px; }
+.lt-try button { font: inherit; font-size: 0.9rem; color: var(--ck-paper); background: transparent; border: 1px solid rgb(255 255 255 / 0.55); border-radius: 999px; padding: 6px 14px; cursor: pointer; }
+.lt-result { padding: clamp(40px, 6vw, 72px) clamp(16px, 6vw, 96px); scroll-margin-top: 72px; }
+.lt-summary { font-family: var(--ck-display); font-size: clamp(1.4rem, 3vw, 2.1rem); line-height: 1.2; margin: 0 0 16px; max-width: 28em; }
+.lt-largest { font-size: 1.1rem; line-height: 1.5; margin: 0 0 32px; max-width: 40em; }
+.lt-largest b { font-family: var(--ck-mono); }
+.lt-scroll { overflow-x: auto; margin: 0 0 24px; }
+.lt-table { border-collapse: collapse; width: 100%; max-width: 900px; background: var(--ck-paper); font-size: 0.95rem; }
+.lt-table caption { text-align: left; font-weight: 600; padding: 0 0 10px; }
+.lt-table th, .lt-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--ck-ice); vertical-align: top; }
+.lt-table thead th { font-size: 0.82rem; color: var(--ck-muted); font-weight: 600; }
+.lt-table tbody th { font-weight: 500; }
+.lt-num { font-family: var(--ck-mono); min-width: 110px; white-space: nowrap; }
+.lt-bar { display: block; height: 4px; margin-top: 6px; background: var(--ck-cobalt); border-radius: 2px; }
+.lt-via { color: var(--ck-muted); font-size: 0.85rem; }
+.lt-result h3 { font-family: var(--ck-display); margin: 32px 0 8px; font-size: 1.15rem; }
+.lt-notes { margin: 0; padding-left: 18px; line-height: 1.5; max-width: 46em; color: var(--ck-muted); }
+.lt-notes li { margin-bottom: 6px; }
+.lt-result .ck-share { color: var(--ck-paper); background: var(--ck-deep); }
+.lt-about { padding: clamp(40px, 6vw, 72px) clamp(16px, 6vw, 96px); max-width: 46em; line-height: 1.55; }
+.lt-about h2 { font-family: var(--ck-display); font-size: clamp(1.4rem, 3vw, 2rem); margin: 0 0 12px; }
+.lt-about a { color: inherit; font-weight: 600; }

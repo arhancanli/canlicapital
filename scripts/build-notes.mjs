@@ -38,6 +38,9 @@ const SRC_DIR = resolve(ROOT, "notes");
 // with the engine's export before it builds, so a file committed there would be gone before the
 // page linking to it went live (the same reason mcp_agent_benchmark.json moved to config/).
 const DATA_DIR = resolve(ROOT, "config", "notes");
+const LEARN_DIR = resolve(ROOT, "learn");
+const LEARN_NAME = "Learn how the stock market works";
+const LEARN_DESCRIPTION = "Free lessons for people investing their own money: what a share is, how to read an income statement, what a P/E ratio hides, what is inside an index fund.";
 const ORIGIN = "https://canlicapital.com";
 
 const esc = (v) =>
@@ -221,12 +224,15 @@ function parseNote(slug, markdown) {
   }
   const body = lines
     .slice(bodyStart)
-    .filter((line) => !/^\*\*(Short title|Sources):\*\*/i.test(line))
+    .filter((line) => !/^\*\*(Short title|Sources|Lesson):\*\*/i.test(line))
     .join("\n");
   const words = plain(body).split(/\s+/).filter(Boolean).length;
 
+  const lessonLine = markdown.match(/^\*\*Lesson:\*\*\s*(\d+)\s*$/im);
+
   return {
     slug, title, documentTitle, dek, sources,
+    lesson: lessonLine ? Number(lessonLine[1]) : null,
     description: metaDescription(slug, dek, plain(body)),
     date: dateMatch[1], body, words,
     minutes: Math.max(1, Math.round(words / 220)),
@@ -391,6 +397,135 @@ ${renderProductShellFooter()}
   return html;
 }
 
+// A lesson teaches an ordinary investor to read what companies file. It reads as a sequence, so each
+// page leads to the next, and it says plainly what it is not.
+function renderLesson(lesson, lessons) {
+  const route = `/learn/${lesson.slug}`;
+  const next = lessons.find((l) => l.lesson === lesson.lesson + 1);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    name: lesson.title,
+    headline: lesson.title,
+    description: lesson.dek,
+    url: `${ORIGIN}${route}`,
+    datePublished: lesson.date,
+    dateModified: lesson.date,
+    wordCount: lesson.words,
+    inLanguage: "en",
+    isAccessibleForFree: true,
+    educationalLevel: "Beginner",
+    learningResourceType: "Lesson",
+    position: lesson.lesson,
+    author: { "@type": "Person", "@id": `${ORIGIN}/#arhan-canli`, name: "Arhan Canli", url: `${ORIGIN}/founder` },
+    image: { "@type": "ImageObject", url: `${ORIGIN}/og.png`, width: 1200, height: 630 },
+    publisher: { "@id": `${ORIGIN}/#organization` },
+    mainEntityOfPage: `${ORIGIN}${route}`,
+    isPartOf: { "@type": "Course", "@id": `${ORIGIN}/learn`, name: LEARN_NAME, description: LEARN_DESCRIPTION, provider: { "@id": `${ORIGIN}/#organization` } },
+  };
+  const html = `${pageHead({ title: lesson.documentTitle, socialTitle: lesson.title, description: lesson.description, route, extraJsonLd: jsonLd, sources: lesson.sources })}
+<body class="note-page">
+<a class="note-skip" href="#content">Skip to content</a>
+${renderProductShellHeader({ active: "" })}
+<main id="content" tabindex="-1">
+  <article class="note">
+    <nav class="note-trail" aria-label="Breadcrumb">
+      <a href="/learn">Learn</a>
+    </nav>
+    <header class="note-head">
+      <h1>${esc(lesson.title)}</h1>
+      <p class="note-dek">${esc(lesson.dek)}</p>
+      <p class="note-meta">
+        <span>Lesson ${lesson.lesson} of ${lessons.length}</span>
+        <time datetime="${lesson.date}">${lesson.date}</time>
+        <span>${lesson.minutes} min read</span>
+      </p>
+    </header>
+    <div class="note-body">
+${marked.parse(lesson.body)}
+    </div>
+    <footer class="note-foot">
+      <p class="note-boundary"><strong>Not advice.</strong> These lessons explain how shares and filings
+      work. Nothing here says what to buy or sell, and a past figure says nothing certain about the future.</p>
+      <div class="note-more">
+        <h2>${next ? "Next lesson" : "All lessons"}</h2>
+        <ul>${next ? `<li><a href="/learn/${next.slug}">${esc(next.title)}</a></li>` : ""}<li><a href="/learn">Every lesson</a></li></ul>
+      </div>
+    </footer>
+  </article>
+</main>
+${renderProductShellFooter()}
+</body>
+</html>
+`;
+  assertNoEditableDash(html, `learn/${lesson.slug}.html`);
+  return html;
+}
+
+function renderLearnIndex(lessons) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "@id": `${ORIGIN}/learn`,
+    name: LEARN_NAME,
+    description: LEARN_DESCRIPTION,
+    url: `${ORIGIN}/learn`,
+    isAccessibleForFree: true,
+    educationalLevel: "Beginner",
+    inLanguage: "en",
+    provider: { "@id": `${ORIGIN}/#organization` },
+    hasPart: lessons.map((l) => ({ "@type": "LearningResource", name: l.title, description: l.dek, url: `${ORIGIN}/learn/${l.slug}`, position: l.lesson })),
+  };
+  const html = `${pageHead({ title: LEARN_NAME, description: LEARN_DESCRIPTION, route: "/learn", extraJsonLd: jsonLd })}
+<body class="note-page note-index-page">
+<a class="note-skip" href="#content">Skip to content</a>
+${renderProductShellHeader({ active: "" })}
+<main id="content" tabindex="-1">
+  <section class="note-hero">
+    <p class="note-kicker">Learn</p>
+    <h1>How the stock market works, shown with real filings.</h1>
+    <p class="note-lead">Short lessons for people investing their own money. Every figure comes from
+      what a company or fund filed, and you can check it yourself. Free, with no account.</p>
+  </section>
+  <ol class="note-list">
+    ${lessons.map((l) => `<li>
+      <a class="note-card" href="/learn/${l.slug}">
+        <span class="note-card__n">${String(l.lesson).padStart(2, "0")}</span>
+        <span class="note-card__body">
+          <span class="note-card__title">${esc(l.title)}</span>
+          <span class="note-card__dek">${esc(l.dek)}</span>
+          <span class="note-card__meta">${l.minutes} min</span>
+        </span>
+      </a>
+    </li>`).join("\n    ")}
+  </ol>
+  <section class="note-tail">
+    <p>Heard a figure somewhere? <a href="/">Check it against the filing</a>. These lessons explain how
+      things work. They are not advice on what to buy or sell.</p>
+  </section>
+</main>
+${renderProductShellFooter()}
+</body>
+</html>
+`;
+  assertNoEditableDash(html, "learn.html");
+  return html;
+}
+
+// A page may only link to a route that exists on this site. Scoped to anchor hrefs: <link
+// rel="stylesheet"> points at a build asset, not a route, and checking it here would fail on assets
+// that exist only after the bundler runs.
+function assertLinksResolve(html, where, routes) {
+  for (const [, href] of html.matchAll(/<a\s[^>]*href="(\/[^"#?]*)"/g)) {
+    const local = href.replace(/\/$/, "") || "/";
+    const known = local === "/" || routes.has(local)
+      || existsSync(resolve(ROOT, `${local.slice(1)}.html`))
+      || existsSync(resolve(ROOT, "public", local.slice(1)))
+      || existsSync(resolve(ROOT, local.slice(1)));
+    if (!known) throw new Error(`${where}: links to ${local}, which is not a built route`);
+  }
+}
+
 function publishNoteData() {
   const published = [];
   if (existsSync(DATA_DIR)) {
@@ -427,26 +562,28 @@ function main() {
     .map((f) => parseNote(f.slice(0, -3), readFileSync(resolve(SRC_DIR, f), "utf8")))
     .sort((a, b) => (a.date === b.date ? a.slug.localeCompare(b.slug) : b.date.localeCompare(a.date)));
 
-  const routes = new Set(notes.map((n) => `/notes/${n.slug}`));
+  const lessons = readdirSync(LEARN_DIR).filter((f) => f.endsWith(".md"))
+    .map((f) => parseNote(f.slice(0, -3), readFileSync(resolve(LEARN_DIR, f), "utf8")))
+    .sort((a, b) => a.lesson - b.lesson);
+  lessons.forEach((l, i) => { if (l.lesson !== i + 1) throw new Error(`learn/${l.slug}: lessons must number 1, 2, 3 in order; found ${l.lesson} at place ${i + 1}`); });
+
+  const routes = new Set([...notes.map((n) => `/notes/${n.slug}`), "/learn", ...lessons.map((l) => `/learn/${l.slug}`)]);
   for (const note of notes) {
     const html = renderNote(note, notes);
-    // A note may only link to a route that exists on this site. Scoped to anchor
-    // hrefs: <link rel="stylesheet"> points at a build asset, not a route, and
-    // checking it here would fail on assets that exist only after the bundler runs.
-    for (const [, href] of html.matchAll(/<a\s[^>]*href="(\/[^"#?]*)"/g)) {
-      const local = href.replace(/\/$/, "") || "/";
-      const known = local === "/" || routes.has(local)
-        || existsSync(resolve(ROOT, `${local.slice(1)}.html`))
-        || existsSync(resolve(ROOT, "public", local.slice(1)))
-        || existsSync(resolve(ROOT, local.slice(1)));
-      if (!known) throw new Error(`notes/${note.slug}: links to ${local}, which is not a built route`);
-    }
+    assertLinksResolve(html, `notes/${note.slug}`, routes);
     writeFileSync(resolve(ROOT, "notes", `${note.slug}.html`), html);
   }
+  for (const lesson of lessons) {
+    const html = renderLesson(lesson, lessons);
+    assertLinksResolve(html, `learn/${lesson.slug}`, routes);
+    writeFileSync(resolve(LEARN_DIR, `${lesson.slug}.html`), html);
+  }
+  writeFileSync(resolve(ROOT, "learn.html"), renderLearnIndex(lessons));
   writeFileSync(resolve(ROOT, "notes.html"), renderIndex(notes));
   const words = notes.reduce((n, x) => n + x.words, 0);
   console.log(`  notes: ${notes.length} rendered, ${words.toLocaleString()} words, index at /notes`);
   for (const n of notes) console.log(`    ${n.date}  ${n.minutes} min  /notes/${n.slug}`);
+  console.log(`  lessons: ${lessons.length} rendered, index at /learn`);
 }
 
 main();

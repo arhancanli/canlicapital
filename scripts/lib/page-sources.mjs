@@ -46,6 +46,7 @@ export const PAGE_SOURCES = {
   "/measurements": ["scripts/build-measurements.mjs"],
   "/trials": ["scripts/build-trials.mjs", "public/glassbox/trial_sharpe_distribution.json"],
   "/notes": ["scripts/build-notes.mjs"],
+  "/learn": ["scripts/build-notes.mjs", "learn/what-you-own-when-you-buy-a-share.md", "learn/how-to-read-an-income-statement.md", "learn/what-a-pe-ratio-tells-you.md", "learn/whats-inside-an-index-fund.md", "learn/why-a-great-track-record-can-be-luck.md"],
   "/verify": ["scripts/build-verify.mjs", "public/glassbox"],
   "/review": [
     "scripts/build-review.mjs",
@@ -124,6 +125,7 @@ export const PAGE_SOURCES = {
     "public/glassbox/alpaca_broker_reconciliation.json",
     "public/glassbox/cost_coverage.json",
   ],
+  "/tools/look-through": ["scripts/build-look-through-tool.mjs", "js/look-through.js", "css/look-through.css"],
   "/tools/deflated-sharpe": [
     "scripts/build-dsr-tool.mjs",
     "public/glassbox/deflated_sharpe_calculator_contract.json",

@@ -2,7 +2,7 @@
 # writes a shard to a shared volume. Afterwards, merge them from any machine with the same volume:
 #   canli-mcp run cpcv '{"merge_files":["/data/shard-0.json","/data/shard-1.json","..."]}'
 # Put returns.csv on the volume first. A shard refuses to merge with one run on other data or settings.
-# The shards and their merge are tested; this manifest has not been run on a cluster.
+# CI runs this file on a kind cluster, then merges what it wrote (.github/workflows/recipes.yml).
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -18,6 +18,7 @@ spec:
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
+        fsGroup: 1000
       containers:
         - name: shard
           image: node:24-slim

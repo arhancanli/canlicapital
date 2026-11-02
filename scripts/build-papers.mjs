@@ -167,18 +167,18 @@ const trialRoutes = () => {
 // reason the measurement pages are: build-notes decides how many there are. Each note's
 // lastmod traces to its own hand-authored markdown source (`notes/<slug>.md`), never to
 // the day build-notes.mjs happened to run.
-function noteRoutes() {
-  const dir = resolve(ROOT, "notes");
+function noteRoutes(folder = "notes") {
+  const dir = resolve(ROOT, folder);
   if (!existsSync(dir)) return [];
   return readdirSync(dir)
     .filter((name) => name.endsWith(".html"))
     .map((name) => {
       const slug = name.slice(0, -5);
       return {
-        loc: `${ORIGIN}/notes/${slug}`,
+        loc: `${ORIGIN}/${folder}/${slug}`,
         priority: "0.8",
         changefreq: "monthly",
-        lastmodFiles: [`notes/${slug}.md`],
+        lastmodFiles: [`${folder}/${slug}.md`],
       };
     });
 }
@@ -203,6 +203,7 @@ const STATIC_ROUTES = [
   { path: "/annotate", priority: "0.6", changefreq: "monthly" },
   { path: "/engineering", priority: "0.9", changefreq: "weekly" },
   { path: "/notes", priority: "0.9", changefreq: "weekly" },
+  { path: "/learn", priority: "0.9", changefreq: "monthly" },
   { path: "/developers", priority: "0.9", changefreq: "weekly" },
   { path: "/mcp-servers", priority: "0.9", changefreq: "weekly" },
   { path: "/benchmarks/filingfacts", priority: "0.9", changefreq: "weekly" },
@@ -221,6 +222,7 @@ const STATIC_ROUTES = [
   { path: "/costs", priority: "0.9", changefreq: "weekly" },
   { path: "/standards/paper-evidence", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/deflated-sharpe", priority: "0.9", changefreq: "weekly" },
+  { path: "/tools/look-through", priority: "0.9", changefreq: "monthly" },
   { path: "/tools/evidence-chain", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/trial-accounting", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/selection-risk", priority: "0.9", changefreq: "weekly" },
@@ -1079,7 +1081,7 @@ function main() {
 
   const measurements = measurementRoutes();
   const trials = trialRoutes();
-  const notes = noteRoutes();
+  const notes = [...noteRoutes(), ...noteRoutes("learn")];
 
   const withResolvedLastmod = (route, { allowUndated = false } = {}) =>
     resolveLastmod({
@@ -1176,7 +1178,7 @@ function main() {
   // and summary are read from the page build-notes.mjs wrote, as noteRoutes() reads its routes.
   const unescapeHtml = (text) => text.replaceAll("&quot;", '"').replaceAll("&#39;", "'").replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&");
   const noteEntries = notes.map((route) => {
-    const html = readFileSync(resolve(ROOT, `notes/${route.loc.split("/").at(-1)}.html`), "utf8");
+    const html = readFileSync(resolve(ROOT, `${route.loc.slice(ORIGIN.length + 1)}.html`), "utf8");
     const title = html.match(/<meta property="og:title" content="([^"]*)"/)?.[1];
     const summary = html.match(/<meta name="description" content="([^"]*)"/)?.[1];
     if (!title || !summary) throw new Error(`${route.loc}: no og:title or description for the feed`);

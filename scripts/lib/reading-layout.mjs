@@ -20,8 +20,8 @@ export function applyReaderPresentation(source,{file,family}) {
  });
  body=body.replace(/<(pre|table)\b([^>]*)>/g,(all,tag,attrs)=>/\btabindex=/.test(attrs)?all:`<${tag}${attrs} tabindex="0" data-reader-focus="true">`);
  if(file==='founder.html')body=body.replace(/(<dd>[^<]*<\/dd>)<small>([\s\S]*?)<\/small>/g,'$1<dd class="reader-definition-note"><small>$2</small></dd>');
- const parent=family==='measurements'?'/measurements':family==='trials'||file==='trials.html'?'/trials':family==='notes'||file==='notes.html'?'/notes':family==='publication'?'/research':family==='research'?'/research':'/systems';
- const nav=`<!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="${parent}">Explore ${parent.slice(1)}</a>${links.length?`<details><summary>In this document</summary><nav aria-label="Document sections">${links.join('')}</nav></details>`:''}<a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->`;
+ const parent=file.startsWith('learn/')?'/learn':family==='measurements'?'/measurements':family==='trials'||file==='trials.html'?'/trials':family==='notes'||file==='notes.html'?'/notes':family==='publication'?'/research':family==='research'?'/research':'/systems';
+ const nav=`<!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="${parent}">${parent==='/learn'?'All lessons':`Explore ${parent.slice(1)}`}</a>${links.length?`<details><summary>In this document</summary><nav aria-label="Document sections">${links.join('')}</nav></details>`:''}<a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->`;
  const hero=/^\s*<header class="cc-hero"[\s\S]*?<\/header>/.exec(body);
  html=html.replace(match[0],()=>match[0].replace(match[1],()=>hero?hero[0]+nav+body.slice(hero[0].length):nav+body));
  return html;

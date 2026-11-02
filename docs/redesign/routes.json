@@ -2,6 +2,12 @@
   "schema": "canli.design-routes.v1",
   "routes": [
     {
+      "file": "agents.html",
+      "route": "/agents",
+      "family": "home",
+      "indexable": true
+    },
+    {
       "file": "annotate.html",
       "route": "/annotate",
       "family": "workbench",
@@ -455,6 +461,42 @@
       "file": "index.html",
       "route": "/",
       "family": "home",
+      "indexable": true
+    },
+    {
+      "file": "learn.html",
+      "route": "/learn",
+      "family": "chapter",
+      "indexable": true
+    },
+    {
+      "file": "learn/how-to-read-an-income-statement.html",
+      "route": "/learn/how-to-read-an-income-statement",
+      "family": "reader",
+      "indexable": true
+    },
+    {
+      "file": "learn/what-a-pe-ratio-tells-you.html",
+      "route": "/learn/what-a-pe-ratio-tells-you",
+      "family": "reader",
+      "indexable": true
+    },
+    {
+      "file": "learn/what-you-own-when-you-buy-a-share.html",
+      "route": "/learn/what-you-own-when-you-buy-a-share",
+      "family": "reader",
+      "indexable": true
+    },
+    {
+      "file": "learn/whats-inside-an-index-fund.html",
+      "route": "/learn/whats-inside-an-index-fund",
+      "family": "reader",
+      "indexable": true
+    },
+    {
+      "file": "learn/why-a-great-track-record-can-be-luck.html",
+      "route": "/learn/why-a-great-track-record-can-be-luck",
+      "family": "reader",
       "indexable": true
     },
     {
@@ -2219,6 +2261,12 @@
       "file": "tools/execution.html",
       "route": "/tools/execution",
       "family": "workbench",
+      "indexable": true
+    },
+    {
+      "file": "tools/look-through.html",
+      "route": "/tools/look-through",
+      "family": "home",
       "indexable": true
     },
     {
