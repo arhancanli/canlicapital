@@ -25,6 +25,9 @@ import { buildPanel, panelInput } from "./panel.mjs";
 import { CRISES, crisisReplay, ENGINE_LIMITS_TEXT, describe, runBacktest } from "./engine.mjs";
 import { cpcv, cpcvInput, CPCV_LIMITS_TEXT } from "./cpcv.mjs";
 import { arenaNew, arenaNewInput, arenaOrders, arenaOrdersInput, arenaStep, arenaStepInput } from "./arena.mjs";
+import { exchangeJoin, exchangeJoinInput, exchangeNew, exchangeNewInput, exchangeOrders, exchangeOrdersInput, exchangeReport, exchangeReportInput, exchangeRun, exchangeRunInput, exchangeStep, exchangeStepInput, exchangeView, exchangeViewInput } from "./exchange.mjs";
+import { agentConsensus, consensusInput } from "./consensus.mjs";
+import { diversifiersInput, findDiversifiers } from "./diversifiers.mjs";
 import { leagueCommit, leagueCommitInput, leagueNew, leagueNewInput, leagueScore, leagueScoreInput } from "./league.mjs";
 import { proofFile, proofFileInput, proofFilings, proofFilingsInput, proofFind, proofFindInput, proofVerifyInput, verifyLedger } from "./proof.mjs";
 import { readPanel, writePanel } from "./panel-io.mjs";
@@ -135,6 +138,15 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   league_new: "Start a paper league: a schedule of rounds and rules with a hash to publish. No prizes, no stakes and nobody's money.",
   league_commit: "Commit a league entry before its round closes: only the hash of its CSV of ticker,score goes in the ledger, and the file is shown after the round. Only the latest commit counts, so revealing whichever of several did best is refused.",
   league_score: "Score a paper league from its files and prices, repeatable by anyone: each entrant's rank correlation with what followed, set against the best luck gives across that many entrants, how different each is from the rest, and a paper book of the top entrants chosen on earlier rounds only.",
+  exchange_new: "Start a paper exchange where different AI agents and scripted traders (market makers, momentum, value, deleveragers, stop-losses, levered longs) trade in limit order books, with margin rules and forced selling, plus shocks at set steps. Made-up assets and money, reproducible from a seed.",
+  exchange_join: "Join a paper exchange as an agent. Returns the token its other calls need, so no agent can act as another.",
+  exchange_view: "What an agent in a paper exchange can see: the books, recent trades and its own account. No other agent's positions.",
+  exchange_orders: "Send an agent's limit orders, market orders and cancels for the coming step of a paper exchange. An empty list passes.",
+  exchange_step: "Move a paper exchange on. Waits for every joined agent to act, so nobody moves time on the others.",
+  exchange_report: "What happened in a paper exchange: each asset's worst fall and recovery, spreads and depth, who gained and lost, forced selling and the longest chain of it, and a hash anyone can check by replaying.",
+  exchange_run: "Run a whole paper exchange of scripted traders in one call and report it: for comparing set-ups, such as how much leverage turns a shock into a cascade. A simulation, not a forecast.",
+  agent_consensus: "Combine several AI agents' probabilities, and count how many independent views they really hold, from how their errors move together: five models that share their mistakes are not five votes. Weights each by its record on settled questions.",
+  find_diversifiers: "Rank candidate strategies by what they add to a book: independent bets added first, then how they behave on the book's worst days, with return shown last and never used to rank. Correlation first.",
   arena_new: "Start a paper market for AI agents to trade in: made-up assets and made-up money, with scripted traders, reproducible from a seed. Nothing here represents or reaches a real security, token or currency.",
   arena_orders: "Send paper orders for an agent in an arena, for the coming auction. No short selling and no borrowing.",
   arena_step: "Clear a paper arena's next call auctions at one price per asset, and show prices and standings. Paper only.",
@@ -291,6 +303,15 @@ export function registerTools(server, session) {
   tool("league_new", "Start a paper league", leagueNewInput, WRITES_LOCAL, async (args) => text(leagueNew(args)));
   tool("league_commit", "Commit a league entry", leagueCommitInput, WRITES_LOCAL, async (args) => text(leagueCommit(args)));
   tool("league_score", "Score a paper league", leagueScoreInput, READ_ONLY, async (args) => text(leagueScore(args)));
+  tool("exchange_new", "Start a paper exchange", exchangeNewInput, WRITES_LOCAL, async (args) => text(exchangeNew(args)));
+  tool("exchange_join", "Join a paper exchange", exchangeJoinInput, WRITES_LOCAL, async (args) => text(exchangeJoin(args)));
+  tool("exchange_view", "See a paper exchange", exchangeViewInput, READ_ONLY, async (args) => text(exchangeView(args)));
+  tool("exchange_orders", "Send orders to a paper exchange", exchangeOrdersInput, WRITES_LOCAL, async (args) => text(exchangeOrders(args)));
+  tool("exchange_step", "Move a paper exchange on", exchangeStepInput, WRITES_LOCAL, async (args) => text(exchangeStep(args)));
+  tool("exchange_report", "Report a paper exchange", exchangeReportInput, READ_ONLY, async (args) => text(exchangeReport(args)));
+  tool("exchange_run", "Run a whole paper exchange", exchangeRunInput, READ_ONLY, async (args) => text(exchangeRun(args)));
+  tool("agent_consensus", "Combine agents' forecasts and count independent views", consensusInput, READ_ONLY, async (args) => text(agentConsensus(args)));
+  tool("find_diversifiers", "Find what diversifies a book", diversifiersInput, READ_ONLY, async (args) => text(findDiversifiers(args)));
   tool("arena_new", "Start a paper arena", arenaNewInput, WRITES_LOCAL, async (args) => text(arenaNew(args)));
   tool("arena_orders", "Send paper orders to an arena", arenaOrdersInput, WRITES_LOCAL, async (args) => text(arenaOrders(args)));
   tool("arena_step", "Clear a paper arena", arenaStepInput, WRITES_LOCAL, async (args) => text(arenaStep(args)));

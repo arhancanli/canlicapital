@@ -432,6 +432,37 @@ EDGAR posts a filing about a minute after accepting it, so most filings arrive w
 The first read only marks what is already there. Lines of type `error` report a failed read; the
 feed carries on.
 
+## The sentinel: it watches, and wakes your agent
+
+Set a condition and it is watched from your machine. When it is met, you get what happened, how it was seen and a block of context, instead of having to ask.
+
+```
+npx canli-mcp sentinel add '{"kind":"price_move","symbol":"BTC-USD","percent":2,"within_minutes":30}'
+npx canli-mcp sentinel add '{"kind":"volatility_move","symbol":"NVDA","points":5,"within_minutes":120}'
+npx canli-mcp sentinel add '{"kind":"filing","company":"NVDA","forms":["8-K"]}'
+npx canli-mcp sentinel run --exec 'claude -p "A market event just fired. Brief me."'
+```
+
+A model can set rules too, with `sentinel_add`. Events go to standard output, `--webhook <url>` or `--exec <command>`, which gets the block on standard input. In Claude Code, `canli-mcp --channel` runs the sentinel inside the server and an event wakes the session; channels are a research preview there, so start it with `claude --dangerously-load-development-channels server:canli`. Other hosts cannot be woken by a server, so use `--exec`, or read `sentinel_events` at the start of a session.
+
+Crypto pairs stream from Coinbase's public feed. US stocks stream from Alpaca if you have keys set. Everything else is read on a timer: prices every 30 seconds from Yahoo, option quotes every 5 minutes from Cboe (15 minutes late), filings every 60 seconds from EDGAR. Every event says which, so you know how late it can be.
+
+It tells and it never trades. A rule holds a condition and a note and nothing that can reach anything: where events go is set only on the command line, by you. A block carries numbers, dates, form types and SEC links, and no text from a filing or a headline, so outside text cannot talk to your model.
+
+## The time machine: test an agent on the past, with no way to peek
+
+```
+npx canli-mcp --as-of 2020-03-01
+```
+
+Every tool that reads the world now shows only what was public that day. Filings stop at that date, prices stop at that date, and company figures are as first known then, not as later restated. A tool that cannot be held to the date is off and says so. Whatever comes back is read before it goes out: a table row dated later is dropped, and any other later date stops the answer, so a mistake fails closed. No call can change the date.
+
+The model's own memory is the one thing a server cannot lock. `recipes/agent_backtest.mjs` runs a model across dates, scores its picks on what happened next, and asks it with no tools which way each stock went. A model that beats a coin on that remembers those dates, and its backtest there means little.
+
+## How many things did you try?
+
+A deflated Sharpe ratio is only as honest as the number of trials put into it, and that number has always been whatever the researcher says. With the audit log on, `signed_trial_count` counts the different backtests that ran through the server from the signed log, and `canli-mcp check returns.csv --trials log` uses that number. Someone else can check it with `canli-mcp audit verify`. It cannot see a second machine, but removing a run from the log breaks the chain.
+
 ## Packs and what each is checked against
 
 | pack | package | tools | tested against |

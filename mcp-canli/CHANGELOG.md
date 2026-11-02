@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- The sentinel watches for a price move or level, a move in implied volatility, or a new filing, and sends a block of context the moment one comes: `sentinel_add`, `canli-mcp sentinel run`, and `canli-mcp --channel`, which wakes a Claude Code session. Crypto streams from Coinbase and US stocks from Alpaca with your keys; the rest is read on a timer, and every event says how late it can be. A rule can only watch and tell. Where events go is set by whoever starts it, and no outside text reaches the block.
+- The time machine: `canli-mcp --as-of 2020-03-01` shows only what was public that day. Tools that cannot be held to the date are off, later rows are dropped, and any other later date stops the answer. `recipes/agent_backtest.mjs` backtests a model with it, and checks whether the model simply remembers the future.
+- `signed_trial_count` counts the backtests behind a result from the signed audit log, and `canli-mcp check returns.csv --trials log` uses that count.
+- `canli-mcp models install` adds optional local models, for `filing_memory` to rank by meaning and for `filing_sentiment`. No tool installs anything.
+- `recipes/exchange_agents.mjs` runs different models against each other in the paper exchange, each through its own server.
+
 ## 0.15.1
 
 - `verify_claims`, through canli-markets-mcp 0.10.1: a sentence calls a figure wrong only if it names the company and one period of its own. Otherwise the filed figure is shown without a verdict against it. On 0.10.0, 12 of 24 settled answers on 284 real sentences were wrong, 11 of them false contradictions. The fix is not yet measured on new sentences.

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.0
+
+New tools: `exchange_new`, `exchange_join`, `exchange_view`, `exchange_orders`, `exchange_step`, `exchange_report`, `exchange_run`, `agent_consensus`, `find_diversifiers`.
+
+- The agent exchange is a closed paper market with limit order books, margin rules and forced selling, so a shock can become a cascade. Different AI agents join with tokens, each sees only its own account, time moves in steps that wait for everyone, and a hash chain of the tape lets anyone check a run by replaying it. The rules are in docs/AGENT_EXCHANGE.md.
+- `agent_consensus` counts how many independent views a group of agents really holds, from their errors after each agent's usual error on that outcome is removed, because forecasters who are right about the same things otherwise look alike.
+- `find_diversifiers` ranks by independent bets added and behaviour on a book's worst days. Return is never used to rank.
+- A file that is not an arena or an exchange is refused without quoting it. A JSON parse error quotes what it read.
+
 ## 0.4.0
 
 - `backtest_signal` with `capital_usd` and `dollar_volume_file`: an order fills only up to a share of recent daily volume and pays square-root impact, read from the days before each trade. The reply shows the Sharpe at each size the market can take, and none for a book that could not fill.

@@ -613,6 +613,35 @@ function kindOut(y) {
   const notes = [KIND_NOTES[y.kind], pence ? `Prices are in ${y.currency}, hundredths of the currency (pence for GBp): divide by 100 for ${y.currency === "GBp" ? "pounds" : "the main unit"}.` : null].filter(Boolean);
   return { ...(y.kind ? { asset_class: y.kind.toLowerCase() } : {}), ...(y.name ? { name: y.name } : {}), ...(notes.length ? { notes } : {}) };
 }
+export const lastPriceInput = z.object({ symbol: priceInput.shape.symbol }).strict();
+
+// The chart endpoint's own header carries the last price. With Alpaca keys, a US stock's last trade on
+// that feed comes from Alpaca, which is live rather than perhaps late.
+export async function latestPrice(session, args) {
+  const a = lastPriceInput.parse(args);
+  const want = resolveSymbol(a.symbol);
+  const p = priceProvider(session.env);
+  if (p?.name === "alpaca" && want.us_listed) {
+    const r = await getJson(session, `https://data.alpaca.markets/v2/stocks/${encodeURIComponent(want.symbol)}/trades/latest?feed=${encodeURIComponent(p.feed)}`, { headers: { "APCA-API-KEY-ID": p.id, "APCA-API-SECRET-KEY": p.secret }, secret: true, maxAgeMs: 2000 });
+    if (r?.trade?.p) return { symbol: want.symbol, price: r.trade.p, time: new Date(r.trade.t).toISOString(), source: `Alpaca last trade, ${p.feed} feed`, limits: ["The last trade on this one feed, not the whole market's."] };
+  }
+  if (!priceProvider({ ...session.env, ALPACA_API_KEY_ID: "", APCA_API_KEY_ID: "", ALPACA_PAPER_KEY_ID: "", TIINGO_API_KEY: "" })) throw new Error("Keyless prices are off (CANLI_KEYLESS_PRICES=0), and this symbol needs them.");
+  const sym = want.symbol.replace(/^([A-Z]{1,5})\.([ABC])$/, "$1-$2");
+  let r;
+  try { r = await getJson(session, `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?range=1d&interval=1m`, { maxAgeMs: 5000 }); } catch (err) { if (err instanceof NotFound) throw new NotFound(`Yahoo Finance has no price for ${want.symbol}.`); throw err; }
+  const m = r?.chart?.result?.[0]?.meta;
+  if (!Number.isFinite(m?.regularMarketPrice)) throw new NotFound(`Yahoo Finance has no price for ${want.symbol}.`);
+  const before = m.previousClose ?? m.chartPreviousClose ?? null;
+  return {
+    symbol: want.symbol, price: m.regularMarketPrice, previous_close: before,
+    change_percent: before ? Number(((m.regularMarketPrice / before - 1) * 100).toFixed(3)) : null,
+    currency: m.currency ?? null, exchange: m.fullExchangeName ?? m.exchangeName ?? null,
+    time: m.regularMarketTime ? new Date(m.regularMarketTime * 1000).toISOString() : null,
+    source: "Yahoo Finance chart data (no key)",
+    limits: ["Unofficial and for personal use under Yahoo's terms. It can run late, by 15 minutes or more on some markets; the time says how old the price is."],
+  };
+}
+
 export async function priceHistory(session, args) {
   const a = priceInput.parse(args);
   const want = resolveSymbol(a.symbol);
