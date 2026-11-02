@@ -592,6 +592,8 @@ export function resultsFromText(text, max = 400) {
       if (VERBS.test(s) && !/\b(?:was|were|reported|delivered|grew|increased|decreased|declined|totaled|came in|of)\b/i.test(s)) continue;
       // "This compares to revenue of $5.84 billion, gross margin of ...": last year's figures only.
       if (/^\W*(?:this|these|that|which)\s+(?:compares?|compared)\b/i.test(s)) continue;
+      // "The global revenue breakdown by currency for the Euro ... was 20%": shares, not growth.
+      if (/\bbreakdown\b/i.test(s)) continue;
       let prev = null, comparedEnd = null;
       const paired = {};
       const figs = figuresIn(s);

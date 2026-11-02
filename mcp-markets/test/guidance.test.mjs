@@ -403,3 +403,7 @@ test("a bare year before the measure names the year, and sales volumes are not r
   assert.equal(measureOf("Net sales of $2 billion"), "revenue");
 });
 
+test("a revenue breakdown by currency is not growth (Equinix)", () => {
+  assert.deepEqual(resultsFromText("The Q3 2025 global revenue breakdown by currency for the Euro, British Pound and Singapore Dollar increased to 20%, 9% and 7%."), []);
+});
+
