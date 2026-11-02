@@ -8,7 +8,7 @@
   "repository": "https://github.com/arhancanli/canlicapital",
   "path": "mcp-canli",
   "measured": "2026-11-02",
-  "note": "Tool counts come from mcp-canli/src/index.json at release 0.16; the context figures from mcp-canli/bench/context-2026-11-02-0.16.0.json; the search figures are the 48 held-out everyday requests in mcp-canli/test/search.test.mjs (measured once, untuned, at 0.3.0); the file and batch figures from the README's measurements."
+  "note": "Tool counts come from mcp-canli/src/index.json at release 0.16.1; the context figures from mcp-canli/bench/context-2026-11-02-0.16.1.json; the search figures are the 48 held-out everyday requests in mcp-canli/test/search.test.mjs (measured once, untuned, at 0.3.0); the file and batch figures from the README's measurements."
  },
  "install": {
   "npx": "npx -y canli-mcp",
@@ -144,16 +144,16 @@
   "note": "The head-to-head benchmark and its context table measured canli-mcp with 306 tools behind three (config/mcp-head-to-head.json)."
  },
  "current": {
-  "version": "0.16.0",
+  "version": "0.16.1",
   "measured": "2026-11-02",
   "tokens": 2524,
-  "startup_ms": 267,
-  "separately_tokens": 69293,
+  "startup_ms": 240,
+  "separately_tokens": 69849,
   "prompts": 56,
   "tokenizer": "o200k_base",
-  "source": "mcp-canli/bench/context-2026-11-02-0.16.0.json",
+  "source": "mcp-canli/bench/context-2026-11-02-0.16.1.json",
   "separately_note": "the seven Canli Capital servers run side by side, each listing its own tools",
-  "startup_seconds": 0.267
+  "startup_seconds": 0.24
  },
  "views": [
   {

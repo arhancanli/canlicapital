@@ -1,16 +1,16 @@
 {
  "package": "canli-mcp",
- "version": "0.16.0",
+ "version": "0.16.1",
  "packs": {
   "quant": "0.2.0",
   "validation": "0.14.1",
   "fundamentals": "0.7.5",
   "research": "0.3.1",
-  "backtest": "0.5.0",
-  "markets": "0.11.0",
+  "backtest": "0.5.1",
+  "markets": "0.11.1",
   "paper": "0.3.1"
  },
- "count": 385,
+ "count": 386,
  "tools": [
   {
    "name": "return_stats",
@@ -2167,6 +2167,13 @@
    "group": "markets",
    "title": "Verify claims against filings",
    "description": "Check a draft answer's figures against the company's own filings before using them: revenue, net income, EPS, operating income, margins, growth, cash flow, assets, debt and more, for a fiscal year or quarter as the company labels it. US and foreign filers (20-F, IFRS), in their own currency. Each claim comes back confirmed, contradicted (with the filed figure and what the claimed one matches instead: another year, a quarter, a unit slip), not reported or not checkable."
+  },
+  {
+   "name": "exposure_map",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Who depends on this company",
+   "description": "Who depends on a company, from what others say in their annual reports: every filer that names it, with the passage, and whether it reads as a supplier, customer or competitor. For supply chains no fund report shows. Read by rules, so check the passage."
   },
   {
    "name": "guidance_record",
