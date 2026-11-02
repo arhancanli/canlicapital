@@ -9,6 +9,9 @@ import { execSink } from "../local/commands.mjs";
 import { createSentinel, webhookSink } from "../local/sentinel.mjs";
 import { asBlock, channelSink, ruleInput } from "../src/sentinel.mjs";
 
+// Waits on what a test is waiting for, not on a timer: a busy machine can take longer than any fixed sleep.
+const until = async (ready, ms = 10000) => { const began = Date.now(); while (!ready()) { if (Date.now() - began > ms) throw new Error("timed out waiting"); await new Promise((r) => setTimeout(r, 5)); } };
+
 const setup = (over = {}) => {
   const home = mkdtempSync(join(tmpdir(), "sentinel-"));
   let clock = Date.parse("2026-11-02T15:00:00Z");
@@ -142,18 +145,17 @@ test("a stream subscribes, feeds prices, and is opened again when it closes", as
   const t = setup({ options: { WS: FakeWS, now: () => Date.now() } });
   t.s.add({ kind: "price_level", symbol: "BTC-USD", above: 100, cooldown_minutes: 0 });
   t.s.start();
-  await new Promise((r) => setTimeout(r, 20));
+  await until(() => FakeWS.made[0]?.sent.length);
   const ws = FakeWS.made[0];
   assert.match(ws.url, /coinbase/);
   assert.deepEqual(ws.sent[0], { type: "subscribe", product_ids: ["BTC-USD"], channels: ["ticker"] });
   ws.emit("message", JSON.stringify({ type: "ticker", product_id: "BTC-USD", price: "101", time: new Date().toISOString() }));
-  await new Promise((r) => setTimeout(r, 30));
+  await until(() => t.seen.length);
   assert.equal(t.seen.length, 1);
   assert.match(t.seen[0].seen_via, /Coinbase/);
   assert.ok(!t.calls.some(([name]) => name === "latest_price"), "a streamed pair is not also polled");
   ws.emit("close");
-  await new Promise((r) => setTimeout(r, 1100));
-  assert.equal(FakeWS.made.length, 2, "reopened");
+  await until(() => FakeWS.made.length === 2);
   t.s.stop();
   t.done();
 });
@@ -169,14 +171,14 @@ test("Alpaca's stream authenticates before it subscribes", async () => {
   const t = setup({ options: { WS: FakeWS, now: () => Date.now(), env: { ALPACA_API_KEY_ID: "k", ALPACA_API_SECRET_KEY: "s" } } });
   t.s.add({ kind: "price_level", symbol: "NVDA", above: 100, cooldown_minutes: 0 });
   t.s.start();
-  await new Promise((r) => setTimeout(r, 20));
+  await until(() => FakeWS.last?.sent.length);
   const ws = FakeWS.last;
   assert.deepEqual(ws.sent[0], { action: "auth", key: "k", secret: "s" });
   assert.equal(ws.sent.length, 1, "nothing else before it is authenticated");
   ws.emit("message", JSON.stringify([{ T: "success", msg: "authenticated" }]));
   assert.deepEqual(ws.sent[1], { action: "subscribe", trades: ["NVDA"] });
   ws.emit("message", JSON.stringify([{ T: "t", S: "NVDA", p: 101, t: new Date().toISOString() }]));
-  await new Promise((r) => setTimeout(r, 30));
+  await until(() => t.seen.length);
   assert.equal(t.seen.length, 1);
   t.s.stop();
   t.done();
