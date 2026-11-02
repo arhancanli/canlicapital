@@ -1,0 +1,66 @@
+# The published proof ledger: once a month, or on request, add what these companies filed, verify the
+# whole file, and publish it as a release with a public attestation. The attestation goes in Sigstore's
+# transparency log, a public timestamp nobody here controls, so the head cannot quietly be rewritten.
+# It needs the signing key in the PROOF_LEDGER_KEY secret, and does nothing until that is set.
+name: Proof ledger
+
+on:
+  schedule:
+    - cron: "17 6 2 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    env:
+      PROOF_LEDGER_KEY: ${{ secrets.PROOF_LEDGER_KEY }}
+    steps:
+      - name: Stop if no key is set
+        id: key
+        run: |
+          if [ -z "$PROOF_LEDGER_KEY" ]; then echo "PROOF_LEDGER_KEY is not set, so nothing runs." >> "$GITHUB_STEP_SUMMARY"; echo "ready=no" >> "$GITHUB_OUTPUT"; else echo "ready=yes" >> "$GITHUB_OUTPUT"; fi
+      - if: steps.key.outputs.ready == 'yes'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - if: steps.key.outputs.ready == 'yes'
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - if: steps.key.outputs.ready == 'yes'
+        run: npm ci --prefix mcp-backtest
+      - name: Fetch the ledger so far
+        if: steps.key.outputs.ready == 'yes'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          latest="$(gh release list --limit 200 --json tagName --jq '[.[] | select(.tagName | startswith("proof-ledger-"))][0].tagName // ""')"
+          if [ -n "$latest" ]; then gh release download "$latest" --pattern 'ledger.jsonl.gz' && gunzip ledger.jsonl.gz; fi
+      - name: Add new filings and verify the whole file
+        if: steps.key.outputs.ready == 'yes'
+        env:
+          SEC_USER_AGENT: Canli Capital proof ledger (+https://canlicapital.com/developers)
+        run: |
+          umask 077
+          printf '%s\n' "$PROOF_LEDGER_KEY" > "$RUNNER_TEMP/key.pem"
+          node mcp-backtest/scripts/proof-ledger.mjs config/proof-ledger-companies.txt ledger.jsonl "$RUNNER_TEMP/key.pem" > head.json
+          rm -f "$RUNNER_TEMP/key.pem"
+          cat head.json >> "$GITHUB_STEP_SUMMARY"
+          gzip -n -9 ledger.jsonl
+      - if: steps.key.outputs.ready == 'yes'
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-path: ledger.jsonl.gz
+      - name: Publish it
+        if: steps.key.outputs.ready == 'yes'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="proof-ledger-$(date -u +%Y-%m-%d-%H%M)"
+          { echo "Signed, append-only record of what these companies filed, and what later filings changed."; echo; echo "It shows these lines have not changed since they were sealed. It does not show a figure is right."; echo; echo '```json'; cat head.json; echo '```'; } > notes.md
+          gh release create "$tag" ledger.jsonl.gz head.json --title "Proof ledger $(date -u +%Y-%m-%d)" --notes-file notes.md --latest=false

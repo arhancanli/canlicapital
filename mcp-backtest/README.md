@@ -40,6 +40,20 @@ Three mistakes make most agent-run backtests look better than they are:
 | `effective_bets` | How many independent bets a set of return series holds (the participation ratio of their correlations), by series and by family |
 | `annotation_packet`, `annotation_agreement`, `annotation_gold` | Blind labelling packets of figures (or of a draft's figures) with guidelines and an answer key; agreement between labellers (Cohen's kappa); and a gold set with its datasheet |
 
+## Size, crises and cross-validation
+
+A backtest that assumes any size fills at the close flatters itself, so:
+
+- **Size.** Give `backtest_signal` a `capital_usd` and a `dollar_volume_file`. An order fills only up to `max_participation` of recent daily volume (10% unless you say otherwise) and pays square-root impact, with volume and volatility read from the days before each trade. The reply shows the Sharpe at $100k to $1B, and no Sharpe for a size the market could not take. Order-book depth is not modelled: it needs paid data.
+- **Crises.** Every reply holds the result against named crises, from the dot-com bust to the 2023 bank run. A crisis its dates do not fully cover is listed as untested, never as passed. `crisis_replay` does this for any returns file.
+- **Cross-validation.** `cpcv` takes every variant's returns and, for each choice of held-out blocks, chooses the best on the rest, with purge and embargo at the edges, then scores it on what was held out. You get a spread of out-of-sample results, not one path. Splits can run as shards on other machines and merge back.
+
+## A record, a league and a paper market
+
+- **Proof ledger.** `proof_filings` writes what companies filed into an append-only file, each line chained to the last and each batch signed, with a line for every figure a later filing changed. `proof_file` adds any file's hash, `proof_verify` checks the whole file and says which line first fails. It shows lines were not altered, not that a figure is right, and no record means only no record. Publish the head somewhere else, or the key holder could rewrite it all. The [published ledger](https://github.com/arhancanli/canlicapital/releases) does that with a public attestation each month.
+- **League.** `league_new`, `league_commit` and `league_score` run a tournament scored after the fact: an entrant signs and commits a hash before a round closes and shows the file afterwards, and anyone with the files can rerun the table. Each record is set against the best luck gives across that many entrants. The top entrants, chosen on earlier rounds only, form a paper book. No prizes, no stakes, nobody's money.
+- **Arena.** `arena_new`, `arena_orders` and `arena_step` are a paper market for agents to trade in, cleared in a call auction, reproducible from a seed. Made-up assets and made-up money: it cannot reach anything real.
+
 ## Quick start
 
 ```bash

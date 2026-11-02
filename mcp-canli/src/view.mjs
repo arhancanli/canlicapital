@@ -44,7 +44,10 @@ button.fs{float:right;margin:0 0 4px 8px;font-size:11.5px}table.sortable th{curs
 table.stmt tr.pick{cursor:pointer}table.stmt tr.pick:hover td{background:var(--soft)}table.stmt tr.sel td:first-child{box-shadow:inset 3px 0 0 var(--s0);font-weight:600}table.stmt tr.base td{font-weight:600}svg.mini{display:inline-block;width:auto;vertical-align:middle}.bars svg{max-width:none;width:100%}.b0{fill:var(--s0)}.b1{fill:var(--s1)}.b2{fill:var(--s2)}.b3{fill:var(--s3)}.bn{fill:var(--dn)}
 table.corr td.cell{min-width:40px;cursor:default}table.corr td.dot{min-width:14px;height:14px;padding:0}.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
 .line.k0{stroke:var(--k0)}.legend i.k0,.sw.k0{background:var(--k0)}.line.k1{stroke:var(--k1)}.legend i.k1,.sw.k1{background:var(--k1)}.line.k2{stroke:var(--k2)}.legend i.k2,.sw.k2{background:var(--k2)}.line.k3{stroke:var(--k3)}.legend i.k3,.sw.k3{background:var(--k3)}.line.k4{stroke:var(--k4)}.legend i.k4,.sw.k4{background:var(--k4)}.line.k5{stroke:var(--k5)}.legend i.k5,.sw.k5{background:var(--k5)}.line.k6{stroke:var(--k6)}.legend i.k6,.sw.k6{background:var(--k6)}.line.k7{stroke:var(--k7)}.legend i.k7,.sw.k7{background:var(--k7)}
-@media (max-width:480px){body{padding:10px}}`;
+.cr{display:grid;grid-template-columns:minmax(120px,38%) 1fr 46px;gap:8px;align-items:center;width:100%;background:none;border:0;border-radius:4px;padding:3px 2px;text-align:left}.cr:hover{background:var(--soft)}.cr-name{min-width:0;overflow-wrap:anywhere}.cr-v{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}.cr-track{position:relative;display:block;height:10px;background:var(--soft);border-radius:3px}.cr-track.fill{display:inline-block;width:90px;vertical-align:middle}.cr-bar{display:block;height:100%;background:color-mix(in srgb,var(--s0) 62%,transparent);border-radius:3px}.cr.over .cr-bar{background:var(--bad)}.cr.over .cr-v{color:var(--bad)}.cr-limit{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--fg)}.cr-more{margin:2px 0 8px 2px}
+.band-ok{fill:color-mix(in srgb,var(--ok) 16%,transparent)}.band-bad{fill:color-mix(in srgb,var(--bad) 12%,transparent)}.cliff{cursor:ew-resize;touch-action:none}.cliff svg{max-width:none}.pt-bad{fill:var(--bad);stroke:var(--bg);stroke-width:1.5}.ins{stroke:var(--fg);stroke-width:2}
+.tr{padding-left:14px}.tr summary{cursor:pointer;list-style-position:outside}.tr-leaf,.tr summary{padding:2px 0}.tr-leaf,.tr summary{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}.tr summary{display:list-item}.tr summary>span{margin-right:6px}.tr-leaf.dim{opacity:.55}.tr-kids{margin-left:10px;padding-left:10px;border-left:1px solid var(--line)}.tr-sign{display:inline-block;width:12px;color:var(--muted);text-align:center}.tr-name{overflow-wrap:anywhere}.tr-share{display:inline-block;width:60px;height:6px;background:var(--soft);border-radius:3px;vertical-align:middle}.tr-share .cr-bar{border-radius:3px}.tr-v{font-variant-numeric:tabular-nums;font-weight:600}
+@media (max-width:480px){body{padding:10px}.tr-share{display:none}.cr{grid-template-columns:minmax(90px,42%) 1fr 40px}}`;
 
 let page = null;
 // The page: styles, the rendering functions (render.js, its exports made plain), then the app,
@@ -52,8 +55,8 @@ let page = null;
 const code = (file) => readFileSync(new URL(file, import.meta.url), "utf8").replace(/^[ \t]*\/\/.*\n/gm, "").replace(/^import .*\n/gm, "").replace(/^export\s+/gm, "");
 export function viewHtml() {
   if (page) return page;
-  const render = code("./view/render.js"), studio = code("./view/studio.js"), atlas = code("./view/atlas.js"), app = code("./view/app.js");
-  page = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Canli result</title><style>${CSS}</style></head><body><main id="root"><p class="note">Waiting for the result…</p></main><script>${render}\n${studio}\n${atlas}\n${app}</script></body></html>`;
+  const render = code("./view/render.js"), studio = code("./view/studio.js"), atlas = code("./view/atlas.js"), proof = code("./view/proof.js"), app = code("./view/app.js");
+  page = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Canli result</title><style>${CSS}</style></head><body><main id="root"><p class="note">Waiting for the result…</p></main><script>${render}\n${studio}\n${atlas}\n${proof}\n${app}</script></body></html>`;
   return page;
 }
 

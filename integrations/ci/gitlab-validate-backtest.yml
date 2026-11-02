@@ -1,0 +1,19 @@
+# GitLab CI: the luck check on a backtest's returns, computed in the job, with no key and nothing sent.
+# Copy this into your .gitlab-ci.yml, or include it, and set the variables for your project.
+#
+# It adds the figures and their limits to the job log and keeps a JSON report as an artifact. The
+# report records that this check ran on this exact file. It does not say the strategy is valid.
+validate-backtest:
+  stage: test
+  image: node:24-slim
+  variables:
+    RETURNS_FILE: returns.csv # a date column and one column of returns
+    TRIALS: "1"               # every variant you tried, not just the one you kept
+  script:
+    - npx -y canli-mcp check "$RETURNS_FILE" --trials "$TRIALS"
+    - npx -y canli-mcp check "$RETURNS_FILE" --trials "$TRIALS" --format json > canli-report.json
+    # To fail the pipeline under a floor you choose, add --at-least 0.95 to a line above.
+  artifacts:
+    paths:
+      - canli-report.json
+    when: always
