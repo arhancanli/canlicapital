@@ -52,6 +52,12 @@ const done = new Set(prior.trim().split("\n").filter(Boolean).map((l) => JSON.pa
 // BUDGET_TOKENS with BUDGET_FILE caps the tokens (input plus output) spent across processes in one
 // night, so an unattended run stays inside the free daily allowance: exit 4 when it is reached.
 const BUDGET = Number(process.env.BUDGET_TOKENS ?? 0), BUDGET_FILE = process.env.BUDGET_FILE;
+// BUDGET_USD with USD_FILE caps the money spent across processes, at list prices per million tokens
+// (input, cached input, output). A run that started is finished, so the cap can pass by one run.
+const PRICES = { "gpt-6.1-terra": [1, 0.05, 5], "gpt-6.1-sol": [2, 0.1, 10], "gpt-5.6-terra": [0.5, 0.05, 3], "deepseek-flash": [0.3, 0.006, 1.2] };
+const BUDGET_USD = Number(process.env.BUDGET_USD ?? 0), USD_FILE = process.env.USD_FILE;
+const spent = () => { try { return Number(readFileSync(USD_FILE, "utf8")) || 0; } catch { return 0; } };
+const costOf = (r) => { const [i, c, o] = PRICES[MODEL] ?? [0, 0, 0]; return (((r.input ?? 0) - (r.cached ?? 0)) * i + (r.cached ?? 0) * c + (r.output ?? 0) * o) / 1e6; };
 const used = () => { try { return Number(readFileSync(BUDGET_FILE, "utf8")) || 0; } catch { return 0; } };
 // An account without credit fails every request; stop instead of recording failures.
 const outOfCredit = (err) => /no credits remaining|insufficient_quota|exceeded your current quota|credit balance is too low|insufficient balance/i.test(`${err?.code ?? ""} ${err?.message ?? ""}`);
@@ -189,6 +195,7 @@ for (const arm of Object.keys(ARMS).filter((a) => !ONLY || ONLY.includes(a))) {
   const ctx = await connectArm(arm);
   console.log(`ARM ${arm}: ${ctx.tools.length} tools, connected in ${Date.now() - t0} ms; ${todo.length} runs`);
   for (const [task, rep] of todo) {
+    if (BUDGET_USD && USD_FILE && spent() >= BUDGET_USD) { console.log(`USD_BUDGET_REACHED ${spent().toFixed(4)} of ${BUDGET_USD}`); for (const c of ctx.clients) await c.close().catch(() => {}); process.exit(3); }
     if (BUDGET && BUDGET_FILE && used() >= BUDGET) { console.log(`BUDGET_REACHED ${used()} of ${BUDGET} tokens`); for (const c of ctx.clients) await c.close().catch(() => {}); process.exit(4); }
     let r;
     try { r = await runTask(ctx, task); } catch (err) {
@@ -197,6 +204,7 @@ for (const arm of Object.keys(ARMS).filter((a) => !ONLY || ONLY.includes(a))) {
     }
     appendFileSync(OUT, `${JSON.stringify({ model: MODEL, arm, task: task.id, cat: task.cat, rep, truth: TRUTH[task.truth], ...(arm.startsWith("canli") ? { code: CODE } : {}), ...r })}\n`);
     if (BUDGET_FILE) writeFileSync(BUDGET_FILE, String(used() + (r.input ?? 0) + (r.output ?? 0)));
+    if (USD_FILE) writeFileSync(USD_FILE, String(spent() + costOf(r)));
     console.log(`${arm} ${task.id} #${rep}: ${r.correct ? "OK " : "BAD"} ${r.value} (truth ${TRUTH[task.truth]}) ${r.turns ?? "-"}t ${r.input ?? "-"}in ${r.seconds ?? "-"}s`);
   }
   for (const c of ctx.clients) await c.close().catch(() => {});
