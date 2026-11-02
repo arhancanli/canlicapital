@@ -63,3 +63,17 @@ test("where a request goes and which key it carries come only from the environme
   assert.throws(() => chatWith({ name: "a", provider: "AWS_SECRET/x" }, env), /provider must be a name/);
   assert.throws(() => chatWith({ name: "a", provider: "OTHER" }, env), /set OTHER_BASE_URL/);
 });
+
+test("the patient call waits past a slow start, and reports errors and status", async () => {
+  const { createServer } = await import("node:http");
+  const { patientFetch } = await import("../recipes/model_call.mjs");
+  const server = createServer((req, res) => { let b = ""; req.on("data", (d) => { b += d; }); req.on("end", () => setTimeout(() => { res.statusCode = b === "bad" ? 500 : 200; res.end(JSON.stringify({ got: b })); }, 50)); });
+  await new Promise((ok) => server.listen(0, "127.0.0.1", ok));
+  const url = `http://127.0.0.1:${server.address().port}/v1/chat/completions`;
+  const r = await patientFetch(url, { body: "hello" });
+  assert.equal(r.ok, true);
+  assert.deepEqual(await r.json(), { got: "hello" });
+  assert.equal((await patientFetch(url, { body: "bad" })).status, 500);
+  await assert.rejects(patientFetch(url, { body: "x", timeoutMs: 5 }), /did not answer/);
+  server.close();
+});

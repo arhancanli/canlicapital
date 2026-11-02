@@ -18,6 +18,8 @@ import { join } from "node:path";
 import { Client } from "@modelcontextprotocol/client";
 import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
 
+import { patientFetch } from "./model_call.mjs";
+
 const command = (process.env.CANLI_MCP_COMMAND ?? "npx -y canli-mcp").split(" ");
 
 // Orders from a model's last words. Anything unreadable or malformed is a pass, so one confused model
@@ -37,7 +39,7 @@ export const promptFor = (brief, view) => [
   { role: "user", content: JSON.stringify({ step: view.step, market: view.market, recent_trades: view.recent_trades, you: view.you }) },
 ];
 
-export function chatWith(agent, env = process.env, fetchImpl = fetch) {
+export function chatWith(agent, env = process.env, fetchImpl = patientFetch) {
   if (!/^[A-Z][A-Z0-9_]{1,30}$/.test(String(agent.provider))) throw new Error(`${agent.name}: provider must be a name such as OPENAI, not ${agent.provider}.`);
   const base = env[`${agent.provider}_BASE_URL`], key = env[`${agent.provider}_API_KEY`];
   if (!base) throw new Error(`${agent.name}: set ${agent.provider}_BASE_URL.`);

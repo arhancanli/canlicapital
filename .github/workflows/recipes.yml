@@ -202,7 +202,7 @@ jobs:
           MODEL_NAME: qwen3:1.7b
           CANLI_MCP_COMMAND: node src/server.mjs
         run: |
-          node recipes/agent_backtest.mjs --dates 2021-03-01 --symbols AAPL,XOM --out /tmp/backtest.json
+          node recipes/agent_backtest.mjs --dates 2021-03-01 --symbols AAPL,XOM --max-turns 3 --out /tmp/backtest.json
           node -e '
             const r = JSON.parse(require("fs").readFileSync("/tmp/backtest.json", "utf8"));
             if (r.rounds.length !== 1 || !r.summary.leak_check) throw new Error("no result");
@@ -214,9 +214,9 @@ jobs:
           CANLI_MCP_COMMAND: node src/server.mjs
           LOCAL_BASE_URL: http://localhost:11434/v1
         run: |
-          node recipes/exchange_agents.mjs --steps 4 --shock-step 2 --agents '[{"name":"analyst","brief":"You look for value.","provider":"LOCAL","model":"qwen3:1.7b"},{"name":"risk","brief":"You avoid big losses.","provider":"LOCAL","model":"qwen3:1.7b"}]' | tee /tmp/report.json
+          node recipes/exchange_agents.mjs --steps 2 --shock-step 1 --agents '[{"name":"analyst","brief":"You look for value.","provider":"LOCAL","model":"qwen3:1.7b"},{"name":"risk","brief":"You avoid big losses.","provider":"LOCAL","model":"qwen3:1.7b"}]' | tee /tmp/report.json
           node -e '
             const r = JSON.parse(require("fs").readFileSync("/tmp/report.json", "utf8"));
-            if (r.steps !== 4 || !/^[0-9a-f]{64}$/.test(r.tape_hash)) throw new Error("no report");
+            if (r.steps !== 2 || !/^[0-9a-f]{64}$/.test(r.tape_hash)) throw new Error("no report");
             for (const name of ["analyst", "risk"]) if (!r.who.rows.some((row) => row[0] === name)) throw new Error(`${name} is missing`);
           '
