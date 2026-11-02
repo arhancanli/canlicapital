@@ -8,7 +8,7 @@
   "repository": "https://github.com/arhancanli/canlicapital",
   "path": "mcp-canli",
   "measured": "2026-11-02",
-  "note": "Tool counts come from mcp-canli/src/index.json at release 0.15; the context figures from mcp-canli/bench/context-2026-11-02-0.15.0.json; the search figures are the 48 held-out everyday requests in mcp-canli/test/search.test.mjs (measured once, untuned, at 0.3.0); the file and batch figures from the README's measurements."
+  "note": "Tool counts come from mcp-canli/src/index.json at release 0.16; the context figures from mcp-canli/bench/context-2026-11-02-0.16.0.json; the search figures are the 48 held-out everyday requests in mcp-canli/test/search.test.mjs (measured once, untuned, at 0.3.0); the file and batch figures from the README's measurements."
  },
  "install": {
   "npx": "npx -y canli-mcp",
@@ -58,9 +58,9 @@
   {
    "id": "markets",
    "label": "Markets",
-   "tools": 76,
+   "tools": 83,
    "package": "canli-markets-mcp",
-   "covers": "SEC filings and statements as filed, insider trades, 13F and 5% holders, fund portfolios, options chains and volatility surfaces, the Fed, Treasury yields and auctions, FRED, World Bank and OECD data, central banks abroad, prediction markets, prices and a whole-market overview, a figure traced down its filing, and what a token's contract can do"
+   "covers": "SEC filings and statements as filed, insider trades, 13F and 5% holders, fund portfolios, options chains and volatility surfaces, the Fed, Treasury yields and auctions, FRED, World Bank and OECD data, central banks abroad, prediction markets, prices and a whole-market overview, a figure traced down its filing, what a token's contract can do, every annual report searched at once, management's record against its own guidance, what followed every past market fall, and ship traffic from satellite tracking"
   },
   {
    "id": "fundamentals",
@@ -86,9 +86,9 @@
   {
    "id": "backtest",
    "label": "Factor backtests",
-   "tools": 23,
+   "tools": 32,
    "package": "canli-backtest-mcp",
-   "covers": "factor backtests that refuse lookahead and fill only what the market can take, crisis replays, purged cross-validation, a breadth lab that counts its independent bets, parameter sweeps on every core, data annotation, a signed ledger of filings, and a paper league and market"
+   "covers": "factor backtests that refuse lookahead and fill only what the market can take, crisis replays, purged cross-validation, a breadth lab that counts its independent bets, parameter sweeps on every core, data annotation, a signed ledger of filings, a paper league, a paper exchange where AI agents trade in order books, a count of how many independent views a group of models holds, and a search for what diversifies a book"
   }
  ],
  "search": {
@@ -144,16 +144,16 @@
   "note": "The head-to-head benchmark and its context table measured canli-mcp with 306 tools behind three (config/mcp-head-to-head.json)."
  },
  "current": {
-  "version": "0.15.0",
+  "version": "0.16.0",
   "measured": "2026-11-02",
   "tokens": 2524,
-  "startup_ms": 212,
-  "separately_tokens": 62539,
+  "startup_ms": 267,
+  "separately_tokens": 69293,
   "prompts": 56,
   "tokenizer": "o200k_base",
-  "source": "mcp-canli/bench/context-2026-11-02-0.15.0.json",
+  "source": "mcp-canli/bench/context-2026-11-02-0.16.0.json",
   "separately_note": "the seven Canli Capital servers run side by side, each listing its own tools",
-  "startup_seconds": 0.212
+  "startup_seconds": 0.267
  },
  "views": [
   {

@@ -1,16 +1,16 @@
 {
  "package": "canli-mcp",
- "version": "0.15.1",
+ "version": "0.16.0",
  "packs": {
   "quant": "0.2.0",
   "validation": "0.14.1",
   "fundamentals": "0.7.5",
   "research": "0.3.1",
-  "backtest": "0.4.0",
-  "markets": "0.10.1",
+  "backtest": "0.5.0",
+  "markets": "0.11.0",
   "paper": "0.3.1"
  },
- "count": 369,
+ "count": 385,
  "tools": [
   {
    "name": "return_stats",
@@ -1938,6 +1938,69 @@
    "description": "Score a paper league from its files and prices, repeatable by anyone: each entrant's rank correlation with what followed, set against the best luck gives across that many entrants, how different each is from the rest, and a paper book of the top entrants chosen on earlier rounds only."
   },
   {
+   "name": "exchange_new",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Start a paper exchange",
+   "description": "Start a paper exchange where different AI agents and scripted traders (market makers, momentum, value, deleveragers, stop-losses, levered longs) trade in limit order books, with margin rules and forced selling, plus shocks at set steps. Made-up assets and money, reproducible from a seed."
+  },
+  {
+   "name": "exchange_join",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Join a paper exchange",
+   "description": "Join a paper exchange as an agent. Returns the token its other calls need, so no agent can act as another."
+  },
+  {
+   "name": "exchange_view",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "See a paper exchange",
+   "description": "What an agent in a paper exchange can see: the books, recent trades and its own account. No other agent's positions."
+  },
+  {
+   "name": "exchange_orders",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Send orders to a paper exchange",
+   "description": "Send an agent's limit orders, market orders and cancels for the coming step of a paper exchange. An empty list passes."
+  },
+  {
+   "name": "exchange_step",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Move a paper exchange on",
+   "description": "Move a paper exchange on. Waits for every joined agent to act, so nobody moves time on the others."
+  },
+  {
+   "name": "exchange_report",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Report a paper exchange",
+   "description": "What happened in a paper exchange: each asset's worst fall and recovery, spreads and depth, who gained and lost, forced selling and the longest chain of it, and a hash anyone can check by replaying."
+  },
+  {
+   "name": "exchange_run",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Run a whole paper exchange",
+   "description": "Run a whole paper exchange of scripted traders in one call and report it: for comparing set-ups, such as how much leverage turns a shock into a cascade. A simulation, not a forecast."
+  },
+  {
+   "name": "agent_consensus",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Combine agents' forecasts and count independent views",
+   "description": "Combine several AI agents' probabilities, and count how many independent views they really hold, from how their errors move together: five models that share their mistakes are not five votes. Weights each by its record on settled questions."
+  },
+  {
+   "name": "find_diversifiers",
+   "pack": "backtest",
+   "group": "backtest",
+   "title": "Find what diversifies a book",
+   "description": "Rank candidate strategies by what they add to a book: independent bets added first, then how they behave on the book's worst days, with return shown last and never used to rank. Correlation first."
+  },
+  {
    "name": "arena_new",
    "pack": "backtest",
    "group": "backtest",
@@ -2104,6 +2167,55 @@
    "group": "markets",
    "title": "Verify claims against filings",
    "description": "Check a draft answer's figures against the company's own filings before using them: revenue, net income, EPS, operating income, margins, growth, cash flow, assets, debt and more, for a fiscal year or quarter as the company labels it. US and foreign filers (20-F, IFRS), in their own currency. Each claim comes back confirmed, contradicted (with the filed figure and what the claimed one matches instead: another year, a quarter, a unit slip), not reported or not checkable."
+  },
+  {
+   "name": "guidance_record",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Management's record against its own guidance",
+   "description": "A management team's record against its own word: each quarter it gave guidance in its press release, what it said and what then happened, how often results came in above, within and below its own range, and which quarters fell short."
+  },
+  {
+   "name": "what_happened_next",
+   "pack": "markets",
+   "group": "markets",
+   "title": "What happened next, every past time",
+   "description": "Every past time a market or stock fell, rose or sat this far below its high: each case, what followed a month, a quarter and a year later, the worst and best, and how that compares with an ordinary day. A record, not a forecast or advice."
+  },
+  {
+   "name": "filing_memory",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Search all of a company's annual reports",
+   "description": "Everything one company has said about a subject across every annual report it has on EDGAR, back to the 1990s where they exist: the best passages with links, how often it came up each year, and optionally how that moved with a margin, tested against chance. Reads the reports on this machine; no key. Supply the company's likely words in also and all_of, since a company rarely uses yours."
+  },
+  {
+   "name": "filing_sentiment",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Filing tone (local FinBERT)",
+   "description": "The tone of a filing or any text, sentence by sentence, from FinBERT run on this machine: an 8-K's press release by default, or a 10-K section. Needs the optional local models (canli-mcp models install). Tone, not truth, and no evidence it predicts a price; the model is licensed for non-commercial use."
+  },
+  {
+   "name": "shipping_activity",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Shipping activity (IMF PortWatch)",
+   "description": "Ships moving through the world's straits and canals (Suez, Panama, Malacca, Hormuz and others) and ports, from the IMF's PortWatch, which estimates them from satellite tracking of ships. All chokepoints against a year ago, one chokepoint by week, or one port. No key."
+  },
+  {
+   "name": "page_attention",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Public attention (Wikipedia)",
+   "description": "Daily Wikipedia page views for a company or subject: a plain measure of public attention, with how the last week compares with normal. No key."
+  },
+  {
+   "name": "latest_price",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Latest price",
+   "description": "The latest price of a stock, ETF, index, currency or crypto pair, with the previous close and the time of the price. No key; can run late, by 15 minutes or more on some markets."
   },
   {
    "name": "european_filings",

@@ -653,6 +653,90 @@
         "sec-financial-statements-for-ai",
         "insider-trades-ai-agent"
       ]
+    },
+    {
+      "slug": "after-the-market-falls-10-percent",
+      "title": "What happens after the market falls 10%",
+      "question": "What usually happens after the stock market falls 10%?",
+      "short": "After a 10% fall",
+      "answer": "Since 1950 the S&P 500 has fallen 10% or more within a month 41 separate times. A year later the median gain was 15.5%, against 10.7% from all days, and the worst case was -36.2%. That is a record, not a forecast or advice. canli-mcp's what_happened_next lists every case, free with no key.",
+      "call": {
+        "name": "what_happened_next",
+        "arguments": {
+          "condition": "fell",
+          "percent": 10,
+          "days": 21
+        }
+      },
+      "ask": "What has usually happened after the S&P 500 fell 10% in a month?",
+      "related": [
+        "market-overview-in-claude",
+        "stock-prices-in-claude",
+        "does-a-company-beat-its-guidance"
+      ]
+    },
+    {
+      "slug": "does-a-company-beat-its-guidance",
+      "title": "Does a company beat its own guidance?",
+      "question": "How often does a company beat its own guidance?",
+      "short": "Beating guidance",
+      "answer": "Over 12 guided quarters, NVIDIA's revenue came in above its own range 11 times and within it once. canli-mcp's guidance_record sets each quarter's guidance against what followed, from the company's own press releases, free with no key. A company that nearly always beats may simply set its range low.",
+      "call": {
+        "name": "guidance_record",
+        "arguments": {
+          "company": "NVDA",
+          "quarters": 12
+        }
+      },
+      "ask": "How often has NVIDIA beaten its own guidance?",
+      "related": [
+        "search-every-annual-report",
+        "sec-financial-statements-for-ai",
+        "after-the-market-falls-10-percent"
+      ]
+    },
+    {
+      "slug": "track-ships-suez-panama-hormuz",
+      "title": "Track ships through Suez, Panama and Hormuz",
+      "question": "How can I track ships through the Suez Canal, Panama Canal or Strait of Hormuz?",
+      "short": "Ship traffic",
+      "answer": "canli-mcp's shipping_activity reads the IMF's PortWatch, which estimates ship traffic from satellite tracking, free with no key. In the week to October 25, 2026, 23 ships crossed the Strait of Hormuz against 714 a year earlier, and 289 crossed the Suez Canal against 299. A ship that turns off its tracking signal is not counted.",
+      "call": {
+        "name": "shipping_activity",
+        "arguments": {}
+      },
+      "ask": "How much shipping is going through the world's chokepoints against a year ago?",
+      "related": [
+        "market-overview-in-claude",
+        "search-every-annual-report",
+        "after-the-market-falls-10-percent"
+      ]
+    },
+    {
+      "slug": "search-every-annual-report",
+      "title": "Search every annual report a company filed",
+      "question": "How can I search every annual report a company has filed for one subject?",
+      "short": "Every annual report",
+      "answer": "canli-mcp's filing_memory reads every annual report a company has on EDGAR, on your machine, and returns the best passages and how often a subject came up each year, free with no key. Across Coca-Cola's 33 reports back to 1994, the year 2000 problem is counted only in those for 1997, 1998 and 1999.",
+      "call": {
+        "name": "filing_memory",
+        "arguments": {
+          "company": "KO",
+          "query": "year 2000 computer systems",
+          "also": [
+            "Y2K"
+          ],
+          "years": 33,
+          "limit": 3,
+          "per_year": 1
+        }
+      },
+      "ask": "What has Coca-Cola said about the year 2000 problem across its annual reports?",
+      "related": [
+        "does-a-company-beat-its-guidance",
+        "free-sec-edgar-mcp-server",
+        "sec-financial-statements-for-ai"
+      ]
     }
   ]
 }
