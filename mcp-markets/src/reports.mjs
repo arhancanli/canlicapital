@@ -177,19 +177,12 @@ export function parseReport(html) {
     columns.push(columnOf(parts));
   }
   // A convenience translation repeats a period in a second currency (TSMC's 2025 in TWD and USD). The page's
-  // main currency stays unmarked and the others carry theirs; any other repeat of a period (a member, "as
-  // previously reported") carries its own name. Columns of one period never merge into one.
+  // main currency stays unmarked and the others carry theirs, so the two never merge.
   const codes = columns.map((c) => c.label.match(/\b([A-Z]{3}) \(/)?.[1] ?? null);
   const counts = new Map();
   for (const code of codes) if (code) counts.set(code, (counts.get(code) ?? 0) + 1);
   const currency = [...counts].sort((a, b) => b[1] - a[1])[0]?.[0] ?? String(units ?? "").match(/\b([A-Z]{3}) \(/)?.[1] ?? null;
-  const periods = new Set();
-  columns.forEach((c, i) => {
-    if (codes[i] && codes[i] !== currency) c.currency = codes[i];
-    const period = `${c.currency ?? ""}|${c.months ?? ""}|${c.end ?? c.instant ?? c.label}`;
-    if (periods.has(period)) c.variant = c.members?.join(", ") || `column ${i + 1}`;
-    periods.add(period);
-  });
+  columns.forEach((c, i) => { if (codes[i] && codes[i] !== currency) c.currency = codes[i]; });
   const out = [];
   for (const row of rows.slice(head.length)) {
     const [first, ...others] = row.cells;
@@ -215,5 +208,14 @@ export function parseReport(html) {
       values: values.map((v) => v.value),
     });
   }
+  // A page can spread one period's rows over two columns (per-share lines apart): those read as one. Columns of a
+  // period that disagree on a row (a member, "as previously reported") each keep their numbers, under their own name.
+  const firstOf = new Map();
+  columns.forEach((c, i) => {
+    const period = `${c.currency ?? ""}|${c.months ?? ""}|${c.end ?? c.instant ?? c.label}`;
+    if (!firstOf.has(period)) { firstOf.set(period, i); return; }
+    const k = firstOf.get(period);
+    if (out.some((r) => r.values[i] !== null && r.values[k] !== null && r.values[i] !== r.values[k])) c.variant = c.members?.join(", ") || `column ${i + 1}`;
+  });
   return { title, units, ...(currency ? { currency } : {}), columns, rows: out, ...(footnotes.length ? { footnotes } : {}) };
 }
