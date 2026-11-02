@@ -12,6 +12,7 @@ const DATE = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "a date as YYYY-MM-DD");
 const KINDS = ["income", "balance_sheet", "cash_flow", "comprehensive_income", "equity"];
 const CORE = ["income", "balance_sheet", "cash_flow"];
 const MAX_COLUMNS = 12;
+const MAX_EQUITY_COLUMNS = 24;
 const MAX_REVISED = 40;
 
 export const statementsInput = z.object({
@@ -234,7 +235,8 @@ export async function financialStatements(session, args) {
     const cols = new Map();
     for (const t of joined) for (const c of t.columns) if (!cols.has(columnKey(c))) cols.set(columnKey(c), c);
     const ordered = kind === "equity" ? [...cols.values()] : [...cols.values()].sort(columnOrder);
-    const shown = ordered.slice(0, MAX_COLUMNS);
+    // An equity statement's columns are its components, so a wide one needs them all.
+    const shown = ordered.slice(0, kind === "equity" ? MAX_EQUITY_COLUMNS : MAX_COLUMNS);
     const built = buildRows(joinRows(joined), shown);
     for (const x of built.revised) if (revised.length < MAX_REVISED) revised.push([kind, x.label, columnLabel(x.column), x.value, x.first_reported, joined[x.filing].filing.accessionNumber]);
     for (const x of built.otherBasis) if (otherBasis.length < MAX_REVISED) otherBasis.push([kind, x.label, columnLabel(x.column), x.value, joined[x.filing].filing.accessionNumber]);
