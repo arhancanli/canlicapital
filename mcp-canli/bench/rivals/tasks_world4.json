@@ -1,0 +1,268 @@
+[
+ {
+  "id": "z_for_asml",
+  "cat": "foreign",
+  "truth": "asml_sales_2025_eur",
+  "rel": 0.001,
+  "prompt": "What were ASML's total net sales for 2025 in euros, from its Form 20-F? Answer as a plain number of euros."
+ },
+ {
+  "id": "z_for_rio",
+  "cat": "foreign",
+  "truth": "rio_sales_2025_usd",
+  "rel": 0.001,
+  "prompt": "What was Rio Tinto's consolidated sales revenue for 2025, from its Form 20-F? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "z_for_pbr",
+  "cat": "foreign",
+  "truth": "pbr_sales_2025_usd",
+  "rel": 0.001,
+  "prompt": "What were Petrobras's sales revenues for 2025, from its Form 20-F? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "z_for_gsk",
+  "cat": "foreign",
+  "truth": "gsk_turnover_2025_gbp",
+  "rel": 0.001,
+  "prompt": "What was GSK's turnover for 2025 in pounds, from its Form 20-F? Answer as a plain number of pounds."
+ },
+ {
+  "id": "z_for_jd",
+  "cat": "foreign",
+  "truth": "jd_revenue_2025_cny",
+  "rel": 0.001,
+  "prompt": "What were JD.com's total net revenues for 2025 in Chinese renminbi, from its Form 20-F? Answer as a plain number of renminbi."
+ },
+ {
+  "id": "z_for_vale",
+  "cat": "foreign",
+  "truth": "vale_revenue_2025_usd",
+  "rel": 0.001,
+  "prompt": "What was Vale's net operating revenue for 2025, from its Form 20-F? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "z_for_hsbc",
+  "cat": "foreign",
+  "truth": "hsbc_total_assets_2025_usd",
+  "rel": 0.001,
+  "prompt": "What were HSBC's total assets at December 31, 2025, from its Form 20-F? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "z_for_rbc",
+  "cat": "foreign",
+  "truth": "ry_net_income_fy2025_cad",
+  "rel": 0.001,
+  "prompt": "What was Royal Bank of Canada's net income for its fiscal year ended October 31, 2025, in Canadian dollars, from its Form 40-F? Answer as a plain number of Canadian dollars."
+ },
+ {
+  "id": "z_fund_cmg",
+  "cat": "fundamentals",
+  "truth": "cmg_revenue_2025",
+  "rel": 0.001,
+  "prompt": "What was Chipotle's total revenue for 2025, from its Form 10-K? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "z_fund_de",
+  "cat": "fundamentals",
+  "truth": "de_net_income_fy2025",
+  "rel": 0.001,
+  "prompt": "What was Deere's net income attributable to Deere & Company for fiscal 2025 (ended November 2, 2025), from its Form 10-K? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "z_fund_crm",
+  "cat": "fundamentals",
+  "truth": "crm_revenue_fy2026",
+  "rel": 0.001,
+  "prompt": "What was Salesforce's total revenue for fiscal 2026 (ended January 31, 2026), from its Form 10-K? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "z_fund_hd",
+  "cat": "fundamentals",
+  "truth": "hd_diluted_eps_fy2025",
+  "rel": 0.001,
+  "prompt": "What were Home Depot's diluted earnings per share for fiscal 2025 (ended February 1, 2026), from its Form 10-K? Answer in dollars per share."
+ },
+ {
+  "id": "z_fund_intc",
+  "cat": "fundamentals",
+  "truth": "intc_capex_2025",
+  "rel": 0.001,
+  "prompt": "How much did Intel pay for additions to property, plant and equipment in 2025, from the cash flow statement in its Form 10-K? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "z_fund_pfe",
+  "cat": "fundamentals",
+  "truth": "pfe_total_assets_2025",
+  "rel": 0.001,
+  "prompt": "What were Pfizer's total assets at the end of 2025, from its Form 10-K? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "z_fund_cat",
+  "cat": "fundamentals",
+  "truth": "cat_rnd_2025",
+  "rel": 0.001,
+  "prompt": "What was Caterpillar's research and development expense for 2025, from its Form 10-K? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "z_fund_jpm_first",
+  "cat": "fundamentals",
+  "truth": "jpm_net_income_2019_first",
+  "rel": 0.001,
+  "prompt": "What net income for 2019 did JPMorgan Chase first report in its Form 10-K for that year? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "z_filing_xom",
+  "cat": "filings",
+  "truth": "xom_climate_mentions_fy2025",
+  "abs": 3,
+  "prompt": "In Exxon Mobil's Form 10-K for fiscal 2025, how many times does \"climate\" appear in the main document, ignoring case? Answer with the count."
+ },
+ {
+  "id": "z_filing_amzn",
+  "cat": "filings",
+  "truth": "amzn_10k_filed_fy2025",
+  "abs": 0,
+  "prompt": "On what date did Amazon file its Form 10-K for fiscal 2025 with the SEC? Answer as a number in the form YYYYMMDD."
+ },
+ {
+  "id": "z_filing_meta",
+  "cat": "filings",
+  "truth": "meta_8k_count_2025",
+  "abs": 0,
+  "prompt": "How many Form 8-K filings did Meta Platforms file with the SEC with a filing date in calendar 2025? Do not count 8-K/A amendments. Answer with the count."
+ },
+ {
+  "id": "z_filing_aapl",
+  "cat": "filings",
+  "truth": "aapl_employees_fy2025",
+  "rel": 0.005,
+  "prompt": "According to Apple's Form 10-K for fiscal 2025, how many full-time equivalent employees did it have? Answer with the number of people."
+ },
+ {
+  "id": "z_ins_googl",
+  "cat": "insiders",
+  "truth": "googl_form4_q3_2026",
+  "abs": 0,
+  "prompt": "How many Form 4 filings about Alphabet stock were filed with a filing date from July 1 to September 30, 2026, inclusive? Answer with the count."
+ },
+ {
+  "id": "z_13f_baupost",
+  "cat": "13F",
+  "truth": "baupost_13f_entries_2026q2",
+  "abs": 0,
+  "prompt": "How many entries are in the information table of Baupost Group's Form 13F for June 30, 2026? Answer with the count."
+ },
+ {
+  "id": "z_13f_brk_bac",
+  "cat": "13F",
+  "truth": "brk_bac_shares_2026q2",
+  "rel": 0.001,
+  "prompt": "How many shares of Bank of America did Berkshire Hathaway report holding in its Form 13F for June 30, 2026? Answer with the number of shares."
+ },
+ {
+  "id": "z_rate_5y",
+  "cat": "rates_macro",
+  "truth": "ust_5y_2026_09_30",
+  "abs": 0.005,
+  "prompt": "What was the US Treasury 5-year par yield on September 30, 2026, from the Treasury's daily par yield curve? Answer in percent, e.g. 4.25."
+ },
+ {
+  "id": "z_macro_pce",
+  "cat": "rates_macro",
+  "truth": "pce_yoy_pct_2026_08",
+  "abs": 0.06,
+  "prompt": "What was the year-over-year change in the US PCE price index for August 2026 (FRED series PCEPI)? Answer in percent, e.g. 2.5."
+ },
+ {
+  "id": "z_macro_houst",
+  "cat": "rates_macro",
+  "truth": "houst_2026_08",
+  "rel": 0.002,
+  "prompt": "How many housing starts were reported for August 2026, in thousands of units at a seasonally adjusted annual rate (FRED series HOUST)? Answer as a number of thousands, e.g. 1350."
+ },
+ {
+  "id": "z_rate_sofr",
+  "cat": "rates_macro",
+  "truth": "sofr_2026_09_15",
+  "abs": 0.005,
+  "prompt": "What was the Secured Overnight Financing Rate (SOFR) for September 15, 2026? Answer in percent, e.g. 4.25."
+ },
+ {
+  "id": "z_price_nvda",
+  "cat": "prices",
+  "truth": "nvda_close_2026_10_01",
+  "rel": 0.002,
+  "prompt": "What was NVIDIA's (NVDA) closing price on October 1, 2026, not adjusted for dividends? Answer in dollars."
+ },
+ {
+  "id": "z_price_gld",
+  "cat": "prices",
+  "truth": "gld_close_2026_08_31",
+  "rel": 0.002,
+  "prompt": "What was the SPDR Gold Shares ETF's (GLD) closing price on August 31, 2026? Answer in dollars."
+ },
+ {
+  "id": "z_cry_sol",
+  "cat": "crypto_fx",
+  "truth": "sol_close_2026_09_30",
+  "rel": 0.01,
+  "prompt": "What was Solana's closing price in US dollars on September 30, 2026 (UTC)? Answer in dollars."
+ },
+ {
+  "id": "z_fx_jpy",
+  "cat": "crypto_fx",
+  "truth": "eurjpy_ecb_2026_08_14",
+  "abs": 0.02,
+  "prompt": "What was the European Central Bank's euro reference rate against the Japanese yen on August 14, 2026, in yen per euro? Answer as a number."
+ },
+ {
+  "id": "z_ana_dd",
+  "cat": "analytics",
+  "truth": "aapl_max_drawdown_2025",
+  "abs": 0.005,
+  "prompt": "What was AAPL's maximum drawdown in 2025, on adjusted closes from December 31, 2024 to December 31, 2025? Answer as a negative decimal, e.g. -0.25."
+ },
+ {
+  "id": "z_ana_beta",
+  "cat": "analytics",
+  "truth": "tsla_beta_spy_2025",
+  "abs": 0.02,
+  "prompt": "What was TSLA's beta against SPY in 2025, the covariance of daily simple returns of adjusted closes over the variance of SPY's, from the close on December 31, 2024 to the close on December 31, 2025? Answer as a decimal."
+ },
+ {
+  "id": "z_ana_call",
+  "cat": "analytics",
+  "truth": "bs_call_div_price",
+  "abs": 0.01,
+  "prompt": "What is the Black-Scholes price of a European call with spot 100, strike 110, 0.75 years to expiry, a risk-free rate of 4% continuous, a dividend yield of 2% continuous and volatility 35%? Answer in dollars."
+ },
+ {
+  "id": "z_an_crm",
+  "cat": "analyst",
+  "truth": "crm_target_mean",
+  "rel": 0.05,
+  "prompt": "What is the mean analyst price target for Salesforce (CRM) right now? Answer in dollars."
+ },
+ {
+  "id": "z_st_pfe",
+  "cat": "stats",
+  "truth": "pfe_trailing_pe",
+  "rel": 0.05,
+  "prompt": "What is Pfizer's (PFE) trailing price-to-earnings ratio right now? Answer as a number."
+ },
+ {
+  "id": "z_st_dis_cap",
+  "cat": "stats",
+  "truth": "dis_market_cap",
+  "rel": 0.05,
+  "prompt": "What is Walt Disney's (DIS) market capitalization right now? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "z_st_dis_inst",
+  "cat": "stats",
+  "truth": "dis_inst_pct",
+  "rel": 0.1,
+  "prompt": "What percentage of Walt Disney's (DIS) shares do institutions hold, by the latest figures? Answer in percent, e.g. 38.5."
+ }
+]
