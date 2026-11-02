@@ -309,3 +309,27 @@ test("results a release states only in a table: the newest column, whole-company
   ];
   assert.deepEqual(resultsFromTables(tables).map((r) => [r.measure, r.value, r.unit, r.basis]), [["revenue", 2385, "USD million", null], ["eps", 1.84, "USD per share", "adjusted"], ["net_income", 20, null, null]]);
 });
+
+test("a table's part is not the total, and a year's column is not the quarter's (Qualcomm, Eaton)", () => {
+  const qcom = guidanceFromTable({ caption: "Third quarter outlook", columns: ["line", "Q3 FY2026 Outlook"], rows: [["Revenues", "$9.2B - $10.0B"], ["QCT revenues", "$7.9B - $8.5B"], ["QTL revenues", "$1.15B - $1.35B"], ["Americas net sales", "$1.0B - $2.0B"], ["Comparable sales", "$1.0B - $2.0B"], ["Total revenue", "$9.2B - $10.0B"], ["GAAP net sales", "$9.2B - $10.0B"]] });
+  const named = (l) => qcom.find((g) => (g.label ?? "").includes(l) || g.quote?.startsWith(l));
+  assert.equal(named("Revenues").measure, "revenue");
+  for (const part of ["QCT revenues", "QTL revenues", "Americas net sales"]) assert.equal(named(part).measure, null, part);
+  assert.equal(named("Comparable sales").measure, "comparable_sales");
+  assert.equal(named("Total revenue").measure, "revenue");
+  assert.equal(named("GAAP net sales").measure, "revenue");
+  assert.equal(periodOf("Year ended December 31, 2026"), "Year ended December 31, 2026");
+  const etn = guidanceFromTable({ caption: "Second quarter guidance", columns: ["line", "Year ended December 31, 2026"], rows: [["Net income per share attributable to Eaton ordinary shareholders - diluted", "$10.88 - $11.33"]] });
+  assert.equal(etn[0].period, "Year ended December 31, 2026");
+});
+
+test("a result far from a dollar range is not placed against it", () => {
+  const guide = { measure: "eps", basis: "adjusted", period: "second quarter", unit: "USD per share", low: 10.88, high: 11.33, quote: "g" };
+  const [row] = compareGuidance([guide], [{ measure: "eps", value: 3.15, unit: "USD per share", basis: "adjusted", quote: "r" }]);
+  assert.match(row.position, /^not placed: the result is too far/);
+  const [near] = compareGuidance([{ ...guide, low: 3.5, high: 3.6 }], [{ measure: "eps", value: 3.15, unit: "USD per share", basis: "adjusted", quote: "r" }]);
+  assert.equal(near.position, "below the range", "a real miss is still a miss");
+  const [pct] = compareGuidance([{ measure: "revenue", period: "q2", unit: "%", low: 1, high: 2, quote: "g" }], [{ measure: "revenue", value: 9, unit: "%", change: "growth", quote: "r" }]);
+  assert.ok(!/too far/.test(pct?.position ?? ""), "the rule is for dollar ranges only");
+});
+

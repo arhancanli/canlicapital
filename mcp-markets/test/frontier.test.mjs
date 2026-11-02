@@ -319,3 +319,16 @@ test("a filing built to slow the tag stripper does not, and leaves no bracket", 
   assert.ok(!/[<>]/.test(out));
   assert.match(out, /plain words/);
 });
+
+test("guidance record: one count a quarter, and a line that could not be placed counts for nothing", () => {
+  const [g] = summarizeRecord([
+    { quarter: "Q1 2026", measure: "revenue", unit: "USD", position: "above the range" },
+    { quarter: "Q1 2026", measure: "revenue", unit: "USD", position: "above the range" },
+    { quarter: "Q2 2026", measure: "revenue", unit: "USD", position: "not placed: the result is too far from the range to be the same thing" },
+    { quarter: "Q3 2026", measure: "revenue", unit: "USD", position: "below the range (the guide was approximate)" },
+    { quarter: "Q4 2026", measure: "revenue", unit: "USD", position: "within the range" },
+  ]);
+  assert.deepEqual([g.times, g.above, g.within, g.below, g.not_placed], [3, 1, 1, 1, 1]);
+  assert.deepEqual(g.misses, ["Q3 2026"]);
+});
+

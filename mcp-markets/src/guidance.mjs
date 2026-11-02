@@ -55,6 +55,17 @@ export function measureOf(text) {
   for (const [key, re] of MEASURES) if (re.test(t)) return key;
   return null;
 }
+// A row of a guidance table can be a part of a measure: "QCT revenues", "Americas net sales", "Comparable
+// sales". The guide for a part must not meet the company's total. Words before the measure that only say
+// which total it is leave it whole; any other word makes it a part.
+const WHOLE_WORDS = /^(?:total|net|consolidated|company|overall|gaap|non-gaap|nongaap|adjusted|reported|expected|estimated|projected|guidance|outlook|full|fiscal|year|quarter|first|second|third|fourth|q[1-4]|fy\d{0,4}|\d{4}|and|the|our|for|of|in|diluted|basic|core|adj|organic|constant|currency|underlying|pro|forma|full-year|fiscal-year|year-end)$/i;
+export function namesAPart(label, measure) {
+  const entry = MEASURES.find(([key]) => key === measure);
+  if (!entry) return false;
+  const t = String(label).toLowerCase(), at = t.search(entry[1]);
+  if (at <= 0) return false;
+  return t.slice(0, at).replace(/[^\w\s-]/g, " ").trim().split(/\s+/).filter(Boolean).some((w) => !WHOLE_WORDS.test(w));
+}
 // The basis named nearest the end of a text: "GAAP ... 20.1%, and maintains non-GAAP ... 34.3%"
 // gives non-GAAP for the second figure; "GAAP and non-GAAP" together give both.
 export function basisOf(text) {
@@ -67,6 +78,7 @@ export function basisOf(text) {
 
 // The period a figure is for, as the text names it.
 const PERIOD_RES = [
+  /\b(?:fiscal )?year end(?:ed|ing) (?:on )?(?:january|february|march|april|may|june|july|august|september|october|november|december) \d{1,2},? \d{4}\b/i,
   /\b(?:three|six|nine|twelve|3|6|9|12) months? end(?:ed|ing) (?:on )?(?:january|february|march|april|may|june|july|august|september|october|november|december) \d{1,2},? \d{4}\b/i,
   /\b(?:the )?(?:first|second|third|fourth|1st|2nd|3rd|4th)[- ]quarter(?: of)?(?: (?:fiscal|fy)(?: year)?)?(?: \d{4}| fy ?\d{2,4}| '\d{2})?\b/i,
   /\b(?:q[1-4]|fq[1-4])(?:[- ]?(?:fy)?['’]?\d{2,4})?\b/i,
@@ -501,7 +513,8 @@ export function guidanceFromTable(t) {
       // An assumptions column holds other measures' figures, not this row's ("Net interest expense $230M").
       if (/\bassumptions?\b/i.test(header)) return;
       const sentence = `${label}: ${text}`;
-      const measure = measureOf(label) ?? measureOf(header);
+      const named = measureOf(label);
+      const measure = named && namesAPart(label, named) ? null : named ?? measureOf(header);
       const figures = typeof cell === "number" ? [{ at: label.length + 2, end: sentence.length, low: cell, high: cell, f: { cur: null, scale: null, pct: null, after: "" } }] : figuresIn(text, { bare: /\+\/-|±/.test(text) }).map((f) => ({ ...f, at: f.at + label.length + 2, end: f.end + label.length + 2 }));
       const scale = scaleIn(header) ?? scaleIn(ctx);
       for (const f of figures) {
@@ -742,12 +755,15 @@ export function compareGuidance(guided, results) {
     const vsLow = round(r.value - g.low), vsHigh = round(r.value - g.high);
     // "$2.4 billion" cannot be placed in a range stated to the hundredth.
     const rounded = r.decimals != null && g.decimals != null && r.decimals < g.decimals;
+    // A result this far from a dollar range is a different thing, a year against a quarter or a part
+    // against a whole, however alike their names. A company misses a guide by less than this.
+    const middle = (g.low + g.high) / 2, far = !scale && middle > 0 && r.value > 0 && (r.value / middle < 0.4 || r.value / middle > 2.5);
     const place = r.value > g.high ? "above the range" : r.value < g.low ? "below the range" : "within the range";
     rows.push({
       measure: g.measure, basis: g.basis ?? null, period: g.period ?? null, unit: g.unit,
       guided_low: g.low, guided_high: g.high, actual: r.value,
       vs_low: vsLow, vs_high: vsHigh, ...(scale ? { vs_low_bps: round(vsLow * scale), vs_high_bps: round(vsHigh * scale) } : {}),
-      position: rounded ? `not placed: the result is stated to ${r.decimals} decimal${r.decimals === 1 ? "" : "s"}, the guide to ${g.decimals}` : g.approximate ? `${place} (the guide was approximate)` : place,
+      position: far ? "not placed: the result is too far from the range to be the same thing" : rounded ? `not placed: the result is stated to ${r.decimals} decimal${r.decimals === 1 ? "" : "s"}, the guide to ${g.decimals}` : g.approximate ? `${place} (the guide was approximate)` : place,
       guidance_quote: g.quote, result_quote: r.quote,
     });
   }

@@ -17,16 +17,21 @@ export const recordInput = z.object({
 const round = (x, d = 2) => (x == null || !Number.isFinite(x) ? null : Number(x.toFixed(d)));
 const dayBefore = (date) => new Date(Date.parse(`${date}T00:00:00Z`) - 86400000).toISOString().slice(0, 10);
 
+// One count per quarter for each measure: a table and a sentence can state one guide twice. A line that
+// could not be placed against its range counts for nothing.
 export function summarizeRecord(rows) {
   const groups = new Map();
   for (const r of rows) {
     const key = `${r.measure}|${r.basis ?? ""}|${r.unit}`;
-    if (!groups.has(key)) groups.set(key, { measure: r.measure, basis: r.basis ?? null, unit: r.unit, times: 0, above: 0, within: 0, below: 0, misses: [] });
+    if (!groups.has(key)) groups.set(key, { measure: r.measure, basis: r.basis ?? null, unit: r.unit, times: 0, above: 0, within: 0, below: 0, misses: [], seen: new Set(), not_placed: 0 });
     const g = groups.get(key);
+    if (/^not placed/.test(r.position)) { g.not_placed += 1; continue; }
+    if (g.seen.has(r.quarter)) continue;
+    g.seen.add(r.quarter);
     g.times += 1;
-    if (/above/.test(r.position)) g.above += 1; else if (/below/.test(r.position)) { g.below += 1; g.misses.push(r.quarter); } else g.within += 1;
+    if (/^above/.test(r.position)) g.above += 1; else if (/^below/.test(r.position)) { g.below += 1; g.misses.push(r.quarter); } else g.within += 1;
   }
-  return [...groups.values()].sort((a, b) => b.times - a.times);
+  return [...groups.values()].filter((g) => g.times).sort((a, b) => b.times - a.times);
 }
 
 export function reading(company, g) {

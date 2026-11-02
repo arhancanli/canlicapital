@@ -2,6 +2,13 @@
 
 ## 0.11.1
 
+`earnings_release` set some guides against the wrong results, found when a run over the S&P 500 said Eaton had missed its EPS guide 12 times in 13:
+
+- A year's guide in a table column headed "Year ended December 31, 2026" was read as the quarter's: Eaton's $10.88 to $11.33 against a quarter's $3.15.
+- A part's guide in a table was read as the total's: Qualcomm's QCT revenues of $7.9B to $8.5B against total revenue of $9.9B.
+- A result too far from a dollar range to be the same thing is now not placed at all.
+- `guidance_record` counts one line a quarter for each measure, and a line that was not placed counts for nothing.
+
 - `shipping_activity` asks PortWatch less: every chokepoint in two queries, and one chokepoint in one. It took 18.8 seconds on the hosted server. PortWatch and Wikipedia answers are now kept on disk for six hours.
 - `portfolio_xray` adds up its holdings in `xray-merge.mjs`, which imports nothing, so the look-through page can run the same code in a browser. `openHolding` opens one holding.
 
