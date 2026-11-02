@@ -59,7 +59,7 @@ since the original guide?", "Check this paragraph's numbers before I send it."
 | Tool | What it answers | Source |
 | --- | --- | --- |
 | `european_filings` | A European company's annual report as it tagged it: revenue, operating and net profit, EPS, assets, equity, cash, cash flows and dividends with the comparatives, in its own currency at full scale; any other tagged figure by words; the other years on file | ESEF reports (filings.xbrl.org) |
-| `reference_rates` | SOFR, TGCR, BGCR, EFFR and OBFR (with percentiles and volume), the euro short-term rate and the ECB's policy rates (the rate in effect and its changes), SONIA and Bank Rate, and about forty central banks' policy rates | New York Fed, ECB, Bank of England, BIS |
+| `reference_rates` | The ECB's euro exchange reference rates (`fx:GBP`), SOFR, TGCR, BGCR, EFFR and OBFR (with percentiles and volume), the euro short-term rate and the ECB's policy rates (the rate in effect and its changes), SONIA and Bank Rate, and about forty central banks' policy rates | New York Fed, ECB, Bank of England, BIS |
 | `prediction_markets` | What traders pay for an outcome (a Fed decision, a recession, an election), as a probability with bid, ask, volume and closing date, from both venues | Polymarket, Kalshi |
 | `crypto_fundamentals` | A DeFi protocol's value locked (by chain, with history), the fees users pay it and the revenue it keeps; a chain's value locked; a stablecoin's supply and its change | DefiLlama |
 
@@ -107,6 +107,8 @@ against the BIS (21 of 21 agreed on 2026-10-15).
 | `reverse_dcf` | The free-cash-flow growth a share price implies: a DCF solved for the growth that reaches the market's enterprise value, every input from the annual XBRL with its tag, a sensitivity table and the company's own growth beside it | SEC XBRL company facts, the last close |
 | `filing_memory` | Everything one company has said about a subject across every annual report it has on EDGAR, back to the 1990s where they exist: the best passages with links, how often it came up each year, and optionally how that moved with a margin, tested against chance. Runs on your machine; no key. |
 | `filing_sentiment` | The tone of a filing or any text, sentence by sentence, from FinBERT on your machine. Needs `canli-mcp models install`. The model is licensed for non-commercial use. |
+| `stock_snapshot` | What a quote page shows and no primary source publishes, from Yahoo Finance: analysts' price targets, ratings and estimates, market cap and valuation ratios, 52-week range, short interest, holder percentages, next earnings date. Labeled as a vendor's aggregates. |
+| `technical_indicators` | Moving averages, RSI, MACD, Bollinger Bands and ATR for a symbol in one call, from its daily prices. |
 | `exposure_map` | Who depends on a company, from what others say in their annual reports: each filer that names it, with the passage, and whether it reads as a supplier, customer or competitor. |
 | `guidance_record` | A management team's record against its own guidance, quarter by quarter: above, within or below its range, from its own press releases. |
 | `what_happened_next` | Every past time a market or stock fell, rose or sat this far below its high: each case, what followed, and how that compares with an ordinary day. A record, not a forecast. |

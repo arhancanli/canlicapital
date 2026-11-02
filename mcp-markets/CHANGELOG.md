@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.12.0
+
+From a test against other finance MCP servers on the newest models. New tools:
+
+- `stock_snapshot`: what a quote page shows and no primary source publishes, from Yahoo Finance: analysts' price targets, ratings and estimates, market cap and valuation ratios, 52-week range, short interest, holder percentages, next earnings date. Labeled as a vendor's aggregates.
+- `technical_indicators`: moving averages, RSI, MACD, Bollinger Bands and ATR for a symbol in one call.
+
+Foreign companies read wrong or not at all in `financial_statements`:
+
+- A filing that shows a year in two currencies (TSMC in NT$ and US$, PDD, Alibaba, JD, HDFC Bank) came back with those rows blank. The translated column now stands apart, marked with its currency, and `currency` names the main one.
+- `money_scale` read 1 for every filing not in dollars, so a value "in millions" of euros or yen looked like a full amount. It now reads any currency's sign.
+- A single statement for income and comprehensive income returned no income statement (Novo Nordisk, TSMC, AstraZeneca, PDD, Infosys).
+- `filing_tables` looked for a 10-K when named a 20-F's accession, and now reads the form from the accession or files the company actually makes.
+
+Also:
+
+- `reference_rates` has the ECB's euro exchange reference rates (`fx:GBP`).
+- `read_filing` with `find` counts how often each word appears, since its passages stop at twelve.
+- `event_study` takes `last` and is steered to `event_type` for filing dates.
+- An accession that names no filing beside a `fiscal_year` no longer stops `financial_statements`: the year decides and the answer says so. Alone, the error lists the real ones. Clients that force every optional field send these.
+- Wide equity statements show up to 24 columns.
+
 ## 0.11.1
 
 New tool: `exposure_map`, who depends on a company, from what others say in their annual reports.
