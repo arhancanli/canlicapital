@@ -813,7 +813,7 @@
       "title": "AI agents trading in a paper market",
       "question": "How can AI agents trade against each other without real money?",
       "short": "Paper market",
-      "answer": "canli-mcp's exchange_run runs a closed paper market with order books, margin and forced selling, where market makers, value traders, momentum traders and your own agents trade made-up money. In this recorded run of 200 steps there were 5,178 trades, and the first asset's price fell 26.23% at worst while its true value was cut 10%.",
+      "answer": "canli-mcp's exchange_run runs a closed paper market with order books, margin and forced selling, where market makers, value traders, momentum traders and your own agents trade made-up money. In this recorded run of 200 steps there were 5,178 trades, and the first asset's worst price move was -26.23% while its true value was cut 10%.",
       "call": {
         "name": "exchange_run",
         "arguments": {
