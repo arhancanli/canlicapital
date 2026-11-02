@@ -222,7 +222,8 @@ export const DEFAULT_DIGITS = 6;
 export function leanResult(result, { name, ref, seen, digits } = {}) {
   if (!result || typeof result !== "object" || Array.isArray(result)) return result;
   let out = result;
-  if (Array.isArray(out.evidence?.rows)) out = { ...out, evidence: { documents: out.evidence.documents ?? out.evidence.rows.length, ...(ref ? { list: `show_result with ref ${ref} and path evidence` } : {}) } };
+  // Only where the list can still be had: the hosted server keeps nothing between requests.
+  if (ref && Array.isArray(out.evidence?.rows)) out = { ...out, evidence: { documents: out.evidence.documents ?? out.evidence.rows.length, list: `show_result with ref ${ref} and path evidence` } };
   if (seen && name) {
     if (seen.has(name) && (out.limits || out.meaning)) {
       const { limits: _limits, meaning: _meaning, ...rest } = out;
@@ -432,7 +433,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     }
     const receipt = a.receipt ? { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(done.map(({ ref, ...d }) => d)) } : undefined;
     // After the receipt, which hashes the full results: an oversized one is sent as a preview.
-    if (!a.select) for (const d of done) if (d.result !== undefined && !SELF[d.name]) d.result = leanResult(d.result, { name: d.name, ref: d.ref, seen: readLimits, digits: a.digits });
+    if (!a.select) for (const d of done) if (d.result !== undefined && !SELF[d.name]) d.result = leanResult(d.result, { name: d.name, ref: readOnly ? undefined : d.ref, seen: readLimits, digits: a.digits });
     for (const d of done) if (d.result !== undefined) d.result = trimmed(d.result, d.ref, viewing ? VIEW_CHARS : RESULT_CHARS);
     const shown = (out) => {
       if (!viewing) return out;

@@ -102,6 +102,7 @@ test("what the model reads: evidence as a count, limits once a session, six figu
   assert.deepEqual(leanResult(full, { name: "other", seen }).limits, ["a limit"], "another tool's limits still come");
   assert.equal(leanResult(full, { name: "t2", digits: 10 }).value, full.value, "digits says otherwise: rounded when it ran, and left alone here");
   assert.equal(full.evidence.rows.length, 3, "the original is not changed");
+  assert.equal(leanResult(full, { name: "t3" }).evidence.rows.length, 3, "with no ref to fetch it from, as on the hosted server, the list stays");
 });
 
 test("a batch of one tool reads its limits once, and the receipt still covers the full results", async () => {
