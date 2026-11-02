@@ -443,6 +443,23 @@ export const reportInput = z.object({
 
 // Fiscal-year values of one metric from companyfacts: end date -> { byTag }, each tag's latest filed
 // value (restated if a later annual report changed it). The value for a year is chosen by choose().
+// A company's yearly values of the named measures, Map(period end -> { name: value }), newest filing's
+// value for each year. For a caller that needs a series and not a table.
+export function annualValues(book, names) {
+  const defs = book.taxonomy === "ifrs-full" ? IFRS_METRICS : METRICS;
+  const out = new Map();
+  for (const name of names) {
+    if (!defs[name]) continue;
+    for (const [end, year] of annual(book.facts, defs[name], book.currency)) {
+      const c = choose(defs[name], year.byTag);
+      if (c?.val == null) continue;
+      if (!out.has(end)) out.set(end, {});
+      out.get(end)[name] = c.val;
+    }
+  }
+  return new Map([...out].sort((a, b) => (a[0] < b[0] ? -1 : 1)));
+}
+
 function annual(facts, def, currency = "USD") {
   const out = new Map();
   const unit = def.unit.replace("USD", currency);

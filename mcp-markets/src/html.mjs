@@ -8,9 +8,10 @@ export function decodeEntities(s) {
     if (e[0] === "#") {
       const code = e[1] === "x" || e[1] === "X" ? parseInt(e.slice(2), 16) : parseInt(e.slice(1), 10);
       if (code === 160) return " ";
-      if (code === 8217 || code === 8216) return "'";
-      if (code === 8220 || code === 8221) return "\"";
-      if (code === 8211 || code === 8212) return "-";
+      // 145-151 are Windows quotes and dashes, written as numeric entities in many older filings.
+      if (code === 8217 || code === 8216 || code === 145 || code === 146) return "'";
+      if (code === 8220 || code === 8221 || code === 147 || code === 148) return "\"";
+      if (code === 8211 || code === 8212 || code === 150 || code === 151) return "-";
       return Number.isFinite(code) && code > 0 && code < 0x110000 ? String.fromCodePoint(code) : "";
     }
     return ENTITIES[e.toLowerCase()] ?? m;

@@ -7,6 +7,9 @@ import { z } from "zod";
 import { eventCode, ITEMS } from "./events.mjs";
 import { getText, NotFound } from "./sources.mjs";
 
+// canli-mcp watch and the sentinel poll this feed; the session's ten-minute cache would hide new filings.
+const FEED_MAX_AGE_MS = 10 * 1000;
+
 const FEED = "https://www.sec.gov/cgi-bin/browse-edgar?action=getcurrent";
 const PAGE = 100;
 const MAX_PAGES = 10;
@@ -71,7 +74,7 @@ export async function latestFilings(session, args) {
   for (const form of forms) {
     for (let page = 0; page < MAX_PAGES; page += 1) {
       const url = `${FEED}&type=${encodeURIComponent(form)}&company=&dateb=&owner=include&start=${page * PAGE}&count=${PAGE}&output=atom`;
-      const entries = parseFeed(await getText(session, url, { maxBytes: 4 * 1024 * 1024 }));
+      const entries = parseFeed(await getText(session, url, { maxBytes: 4 * 1024 * 1024, maxAgeMs: FEED_MAX_AGE_MS }));
       sources.push(url);
       if (!entries.length) { reachedEnd = true; break; }
       let older = false;
