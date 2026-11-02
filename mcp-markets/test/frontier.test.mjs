@@ -346,7 +346,7 @@ test("exposure: filers parsed, relations read from the words around the name", (
 
 test("exposure_map: each filer once, its latest report, with the passage; the company's own filings left out", async () => {
   const s = sessionFor((url) => {
-    if (/efts\.sec\.gov/.test(url)) return json({ hits: { total: { value: 3 }, hits: [
+    if (url.startsWith("https://efts.sec.gov/")) return json({ hits: { total: { value: 3 }, hits: [
       { _id: "0000000001-26-000001:a.htm", _source: { display_names: ["Chip Buyer Inc (CHIP) (CIK 0000000001)"], file_date: "2026-02-01", form: "10-K", root_forms: ["10-K"], adsh: "0000000001-26-000001", ciks: ["0000000001"], period_ending: "2025-12-31" } },
       { _id: "0000000001-25-000001:b.htm", _source: { display_names: ["Chip Buyer Inc (CHIP) (CIK 0000000001)"], file_date: "2025-02-01", form: "10-K", root_forms: ["10-K"], adsh: "0000000001-25-000001", ciks: ["0000000001"], period_ending: "2024-12-31" } },
       { _id: "0001046179-26-000001:c.htm", _source: { display_names: ["TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD (TSM) (CIK 0001046179)"], file_date: "2026-03-01", form: "20-F", root_forms: ["20-F"], adsh: "0001046179-26-000001", ciks: ["0001046179"], period_ending: "2025-12-31" } },
