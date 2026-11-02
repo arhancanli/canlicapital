@@ -46,14 +46,26 @@ const AREA_NAMES = Object.freeze(Object.fromEntries(Object.entries(POLICY_AREAS)
   .concat([["usa", "US"], ["uk", "GB"], ["britain", "GB"], ["euro zone", "XM"], ["eurozone", "XM"], ["euro", "XM"], ["ea", "XM"], ["turkey", "TR"], ["south korea", "KR"], ["hong kong", "HK"], ["czech republic", "CZ"]])));
 
 export const ratesInput = z.object({
-  rate: z.string().min(2).max(60).describe("sofr, tgcr, bgcr, effr or obfr (New York Fed); estr, ecb_deposit, ecb_refi or ecb_marginal (ECB); sonia or bank_rate (Bank of England); or policy:<country>, a central bank's policy rate as the BIS collects it (policy:JP, policy:Brazil, policy:euro area)."),
+  rate: z.string().min(2).max(60).describe("fx:GBP (the ECB's euro reference rate: units of that currency per euro); sofr, tgcr, bgcr, effr or obfr (New York Fed); estr, ecb_deposit, ecb_refi or ecb_marginal (ECB); sonia or bank_rate (Bank of England); or policy:<country>, a central bank's policy rate as the BIS collects it (policy:JP, policy:Brazil, policy:euro area)."),
   start: DATE.optional().describe("First date; default 90 days before end."),
   end: DATE.optional().describe("Last date; default today."),
 }).strict();
 
-// Which rate was asked for: a key above, a name people use, or a central bank's policy rate.
+// The currencies of the ECB's euro reference rates, by code and by the names people use.
+const FX_CODES = "USD JPY BGN CZK DKK GBP HUF PLN RON SEK CHF ISK NOK TRY AUD BRL CAD CNY HKD IDR ILS INR KRW MXN MYR NZD PHP SGD THB ZAR".split(" ");
+const FX_NAMES = Object.freeze({ pound: "GBP", sterling: "GBP", yen: "JPY", dollar: "USD", franc: "CHF", yuan: "CNY", renminbi: "CNY", rupee: "INR", won: "KRW", krona: "SEK", krone: "NOK", real: "BRL", rand: "ZAR" });
+function fxCurrency(q) {
+  if (!/\b(ecb|euro|eur|fx)\b/.test(q) || !/\b(exchange|reference|fx|eur\/|euro\/)|\/|fx:/.test(q)) return null;
+  const words = q.split(/[^a-z]+/).filter((w) => w && w !== "eur");
+  return words.map((w) => (FX_CODES.includes(w.toUpperCase()) ? w.toUpperCase() : own(FX_NAMES, w))).find(Boolean) ?? null;
+}
+
+// Which rate was asked for: a key above, a name people use, a central bank's policy rate, or an ECB
+// euro reference rate.
 export function resolveRate(input) {
   const raw = String(input).trim(), q = raw.toLowerCase().replace(/\s+/g, " ");
+  const fx = fxCurrency(q);
+  if (fx) return { id: `fx:${fx}`, name: `ECB euro reference rate: ${fx} per euro`, publisher: ECB, kind: "ecb_fx", flow: "EXR", key: `D.${fx}.EUR.SP00.A` };
   const policy = q.match(/^(?:policy(?: rate)?[:\s]+|central bank(?: rate)?[:\s]+)(.+)$/) ?? q.match(/^(.+?)(?:'s)? policy rate$/);
   if (policy) {
     const code = own(AREA_NAMES, policy[1].trim());
@@ -108,6 +120,13 @@ async function ecbSeries(session, rate, start, end) {
   return { url, columns: ["date", "rate"], rows, limits: ["As the ECB publishes it, each business day for the previous one, from transactions reported under money-market statistical reporting."] };
 }
 
+async function ecbFx(session, rate, start, end) {
+  const url = `https://data-api.ecb.europa.eu/service/data/${rate.flow}/${rate.key}?startPeriod=${start}&endPeriod=${end}&format=csvdata`;
+  const text = await getText(session, url, { headers: { Accept: "text/csv" } });
+  const rows = parseCsv(text).map((r) => [r.TIME_PERIOD, num(r.OBS_VALUE)]).filter((r) => /^\d{4}-\d{2}-\d{2}$/.test(r[0]) && r[1] !== null).sort((a, b) => (a[0] < b[0] ? -1 : 1));
+  return { url, columns: ["date", "rate"], rows, limits: ["The ECB's euro reference rate as it publishes it, about 16:00 CET on TARGET business days: units of the currency per one euro. For information only; a market close differs."] };
+}
+
 // The ECB's policy rates are published as the dates they change: the rate in effect on the first
 // day is the last change before it.
 async function ecbChanges(session, rate, start, end) {
@@ -139,7 +158,7 @@ async function bis(session, rate, start, end) {
   return { url, columns: ["date", "rate"], rows, ...(note ? { definition: note } : {}), limits: ["Central bank policy rates as the BIS collects them, daily; the BIS can show a decision a few days after the central bank announces it, and the definition note says which rate stands for policy."] };
 }
 
-const FETCH = { nyfed, ecb: ecbSeries, ecb_changes: ecbChanges, boe, bis };
+const FETCH = { ecb_fx: ecbFx, nyfed, ecb: ecbSeries, ecb_changes: ecbChanges, boe, bis };
 
 export async function referenceRates(session, args) {
   const a = ratesInput.parse(args);
@@ -152,7 +171,7 @@ export async function referenceRates(session, args) {
   const rows = got.rows.length > cap ? got.rows.slice(-cap) : got.rows;
   const last = rows.at(-1);
   return {
-    rate: { id: rate.id, name: rate.name, publisher: rate.publisher, unit: "percent a year", ...(got.definition ? { definition: got.definition } : {}) },
+    rate: { id: rate.id, name: rate.name, publisher: rate.publisher, unit: rate.kind === "ecb_fx" ? "units of the currency per euro" : "percent a year", ...(got.definition ? { definition: got.definition } : {}) },
     start, end, count: rows.length,
     latest: last ? { date: last[0], rate: last[1] } : null,
     columns: got.columns, rows,

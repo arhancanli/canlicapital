@@ -45,6 +45,12 @@ test("the euro short-term rate, the ECB's rate in effect and its changes, SONIA,
   assert.equal(resolveRate("Brazil's policy rate").id, "policy:BR");
   assert.equal(resolveRate("policy: euro area").id, "policy:XM");
   assert.throws(() => resolveRate("libor"), NotFound);
+  // The ECB's euro reference rates, by code or by the names people use.
+  for (const q of ["fx:GBP", "ECB GBP exchange rate", "ecb euro reference rate pound sterling", "EUR/GBP"]) assert.equal(resolveRate(q).id, "fx:GBP", q);
+  assert.equal(resolveRate("euro reference rate yen").key, "D.JPY.EUR.SP00.A");
+  assert.equal(resolveRate("ecb deposit rate").id, "ecb_deposit");
+  assert.equal(resolveRate("ecb rate").id, "ecb_deposit");
+  assert.equal(resolveRate("euro short-term rate").id, "estr");
   assert.throws(() => resolveRate("policy:atlantis"), /No central bank policy rate/);
 });
 
