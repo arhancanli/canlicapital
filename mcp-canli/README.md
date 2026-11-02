@@ -418,7 +418,7 @@ npx canli-mcp check returns.csv --trials 40       # the luck check for a CI job;
 npx canli-mcp run return_stats '{"returns":[...]}'  # one tool from a shell, its result as JSON
 ```
 
-`gui` and `serve` answer only on the loopback address and need the token they print, and requests from other web pages are refused. `check` computes on the machine it runs on and sends nothing. Its report gives the file's hash and records that the check ran on that file. It does not say a strategy is valid. Agent recipes are in [`recipes/`](recipes), and CI templates in [`integrations/ci`](../integrations/ci).
+`gui` and `serve` answer only on the loopback address and need the token they print, and requests from other web pages are refused. `check` computes on the machine it runs on and sends nothing. Its report gives the file's hash and records that the check ran on that file. It does not say a strategy is valid. Agent recipes are in [`recipes/`](recipes), and CI templates in [`integrations/ci`](https://github.com/arhancanli/canlicapital/tree/main/integrations/ci).
 
 `canli-mcp watch` reads EDGAR's latest-filings feed every 60 seconds (`--every`, at least 15) and
 prints each new filing once, as a line of JSON, oldest first:
