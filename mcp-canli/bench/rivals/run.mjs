@@ -230,7 +230,7 @@ for (const arm of Object.keys(ARMS).filter((a) => !ONLY || ONLY.includes(a))) {
   const todo = TASKS.flatMap((task) => Array.from({ length: REPS }, (_, rep) => [task, rep])).filter(([task, rep]) => !done.has(`${MODEL}|${arm}|${task.id}|${rep}`));
   if (!todo.length) continue;
   const t0 = Date.now();
-  const ctx = await connectArm(arm);
+  let ctx = await connectArm(arm);
   console.log(`ARM ${arm}: ${ctx.tools.length} tools, connected in ${Date.now() - t0} ms; ${todo.length} runs`);
   for (const [task, rep] of todo) {
     if (BUDGET_USD && USD_FILE && spent() >= BUDGET_USD) { console.log(`USD_BUDGET_REACHED ${spent().toFixed(4)} of ${BUDGET_USD}`); for (const c of ctx.clients) await c.close().catch(() => {}); process.exit(3); }
@@ -239,6 +239,12 @@ for (const arm of Object.keys(ARMS).filter((a) => !ONLY || ONLY.includes(a))) {
     try { r = await runTask(ctx, task); } catch (err) {
       if (outOfCredit(err)) { console.log(`OUT_OF_CREDIT at ${arm} ${task.id} #${rep}: ${err.message}`); for (const c of ctx.clients) await c.close().catch(() => {}); process.exit(3); }
       r = { value: null, correct: false, final: `harness error: ${err.message}`, harness_error: true };
+    }
+    // A local server that died answers "Not connected" to everything: that says nothing about it. Retried on a resume.
+    if (r.trace?.some((t) => /Not connected/.test(t[2]))) {
+      r.harness_error = true;
+      for (const c of ctx.clients) await c.close().catch(() => {});
+      ctx = await connectArm(arm);
     }
     appendFileSync(OUT, `${JSON.stringify({ model: MODEL, arm, task: task.id, cat: task.cat, rep, truth: TRUTH[task.truth], ...(arm.startsWith("canli") ? { code: CODE } : {}), ...r })}\n`);
     if (BUDGET_FILE) writeFileSync(BUDGET_FILE, String(used() + (r.input ?? 0) + (r.output ?? 0)));
