@@ -41,6 +41,7 @@ These lower the risk of a mistake. They do not make trading safe, and a market o
 | `tradier` | US stocks, whole shares | Tradier's sandbox | `TRADIER_SANDBOX_TOKEN`, `TRADIER_SANDBOX_ACCOUNT`; live: `TRADIER_TOKEN`, `TRADIER_ACCOUNT` |
 | `ibkr` | Stocks | Log the gateway in to your paper account | No keys: you log in to IBKR's Client Portal gateway on this machine. `CANLI_IBKR_CA` is a file holding the gateway's certificate, and `IBKR_ACCOUNT` chooses among several accounts |
 | `coinbase` | Crypto | None exists, so a paper run only previews | `COINBASE_KEY_NAME`, `COINBASE_KEY_SECRET` |
+| `kraken` | Crypto | None for spot, so a paper run only asks Kraken to check each order | `KRAKEN_API_KEY`, `KRAKEN_API_SECRET` |
 
 The IBKR gateway uses a certificate it made itself, so it is checked against a copy you save once, while the gateway is running on your machine:
 

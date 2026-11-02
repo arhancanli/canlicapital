@@ -10,6 +10,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import { coinbaseToken } from "../src/adapters/coinbase.mjs";
+import { krakenSign } from "../src/adapters/kraken.mjs";
 import { makeHttp } from "../src/http.mjs";
 import { readIntent } from "../src/intent.mjs";
 import { run, STOP_FILE } from "../src/send.mjs";
@@ -290,6 +291,53 @@ test("Coinbase: a token anyone can verify, and a paper run only previews", async
   assert.match(live[2].client_order_id, /^canli-/);
 });
 
+test("Kraken: the signature matches Kraken's published example, and a paper run only asks for a check", async (t) => {
+  assert.equal(
+    krakenSign("/0/private/AddOrder", "1616492376594", "nonce=1616492376594&ordertype=limit&pair=XBTUSD&price=37500&type=buy&volume=1.25", "kQH5HW/8p1uGOVjbgWA7FunAmGO8lsSUXNsu3eow76sz84Q18fWxnyRzBHCd3pd5nE9qa99HAZtuZuj6F1huXg=="),
+    "4/dpxb3iT4tp/ZCVEwSnEsLxx0bqyhLpdfOpc6fn7OR8+UClSV5n9E6aSS8MPtnRfp32bAb0nmbRn6H8ndwLUQ==",
+  );
+  const calls = [];
+  const http = async (u, o = {}) => {
+    calls.push({ u, headers: o.headers, body: Object.fromEntries(new URLSearchParams(o.body ?? "")) });
+    if (u.includes("/public/Ticker")) return ok({ error: [], result: { XXBTZUSD: { c: ["50000.0", "1"] } } });
+    if (u.endsWith("/private/Balance")) return ok({ error: [], result: { XXBT: "0.5", ZUSD: "100" } });
+    if (u.endsWith("/private/AddOrder")) return ok({ error: [], result: { descr: { order: "buy 50 XBTUSD @ market" }, txid: ["OU22CG-KLAF2-FWUDD7"] } });
+    return ok({}, 404);
+  };
+  const env = { KRAKEN_API_KEY: "k", KRAKEN_API_SECRET: Buffer.from("secret").toString("base64") };
+  const buy = { symbol: "BTC/USD", side: "buy", notional_usd: 50, type: "market", time_in_force: "gtc" };
+  const a = setup(t, { orders: [buy] }), lines = [];
+  await run({ command: "send", broker: "kraken", env, ...a, http, ask: async () => true, print: (l) => lines.push(l) });
+  assert.ok(lines.some((l) => /preview only: Kraken has no paper account/.test(l)));
+  assert.ok(lines.some((l) => /checked by Kraken, nothing placed/.test(l)));
+  const paper = calls.find((c) => c.u.endsWith("/AddOrder"));
+  assert.equal(paper.body.validate, "true", "paper never trades");
+  assert.equal(paper.body.pair, "XBTUSD");
+  assert.equal(paper.body.oflags, "viqc");
+  assert.match(paper.body.cl_ord_id, /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-a[0-9a-f]{3}-[0-9a-f]{12}$/);
+  assert.equal(paper.headers["API-Sign"], krakenSign("/0/private/AddOrder", paper.body.nonce, new URLSearchParams(paper.body).toString(), env.KRAKEN_API_SECRET));
+  assert.ok(!JSON.stringify(calls).includes("c2VjcmV0"), "the secret itself is never sent");
+  calls.length = 0;
+  const b = setup(t, { limits: { ...LIMITS, allowed_symbols: "any" }, orders: [buy] });
+  await run({ command: "send", broker: "kraken", live: true, env, ...b, http, ask: async () => true, print: () => {} });
+  const live = calls.find((c) => c.u.endsWith("/AddOrder"));
+  assert.equal(live.u, "https://api.kraken.com/0/private/AddOrder");
+  assert.equal(live.body.validate, undefined, "a live order is not a check");
+  const nonces = calls.filter((c) => c.u.includes("/private/")).map((c) => Number(c.body.nonce));
+  assert.deepEqual(nonces, [...nonces].sort((x, y) => x - y), "nonces only rise");
+  const refused = async (order, pattern) => {
+    const c = setup(t, { orders: [order] }), sent = [];
+    await assert.rejects(run({ command: "send", broker: "kraken", env, ...c, http: async (u, o) => { sent.push(u); return http(u, o); }, ask: async () => true, print: () => {} }), pattern);
+    assert.equal(sent.filter((u) => u.endsWith("/AddOrder")).length, 0);
+  };
+  await refused({ symbol: "AAPL", side: "buy", quantity: 1, type: "market" }, /only crypto pairs/);
+  await refused({ symbol: "BTC/USD", side: "sell", notional_usd: 50, type: "market", time_in_force: "gtc" }, /only on a market buy/);
+  const rejected = setup(t, { orders: [buy] }), said = [];
+  const failing = async (u, o) => (u.endsWith("/AddOrder") ? ok({ error: ["EOrder:Insufficient funds"] }) : http(u, o));
+  await run({ command: "send", broker: "kraken", env, ...rejected, http: failing, ask: async () => true, print: (l) => said.push(l) }).catch((e) => said.push(e.message));
+  assert.ok(said.some((l) => /Insufficient funds/.test(l)), "an error in a 200 reply is an error");
+});
+
 test("the local gateway is never simply trusted: no certificate file, no request", async () => {
   const http = makeHttp({});
   await assert.rejects(http("https://localhost:5000/v1/api/iserver/accounts"), /Set CANLI_IBKR_CA/);
@@ -307,7 +355,7 @@ test("the journal holds no secrets, and its file is private", async (t) => {
 
 test("the source reaches only the brokers' own hosts, and is not an MCP tool", () => {
   const dir = fileURLToPath(new URL("../src/", import.meta.url)), files = [...readdirSync(dir).filter((f) => f.endsWith(".mjs")), ...readdirSync(path.join(dir, "adapters")).map((f) => `adapters/${f}`)];
-  const allowed = new Set(["paper-api.alpaca.markets", "api.alpaca.markets", "data.alpaca.markets", "sandbox.tradier.com", "api.tradier.com", "docs.alpaca.markets", "docs.tradier.com", "docs.cdp.coinbase.com", "localhost"]);
+  const allowed = new Set(["paper-api.alpaca.markets", "api.alpaca.markets", "data.alpaca.markets", "sandbox.tradier.com", "api.tradier.com", "docs.alpaca.markets", "docs.tradier.com", "docs.cdp.coinbase.com", "api.kraken.com", "docs.kraken.com", "localhost"]);
   for (const f of files) {
     const text = readFileSync(path.join(dir, f), "utf8");
     for (const m of text.matchAll(/https:\/\/([a-z0-9.-]+)/g)) assert.ok(allowed.has(m[1]), `${f} reaches ${m[1]}`);

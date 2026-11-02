@@ -18,6 +18,7 @@ export function coinbaseToken(keyName, secret, method, path, nowSeconds, nonce =
 
 export const coinbase = {
   name: "coinbase",
+  noPaper: "Coinbase",
   setup(mode, env) {
     if (!env.COINBASE_KEY_NAME || !env.COINBASE_KEY_SECRET) throw new Refused("Set COINBASE_KEY_NAME and COINBASE_KEY_SECRET in your environment.");
     let secret;

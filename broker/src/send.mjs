@@ -7,13 +7,14 @@ import { join } from "node:path";
 import { alpaca } from "./adapters/alpaca.mjs";
 import { coinbase } from "./adapters/coinbase.mjs";
 import { ibkr } from "./adapters/ibkr.mjs";
+import { kraken } from "./adapters/kraken.mjs";
 import { tradier } from "./adapters/tradier.mjs";
 import { readIntent } from "./intent.mjs";
 import { openJournal } from "./journal.mjs";
 import { checkLimits, loadLimits } from "./limits.mjs";
 import { clean, money, Refused } from "./util.mjs";
 
-export const BROKERS = Object.freeze({ alpaca, tradier, ibkr, coinbase });
+export const BROKERS = Object.freeze({ alpaca, tradier, ibkr, coinbase, kraken });
 export const STOP_FILE = "BROKER_STOP";
 
 const clientIdOf = (hash, index) => `canli-${hash.slice(0, 16)}-${index}`;
@@ -52,7 +53,7 @@ export async function run({ command, file, broker: brokerName, live = false, lim
   if (live) problems.push(...checkLimits(priced, loadLimits(limitsFile ?? join(home, "broker-limits.json")), journal.spentOn(day, mode)));
   const standing = journal.state(hash, brokerName, mode);
 
-  print(`\n${mode === "live" ? "LIVE" : "Paper"} orders on ${brokerName}${brokerName === "coinbase" && !live ? " (preview only: Coinbase has no paper account)" : ""}:`);
+  print(`\n${mode === "live" ? "LIVE" : "Paper"} orders on ${brokerName}${adapter.noPaper && !live ? ` (preview only: ${adapter.noPaper} has no paper account)` : ""}:`);
   for (const [i, p] of priced.entries()) {
     const o = p.order, size = o.quantity !== undefined ? `${o.quantity}` : money(o.notional_usd), price = o.type === "limit" ? `limit ${o.limit_price}` : `market, last ${p.price ?? "unknown"}`;
     print(`  ${i + 1}. ${o.side.toUpperCase()} ${size} ${o.symbol}, ${price}, ${o.time_in_force}, about ${money(p.value_usd)}${standing.get(i) === "sent" ? " [already sent]" : ""}`);
