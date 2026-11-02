@@ -417,9 +417,13 @@ export function exchangeReport(args) {
 
 // One whole run with only scripted personas, in one call: for comparing set-ups.
 export const exchangeRunInput = exchangeNewInput.omit({ exchange_file: true }).extend({ steps: z.number().int().min(1).max(20000).describe("How many steps to run.") }).strict();
+// About ten seconds of work: one call cannot hold a process, or the hosted server, for long.
+const MOST_WORK = 3e6;
 export function exchangeRun(args) {
   const { steps, ...rest } = exchangeRunInput.parse(args);
   const s = createExchange(rest);
+  const work = steps * Object.keys(s.agents).length * s.assets.length;
+  if (work > MOST_WORK) throw new RangeError(`That is ${work.toLocaleString("en-US")} agent-steps, and one call does at most ${MOST_WORK.toLocaleString("en-US")}. Use fewer steps, agents or assets.`);
   for (let i = 0; i < steps; i += 1) stepExchange(s);
   return report(s);
 }

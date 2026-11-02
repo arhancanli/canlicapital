@@ -180,3 +180,7 @@ test("a file that is not an exchange is refused without quoting it", () => {
   assert.throws(() => exchangeReport({ exchange_file: f }), (e) => /not an agent exchange file/.test(e.message) && !e.message.includes("secret"));
   rmSync(d, { recursive: true, force: true });
 });
+
+test("one call cannot run an enormous market", () => {
+  assert.throws(() => exchangeRun({ steps: 20000, assets: 10, personas: { noise: 200 } }), /agent-steps/);
+});

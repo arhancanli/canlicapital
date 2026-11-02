@@ -26,7 +26,7 @@ export const memoryInput = z.object({
   query: z.string().min(1).max(300).describe("The subject in plain words, for example \"supply chain problems in Southeast Asia\". Quote a phrase to keep its words together."),
   also: z.array(z.string().min(1).max(80)).max(40).optional().describe("Other words a company might use for the same subject, which you supply, such as contract manufacturer, Vietnam, Thailand. They help the ranking."),
   all_of: z.array(z.array(z.string().min(1).max(80)).min(1).max(40)).min(1).max(5).optional().describe("What counts as a mention: a paragraph must hold at least one term from every group, such as [[\"supply chain\",\"supplier\"],[\"Southeast Asia\",\"Vietnam\",\"Thailand\"]]. Without it, a paragraph counts if it holds most of the query's words."),
-  years: z.number().int().min(1).max(35).optional().describe("How many annual reports back; default 20, or 8 on the hosted server."),
+  years: z.number().int().min(1).max(35).optional().describe("How many annual reports back; default 20. The hosted server reads at most 10."),
   form: z.enum(["10-K", "20-F", "40-F"]).optional().describe("Annual report form; default 10-K."),
   section: z.string().min(1).max(40).optional().describe("Only one part of each report: \"risk factors\", \"md&a\", \"business\" or an item number such as 1A."),
   limit: z.number().int().min(1).max(30).optional().describe("Passages to return; default 8."),
@@ -323,7 +323,7 @@ const SECTION_NAMES = { "risk factors": "1A", risks: "1A", business: "1", "md&a"
 
 export async function filingMemory(session, args) {
   const a = memoryInput.parse(args);
-  const form = a.form ?? "10-K", want = a.years ?? (session.env.VERCEL ? 8 : 20), limit = a.limit ?? 8, perYear = a.per_year ?? 2;
+  const form = a.form ?? "10-K", want = session.env.VERCEL ? Math.min(a.years ?? 8, 10) : a.years ?? 20, limit = a.limit ?? 8, perYear = a.per_year ?? 2;
   const entity = await resolveEntity(session, a.company);
   const { sub, rows } = await filings(session, entity.cik, { since: "1993-01-01" });
   const annual = rows.filter((r) => FORMS[form].test(r.form) && (!a.filed_before || r.filingDate <= a.filed_before)).slice(0, want);
