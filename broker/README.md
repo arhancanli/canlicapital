@@ -57,3 +57,10 @@ Brokers charge what they charge: spreads, commissions, data fees and taxes are b
 It is not investment advice, and nothing here says what to buy. An order file may have been written by a model that was wrong or was misled, so read it as a draft.
 
 The software comes under the MIT licence, as is and with no warranty. That licence does not settle every question. You are responsible for your own orders, your broker's terms, and the rules where you live, and you need to be old enough to hold the account. If you build something that sends orders for other people, or tells them what to buy, different rules can apply, so get advice from a lawyer first.
+
+## FIX
+
+`--broker fix` speaks FIX 4.4 to any gateway you name: an institutional broker's, an execution network's or a test venue's. Set `CANLI_FIX_ENVIRONMENT` (`test` or `production`), `CANLI_FIX_HOST`, `CANLI_FIX_PORT`, `CANLI_FIX_SENDER` and `CANLI_FIX_TARGET`, with `CANLI_FIX_USERNAME` and `CANLI_FIX_PASSWORD` if the gateway needs them. A run that says paper needs a gateway you have declared `test`. A password does not cross a network in the clear: plain TCP (`CANLI_FIX_TLS=0`) works only on this machine.
+
+It sends limit orders only. It was written from the FIX 4.4 specification and tested against a simulator on this machine. It has never connected to a real gateway. Each counterparty certifies a connection before it goes live, with rules of its own. Prime brokers such as Morgan Stanley offer FIX only under a signed agreement with an institution, so this does not get anyone an account or an approval, and nothing about it makes a fund compliant.
+

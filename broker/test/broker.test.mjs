@@ -399,3 +399,84 @@ test("from the command line: with no terminal, a person cannot be asked, so noth
   assert.match(stopped.stderr, /nothing is sent/);
   assert.ok(Refused);
 });
+
+// ---------------------------------------------------------------------------------------------
+// FIX: real sockets on this machine, against a small simulator of a gateway.
+import { createServer as createTcpServer } from "node:net";
+import { decode, encode, fixTime } from "../src/fix.mjs";
+import { fix } from "../src/adapters/fix.mjs";
+
+const SOH = "\x01";
+function fixSim({ onOrder = () => ({ status: "0", id: "FX1" }), refuseLogon = false, testRequest = false, dropOnOrder = false } = {}) {
+  const seen = [];
+  const server = createTcpServer((socket) => {
+    let buffer = "", seq = 1;
+    socket.setEncoding("latin1");
+    const reply = (type, fields) => { socket.write(encode(type, fields, { sender: "GATE", target: "ME", seq }), "latin1"); seq += 1; };
+    socket.on("error", () => {});
+    socket.on("data", (chunk) => {
+      const { messages, rest } = decode(buffer + chunk);
+      buffer = rest;
+      for (const m of messages) {
+        seen.push(m);
+        const type = m.get("35");
+        if (type === "A") { if (refuseLogon) reply("5", [["58", "bad password"]]); else { reply("A", [["98", "0"], ["108", "30"]]); if (testRequest) reply("1", [["112", "hello"]]); } }
+        if (type === "D") {
+          if (dropOnOrder) { socket.destroy(); return; }
+          const r = onOrder(m);
+          reply("8", [["11", m.get("11")], ["37", r.id ?? "NONE"], ["150", r.status], ["39", r.status], ...(r.text ? [["58", r.text]] : [])]);
+        }
+      }
+    });
+  });
+  return new Promise((ok) => server.listen(0, "127.0.0.1", () => ok({ port: server.address().port, seen, close: () => new Promise((d) => server.close(d)) })));
+}
+const fixEnv = (port, extra = {}) => ({ CANLI_FIX_ENVIRONMENT: "test", CANLI_FIX_HOST: "127.0.0.1", CANLI_FIX_PORT: String(port), CANLI_FIX_TLS: "0", CANLI_FIX_SENDER: "ME", CANLI_FIX_TARGET: "GATE", ...extra });
+const ORDER = { symbol: "AAPL", side: "buy", type: "limit", quantity: 10, limit_price: 150.25, time_in_force: "day" };
+
+test("FIX: lengths and checksums are written and checked", () => {
+  const raw = encode("D", [["55", "AAPL"]], { sender: "ME", target: "GATE", seq: 7, now: new Date("2026-11-02T10:00:00.123Z") });
+  assert.match(raw, new RegExp(`^8=FIX\\.4\\.4${SOH}9=\\d+${SOH}35=D${SOH}49=ME${SOH}56=GATE${SOH}34=7${SOH}52=20261102-10:00:00\\.123${SOH}55=AAPL${SOH}10=\\d{3}${SOH}$`));
+  const { messages, rest } = decode(raw);
+  assert.equal(messages[0].get("55"), "AAPL");
+  assert.equal(rest, "");
+  assert.equal(decode(raw.slice(0, 20)).messages.length, 0, "half a message waits for the rest");
+  assert.throws(() => decode(raw.replace("AAPL", "AAPM")), /checksum/);
+  assert.throws(() => encode("D", [["55", `AAPL${SOH}54=2`]], { sender: "ME", target: "GATE", seq: 1 }), /separator/, "a field cannot smuggle in another");
+  assert.equal(fixTime(new Date("2026-01-02T03:04:05.006Z")), "20260102-03:04:05.006");
+});
+
+test("FIX: an order goes out whole, and its execution report comes back", async () => {
+  const sim = await fixSim({ testRequest: true });
+  const cfg = await fix.setup("paper", fixEnv(sim.port, { CANLI_FIX_USERNAME: "u", CANLI_FIX_PASSWORD: "p", CANLI_FIX_ACCOUNT: "ACC1" }));
+  const r = await fix.place(cfg, null, ORDER, "client-1");
+  assert.deepEqual(r, { id: "FX1", status: "new" });
+  const logon = sim.seen.find((m) => m.get("35") === "A"), order = sim.seen.find((m) => m.get("35") === "D");
+  assert.equal(logon.get("553"), "u");
+  assert.equal(logon.get("141"), "Y");
+  assert.deepEqual(["11", "1", "55", "54", "38", "40", "44", "59"].map((k) => order.get(k)), ["client-1", "ACC1", "AAPL", "1", "10", "2", "150.25", "0"]);
+  assert.equal(sim.seen.find((m) => m.get("35") === "0")?.get("112"), "hello", "a test request is answered");
+  await sim.close();
+});
+
+test("FIX: a rejection is a definite no, and a dropped line is not", async () => {
+  const no = await fixSim({ onOrder: () => ({ status: "8", text: "price too far" }) });
+  await assert.rejects(fix.place(await fix.setup("paper", fixEnv(no.port)), null, ORDER, "c"), (e) => e instanceof Refused && /rejected: price too far/.test(e.message));
+  await no.close();
+  const gone = await fixSim({ dropOnOrder: true });
+  await assert.rejects(fix.place(await fix.setup("paper", fixEnv(gone.port)), null, ORDER, "c"), (e) => !(e instanceof Refused) && /closed the connection/.test(e.message));
+  await gone.close();
+  const refused = await fixSim({ refuseLogon: true });
+  await assert.rejects(fix.place(await fix.setup("paper", fixEnv(refused.port)), null, ORDER, "c"), /refused the logon: bad password/);
+  await refused.close();
+});
+
+test("FIX: paper needs a declared test venue, live a declared production one, and a password needs TLS across a network", async () => {
+  await assert.rejects(fix.setup("paper", fixEnv(1, { CANLI_FIX_ENVIRONMENT: "production" })), /this run is paper/);
+  await assert.rejects(fix.setup("live", fixEnv(1)), /this run is live/);
+  await assert.rejects(fix.setup("paper", fixEnv(1, { CANLI_FIX_HOST: "gateway.example.com" })), /needs TLS/);
+  await assert.rejects(fix.setup("paper", { ...fixEnv(1), CANLI_FIX_SENDER: "" }), /CANLI_FIX_SENDER is not set/);
+  assert.match(fix.cannot({ ...ORDER, type: "market" }), /only limit orders/);
+  assert.match(fix.cannot({ ...ORDER, symbol: "BTC/USD" }), /only stocks/);
+  assert.equal(fix.cannot(ORDER), null);
+});

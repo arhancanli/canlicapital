@@ -7,6 +7,7 @@ import { join } from "node:path";
 import { alpaca } from "./adapters/alpaca.mjs";
 import { coinbase } from "./adapters/coinbase.mjs";
 import { ibkr } from "./adapters/ibkr.mjs";
+import { fix } from "./adapters/fix.mjs";
 import { kraken } from "./adapters/kraken.mjs";
 import { tradier } from "./adapters/tradier.mjs";
 import { readIntent } from "./intent.mjs";
@@ -14,7 +15,7 @@ import { openJournal } from "./journal.mjs";
 import { checkLimits, loadLimits } from "./limits.mjs";
 import { clean, money, Refused } from "./util.mjs";
 
-export const BROKERS = Object.freeze({ alpaca, tradier, ibkr, coinbase, kraken });
+export const BROKERS = Object.freeze({ alpaca, tradier, ibkr, coinbase, kraken, fix });
 export const STOP_FILE = "BROKER_STOP";
 
 const clientIdOf = (hash, index) => `canli-${hash.slice(0, 16)}-${index}`;
