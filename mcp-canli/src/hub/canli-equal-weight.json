@@ -1,0 +1,17 @@
+{
+  "spec": "canli.sleeve.v1",
+  "id": "canli/equal-weight",
+  "title": "Equal weight, rebalanced monthly",
+  "author": "arhancanli",
+  "recipe": "equal_weight_rebalance",
+  "params": {
+    "rebalance_every": 21
+  },
+  "data": "universe",
+  "rationale": "Puts the same amount in everything and resets it each month. It needs no forecast at all, which makes it a useful plain benchmark for any cleverer way of choosing weights.",
+  "risks": "It gives small and fragile holdings the same size as large ones. Rebalancing costs money, and the result depends heavily on what is in the universe.",
+  "references": [
+    "DeMiguel, Garlappi and Uppal (2009), Optimal Versus Naive Diversification, Review of Financial Studies"
+  ],
+  "license": "CC-BY-4.0"
+}

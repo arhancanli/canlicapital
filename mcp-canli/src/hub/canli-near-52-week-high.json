@@ -1,0 +1,19 @@
+{
+  "spec": "canli.sleeve.v1",
+  "id": "canli/near-52-week-high",
+  "title": "Closest to the 52-week high",
+  "author": "arhancanli",
+  "recipe": "high_proximity",
+  "params": {
+    "window": 252,
+    "top_fraction": 0.2,
+    "rebalance_every": 21
+  },
+  "data": "universe",
+  "rationale": "Holds the stocks trading closest to their highest price of the past year. Investors may anchor on that high and be slow to act on good news when a price nears it.",
+  "risks": "It leans towards recent winners, so it can share momentum's sudden falls. A universe with few stocks can leave it holding just a few names.",
+  "references": [
+    "George and Hwang (2004), The 52-Week High and Momentum Investing, Journal of Finance"
+  ],
+  "license": "CC-BY-4.0"
+}

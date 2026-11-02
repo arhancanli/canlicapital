@@ -1,0 +1,20 @@
+{
+  "spec": "canli.sleeve.v1",
+  "id": "canli/volatility-target-10",
+  "title": "Volatility target, 10 percent a year",
+  "author": "arhancanli",
+  "recipe": "volatility_target",
+  "params": {
+    "target": 0.1,
+    "lookback": 21,
+    "max_leverage": 1.5,
+    "rebalance_every": 5
+  },
+  "data": "single",
+  "rationale": "Holds less when recent volatility is high and more when it is low, aiming for a steady level of risk. Volatility tends to cluster, so the recent past says something about the near future.",
+  "risks": "It sells after volatility has already jumped, and a sudden fall arrives before it can react. Using leverage in calm markets adds to the loss when calm ends, and frequent changes add costs.",
+  "references": [
+    "Moreira and Muir (2017), Volatility-Managed Portfolios, Journal of Finance"
+  ],
+  "license": "CC-BY-4.0"
+}

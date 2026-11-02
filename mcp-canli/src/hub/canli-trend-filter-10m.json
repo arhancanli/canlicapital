@@ -1,0 +1,18 @@
+{
+  "spec": "canli.sleeve.v1",
+  "id": "canli/trend-filter-10m",
+  "title": "Trend filter, ten-month average",
+  "author": "arhancanli",
+  "recipe": "trend_filter_allocation",
+  "params": {
+    "sma": 210,
+    "rebalance_every": 21
+  },
+  "data": "universe",
+  "rationale": "Holds each asset only while its price is above its average of about the past ten months, and steps aside otherwise. It is meant to lower the depth of long falls rather than to find anything new.",
+  "risks": "It sells after a fall has begun and buys after a rise has begun, so it can lag and be whipsawed in sideways markets. The choice of window is one of many that could have been tried.",
+  "references": [
+    "Faber (2007), A Quantitative Approach to Tactical Asset Allocation, Journal of Wealth Management"
+  ],
+  "license": "CC-BY-4.0"
+}

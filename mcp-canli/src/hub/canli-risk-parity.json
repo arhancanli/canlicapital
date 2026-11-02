@@ -1,0 +1,19 @@
+{
+  "spec": "canli.sleeve.v1",
+  "id": "canli/risk-parity",
+  "title": "Risk parity across assets",
+  "author": "arhancanli",
+  "recipe": "risk_parity_rebalance",
+  "params": {
+    "lookback": 63,
+    "rebalance_every": 21
+  },
+  "data": "universe",
+  "rationale": "Sizes each asset so that each adds a similar amount of risk, rather than a similar amount of money. Without this, the most volatile asset tends to drive a portfolio's results.",
+  "risks": "Risk is measured from the recent past and can change quickly. Assets that seem unrelated can fall together in a crisis. With leverage, losses grow as well.",
+  "references": [
+    "Maillard, Roncalli and Teiletche (2010), The Properties of Equally Weighted Risk Contribution Portfolios, Journal of Portfolio Management",
+    "Asness, Frazzini and Pedersen (2012), Leverage Aversion and Risk Parity, Financial Analysts Journal"
+  ],
+  "license": "CC-BY-4.0"
+}

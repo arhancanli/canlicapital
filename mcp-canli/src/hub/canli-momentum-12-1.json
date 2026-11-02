@@ -1,0 +1,20 @@
+{
+  "spec": "canli.sleeve.v1",
+  "id": "canli/momentum-12-1",
+  "title": "Cross-sectional momentum, 12 months skipping the last",
+  "author": "arhancanli",
+  "recipe": "cross_sectional_momentum",
+  "params": {
+    "lookback": 252,
+    "skip": 21,
+    "top_fraction": 0.2,
+    "rebalance_every": 21
+  },
+  "data": "universe",
+  "rationale": "Holds the stocks that rose most over the past year, leaving out the latest month. Investors may be slow to take in good news, and the skipped month avoids the short-term reversal that works against this.",
+  "risks": "Momentum can fall sharply and suddenly when markets turn, because it holds last year's winners into the rebound of last year's losers. It trades a lot, so costs matter.",
+  "references": [
+    "Jegadeesh and Titman (1993), Returns to Buying Winners and Selling Losers, Journal of Finance"
+  ],
+  "license": "CC-BY-4.0"
+}

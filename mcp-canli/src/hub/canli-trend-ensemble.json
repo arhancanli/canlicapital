@@ -1,0 +1,18 @@
+{
+  "spec": "canli.sleeve.v1",
+  "id": "canli/trend-ensemble",
+  "title": "Trend across several horizons",
+  "author": "arhancanli",
+  "recipe": "trend_ensemble",
+  "params": {
+    "vol_target": 0.1,
+    "long_only": false
+  },
+  "data": "single",
+  "rationale": "Combines trend signals of about one, three, six and twelve months and scales the position to its volatility. Averaging horizons means it does not rest on one chosen window.",
+  "risks": "Trend rules lose in markets that reverse often, and can lose for years at a time. Going short can suffer in sharp rebounds, and the chosen horizons are themselves a choice that was made.",
+  "references": [
+    "Hurst, Ooi and Pedersen (2017), A Century of Evidence on Trend-Following Investing, Journal of Portfolio Management"
+  ],
+  "license": "CC-BY-4.0"
+}

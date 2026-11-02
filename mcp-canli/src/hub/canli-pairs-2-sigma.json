@@ -1,0 +1,19 @@
+{
+  "spec": "canli.sleeve.v1",
+  "id": "canli/pairs-2-sigma",
+  "title": "Pairs trade, two standard deviations",
+  "author": "arhancanli",
+  "recipe": "pairs_trading",
+  "params": {
+    "window": 60,
+    "entry_z": 2,
+    "exit_z": 0.5
+  },
+  "data": "pair",
+  "rationale": "Bets that two closely related prices drift back together after moving apart. It holds one against the other, so it depends on their relationship rather than on the market's direction.",
+  "risks": "A gap can keep growing, or mark a lasting change such as a takeover or a failing business. Short positions carry borrowing costs and can be recalled. Picking the pair after seeing the data flatters any test.",
+  "references": [
+    "Gatev, Goetzmann and Rouwenhorst (2006), Pairs Trading: Performance of a Relative-Value Arbitrage Rule, Review of Financial Studies"
+  ],
+  "license": "CC-BY-4.0"
+}
