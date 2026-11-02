@@ -269,6 +269,16 @@ function clauseBefore(sentence, at) {
   return before.slice(start);
 }
 
+// Organic growth leaves out deals and currency, so a guide for it does not answer reported sales or
+// the reverse: "increased 9% on a reported basis and 5% organically". The words between a figure and
+// its neighbours decide.
+function organicAt(sentence, f, before, next) {
+  const after = sentence.slice(f.end, next?.at ?? sentence.length).split(/[,;]|\band\b/i)[0];
+  const clause = clauseBefore(sentence, f.at);
+  const since = before && before.end > f.at - clause.length ? sentence.slice(before.end, f.at) : clause;
+  return /\borganic(?:ally)?\b/i.test(after) || /\borganic(?:ally)?\b/i.test(since);
+}
+
 // The measure a figure belongs to: the last measure named before it in its clause, else the
 // first after it. A measure with its own qualifier ("Data Center revenue") is returned as a label.
 function measureNear(sentence, at, own = new Set(), lookAfter = true) {
@@ -349,7 +359,8 @@ export function guidanceFromSentence(sentence, context = {}) {
   const out = [];
   let replaced = null;
   const own = new Set(String(context.company ?? "").toLowerCase().replace(/[^a-z0-9 ]+/g, " ").split(/\s+/).filter((w) => w.length > 2));
-  for (const f of figuresIn(sentence)) {
+  const figures = figuresIn(sentence);
+  for (const [i, f] of figures.entries()) {
     // Outside an outlook section a figure is guidance only when an expectation is stated before it
     // in its sentence ("Revenue was $89 billion" is a result; "we expect $108 billion" is not).
     if (!context.section && !FORWARD.test(sentence.slice(0, f.at))) continue;
@@ -369,7 +380,9 @@ export function guidanceFromSentence(sentence, context = {}) {
     const local = sentence.slice(Math.max(0, f.at - 160), f.end);
     // "GAAP and non-GAAP ... X and Y, respectively": the first value is GAAP, the second non-GAAP.
     const both = basisOf(local);
-    const basis = f.respectively !== undefined && both === "GAAP and non-GAAP" ? (f.respectively === 0 ? "GAAP" : "non-GAAP") : both;
+    // "EPS ... between $1.52 and $1.72 on a non-GAAP basis" names it after the figure.
+    const stated = basisOf(sentence.slice(f.end, figures[i + 1]?.at ?? sentence.length).match(/^\s*(?:on an?|in)\s+(?:(?:non-?)?gaap|adjusted|constant[- ]currency)\b/i)?.[0] ?? "");
+    const basis = item.measure === "revenue" && organicAt(sentence, f, figures[i - 1], figures[i + 1]) ? "organic" : stated ?? (f.respectively !== undefined && both === "GAAP and non-GAAP" ? (f.respectively === 0 ? "GAAP" : "non-GAAP") : both);
     out.push({
       ...(label && !measure ? { label } : {}),
       ...item,
@@ -388,6 +401,18 @@ export function guidanceFromSentence(sentence, context = {}) {
 
 // Footnote marks glued to words ("EPS1", "comp sales2", "(cc)1") are split off, so "EPS" reads as EPS.
 export const unglue = (text) => String(text).replace(/([A-Za-z)]{2,})(\d)(?=[\s,.;:)]|$)/g, "$1 $2");
+
+// A sentence broken across lines ("... between $1.91 billion and" above "$2.05 billion.") is one line.
+function linesOf(text) {
+  const out = [];
+  for (const raw of unglue(text).split("\n")) {
+    const line = raw.trim();
+    if (!line) continue;
+    if (out.length && /\b(?:and|to|between|of|or)$|[-–—]$/.test(out.at(-1)) && /^[$€£(\d]/.test(line) && !out.at(-1).includes(" | ") && !line.includes(" | ")) out[out.length - 1] += ` ${line}`;
+    else out.push(line);
+  }
+  return out;
+}
 
 // Sentences of a line, without splitting decimals ("$5.10") or abbreviations ("U.S.", "Inc.").
 export function sentences(line) {
@@ -420,7 +445,7 @@ const HEADING_LIKE = (line) => line.length < 60 && !/[.:;,]$/.test(line) && !/^[
 // anywhere else, sentences that state an expectation with a figure. Table rows are left to
 // guidanceFromTable.
 export function guidanceFromText(text, context = {}) {
-  const lines = unglue(text).split("\n").map((l) => l.trim()).filter(Boolean);
+  const lines = linesOf(text);
   const out = [];
   const seen = new Set();
   let section = null;
@@ -527,7 +552,7 @@ export function guidanceFromTable(t) {
         if (scale && !f.f.pct && !f.f.scale && measure !== "eps" && !/per share/i.test(label)) f.f = { ...f.f, cur: f.f.cur ?? "$", scale };
         const item = itemFrom(f, measure, sentence);
         const safeCtx = BOILERPLATE.test(ctx) ? "" : ctx;
-        out.push({ ...(measure ? {} : { label }), ...item, from: "table", basis: basisOf(`${label} ${header}`) ?? basisOf(safeCtx), period: periodOf(header) ?? periodOf(label) ?? periodOf(heading ?? "") ?? periodOf(safeCtx), column: header || null, quote: `${label} | ${header ? `${header}: ` : ""}${text}` });
+        out.push({ ...(measure ? {} : { label }), ...item, from: "table", basis: item.measure === "revenue" && /\borganic\b/i.test(`${label} ${header}`) ? "organic" : basisOf(`${label} ${header}`) ?? basisOf(safeCtx), period: periodOf(header) ?? periodOf(label) ?? periodOf(heading ?? "") ?? periodOf(t.heading ?? "") ?? periodOf(safeCtx), column: header || null, quote: `${label} | ${header ? `${header}: ` : ""}${text}` });
       }
     });
   }
@@ -536,7 +561,7 @@ export function guidanceFromTable(t) {
 
 // Results in a release's text: the measure, its value and the sentence, in the order they appear.
 export function resultsFromText(text, max = 400) {
-  const lines = unglue(text).split("\n").map((l) => l.trim()).filter(Boolean).slice(0, max);
+  const lines = linesOf(text).slice(0, max);
   const out = [];
   // Lines under a heading that names a part of the business ("Data Center") are that part's
   // results, even when the sentence says only "revenue was $89.0 billion".
@@ -582,6 +607,8 @@ export function resultsFromText(text, max = 400) {
         // "decreased 9%, or 10% on a constant dollar basis": the second figure shares the first's sign.
         const sameSign = prev && prev.negative && /^\s*,?\s*or\s+$/i.test(s.slice(prev.end, f.at));
         let { measure, base, qualifier } = measureNear(s, f.at, new Set(), false);
+        // "Net sales of $1,495 million; year-over-year increase of 14.3%": the change is the last figure's.
+        if (!measure && !base && prev && /^\s*[;,]\s*(?:an?\s+)?(?:year[- ]over[- ]year\s+)?(?:increase|decrease|decline|growth)\s+of\s*$/i.test(s.slice(prev.end, f.at))) measure = prev.measure;
         // A measure of a named part of the business ("Data Center revenue", "revenue in Intelligent
         // Cloud") is that part's result. Deferred or recurring revenue, an average price, or words
         // that are not a name ("services", "where") are left out.
@@ -630,7 +657,9 @@ export function resultsFromText(text, max = 400) {
         const after = s.slice(f.end, Math.min(figs[k + 1]?.at ?? f.end + 40, f.end + 40)).split(/\band\b|[,;]/)[0];
         const from = Math.max(0, figs[k - 1]?.end ?? f.at - 120);
         const cut = s.slice(from, f.at).search(/[)(][^)(]*$/);
-        const named = basisOf(s.slice(cut >= 0 ? from + cut + 1 : from, f.end) + after) ?? (prev?.measure === measure ? prev.named : null);
+        // "or $2.40 per share, excluding special items" names that figure, past the comma.
+        const adjustedAfter = /^(?:\s*per (?:diluted |common )?share)?\s*,?\s*(?:excluding (?:special|certain|non-?recurring) (?:items|charges)|before special items)\b/i.test(s.slice(f.end, f.end + 70));
+        const named = (adjustedAfter ? "adjusted" : basisOf(s.slice(cut >= 0 ? from + cut + 1 : from, f.end) + after)) ?? (prev?.measure === measure ? prev.named : null);
         // "GAAP diluted EPS and non-GAAP diluted EPS of $0.45 and $0.64, respectively" names both as well.
         let basis = /\bgaap\b(?:(?!non-?gaap)[^.;]){0,70}\band non-?gaap\b[^;]{0,120}\brespectively\b/i.test(s) ? "GAAP and non-GAAP" : named;
         // "GAAP and non-GAAP earnings per diluted share were $2.46 and $2.22, respectively": one each.
@@ -639,6 +668,7 @@ export function resultsFromText(text, max = 400) {
           paired[measure] = n + 1;
           if (n < 2) basis = n === 0 ? "GAAP" : "non-GAAP";
         }
+        if (measure === "revenue" && organicAt(s, f, figs[k - 1], figs[k + 1])) basis = "organic";
         prev = { end: f.end, negative, measure, named };
         out.push({ measure, value, unit, basis, change, versus: change ? versusOf(s, f.end) : null, section: part, scope: scopeOf(clause) ?? scope, decimals: f.decimals, quote: s });
       }
@@ -770,7 +800,7 @@ export function compareGuidance(guided, results) {
     // A guide that names no basis can be either. If this release's GAAP and adjusted results land on
     // different sides of it, nothing can be said: Gen Digital's "Q1 EPS of $0.68 to $0.70" against a
     // diluted $0.36 and a non-GAAP $0.69 is not a miss.
-    const other = !g.basis ? results.find((x) => !x.section && x.measure === g.measure && x.unit === g.unit && x.value !== r.value && x.basis && x.basis !== "GAAP" && x.basis !== "constant currency" && (x.change ?? null) === (r.change ?? null) && !(quarterly && x.scope === "year") && !(yearly && x.scope === "quarter")) : null;
+    const other = !g.basis ? results.find((x) => !x.section && x.measure === g.measure && x.unit === g.unit && x.value !== r.value && x.basis && x.basis !== "GAAP" && x.basis !== "constant currency" && x.basis !== "organic" && (x.change ?? null) === (r.change ?? null) && !(quarterly && x.scope === "year") && !(yearly && x.scope === "quarter")) : null;
     const unclear = other && placeOf(other.value) !== place;
     rows.push({
       measure: g.measure, basis: g.basis ?? null, period: g.period ?? null, unit: g.unit,

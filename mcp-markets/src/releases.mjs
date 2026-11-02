@@ -130,7 +130,7 @@ export async function earningsRelease(session, args) {
       ...(rowsOut.length
         ? { columns: ["measure", "basis", "period_guided", "unit", "guided_low", "guided_high", "actual", "vs_low", "vs_high", "vs_low_bps", "vs_high_bps", "position", "guidance_quote", "result_quote"], rows: rowsOut.map((r) => [r.measure, r.basis, r.period, r.unit, r.guided_low, r.guided_high, r.actual, r.vs_low, r.vs_high, r.vs_low_bps ?? null, r.vs_high_bps ?? null, r.position, r.guidance_quote, r.result_quote]) }
         : { rows: [], note: forThis.length ? "No result in this release names the same measure, basis and unit as the previous guidance; compare by the quotes in guidance and results." : "The previous release gave no quarterly guidance this tool could read; read it with read_filing." }),
-      note: "Measures are matched by name, basis (GAAP, adjusted, non-GAAP) and unit; check that period_guided is the quarter these results cover, and both quotes.",
+      note: "Measures are matched by name, basis (GAAP, adjusted, non-GAAP, organic) and unit; check that period_guided is the quarter these results cover, and both quotes.",
     };
   }
   return {

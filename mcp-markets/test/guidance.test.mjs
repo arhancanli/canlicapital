@@ -361,3 +361,36 @@ test("last year's figure and a replaced range are not the guide (Ecolab, Essex)"
   assert.deepEqual(table.filter((g) => g.measure === "revenue").map((g) => [g.low, g.high]), [[2, 2.5]]);
 });
 
+test("organic growth is its own basis, on the guide and on the result", () => {
+  const organicGuide = guidanceFromSentence("First quarter 2026 organic sales projected to increase approximately 1% from the prior year period", { section: true });
+  assert.equal(organicGuide.find((g) => g.measure === "revenue").basis, "organic");
+  const results = resultsFromText("Sales of $887 million increased 9% on a reported basis and 5% organically.").filter((r) => r.measure === "revenue" && r.change === "growth");
+  assert.deepEqual(results.map((r) => [r.value, r.basis]), [[9, null], [5, "organic"]]);
+  const row = compareGuidance(organicGuide, results).find((r) => r.measure === "revenue");
+  assert.equal(row.actual, 5);
+  // Zebra: a guide for sales growth is not answered by organic growth alone.
+  const reported = guidanceFromSentence("The Company expects first quarter 2026 sales growth between 11% and 15% compared to the prior year.");
+  const zebra = resultsFromText("Net sales of $1,495 million; year-over-year increase of 14.3%\nConsolidated organic net sales for the first quarter of 2026 increased 4.3% year-over-year.");
+  const placed = compareGuidance(reported.filter((g) => g.measure === "revenue"), zebra);
+  assert.deepEqual(placed.map((r) => [r.actual, r.position]), [[14.3, "within the range"]]);
+});
+
+test("a range broken across lines is one range (Coherent), with its basis named after it", () => {
+  const text = "Business Outlook\nRevenue for the fourth quarter of fiscal 2026 is expected to be between $1.91 billion and\n$2.05 billion.\nEPS for the fourth quarter of fiscal 2026 is expected to be between $1.52 and $1.72 on a non-GAAP basis.";
+  const items = guidanceFromText(text);
+  assert.deepEqual(items.filter((g) => g.measure === "revenue").map((g) => [g.low, g.high]), [[1.91, 2.05]]);
+  assert.deepEqual(items.filter((g) => g.measure === "eps").map((g) => [g.low, g.high, g.basis]), [[1.52, 1.72, "non-GAAP"]]);
+});
+
+test("a table titled for the full year is not a quarter's because the prose above names one (Hershey)", () => {
+  const table = { caption: "This guidance only includes tariff expense, as understood today, expected for the second quarter of 2025.", heading: "2025 Full-Year Outlook", columns: ["line", "Guidance"], rows: [["Net sales growth*", "At least 2%"]] };
+  assert.ok(!quarterOf(guidanceFromTable(table)[0].period ?? ""));
+});
+
+test("excluding special items after the figure makes it adjusted (Packaging Corp)", () => {
+  const results = resultsFromText("Packaging Corporation of America today reported first quarter 2026 net income of $171 million, or $1.91 per share, and net income of $215 million, or $2.40 per share, excluding special items.").filter((r) => r.measure === "eps");
+  assert.deepEqual(results.map((r) => [r.value, r.basis]), [[1.91, null], [2.4, "adjusted"]]);
+  const row = compareGuidance([{ measure: "eps", low: 2.2, high: 2.2, unit: "USD per share", basis: null, period: "first quarter" }], results)[0];
+  assert.match(row.position, /^not placed/);
+});
+
