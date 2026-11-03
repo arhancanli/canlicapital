@@ -21,7 +21,17 @@ post(book, { date: "2026-01-02", memo: "Share capital paid in", lines: [{ accoun
 trialBalance(book);
 ```
 
-Next: the MCP server, so an AI assistant can keep books under these rules; then bank import and reconciliation.
+## Every Canli company's core, on the same engine
+
+- `ledger.mjs`, Canli Books: the double-entry core above.
+- `close.mjs`, Canli Close: bank statements read from CSV and matched to the books, what moved between two periods and the entries that moved it, and the checklist before a month is locked.
+- `report.mjs`, Canli Report: statements as US GAAP or IFRS facts, and checks for totals that do not add up, wrong signs, scale slips and facts given twice. An account with no concept is listed, never guessed; check every concept against your taxonomy year before filing.
+- `audit.mjs`, Canli Audit: Benford's law against Nigrini's bands, and journal-entry tests for round amounts, weekend dates, duplicates, amounts just under an approval limit, missing memos and reversals. Analytics, not an audit opinion.
+- `planning.mjs`, Canli Treasury and Planning: cash runway, budget against actual, a forecast from trailing months, and a discounted cash flow value that returns every input.
+- `data.mjs`, Canli Data: a table packed as CSV with its SHA-256 and a dataset card in Hugging Face's format.
+- `sign.mjs`: a book's head signed with ML-DSA-65, a post-quantum signature, which pins the whole history.
+
+Each becomes its own package when it ships on its own. Next: the MCP server, so an AI assistant can use all of it.
 
 The starting chart of accounts includes VAT and corporate tax accounts for UAE companies. It is a list of accounts, not tax or accounting advice.
 
