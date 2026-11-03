@@ -23,7 +23,7 @@ const unescape = text => text.replaceAll('&quot;', '"').replaceAll('&#39;', "'")
 test('the execution guide binds delivered private source and its full local import closure', () => {
   const source = executionSource();
   assert.equal(source.source_commit, EXECUTION_SOURCE_COMMIT);
-  assert.equal(source.source_commit, 'fd1a0f930c255421dbb89d8882b336fb056cc939');
+  assert.equal(source.source_commit, '0c9e3c677856b3e0ca4fa63ad52d7951f168cd4e');
   assert.equal(source.release_status, 'private_unreleased');
   assert.equal(source.hosted_endpoint, null);
   assert.equal(source.npm_install, null);
