@@ -9,7 +9,7 @@
 [![CodeQL](https://github.com/arhancanli/canli-mcp/actions/workflows/codeql.yml/badge.svg)](https://github.com/arhancanli/canli-mcp/actions/workflows/codeql.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](https://github.com/arhancanli/canli-mcp/blob/main/LICENSE)
 
-Every Canli Capital MCP server in one: 386 finance tools for Claude, Cursor or any MCP client.
+Every Canli Capital MCP server in one: 388 finance tools for Claude, Cursor or any MCP client.
 
 ```bash
 claude mcp add canli -- npx -y canli-mcp
@@ -42,6 +42,7 @@ No key and no account. [Add to VS Code](https://insiders.vscode.dev/redirect/mcp
   changed, and a paper league and paper market for agents, with made-up money only.
 - New in 0.16.0: `filing_memory` searches every annual report a company has on EDGAR, `guidance_record` sets management's guidance against what happened, and `what_happened_next` lists every past time a market fell this far and what followed. IMF shipping data from satellite tracking, Wikipedia attention, a paper exchange where AI agents meet in order books, `agent_consensus`, which counts how many independent views a group of models holds, a sentinel that wakes your agent, and a time machine that shows only what was public on a past date.
 - New in 0.16.1: `exposure_map` finds the companies whose annual reports name a supplier, customer or other company, with the passage, and `my_week` sums up a week across what you hold in plain words. Answers take 15 to 22% fewer tokens.
+- New in 0.17.0: foreign companies such as TSMC, Shell, Novo Nordisk and SAP, read live from the SEC with statements in two currencies; `stock_snapshot` for analysts' targets, valuation ratios and short interest; `technical_indicators`; euro exchange rates from the ECB.
 - Point-in-time SEC fundamentals.
 - An analyst's filings, and a check on the answer: financial statements exactly as filed (several
   years joined, restatements and splits shown beside the first-reported figures), the table in any
@@ -111,18 +112,18 @@ own broker keys. The hosted server keeps nothing between requests, so chain call
 
 ## Context and startup
 
-Measured on Node 24 on 2026-11-02 with `bench/context.py` (o200k tokens of the tool objects a
+Measured on Node 24 on 2026-11-03 with `bench/context.py` (o200k tokens of the tool objects a
 client receives, plus the server instructions; all seven packs enabled with `CANLI_PACKS=all`; start-up is the median time from launch to the
-tool list, on a machine running other work; `bench/context-2026-11-02-0.16.1.json`):
+tool list, on a machine running other work; `bench/context-2026-11-03-0.17.0.json`):
 
 | | seven servers separately | canli-mcp |
 |---|---|---|
-| initial tool list and instructions | 69,849 tokens (156 tools) | 2,524 tokens (5 tools) |
+| initial tool list and instructions | 70,862 tokens (158 tools) | 2,524 tokens (5 tools) |
 | processes | 7 | 1 |
-| start-up | 105-216 ms each | 240 ms |
+| start-up | 90-155 ms each | 164 ms |
 
 Tools the packs add cost the combined server nothing up front: since 0.6.0 the seven servers' own
-lists grew from 39,962 to 69,849 tokens. The interactive views of 0.10.0 added 76 tokens, those of 0.11.0 another 13, and
+lists grew from 39,962 to 70,862 tokens. The interactive views of 0.10.0 added 76 tokens, those of 0.11.0 another 13, and
 the clearer tool descriptions of 0.13.2 another 121.
 
 - **Five tools in context.** The model searches with `find_tool`, reads one schema with
@@ -134,7 +135,7 @@ the clearer tool descriptions of 0.13.2 another 121.
   words they used were then added to the index (38 and 40). For the 0.7.0 to 0.9.0 tools, 43 requests
   written before measuring: 41 first, 42 in the top three. `test/search.test.mjs` holds these and
   176 more.
-- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 386 tools; a pack's
+- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 388 tools; a pack's
   code loads the first time one of its tools runs.
 - **Data by file, not by pasting.** Any argument can be `{"$file": "prices.csv", "column": "close"}`
   (or `"columns": ["SPY", "TLT"]` or `"all"`). For 1,000 prices that is 23 tokens instead of 4,893,
@@ -329,7 +330,7 @@ Everything runs on your machine. `canli://privacy` states, per pack, what leaves
 | fundamentals | public SEC data from canlicapital.com (the company and measure you ask for) | caches that public data in `~/.cache/canli-fundamentals` (`CANLI_CACHE_DIR=""` keeps nothing) |
 | research | public research pages from canlicapital.com (your search words) | none |
 | backtest | public SEC data, as fundamentals; your prices and signals stay local | your trial ledgers in `~/.canli/ledgers` |
-| markets | SEC EDGAR and the SEC's adviser database, the US Treasury, FRED, FINRA, the CFTC, the Federal Reserve and the New York Fed, BLS, BEA, the Census Bureau, the OECD, the World Bank, Cboe, filings.xbrl.org (European filings), the ECB, the Bank of England, the BIS, Polymarket, Kalshi, DefiLlama, OKX, GDELT (news), USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index directly (the company, form, dates, search words, rate or series you ask for); Yahoo Finance's public chart data for prices, or for US stocks Alpaca or Tiingo with your key | none |
+| markets | SEC EDGAR and the SEC's adviser database, the US Treasury, FRED, FINRA, the CFTC, the Federal Reserve and the New York Fed, BLS, BEA, the Census Bureau, the OECD, the World Bank, Cboe, filings.xbrl.org (European filings), the ECB, the Bank of England, the BIS, Polymarket, Kalshi, DefiLlama, OKX, GDELT (news), USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index directly (the company, form, dates, search words, rate or series you ask for); Yahoo Finance's public data for prices and a quote page's figures (the symbol you ask for), or for US stock prices Alpaca or Tiingo with your key | none |
 | paper | Alpaca's paper API only, with your paper keys | a hash-chained order log in `~/.canli` |
 
 `CANLI_OFFLINE=1` enables only the packs with no network, and no other pack's code is even loaded.
@@ -474,7 +475,7 @@ A deflated Sharpe ratio is only as honest as the number of trials put into it, a
 | fundamentals | [canli-fundamentals-mcp](https://www.npmjs.com/package/canli-fundamentals-mcp) | 7 | SEC XBRL filings |
 | research | [canli-research-mcp](https://www.npmjs.com/package/canli-research-mcp) | 6 | the published research record and its hash chain |
 | backtest | [canli-backtest-mcp](https://www.npmjs.com/package/canli-backtest-mcp) | 32 | point-in-time SEC data and the breadth lab's own checks |
-| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 84 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank, Cboe, ECB, Bank of England, BIS, filings.xbrl.org, Polymarket, Kalshi, DefiLlama, USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index: a 13F's total equals its cover page; ESEF figures equal the same companies' Form 20-F at the SEC; central-bank rates agree with the BIS |
+| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 86 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank, Cboe, ECB, Bank of England, BIS, filings.xbrl.org, Polymarket, Kalshi, DefiLlama, USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index: a 13F's total equals its cover page; ESEF figures equal the same companies' Form 20-F at the SEC; central-bank rates agree with the BIS |
 | paper | [canli-paper-trading-mcp](https://www.npmjs.com/package/canli-paper-trading-mcp) | 5 | a simulated Alpaca paper API |
 
 Two tools differ from their standalone servers. Validation's `stress_test` is `strategy_stress_test`
