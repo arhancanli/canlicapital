@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.15.0
 
 - Fixed: `validate_reality_check` studentizes inside the bootstrap. Hansen's SPA and Romano-Wolf
   StepM divided every resample by one standard deviation estimated once from the data (the
