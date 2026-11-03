@@ -2,9 +2,9 @@
 // mcp-books/src/server.mjs
 //
 // The Canli Books MCP server, with the first tools of every Canli company on its engine: Books (keep a book
-// file), Close (bank matching, what moved, the close checklist), Report (facts and the checks before filing),
-// Audit (Benford and journal-entry tests), Planning (runway, budget, forecast, valuation) and Data (pack a
-// dataset). It runs on your machine. A book is a file you name, ending in .jsonl, one record per line: a write
+// file), Close (bank matching, bank lines into entries, what moved, the close checklist), Report (facts and the
+// checks before filing), Audit (Benford and journal-entry tests), Planning (runway, budget, forecast, valuation)
+// and Data (pack a dataset). It runs on your machine. A book is a file you name, ending in .jsonl, one record per line: a write
 // reads the whole book, checks every record, and only then appends the new lines. A file that does not
 // verify is never written to, and no tool overwrites a file. One writer at a time per book.
 import { appendFileSync, existsSync, mkdirSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
@@ -17,7 +17,7 @@ import { z } from "zod";
 
 import { journalTests } from "./audit.mjs";
 import { smallBusiness } from "./chart.mjs";
-import { checklist, readStatement, reconcile, variance } from "./close.mjs";
+import { bankEntries, checklist, readStatement, reconcile, variance } from "./close.mjs";
 import { packDataset } from "./data.mjs";
 import { addAccount, balanceSheet, explain, fromJsonl, fromMinor, incomeStatement, lock, openBook, post, reverse, toJsonl, trialBalance, TYPES, verify } from "./ledger.mjs";
 import { budgetVsActual, dcf, forecast, runway } from "./planning.mjs";
@@ -31,6 +31,8 @@ const INSTRUCTIONS = "Double-entry books kept in a .jsonl file on this machine, 
 const text = (value) => ({ content: [{ type: "text", text: JSON.stringify(value) }], structuredContent: value });
 const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false };
 const WRITES_LOCAL = { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false };
+// Appends, but the same call again adds nothing.
+const APPENDS_ONCE = { ...WRITES_LOCAL, idempotentHint: true };
 
 // Amounts leave the server as decimals in the book's currency; record numbers, counts and percentages stay numbers.
 const MONEY = new Set(["debit", "credit", "amount", "balance", "change", "opening", "closing", "totalIncome", "totalExpenses", "netIncome", "totalAssets", "totalLiabilities", "totalEquity", "totalLiabilitiesAndEquity", "earningsToDate", "prior", "current", "budget", "actual", "variance", "cash", "averageChange", "averageIncome", "averageCosts", "income", "costs", "net", "statementTotal", "booksTotal", "difference"]);
@@ -139,6 +141,18 @@ export function registerTools(server) {
   tool("close_reconcile", "Reconcile the bank", "Match a bank statement CSV (date, description, and amount or in/out columns; dates written 2026-01-31) to an account's entries: the same amount, dates at most `days` apart. Lists what is left over on each side.", z.object({ file, statement_file: z.string(), account: z.string().default("1000"), days: z.number().int().min(0).max(31).default(3), ...range }).strict(), READ_ONLY, ({ file: f, statement_file, account, days, from, to }) => {
     const { book, currency } = load(f);
     return shown(reconcile(book, readStatement(readFileSync(resolve(statement_file), "utf8"), currency), { account, days, from, to }), currency);
+  });
+  tool("close_bank_entries", "Bank lines into entries", "Turn the statement lines the books do not have yet into entries by rules: each rule gives text the description contains and the account on the other side ('in' or 'out' limits it to positive or negative lines); the first rule that fits is used. A line no rule fits, or one dated in a locked period, is listed, never guessed. Lines already in the books are left alone, so a second run posts nothing twice. Nothing is written unless post is true; then every entry is appended, or none.", z.object({ file, statement_file: z.string(), rules: z.array(z.object({ contains: z.string().min(1).max(200), account: z.string(), direction: z.enum(["in", "out"]).optional() }).strict()).max(500).default([]), account: z.string().default("1000"), days: z.number().int().min(0).max(31).default(3), ...range, post: z.boolean().default(false) }).strict(), APPENDS_ONCE, ({ file: f, statement_file, rules, account, days, from, to, post: write }) => {
+    const propose = (book) => bankEntries(book, readStatement(readFileSync(resolve(statement_file), "utf8"), book.records[0].currency), { rules, account, days, from, to });
+    if (!write) {
+      const { book, currency } = load(f);
+      return shown({ ...propose(book), posted: [] }, currency);
+    }
+    const done = change(f, (book) => {
+      const out = propose(book);
+      return { ...out, posted: out.entries.map((e) => post(book, e).seq) };
+    });
+    return shown(done.result, done.currency);
   });
   tool("close_variance", "What moved, and why", "Each account's change from a prior period to the current one, largest first, with the entries that moved it most.", z.object({ file, from: date, to: date, prior_from: date, prior_to: date, top: z.number().int().min(1).max(20).default(3) }).strict(), READ_ONLY, ({ file: f, from, to, prior_from, prior_to, top }) => {
     const { book, currency } = load(f);

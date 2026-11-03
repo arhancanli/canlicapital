@@ -24,7 +24,7 @@ trialBalance(book);
 ## Every Canli company's core, on the same engine
 
 - `ledger.mjs`, Canli Books: the double-entry core above.
-- `close.mjs`, Canli Close: bank statements read from CSV and matched to the books, what moved between two periods and the entries that moved it, and the checklist before a month is locked.
+- `close.mjs`, Canli Close: bank statements read from CSV and matched to the books, the lines the books do not have yet turned into entries by rules (a line no rule fits is listed, never guessed), what moved between two periods and the entries that moved it, and the checklist before a month is locked.
 - `report.mjs`, Canli Report: statements as US GAAP or IFRS facts, and checks for totals that do not add up, wrong signs, scale slips and facts given twice. An account with no concept is listed, never guessed; check every concept against your taxonomy year before filing.
 - `audit.mjs`, Canli Audit: Benford's law against Nigrini's bands, and journal-entry tests for round amounts, weekend dates, duplicates, amounts just under an approval limit, missing memos and reversals. Analytics, not an audit opinion.
 - `planning.mjs`, Canli Treasury and Planning: cash runway, budget against actual, a forecast from trailing months, and a discounted cash flow value that returns every input.
@@ -35,7 +35,7 @@ Each becomes its own package when it ships on its own.
 
 ## The MCP server
 
-`node src/server.mjs` serves 22 tools over stdio: `books_*` (open, accounts, post, reverse, lock, trial balance, statements, explain, verify, keys, sign, check a signature), `close_reconcile`, `close_variance`, `close_checklist`, `report_check`, `audit_journal`, `planning_runway`, `planning_budget`, `planning_forecast`, `planning_dcf` and `data_pack`. A book is a `.jsonl` file you name. Every write reads the whole book and checks every record first, then appends; a book that does not verify is never written to, and no tool overwrites a file.
+`node src/server.mjs` serves 23 tools over stdio: `books_*` (open, accounts, post, reverse, lock, trial balance, statements, explain, verify, keys, sign, check a signature), `close_reconcile`, `close_bank_entries`, `close_variance`, `close_checklist`, `report_check`, `audit_journal`, `planning_runway`, `planning_budget`, `planning_forecast`, `planning_dcf` and `data_pack`. A book is a `.jsonl` file you name. Every write reads the whole book and checks every record first, then appends; a book that does not verify is never written to, and no tool overwrites a file.
 
 The starting chart of accounts includes VAT and corporate tax accounts for UAE companies. It is a list of accounts, not tax or accounting advice.
 

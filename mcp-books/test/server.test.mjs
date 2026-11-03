@@ -49,7 +49,11 @@ test("every Canli company's tools work on one book through the MCP server", asyn
     writeFileSync(statement, "date,description,amount\n2026-01-02,Capital,50000\n2026-01-17,Landlord,-3000\n2026-01-31,Bank fee,-25\n");
     const rec = await call("close_reconcile", { file, statement_file: statement });
     assert.deepEqual([rec.matched.length, rec.unmatchedStatement.length, rec.difference], [2, 1, "-25.00"]);
-    await call("books_post", { file, date: "2026-01-31", memo: "Bank fee", lines: [{ account: "6500", debit: "25" }, { account: "1000", credit: "25" }] });
+    const rules = [{ contains: "fee", account: "6500", direction: "out" }];
+    const proposed = await call("close_bank_entries", { file, statement_file: statement, rules });
+    assert.deepEqual([proposed.entries[0].lines, proposed.posted], [[{ account: "6500", debit: "25.00" }, { account: "1000", credit: "25.00" }], []], "nothing is written without post: true");
+    assert.deepEqual((await call("close_bank_entries", { file, statement_file: statement, rules, post: true })).posted, [28]);
+    assert.deepEqual((await call("close_bank_entries", { file, statement_file: statement, rules, post: true })).posted, [], "the same statement again posts nothing");
     assert.equal((await call("close_checklist", { file, through: "2026-01-31", statement_file: statement })).readyToLock, true);
 
     const report = await call("report_check", { file, as_of: "2026-01-31", from: "2026-01-01", to: "2026-01-31" });

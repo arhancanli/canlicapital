@@ -3,8 +3,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { checklist, parseCsv, readStatement, reconcile, variance } from "../src/close.mjs";
-import { lock, post } from "../src/ledger.mjs";
+import { bankEntries, checklist, parseCsv, readStatement, reconcile, variance } from "../src/close.mjs";
+import { addAccount, lock, post } from "../src/ledger.mjs";
 import { month } from "./fixture.mjs";
 
 const csv = 'date,description,amount\n2026-01-02,Capital from shareholders,"50,000.00"\n2026-01-17,Landlord,-3000\n2026-01-31,Bank fee,(25.00)\n';
@@ -29,6 +29,34 @@ test("the bank is matched to the books, and what is left over is named", () => {
   const again = reconcile(book, readStatement(csv, "AED"));
   assert.deepEqual([again.reconciled, again.difference], [true, 0]);
   assert.throws(() => reconcile(book, [], { account: "9999" }), /no account 9999/);
+});
+
+test("bank lines the books do not have become entries by rule; the rest is named, and nothing posts twice", () => {
+  const book = month();
+  const statement = readStatement(`${csv}2026-01-31,Card sale STRIPE,980.00\n2026-01-31,Transfer 88213,-120\n2026-01-31,Interest,0\n`, "AED");
+  const rules = [{ contains: "BANK FEE", account: "6500" }, { contains: "stripe", account: "4000", direction: "in" }, { contains: "transfer", account: "1100", direction: "in" }];
+  const out = bankEntries(book, statement, { rules });
+  assert.equal(out.alreadyInBooks, 2);
+  assert.deepEqual(out.entries.map((e) => [e.memo, e.rule, e.lines]), [
+    ["Bank fee", 1, [{ account: "6500", debit: "25.00" }, { account: "1000", credit: "25.00" }]],
+    ["Card sale STRIPE", 2, [{ account: "1000", debit: "980.00" }, { account: "4000", credit: "980.00" }]],
+  ]);
+  assert.deepEqual(out.unassigned.map((l) => l.description), ["Transfer 88213"], "money out does not fit a rule for money in, and is not guessed");
+  for (const e of out.entries) post(book, e);
+  const again = bankEntries(book, statement, { rules });
+  assert.deepEqual([again.entries.length, again.alreadyInBooks, again.unassigned.length], [0, 4, 1]);
+  assert.throws(() => bankEntries(book, statement, { rules: [{ contains: "fee", account: "9999" }] }), /Rule 1: there is no account 9999/);
+  assert.throws(() => bankEntries(book, statement, { rules: [{ contains: "fee", account: "1000" }] }), /own account 1000/);
+
+  const closed = month();
+  lock(closed, "2026-01-31");
+  assert.deepEqual(bankEntries(closed, statement, { rules }).locked.map((l) => l.description), ["Bank fee", "Card sale STRIPE", "Transfer 88213"]);
+
+  // A card account: a positive line is a charge, which raises what the company owes.
+  const card = month();
+  addAccount(card, { code: "2050", name: "Company card", type: "liability" });
+  const charge = bankEntries(card, readStatement("date,description,amount\n2026-01-20,Figma subscription,45\n", "AED"), { account: "2050", rules: [{ contains: "subscription", account: "6300" }] });
+  assert.deepEqual(charge.entries[0].lines, [{ account: "6300", debit: "45.00" }, { account: "2050", credit: "45.00" }]);
 });
 
 test("what moved between two months, with the entries that moved it", () => {

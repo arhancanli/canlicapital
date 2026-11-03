@@ -1,7 +1,8 @@
 // mcp-books/src/close.mjs
 //
 // Canli Close: month-end work on a Canli Books book. A bank statement read from CSV and matched against the
-// bank account's entries (the same amount, dates at most a few days apart, each line used once); what moved
+// bank account's entries (the same amount, dates at most a few days apart, each line used once); the lines the
+// books do not have yet, turned into entries by rules; what moved
 // between two periods and the entries that moved it; and a checklist of what is left before a month is
 // locked.
 import { fromMinor, isDate, state, toMinor, trialBalance, verify } from "./ledger.mjs";
@@ -121,6 +122,48 @@ export function reconcile(book, statement, { account = "1000", days = 3, from, t
   const statementTotal = lines.reduce((t, l) => t + l.amount, 0);
   const booksTotal = books.reduce((t, e) => t + e.amount, 0);
   return { account, currency: s.currency, matched, unmatchedStatement, unmatchedBooks, statementTotal, booksTotal, difference: statementTotal - booksTotal, reconciled: !unmatchedStatement.length && !unmatchedBooks.length };
+}
+
+// The statement lines the books do not have yet, as entries ready to post. A rule gives text the description
+// contains (any case) and the account on the other side; direction "in" limits it to positive lines, "out" to
+// negative ones. The first rule that fits is used. A positive line raises the account's own balance, as in
+// reconcile: money in for a bank, a charge for a card account. A line no rule fits is listed, never guessed, and
+// so is one dated in a locked period. Lines already matched to the books are left alone, so importing the same
+// statement twice adds nothing.
+export function bankEntries(book, statement, { rules = [], account = "1000", days = 3, from, to } = {}) {
+  const s = state(book);
+  const acct = s.accounts.get(account);
+  if (!acct) throw new Error(`There is no account ${account} in this book`);
+  rules.forEach((rule, i) => {
+    if (!String(rule?.contains ?? "").trim()) throw new Error(`Rule ${i + 1} needs the text a description contains`);
+    if (!s.accounts.has(rule.account)) throw new Error(`Rule ${i + 1}: there is no account ${rule.account || "(blank)"} in this book`);
+    if (rule.account === account) throw new Error(`Rule ${i + 1} names the statement's own account ${account}`);
+    if (rule.direction !== undefined && rule.direction !== "in" && rule.direction !== "out") throw new Error(`Rule ${i + 1}: direction is "in" or "out"`);
+  });
+  const rec = reconcile(book, statement, { account, days, from, to });
+  const normal = direction(acct.type) === 1 ? "debit" : "credit";
+  const entries = [];
+  const unassigned = [];
+  const locked = [];
+  for (const line of rec.unmatchedStatement) {
+    if (line.amount === 0) continue;
+    if (s.lockedThrough && line.date <= s.lockedThrough) {
+      locked.push(line);
+      continue;
+    }
+    const description = line.description.toLowerCase();
+    const index = rules.findIndex((r) => description.includes(String(r.contains).trim().toLowerCase()) && (r.direction === undefined || (r.direction === "in") === line.amount > 0));
+    if (index < 0) {
+      unassigned.push(line);
+      continue;
+    }
+    const side = line.amount > 0 ? normal : normal === "debit" ? "credit" : "debit";
+    const value = fromMinor(Math.abs(line.amount), s.currency);
+    const own = { account, [side]: value };
+    const other = { account: rules[index].account, [side === "debit" ? "credit" : "debit"]: value };
+    entries.push({ line: line.line, rule: index + 1, date: line.date, memo: line.description, lines: side === "debit" ? [own, other] : [other, own] });
+  }
+  return { account, currency: s.currency, alreadyInBooks: rec.matched.length, entries, unassigned, locked };
 }
 
 // What moved between a prior period and the current one, largest change first, with the current period's
