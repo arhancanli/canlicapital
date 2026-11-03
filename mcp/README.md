@@ -116,18 +116,35 @@ and one column per variant, as `matrix` or as `matrix_file` (a CSV or JSON on yo
 optional `benchmark` series; with none, variants are tested against zero. It runs three tests on one
 seeded stationary bootstrap:
 
-- Hansen's SPA: the chance that the best variant's studentized excess return is this good if no
-  variant has an edge, with lower and upper bounds (`spa.p_value`, the consistent p-value, is the
-  headline, and `monte_carlo_se` its sampling error);
+- Hansen's SPA: the chance that the best variant's studentized excess return is at least this good
+  if no variant has an edge, with lower and upper bounds (`spa.p_value`, the consistent p-value, is
+  the headline, and `monte_carlo_se` its sampling error);
 - White's Reality Check: the same question without studentizing, so one volatile variant can
   dominate it;
 - Romano and Wolf's StepM: which variants beat the benchmark, with the familywise error held at
   `alpha`.
 
-A result reproduces exactly from its `seed`. On three fixed-seed cases the p-values agree with
-Python's `arch` 8.0 and with a numpy transcription of Hansen's formulas within Monte Carlo error, and
-the StepM sets match `arch`'s (`js/snooping-core.test.js`). Only the variants sent are counted: a
-search that tried more than it sends makes luck look smaller than it was.
+Studentizing divides a variant's mean excess return by its standard deviation. Each bootstrap
+resample is divided by its own standard deviation, worked out again from that resample, as Romano
+and Wolf (2005) recommend, and SPA and StepM both use these figures. Earlier versions divided every
+resample by one figure estimated once from your data. That ignores how noisy the estimate is, and
+the test rejected too often: on Null Zoo v1's searches with no edge (20 variants, 504 days, 1,000
+resamples) it rejected 7.5% at a nominal 5% with normal returns and 12.5% with negatively skewed
+returns. On 4,000 new searches of each kind the new version rejected 5.1% and 5.4% (6.9% with
+autocorrelated returns, where the Reality Check also rejected 6.6%). Studentizing helps find a
+skilled variant that is less volatile than the rest and costs power when the skilled variant is the
+most volatile; the Reality Check, which does not studentize, is reported beside it for that case.
+
+A p-value is the share of resamples at least as extreme as your result, ties included. When no
+variant beats the benchmark, the SPA statistic is 0, so its p-values are 1 and StepM names no
+variant. Earlier versions counted only resamples strictly above 0 and could report a p-value near 0,
+a rejection, in exactly that case.
+
+A result reproduces exactly from its `seed`. On four fixed-seed cases the p-values agree within
+Monte Carlo error with Python's `arch` 8.0 (run without studentizing) and with a separate numpy
+implementation of the per-resample studentization, and the StepM sets match both
+(`js/snooping-core.test.js`). Only the variants sent are counted: a search that tried more than it
+sends makes luck look smaller than it was.
 
 `company_financial_history` is different from the other tools: it reads the public company
 reference at canlicapital.com, not the validation API. Give it a CIK (1 to 10 digits) to list a
