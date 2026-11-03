@@ -81,7 +81,19 @@ test("every Canli company's tools work on one book through the MCP server", asyn
     await call("books_sign", { file, private_key_file: keys.private_key_file });
     assert.equal((await call("books_check_signature", { file, public_key_file: keys.public_key_file })).ok, true);
 
+    // One entry shown to a lender without the book: a proof against the signed root, checked with the public key.
+    const proved = await call("books_prove", { file, seqs: [rent.posted.seq] });
+    assert.deepEqual([proved.readable[0].lines[0].debit, proved.opening.record.currency], ["3000.00", "AED"]);
+    const check = (proofs) => call("books_check_proof", { proofs, signature_file: `${file}.sig.json`, public_key_file: keys.public_key_file });
+    const checkedProof = await check(proved);
+    assert.deepEqual([checkedProof.ok, checkedProof.book], [true, { name: "Example Trading LLC", currency: "AED" }]);
+    const forged = structuredClone(proved);
+    forged.proofs[0].record.lines[0].debit = 30000;
+    assert.equal((await check(forged)).ok, false, "a changed amount fails");
+
     await call("books_lock", { file, through: "2026-01-31" });
+    const afterLock = await call("books_prove", { file, seqs: [rent.posted.seq] });
+    assert.deepEqual([afterLock.size, (await check(afterLock)).ok], [proved.size, true], "proofs stay with the records the signature covers");
     assert.match(await refused("books_post", { file, date: "2026-01-20", lines: [{ account: "6100", debit: "10" }, { account: "1000", credit: "10" }] }), /locked through 2026-01-31/);
 
     const lines = readFileSync(file, "utf8");

@@ -2,7 +2,7 @@
 // mcp-books/src/server.mjs
 //
 // The Canli Books MCP server, with the first tools of every Canli company on its engine: Books (keep a book
-// file), Close (bank matching, bank lines into entries, what moved, the close checklist, group consolidation),
+// file, sign it, prove single entries from it), Close (bank matching, bank lines into entries, what moved, the close checklist, group consolidation),
 // Report (facts and the checks before filing), Audit (Benford and journal-entry tests), Planning (runway, budget,
 // forecast, valuation) and Data (pack a dataset). It runs on your machine. A book is a file you name, ending in
 // .jsonl, one record per line: a write reads the whole book, checks every record, and only then appends the new
@@ -24,7 +24,8 @@ import { consolidate, readEcbRates } from "./group.mjs";
 import { addAccount, balanceSheet, explain, fromJsonl, fromMinor, incomeStatement, lock, openBook, post, reverse, toJsonl, trialBalance, TYPES, verify } from "./ledger.mjs";
 import { budgetVsActual, dcf, forecast, runway } from "./planning.mjs";
 import { checkFacts, TAXONOMIES, toFacts } from "./report.mjs";
-import { checkHead, newSigningKeys, signHead } from "./sign.mjs";
+import { bookRoot, proveRecord } from "./proof.mjs";
+import { checkHead, checkProof, newSigningKeys, signHead } from "./sign.mjs";
 
 export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
 export const SERVER_INFO = Object.freeze({ name: "canli-books-mcp", version: SERVER_VERSION, title: "Canli Books" });
@@ -137,6 +138,29 @@ export function registerTools(server) {
     const { path, book } = load(f);
     const signed = JSON.parse(readFileSync(resolve(signature_file ?? `${path}.sig.json`), "utf8"));
     return checkHead(book, signed, readFileSync(resolve(public_key_file), "utf8"));
+  });
+  tool("books_prove", "Prove entries", "Proofs that named records are in the book, to hand to a lender, an auditor or a buyer instead of the book: each is the record and about log2(n) hashes leading to the Merkle root the owner signed with books_sign. With a signature (by default <book>.sig.json, when there is one), the proofs are for the records it signed, even after newer entries. The opening record comes too, so the reader sees the book's name and currency. books_check_proof checks them without the book.", z.object({ file, seqs: z.array(z.number().int().positive()).min(1).max(100), signature_file: z.string().optional() }).strict(), READ_ONLY, ({ file: f, seqs, signature_file }) => {
+    const { path, book, currency } = load(f);
+    const sig = resolve(signature_file ?? `${path}.sig.json`);
+    const signed = existsSync(sig) ? JSON.parse(readFileSync(sig, "utf8")) : null;
+    if (signature_file && !signed) throw new Error(`There is no signature at ${sig}`);
+    const size = signed ? signed.records : book.records.length;
+    if (signed && (!Number.isInteger(size) || size > book.records.length || bookRoot(book, size).root !== signed.root)) throw new Error(`The book's first ${size} records no longer match the signature in ${sig}; nothing was proved`);
+    const proofs = seqs.map((seq) => proveRecord(book, seq, size));
+    // Proofs carry the records exactly as stored (amounts in the smallest unit), or they would not check; readable
+    // shows the same records with plain amounts.
+    const readable = proofs.map(({ record: { hash, prev, ...fields } }) => fields);
+    return { signature_file: signed ? sig : null, size, root: bookRoot(book, size).root, opening: proveRecord(book, 1, size), proofs, readable: shown(readable, currency) };
+  });
+  tool("books_check_proof", "Check proofs", "Check the proofs books_prove made, without the book: the owner's ML-DSA-65 signature over the Merkle root, with their public key, then each record's path to that root. A changed amount, a record moved or swapped, or another signature fails.", z.object({ proofs: z.object({ opening: z.any(), proofs: z.array(z.any()).min(1) }).optional(), proofs_file: z.string().optional(), signature_file: z.string(), public_key_file: z.string() }).strict(), READ_ONLY, ({ proofs, proofs_file, signature_file, public_key_file }) => {
+    if (!proofs === !proofs_file) throw new Error("Give the proofs or a proofs_file, one of the two");
+    const bundle = proofs ?? JSON.parse(readFileSync(resolve(proofs_file), "utf8"));
+    const signed = JSON.parse(readFileSync(resolve(signature_file), "utf8"));
+    const key = readFileSync(resolve(public_key_file), "utf8");
+    const opening = checkProof(bundle.opening, signed, key);
+    const results = (bundle.proofs ?? []).map((p) => checkProof(p, signed, key));
+    const book = opening.ok && bundle.opening.record.kind === "open" ? { name: bundle.opening.record.name, currency: bundle.opening.record.currency } : null;
+    return { ok: Boolean(book) && results.length > 0 && results.every((r) => r.ok), book, records: signed.records, results };
   });
 
   // Canli Close
