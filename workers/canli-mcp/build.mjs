@@ -39,9 +39,16 @@ function inlineFiles(source, file) {
   // Workers' zlib takes maxOutputLength up to 128 MiB, the memory a Worker has in all; a larger cap
   // is refused outright, so unpacking is held to 128 MiB here.
   out = out.replace(/maxOutputLength: ([A-Z_]+)/g, "maxOutputLength: Math.min($1, 134217728)");
+  // The markets pack keeps public data on disk between sessions. A Worker has no disk, so the pack gets the
+  // edge cache in its place (src/cache.mjs): the same entries, freshness and evidence, in Cloudflare's cache.
+  if (out.includes("createDiskCache({ env })")) {
+    out = `import { edgeDisk as __canliEdgeDisk } from ${literal(join(HERE, "src/cache.mjs"))};\n${out.replace("createDiskCache({ env })", "__canliEdgeDisk()")}`;
+    edgeDisks.push(file);
+  }
   // Every other import.meta.url: this module's own file URL, so URL arithmetic stays valid.
   return out.replaceAll("import.meta.url", literal(pathToFileURL(file).href));
 }
+const edgeDisks = [];
 
 const builtins = new Set(builtinModules.flatMap((m) => [m, `node:${m}`]));
 const workerPlugin = {
@@ -50,7 +57,7 @@ const workerPlugin = {
     build.onResolve({ filter: /.*/ }, (args) => (builtins.has(args.path) ? { path: args.path.startsWith("node:") ? args.path : `node:${args.path}`, external: true } : undefined));
     build.onLoad({ filter: /node_modules[\\/]canli-[^\\/]+[\\/](?:src|local)[\\/].*\.m?js$/ }, (args) => {
       const source = readFileSync(args.path, "utf8");
-      return /import\.meta\.url|redirect: "error"|maxOutputLength/.test(source) ? { contents: inlineFiles(source, args.path), loader: "js", resolveDir: dirname(args.path) } : undefined;
+      return /import\.meta\.url|redirect: "error"|maxOutputLength|createDiskCache\(\{ env \}\)/.test(source) ? { contents: inlineFiles(source, args.path), loader: "js", resolveDir: dirname(args.path) } : undefined;
     });
   },
 };
@@ -69,4 +76,6 @@ const result = await esbuild.build({
   logLevel: "warning",
 });
 const left = Object.keys(result.metafile.inputs).filter((f) => /canli-.*\/(?:src|local)\//.test(f) && /import\.meta\.url/.test(readFileSync(join(HERE, f), "utf8")));
-console.log(`built dist/worker.mjs (${Math.round(statSync(join(HERE, "dist/worker.mjs")).size / 1024)} KiB); modules rewritten: ${left.length}`);
+// One disk cache, the markets pack's (shared by the packs built on it): if a new version moved it, say so.
+if (edgeDisks.length !== 1 || !edgeDisks[0].endsWith(join("canli-markets-mcp", "src", "sources.mjs"))) throw new Error(`The edge cache replaces canli-markets-mcp's disk cache in src/sources.mjs; found it in: ${edgeDisks.join(", ") || "no module"}`);
+console.log(`built dist/worker.mjs (${Math.round(statSync(join(HERE, "dist/worker.mjs")).size / 1024)} KiB); modules rewritten: ${left.length}; edge cache in ${edgeDisks.length} module`);

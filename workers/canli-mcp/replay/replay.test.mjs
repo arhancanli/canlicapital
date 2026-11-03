@@ -26,6 +26,7 @@ test("each kind of answer is told apart, and the gate holds the candidate to the
     if (params.name === "busy") return send(200, "application/json", result(id, "after the wait"));
     if (params.name === "stream") return send(200, "text/event-stream", `event: message\ndata: ${result(id, "streamed")}\n\n`);
     if (params.name === "rpc") return send(200, "application/json", JSON.stringify({ jsonrpc: "2.0", id, error: { code: -32602, message: "Unknown tool" } }));
+    if (params.name === "cached") return send(200, "application/json", result(id, "from the SEC, partly cached"), { "X-Canli-Cache": "hit=2 stale=0 miss=1" });
     // "silent" never answers
   });
   await new Promise((r) => server.listen(0, "127.0.0.1", r));
@@ -43,13 +44,15 @@ test("each kind of answer is told apart, and the gate holds the candidate to the
     assert.equal((await call("stream")).text, "streamed");
     assert.match((await call("rpc")).failed, /JSON-RPC error -32602/);
     assert.equal((await call("silent", { timeoutMs: 300 })).failed, "no answer in 0.3 s");
+    assert.deepEqual([(await call("cached")).cache, (await call("ok")).cache], ["hit=2 stale=0 miss=1", undefined], "the Worker's cache count is kept");
 
     const reference = [{ name: "a", ms: 900, isError: true }, { name: "b", ms: 800, isError: false }, { name: "c", failed: "HTTP 500" }, { name: "d", ms: 700, isError: false }];
-    const candidate = [{ name: "a", ms: 300, isError: true, bytes: 10 }, { name: "b", ms: 200, isError: true, bytes: 10 }, { name: "c", ms: 100, isError: false, bytes: 10 }, { name: "d", failed: "Cloudflare error 1102 (CPU limit)" }];
+    const candidate = [{ name: "a", ms: 300, isError: true, bytes: 10, cache: "hit=0 stale=1 miss=3" }, { name: "b", ms: 200, isError: true, bytes: 10 }, { name: "c", ms: 100, isError: false, bytes: 10, cache: "hit=2 stale=0 miss=0" }, { name: "d", failed: "Cloudflare error 1102 (CPU limit)" }];
     const verdict = judge(candidate, reference);
     assert.deepEqual(verdict.failed, [{ name: "b", problem: "declines here but answers on the reference" }, { name: "d", problem: "Cloudflare error 1102 (CPU limit)" }]);
-    assert.deepEqual([verdict.calls, verdict.passed, verdict.ok, verdict.ms.p50, verdict.bytes], [4, 2, false, 200, 30]);
+    assert.deepEqual([verdict.calls, verdict.passed, verdict.ok, verdict.ms.p50, verdict.bytes, verdict.cache], [4, 2, false, 200, 30, { hit: 2, stale: 1, miss: 3 }]);
     assert.equal(judge(candidate.slice(0, 1), reference.slice(0, 1)).ok, true, "declining as the reference declines passes");
+    assert.equal(judge([{ name: "x", ms: 1, isError: false, bytes: 1 }]).cache, null, "no count from a server that sends none");
   } finally {
     server.closeAllConnections();
     server.close();

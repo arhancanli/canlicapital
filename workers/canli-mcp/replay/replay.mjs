@@ -64,7 +64,7 @@ export async function callOnce(url, call, { id = 1, timeoutMs = 120_000, retries
     if (!answer) return { name: call.name, ms, http: 200, failed: "no JSON-RPC answer in the response" };
     if (answer.error) return { name: call.name, ms, http: 200, failed: `JSON-RPC error ${answer.error.code}: ${String(answer.error.message).slice(0, 120)}` };
     const words = (answer.result?.content ?? []).filter((c) => c.type === "text").map((c) => c.text).join("\n");
-    return { name: call.name, ms, http: 200, isError: answer.result?.isError === true, bytes: Buffer.byteLength(text), text: words.slice(0, 160) };
+    return { name: call.name, ms, http: 200, isError: answer.result?.isError === true, bytes: Buffer.byteLength(text), text: words.slice(0, 160), cache: res.headers.get("X-Canli-Cache") ?? undefined };
   }
 }
 
@@ -82,6 +82,11 @@ export function judge(candidate, reference = null) {
     return { name: c.name, problem, ms: c.ms, referenceMs: r?.ms ?? null, referenceFailed: r?.failed ?? null };
   });
   const answered = candidate.filter((c) => !c.failed);
+  // The Worker's X-Canli-Cache: the copies of public data the answers found in the edge cache, fresh or stale,
+  // and the reads that found none.
+  const counted = answered.map((c) => /hit=(\d+) stale=(\d+) miss=(\d+)/.exec(c.cache ?? "")).filter(Boolean);
+  const total = (i) => counted.reduce((t, m) => t + Number(m[i]), 0);
+  const cache = counted.length ? { hit: total(1), stale: total(2), miss: total(3) } : null;
   return {
     calls: candidate.length,
     passed: rows.filter((r) => !r.problem).length,
@@ -89,6 +94,7 @@ export function judge(candidate, reference = null) {
     ms: { p50: percentile(answered.map((c) => c.ms), 50), p95: percentile(answered.map((c) => c.ms), 95) },
     referenceMs: reference ? { p50: percentile(reference.filter((c) => !c.failed).map((c) => c.ms), 50), p95: percentile(reference.filter((c) => !c.failed).map((c) => c.ms), 95) } : null,
     bytes: answered.reduce((t, c) => t + c.bytes, 0),
+    cache,
     ok: rows.every((r) => !r.problem),
   };
 }
