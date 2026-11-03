@@ -10,7 +10,7 @@ import { builtinModules } from "node:module";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
-const ESBUILD = process.env.ESBUILD ?? new URL("../../../cirrun/waitlist/node_modules/esbuild/lib/main.js", `file://${process.env.HOME}/x/`).pathname;
+const ESBUILD = process.env.ESBUILD ?? join(process.env.HOME ?? "", "cirrun/waitlist/node_modules/esbuild/lib/main.js");
 const esbuild = await import(ESBUILD);
 const HERE = dirname(fileURLToPath(import.meta.url));
 
