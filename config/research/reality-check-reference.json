@@ -1,13 +1,28 @@
 {
   "schema": "canli.reality-check-reference.v1",
-  "what": "Independent p-values for js/snooping-core.js on the fixed-seed cases in scripts/research/reality-check/cases.mjs: arch's SPA, RealityCheck and StepM (not studentized), and Hansen's studentized SPA transcribed from the paper in numpy. The two sides draw with different generators, so they agree within Monte Carlo error.",
+  "what": "Independent p-values for js/snooping-core.js on the fixed-seed cases in scripts/research/reality-check/cases.mjs: arch's SPA, RealityCheck and StepM (not studentized), and the bootstrap-t SPA and StepM (every resample studentized by its own standard deviation, ties counted), transcribed in numpy in reference.py from the definitions in its docstring, not from the JavaScript. The two sides draw with different generators, so they agree within Monte Carlo error.",
   "reference": {
     "package": "arch==8.0.0",
     "reps": 10000,
     "numpy_seed": 20260928,
     "bootstrap": "stationary",
-    "block_length": "round(n^(1/3))"
+    "block_length": "round(n^(1/3))",
+    "seeds": {
+      "arch_spa": 20260928,
+      "arch_reality_check": 20260929,
+      "arch_stepm": 20260930,
+      "bootstrap_t": 20260931
+    },
+    "bootstrap_t": "reference.py bootstrap_t: T = max(0, max_k sqrt(n) m_k / s_k) with sample standard deviations; each resample's recentred means divided by that resample's own standard deviations; Hansen's lower, consistent and upper recentrings (threshold from the Politis-Romano variance); p = #(T* >= T) / reps; StepM on the consistent recentring with its critical value floored at zero, alpha 0.05."
   },
+  "history": [
+    {
+      "date": "2026-11-03",
+      "change": "The studentized reference is now the bootstrap-t (bootstrap_t_spa_studentized, bootstrap_t_stepm_superior). It replaces Hansen's fixed-variance studentized SPA (hansen_spa_studentized), after js/snooping-core.js moved to the bootstrap-t and to counting ties.",
+      "made": "reference.py bootstrap_t alone, with numpy 2.5.4 on Python 3.12.13, seed numpy_seed + 3, 10,000 resamples. It was first run from a scratch copy outside the repository; the copy here reproduced those values exactly. arch was not run again: the arch 8.0 values are those of the 2026-09-28 build (#329).",
+      "cross_check": "Null Zoo v2's implementation (github.com/arhancanli/null-zoo, branch v2 at 4e4f92c, analysis/v2/nzpy.py, joint_tests_v2b, spa_c_boot_t_ge), with its own bootstrap and seed 20260932, gave consistent p-values 0.5657, 0.0167, 0.1618 and 0 for noise, one_real_edge, autocorrelated_borderline and several_edges, against 0.5678, 0.0184, 0.1624 and 0 here."
+    }
+  ],
   "cases": [
     {
       "name": "noise",
@@ -22,12 +37,13 @@
       },
       "arch_reality_check": 0.4993,
       "arch_stepm_superior": [],
-      "hansen_spa_studentized": {
-        "lower": 0.4514,
-        "consistent": 0.5911,
-        "upper": 0.6061,
-        "statistic": 2.065173048942605
-      }
+      "bootstrap_t_spa_studentized": {
+        "lower": 0.4281,
+        "consistent": 0.5678,
+        "upper": 0.5816,
+        "statistic": 2.070028903034689
+      },
+      "bootstrap_t_stepm_superior": []
     },
     {
       "name": "one_real_edge",
@@ -45,12 +61,15 @@
       "arch_stepm_superior": [
         1
       ],
-      "hansen_spa_studentized": {
-        "lower": 0.009,
-        "consistent": 0.0146,
-        "upper": 0.0146,
-        "statistic": 3.198292791282746
-      }
+      "bootstrap_t_spa_studentized": {
+        "lower": 0.011,
+        "consistent": 0.0184,
+        "upper": 0.0184,
+        "statistic": 3.0764377962031957
+      },
+      "bootstrap_t_stepm_superior": [
+        1
+      ]
     },
     {
       "name": "autocorrelated_borderline",
@@ -67,12 +86,13 @@
       },
       "arch_reality_check": 0.2302,
       "arch_stepm_superior": [],
-      "hansen_spa_studentized": {
-        "lower": 0.0687,
-        "consistent": 0.1042,
-        "upper": 0.1068,
-        "statistic": 2.6457546521871285
-      }
+      "bootstrap_t_spa_studentized": {
+        "lower": 0.0986,
+        "consistent": 0.1624,
+        "upper": 0.1633,
+        "statistic": 2.979341158739713
+      },
+      "bootstrap_t_stepm_superior": []
     },
     {
       "name": "several_edges",
@@ -100,12 +120,19 @@
         3,
         4
       ],
-      "hansen_spa_studentized": {
+      "bootstrap_t_spa_studentized": {
         "lower": 0,
         "consistent": 0,
         "upper": 0,
-        "statistic": 14.899619134867699
-      }
+        "statistic": 13.322336782013279
+      },
+      "bootstrap_t_stepm_superior": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
     }
   ]
 }
