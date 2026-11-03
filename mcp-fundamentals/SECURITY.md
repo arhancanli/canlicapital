@@ -12,6 +12,8 @@ branch and the latest npm release are supported.
 `npx -y canli-fundamentals-mcp` runs `src/server.mjs` over stdio. It:
 
 - reads its own `package.json`, to report its version, and no other file of yours;
+- with `CANLI_SEC_LIVE=1`, which the canli-mcp flagship sets and this server alone does not, reads a company
+  outside the reference from `https://data.sec.gov/api/xbrl/companyfacts/`, sending only its CIK;
 - sends requests only to `CANLI_API_BASE` (default `https://canlicapital.com`), only when a tool
   is called, and only four kinds of GET: the ticker list (`/api/v1/company-tickers.json`), the
   company name index (`/api/v1/company-names.json`, read only when a company is named by

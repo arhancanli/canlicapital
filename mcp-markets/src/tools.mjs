@@ -56,15 +56,17 @@ export async function companyProfile(session, args) {
 export const listInput = z.object({
   company: COMPANY,
   forms: z.array(z.string().min(1).max(20)).max(20).optional().describe("Form types, for example [\"10-K\", \"8-K\"]; amendments (10-K/A) are included. Default: all."),
+  form: z.string().min(1).max(20).optional().describe("One form type, the same as forms with one entry."),
   since: DATE.optional().describe("Filed on or after this date."),
   until: DATE.optional().describe("Filed on or before this date."),
   limit: z.number().int().min(1).max(200).optional().describe("Most filings, newest first; default 20."),
 }).strict();
 export async function listFilings(session, args) {
-  const { company, forms, since, until, limit = 20 } = listInput.parse(args);
+  const { company, forms, form, since, until, limit = 20 } = listInput.parse(args);
   const e = await resolveEntity(session, company);
   const { sub, rows } = await filings(session, e.cik, { since });
-  const want = forms?.map((f) => f.toUpperCase());
+  const named = [...(forms ?? []), ...(form ? [form] : [])];
+  const want = named.length ? named.map((f) => f.toUpperCase()) : null;
   const picked = rows.filter((r) => (!want || want.some((f) => r.form === f || r.form === `${f}/A`)) && (!since || r.filingDate >= since) && (!until || r.filingDate <= until));
   return {
     ...entityOut(e, sub),
@@ -193,7 +195,8 @@ export async function readFiling(session, args) {
     ...(sections && !chosen ? { sections: { columns: ["item", "title", "chars"], rows: sections } } : {}),
     ...(docs ? { documents: { columns: ["name", "type", "description"], rows: docs.filter((d) => /\.(htm|html|txt|xml)$/i.test(d.name)).slice(0, 40).map((d) => [d.name, d.type, d.description]) } } : {}),
     total_chars: body.length,
-    ...(matches ? { find: a.find, matches: matches.length ? matches : "no passage contains every word; try fewer or other words, or read without find" } : { offset, ...(end < body.length ? { next_offset: end, more: `${body.length - end} more characters: pass offset ${end}, or use find to jump to the words you need` } : {}), text: slice }),
+    // How often each word appears, inside longer words too ("tariff" in "tariffs"): the passages stop at twelve.
+    ...(matches ? { find: a.find, occurrences_in_document: Object.fromEntries((a.find.match(/^"(.+)"$/)?.[1] ? [a.find.slice(1, -1).toLowerCase()] : a.find.toLowerCase().split(/\s+/).filter((w) => w.length > 1)).map((t) => [t, body.toLowerCase().split(t).length - 1])), matches: matches.length ? matches : "no passage contains every word; try fewer or other words, or read without find" } : { offset, ...(end < body.length ? { next_offset: end, more: `${body.length - end} more characters: pass offset ${end}, or use find to jump to the words you need` } : {}), text: slice }),
     url,
     limits: SEC_LIMITS,
   };

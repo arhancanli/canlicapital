@@ -13,7 +13,7 @@ import { z } from "zod";
 export const PACKS = Object.freeze({
   quant: { title: "Quant finance (235 tools, 399 strategy sleeves)", package: "canli-quant-mcp", network: "none", disk: "none", offline: true },
   validation: { title: "Backtest validation (deflated Sharpe, PBO, Reality Check, leakage, placebos)", package: "canli-validation-mcp", network: "none: runs in private local mode", disk: "reads a returns file only when you pass its path", offline: true },
-  fundamentals: { title: "SEC fundamentals point in time", package: "canli-fundamentals-mcp", network: "downloads public SEC company data from canlicapital.com (sends the company and measure asked for, never your data)", disk: "caches that public data in ~/.cache/canli-fundamentals (CANLI_CACHE_DIR=\"\" keeps nothing)", offline: false },
+  fundamentals: { title: "SEC fundamentals point in time", package: "canli-fundamentals-mcp", network: "downloads public SEC company data from canlicapital.com, or for a company outside that reference from data.sec.gov (sends the company and measure asked for, never your data)", disk: "caches that public data in ~/.cache/canli-fundamentals (CANLI_CACHE_DIR=\"\" keeps nothing)", offline: false },
   research: { title: "Canli Capital's open research record", package: "canli-research-mcp", network: "downloads public research pages from canlicapital.com (sends the search words)", disk: "none", offline: false },
   backtest: { title: "Point-in-time factor backtests on your prices", package: "canli-backtest-mcp", network: "public SEC data as the fundamentals pack; your prices and signals stay local", disk: "your trial ledgers in ~/.canli/ledgers and outputs where you ask", offline: false },
   markets: { title: "Markets from the sources: filings in the US and Europe, ownership, funds, shorts, options, central-bank rates, macro, prediction markets, DeFi, prices", package: "canli-markets-mcp", network: "SEC EDGAR and the SEC's adviser database, the US Treasury, FRED, FINRA, the CFTC, the Federal Reserve and the New York Fed, BLS, BEA, the Census Bureau, the OECD, the World Bank, Cboe, filings.xbrl.org (European filings), the ECB, the Bank of England, the BIS, Polymarket, Kalshi, DefiLlama, OKX, GDELT (news), USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index directly (sends the company, form, dates, search words, rate or series asked for); prices from Yahoo Finance's public chart data, or for US stocks Alpaca or Tiingo with your key", disk: "none", offline: false },
@@ -114,7 +114,7 @@ const LOADERS = {
   },
   async fundamentals() {
     const f = await import("canli-fundamentals-mcp/src/server.mjs");
-    const c = capture(); f.registerTools(c.server, f.createSession());
+    const c = capture(); f.registerTools(c.server, f.createSession({ secLive: true }));
     return fromRegistered("fundamentals", c.tools, KEYWORDS.fundamentals);
   },
   async research() {

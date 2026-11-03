@@ -105,12 +105,14 @@ export async function filingTables(session, args) {
   const terms = searchTerms(a.find);
   if (a.find && !terms.length) throw new Error(`find "${a.find}" has no words to look for; name the figure, for example "paid members".`);
   if ((a.filings ?? 1) > 1 && !terms.length) throw new Error("filings above 1 follows a figure through earlier filings: pass find with the words it is under.");
-  const form = (a.form ?? "10-K").toUpperCase();
+  const asked = a.form?.toUpperCase();
   const count = a.filings ?? 1;
   const e = await resolveEntity(session, a.company);
   const yearOf = a.accession ? 2000 + Number(a.accession.slice(11, 13)) : Number((a.filed_before ?? new Date(session.now()).toISOString()).slice(0, 4));
-  const perYear = form.startsWith("10-Q") ? 3 : form.startsWith("8-K") ? 4 : 1;
+  const perYear = asked?.startsWith("10-Q") ? 3 : asked?.startsWith("8-K") ? 4 : 1;
   const { sub, rows } = await filings(session, e.cik, { since: `${yearOf - Math.ceil(count / perYear) - 1}-01-01` });
+  // No form named: the named filing's own, or the annual report the company files (a foreign issuer's is a 20-F or 40-F).
+  const form = asked ?? rows.find((r) => r.accessionNumber === a.accession)?.form ?? ["10-K", "20-F", "40-F"].find((f) => rows.some((r) => r.form === f)) ?? "10-K";
   // An 8-K means a results release (Item 2.02) unless an accession names another.
   let candidates = rows.filter((r) => r.form === form && (form !== "8-K" || a.accession || String(r.items ?? "").includes("2.02")));
   if (!candidates.length) throw new NotFound(`${sub.name} has no ${form}${form === "8-K" ? " results release (Item 2.02)" : ""} in the period read; list_filings shows what it has filed.`);

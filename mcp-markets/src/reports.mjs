@@ -32,7 +32,10 @@ export function statementKind(name) {
   if (/cash flow/.test(n)) return "cash_flow";
   if (/(stockholders|shareholders|shareowners|owners|partners|members|unitholders)'? ?(equity|deficit|capital)|changes in (net assets|equity|capital)|statements? of equity|equity statements?/.test(n)) return "equity";
   if (/balance sheet|financial (position|condition)|statements? of condition|assets(,)? liabilities/.test(n)) return "balance_sheet";
-  if (/comprehensive/.test(n) && !/operations|earnings|statements? of income and/.test(n)) return "comprehensive_income";
+  // One title for both statements ("Income statement and Statement of comprehensive income", "Profit or loss and
+  // other comprehensive income") holds the income statement; the second part of such a title is its own page.
+  if (/- *statements? of comprehensive/.test(n)) return "comprehensive_income";
+  if (/comprehensive/.test(n) && !/operations|earnings|statements? of income and|income statements? and|profit or loss and/.test(n)) return "comprehensive_income";
   if (/operations|income|earnings|(profit|loss)\b|revenues? and expenses/.test(n)) return "income";
   return null;
 }
@@ -173,6 +176,13 @@ export function parseReport(html) {
     for (const g of grid) if (g[c] && parts.at(-1) !== g[c]) parts.push(g[c]);
     columns.push(columnOf(parts));
   }
+  // A convenience translation repeats a period in a second currency (TSMC's 2025 in TWD and USD). The page's
+  // main currency stays unmarked and the others carry theirs, so the two never merge.
+  const codes = columns.map((c) => c.label.match(/\b([A-Z]{3}) \(/)?.[1] ?? null);
+  const counts = new Map();
+  for (const code of codes) if (code) counts.set(code, (counts.get(code) ?? 0) + 1);
+  const currency = [...counts].sort((a, b) => b[1] - a[1])[0]?.[0] ?? String(units ?? "").match(/\b([A-Z]{3}) \(/)?.[1] ?? null;
+  columns.forEach((c, i) => { if (codes[i] && codes[i] !== currency) c.currency = codes[i]; });
   const out = [];
   for (const row of rows.slice(head.length)) {
     const [first, ...others] = row.cells;
@@ -198,5 +208,14 @@ export function parseReport(html) {
       values: values.map((v) => v.value),
     });
   }
-  return { title, units, columns, rows: out, ...(footnotes.length ? { footnotes } : {}) };
+  // A page can spread one period's rows over two columns (per-share lines apart): those read as one. Columns of a
+  // period that disagree on a row (a member, "as previously reported") each keep their numbers, under their own name.
+  const firstOf = new Map();
+  columns.forEach((c, i) => {
+    const period = `${c.currency ?? ""}|${c.months ?? ""}|${c.end ?? c.instant ?? c.label}`;
+    if (!firstOf.has(period)) { firstOf.set(period, i); return; }
+    const k = firstOf.get(period);
+    if (out.some((r) => r.values[i] !== null && r.values[k] !== null && r.values[i] !== r.values[k])) c.variant = c.members?.join(", ") || `column ${i + 1}`;
+  });
+  return { title, units, ...(currency ? { currency } : {}), columns, rows: out, ...(footnotes.length ? { footnotes } : {}) };
 }

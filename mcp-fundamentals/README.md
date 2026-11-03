@@ -300,3 +300,10 @@ recruit reviewers, dispatch packets, or make rights/admission decisions.
 Three prompts do the common jobs in one step: `known_on_date` (company, as_of), `restatement_review` (company, optional concept) and `peers_as_of` (companies, concept, as_of). In clients that support completion, `company` completes from the SEC ticker list and `concept` from the plain names.
 
 Resources: `canli://concepts` lists every plain name and the tags behind it; `canli://limits` gives the limits to quote; `canli://schemas/{tool}` gives a tool's exact JSON Schemas; `canli://examples/{language}/{tool}` gives a working call in `python`, `javascript` or `curl`.
+
+## Companies outside the reference
+
+The reference covers the filers listed on its site. Set `CANLI_SEC_LIVE=1` and a company outside it, such as TSMC or
+Shell, is read live from the SEC (`data.sec.gov`), with `snapshot.read_live` and a note saying so. `SEC_USER_AGENT`
+sets who the SEC sees. It is off by default, so this server alone contacts only `CANLI_API_BASE`. The canli-mcp
+flagship turns it on.

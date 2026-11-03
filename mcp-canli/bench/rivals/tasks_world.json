@@ -1,0 +1,226 @@
+[
+ {
+  "id": "w_filing_cost_employees",
+  "cat": "filings",
+  "truth": "cost_employees",
+  "rel": 0.005,
+  "prompt": "According to the Form 10-K Costco filed for fiscal 2025 (year ended August 31, 2025), how many employees did Costco have worldwide? Answer with the number of people."
+ },
+ {
+  "id": "w_filing_goog_ai_mentions",
+  "cat": "filings",
+  "truth": "goog_ai_mentions",
+  "abs": 1,
+  "prompt": "In Alphabet's Form 10-K for fiscal 2025, how many times does the phrase \"artificial intelligence\" appear in the main document, ignoring case? Answer with the count."
+ },
+ {
+  "id": "w_filing_ba_8k_count",
+  "cat": "filings",
+  "truth": "ba_8k_count_2025",
+  "abs": 0,
+  "prompt": "How many Form 8-K filings did Boeing file with the SEC with a filing date in calendar 2025? Do not count 8-K/A amendments. Answer with the count."
+ },
+ {
+  "id": "w_filing_nflx_10k_date",
+  "cat": "filings",
+  "truth": "nflx_10k_filed_fy2025",
+  "abs": 0,
+  "prompt": "On what date did Netflix file its Form 10-K for fiscal 2025 with the SEC? Answer as a number in the form YYYYMMDD."
+ },
+ {
+  "id": "w_fund_cost_revenue",
+  "cat": "fundamentals",
+  "truth": "cost_revenue_fy2025",
+  "rel": 0.002,
+  "prompt": "What was Costco's total revenue for fiscal 2025 (ended August 31, 2025), including membership fees? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "w_fund_jpm_net_income",
+  "cat": "fundamentals",
+  "truth": "jpm_net_income_fy2025",
+  "rel": 0.002,
+  "prompt": "What was JPMorgan Chase's net income for fiscal 2025 (ended December 31, 2025)? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "w_fund_xom_capex",
+  "cat": "fundamentals",
+  "truth": "xom_capex_fy2025",
+  "rel": 0.002,
+  "prompt": "What were Exxon Mobil's additions to property, plant and equipment on its cash flow statement for fiscal 2025 (ended December 31, 2025)? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "w_fund_nflx_eps",
+  "cat": "fundamentals",
+  "truth": "nflx_diluted_eps_fy2025",
+  "rel": 0.005,
+  "prompt": "What was Netflix's diluted earnings per share for fiscal 2025 (ended December 31, 2025), as stated in its Form 10-K? Answer in dollars."
+ },
+ {
+  "id": "w_fund_pg_margin",
+  "cat": "fundamentals",
+  "truth": "pg_gross_margin_pct_fy2025",
+  "abs": 0.1,
+  "prompt": "What was Procter & Gamble's gross margin for fiscal 2025 (ended June 30, 2025), gross profit divided by net sales, from its Form 10-K? Answer in percent, e.g. 12.3."
+ },
+ {
+  "id": "w_fund_visa_fcf",
+  "cat": "fundamentals",
+  "truth": "visa_fcf_margin_pct_fy2025",
+  "abs": 0.2,
+  "prompt": "What was Visa's free cash flow margin for fiscal 2025 (ended September 30, 2025): cash from operations minus purchases of property, equipment and technology, divided by net revenue, from its Form 10-K? Answer in percent, e.g. 12.3."
+ },
+ {
+  "id": "w_fund_aapl_buybacks",
+  "cat": "fundamentals",
+  "truth": "aapl_buybacks_fy2025",
+  "rel": 0.002,
+  "prompt": "How much did Apple pay to repurchase common stock in fiscal 2025 (ended September 27, 2025), from its cash flow statement? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "w_fund_aapl_first_reported",
+  "cat": "fundamentals",
+  "truth": "aapl_eps_fy2019_first_reported",
+  "abs": 0.005,
+  "prompt": "What diluted earnings per share did Apple report for fiscal 2019 (ended September 28, 2019) in the Form 10-K it filed for that year, before any later stock split? Answer in dollars."
+ },
+ {
+  "id": "w_fund_novo_revenue",
+  "cat": "fundamentals",
+  "truth": "novo_revenue_2025_dkk",
+  "rel": 0.002,
+  "prompt": "What was Novo Nordisk's revenue for 2025 in Danish kroner, from its annual report on Form 20-F? Answer as a plain number of kroner."
+ },
+ {
+  "id": "w_fund_ko_dividends",
+  "cat": "fundamentals",
+  "truth": "ko_dividends_paid_2025",
+  "rel": 0.005,
+  "prompt": "What cash dividends per share did Coca-Cola pay for 2025, according to its Form 10-K? Answer in dollars."
+ },
+ {
+  "id": "w_insider_aapl_count",
+  "cat": "insiders",
+  "truth": "aapl_form4_q1_2026",
+  "abs": 0,
+  "prompt": "How many Form 4 filings were filed on Apple Inc. with a filing date between January 1 and March 31, 2026? Do not count amendments. Answer with the count."
+ },
+ {
+  "id": "w_insider_pltr_sold",
+  "cat": "insiders",
+  "truth": "pltr_open_market_shares_sold_aug_2026",
+  "rel": 0.005,
+  "prompt": "How many shares of Palantir did its insiders sell in open-market sales (transaction code S) in total, across all Form 4 filings filed in August 2026? Answer with the number of shares."
+ },
+ {
+  "id": "w_13f_brk_aapl",
+  "cat": "13F",
+  "truth": "brk_aapl_shares_2026q2",
+  "rel": 0.001,
+  "prompt": "How many shares of Apple did Berkshire Hathaway report holding in its Form 13F for June 30, 2026? Answer with the number of shares."
+ },
+ {
+  "id": "w_13f_duquesne_entries",
+  "cat": "13F",
+  "truth": "duquesne_13f_entries_2026q2",
+  "abs": 0,
+  "prompt": "How many entries are in the information table of Duquesne Family Office's Form 13F for June 30, 2026? Answer with the count."
+ },
+ {
+  "id": "w_rates_2y",
+  "cat": "rates_macro",
+  "truth": "ust_2y_2026_08_14",
+  "abs": 0.011,
+  "prompt": "What was the 2-year US Treasury par yield on August 14, 2026, as published by the Treasury? Answer in percent."
+ },
+ {
+  "id": "w_rates_spread",
+  "cat": "rates_macro",
+  "truth": "ust_10y2y_2026_07_31",
+  "abs": 0.021,
+  "prompt": "What was the spread between the 10-year and 2-year US Treasury par yields on July 31, 2026? Answer in percentage points, 10-year minus 2-year."
+ },
+ {
+  "id": "w_macro_cpi",
+  "cat": "rates_macro",
+  "truth": "cpi_nsa_yoy_pct_2026_08",
+  "abs": 0.06,
+  "prompt": "What was the year-over-year change in the US consumer price index for all urban consumers, not seasonally adjusted, for August 2026? Answer in percent."
+ },
+ {
+  "id": "w_macro_gdp",
+  "cat": "rates_macro",
+  "truth": "gdp_2026q2_billions",
+  "rel": 0.003,
+  "prompt": "What was US nominal GDP for the second quarter of 2026, at a seasonally adjusted annual rate, in the latest figures on FRED (series GDP)? Answer in billions of dollars."
+ },
+ {
+  "id": "w_macro_fed",
+  "cat": "rates_macro",
+  "truth": "fed_upper_target_2026_09_30",
+  "abs": 0.001,
+  "prompt": "What was the upper limit of the Federal Reserve's federal funds target range on September 30, 2026? Answer in percent."
+ },
+ {
+  "id": "w_price_tsla_close",
+  "cat": "prices",
+  "truth": "tsla_close_2026_08_31",
+  "rel": 0.002,
+  "prompt": "What was Tesla's closing share price on August 31, 2026, not adjusted for dividends? Answer in dollars."
+ },
+ {
+  "id": "w_price_spy_return",
+  "cat": "prices",
+  "truth": "spy_total_return_pct_2026_ytd_sep",
+  "abs": 0.2,
+  "prompt": "What was SPY's total return, with dividends reinvested, from the close on December 31, 2025 to the close on September 30, 2026? Answer in percent."
+ },
+ {
+  "id": "w_price_btc_close",
+  "cat": "crypto_fx",
+  "truth": "btc_close_2026_06_30",
+  "rel": 0.015,
+  "prompt": "What was Bitcoin's closing price in US dollars on June 30, 2026 (UTC day)? Answer in dollars."
+ },
+ {
+  "id": "w_fx_eurusd",
+  "cat": "crypto_fx",
+  "truth": "eurusd_ecb_2026_08_14",
+  "rel": 0.003,
+  "prompt": "What was the euro's exchange rate against the US dollar on August 14, 2026? Use the ECB reference rate if you can. Answer in dollars per euro."
+ },
+ {
+  "id": "w_ana_jpm_vol",
+  "cat": "analytics",
+  "truth": "jpm_ann_vol_2025",
+  "rel": 0.01,
+  "prompt": "What was JPMorgan's annualized volatility in 2025: the standard deviation of daily simple returns of adjusted closes, from the close on December 31, 2024 to the close on December 31, 2025, times the square root of 252? Answer as a decimal, e.g. 0.25."
+ },
+ {
+  "id": "w_ana_corr",
+  "cat": "analytics",
+  "truth": "xom_cvx_corr_2025",
+  "abs": 0.01,
+  "prompt": "What was the correlation of daily simple returns of adjusted closes between Exxon Mobil and Chevron in 2025, from the close on December 31, 2024 to the close on December 31, 2025? Answer as a decimal."
+ },
+ {
+  "id": "w_ana_var",
+  "cat": "analytics",
+  "truth": "spy_hist_var5_2025",
+  "abs": 0.0005,
+  "prompt": "What was SPY's one-day historical value at risk at 95% confidence in 2025: the 5th percentile of daily simple returns of adjusted closes, from the close on December 31, 2024 to the close on December 31, 2025, with linear interpolation, stated as a positive number? Answer as a decimal, e.g. 0.02."
+ },
+ {
+  "id": "w_ana_delta",
+  "cat": "analytics",
+  "truth": "bs_call_delta",
+  "abs": 0.002,
+  "prompt": "What is the Black-Scholes delta of a European call with spot 100, strike 105, 6 months to expiry (0.5 years), risk-free rate 4% continuous, no dividends and volatility 25%? Answer as a decimal."
+ },
+ {
+  "id": "w_screen_op_income",
+  "cat": "screens",
+  "truth": "count_operating_income_over_50b",
+  "abs": 0,
+  "prompt": "How many companies listed on the NYSE or Nasdaq reported operating income above $50 billion for a fiscal year ending between February 1, 2025 and January 31, 2026, according to their 10-K filings? Answer with the count."
+ }
+]

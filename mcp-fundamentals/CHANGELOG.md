@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.8.0
+
+From a test against other finance MCP servers on the newest models:
+
+- `createSession({ secLive: true })`, or `CANLI_SEC_LIVE=1`: a company outside the reference is read live from the SEC (`data.sec.gov`), with `snapshot.read_live` and a note saying so. Off by default, so this server alone still contacts only `CANLI_API_BASE`. The canli-mcp flagship turns it on, which gives its `history` about 25 of the largest foreign companies it could not read: TSMC, Shell, Novo Nordisk, SAP, HSBC, AstraZeneca.
+- Names people use reach the listed company: "Google" had returned Google Inc.'s 2014 revenue, "Facebook" and "TSMC" nothing.
+- The unit of the latest period is used by default, so a company that changed its reporting currency reads to today: Diageo stopped in 2023 under pounds.
+- `revenue` also reads `RevenueAndOperatingIncome` and `RevenueFromSaleOfGoods`, for banks and for filers such as Novartis and Sanofi that tag only those.
+- `stale_note`: when the latest value is over fifteen months old, the answer says so and points to the filing, since the SEC's facts feed can miss a foreign issuer's newest annual report.
+- `concept` and `concepts` together mean all of them, for clients that force every optional field.
+
 ## 0.7.5
 
 - A ticker held by a company outside the reference is never read as another company's name: "BP" had returned BP
