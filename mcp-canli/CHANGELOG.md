@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.17.0
+
+With canli-markets-mcp 0.12.0 and canli-fundamentals-mcp 0.8.0, from a test against other finance MCP servers on the newest models.
+
+- Companies outside the US: `history` reads a company that is not in the reference live from the SEC (`data.sec.gov`), and says so. That gives it about 25 of the largest foreign companies it could not read, among them TSMC, Shell, Novo Nordisk, SAP, HSBC and AstraZeneca. Only canli-mcp turns this on; canli-fundamentals-mcp on its own still contacts only canlicapital.com.
+- `financial_statements` reads foreign filers properly: a year shown in two currencies keeps both, `money_scale` reads millions of euros or yen, and a single statement of income and comprehensive income is found.
+- `stock_snapshot`: analysts' price targets, ratings and estimates, valuation ratios, 52-week range, short interest and the next earnings date, from Yahoo Finance and labelled as its aggregates.
+- `technical_indicators`: moving averages, RSI, MACD, Bollinger Bands and ATR for a symbol in one call.
+- `reference_rates` has the ECB's euro exchange reference rates (`fx:GBP`).
+- Names people use reach the company: "Google", "Facebook", "TSMC", "BofA". A latest value over fifteen months old says so.
+- Smaller: `list_filings` takes `form`, `read_filing` counts each word it finds, `event_study` takes `last`.
+
 ## 0.16.1
 
 With canli-markets-mcp 0.11.1, which adds `exposure_map` and reads guidance more carefully in `earnings_release` and `guidance_record`, and canli-backtest-mcp 0.5.1.
