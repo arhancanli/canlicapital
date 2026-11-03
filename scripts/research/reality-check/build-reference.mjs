@@ -3,7 +3,7 @@
 // the bootstrap-t SPA and StepM. Needs uv. The file's dated `history` is carried over on a rebuild.
 //   node scripts/research/reality-check/build-reference.mjs
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -28,7 +28,13 @@ for (const c of CASES) {
 const specs = CASES.map((c) => `${c.name}:${defaultBlock(c.n)}`);
 const stdout = execFileSync("uv", ["run", "-q", "--with", ARCH, "python", join(HERE, "reference.py"), dir, String(REPS), String(SEED), ...specs], { encoding: "utf8", maxBuffer: 1 << 24 });
 const values = JSON.parse(stdout);
-const history = existsSync(OUT) ? JSON.parse(readFileSync(OUT, "utf8")).history ?? [] : [];
+// The dated record of how earlier values were made carries over; a first build starts it.
+let history = [];
+try {
+  history = JSON.parse(readFileSync(OUT, "utf8")).history ?? [];
+} catch (e) {
+  if (e.code !== "ENOENT") throw e;
+}
 const out = {
   schema: "canli.reality-check-reference.v1",
   what: "Independent p-values for js/snooping-core.js on the fixed-seed cases in scripts/research/reality-check/cases.mjs: arch's SPA, RealityCheck and StepM (not studentized), and the bootstrap-t SPA and StepM (every resample studentized by its own standard deviation, ties counted), transcribed in numpy in reference.py from the definitions in its docstring, not from the JavaScript. The two sides draw with different generators, so they agree within Monte Carlo error.",
