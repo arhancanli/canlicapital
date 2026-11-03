@@ -2,11 +2,12 @@
 // mcp-books/src/server.mjs
 //
 // The Canli Books MCP server, with the first tools of every Canli company on its engine: Books (keep a book
-// file), Close (bank matching, bank lines into entries, what moved, the close checklist), Report (facts and the
-// checks before filing), Audit (Benford and journal-entry tests), Planning (runway, budget, forecast, valuation)
-// and Data (pack a dataset). It runs on your machine. A book is a file you name, ending in .jsonl, one record per line: a write
-// reads the whole book, checks every record, and only then appends the new lines. A file that does not
-// verify is never written to, and no tool overwrites a file. One writer at a time per book.
+// file), Close (bank matching, bank lines into entries, what moved, the close checklist, group consolidation),
+// Report (facts and the checks before filing), Audit (Benford and journal-entry tests), Planning (runway, budget,
+// forecast, valuation) and Data (pack a dataset). It runs on your machine. A book is a file you name, ending in
+// .jsonl, one record per line: a write reads the whole book, checks every record, and only then appends the new
+// lines. A file that does not verify is never written to, and no tool overwrites a file. One writer at a time
+// per book.
 import { appendFileSync, existsSync, mkdirSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import { extname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -19,6 +20,7 @@ import { journalTests } from "./audit.mjs";
 import { smallBusiness } from "./chart.mjs";
 import { bankEntries, checklist, readStatement, reconcile, variance } from "./close.mjs";
 import { packDataset } from "./data.mjs";
+import { consolidate, readEcbRates } from "./group.mjs";
 import { addAccount, balanceSheet, explain, fromJsonl, fromMinor, incomeStatement, lock, openBook, post, reverse, toJsonl, trialBalance, TYPES, verify } from "./ledger.mjs";
 import { budgetVsActual, dcf, forecast, runway } from "./planning.mjs";
 import { checkFacts, TAXONOMIES, toFacts } from "./report.mjs";
@@ -35,7 +37,7 @@ const WRITES_LOCAL = { readOnlyHint: false, destructiveHint: false, idempotentHi
 const APPENDS_ONCE = { ...WRITES_LOCAL, idempotentHint: true };
 
 // Amounts leave the server as decimals in the book's currency; record numbers, counts and percentages stay numbers.
-const MONEY = new Set(["debit", "credit", "amount", "balance", "change", "opening", "closing", "totalIncome", "totalExpenses", "netIncome", "totalAssets", "totalLiabilities", "totalEquity", "totalLiabilitiesAndEquity", "earningsToDate", "prior", "current", "budget", "actual", "variance", "cash", "averageChange", "averageIncome", "averageCosts", "income", "costs", "net", "statementTotal", "booksTotal", "difference"]);
+const MONEY = new Set(["debit", "credit", "amount", "balance", "change", "opening", "closing", "totalIncome", "totalExpenses", "netIncome", "totalAssets", "totalLiabilities", "totalEquity", "totalLiabilitiesAndEquity", "earningsToDate", "prior", "current", "budget", "actual", "variance", "cash", "averageChange", "averageIncome", "averageCosts", "income", "costs", "net", "statementTotal", "booksTotal", "difference", "translationReserve", "intercompanyDifference", "translationDifference"]);
 function shown(value, currency) {
   if (Array.isArray(value)) return value.map((v) => shown(v, currency));
   if (value && typeof value === "object") return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, MONEY.has(k) && Number.isInteger(v) ? fromMinor(v, currency) : shown(v, currency)]));
@@ -162,6 +164,11 @@ export function registerTools(server) {
     const { book, currency } = load(f);
     const reconciliation = statement_file ? reconcile(book, readStatement(readFileSync(resolve(statement_file), "utf8"), currency), { account, from, to: through }) : undefined;
     return shown(checklist(book, { through, reconciliation }), currency);
+  });
+  tool("close_consolidate", "Group consolidation", "One trial balance, income statement and balance sheet for a group of companies, in one currency, from each company's book. Rates are the ECB's euro reference rates in rates_file, as the ECB publishes them: the Data Portal CSV (series EXR D.<currency>.EUR.SP00.A, format=csvdata), eurofxref-hist.csv, eurofxref.csv or the eurofxref XML. Assets and liabilities at the closing rate (as_of, or the last rate published before it); income, expenses and equity at the rate on each entry's date; the rest is the currency translation reserve. A currency the ECB does not publish (AED, SAR) takes a peg to one it does: { AED: { base: 'USD', rate: '3.6725' } }. Balances between the companies are removed in named sets of each company's own accounts; a set that does not add up to zero shows as an intercompany difference. Wholly owned companies only.", z.object({ companies: z.array(z.object({ name: z.string().min(1).max(200), file, map: z.record(z.string(), z.string()).default({}) }).strict()).min(1).max(100), currency: z.string().regex(/^[A-Za-z]{3}$/), as_of: date, from: date.optional(), rates_file: z.string().optional(), pegs: z.record(z.string().regex(/^[A-Za-z]{3}$/), z.object({ base: z.string().regex(/^[A-Za-z]{3}$/), rate: z.string() }).strict()).default({}), eliminate: z.array(z.object({ name: z.string().min(1).max(200), lines: z.array(z.object({ company: z.string(), account: z.string() }).strict()).min(2).max(100) }).strict()).max(500).default([]) }).strict(), READ_ONLY, ({ companies, currency, as_of, from, rates_file, pegs, eliminate }) => {
+    const rates = rates_file ? readEcbRates(readFileSync(resolve(rates_file), "utf8")) : {};
+    const out = consolidate(companies.map((c) => ({ name: c.name, map: c.map, book: load(c.file).book })), { currency, asOf: as_of, from, rates, pegs, eliminate });
+    return shown(out, out.currency);
   });
 
   // Canli Report

@@ -30,7 +30,7 @@ test("every Canli company's tools work on one book through the MCP server", asyn
   };
   try {
     const tools = (await client.listTools()).tools.map((t) => t.name);
-    for (const name of ["books_post", "close_reconcile", "report_check", "audit_journal", "planning_runway", "data_pack", "books_sign"]) assert.ok(tools.includes(name), name);
+    for (const name of ["books_post", "close_reconcile", "close_consolidate", "report_check", "audit_journal", "planning_runway", "data_pack", "books_sign"]) assert.ok(tools.includes(name), name);
 
     await call("books_open", { file, name: "Example Trading LLC", currency: "AED" });
     assert.match(await refused("books_open", { file, name: "Again", currency: "AED" }), /never overwrites/);
@@ -55,6 +55,15 @@ test("every Canli company's tools work on one book through the MCP server", asyn
     assert.deepEqual((await call("close_bank_entries", { file, statement_file: statement, rules, post: true })).posted, [28]);
     assert.deepEqual((await call("close_bank_entries", { file, statement_file: statement, rules, post: true })).posted, [], "the same statement again posts nothing");
     assert.equal((await call("close_checklist", { file, through: "2026-01-31", statement_file: statement })).readyToLock, true);
+
+    // A German subsidiary in euros, consolidated into dirhams: the ECB has no AED, so it is pegged to the dollar.
+    const sub = join(dir, "sub.jsonl");
+    await call("books_open", { file: sub, name: "Example GmbH", currency: "EUR" });
+    await call("books_post", { file: sub, date: "2026-01-02", memo: "Share capital paid in", lines: [{ account: "1000", debit: "10000" }, { account: "3000", credit: "10000" }] });
+    const ecb = join(dir, "eurofxref-hist.xml");
+    writeFileSync(ecb, "<Cube><Cube time='2026-01-02'><Cube currency='USD' rate='1.10'/></Cube><Cube time='2026-01-30'><Cube currency='USD' rate='1.20'/></Cube></Cube>");
+    const group = await call("close_consolidate", { companies: [{ name: "Example Trading LLC", file }, { name: "Example GmbH", file: sub }], currency: "AED", as_of: "2026-01-31", rates_file: ecb, pegs: { AED: { base: "USD", rate: "3.6725" } } });
+    assert.deepEqual([group.companies[1].closingRate.perEuro.AED, group.balanceSheet.translationReserve, group.balanceSheet.balanced], ["4.407", "3672.50", true], "EUR 10,000 in at 4.03975 and held at 4.407");
 
     const report = await call("report_check", { file, as_of: "2026-01-31", from: "2026-01-01", to: "2026-01-31" });
     assert.deepEqual([report.ok, report.unmapped.length], [true, 0]);
