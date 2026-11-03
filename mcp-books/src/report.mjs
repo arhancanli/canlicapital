@@ -207,12 +207,18 @@ function secFactsByFiling(companyfacts, taxonomy) {
   return byFiling;
 }
 
-// Report's checks on each of a company's filings, oldest first, each against the last filing of the same form
-// before it for the scale check; `last` keeps the most recent. The taxonomy is us-gaap when the company files in
-// it, otherwise ifrs-full. Findings point at facts to look at, not errors proved.
-export function checkSecFilings(companyfacts, { forms = SEC_FORMS, last = 8, taxonomy } = {}) {
-  const tax = taxonomy ?? (companyfacts?.facts?.["us-gaap"] ? "us-gaap" : companyfacts?.facts?.["ifrs-full"] ? "ifrs-full" : null);
+// The taxonomy a company's facts are in: us-gaap when it files in it, otherwise ifrs-full.
+export function secTaxonomy(companyfacts) {
+  const tax = companyfacts?.facts?.["us-gaap"] ? "us-gaap" : companyfacts?.facts?.["ifrs-full"] ? "ifrs-full" : null;
   if (!tax) throw new Error("The file has no us-gaap or ifrs-full facts: give the companyfacts JSON from data.sec.gov");
+  return tax;
+}
+
+// Report's checks on each of a company's filings, oldest first, each against the last filing of the same form
+// before it for the scale check; `last` keeps the most recent. Findings point at facts to look at, not errors
+// proved.
+export function checkSecFilings(companyfacts, { forms = SEC_FORMS, last = 8, taxonomy } = {}) {
+  const tax = taxonomy ?? secTaxonomy(companyfacts);
   mapFor(tax);
   const filings = [...secFactsByFiling(companyfacts, tax).values()].filter((x) => forms.includes(x.filing.form)).sort((a, b) => (a.filing.filed === b.filing.filed ? (a.filing.accession < b.filing.accession ? -1 : 1) : a.filing.filed < b.filing.filed ? -1 : 1));
   const before = new Map();

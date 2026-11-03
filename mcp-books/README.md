@@ -32,13 +32,14 @@ trialBalance(book);
 - `audit.mjs`, Canli Audit: Benford's law against Nigrini's bands, and journal-entry tests for round amounts, weekend dates, duplicates, amounts just under an approval limit, missing memos and reversals. Analytics, not an audit opinion.
 - `planning.mjs`, Canli Treasury and Planning: cash runway, budget against actual, a forecast from trailing months, and a discounted cash flow value that returns every input.
 - `data.mjs`, Canli Data: a table packed as CSV with its SHA-256 and a dataset card in Hugging Face's format.
+  The first pack is SEC facts as first filed (`data_pack_sec_first_filed`). Each row is a company, concept, unit and period: the value in the first filing that reported it, the value in the latest, and how many different values were filed in between. The card names each input file's SHA-256, so anyone with the same companyfacts files can rebuild it. On the five companies Report was tuned on (files saved 3 Nov 2026), 2,275 of 68,319 values changed after they were first filed. The largest changes at Apple are its share counts after the 4-for-1 split of 2020: 12.6 billion authorized shares at 28 September 2019 in four filings, then 50.4 billion in the 2020 10-K.
 - `sign.mjs`: a book's head signed with ML-DSA-65, a post-quantum signature, which pins the whole history.
 
 Each becomes its own package when it ships on its own.
 
 ## The MCP server
 
-`node src/server.mjs` serves 27 tools over stdio: `books_*` (open, accounts, post, reverse, lock, trial balance, statements, explain, verify, keys, sign, check a signature, prove entries, check proofs), `close_reconcile`, `close_bank_entries`, `close_variance`, `close_checklist`, `close_consolidate`, `report_check`, `report_check_sec`, `audit_journal`, `planning_runway`, `planning_budget`, `planning_forecast`, `planning_dcf` and `data_pack`. A book is a `.jsonl` file you name. Every write reads the whole book and checks every record first, then appends; a book that does not verify is never written to, and no tool overwrites a file.
+`node src/server.mjs` serves 28 tools over stdio: `books_*` (open, accounts, post, reverse, lock, trial balance, statements, explain, verify, keys, sign, check a signature, prove entries, check proofs), `close_reconcile`, `close_bank_entries`, `close_variance`, `close_checklist`, `close_consolidate`, `report_check`, `report_check_sec`, `audit_journal`, `planning_runway`, `planning_budget`, `planning_forecast`, `planning_dcf`, `data_pack` and `data_pack_sec_first_filed`. A book is a `.jsonl` file you name. Every write reads the whole book and checks every record first, then appends; a book that does not verify is never written to, and no tool overwrites a file.
 
 The starting chart of accounts includes VAT and corporate tax accounts for UAE companies. It is a list of accounts, not tax or accounting advice.
 
