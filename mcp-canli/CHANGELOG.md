@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- The time machine no longer lets later filings through in fields without a date. `known_as_of` and `cross_section` returned `changed_after`, and `history` its `changed` column: whether a later filing reported a different value, which nobody knew on the date. They are left out, and the answer names them. A dropped later row is no longer counted, since how many later filings reported a figure is later news too. `list_concepts` is off in a time-machine run (its counts and order come from every filing). `cross_section` returns its rows again: the day its figures were fetched counted as a later date, so every row was dropped.
+
 ## 0.17.0
 
 With canli-markets-mcp 0.12.0 and canli-fundamentals-mcp 0.8.0, from a test against other finance MCP servers on the newest models.

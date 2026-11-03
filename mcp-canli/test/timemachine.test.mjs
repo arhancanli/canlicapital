@@ -56,11 +56,37 @@ test("tools that only work on what they are given stay on, and pass untouched", 
   assert.equal(tm.seal("return_stats", out), out);
 });
 
-test("a later row is dropped, and counted", () => {
-  const r = tm.seal("list_filings", { columns: ["filed", "form"], rows: [["2019-10-30", "10-K"], ["2021-10-29", "10-K"]] });
-  assert.deepEqual(r.rows, [["2019-10-30", "10-K"]]);
-  assert.equal(r.time_machine.later_rows_hidden, 1);
-  assert.equal(r.time_machine.as_of, D);
+test("a later row is dropped, and not counted: how many later filings there were is later news", () => {
+  const r = tm.seal("vintages", { columns: ["end", "filed", "val"], rows: [["2019-09-28", "2019-10-30", 5], ["2019-09-28", "2020-10-30", 5], ["2019-09-28", "2021-10-29", 4]] });
+  assert.deepEqual(r.rows, [["2019-09-28", "2019-10-30", 5]]);
+  assert.deepEqual(r.time_machine, { as_of: D });
+});
+
+test("a field that says a later filing changed the value is left out, in every table", () => {
+  const k = tm.seal("known_as_of", {
+    columns: ["concept", "end", "val", "filed", "changed_after", "stale"],
+    rows: [["equity", "2019-09-28", 90, "2019-10-30", true, false]],
+    ratios: { columns: ["ratio", "value", "inputs", "changed_after"], rows: [["net_margin", 0.2, [["revenue", 260, "2019-09-28", "2019-10-30", "a"]], true]] },
+  });
+  assert.deepEqual(k.columns, ["concept", "end", "val", "filed", "stale"]);
+  assert.deepEqual(k.rows, [["equity", "2019-09-28", 90, "2019-10-30", false]]);
+  assert.deepEqual(k.ratios.columns, ["ratio", "value", "inputs"]);
+  assert.equal(k.ratios.rows[0].length, 3);
+  assert.deepEqual(k.time_machine.left_out, ["changed_after"]);
+  const h = tm.seal("history", { columns: ["end", "val", "filed", "changed", "change_pct"], rows: [["2019-09-28", 90, "2019-10-30", true, 0.05]] });
+  assert.deepEqual(h.columns, ["end", "val", "filed", "change_pct"]);
+  assert.deepEqual(h.rows, [["2019-09-28", 90, "2019-10-30", 0.05]]);
+  assert.equal(JSON.stringify(tm.seal("known_as_of", { changed_after: true, rows: [] })).includes("changed_after\":true"), false, "a plain field goes too");
+});
+
+test("cross_section keeps its rows: the day the figures were fetched is not a claim about the market", () => {
+  const r = tm.seal("cross_section", { columns: ["company", "val", "filed", "changed_after", "stale", "snapshot_date"], rows: [["AAPL", 5, "2019-10-30", true, false, "2026-11-02"]] });
+  assert.deepEqual(r.columns, ["company", "val", "filed", "stale"]);
+  assert.deepEqual(r.rows, [["AAPL", 5, "2019-10-30", false]]);
+});
+
+test("list_concepts is off: its counts and order include later filings", () => {
+  assert.throws(() => tm.admit("list_concepts", "fundamentals", { company: "AAPL" }), /cannot be held to 2020-03-01/);
 });
 
 test("any other later date stops the answer: it fails closed", () => {
