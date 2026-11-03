@@ -7,6 +7,8 @@ contains no live trading host, and live keys are refused.
 
 Local stdio. Your keys stay in your environment; nothing goes anywhere except Alpaca's paper API.
 
+**[canli-paper-trading-mcp on canlicapital.com](https://canlicapital.com/mcp-servers/paper-trading)** · [All Canli Capital MCP servers](https://canlicapital.com/mcp-servers). Free, MIT-licensed. For every server behind one install, use [canli-mcp](https://www.npmjs.com/package/canli-mcp).
+
 ## Tools
 
 | tool | what it does |

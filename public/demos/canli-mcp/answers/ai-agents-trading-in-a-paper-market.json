@@ -1,0 +1,152 @@
+{
+ "version": "0.16.1",
+ "recorded": "2026-11-02T12:37:43.389Z",
+ "call": {
+  "name": "exchange_run",
+  "arguments": {
+   "seed": 7,
+   "assets": 2,
+   "personas": {
+    "market_maker": 2,
+    "value": 3,
+    "momentum": 3,
+    "noise": 4,
+    "deleverager": 1
+   },
+   "steps": 200,
+   "shocks": [
+    {
+     "step": 100,
+     "kind": "value",
+     "percent": -10
+    }
+   ]
+  }
+ },
+ "model_chars": 1923,
+ "ms": 29,
+ "result": {
+  "ref": "r2",
+  "steps": 200,
+  "seed": 7,
+  "trades": 5178,
+  "tape_hash": "a597c9eb5c85ce8012ffdf03ca6907a707d850256a4c00e70bc2a2487bcff72c",
+  "assets": [
+   {
+    "asset": "ART1",
+    "last": 42.21,
+    "true_value": 43.37,
+    "worst_fall_percent": -26.23,
+    "worst_fall_from_step": 60,
+    "worst_fall_to_step": 200,
+    "steps_to_recover_to_within_5_percent": "not within this run",
+    "median_spread": 0.16,
+    "widest_spread": 0.49,
+    "thinnest_book": 0,
+    "usual_book": 169
+   },
+   {
+    "asset": "ART2",
+    "last": 57.12,
+    "true_value": 56.62,
+    "worst_fall_percent": -17.87,
+    "worst_fall_from_step": 103,
+    "worst_fall_to_step": 138,
+    "steps_to_recover_to_within_5_percent": "not within this run",
+    "median_spread": 0.18,
+    "widest_spread": 0.59,
+    "thinnest_book": 0,
+    "usual_book": 178
+   }
+  ],
+  "who": {
+   "columns": [
+    "who",
+    "agents",
+    "gain",
+    "gain_per_agent",
+    "forced_sales",
+    "trades",
+    "about"
+   ],
+   "rows": [
+    [
+     "value",
+     3,
+     126502,
+     42167.4,
+     0,
+     1958,
+     null
+    ],
+    [
+     "market_maker",
+     2,
+     3675.55,
+     1837.77,
+     0,
+     4735,
+     null
+    ],
+    [
+     "stop_loss",
+     4,
+     7160.53,
+     1790.13,
+     0,
+     223,
+     null
+    ],
+    [
+     "noise",
+     4,
+     -13069,
+     -3267.26,
+     0,
+     695,
+     null
+    ],
+    [
+     "momentum",
+     3,
+     -23989.1,
+     -7996.37,
+     0,
+     742,
+     null
+    ],
+    [
+     "deleverager",
+     1,
+     -22012.1,
+     -22012.1,
+     0,
+     616,
+     null
+    ],
+    [
+     "levered_long",
+     4,
+     -142188,
+     -35547.1,
+     0,
+     1387,
+     null
+    ]
+   ]
+  },
+  "cascades": {
+   "forced_share_of_volume_percent": 0,
+   "accounts_forced_at_the_worst_step": 0,
+   "longest_chain_in_one_step": 0,
+   "steps_with_forced_sales": 0
+  },
+  "orders_refused_by_the_margin_rule": 10,
+  "how_to_check": "The tape_hash chains every trade. Rerun with the same seed, personas, shocks and joined agents' orders and the hash must match.",
+  "limits": [
+   "Paper only: made-up assets and made-up money. Nothing here represents or can reach a real security, token or currency.",
+   "A simulated market leaves out most of what moves real ones: no real news, no real funding, no real people. It shows how a set of rules can behave together, and it does not predict any real market.",
+   "Personas are simple scripts with parameters someone chose. Different parameters give different cascades, so a result here is a question to ask of a real system, not an answer about it."
+  ]
+ }
+}

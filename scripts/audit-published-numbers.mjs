@@ -121,6 +121,7 @@ for (const extra of [
   "benchmarks/mcp-testing.json",
   "demos/canli-mcp/index.json",
   "demos/canli-mcp/tools.json",
+  "demos/canli-mcp/packages.json",
 ]) {
   const file = resolve(DIST, extra);
   if (existsSync(file)) artifacts.push(file);

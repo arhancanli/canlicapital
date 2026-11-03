@@ -782,6 +782,241 @@
         "does-a-company-beat-its-guidance",
         "connect-claude-to-stock-data"
       ]
+    },
+    {
+      "slug": "test-a-factor-without-lookahead",
+      "title": "Test a factor without lookahead",
+      "question": "How do I test a stock factor without lookahead bias?",
+      "short": "No lookahead",
+      "answer": "canli-backtest-mcp's pit_factor builds a factor from SEC filings using only what had been filed by each date, so an annual figure filed in February cannot reach a January decision. For Apple and Microsoft, gross margin from January to March 2024 came back as a file ready for backtest_signal, free with no key.",
+      "call": {
+        "name": "pit_factor",
+        "arguments": {
+          "factor": "gross_margin",
+          "tickers": [
+            "AAPL",
+            "MSFT"
+          ],
+          "start": "2024-01-01",
+          "end": "2024-03-31"
+        }
+      },
+      "ask": "Build a gross-margin factor for Apple and Microsoft using only what had been filed by each date.",
+      "related": [
+        "is-my-backtest-overfit",
+        "point-in-time-fundamentals",
+        "backtest-a-strategy-in-claude"
+      ]
+    },
+    {
+      "slug": "ai-agents-trading-in-a-paper-market",
+      "title": "AI agents trading in a paper market",
+      "question": "How can AI agents trade against each other without real money?",
+      "short": "Paper market",
+      "answer": "canli-mcp's exchange_run runs a closed paper market with order books, margin and forced selling, where market makers, value traders, momentum traders and your own agents trade made-up money. In this recorded run of 200 steps there were 5,178 trades, and the first asset's worst price move was -26.23% while its true value was cut 10%.",
+      "call": {
+        "name": "exchange_run",
+        "arguments": {
+          "seed": 7,
+          "assets": 2,
+          "personas": {
+            "market_maker": 2,
+            "value": 3,
+            "momentum": 3,
+            "noise": 4,
+            "deleverager": 1
+          },
+          "steps": 200,
+          "shocks": [
+            {
+              "step": 100,
+              "kind": "value",
+              "percent": -10
+            }
+          ]
+        }
+      },
+      "ask": "Run a paper market with market makers, value and momentum traders, and a 10% fall in true value halfway.",
+      "related": [
+        "backtest-a-strategy-in-claude",
+        "is-my-backtest-overfit",
+        "after-the-market-falls-10-percent"
+      ]
+    },
+    {
+      "slug": "deflated-sharpe-ratio-ai",
+      "title": "Deflated Sharpe ratio in an AI assistant",
+      "question": "How do I calculate a deflated Sharpe ratio with AI?",
+      "short": "Deflated Sharpe",
+      "answer": "canli-mcp's validate_deflated_sharpe asks how likely a Sharpe ratio is real once you count the tries behind it. For a Sharpe of 2 over 756 days after 50 independent tries, luck alone reaches 1.138 and the deflated Sharpe is 93.1%. It runs on your machine, free with no key, and neither number is a forecast.",
+      "call": {
+        "name": "validate_deflated_sharpe",
+        "arguments": {
+          "observed_sharpe_annualized": 2,
+          "observations": 756,
+          "periods_per_year": 252,
+          "skew": 0,
+          "non_excess_kurtosis": 3,
+          "effective_independent_trials": 50,
+          "cross_trial_sharpe_sd_annualized": 0.5
+        }
+      },
+      "ask": "My best backtest has a Sharpe of 2 over three years of daily data, after about 50 independent tries. Is that real?",
+      "related": [
+        "is-my-backtest-overfit",
+        "test-a-factor-without-lookahead",
+        "backtest-a-strategy-in-claude"
+      ]
+    },
+    {
+      "slug": "company-restatements-ai",
+      "title": "Find a company's restated figures",
+      "question": "Which figures did a company restate after first reporting them?",
+      "short": "Restatements",
+      "answer": "canli-mcp's restatements tool compares what a company first reported with what its latest filing says, free with no key. For Becton Dickinson it scanned 4,329 annual values and 661 had changed. A change can be a restatement, a reclassification or a correction, so read the filing it names before calling it an error.",
+      "call": {
+        "name": "restatements",
+        "arguments": {
+          "company": "BDX",
+          "periods": "annual",
+          "limit": 10
+        }
+      },
+      "ask": "Which of Becton Dickinson's annual figures changed after they were first reported?",
+      "related": [
+        "point-in-time-fundamentals",
+        "sec-financial-statements-for-ai",
+        "fact-check-financial-figures"
+      ]
+    },
+    {
+      "slug": "quant-strategies-that-failed",
+      "title": "Quant strategies that failed the tests",
+      "question": "Where can AI read about quant strategies that failed?",
+      "short": "What failed",
+      "answer": "canli-mcp's search_research reads Canli Capital's open research record, including every candidate that failed its tests. A search for momentum returned five failed candidates, among them 52-week-high momentum and residual momentum, each with a page saying what was tried. It is free with no key. It is our own record, so weigh that.",
+      "call": {
+        "name": "search_research",
+        "arguments": {
+          "query": "killed momentum",
+          "limit": 5
+        }
+      },
+      "ask": "What has been tried on momentum and failed?",
+      "related": [
+        "is-my-backtest-overfit",
+        "deflated-sharpe-ratio-ai",
+        "backtest-a-strategy-in-claude"
+      ]
+    },
+    {
+      "slug": "portfolio-value-at-risk-ai",
+      "title": "Portfolio value at risk in an AI assistant",
+      "question": "How do I calculate a portfolio's value at risk with AI?",
+      "short": "Value at risk",
+      "answer": "canli-mcp's portfolio_var works out value at risk from your positions and return history, on your own machine with no key. For $60,000 of stocks and $40,000 of bonds over 20 days of sample returns, one-day historical value at risk at 95% confidence was $1,513. These returns are made up, and 20 days is too few for a real answer.",
+      "call": {
+        "name": "portfolio_var",
+        "arguments": {
+          "positions": [
+            60000,
+            40000
+          ],
+          "returns": [
+            [
+              0.012,
+              0.006
+            ],
+            [
+              -0.008,
+              -0.002
+            ],
+            [
+              0.004,
+              0.001
+            ],
+            [
+              0.021,
+              0.009
+            ],
+            [
+              -0.015,
+              -0.007
+            ],
+            [
+              0.007,
+              0.004
+            ],
+            [
+              -0.003,
+              -0.001
+            ],
+            [
+              0.011,
+              0.005
+            ],
+            [
+              -0.022,
+              -0.011
+            ],
+            [
+              0.009,
+              0.003
+            ],
+            [
+              0.005,
+              0.002
+            ],
+            [
+              -0.012,
+              -0.005
+            ],
+            [
+              0.016,
+              0.007
+            ],
+            [
+              -0.006,
+              -0.003
+            ],
+            [
+              0.002,
+              0.001
+            ],
+            [
+              0.013,
+              0.006
+            ],
+            [
+              -0.019,
+              -0.009
+            ],
+            [
+              0.008,
+              0.004
+            ],
+            [
+              0.003,
+              0.002
+            ],
+            [
+              -0.004,
+              -0.001
+            ]
+          ],
+          "confidence": 0.95,
+          "names": [
+            "Stocks",
+            "Bonds"
+          ]
+        }
+      },
+      "ask": "I hold $60,000 of stocks and $40,000 of bonds, with these daily returns. What is my one-day value at risk?",
+      "related": [
+        "black-scholes-in-claude",
+        "technical-indicators-ai-agent",
+        "is-my-backtest-overfit"
+      ]
     }
   ]
 }

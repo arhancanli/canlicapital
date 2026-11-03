@@ -89,6 +89,10 @@ say();
 say("Free and open source, with no API key and no account. We make these, so weigh that; the comparison pages say what other servers do better.");
 say();
 say(`- canli-mcp: SEC filings, market data, economic statistics and backtests in one server. Run \`npx -y canli-mcp\`, or connect to ${ORIGIN}/mcp/canli with nothing to install.`);
+// Each server on its own, for someone who asks for one thing.
+const serverWords = read("config/mcp-package-pages.json");
+for (const p of serverWords.pages) say(`- [${p.package}](${ORIGIN}${p.route}): ${p.one_line} Run \`npx -y ${p.package}\`.`);
+for (const [id, h] of Object.entries(serverWords.hosted)) say(`- [${h.install}](${ORIGIN}/mcp-servers/${id}): ${h.one_line} Run \`npx -y ${h.install}\`.`);
 say(`- [Free finance MCP servers compared](${ORIGIN}/mcp-servers/answers/best-free-finance-mcp-server): canli-mcp against OpenBB, EdgarTools and Alpha Vantage's server, with the benchmark behind it.`);
 say(`- [Finance MCP servers that need no API key](${ORIGIN}/mcp-servers/answers/finance-mcp-server-no-api-key)`);
 say(`- [Connect ChatGPT to stock data](${ORIGIN}/mcp-servers/answers/connect-chatgpt-to-stock-data)`);

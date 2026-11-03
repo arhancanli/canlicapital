@@ -1,0 +1,210 @@
+<!doctype html>
+<html data-design="developer" lang="en" data-page="mcp-discovery"><head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Backtesting MCP server with no lookahead | Canli Capital</title>
+<meta name="description" content="canli-backtest-mcp is a free, open-source MCP server for backtests an AI agent can trust. It builds point-in-time factors from SEC filings, tests any signal…" />
+<meta name="author" content="Arhan Canli" />
+<meta name="canli:sources" content="demos/canli-mcp/packages.json demos/canli-mcp/tools.json benchmarks/finance-mcp-servers.json" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<link rel="canonical" href="https://canlicapital.com/mcp-servers/backtest" />
+<meta property="og:type" content="website" /><meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Backtesting MCP server with no lookahead" /><meta property="og:description" content="canli-backtest-mcp is a free, open-source MCP server for backtests an AI agent can trust. It builds point-in-time factors from SEC filings, tests any signal…" />
+<meta property="og:url" content="https://canlicapital.com/mcp-servers/backtest" /><meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Backtesting MCP server with no lookahead" />
+<meta name="twitter:description" content="canli-backtest-mcp is a free, open-source MCP server for backtests an AI agent can trust. It builds point-in-time factors from SEC filings, tests any signal…" /><meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preload" as="font" href="/fonts/chakra-petch/ChakraPetch-Bold.woff2" type="font/woff2" crossorigin />
+<link rel="preload" as="font" href="/fonts/inter/InterVariable.woff2" type="font/woff2" crossorigin />
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebPage","@id":"https://canlicapital.com/mcp-servers/backtest","url":"https://canlicapital.com/mcp-servers/backtest","name":"Backtesting MCP server with no lookahead","description":"canli-backtest-mcp is a free, open-source MCP server for backtests an AI agent can trust. It builds point-in-time factors from SEC filings, tests any signal…","dateModified":"2026-11-03","publisher":{"@id":"https://canlicapital.com/#organization"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://canlicapital.com/"},{"@type":"ListItem","position":2,"name":"Finance MCP servers","item":"https://canlicapital.com/mcp-servers"},{"@type":"ListItem","position":3,"name":"Backtesting MCP server with no lookahead","item":"https://canlicapital.com/mcp-servers/backtest"}]},{"@context":"https://schema.org","@type":"SoftwareApplication","@id":"https://canlicapital.com/mcp-servers/backtest#software","name":"canli-backtest-mcp","description":"canli-backtest-mcp is a free, open-source MCP server for backtests an AI agent can trust. It builds point-in-time factors from SEC filings, tests any signal on your own prices with lookahead blocked in code, charges costs on the actual trades, and records every variant, so the best result is judged against the whole search.","url":"https://canlicapital.com/mcp-servers/backtest","applicationCategory":"DeveloperApplication","operatingSystem":"Any MCP client (stdio)","softwareVersion":"0.5.1","downloadUrl":"https://www.npmjs.com/package/canli-backtest-mcp","codeRepository":"https://github.com/arhancanli/canlicapital/tree/main/mcp-backtest","sameAs":["https://www.npmjs.com/package/canli-backtest-mcp","https://github.com/arhancanli/canlicapital/tree/main/mcp-backtest"],"license":"https://opensource.org/licenses/MIT","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"FAQPage","@id":"https://canlicapital.com/mcp-servers/backtest#faq","mainEntity":[{"@type":"Question","name":"Is canli-backtest-mcp free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is MIT-licensed and needs no API key and no account."}},{"@type":"Question","name":"How does it stop lookahead?","acceptedAnswer":{"@type":"Answer","text":"pit_factor uses only what had been filed with the SEC by each date, as it stood then. backtest_signal trades only on signal rows dated at least lag_days trading days earlier, and stops if anything reaches past that."}},{"@type":"Question","name":"Does my data leave my machine?","acceptedAnswer":{"@type":"Answer","text":"It runs locally over stdio. Your prices, signals and ledgers stay on your machine."}},{"@type":"Question","name":"Which AI assistants can use it?","acceptedAnswer":{"@type":"Answer","text":"Claude, Claude Code, Cursor, VS Code, Codex, Gemini CLI, Windsurf, Cline, Zed and any other MCP client."}},{"@type":"Question","name":"Does a good result here mean a strategy works?","acceptedAnswer":{"@type":"Answer","text":"No. It removes common ways a backtest flatters itself, and it reports how much of a result luck could explain. Past results do not promise future ones, and this is not investment advice."}}]}]</script>
+<!-- site-design:start -->
+<link rel="stylesheet" href="/css/product-shell.css" />
+<!-- site-design:end -->
+</head><body class="dev-page">
+<a class="dev-skip skip-link" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="/mcp-servers" data-current="true">canli-mcp</a>
+<a class="cc-shell__link" href="/companies">Company data</a>
+<a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/performance">Performance</a>
+<a class="cc-shell__link" href="/developers">Developers</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Use it</span>
+        <nav aria-label="Products and tools"><a class="cc-shell__panel-link" href="/mcp-servers" data-current="true">canli-mcp, the MCP server</a>
+<a class="cc-shell__panel-link" href="/mcp-servers/install">Add it to your client</a>
+<a class="cc-shell__panel-link" href="/mcp-servers/tools">Every tool</a>
+<a class="cc-shell__panel-link" href="/mcp-servers/how-it-works">How it works and is tested</a>
+<a class="cc-shell__panel-link" href="/mcp-servers/answers">Questions it answers</a>
+<a class="cc-shell__panel-link" href="/companies">Company reference</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a>
+<a class="cc-shell__panel-link" href="/tools">Calculators</a>
+<a class="cc-shell__panel-link" href="/developers">Developer API</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Research and record</span>
+        <nav aria-label="Research and record"><a class="cc-shell__panel-link" href="/research">Research</a>
+<a class="cc-shell__panel-link" href="/benchmarks/finance-mcp-servers">MCP benchmark</a>
+<a class="cc-shell__panel-link" href="/performance">Performance</a>
+<a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live record</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">About and trust</span>
+        <nav aria-label="About and trust"><a class="cc-shell__panel-link" href="/vision">Vision</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/contributors">Contributors</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Source code</span>
+        <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
+<a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
+<a class="cc-shell__panel-link" href="/standards/paper-evidence">Evidence standard</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac (engine)</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
+      </div>
+      <div class="cc-shell__panel-foot">
+        <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span>Public paper record</span></a>
+        <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      </div>
+    </div>
+  </details>
+  <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
+  <a class="cc-shell__cta" href="/mcp-servers#install">Add canli-mcp</a>
+  <script type="module" src="/js/navigation.js"></script>
+</header>
+<main id="content" tabindex="-1"><header class="cc-hero" data-scene="orb"><picture class="cc-hero__art" aria-hidden="true"><source type="image/avif" media="(max-width: 768px)" srcset="/scenes/orb-900.avif"><source type="image/webp" media="(max-width: 768px)" srcset="/scenes/orb-900.webp"><source type="image/avif" srcset="/scenes/orb-1600.avif 1600w, /scenes/orb-2400.avif 2400w" sizes="100vw"><source type="image/webp" srcset="/scenes/orb-1600.webp 1600w, /scenes/orb-2400.webp 2400w" sizes="100vw"><img src="/scenes/orb-1600.webp" alt="" width="1600" height="560" fetchpriority="high" decoding="async"></picture><div class="cc-hero__inner"><nav class="cc-crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/mcp-servers">Finance MCP servers</a></li><li><span aria-current="page">Backtesting MCP server with no lookahead</span></li></ol></nav><p class="dev-kicker">canli-backtest-mcp 0.5.1 / Free and open source</p><h1>canli-backtest-mcp: backtests an AI agent can trust</h1><p class="dev-lead">canli-backtest-mcp is a free, open-source MCP server for backtests an AI agent can trust. It builds point-in-time factors from SEC filings, tests any signal on your own prices with lookahead blocked in code, charges costs on the actual trades, and records every variant, so the best result is judged against the whole search.</p><div class="dev-actions"><a class="dev-button dev-button--primary" href="#add">Add this server</a><a class="dev-button" href="https://www.npmjs.com/package/canli-backtest-mcp" rel="noreferrer">See it on npm</a><a class="dev-button" href="https://github.com/arhancanli/canlicapital/tree/main/mcp-backtest" rel="noreferrer">Read the source</a></div></div></header><section class="dev-hero"><nav class="mcp-breadcrumbs" aria-label="MCP navigation"><a href="/mcp-servers">All MCP servers</a><a href="/mcp-servers/markets">markets</a><a href="/mcp-servers/backtest" aria-current="page">backtest</a><a href="/mcp-servers/quant">quant</a><a href="/mcp-servers/paper-trading">paper-trading</a><a href="/mcp-servers/execution">Local paper workflow</a></nav>
+
+<p class="dev-hero-note">Price: $0 to run. Updated 2026-11-03. 32 tools. MIT licence. Registry name <code>io.github.arhancanli/canli-backtest-mcp</code>.</p></section>
+<nav class="dev-page-index" aria-label="Page sections"><a href="#add">Add it</a><a href="#ask">What to ask</a><a href="#answers">Recorded answers</a><a href="#questions">Questions</a><a href="#tools">Every tool</a></nav>
+<section class="dev-section" id="add"><h2>Add it to your AI assistant</h2><figure class="flagship-cmd"><figcaption>Claude Code</figcaption><pre tabindex="0"><code>claude mcp add canli-backtest -- npx -y canli-backtest-mcp</code></pre></figure><figure class="flagship-cmd"><figcaption>Cursor, Claude Desktop or any MCP client</figcaption><pre tabindex="0"><code>{&quot;mcpServers&quot;:{&quot;canli-backtest&quot;:{&quot;command&quot;:&quot;npx&quot;,&quot;args&quot;:[&quot;-y&quot;,&quot;canli-backtest-mcp&quot;]}}}</code></pre></figure><p>Or take every Canli Capital server at once with <code>npx -y canli-mcp</code>: <a href="/mcp-servers">canli-mcp</a> puts them behind 5 tools and 2,524 tokens of context. <a href="/mcp-servers/install">Steps for each client</a>.</p></section>
+<section class="dev-section" id="ask"><h2>What to ask it</h2><ul class="mcp-related"><li>Build a gross-margin factor using only what had been filed by each date <a href="/mcp-servers/tools#pit_factor"><code>pit_factor</code></a></li><li>Backtest this signal on my prices with a one-day lag and costs <a href="/mcp-servers/tools#backtest_signal"><code>backtest_signal</code></a></li><li>How would these returns have done through past crises? <a href="/mcp-servers/tools#crisis_replay"><code>crisis_replay</code></a></li><li>Run purged cross-validation on my strategy <a href="/mcp-servers/tools#cpcv"><code>cpcv</code></a></li><li>How many independent bets does this book really make? <a href="/mcp-servers/tools#effective_bets"><code>effective_bets</code></a></li><li>Run a paper market with market makers and a shock halfway <a href="/mcp-servers/tools#exchange_run"><code>exchange_run</code></a></li></ul></section>
+<section class="dev-section" id="answers"><h2>Questions it has answered</h2><p>Each page shows the call and the recorded result.</p><ul class="mcp-related"><li><a href="/mcp-servers/answers/test-a-factor-without-lookahead">How do I test a stock factor without lookahead bias?</a></li>
+<li><a href="/mcp-servers/answers/ai-agents-trading-in-a-paper-market">How can AI agents trade against each other without real money?</a></li></ul></section>
+<section class="dev-section" id="questions"><h2>Common questions</h2><h3>Is canli-backtest-mcp free?</h3><p>Yes. It is MIT-licensed and needs no API key and no account.</p><h3>How does it stop lookahead?</h3><p>pit_factor uses only what had been filed with the SEC by each date, as it stood then. backtest_signal trades only on signal rows dated at least lag_days trading days earlier, and stops if anything reaches past that.</p><h3>Does my data leave my machine?</h3><p>It runs locally over stdio. Your prices, signals and ledgers stay on your machine.</p><h3>Which AI assistants can use it?</h3><p>Claude, Claude Code, Cursor, VS Code, Codex, Gemini CLI, Windsurf, Cline, Zed and any other MCP client.</p><h3>Does a good result here mean a strategy works?</h3><p>No. It removes common ways a backtest flatters itself, and it reports how much of a result luck could explain. Past results do not promise future ones, and this is not investment advice.</p></section>
+<section class="dev-section" id="tools"><h2>Every tool in canli-backtest-mcp</h2><div class="mcp-table"><!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="dev-table" tabindex="0"><caption>canli-backtest-mcp 0.5.1 tools</caption><thead><tr><th scope="col">Tool</th><th scope="col">What it does</th></tr></thead><tbody><tr><th scope="row"><a href="/mcp-servers/tools#list_factors"><code>list_factors</code></a></th><td>The point-in-time factors pit_factor builds from SEC filings, and what each measures.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#pit_factor"><code>pit_factor</code></a></th><td>Build a factor from SEC filings for a list of tickers, monthly from start to end, using only what had been filed by each date (restatements invisible until filed). Writes a signal CSV for backtest_signal. Values are what companies reported to the SEC in XBRL, as filed by each date; a company that files late, files outside XBRL or changes its tags can be missing.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#backtest_signal"><code>backtest_signal</code></a></th><td>Backtest a signal against your prices: rank, long and short quantiles, rebalance, trading only on what was known lag_days earlier, costs on actual trades. Every reply holds the result against the crises its dates cover and lists the ones it does not. With capital_usd and dollar_volume_file, orders fill only as far as the market traded, pay square-root impact, and the reply shows the Sharpe at each size the market can take. Pass ledger to judge the best of a search against all of it. A backtest measures one path of history under these costs; it does not establish that the signal will keep working.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#proof_filings"><code>proof_filings</code></a></th><td>Add what companies filed to a signed, append-only ledger: each figure with its filing, and a restatement line whenever a later filing changes one. Re-running adds only what is new. It shows the lines were not altered afterwards, not that a figure is right.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#proof_file"><code>proof_file</code></a></th><td>Record a file&#39;s hash in a signed, append-only ledger, a backtest result or a returns file, so anyone can later check this exact file existed by then. Nothing else about the file is claimed.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#proof_verify"><code>proof_verify</code></a></th><td>Check a proof ledger from the file alone: every hash, order and signature, and any heads published elsewhere. Says which line first fails.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#proof_find"><code>proof_find</code></a></th><td>Look up a file, company or concept in a proof ledger. No record means only that this ledger holds none, not that anything is wrong.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#league_new"><code>league_new</code></a></th><td>Start a paper league: a schedule of rounds and rules with a hash to publish. No prizes, no stakes and nobody&#39;s money.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#league_commit"><code>league_commit</code></a></th><td>Commit a league entry before its round closes: only the hash of its CSV of ticker,score goes in the ledger, and the file is shown after the round. Only the latest commit counts, so revealing whichever of several did best is refused.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#league_score"><code>league_score</code></a></th><td>Score a paper league from its files and prices, repeatable by anyone: each entrant&#39;s rank correlation with what followed, set against the best luck gives across that many entrants, how different each is from the rest, and a paper book of the top entrants chosen on earlier rounds only.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#exchange_new"><code>exchange_new</code></a></th><td>Start a paper exchange where different AI agents and scripted traders (market makers, momentum, value, deleveragers, stop-losses, levered longs) trade in limit order books, with margin rules and forced selling, plus shocks at set steps. Made-up assets and money, reproducible from a seed.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#exchange_join"><code>exchange_join</code></a></th><td>Join a paper exchange as an agent. Returns the token its other calls need, so no agent can act as another.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#exchange_view"><code>exchange_view</code></a></th><td>What an agent in a paper exchange can see: the books, recent trades and its own account. No other agent&#39;s positions.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#exchange_orders"><code>exchange_orders</code></a></th><td>Send an agent&#39;s limit orders, market orders and cancels for the coming step of a paper exchange. An empty list passes.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#exchange_step"><code>exchange_step</code></a></th><td>Move a paper exchange on. Waits for every joined agent to act, so nobody moves time on the others.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#exchange_report"><code>exchange_report</code></a></th><td>What happened in a paper exchange: each asset&#39;s worst fall and recovery, spreads and depth, who gained and lost, forced selling and the longest chain of it, and a hash anyone can check by replaying.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#exchange_run"><code>exchange_run</code></a></th><td>Run a whole paper exchange of scripted traders in one call and report it: for comparing set-ups, such as how much leverage turns a shock into a cascade. A simulation, not a forecast.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#agent_consensus"><code>agent_consensus</code></a></th><td>Combine several AI agents&#39; probabilities, and count how many independent views they really hold, from how their errors move together: five models that share their mistakes are not five votes. Weights each by its record on settled questions.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#find_diversifiers"><code>find_diversifiers</code></a></th><td>Rank candidate strategies by what they add to a book: independent bets added first, then how they behave on the book&#39;s worst days, with return shown last and never used to rank. Correlation first.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#arena_new"><code>arena_new</code></a></th><td>Start a paper market for AI agents to trade in: made-up assets and made-up money, with scripted traders, reproducible from a seed. Nothing here represents or reaches a real security, token or currency.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#arena_orders"><code>arena_orders</code></a></th><td>Send paper orders for an agent in an arena, for the coming auction. No short selling and no borrowing.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#arena_step"><code>arena_step</code></a></th><td>Clear a paper arena&#39;s next call auctions at one price per asset, and show prices and standings. Paper only.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#crisis_replay"><code>crisis_replay</code></a></th><td>Hold any strategy&#39;s daily returns against named market crises (2000-02 dot-com bust, 2008-09 bank crisis, 2011 US downgrade and euro debt scare, 2013 taper tantrum in bonds and others): its return, drawdown and worst day in each one its dates fully cover, and the crises it was not there for, listed as untested and never as passed.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#cpcv"><code>cpcv</code></a></th><td>Combinatorial purged cross-validation of a search: choose the best trial on training days, score it on held-out blocks, with purge and embargo at the edges, for every choice of blocks, stitched into whole paths. Returns the spread of out-of-sample Sharpes against the in-sample one. Splits can run as shards on other machines and merge back. Paths share days and data, so their spread is not a confidence interval and they are not independent tests.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#price_panel"><code>price_panel</code></a></th><td>Build a price panel from free sources for breadth_book or backtest_signal: the tickers you name or an index fund&#39;s current holdings, daily adjusted closes and dollar volume, and each company&#39;s Fama-French industry from its SEC SIC code, written as CSV files.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#breadth_signals"><code>breadth_signals</code></a></th><td>The cross-sectional signals breadth_book builds sleeves from: momentum, reversal, low volatility and beta, idiosyncratic risk, lottery demand, skewness, price delay, seasonality and liquidity, each with its formula&#39;s source and the data it needs.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#breadth_book"><code>breadth_book</code></a></th><td>Build many weakly correlated sleeves (every signal inside every group of names) from your price panel and trade them as one netted account, ALPHAC&#39;s breadth lab: rank-weighted within each group, overlapping portfolios, hedged and scaled to a volatility target, costs on actual trades. Returns the book netted and standalone, the netting ratio, effective independent bets and ideas, and writes every sleeve&#39;s returns as a training dataset. A sleeve built on many signals and groups is a search: report the number of sleeves, keep a period untouched for the test, and judge the book there, not on the years used to choose it.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#breadth_sweep"><code>breadth_sweep</code></a></th><td>Run a grid of breadth-book settings (signal sets, smoothing, target volatility, costs, minimum names) in parallel on every core of this machine, or as shards other machines run and merge_files joins. Every combination counts as a trial: the best Sharpe is set against what the best of that many trials reaches by luck, and with split_date the chosen settings are scored after the split.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#effective_bets"><code>effective_bets</code></a></th><td>How many independent bets a set of return series holds: the participation ratio of their weekly correlations (n for unrelated series, 1 for copies), and with families, the families&#39; bets and the ideas they cluster into.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#annotation_packet"><code>annotation_packet</code></a></th><td>Start a labelled dataset: figures (company, measure, period, value) are checked by machine against the SEC filings and written as blind CSV packets for two or more people to label, with guidelines and a key holding the machine labels.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#annotation_agreement"><code>annotation_agreement</code></a></th><td>Read filled annotation packets: how often the people agree (Cohen&#39;s kappa), how often they agree with the machine, and every disagreement.</td></tr><tr><th scope="row"><a href="/mcp-servers/tools#annotation_gold"><code>annotation_gold</code></a></th><td>Merge filled annotation packets and a reviewer&#39;s decisions into a gold dataset (JSONL: each item&#39;s label, who decided it, the machine label and source) with a datasheet of agreement and hashes.</td></tr></tbody></table></div><!-- design-table:end --></div></section>
+<section class="dev-section"><p><a href="/mcp-servers">All Canli Capital MCP servers</a> · <a href="/mcp-servers/how-it-works">How they work and are tested</a> · <a href="/benchmarks/finance-mcp-servers">How they compare with other finance MCP servers</a></p></section></main>
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
+  <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
+    <h2 id="cc-footer-dev-title">Build on it</h2>
+    <div class="cc-footer__dev-item">
+      <span>MCP server</span>
+      <p>Finance tools for Claude, Cursor or any MCP client: filings, markets, quant and backtests.</p>
+      <code>npx -y canli-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">canli-mcp</a><a href="/mcp-servers/answers">Questions it answers</a><a href="https://www.npmjs.com/package/canli-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-mcp" rel="noreferrer">MCP Registry</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Open source</span>
+      <p>The engine, the point-in-time lake and the backtester, in public.</p>
+      <nav aria-label="GitHub repositories"><a href="https://github.com/arhancanli/alphac" rel="noreferrer">arhancanli/alphac</a><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">arhancanli/canli-pit-lake</a><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">arhancanli/canli-backtest</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Validation API</span>
+      <p>Free API key. Deflated Sharpe, overfitting and cost checks over HTTP.</p>
+      <nav aria-label="Validation API"><a class="cc-footer__dev-cta" href="/developers#quickstart">Get a free API key</a></nav>
+    </div>
+  </section>
+  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
+    <div class="cc-handoff__viewport">
+      <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
+      <div class="cc-handoff__stage" aria-hidden="true">
+        <svg class="cc-handoff__route" viewBox="0 0 1000 300" preserveAspectRatio="none"><path class="cc-handoff__track" d="M120 210C280 210 310 85 500 85S720 210 880 210"/><path class="cc-handoff__trace" pathLength="1" d="M120 210C280 210 310 85 500 85S720 210 880 210"/></svg>
+        <div class="cc-handoff__dock cc-handoff__dock--inputs"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__gate"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__dock cc-handoff__dock--record"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__packet">
+          <img src="/cinema/optical-master-v3-1536.webp" width="1536" height="1536" loading="lazy" alt="" />
+        </div>
+      </div>
+      <div class="cc-handoff__steps">
+        <a href="/research" data-handoff-step="0"><span>Define</span><strong>The research packet</strong><small>Inputs, rules and the failed trials.</small><em>Inspect the research ↗</em></a>
+        <a href="/developers#validation" data-handoff-step="1"><span>Reproduce</span><strong>The calculation receipt</strong><small>Your inputs. Declared arithmetic.</small><em>Explore the validation API ↗</em></a>
+        <a href="/verify" data-handoff-step="2"><span>Inspect</span><strong>The published record</strong><small>Sources, corrections and boundaries.</small><em>Verify the evidence ↗</em></a>
+      </div>
+      <p class="cc-handoff__boundary">Conceptual workflow. This animation sends no request. A receipt is not proof of future returns.</p>
+    </div>
+  </section></details>
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/record">Paper record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/benchmarks/finance-mcp-servers">Finance MCP benchmark</a>
+      <a href="/benchmarks/filingfacts">FilingFacts benchmark</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/costs">What costs are charged</a>
+      <a href="/verify">Verify record</a>
+      <a href="/privacy">Privacy policy</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+      <a href="/companies">Company reference</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/vision">Vision</a>
+      <a href="/stats">MCP downloads</a>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Performance</a>
+      <a href="/founder">Arhan Canli</a>
+    </nav>
+    <nav aria-label="Calculators">
+      <span>Run it yourself</span>
+      <a href="/tools">All calculators</a>
+      <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/backtest-overfitting">Backtest overfitting calculator</a>
+      <a href="/tools/selection-risk">Selection Risk Lab</a>
+      <a href="/tools/breadth">Breadth Lab</a>
+      <a href="/tools/execution">Execution Reality Lab</a>
+      <a href="/tools/trial-accounting">Trial accounting</a>
+      <a href="/tools/evidence-chain">Evidence chain</a>
+    </nav>
+    <nav aria-label="Open source">
+      <span>Source code</span>
+      <a href="/developers">Developers</a>
+      <a href="/developers#quickstart">Get an API key</a>
+      <a href="/developers#ai-assistant">Connect the MCP server</a>
+      <a href="/engineering">Engineering</a>
+      <a href="/notes">Engineering notes</a>
+      <a href="/standards/paper-evidence">Evidence standard</a>
+      <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
+      <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+      <a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Engineered independently by Arhan Canli in Dubai since July 2024. Inspect the
+    <a href="/performance">public paper record and its observation dates</a>.
+    Earlier engineering is not a track record.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+  <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
+  <script type="module" src="/js/site-motion.js"></script>
+</footer>
+<script type="module" src="/js/main.js"></script>
+</body></html>

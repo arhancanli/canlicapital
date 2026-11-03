@@ -617,6 +617,86 @@
         "how often do companies beat their guidance",
         "how often do s&p 500 companies beat earnings guidance"
       ]
+    },
+    {
+      "path": "/mcp-servers/answers/test-a-factor-without-lookahead",
+      "intent": "Test a stock factor without lookahead bias",
+      "queries": [
+        "backtest factor without lookahead bias",
+        "point in time factor from sec filings"
+      ]
+    },
+    {
+      "path": "/mcp-servers/answers/ai-agents-trading-in-a-paper-market",
+      "intent": "Let AI agents trade against each other without real money",
+      "queries": [
+        "simulated market for ai trading agents",
+        "ai agents paper trading order book simulation"
+      ]
+    },
+    {
+      "path": "/mcp-servers/answers/deflated-sharpe-ratio-ai",
+      "intent": "Calculate a deflated Sharpe ratio with an AI assistant",
+      "queries": [
+        "deflated sharpe ratio with chatgpt or claude",
+        "ask ai for a deflated sharpe ratio"
+      ]
+    },
+    {
+      "path": "/mcp-servers/answers/company-restatements-ai",
+      "intent": "Find which figures a company changed after first reporting them",
+      "queries": [
+        "which financial figures did a company restate",
+        "first reported vs restated financials"
+      ]
+    },
+    {
+      "path": "/mcp-servers/answers/quant-strategies-that-failed",
+      "intent": "Read about quant strategies that failed their tests",
+      "queries": [
+        "quant strategies that failed out of sample",
+        "failed momentum strategy backtests"
+      ]
+    },
+    {
+      "path": "/mcp-servers/answers/portfolio-value-at-risk-ai",
+      "intent": "Calculate a portfolio's value at risk with an AI assistant",
+      "queries": [
+        "portfolio value at risk calculator ai",
+        "how to calculate portfolio var"
+      ]
+    },
+    {
+      "path": "/mcp-servers/markets",
+      "intent": "Find a free MCP server for market data and SEC filings",
+      "queries": [
+        "free market data mcp server",
+        "sec filings mcp server no api key"
+      ]
+    },
+    {
+      "path": "/mcp-servers/backtest",
+      "intent": "Find an MCP server for backtesting without lookahead",
+      "queries": [
+        "backtesting mcp server",
+        "mcp server for backtests"
+      ]
+    },
+    {
+      "path": "/mcp-servers/quant",
+      "intent": "Find a free MCP server for quant finance calculations",
+      "queries": [
+        "quant finance mcp server",
+        "options pricing mcp server"
+      ]
+    },
+    {
+      "path": "/mcp-servers/paper-trading",
+      "intent": "Find an MCP server for paper trading with an AI agent",
+      "queries": [
+        "paper trading mcp server",
+        "alpaca paper trading mcp"
+      ]
     }
   ],
   "expansion_policy": "Add a distinct canonical owner only when its useful answer and source evidence exist. Synonyms stay on the same page. No arbitrary company-by-keyword permutations. Gaps remain explicit until addressed.",

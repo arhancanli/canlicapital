@@ -212,7 +212,7 @@ const STATIC_ROUTES = [
   { path: "/record", priority: "0.8", changefreq: "daily" },
   { path: "/vision", priority: "0.9", changefreq: "monthly" },
   { path: "/stats", priority: "0.7", changefreq: "daily" },
-  ...['validation', 'fundamentals', 'research', 'execution'].map(name => ({ path: `/mcp-servers/${name}`, priority: "0.9", changefreq: "weekly" })),
+  ...['validation', 'fundamentals', 'research', 'execution', 'markets', 'backtest', 'quant', 'paper-trading'].map(name => ({ path: `/mcp-servers/${name}`, priority: "0.9", changefreq: "weekly" })),
   { path: "/mcp-servers/answers", priority: "0.8", changefreq: "weekly" },
   { path: "/mcp-servers/install", priority: "0.9", changefreq: "monthly" },
   { path: "/privacy", priority: "0.3", changefreq: "yearly" },

@@ -7,6 +7,8 @@ ledger**, so the best of a search is judged against the whole search instead of 
 
 Local stdio only: your prices, signals and ledgers never leave your machine.
 
+**[canli-backtest-mcp on canlicapital.com](https://canlicapital.com/mcp-servers/backtest)** · [All Canli Capital MCP servers](https://canlicapital.com/mcp-servers). Free, MIT-licensed. For every server behind one install, use [canli-mcp](https://www.npmjs.com/package/canli-mcp).
+
 ## Why
 
 Three mistakes make most agent-run backtests look better than they are:
