@@ -1,0 +1,202 @@
+#!/usr/bin/env node
+// mcp-books/src/server.mjs
+//
+// The Canli Books MCP server, with the first tools of every Canli company on its engine: Books (keep a book
+// file), Close (bank matching, what moved, the close checklist), Report (facts and the checks before filing),
+// Audit (Benford and journal-entry tests), Planning (runway, budget, forecast, valuation) and Data (pack a
+// dataset). It runs on your machine. A book is a file you name, ending in .jsonl, one record per line: a write
+// reads the whole book, checks every record, and only then appends the new lines. A file that does not
+// verify is never written to, and no tool overwrites a file. One writer at a time per book.
+import { appendFileSync, existsSync, mkdirSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
+import { extname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+
+import { McpServer } from "@modelcontextprotocol/server";
+import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
+import { z } from "zod";
+
+import { journalTests } from "./audit.mjs";
+import { smallBusiness } from "./chart.mjs";
+import { checklist, readStatement, reconcile, variance } from "./close.mjs";
+import { packDataset } from "./data.mjs";
+import { addAccount, balanceSheet, explain, fromJsonl, fromMinor, incomeStatement, lock, openBook, post, reverse, toJsonl, trialBalance, TYPES, verify } from "./ledger.mjs";
+import { budgetVsActual, dcf, forecast, runway } from "./planning.mjs";
+import { checkFacts, TAXONOMIES, toFacts } from "./report.mjs";
+import { checkHead, newSigningKeys, signHead } from "./sign.mjs";
+
+export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
+export const SERVER_INFO = Object.freeze({ name: "canli-books-mcp", version: SERVER_VERSION, title: "Canli Books" });
+const INSTRUCTIONS = "Double-entry books kept in a .jsonl file on this machine, with the first tools of Canli Close, Report, Audit, Planning and Data on top. Amounts are plain decimals such as 1050.00. Every entry must balance; a posted entry is never edited, it is reversed; a locked period takes no entries. books_explain traces any balance to its entries. Report and Audit results are drafts and analytics for a person to review, not filings, opinions or advice.";
+
+const text = (value) => ({ content: [{ type: "text", text: JSON.stringify(value) }], structuredContent: value });
+const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false };
+const WRITES_LOCAL = { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false };
+
+// Amounts leave the server as decimals in the book's currency; record numbers, counts and percentages stay numbers.
+const MONEY = new Set(["debit", "credit", "amount", "balance", "change", "opening", "closing", "totalIncome", "totalExpenses", "netIncome", "totalAssets", "totalLiabilities", "totalEquity", "totalLiabilitiesAndEquity", "earningsToDate", "prior", "current", "budget", "actual", "variance", "cash", "averageChange", "averageIncome", "averageCosts", "income", "costs", "net", "statementTotal", "booksTotal", "difference"]);
+function shown(value, currency) {
+  if (Array.isArray(value)) return value.map((v) => shown(v, currency));
+  if (value && typeof value === "object") return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, MONEY.has(k) && Number.isInteger(v) ? fromMinor(v, currency) : shown(v, currency)]));
+  return value;
+}
+
+function bookPath(file) {
+  const path = resolve(String(file ?? ""));
+  if (extname(path) !== ".jsonl") throw new Error(`A book file must end in .jsonl: ${path}`);
+  return path;
+}
+
+function load(file) {
+  const path = bookPath(file);
+  if (!existsSync(path)) throw new Error(`There is no book at ${path}; books_open makes one`);
+  const book = fromJsonl(readFileSync(path, "utf8"));
+  const checked = verify(book);
+  if (!checked.ok) throw new Error(`${path} does not verify at record ${checked.at}: ${checked.problem}. Nothing was written.`);
+  return { path, book, currency: book.records[0].currency };
+}
+
+// Runs a change on the book as it is on disk, then appends only the records the change added.
+function change(file, apply) {
+  const loaded = load(file);
+  const before = loaded.book.records.length;
+  const result = apply(loaded.book);
+  appendFileSync(loaded.path, loaded.book.records.slice(before).map((r) => `${JSON.stringify(r)}\n`).join(""));
+  return { ...loaded, result };
+}
+
+function writeNew(path, content, mode) {
+  try {
+    writeFileSync(path, content, { flag: "wx", ...(mode ? { mode } : {}) });
+  } catch (error) {
+    if (error.code === "EEXIST") throw new Error(`A file already exists at ${path}; this server never overwrites a file`);
+    throw error;
+  }
+}
+
+const date = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "a date such as 2026-01-31");
+const amount = z.union([z.string(), z.number()]).describe("a plain amount such as 1050.00");
+const file = z.string().describe("path of the book file, ending in .jsonl");
+const line = z.object({ account: z.string(), debit: amount.optional(), credit: amount.optional() }).strict();
+const range = { from: date.optional(), to: date.optional() };
+
+export function registerTools(server) {
+  const tool = (name, title, description, input, annotations, handler) => server.registerTool(name, { title, description, inputSchema: input, annotations: { title, ...annotations } }, async (args) => text(await handler(args)));
+
+  // Canli Books
+  tool("books_open", "Open a new book", "Make a new book file: its name, currency (an ISO code such as AED or USD) and a starting chart of accounts ('small-business' includes UAE VAT and corporate tax accounts; 'empty' has none). Refuses a file that already exists.", z.object({ file, name: z.string().min(1), currency: z.string().regex(/^[A-Za-z]{3}$/), chart: z.enum(["small-business", "empty"]).default("small-business") }).strict(), WRITES_LOCAL, ({ file: f, name, currency, chart }) => {
+    const path = bookPath(f);
+    const book = openBook({ name, currency, accounts: chart === "empty" ? [] : smallBusiness() });
+    writeNew(path, toJsonl(book));
+    const checked = verify(book);
+    return { file: path, records: checked.records, head: checked.head, accounts: book.records.filter((r) => r.kind === "account").map((r) => ({ code: r.code, name: r.name, type: r.type })) };
+  });
+  tool("books_add_account", "Add an account", "Add an account to a book's chart: a unique code, a name, and its type.", z.object({ file, code: z.string(), name: z.string(), type: z.enum(TYPES) }).strict(), WRITES_LOCAL, ({ file: f, ...account }) => ({ added: change(f, (book) => addAccount(book, account)).result }));
+  tool("books_post", "Post an entry", "Post a journal entry. Each line names an account and gives a debit or a credit as a plain amount; debits must equal credits. Nothing dated in a locked period is accepted.", z.object({ file, date, memo: z.string().max(500).default(""), lines: z.array(line).min(2) }).strict(), WRITES_LOCAL, ({ file: f, ...entry }) => {
+    const done = change(f, (book) => post(book, entry));
+    return shown({ posted: done.result }, done.currency);
+  });
+  tool("books_reverse", "Reverse an entry", "Correct a posted entry with its mirror image (debits and credits swapped), dated in an open period. The original stays in the book.", z.object({ file, seq: z.number().int().positive(), date: date.optional(), memo: z.string().max(500).optional() }).strict(), WRITES_LOCAL, ({ file: f, seq, ...rest }) => {
+    const done = change(f, (book) => reverse(book, seq, rest));
+    return shown({ reversal: done.result }, done.currency);
+  });
+  tool("books_lock", "Lock a period", "Lock the books through a date: nothing dated on or before it can be posted afterwards. A lock only moves forward.", z.object({ file, through: date }).strict(), WRITES_LOCAL, ({ file: f, through }) => ({ locked: change(f, (book) => lock(book, through)).result }));
+  tool("books_trial_balance", "Trial balance", "Each account's balance as a debit or a credit, and the totals, as of a date (or now).", z.object({ file, as_of: date.optional() }).strict(), READ_ONLY, ({ file: f, as_of }) => {
+    const { book, currency } = load(f);
+    return shown(trialBalance(book, { asOf: as_of }), currency);
+  });
+  tool("books_statements", "Income statement and balance sheet", "The income statement for [from, to] and the balance sheet at as_of (or at 'to').", z.object({ file, ...range, as_of: date.optional() }).strict(), READ_ONLY, ({ file: f, from, to, as_of }) => {
+    const { book, currency } = load(f);
+    return shown({ income_statement: incomeStatement(book, { from, to }), balance_sheet: balanceSheet(book, { asOf: as_of ?? to }) }, currency);
+  });
+  tool("books_explain", "Explain a balance", "Every entry behind an account's balance, in date order, with the running balance.", z.object({ file, account: z.string(), ...range }).strict(), READ_ONLY, ({ file: f, account, from, to }) => {
+    const { book, currency } = load(f);
+    return shown(explain(book, account, { from, to }), currency);
+  });
+  tool("books_verify", "Verify a book", "Check every record: numbering, the hash chain and the same rules posting applies. Returns the head hash to keep somewhere else; a book cut short or rewritten shows against it.", z.object({ file }).strict(), READ_ONLY, ({ file: f }) => {
+    const path = bookPath(f);
+    if (!existsSync(path)) throw new Error(`There is no book at ${path}`);
+    return verify(fromJsonl(readFileSync(path, "utf8")));
+  });
+  tool("books_new_keys", "Make signing keys", "Make an ML-DSA-65 (post-quantum) key pair for signing a book's head. The private key file is written readable by you only; neither file may exist already.", z.object({ private_key_file: z.string(), public_key_file: z.string() }).strict(), WRITES_LOCAL, ({ private_key_file, public_key_file }) => {
+    const keys = newSigningKeys();
+    writeNew(resolve(private_key_file), keys.privateKey, 0o600);
+    writeNew(resolve(public_key_file), keys.publicKey);
+    return { private_key_file: resolve(private_key_file), public_key_file: resolve(public_key_file), algorithm: "ml-dsa-65" };
+  });
+  tool("books_sign", "Sign a book's head", "Sign the book's head with an ML-DSA-65 private key. The signature is saved next to the book as <book>.sig.json, replacing any earlier one.", z.object({ file, private_key_file: z.string() }).strict(), WRITES_LOCAL, ({ file: f, private_key_file }) => {
+    const { path, book } = load(f);
+    const signed = signHead(book, readFileSync(resolve(private_key_file), "utf8"));
+    writeFileSync(`${path}.sig.json`, `${JSON.stringify(signed, null, 2)}\n`);
+    return { signature_file: `${path}.sig.json`, algorithm: signed.algorithm, records: signed.records, head: signed.head };
+  });
+  tool("books_check_signature", "Check a book's signature", "Check the book against a signature (by default <book>.sig.json) and the signer's public key.", z.object({ file, public_key_file: z.string(), signature_file: z.string().optional() }).strict(), READ_ONLY, ({ file: f, public_key_file, signature_file }) => {
+    const { path, book } = load(f);
+    const signed = JSON.parse(readFileSync(resolve(signature_file ?? `${path}.sig.json`), "utf8"));
+    return checkHead(book, signed, readFileSync(resolve(public_key_file), "utf8"));
+  });
+
+  // Canli Close
+  tool("close_reconcile", "Reconcile the bank", "Match a bank statement CSV (date, description, and amount or in/out columns; dates written 2026-01-31) to an account's entries: the same amount, dates at most `days` apart. Lists what is left over on each side.", z.object({ file, statement_file: z.string(), account: z.string().default("1000"), days: z.number().int().min(0).max(31).default(3), ...range }).strict(), READ_ONLY, ({ file: f, statement_file, account, days, from, to }) => {
+    const { book, currency } = load(f);
+    return shown(reconcile(book, readStatement(readFileSync(resolve(statement_file), "utf8"), currency), { account, days, from, to }), currency);
+  });
+  tool("close_variance", "What moved, and why", "Each account's change from a prior period to the current one, largest first, with the entries that moved it most.", z.object({ file, from: date, to: date, prior_from: date, prior_to: date, top: z.number().int().min(1).max(20).default(3) }).strict(), READ_ONLY, ({ file: f, from, to, prior_from, prior_to, top }) => {
+    const { book, currency } = load(f);
+    return shown(variance(book, { from, to, priorFrom: prior_from, priorTo: prior_to, top }), currency);
+  });
+  tool("close_checklist", "Month-end checklist", "What is left before a month can be locked. Give the bank statement to include the reconciliation.", z.object({ file, through: date, statement_file: z.string().optional(), account: z.string().default("1000"), from: date.optional() }).strict(), READ_ONLY, ({ file: f, through, statement_file, account, from }) => {
+    const { book, currency } = load(f);
+    const reconciliation = statement_file ? reconcile(book, readStatement(readFileSync(resolve(statement_file), "utf8"), currency), { account, from, to: through }) : undefined;
+    return shown(checklist(book, { through, reconciliation }), currency);
+  });
+
+  // Canli Report
+  tool("report_check", "Facts and pre-filing checks", "The book's statements as US GAAP or IFRS facts, with checks for totals that do not add up, wrong signs, scale slips against prior facts, and facts given two values. Accounts with no concept are listed, never guessed. A draft for review, not a filing.", z.object({ file, as_of: date, from: date, to: date, taxonomy: z.enum(TAXONOMIES).default("us-gaap"), prior_facts_file: z.string().optional() }).strict(), READ_ONLY, ({ file: f, as_of, from, to, taxonomy, prior_facts_file }) => {
+    const { book } = load(f);
+    const out = toFacts(book, { asOf: as_of, from, to, taxonomy });
+    const prior = prior_facts_file ? JSON.parse(readFileSync(resolve(prior_facts_file), "utf8")) : [];
+    return { ...out, ...checkFacts(out.facts, { prior, taxonomy }) };
+  });
+
+  // Canli Audit
+  tool("audit_journal", "Journal-entry tests", "Benford's law on the amounts against Nigrini's bands, and the entries with round amounts, weekend dates, duplicates, amounts just under an approval limit, no memo, or a reversal. Analytics that point at entries to look at, not an audit opinion.", z.object({ file, round_to: amount.default("1000"), limit: amount.optional(), under: z.number().min(0).max(50).default(5), weekend: z.array(z.number().int().min(0).max(6)).default([6, 0]) }).strict(), READ_ONLY, ({ file: f, round_to, limit, under, weekend }) => journalTests(load(f).book, { roundTo: round_to, limit, under, weekend }));
+
+  // Canli Treasury and Planning
+  tool("planning_runway", "Cash runway", "Cash on a date, the average monthly change over the months ending then, and months of runway when cash is falling.", z.object({ file, through: date, cash: z.string().default("1000"), months: z.number().int().min(1).max(24).default(3) }).strict(), READ_ONLY, ({ file: f, through, cash, months }) => {
+    const { book, currency } = load(f);
+    return shown(runway(book, { through, cash, months }), currency);
+  });
+  tool("planning_budget", "Budget against actual", "Actual income and expenses for [from, to] against a budget of plain amounts per account code.", z.object({ file, budget: z.record(z.string(), amount), ...range }).strict(), READ_ONLY, ({ file: f, budget, from, to }) => {
+    const { book, currency } = load(f);
+    return shown({ rows: budgetVsActual(book, budget, { from, to }) }, currency);
+  });
+  tool("planning_forecast", "Forecast", "The next months from the monthly average of [from, to], income growing by `growth` and costs by `cost_growth` a month (0.02 is 2%). An estimate from those inputs.", z.object({ file, from: date, to: date, months: z.number().int().min(1).max(60).default(6), growth: z.number().min(-1).max(10).default(0), cost_growth: z.number().min(-1).max(10).default(0) }).strict(), READ_ONLY, ({ file: f, from, to, months, growth, cost_growth }) => {
+    const { book, currency } = load(f);
+    return shown(forecast(book, { from, to, months, growth, costGrowth: cost_growth }), currency);
+  });
+  tool("planning_dcf", "Discounted cash flow value", "Present value of yearly cash flows at a discount rate, plus a terminal value, with every input returned. An estimate from those inputs, not advice.", z.object({ cash_flows: z.array(z.number()).min(1).max(50), rate: z.number(), terminal_growth: z.number().default(0) }).strict(), READ_ONLY, ({ cash_flows, rate, terminal_growth }) => dcf({ cashFlows: cash_flows, rate, terminalGrowth: terminal_growth }));
+
+  // Canli Data
+  tool("data_pack", "Pack a dataset", "Write rows as data.csv with its SHA-256 and a Hugging Face dataset card (README.md) naming the source and licence, into a folder. Refuses to overwrite either file.", z.object({ out_dir: z.string(), name: z.string(), title: z.string().optional(), description: z.string().optional(), source: z.string().min(1), license: z.string().min(1), columns: z.array(z.object({ name: z.string(), description: z.string().optional() }).strict()).min(1), rows: z.array(z.record(z.string(), z.union([z.string(), z.number(), z.boolean(), z.null()]))) }).strict(), WRITES_LOCAL, ({ out_dir, ...spec }) => {
+    const pack = packDataset(spec);
+    const dir = resolve(out_dir);
+    mkdirSync(dir, { recursive: true });
+    writeNew(join(dir, "data.csv"), pack.csv);
+    writeNew(join(dir, "README.md"), pack.card);
+    return { out_dir: dir, files: ["data.csv", "README.md"], rows: pack.rows, sha256: pack.sha256 };
+  });
+}
+
+const isMain = (() => {
+  try {
+    return realpathSync(process.argv[1] ?? "") === realpathSync(fileURLToPath(import.meta.url));
+  } catch {
+    return false;
+  }
+})();
+
+if (isMain) {
+  const server = new McpServer(SERVER_INFO, { instructions: INSTRUCTIONS });
+  registerTools(server);
+  await server.connect(new StdioServerTransport());
+}

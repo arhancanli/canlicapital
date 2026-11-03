@@ -31,7 +31,11 @@ trialBalance(book);
 - `data.mjs`, Canli Data: a table packed as CSV with its SHA-256 and a dataset card in Hugging Face's format.
 - `sign.mjs`: a book's head signed with ML-DSA-65, a post-quantum signature, which pins the whole history.
 
-Each becomes its own package when it ships on its own. Next: the MCP server, so an AI assistant can use all of it.
+Each becomes its own package when it ships on its own.
+
+## The MCP server
+
+`node src/server.mjs` serves 22 tools over stdio: `books_*` (open, accounts, post, reverse, lock, trial balance, statements, explain, verify, keys, sign, check a signature), `close_reconcile`, `close_variance`, `close_checklist`, `report_check`, `audit_journal`, `planning_runway`, `planning_budget`, `planning_forecast`, `planning_dcf` and `data_pack`. A book is a `.jsonl` file you name. Every write reads the whole book and checks every record first, then appends; a book that does not verify is never written to, and no tool overwrites a file.
 
 The starting chart of accounts includes VAT and corporate tax accounts for UAE companies. It is a list of accounts, not tax or accounting advice.
 
