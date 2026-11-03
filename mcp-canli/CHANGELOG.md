@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.17.1
+
+With canli-validation-mcp 0.15.0.
+
+- Hansen's SPA and Romano and Wolf's StepM hold their size: each bootstrap resample is divided by its own standard deviation instead of one estimated once from the sample, and p-values count ties. On 4,000 skill-less searches per family (20 strategies, 504 days) the SPA rejected 5.1% at a nominal 5% with normal returns and 5.4% with negative skew, against 7.2% and 12.7% before. When no strategy beats the benchmark, the p-value is now 1.
+- The time machine no longer lets later filings through in fields without a date. `known_as_of` and `cross_section` returned `changed_after`, and `history` its `changed` column: whether a later filing reported a different value, which nobody knew on the date. They are left out, and the answer names them. A dropped later row is no longer counted, since how many later filings reported a figure is later news too. `list_concepts` is off in a time-machine run (its counts and order come from every filing). `cross_section` returns its rows again: the day its figures were fetched counted as a later date, so every row was dropped.
+
 ## 0.17.0
 
 With canli-markets-mcp 0.12.0 and canli-fundamentals-mcp 0.8.0, from a test against other finance MCP servers on the newest models.

@@ -42,6 +42,7 @@ No key and no account. [Add to VS Code](https://insiders.vscode.dev/redirect/mcp
   changed, and a paper league and paper market for agents, with made-up money only.
 - New in 0.16.0: `filing_memory` searches every annual report a company has on EDGAR, `guidance_record` sets management's guidance against what happened, and `what_happened_next` lists every past time a market fell this far and what followed. IMF shipping data from satellite tracking, Wikipedia attention, a paper exchange where AI agents meet in order books, `agent_consensus`, which counts how many independent views a group of models holds, a sentinel that wakes your agent, and a time machine that shows only what was public on a past date.
 - New in 0.16.1: `exposure_map` finds the companies whose annual reports name a supplier, customer or other company, with the passage, and `my_week` sums up a week across what you hold in plain words. Answers take 15 to 22% fewer tokens.
+- Fixed in 0.17.1: Hansen's SPA and Romano and Wolf's StepM hold their size (validation 0.15.0), and the time machine no longer lets later filings through in fields without a date.
 - New in 0.17.0: foreign companies such as TSMC, Shell, Novo Nordisk and SAP, read live from the SEC with statements in two currencies; `stock_snapshot` for analysts' targets, valuation ratios and short interest; `technical_indicators`; euro exchange rates from the ECB.
 - Point-in-time SEC fundamentals.
 - An analyst's filings, and a check on the answer: financial statements exactly as filed (several
@@ -458,7 +459,7 @@ It tells and it never trades. A rule holds a condition and a note and nothing th
 npx canli-mcp --as-of 2020-03-01
 ```
 
-Every tool that reads the world now shows only what was public that day. Filings stop at that date, prices stop at that date, and company figures are as first known then, not as later restated. A tool that cannot be held to the date is off and says so. Whatever comes back is read before it goes out: a table row dated later is dropped, and any other later date stops the answer, so a mistake fails closed. No call can change the date.
+Every tool that reads the world now shows only what was public that day. Filings stop at that date, prices stop at that date, and company figures are as first known then, not as later restated. A tool that cannot be held to the date is off and says so. Whatever comes back is read before it goes out: a table row dated later is dropped without a count, a field that says a later filing changed a value (`changed_after`, `history`'s `changed`) is left out, and any other later date stops the answer, so a mistake fails closed. No call can change the date.
 
 The model's own memory is the one thing a server cannot lock. `recipes/agent_backtest.mjs` runs a model across dates, scores its picks on what happened next, and asks it with no tools which way each stock went. A model that beats a coin on that remembers those dates, and its backtest there means little.
 
