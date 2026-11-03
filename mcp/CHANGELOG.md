@@ -8,7 +8,7 @@
   downward bias. On Null Zoo v1's skill-less searches (20 variants, 504 days, 1,000 resamples, mean
   block length 8) the SPA rejected 7.5% at a nominal 5% with normal returns and 12.5% with negative
   skew, and StepM as often. Each resample is now divided by its own standard deviation (a
-  bootstrap-t, as Romano and Wolf 2005 recommend in their footnote 22; Python's arch made the same
+  bootstrap-t, as in Romano and Wolf's 2005 studentized StepM; Python's arch made the same
   kind of change in its PR 882, with a long-run variance in place of the standard deviation). On
   4,000 new searches per family the SPA rejected 5.1% (normal), 5.4% (negative skew) and 6.9%
   (AR(1), where the Reality Check rejected 6.6%), against 7.2%, 12.7% and 9.4% for the old code on

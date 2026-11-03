@@ -15,7 +15,7 @@
 //
 // Studentizing is a bootstrap-t. The observed t-statistic divides each variant's mean by its sample
 // standard deviation, and every resample divides its recentred means by that resample's own
-// standard deviations, as Romano and Wolf (2005, footnote 22) recommend. Dividing every resample by
+// standard deviations, as in Romano and Wolf's (2005) studentized StepM. Dividing every resample by
 // one variance estimated once from the sample ignores that estimate's noise and its downward bias,
 // and the test rejected too often (Null Zoo v1: 7.5% of skill-less searches at a nominal 5% with
 // i.i.d. normal returns, 12.5% with negative skew). The Politis-Romano variance still sets Hansen's

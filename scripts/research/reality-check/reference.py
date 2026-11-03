@@ -7,7 +7,7 @@ For each case (a CSV of excess returns, one column per variant, benchmark zero):
   JavaScript. Draws come from numpy, so they agree with the JavaScript core within Monte Carlo error.
 
 Bootstrap-t definitions (Hansen 2005 for the statistic and the three recentrings; Romano and Wolf
-2005, footnote 22, for re-estimating the standard error in every resample; the tie rule as in the
+2005's studentized StepM for re-estimating the standard error in every resample; the tie rule as in the
 Null Zoo v2 study's spa_c_boot_t_ge):
   m_k, s_k   sample mean and standard deviation (divisor n - 1) of column k
   w_k^2      Politis-Romano variance of sqrt(n) m_k at mean block length b, which sets the threshold
