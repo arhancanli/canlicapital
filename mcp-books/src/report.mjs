@@ -36,6 +36,10 @@ const MAPS = {
       6900: "IncomeTaxExpenseBenefit",
     },
     totals: { assets: "Assets", liabilities: "Liabilities", equity: "StockholdersEquity", both: "LiabilitiesAndStockholdersEquity", retained: "RetainedEarningsAccumulatedDeficit", net: "NetIncomeLoss" },
+    // In a filing, liabilities and equity add up with the minority interests in equity and any temporary
+    // (mezzanine) equity between them: the total if it is tagged, otherwise its two parts.
+    equityWithMinority: "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+    temporary: ["TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests", ["TemporaryEquityCarryingAmountAttributableToParent", "RedeemableNoncontrollingInterestEquityCarryingAmount"]],
     nonNegative: ["Assets", "Liabilities", "Revenues", "CashAndCashEquivalentsAtCarryingValue"],
   },
   "ifrs-full": {
@@ -113,9 +117,17 @@ export function toFacts(book, { asOf, from, to, taxonomy = "us-gaap" } = {}) {
   return { taxonomy, currency: s.currency, facts: [...facts.values()].map((f) => ({ ...f, unit: s.currency, text: fromMinor(f.value, s.currency) })), unmapped };
 }
 
+const isInstant = (period) => period?.instant !== undefined;
+const endOf = (period) => (isInstant(period) ? period.instant : period?.end ?? "");
+const where = (period) => (!period ? "" : isInstant(period) ? ` at ${period.instant}` : ` for ${period.start} to ${period.end}`);
+
 // Checks on facts from any source, this book or a filing read elsewhere: each finding names its rule, the
-// concept and the numbers. prior: last period's facts, for the scale check.
-export function checkFacts(facts, { prior = [], taxonomy = "us-gaap", tolerance = 0 } = {}) {
+// concept and the numbers. The totals are checked period by period and unit by unit, since a filing also carries
+// last year's figures. prior: the last period's or the last filing's facts, for the scale check. untagged: a
+// filing may tag temporary equity in a concept of its own, which leaves liabilities and equity short of their
+// total by that amount, so the parts are then flagged only when they come to more than the total or when the
+// temporary equity is tagged.
+export function checkFacts(facts, { prior = [], taxonomy = "us-gaap", tolerance = 0, untagged = false } = {}) {
   const map = mapFor(taxonomy);
   const t = map.totals;
   const findings = [];
@@ -125,22 +137,92 @@ export function checkFacts(facts, { prior = [], taxonomy = "us-gaap", tolerance 
     groups.set(key, [...(groups.get(key) ?? []), f]);
   }
   for (const list of groups.values()) {
-    if (new Set(list.map((f) => f.value)).size > 1) findings.push({ rule: "duplicate", concept: list[0].concept, detail: `the same fact is given ${list.length} values: ${list.map((f) => f.value).join(", ")}` });
+    if (new Set(list.map((f) => f.value)).size > 1) findings.push({ rule: "duplicate", concept: list[0].concept, detail: `the same fact is given ${list.length} values${where(list[0].period)}: ${list.map((f) => f.value).join(", ")}` });
   }
-  const value = (concept) => facts.find((f) => f.concept === concept)?.value;
-  const [A, L, E, LE] = [value(t.assets), value(t.liabilities), value(t.equity), value(t.both)];
-  if (A !== undefined && LE !== undefined && Math.abs(A - LE) > tolerance) findings.push({ rule: "balance", concept: t.assets, detail: `${t.assets} ${A} is not ${t.both} ${LE}` });
-  if (L !== undefined && E !== undefined && LE !== undefined && Math.abs(L + E - LE) > tolerance) findings.push({ rule: "balance", concept: t.both, detail: `${t.liabilities} ${L} plus ${t.equity} ${E} is not ${t.both} ${LE}` });
-  for (const concept of map.nonNegative) {
-    const v = value(concept);
-    if (v !== undefined && v < 0) findings.push({ rule: "sign", concept, detail: `${concept} is negative: ${v}` });
+  // The first value of each concept at each date and unit.
+  const instants = new Map();
+  for (const f of facts) {
+    if (!isInstant(f.period)) continue;
+    const key = `${f.period.instant}|${f.unit}`;
+    if (!instants.has(key)) instants.set(key, new Map());
+    if (!instants.get(key).has(f.concept)) instants.get(key).set(f.concept, f.value);
+  }
+  for (const [key, v] of instants) {
+    const at = ` at ${key.split("|")[0]}`;
+    const [A, L, LE] = [v.get(t.assets), v.get(t.liabilities), v.get(t.both)];
+    const equityConcept = map.equityWithMinority && v.has(map.equityWithMinority) ? map.equityWithMinority : t.equity;
+    const E = v.get(equityConcept);
+    const [whole, parts = []] = map.temporary ?? [];
+    const tagged = v.has(whole) || parts.some((c) => v.has(c));
+    const temporary = v.get(whole) ?? parts.reduce((s, c) => s + (v.get(c) ?? 0), 0);
+    if (A !== undefined && LE !== undefined && Math.abs(A - LE) > tolerance) findings.push({ rule: "balance", concept: t.assets, detail: `${t.assets} ${A} is not ${t.both} ${LE}${at}` });
+    const gap = L !== undefined && E !== undefined && LE !== undefined ? L + temporary + E - LE : 0;
+    if (Math.abs(gap) > tolerance && (!untagged || tagged || gap > 0)) {
+      findings.push({ rule: "balance", concept: t.both, detail: `${t.liabilities} ${L}${temporary ? ` plus temporary equity ${temporary}` : ""} plus ${equityConcept} ${E} is not ${t.both} ${LE}${at}` });
+    }
+  }
+  for (const f of facts) if (map.nonNegative.includes(f.concept) && f.value < 0) findings.push({ rule: "sign", concept: f.concept, detail: `${f.concept} is negative: ${f.value}${where(f.period)}` });
+  // Against the prior value of the same concept, unit and period, or else the latest of the same kind of period that
+  // ends no later than this one (for a flow, one about as long). A scale slip multiplies a value by a thousand or a
+  // million, so only a ratio within 10% of 1,000 or 1,000,000 is flagged for a balance and within 5% for a flow;
+  // real changes rarely land there (holdings grown from 6 million to 4.5 billion are 753 times). On every filing of
+  // five companies (Apple, Microsoft, JPMorgan, Simon Property, TSMC) this keeps slips such as shares authorized
+  // filed in thousands and drops the coincidences.
+  const slip = (ratio, instant) => [1e3, 1e6].find((k) => Math.abs(ratio / k - 1) <= (instant ? 0.1 : 0.05));
+  const days = (period) => (Date.parse(period.end) - Date.parse(period.start)) / 864e5;
+  const alike = (q, f) => isInstant(f.period) || Math.abs(days(q.period) / days(f.period) - 1) <= 0.2;
+  const earlier = new Map();
+  for (const q of prior) {
+    const key = `${q.concept}|${q.unit}|${isInstant(q.period)}`;
+    earlier.set(key, [...(earlier.get(key) ?? []), q]);
   }
   for (const f of facts) {
-    const p = prior.find((q) => q.concept === f.concept && q.unit === f.unit);
+    const candidates = (earlier.get(`${f.concept}|${f.unit}|${isInstant(f.period)}`) ?? []).filter((q) => endOf(q.period) <= endOf(f.period) && alike(q, f));
+    const same = candidates.find((q) => JSON.stringify(q.period) === JSON.stringify(f.period));
+    const p = same ?? candidates.reduce((best, q) => (!best || endOf(q.period) > endOf(best.period) ? q : best), null);
     if (!p || !p.value || !f.value) continue;
     const ratio = Math.abs(f.value / p.value);
-    if (ratio >= 900) findings.push({ rule: "scale", concept: f.concept, detail: `${f.value} is ${Math.round(ratio)} times the prior value ${p.value}: check the scale` });
-    else if (ratio <= 1 / 900) findings.push({ rule: "scale", concept: f.concept, detail: `${f.value} is 1/${Math.round(1 / ratio)} of the prior value ${p.value}: check the scale` });
+    const instant = isInstant(f.period);
+    const prior = { value: p.value, period: p.period };
+    if (slip(ratio, instant)) findings.push({ rule: "scale", concept: f.concept, detail: `${f.value}${where(f.period)} is ${Math.round(ratio)} times the prior value ${p.value}${where(p.period)}: check the scale`, prior });
+    else if (slip(1 / ratio, instant)) findings.push({ rule: "scale", concept: f.concept, detail: `${f.value}${where(f.period)} is 1/${Math.round(1 / ratio)} of the prior value ${p.value}${where(p.period)}: check the scale`, prior });
   }
   return { ok: !findings.length, findings };
+}
+
+// SEC filings, as data.sec.gov serves a company's XBRL facts (api/xbrl/companyfacts/CIK##########.json) and
+// canli-fundamentals-mcp reads them. Values are as filed, in whole units (dollars, not cents).
+export const SEC_FORMS = ["10-K", "10-Q", "20-F", "40-F"];
+
+function secFactsByFiling(companyfacts, taxonomy) {
+  const byFiling = new Map();
+  for (const [concept, body] of Object.entries(companyfacts?.facts?.[taxonomy] ?? {})) {
+    for (const [unit, list] of Object.entries(body?.units ?? {})) {
+      for (const f of list) {
+        if (!byFiling.has(f.accn)) byFiling.set(f.accn, { filing: { accession: f.accn, form: f.form, fy: f.fy, fp: f.fp, filed: f.filed }, facts: [] });
+        byFiling.get(f.accn).facts.push({ concept, unit, value: f.val, period: f.start ? { start: f.start, end: f.end } : { instant: f.end } });
+      }
+    }
+  }
+  return byFiling;
+}
+
+// Report's checks on each of a company's filings, oldest first, each against the last filing of the same form
+// before it for the scale check; `last` keeps the most recent. The taxonomy is us-gaap when the company files in
+// it, otherwise ifrs-full. Findings point at facts to look at, not errors proved.
+export function checkSecFilings(companyfacts, { forms = SEC_FORMS, last = 8, taxonomy } = {}) {
+  const tax = taxonomy ?? (companyfacts?.facts?.["us-gaap"] ? "us-gaap" : companyfacts?.facts?.["ifrs-full"] ? "ifrs-full" : null);
+  if (!tax) throw new Error("The file has no us-gaap or ifrs-full facts: give the companyfacts JSON from data.sec.gov");
+  mapFor(tax);
+  const filings = [...secFactsByFiling(companyfacts, tax).values()].filter((x) => forms.includes(x.filing.form)).sort((a, b) => (a.filing.filed === b.filing.filed ? (a.filing.accession < b.filing.accession ? -1 : 1) : a.filing.filed < b.filing.filed ? -1 : 1));
+  const before = new Map();
+  const rows = filings.map(({ filing, facts }) => {
+    const checked = checkFacts(facts, { prior: before.get(filing.form) ?? [], taxonomy: tax, untagged: true });
+    before.set(filing.form, facts);
+    return { ...filing, facts: facts.length, ...checked };
+  });
+  const kept = rows.slice(-last);
+  const counts = {};
+  for (const r of kept) for (const f of r.findings) counts[f.rule] = (counts[f.rule] ?? 0) + 1;
+  return { cik: companyfacts.cik ?? null, entityName: companyfacts.entityName ?? null, taxonomy: tax, filings: kept, checked: kept.length, withFindings: kept.filter((r) => !r.ok).length, counts };
 }

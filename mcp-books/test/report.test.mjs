@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { addAccount, post } from "../src/ledger.mjs";
-import { checkFacts, toFacts } from "../src/report.mjs";
+import { checkFacts, checkSecFilings, toFacts } from "../src/report.mjs";
 import { month } from "./fixture.mjs";
 
 const january = { asOf: "2026-01-31", from: "2026-01-01", to: "2026-01-31" };
@@ -33,6 +33,50 @@ test("the checks catch a scale slip, a wrong sign, a fact given twice, and total
   assert.deepEqual(checkFacts(broken, { prior }).findings.map((f) => f.rule).sort(), ["duplicate", "scale", "sign"]);
   const off = facts.map((f) => (f.concept === "LiabilitiesAndStockholdersEquity" ? { ...f, value: f.value + 1000 } : f));
   assert.deepEqual(checkFacts(off).findings.map((f) => f.rule), ["balance", "balance"]);
+});
+
+// A company's SEC facts in the shape data.sec.gov serves them: each value carries its filing (accn), form and dates.
+const filed = { A1: ["10-K", "2025-02-14"], A2: ["10-K", "2026-02-13"], Q1: ["10-Q", "2026-05-08"] };
+const fact = (accn, end, val, start) => ({ ...(start ? { start } : {}), end, val, accn, fy: Number(filed[accn][1].slice(0, 4)), fp: filed[accn][0] === "10-K" ? "FY" : "Q1", form: filed[accn][0], filed: filed[accn][1] });
+const usd = (...facts) => ({ units: { USD: facts } });
+const example = {
+  cik: 1234567,
+  entityName: "Example Holdings Inc.",
+  facts: {
+    dei: { EntityCommonStockSharesOutstanding: { units: { shares: [fact("A2", "2026-01-31", 1790000000)] } } },
+    "us-gaap": {
+      Assets: usd(fact("A1", "2024-12-31", 1000), fact("A2", "2024-12-31", 1000), fact("A2", "2025-12-31", 1300), fact("Q1", "2026-03-31", 1400)),
+      Liabilities: usd(fact("A1", "2024-12-31", 600), fact("A2", "2024-12-31", 600), fact("A2", "2025-12-31", 700), fact("Q1", "2026-03-31", 770)),
+      StockholdersEquity: usd(fact("A1", "2024-12-31", 400), fact("A2", "2024-12-31", 400), fact("A2", "2025-12-31", 520), fact("Q1", "2026-03-31", 560)),
+      // 2025: 30 of minority interests in equity and 50 of temporary equity between liabilities and equity.
+      StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest: usd(fact("A2", "2025-12-31", 550)),
+      TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests: usd(fact("A2", "2025-12-31", 50)),
+      // March 2026: liabilities and equity are 60 short of their total, as when temporary equity has a tag of its own,
+      // but assets are 10 over it.
+      LiabilitiesAndStockholdersEquity: usd(fact("A1", "2024-12-31", 1000), fact("A2", "2024-12-31", 1000), fact("A2", "2025-12-31", 1300), fact("Q1", "2026-03-31", 1390)),
+      Revenues: usd(fact("A1", "2024-12-31", 5000, "2024-01-01"), fact("A2", "2024-12-31", 5000, "2024-01-01"), fact("A2", "2025-12-31", 5600, "2025-01-01")),
+      // A real change, 753 times: not a slip.
+      DebtSecuritiesHeldToMaturityAmortizedCostAfterAllowanceForCreditLoss: usd(fact("A1", "2024-12-31", 6000), fact("A2", "2025-12-31", 4518000)),
+    },
+  },
+};
+example.facts["us-gaap"].CommonStockSharesAuthorized = { units: { shares: [fact("A1", "2024-12-31", 1800000000), fact("A2", "2024-12-31", 1800000), fact("A2", "2025-12-31", 1800000000)] } };
+
+test("a company's SEC filings are checked one by one: a scale slip and assets off their total are found, real changes and untagged temporary equity are not", () => {
+  const out = checkSecFilings(example);
+  assert.deepEqual([out.entityName, out.taxonomy, out.checked, out.withFindings], ["Example Holdings Inc.", "us-gaap", 3, 2]);
+  const [a1, a2, q1] = out.filings;
+  assert.deepEqual([a1.accession, a1.ok, a1.facts], ["A1", true, 7], "seven us-gaap facts; the dei one is not checked");
+  // Last year's shares authorized, filed again a thousand times smaller: the same date, so the slip is plain.
+  assert.deepEqual(a2.findings.map((f) => [f.rule, f.concept, f.prior]), [["scale", "CommonStockSharesAuthorized", { value: 1800000000, period: { instant: "2024-12-31" } }]]);
+  assert.deepEqual(q1.findings.map((f) => [f.rule, f.concept]), [["balance", "Assets"]], "the 60 short is left alone; assets 10 over are not");
+  assert.deepEqual(out.counts, { scale: 1, balance: 1 });
+  assert.equal(checkSecFilings(example, { last: 1 }).filings[0].accession, "Q1");
+  assert.equal(checkSecFilings(example, { forms: ["10-Q"] }).checked, 1);
+
+  const ifrs = { entityName: "Example plc", facts: { "ifrs-full": { Assets: { units: { EUR: [{ end: "2025-12-31", val: 90, accn: "F1", form: "20-F", filed: "2026-04-01" }] } }, EquityAndLiabilities: { units: { EUR: [{ end: "2025-12-31", val: 90, accn: "F1", form: "20-F", filed: "2026-04-01" }] } } } } };
+  assert.deepEqual([checkSecFilings(ifrs).taxonomy, checkSecFilings(ifrs).filings[0].ok], ["ifrs-full", true]);
+  assert.throws(() => checkSecFilings({ facts: { dei: {} } }), /no us-gaap or ifrs-full facts/);
 });
 
 test("an account with no concept is listed as unmapped, not guessed", () => {

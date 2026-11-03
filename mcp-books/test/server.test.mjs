@@ -67,6 +67,12 @@ test("every Canli company's tools work on one book through the MCP server", asyn
 
     const report = await call("report_check", { file, as_of: "2026-01-31", from: "2026-01-01", to: "2026-01-31" });
     assert.deepEqual([report.ok, report.unmapped.length], [true, 0]);
+    // The same checks on a company's SEC filings, from the companyfacts JSON: last year's shares filed in thousands.
+    const companyfacts = join(dir, "CIK0001234567.json");
+    const shares = (accn, filed, val) => ({ end: "2024-12-31", val, accn, fy: Number(filed.slice(0, 4)), fp: "FY", form: "10-K", filed });
+    writeFileSync(companyfacts, JSON.stringify({ cik: 1234567, entityName: "Example Holdings Inc.", facts: { "us-gaap": { CommonStockSharesAuthorized: { units: { shares: [shares("A1", "2025-02-14", 1800000000), shares("A2", "2026-02-13", 1800000)] } } } } }));
+    const sec = await call("report_check_sec", { companyfacts_file: companyfacts });
+    assert.deepEqual([sec.checked, sec.withFindings, sec.counts], [2, 1, { scale: 1 }]);
     assert.deepEqual((await call("audit_journal", { file, limit: "5000" })).weekend, [26, 28], "10 and 31 January 2026 were Saturdays");
     assert.equal((await call("planning_runway", { file, through: "2026-01-31", months: 1 })).burning, false);
     assert.ok(Math.abs((await call("planning_dcf", { cash_flows: [100, 100, 100], rate: 0.1 })).value - 1000) < 1e-9);
