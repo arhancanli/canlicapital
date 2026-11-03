@@ -644,9 +644,10 @@ export const tTwoSided = (t, df) => (Number.isFinite(t) && df > 0 ? ibeta(df / 2
 // ---------------------------------------------------------------------------------------------
 export const eventInput = z.object({
   symbol: z.string().regex(/^[A-Za-z0-9.\-]{1,12}$/, "a ticker such as AAPL").describe("Ticker of the stock."),
-  events: z.array(DATE).max(200).optional().describe("Event dates (day 0 is that date, or the next trading day). Leave out to use event_type."),
+  events: z.array(DATE).max(200).optional().describe("Event dates: day 0 is that date, or the next trading day if markets were shut. For filings use event_type instead: a filing made after the close moves the price the next session, and only event_type times that."),
   event_type: z.enum(["earnings", "insider_buys", "insider_sales", "8k"]).optional().describe("Events from SEC filings: earnings (8-K item 2.02), open-market insider purchases or sales (Form 4 codes P or S, at filing time), or any 8-K. Day 0 is the first trading session after the filing was accepted."),
   since: DATE.optional().describe("For event_type: filings since this date; default three years ago."),
+  last: z.number().int().min(1).max(200).optional().describe("For event_type: only the most recent this many events, such as 8 for the last 8 earnings releases."),
   window: z.tuple([z.number().int().min(-20).max(0), z.number().int().min(0).max(60)]).optional().describe("Event window in trading days around day 0; default [-1, 5]."),
   estimation_days: z.number().int().min(30).max(500).optional().describe("Days used to fit the model, ending 10 days before the window; default 120."),
   benchmark: z.string().regex(/^[A-Za-z0-9.\-^]{1,12}$/).optional().describe("Market index for the model; default SPY."),
@@ -672,7 +673,7 @@ export async function eventStudy(session, args) {
   if (a.events) raw = a.events.map((d) => ({ at: d, kind: "date", label: d }));
   else {
     const e = await resolveEntity(session, symbol);
-    const since = a.since ?? daysAgo(session, 3 * 365);
+    const since = a.since ?? daysAgo(session, Math.max(3 * 365, (a.last ?? 0) * 100));
     const { sub, rows } = await filings(session, e.cik, { since });
     source = `https://data.sec.gov/submissions/CIK${String(e.cik).padStart(10, "0")}.json`;
     if (a.event_type === "earnings" || a.event_type === "8k") {
@@ -689,6 +690,7 @@ export async function eventStudy(session, args) {
         } catch { /* unreadable Form 4 skipped */ }
       }));
     }
+    if (a.last) raw = raw.sort((x, y) => String(y.filed).localeCompare(String(x.filed))).slice(0, a.last);
     // Day 0 turns on before or after the 16:00 close, so the time must be right (acceptanceTimes).
     const { times, shift } = await acceptanceTimes(session, e.cik, sub, raw.map((x) => x.accession));
     for (const x of raw) x.at = times.has(x.accession) ? new Date(times.get(x.accession)).toISOString() : `${x.filed}T21:00:00.000Z`;
@@ -741,7 +743,7 @@ export async function eventStudy(session, args) {
     ...(skipped.length ? { skipped: { columns: ["event", "reason"], rows: skipped.slice(0, 20) } } : {}),
     meaning: "Abnormal return = actual return minus the model's expected return; CAR sums it over the window. t_stat and p_value test whether the mean CAR across events differs from zero (cross-sectional t test). Returns are simple daily returns of adjusted closes. day0 is the first session that could react to a filing: its own day if accepted before the 4 p.m. New York close on a trading day, else the next session (event_time is UTC); dates passed in events are used as day0 as given.",
     ...(source ? { sources: [source] } : {}),
-    ...(eventTimes ? { event_times: eventTimes } : {}),
+    ...(eventTimes ? { event_times: eventTimes } : { day_0: "Each date given is day 0, or the next trading day if markets were shut. If these are filing dates, a filing made after the close moved the price the next session, and event_type times that from the SEC's acceptance time." }),
     price_source: ps.source,
     limits: [...LIMITS, "Daily data; events on nearby days overlap and are not adjusted for; a few events give a weak test; a significant average is not a trading rule after costs."],
   };

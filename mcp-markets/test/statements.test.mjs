@@ -11,6 +11,13 @@ import { NOW, replayFetch } from "./replay.mjs";
 const session = () => createSession({ fetchImpl: replayFetch().fetchImpl, env: {}, now: () => NOW, sleep: async () => {} });
 const line = (t, label, n = 0) => t.rows.filter((r) => r[0] === label)[n];
 
+test("an accession that names nothing beside a year: the year decides and the answer says so; alone, it lists the real ones", async () => {
+  const r = await financialStatements(session(), { company: "NVDA", statement: "income", fiscal_year: 2025, accession: "0000000000-00-000000" });
+  assert.match(r.accession_note, /0000000000-00-000000 is not one of .*fiscal_year chose the filing/);
+  assert.ok(r.income.rows.length > 5);
+  await assert.rejects(financialStatements(session(), { company: "NVDA", statement: "income", accession: "0000000000-25-000000" }), /is not one of .* Its recent ones: \d{10}-\d{2}-\d{6} \(10-K, period /);
+});
+
 test("Microsoft: two 10-Ks give four years of income and cash flows and three balance sheets", async () => {
   const r = await financialStatements(session(), { company: "MSFT", filings: 2 });
   assert.deepEqual(r.filings.rows.map((x) => x.slice(0, 4)), [["0001193125-26-323660", "10-K", "2026-07-29", "2026-06-30"], ["0000950170-25-100235", "10-K", "2025-07-30", "2025-06-30"]]);
@@ -126,5 +133,10 @@ test("a statement title's scale for money and for shares", () => {
   assert.equal(unitScale("USD ($) shares in Millions, $ in Billions", "\\$"), 1e9);
   assert.equal(unitScale("USD ($) shares in Millions, $ in Billions", "shares"), 1e6);
   assert.equal(unitScale("USD ($)", "\\$"), 1);
+  // Money in any currency's sign, never the shares' scale.
+  assert.equal(unitScale("DKK (kr) kr in Millions", "money"), 1e6);
+  assert.equal(unitScale("JPY (¥) shares in Thousands, ¥ in Millions", "money"), 1e6);
+  assert.equal(unitScale("JPY (¥) shares in Thousands, ¥ in Millions", "shares"), 1e3);
+  assert.equal(unitScale("shares in Thousands", "money"), 1);
   assert.equal(unitScale(null, "shares"), 1);
 });

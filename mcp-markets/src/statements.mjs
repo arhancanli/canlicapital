@@ -12,6 +12,7 @@ const DATE = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "a date as YYYY-MM-DD");
 const KINDS = ["income", "balance_sheet", "cash_flow", "comprehensive_income", "equity"];
 const CORE = ["income", "balance_sheet", "cash_flow"];
 const MAX_COLUMNS = 12;
+const MAX_EQUITY_COLUMNS = 24;
 const MAX_REVISED = 40;
 
 export const statementsInput = z.object({
@@ -25,8 +26,8 @@ export const statementsInput = z.object({
 }).strict();
 
 // The column a value belongs to across filings: its period, or its date.
-const columnKey = (c) => (c.instant ? `i|${c.instant}` : c.end ? `${c.months ?? "?"}|${c.end}` : `m|${c.label}`);
-const columnLabel = (c) => (c.instant ? c.instant : c.end ? `${c.months ? `${c.months} months` : "period"} to ${c.end}` : c.label);
+const columnKey = (c) => `${c.currency ? `${c.currency}|` : ""}${c.variant ? `${c.variant}|` : ""}${c.instant ? `i|${c.instant}` : c.end ? `${c.months ?? "?"}|${c.end}` : `m|${c.label}`}`;
+const columnLabel = (c) => `${c.instant ? c.instant : c.end ? `${c.months ? `${c.months} months` : "period"} to ${c.end}` : c.label}${c.currency ? ` (${c.currency})` : ""}${c.variant ? ` (${c.variant})` : ""}`;
 const columnOrder = (a, b) => {
   const da = a.instant ?? a.end ?? "", db = b.instant ?? b.end ?? "";
   if ((a.months ?? 0) !== (b.months ?? 0)) return (a.months ?? 0) - (b.months ?? 0);
@@ -49,6 +50,10 @@ async function statementPages(session, cik, filing) {
     const kind = statementKind(r.name);
     if (kind && !pages[kind]) pages[kind] = { name: r.name, url: `${base}/${r.file}` };
   }
+  // A filing with one statement for both (AstraZeneca, PDD, Infosys): it is the income statement too,
+  // and a combined title is the comprehensive income statement as well.
+  if (!pages.income && pages.comprehensive_income) pages.income = pages.comprehensive_income;
+  if (!pages.comprehensive_income && /comprehensive/i.test(pages.income?.name ?? "")) pages.comprehensive_income = pages.income;
   return { pages, index: `${base}/${filing.accessionNumber}-index.htm` };
 }
 
@@ -56,8 +61,11 @@ async function statementPages(session, cik, filing) {
 // "shares in Thousands" 1000 for share counts; no scale named means the figures are full amounts.
 const SCALES = { thousands: 1e3, millions: 1e6, billions: 1e9 };
 export function unitScale(units, what) {
-  const m = new RegExp(`${what} in (thousands|millions|billions)`, "i").exec(String(units ?? ""));
-  return m ? SCALES[m[1].toLowerCase()] : 1;
+  // Money is whatever is not shares, in any currency's sign: "$", "€", "¥", "kr", "NT$".
+  for (const m of String(units ?? "").matchAll(/(\S+) in (thousands|millions|billions)/gi)) {
+    if ((m[1].toLowerCase() === "shares") === (what === "shares")) return SCALES[m[2].toLowerCase()];
+  }
+  return 1;
 }
 
 // Rows keyed by concept, the breakdown member they sit under ("Revenue" under "Product" is not
@@ -186,9 +194,13 @@ export async function financialStatements(session, args) {
   if (period === "annual" && candidates.some((r) => r.form === "10-K")) candidates = candidates.filter((r) => r.form === "10-K");
   if (!candidates.length) throw new NotFound(`${sub.name} has filed no ${forms.join(" or ")} in the period read${period === "quarterly" && sub.category?.includes("foreign") ? " (foreign issuers report quarters on Form 6-K, without XBRL statements)" : ""}; list_filings shows what it has filed.`);
   let start = 0;
-  if (a.accession) {
-    start = candidates.findIndex((r) => r.accessionNumber === a.accession);
-    if (start < 0) throw new NotFound(`${a.accession} is not one of ${sub.name}'s ${forms.join("/")} filings; list_filings shows them.`);
+  // Some clients make a model fill every optional field, so an accession it could not know can arrive beside
+  // the year it meant. The year or date then decides; alone, the answer lists the real ones.
+  const namedStart = a.accession ? candidates.findIndex((r) => r.accessionNumber === a.accession) : -1;
+  const skippedAccession = a.accession && namedStart < 0 && (a.fiscal_year || a.filed_before) ? a.accession : null;
+  if (a.accession && !skippedAccession) {
+    start = namedStart;
+    if (start < 0) throw new NotFound(`${a.accession} is not one of ${sub.name}'s ${forms.join("/")} filings. Its recent ones: ${candidates.slice(0, 4).map((r) => `${r.accessionNumber} (${r.form}, period ${r.reportDate || "?"})`).join(", ")}.`);
   } else if (a.fiscal_year) {
     start = candidates.findIndex((r) => String(r.reportDate ?? "").startsWith(String(a.fiscal_year)));
     if (start < 0) throw new NotFound(`${sub.name} has no ${forms[0]} for a period ending in ${a.fiscal_year}; its recent ones end ${candidates.slice(0, 4).map((r) => r.reportDate).join(", ")}.`);
@@ -223,7 +235,8 @@ export async function financialStatements(session, args) {
     const cols = new Map();
     for (const t of joined) for (const c of t.columns) if (!cols.has(columnKey(c))) cols.set(columnKey(c), c);
     const ordered = kind === "equity" ? [...cols.values()] : [...cols.values()].sort(columnOrder);
-    const shown = ordered.slice(0, MAX_COLUMNS);
+    // An equity statement's columns are its components, so a wide one needs them all.
+    const shown = ordered.slice(0, kind === "equity" ? MAX_EQUITY_COLUMNS : MAX_COLUMNS);
     const built = buildRows(joinRows(joined), shown);
     for (const x of built.revised) if (revised.length < MAX_REVISED) revised.push([kind, x.label, columnLabel(x.column), x.value, x.first_reported, joined[x.filing].filing.accessionNumber]);
     for (const x of built.otherBasis) if (otherBasis.length < MAX_REVISED) otherBasis.push([kind, x.label, columnLabel(x.column), x.value, joined[x.filing].filing.accessionNumber]);
@@ -233,7 +246,8 @@ export async function financialStatements(session, args) {
     out[kind] = {
       title: joined[0].title,
       units: joined[0].units,
-      money_scale: unitScale(joined[0].units, "\\$"),
+      ...(joined[0].currency ? { currency: joined[0].currency } : {}),
+      money_scale: unitScale(joined[0].units, "money"),
       shares_scale: unitScale(joined[0].units, "shares"),
       columns: ["line", "concept", ...shown.map(columnLabel)],
       rows: rowsOut,
@@ -247,12 +261,13 @@ export async function financialStatements(session, args) {
     company: { cik: e.cik, name: sub.name, ticker: sub.tickers?.[0] ?? e.ticker ?? null },
     period,
     filings: { columns: ["accession", "form", "filed", "period", "index"], rows: read.map((r) => [r.filing.accessionNumber, r.filing.form, r.filing.filingDate, r.filing.reportDate || null, r.index]) },
+    ...(skippedAccession ? { accession_note: `${skippedAccession} is not one of ${sub.name}'s ${forms.join("/")} filings, so ${a.fiscal_year ? "fiscal_year" : "filed_before"} chose the filing.` } : {}),
     ...out,
     ...(revised.length ? { revised: { note: "The same line and period reported differently by an older filing (a restatement, reclassification or split): value is the newest filing's, first_reported the oldest one read.", columns: ["statement", "line", "period", "value", "first_reported", "first_reported_in"], rows: revised } } : {}),
     ...(otherBasis.length ? { other_basis: { note: "Periods only an older filing covers, on lines that filing reports differently for the periods both cover: they are on another basis (before a split, restatement or reclassification), so they are listed here and left out of the table.", columns: ["statement", "line", "period", "value_as_filed", "filing"], rows: otherBasis } } : {}),
     ...(splits.size ? { splits: [...splits] } : {}),
     ...(notJoined.length ? { not_joined: { note: "These filings present the statement in other units, so their numbers were not joined; read them with accession.", rows: notJoined } } : {}),
-    units_note: "Values are as each statement shows them: units gives the scale of money and shares (\"$ in Millions\"), and money_scale and shares_scale are the multipliers to full amounts (a money value of 705 with money_scale 1000000 is 705000000); per-share amounts, percentages and rows labeled with their own unit are not scaled. Signs are as the statement presents them: a line shown negated (a cash outflow, an increase in receivables in the cash flow statement) has the opposite sign in its XBRL fact, which the fundamentals history tool returns.",
+    units_note: "Values are as each statement shows them: units gives the scale of money and shares (\"$ in Millions\"), and money_scale and shares_scale are the multipliers to full amounts (a money value of 705 with money_scale 1000000 is 705000000); per-share amounts, percentages and rows labeled with their own unit are not scaled. Signs are as the statement presents them: a line shown negated (a cash outflow, an increase in receivables in the cash flow statement) has the opposite sign in its XBRL fact, which the fundamentals history tool returns. So capital spending shown as -28,358 means 28,358 was spent: asked how much, answer with the size.",
     limits: [
       "From the XBRL statements the company filed, as SEC renders them; Canli Capital does not edit or verify them. Labels are the company's own.",
       ...(period === "quarterly" ? ["A 10-Q holds the quarter and the year to date (cash flows are usually year to date only); the fourth quarter is in the 10-K, as the year."] : []),

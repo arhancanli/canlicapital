@@ -24,9 +24,9 @@ import {
 import { CIK, EXXON, RAW, SHA, fakeFetch, files } from "./fixture.mjs";
 import { indexFacts } from "../src/server.mjs";
 
-const session = (map) => {
+const session = (map, opts = {}) => {
   const f = fakeFetch(map);
-  return { s: createSession({ base: "https://example.test", fetchImpl: f.impl, cacheDir: "" }), calls: f.calls };
+  return { s: createSession({ base: "https://example.test", fetchImpl: f.impl, cacheDir: "", ...opts }), calls: f.calls };
 };
 const out = (r) => r.structuredContent;
 const byCol = (res) => res.rows.map((row) => Object.fromEntries(res.columns.map((c, i) => [c, row[i]])));
@@ -212,6 +212,37 @@ test("a ticker held outside the reference is never read as another company's nam
   // Not a ticker at all: a name's first word still finds the company, and the answer says how it was read.
   assert.match((await resolveCompany(s, "STAR")).matched.note, /STAR is not a current ticker/);
   assert.doesNotMatch((await resolveCompany(s, "Star")).matched.note ?? "", /not a current ticker/);
+});
+
+test("a company outside the reference is read live from the SEC when the flagship turns that on, and the answer says so", async () => {
+  const map = files();
+  map["/api/xbrl/companyfacts/CIK0002200000.json"] = RAW;
+  const { s, calls } = session(map, { secLive: true });
+  for (const company of ["NEWCO", "Brand New"]) {
+    const r = out(await toolListConcepts(s, { company }));
+    assert.equal(r.company.cik, "0002200000");
+    assert.match(r.company.matched.note, /outside the Canli company reference, so its figures are read live from the SEC/);
+    assert.equal(r.snapshot.read_live, true);
+    assert.equal(r.snapshot.sec_url, "https://data.sec.gov/api/xbrl/companyfacts/CIK0002200000.json");
+  }
+  assert.equal(calls.filter((c) => c.includes("companyfacts")).length, 1);
+  assert.equal(out(await toolHistory(s, { company: "NEWCO", concept: "revenue" })).company.cik, "0002200000");
+  assert.equal(out(await toolFindCompany(s, { query: "Brand New" })).rows.length > 0, true);
+  // No SEC facts for the holder: says so. Off by default: only the reference is contacted.
+  const { s: empty } = session(files(), { secLive: true });
+  await assert.rejects(toolListConcepts(empty, { company: "NEWCO" }), /CIK 0002200000 is not in the Canli company reference, and the SEC has no XBRL facts for it/);
+  const { s: off, calls: offCalls } = session(map);
+  await assert.rejects(toolListConcepts(off, { company: "NEWCO" }), /does not cover/);
+  assert.equal(offCalls.some((c) => c.includes("companyfacts")), false);
+});
+
+test("names people use reach the listed company", async () => {
+  const map = files();
+  map["/api/v1/company-tickers.json"] = Buffer.from(JSON.stringify({ tickers: { FIX: CIK, GOOGL: "0001652044" } }));
+  const { s } = session(map);
+  const google = await resolveCompany(s, "Google");
+  assert.equal(google.cik, "0001652044");
+  assert.equal(google.matched.by, "known_name");
 });
 
 test("companies resolve by ticker, dotted ticker or CIK; unknown ones say what to do", async () => {
@@ -449,7 +480,9 @@ test("history takes several concepts in one call, each series as a single call g
   assert.deepEqual(both.series[1].rows, alone.rows);
   assert.equal(both.company.cik, alone.company.cik);
   await assert.rejects(toolHistory(s, { company: "FIX" }), /send concept \(one measure\) or concepts/);
-  await assert.rejects(toolHistory(s, { company: "FIX", concept: "assets", concepts: ["revenue", "assets"] }), /not both/);
+  // Both together mean all of them: some clients make a model fill every optional field.
+  const merged = out(await toolHistory(s, { company: "FIX", concept: "assets", concepts: ["revenue", "assets"] }));
+  assert.equal(merged.series.length, 2);
 });
 
 test("history says what span the data covers, so a question outside it is answered as not reported", async () => {

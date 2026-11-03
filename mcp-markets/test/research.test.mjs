@@ -103,6 +103,12 @@ test("event_study: recovers a known 5% abnormal return and the market beta", asy
   assert.equal(wide.average_path.rows.length, 6);
   assert.equal(wide.summary.t_stat, null);
   await assert.rejects(R.eventStudy(session(chartFetch), { symbol: "TEST" }), /Give events/);
+  assert.match(r.day_0, /event_type times that/);
+});
+
+test("event_study takes last, and it is in the input schema", () => {
+  assert.equal(R.eventInput.parse({ symbol: "NVDA", event_type: "earnings", last: 8 }).last, 8);
+  assert.throws(() => R.eventInput.parse({ symbol: "NVDA", event_type: "earnings", last: 0 }));
 });
 
 test("tTwoSided matches scipy's Student t to 1e-9", () => {

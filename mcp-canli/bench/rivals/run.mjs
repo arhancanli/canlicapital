@@ -8,7 +8,7 @@ import { execSync } from "node:child_process";
 
 import Anthropic from "@anthropic-ai/sdk";
 import OpenAI from "openai";
-import { Client } from "@modelcontextprotocol/client";
+import { Client, StreamableHTTPClientTransport } from "@modelcontextprotocol/client";
 import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
 
 import { ARMS } from "./arms.mjs";
@@ -43,7 +43,7 @@ const EXTRA = DEEPSEEK ? { thinking: { type: "disabled" }, temperature: 0 } : {}
 const anthropic = !CLAUDE ? null : MOCK ? mockAnthropic : new Anthropic({ maxRetries: 8, apiKey: key("anthropic_benchmark_key") });
 const RESULT_CAP = 30000;
 const MAX_TURNS = 12;
-const SYSTEM = "You are a financial research assistant with tools. Today is 2026-10-09. Get every figure from the tools, not from memory, and compute with the tools where you can. When you have the result, finish with one line 'ANSWER: <number>' in the units the question asks for.";
+const SYSTEM = "You are a financial research assistant with tools. Today is " + (process.env.BENCH_TODAY ?? "2026-10-09") + ". Get every figure from the tools, not from memory, and compute with the tools where you can. When you have the result, finish with one line 'ANSWER: <number>' in the units the question asks for.";
 
 // Finished runs are skipped on a resume; runs the harness could not finish are tried again.
 // Read without checking first: a check and a later append are two looks at a file that can change in between.
@@ -52,6 +52,13 @@ const done = new Set(prior.trim().split("\n").filter(Boolean).map((l) => JSON.pa
 // BUDGET_TOKENS with BUDGET_FILE caps the tokens (input plus output) spent across processes in one
 // night, so an unattended run stays inside the free daily allowance: exit 4 when it is reached.
 const BUDGET = Number(process.env.BUDGET_TOKENS ?? 0), BUDGET_FILE = process.env.BUDGET_FILE;
+// BUDGET_USD with USD_FILE caps the money spent across processes, at list prices per million tokens
+// (input, cached input, output). A run that started is finished, so the cap can pass by one run.
+// Uncached input is billed as a cache write, 25% above the input price: USD 1.23 a million on the dashboard, against a listed USD 1.
+const PRICES = { "gpt-6.1-terra": [1.25, 0.05, 5], "gpt-6.1-sol": [2.5, 0.1, 10], "gpt-5.6-terra": [0.625, 0.05, 3], "deepseek-flash": [0.3, 0.006, 1.2] };
+const BUDGET_USD = Number(process.env.BUDGET_USD ?? 0), USD_FILE = process.env.USD_FILE;
+const spent = () => { try { return Number(readFileSync(USD_FILE, "utf8")) || 0; } catch { return 0; } };
+const costOf = (r) => { const [i, c, o] = PRICES[MODEL] ?? [0, 0, 0]; return (((r.input ?? 0) - (r.cached ?? 0)) * i + (r.cached ?? 0) * c + (r.output ?? 0) * o) / 1e6; };
 const used = () => { try { return Number(readFileSync(BUDGET_FILE, "utf8")) || 0; } catch { return 0; } };
 // An account without credit fails every request; stop instead of recording failures.
 const outOfCredit = (err) => /no credits remaining|insufficient_quota|exceeded your current quota|credit balance is too low|insufficient balance/i.test(`${err?.code ?? ""} ${err?.message ?? ""}`);
@@ -70,7 +77,9 @@ async function connectArm(arm) {
   let instructions = "";
   for (const [key, command, args, env] of ARMS[arm]) {
     const c = new Client({ name: "rival-bench", version: "0" });
-    await c.connect(new StdioClientTransport({ command, args, env: { PATH: process.env.PATH, HOME: process.env.HOME, ...env }, stderr: "ignore" }));
+    await c.connect(/^https?:/.test(command)
+      ? new StreamableHTTPClientTransport(new URL(command))
+      : new StdioClientTransport({ command, args, env: { PATH: process.env.PATH, HOME: process.env.HOME, ...env }, stderr: "ignore" }));
     clients.push(c);
     const instr = c.getInstructions?.() ?? "";
     if (instr) instructions += `\n[${key}] ${instr}`;
@@ -81,7 +90,7 @@ async function connectArm(arm) {
       claudeTools.push({ name: name.slice(0, 64), description: (t.description ?? "").slice(0, 1024), input_schema: params(t.inputSchema) });
     }
   }
-  return { clients, tools, claudeTools, route, instructions };
+  return { clients, tools, claudeTools, route, instructions, hosted: ARMS[arm].some(([, command]) => /^https?:/.test(command)) };
 }
 
 const SCALE = { thousand: 1e3, million: 1e6, billion: 1e9, trillion: 1e12 };
@@ -102,7 +111,10 @@ export function grade(task, value) {
 }
 
 // Runs one tool call through its MCP server; returns the text the model sees (capped).
+// A hosted arm is someone else's service: nothing here signs up, pays or trades on it.
+const SIDE_EFFECT = /regist|signup|sign_up|keys?_create|create_key|checkout|purchase|(^|_)buy|(^|_)pay|payment|(^|_)order|transfer|withdraw|deposit|billing|subscribe|credits?_/i;
 async function callTool(ctx, name, args) {
+  if (ctx.hosted && !/^(get|list|search|fetch|find|read|lookup)_/i.test(name) && SIDE_EFFECT.test(name)) return { text: "Not available in this test: this tool changes something on the service.", error: true };
   let text, error = false;
   const target = ctx.route.get(name);
   try {
@@ -150,8 +162,41 @@ async function runTaskClaude(ctx, task) {
   return { value: null, correct: false, final: "turn limit", input, cached, output, turns, calls, errors, seconds: (Date.now() - t0) / 1000, trace };
 }
 
+// GPT-5.5 and later take function tools with their reasoning on only through the Responses API.
+// REASONING sets the effort; left out, the model's own default, as a person calling it would get.
+const RESPONSES = /^gpt-(?:5\.[5-9]|[6-9])/.test(MODEL);
+async function runTaskResponses(ctx, task) {
+  const instructions = SYSTEM + (ctx.instructions ? `\n\nServer instructions:${ctx.instructions}` : "");
+  // strict: false as MCP clients send it. Left out, this API defaults to strict and makes every optional field required.
+  const tools = ctx.tools.map((t) => ({ type: "function", name: t.function.name, description: t.function.description, parameters: t.function.parameters, strict: false }));
+  let input = 0, cached = 0, output = 0, calls = 0, errors = 0, turns = 0, previous, items = task.prompt;
+  const t0 = Date.now(), trace = [];
+  for (; turns < MAX_TURNS; turns++) {
+    const r = await openai.responses.create({ model: MODEL, instructions, input: items, tools, ...(previous ? { previous_response_id: previous } : {}), ...(process.env.REASONING ? { reasoning: { effort: process.env.REASONING } } : {}) });
+    input += r.usage.input_tokens; cached += r.usage.input_tokens_details?.cached_tokens ?? 0; output += r.usage.output_tokens;
+    previous = r.id;
+    const uses = r.output.filter((o) => o.type === "function_call");
+    if (!uses.length) {
+      const value = parseAnswer(r.output_text ?? "");
+      return { value, correct: grade(task, value), final: (r.output_text ?? "").slice(-400), input, cached, output, turns: turns + 1, calls, errors, seconds: (Date.now() - t0) / 1000, trace };
+    }
+    items = [];
+    for (const u of uses) {
+      calls++;
+      let args;
+      try { args = JSON.parse(u.arguments || "{}"); } catch { args = null; }
+      const { text, error } = args === null ? { text: "Error: arguments are not valid JSON", error: true } : await callTool(ctx, u.name, args);
+      if (error) errors++;
+      trace.push([u.name, String(u.arguments).slice(0, 300), text.slice(0, 200)]);
+      items.push({ type: "function_call_output", call_id: u.call_id, output: text });
+    }
+  }
+  return { value: null, correct: false, final: "turn limit", input, cached, output, turns, calls, errors, seconds: (Date.now() - t0) / 1000, trace };
+}
+
 async function runTask(ctx, task) {
   if (CLAUDE) return runTaskClaude(ctx, task);
+  if (RESPONSES) return runTaskResponses(ctx, task);
   const system = SYSTEM + (ctx.instructions ? `\n\nServer instructions:${ctx.instructions}` : "");
   const messages = [{ role: "system", content: system }, { role: "user", content: task.prompt }];
   let input = 0, cached = 0, output = 0, calls = 0, errors = 0, turns = 0;
@@ -186,17 +231,25 @@ for (const arm of Object.keys(ARMS).filter((a) => !ONLY || ONLY.includes(a))) {
   const todo = TASKS.flatMap((task) => Array.from({ length: REPS }, (_, rep) => [task, rep])).filter(([task, rep]) => !done.has(`${MODEL}|${arm}|${task.id}|${rep}`));
   if (!todo.length) continue;
   const t0 = Date.now();
-  const ctx = await connectArm(arm);
+  let ctx = await connectArm(arm);
   console.log(`ARM ${arm}: ${ctx.tools.length} tools, connected in ${Date.now() - t0} ms; ${todo.length} runs`);
   for (const [task, rep] of todo) {
+    if (BUDGET_USD && USD_FILE && spent() >= BUDGET_USD) { console.log(`USD_BUDGET_REACHED ${spent().toFixed(4)} of ${BUDGET_USD}`); for (const c of ctx.clients) await c.close().catch(() => {}); process.exit(3); }
     if (BUDGET && BUDGET_FILE && used() >= BUDGET) { console.log(`BUDGET_REACHED ${used()} of ${BUDGET} tokens`); for (const c of ctx.clients) await c.close().catch(() => {}); process.exit(4); }
     let r;
     try { r = await runTask(ctx, task); } catch (err) {
       if (outOfCredit(err)) { console.log(`OUT_OF_CREDIT at ${arm} ${task.id} #${rep}: ${err.message}`); for (const c of ctx.clients) await c.close().catch(() => {}); process.exit(3); }
       r = { value: null, correct: false, final: `harness error: ${err.message}`, harness_error: true };
     }
+    // A local server that died answers "Not connected" to everything: that says nothing about it. Retried on a resume.
+    if (r.trace?.some((t) => /Not connected/.test(t[2]))) {
+      r.harness_error = true;
+      for (const c of ctx.clients) await c.close().catch(() => {});
+      ctx = await connectArm(arm);
+    }
     appendFileSync(OUT, `${JSON.stringify({ model: MODEL, arm, task: task.id, cat: task.cat, rep, truth: TRUTH[task.truth], ...(arm.startsWith("canli") ? { code: CODE } : {}), ...r })}\n`);
     if (BUDGET_FILE) writeFileSync(BUDGET_FILE, String(used() + (r.input ?? 0) + (r.output ?? 0)));
+    if (USD_FILE) writeFileSync(USD_FILE, String(spent() + costOf(r)));
     console.log(`${arm} ${task.id} #${rep}: ${r.correct ? "OK " : "BAD"} ${r.value} (truth ${TRUTH[task.truth]}) ${r.turns ?? "-"}t ${r.input ?? "-"}in ${r.seconds ?? "-"}s`);
   }
   for (const c of ctx.clients) await c.close().catch(() => {});

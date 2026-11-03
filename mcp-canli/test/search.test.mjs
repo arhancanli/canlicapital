@@ -136,7 +136,8 @@ const EVERYDAY_Q = [
   ["jobs report date", ["economic_calendar"]],
   ["tesla stock prices last month", ["price_history"]],
   ["historical prices for the s&p 500 index", ["price_history"]],
-  ["usd jpy exchange rates", ["price_history"]],
+  // reference_rates has the ECB's daily rates for both currencies against the euro since 0.17.0.
+  ["usd jpy exchange rates", ["price_history", "reference_rates"]],
   ["crude oil futures prices", ["price_history","futures_curve"]],
   ["vix futures term structure", ["futures_curve"]],
   ["implied volatility of apple options", ["options_chain","volatility_surface","implied_volatility"]],
@@ -385,4 +386,35 @@ test("requests for the newest tools: a right tool first in at least 28 of 31, in
   }
   console.log(JSON.stringify({ top1, top3, of: FRONTIER_Q.length, misses }));
   assert.ok(top1 >= 28 && top3 >= 30, JSON.stringify({ top1, top3, misses }));
+});
+
+// The tools added in 0.17.0, written and measured once on 2026-11-03 before any keywords were tried:
+// stock_snapshot first on all six; technical_indicators first on one of six and in the top three on four,
+// behind the quant pack's single indicators (stochastic_rsi, hull_moving_average, macd, bollinger_bands, atr),
+// which answer too after price_history.
+// Words added for technical_indicators changed none of these, so none were kept.
+const Q017 = [
+  ["what is the analyst price target for apple", ["stock_snapshot"]],
+  ["how many analysts rate nvidia a buy", ["stock_snapshot"]],
+  ["short interest in gamestop", ["stock_snapshot", "short_interest"]],
+  ["forward pe ratio of microsoft", ["stock_snapshot"]],
+  ["market cap and 52 week high of amazon", ["stock_snapshot"]],
+  ["wall street consensus eps estimate for google next year", ["stock_snapshot"]],
+  ["rsi of tesla", ["technical_indicators"]],
+  ["is spy above its 200 day moving average", ["technical_indicators"]],
+  ["macd for bitcoin", ["technical_indicators"]],
+  ["bollinger bands for qqq", ["technical_indicators"]],
+  ["average true range of nvda", ["technical_indicators"]],
+  ["technical analysis of apple stock", ["technical_indicators"]],
+];
+test("requests for the 0.17.0 tools: a right tool first in at least 7 of 12, in the top three in at least 10", () => {
+  let top1 = 0, top3 = 0;
+  const misses = [];
+  for (const [q, want] of Q017) {
+    const r = search(INDEX, q).map((t) => t.name);
+    if (want.includes(r[0])) top1++; else misses.push(`${q} -> ${r.slice(0, 3).join(", ")}`);
+    if (r.slice(0, 3).some((n) => want.includes(n))) top3++;
+  }
+  console.log(JSON.stringify({ top1, top3, of: Q017.length, misses }));
+  assert.ok(top1 >= 7 && top3 >= 10, JSON.stringify({ top1, top3, misses }));
 });

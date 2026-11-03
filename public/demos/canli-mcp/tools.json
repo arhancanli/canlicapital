@@ -1,16 +1,16 @@
 {
  "package": "canli-mcp",
- "version": "0.16.1",
+ "version": "0.17.0",
  "packs": {
   "quant": "0.2.0",
   "validation": "0.14.1",
-  "fundamentals": "0.7.5",
+  "fundamentals": "0.8.0",
   "research": "0.3.1",
   "backtest": "0.5.1",
-  "markets": "0.11.1",
+  "markets": "0.12.0",
   "paper": "0.3.1"
  },
- "count": 386,
+ "count": 388,
  "tools": [
   {
    "name": "return_stats",
@@ -2127,6 +2127,20 @@
    "description": "Federal Register documents: final and proposed rules, notices and presidential documents by words and agency (SEC, CFTC, Fed, Treasury, CFPB, FDA and more), with comment deadlines, effective dates and abstracts. Can list only rules still open for comment."
   },
   {
+   "name": "technical_indicators",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Technical indicators",
+   "description": "The common technical indicators for a symbol in one call, from its daily prices: moving averages (SMA and EMA), RSI, MACD, Bollinger Bands and ATR, with where the close sits against its 50- and 200-day averages. Standard definitions; describes past prices, not a forecast."
+  },
+  {
+   "name": "stock_snapshot",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Analyst targets, valuation and short interest",
+   "description": "What a quote page shows and no primary source publishes, from Yahoo Finance: analysts' mean, median, high and low price targets, how many analysts, the recommendation and ratings, EPS and revenue estimates by quarter and year, market cap, trailing and forward P/E and other ratios, 52-week range, dividend rate, short interest, institutional and insider percentages, next earnings date. Vendor aggregates, labeled as such; for reported figures use the filings."
+  },
+  {
    "name": "security_identifiers",
    "pack": "markets",
    "group": "markets",
@@ -2236,7 +2250,7 @@
    "pack": "markets",
    "group": "markets",
    "title": "Reference and policy rates",
-   "description": "Money-market and policy rates from the central banks themselves: SOFR, TGCR, BGCR, EFFR and OBFR from the New York Fed (with percentiles and volume), the euro short-term rate and the ECB's policy rates, SONIA and Bank Rate from the Bank of England, and about forty central banks' policy rates as the BIS collects them (policy:JP, policy:Brazil). Dates and rates, oldest first."
+   "description": "Money-market and policy rates and the ECB's euro exchange reference rates (fx:GBP) from the central banks themselves: SOFR, TGCR, BGCR, EFFR and OBFR from the New York Fed (with percentiles and volume), the euro short-term rate and the ECB's policy rates, SONIA and Bank Rate from the Bank of England, and about forty central banks' policy rates as the BIS collects them (policy:JP, policy:Brazil). Dates and rates, oldest first."
   },
   {
    "name": "prediction_markets",
@@ -2292,7 +2306,7 @@
    "pack": "markets",
    "group": "markets",
    "title": "Event study",
-   "description": "How a stock's price reacted to events: earnings releases (8-K item 2.02), insider purchases or sales (Form 4), any 8-K, or given dates. Abnormal returns against a market model, cumulative abnormal return per event and on average, with a t test across events."
+   "description": "How a stock's price reacted to events: earnings releases (8-K item 2.02), insider purchases or sales (Form 4), any 8-K, or given dates. Abnormal returns against a market model, cumulative abnormal return per event and on average, with a t test across events. For filings use event_type (with last for the most recent few), not filing dates: it starts day 0 at the first session after the SEC accepted the filing."
   },
   {
    "name": "mentions_trend",

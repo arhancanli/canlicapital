@@ -1,0 +1,107 @@
+[
+ {
+  "id": "y_an_aapl_target",
+  "cat": "analyst",
+  "truth": "aapl_target_mean",
+  "rel": 0.05,
+  "prompt": "What is the mean analyst price target for Apple (AAPL) right now? Answer in dollars."
+ },
+ {
+  "id": "y_an_msft_target",
+  "cat": "analyst",
+  "truth": "msft_target_mean",
+  "rel": 0.05,
+  "prompt": "What is the mean analyst price target for Microsoft (MSFT) right now? Answer in dollars."
+ },
+ {
+  "id": "y_an_msft_count",
+  "cat": "analyst",
+  "truth": "msft_analyst_count",
+  "rel": 0.1,
+  "prompt": "How many analysts give an opinion on Microsoft (MSFT) right now? Answer with the count."
+ },
+ {
+  "id": "y_an_nvda_rec",
+  "cat": "analyst",
+  "truth": "nvda_recommendation_mean",
+  "rel": 0.1,
+  "prompt": "What is the mean analyst recommendation for NVIDIA (NVDA) right now, on the scale where 1 is strong buy and 5 is strong sell? Answer as a decimal."
+ },
+ {
+  "id": "y_an_googl_eps",
+  "cat": "analyst",
+  "truth": "googl_eps_estimate_next_year",
+  "rel": 0.05,
+  "prompt": "What is the analysts' average EPS estimate for Alphabet (GOOGL) for next fiscal year? Answer in dollars per share."
+ },
+ {
+  "id": "y_st_ko_pe",
+  "cat": "stats",
+  "truth": "ko_trailing_pe",
+  "rel": 0.05,
+  "prompt": "What is Coca-Cola's (KO) trailing price-to-earnings ratio right now? Answer as a number."
+ },
+ {
+  "id": "y_st_jpm_div",
+  "cat": "stats",
+  "truth": "jpm_dividend_rate",
+  "rel": 0.05,
+  "prompt": "What is JPMorgan's (JPM) annual dividend per share right now, at its current rate? Answer in dollars."
+ },
+ {
+  "id": "y_st_amd_high",
+  "cat": "stats",
+  "truth": "amd_52w_high",
+  "rel": 0.05,
+  "prompt": "What is AMD's 52-week high share price? Answer in dollars."
+ },
+ {
+  "id": "y_st_meta_cap",
+  "cat": "stats",
+  "truth": "meta_market_cap",
+  "rel": 0.05,
+  "prompt": "What is Meta Platforms' (META) market capitalization right now? Answer in US dollars as a plain number."
+ },
+ {
+  "id": "y_st_xom_short",
+  "cat": "stats",
+  "truth": "xom_shares_short",
+  "rel": 0.1,
+  "prompt": "How many shares of Exxon Mobil (XOM) are sold short, by the latest report? Answer with the number of shares."
+ },
+ {
+  "id": "y_st_wmt_inst",
+  "cat": "stats",
+  "truth": "wmt_institution_pct",
+  "rel": 0.1,
+  "prompt": "What percentage of Walmart's (WMT) shares do institutions hold, by the latest figures? Answer in percent, e.g. 38.5."
+ },
+ {
+  "id": "y_op_tsla_oi",
+  "cat": "options",
+  "truth": "tsla_call_400_oi",
+  "rel": 0.1,
+  "prompt": "What is the open interest of the Tesla (TSLA) call option with a strike of 400 expiring December 18, 2026? Answer with the number of contracts."
+ },
+ {
+  "id": "y_op_tsla_iv",
+  "cat": "options",
+  "truth": "tsla_call_400_iv_pct",
+  "rel": 0.1,
+  "prompt": "What is the implied volatility of the Tesla (TSLA) call option with a strike of 400 expiring December 18, 2026? Answer in percent, e.g. 55.0."
+ },
+ {
+  "id": "y_op_aapl_pc",
+  "cat": "options",
+  "truth": "aapl_put_call_oi_ratio",
+  "rel": 0.1,
+  "prompt": "For Apple (AAPL) options expiring December 18, 2026, what is the put-to-call ratio of total open interest across all strikes? Answer as a decimal."
+ },
+ {
+  "id": "y_op_spy_count",
+  "cat": "options",
+  "truth": "spy_expiry_count",
+  "abs": 2,
+  "prompt": "How many option expiration dates are listed for SPY right now? Answer with the count."
+ }
+]
