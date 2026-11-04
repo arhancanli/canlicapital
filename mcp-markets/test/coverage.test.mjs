@@ -402,7 +402,7 @@ test("fomc: statements parse in both forms, with grouped dissents and non-breaki
   assert.deepEqual(s.dissents.map((d) => d.names), [["Stephen I. Miran"], ["Beth M. Hammack", "Lorie K. Logan"]]);
 });
 
-test("index_constituents: the S&P 500 through IVV's N-PORT, weights rescaled to add to 1; the Dow says why it cannot", async () => {
+test("index_constituents: the S&P 500 through IVV's N-PORT, weights rescaled to add to 1; the Dow from its trust's daily holdings", async () => {
   const { s } = session();
   const r = await F.indexConstituents(s, { index: "S&P 500", limit: 3 });
   assert.deepEqual(r.through, { etf: "IVV", fund: "iShares Core S&P 500 ETF", series_id: "S000004310" });
@@ -410,7 +410,12 @@ test("index_constituents: the S&P 500 through IVV's N-PORT, weights rescaled to 
   assert.deepEqual(r.rows.map((x) => [x[0], x[5]]), [["NVIDIA Corp.", 0.075186], ["Apple, Inc.", 0.065934], ["Microsoft Corp.", 0.042989]]);
   const all = await F.indexConstituents(s, { index: "s&p 500", limit: 5000 });
   assert.ok(Math.abs(all.rows.reduce((t, x) => t + x[5], 0) - 1) < 1e-4);
-  await assert.rejects(F.indexConstituents(s, { index: "Dow Jones" }), /unit investment trust, which files no N-PORT/);
+  // DIA is a unit investment trust (no N-PORT); State Street's daily holdings spreadsheet for 3 November 2026.
+  const dow = await F.indexConstituents(s, { index: "Dow Jones", limit: 30 });
+  assert.deepEqual([dow.index, dow.through.etf, dow.as_of, dow.members], ["Dow Jones Industrial Average", "DIA", "2026-11-03", 30]);
+  assert.deepEqual(dow.rows[0], ["GOLDMAN SACHS GROUP INC", "GS", "38141G104", 0.102845, 5113795]);
+  assert.ok(Math.abs(dow.rows.reduce((t, x) => t + x[3], 0) - 1) < 1e-5);
+  assert.match(dow.limits[1], /price-weighted/);
 });
 
 test("off_exchange_volume: Apple's weekly dark pool and OTC volume; venue shares come from the same totals", async () => {

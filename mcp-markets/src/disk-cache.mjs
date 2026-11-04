@@ -30,6 +30,8 @@ export function freshFor(url) {
   if (/^https:\/\/wikimedia\.org\/api\/rest_v1\/metrics\/pageviews\//.test(url)) return 6 * HOUR;
   // EIA's weekly history pages are slow (up to 5 seconds) and are read for the years before this one.
   if (/^https:\/\/www\.eia\.gov\/dnav\//.test(url)) return 6 * HOUR;
+  // Zillow's and Realtor.com's housing files (up to 4.5 MB) change once a month.
+  if (/^https:\/\/files\.zillowstatic\.com\/research\/|^https:\/\/econdata\.s3-us-west-2\.amazonaws\.com\/Reports\//.test(url)) return 12 * HOUR;
   // The IMF's COFER is quarterly.
   if (/^https:\/\/api\.imf\.org\/external\/sdmx\/3\.0\/data\/dataflow\/IMF\.STA\/COFER\//.test(url)) return 6 * HOUR;
   // Indeed's job postings files (up to 12 MB) are refreshed once a week.

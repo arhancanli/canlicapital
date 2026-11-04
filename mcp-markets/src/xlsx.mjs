@@ -1,0 +1,53 @@
+// A spreadsheet's (.xlsx) cells without a library: the zip's entries are found through its central directory and
+// inflated when read, shared strings are resolved, and a worksheet comes back as rows of text, numbers as written.
+import { inflateRawSync } from "node:zlib";
+
+const unescape = (s) => s.replace(/<[^>]+>/g, "").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, "\"").replace(/&apos;/g, "'").replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n))).replace(/&amp;/g, "&");
+
+// Every entry of a zip archive by name, each read (stored or deflated) only when asked for.
+export function zipEntries(bytes, { maxText = 64 * 1024 * 1024 } = {}) {
+  const buf = Buffer.from(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  let eocd = -1;
+  for (let i = buf.length - 22; i >= Math.max(0, buf.length - 65557); i--) if (buf.readUInt32LE(i) === 0x06054b50) { eocd = i; break; }
+  if (eocd < 0) throw new Error("not a zip archive");
+  const entries = new Map();
+  let at = buf.readUInt32LE(eocd + 16);
+  for (let k = buf.readUInt16LE(eocd + 10); k > 0; k--) {
+    if (at + 46 > buf.length || buf.readUInt32LE(at) !== 0x02014b50) throw new Error("zip central directory is damaged");
+    const method = buf.readUInt16LE(at + 10), compressed = buf.readUInt32LE(at + 20), size = buf.readUInt32LE(at + 24);
+    const nameLength = buf.readUInt16LE(at + 28), local = buf.readUInt32LE(at + 42);
+    const name = buf.toString("utf8", at + 46, at + 46 + nameLength);
+    at += 46 + nameLength + buf.readUInt16LE(at + 30) + buf.readUInt16LE(at + 32);
+    entries.set(name, () => {
+      if (local + 30 > buf.length || buf.readUInt32LE(local) !== 0x04034b50) throw new Error(`zip entry ${name} not found`);
+      const start = local + 30 + buf.readUInt16LE(local + 26) + buf.readUInt16LE(local + 28);
+      if (size > maxText || start + compressed > buf.length) throw new Error(`zip entry ${name} is too large or runs past the archive`);
+      const data = buf.subarray(start, start + compressed);
+      if (method === 0) return data;
+      if (method === 8) return inflateRawSync(data, { maxOutputLength: maxText });
+      throw new Error(`zip compression method ${method} is not supported`);
+    });
+  }
+  return entries;
+}
+
+// A worksheet as rows of cell text (the first sheet unless another is named by number).
+export function xlsxRows(bytes, sheet = 1) {
+  const entries = zipEntries(bytes);
+  const read = (name) => (entries.has(name) ? entries.get(name)().toString("utf8") : null);
+  const shared = [...(read("xl/sharedStrings.xml") ?? "").matchAll(/<si>([\s\S]*?)<\/si>/g)].map((m) => unescape([...m[1].matchAll(/<t\b[^>]*>([\s\S]*?)<\/t>/g)].map((t) => t[1]).join("")));
+  const xml = read(`xl/worksheets/sheet${sheet}.xml`);
+  if (!xml) throw new Error(`The spreadsheet has no sheet ${sheet}.`);
+  const rows = [];
+  for (const r of xml.matchAll(/<row\b[^>]*>([\s\S]*?)<\/row>/g)) {
+    const row = [];
+    for (const c of r[1].matchAll(/<c\b([^>]*?)(?:\/>|>([\s\S]*?)<\/c>)/g)) {
+      const ref = /\br="([A-Z]+)\d+"/.exec(c[1])?.[1], type = /\bt="([^"]+)"/.exec(c[1])?.[1];
+      const v = /<v>([\s\S]*?)<\/v>/.exec(c[2] ?? "")?.[1];
+      const value = type === "s" ? shared[Number(v)] ?? "" : type === "inlineStr" ? unescape(/<is>([\s\S]*?)<\/is>/.exec(c[2] ?? "")?.[1] ?? "") : v == null ? "" : unescape(v);
+      row[ref ? [...ref].reduce((n, ch) => n * 26 + ch.charCodeAt(0) - 64, 0) - 1 : row.length] = value;
+    }
+    rows.push(Array.from(row, (x) => x ?? ""));
+  }
+  return rows;
+}
