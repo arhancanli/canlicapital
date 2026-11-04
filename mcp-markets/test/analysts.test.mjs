@@ -3,7 +3,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { analystHistory, marketMovers } from "../src/analysts.mjs";
+import { analystHistory, etfProfile, marketMovers } from "../src/analysts.mjs";
 import { createSession } from "../src/sources.mjs";
 
 const NOW = Date.parse("2026-11-04T12:00:00Z");
@@ -65,4 +65,23 @@ test("market_movers: a list's stocks with price, change, volume and value, and t
   assert.ok(calls.some((u) => u.includes("scrIds=day_losers&count=5")));
   const { s: empty } = yahoo({ finance: { result: [{ title: "Day Gainers", quotes: [] }] } });
   await assert.rejects(marketMovers(empty, {}), /gainers list is empty/);
+});
+
+test("etf_profile: costs against the category, size, returns, allocation, top holdings and sectors in percent", async () => {
+  const fund = {
+    price: { longName: "State Street SPDR S&P 500 ETF Trust", currency: "USD" },
+    fundProfile: { family: "State Street Investment Management", categoryName: "Large Blend", legalType: "Exchange Traded Fund", feesExpensesInvestment: { annualReportExpenseRatio: { raw: 0.000945 }, annualHoldingsTurnover: { raw: 0.03 } }, feesExpensesInvestmentCat: { annualReportExpenseRatio: { raw: 0.0072176997 } } },
+    topHoldings: { stockPosition: { raw: 0.9975 }, bondPosition: { raw: 0 }, cashPosition: { raw: 0.0025 }, holdings: [{ symbol: "NVDA", holdingName: "NVIDIA Corp", holdingPercent: { raw: 0.0836162 } }], sectorWeightings: [{ realestate: { raw: 0.017 } }, { technology: { raw: 0.4045 } }] },
+    defaultKeyStatistics: { totalAssets: { raw: 809216114688 }, ytdReturn: { raw: 0.111540005 }, fiveYearAverageReturn: { raw: 0.117298804 }, beta3Year: { raw: 0.96 }, fundInceptionDate: { raw: 727660800 } },
+    summaryDetail: { yield: { raw: 0.0099 } },
+  };
+  const { s } = yahoo({ quoteSummary: { result: [fund], error: null } });
+  const r = await etfProfile(s, { symbol: "spy" });
+  assert.deepEqual(r.costs, { expense_ratio_pct: 0.0945, category_average_pct: 0.7218, turnover_pct: 3 });
+  assert.equal(r.inception, "1993-01-22");
+  assert.deepEqual(r.allocation_pct, { stocks: 99.75, bonds: 0, cash: 0.25, preferred: null, convertible: null, other: null });
+  assert.deepEqual(r.top_holdings.rows, [["NVDA", "NVIDIA Corp", 8.3616]]);
+  assert.deepEqual(r.sectors_pct.rows, [["technology", 40.45], ["realestate", 1.7]], "largest first");
+  const { s: stock } = yahoo({ quoteSummary: { result: [{ price: { longName: "Apple Inc." } }], error: null } });
+  await assert.rejects(etfProfile(stock, { symbol: "AAPL" }), /AAPL is not a fund on Yahoo Finance/);
 });

@@ -90,3 +90,35 @@ export async function marketMovers(session, args) {
     limits: ["Yahoo Finance's lists of US stocks as it shows them (delayed quotes); it chooses which stocks qualify (gainers above a minimum price and market value).", "Not investment advice."],
   };
 }
+
+export const etfInput = z.object({
+  symbol: z.string().min(1).max(20).describe("The fund's ticker on Yahoo Finance: SPY, QQQ, VTI, VFIAX."),
+}).strict();
+
+// etf_profile: what a fund costs and holds, from Yahoo Finance's fund profile. The expense ratio beside its
+// category's average, turnover, assets, yield, returns, the top holdings, the mix of stocks, bonds and cash, and
+// the sector weights. fund_portfolio reads every holding from the fund's own N-PORT filing; this is the vendor's
+// current summary.
+export async function etfProfile(session, args) {
+  const a = etfInput.parse(args);
+  const symbol = a.symbol.trim().toUpperCase();
+  const r = await summary(session, symbol, "fundProfile,topHoldings,defaultKeyStatistics,summaryDetail,price");
+  const f = r.fundProfile, t = r.topHoldings, k = r.defaultKeyStatistics ?? {}, s = r.summaryDetail ?? {};
+  if (!f && !t) throw new NotFound(`${symbol} is not a fund on Yahoo Finance (no fund profile).`);
+  const fees = f?.feesExpensesInvestment ?? {}, cat = f?.feesExpensesInvestmentCat ?? {};
+  const weight = (x) => { const v = raw(x); return v === null ? null : Math.round(v * 1e6) / 1e4; };
+  const sectors = (t?.sectorWeightings ?? []).flatMap((o) => Object.entries(o)).map(([k2, v]) => [k2.replace(/_/g, " "), weight(v)]).filter((x) => x[1] !== null).sort((x, y) => y[1] - x[1]);
+  return {
+    symbol, name: r.price?.longName ?? r.price?.shortName ?? null,
+    family: f?.family ?? null, category: f?.categoryName ?? k.category ?? null, legal_type: f?.legalType ?? k.legalType ?? null,
+    inception: day(raw(k.fundInceptionDate)),
+    costs: { expense_ratio_pct: weight(fees.annualReportExpenseRatio), category_average_pct: weight(cat.annualReportExpenseRatio), turnover_pct: weight(fees.annualHoldingsTurnover) },
+    size: { total_assets: raw(k.totalAssets), currency: r.price?.currency ?? null },
+    returns: { yield_pct: weight(s.yield), ytd_pct: weight(k.ytdReturn), five_year_average_pct: weight(k.fiveYearAverageReturn), beta_3y: raw(k.beta3Year) },
+    allocation_pct: { stocks: weight(t?.stockPosition), bonds: weight(t?.bondPosition), cash: weight(t?.cashPosition), preferred: weight(t?.preferredPosition), convertible: weight(t?.convertiblePosition), other: weight(t?.otherPosition) },
+    top_holdings: { columns: ["symbol", "name", "weight_pct"], rows: (t?.holdings ?? []).map((h) => [h.symbol ?? null, h.holdingName ?? null, weight(h.holdingPercent)]) },
+    sectors_pct: { columns: ["sector", "weight_pct"], rows: sectors },
+    source: `https://finance.yahoo.com/quote/${encodeURIComponent(symbol)}/holdings`,
+    limits: ["Yahoo Finance's fund profile (a vendor's summary, from the fund's reports through a data provider); every holding as the fund itself filed it is in fund_portfolio (SEC N-PORT).", "Not investment advice."],
+  };
+}
