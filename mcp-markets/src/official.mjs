@@ -392,16 +392,17 @@ export const PUBLISHERS = {
   },
   bcb: {
     name: "Banco Central do Brasil", page: { url: "https://www3.bcb.gov.br/sgspub/", example: "bcb:13522" },
-    read: async (session, code, { want, from }) => {
+    read: async (session, code, { want, from, daily }) => {
       if (!/^\d{1,6}$/.test(code)) throw new Error("Banco Central do Brasil codes are SGS series numbers, e.g. 13522 (IPCA over twelve months) or 432 (the Selic target).");
       const br = (iso) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}/${iso.slice(0, 4)}`;
       const range = (since) => `https://api.bcb.gov.br/dados/serie/bcdata.sgs.${code}/dados?formato=json&dataInicial=${br(since)}`;
       // The latest twenty first (the most the API gives that way), then a date range when more are wanted:
       // daily series by days, the rest by months. Daily ranges are limited to ten years.
-      let url = from ? range(from) : `https://api.bcb.gov.br/dados/serie/bcdata.sgs.${code}/dados/ultimos/20?formato=json`;
+      // A daily measure (a policy rate, an exchange rate) goes straight to its range.
+      let url = from ? range(from) : daily && want > 20 ? range(new Date(session.now() - Math.min(3600, Math.ceil(want * 1.5)) * 86400000).toISOString().slice(0, 10)) : `https://api.bcb.gov.br/dados/serie/bcdata.sgs.${code}/dados/ultimos/20?formato=json`;
       let d = await getJson(session, url);
       if (!Array.isArray(d) || !d.length) throw new NotFound(`Banco Central do Brasil has no observations for series ${code}.`);
-      if (!from && want > 20 && d.length === 20) {
+      if (!from && !daily && want > 20 && d.length === 20) {
         const daily = !compactDates(d.map((o) => [period(o.data), 1])).every(([p]) => /^\d{4}-\d{2}$/.test(p));
         const back = daily ? Math.min(3600, Math.ceil(want * 1.5)) : Math.ceil(want * 31);
         url = range(new Date(session.now() - back * 86400000).toISOString().slice(0, 10));
@@ -933,12 +934,14 @@ export async function worldSeries(session, args) {
   const inflight = new Map();
   if (single) {
     const c = countries[0];
-    const { r, link, others } = await readMeasure(session, measure, c, { want, from, inflight });
+    // check: the second publisher is read while the first is, not after (the reads share one request each).
+    if (a.check) for (const l of chain(measure, c).slice(0, 2)) readSpec(session, l, { want, from, inflight, daily: m.daily }).catch(() => null);
+    const { r, link, others } = await readMeasure(session, measure, c, { want, from, inflight, daily: m.daily });
     const rows = keepFrom(r.rows, from0).slice(-shown);
     let check = null;
     if (a.check) {
       for (const o of others) {
-        try { check = compare(r, await readSpec(session, o, { want, from, inflight }), m, link.note); break; } catch (err) { check = { other: { series: [o.s].flat()[0], by: o.by }, error: String(err?.message ?? err).slice(0, 200) }; }
+        try { check = compare(r, await readSpec(session, o, { want, from, inflight, daily: m.daily }), m, link.note); break; } catch (err) { check = { other: { series: [o.s].flat()[0], by: o.by }, error: String(err?.message ?? err).slice(0, 200) }; }
       }
       if (!check) check = { note: `No second publisher carries this measure for ${c.name} here.` };
     }
@@ -959,7 +962,7 @@ export async function worldSeries(session, args) {
   const failed = new Set();
   const prefetched = await prefetch(session, countries.map((c) => chain(measure, c)[0]), { want, from }, failed);
   const results = await limited(countries, 6, async (c) => {
-    try { return { c, ...(await readMeasure(session, measure, c, { want, from, prefetched, failed, inflight })) }; } catch (err) { return { c, error: String(err?.message ?? err).slice(0, 300) }; }
+    try { return { c, ...(await readMeasure(session, measure, c, { want, from, prefetched, failed, inflight, daily: m.daily })) }; } catch (err) { return { c, error: String(err?.message ?? err).slice(0, 300) }; }
   });
   const ok = results.filter((x) => !x.error);
   if (!ok.length) throw new NotFound(`No publisher answered for any of them: ${results.map((x) => `${x.c.name}: ${x.error}`).join("; ").slice(0, 900)}`);
@@ -998,7 +1001,7 @@ async function overview(session, a) {
   const got = await Promise.all(Object.keys(MEASURES).map(async (measure) => {
     const m = MEASURES[measure];
     try {
-      const { r, link } = await readMeasure(session, measure, c, { want: 1 + (m.daily ? 380 : 13), inflight });
+      const { r, link } = await readMeasure(session, measure, c, { want: 1 + (m.daily ? 380 : 13), inflight, daily: m.daily });
       const s = summary(r.rows);
       return { measure, row: [measure, s.latest.period, s.latest.value, s.year_ago?.value ?? null, link.quote ?? null, link.by, r.code], url: r.url, stale: staleSince(session, r.rows) };
     } catch (err) { return { measure, error: String(err?.message ?? err).slice(0, 200) }; }
