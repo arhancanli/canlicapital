@@ -226,7 +226,7 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
       const change = before.val ? round(((v.val - before.val) / Math.abs(before.val)) * 100) : null;
       await fire(rule, `${who}'s ${what} for ${span} changed from ${before.val} to ${v.val}${unit ? ` ${unit}` : ""}${change === null ? "" : ` (${change > 0 ? "+" : ""}${change}%)`} in a ${form} filed ${plain(v.filed, 10)}`, SEEN.facts,
         { company: who, cik, concept: what, unit, start: v.start ?? null, end: v.end, from: before.val, to: v.val, change_percent: change, from_filing: { form: plain(before.form, 20), filed: plain(before.filed, 10), accession: plain(before.accn, 25) }, form, filed: plain(v.filed, 10), accession, url },
-        async () => ({ vintages: { columns: ["start", "end", "filed", "form", "accn", "val"], rows: rows.filter((x) => `${x.start ?? ""}/${x.end}${x.tag ? `/${x.tag}` : ""}` === period).map((x) => [x.start ?? null, x.end, plain(x.filed, 10), plain(x.form, 20), plain(x.accn, 25), x.val]) }, filing: { form, accession, url } }));
+        async () => ({ vintages: { columns: ["start", "end", "filed", "form", "accn", "val"], rows: rows.filter((x) => `${x.start ?? ""}/${x.end}${x.tag ? `/${x.tag}` : ""}` === period).map((x) => [day(x.start), day(x.end), day(x.filed), plain(x.form, 20), accn(x.accn), num(x.val)]) }, filing: { form, accession: accn(accession), url } }));
     }
   }
 
@@ -252,7 +252,7 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
     const claim = checks.map(([side, x, ok]) => `${side} ${x}: ${ok ? "yes" : "no"}`).join(", ");
     await fire(rule, `${who} reported ${what} for ${span}: ${v.val}${unit ? ` ${unit}` : ""} in a ${form} filed ${plain(v.filed, 10)}${claim ? `; ${claim}` : ""}`, SEEN.facts,
       { company: who, cik, concept: what, unit, start: v.start ?? null, end: v.end, value: v.val, form, filed: plain(v.filed, 10), accession, url, ...(checks.length ? { claim: { ...(rule.above !== undefined ? { above: rule.above } : {}), ...(rule.below !== undefined ? { below: rule.below } : {}), met } } : {}) },
-      async () => ({ filing: { form, accession, url } }));
+      async () => ({ filing: { form, accession: accn(accession), url } }));
   }
 
   // Several insiders trading the same way in the open market within days: Form 4 code P (a purchase) or S (a sale),
