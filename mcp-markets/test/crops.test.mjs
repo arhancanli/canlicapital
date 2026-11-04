@@ -71,3 +71,12 @@ test("the USDA's own record of this month's projections beside them: world wheat
   assert.equal(soy.reliability.rows.find((x) => x[0] === "Ending Stocks")[1], 42.5);
   assert.equal((await run({ commodity: "corn" })).reliability, undefined, "corn's record is not on the world reliability pages");
 });
+
+test("US meats: two projection years, each with its own revision, per capita in pounds a person", async () => {
+  // Checked against the report's text version: Beef 2026 Proj. Sep 24945, Oct 24870; 2027 Proj. Sep 24903, Oct 24743.
+  const beef = await run({ commodity: "beef" });
+  assert.deepEqual(beef.columns, ["attribute", "unit", "2025", "2026 Proj. (Sep)", "2026 Proj. (Oct)", "change Sep to Oct (2026)", "2027 Proj. (Sep)", "2027 Proj. (Oct)", "change Sep to Oct (2027)"]);
+  assert.deepEqual(beef.rows.find((x) => x[0] === "Production"), ["Production", "million pounds", 26071, 24945, 24870, -75, 24903, 24743, -160]);
+  assert.deepEqual(beef.rows.find((x) => x[0] === "Per Capita").slice(0, 3), ["Per Capita", "pounds per person (retail weight)", 59.2]);
+  assert.equal((await run({ commodity: "chicken" })).rows.find((x) => x[0] === "Production")[4], 49188);
+});

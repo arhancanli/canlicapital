@@ -23,7 +23,7 @@ export const COMMODITIES = Object.freeze({
 const REGION_NAMES = { us: "United States", usa: "United States", "u.s.": "United States", america: "United States", eu: "European Union", europe: "European Union", "euro area": "European Union" };
 
 export const cropInput = z.object({
-  commodity: z.string().min(2).max(40).describe("wheat, corn, coarse grains, rice, cotton, soybeans, soybean meal or soybean oil (world and US); sorghum, barley, oats or feed grains (US only)."),
+  commodity: z.string().min(2).max(40).describe("wheat, corn, coarse grains, rice, cotton, soybeans, soybean meal or soybean oil (world and US); sorghum, barley, oats, feed grains, beef, pork, broilers, turkey, red meat or poultry (US only)."),
   region: z.string().min(2).max(60).optional().describe("A country or region in the USDA's table (China, Brazil, European Union, World...); United States gives the US balance sheet with its farm price; \"all\" for every country at this month's projection. Default World."),
   report: z.string().regex(/^\d{4}-\d{2}$/).optional().describe("The report's month, YYYY-MM; default the latest."),
 }).strict();
@@ -33,11 +33,12 @@ const clean = (s) => String(s ?? "").replace(/\r\n|\s+/g, " ").replace(/\s*\/?\d
 const number = (s) => { const t = String(s ?? "").replace(/,/g, "").replace(/\s*\*+\s*$/, "").trim(); const n = Number(t); return t === "" || !Number.isFinite(n) ? null : n; };
 
 // The commodity a request names: the most specific first ("soybean meal" before "soybeans").
-const RULES = [[/meal/, "soybean_meal"], [/soy\w*\s*oil|soyoil/, "soybean_oil"], [/feed grain/, "feed_grains"], [/coarse/, "coarse_grains"], [/corn|maize/, "corn"], [/wheat/, "wheat"], [/rice/, "rice"], [/cotton/, "cotton"], [/sorghum/, "sorghum"], [/barley/, "barley"], [/\boats?\b/, "oats"], [/soy/, "soybeans"]];
+const RULES = [[/meal/, "soybean_meal"], [/soy\w*\s*oil|soyoil/, "soybean_oil"], [/feed grain/, "feed_grains"], [/coarse/, "coarse_grains"], [/corn|maize/, "corn"], [/wheat/, "wheat"], [/rice/, "rice"], [/cotton/, "cotton"], [/sorghum/, "sorghum"], [/barley/, "barley"], [/\boats?\b/, "oats"], [/soy/, "soybeans"], [/red meat/, "red_meat"], [/beef|cattle/, "beef"], [/pork|hog/, "pork"], [/broiler|chicken/, "broilers"], [/turkey/, "turkey"], [/poultry/, "poultry"]];
 
 // The US balance sheets, with the season-average farm price: each by its page, its table's place on the page and the
 // units the report prints for it (the XML spreads a unit over cells, so they are named here, as the report shows them).
 const BU = { area: "million acres", yield: "bushels per acre", qty: "million bushels" };
+const MEAT = { qty: "million pounds", per_capita: "pounds per person (retail weight)" };
 export const US_TABLES = Object.freeze({
   corn: { page: /^U\.S\. Feed Grain and Corn/i, matrix: 2, units: BU },
   feed_grains: { page: /^U\.S\. Feed Grain and Corn/i, matrix: 1, units: { area: "million acres", yield: "metric tons per acre", qty: "million metric tons" } },
@@ -50,10 +51,17 @@ export const US_TABLES = Object.freeze({
   soybean_oil: { page: /^U\.S\. Soybeans and Products/i, matrix: 2, units: { qty: "million pounds" } },
   soybean_meal: { page: /^U\.S\. Soybeans and Products/i, matrix: 3, units: { qty: "thousand short tons" } },
   cotton: { page: /^U\.S\. Cotton Supply/i, matrix: 1, units: { area: "million acres", yield: "pounds per acre", qty: "million 480-pound bales", price: "cents per pound" } },
+  beef: { page: /^U\.S\. Meats Supply/i, commodity: /^Beef$/i, units: MEAT },
+  pork: { page: /^U\.S\. Meats Supply/i, commodity: /^Pork$/i, units: MEAT },
+  red_meat: { page: /^U\.S\. Meats Supply/i, commodity: /^Total\s*Red\s*Meat/i, units: MEAT },
+  broilers: { page: /^U\.S\. Meats Supply/i, commodity: /^Broiler/i, units: MEAT },
+  turkey: { page: /^U\.S\. Meats Supply/i, commodity: /^Turkey/i, units: MEAT },
+  poultry: { page: /^U\.S\. Meats Supply/i, commodity: /^Total\s*Poultry/i, units: MEAT },
 });
 const unitOf = (attribute, units) => {
   if (/price/i.test(attribute)) return attribute.match(/\(([^)]*\/[^)]*)\)/)?.[1] ?? units.price ?? null;
   if (/milling yield/i.test(attribute)) return "percent";
+  if (/per capita/i.test(attribute)) return units.per_capita ?? null;
   if (/yield/i.test(attribute)) return units.yield ?? null;
   if (/^(area|planted|harvested)/i.test(attribute)) return units.area ?? null;
   return units.qty;
@@ -73,16 +81,17 @@ export function reportsFrom(html) {
 // Every figure in a sub-report as a record: its region, attribute, market year and (for the projection) the month
 // it was projected in.
 export function wasdeTables(xml) {
-  const root = parseXml(xml.replace(/^﻿/, ""));
+  const root = parseXml(xml.replace(/^\uFEFF/, ""));
   const tables = [];
   const walk = (el, ctx, out) => {
     const c = { ...ctx };
     const matrix = /^matrix(\d+)$/.exec(el.name);
     if (matrix) c.matrix = Number(matrix[1]);
     for (const [k, v] of Object.entries(el.attrs)) {
-      if (/^cell_value/.test(k)) { const n = number(v); if (n != null && c.attribute) out.push({ ...c, value: n }); continue; }
-      const key = k.replace(/\d+$/, "");
-      if (["region", "attribute", "forecast_month", "market_year", "region_header"].includes(key)) c[key === "region_header" ? "market_year" : key] = String(v).replace(/\r\n/g, " ").trim();
+      // Field names come bare (attribute1) or with their table's prefix (m1_attribute1).
+      const key = k.replace(/^m\d+_/, "").replace(/\d+$/, "");
+      if (key === "cell_value") { const n = number(v); if (n != null && c.attribute) out.push({ ...c, value: n }); continue; }
+      if (["region", "attribute", "forecast_month", "market_year", "region_header", "commodity"].includes(key)) c[key === "region_header" ? "market_year" : key] = String(v).replace(/\r\n/g, " ").trim();
     }
     for (const ch of el.children) walk(ch, c, out);
   };
@@ -133,6 +142,22 @@ export function reliabilityOf(tables, commodity, region) {
   };
 }
 
+// A table's columns: each market year, a projection as last month and this month set it, and the revision after
+// each projection pair (the meat tables project two years).
+function layout(records) {
+  const cols = [...new Map(records.map((r) => [`${r.market_year}|${r.forecast_month ?? ""}`, { year: r.market_year, month: r.forecast_month ?? "" }])).values()];
+  const pairs = new Set(cols.filter((c) => c.month).map((c) => c.year)).size;
+  const out = [];
+  for (const c of cols) {
+    out.push(c);
+    const pair = cols.filter((x) => x.year === c.year && x.month);
+    if (c.month && pair.length >= 2 && c === pair.at(-1)) out.push({ year: c.year, change: true, from: pair.at(-2), to: c, header: `change ${pair.at(-2).month} to ${c.month}${pairs > 1 ? ` (${c.year.replace(/\s*Proj\.?$/i, "")})` : ""}` });
+  }
+  return out.map((c) => ({ ...c, header: c.header ?? (c.month ? `${c.year} (${c.month})` : c.year) }));
+}
+const cellOf = (get, c) => (c.change ? round(get(c.to) - get(c.from)) : get(c));
+const revisions = (rows, cols, get, extra = () => ({})) => cols.filter((c) => c.change).flatMap((c) => rows.filter((r) => { const d = round(get(r[0], c.to) - get(r[0], c.from)); return d != null && d !== 0; }).map((r) => ({ attribute: r[0], ...extra(r), market_year: c.year, [c.from.month]: get(r[0], c.from), [c.to.month]: get(r[0], c.to), change: round(get(r[0], c.to) - get(r[0], c.from)) })));
+
 // A commodity's balance sheet: one row an attribute, one column a market year (the projection twice: last month's and
 // this month's), with the change between them.
 export function balanceSheet(tables, commodity, region) {
@@ -159,9 +184,10 @@ export function balanceSheet(tables, commodity, region) {
   const want = String(region ?? "World").toLowerCase();
   const reg = regions.find((r) => r.toLowerCase() === (REGION_NAMES[want] ?? want).toLowerCase()) ?? regions.find((r) => r.toLowerCase().startsWith((REGION_NAMES[want] ?? want).toLowerCase()));
   if (!reg) throw new NotFound(`The USDA's world ${commodity.replace("_", " ")} table has no region "${region}". It has: ${regions.join(", ")}.`);
-  const rows = attributes.map((a) => [a, ...columns.map((c) => value(reg, a, c)), ...(before && now ? [round(value(reg, a, now) - value(reg, a, before))] : [])]);
-  const changes = before && now ? rows.filter((r) => r.at(-1)).map((r) => ({ attribute: r[0], [before.month]: value(reg, r[0], before), [now.month]: value(reg, r[0], now), change: r.at(-1) })) : [];
-  return { unit, region: reg, regions, columns: ["attribute", ...columns.map(label), ...(before && now ? [`change ${before.month} to ${now.month}`] : [])], rows, changes };
+  const cols = layout(records);
+  const get = (a, c) => value(reg, a, c);
+  const rows = attributes.map((a) => [a, ...cols.map((c) => cellOf((x) => get(a, x), c))]);
+  return { unit, region: reg, regions, columns: ["attribute", ...cols.map((c) => c.header)], rows, changes: revisions(rows, cols, get) };
 }
 const round = (x) => (x == null || !Number.isFinite(x) ? null : Math.round(x * 1000) / 1000 || 0);
 
@@ -170,19 +196,17 @@ export function usBalanceSheet(tables, commodity) {
   const t = US_TABLES[commodity];
   const page = tables.find((x) => t.page.test(x.title));
   if (!page) throw new NotFound(`This WASDE report has no US ${commodity.replace("_", " ")} page.`);
-  const records = page.records.filter((r) => r.matrix === t.matrix).map((r) => ({ ...r, attribute: clean(r.attribute) }));
+  const records = page.records.filter((r) => (t.commodity ? t.commodity.test(clean(r.commodity)) : r.matrix === t.matrix)).map((r) => ({ ...r, attribute: clean(r.attribute) }));
   if (!records.length) throw new NotFound(`The US ${commodity.replace("_", " ")} table is not where the report usually prints it.`);
-  const columns = [...new Map(records.map((r) => [`${r.market_year}|${r.forecast_month ?? ""}`, { year: r.market_year, month: r.forecast_month ?? "" }])).values()];
-  const projections = columns.filter((c) => c.month);
-  const [before, now] = projections.slice(-2);
+  const cols = layout(records);
   const attributes = [...new Set(records.map((r) => r.attribute))];
   const value = (attr, c) => records.find((r) => r.attribute === attr && r.market_year === c.year && (r.forecast_month ?? "") === c.month)?.value ?? null;
-  const rows = attributes.map((a) => [a, unitOf(a, t.units), ...columns.map((c) => value(a, c)), ...(before && now ? [round(value(a, now) - value(a, before))] : [])]);
+  const rows = attributes.map((a) => [a, unitOf(a, t.units), ...cols.map((c) => cellOf((x) => value(a, x), c))]);
   return {
     unit: "per line (see the unit column)", region: "United States",
-    columns: ["attribute", "unit", ...columns.map((c) => (c.month ? `${c.year} (${c.month})` : c.year)), ...(before && now ? [`change ${before.month} to ${now.month}`] : [])],
+    columns: ["attribute", "unit", ...cols.map((c) => c.header)],
     rows,
-    changes: before && now ? rows.filter((r) => r.at(-1)).map((r) => ({ attribute: r[0], unit: r[1], [before.month]: value(r[0], before), [now.month]: value(r[0], now), change: r.at(-1) })) : [],
+    changes: revisions(rows, cols, value, (r) => ({ unit: r[1] })),
   };
 }
 
@@ -212,7 +236,7 @@ export async function cropOutlook(session, args) {
     sources: [PUBLICATION, report.url],
     limits: [
       "The USDA's World Agricultural Outlook Board estimates; earlier years are revised as countries report.",
-      "The world tables and the US crop balance sheets; the livestock, dairy and sugar tables are not read yet.",
+      "The world tables, the US crop balance sheets and the US meats; the dairy, egg and sugar tables are not read yet.",
       "Not investment advice.",
     ],
   };
