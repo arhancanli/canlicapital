@@ -148,7 +148,7 @@ against the BIS (21 of 21 agreed on 2026-10-15).
 | `volatility_surface` | Implied volatility term structure, 25-delta skew and the smile | Cboe delayed quotes |
 | `futures_curve` | The VIX futures curve (and other Cboe futures) against the index: contango or backwardation | Cboe settlements |
 | `market_overview` | The market at a glance: US indices and the VIX, the eleven sectors ranked by the month, Treasury yields, the dollar and major currencies, oil, gas, gold, silver, copper, bitcoin, ether and the main markets abroad, each over a day, a week, a month, three months, the year to date and a year | Yahoo Finance chart data (no key) |
-| `price_history` | Daily to monthly bars for stocks in the US and abroad, currencies, futures, indices and crypto, adjusted, with dividends and splits, as columns | Yahoo Finance (no key), or Alpaca or Tiingo (your key) for US stocks |
+| `price_history` | One-minute to monthly bars (minute bars for the last 30 to 60 days) for stocks in the US and abroad, currencies, futures, indices and crypto, adjusted, with dividends and splits, as columns | Yahoo Finance (no key), or Alpaca or Tiingo (your key) for US stocks |
 | `treasury_auctions` | How each Treasury auction went (yield, bid-to-cover, who bought) and which auctions come next | US Treasury Fiscal Data |
 | `federal_debt` | The US debt each business day, and the average rate the Treasury pays on it | US Treasury Fiscal Data |
 | `treasury_cash` | The Treasury's cash at the Fed each business day since 2005 (the TGA), and the day's largest deposits and withdrawals | Daily Treasury Statement (Fiscal Data) |

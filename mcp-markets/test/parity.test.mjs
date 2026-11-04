@@ -10,6 +10,7 @@ import { federalBudget, treasuryCash } from "../src/fiscal.mjs";
 import { marketCalendar } from "../src/nasdaq.mjs";
 import { calendar, easter, marketHours } from "../src/hours.mjs";
 import { createSession } from "../src/sources.mjs";
+import { priceHistory } from "../src/tools.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
 
 const session = () => createSession({ fetchImpl: replayFetch().fetchImpl, now: () => NOW, env: {} });
@@ -134,4 +135,15 @@ test("market_calendar: Nasdaq's earnings, ex-dividend and split calendars, large
   const splits = await marketCalendar(s, { kind: "splits", date: "2026-11-05" });
   assert.deepEqual(splits.rows.find((r) => r[0] === "SNDK"), ["SNDK", "Sandisk Corporation", "8:1", "2026-11-20"]);
   await assert.rejects(marketCalendar(s, { kind: "earnings", date: "2026-11-05", symbols: ["ZZZZ"] }), /None of ZZZZ is on Nasdaq's earnings calendar/);
+});
+
+test("price_history minute bars: stamped in the exchange's time on both sides of a daylight-saving change, and refused beyond what the source keeps", async () => {
+  const at = Date.parse("2026-11-04T15:00:00Z");
+  const chart = { chart: { result: [{ meta: { gmtoffset: -18000, exchangeTimezoneName: "America/New_York", currency: "USD", exchangeName: "NMS", instrumentType: "EQUITY" }, timestamp: [Date.parse("2026-10-30T13:30:00Z") / 1000, Date.parse("2026-11-02T14:30:00Z") / 1000], indicators: { quote: [{ open: [1, 2], high: [1, 2], low: [1, 2], close: [1, 2], volume: [10, 20] }], adjclose: [{ adjclose: [1, 2] }] } }], error: null } };
+  const urls = [];
+  const s = createSession({ fetchImpl: async (url) => { urls.push(String(url)); return new Response(JSON.stringify(chart)); }, now: () => at, env: {} });
+  const r = await priceHistory(s, { symbol: "AAPL", interval: "5Min" });
+  assert.deepEqual(r.dates, ["2026-10-30T09:30", "2026-11-02T09:30"], "09:30 in New York on Friday (daylight time) and Monday (standard time)");
+  assert.match(urls[0], /interval=5m/);
+  await assert.rejects(priceHistory(s, { symbol: "AAPL", interval: "1Min", start: "2026-09-01" }), /1Min bars go back 30 days on the keyless source; start on or after 2026-10-06/);
 });
