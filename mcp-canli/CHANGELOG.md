@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Vendors' own MCP servers by name: `canli-mcp upstream add fmp` (and alphavantage, financialdatasets, unusualwhales, quiver, valuein, coinmarketcap, dune, which take the vendor's key, and coingecko, coinpaprika, dexpaprika, cryptocom, etherscan, blockscout, kalshi, gate, which need none). The answer names the variables to set; an address given on the command line wins over the preset. `canli-mcp upstream presets` lists them. The eight keyless servers were connected through the gateway on 2026-11-04 (2.5 to 3.7 s each). The only tools held back as changing things were CoinPaprika's and DexPaprika's submitFeedback and Kalshi's price-alert writers.
+- bench/rivals/rivals-census-2026-11-04.json: the tool lists of 165 finance MCP servers (5,979 tools; 80 vendor-official, 26 enterprise, 59 community), each with where it was read, how it is set up and whether the list is complete.
+
 ## 0.18.0
 
 - `canli-mcp setup`: canli-mcp added to every MCP client found on the machine in one command (Claude Desktop, Cursor, Windsurf, VS Code, Gemini CLI, Kiro, LM Studio, Amazon Q, Codex). Each gets one `canli` entry in its own format (VS Code's `servers` with `type: "stdio"`, Codex's TOML), the rest of the file is kept and a copy saved beside it. A file with comments is left alone, with the entry to add by hand, and an existing different `canli` entry is never replaced. `--dry-run`, `--only`, `--remove`, `--json`.

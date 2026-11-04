@@ -439,6 +439,13 @@ npx canli-mcp upstream add local --env 'TOKEN=${LOCAL_TOKEN}' -- npx -y some-mcp
 npx canli-mcp upstream list
 ```
 
+Vendors' own servers go in by name: `npx canli-mcp upstream add fmp`, then set `FMP_API_KEY` where
+canli-mcp runs. `canli-mcp upstream presets` lists them. coingecko, coinpaprika, dexpaprika, cryptocom,
+etherscan, blockscout, kalshi and gate need no key; each was connected through canli-mcp on
+2026-11-04. fmp, alphavantage, financialdatasets, unusualwhales, quiver, valuein, coinmarketcap and
+dune take the vendor's key, as its docs describe. A vendor that signs in only through a browser
+(OAuth) is added in your MCP client directly.
+
 Each server is a pack under the name you gave it. A tool whose name is already taken here gets that
 name in front (`vendor_history`). Write keys as `${NAME}`: canli-mcp reads them from its environment
 when it starts, so `CANLI_HOME/upstreams.json` (readable only by you) need hold no secret. A command

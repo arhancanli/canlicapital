@@ -56,7 +56,28 @@ test("canli-mcp upstream add, list and remove keep an owner-only file and warn a
   upstreamCommand(home, ["remove", "local"]);
   assert.deepEqual(upstreamCommand(home, ["list"]).servers.map((s) => s.name), ["vendor"]);
   assert.throws(() => upstreamCommand(home, ["add", "BadName", "https://x"]), /lowercase letters/);
-  assert.throws(() => upstreamCommand(home, ["add", "nothing"]), /a url or a command/);
+  assert.throws(() => upstreamCommand(home, ["add", "nothing"]), /nothing is not a preset \(coingecko, .*\): give its url, or -- and its command/);
+});
+
+test("presets: a vendor's own server by its name alone, with the variables it needs named and never a key written out", () => {
+  const home = mkdtempSync(path.join(tmpdir(), "canli-up-"));
+  const fmp = upstreamCommand(home, ["add", "fmp"]);
+  assert.deepEqual(fmp.set_first, ["FMP_API_KEY"]);
+  assert.match(fmp.next, /^Set FMP_API_KEY in canli-mcp's environment, then restart/);
+  assert.equal(fmp.where, "financialmodelingprep.com");
+  const gecko = upstreamCommand(home, ["add", "coingecko"]);
+  assert.equal(gecko.set_first, undefined, "keyless");
+  const whales = upstreamCommand(home, ["add", "unusualwhales", "--tools", "get_*"]);
+  assert.deepEqual(whales.set_first, ["UW_API_KEY"]);
+  const saved = JSON.parse(readFileSync(path.join(home, "upstreams.json"), "utf8"));
+  assert.deepEqual(saved.fmp, { url: "https://financialmodelingprep.com/mcp?apikey=${FMP_API_KEY}" });
+  assert.deepEqual(saved.unusualwhales, { tools: ["get_*"], url: "https://api.unusualwhales.com/api/mcp", headers: { Authorization: "Bearer ${UW_API_KEY}" } });
+  assert.equal(JSON.stringify(saved).includes("about"), false, "the description stays out of the file");
+  const own = upstreamCommand(home, ["add", "coinpaprika", "https://example.com/mcp"]);
+  assert.equal(own.where, "example.com", "an address given wins over the preset");
+  const list = upstreamCommand(home, ["presets"]).presets;
+  assert.deepEqual(list.find((p) => p.name === "alphavantage").needs, ["ALPHAVANTAGE_API_KEY"]);
+  assert.deepEqual(list.find((p) => p.name === "kalshi").needs, []);
 });
 
 async function connect(upstreams, extra = {}) {
