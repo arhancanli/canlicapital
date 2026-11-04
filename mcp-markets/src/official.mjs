@@ -689,6 +689,7 @@ export const MEASURES = {
     basis: "Industrial production (volume), percent change on the same month a year earlier.",
     national: {
       US: { s: "fred:INDPRO", yoy: true, by: "Federal Reserve (G.17), through FRED", title: "Industrial production index, seasonally adjusted: change on a year" },
+      BR: { s: "ibge:8888/v/11602/c544/129314", by: "IBGE (PIM-PF)", title: "Industrial production, general industry: change on the same month a year earlier" },
     },
     eu: (c) => batched("eurostat:sts_inpr_m?geo={}&nace_r2=B-D&s_adj=CA&unit=PCH_SM&indic_bt=PRD", geo(c, "EA21"), { by: `Eurostat, from ${c.code === "EA" ? "the members'" : `${c.name}'s`} statistics office`, title: "Production in industry (mining, manufacturing, energy), calendar adjusted: change on the same month a year earlier" }),
     oecd: (c) => kei(c, "M.PRVM.GR.BTE.Y.GY", { title: "Industrial production (mining, manufacturing, energy), seasonally adjusted: change on a year" }),
@@ -700,6 +701,8 @@ export const MEASURES = {
     national: {
       US: { s: "fred:RRSFS", yoy: true, by: "U.S. Census Bureau, deflated by FRED", title: "Real retail and food services sales: change on a year" },
       GB: { s: "ons:J5EK/DRSI", yoy: true, by: "Office for National Statistics", title: "Retail sales volume, all retailers including fuel, seasonally adjusted: change on a year" },
+      BR: { s: "ibge:8880/v/11709/c11046/56734", by: "IBGE (PMC)", title: "Retail sales volume: change on the same month a year earlier" },
+      CA: { s: "statcan:1446859483", yoy: true, by: "Statistics Canada", title: "Total retail sales in current dollars (not volume), seasonally adjusted: change on a year" },
     },
     eu: (c) => batched("eurostat:sts_trtu_m?geo={}&nace_r2=G47&s_adj=CA&unit=PCH_SM&indic_bt=VOL_SLS", geo(c, "EA21"), { by: `Eurostat, from ${c.code === "EA" ? "the members'" : `${c.name}'s`} statistics office`, title: "Retail trade volume, calendar adjusted: change on the same month a year earlier" }),
     oecd: (c) => kei(c, "M.TOVM.GR.G47.Y.GY", { title: "Retail trade volume, seasonally adjusted: change on a year" }),
@@ -711,6 +714,7 @@ export const MEASURES = {
     national: {
       US: { s: "fred:CES0500000003", yoy: true, by: "U.S. Bureau of Labor Statistics, through FRED", title: "Average hourly earnings, all private employees: change on a year" },
       GB: { s: "ons:KAI9/LMS", by: "Office for National Statistics", title: "Average weekly earnings, regular pay, whole economy: three-month average, change on a year" },
+      CA: { s: "statcan:105812645", yoy: true, by: "Statistics Canada (Labour Force Survey)", title: "Average hourly wages of employees, 15 and over: change on a year" },
     },
     oecd: (c) => kei(c, "M.H_EARN.GR.C.Y.GY", { title: "Hourly earnings in manufacturing, seasonally adjusted: change on a year" }),
     tolerance: 0.5,

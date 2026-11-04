@@ -192,8 +192,8 @@ test("a euro member's policy rate is the ECB's, read once for all three, said so
 
 test("a country's whole economy in one call, each figure from its own publisher", async () => {
   const { r } = await run({ country: "Brazil", measure: "all" });
-  assert.deepEqual(r.rows.map((x) => x.slice(0, 4)), [["inflation", "2026-09", 4.58, 5.17], ["unemployment", "2026-09", 5.2, 5.6], ["gdp_growth", "2026-Q2", 2, 2.4], ["policy_rate", "2026-11-04", 13.75, 15], ["exchange_rate", "2026-11-04", 5.4778, 5.3846], ["government_debt", "2026-Q1", 91.8, 87.8], ["house_prices", "2026-Q2", 5.2362, 5.3575]]);
-  assert.deepEqual(r.rows.map((x) => x[6].split(":")[0]), ["bcb", "bcb", "ibge", "bcb", "bcb", "bis", "bis"]);
+  assert.deepEqual(r.rows.map((x) => x.slice(0, 4)), [["inflation", "2026-09", 4.58, 5.17], ["unemployment", "2026-09", 5.2, 5.6], ["gdp_growth", "2026-Q2", 2, 2.4], ["policy_rate", "2026-11-04", 13.75, 15], ["exchange_rate", "2026-11-04", 5.4778, 5.3846], ["industrial_production", "2026-08", -1.2, -0.7], ["retail_sales", "2026-08", 0.4, 0.3], ["government_debt", "2026-Q1", 91.8, 87.8], ["house_prices", "2026-Q2", 5.2362, 5.3575]]);
+  assert.deepEqual(r.rows.map((x) => x[6].split(":")[0]), ["bcb", "bcb", "ibge", "bcb", "bcb", "ibge", "ibge", "bis", "bis"]);
   assert.match(r.not_found[0], /^core_inflation: /);
   await assert.rejects(run({ countries: ["G7"], measure: "all" }), /reads one country/);
 });
@@ -290,4 +290,12 @@ test("Japan's business confidence is the Bank of Japan's Tankan, read as quarter
   assert.equal(r.series.frequency, "quarterly");
   assert.deepEqual(r.latest, { period: "2026-Q3", value: 24 });
   assert.deepEqual(r.year_ago, { period: "2025-Q3", value: 14 });
+});
+
+test("Brazil's production and retail sales from IBGE, Canada's retail sales from Statistics Canada's current table", async () => {
+  const ip = (await run({ country: "Brazil", measure: "industrial production" })).r;
+  assert.equal(ip.series.id, "ibge:8888/v/11602/c544/129314");
+  assert.deepEqual(ip.latest, { period: "2026-08", value: -1.2 });
+  const retail = (await run({ countries: ["Brazil", "Canada"], measure: "retail sales" })).r;
+  assert.deepEqual(retail.rows.map((x) => [x[0], x[1], x[5]]), [["Brazil", "2026-08", "ibge:8880/v/11709/c11046/56734"], ["Canada", "2026-08", "statcan:1446859483"]]);
 });
