@@ -283,3 +283,11 @@ test("government debt at nominal value from Eurostat and the BIS, and broad mone
   const money = (await run({ countries: ["United States", "euro area"], measure: "money supply" })).r;
   assert.deepEqual(money.rows.map((x) => [x[0], x[1], x[5]]), [["United States", "2026-09", "fred:M2SL"], ["Euro area", "2026-09", "ecb:BSI/M.U2.Y.V.M30.X.I.U2.2300.Z01.A"]]);
 });
+
+test("Japan's business confidence is the Bank of Japan's Tankan, read as quarters", async () => {
+  const { r } = await run({ country: "Japan", measure: "business confidence" });
+  assert.equal(r.series.id, "boj:CO/TK99F1000601GCQ01000");
+  assert.equal(r.series.frequency, "quarterly");
+  assert.deepEqual(r.latest, { period: "2026-Q3", value: 24 });
+  assert.deepEqual(r.year_ago, { period: "2025-Q3", value: 14 });
+});

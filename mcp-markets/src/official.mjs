@@ -371,16 +371,27 @@ export const PUBLISHERS = {
   },
   boj: {
     name: "Bank of Japan", page: { url: "https://www.stat-search.boj.or.jp/index_en.html", example: "boj:FM01/STRDCLUCON" },
-    read: async (session, code, { want, from }) => {
+    read: async (session, code, { want, from, daily }) => {
       const m = /^([A-Z0-9]+)[/'](.+)$/i.exec(code);
       if (!m) throw new Error("Bank of Japan codes are a database and a series code, e.g. FM01/STRDCLUCON (the overnight call rate) or FM08/FXERD01.");
-      const back = from ? new Date(`${from}T00:00:00Z`) : new Date(session.now() - Math.max(2, Math.ceil(want / 18) + 1) * 31 * 86400000);
-      const url = `https://www.stat-search.boj.or.jp/api/v1/getDataCode?format=json&lang=en&db=${m[1].toUpperCase()}&code=${encodeURIComponent(m[2])}&startDate=${back.getUTCFullYear()}${p2(back.getUTCMonth() + 1)}`;
-      const d = await getJson(session, url);
+      // The start is a month: a daily series' want is days, any other's at most months (quarters read three times as far back).
+      const months = daily ? Math.max(2, Math.ceil(want / 18) + 1) : want * 3 + 3;
+      const back = from ? new Date(`${from}T00:00:00Z`) : new Date(session.now() - months * 31 * 86400000);
+      // The start is read in the series' own frequency: YYYYMM for a monthly or daily one, YYYYQQ for a quarterly one,
+      // which refuses a month form (201912 is no quarter). The month form first, then the quarter's.
+      const at = (start) => `https://www.stat-search.boj.or.jp/api/v1/getDataCode?format=json&lang=en&db=${m[1].toUpperCase()}&code=${encodeURIComponent(m[2])}&startDate=${start}`;
+      let url = at(`${back.getUTCFullYear()}${p2(back.getUTCMonth() + 1)}`), d;
+      try { d = await getJson(session, url); } catch (err) {
+        if (!(err instanceof NotFound) && !/HTTP 4\d\d/.test(String(err?.message))) throw err;
+        url = at(`${back.getUTCFullYear()}${p2(Math.floor(back.getUTCMonth() / 3) + 1)}`);
+        d = await getJson(session, url);
+      }
       const r = d.RESULTSET?.[0];
       if (!r || d.STATUS !== 200) throw new NotFound(`The Bank of Japan has no series ${code}${d.MESSAGE ? ` (${d.MESSAGE})` : ""}.`);
       const dates = r.VALUES?.SURVEY_DATES ?? [], vals = r.VALUES?.VALUES ?? [];
-      return { rows: dates.map((t, i) => [period(String(t)), num(vals[i])]).filter(([, v]) => v != null), title: r.NAME_OF_TIME_SERIES ?? null, unit: r.UNIT ?? null, url };
+      // Quarters come as 202603 (the third quarter), not a month.
+      const when = (t) => (/QUARTER/i.test(r.FREQUENCY ?? "") && /^\d{6}$/.test(t) ? `${t.slice(0, 4)}-Q${Number(t.slice(4))}` : period(t));
+      return { rows: dates.map((t, i) => [when(String(t)), num(vals[i])]).filter(([, v]) => v != null), title: r.NAME_OF_TIME_SERIES ?? null, unit: r.UNIT ?? null, url };
     },
   },
   rba: {
@@ -723,9 +734,10 @@ export const MEASURES = {
   },
   business_confidence: {
     words: "business confidence sentiment economic indicator esi climate manufacturing survey surveys purchasing managers pmi",
-    basis: "Business confidence from official surveys, not the private PMIs: the EU's economic sentiment indicator (100 is its long-term average) and, for the US, the Philadelphia Fed's manufacturing survey (a diffusion index; above 0, more firms report growth than decline).",
+    basis: "Business confidence from official surveys, not the private PMIs: the EU's economic sentiment indicator (100 is its long-term average), the Bank of Japan's Tankan for Japan and, for the US, the Philadelphia Fed's manufacturing survey (both diffusion indices: above 0, more firms report better than worse).",
     national: {
       US: { s: "fred:GACDFSA066MSFRBPHI", by: "Federal Reserve Bank of Philadelphia, through FRED", title: "Manufacturing Business Outlook Survey: current general activity (diffusion index), seasonally adjusted" },
+      JP: { s: "boj:CO/TK99F1000601GCQ01000", by: "Bank of Japan (Tankan)", title: "Tankan: business conditions of large manufacturers (diffusion index: percent favorable less percent unfavorable), quarterly" },
     },
     eu: (c) => batched("eurostat:ei_bssi_m_r2?geo={}&indic=BS-ESI-I&s_adj=SA", geo(c, "EA21"), { by: "the European Commission's business and consumer surveys, through Eurostat", title: "Economic sentiment indicator (long-term average = 100), seasonally adjusted" }),
     tolerance: 1,
