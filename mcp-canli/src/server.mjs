@@ -91,7 +91,11 @@ const open = z.looseObject({});
 // A result drawn as a view has a summary for the model in SUMMARIES: the model reads the summary,
 // the view the whole result.
 const SUMMARIES = new WeakMap();
-const ok = (result) => ({ content: [{ type: "text", text: JSON.stringify((result && typeof result === "object" && SUMMARIES.get(result)) ?? result) }], structuredContent: result });
+// Every run_tool answer's receipt, for the client in _meta (RECEIPT_KEY): what was asked, a hash of the whole result,
+// and the source documents it was read from.
+const RECEIPTS = new WeakMap();
+export const RECEIPT_KEY = "canlicapital.com/receipt";
+const ok = (result) => ({ content: [{ type: "text", text: JSON.stringify((result && typeof result === "object" && SUMMARIES.get(result)) ?? result) }], structuredContent: result, ...(result && typeof result === "object" && RECEIPTS.has(result) ? { _meta: { [RECEIPT_KEY]: RECEIPTS.get(result) } } : {}) });
 const fail = (err) => ({ isError: true, content: [{ type: "text", text: String(err?.message ?? err) }] });
 // What each call cost, for the client in MCP's _meta, which hosts do not put in front of the model, so measuring
 // costs no tokens: wall time, the process's CPU time over the call where the runtime reports it (other calls
@@ -234,6 +238,27 @@ export function preview(v, path = "", cut = [], { keep = LIST_KEEP, max = LIST_M
 // - The list of source documents becomes a count and where to find it: a model rarely reads it.
 // - A tool's limits and meaning come once a session: the words do not change, and reading them twice costs tokens.
 // - Numbers show six significant figures unless digits says otherwise. Whole numbers stay exact.
+// The source documents results were read from, as the packs report them: the markets pack's evidence (URL, the
+// first 16 hex digits of the SHA-256 of the bytes received, and when) and the fundamentals pack's snapshot (URL,
+// full SHA-256, when it was taken). At most 200, each once.
+export function sourcesOf(results) {
+  const out = [], seen = new Set();
+  const add = (url, sha256, at, kind) => {
+    if (typeof url !== "string" || seen.has(`${url} ${sha256}`)) return;
+    seen.add(`${url} ${sha256}`);
+    out.push({ url, [kind]: sha256 ?? null, retrieved_at: at ?? null });
+  };
+  for (const r of results) {
+    if (!r || typeof r !== "object") continue;
+    const ev = r.evidence;
+    if (Array.isArray(ev?.rows) && Array.isArray(ev.columns)) {
+      const [u, h, t] = ["url", "sha256_16", "retrieved_at"].map((c) => ev.columns.indexOf(c));
+      for (const row of ev.rows) if (Array.isArray(row)) add(row[u], row[h], row[t], "sha256_16");
+    }
+    if (r.snapshot?.url) add(r.snapshot.url, r.snapshot.sha256, r.snapshot.fetched_at, "sha256");
+  }
+  return out.slice(0, 200);
+}
 export const DEFAULT_DIGITS = 6;
 export function leanResult(result, { name, ref, seen, digits } = {}) {
   if (!result || typeof result !== "object" || Array.isArray(result)) return result;
@@ -472,7 +497,10 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
       d.result = Object.fromEntries(paths.map((p) => [p, at(full, p) ?? null]));
       if (paths.some((p) => at(full, p) === undefined)) d.result.available_fields = Object.entries(full).flatMap(([k, v]) => (v && typeof v === "object" && !Array.isArray(v) ? Object.keys(v).slice(0, 12).map((x) => `${k}.${x}`) : [k])).slice(0, 60);
     }
-    const receipt = a.receipt ? { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(done.map(({ ref, ...d }) => d)) } : undefined;
+    const hashes = { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(done.map(({ ref, ...d }) => d)) };
+    const receipt = a.receipt ? hashes : undefined;
+    // Every answer's receipt goes to the client in _meta, with the sources the full results were read from.
+    const kept = { ...hashes, sources: sourcesOf(done.map((d) => d.result)), at: new Date().toISOString() };
     // After the receipt, which hashes the full results: an oversized one is sent as a preview.
     if (!a.select) for (const d of done) if (d.result !== undefined && !SELF[d.name]) d.result = leanResult(d.result, { name: d.name, ref: readOnly ? undefined : d.ref, seen: readLimits, digits: a.digits });
     for (const d of done) if (d.result !== undefined) d.result = viewing ? trimmed(d.result, d.ref, VIEW_CHARS) : fit(d.result, d.ref, a.max_chars ?? RESULT_CHARS);
@@ -484,9 +512,10 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
       if (JSON.stringify(summary).length < JSON.stringify(out).length) SUMMARIES.set(out, summary);
       return out;
     };
-    if (!a.calls) { if (done[0].error) throw new Error(done[0].error); return shown({ ...(done[0].ref ? { ref: done[0].ref } : {}), ...done[0].result, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) }); }
+    const sealed = (out) => { RECEIPTS.set(out, kept); return out; };
+    if (!a.calls) { if (done[0].error) throw new Error(done[0].error); return sealed(shown({ ...(done[0].ref ? { ref: done[0].ref } : {}), ...done[0].result, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) })); }
     const results = (a.return === "last" ? done.slice(-1) : done).map(({ name, ref, result, error }) => ({ name, ...(ref ? { ref } : {}), ...(error ? { error } : { result }) }));
-    return shown({ results, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) });
+    return sealed(shown({ results, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) }));
   }));
   registerResources(server, packs, gov);
   registerView(server);

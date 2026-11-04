@@ -1,6 +1,6 @@
-// Answer budgets and the cost meter: a result shortened step by step until its JSON fits max_chars, kept whole
-// under its ref; only the shape when nothing else fits; and every answer's cost in _meta, which the model does not
-// read, with the characters it does read.
+// Answer budgets, the cost meter and receipts: a result shortened step by step until its JSON fits max_chars, kept
+// whole under its ref; only the shape when nothing else fits; every answer's cost and receipt in _meta, which the
+// model does not read; and the sources a receipt lists, from the markets pack's evidence and a fundamentals snapshot.
 import assert from "node:assert/strict";
 import path from "node:path";
 import test from "node:test";
@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 import { Client } from "@modelcontextprotocol/client";
 import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
 
-import { COST_KEY, fit } from "../src/server.mjs";
+import { COST_KEY, RECEIPT_KEY, fit, sourcesOf } from "../src/server.mjs";
 
 const ENTRY = path.join(path.dirname(fileURLToPath(import.meta.url)), "../src/server.mjs");
 
@@ -40,7 +40,24 @@ test("over stdio, max_chars holds a result to its budget, and every answer repor
     assert.ok(Number.isInteger(cost.ms) && cost.ms >= 0 && Number.isInteger(cost.cpu_ms));
     assert.equal(cost.chars, capped.content[0].text.length, "the characters the model reads");
     assert.equal(capped.content[0].text.includes(COST_KEY), false, "the cost is not in what the model reads");
+    // Every answer's receipt: the same question gives the same hashes, and nothing of it is in the model's text.
+    const [r1, r2] = [whole._meta?.[RECEIPT_KEY], (await call({}))._meta?.[RECEIPT_KEY]];
+    assert.match(r1.server, /^canli-mcp@\d+\.\d+\.\d+/);
+    assert.match(r1.input_sha256, /^[0-9a-f]{64}$/);
+    assert.deepEqual([r1.input_sha256, r1.output_sha256], [r2.input_sha256, r2.output_sha256]);
+    assert.deepEqual(r1.sources, [], "find_tool reads no documents");
+    assert.ok(!Number.isNaN(Date.parse(r1.at)));
+    assert.equal(whole.content[0].text.includes(RECEIPT_KEY), false);
   } finally {
     await c.close();
   }
+});
+
+test("a receipt lists the documents behind the results: the markets pack's evidence and a fundamentals snapshot, each once", () => {
+  const evidence = { columns: ["url", "sha256_16", "retrieved_at"], rows: [["https://www.sec.gov/a.htm", "0123456789abcdef", "2026-11-04T06:00:00.000Z"], ["https://www.sec.gov/a.htm", "0123456789abcdef", "2026-11-04T06:00:00.000Z"]] };
+  const snapshot = { url: "https://canlicapital.com/company-data/sources/aa.json.gz", sha256: "a".repeat(64), fetched_at: "2026-09-19T09:30:25.021Z" };
+  assert.deepEqual(sourcesOf([{ evidence }, { snapshot }, null, "text", [1, 2]]), [
+    { url: "https://www.sec.gov/a.htm", sha256_16: "0123456789abcdef", retrieved_at: "2026-11-04T06:00:00.000Z" },
+    { url: "https://canlicapital.com/company-data/sources/aa.json.gz", sha256: "a".repeat(64), retrieved_at: "2026-09-19T09:30:25.021Z" },
+  ]);
 });
