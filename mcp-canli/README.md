@@ -136,7 +136,7 @@ tool list, on a machine running other work; `bench/context-2026-11-04-0.19.0.jso
 
 Tools the packs add cost the combined server nothing up front: since 0.6.0 the seven servers' own
 lists grew from 39,962 to 82,744 tokens. The interactive views of 0.10.0 added 76 tokens, those of 0.11.0 another 13,
-the clearer tool descriptions of 0.13.2 another 121, and 0.18.0 another 34; 0.19.0's six markets tools added none.
+and the clearer tool descriptions of 0.13.2 another 121. The six markets tools of 0.19.0 added nothing up front.
 
 - **Five tools in context.** The model searches with `find_tool`, reads one schema with
   `describe_tool`, and calls anything with `run_tool`; `history` and `financial_statements`, the
