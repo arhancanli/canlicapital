@@ -16,6 +16,8 @@ On a user's machine the markets pack keeps the public data it reads in a disk ca
 
 Checked locally in workerd on 4 Nov 2026, each time in a fresh isolate: financial_statements (Apple, two annual reports) found all 6 of its SEC reads in the cache and answered in 0.08 s against 1.8 s the first time; read_filing (NVIDIA's 10-K) found 2 of 2, 0.02 s against 0.4 s. Both answers were byte for byte the first ones, evidence times included. Cloudflare documents the cache for Workers on a custom domain and does not say whether it works on workers.dev; the first replay after the switch will show it, as a second pass should count hits.
 
+The fundamentals and validation packs read canlicapital.com's company reference instead, which serves every file with max-age=0, so each look-up went back to Vercel: for Apple, the ticker list (128 KB), the company's record (306 KB) and its SEC snapshot (270 KB). The Worker caches these by address: a snapshot, named by its SHA-256 and checked against it on every read, for a year; a record and the two lists for six hours, as long as the fundamentals pack keeps its own copies. A revalidation (If-None-Match), a range or a POST goes straight through. Checked the same way on 4 Nov: known_as_of (Apple as of 1 Mar 2020) found its 3 reads in the cache in a fresh isolate, 0.08 s against 0.78 s; restatements (BDX) 2 of 2, 0.12 s against 1.48 s; both answers identical.
+
 ## Replay before the switch
 
     npm test                                                        the replay's own tests
