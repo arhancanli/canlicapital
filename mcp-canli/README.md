@@ -355,6 +355,7 @@ answers it was built from, never data; `receipt: true` adds the hashes to the an
 | `CANLI_HOME` | Where the paper pack keeps its limits file, kill switch and order log, and the audit log and its keys are kept; default `~/.canli`. |
 | `CANLI_POLICY` | A policy file's path, or the policy itself as JSON (below). Unset: no policy and no audit log. |
 | `CANLI_PLUGINS` | Plugin packs to load (below): package names or `.mjs` paths, comma-separated. |
+| `CANLI_UPSTREAMS` | Other MCP servers whose tools join these (below), as JSON or a file's path. Default: `CANLI_HOME/upstreams.json`, which `canli-mcp upstream add` writes. |
 
 Order-sending tools never run inside a batch: preview first, then send on its own.
 
@@ -415,6 +416,32 @@ Its tools are found by `find_tool`, run in `run_tool` batches with `$file` and `
 under the policy file (`"weather:*"`) and the audit log like any other. A clash with an existing
 tool name stops the start with the reason. A plugin is code you chose to install and runs with the
 server's rights; none loads unless named, and none loads with `CANLI_OFFLINE=1`.
+
+## Other MCP servers behind this one
+
+Any other MCP server can sit behind canli-mcp: a data vendor's hosted server with your key, or one
+that runs as a command. Its tools join `find_tool`'s search and `run_tool`'s batches, `$result`,
+answer budgets, receipts, the policy file and the audit log, and none of them goes in your client's
+tool list, so a server with 250 tools costs the model nothing until one is used.
+
+```bash
+npx canli-mcp upstream add vendor https://mcp.example.com/mcp --header 'Authorization: Bearer ${VENDOR_KEY}'
+npx canli-mcp upstream add local --env 'TOKEN=${LOCAL_TOKEN}' -- npx -y some-mcp-server
+npx canli-mcp upstream list
+```
+
+Each server is a pack under the name you gave it. A tool whose name is already taken here gets that
+name in front (`vendor_history`). Write keys as `${NAME}`: canli-mcp reads them from its environment
+when it starts, so `CANLI_HOME/upstreams.json` (readable only by you) need hold no secret. A command
+gets only the environment the MCP SDK passes by default and the variables you name.
+
+Tools that send orders or change anything stay off: a tool counts as one when its own annotations say
+so, or when it has none and its name starts with a verb that acts (place, cancel, transfer...) or
+names orders. `--write` offers them; then each runs alone, never inside a batch, and run_tool says it
+can change things. `--tools 'get_*,quote'` offers only the tools named. Another server's text is
+scanned for words addressed to a model like any source's. Its tools cannot be held to a past date,
+so they are off under `as_of`, the time machine and a holdout. `canli://privacy` lists each server,
+how many tools it gave, which were left off and why, and the reason one could not connect.
 
 ## Live filings feed
 

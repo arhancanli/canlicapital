@@ -16,9 +16,10 @@ import { registerAll, SERVER_INFO } from "../src/server.mjs";
 test("only local/ listens: it binds the loopback address, imports what it needs and nothing else", () => {
   for (const f of readdirSync(LOCAL).filter((x) => x.endsWith(".mjs"))) {
     const text = readFileSync(new URL(f, LOCAL), "utf8");
-    // commands.mjs is the one place anything starts, and only what a person asked for on the command line.
+    // commands.mjs is the one place anything starts, and only what a person asked for on the command line
+    // or named as an upstream server in their own upstreams file (through the MCP SDK's stdio client).
     const execs = f === "commands.mjs";
-    for (const m of text.matchAll(/(?:from\s+|import\()\s*"([^"]+)"/g)) if (!m[1].startsWith(".")) assert.match(m[1], execs ? /^node:child_process$/ : /^(ws|@modelcontextprotocol\/client|@modelcontextprotocol\/server|node:(crypto|fs|http|path))$/, `${f} imports ${m[1]}`);
+    for (const m of text.matchAll(/(?:from\s+|import\()\s*"([^"]+)"/g)) if (!m[1].startsWith(".")) assert.match(m[1], execs ? /^(node:child_process|@modelcontextprotocol\/client\/stdio)$/ : /^(ws|@modelcontextprotocol\/client|@modelcontextprotocol\/server|node:(crypto|fs|http|path))$/, `${f} imports ${m[1]}`);
     for (const m of text.matchAll(/\.listen\(([^)]*)\)/g)) assert.equal(m[1].split(",")[1]?.trim(), '"127.0.0.1"', `${f} binds only the loopback address`);
     assert.doesNotMatch(text, execs ? /worker_threads|\beval\s*\(|new Function/ : /child_process|worker_threads|\beval\s*\(|new Function/, f);
   }

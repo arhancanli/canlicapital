@@ -8,6 +8,8 @@ import { pathToFileURL } from "node:url";
 
 import { z } from "zod";
 
+import { connectUpstream, readUpstreams, whereIs } from "./upstreams.mjs";
+
 // What each pack sends off this machine and keeps on disk. Stated in canli://privacy and checked
 // by test/privacy.test.mjs (offline packs must run with the network disabled).
 export const PACKS = Object.freeze({
@@ -190,8 +192,27 @@ export async function loadPlugins(env = process.env, taken = new Set()) {
   }
   return out;
 }
-// A pack's description, built in or plugin.
-export const packInfo = (name) => PACKS[name] ?? PLUGINS.get(name);
+// Upstreams: other MCP servers (src/upstreams.mjs), each a pack under the name it was given. Its tools
+// load when it answers, and a search or a call waits for that. One that does not answer is a pack
+// with no tools, and canli://privacy says why.
+export const UPSTREAMS = new Map();
+export function loadUpstreams(env, home, { taken, version, onTools }) {
+  if (offlineMode(env)) return [];
+  return readUpstreams(env, home).map((u) => {
+    if (PACKS[u.name] || PLUGINS.has(u.name) || UPSTREAMS.has(u.name)) throw new Error(`upstream ${u.name}: that name is taken.`);
+    const meta = { title: u.title ?? `The ${u.name} MCP server`, package: whereIs(u), network: u.url ? `the ${u.name} MCP server at ${whereIs(u)}, and whatever it reads` : `whatever the ${u.name} MCP server (started as ${whereIs(u)}) reaches`, disk: `whatever the ${u.name} server keeps`, offline: false, upstream: true, write: Boolean(u.write) };
+    UPSTREAMS.set(u.name, meta);
+    const ready = connectUpstream(u, { env, version, taken }).then(
+      ({ tools, hidden, listed }) => { Object.assign(meta, { tools: tools.length, listed, ...(hidden.length ? { off_because_they_change_things: hidden } : {}) }); onTools(u.name, tools); return new Map(tools.map((t) => [t.name, t])); },
+      (e) => { Object.assign(meta, { tools: 0, error: String(e?.message ?? e).slice(0, 300) }); onTools(u.name, []); return new Map(); },
+    );
+    loaded.set(u.name, ready);
+    return { pack: u.name, meta, ready };
+  });
+}
+
+// A pack's description: built in, plugin or upstream.
+export const packInfo = (name) => PACKS[name] ?? PLUGINS.get(name) ?? UPSTREAMS.get(name);
 
 // Offline: CANLI_OFFLINE=1 keeps only the packs that never touch the network; CANLI_OFFLINE=packs also keeps the
 // fundamentals pack, which then reads only what canli-mcp pack add saved on this machine, with fetch refused.
