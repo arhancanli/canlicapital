@@ -151,6 +151,10 @@ against the BIS (21 of 21 agreed on 2026-10-15).
 | `price_history` | Daily to monthly bars for stocks in the US and abroad, currencies, futures, indices and crypto, adjusted, with dividends and splits, as columns | Yahoo Finance (no key), or Alpaca or Tiingo (your key) for US stocks |
 | `treasury_auctions` | How each Treasury auction went (yield, bid-to-cover, who bought) and which auctions come next | US Treasury Fiscal Data |
 | `federal_debt` | The US debt each business day, and the average rate the Treasury pays on it | US Treasury Fiscal Data |
+| `treasury_cash` | The Treasury's cash at the Fed each business day since 2005 (the TGA), and the day's largest deposits and withdrawals | Daily Treasury Statement (Fiscal Data) |
+| `federal_budget` | Receipts, outlays and the deficit each month, this fiscal year against the same months of the last | Monthly Treasury Statement (Fiscal Data) |
+| `factor_returns` | The Fama-French factors (market, size, value, profitability, investment, momentum, the T-bill rate), monthly since 1926, daily or by year, as fractions | Kenneth French's data library |
+| `crypto_options` | Crypto options: each expiry's at-the-money volatility, open interest and put/call ratio, with DVOL, or one expiry's chain in dollars | Deribit public data (no key) |
 | `economic_outlook` | The OECD's projections for the next two years: growth, inflation, unemployment, deficits, debt, current account, rates | OECD Economic Outlook |
 | `world_economy` | Any country's economy: GDP and growth, inflation, unemployment, debt, deficits, trade, reserves, for 200+ countries and regions | World Bank (CC BY 4.0) |
 
@@ -161,7 +165,7 @@ inflation year over year?".
 
 Results are columns and rows, so a series feeds straight into analysis: with
 [canli-mcp](https://www.npmjs.com/package/canli-mcp), `economic_series` or `price_history` output
-goes into any of its 235 quant tools in the same batch.
+goes into any of its 236 quant tools in the same batch, and `factor_returns` into a factor regression.
 
 ## Checked against the source
 
