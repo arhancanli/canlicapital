@@ -33,7 +33,7 @@ test("listing the full guide catalog loads no pack code and keeps three front to
   const resources = (await client.listResources()).resources;
   assert.equal(resources.length, 4 + Object.values(CATALOG).reduce((n, g) => n + g.resources.length, 0), "catalog, packs, privacy and the result viewer, then the packs' own");
   assert.equal(new Set(resources.map((r) => r.uri)).size, resources.length);
-  assert.equal((await client.listResourceTemplates()).resourceTemplates.length, 1 + Object.values(CATALOG).reduce((n, g) => n + g.templates.length, 0));
+  assert.equal((await client.listResourceTemplates()).resourceTemplates.length, 3 + Object.values(CATALOG).reduce((n, g) => n + g.templates.length, 0), "tool schemas, the week and a company, then the packs' own");
   assert.deepEqual(loadedGuidePacks(), []);
 });
 

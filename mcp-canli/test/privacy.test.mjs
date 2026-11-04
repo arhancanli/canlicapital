@@ -17,8 +17,9 @@ import { enabledPacks } from "../src/packs.mjs";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = path.join(ROOT, "src");
 
-test("src imports only the SDK, zod, the published packs and file, path, os, url and crypto helpers", () => {
-  const allowed = /^(zod|@modelcontextprotocol\/client|@modelcontextprotocol\/server(\/stdio)?|node:(crypto|fs|os|path|url)|canli-[a-z-]+-mcp\/.+)$/;
+test("src imports only the SDK, zod, the published packs and file, path, os, url, crypto and async-context helpers", () => {
+  // node:async_hooks is for the network tripwire alone (tripwire.mjs): it tells which tool a fetch came from.
+  const allowed = /^(zod|@modelcontextprotocol\/client|@modelcontextprotocol\/server(\/stdio)?|node:(async_hooks|crypto|fs|os|path|url)|canli-[a-z-]+-mcp\/.+)$/;
   // start.mjs turns on Node's compile cache, and imports node:module for that alone.
   assert.deepEqual([...readFileSync(path.join(SRC, "start.mjs"), "utf8").matchAll(/(?:from\s+|import\()\s*"([^"]+)"/g)].map((m) => m[1]), ["node:module", "./server.mjs"]);
   for (const f of readdirSync(SRC).filter((f) => f.endsWith(".mjs") && f !== "start.mjs")) {

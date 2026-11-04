@@ -60,3 +60,45 @@ test("a clash, a missing module or an export-less module stops the start with th
   const found = await c.callTool({ name: "run_tool", arguments: { name: "demo_moving_sum", arguments: { values: [1], window: 1 } } });
   assert.equal(found.isError, true);
 });
+
+test("identical calls in flight share one run, and each caller gets its own copy", async (t) => {
+  const c = await connect(t, { CANLI_PLUGINS: path.join(path.dirname(fileURLToPath(import.meta.url)), "fixtures/count-plugin.mjs") });
+  const batch = async (calls) => JSON.parse((await c.callTool({ name: "run_tool", arguments: { calls } })).content[0].text).results.map((r) => r.result);
+  const same = await batch([{ name: "counter_slow", arguments: { label: "a" } }, { name: "counter_slow", arguments: { label: "a" } }, { name: "counter_slow", arguments: { label: "b" } }]);
+  assert.deepEqual(same.map((r) => [r.label, r.runs]), [["a", 1], ["a", 1], ["b", 2]], "the two identical calls ran once");
+  const later = await batch([{ name: "counter_slow", arguments: { label: "a" } }]);
+  assert.equal(later[0].runs, 3, "a call after the first finished runs again");
+});
+
+test("a batch reports progress as its calls finish, and a cancelled chain starts no further call", async (t) => {
+  const c = await connect(t, { CANLI_PLUGINS: path.join(path.dirname(fileURLToPath(import.meta.url)), "fixtures/count-plugin.mjs") });
+  const seen = [];
+  await c.callTool({ name: "run_tool", arguments: { calls: ["p", "q", "r"].map((label) => ({ name: "counter_slow", arguments: { label } })) } }, { onprogress: (p) => seen.push([p.progress, p.total]) });
+  assert.deepEqual(seen, [[1, 3], [2, 3], [3, 3]]);
+  // A chain, each call reading the one before: cancelled while the second runs, the third never starts.
+  const stop = new AbortController();
+  const calls = [{ name: "counter_slow", arguments: { label: "a" } }, { name: "counter_slow", arguments: { label: { $result: 0, path: "label" } } }, { name: "counter_slow", arguments: { label: { $result: 1, path: "label" } } }];
+  setTimeout(() => stop.abort(), 75);
+  await assert.rejects(c.callTool({ name: "run_tool", arguments: { calls } }, { signal: stop.signal }));
+  await new Promise((r) => setTimeout(r, 150));
+  const after = JSON.parse((await c.callTool({ name: "run_tool", arguments: { name: "counter_slow", arguments: { label: "z" } } })).content[0].text);
+  assert.ok(after.runs <= 3 + 3, `the third call of the cancelled batch did not run: 3 earlier runs, at most two of the batch, and this one, not ${after.runs}`);
+});
+
+test("a batch runs in waves: calls that read no other call start at once, a call reading two waits for both", async (t) => {
+  const c = await connect(t, { CANLI_PLUGINS: path.join(path.dirname(fileURLToPath(import.meta.url)), "fixtures/count-plugin.mjs") });
+  const calls = [
+    { name: "counter_slow", arguments: { label: "a" } },
+    { name: "counter_slow", arguments: { label: "b" } },
+    { name: "counter_slow", arguments: { label: { $result: 0, path: "label" } } },
+    { name: "counter_slow", arguments: { label: "c" } },
+  ];
+  const out = JSON.parse((await c.callTool({ name: "run_tool", arguments: { calls } })).content[0].text).results;
+  assert.deepEqual(out.map((r) => r.result.label), ["a", "b", "a", "c"], "the batch's order kept");
+  // a, b and c run together, then the call reading a: two waves, not four calls in a row.
+  assert.equal(Math.max(...[0, 1, 3].map((i) => out[i].result.alongside)), 3, JSON.stringify(out.map((r) => r.result)));
+  assert.equal(out[2].result.alongside, 1, "the call reading a ran after its wave");
+  const failed = JSON.parse((await c.callTool({ name: "run_tool", arguments: { calls: [{ name: "counter_slow", arguments: { label: "x".repeat(30) } }, { name: "counter_slow", arguments: { label: { $result: 0, path: "label" } } }, { name: "counter_slow", arguments: { label: { $result: 3, path: "label" } } }] } })).content[0].text).results;
+  assert.match(failed[1].error, /\$result 0 failed/);
+  assert.match(failed[2].error, /\$result 3 refers to a call that has not run/);
+});
