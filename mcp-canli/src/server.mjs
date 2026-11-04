@@ -47,6 +47,7 @@ import { CAUSES_TOOL, runCauses } from "./causes.mjs";
 import { RECEIPT_CHECK_TOOL, runReceiptCheck } from "./receipt-check.mjs";
 import { runShares, SHARES_TOOL } from "./shares.mjs";
 import { RED_FLAGS_TOOL, runRedFlags } from "./redflags.mjs";
+import { EXPORT_TOOL, exportInput } from "./export.mjs";
 import { addressedToAi, CAUTION } from "./injection.mjs";
 import { installTripwire, withoutNetwork } from "./tripwire.mjs";
 import { createDelta } from "./delta.mjs";
@@ -63,7 +64,7 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL];
+const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL, EXPORT_TOOL];
 export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
@@ -493,6 +494,18 @@ export function selfTools(packs, gov, keeper, readOnly = false, vault = null, pr
   tools.receipt_check = (args) => { allowed("receipt_check"); return runReceiptCheck(desk, args); };
   tools.reconcile_shares = (args) => { allowed("reconcile_shares"); return runShares(desk, args); };
   tools.red_flags = (args) => { allowed("red_flags"); return runRedFlags(desk, args); };
+  tools.export_result = async (args) => {
+    allowed("export_result");
+    if (readOnly) throw new Error("export_result writes to your own machine. Run it locally: npx -y canli-mcp");
+    const a = exportInput.parse(args ?? {});
+    if (!keeper.has(a.ref)) throw new Error(`${a.ref} is not kept; refs name earlier results (the last ${KEEP_COUNT} are kept).`);
+    const value = a.path ? at(keeper.get(a.ref), a.path) : keeper.get(a.ref);
+    if (value === undefined) throw new Error(`${a.ref} has nothing at "${a.path}".`);
+    const { toCsv, writeExport } = await import("../local/export.mjs");
+    const text = a.name.endsWith(".csv") ? toCsv(value) : JSON.stringify(value, null, 1);
+    const out = writeExport(canliHome(), a.name, text, keeper.receiptOf(a.ref));
+    return { ...out, bytes: Buffer.byteLength(`${text}\n`), ...(a.name.endsWith(".csv") ? { lines: text.split("\n").length } : {}) };
+  };
   tools.preregister = async (args) => {
     allowed("preregister");
     if (readOnly || !preregs) throw new Error("A pre-registration is named in the receipts of a session's later answers, and the hosted server keeps nothing between requests. Run it locally: npx -y canli-mcp");
@@ -695,6 +708,7 @@ export const PRIVACY = (packs, gov) => ({
   receipts: "every answer's receipt, in MCP's _meta, carries SHA-256 hashes and the URLs and times of the documents read, never the data",
   preregistrations: "off until you use preregister: each record is kept in CANLI_HOME/preregistrations.jsonl on this machine, readable only by you",
   holdout: "a holdout vault is kept in memory for the session and written nowhere",
+  exports: "off until you use export_result: files are written only into CANLI_HOME/exports, under plain names, never over a file already there",
   network_tripwire: "packs that send nothing (quant, validation, and plugins whose network is none) run each tool with fetch refused, and an answer whose every call ran so says network none in its receipt",
   policy: gov?.policy ? { tools: gov.policy.tools ?? "all", orders: gov.policy.orders ?? "on", calls_per_minute: gov.policy.calls_per_minute ?? null, audit_log: gov.audit ? { file: gov.audit.path, arguments: gov.policy.audit.arguments ?? "hash" } : "off" } : "none (CANLI_POLICY unset): no policy and no audit log",
 });
