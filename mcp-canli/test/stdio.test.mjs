@@ -32,7 +32,9 @@ test("three discovery tools and the two front tools, byte-identical across launc
   await c.close();
   assert.match(said, /^Canli Capital's finance tools in one server: \d+ tools in \d+ packs \([^)]+\)\. Common tools, which run_tool takes without a search first/);
   assert.deepEqual(JSON.parse(bare).tools.map((t) => t.name), ["find_tool", "describe_tool", "run_tool"]);
-  assert.ok(bare.length < 4500, `${bare.length} bytes`);
+  // run_tool's options (budget, as_of, changes_only and the rest) cost about 30 tokens each: added only when they
+  // earn it, paid for by shorter wording where possible.
+  assert.ok(bare.length < 4600, `${bare.length} bytes`);
 });
 
 test("a front tool runs as run_tool runs it", async () => {

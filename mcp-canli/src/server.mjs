@@ -41,6 +41,7 @@ import { watchFilings } from "./watch.mjs";
 import { createTimeMachine } from "./timemachine.mjs";
 import { signedTrialCount, TRIALS_TOOL } from "./trials.mjs";
 import { createLuck } from "./luck.mjs";
+import { createDelta } from "./delta.mjs";
 import { runWeek, WEEK_TOOL } from "./week.mjs";
 import { channelSink, CHANNEL_INSTRUCTIONS, SENTINEL_TOOLS } from "./sentinel.mjs";
 
@@ -346,6 +347,7 @@ const RUN_INPUT = z.object({
       receipt: z.boolean().optional().describe("Add input and output SHA-256 and pack versions, to recompute and compare later."),
       max_chars: z.number().int().min(1000).max(RESULT_CHARS).optional().describe("Cap each result at this many JSON characters; the rest stays under its ref."),
       as_of: z.string().max(10).optional().describe("As of this past date (YYYY-MM-DD): only what was public then."),
+      changes_only: z.boolean().optional().describe("Only what changed since this call last ran in this session."),
       view: z.boolean().optional().describe("Draw the result for the person (charts, statements, yield curves, backtests) where MCP Apps are drawn; you get a summary."),
     }).strict();
 
@@ -419,6 +421,8 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
   const readLimits = new Set();
   // Every strategy result counted against the whole search (luck.mjs): a session here, one request when hosted.
   const luck = createLuck({ scope: readOnly ? "request" : "session" });
+  // Each call's last whole result, for changes_only (delta.mjs).
+  const delta = createDelta();
   server.registerTool("find_tool", {
     title: "Find a tool",
     description: `Search the ${ENTRIES.filter((e) => packs.includes(e.pack)).length} finance tools (packs: ${packs.join(", ")}) in plain words, e.g. "deflated sharpe", "revenue as of 2019". Returns the closest matches first, with names, argument signatures and one line each, even when none fits, so check them. Next: run_tool, or describe_tool if an argument is unclear.`,
@@ -449,7 +453,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     if (a.calls) a.calls = a.calls.flatMap((c) => (c.name === "run_tool" && c.arguments ? (c.arguments.calls ?? [{ name: c.arguments.name, arguments: c.arguments.arguments }]) : [c]));
     // Models sometimes put run_tool's own options inside a call's arguments; move them out when the
     // tool itself has no argument of that name.
-    for (const c of a.calls ?? [a]) for (const k of ["return", "digits", "select", "receipt", "max_chars", "as_of"]) {
+    for (const c of a.calls ?? [a]) for (const k of ["return", "digits", "select", "receipt", "max_chars", "as_of", "changes_only"]) {
       if (c.arguments && k in c.arguments && !(BY_NAME.get(c.name)?.args ?? "").split(", ").some((x) => x.replace(/\?.*$/, "").replace(/:.*$/, "") === k)) { if (a[k] === undefined) a[k] = c.arguments[k]; delete c.arguments[k]; }
     }
     // The SDK validates the outer envelope. Wrapping and lifting options changes that envelope,
@@ -486,6 +490,9 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     });
     // Keep each full result (before select) under a ref for later calls.
     for (const d of done) if (d.result !== undefined && !SELF[d.name]) { const ref = keeper.put(d.result); if (ref) d.ref = ref; }
+    // The receipt's sources come from the whole results, before select or changes_only narrow them.
+    const sources = sourcesOf(done.map((d) => d.result));
+    if (a.changes_only) done.forEach((d, i) => { if (d.result !== undefined && !SELF[d.name]) d.result = delta.changes(d.name, calls[i]?.arguments, d.result); });
     if (a.select) for (const d of done) if (d.result) {
       const full = d.result;
       // Rows without their column names are unreadable: selecting a table's rows keeps its columns.
@@ -503,7 +510,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const hashes = { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(done.map(({ ref, ...d }) => d)) };
     const receipt = a.receipt ? hashes : undefined;
     // Every answer's receipt goes to the client in _meta, with the sources the full results were read from.
-    const kept = { ...hashes, sources: sourcesOf(done.map((d) => d.result)), at: new Date().toISOString() };
+    const kept = { ...hashes, sources, at: new Date().toISOString() };
     // After the receipt, which hashes the full results: an oversized one is sent as a preview.
     if (!a.select) for (const d of done) if (d.result !== undefined && !SELF[d.name]) d.result = leanResult(d.result, { name: d.name, ref: readOnly ? undefined : d.ref, seen: readLimits, digits: a.digits });
     for (const d of done) if (d.result !== undefined) d.result = viewing ? trimmed(d.result, d.ref, VIEW_CHARS) : fit(d.result, d.ref, a.max_chars ?? RESULT_CHARS);
