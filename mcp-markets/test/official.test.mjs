@@ -264,3 +264,11 @@ test("one country's OECD indicators come from one request, each series taken by 
   assert.equal(none.size, 0);
   assert.equal(failed.size, 2);
 });
+
+test("business confidence from official surveys: the Philadelphia Fed's for the US, the EU's economic sentiment for its members", async () => {
+  const { r } = await run({ countries: ["United States", "euro area", "Germany"], measure: "business confidence" });
+  assert.equal(r.measure, "business_confidence");
+  assert.match(r.basis, /not the private PMIs/);
+  assert.deepEqual(r.rows.map((x) => x.slice(0, 3)), [["United States", "2026-10", 20.9], ["Euro area", "2026-10", 96.9], ["Germany", "2026-10", 94.1]]);
+  assert.equal(r.rows[0][5], "fred:GACDFSA066MSFRBPHI");
+});

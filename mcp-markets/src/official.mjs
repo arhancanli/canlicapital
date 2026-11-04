@@ -713,10 +713,22 @@ export const MEASURES = {
   },
   consumer_confidence: {
     words: "consumer confidence consumer sentiment household confidence",
-    basis: "Consumer confidence as each country's own survey measures it (the OECD's compilation): set a country against its own history, not against another country.",
-    national: {},
+    basis: "Consumer confidence as each country's own survey measures it: set a country against its own history, not against another country.",
+    national: {
+      US: { s: "fred:UMCSENT", by: "University of Michigan Surveys of Consumers, through FRED", title: "Index of consumer sentiment (1966:Q1 = 100)" },
+    },
+    eu: (c) => batched("eurostat:ei_bssi_m_r2?geo={}&indic=BS-CSMCI-BAL&s_adj=SA", geo(c, "EA21"), { by: "the European Commission's business and consumer surveys, through Eurostat", title: "Consumer confidence indicator (balance of answers), seasonally adjusted" }),
     oecd: (c) => kei(c, "M.CCICP.PB._Z.Y._Z", { title: "Composite consumer confidence (the national survey's own scale)" }),
     tolerance: 0.5,
+  },
+  business_confidence: {
+    words: "business confidence sentiment economic indicator esi climate manufacturing survey surveys purchasing managers pmi",
+    basis: "Business confidence from official surveys, not the private PMIs: the EU's economic sentiment indicator (100 is its long-term average) and, for the US, the Philadelphia Fed's manufacturing survey (a diffusion index; above 0, more firms report growth than decline).",
+    national: {
+      US: { s: "fred:GACDFSA066MSFRBPHI", by: "Federal Reserve Bank of Philadelphia, through FRED", title: "Manufacturing Business Outlook Survey: current general activity (diffusion index), seasonally adjusted" },
+    },
+    eu: (c) => batched("eurostat:ei_bssi_m_r2?geo={}&indic=BS-ESI-I&s_adj=SA", geo(c, "EA21"), { by: "the European Commission's business and consumer surveys, through Eurostat", title: "Economic sentiment indicator (long-term average = 100), seasonally adjusted" }),
+    tolerance: 1,
   },
   house_prices: {
     words: "house prices home prices housing property prices real estate residential",
@@ -881,7 +893,7 @@ export function compare(a, b, m, note) {
 export const worldSeriesInput = z.object({
   country: z.string().min(2).max(60).optional().describe("One country or the euro area: a name (Brazil, South Korea, euro area) or an ISO code (BR, KOR)."),
   countries: z.array(z.string().min(2).max(60)).min(1).max(30).optional().describe("Several side by side, or a group: G7, G20, EU, euro area members, BRICS, Nordics, ASEAN, Latin America. Up to 30."),
-  measure: z.string().min(2).max(80).optional().describe("inflation, core_inflation, unemployment, gdp_growth, policy_rate, ten_year_yield, exchange_rate, industrial_production, retail_sales, wages, leading_indicator (the OECD's), consumer_confidence or house_prices, or all (one country's every measure); plain words work (\"jobless rate\", \"10-year bond yield\")."),
+  measure: z.string().min(2).max(80).optional().describe("inflation, core_inflation, unemployment, gdp_growth, policy_rate, ten_year_yield, exchange_rate, industrial_production, retail_sales, wages, leading_indicator (the OECD's), consumer_confidence, business_confidence or house_prices, or all (one country's every measure); plain words work (\"jobless rate\", \"10-year bond yield\")."),
   series: z.string().min(4).max(300).optional().describe("Any series by its publisher's own code instead: imf:, bis:, ecb:, eurostat:, oecd:, ilo:, fred:, statcan:, boc:, ons:, boe:, boj:, mof:, rba:, abs:, bcb:, ibge:, riksbank:, scb:, ssb:, norges:, snb:, bbk:, boi: (e.g. \"statcan:2062815\", \"eurostat:une_rt_m?geo=DE&s_adj=SA&age=TOTAL&sex=T&unit=PC_ACT\")."),
   periods: z.number().int().min(1).max(600).optional().describe("Observations to return, latest last. Default 13 (one country), 1 (several)."),
   start: z.string().regex(/^\d{4}(-\d{2}(-\d{2})?)?$/).optional().describe("Return everything from this date (YYYY, YYYY-MM or YYYY-MM-DD) instead, up to 600 observations."),
