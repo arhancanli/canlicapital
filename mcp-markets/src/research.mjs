@@ -460,7 +460,7 @@ export function annualValues(book, names) {
   return new Map([...out].sort((a, b) => (a[0] < b[0] ? -1 : 1)));
 }
 
-function annual(facts, def, currency = "USD") {
+export function annual(facts, def, currency = "USD") {
   const out = new Map();
   const unit = def.unit.replace("USD", currency);
   for (const tag of def.tags) {

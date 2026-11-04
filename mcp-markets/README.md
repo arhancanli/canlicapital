@@ -155,6 +155,11 @@ against the BIS (21 of 21 agreed on 2026-10-15).
 | `treasury_cash` | The Treasury's cash at the Fed each business day since 2005 (the TGA), and the day's largest deposits and withdrawals | Daily Treasury Statement (Fiscal Data) |
 | `federal_budget` | Receipts, outlays and the deficit each month, this fiscal year against the same months of the last | Monthly Treasury Statement (Fiscal Data) |
 | `factor_returns` | The Fama-French factors (market, size, value, profitability, investment, momentum, the T-bill rate), monthly since 1926, daily or by year, as fractions | Kenneth French's data library |
+| `scenario_risk` | A portfolio's holdings under a macro shock (stocks, yields, credit, oil, the dollar, gold, the VIX; the factors not shocked follow history) or a past crisis replayed beside what each holding actually did | Yahoo Finance chart data, FRED |
+| `trade_ticks` | Every trade on a crypto market from any past moment, tick by tick, with VWAP, buying against selling, the largest trades and one-minute bars | Kraken's public trade history |
+| `trade_flows` | Who a country buys a product from (or sells it to) and each partner's share, or one partner year by year; names Taiwan and the trade with no partner named | UN Comtrade |
+| `standardized_financials` | A company's three statements in one template whether it files US GAAP or IFRS, each figure's tag or derivation shown, with ratios; up to five companies side by side, optionally in US dollars | SEC XBRL (10-K, 20-F, 40-F) |
+| `financial_cycle` | House prices, debt service ratios, credit to households, companies and government, and effective exchange rates, country by country | Bank for International Settlements |
 | `unusual_options` | Contracts trading far beyond their open interest, largest premium first, and the day's call and put premium | Cboe delayed quotes |
 | `company_emissions` | A company's US greenhouse-gas emissions, facility by facility, by gas, with its ownership share and a trend | EPA's Greenhouse Gas Reporting Program |
 | `crypto_markets` | Coins ranked by market value with price, volume, changes, supply and distance from the high, and the whole market's value and bitcoin's share | CoinGecko (no key) |

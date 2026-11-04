@@ -20,7 +20,7 @@ export const HOSTS = new Set([
   "sanctionslistservice.ofac.treas.gov", "home.treasury.gov", "fiscaldata.treasury.gov", "api.fiscaldata.treasury.gov", "publicreporting.cftc.gov",
   "en.wikipedia.org", "wikimedia.org", "data.alpaca.markets", "clinicaltrials.gov", "api.fda.gov", "api.nhtsa.gov", "www.usaspending.gov", "api.usaspending.gov",
   "www.federalregister.gov", "www.consumerfinance.gov", "www.census.gov", "www.bls.gov", "www.bea.gov", "data.worldbank.org", "api.worldbank.org",
-  "banks.data.fdic.gov", "api.fdic.gov", "api.gleif.org", "api.openfigi.com", "api.gdeltproject.org", "api.coingecko.com", "www.okx.com",
+  "banks.data.fdic.gov", "api.fdic.gov", "api.gleif.org", "api.openfigi.com", "api.gdeltproject.org", "api.coingecko.com", "api.kraken.com", "comtradeapi.un.org", "www.okx.com",
   "polymarket.com", "gamma-api.polymarket.com", "api.elections.kalshi.com", "portwatch.imf.org", "services9.arcgis.com", "filings.xbrl.org", "sourcify.dev",
   "api.tiingo.com", "cirrun.com", "canlicapital.com", "mba.tuck.dartmouth.edu", "www.deribit.com", "www.nyse.com", "disclosures-clerk.house.gov", "api.nasdaq.com", "www.nasdaq.com", "www.coingecko.com", "data.epa.gov", "ghgdata.epa.gov",
 ]);
