@@ -64,3 +64,20 @@ test("over stdio: a holdout hides its years from every tool, clears what was kep
     await c.close();
   }
 });
+
+test("the tools listed beside run_tool are held to a holdout too, and their results are kept", async () => {
+  const c = new Client({ name: "holdout-front", version: "0" });
+  await c.connect(new StdioClientTransport({ command: process.execPath, args: [ENTRY], env: { PATH: process.env.PATH ?? "", HOME: process.env.HOME ?? "", CANLI_CACHE_DIR: "", CANLI_FRONT: "latest_price,sharpe_ratio" } }));
+  try {
+    const listed = (await c.listTools()).tools.map((t) => t.name);
+    assert.ok(listed.includes("latest_price") && listed.includes("sharpe_ratio"));
+    const kept = await c.callTool({ name: "sharpe_ratio", arguments: { returns: Array.from({ length: 60 }, (_, i) => 0.001 * Math.sin(i)) } });
+    assert.match(JSON.parse(kept.content[0].text).ref, /^r\d+$/, "a front tool's result is kept under a ref");
+    await c.callTool({ name: "run_tool", arguments: { name: "holdout_set", arguments: { from: "2024-01-01" } } });
+    const refused = await c.callTool({ name: "latest_price", arguments: { symbol: "AAPL" } });
+    assert.equal(refused.isError, true);
+    assert.match(refused.content[0].text, /latest_price cannot be held to 2023-12-31, so it is off while the holdout from 2024-01-01 is set/);
+  } finally {
+    await c.close();
+  }
+});

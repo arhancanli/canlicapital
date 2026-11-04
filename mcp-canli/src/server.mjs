@@ -661,6 +661,8 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
   registerView(server);
   registerPrompts(server, BY_NAME, packs);
   registerPackGuides(server, packs);
+  // What the tools listed beside run_tool share with it: kept results, what was read once, and the holdout.
+  return { keeper, readLimits, vault };
 }
 
 // audit_log (through run_tool, when the policy keeps a log): its state, a signed checkpoint now, or
@@ -742,7 +744,11 @@ export async function registerFront(server, packs, names = frontTools(packs), go
       title: t.title, description: t.description + (FRONT_GUIDE[name] ?? ""), inputSchema: t.input, outputSchema: open,
       annotations: { title: t.title, ...(t.annotations ?? READ_ONLY) },
     }, guard(async (args) => {
-      const full = await runOne(packs, { name, arguments: args }, {}, [], gov), ref = shared?.keeper.put(full) || undefined;
+      // A holdout hides its years from these tools as from run_tool, and they count toward what read the world before one.
+      const hidden = shared?.vault?.until();
+      const machine = hidden && (!TIME_MACHINE || hidden < TIME_MACHINE.asOf) ? createTimeMachine(hidden, { reason: `while the holdout from ${shared.vault.from()} is set (holdout_status)` }) : TIME_MACHINE;
+      const full = await runOne(packs, { name, arguments: args }, {}, [], gov, machine), ref = shared?.keeper.put(full) || undefined;
+      shared?.vault?.saw();
       const shown = trimmed(leanResult(full, { name, ref, seen: shared?.readLimits }), ref);
       return ref && shown && typeof shown === "object" && !Array.isArray(shown) ? { ref, ...shown } : shown;
     }));
