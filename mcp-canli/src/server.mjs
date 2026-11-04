@@ -93,7 +93,19 @@ const open = z.looseObject({});
 const SUMMARIES = new WeakMap();
 const ok = (result) => ({ content: [{ type: "text", text: JSON.stringify((result && typeof result === "object" && SUMMARIES.get(result)) ?? result) }], structuredContent: result });
 const fail = (err) => ({ isError: true, content: [{ type: "text", text: String(err?.message ?? err) }] });
-const guard = (fn) => async (args) => { try { return ok(await fn(args)); } catch (err) { return fail(err); } };
+// What each call cost, for the client in MCP's _meta, which hosts do not put in front of the model, so measuring
+// costs no tokens: wall time, the process's CPU time over the call where the runtime reports it (other calls
+// running at the same time included), and the characters the model reads.
+export const COST_KEY = "canlicapital.com/cost";
+const cpuNow = () => (typeof process?.cpuUsage === "function" ? process.cpuUsage() : null);
+const guard = (fn) => async (args) => {
+  const started = performance.now(), cpu = cpuNow();
+  let out;
+  try { out = ok(await fn(args)); } catch (err) { out = fail(err); }
+  const used = cpu ? process.cpuUsage(cpu) : null;
+  const cost = { ms: Math.round(performance.now() - started), ...(used ? { cpu_ms: Math.round((used.user + used.system) / 1000) } : {}), chars: out.content.reduce((t, c) => t + (c.text?.length ?? 0), 0) };
+  return { ...out, _meta: { ...out._meta, [COST_KEY]: cost } };
+};
 
 async function toolFor(name, packs) {
   const desk = DESK.find((t) => t.name === name);
@@ -199,18 +211,20 @@ export function nonFinitePaths(v, path = "", out = []) {
 // long lists cut to their first and last items. The full result stays under its ref, and the
 // show_result call (named in the preview's note) reads any part of it.
 export const RESULT_CHARS = 200_000;
-const LIST_KEEP = 5, LIST_MAX = 40;
-export function preview(v, path = "", cut = []) {
+const LIST_KEEP = 5, LIST_MAX = 40, TEXT_KEEP = 2000;
+// keep, max and text shorten further for a tighter budget (fit, below).
+export function preview(v, path = "", cut = [], { keep = LIST_KEEP, max = LIST_MAX, text = TEXT_KEEP } = {}) {
   const at = (k) => (path ? `${path}.${k}` : String(k));
+  const limits = { keep, max, text };
   if (Array.isArray(v)) {
-    if (v.length <= LIST_MAX) return v.map((x, i) => preview(x, at(i), cut));
+    if (v.length <= max) return v.map((x, i) => preview(x, at(i), cut, limits));
     cut.push({ path: path || "result", items: v.length });
-    return { list_of: v.length, first: v.slice(0, LIST_KEEP).map((x, i) => preview(x, at(i), cut)), last: v.slice(-LIST_KEEP).map((x, i) => preview(x, at(v.length - LIST_KEEP + i), cut)) };
+    return { list_of: v.length, first: v.slice(0, keep).map((x, i) => preview(x, at(i), cut, limits)), last: keep ? v.slice(-keep).map((x, i) => preview(x, at(v.length - keep + i), cut, limits)) : [] };
   }
-  if (v && typeof v === "object") return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, preview(x, at(k), cut)]));
-  if (typeof v === "string" && v.length > 2000) {
+  if (v && typeof v === "object") return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, preview(x, at(k), cut, limits)]));
+  if (typeof v === "string" && v.length > text) {
     cut.push({ path: path || "result", chars: v.length });
-    return `${v.slice(0, 2000)}… (${v.length} characters)`;
+    return `${v.slice(0, text)}… (${v.length} characters)`;
   }
   return v;
 }
@@ -236,10 +250,11 @@ export function leanResult(result, { name, ref, seen, digits } = {}) {
   return digits === undefined ? roundNumbers(out, DEFAULT_DIGITS) : out;
 }
 
-function trimmed(result, ref, limit = RESULT_CHARS) {
+function trimmed(result, ref, limit = RESULT_CHARS, shorten = {}) {
   const chars = JSON.stringify(result).length;
   if (chars <= limit) return result;
-  const cut = [], shown = preview(result, "", cut);
+  const { keep = LIST_KEEP, text = TEXT_KEEP } = shorten;
+  const cut = [], shown = preview(result, "", cut, shorten);
   const parts = cut.slice(0, 6).map((c) => `${c.path} (${c.items !== undefined ? `${c.items} items` : `${c.chars} characters`})`).join(", ") + (cut.length > 6 ? ` and ${cut.length - 6} more` : "");
   const first = cut[0]?.path === "result" ? "" : cut[0]?.path ?? "";
   return {
@@ -247,9 +262,24 @@ function trimmed(result, ref, limit = RESULT_CHARS) {
     preview_only: {
       chars,
       shortened: cut.slice(0, 20),
-      note: `This result is ${chars} characters. Lists show their first and last ${LIST_KEEP} items; long text shows its first 2000 characters. Shortened: ${parts || "large fields"}. ${ref ? `The whole result is kept as ${ref}: read a part with run_tool {"name": "show_result", "arguments": {"ref": "${ref}", "path": "${first}", "offset": 0, "limit": 200}}, pass {"$result": "${ref}", "path": "${first}"} to another tool, or call again with select.` : "Call again with select to choose the fields you need."}`,
+      note: `This result is ${chars} characters. Lists show their first and last ${keep} items; long text shows its first ${text} characters. Shortened: ${parts || "large fields"}. ${ref ? `The whole result is kept as ${ref}: read a part with run_tool {"name": "show_result", "arguments": {"ref": "${ref}", "path": "${first}", "offset": 0, "limit": 200}}, pass {"$result": "${ref}", "path": "${first}"} to another tool, or call again with select.` : "Call again with select to choose the fields you need."}`,
     },
   };
+}
+
+// A result within `budget` characters of JSON (run_tool's max_chars): shortened step by step, with lists cut to
+// fewer ends and long text to fewer characters, and as a last resort only the shape of its top level. The whole
+// result stays under its ref either way.
+const SHORTER = [{}, { keep: 3, max: 12, text: 600 }, { keep: 1, max: 4, text: 200 }, { keep: 0, max: 0, text: 80 }];
+export function fit(result, ref, budget = RESULT_CHARS) {
+  for (const shorten of SHORTER) {
+    const out = trimmed(result, ref, budget, shorten);
+    if (JSON.stringify(out).length <= budget) return out;
+  }
+  const shape = result && typeof result === "object" && !Array.isArray(result)
+    ? Object.fromEntries(Object.entries(result).map(([k, v]) => [k, Array.isArray(v) ? `list of ${v.length}` : v && typeof v === "object" ? "object" : typeof v === "string" && v.length > 80 ? `text of ${v.length} characters` : v]))
+    : { result: Array.isArray(result) ? `list of ${result.length}` : typeof result };
+  return { ...shape, preview_only: { chars: JSON.stringify(result).length, note: `Only the shape fits max_chars ${budget}.${ref ? ` The whole result is kept as ${ref}: read parts with show_result, or call again with select.` : " Call again with select or a larger max_chars."}` } };
 }
 
 // What the model reads of a result the person sees as a view: every field, with each long list as
@@ -284,12 +314,13 @@ export function showResult(keeper, args) {
 const RUN_INPUT = z.object({
       name: z.string().max(100).optional().describe("Tool name from find_tool (single call)."),
       arguments: z.record(z.string(), z.unknown()).optional().describe("The tool's arguments (single call)."),
-      calls: z.array(z.object({ name: z.string().max(100), arguments: z.record(z.string(), z.unknown()).optional() }).strict()).min(1).max(25).optional().describe("Several calls in one round trip. Calls without $result references run concurrently."),
-      return: z.enum(["all", "last"]).optional().describe("For a batch: every result (default) or only the last one."),
-      digits: z.number().int().min(3).max(10).optional().describe("Round fractional numbers in the results to this many significant figures (4-6 saves output tokens); whole numbers such as counts, shares and IDs are never changed. Default: as each tool returns them."),
+      calls: z.array(z.object({ name: z.string().max(100), arguments: z.record(z.string(), z.unknown()).optional() }).strict()).min(1).max(25).optional().describe("Several calls in one round trip; calls without $result run concurrently."),
+      return: z.enum(["all", "last"]).optional().describe("Batch: every result (default) or only the last."),
+      digits: z.number().int().min(3).max(10).optional().describe("Round fractional numbers to this many significant figures (default 6; 4 saves tokens); whole numbers never change."),
       select: z.array(z.string().max(200)).min(1).max(30).optional().describe("Return only these fields of each result, as dotted paths, e.g. [\"verdict\", \"multiple_testing.best\", \"rows.0.accession\"] (table rows take column names)."),
-      receipt: z.boolean().optional().describe("Add input and output SHA-256 and pack versions so the result can be recomputed and compared."),
-      view: z.boolean().optional().describe("Draw the whole result for the person (charts, comparisons, option chains, yield curves, statements, backtest dashboards, order tickets) and return you a summary, where MCP Apps are drawn."),
+      receipt: z.boolean().optional().describe("Add input and output SHA-256 and pack versions, to recompute and compare later."),
+      max_chars: z.number().int().min(1000).max(RESULT_CHARS).optional().describe("Cap each result at this many JSON characters; the rest stays under its ref."),
+      view: z.boolean().optional().describe("Draw the whole result for the person (charts, statements, yield curves, option chains, backtests) where MCP Apps are drawn; you get a summary."),
     }).strict();
 
 export const canliHome = (env = process.env) => env.CANLI_HOME ?? join(homedir(), ".canli");
@@ -392,7 +423,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     if (a.calls) a.calls = a.calls.flatMap((c) => (c.name === "run_tool" && c.arguments ? (c.arguments.calls ?? [{ name: c.arguments.name, arguments: c.arguments.arguments }]) : [c]));
     // Models sometimes put run_tool's own options inside a call's arguments; move them out when the
     // tool itself has no argument of that name.
-    for (const c of a.calls ?? [a]) for (const k of ["return", "digits", "select", "receipt"]) {
+    for (const c of a.calls ?? [a]) for (const k of ["return", "digits", "select", "receipt", "max_chars"]) {
       if (c.arguments && k in c.arguments && !(BY_NAME.get(c.name)?.args ?? "").split(", ").some((x) => x.replace(/\?.*$/, "").replace(/:.*$/, "") === k)) { if (a[k] === undefined) a[k] = c.arguments[k]; delete c.arguments[k]; }
     }
     // The SDK validates the outer envelope. Wrapping and lifting options changes that envelope,
@@ -444,7 +475,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const receipt = a.receipt ? { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(done.map(({ ref, ...d }) => d)) } : undefined;
     // After the receipt, which hashes the full results: an oversized one is sent as a preview.
     if (!a.select) for (const d of done) if (d.result !== undefined && !SELF[d.name]) d.result = leanResult(d.result, { name: d.name, ref: readOnly ? undefined : d.ref, seen: readLimits, digits: a.digits });
-    for (const d of done) if (d.result !== undefined) d.result = trimmed(d.result, d.ref, viewing ? VIEW_CHARS : RESULT_CHARS);
+    for (const d of done) if (d.result !== undefined) d.result = viewing ? trimmed(d.result, d.ref, VIEW_CHARS) : fit(d.result, d.ref, a.max_chars ?? RESULT_CHARS);
     const shown = (out) => {
       if (!viewing) return out;
       const refs = (out.results ?? [out]).map((r) => r.ref).filter(Boolean);
