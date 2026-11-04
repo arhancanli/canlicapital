@@ -5,6 +5,7 @@ import test from "node:test";
 
 import { cryptoMarkets } from "../src/coingecko.mjs";
 import { cryptoOptions, parseInstrument } from "../src/deribit.mjs";
+import { companyEmissions, ownerShare } from "../src/emissions.mjs";
 import { factorReturns, parseLibrary } from "../src/factors.mjs";
 import { congressTrades, parseIndex } from "../src/congress.mjs";
 import { federalBudget, treasuryCash } from "../src/fiscal.mjs";
@@ -157,4 +158,15 @@ test("crypto_markets: the largest coins with the whole market, and coins named b
   assert.deepEqual(top.rows[0].slice(0, 3), [1, "BTC", "Bitcoin"]);
   const named = await cryptoMarkets(s, { coins: ["eth", "solana"] });
   assert.deepEqual(named.rows.map((r) => r[14]), ["ethereum", "solana"], "solana is the coin, not another whose symbol is SOLANA");
+});
+
+test("company_emissions: EPA's facilities for a parent company, direct and owned-share totals, by gas, largest first, with a trend", async () => {
+  assert.equal(ownerShare("ExxonMobil Corporation (36.4%); BP America Inc. (26.4%)", "exxon"), 0.364);
+  assert.equal(ownerShare("CHEVRON CORP (100%)", "exxon"), null);
+  const r = await companyEmissions(session(), { company: "Exxon", year: 2023, trend: 2 });
+  assert.deepEqual(r.totals, { facilities: 64, direct_tonnes_co2e: 45229981, owned_share_tonnes_co2e: 38888882, biogenic_co2_tonnes: 21349 });
+  assert.deepEqual(r.trend.rows, [[2022, 55292789], [2023, 45229981]]);
+  assert.deepEqual(r.facilities.rows[0].slice(0, 6), ["EXXONMOBIL Bt Site", "BAYTOWN", "TX", "324110", 12693547, 100]);
+  assert.equal(r.by_gas_tonnes_co2e.methane > 1e6, true);
+  assert.match(r.limits[0], /scope 1/);
 });
