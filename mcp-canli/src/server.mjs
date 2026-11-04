@@ -391,11 +391,26 @@ async function runOne(packs, { name, arguments: given }, opts, files, gov, machi
     return result;
   } catch (e) { gov.record({ tool: name, pack: tool.pack, args, error: e.message }); throw e; }
 }
+// Identical read-only calls in flight share one computation: a batch that asks the same thing twice, or concurrent
+// requests in one process. The first caller keeps the result and each later one gets its own copy, so no caller
+// can change another's. A tool that writes or sends anything always runs.
+const INFLIGHT = new Map();
+function shared(tool, name, data) {
+  const run = () => tool.run(data, tool.pack === "quant" ? { digits: 15 } : undefined);
+  if (!tool.annotations?.readOnlyHint || tool.annotations?.destructiveHint) return run();
+  const key = `${name}\u0000${JSON.stringify(data)}`;
+  const running = INFLIGHT.get(key);
+  if (running) return running.then((out) => structuredClone(out));
+  const started = Promise.resolve().then(run);
+  INFLIGHT.set(key, started);
+  started.then(() => INFLIGHT.delete(key), () => INFLIGHT.delete(key));
+  return started;
+}
 async function execute(tool, name, args, { digits }, files) {
   const parsed = tool.input.safeParse(resolveRefs(args ?? {}, files));
   if (!parsed.success) throw new Error(`${name}: ${parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "arguments"}: ${i.message}`).join("; ")}. Arguments: ${BY_NAME.get(name).args}. describe_tool ${name} explains each one.`);
   // Packs return full precision (quant's own default); rounding happens once, here.
-  const out = await tool.run(parsed.data, tool.pack === "quant" ? { digits: 15 } : undefined);
+  const out = await shared(tool, name, parsed.data);
   const bad = nonFinitePaths(out);
   const result = digits ? roundNumbers(out, digits) : out;
   if (!bad.length || !result || typeof result !== "object" || Array.isArray(result)) return result;

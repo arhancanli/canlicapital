@@ -60,3 +60,12 @@ test("a clash, a missing module or an export-less module stops the start with th
   const found = await c.callTool({ name: "run_tool", arguments: { name: "demo_moving_sum", arguments: { values: [1], window: 1 } } });
   assert.equal(found.isError, true);
 });
+
+test("identical calls in flight share one run, and each caller gets its own copy", async (t) => {
+  const c = await connect(t, { CANLI_PLUGINS: path.join(path.dirname(fileURLToPath(import.meta.url)), "fixtures/count-plugin.mjs") });
+  const batch = async (calls) => JSON.parse((await c.callTool({ name: "run_tool", arguments: { calls } })).content[0].text).results.map((r) => r.result);
+  const same = await batch([{ name: "counter_slow", arguments: { label: "a" } }, { name: "counter_slow", arguments: { label: "a" } }, { name: "counter_slow", arguments: { label: "b" } }]);
+  assert.deepEqual(same.map((r) => [r.label, r.runs]), [["a", 1], ["a", 1], ["b", 2]], "the two identical calls ran once");
+  const later = await batch([{ name: "counter_slow", arguments: { label: "a" } }]);
+  assert.equal(later[0].runs, 3, "a call after the first finished runs again");
+});
