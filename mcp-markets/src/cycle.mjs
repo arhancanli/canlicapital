@@ -18,6 +18,14 @@ export const cycleInput = z.object({
 // RFC 4180 rows: the BIS quotes fields that hold commas (its series titles do). Some central banks separate
 // fields with semicolons (the Bundesbank, Norges Bank, the SNB).
 export function csvRows(text, sep = ",") {
+  const rows = csvTable(text, sep);
+  if (!rows.length) return [];
+  const [head, ...body] = rows;
+  return body.map((r) => Object.fromEntries(head.map((h, j) => [h, r[j] ?? ""])));
+}
+
+// Every row as its fields, the header row included, for a file whose header repeats names.
+export function csvTable(text, sep = ",") {
   const rows = [];
   let row = [], field = "", quoted = false;
   for (let i = 0; i < text.length; i += 1) {
@@ -33,9 +41,7 @@ export function csvRows(text, sep = ",") {
     } else field += ch;
   }
   if (field !== "" || row.length) { row.push(field); if (row.some((c) => c !== "")) rows.push(row); }
-  if (!rows.length) return [];
-  const [head, ...body] = rows;
-  return body.map((r) => Object.fromEntries(head.map((h, j) => [h, r[j] ?? ""])));
+  return rows;
 }
 
 const num = (s) => (s === "" || s == null || s === "NaN" ? null : Number(s));

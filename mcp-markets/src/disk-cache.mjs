@@ -28,6 +28,8 @@ export function freshFor(url) {
   // PortWatch answers slowly and changes weekly; page views change daily.
   if (/^https:\/\/services9\.arcgis\.com\//.test(url)) return 6 * HOUR;
   if (/^https:\/\/wikimedia\.org\/api\/rest_v1\/metrics\/pageviews\//.test(url)) return 6 * HOUR;
+  // EIA's weekly history pages are slow (up to 5 seconds) and are read for the years before this one.
+  if (/^https:\/\/www\.eia\.gov\/dnav\//.test(url)) return 6 * HOUR;
   return 0;
 }
 
