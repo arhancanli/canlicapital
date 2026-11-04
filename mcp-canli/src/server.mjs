@@ -48,6 +48,8 @@ import { RECEIPT_CHECK_TOOL, runReceiptCheck } from "./receipt-check.mjs";
 import { runShares, SHARES_TOOL } from "./shares.mjs";
 import { RED_FLAGS_TOOL, runRedFlags } from "./redflags.mjs";
 import { EXPORT_TOOL, exportInput } from "./export.mjs";
+import { COMPARE_TOOLS, compareInput, rerunInput } from "./compare.mjs";
+import { diff } from "./delta.mjs";
 import { addressedToAi, CAUTION } from "./injection.mjs";
 import { installTripwire, withoutNetwork } from "./tripwire.mjs";
 import { createDelta } from "./delta.mjs";
@@ -64,7 +66,7 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL, EXPORT_TOOL];
+const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL, EXPORT_TOOL, ...COMPARE_TOOLS];
 export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
@@ -174,6 +176,9 @@ export function createKeeper() {
     clear: () => { kept.clear(); chars = 0; },
     // The receipt of the answer a kept result came in, for the receipts of answers built from it.
     sign: (ref, receipt) => { const k = kept.get(ref); if (k) k.receipt = receipt; },
+    // The call that made a kept result, its arguments as they ran, for rerun_answer.
+    note: (ref, call) => { const k = kept.get(ref); if (k) k.call = call; },
+    callOf: (ref) => kept.get(ref)?.call,
     receiptOf: (ref) => kept.get(ref)?.receipt,
   };
 }
@@ -494,6 +499,26 @@ export function selfTools(packs, gov, keeper, readOnly = false, vault = null, pr
   tools.receipt_check = (args) => { allowed("receipt_check"); return runReceiptCheck(desk, args); };
   tools.reconcile_shares = (args) => { allowed("reconcile_shares"); return runShares(desk, args); };
   tools.red_flags = (args) => { allowed("red_flags"); return runRedFlags(desk, args); };
+  const keptOrThrow = (ref) => { if (!keeper.has(ref)) throw new Error(`${ref} is not kept; refs name earlier results (the last ${KEEP_COUNT} are kept).`); return keeper.get(ref); };
+  tools.compare_answers = (args) => {
+    allowed("compare_answers");
+    const a = compareInput.parse(args ?? {});
+    const [before, after] = [keptOrThrow(a.before), keptOrThrow(a.after)];
+    const [cb, ca] = [keeper.callOf(a.before), keeper.callOf(a.after)];
+    const changed = diff(before, after);
+    return { before: a.before, after: a.after, same_question: Boolean(cb && ca && JSON.stringify(cb) === JSON.stringify(ca)), ...(changed === undefined ? { unchanged: true } : { changed }) };
+  };
+  tools.rerun_answer = async (args) => {
+    allowed("rerun_answer");
+    const a = rerunInput.parse(args ?? {});
+    const before = keptOrThrow(a.ref), call = keeper.callOf(a.ref);
+    if (!call) throw new Error(`${a.ref} was not kept with its call, so it cannot be run again.`);
+    const now = await runOne(packs, { name: call.name, arguments: call.arguments }, {}, [], gov, machine);
+    const ref = keeper.put(now);
+    if (ref) keeper.note(ref, call);
+    const changed = diff(before, now);
+    return { ref: a.ref, rerun: call.name, ...(ref ? { new_ref: ref } : {}), ...(changed === undefined ? { same: true, reading: "The same answer, apart from when its sources were read." } : { same: false, changed }) };
+  };
   tools.export_result = async (args) => {
     allowed("export_result");
     if (readOnly) throw new Error("export_result writes to your own machine. Run it locally: npx -y canli-mcp");
@@ -594,7 +619,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     if (a.view) for (const c of calls) if (/^backtest_/.test(c.name) && !(c.arguments && "curve" in c.arguments)) { try { if ((await toolFor(c.name, packs)).input?.shape?.curve) c.arguments = { ...(c.arguments ?? {}), curve: true }; } catch { /* reported when it runs */ } }
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
     const SELF = selfTools(packs, gov, keeper, readOnly, vault, preregs, machine);
-    const run = (c, args) => (SELF[c.name] ? Promise.resolve().then(() => { if (machine && !machine.selfAllowed(c.name)) throw machine.refuse(c.name); return SELF[c.name](args); }) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov, machine));
+    const run = (c, args) => (c.ran = args, SELF[c.name] ? Promise.resolve().then(() => { if (machine && !machine.selfAllowed(c.name)) throw machine.refuse(c.name); return SELF[c.name](args); }) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov, machine));
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
     if (calls.length > 1 && destructive.some(Boolean)) throw new Error("A tool that sends orders cannot run inside a batch; call it on its own after previewing.");
     const done = [];
@@ -636,7 +661,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     // Calls that read the world before a holdout was set may have seen it; its status counts them.
     for (const d of done) if (!SELF[d.name] && !["quant", "validation"].includes(BY_NAME.get(d.name)?.pack)) vault.saw();
     // Keep each full result (before select) under a ref for later calls.
-    for (const d of done) if (d.result !== undefined && !SELF[d.name]) { const ref = keeper.put(d.result); if (ref) d.ref = ref; }
+    done.forEach((d, i) => { if (d.result === undefined || SELF[d.name]) return; const ref = keeper.put(d.result); if (ref) { d.ref = ref; keeper.note(ref, { name: calls[i].name, arguments: calls[i].ran ?? calls[i].arguments ?? {} }); } });
     // The receipt's sources come from the whole results, before select or changes_only narrow them.
     const sources = sourcesOf(done.map((d) => d.result));
     // A sweep's list of every variant's Sharpe was for the count; the model reads how many (luck.mjs).
