@@ -60,3 +60,27 @@ test("a clash, a missing module or an export-less module stops the start with th
   const found = await c.callTool({ name: "run_tool", arguments: { name: "demo_moving_sum", arguments: { values: [1], window: 1 } } });
   assert.equal(found.isError, true);
 });
+
+test("identical calls in flight share one run, and each caller gets its own copy", async (t) => {
+  const c = await connect(t, { CANLI_PLUGINS: path.join(path.dirname(fileURLToPath(import.meta.url)), "fixtures/count-plugin.mjs") });
+  const batch = async (calls) => JSON.parse((await c.callTool({ name: "run_tool", arguments: { calls } })).content[0].text).results.map((r) => r.result);
+  const same = await batch([{ name: "counter_slow", arguments: { label: "a" } }, { name: "counter_slow", arguments: { label: "a" } }, { name: "counter_slow", arguments: { label: "b" } }]);
+  assert.deepEqual(same.map((r) => [r.label, r.runs]), [["a", 1], ["a", 1], ["b", 2]], "the two identical calls ran once");
+  const later = await batch([{ name: "counter_slow", arguments: { label: "a" } }]);
+  assert.equal(later[0].runs, 3, "a call after the first finished runs again");
+});
+
+test("a batch reports progress as its calls finish, and a cancelled sequential batch starts no further call", async (t) => {
+  const c = await connect(t, { CANLI_PLUGINS: path.join(path.dirname(fileURLToPath(import.meta.url)), "fixtures/count-plugin.mjs") });
+  const seen = [];
+  await c.callTool({ name: "run_tool", arguments: { calls: ["p", "q", "r"].map((label) => ({ name: "counter_slow", arguments: { label } })) } }, { onprogress: (p) => seen.push([p.progress, p.total]) });
+  assert.deepEqual(seen, [[1, 3], [2, 3], [3, 3]]);
+  // Three calls in order, the second using the first: cancelled while the second runs, the third never starts.
+  const stop = new AbortController();
+  const calls = [{ name: "counter_slow", arguments: { label: "a" } }, { name: "counter_slow", arguments: { label: { $result: 0, path: "label" } } }, { name: "counter_slow", arguments: { label: "c" } }];
+  setTimeout(() => stop.abort(), 75);
+  await assert.rejects(c.callTool({ name: "run_tool", arguments: { calls } }, { signal: stop.signal }));
+  await new Promise((r) => setTimeout(r, 150));
+  const after = JSON.parse((await c.callTool({ name: "run_tool", arguments: { name: "counter_slow", arguments: { label: "z" } } })).content[0].text);
+  assert.ok(after.runs <= 3 + 3, `the third call of the cancelled batch did not run: 3 earlier runs, at most two of the batch, and this one, not ${after.runs}`);
+});

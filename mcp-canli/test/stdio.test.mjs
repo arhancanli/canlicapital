@@ -32,7 +32,9 @@ test("three discovery tools and the two front tools, byte-identical across launc
   await c.close();
   assert.match(said, /^Canli Capital's finance tools in one server: \d+ tools in \d+ packs \([^)]+\)\. Common tools, which run_tool takes without a search first/);
   assert.deepEqual(JSON.parse(bare).tools.map((t) => t.name), ["find_tool", "describe_tool", "run_tool"]);
-  assert.ok(bare.length < 4500, `${bare.length} bytes`);
+  // run_tool's options (budget, as_of, changes_only and the rest) cost about 30 tokens each: added only when they
+  // earn it, paid for by shorter wording where possible.
+  assert.ok(bare.length < 4600, `${bare.length} bytes`);
 });
 
 test("a front tool runs as run_tool runs it", async () => {
@@ -130,5 +132,5 @@ test("order-sending tools never run inside a batch; receipts are stable", async 
   const args = { name: "kelly_fraction", arguments: { win_probability: 0.6, payoff: 1 }, receipt: true };
   const a = await c.callTool({ name: "run_tool", arguments: args }), b = await c.callTool({ name: "run_tool", arguments: args });
   assert.deepEqual(a.structuredContent.receipt, b.structuredContent.receipt);
-  assert.equal(a.structuredContent.receipt.packs.quant, "0.2.0");
+  assert.equal(a.structuredContent.receipt.packs.quant, "0.3.0");
 });

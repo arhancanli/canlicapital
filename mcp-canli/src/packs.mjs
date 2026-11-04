@@ -11,7 +11,7 @@ import { z } from "zod";
 // What each pack sends off this machine and keeps on disk. Stated in canli://privacy and checked
 // by test/privacy.test.mjs (offline packs must run with the network disabled).
 export const PACKS = Object.freeze({
-  quant: { title: "Quant finance (235 tools, 399 strategy sleeves)", package: "canli-quant-mcp", network: "none", disk: "none", offline: true },
+  quant: { title: "Quant finance (236 tools, 399 strategy sleeves)", package: "canli-quant-mcp", network: "none", disk: "none", offline: true },
   validation: { title: "Backtest validation (deflated Sharpe, PBO, Reality Check, leakage, placebos)", package: "canli-validation-mcp", network: "none: runs in private local mode", disk: "reads a returns file only when you pass its path", offline: true },
   fundamentals: { title: "SEC fundamentals point in time", package: "canli-fundamentals-mcp", network: "downloads public SEC company data from canlicapital.com, or for a company outside that reference from data.sec.gov (sends the company and measure asked for, never your data)", disk: "caches that public data in ~/.cache/canli-fundamentals (CANLI_CACHE_DIR=\"\" keeps nothing)", offline: false },
   research: { title: "Canli Capital's open research record", package: "canli-research-mcp", network: "downloads public research pages from canlicapital.com (sends the search words)", disk: "none", offline: false },
@@ -44,6 +44,9 @@ export const KEYWORDS = Object.freeze({
   },
   quant: {
     sleeve_tournament: "which sleeves work best on my data test all compare",
+  },
+  validation: {
+    stress_test: "survive survival worst case what if blow up",
   },
   markets: {
     read_filing: "annual report read the annual report 10-k report",
@@ -110,7 +113,7 @@ const LOADERS = {
     const v = await import("canli-validation-mcp/src/server.mjs");
     const session = v.createSession({ local: true, toolsets: v.DEFAULT_TOOLSETS });
     const c = capture(); v.registerTools(c.server, session);
-    return fromRegistered("validation", c.tools);
+    return fromRegistered("validation", c.tools, KEYWORDS.validation);
   },
   async fundamentals() {
     const f = await import("canli-fundamentals-mcp/src/server.mjs");
@@ -162,7 +165,7 @@ export const PLUGINS = new Map();
 const PLUGIN_PACK = /^[a-z]{2,24}$/;
 export async function loadPlugins(env = process.env, taken = new Set()) {
   const specs = String(env.CANLI_PLUGINS ?? "").split(",").map((x) => x.trim()).filter(Boolean);
-  if (!specs.length || /^(1|true|yes)$/i.test(String(env.CANLI_OFFLINE ?? ""))) return [];
+  if (!specs.length || offlineMode(env)) return [];
   const out = [];
   for (const spec of specs) {
     const url = spec.startsWith(".") || isAbsolute(spec) ? pathToFileURL(resolve(spec)).href : spec;
@@ -190,6 +193,13 @@ export async function loadPlugins(env = process.env, taken = new Set()) {
 // A pack's description, built in or plugin.
 export const packInfo = (name) => PACKS[name] ?? PLUGINS.get(name);
 
+// Offline: CANLI_OFFLINE=1 keeps only the packs that never touch the network; CANLI_OFFLINE=packs also keeps the
+// fundamentals pack, which then reads only what canli-mcp pack add saved on this machine, with fetch refused.
+export function offlineMode(env = process.env) {
+  const v = String(env.CANLI_OFFLINE ?? "").trim().toLowerCase();
+  return v === "packs" ? "packs" : /^(1|true|yes)$/.test(v) ? "strict" : null;
+}
+
 // Which packs this process offers. CANLI_PACKS lists them (or "all"); CANLI_OFFLINE=1 keeps only
 // the packs that never touch the network; paper is on only with Alpaca paper keys (or when listed).
 export function enabledPacks(env = process.env) {
@@ -201,6 +211,7 @@ export function enabledPacks(env = process.env) {
     names = raw.split(",").map((s) => s.trim()).filter(Boolean);
     for (const n of names) if (!PACKS[n]) throw new Error(`CANLI_PACKS: no pack ${n}; packs are ${all.join(", ")}, all`);
   } else names = all.filter((n) => n !== "paper" || Boolean(env.ALPACA_PAPER_KEY_ID));
-  if (/^(1|true|yes)$/i.test(String(env.CANLI_OFFLINE ?? ""))) names = names.filter((n) => PACKS[n].offline);
+  const offline = offlineMode(env);
+  if (offline) names = names.filter((n) => PACKS[n].offline || (offline === "packs" && n === "fundamentals"));
   return names;
 }

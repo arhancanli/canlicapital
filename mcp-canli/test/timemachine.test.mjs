@@ -16,6 +16,8 @@ test("arguments are held to the date, however they are asked for", () => {
   assert.equal(tm.admit("known_as_of", "fundamentals", { company: "AAPL", as_of: "2019-01-01" }).as_of, "2019-01-01", "an earlier one stands");
   assert.deepEqual(tm.admit("history", "fundamentals", { company: "AAPL", basis: "latest" }).basis, "as_of", "latest values would hold later restatements");
   assert.equal(tm.admit("read_filing", "markets", { company: "AAPL" }).filed_before, D);
+  assert.deepEqual(tm.admit("vintage_diff", "fundamentals", { company: "AAPL", from: "2019-06-01" }), { company: "AAPL", from: "2019-06-01", to: D }, "what changed between a date and today stops at the date");
+  assert.equal(tm.admit("vintage_diff", "fundamentals", { company: "AAPL", from: "2021-01-01", to: "2022-01-01" }).from, D);
   const p = tm.admit("price_history", "markets", { symbol: "AAPL", end: "2026-01-01" });
   assert.equal(p.end, D);
   assert.equal(p.start, "2019-03-02", "the default start comes from the date, not from today");

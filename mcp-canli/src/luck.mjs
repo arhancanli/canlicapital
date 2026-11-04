@@ -38,6 +38,37 @@ export function trialOf(name, args, result) {
   return { label: shown ? `${name} ${shown}` : name, sharpe_annualized: sharpe, observations: periods, params: { tool: name, ...params } };
 }
 
+// A sweep's variants, each its own trial: canli-quant-mcp's strategy_sweep and sleeve_tournament return every_trial,
+// every variant's annualized Sharpe best first with the periods behind them, so a grid of 400 is 400 tries and not
+// one. A label names the variant's settings where the answer's own table shows them (the top 50 of a sweep, the
+// tournament's leaderboard), and its place among the rest otherwise.
+const SWEEPS = /^(strategy_sweep|sleeve_tournament)$/;
+export function trialsOf(name, args, result) {
+  const every = SWEEPS.test(name) ? result?.every_trial : null;
+  if (!every || !Array.isArray(every.sharpes)) { const one = trialOf(name, args, result); return one ? [one] : []; }
+  if (!Number.isInteger(every.periods) || every.periods < 2) return [];
+  const total = every.sharpes.length;
+  const settings = (i) => {
+    const params = name === "strategy_sweep" ? result.rows?.[i]?.[0] : null, sleeve = name === "sleeve_tournament" ? result.leaderboard?.[i]?.[0] : null;
+    if (params && typeof params === "object" && !Array.isArray(params)) return { label: `${name} ${result.recipe ?? ""} ${Object.entries(params).slice(0, 8).map(([k, v]) => `${k}=${shortValue(v)}`).join(" ")}`.replace(/ +/g, " ").trim(), params: { recipe: result.recipe, ...params } };
+    if (typeof sleeve === "string") return { label: `${name} ${sleeve}`, params: { sleeve } };
+    return { label: `${name}${result.recipe ? ` ${result.recipe}` : ""} variant ${i + 1} of ${total}`, params: { variant: i + 1 } };
+  };
+  return every.sharpes.flatMap((sharpe, i) => {
+    if (!Number.isFinite(sharpe)) return [];
+    const { label, params } = settings(i);
+    return [{ label, sharpe_annualized: sharpe, observations: every.periods, params: { tool: name, ...params } }];
+  });
+}
+
+// What the model reads of a sweep: how many variants were counted, not the whole list, which stays under the
+// answer's ref.
+export function shownTrials(result) {
+  if (!result || !Array.isArray(result.every_trial?.sharpes)) return result;
+  const { sharpes, ...rest } = result.every_trial;
+  return { ...result, every_trial: { ...rest, counted: sharpes.length } };
+}
+
 // One ledger for each sampling frequency (the tools' periods_per_year, 252 by default), since a deflated
 // Sharpe compares trials measured the same way.
 export function createLuck({ scope = "session", now = () => new Date().toISOString() } = {}) {
@@ -46,14 +77,16 @@ export function createLuck({ scope = "session", now = () => new Date().toISOStri
     get trials() {
       return [...ledgers.values()].reduce((t, l) => t + l.length, 0);
     },
-    // Records the result if it is a strategy's performance; returns the luck note to add to it, or null.
+    // Records the result if it is a strategy's performance, or a sweep's every variant; returns the luck note to
+    // add to it, or null.
     record(name, args, result) {
-      const trial = trialOf(name, args, result);
-      if (!trial) return null;
-      const ppy = Number(args?.periods_per_year) > 0 ? Number(args.periods_per_year) : PERIODS_PER_YEAR;
+      const found = trialsOf(name, args, result);
+      if (!found.length) return null;
+      const stated = Number(result?.every_trial?.periods_per_year) > 0 ? Number(result.every_trial.periods_per_year) : Number(args?.periods_per_year);
+      const ppy = stated > 0 ? stated : PERIODS_PER_YEAR;
       if (!ledgers.has(ppy)) ledgers.set(ppy, []);
       const trials = ledgers.get(ppy);
-      trials.push(buildTrial({ ...trial, periodsPerYear: ppy, n: trials.length + 1, prev: trials.at(-1)?.hash ?? GENESIS, recordedAt: now() }));
+      for (const trial of found) trials.push(buildTrial({ ...trial, periodsPerYear: ppy, n: trials.length + 1, prev: trials.at(-1)?.hash ?? GENESIS, recordedAt: now() }));
       const s = summarize({ trials, periodsPerYear: ppy });
       const elsewhere = this.trials - trials.length;
       const dsr = s.deflated?.deflated_sharpe_ratio ?? null;

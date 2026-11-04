@@ -9,7 +9,7 @@
 [![CodeQL](https://github.com/arhancanli/canli-mcp/actions/workflows/codeql.yml/badge.svg)](https://github.com/arhancanli/canli-mcp/actions/workflows/codeql.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](https://github.com/arhancanli/canli-mcp/blob/main/LICENSE)
 
-Every Canli Capital MCP server in one: 388 finance tools for Claude, Cursor or any MCP client.
+Every Canli Capital MCP server in one: 406 finance tools for Claude, Cursor or any MCP client.
 
 ```bash
 claude mcp add canli -- npx -y canli-mcp
@@ -31,7 +31,7 @@ No key and no account. [Add to VS Code](https://insiders.vscode.dev/redirect/mcp
   the number of independent bets they add up to, and every table sortable. With `view: true` the
   person gets the whole result drawn and the model a summary: 19 to 47 times fewer characters in our
   checks.
-- Quant finance: 235 tools covering performance and risk, options and exotics, fixed income,
+- Quant finance: 236 tools covering performance and risk, options and exotics, fixed income,
   portfolios, econometrics, indicators, and a library of 399 strategy sleeves with
   multiple-testing corrections.
 - Backtest validation: deflated Sharpe, overfitting probability, data-snooping tests, leakage checks
@@ -44,6 +44,7 @@ No key and no account. [Add to VS Code](https://insiders.vscode.dev/redirect/mcp
 - New in 0.16.1: `exposure_map` finds the companies whose annual reports name a supplier, customer or other company, with the passage, and `my_week` sums up a week across what you hold in plain words. Answers take 15 to 22% fewer tokens.
 - Fixed in 0.17.1: Hansen's SPA and Romano and Wolf's StepM hold their size (validation 0.15.0), and the time machine no longer lets later filings through in fields without a date.
 - New in 0.17.0: foreign companies such as TSMC, Shell, Novo Nordisk and SAP, read live from the SEC with statements in two currencies; `stock_snapshot` for analysts' targets, valuation ratios and short interest; `technical_indicators`; euro exchange rates from the ECB.
+- Coming in 0.18.0: the holdout vault (years hidden from every tool until their one test), `preregister`, luck counted on every strategy result and every variant of a sweep, restatement alerts from the sentinel, `as_of` and `changes_only` on any call, answer budgets, a receipt and a cost meter on every answer, and the network tripwire.
 - Point-in-time SEC fundamentals.
 - An analyst's filings, and a check on the answer: financial statements exactly as filed (several
   years joined, restatements and splits shown beside the first-reported figures), the table in any
@@ -136,7 +137,7 @@ the clearer tool descriptions of 0.13.2 another 121.
   words they used were then added to the index (38 and 40). For the 0.7.0 to 0.9.0 tools, 43 requests
   written before measuring: 41 first, 42 in the top three. `test/search.test.mjs` holds these and
   176 more.
-- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 388 tools; a pack's
+- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 406 tools; a pack's
   code loads the first time one of its tools runs.
 - **Data by file, not by pasting.** Any argument can be `{"$file": "prices.csv", "column": "close"}`
   (or `"columns": ["SPY", "TLT"]` or `"all"`). For 1,000 prices that is 23 tokens instead of 4,893,
@@ -334,11 +335,15 @@ Everything runs on your machine. `canli://privacy` states, per pack, what leaves
 | markets | SEC EDGAR and the SEC's adviser database, the US Treasury, FRED, FINRA, the CFTC, the Federal Reserve and the New York Fed, BLS, BEA, the Census Bureau, the OECD, the World Bank, Cboe, filings.xbrl.org (European filings), the ECB, the Bank of England, the BIS, Polymarket, Kalshi, DefiLlama, OKX, GDELT (news), USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index directly (the company, form, dates, search words, rate or series you ask for); Yahoo Finance's public data for prices and a quote page's figures (the symbol you ask for), or for US stock prices Alpaca or Tiingo with your key | none |
 | paper | Alpaca's paper API only, with your paper keys | a hash-chained order log in `~/.canli` |
 
-`CANLI_OFFLINE=1` enables only the packs with no network, and no other pack's code is even loaded.
+`CANLI_OFFLINE=1` enables only the packs with no network, and no other pack's code is even loaded. To work offline with company figures too, save the companies first with `npx canli-mcp pack add AAPL MSFT ...` (it reads each one's Canli reference and SEC snapshot once), then run with `CANLI_OFFLINE=packs`: the fundamentals pack joins, reads only what was saved, with `fetch` refused, and answers as of each company's saved snapshot. `canli-mcp pack list` shows what is saved.
 `test/privacy.test.mjs` runs the server that way with `fetch` and every network module made to
-throw, and the quant and validation tools still answer. The server itself has no network or logging
-code, and writes only the audit log a policy file asks for (both tested). Opt-in receipts
-(`receipt: true`) carry hashes, never data.
+throw, and the quant and validation tools still answer. While the server runs, every quant and validation tool, and any plugin that says it
+sends nothing, runs with `fetch` refused, and an answer whose every call ran so says `network: "none"` in its
+receipt. The server itself has no network or logging
+code, and writes only the audit log a policy file asks for (both tested). Every answer's receipt,
+in MCP's `_meta` under `canlicapital.com/receipt` (hosts do not put it in front of the model), carries
+hashes, the URLs and times of the documents the result was read from, and the receipts of the kept
+answers it was built from, never data; `receipt: true` adds the hashes to the answer itself.
 
 ## Configuration
 
@@ -436,6 +441,14 @@ EDGAR posts a filing about a minute after accepting it, so most filings arrive w
 The first read only marks what is already there. Lines of type `error` report a failed read; the
 feed carries on.
 
+## Pre-registration: the hypothesis before the data
+
+`preregister` with `{"hypothesis": "...", "plan": "..."}` hashes both with the time before you read any data. Every later answer's receipt names that hash, so the order (hypothesis, then data) is in your own records, and anyone given the text can hash it again to check. The record is kept in `CANLI_HOME/preregistrations.jsonl`, and in the signed audit log when one is on.
+
+## The holdout vault: years you test on once
+
+Keep the last years aside and the server keeps them for you. `holdout_set` with `{"from": "2024-01-01"}` hides every date from then on, from every tool, for the rest of the session. Tools answer as of the day before, and a tool that cannot be held to that day is off. Results kept so far are cleared, since they may show those years. When the strategy is final, `holdout_test` runs one call on the hidden years, once, and records it with the hashes of what was asked and answered. A second test is refused, and the years stay hidden. `holdout_status` shows the vault, its test, and how many calls read the world before it was set. It hides what the server's tools read, not data you pass in yourself or what the model remembers. Local server only.
+
 ## The sentinel: it watches, and wakes your agent
 
 Set a condition and it is watched from your machine. When it is met, you get what happened, how it was seen and a block of context, instead of having to ask.
@@ -444,12 +457,15 @@ Set a condition and it is watched from your machine. When it is met, you get wha
 npx canli-mcp sentinel add '{"kind":"price_move","symbol":"BTC-USD","percent":2,"within_minutes":30}'
 npx canli-mcp sentinel add '{"kind":"volatility_move","symbol":"NVDA","points":5,"within_minutes":120}'
 npx canli-mcp sentinel add '{"kind":"filing","company":"NVDA","forms":["8-K"]}'
+npx canli-mcp sentinel add '{"kind":"restatement","company":"AAPL","concept":"revenue","start":"2024-09-29","end":"2025-09-27"}'
 npx canli-mcp sentinel run --exec 'claude -p "A market event just fired. Brief me."'
 ```
 
-A model can set rules too, with `sentinel_add`. Events go to standard output, `--webhook <url>` or `--exec <command>`, which gets the block on standard input. In Claude Code, `canli-mcp --channel` runs the sentinel inside the server and an event wakes the session; channels are a research preview there, so start it with `claude --dangerously-load-development-channels server:canli`. Other hosts cannot be woken by a server, so use `--exec`, or read `sentinel_events` at the start of a session.
+A filing rule with `"check": true` runs `filing_check` on each new 10-K or 10-Q and says whether a figure is tagged at the wrong scale, tagged twice with two values, or does not add up. An insider_cluster rule (`{"kind":"insider_cluster","company":"ACME"}`) fires when three or more insiders buy in the open market within 30 days. A reported rule (`{"kind":"reported","company":"AAPL","concept":"revenue","end":"2026-09-26","above":400000000000}`) fires once when the figure is first reported, with whether it meets the claim. A restatement rule watches one figure of one period. It fires when a later filing reports a different value, which may be a restatement, a correction or a reclassification. The event gives both values, both filings and every filing that reported the period. Restatements are watched at 8 companies at most.
 
-Crypto pairs stream from Coinbase's public feed. US stocks stream from Alpaca if you have keys set. Everything else is read on a timer: prices every 30 seconds from Yahoo, option quotes every 5 minutes from Cboe (15 minutes late), filings every 60 seconds from EDGAR. Every event says which, so you know how late it can be.
+In Claude Code, `@canli:canli://company/AAPL` attaches a company's profile, five years of figures, and price and risk to the conversation. To catch up at the start of a session, attach the resource `canli://week/AAPL,NVDA,VOO`: the week across those holdings, with the sentinel's events of the same seven days. A model can set rules too, with `sentinel_add`. Events go to standard output, `--webhook <url>`, `--slack <url>` or `--discord <url>` (an incoming webhook, which gets a short message), or `--exec <command>`, which gets the block on standard input. In Claude Code, `canli-mcp --channel` runs the sentinel inside the server and an event wakes the session; channels are a research preview there, so start it with `claude --dangerously-load-development-channels server:canli`. Other hosts cannot be woken by a server, so use `--exec`, or read `sentinel_events` at the start of a session.
+
+Crypto pairs stream from Coinbase's public feed. US stocks stream from Alpaca if you have keys set. Everything else is read on a timer: prices every 30 seconds from Yahoo, option quotes every 5 minutes from Cboe (15 minutes late), filings every 60 seconds from EDGAR, company figures every 15 minutes from the SEC's company facts. Every event says which, so you know how late it can be.
 
 It tells and it never trades. A rule holds a condition and a note and nothing that can reach anything: where events go is set only on the command line, by you. A block carries numbers, dates, form types and SEC links, and no text from a filing or a headline, so outside text cannot talk to your model.
 
@@ -471,12 +487,12 @@ A deflated Sharpe ratio is only as honest as the number of trials put into it, a
 
 | pack | package | tools | tested against |
 |---|---|---|---|
-| quant | [canli-quant-mcp](https://www.npmjs.com/package/canli-quant-mcp) | 235 | QuantLib, statsmodels, arch, TA-Lib, scipy, pandas: 465 reference cases |
+| quant | [canli-quant-mcp](https://www.npmjs.com/package/canli-quant-mcp) | 236 | QuantLib, statsmodels, arch, TA-Lib, scipy, pandas: 465 reference cases |
 | validation | [canli-validation-mcp](https://www.npmjs.com/package/canli-validation-mcp) | 17 | the Null Zoo benchmark of 160,000 simulated searches |
-| fundamentals | [canli-fundamentals-mcp](https://www.npmjs.com/package/canli-fundamentals-mcp) | 7 | SEC XBRL filings |
+| fundamentals | [canli-fundamentals-mcp](https://www.npmjs.com/package/canli-fundamentals-mcp) | 8 | SEC XBRL filings |
 | research | [canli-research-mcp](https://www.npmjs.com/package/canli-research-mcp) | 6 | the published research record and its hash chain |
 | backtest | [canli-backtest-mcp](https://www.npmjs.com/package/canli-backtest-mcp) | 32 | point-in-time SEC data and the breadth lab's own checks |
-| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 86 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank, Cboe, ECB, Bank of England, BIS, filings.xbrl.org, Polymarket, Kalshi, DefiLlama, USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index: a 13F's total equals its cover page; ESEF figures equal the same companies' Form 20-F at the SEC; central-bank rates agree with the BIS |
+| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 102 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank, Cboe, ECB, Bank of England, BIS, filings.xbrl.org, Polymarket, Kalshi, DefiLlama, USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index: a 13F's total equals its cover page; ESEF figures equal the same companies' Form 20-F at the SEC; central-bank rates agree with the BIS |
 | paper | [canli-paper-trading-mcp](https://www.npmjs.com/package/canli-paper-trading-mcp) | 5 | a simulated Alpaca paper API |
 
 Two tools differ from their standalone servers. Validation's `stress_test` is `strategy_stress_test`
