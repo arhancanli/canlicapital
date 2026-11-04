@@ -409,9 +409,30 @@ function shared(tool, name, data) {
   started.then(() => INFLIGHT.delete(key), () => INFLIGHT.delete(key));
   return started;
 }
+// An argument a model got nearly right: the tool's own key it most likely meant, by the names models reach for
+// (ticker for symbol, start_date for start) or by spelling. When renaming fixes the call, the error gives the call.
+const MEANT = { ticker: ["symbol", "company"], tickers: ["symbols", "companies", "holdings"], symbols: ["tickers", "holdings"], company: ["symbol", "ticker"], symbol: ["ticker", "company"], start_date: ["start", "since", "from"], end_date: ["end", "until", "to"], from: ["start", "since"], to: ["end", "until"], date: ["as_of", "end"], n: ["limit", "top"], count: ["limit", "top"], max: ["limit"], form: ["forms"], forms: ["form"], query: ["search", "q"], search: ["query"], period: ["periods"], cik: ["company"] };
+const apart = (a, b) => { const d = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]); for (let j = 1; j <= b.length; j++) d[0][j] = j; for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); return d[a.length][b.length]; };
+// given: the arguments as sent, resolved: with $file read in, which is what is checked; the call shown is the one
+// sent, so nothing read from a file comes back in an error.
+function corrected(tool, given, resolved, issues) {
+  const keys = Object.keys(tool.input?.shape ?? {}), fixed = { ...given }, checked = { ...resolved }, renames = [];
+  for (const bad of issues.filter((i) => i.code === "unrecognized_keys").flatMap((i) => i.keys)) {
+    const meant = (MEANT[bad] ?? []).find((k) => keys.includes(k) && !(k in fixed)) ?? keys.filter((k) => !(k in fixed)).map((k) => [k, apart(bad, k)]).filter(([, n]) => n <= 2).sort((x, y) => x[1] - y[1])[0]?.[0];
+    if (!meant) continue;
+    for (const o of [fixed, checked]) { o[meant] = o[bad]; delete o[bad]; }
+    renames.push(`${bad} is ${meant}`);
+  }
+  if (!renames.length) return "";
+  if (!tool.input.safeParse(checked).success) return ` ${renames.join("; ")}.`;
+  const call = JSON.stringify({ name: tool.name, arguments: fixed });
+  return call.length <= 600 ? ` ${renames.join("; ")}: the call is ${call}.` : ` ${renames.join("; ")}, and with that the call checks.`;
+}
 async function execute(tool, name, args, { digits }, files) {
-  const parsed = tool.input.safeParse(resolveRefs(args ?? {}, files));
-  if (!parsed.success) throw new Error(`${name}: ${parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "arguments"}: ${i.message}`).join("; ")}. Arguments: ${BY_NAME.get(name).args}. describe_tool ${name} explains each one.`);
+  const resolved = resolveRefs(args ?? {}, files);
+  const parsed = tool.input.safeParse(resolved);
+  const plain = args && typeof args === "object" && !Array.isArray(args) && resolved && typeof resolved === "object" && !Array.isArray(resolved);
+  if (!parsed.success) throw new Error(`${name}: ${parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "arguments"}: ${i.message}`).join("; ")}.${plain ? corrected({ ...tool, name }, args, resolved, parsed.error.issues) : ""} Arguments: ${BY_NAME.get(name).args}. describe_tool ${name} explains each one.`);
   // Packs return full precision (quant's own default); rounding happens once, here.
   const out = await shared(tool, name, parsed.data);
   const bad = nonFinitePaths(out);
