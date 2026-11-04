@@ -106,10 +106,11 @@ const fail = (err) => ({ isError: true, content: [{ type: "text", text: String(e
 // running at the same time included), and the characters the model reads.
 export const COST_KEY = "canlicapital.com/cost";
 const cpuNow = () => (typeof process?.cpuUsage === "function" ? process.cpuUsage() : null);
-const guard = (fn) => async (args) => {
+// extra: the request's own, with its cancellation signal and progress token, for the tools that use them.
+const guard = (fn) => async (args, extra) => {
   const started = performance.now(), cpu = cpuNow();
   let out;
-  try { out = ok(await fn(args)); } catch (err) { out = fail(err); }
+  try { out = ok(await fn(args, extra)); } catch (err) { out = fail(err); }
   const used = cpu ? process.cpuUsage(cpu) : null;
   const cost = { ms: Math.round(performance.now() - started), ...(used ? { cpu_ms: Math.round((used.user + used.system) / 1000) } : {}), chars: out.content.reduce((t, c) => t + (c.text?.length ?? 0), 0) };
   return { ...out, _meta: { ...out._meta, [COST_KEY]: cost } };
@@ -532,7 +533,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     outputSchema: open,
     // Hosts that draw MCP Apps show the result in the viewer; others ignore this.
     _meta: { ui: { resourceUri: VIEW_URI } },
-  }, guard(async (a) => {
+  }, guard(async (a, extra) => {
     // Models sometimes call run_tool through itself ({"name": "run_tool", "arguments": {...}});
     // unwrap it, and its calls inside a batch.
     if (a.name === "run_tool" && a.arguments && typeof a.arguments === "object") { const { name, arguments: inner, ...outer } = a; a = { ...inner, ...Object.fromEntries(Object.entries(outer).filter(([, v]) => v !== undefined)) }; }
@@ -565,13 +566,27 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
     if (calls.length > 1 && destructive.some(Boolean)) throw new Error("A tool that sends orders cannot run inside a batch; call it on its own after previewing.");
     const done = [];
+    // A batch reports each call as it finishes when the client asked for progress, which also keeps a long batch
+    // from timing out on clients that wait longer while progress comes; a cancelled batch starts no further call.
+    // The SDK gives these as ctx.mcpReq (v2) or on the handler's extra (v1).
+    const req = extra?.mcpReq ?? extra ?? {};
+    const token = req._meta?.progressToken, notify = req.notify ?? req.sendNotification;
+    let finished = 0;
+    const progress = () => {
+      finished += 1;
+      if (token === undefined || calls.length < 2 || typeof notify !== "function") return;
+      Promise.resolve(notify({ method: "notifications/progress", params: { progressToken: token, progress: finished, total: calls.length, message: `${finished} of ${calls.length} calls done` } })).catch(() => {});
+    };
+    const cancelled = () => Boolean(req.signal?.aborted);
     if (calls.some((c) => usesResults(c.arguments))) {
       for (const c of calls) {
+        if (cancelled()) { done.push({ name: c.name, error: "not run: the request was cancelled" }); continue; }
         try { done.push({ name: c.name, result: await run(c, resolveResults(c.arguments ?? {}, done, keeper)) }); }
         catch (e) { done.push({ name: c.name, error: e.message }); }
+        progress();
       }
     } else {
-      done.push(...await Promise.all(calls.map((c) => run(c, c.arguments).then((result) => ({ name: c.name, result }), (e) => ({ name: c.name, error: e.message })))));
+      done.push(...await Promise.all(calls.map((c) => run(c, c.arguments).then((result) => ({ name: c.name, result }), (e) => ({ name: c.name, error: e.message })).finally(progress))));
     }
     // Each strategy result says what is left after luck across everything tried so far (luck.mjs).
     done.forEach((d, i) => {
