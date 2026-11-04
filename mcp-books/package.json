@@ -1,0 +1,36 @@
+{
+  "name": "canli-books-mcp",
+  "version": "0.1.0",
+  "description": "Double-entry books for AI agents and apps: every entry must balance, history cannot change quietly (hash-chained records, reversals instead of edits, locked periods), and every balance traces back to its entries.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "canli-books-mcp": "src/server.mjs"
+  },
+  "engines": {
+    "node": ">=20.10"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arhancanli/canlicapital.git",
+    "directory": "mcp-books"
+  },
+  "bugs": {
+    "url": "https://github.com/arhancanli/canlicapital/issues"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.3.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.3.1"
+  }
+}

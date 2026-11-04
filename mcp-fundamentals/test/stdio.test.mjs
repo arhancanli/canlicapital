@@ -48,7 +48,7 @@ test("seven read-only tools, the package version, and a byte-identical list on e
   };
   const first = await list();
   const { tools } = JSON.parse(first.json);
-  assert.deepEqual(tools.map((t) => t.name).sort(), ["cross_section", "find_company", "history", "known_as_of", "list_concepts", "restatements", "vintages"]);
+  assert.deepEqual(tools.map((t) => t.name).sort(), ["cross_section", "find_company", "history", "known_as_of", "list_concepts", "restatements", "vintage_diff", "vintages"]);
   for (const t of tools) {
     assert.equal(t.annotations.readOnlyHint, true, t.name);
     assert.equal(t.annotations.destructiveHint, false, t.name);
@@ -59,12 +59,12 @@ test("seven read-only tools, the package version, and a byte-identical list on e
   assert.equal((await list()).json, first.json);
 });
 
-test("the tool list stays small: under 6000 characters a model reads (seven tools)", async () => {
+test("the tool list stays small: under 7200 characters a model reads (eight tools)", async () => {
   const client = await connect();
   try {
     const { tools } = await client.listTools();
     const visible = tools.reduce((n, t) => { const { $schema, ...params } = t.inputSchema; return n + t.description.length + JSON.stringify(params).length; }, 0);
-    assert.ok(visible < 6000, `${visible} characters`);
+    assert.ok(visible < 7200, `${visible} characters`);
   } finally {
     await client.close();
   }
