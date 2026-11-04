@@ -236,6 +236,31 @@ test("a company outside the reference is read live from the SEC when the flagshi
   assert.equal(offCalls.some((c) => c.includes("companyfacts")), false);
 });
 
+test("a reference snapshot older than the company's newest report gives way to the SEC's own facts when the flagship reads live, and says why", async () => {
+  // The fixture's reference was captured 2026-09-19; the SEC lists a 10-Q filed since, after an 8-K.
+  const list = (forms, dates) => JSON.stringify({ filings: { recent: { form: forms, filingDate: dates, accessionNumber: forms.map((_, i) => `0000123456-26-00003${i}`) } } });
+  const map = files();
+  map[`/submissions/CIK${CIK}.json`] = list(["8-K", "10-Q", "10-K"], ["2026-11-04", "2026-11-03", "2026-02-20"]);
+  map[`/api/xbrl/companyfacts/CIK${CIK}.json`] = RAW;
+  const { s } = session(map, { secLive: true });
+  const r = out(await toolListConcepts(s, { company: "FIX" }));
+  assert.equal(r.snapshot.read_live, true);
+  assert.deepEqual(r.snapshot.newer_filing, { form: "10-Q", filed: "2026-11-03", accession: "0000123456-26-000031" });
+  assert.deepEqual(r.snapshot.reference, { fetched_at: "2026-09-19T09:30:25.021Z", sha256: SHA, url: `https://example.test/company-data/sources/${SHA}.json.gz` });
+  assert.match(r.snapshot.note, /captured 2026-09-19; its 10-Q filed 2026-11-03 is newer, so the SEC's own company facts were read live/);
+  assert.equal(r.company.cik, CIK);
+  // Nothing newer than the snapshot: the reference stands.
+  const current = files();
+  current[`/submissions/CIK${CIK}.json`] = list(["8-K", "10-Q"], ["2026-11-04", "2026-08-01"]);
+  const { s: same, calls } = session(current, { secLive: true });
+  assert.equal(out(await toolListConcepts(same, { company: "FIX" })).snapshot.read_live, undefined);
+  assert.equal(calls.some((c) => c.includes("companyfacts")), false);
+  // Not reading live: the SEC is never asked.
+  const { s: off, calls: offCalls } = session(map);
+  assert.equal(out(await toolListConcepts(off, { company: "FIX" })).snapshot.read_live, undefined);
+  assert.equal(offCalls.some((c) => c.startsWith("/submissions/")), false);
+});
+
 test("names people use reach the listed company", async () => {
   const map = files();
   map["/api/v1/company-tickers.json"] = Buffer.from(JSON.stringify({ tickers: { FIX: CIK, GOOGL: "0001652044" } }));
