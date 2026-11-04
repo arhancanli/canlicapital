@@ -31,13 +31,31 @@ export function zipEntries(bytes, { maxText = 64 * 1024 * 1024 } = {}) {
   return entries;
 }
 
-// A worksheet as rows of cell text (the first sheet unless another is named by number).
+// A worksheet as rows of cell text: the first sheet, another by its number, or one by its tab's name. Several sheets of
+// one workbook are read with xlsxSheets, which opens the archive once.
 export function xlsxRows(bytes, sheet = 1) {
+  return xlsxSheets(bytes, [sheet])[0];
+}
+
+export function xlsxSheets(bytes, sheets) {
   const entries = zipEntries(bytes);
   const read = (name) => (entries.has(name) ? entries.get(name)().toString("utf8") : null);
   const shared = [...(read("xl/sharedStrings.xml") ?? "").matchAll(/<si>([\s\S]*?)<\/si>/g)].map((m) => unescape([...m[1].matchAll(/<t\b[^>]*>([\s\S]*?)<\/t>/g)].map((t) => t[1]).join("")));
-  const xml = read(`xl/worksheets/sheet${sheet}.xml`);
-  if (!xml) throw new Error(`The spreadsheet has no sheet ${sheet}.`);
+  const workbook = read("xl/workbook.xml") ?? "", rels = read("xl/_rels/workbook.xml.rels") ?? "";
+  const path = (sheet) => {
+    if (typeof sheet === "number") return `xl/worksheets/sheet${sheet}.xml`;
+    const id = [...workbook.matchAll(/<sheet\b([^>]*)\/?>/g)].map((m) => m[1]).find((a) => unescape(/\bname="([^"]*)"/.exec(a)?.[1] ?? "") === sheet)?.match(/\br:id="([^"]+)"/)?.[1];
+    const target = id ? [...rels.matchAll(/<Relationship\b([^>]*)\/?>/g)].map((m) => m[1]).find((a) => a.includes(`Id="${id}"`))?.match(/\bTarget="([^"]+)"/)?.[1] : null;
+    return target ? `xl/${target.replace(/^\/?xl\//, "")}` : null;
+  };
+  return sheets.map((sheet) => {
+    const xml = read(path(sheet) ?? "");
+    if (!xml) throw new Error(`The spreadsheet has no sheet ${sheet}.`);
+    return sheetRows(xml, shared);
+  });
+}
+
+function sheetRows(xml, shared) {
   const rows = [];
   for (const r of xml.matchAll(/<row\b[^>]*>([\s\S]*?)<\/row>/g)) {
     const row = [];
