@@ -43,6 +43,7 @@ import { signedTrialCount, TRIALS_TOOL } from "./trials.mjs";
 import { createLuck, shownTrials } from "./luck.mjs";
 import { createVault, HOLDOUT_TOOLS } from "./holdout.mjs";
 import { createRegistry, PREREG_TOOL } from "./prereg.mjs";
+import { installTripwire, withoutNetwork } from "./tripwire.mjs";
 import { createDelta } from "./delta.mjs";
 import { runWeek, WEEK_TOOL } from "./week.mjs";
 import { channelSink, CHANNEL_INSTRUCTIONS, SENTINEL_TOOLS } from "./sentinel.mjs";
@@ -395,8 +396,10 @@ async function runOne(packs, { name, arguments: given }, opts, files, gov, machi
 // requests in one process. The first caller keeps the result and each later one gets its own copy, so no caller
 // can change another's. A tool that writes or sends anything always runs.
 const INFLIGHT = new Map();
+// A pack that sends nothing runs with fetch refused (tripwire.mjs).
+const sendsNothing = (pack) => Boolean(PACKS[pack]?.offline) || PLUGINS.get(pack)?.network === "none";
 function shared(tool, name, data) {
-  const run = () => tool.run(data, tool.pack === "quant" ? { digits: 15 } : undefined);
+  const run = sendsNothing(tool.pack) ? () => withoutNetwork(name, tool.pack, () => tool.run(data, tool.pack === "quant" ? { digits: 15 } : undefined)) : () => tool.run(data, tool.pack === "quant" ? { digits: 15 } : undefined);
   if (!tool.annotations?.readOnlyHint || tool.annotations?.destructiveHint) return run();
   const key = `${name}\u0000${JSON.stringify(data)}`;
   const running = INFLIGHT.get(key);
@@ -480,6 +483,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
   const luck = createLuck({ scope: readOnly ? "request" : "session" });
   // Each call's last whole result, for changes_only (delta.mjs).
   const delta = createDelta();
+  installTripwire();
   // A holdout period hidden from every tool until its one test (holdout.mjs); setting it clears what was kept.
   const vault = createVault({ onSet: () => { keeper.clear(); delta.clear(); } });
   // Hypotheses hashed before the data, named in every later receipt (prereg.mjs); kept in CANLI_HOME on this machine.
@@ -581,7 +585,8 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const receipt = a.receipt ? hashes : undefined;
     // Every answer's receipt goes to the client in _meta, with the sources the full results were read from.
     const parents = builtFrom(refsRead(calls), keeper);
-    const kept = { ...hashes, sources, at: new Date().toISOString(), ...(parents.length ? { from: parents } : {}), ...(registered.length ? { after: registered } : {}) };
+    const quiet = calls.every((c) => (SELF[c.name] ? ["find_tool", "describe_tool", "show_result"].includes(c.name) : sendsNothing(BY_NAME.get(c.name)?.pack)));
+    const kept = { ...hashes, sources, at: new Date().toISOString(), ...(quiet ? { network: "none: every call ran where fetch is refused" } : {}), ...(parents.length ? { from: parents } : {}), ...(registered.length ? { after: registered } : {}) };
     for (const d of done) if (d.ref) keeper.sign(d.ref, kept);
     // After the receipt, which hashes the full results: an oversized one is sent as a preview.
     if (!a.select) for (const d of done) if (d.result !== undefined && !SELF[d.name]) d.result = leanResult(d.result, { name: d.name, ref: readOnly ? undefined : d.ref, seen: readLimits, digits: a.digits });
@@ -625,6 +630,7 @@ export const PRIVACY = (packs, gov) => ({
   receipts: "every answer's receipt, in MCP's _meta, carries SHA-256 hashes and the URLs and times of the documents read, never the data",
   preregistrations: "off until you use preregister: each record is kept in CANLI_HOME/preregistrations.jsonl on this machine, readable only by you",
   holdout: "a holdout vault is kept in memory for the session and written nowhere",
+  network_tripwire: "packs that send nothing (quant, validation, and plugins whose network is none) run each tool with fetch refused, and an answer whose every call ran so says network none in its receipt",
   policy: gov?.policy ? { tools: gov.policy.tools ?? "all", orders: gov.policy.orders ?? "on", calls_per_minute: gov.policy.calls_per_minute ?? null, audit_log: gov.audit ? { file: gov.audit.path, arguments: gov.policy.audit.arguments ?? "hash" } : "off" } : "none (CANLI_POLICY unset): no policy and no audit log",
 });
 
