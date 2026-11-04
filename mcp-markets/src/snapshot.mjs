@@ -5,7 +5,7 @@ import { z } from "zod";
 
 import { getJson, NotFound } from "./sources.mjs";
 
-const BROWSER = "Mozilla/5.0 (compatible; canli-markets-mcp)";
+export const BROWSER = "Mozilla/5.0 (compatible; canli-markets-mcp)";
 const MODULES = "price,financialData,defaultKeyStatistics,summaryDetail,recommendationTrend,earningsTrend,calendarEvents,majorHoldersBreakdown";
 const FRESH_MS = 60 * 60 * 1000;
 
@@ -14,7 +14,7 @@ export const snapshotInput = z.object({
 }).strict();
 
 // Yahoo asks for a cookie and a token, both free and needing no account; kept for an hour.
-async function access(session) {
+export async function access(session) {
   if (session.yahooAccess && session.now() - session.yahooAccess.at < FRESH_MS) return session.yahooAccess;
   const headers = { "User-Agent": BROWSER };
   const home = await session.fetchImpl("https://fc.yahoo.com/", { headers, redirect: "manual", signal: AbortSignal.timeout(15000) });
