@@ -76,6 +76,34 @@ fees?". `bench/global/crosscheck.mjs` sets these tools against sources they do n
 figures against the same companies' Form 20-F at the SEC, and the central banks' policy rates
 against the BIS (21 of 21 agreed on 2026-10-15).
 
+## Every country's economy, from the office that publishes it
+
+`world_series` reads a country's figures where they are published: Statistics Canada, the ONS,
+the ABS, IBGE, Statistics Norway and Sweden, Eurostat for EU members, the Fed (through FRED), the
+Bank of Canada, Bank of England, ECB, Bundesbank, Bank of Japan, Japan's Ministry of Finance, the
+RBA, Banco Central do Brasil, the Riksbank, Norges Bank, the SNB and the Bank of Israel. Where a
+country has no open service of its own, it reads the OECD's, IMF's or BIS's compilation of that
+country's official figures, and the answer says who compiled it. Sixteen measures for 70 countries
+and the euro area, with no key:
+- inflation, core inflation, unemployment and GDP growth;
+- the policy rate, with its recent moves, the 10-year yield and the exchange rate;
+- industrial production, retail sales and wages;
+- the OECD's leading indicator, consumer and business confidence;
+- government debt, money supply and house prices.
+
+- One country, every measure: `{"country": "Brazil", "measure": "all"}`.
+- Up to 30 countries side by side, read in one request per publisher: `{"countries": ["G20"], "measure": "inflation"}`.
+- Checked against a second official publisher: `{"countries": ["G20"], "measure": "inflation", "check": true}` answers in about three seconds. 18 of the 20 agreed within 0.15 points on 2026-11-04; France's harmonised index and the UK's CPI differ from the IMF's by definition, and the answer says so.
+- Any series by its publisher's own code: `{"series": "statcan:2062815"}`, `{"series": "boj:FM01/STRDCLUCON"}`, `{"series": "eurostat:une_rt_m?geo=DE&s_adj=SA&age=TOTAL&sex=T&unit=PC_ACT"}`.
+
+`economic_series` reads any FRED series as it was published on a past date (`as_of`, from
+ALFRED), with each value then against today's (`revisions`). Payrolls for July 2025 were
+159,539 thousand as published on 1 September 2025, and are 158,542 thousand now.
+
+Examples: "What is inflation in Brazil, and does the IMF agree?", "Compare the G7's policy rates",
+"Japan's economy at a glance", "Which euro area country has the highest 10-year yield?", "What did
+payrolls look like before the benchmark revision?".
+
 ## Tools
 
 | Tool | What it answers | Source |
