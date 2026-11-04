@@ -186,6 +186,25 @@ test("an insider cluster fires when enough insiders buy within the window, again
   t.done();
 });
 
+test("a filing rule with check runs filing_check on a new 10-Q and says what it found inside the document", async () => {
+  const row = (accession, form) => ["2026-11-02T16:05:00-05:00", form, "ACME CORP", "1234567", [], accession, "https://www.sec.gov/x"];
+  const t = setup({ replies: {
+    latest_filings: { columns: ["accepted", "form", "company", "cik", "items", "accession", "url"], rows: [row("0001234567-26-000001", "10-Q")] },
+    filing_check: { results: [{ findings: { columns: ["kind", "concept", "value", "url"], rows: [["scale", "ecd:TrdArrSecuritiesAggAvailAmt", 48700000000, "https://www.sec.gov/Archives/edgar/data/1/2/doc.htm#F_1"], ["company_facts_missing", "us-gaap:Assets", 5, "https://www.sec.gov/y"], ["sum", "us-gaap:Liabilities", 10, "https://www.sec.gov/z"]] } }] },
+  } });
+  t.s.add({ kind: "filing", company: "ACME", forms: ["10-Q", "8-K"], check: true });
+  await t.s.pollDue();
+  t.replies.latest_filings = { ...t.replies.latest_filings, rows: [row("0001234567-26-000002", "10-Q"), row("0001234567-26-000003", "8-K"), row("0001234567-26-000001", "10-Q")] };
+  t.tick(61000); await t.s.pollDue();
+  assert.equal(t.seen.length, 2);
+  const tenQ = t.seen.find((e) => e.facts.form === "10-Q");
+  assert.equal(tenQ.headline, "ACME filed 10-Q; filing_check found 2 to look at (scale 1, sum 1)", "the company facts check is left out for a new filing");
+  assert.deepEqual(tenQ.context.filing_check.first[0], { kind: "scale", concept: "ecd:TrdArrSecuritiesAggAvailAmt", value: 48700000000, url: "https://www.sec.gov/Archives/edgar/data/1/2/doc.htm" });
+  assert.equal(t.seen.find((e) => e.facts.form === "8-K").facts.check, undefined, "an 8-K is not checked");
+  assert.deepEqual(t.calls.filter(([n]) => n === "filing_check").map(([, a]) => a), [{ company: "1234567", accession: "0001234567-26-000002" }]);
+  t.done();
+});
+
 test("a volatility rule compares the surface before and after", async () => {
   let iv = 40;
   const surface = () => ({ underlying: { iv30: iv, price: 200, as_of: "2026-11-02T14:45:00Z" }, term_structure: { columns: ["expiration", "days", "atm_iv", "put_25_delta_iv", "call_25_delta_iv", "risk_reversal", "butterfly"], rows: [["2026-12-18", 46, iv / 100, 0.5, 0.3, 0.2, 0.01]] } });

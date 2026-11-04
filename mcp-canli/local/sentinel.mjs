@@ -171,6 +171,24 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
     if (fired) s.window = [{ at, iv, rows: table.rows }];
   }
 
+  // filing_check on a new report: the checks inside the document only (scale against the stated unit, the same fact
+  // tagged twice, sums), since the SEC's company facts trail a filing minutes old. What reaches the block is counts,
+  // concept names, numbers and links, held to their own shapes.
+  async function checkFiling(company, accession) {
+    try {
+      const r = await within(call("filing_check", { company, ...(accession ? { accession } : {}) }), 180000);
+      const res = Array.isArray(r?.results) ? r.results[0] : r;
+      const t = res?.findings ?? { columns: [], rows: [] };
+      const rows = (t.rows ?? []).map((row) => Object.fromEntries((t.columns ?? []).map((c, i) => [c, row[i]]))).filter((x) => ["scale", "duplicate", "sum"].includes(x.kind));
+      const by_kind = {};
+      for (const x of rows) by_kind[x.kind] = (by_kind[x.kind] ?? 0) + 1;
+      const tag = (x) => (/^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_]{1,120}$/.test(String(x ?? "")) ? x : null);
+      return { found: rows.length, by_kind, first: rows.slice(0, 5).map((x) => ({ kind: x.kind, concept: tag(x.concept), value: num(x.value), url: secLink(String(x.url ?? "").split("#")[0]) })) };
+    } catch (e) {
+      return { unavailable: String(e?.message ?? e).slice(0, 160) };
+    }
+  }
+
   async function pollFilings(rule) {
     const r = await within(call("latest_filings", { ...(rule.forms?.length ? { forms: rule.forms } : {}), ...(rule.company ? { company: rule.company } : {}), ...(rule.event ? { event: rule.event } : {}), limit: 100 }), 30000);
     const rows = (r.rows ?? []).map((row) => Object.fromEntries((r.columns ?? []).map((c, i) => [c, row[i]])));
@@ -181,7 +199,9 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
       // The first read marks what is already there, so events start with what comes next.
       if (!first) {
         const form = plain(f.form, 20) ?? "a form", cik = plain(f.cik, 12), items = Array.isArray(f.items) ? f.items.filter((x) => /^\d\.\d{2}$/.test(x)) : [];
-        await fire(rule, `${rule.company ? plain(rule.company, 60) : cik ? `CIK ${cik}` : "A company"} filed ${form}${items.length ? ` (items ${items.join(", ")})` : ""}`, SEEN.edgar, { form, company_as_filed: plain(f.company, 40), cik, accession: plain(f.accession, 25), accepted: plain(f.accepted, 30), items, url: secLink(f.url) }, async () => ({ filing: { form, cik, accession: plain(f.accession, 25), items, url: secLink(f.url) } }));
+        const check = rule.check && /^(10-K|10-Q)(\/A)?$/.test(form) ? await checkFiling(cik ?? rule.company, plain(f.accession, 25)) : null;
+        const said = check ? (check.unavailable ? "; filing_check could not run" : check.found ? `; filing_check found ${check.found} to look at (${Object.entries(check.by_kind).map(([k, n]) => `${k} ${n}`).join(", ")})` : "; filing_check found nothing") : "";
+        await fire(rule, `${rule.company ? plain(rule.company, 60) : cik ? `CIK ${cik}` : "A company"} filed ${form}${items.length ? ` (items ${items.join(", ")})` : ""}${said}`, SEEN.edgar, { ...(check ? { check } : {}), form, company_as_filed: plain(f.company, 40), cik, accession: plain(f.accession, 25), accepted: plain(f.accepted, 30), items, url: secLink(f.url) }, async () => ({ filing: { form, cik, accession: plain(f.accession, 25), items, url: secLink(f.url) }, ...(check ? { filing_check: check } : {}) }));
       }
     }
     if (s.seen.size > 5000) s.seen = new Set([...s.seen].slice(-3000));
