@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.18.0
 
 - `canli-mcp setup`: canli-mcp added to every MCP client found on the machine in one command (Claude Desktop, Cursor, Windsurf, VS Code, Gemini CLI, Kiro, LM Studio, Amazon Q, Codex). Each gets one `canli` entry in its own format (VS Code's `servers` with `type: "stdio"`, Codex's TOML), the rest of the file is kept and a copy saved beside it. A file with comments is left alone, with the entry to add by hand, and an existing different `canli` entry is never replaced. `--dry-run`, `--only`, `--remove`, `--json`.
 - Other MCP servers behind this one: `canli-mcp upstream add <name> <url>` (or `-- <command>`), or `CANLI_UPSTREAMS`, connects a server when canli-mcp starts, without delaying it. Its tools join `find_tool`, `run_tool` batches, `$result`, budgets, receipts, the policy file and the audit log, and stay out of the client's tool list. Keys are written as `${NAME}` and read from the environment. Tools that send orders or change anything stay off unless the server is marked `--write`, and then never run in a batch. Another server's text is scanned for words addressed to a model; its tools are off under `as_of`, the time machine and a holdout. `canli://privacy` lists each server, its tools, what was left off and why. A server run as a command is started from `local/commands.mjs`, still the one place canli-mcp starts anything.
