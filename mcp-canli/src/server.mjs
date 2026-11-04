@@ -55,6 +55,7 @@ import { addressedToAi, CAUTION } from "./injection.mjs";
 import { installTripwire, withoutNetwork } from "./tripwire.mjs";
 import { createDelta } from "./delta.mjs";
 import { runWeek, WEEK_TOOL } from "./week.mjs";
+import { quoteSeconds, registerQuotes } from "./quotes.mjs";
 import { channelSink, CHANNEL_INSTRUCTIONS, SENTINEL_TOOLS } from "./sentinel.mjs";
 
 const PKG = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
@@ -586,7 +587,8 @@ export function selfTools(packs, gov, keeper, readOnly = false, vault = null, pr
   return Object.fromEntries(Object.entries(tools).map(([name, run]) => [name, TIME_MACHINE.selfAllowed(name) ? run : () => { throw TIME_MACHINE.refuse(name); }]));
 }
 
-export function registerAll(server, packs = enabledPacks(), gov = governance(process.env, canliHome()), { readOnly = false } = {}) {
+// live: a local stdio server, which can keep a subscription and poll for it; hosted and browser servers cannot.
+export function registerAll(server, packs = enabledPacks(), gov = governance(process.env, canliHome()), { readOnly = false, live = false } = {}) {
   const keeper = createKeeper();
   const readLimits = new Set();
   // Every strategy result counted against the whole search (luck.mjs): a session here, one request when hosted.
@@ -748,7 +750,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const results = (a.return === "last" ? done.slice(-1) : done).map(({ name, ref, result, error }) => ({ name, ...(ref ? { ref } : {}), ...(error ? { error } : { result }) }));
     return sealed(shown({ results, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) }));
   }));
-  registerResources(server, packs, gov, { readOnly, vault });
+  registerResources(server, packs, gov, { readOnly, vault, live });
   registerView(server);
   registerPrompts(server, BY_NAME, packs);
   registerPackGuides(server, packs);
@@ -781,8 +783,17 @@ export const PRIVACY = (packs, gov) => ({
   policy: gov?.policy ? { tools: gov.policy.tools ?? "all", orders: gov.policy.orders ?? "on", calls_per_minute: gov.policy.calls_per_minute ?? null, audit_log: gov.audit ? { file: gov.audit.path, arguments: gov.policy.audit.arguments ?? "hash" } : "off" } : "none (CANLI_POLICY unset): no policy and no audit log",
 });
 
-function registerResources(server, packs, gov, { readOnly = false, vault = null } = {}) {
+function registerResources(server, packs, gov, { readOnly = false, vault = null, live = false } = {}) {
   const json = (uri, v) => ({ contents: [{ uri, mimeType: "application/json", text: JSON.stringify(v) }] });
+  // Prices by address, and on a local server a subscription that notifies when they change. They are the present,
+  // so a holdout or a past date hides them.
+  if (packs.includes("markets")) {
+    registerQuotes(server, {
+      price: (symbol) => runOne(packs, { name: "latest_price", arguments: { symbol } }, {}, [], gov),
+      refuse: () => (TIME_MACHINE ? TIME_MACHINE.refuse("canli://quote") : vault?.until() ? new Error(`canli://quote reads the present, which the holdout from ${vault.from()} hides; holdout_status shows it.`) : null),
+      live: live && !readOnly && !TIME_MACHINE, seconds: quoteSeconds(),
+    });
+  }
   // The week, for a host to attach at the start of a session: my_week over the holdings in the address, with the
   // sentinel's events of the same days on a local server. It reads the present, so a server running as of a past
   // date, or with a holdout set, does not answer it.
@@ -990,7 +1001,7 @@ if (isMain && process.argv[2] === "audit") {
   const channel = process.argv.includes("--channel");
   const server = new McpServer(SERVER_INFO, { instructions: `${TIME_MACHINE ? `${TIME_MACHINE.instructions} ` : ""}${instructions(packs, front)}${channel ? ` ${CHANNEL_INSTRUCTIONS}` : ""}` });
   if (channel) server.server.registerCapabilities({ experimental: { "claude/channel": {} } });
-  await registerFront(server, packs, front, gov, registerAll(server, packs, gov));
+  await registerFront(server, packs, front, gov, registerAll(server, packs, gov, { live: true }));
   // Signing is synchronous, so the last calls are signed even as the process exits.
   process.on("exit", () => gov.close());
   for (const signal of ["SIGINT", "SIGTERM"]) process.on(signal, () => process.exit(0));

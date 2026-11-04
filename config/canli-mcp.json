@@ -8,7 +8,7 @@
   "repository": "https://github.com/arhancanli/canlicapital",
   "path": "mcp-canli",
   "measured": "2026-11-03",
-  "note": "Tool counts come from mcp-canli/src/index.json at release 0.18.0 (2026-11-04); the context figures from mcp-canli/bench/context-2026-11-03-0.17.0.json, measured at 0.17.0; the search figures are the 48 held-out everyday requests in mcp-canli/test/search.test.mjs (measured once, untuned, at 0.3.0); the file and batch figures from the README's measurements."
+  "note": "Tool counts come from mcp-canli/src/index.json at release 0.19.0 (2026-11-04); the context figures from mcp-canli/bench/context-2026-11-04-0.19.0.json, measured at 0.19.0; the search figures are the 48 held-out everyday requests in mcp-canli/test/search.test.mjs (measured once, untuned, at 0.3.0); the file and batch figures from the README's measurements."
  },
  "install": {
   "npx": "npx -y canli-mcp",
@@ -58,7 +58,7 @@
   {
    "id": "markets",
    "label": "Markets",
-   "tools": 102,
+   "tools": 108,
    "package": "canli-markets-mcp",
    "covers": "SEC filings and statements as filed, foreign filers too, insider trades, 13F and 5% holders, fund portfolios, options chains and volatility surfaces, the Fed, Treasury yields and auctions, FRED, World Bank and OECD data, central banks abroad, prediction markets, prices and a whole-market overview, analysts' targets and technical indicators, a figure traced down its filing, what a token's contract can do, every annual report searched at once, management's record against its own guidance, what followed every past market fall, and ship traffic from satellite tracking"
   },
@@ -144,16 +144,16 @@
   "note": "The head-to-head benchmark and its context table measured canli-mcp with 306 tools behind three (config/mcp-head-to-head.json)."
  },
  "current": {
-  "version": "0.17.1",
-  "measured": "2026-11-03",
-  "tokens": 2524,
-  "startup_ms": 164,
-  "separately_tokens": 70862,
+  "version": "0.19.0",
+  "measured": "2026-11-04",
+  "tokens": 2558,
+  "startup_ms": 197,
+  "separately_tokens": 82744,
   "prompts": 56,
   "tokenizer": "o200k_base",
-  "source": "mcp-canli/bench/context-2026-11-03-0.17.1.json for the tokens; start-up from mcp-canli/bench/context-2026-11-03-0.17.0.json, since the 0.17.1 run was taken at a load average of about 110",
+  "source": "mcp-canli/bench/context-2026-11-04-0.19.0.json, measured on the 0.19.0 checkout with the seven published packs before canli-mcp 0.19.0 itself was published",
   "separately_note": "the seven Canli Capital servers run side by side, each listing its own tools",
-  "startup_seconds": 0.164
+  "startup_seconds": 0.197
  },
  "views": [
   {

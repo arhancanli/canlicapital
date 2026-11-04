@@ -342,7 +342,9 @@ export function buildMcpPages({ loadExecution = executionSource, write = writeFi
   const answers = loadAnswers();
   // canli-mcp's tool index, published: the answer pages' tool tables cite it, and agents can read it.
   const index = read('mcp-canli/src/index.json');
-  write(resolve(ROOT, 'public/demos/canli-mcp/tools.json'), JSON.stringify({ package: 'canli-mcp', version: read('mcp-canli/package.json').version, packs: index.versions, count: index.tools.length, tools: index.tools.map(([name, pack, group, title, description]) => ({ name, pack, group, title, description })) }, null, 1) + '\n');
+  // The tools page counts the markets tools by theme; the counts are published beside the tools so each one traces.
+  const themes = Object.fromEntries(Object.entries(read('config/mcp-catalog.json').markets_groups).map(([label, names]) => [label, index.tools.filter((t) => t[1] === 'markets' && names.includes(t[0])).length]));
+  write(resolve(ROOT, 'public/demos/canli-mcp/tools.json'), JSON.stringify({ package: 'canli-mcp', version: read('mcp-canli/package.json').version, packs: index.versions, count: index.tools.length, markets_themes: themes, tools: index.tools.map(([name, pack, group, title, description]) => ({ name, pack, group, title, description })) }, null, 1) + '\n');
   const packages = packagePages({ index });
   write(resolve(ROOT, 'public/demos/canli-mcp/packages.json'), JSON.stringify({ ...read('config/mcp-package-pages.json'), pages: packages.map(({ tools, ...p }) => ({ ...p, tool_count: tools.length })) }, null, 1) + '\n');
   write(resolve(ROOT, 'mcp-servers.html'), directoryPage(servers, { h2h, npmRows, answers, packages }));
