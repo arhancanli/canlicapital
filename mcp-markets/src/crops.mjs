@@ -23,16 +23,41 @@ export const COMMODITIES = Object.freeze({
 const REGION_NAMES = { us: "United States", usa: "United States", "u.s.": "United States", america: "United States", eu: "European Union", europe: "European Union", "euro area": "European Union" };
 
 export const cropInput = z.object({
-  commodity: z.string().min(2).max(40).describe("wheat, corn, coarse grains, rice, cotton, soybeans, soybean meal or soybean oil."),
-  region: z.string().min(2).max(60).optional().describe("A country or region in the USDA's table (United States, China, Brazil, European Union, World...); \"all\" for every one at this month's projection. Default World."),
+  commodity: z.string().min(2).max(40).describe("wheat, corn, coarse grains, rice, cotton, soybeans, soybean meal or soybean oil (world and US); sorghum, barley, oats or feed grains (US only)."),
+  region: z.string().min(2).max(60).optional().describe("A country or region in the USDA's table (China, Brazil, European Union, World...); United States gives the US balance sheet with its farm price; \"all\" for every country at this month's projection. Default World."),
   report: z.string().regex(/^\d{4}-\d{2}$/).optional().describe("The report's month, YYYY-MM; default the latest."),
 }).strict();
 
 const clean = (s) => String(s ?? "").replace(/\r\n|\s+/g, " ").replace(/\s*\/?\d\/\s*$|\s+\d\/|\s*\/\d\b/g, "").trim();
-const number = (s) => { const n = Number(String(s ?? "").replace(/,/g, "").trim()); return String(s ?? "").trim() === "" || !Number.isFinite(n) ? null : n; };
+// A cell as a number: thousands commas and the report's footnote stars ("776 *") dropped.
+const number = (s) => { const t = String(s ?? "").replace(/,/g, "").replace(/\s*\*+\s*$/, "").trim(); const n = Number(t); return t === "" || !Number.isFinite(n) ? null : n; };
 
 // The commodity a request names: the most specific first ("soybean meal" before "soybeans").
-const RULES = [[/meal/, "soybean_meal"], [/soy\w*\s*oil|soyoil/, "soybean_oil"], [/coarse|feed grain/, "coarse_grains"], [/corn|maize/, "corn"], [/wheat/, "wheat"], [/rice/, "rice"], [/cotton/, "cotton"], [/soy/, "soybeans"]];
+const RULES = [[/meal/, "soybean_meal"], [/soy\w*\s*oil|soyoil/, "soybean_oil"], [/feed grain/, "feed_grains"], [/coarse/, "coarse_grains"], [/corn|maize/, "corn"], [/wheat/, "wheat"], [/rice/, "rice"], [/cotton/, "cotton"], [/sorghum/, "sorghum"], [/barley/, "barley"], [/\boats?\b/, "oats"], [/soy/, "soybeans"]];
+
+// The US balance sheets, with the season-average farm price: each by its page, its table's place on the page and the
+// units the report prints for it (the XML spreads a unit over cells, so they are named here, as the report shows them).
+const BU = { area: "million acres", yield: "bushels per acre", qty: "million bushels" };
+export const US_TABLES = Object.freeze({
+  corn: { page: /^U\.S\. Feed Grain and Corn/i, matrix: 2, units: BU },
+  feed_grains: { page: /^U\.S\. Feed Grain and Corn/i, matrix: 1, units: { area: "million acres", yield: "metric tons per acre", qty: "million metric tons" } },
+  wheat: { page: /^U\.S\. Wheat Supply/i, matrix: 1, units: BU },
+  sorghum: { page: /^U\.S\. Sorghum, Barley, and Oats/i, matrix: 1, units: BU },
+  barley: { page: /^U\.S\. Sorghum, Barley, and Oats/i, matrix: 2, units: BU },
+  oats: { page: /^U\.S\. Sorghum, Barley, and Oats/i, matrix: 3, units: BU },
+  rice: { page: /^U\.S\. Rice Supply/i, matrix: 1, units: { area: "million acres", yield: "pounds per acre", qty: "million hundredweight" } },
+  soybeans: { page: /^U\.S\. Soybeans and Products/i, matrix: 1, units: BU },
+  soybean_oil: { page: /^U\.S\. Soybeans and Products/i, matrix: 2, units: { qty: "million pounds" } },
+  soybean_meal: { page: /^U\.S\. Soybeans and Products/i, matrix: 3, units: { qty: "thousand short tons" } },
+  cotton: { page: /^U\.S\. Cotton Supply/i, matrix: 1, units: { area: "million acres", yield: "pounds per acre", qty: "million 480-pound bales", price: "cents per pound" } },
+});
+const unitOf = (attribute, units) => {
+  if (/price/i.test(attribute)) return attribute.match(/\(([^)]*\/[^)]*)\)/)?.[1] ?? units.price ?? null;
+  if (/milling yield/i.test(attribute)) return "percent";
+  if (/yield/i.test(attribute)) return units.yield ?? null;
+  if (/^(area|planted|harvested)/i.test(attribute)) return units.area ?? null;
+  return units.qty;
+};
 export const findCommodity = (q) => { const s = String(q).toLowerCase().replace(/[_-]/g, " "); return RULES.find(([re]) => re.test(s))?.[1] ?? null; };
 
 // The reports ESMIS lists, newest first: each month's XML (a re-issue, wasde0626v2, replaces the first).
@@ -52,6 +77,8 @@ export function wasdeTables(xml) {
   const tables = [];
   const walk = (el, ctx, out) => {
     const c = { ...ctx };
+    const matrix = /^matrix(\d+)$/.exec(el.name);
+    if (matrix) c.matrix = Number(matrix[1]);
     for (const [k, v] of Object.entries(el.attrs)) {
       if (/^cell_value/.test(k)) { const n = number(v); if (n != null && c.attribute) out.push({ ...c, value: n }); continue; }
       const key = k.replace(/\d+$/, "");
@@ -138,17 +165,43 @@ export function balanceSheet(tables, commodity, region) {
 }
 const round = (x) => (x == null || !Number.isFinite(x) ? null : Math.round(x * 1000) / 1000 || 0);
 
+// A US balance sheet from its own page: one row a line with its unit, the projection as last month and this month set it.
+export function usBalanceSheet(tables, commodity) {
+  const t = US_TABLES[commodity];
+  const page = tables.find((x) => t.page.test(x.title));
+  if (!page) throw new NotFound(`This WASDE report has no US ${commodity.replace("_", " ")} page.`);
+  const records = page.records.filter((r) => r.matrix === t.matrix).map((r) => ({ ...r, attribute: clean(r.attribute) }));
+  if (!records.length) throw new NotFound(`The US ${commodity.replace("_", " ")} table is not where the report usually prints it.`);
+  const columns = [...new Map(records.map((r) => [`${r.market_year}|${r.forecast_month ?? ""}`, { year: r.market_year, month: r.forecast_month ?? "" }])).values()];
+  const projections = columns.filter((c) => c.month);
+  const [before, now] = projections.slice(-2);
+  const attributes = [...new Set(records.map((r) => r.attribute))];
+  const value = (attr, c) => records.find((r) => r.attribute === attr && r.market_year === c.year && (r.forecast_month ?? "") === c.month)?.value ?? null;
+  const rows = attributes.map((a) => [a, unitOf(a, t.units), ...columns.map((c) => value(a, c)), ...(before && now ? [round(value(a, now) - value(a, before))] : [])]);
+  return {
+    unit: "per line (see the unit column)", region: "United States",
+    columns: ["attribute", "unit", ...columns.map((c) => (c.month ? `${c.year} (${c.month})` : c.year)), ...(before && now ? [`change ${before.month} to ${now.month}`] : [])],
+    rows,
+    changes: before && now ? rows.filter((r) => r.at(-1)).map((r) => ({ attribute: r[0], unit: r[1], [before.month]: value(r[0], before), [now.month]: value(r[0], now), change: r.at(-1) })) : [],
+  };
+}
+
 export async function cropOutlook(session, args) {
   const a = cropInput.parse(args);
   const commodity = findCommodity(a.commodity);
-  if (!commodity) throw new Error(`"${a.commodity}" is not a commodity in the WASDE's world tables. They are: ${Object.keys(COMMODITIES).map((k) => k.replace("_", " ")).join(", ")}.`);
+  if (!commodity) throw new Error(`"${a.commodity}" is not a commodity in the WASDE's tables. They are: ${[...new Set([...Object.keys(COMMODITIES), ...Object.keys(US_TABLES)])].map((k) => k.replace("_", " ")).join(", ")}.`);
   const page = await getText(session, PUBLICATION);
   const reports = reportsFrom(page);
   if (!reports.length) throw new Error(`ESMIS listed no WASDE report at ${PUBLICATION}.`);
   const report = a.report ? reports.find((r) => r.month === a.report) : reports[0];
   if (!report) throw new NotFound(`ESMIS lists WASDE reports for ${reports.map((r) => r.month).join(", ")}; ${a.report} is not among them.`);
   const tables = wasdeTables(await getText(session, report.url, { maxBytes: 32 * 1024 * 1024 }));
-  const sheet = balanceSheet(tables, commodity, a.region ?? "World");
+  // The US's own page (with its farm price) for a US request; the world table for the rest. Sorghum, barley, oats
+  // and feed grains have only a US page.
+  const usOnly = !COMMODITIES[commodity];
+  const usAsked = /^(us|usa|u\.s\.?|united states|america)$/i.test(String(a.region ?? "").trim());
+  if (usOnly && a.region && !usAsked) throw new NotFound(`The WASDE has ${commodity.replace("_", " ")} for the United States only.`);
+  const sheet = usOnly || usAsked ? usBalanceSheet(tables, commodity) : balanceSheet(tables, commodity, a.region ?? "World");
   const record = reliabilityOf(tables, commodity, sheet.region ?? a.region);
   return {
     report: { month: tables[0]?.month ?? report.month, url: report.url },
@@ -159,7 +212,7 @@ export async function cropOutlook(session, args) {
     sources: [PUBLICATION, report.url],
     limits: [
       "The USDA's World Agricultural Outlook Board estimates; earlier years are revised as countries report.",
-      "World tables only: the US balance sheets with prices and the livestock tables are not read yet.",
+      "The world tables and the US crop balance sheets; the livestock, dairy and sugar tables are not read yet.",
       "Not investment advice.",
     ],
   };

@@ -37,8 +37,21 @@ test("one country's balance sheet, every country at once, and US cotton in bales
   assert.equal(all.columns.at(-1), "ending_stocks_change");
   assert.equal(all.market_year, "2026/27 as projected in Oct");
   const cotton = await run({ commodity: "cotton", region: "US" });
-  assert.equal(cotton.unit, "Million 480-Pound Bales");
-  assert.deepEqual(cotton.rows.find((x) => x[0] === "Ending Stocks"), ["Ending Stocks", 4, 4.15, 3.6, 3.8, 0.2]);
+  assert.deepEqual(cotton.rows.find((x) => x[0] === "Ending Stocks"), ["Ending Stocks", "million 480-pound bales", 4, 4.15, 3.6, 3.8, 0.2]);
+  // "776 *" and "790 **" in the report: its footnote stars are dropped, the figures kept.
+  assert.deepEqual(cotton.rows.find((x) => x[0] === "Yield per Harvested Acre"), ["Yield per Harvested Acre", "pounds per acre", 892, 852, 776, 790, 14]);
+});
+
+test("the US balance sheet from its own page, with its season-average farm price, each line with its unit", async () => {
+  // Checked against the report's text version: corn 2026/27 Sep and Oct.
+  const corn = await run({ commodity: "corn", region: "United States" });
+  assert.equal(corn.region, "United States");
+  assert.deepEqual(corn.rows.find((x) => x[0] === "Ending Stocks"), ["Ending Stocks", "million bushels", 1551, 2095, 1567, 1849, 282]);
+  assert.deepEqual(corn.rows.find((x) => x[0] === "Avg. Farm Price ($/bu)"), ["Avg. Farm Price ($/bu)", "$/bu", 4.24, 4.16, 4.8, 4.7, -0.1]);
+  assert.deepEqual(corn.rows.find((x) => x[0] === "Yield per Harvested Acre").slice(1), ["bushels per acre", 179.3, 186.5, 178.5, 181.2, 2.7]);
+  const sorghum = await run({ commodity: "sorghum" });
+  assert.deepEqual(sorghum.rows.find((x) => x[0] === "Production"), ["Production", "million bushels", 344, 437, 284, 291, 7]);
+  await assert.rejects(run({ commodity: "oats", region: "China" }), /oats for the United States only/);
 });
 
 test("what cannot be answered says what to ask instead", async () => {
