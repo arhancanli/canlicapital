@@ -11,7 +11,7 @@ const NYF = "https://markets.newyorkfed.org/api";
 const OPERATIONS = (from, to) => `${NYF}/rp/results/search.json?startDate=${from}&endDate=${to}`;
 const SOMA = `${NYF}/soma/summary.json`;
 // The H.4.1's Wednesday levels (millions of dollars) and the facility's daily take-up (billions).
-const SHEET = [["total_assets", "WALCL", 1e3], ["reserve_balances", "WRBWFRBL", 1e3], ["treasury_general_account", "WDTGAL", 1e3], ["reverse_repo", "RRPONTSYD", 1]];
+const SHEET = [["total_assets", "WALCL", 1e3], ["reserve_balances", "WRBWFRBL", 1e3], ["treasury_general_account", "WDTGAL", 1e3], ["reverse_repo", "RRPONTSYD", 1], ["discount_window", "WLCFLPCL", 1e3]];
 const HOLDINGS = [["total", "total"], ["bills", "bills"], ["notes_and_bonds", "notesbonds"], ["tips", "tips"], ["frn", "frn"], ["mbs", "mbs"], ["cmbs", "cmbs"], ["agencies", "agencies"]];
 
 export const liquidityInput = z.object({
@@ -80,7 +80,7 @@ async function readSheet(session, start) {
   const series = Object.fromEntries(SHEET.map(([k, , per], i) => [k, got[i].rows.filter(([, v]) => v != null).map(([d, v]) => [d, v / per])]));
   return series.total_assets.map(([week, assets]) => {
     const tga = at(series.treasury_general_account, week), rrp = at(series.reverse_repo, week), reserves = at(series.reserve_balances, week);
-    return { week, total_assets: assets, reserve_balances: reserves, treasury_general_account: tga, reverse_repo: rrp, net_liquidity: tga == null || rrp == null ? null : assets - tga - rrp };
+    return { week, total_assets: assets, reserve_balances: reserves, treasury_general_account: tga, reverse_repo: rrp, net_liquidity: tga == null || rrp == null ? null : assets - tga - rrp, discount_window: at(series.discount_window, week) };
   });
 }
 
@@ -96,7 +96,7 @@ const LIMITS = [
   "Operations are the New York Fed's results as published after each operation; the standing repo facility lends at its minimum bid rate against Treasury, agency and mortgage-backed collateral.",
   "Not investment advice.",
 ];
-const SOURCE = `${NYF}/rp/results/search.json and ${SOMA} (Federal Reserve Bank of New York); FRED series WALCL, WRBWFRBL, WDTGAL (the Fed's H.4.1) and RRPONTSYD`;
+const SOURCE = `${NYF}/rp/results/search.json and ${SOMA} (Federal Reserve Bank of New York); FRED series WALCL, WRBWFRBL, WDTGAL, WLCFLPCL (the Fed's H.4.1) and RRPONTSYD`;
 
 export async function fedLiquidity(session, args) {
   const a = liquidityInput.parse(args);
@@ -125,11 +125,11 @@ export async function fedLiquidity(session, args) {
   }
   if (view === "balance_sheet") {
     const rows = (await readSheet(session, isoDay(today - (weeks * 7 + 14) * DAY))).slice(-weeks);
-    const keys = ["total_assets", "reserve_balances", "treasury_general_account", "reverse_repo", "net_liquidity"];
+    const keys = ["total_assets", "reserve_balances", "treasury_general_account", "reverse_repo", "net_liquidity", "discount_window"];
     return {
       unit: "billions of dollars", columns: ["week", ...keys],
       rows: rows.map((r) => [r.week, ...keys.map((k) => round(r[k]))]),
-      reading: "The Fed's balance sheet each Wednesday (H.4.1): total assets, reserve balances, the Treasury's General Account, the reverse repo facility's take-up and net liquidity, in billions of dollars.",
+      reading: "The Fed's balance sheet each Wednesday (H.4.1): total assets, reserve balances, the Treasury's General Account, the reverse repo facility's take-up, net liquidity and the discount window's primary credit to banks, in billions of dollars.",
       source: SOURCE, limits: LIMITS,
     };
   }
@@ -179,14 +179,14 @@ export async function fedLiquidity(session, args) {
   } else failed.push(`the New York Fed's SOMA holdings (${soma.reason?.message ?? "none returned"})`);
   if (sheet.status === "fulfilled" && sheet.value.length) {
     const rows = sheet.value, last = rows.at(-1);
-    const keys = ["total_assets", "reserve_balances", "treasury_general_account", "reverse_repo", "net_liquidity"];
+    const keys = ["total_assets", "reserve_balances", "treasury_general_account", "reverse_repo", "net_liquidity", "discount_window"];
     out.balance_sheet = {
       week: last.week, unit: "billions of dollars",
       columns: ["line", "billions", "change_on_week", "change_4_weeks", "change_on_year"],
       rows: keys.map((k) => [k, round(last[k]), changeOver(rows, k, 1), changeOver(rows, k, 4), changeOver(rows, k, 52)]),
     };
     const four = changeOver(rows, "net_liquidity", 4);
-    if (last.net_liquidity != null) out.summary.push(`Net liquidity (total assets less the TGA and the reverse repo facility) was ${usd(last.net_liquidity)} on ${last.week}${four == null ? "" : `, ${four >= 0 ? "up" : "down"} ${usd(Math.abs(four))} in four weeks`}; reserve balances were ${usd(last.reserve_balances)} and the TGA ${usd(last.treasury_general_account)}.`);
+    if (last.net_liquidity != null) out.summary.push(`Net liquidity (total assets less the TGA and the reverse repo facility) was ${usd(last.net_liquidity)} on ${last.week}${four == null ? "" : `, ${four >= 0 ? "up" : "down"} ${usd(Math.abs(four))} in four weeks`}; reserve balances were ${usd(last.reserve_balances)} and the TGA ${usd(last.treasury_general_account)}${last.discount_window == null ? "" : `; banks owed ${usd(last.discount_window)} at the discount window`}.`);
   } else failed.push(`the Fed's weekly balance sheet from FRED (${sheet.reason?.message ?? "none returned"})`);
   if (!out.reverse_repo && !out.standing_repo && !out.holdings && !out.balance_sheet) throw new Error(`No part of the Fed's liquidity could be read: ${failed.join("; ")}.`);
   return {

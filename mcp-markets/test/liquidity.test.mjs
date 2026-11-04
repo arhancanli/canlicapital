@@ -31,6 +31,8 @@ test("the overview: each facility, the Fed's holdings and net liquidity, with ch
   assert.equal(r.holdings.per_month_13_weeks, 3.4);
   const sheet = Object.fromEntries(r.balance_sheet.rows.map((x) => [x[0], x[1]]));
   assert.equal(sheet.net_liquidity, 5729.8);
+  assert.equal(sheet.discount_window, 9.5);
+  assert.match(r.summary[3], /banks owed \$9\.5 billion at the discount window\.$/);
   assert.equal(r.summary[0], "The overnight reverse repo facility took $300 million on 2026-10-09 at 3.75% from 1 counterparty, against $4.5 billion a year earlier (2025-10-09).");
   assert.equal(r.summary[1], "The standing repo facility lent $1 million on 2026-10-09 (minimum bid 4%); it lent on 15 of the last 20 business days, the most $1.2 billion on 2026-09-30.");
   assert.match(r.summary[2], /^The Fed held \$6,355\.8 billion of securities on 2026-10-28; over 13 weeks its holdings rose \$10\.2 billion \(about \$3\.4 billion a month: Treasury bills \+\$57 billion, .*mortgage-backed securities −\$47\.1 billion\)\.$/);
