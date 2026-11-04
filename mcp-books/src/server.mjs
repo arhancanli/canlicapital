@@ -2,7 +2,8 @@
 // mcp-books/src/server.mjs
 //
 // The Canli Books MCP server, with the first tools of every Canli company on its engine: Books (keep a book
-// file, sign it, prove single entries from it), Close (bank matching, bank lines into entries, what moved, the close checklist, group consolidation),
+// file, sign it, prove single entries from it), Close (bank matching, bank lines into entries, what moved, the close checklist, group consolidation,
+// and continuous close: the checks run on every entry as it is posted),
 // Report (facts and the checks before filing), Audit (Benford and journal-entry tests), Planning (runway, budget,
 // forecast, valuation) and Data (pack a dataset; SEC facts as first filed; Report's flags on SEC filings). It runs on your machine. A book is a file you name, ending in
 // .jsonl, one record per line: a write reads the whole book, checks every record, and only then appends the new
@@ -19,10 +20,10 @@ import { z } from "zod";
 
 import { journalTests } from "./audit.mjs";
 import { smallBusiness } from "./chart.mjs";
-import { bankEntries, checklist, readStatement, reconcile, variance } from "./close.mjs";
+import { bankEntries, checklist, entryChecks, readStatement, reconcile, variance } from "./close.mjs";
 import { FINDING_COLUMNS, FIRST_FILED_COLUMNS, FIRST_FILED_FORMS, findingRows, firstFiled, packDataset } from "./data.mjs";
 import { consolidate, readEcbRates } from "./group.mjs";
-import { addAccount, balanceSheet, explain, fromJsonl, fromMinor, incomeStatement, lock, openBook, post, reverse, toJsonl, trialBalance, TYPES, verify } from "./ledger.mjs";
+import { addAccount, balanceSheet, explain, fromJsonl, fromMinor, incomeStatement, lock, openBook, post, reverse, state, toJsonl, toMinor, trialBalance, TYPES, verify } from "./ledger.mjs";
 import { budgetVsActual, dcf, forecast, runway } from "./planning.mjs";
 import { checkFacts, checkSecFilings, SEC_FORMS, TAXONOMIES, toFacts } from "./report.mjs";
 import { bookRoot, proveRecord } from "./proof.mjs";
@@ -97,9 +98,26 @@ export function registerTools(server) {
     return { file: path, records: checked.records, head: checked.head, accounts: book.records.filter((r) => r.kind === "account").map((r) => ({ code: r.code, name: r.name, type: r.type })) };
   });
   tool("books_add_account", "Add an account", "Add an account to a book's chart: a unique code, a name, and its type.", z.object({ file, code: z.string(), name: z.string(), type: z.enum(TYPES) }).strict(), WRITES_LOCAL, ({ file: f, ...account }) => ({ added: change(f, (book) => addAccount(book, account)).result }));
-  tool("books_post", "Post an entry", "Post a journal entry. Each line names an account and gives a debit or a credit as a plain amount; debits must equal credits. Nothing dated in a locked period is accepted.", z.object({ file, date, memo: z.string().max(500).default(""), lines: z.array(line).min(2) }).strict(), WRITES_LOCAL, ({ file: f, ...entry }) => {
-    const done = change(f, (book) => post(book, entry));
-    return shown({ posted: done.result }, done.currency);
+  tool("books_post", "Post an entry", "Post a journal entry. Each line names an account and gives a debit or a credit as a plain amount; debits must equal credits. Nothing dated in a locked period is accepted. The close runs on the entry at once (continuous close): checks names the journal tests that flag it and, with statement_file (the bank statement as CSV), the statement line that matches its cash line, or that none has come in yet.", z.object({ file, date, memo: z.string().max(500).default(""), lines: z.array(line).min(2), statement_file: z.string().optional(), account: z.string().default("1000").describe("The bank account matched against statement_file."), approval_limit: amount.optional().describe("An approval limit as a plain amount: an entry just under it is flagged.") }).strict(), WRITES_LOCAL, ({ file: f, statement_file, account, approval_limit, ...entry }) => {
+    // Whatever could fail is read and checked before the entry is written, so an error never follows a post.
+    const text = statement_file ? readFileSync(resolve(statement_file), "utf8") : null;
+    let statement;
+    const done = change(f, (book) => {
+      const currency = book.records[0].currency;
+      if (approval_limit !== undefined) toMinor(approval_limit, currency);
+      if (text !== null) {
+        if (!state(book).accounts.has(account)) throw new Error(`There is no account ${account} in this book to match the statement against. Nothing was written.`);
+        statement = readStatement(text, currency);
+      }
+      return post(book, entry);
+    });
+    let checks;
+    try {
+      checks = entryChecks(done.book, done.result.seq, { statement, account, limit: approval_limit });
+    } catch (error) {
+      checks = { error: `The entry was posted; its checks could not run: ${error.message}` };
+    }
+    return shown({ posted: done.result, checks }, done.currency);
   });
   tool("books_reverse", "Reverse an entry", "Correct a posted entry with its mirror image (debits and credits swapped), dated in an open period. The original stays in the book.", z.object({ file, seq: z.number().int().positive(), date: date.optional(), memo: z.string().max(500).optional() }).strict(), WRITES_LOCAL, ({ file: f, seq, ...rest }) => {
     const done = change(f, (book) => reverse(book, seq, rest));

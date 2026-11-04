@@ -3,9 +3,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { bankEntries, checklist, parseCsv, readStatement, reconcile, variance } from "../src/close.mjs";
+import { bankEntries, checklist, entryChecks, parseCsv, readStatement, reconcile, variance } from "../src/close.mjs";
 import { addAccount, lock, post } from "../src/ledger.mjs";
-import { month } from "./fixture.mjs";
+import { month, seqsOf } from "./fixture.mjs";
 
 const csv = 'date,description,amount\n2026-01-02,Capital from shareholders,"50,000.00"\n2026-01-17,Landlord,-3000\n2026-01-31,Bank fee,(25.00)\n';
 const fee = { date: "2026-01-31", memo: "Bank fee", lines: [{ account: "6500", debit: "25" }, { account: "1000", credit: "25" }] };
@@ -80,4 +80,25 @@ test("the checklist says what is left before the month is locked", () => {
   assert.equal(checklist(book, { through: "2026-01-31", reconciliation: rec }).readyToLock, true);
   lock(book, "2026-01-31");
   assert.ok(checklist(book, { through: "2026-01-31", reconciliation: rec }).items.every((i) => i.done));
+});
+
+test("continuous close: an entry is checked as it is posted, against the journal tests and the bank statement", () => {
+  const book = month();
+  const statement = readStatement("date,description,amount\n2026-01-02,Capital,50000\n2026-01-17,Landlord,-3000\n", "AED");
+  // January rent: a round amount, and its cash line came in on the statement two days later.
+  const [rent] = seqsOf(book, "January rent");
+  const onRent = entryChecks(book, rent, { statement });
+  assert.deepEqual([onRent.flags, onRent.bank.matched], [["round"], { line: 2, date: "2026-01-17", description: "Landlord", days: 2 }]);
+  // A bank fee on Saturday 31 January with no memo: nothing on the statement for it yet.
+  const fee = post(book, { date: "2026-01-31", lines: [{ account: "6500", debit: "25" }, { account: "1000", credit: "25" }] });
+  const onFee = entryChecks(book, fee.seq, { statement });
+  assert.deepEqual([onFee.flags, onFee.bank.cash, onFee.bank.matched, onFee.bank.unmatchedBooks, onFee.bank.difference, onFee.bank.reconciled], [["weekend", "no_memo"], true, null, 1, 2500, false]);
+  // The same entry posted again is named against the first.
+  const again = post(book, { date: "2026-01-31", lines: [{ account: "6500", debit: "25" }, { account: "1000", credit: "25" }] });
+  assert.deepEqual([entryChecks(book, again.seq).flags, entryChecks(book, again.seq).sameAs], [["weekend", "duplicate", "no_memo"], [fee.seq]]);
+  // An accrual just under a 5,000 approval limit touches no cash, so it waits for no statement line.
+  const accrual = post(book, { date: "2026-01-30", memo: "Audit fee accrued", lines: [{ account: "6500", debit: "4990" }, { account: "2000", credit: "4990" }] });
+  const onAccrual = entryChecks(book, accrual.seq, { statement, limit: "5000" });
+  assert.deepEqual([onAccrual.flags, onAccrual.bank.cash, onAccrual.bank.matched], [["near_limit"], false, null]);
+  assert.equal(entryChecks(book, accrual.seq).bank, undefined, "without a statement there is no bank part");
 });

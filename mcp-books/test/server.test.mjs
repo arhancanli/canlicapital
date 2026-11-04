@@ -54,6 +54,14 @@ test("every Canli company's tools work on one book through the MCP server", asyn
     assert.deepEqual([proposed.entries[0].lines, proposed.posted], [[{ account: "6500", debit: "25.00" }, { account: "1000", credit: "25.00" }], []], "nothing is written without post: true");
     assert.deepEqual((await call("close_bank_entries", { file, statement_file: statement, rules, post: true })).posted, [28]);
     assert.deepEqual((await call("close_bank_entries", { file, statement_file: statement, rules, post: true })).posted, [], "the same statement again posts nothing");
+    // Continuous close: a post with the statement is checked at once; a bad limit or account writes nothing.
+    const paid = await call("books_post", { file, date: "2026-01-20", memo: "Supplier paid", lines: [{ account: "6500", debit: "40" }, { account: "1000", credit: "40" }], statement_file: statement, approval_limit: "42" });
+    assert.deepEqual([paid.checks.flags, paid.checks.bank.matched, paid.checks.bank.difference], [["near_limit"], null, "40.00"]);
+    const size = readFileSync(file, "utf8").length;
+    assert.match(await refused("books_post", { file, date: "2026-01-21", lines: [{ account: "6500", debit: "1" }, { account: "1000", credit: "1" }], statement_file: statement, account: "1999" }), /no account 1999.*Nothing was written/);
+    await refused("books_post", { file, date: "2026-01-21", lines: [{ account: "6500", debit: "1" }, { account: "1000", credit: "1" }], approval_limit: "a lot" });
+    assert.equal(readFileSync(file, "utf8").length, size, "a refused post wrote nothing");
+    await call("books_reverse", { file, seq: paid.posted.seq, date: "2026-01-20" });
     assert.equal((await call("close_checklist", { file, through: "2026-01-31", statement_file: statement })).readyToLock, true);
 
     // A German subsidiary in euros, consolidated into dirhams: the ECB has no AED, so it is pegged to the dollar.

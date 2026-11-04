@@ -3,8 +3,9 @@
 // Canli Close: month-end work on a Canli Books book. A bank statement read from CSV and matched against the
 // bank account's entries (the same amount, dates at most a few days apart, each line used once); the lines the
 // books do not have yet, turned into entries by rules; what moved
-// between two periods and the entries that moved it; and a checklist of what is left before a month is
-// locked.
+// between two periods and the entries that moved it; a checklist of what is left before a month is
+// locked; and continuous close, the same checks run on each entry the moment it is posted.
+import { journalTests } from "./audit.mjs";
 import { fromMinor, isDate, state, toMinor, trialBalance, verify } from "./ledger.mjs";
 
 // A small CSV reader: quoted fields, doubled quotes inside them, CRLF or LF line ends.
@@ -200,4 +201,29 @@ export function checklist(book, { through, reconciliation } = {}) {
     { item: `The month is locked through ${through}`, done: Boolean(s.lockedThrough && s.lockedThrough >= through), detail: s.lockedThrough ? `locked through ${s.lockedThrough}` : "not locked" },
   ];
   return { through, items, readyToLock: items.slice(0, 4).every((i) => i.done) };
+}
+
+// Continuous close: the checks of a month-end close run on one entry as soon as it is posted, so a month closes
+// as it goes rather than at its end. The journal tests that name the entry (all round amounts, a weekend date, the
+// same as another entry, just under an approval limit, no memo) and, given the bank statement, the statement line
+// that matches its cash line or that none has come in yet, with how far the cash account and the statement are
+// apart. limit and roundTo are plain amounts, as journalTests takes them.
+export function entryChecks(book, seq, { statement, account = "1000", days = 3, limit, roundTo } = {}) {
+  const tests = journalTests(book, { roundTo, limit });
+  const same = tests.duplicates.find((seqs) => seqs.includes(seq)) ?? [];
+  const flags = [["round", tests.round.includes(seq)], ["weekend", tests.weekend.includes(seq)], ["duplicate", same.length > 0], ["near_limit", tests.nearLimit.includes(seq)], ["no_memo", tests.noMemo.includes(seq)]];
+  const out = { seq, flags: flags.filter(([, on]) => on).map(([name]) => name), sameAs: same.filter((s) => s !== seq) };
+  if (!statement) return out;
+  const rec = reconcile(book, statement, { account, days });
+  const found = rec.matched.find((m) => m.seq === seq);
+  out.bank = {
+    account,
+    cash: state(book).entries.find((e) => e.seq === seq)?.lines.some((l) => l.account === account) ?? false,
+    matched: found ? { line: found.line, date: found.date, description: found.description, days: found.days } : null,
+    difference: rec.difference,
+    unmatchedStatement: rec.unmatchedStatement.length,
+    unmatchedBooks: rec.unmatchedBooks.length,
+    reconciled: rec.reconciled,
+  };
+  return out;
 }
