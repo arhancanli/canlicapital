@@ -27,7 +27,7 @@ import { addAccount, balanceSheet, explain, fromJsonl, fromMinor, incomeStatemen
 import { budgetVsActual, dcf, forecast, runway } from "./planning.mjs";
 import { checkFacts, checkSecFilings, SEC_FORMS, TAXONOMIES, toFacts } from "./report.mjs";
 import { bookRoot, proveRecord } from "./proof.mjs";
-import { checkHead, checkProof, newSigningKeys, signHead } from "./sign.mjs";
+import { checkHead, checkProof, checkStatements, newSigningKeys, signHead, signStatements, STATEMENTS } from "./sign.mjs";
 
 export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
 export const SERVER_INFO = Object.freeze({ name: "canli-books-mcp", version: SERVER_VERSION, title: "Canli Books" });
@@ -174,12 +174,26 @@ export function registerTools(server) {
   tool("books_check_proof", "Check proofs", "Check the proofs books_prove made, without the book: the owner's ML-DSA-65 signature over the Merkle root, with their public key, then each record's path to that root. A changed amount, a record moved or swapped, or another signature fails.", z.object({ proofs: z.object({ opening: z.any(), proofs: z.array(z.any()).min(1) }).optional(), proofs_file: z.string().optional(), signature_file: z.string(), public_key_file: z.string() }).strict(), READ_ONLY, ({ proofs, proofs_file, signature_file, public_key_file }) => {
     if (!proofs === !proofs_file) throw new Error("Give the proofs or a proofs_file, one of the two");
     const bundle = proofs ?? JSON.parse(readFileSync(resolve(proofs_file), "utf8"));
-    const signed = JSON.parse(readFileSync(resolve(signature_file), "utf8"));
+    // A head signature file, or a statements file from books_share_statements, which carries the signed head.
+    const given = JSON.parse(readFileSync(resolve(signature_file), "utf8"));
+    const signed = given?.kind === STATEMENTS ? given.signed_head : given;
     const key = readFileSync(resolve(public_key_file), "utf8");
     const opening = checkProof(bundle.opening, signed, key);
     const results = (bundle.proofs ?? []).map((p) => checkProof(p, signed, key));
     const book = opening.ok && bundle.opening.record.kind === "open" ? { name: bundle.opening.record.name, currency: bundle.opening.record.currency } : null;
     return { ok: Boolean(book) && results.length > 0 && results.every((r) => r.ok), book, records: signed.records, results };
+  });
+  tool("books_share_statements", "Signed statements for a lender", "The income statement for a period and the balance sheet at its end, computed from the book and signed together with the book's head (ML-DSA-65), written to a file to hand to a lender's or buyer's agent instead of a PDF. They check it with books_check_statements and the public key, without the book, and any entry behind a figure can be shown with books_prove and checked against the same file. Refuses to overwrite.", z.object({ file, private_key_file: z.string(), from: date, to: date, out_file: z.string() }).strict(), WRITES_LOCAL, ({ file: f, private_key_file, from, to, out_file }) => {
+    const { book, currency } = load(f);
+    const pkg = signStatements(book, { from, to }, readFileSync(resolve(private_key_file), "utf8"));
+    const path = resolve(out_file);
+    writeNew(path, `${JSON.stringify(pkg, null, 1)}\n`);
+    return shown({ out_file: path, book: pkg.book, records: pkg.records, root: pkg.root, netIncome: pkg.income_statement.netIncome, totalAssets: pkg.balance_sheet.totalAssets }, currency);
+  });
+  tool("books_check_statements", "Check signed statements", "Check a statements file from books_share_statements with the owner's public key alone, without the book: the signature over the whole file, the book head signed inside it, and that the figures add up. Shows the statements when they check.", z.object({ statements_file: z.string(), public_key_file: z.string() }).strict(), READ_ONLY, ({ statements_file, public_key_file }) => {
+    const pkg = JSON.parse(readFileSync(resolve(statements_file), "utf8"));
+    const checked = checkStatements(pkg, readFileSync(resolve(public_key_file), "utf8"));
+    return checked.ok ? shown({ ...checked, income_statement: pkg.income_statement, balance_sheet: pkg.balance_sheet }, pkg.currency) : checked;
   });
 
   // Canli Close

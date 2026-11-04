@@ -30,7 +30,7 @@ test("every Canli company's tools work on one book through the MCP server", asyn
   };
   try {
     const tools = (await client.listTools()).tools.map((t) => t.name);
-    for (const name of ["books_post", "close_reconcile", "close_consolidate", "report_check", "audit_journal", "planning_runway", "data_pack", "data_pack_sec_first_filed", "data_pack_sec_findings", "books_sign"]) assert.ok(tools.includes(name), name);
+    for (const name of ["books_post", "close_reconcile", "close_consolidate", "report_check", "audit_journal", "planning_runway", "data_pack", "data_pack_sec_first_filed", "data_pack_sec_findings", "books_sign", "books_share_statements", "books_check_statements"]) assert.ok(tools.includes(name), name);
 
     await call("books_open", { file, name: "Example Trading LLC", currency: "AED" });
     assert.match(await refused("books_open", { file, name: "Again", currency: "AED" }), /never overwrites/);
@@ -102,6 +102,11 @@ test("every Canli company's tools work on one book through the MCP server", asyn
     await call("books_new_keys", keys);
     await call("books_sign", { file, private_key_file: keys.private_key_file });
     assert.equal((await call("books_check_signature", { file, public_key_file: keys.public_key_file })).ok, true);
+    // Statements for a lender's agent, signed with the head; checked without the book; proofs check against the same file.
+    const statementsFile = join(dir, "statements.json");
+    const shared = await call("books_share_statements", { file, private_key_file: keys.private_key_file, from: "2026-01-01", to: "2026-01-31", out_file: statementsFile });
+    const lender = await call("books_check_statements", { statements_file: statementsFile, public_key_file: keys.public_key_file });
+    assert.deepEqual([lender.ok, lender.adds_up, lender.income_statement.netIncome, lender.balance_sheet.totalAssets], [true, true, shared.netIncome, shared.totalAssets]);
 
     // One entry shown to a lender without the book: a proof against the signed root, checked with the public key.
     const proved = await call("books_prove", { file, seqs: [rent.posted.seq] });
@@ -109,6 +114,7 @@ test("every Canli company's tools work on one book through the MCP server", asyn
     const check = (proofs) => call("books_check_proof", { proofs, signature_file: `${file}.sig.json`, public_key_file: keys.public_key_file });
     const checkedProof = await check(proved);
     assert.deepEqual([checkedProof.ok, checkedProof.book], [true, { name: "Example Trading LLC", currency: "AED" }]);
+    assert.equal((await call("books_check_proof", { proofs: proved, signature_file: statementsFile, public_key_file: keys.public_key_file })).ok, true, "the statements file carries the head the proofs lead to");
     const forged = structuredClone(proved);
     forged.proofs[0].record.lines[0].debit = 30000;
     assert.equal((await check(forged)).ok, false, "a changed amount fails");
