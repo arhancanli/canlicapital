@@ -299,3 +299,12 @@ test("Brazil's production and retail sales from IBGE, Canada's retail sales from
   const retail = (await run({ countries: ["Brazil", "Canada"], measure: "retail sales" })).r;
   assert.deepEqual(retail.rows.map((x) => [x[0], x[1], x[5]]), [["Brazil", "2026-08", "ibge:8880/v/11709/c11046/56734"], ["Canada", "2026-08", "statcan:1446859483"]]);
 });
+
+test("a country's whole economy with every measure checked against a second official publisher", async () => {
+  const { r } = await run({ country: "Brazil", measure: "all", check: true });
+  const by = Object.fromEntries(r.check.rows.map((x) => [x[0], x]));
+  assert.deepEqual(by.inflation.slice(1, 6), ["2026-09", 4.58, 4.576128, -0.003872, true]);
+  assert.deepEqual(by.policy_rate.slice(1, 6), ["2026-10-27", 13.75, 13.75, 0, true]);
+  assert.deepEqual(r.check.disagree, []);
+  assert.ok(r.check.unchecked.includes("house_prices"), "a measure with one publisher is said to be unchecked");
+});

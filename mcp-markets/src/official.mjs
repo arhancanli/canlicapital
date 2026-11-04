@@ -897,6 +897,16 @@ export function moves(rows, n = 8) {
 const monthEnds = (rows) => [...new Map(rows.map(([p, v]) => [p.slice(0, 7), v]))];
 const monthMeans = (rows) => { const by = new Map(); for (const [p, v] of rows) { const k = p.slice(0, 7); const g = by.get(k) ?? [0, 0]; by.set(k, [g[0] + v, g[1] + 1]); } return [...by].map(([k, [t, n]]) => [k, t / n]); };
 
+// The next publisher that answers, compared with the first: one whose combined request failed is not asked again,
+// and two are tried at most.
+async function secondOpinion(session, r, others, opts, m, note) {
+  let last = null;
+  for (const o of others.filter((l) => !(l.batch && opts.failed?.has(l.batch[0]))).slice(0, 2)) {
+    try { return compare(r, await readSpec(session, o, opts), m, note); } catch (err) { last = { other: { series: [o.s].flat()[0], by: o.by }, error: String(err?.message ?? err).slice(0, 200), note: "no answer" }; }
+  }
+  return last;
+}
+
 // The latest period both publishers report, and how far apart they are there.
 export function compare(a, b, m, note) {
   let ra = a.rows, rb = b.rows;
@@ -1084,9 +1094,16 @@ async function overview(session, a) {
   const got = await Promise.all(Object.keys(MEASURES).map(async (measure) => {
     const m = MEASURES[measure];
     try {
-      const { r, link } = await readMeasure(session, measure, c, { want: 1 + (m.daily ? 380 : 13), inflight, daily: m.daily, prefetched, failed });
+      const opts = { want: 1 + (m.daily ? 380 : 13), inflight, daily: m.daily, prefetched, failed };
+      const { r, link, others } = await readMeasure(session, measure, c, opts);
       const s = summary(r.rows);
-      return { measure, row: [measure, s.latest.period, s.latest.value, s.year_ago?.value ?? null, link.quote ?? null, link.by, r.code], url: r.url, stale: staleSince(session, r.rows) };
+      // check: the measure against its next publisher, as for one measure.
+      let check = null;
+      if (a.check && others.length) {
+        const x = await secondOpinion(session, r, others, opts, m, link.note);
+        check = x?.period ? [measure, x.period, x.value, x.other_value, x.difference, x.agree, x.other.by, x.note ?? null] : [measure, null, null, null, null, null, x?.other?.by ? `${x.other.by}: ${x.note ?? "no answer"}` : "no second publisher answered", null];
+      }
+      return { measure, row: [measure, s.latest.period, s.latest.value, s.year_ago?.value ?? null, link.quote ?? null, link.by, r.code], url: r.url, stale: staleSince(session, r.rows), check };
     } catch (err) { return { measure, error: String(err?.message ?? err).slice(0, 200) }; }
   }));
   const ok = got.filter((g) => g.row);
@@ -1097,6 +1114,7 @@ async function overview(session, a) {
     rows: ok.map((g) => g.row),
     ...(ok.some((g) => g.stale) ? { stale: ok.filter((g) => g.stale).map((g) => `${g.measure}: latest ${g.stale}`) } : {}),
     ...(got.some((g) => g.error) ? { not_found: got.filter((g) => g.error).map((g) => `${g.measure}: ${g.error}`) } : {}),
+    ...(a.check ? { check: { columns: ["measure", "period", "value", "other_value", "difference", "agree", "other_publisher"], rows: ok.filter((g) => g.check).map((g) => g.check.slice(0, 7)), ...(ok.some((g) => g.check?.[7]) ? { notes: Object.fromEntries(ok.filter((g) => g.check?.[7]).map((g) => [g.measure, g.check[7]])) } : {}), disagree: ok.filter((g) => g.check?.[5] === false).map((g) => g.measure), unchecked: ok.filter((g) => !g.check).map((g) => g.measure), reading: "Each measure against a second official publisher at the latest period both report; a gap can be a difference of definition as well as an error." } } : {}),
     reading: "Each row is the latest figure from its own publisher, with the same period a year earlier. Ask for one measure (measure: \"inflation\", check: true) for its history and a second publisher's figure.",
     source: ok[0].url, sources: [...new Set(ok.map((g) => g.url))], limits: LIMITS,
   };
