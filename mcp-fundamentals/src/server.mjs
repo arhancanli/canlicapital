@@ -1164,6 +1164,64 @@ export async function toolRestatements(session, args) {
   });
 }
 
+// A company's history as it stood on two dates: every period whose value as known on `from` differs from its
+// value as known on `to`, and how many periods were first reported in between. The question a reader of a new
+// filing asks ("what did it change?"), where restatements compares each period's first report with its latest.
+export const vintageDiffInput = z.object({
+  company,
+  from: date.describe("Values as known on this date."),
+  to: date.optional().describe("Default today."),
+  concept: conceptArg.optional().describe("Default: every concept."),
+  periods: periodsArg,
+  limit: z.number().int().min(1).max(400).optional().describe("Default 25."),
+  offset: offsetArg,
+}).strict();
+
+export async function toolVintageDiff(session, args) {
+  const a = parse(vintageDiffInput, args, "vintage_diff");
+  const to = a.to ?? new Date(session.now()).toISOString().slice(0, 10), periods = a.periods ?? "annual";
+  if (a.from >= to) throw new Error(`from (${a.from}) must be before to (${to}).`);
+  const e = await loadCompany(session, a.company);
+  const ratios = splitRatios(e);
+  const scope = a.concept
+    ? [resolveSeries(e, a.concept)]
+    : [...e.index.values()].flatMap((c) => Object.keys(c.units).map((u) => resolveSeries(e, `${c.taxonomy}:${c.tag}`, u, { keep: false })));
+  // The value as known on a date: the latest vintage filed by then.
+  const knownOn = (p, day) => { let v = null; for (const x of p.vintages) if (x.filed <= day) v = x; return v; };
+  let compared = 0, added = 0, splits = 0;
+  const found = [];
+  for (const s of scope) {
+    for (const p of s.periods) {
+      if (!matchesKind(p, periods)) continue;
+      const then = knownOn(p, a.from), now = knownOn(p, to);
+      if (!now) continue;
+      if (!then) { added += 1; continue; }
+      compared += 1;
+      if (then.val === now.val) continue;
+      // A stock split restates every share count and per-share figure; counted, not listed.
+      if (splitCause(s.unit, then, now, ratios)) { splits += 1; continue; }
+      found.push({ s, p, then, now, pct: then.val === 0 ? null : ((now.val - then.val) / Math.abs(then.val)) * 100 });
+    }
+  }
+  found.sort((x, y) => y.now.filed.localeCompare(x.now.filed) || y.p.end.localeCompare(x.p.end) || x.s.name.localeCompare(y.s.name));
+  const round = (x) => (x === null ? null : Math.round(x * 100) / 100);
+  const shown = page(found.map(({ s, p, then, now, pct }) => [s.name, s.unit, p.end, p.start, then.val, then.filed, now.val, now.filed, now.form, now.accn, round(pct)]), a.offset ?? 0, a.limit ?? 25);
+  return asText({
+    ...head(e),
+    from: a.from,
+    to,
+    periods,
+    compared,
+    changed: found.length,
+    first_reported_between: added,
+    ...(splits ? { splits_excluded: splits } : {}),
+    columns: ["concept", "unit", "end", "start", "value_then", "filed_then", "value_now", "filed_now", "form", "accn", "change_pct"],
+    ...shown,
+    meaning: `Each row is a period whose value as known on ${a.from} (the latest filing by then) differs from its value as known on ${to}, latest filing first; accn is the filing that changed it. compared counts the periods known on both dates; first_reported_between counts those reported only after ${a.from}. change_pct is relative to the earlier value (null when that was zero). Changes from a stock split are counted in splits_excluded, not listed; restatements with include_splits lists them. The figures are only as recent as the company data behind them: snapshot says when that was read.`,
+    limits: LIMITS,
+  });
+}
+
 export const vintagesInput = z.object({
   company,
   concept: conceptArg,
@@ -1307,6 +1365,7 @@ export const EXAMPLE_ARGS = Object.freeze({
   known_as_of: { company: "AAPL", as_of: "2019-01-01", concepts: ["eps_diluted", "revenue"] },
   history: { company: "AAPL", concept: "revenue" },
   restatements: { company: "AAPL", concept: "eps_diluted" },
+  vintage_diff: { company: "AAPL", from: "2026-09-01", to: "2026-11-04" },
   vintages: { company: "AAPL", concept: "eps_diluted", end: "2018-09-29" },
   list_concepts: { company: "AAPL", search: "revenue" },
   find_company: { query: "Exxon Mobil" },
@@ -1479,6 +1538,7 @@ export const TOOL_DESCRIPTIONS = Object.freeze({
   known_as_of: "Get what a company had reported as of a date: per measure, the latest period filed by then, its value, and whether it was later restated; optionally ratios from those filings. For point-in-time backtests.",
   history: "Get a measure (or several, with concepts) over time, newest first: latest (default), first reported, or as known on a filing date, with its filing, other version and yearly change.",
   restatements: "List periods whose value changed in a later filing, with first and latest values, % change and cause (stock splits left out by default). Omit concept to scan everything.",
+  vintage_diff: "A company's history as known on two dates: each period whose value changed between them, with the filing that changed it, and how many periods were first reported in between.",
   vintages: "List every filing that reported one period of one measure, oldest first: the revision history behind a number.",
   list_concepts: "List the XBRL concepts a company reports and the plain names it supports, with units, periods, date range and restated-period counts.",
   find_company: "Find a company's SEC CIK and tickers by name, ticker or CIK. The other tools also take a name as company.",
@@ -1497,6 +1557,8 @@ export const OUTPUT_SCHEMAS = Object.freeze({
     .describe("rows: one per period, newest first, in the order of columns."),
   restatements: z.looseObject({ ...common, scanned: z.number().optional(), changed: z.number().optional(), ...table })
     .describe("rows: one per restated period, newest first, with first and latest values, change_pct and cause."),
+  vintage_diff: z.looseObject({ ...common, from: z.string().optional(), to: z.string().optional(), compared: z.number().optional(), changed: z.number().optional(), first_reported_between: z.number().optional(), ...table })
+    .describe("rows: one per period whose value changed between from and to, latest filing first, with both values, the filing that changed it and change_pct."),
   vintages: z.looseObject({ ...common, concept: z.looseObject({}).optional(), ...table, filing_url: z.string().optional() })
     .describe("rows: every filing that reported the period, oldest first."),
   list_concepts: z.looseObject({ ...common, concepts: z.number().optional(), matched: z.number().optional(), plain_names: z.looseObject({}).optional(), ...table })
@@ -1517,6 +1579,7 @@ export function registerTools(server, session) {
   tool("known_as_of", "Known as of a date", knownInput, (args) => toolKnownAsOf(session, args));
   tool("history", "Measure history", historyInput, (args) => toolHistory(session, args));
   tool("restatements", "Restated periods", restatementsInput, (args) => toolRestatements(session, args));
+  tool("vintage_diff", "History as known on two dates", vintageDiffInput, (args) => toolVintageDiff(session, args));
   tool("vintages", "Filing vintages", vintagesInput, (args) => toolVintages(session, args));
   tool("list_concepts", "List concepts", listInput, (args) => toolListConcepts(session, args));
   tool("find_company", "Find a company", findInput, (args) => toolFindCompany(session, args));

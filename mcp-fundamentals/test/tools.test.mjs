@@ -19,6 +19,7 @@ import {
   toolKnownAsOf,
   toolListConcepts,
   toolRestatements,
+  toolVintageDiff,
   toolVintages,
 } from "../src/server.mjs";
 import { CIK, EXXON, FACTS, RAW, SHA, fakeFetch, files } from "./fixture.mjs";
@@ -316,6 +317,25 @@ test("a long session sees a report filed after it first read a company, and read
   delete map[`/api/xbrl/companyfacts/CIK${CIK}.json`];
   clock += 16 * 60 * 1000;
   assert.equal((await last())[2], "2026-11-07");
+});
+
+test("vintage_diff lists what changed between two dates, with the filing that changed it, and counts what was new", async () => {
+  const { s } = session();
+  const all = out(await toolVintageDiff(s, { company: "FIX", from: "2020-01-01", to: "2021-01-01", periods: "all" }));
+  assert.deepEqual([all.compared, all.changed, all.first_reported_between, all.splits_excluded], [10, 2, 16, 1]);
+  assert.deepEqual(byCol(all).map((r) => [r.concept, r.value_then, r.value_now, r.form, r.accn]), [
+    ["OperatingLeaseLiability", 0, 30, "10-K", "0000123456-20-000020"],
+    ["Assets", 500, 520, "10-K/A", "0000123456-20-000002"],
+  ], "latest filing first");
+  // A plain name follows its tags, so a value moved to a new tag is a change.
+  const revenue = out(await toolVintageDiff(s, { company: "FIX", concept: "revenue", from: "2020-01-01", to: "2021-01-01" }));
+  assert.deepEqual(revenue.rows, [["revenue", "USD", "2019-09-30", "2018-10-01", 100, "2019-10-30", 90, "2020-10-29", "10-K", "0000123456-20-000020", -10]]);
+  assert.equal(revenue.first_reported_between, 1);
+  // Nothing filed between two dates: nothing changed.
+  const quiet = out(await toolVintageDiff(s, { company: "FIX", from: "2020-11-01", to: "2021-01-01", periods: "all" }));
+  assert.equal(quiet.changed, 0);
+  assert.equal(quiet.first_reported_between, 0);
+  await assert.rejects(toolVintageDiff(s, { company: "FIX", from: "2021-01-01", to: "2020-01-01" }), /must be before/);
 });
 
 test("names people use reach the listed company", async () => {
