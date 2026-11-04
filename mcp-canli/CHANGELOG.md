@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- A company named in words that matches more than one filer ("Delta": Delta Air Lines, Delta Apparel, Delta Natural Gas) is put to the person, where their client can be asked (MCP elicitation), and the call runs again for the one they pick; the answer says what was asked and chosen under `asked`. On the 2025 protocol the question goes out while the call waits; on the 2026-07-28 protocol it rides an `input_required` result and the client's retry carries the answer, and a client is only sent a question it said it can answer. A client that cannot be asked, a person who declines, or `CANLI_ASK=0` leaves the first match standing with the others listed, as before.
+
 ## 0.19.0
 
 - canli-markets-mcp 0.14.1: six more tools, 412 in all, where Bloomberg, FactSet, Aladdin, QuantConnect and Tiingo led. `scenario_risk` runs your holdings through a macro shock or a replayed crisis, the unshocked factors moved the way history moves them together, with each holding's modelled return beside its actual one; `bond_offerings` lists every bond a company sold from its term sheets and fee tables, every dollar yield recomputed from its price; `standardized_financials` puts US GAAP and IFRS filers in one template; `trade_flows` reads UN Comtrade with Taiwan named and unattributed trade flagged; `trade_ticks` gives every Kraken trade to the microsecond; `financial_cycle` gives the BIS's house prices, debt service, credit and exchange rates.

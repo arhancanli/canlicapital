@@ -20,7 +20,7 @@ import { homedir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { McpServer, ResourceTemplate } from "@modelcontextprotocol/server";
+import { isInputRequiredResult, McpServer, ResourceTemplate } from "@modelcontextprotocol/server";
 import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { z } from "zod";
 
@@ -55,6 +55,7 @@ import { addressedToAi, CAUTION } from "./injection.mjs";
 import { installTripwire, withoutNetwork } from "./tripwire.mjs";
 import { createDelta } from "./delta.mjs";
 import { runWeek, WEEK_TOOL } from "./week.mjs";
+import { askWhich } from "./ask.mjs";
 import { quoteSeconds, registerQuotes } from "./quotes.mjs";
 import { channelSink, CHANNEL_INSTRUCTIONS, SENTINEL_TOOLS } from "./sentinel.mjs";
 
@@ -133,7 +134,12 @@ const cpuNow = () => (typeof process?.cpuUsage === "function" ? process.cpuUsage
 const guard = (fn) => async (args, extra) => {
   const started = performance.now(), cpu = cpuNow();
   let out;
-  try { out = ok(await fn(args, extra)); } catch (err) { out = fail(err); }
+  try {
+    const value = await fn(args, extra);
+    // A question for the person (2026-07-28 input_required) goes out as it is; the client retries with the answer.
+    if (isInputRequiredResult(value)) return value;
+    out = ok(value);
+  } catch (err) { out = fail(err); }
   const used = cpu ? process.cpuUsage(cpu) : null;
   const cost = { ms: Math.round(performance.now() - started), ...(used ? { cpu_ms: Math.round((used.user + used.system) / 1000) } : {}), chars: out.content.reduce((t, c) => t + (c.text?.length ?? 0), 0) };
   return { ...out, _meta: { ...out._meta, [COST_KEY]: cost } };
@@ -690,6 +696,9 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
       await Promise.all(wave.map(runAt));
       left = left.filter((i) => !wave.includes(i));
     }
+    // A company named in words that matched several filers: the person picks, where the client can ask (ask.mjs).
+    const question = await askWhich({ server, extra, calls, done, rerun: (i, args) => run(calls[i], args) });
+    if (question) return question;
     // Each strategy result says what is left after luck across everything tried so far (luck.mjs).
     done.forEach((d, i) => {
       if (d.result === undefined || SELF[d.name]) return;
