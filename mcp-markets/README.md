@@ -106,6 +106,7 @@ against the BIS (21 of 21 agreed on 2026-10-15).
 | `dividend_history` | Payments by ex-date, totals by year, trailing yield, five-year growth, the streak of rising totals and splits. |
 | `comment_letters` | What the SEC's staff questioned in a company's filings and how it answered, grouped into reviews, with the topics of the newest letters (Apple, 2024: revenue recognition, segments, MD&A) | SEC EDGAR forms UPLOAD and CORRESP |
 | `shareholder_returns` | What a company has paid its owners each year: dividends per share (with its split-adjusted record: years raised in a row, 5- and 10-year growth) and in total, buybacks and shares issued, the diluted share count, the payout ratio and the share of free cash flow paid out, and the dividend and shareholder yields at the last close | SEC XBRL company facts, the last close |
+| `buybacks` | A company's share repurchases by fiscal year or quarter: cash paid, shares bought and the value recorded for them, the average price, the program's authorized and remaining amounts where tagged, and the change in shares outstanding, each figure with the filing it came from and untagged figures named, not estimated (Apple, FY2025: 402 million shares for $89.3 billion, $222.14 a share; shares outstanding down 2.3%) | SEC XBRL company facts |
 | `reverse_dcf` | The free-cash-flow growth a share price implies: a DCF solved for the growth that reaches the market's enterprise value, every input from the annual XBRL with its tag, a sensitivity table and the company's own growth beside it | SEC XBRL company facts, the last close |
 | `filing_memory` | Everything one company has said about a subject across every annual report it has on EDGAR, back to the 1990s where they exist: the best passages with links, how often it came up each year, and optionally how that moved with a margin, tested against chance. Runs on your machine; no key. |
 | `filing_sentiment` | The tone of a filing or any text, sentence by sentence, from FinBERT on your machine. Needs `canli-mcp models install`. The model is licensed for non-commercial use. |
@@ -165,7 +166,8 @@ goes into any of its 235 quant tools in the same batch.
 The tests replay real SEC, Treasury and FRED responses and check values read off the documents:
 Berkshire Hathaway's 13F for the quarter ending 30 June 2026 totals $299,253,556,246 over 89
 entries, exactly the figures on its cover page; Apple's 10-K risk factors come back as Item 1A
-alone; a Tesla Form 4 sale reads 2,605.75 shares at $360.134.
+alone; a Tesla Form 4 sale reads 2,605.75 shares at $360.134. Apple's fiscal 2025 buybacks come
+back as its 10-K states them: 402 million shares for $89.3 billion, $90,711 million paid in cash.
 
 ## Limits
 

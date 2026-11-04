@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- New tool: `buybacks`, a company's share repurchases by fiscal year or quarter from its own XBRL: the cash it paid, the shares it bought and the value it recorded for them, the average price, its program's authorized and remaining amounts where it tagged them, and the change in shares outstanding. Every figure names the filing it came from, and a figure the company does not tag is said to be untagged, not estimated. A quarter that the reports give only year to date is worked out from them, and a stock split between two reports is allowed for.
+
 ## 0.12.0
 
 From a test against other finance MCP servers on the newest models. New tools:
