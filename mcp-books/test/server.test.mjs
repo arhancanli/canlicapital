@@ -30,7 +30,7 @@ test("every Canli company's tools work on one book through the MCP server", asyn
   };
   try {
     const tools = (await client.listTools()).tools.map((t) => t.name);
-    for (const name of ["books_post", "close_reconcile", "close_consolidate", "report_check", "audit_journal", "planning_runway", "data_pack", "data_pack_sec_first_filed", "data_pack_sec_findings", "books_sign", "books_share_statements", "books_check_statements"]) assert.ok(tools.includes(name), name);
+    for (const name of ["books_post", "close_reconcile", "close_consolidate", "report_check", "report_xbrl_json", "audit_journal", "planning_runway", "data_pack", "data_pack_sec_first_filed", "data_pack_sec_findings", "books_sign", "books_share_statements", "books_check_statements"]) assert.ok(tools.includes(name), name);
 
     await call("books_open", { file, name: "Example Trading LLC", currency: "AED" });
     assert.match(await refused("books_open", { file, name: "Again", currency: "AED" }), /never overwrites/);
@@ -75,6 +75,13 @@ test("every Canli company's tools work on one book through the MCP server", asyn
 
     const report = await call("report_check", { file, as_of: "2026-01-31", from: "2026-01-01", to: "2026-01-31" });
     assert.deepEqual([report.ok, report.unmapped.length], [true, 0]);
+    const xbrl = join(dir, "report.json");
+    const written = await call("report_xbrl_json", { file, as_of: "2026-01-31", from: "2026-01-01", to: "2026-01-31", out_file: xbrl, entity: "LEI-TEST-0001" });
+    assert.equal(written.document_type, "https://xbrl.org/2021/xbrl-json");
+    const facts = Object.values(JSON.parse(readFileSync(xbrl, "utf8")).facts);
+    assert.equal(facts.length, written.facts);
+    assert.ok(facts.every((f) => f.dimensions.entity === "entity:LEI-TEST-0001" && f.dimensions.unit === "iso4217:AED"));
+    assert.match(await refused("report_xbrl_json", { file, as_of: "2026-01-31", from: "2026-01-01", to: "2026-01-31", out_file: xbrl }), /never overwrites/);
     // The same checks on a company's SEC filings, from the companyfacts JSON: last year's shares filed in thousands.
     const companyfacts = join(dir, "CIK0001234567.json");
     const shares = (accn, filed, val) => ({ end: "2024-12-31", val, accn, fy: Number(filed.slice(0, 4)), fp: "FY", form: "10-K", filed });

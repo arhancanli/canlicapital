@@ -26,6 +26,7 @@ import { consolidate, readEcbRates } from "./group.mjs";
 import { addAccount, balanceSheet, explain, fromJsonl, fromMinor, incomeStatement, lock, openBook, post, reverse, state, toJsonl, toMinor, trialBalance, TYPES, verify } from "./ledger.mjs";
 import { budgetVsActual, dcf, forecast, runway } from "./planning.mjs";
 import { checkFacts, checkSecFilings, SEC_FORMS, TAXONOMIES, toFacts } from "./report.mjs";
+import { toXbrlJson } from "./xbrl.mjs";
 import { bookRoot, proveRecord } from "./proof.mjs";
 import { checkHead, checkProof, checkStatements, newSigningKeys, signHead, signStatements, STATEMENTS } from "./sign.mjs";
 
@@ -234,6 +235,13 @@ export function registerTools(server) {
     const out = toFacts(book, { asOf: as_of, from, to, taxonomy });
     const prior = prior_facts_file ? JSON.parse(readFileSync(resolve(prior_facts_file), "utf8")) : [];
     return { ...out, ...checkFacts(out.facts, { prior, taxonomy }) };
+  });
+  tool("report_xbrl_json", "Statements as an xBRL-JSON report", "The same facts as report_check, written as an xBRL-JSON report (XBRL International's Open Information Model in JSON), which XBRL processors and other agents read without XML: each fact with its concept, entity, period and unit, amounts in the currency's major unit. US GAAP takes a year for its namespace and schema; IFRS needs the namespace and schema of the release you file under. A draft for review; accounts with no concept are listed, never guessed. Written to out_file, never over an existing file.", z.object({ file, as_of: date, from: date, to: date, taxonomy: z.enum(TAXONOMIES).default("us-gaap"), entity: z.string().max(200).optional().describe("The identifier the report is filed under, such as an LEI; default the book's name."), entity_scheme: z.string().url().optional().describe("The scheme the identifier belongs to; default https://canlicapital.com/books/entity."), year: z.number().int().min(2009).max(2100).optional().describe("US GAAP taxonomy year; default 2025."), namespace: z.string().url().optional(), schema: z.string().url().optional(), out_file: z.string() }).strict(), WRITES_LOCAL, ({ file: f, as_of, from, to, taxonomy, entity, entity_scheme, year, namespace, schema, out_file }) => {
+    const { book } = load(f);
+    const out = toXbrlJson(book, { asOf: as_of, from, to, taxonomy, entity, ...(entity_scheme ? { scheme: entity_scheme } : {}), ...(year ? { year } : {}), namespace, schema });
+    const path = resolve(out_file);
+    writeNew(path, `${JSON.stringify(out.report, null, 1)}\n`);
+    return { out_file: path, document_type: out.report.documentInfo.documentType, facts: out.facts, unmapped: out.unmapped, namespaces: out.report.documentInfo.namespaces };
   });
   tool("report_check_sec", "Checks on SEC filings", "The same checks on each of a company's SEC filings, from the companyfacts JSON the SEC publishes (data.sec.gov/api/xbrl/companyfacts/CIK##########.json, the data canli-mcp's fundamentals tools read; this server reads only the file given): assets against liabilities and equity at every date, values below zero that never should be, a fact given two values, and a value about a thousand or a million times the last filing's for the same item (a scale slip). Findings point at facts to look at, not errors proved.", z.object({ companyfacts_file: z.string(), forms: z.array(z.string()).min(1).max(10).default([...SEC_FORMS]), last: z.number().int().min(1).max(500).default(8) }).strict(), READ_ONLY, ({ companyfacts_file, forms, last }) => checkSecFilings(JSON.parse(readFileSync(resolve(companyfacts_file), "utf8")), { forms, last }));
 
