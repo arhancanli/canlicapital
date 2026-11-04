@@ -25,7 +25,7 @@ const SOURCE_PINS = Object.freeze({
   'src/expert-submission-client.mjs': '2f6935f53821dcfee2a7cbae51e927672fb26c49c73353fc515ecb1096cceb31',
   'src/expert-submission-files.mjs': 'a5ed0b30f5338d3ed560f7fbc7cbb0e78966a56da188b72a8515ab077c4ea22d',
   'src/audit-inputs-client.mjs': '95fe942b1278768b4c938d82054d2d472eb3411c5587bdd8be4067b1dc0bc9b7',
-  'src/server.mjs': '7facda88e9fbd074f9b1e8671c38ef6cb0eb907fe48533df2662009e93734170',
+  'src/server.mjs': '056d285335dbf156461cd80e2ec9711f61524b57df9f1da019c806d6cd728f1d',
   'src/audit-inputs-stdio.mjs': '537673fc03d0954ae480b239b8b481d11e14d763f1d0c07a985bb7d8fbd5b5c0',
   'src/audit-inputs-core.mjs': 'e612ba0e44d12fd275b3e1dc0a2331bfe6fb005b4da8075e46ae009c5e299059',
   'src/canonical-json.mjs': '881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b',
@@ -175,7 +175,7 @@ function audit(entries) {
   const metadata = JSON.parse(entries.get('package/package.json').bytes);
   assert.deepEqual(metadata.bin, BIN, 'PACKAGE_BIN');
   assert.deepEqual(metadata.files, ['src', 'README.md', 'AUDIT_INPUTS.md', 'EXPERT_SUBMISSIONS.md', 'AUDIT_INPUTS_CLIENT.md', 'EXPERT_SUBMISSION_FILES.md', 'EXPERT_SUBMISSION_CLIENT.md', 'EXPERT_INTAKE_FILES.md', 'EXPERT_INTAKE_STDIO.md'], 'PACKAGE_FILES');
-  assert.equal(metadata.name, 'canli-fundamentals-mcp'); assert.equal(metadata.version, '0.8.1');
+  assert.equal(metadata.name, 'canli-fundamentals-mcp'); assert.equal(metadata.version, '0.9.0');
   assert.deepEqual(metadata.dependencies, { '@modelcontextprotocol/server': '2.3.1', zod: '4.6.7', '@modelcontextprotocol/client': '2.3.1' });
   for (const [filename, row] of entries) assert.deepEqual(row.bytes, expectedBytes.get(filename), 'EXACT_FROZEN_BYTES');
   assert.match(entries.get('package/src/expert-submission-stdio.mjs').bytes.toString(), /^#!\/usr\/bin\/env node\n/);
