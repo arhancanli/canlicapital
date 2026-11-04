@@ -65,9 +65,45 @@ export function wasdeTables(xml) {
   for (const r of reports) {
     const records = [];
     walk(r, {}, records);
-    tables.push({ id: r.attrs.Name, title: clean(r.attrs.sub_report_title), unit: String(r.attrs.sub_report_subtitle ?? "").replace(/[()]/g, "").trim() || null, month: r.attrs.Report_Month ?? null, records });
+    tables.push({ id: r.attrs.Name, title: clean(r.attrs.sub_report_title), unit: String(r.attrs.sub_report_subtitle ?? "").replace(/[()]/g, "").trim() || null, month: r.attrs.Report_Month ?? null, records, reliability: reliabilityRows(r) });
   }
   return tables;
+}
+
+// The report's own record of this month's projections against the final estimates (its reliability pages): for each
+// commodity, line and region, the root mean square error and 90 percent interval (percent), the average, smallest
+// and largest differences (the table's unit), and the years the projection fell below and above the final.
+function reliabilityRows(report) {
+  const out = [];
+  const walk = (el, ctx) => {
+    const c = { ...ctx };
+    if (el.name === "commodity_group") c.commodity = clean(el.attrs.commodity);
+    if (el.name === "attribute_group") c.attribute = clean(el.attrs.attribute);
+    if (el.name === "region_group" && el.attrs.root_mean_square_error !== undefined) {
+      const n = (k) => number(el.attrs[k]);
+      out.push({ ...c, region: clean(el.attrs.region), rmse_pct: n("root_mean_square_error"), ci90_pct: n("confidence_interval"), average: n("average"), smallest: n("smallest"), largest: n("largest"), below_final: n("below_final"), above_final: n("above_final") });
+    }
+    for (const ch of el.children) walk(ch, c);
+  };
+  walk(report, {});
+  return out;
+}
+// The reliability pages name commodities their own way.
+const RELIABILITY = { wheat: /^WHEAT/i, coarse_grains: /^COARSE/i, rice: /^RICE/i, soybeans: /^SOYBEANS/i, cotton: /^COTTON/i };
+export function reliabilityOf(tables, commodity, region) {
+  const want = RELIABILITY[commodity];
+  if (!want) return null;
+  const rows = tables.flatMap((t) => t.reliability ?? []).filter((r) => want.test(r.commodity ?? ""));
+  if (!rows.length) return null;
+  const r = String(region ?? "World").toLowerCase();
+  const reg = r === "world" || r === "all" ? "World" : r === "united states" ? "U.S." : "Foreign";
+  const mine = rows.filter((x) => x.region === reg);
+  return {
+    region: reg === "Foreign" ? "Foreign (every country but the US; the USDA keeps no record by country)" : reg,
+    columns: ["attribute", "rmse_pct", "ci90_pct", "average", "smallest", "largest", "years_below_final", "years_above_final"],
+    rows: mine.map((x) => [x.attribute, x.rmse_pct, x.ci90_pct, x.average, x.smallest, x.largest, x.below_final, x.above_final]),
+    reading: "The USDA's record of this month's projection against the final estimate since 1981/82: two times in three the projection has been within rmse_pct percent of the final, nine in ten within ci90_pct; average, smallest and largest are the absolute differences in the table's unit; the years count misses each way.",
+  };
 }
 
 // A commodity's balance sheet: one row an attribute, one column a market year (the projection twice: last month's and
@@ -113,9 +149,11 @@ export async function cropOutlook(session, args) {
   if (!report) throw new NotFound(`ESMIS lists WASDE reports for ${reports.map((r) => r.month).join(", ")}; ${a.report} is not among them.`);
   const tables = wasdeTables(await getText(session, report.url, { maxBytes: 32 * 1024 * 1024 }));
   const sheet = balanceSheet(tables, commodity, a.region ?? "World");
+  const record = reliabilityOf(tables, commodity, sheet.region ?? a.region);
   return {
     report: { month: tables[0]?.month ?? report.month, url: report.url },
     commodity, ...sheet,
+    ...(record ? { reliability: record } : {}),
     reading: "Market years run as the USDA defines them for each crop (local marketing years aggregated). The projection appears twice: as last month's report projected it and as this one does; the change is this month's revision.",
     source: report.url,
     sources: [PUBLICATION, report.url],

@@ -46,3 +46,15 @@ test("what cannot be answered says what to ask instead", async () => {
   await assert.rejects(run({ commodity: "corn", region: "Atlantis" }), /has no region "Atlantis"\. It has: World/);
   await assert.rejects(run({ commodity: "corn", report: "1999-01" }), /1999-01 is not among them/);
 });
+
+test("the USDA's own record of this month's projections beside them: world wheat as the report's note gives it", async () => {
+  const wheat = await run({ commodity: "wheat" });
+  assert.equal(wheat.reliability.region, "World");
+  // The report's note: "chances are 2 out of 3 ... not ... more than 1.6 percent ... 9 out of 10 ... 2.8 percent ... average
+  // difference ... 7.5 million tons, ranging from 0.1 million to 27.8 million ... below the estimate 32 times and above 11".
+  assert.deepEqual(wheat.reliability.rows.find((x) => x[0] === "Production"), ["Production", 1.6, 2.8, 7.5, 0.1, 27.8, 32, 11]);
+  const soy = await run({ commodity: "soybeans", region: "United States" });
+  assert.equal(soy.reliability.region, "U.S.");
+  assert.equal(soy.reliability.rows.find((x) => x[0] === "Ending Stocks")[1], 42.5);
+  assert.equal((await run({ commodity: "corn" })).reliability, undefined, "corn's record is not on the world reliability pages");
+});
