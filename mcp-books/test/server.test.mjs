@@ -142,3 +142,39 @@ test("every Canli company's tools work on one book through the MCP server", asyn
     await client.close();
   }
 });
+
+test("a month closed from the bank statement in one call: proposed, then posted, reconciled, checked and drafted as XBRL", async () => {
+  const dir = mkdtempSync(join(tmpdir(), "canli-month-"));
+  const file = join(dir, "month.jsonl");
+  const client = new Client({ name: "books-month-test", version: "0" });
+  await client.connect(new StdioClientTransport({ command: process.execPath, args: [SERVER] }));
+  const call = async (name, args) => {
+    const res = await client.callTool({ name, arguments: args });
+    assert.ok(!res.isError, `${name}: ${JSON.stringify(res.content)}`);
+    return res.structuredContent;
+  };
+  try {
+    await call("books_open", { file, name: "Month Test LLC", currency: "AED" });
+    await call("books_post", { file, date: "2026-01-02", memo: "Share capital paid in", lines: [{ account: "1000", debit: "50000" }, { account: "3000", credit: "50000" }] });
+    await call("books_post", { file, date: "2026-01-15", memo: "January rent", lines: [{ account: "6100", debit: "3000" }, { account: "1000", credit: "3000" }] });
+    const statement = join(dir, "bank.csv");
+    writeFileSync(statement, "date,description,amount\n2026-01-02,Capital,50000\n2026-01-16,Landlord,-3000\n2026-01-31,Bank fee,-25\n2026-01-31,Unknown transfer,-10\n");
+    const args = { file, statement_file: statement, rules: [{ contains: "fee", account: "6500", direction: "out" }], from: "2026-01-01", to: "2026-01-31" };
+    const looked = await call("close_month", args);
+    assert.deepEqual([looked.entries.proposed.length, looked.entries.posted, looked.entries.unassigned.length, looked.reconciliation.reconciled], [1, [], 1, false]);
+    assert.ok(looked.left.includes("1 entries proposed, not posted: post: true writes them"));
+    assert.ok(looked.left.includes("1 statement lines no rule fits"), "the unknown transfer is listed, never guessed");
+    const out_file = join(dir, "january.json");
+    const closed = await call("close_month", { ...args, post: true, out_file });
+    assert.equal(closed.entries.posted.length, 1);
+    assert.equal(closed.statements.netIncome, "-3025.00");
+    assert.equal(closed.report.ok, true);
+    assert.equal(closed.xbrl.facts, Object.keys(JSON.parse(readFileSync(out_file, "utf8")).facts).length);
+    assert.ok(!closed.left.some((l) => /proposed/.test(l)));
+    assert.ok(closed.left.includes("The bank is reconciled"), "the unknown transfer still keeps it open");
+    const again = await call("close_month", { ...args, post: true });
+    assert.deepEqual(again.entries.posted, [], "the same statement again posts nothing");
+  } finally {
+    await client.close();
+  }
+});

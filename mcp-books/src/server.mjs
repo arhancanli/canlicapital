@@ -214,6 +214,47 @@ export function registerTools(server) {
     });
     return shown(done.result, done.currency);
   });
+  tool("close_month", "Close a month from the bank statement", "Month-end in one call: the bank statement's lines the books lack turned into entries by rules (posted with post: true, else proposed), the bank reconciliation, the month-end checklist, the statements, Report's checks on them as US GAAP or IFRS facts, and with out_file a draft xBRL-JSON report. A line no rule fits is listed, never guessed. Nothing is locked: books_lock does that once the checklist is done.", z.object({ file, statement_file: z.string(), rules: z.array(z.object({ contains: z.string().min(1).max(200), account: z.string(), direction: z.enum(["in", "out"]).optional() }).strict()).max(500).default([]), account: z.string().default("1000"), from: date, to: date, post: z.boolean().default(false), taxonomy: z.enum(TAXONOMIES).default("us-gaap"), entity: z.string().max(200).optional(), year: z.number().int().min(2009).max(2100).optional(), namespace: z.string().url().optional(), schema: z.string().url().optional(), out_file: z.string().optional() }).strict(), APPENDS_ONCE, ({ file: f, statement_file, rules, account, from, to, post: write, taxonomy, entity, year, namespace, schema, out_file }) => {
+    const text = readFileSync(resolve(statement_file), "utf8");
+    const propose = (book) => bankEntries(book, readStatement(text, book.records[0].currency), { rules, account, from, to });
+    let proposed, posted = [];
+    if (write) {
+      const done = change(f, (book) => { const out = propose(book); return { ...out, posted: out.entries.map((e) => post(book, e).seq) }; });
+      proposed = done.result;
+      posted = done.result.posted;
+    } else proposed = propose(load(f).book);
+    // Everything after reads the book as it now is: with the new entries when they were posted.
+    const { book, currency } = load(f);
+    const reconciliation = reconcile(book, readStatement(text, currency), { account, from, to });
+    const steps = checklist(book, { through: to, reconciliation });
+    const facts = toFacts(book, { asOf: to, from, to, taxonomy });
+    const checks = checkFacts(facts.facts, { taxonomy });
+    let xbrl = null;
+    if (out_file) {
+      const out = toXbrlJson(book, { asOf: to, from, to, taxonomy, entity, ...(year ? { year } : {}), namespace, schema });
+      const path = resolve(out_file);
+      writeNew(path, `${JSON.stringify(out.report, null, 1)}\n`);
+      xbrl = { out_file: path, facts: out.facts };
+    }
+    const is = incomeStatement(book, { from, to }), bs = balanceSheet(book, { asOf: to });
+    const left = [
+      ...(!write && proposed.entries.length ? [`${proposed.entries.length} entries proposed, not posted: post: true writes them`] : []),
+      ...(proposed.unassigned.length ? [`${proposed.unassigned.length} statement lines no rule fits`] : []),
+      ...steps.items.slice(0, 4).filter((i) => !i.done).map((i) => i.item),
+      ...(checks.ok ? [] : ["Report's checks found something to look at"]),
+      ...(facts.unmapped.length ? [`${facts.unmapped.length} accounts with no concept`] : []),
+    ];
+    return shown({
+      period: { from, to },
+      entries: { proposed: proposed.entries, posted, unassigned: proposed.unassigned, locked: proposed.locked, already_in_books: proposed.alreadyInBooks },
+      reconciliation: { reconciled: reconciliation.reconciled, unmatched_statement: reconciliation.unmatchedStatement.length, unmatched_books: reconciliation.unmatchedBooks.length, difference: reconciliation.difference },
+      checklist: steps,
+      statements: { netIncome: is.netIncome, totalAssets: bs.totalAssets, totalLiabilitiesAndEquity: bs.totalLiabilitiesAndEquity, balanced: bs.balanced },
+      report: { taxonomy, ok: checks.ok, findings: checks.findings, unmapped: facts.unmapped },
+      xbrl,
+      left: left.length ? left : ["Nothing: books_lock can lock the month through " + to],
+    }, currency);
+  });
   tool("close_variance", "What moved, and why", "Each account's change from a prior period to the current one, largest first, with the entries that moved it most.", z.object({ file, from: date, to: date, prior_from: date, prior_to: date, top: z.number().int().min(1).max(20).default(3) }).strict(), READ_ONLY, ({ file: f, from, to, prior_from, prior_to, top }) => {
     const { book, currency } = load(f);
     return shown(variance(book, { from, to, priorFrom: prior_from, priorTo: prior_to, top }), currency);
