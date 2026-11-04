@@ -4,9 +4,10 @@
 // off and says so. It is set when the server starts and no call can change it.
 //
 // Three locks. A tool is allowed only if it is on this list. Its arguments are held to the date. And
-// whatever comes back is read before it goes out: a table row dated later is dropped, and any other
-// later date stops the answer, so a mistake in a tool fails closed. The model's own memory is the one
-// thing this cannot lock, which is why each run should be checked for it (recipes/agent-backtest).
+// whatever comes back is read before it goes out: a table row dated later is dropped without a count,
+// a field that tells of a later change without a date of its own is taken out, and any other later
+// date stops the answer, so a mistake in a tool fails closed. The model's own memory is the one thing
+// this cannot lock, which is why each run should be checked for it (recipes/agent-backtest).
 
 const DAY = /^\d{4}-\d{2}-\d{2}/;
 const minusDays = (date, n) => new Date(Date.parse(`${date}T00:00:00Z`) - n * 86400000).toISOString().slice(0, 10);
@@ -24,14 +25,17 @@ const endArg = (span) => (a, d) => { const { days: _days, ...rest } = a; return 
 const REVISED = "These figures are today's revised values for those dates, not what was published then, so they can hold some later knowledge.";
 const ADJUSTED = "Adjusted prices are scaled for later splits and dividends. Returns between dates are right, but a price level can hint at splits still to come.";
 
-// Each tool that reads the world, with how it is held to the date. Anything not here is off.
+// Each tool that reads the world, with how it is held to the date. Anything not here is off:
+// list_concepts too, since its counts and its order come from every filing, later ones included.
+// drop: columns that say what came later without carrying a date, so the date check cannot see them.
+// changed_after and changed say a later filing reported a different value; snapshot_date is the day
+// the figures were fetched, which says what today is.
 const HELD = {
-  known_as_of: { args: asOfArg },
-  history: { args: (a, d) => ({ ...a, basis: "as_of", as_of: atMost(a.as_of, d) }) },
-  cross_section: { args: asOfArg },
+  known_as_of: { args: asOfArg, drop: ["changed_after"] },
+  history: { args: (a, d) => ({ ...a, basis: "as_of", as_of: atMost(a.as_of, d) }), drop: ["changed"] },
+  cross_section: { args: asOfArg, drop: ["changed_after", "snapshot_date"] },
   vintages: {},
   find_company: {},
-  list_concepts: {},
   financial_statements: { args: filedBefore },
   filing_tables: { args: filedBefore },
   earnings_release: { args: filedBefore },
@@ -79,27 +83,30 @@ export function createTimeMachine(asOf) {
     seal(name, result) {
       if (!HELD[name] || !result || typeof result !== "object") return result;
       const late = [];
-      let hidden = 0;
+      const drop = new Set(HELD[name].drop ?? []);
       const isLate = (v) => typeof v === "string" && DAY.test(v) && v.slice(0, 10) > d;
+      // A table loses its dropped columns, cells and all; a field of the same name goes too.
+      const cut = (o) => {
+        if (!drop.size || !Array.isArray(o.columns) || !Array.isArray(o.rows)) return o;
+        const keep = o.columns.flatMap((c, i) => (drop.has(c) ? [] : [i]));
+        return { ...o, columns: keep.map((i) => o.columns[i]), rows: o.rows.map((r) => (Array.isArray(r) ? keep.map((i) => r[i]) : r)) };
+      };
       const walk = (value, key, path) => {
         if (EXEMPT.has(key)) return value;
         if (Array.isArray(value)) {
-          // A table row dated later goes; anything else later is a mistake, and stops the answer.
-          if (key === "rows" && value.every(Array.isArray)) {
-            const kept = value.filter((row) => !row.some(isLate));
-            hidden += value.length - kept.length;
-            return kept;
-          }
+          // A table row dated later goes, and is not counted: how many later filings reported a
+          // figure is itself later news. Anything else later is a mistake, and stops the answer.
+          if (key === "rows" && value.every(Array.isArray)) return value.filter((row) => !row.some(isLate));
           return value.map((v, i) => walk(v, "", `${path}[${i}]`));
         }
-        if (value && typeof value === "object") return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, walk(v, k, path ? `${path}.${k}` : k)]));
+        if (value && typeof value === "object") return Object.fromEntries(Object.entries(cut(value)).filter(([k]) => !drop.has(k)).map(([k, v]) => [k, walk(v, k, path ? `${path}.${k}` : k)]));
         if (isLate(value)) late.push(`${path} is ${value}`);
         return value;
       };
       const { evidence: _when, snapshot: _fetched, ...rest } = result; // their retrieval times say what today is
       const out = walk(rest, "", "");
       if (late.length) throw new Error(`${name} came back with something dated after ${d} (${late.slice(0, 3).join("; ")}), so the answer was stopped.`);
-      return { ...out, time_machine: { as_of: d, ...(hidden ? { later_rows_hidden: hidden } : {}), ...(HELD[name].warning ? { warning: HELD[name].warning } : {}) } };
+      return { ...out, time_machine: { as_of: d, ...(drop.size ? { left_out: [...drop] } : {}), ...(HELD[name].warning ? { warning: HELD[name].warning } : {}) } };
     },
     instructions: `This server is running as of ${d}. Its tools show only what was public by that date, and tools that cannot be held to it are off. Answer as someone on ${d} would. Do not use what you remember of anything after that date; if you notice you know what happened next, say so rather than using it. Your training may include later events, and nothing here can remove them.`,
   };

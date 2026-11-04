@@ -307,3 +307,9 @@ The reference covers the filers listed on its site. Set `CANLI_SEC_LIVE=1` and a
 Shell, is read live from the SEC (`data.sec.gov`), with `snapshot.read_live` and a note saying so. `SEC_USER_AGENT`
 sets who the SEC sees. It is off by default, so this server alone contacts only `CANLI_API_BASE`. The canli-mcp
 flagship turns it on.
+
+With it on, a company inside the reference is checked too: when the SEC's filing list (`data.sec.gov/submissions`)
+shows an annual or quarterly report filed on or after the day its reference snapshot was captured, the SEC's own
+company facts are read instead. The snapshot block then carries `read_live`, `newer_filing` (the form, date and
+accession number of that report), `reference` (the snapshot it replaced) and a note, so an answer is never quietly
+older than the company's latest report.

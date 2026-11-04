@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- With `secLive` on (the canli-mcp flagship), a company inside the reference whose snapshot was captured before its newest annual or quarterly report is read live from the SEC instead, with `snapshot.newer_filing`, `snapshot.reference` and a note. The reference on canlicapital.com was captured on 2026-09-19, so until this, Apple's answers stopped before the 10-K it filed on 2026-11-03, and every company's before this quarter's 10-Qs. One small request to the SEC's filing list per company per session decides it.
+
 ## 0.8.0
 
 From a test against other finance MCP servers on the newest models:

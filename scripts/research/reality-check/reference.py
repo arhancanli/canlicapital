@@ -3,57 +3,97 @@
 For each case (a CSV of excess returns, one column per variant, benchmark zero):
 - arch 8.0's SPA, RealityCheck and StepM, which do not studentize the statistic: they check the
   JavaScript core run with studentize=false, and White's Reality Check exactly as published;
-- Hansen's (2005) studentized SPA, transcribed here from the paper with numpy, not from the
-  JavaScript: the Politis-Romano variance, the three recentrings and T = max(0, max_k sqrt(n) d_k / w_k).
-Draws come from numpy, so they agree with the JavaScript core within Monte Carlo error only.
+- the bootstrap-t SPA and StepM, transcribed here with numpy from the definitions below, not from the
+  JavaScript. Draws come from numpy, so they agree with the JavaScript core within Monte Carlo error.
+
+Bootstrap-t definitions (Hansen 2005 for the statistic and the three recentrings; Romano and Wolf
+2005's studentized StepM for re-estimating the standard error in every resample; the tie rule as in the
+Null Zoo v2 study's spa_c_boot_t_ge):
+  m_k, s_k   sample mean and standard deviation (divisor n - 1) of column k
+  w_k^2      Politis-Romano variance of sqrt(n) m_k at mean block length b, which sets the threshold
+  T          max(0, max_k sqrt(n) m_k / s_k)
+  g_k        lower max(m_k, 0); consistent m_k if m_k >= -sqrt(w_k^2 / n * 2 ln ln n), else 0; upper m_k
+  T*         max(0, max_k sqrt(n) (m*_k - g_k) / s*_k), s*_k the resample's own standard deviation
+             (divisor n - 1), or s_k where the resample is constant (s*_k^2 <= eps s_k^2)
+  p          #{T* >= T} / B, ties counted, so p = 1 when T = 0
+  StepM      c = max(0, the 1 - alpha quantile (numpy's linear) of max over live k of the consistent
+             sqrt(n) (m*_k - g_k) / s*_k); reject the live k with sqrt(n) m_k / s_k > c; repeat on the
+             rest until none is rejected
 Usage: python reference.py <csv dir> <reps> <seed> <name:block> ...
 """
 import json
 import sys
 
 import numpy as np
-from arch.bootstrap import SPA, RealityCheck, StepM
+
+ALPHA = 0.05
 
 
-def pr_variance(d, block):
+def politis_romano(d, b):
     n = d.shape[0]
-    p = 1.0 / block
-    x = d - d.mean(0)
-    v = (x ** 2).sum(0) / n
+    x = d - d.mean(axis=0)
+    q = 1.0 - 1.0 / b
+    out = (x * x).sum(axis=0) / n
     for i in range(1, n):
-        kappa = (1 - i / n) * (1 - p) ** i + (i / n) * (1 - p) ** (n - i)
-        if kappa == 0:
+        kappa = (1.0 - i / n) * q ** i + (i / n) * q ** (n - i)
+        if kappa == 0.0:
             continue
-        v += 2 * kappa * (x[: n - i] * x[i:]).sum(0) / n
-    return v
+        out = out + 2.0 * kappa * (x[:-i] * x[i:]).sum(axis=0) / n
+    return out
 
 
-def stationary(n, block, rng):
-    p = 1.0 / block
-    idx = np.empty(n, dtype=np.int64)
-    idx[0] = rng.integers(n)
-    for t in range(1, n):
-        idx[t] = rng.integers(n) if rng.random() < p else (idx[t - 1] + 1) % n
-    return idx
+def resample_indices(n, b, size, rng):
+    """`size` circular stationary-bootstrap resamples of n periods, shape (size, n)."""
+    new_block = rng.random((size, n)) < 1.0 / b
+    new_block[:, 0] = True
+    start = rng.integers(0, n, size=(size, n))
+    t = np.arange(n)
+    opened = np.maximum.accumulate(np.where(new_block, t, 0), axis=1)
+    return (np.take_along_axis(start, opened, axis=1) + t - opened) % n
 
 
-def hansen_spa(d, block, reps, seed):
+def bootstrap_t(d, b, reps, seed, alpha=ALPHA, chunk=50):
     n, k = d.shape
-    mean = d.mean(0)
-    w = np.sqrt(pr_variance(d, block))
-    stat = max(0.0, float(np.max(np.sqrt(n) * mean / w)))
-    thresh = -np.sqrt(w ** 2 / n * 2 * np.log(np.log(n)))
-    g = [np.maximum(mean, 0.0), np.where(mean >= thresh, mean, 0.0), mean]
+    root = np.sqrt(n)
+    m = d.mean(axis=0)
+    s2 = d.var(axis=0, ddof=1)
+    s = np.sqrt(s2)
+    w2 = politis_romano(d, b)
+    t_obs = root * m / s
+    T = max(0.0, float(t_obs.max()))
+    cut = -np.sqrt(w2 / n * 2.0 * np.log(np.log(n)))
+    g = {"lower": np.maximum(m, 0.0), "consistent": np.where(m >= cut, m, 0.0), "upper": m}
     rng = np.random.default_rng(seed)
-    above = np.zeros(3)
-    for _ in range(reps):
-        m = d[stationary(n, block, rng)].mean(0)
-        for c in range(3):
-            above[c] += max(0.0, float(np.max(np.sqrt(n) * (m - g[c]) / w))) > stat
-    return {"lower": above[0] / reps, "consistent": above[1] / reps, "upper": above[2] / reps, "statistic": stat}
+    hits = {name: 0 for name in g}
+    t_cons = np.empty((reps, k))
+    done = 0
+    while done < reps:
+        size = min(chunk, reps - done)
+        x = d[resample_indices(n, b, size, rng)]          # (size, n, k)
+        ms = x.mean(axis=1)
+        vs = x.var(axis=1, ddof=1)
+        ss = np.where(vs > np.finfo(float).eps * s2, np.sqrt(np.maximum(vs, 0.0)), s)
+        for name, centre in g.items():
+            stat = np.maximum(0.0, (root * (ms - centre) / ss).max(axis=1))
+            hits[name] += int((stat >= T).sum())
+        t_cons[done:done + size] = root * (ms - g["consistent"]) / ss
+        done += size
+    live = list(range(k))
+    superior = []
+    while live:
+        crit = max(0.0, float(np.quantile(t_cons[:, live].max(axis=1), 1.0 - alpha)))
+        now = [j for j in live if t_obs[j] > crit]
+        if not now:
+            break
+        superior += now
+        live = [j for j in live if j not in now]
+    spa = {"lower": hits["lower"] / reps, "consistent": hits["consistent"] / reps, "upper": hits["upper"] / reps, "statistic": T}
+    return spa, sorted(superior)
 
 
 def main():
+    from arch.bootstrap import SPA, RealityCheck, StepM
+
     folder, reps, seed = sys.argv[1], int(sys.argv[2]), int(sys.argv[3])
     out = {}
     for spec in sys.argv[4:]:
@@ -65,15 +105,18 @@ def main():
         spa.compute()
         rc = RealityCheck(zeros, -d, block_size=block, reps=reps, bootstrap="stationary", seed=np.random.default_rng(seed + 1))
         rc.compute()
-        stepm = StepM(zeros, -d, size=0.05, block_size=block, reps=reps, bootstrap="stationary", seed=np.random.default_rng(seed + 2))
+        stepm = StepM(zeros, -d, size=ALPHA, block_size=block, reps=reps, bootstrap="stationary", seed=np.random.default_rng(seed + 2))
         stepm.compute()
+        boot_spa, boot_superior = bootstrap_t(d, block, reps, seed + 3)
         out[name] = {
             "arch_spa_unstudentized": {k: float(v) for k, v in spa.pvalues.items()},
             "arch_reality_check": float(rc.pvalues["upper"]),
             "arch_stepm_superior": [int(i) for i in stepm.superior_models],
-            "hansen_spa_studentized": hansen_spa(d, block, reps, seed + 3),
+            "bootstrap_t_spa_studentized": boot_spa,
+            "bootstrap_t_stepm_superior": boot_superior,
         }
     print(json.dumps(out))
 
 
-main()
+if __name__ == "__main__":
+    main()

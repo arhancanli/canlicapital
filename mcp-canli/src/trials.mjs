@@ -12,7 +12,7 @@ export const trialsInput = z.object({
   until: DATE.optional().describe("Count up to this date."),
   tools: z.array(z.string().min(1).max(60)).max(40).optional().describe("Only these tools; default every tool that tests a strategy."),
 }).strict();
-const TESTS = /^(backtest_|run_sleeve$|sleeve_tournament$|sleeve_walk_forward$|combine_sleeves$|breadth_book$|breadth_sweep$|cpcv$|audit_backtest$)/;
+export const TESTS = /^(backtest_|run_sleeve$|sleeve_tournament$|sleeve_walk_forward$|combine_sleeves$|breadth_book$|breadth_sweep$|cpcv$|audit_backtest$)/;
 
 export const TRIALS_TOOL = Object.freeze({
   name: "signed_trial_count", pack: "desk", toolset: "desk", title: "Count the trials behind a result, from the signed log", input: trialsInput, annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: false },
