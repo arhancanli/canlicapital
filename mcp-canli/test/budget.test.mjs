@@ -61,3 +61,28 @@ test("a receipt lists the documents behind the results: the markets pack's evide
     { url: "https://canlicapital.com/company-data/sources/aa.json.gz", sha256: "a".repeat(64), retrieved_at: "2026-09-19T09:30:25.021Z" },
   ]);
 });
+
+test("receipt chains: an answer built from kept results carries their receipts, two levels written out and then their hashes", async () => {
+  const c = new Client({ name: "chain-test", version: "0" });
+  await c.connect(new StdioClientTransport({ command: process.execPath, args: [ENTRY], env: { PATH: process.env.PATH ?? "", HOME: process.env.HOME ?? "", CANLI_CACHE_DIR: "", CANLI_OFFLINE: "1" } }));
+  try {
+    const call = async (name, args) => { const r = await c.callTool({ name: "run_tool", arguments: { name, arguments: args } }); assert.notEqual(r.isError, true, r.content?.[0]?.text); return { ref: JSON.parse(r.content[0].text).ref, receipt: r._meta[RECEIPT_KEY] }; };
+    const returns = Array.from({ length: 300 }, (_, i) => 0.001 + 0.01 * Math.sin(i * 1.7));
+    const odds = (ref) => ({ annual_return: { $result: ref, path: ref === a.ref ? "sharpe_per_period" : "probability_ever" }, annual_volatility: 0.2, drawdown: 0.2, years: 1 });
+    const a = await call("sharpe_ratio", { returns });
+    assert.equal(a.receipt.from, undefined, "built from nothing kept");
+    const b = await call("drawdown_probability", odds(a.ref));
+    assert.deepEqual(b.receipt.from, [{ ref: a.ref, ...a.receipt }]);
+    const d = await call("drawdown_probability", odds(b.ref));
+    const e = await call("drawdown_probability", odds(d.ref));
+    assert.equal(e.receipt.from[0].ref, d.ref);
+    assert.equal(e.receipt.from[0].output_sha256, d.receipt.output_sha256);
+    assert.equal(e.receipt.from[0].from[0].ref, b.ref);
+    assert.deepEqual(e.receipt.from[0].from[0].from, [{ ref: a.ref, input_sha256: a.receipt.input_sha256, output_sha256: a.receipt.output_sha256, at: a.receipt.at }], "the third level is named by its hashes");
+    // Reading part of a kept result carries its receipt too.
+    const shown = await c.callTool({ name: "run_tool", arguments: { name: "show_result", arguments: { ref: a.ref, path: "sharpe" } } });
+    assert.deepEqual(shown._meta[RECEIPT_KEY].from, [{ ref: a.ref, ...a.receipt }]);
+  } finally {
+    await c.close();
+  }
+});

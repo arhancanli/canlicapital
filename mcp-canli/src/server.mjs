@@ -161,8 +161,25 @@ export function createKeeper() {
     },
     get: (ref) => kept.get(ref)?.result,
     has: (ref) => kept.has(ref),
+    // The receipt of the answer a kept result came in, for the receipts of answers built from it.
+    sign: (ref, receipt) => { const k = kept.get(ref); if (k) k.receipt = receipt; },
+    receiptOf: (ref) => kept.get(ref)?.receipt,
   };
 }
+
+// Receipt chains: the kept results a call reads ($result refs in its arguments, or show_result's ref), each with
+// the receipt of the answer it came in, which names its own in turn. An answer's receipt writes out those it was
+// built from and theirs; below that, a receipt is named by its hashes.
+const RECEIPT_DEPTH = 3;
+function refsRead(calls) {
+  const refs = new Set();
+  const walk = (v) => { if (Array.isArray(v)) v.forEach(walk); else if (v && typeof v === "object") { if (typeof v.$result === "string") refs.add(v.$result); Object.values(v).forEach(walk); } };
+  for (const c of calls) { walk(c.arguments); if (c.name === "show_result" && typeof c.arguments?.ref === "string") refs.add(c.arguments.ref); }
+  return [...refs];
+}
+const named = ({ ref, input_sha256, output_sha256, at }) => ({ ref, input_sha256, output_sha256, at });
+const cut = (receipt, depth) => { const { from, ...own } = receipt; return from ? { ...own, from: from.map((p) => (depth > 1 ? cut(p, depth - 1) : named(p))) } : own; };
+const builtFrom = (refs, keeper) => refs.flatMap((ref) => { const r = keeper.receiptOf(ref); return r ? [{ ref, ...cut(r, RECEIPT_DEPTH - 1) }] : []; });
 
 function resolveResults(value, done, keeper) {
   if (Array.isArray(value)) return value.map((v) => resolveResults(v, done, keeper));
@@ -512,7 +529,9 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const hashes = { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(done.map(({ ref, ...d }) => d)) };
     const receipt = a.receipt ? hashes : undefined;
     // Every answer's receipt goes to the client in _meta, with the sources the full results were read from.
-    const kept = { ...hashes, sources, at: new Date().toISOString() };
+    const parents = builtFrom(refsRead(calls), keeper);
+    const kept = { ...hashes, sources, at: new Date().toISOString(), ...(parents.length ? { from: parents } : {}) };
+    for (const d of done) if (d.ref) keeper.sign(d.ref, kept);
     // After the receipt, which hashes the full results: an oversized one is sent as a preview.
     if (!a.select) for (const d of done) if (d.result !== undefined && !SELF[d.name]) d.result = leanResult(d.result, { name: d.name, ref: readOnly ? undefined : d.ref, seen: readLimits, digits: a.digits });
     for (const d of done) if (d.result !== undefined) d.result = viewing ? trimmed(d.result, d.ref, VIEW_CHARS) : fit(d.result, d.ref, a.max_chars ?? RESULT_CHARS);

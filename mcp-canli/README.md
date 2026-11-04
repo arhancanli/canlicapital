@@ -337,8 +337,10 @@ Everything runs on your machine. `canli://privacy` states, per pack, what leaves
 `CANLI_OFFLINE=1` enables only the packs with no network, and no other pack's code is even loaded.
 `test/privacy.test.mjs` runs the server that way with `fetch` and every network module made to
 throw, and the quant and validation tools still answer. The server itself has no network or logging
-code, and writes only the audit log a policy file asks for (both tested). Opt-in receipts
-(`receipt: true`) carry hashes, never data.
+code, and writes only the audit log a policy file asks for (both tested). Every answer's receipt,
+in MCP's `_meta` under `canlicapital.com/receipt` (hosts do not put it in front of the model), carries
+hashes, the URLs and times of the documents the result was read from, and the receipts of the kept
+answers it was built from, never data; `receipt: true` adds the hashes to the answer itself.
 
 ## Configuration
 
