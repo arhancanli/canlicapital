@@ -5,7 +5,7 @@ import { z } from "zod";
 
 import { parse13F, parseForm4 } from "./forms.mjs";
 import { crossReferenced, findSections, htmlToText, resolveSection } from "./html.mjs";
-import { archiveBase, filingDocuments, filings, fredCsv, fredTitle, getJson, getText, NotFound, own, resolveEntity, submissions, TREASURY_CURVES, treasuryYear } from "./sources.mjs";
+import { alfredCsv, archiveBase, filingDocuments, filings, fredCsv, fredTitle, getJson, getText, NotFound, own, resolveEntity, submissions, TREASURY_CURVES, treasuryYear } from "./sources.mjs";
 import { topMatches, vocabulary } from "./words.mjs";
 
 const DATE = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "a date as YYYY-MM-DD");
@@ -484,14 +484,28 @@ export const fredInput = z.object({
   start: DATE.optional(), end: DATE.optional(),
   transform: z.enum(["level", "change", "pct_change", "yoy"]).optional().describe("level (default), change from the previous observation, pct_change (fraction), or yoy (fraction against the value a year earlier)."),
   last: z.number().int().min(1).max(100000).optional().describe("Only the most recent n observations."),
+  as_of: DATE.optional().describe("The series as it was published on this date (ALFRED's vintage): only what had been released by then, at the values then shown, before later revisions."),
+  revisions: z.boolean().optional().describe("With as_of: each date's value then against today's, and how much it was revised."),
 }).strict();
 export async function economicSeries(session, args) {
   const a = fredInput.parse(args);
+  if (a.revisions && !a.as_of) throw new Error("revisions compares a past vintage with today's figures: give as_of too.");
+  if (a.as_of && a.as_of > new Date(session.now()).toISOString().slice(0, 10)) throw new Error(`as_of ${a.as_of} is in the future.`);
   const { id, matched_from: matched } = resolveSeries(a.series);
   // yoy needs a year before start.
   const fetchStart = a.start && a.transform === "yoy" ? `${Number(a.start.slice(0, 4)) - 1}${a.start.slice(4)}` : a.start;
-  const [data, title] = await Promise.all([fredCsv(session, id, { start: fetchStart, end: a.end }), fredTitle(session, id)]);
+  const [data, title, today] = await Promise.all([
+    a.as_of ? alfredCsv(session, id, a.as_of, { start: fetchStart, end: a.end }) : fredCsv(session, id, { start: fetchStart, end: a.end }),
+    fredTitle(session, id),
+    a.revisions ? fredCsv(session, id, { start: fetchStart, end: a.end }) : null,
+  ]);
   let rows = data.rows.filter((r) => r[1] != null);
+  // revisions: each date's level then and now, before any transform.
+  let revised = null;
+  if (today) {
+    const now = new Map(today.rows.filter((r) => r[1] != null));
+    revised = rows.filter((r) => now.has(r[0])).map((r) => [r[0], r[1], now.get(r[0]), round(now.get(r[0]) - r[1], 6), r[1] ? round(now.get(r[0]) / r[1] - 1, 6) : null]);
+  }
   const tf = a.transform ?? "level";
   if (tf === "change" || tf === "pct_change") rows = rows.slice(1).map((r, i) => [r[0], tf === "change" ? round(r[1] - rows[i][1], 6) : round(r[1] / rows[i][1] - 1, 6)]);
   else if (tf === "yoy") {
@@ -503,12 +517,15 @@ export async function economicSeries(session, args) {
   const cap = 5000;
   const cut = rows.length > cap;
   if (cut) rows = rows.slice(-cap);
+  if (revised) { if (a.start) revised = revised.filter((r) => r[0] >= a.start); revised = revised.slice(-(a.last ?? 24)); }
   return {
     series: id, ...(matched ? { matched_from: matched } : {}), title, transform: tf, count: rows.length,
+    ...(a.as_of ? { as_of: a.as_of, vintage: data.vintage, as_published: `The values published by ${a.as_of} (ALFRED's vintage of ${data.vintage}), before any later revision.` } : {}),
     latest: rows.length ? { date: rows[rows.length - 1][0], value: rows[rows.length - 1][1] } : null,
     dates: rows.map((r) => r[0]), values: rows.map((r) => r[1]),
     ...(cut ? { truncated_to_last: cap } : {}),
-    source: data.url,
+    ...(revised ? { revisions: { columns: ["date", "then", "now", "revision", "revision_pct"], rows: revised, largest: revised.reduce((x, r) => (r[3] != null && (x == null || Math.abs(r[3]) > Math.abs(x[3])) ? r : x), null) } } : {}),
+    source: data.url, ...(a.as_of ? { sources: [data.csv, ...(today ? [today.url] : [])] } : {}),
     limits: ["Federal Reserve Bank of St. Louis (FRED) as published; recent values of many series are revised later.", "Some series are copyrighted by their sources; see the source page before republishing.", "Not investment advice."],
   };
 }

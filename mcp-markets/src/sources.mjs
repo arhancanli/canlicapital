@@ -512,6 +512,22 @@ export async function fredCsv(session, id, { start, end } = {}) {
   return { url: `https://fred.stlouisfed.org/series/${encodeURIComponent(id)}`, rows: out };
 }
 
+// A series as it was published on a date (ALFRED, FRED's archive of past releases): only what had been released by
+// then, at the values then shown, before any later revision. The column is named for the vintage it holds.
+export async function alfredCsv(session, id, asOf, { start, end } = {}) {
+  const url = `https://alfred.stlouisfed.org/graph/alfredgraph.csv?id=${encodeURIComponent(id)}&vintage_date=${asOf}${start ? `&cosd=${start}` : ""}${end ? `&coed=${end}` : ""}`;
+  const text = await getText(session, url, { maxBytes: 8 * 1024 * 1024 });
+  const head = text.slice(0, text.indexOf("\n"));
+  const vintage = /^observation_date,[A-Z0-9_]+_(\d{4})(\d{2})(\d{2})\s*$/i.exec(head);
+  if (!vintage) throw new NotFound(`ALFRED has no vintage of ${id} published by ${asOf} (the series may be newer than that date, or not kept in vintages).`);
+  const out = [];
+  for (const line of text.trim().split(/\r?\n/).slice(1)) {
+    const [d, v] = line.split(",");
+    out.push([d, v === "" || v === "." ? null : Number(v)]);
+  }
+  return { url: `https://alfred.stlouisfed.org/series?seid=${encodeURIComponent(id)}`, csv: url, vintage: `${vintage[1]}-${vintage[2]}-${vintage[3]}`, rows: out };
+}
+
 export async function fredTitle(session, id) {
   try {
     const html = await getText(session, `https://fred.stlouisfed.org/series/${encodeURIComponent(id)}`, { maxBytes: 2 * 1024 * 1024, transform: (t) => (t.match(/<title>([^<]*)<\/title>/i)?.[1] ?? "").replace(/\s*\|\s*FRED\s*\|.*$/i, "").trim() });
