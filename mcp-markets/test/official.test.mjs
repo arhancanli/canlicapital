@@ -48,6 +48,12 @@ test("each country's own publisher first, then the EU's, the OECD's, then the IM
   // The IMF's quarterly volume series for China follows nominal GDP, so China is left to the OECD.
   assert.equal(chain("gdp_growth", c("China")).length, 1);
   assert.deepEqual(chain("core_inflation", c("Japan")), []);
+  // The OECD's key short-term indicators: its members and the large economies it follows, none where it has none.
+  assert.deepEqual(chain("leading_indicator", c("China")).map((l) => l.s), ["oecd:OECD.SDD.STES,DSD_KEI@DF_KEI,4.0/CHN.M.LI.IX._T.AA._Z"]);
+  assert.deepEqual(chain("industrial_production", c("Japan")).map((l) => l.s), ["oecd:OECD.SDD.STES,DSD_KEI@DF_KEI,4.0/JPN.M.PRVM.GR.BTE.Y.GY"]);
+  assert.deepEqual(chain("industrial_production", c("Germany")).map((l) => l.s.split("?")[0].split("/")[0]), ["eurostat:sts_inpr_m", "oecd:OECD.SDD.STES,DSD_KEI@DF_KEI,4.0"]);
+  assert.deepEqual(chain("consumer_confidence", c("Vietnam")), []);
+  assert.deepEqual(chain("ten_year_yield", c("India")).map((l) => l.s.split("/")[0]), ["oecd:OECD.SDD.STES,DSD_KEI@DF_KEI,4.0", "imf:MFS_IR"]);
 });
 
 test("SDMX and JSON-stat answers become one series, or say which part of the key to give", () => {
