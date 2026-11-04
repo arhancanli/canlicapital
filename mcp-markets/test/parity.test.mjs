@@ -3,6 +3,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
+import { cryptoMarkets } from "../src/coingecko.mjs";
 import { cryptoOptions, parseInstrument } from "../src/deribit.mjs";
 import { factorReturns, parseLibrary } from "../src/factors.mjs";
 import { congressTrades, parseIndex } from "../src/congress.mjs";
@@ -146,4 +147,14 @@ test("price_history minute bars: stamped in the exchange's time on both sides of
   assert.deepEqual(r.dates, ["2026-10-30T09:30", "2026-11-02T09:30"], "09:30 in New York on Friday (daylight time) and Monday (standard time)");
   assert.match(urls[0], /interval=5m/);
   await assert.rejects(priceHistory(s, { symbol: "AAPL", interval: "1Min", start: "2026-09-01" }), /1Min bars go back 30 days on the keyless source; start on or after 2026-10-06/);
+});
+
+test("crypto_markets: the largest coins with the whole market, and coins named by symbol or id without a namesake's", async () => {
+  const s = session();
+  const top = await cryptoMarkets(s, { limit: 5 });
+  assert.deepEqual(top.market, { total_value_usd: 2642537424592.25, change_24h_pct: -1.19, bitcoin_share_pct: 59.36, ether_share_pct: 10.69, coins_tracked: 22757 });
+  assert.deepEqual(top.rows.map((r) => r[1]), ["BTC", "ETH", "USDT", "BNB", "XRP"]);
+  assert.deepEqual(top.rows[0].slice(0, 3), [1, "BTC", "Bitcoin"]);
+  const named = await cryptoMarkets(s, { coins: ["eth", "solana"] });
+  assert.deepEqual(named.rows.map((r) => r[14]), ["ethereum", "solana"], "solana is the coin, not another whose symbol is SOLANA");
 });

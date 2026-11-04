@@ -7,6 +7,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { gzipSync } from "node:zlib";
 
 import { congressTrades } from "../src/congress.mjs";
+import { cryptoMarkets } from "../src/coingecko.mjs";
 import { cryptoOptions } from "../src/deribit.mjs";
 import { factorReturns } from "../src/factors.mjs";
 import { federalBudget, treasuryCash } from "../src/fiscal.mjs";
@@ -49,5 +50,8 @@ await cryptoOptions(session, { currency: "SOL" });
 for (const member of ["beyer", "mcguire", "mike kelly"]) await congressTrades(session, { member, reports: 1 });
 // Nasdaq's calendars for 5 November 2026: earnings and ex-dividend dates, and the splits listed then.
 for (const kind of ["earnings", "dividends", "splits"]) await marketCalendar(session, { kind, date: "2026-11-05" });
+// CoinGecko: the five largest coins with the whole market, and two coins asked for by symbol and by id.
+await cryptoMarkets(session, { limit: 5 });
+await cryptoMarkets(session, { coins: ["eth", "solana"] });
 writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
 console.log(Object.keys(manifest).length, "responses in the manifest");
