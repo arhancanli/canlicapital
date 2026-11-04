@@ -24,9 +24,10 @@ const SEEN = {
   polled: "Yahoo's chart data, read every 30 seconds; it can run late, by 15 minutes or more on some markets",
   cboe: "Cboe's delayed option quotes, read every 5 minutes; they run about 15 minutes late",
   edgar: "EDGAR's latest-filings feed, read every 60 seconds; a filing appears within a minute or two of acceptance",
+  forms4: "insiders' Form 4 filings on EDGAR, read hourly; a Form 4 is due two business days after the trade",
   facts: "the SEC's filing list and company facts, read every 15 minutes; a filing's figures reach them minutes after acceptance, so an event can come half an hour or more after the filing",
 };
-const POLL_MS = { price: 30 * 1000, volatility: 5 * 60 * 1000, filing: 60 * 1000, restatement: 15 * 60 * 1000 };
+const POLL_MS = { price: 30 * 1000, volatility: 5 * 60 * 1000, filing: 60 * 1000, restatement: 15 * 60 * 1000, insiders: 60 * 60 * 1000 };
 // Each company watched for restatements is held in memory by the fundamentals pack, which holds eight; more
 // would be read in full from the SEC on every check.
 const RESTATEMENT_COMPANIES = 8;
@@ -38,11 +39,16 @@ const plain = (v, max) => (v == null ? null : String(v).replace(/[^A-Za-z0-9 .,&
 const secLink = (u) => (/^https:\/\/www\.sec\.gov\/[A-Za-z0-9/_.?=&-]+$/.test(String(u ?? "")) ? u : null);
 const round = (x, d = 2) => (x == null || !Number.isFinite(x) ? null : Number(x.toFixed(d)));
 const upper = (s) => String(s).toUpperCase();
+// What may reach the block from a source's table: dates, accession numbers and numbers in their own shapes, or null.
+const day = (x) => (/^\d{4}-\d{2}-\d{2}$/.test(String(x ?? "")) ? x : null);
+const accn = (x) => (/^\d{10}-\d{2}-\d{6}$/.test(String(x ?? "")) ? x : null);
+const num = (x) => (typeof x === "number" && Number.isFinite(x) ? x : null);
 const within = (promise, ms) => Promise.race([promise, new Promise((_, no) => { const t = setTimeout(() => no(new Error("timed out")), ms); t.unref?.(); })]);
 const describeRule = (r) => {
   if (r.kind === "price_move") return `${upper(r.symbol)} moves ${r.percent}% within ${r.within_minutes} minutes`;
   if (r.kind === "price_level") return `${upper(r.symbol)} goes${r.above ? ` above ${r.above}` : ""}${r.above && r.below ? " or" : ""}${r.below ? ` below ${r.below}` : ""}`;
   if (r.kind === "volatility_move") return `${upper(r.symbol)} 30-day implied volatility moves ${r.points} points within ${r.within_minutes} minutes`;
+  if (r.kind === "insider_cluster") return `${r.insiders ?? 3} or more ${r.company} insiders ${r.side === "sell" ? "sell" : "buy"} in the open market within ${r.within_days ?? 30} days${r.min_value ? `, trades of ${r.min_value} or more` : ""}`;
   if (r.kind === "reported") return `${r.company} first reports ${r.concept}${r.unit ? ` in ${r.unit}` : ""} for ${r.start ? `${r.start} to ${r.end}` : `the period ending ${r.end}`}${r.above !== undefined ? `, above ${r.above}?` : ""}${r.below !== undefined ? `, below ${r.below}?` : ""}`;
   if (r.kind === "restatement") return `a later filing changes ${r.company}'s ${r.concept}${r.unit ? ` in ${r.unit}` : ""} for ${r.start ? `${r.start} to ${r.end}` : `the period ending ${r.end}`}`;
   return `a new filing${r.company ? ` by ${r.company}` : ""}${r.forms?.length ? ` on ${r.forms.join(" or ")}` : ""}${r.event ? ` about ${r.event}` : ""}`;
@@ -92,7 +98,7 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
 
   async function fire(rule, headline, seen, facts, context) {
     const s = stateOf(rule.id);
-    const cool = (rule.cooldown_minutes ?? (["filing", "restatement", "reported"].includes(rule.kind) ? 0 : 30)) * 60 * 1000;
+    const cool = (rule.cooldown_minutes ?? (["filing", "restatement", "reported", "insider_cluster"].includes(rule.kind) ? 0 : 30)) * 60 * 1000;
     if (cool && s.last && now() - s.last < cool) return null;
     s.last = now();
     const event = { id: `${rule.id}-${now()}`, rule: rule.id, kind: rule.kind, at: new Date(now()).toISOString(), rule_text: describeRule(rule), ...(rule.note ? { note: rule.note } : {}), headline, seen_via: seen, facts };
@@ -249,6 +255,33 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
       async () => ({ filing: { form, accession, url } }));
   }
 
+  // Several insiders trading the same way in the open market within days: Form 4 code P (a purchase) or S (a sale),
+  // counted by insider. It fires when that count reaches the rule's and when it grows after; the first read marks
+  // the count, so events start with what comes next. Insiders' names and roles are the filer's own text: they are
+  // kept in the event's facts for a person's log and stay out of what a model reads.
+  async function pollInsiders(rule) {
+    const days = rule.within_days ?? 30, need = rule.insiders ?? 3, code = rule.side === "sell" ? "S" : "P";
+    const since = new Date(now() - days * 86400000).toISOString().slice(0, 10);
+    let r;
+    try {
+      r = await within(call("insider_trades", { company: rule.company, since, codes: [code] }), 60000);
+    } catch (e) {
+      if (/no Form 4|filed no|no insider/i.test(String(e?.message ?? e))) r = { columns: [], rows: [] };
+      else throw e;
+    }
+    const trades = (r.rows ?? []).map((row) => Object.fromEntries((r.columns ?? []).map((c, i) => [c, row[i]]))).filter((t) => t.code === code && typeof t.date === "string" && t.date >= since && !t.amendment && (!rule.min_value || (typeof t.value === "number" && t.value >= rule.min_value)));
+    const by = new Map();
+    for (const t of trades) by.set(t.insider, [...(by.get(t.insider) ?? []), t]);
+    const s = stateOf(rule.id), before = s.seen;
+    s.seen = by.size;
+    if (before === null || by.size < need || by.size <= before) return;
+    const total = trades.reduce((x, t) => x + (typeof t.value === "number" ? t.value : 0), 0);
+    const who = plain(rule.company, 60), verb = code === "P" ? "bought" : "sold";
+    await fire(rule, `${by.size} ${who} insiders ${verb} shares in the open market within ${days} days, ${round(total, 0)} in all`, SEEN.forms4,
+      { company: who, insiders: by.size, side: rule.side ?? "buy", within_days: days, total_value: round(total, 0), trades: [...by].map(([name, list]) => ({ insider: plain(name, 60), role: plain(list[0].role, 60), trades: list.length, value: round(list.reduce((x, t) => x + (t.value ?? 0), 0), 0), last: plain(list.map((t) => t.date).sort().at(-1), 10) })) },
+      async () => ({ trades: { columns: ["date", "code", "shares", "price", "value", "filed", "accession"], rows: trades.map((t) => [day(t.date), code, num(t.shares), num(t.price), num(t.value), day(t.filed), accn(t.accession)]) } }));
+  }
+
   async function pollPrice(sym) {
     const r = await within(call("latest_price", { symbol: sym }), 15000);
     if (Number.isFinite(r.price)) await onPrice(sym, r.price, now(), "polled");
@@ -266,6 +299,7 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
       if (r.kind === "filing" && due(r.id, POLL_MS.filing)) jobs.push(pollFilings(r));
       if (r.kind === "restatement" && due(r.id, POLL_MS.restatement)) jobs.push(pollRestatement(r));
       if (r.kind === "reported" && due(r.id, POLL_MS.restatement)) jobs.push(pollReported(r));
+      if (r.kind === "insider_cluster" && due(r.id, POLL_MS.insiders)) jobs.push(pollInsiders(r));
     }
     for (const out of await Promise.allSettled(jobs)) if (out.status === "rejected") say(`a read failed: ${String(out.reason?.message ?? out.reason).slice(0, 200)}`);
   }
