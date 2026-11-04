@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Live prices: `canli://quote/AAPL,MSFT,BTC-USD` gives the latest price, previous close and change of up to ten symbols. On a local server a client can subscribe to the address (`resources/subscribe`): the server checks it every `CANLI_QUOTE_SECONDS` (default 15) and sends `notifications/resources/updated` when a price changes, so a host shows prices as they move without the model asking again. Hosted and browser servers answer reads only; a holdout or a past date hides the present, so quotes too.
 - Vendors' own MCP servers by name: `canli-mcp upstream add fmp` (and alphavantage, financialdatasets, unusualwhales, quiver, valuein, coinmarketcap, dune, which take the vendor's key, and coingecko, coinpaprika, dexpaprika, cryptocom, etherscan, blockscout, kalshi, gate, which need none). The answer names the variables to set; an address given on the command line wins over the preset. `canli-mcp upstream presets` lists them. The eight keyless servers were connected through the gateway on 2026-11-04 (2.5 to 3.7 s each). The only tools held back as changing things were CoinPaprika's and DexPaprika's submitFeedback and Kalshi's price-alert writers.
 - bench/rivals/rivals-census-2026-11-04.json: the tool lists of 165 finance MCP servers (5,979 tools; 80 vendor-official, 26 enterprise, 59 community), each with where it was read, how it is set up and whether the list is complete.
 
