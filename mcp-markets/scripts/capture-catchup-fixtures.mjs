@@ -1,6 +1,7 @@
 // Captures what the tools added to catch up with the incumbents read (node scripts/capture-catchup-fixtures.mjs):
 // scenario_risk's Yahoo chart data and FRED series, trade_ticks' Kraken trades, trade_flows' UN Comtrade
-// records and standardized_financials' SEC facts and exchange rates, once against the live
+// records, standardized_financials' SEC facts and exchange rates and financial_cycle's BIS series, once
+// against the live
 // sources with the tests' clock (test/replay.mjs's NOW). Every response goes into test/fixtures/manifest.json as p###.gz under the
 // exact URL asked for, so the tests replay the same requests. Responses already captured are not fetched again.
 import { readFileSync, writeFileSync } from "node:fs";
@@ -10,6 +11,7 @@ import { scenarioRisk } from "../src/scenarios.mjs";
 import { tradeTicks } from "../src/ticks.mjs";
 import { tradeFlows } from "../src/trade.mjs";
 import { standardizedFinancials } from "../src/standardized.mjs";
+import { financialCycle } from "../src/cycle.mjs";
 import { createSession, PLAIN_USER_AGENT } from "../src/sources.mjs";
 import { NOW } from "../test/replay.mjs";
 
@@ -44,5 +46,6 @@ await tradeFlows(session, { reporter: "USA", partner: "Taiwan", product: "8542" 
 await tradeFlows(session, { reporter: "Germany", partner: "Russia", product: "natural gas", years: [2020, 2021, 2022, 2023] });
 await standardizedFinancials(session, { companies: ["AAPL"], years: 3 });
 await standardizedFinancials(session, { companies: ["AAPL", "1046179"], in_usd: true });
+await financialCycle(session, { countries: ["CA", "AU", "CN", "US", "AR"], periods: 4 });
 writeFileSync(new URL("manifest.json", DIR), `${JSON.stringify(manifest, null, 1)}\n`);
 console.log(`manifest: ${Object.keys(manifest).length} responses`);
