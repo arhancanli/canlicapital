@@ -279,7 +279,7 @@ export const PUBLISHERS = {
     },
   },
   bis: sdmxPublisher("Bank for International Settlements", "https://stats.bis.org/api/v1/data", { format: "csv", page: { url: "https://data.bis.org", example: "bis:WS_CBPOL/D.KR" } }),
-  ecb: sdmxPublisher("European Central Bank", "https://data-api.ecb.europa.eu/service/data", { format: "csvdata", timeoutMs: 12000, page: { url: "https://data.ecb.europa.eu", example: "ecb:ICP/M.DE.N.000000.4.ANR" } }),
+  ecb: sdmxPublisher("European Central Bank", "https://data-api.ecb.europa.eu/service/data", { format: "csvdata", timeoutMs: 8000, page: { url: "https://data.ecb.europa.eu", example: "ecb:ICP/M.DE.N.000000.4.ANR" } }),
   bbk: sdmxPublisher("Deutsche Bundesbank", "https://api.statistiken.bundesbank.de/rest/data", { format: "sdmx_csv", page: { url: "https://www.bundesbank.de/en/statistics/time-series-databases", example: "bbk:BBSIS/D.I.ZAR.ZI.EUR.S1311.B.A604.R10XX.R.A.A._Z._Z.A" } }),
   norges: sdmxPublisher("Norges Bank", "https://data.norges-bank.no/api/data", { format: "csv", page: { url: "https://app.norges-bank.no/query/", example: "norges:IR/B.KPRA.SD.R" } }),
   boi: sdmxPublisher("Bank of Israel", "https://edge.boi.gov.il/FusionEdgeServer/sdmx/v2/data/dataflow/BOI.STATISTICS", { format: "csv", path: (flow, key) => `${flow}/1.0/${key}`, page: { url: "https://www.boi.org.il/en/economic-roles/statistics/", example: "boi:BR/MNT_RIB_BOI_D" } }),
@@ -618,6 +618,8 @@ export const MEASURES = {
     },
     euro: "EA",
     world: (c) => batched("bis:WS_CBPOL/D.{}", bisArea(c), { by: BIS_BY(c), title: "Central bank policy rate" }),
+    // A second compilation for the check: the IMF's monetary policy-related rate, monthly and often months behind.
+    alt: (c) => (c.code === "EA" ? null : batched("imf:MFS_IR/{}.MFS166_RT_PT_A_PT.M", c.iso3, { by: IMF_BY(c), title: "Monetary policy-related interest rate, monthly" })),
     tolerance: 0.01,
   },
   ten_year_yield: {
