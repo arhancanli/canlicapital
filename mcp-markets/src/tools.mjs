@@ -455,7 +455,8 @@ export const COMMON_SERIES = Object.freeze([
   ["M2SL", "m2 money supply"], ["M1SL", "m1 money supply"], ["WALCL", "fed balance sheet total assets"], ["RRPONTSYD", "overnight reverse repo"], ["TOTALSL", "consumer credit growth"], ["TOTLL", "bank loans leases lending"], ["DPRIME", "bank prime loan lending rate"],
   ["INDPRO", "industrial production"], ["RSAFS", "retail sales"], ["DGORDER", "durable goods orders"], ["HOUST", "housing starts"], ["PERMIT", "building permits"], ["HSN1F", "new home sales"],
   ["CSUSHPINSA", "case shiller home house price index"], ["UMCSENT", "consumer sentiment michigan"],
-  ["USREC", "us recession indicator nber"], ["RECPROUSM156N", "recession probability smoothed"], ["SP500", "s&p 500 index level"], ["NASDAQCOM", "nasdaq composite index"],
+  ["USREC", "us recession indicator nber"], ["RECPROUSM156N", "recession probability smoothed"], ["SAHMREALTIME", "sahm rule recession indicator real time"],
+  ["GDPNOW", "gdpnow gdp nowcast atlanta fed current quarter estimate"], ["T5YIFR", "5y5y five year forward inflation expectation"], ["SP500", "s&p 500 index level"], ["NASDAQCOM", "nasdaq composite index"],
 ]);
 // The series are all US, so naming the country is filler here; "interest" only says what kind of rate.
 const FRED_WORDS = vocabulary({ kind: "interest", filler: "us usa united states america american fred" });
