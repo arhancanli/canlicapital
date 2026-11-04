@@ -49,12 +49,15 @@ received and when, so any figure can be checked against the same document later.
 | `financial_statements` | The income statement, balance sheet, cash flow and equity statement exactly as filed, several years joined; what a later filing restated, and what a split changed, beside the first-reported figure | 10-K/10-Q rendered XBRL reports |
 | `filing_tables` | The table that holds a figure, by words, in one filing or followed through several (members, stores, ARPU, segment and region detail, non-GAAP reconciliations, guidance tables) | 10-K/10-Q/8-K documents and XBRL reports |
 | `earnings_release` | A results press release: the results, the guidance as ranges, and last quarter's guidance against this quarter's results | 8-K Item 2.02, exhibit 99 |
+| `filing_check` | Every number in a 10-K or 10-Q read twice, as a person reads the document and as machines read its inline XBRL: figures tagged at a scale other than the unit stated for them, a fact tagged twice with different values, sums in the filing's own calculation that do not add up, and facts SEC's company facts hold differently or not at all, each with a link to the figure and counts of what was checked (Microsoft's FY2026 10-K: "up to 48,700 shares" tagged as 48.7 billion shares) | 10-K/10-Q inline XBRL and calculation linkbase, XBRL company facts |
+| `source_check` | Whether the documents behind an answer are still the bytes it was read from: each evidence row (or a canli-mcp receipt's source) read again past every cache, as the same, changed since, or unreachable. Only documents from the sources this server reads are fetched. |
 | `verify_claims` | Is a figure in a draft answer right? Confirmed, contradicted (with the filed figure and what the wrong one matches: last year, a quarter, a unit slip, the wrong currency), or not reported (a future year, a dividend a company never paid); US and foreign filers (20-F, IFRS) in the currency they report in | XBRL company facts |
 
 Examples: "Show Microsoft's last four years of income statements as filed", "How has Costco's
 paid membership grown over five years?", "Did NVIDIA beat its revenue guidance last quarter, and
 what is it guiding to now?", "What full-year EPS range is Walmart guiding to, and how has it moved
-since the original guide?", "Check this paragraph's numbers before I send it."
+since the original guide?", "Check this paragraph's numbers before I send it.", "Does anything in
+Parsons' latest 10-Q read differently to a machine than to a person?"
 
 ## Beyond the US
 
@@ -106,6 +109,7 @@ against the BIS (21 of 21 agreed on 2026-10-15).
 | `dividend_history` | Payments by ex-date, totals by year, trailing yield, five-year growth, the streak of rising totals and splits. |
 | `comment_letters` | What the SEC's staff questioned in a company's filings and how it answered, grouped into reviews, with the topics of the newest letters (Apple, 2024: revenue recognition, segments, MD&A) | SEC EDGAR forms UPLOAD and CORRESP |
 | `shareholder_returns` | What a company has paid its owners each year: dividends per share (with its split-adjusted record: years raised in a row, 5- and 10-year growth) and in total, buybacks and shares issued, the diluted share count, the payout ratio and the share of free cash flow paid out, and the dividend and shareholder yields at the last close | SEC XBRL company facts, the last close |
+| `buybacks` | A company's share repurchases by fiscal year or quarter: cash paid, shares bought and the value recorded for them, the average price, the program's authorized and remaining amounts where tagged, and the change in shares outstanding, each figure with the filing it came from and untagged figures named, not estimated (Apple, FY2025: 402 million shares for $89.3 billion, $222.14 a share; shares outstanding down 2.3%) | SEC XBRL company facts |
 | `reverse_dcf` | The free-cash-flow growth a share price implies: a DCF solved for the growth that reaches the market's enterprise value, every input from the annual XBRL with its tag, a sensitivity table and the company's own growth beside it | SEC XBRL company facts, the last close |
 | `filing_memory` | Everything one company has said about a subject across every annual report it has on EDGAR, back to the 1990s where they exist: the best passages with links, how often it came up each year, and optionally how that moved with a margin, tested against chance. Runs on your machine; no key. |
 | `filing_sentiment` | The tone of a filing or any text, sentence by sentence, from FinBERT on your machine. Needs `canli-mcp models install`. The model is licensed for non-commercial use. |
@@ -145,9 +149,22 @@ against the BIS (21 of 21 agreed on 2026-10-15).
 | `volatility_surface` | Implied volatility term structure, 25-delta skew and the smile | Cboe delayed quotes |
 | `futures_curve` | The VIX futures curve (and other Cboe futures) against the index: contango or backwardation | Cboe settlements |
 | `market_overview` | The market at a glance: US indices and the VIX, the eleven sectors ranked by the month, Treasury yields, the dollar and major currencies, oil, gas, gold, silver, copper, bitcoin, ether and the main markets abroad, each over a day, a week, a month, three months, the year to date and a year | Yahoo Finance chart data (no key) |
-| `price_history` | Daily to monthly bars for stocks in the US and abroad, currencies, futures, indices and crypto, adjusted, with dividends and splits, as columns | Yahoo Finance (no key), or Alpaca or Tiingo (your key) for US stocks |
+| `price_history` | One-minute to monthly bars (minute bars for the last 30 to 60 days) for stocks in the US and abroad, currencies, futures, indices and crypto, adjusted, with dividends and splits, as columns | Yahoo Finance (no key), or Alpaca or Tiingo (your key) for US stocks |
 | `treasury_auctions` | How each Treasury auction went (yield, bid-to-cover, who bought) and which auctions come next | US Treasury Fiscal Data |
 | `federal_debt` | The US debt each business day, and the average rate the Treasury pays on it | US Treasury Fiscal Data |
+| `treasury_cash` | The Treasury's cash at the Fed each business day since 2005 (the TGA), and the day's largest deposits and withdrawals | Daily Treasury Statement (Fiscal Data) |
+| `federal_budget` | Receipts, outlays and the deficit each month, this fiscal year against the same months of the last | Monthly Treasury Statement (Fiscal Data) |
+| `factor_returns` | The Fama-French factors (market, size, value, profitability, investment, momentum, the T-bill rate), monthly since 1926, daily or by year, as fractions | Kenneth French's data library |
+| `unusual_options` | Contracts trading far beyond their open interest, largest premium first, and the day's call and put premium | Cboe delayed quotes |
+| `company_emissions` | A company's US greenhouse-gas emissions, facility by facility, by gas, with its ownership share and a trend | EPA's Greenhouse Gas Reporting Program |
+| `crypto_markets` | Coins ranked by market value with price, volume, changes, supply and distance from the high, and the whole market's value and bitcoin's share | CoinGecko (no key) |
+| `etf_profile` | What an ETF or fund costs and holds: expense ratio against its category, assets, yield, returns, top holdings, allocation, sectors | Yahoo Finance's fund profile |
+| `market_calendar` | Who reports earnings on given days (with the consensus EPS), who goes ex-dividend, the splits coming up, and a month's IPOs, across the market | Nasdaq's public calendars |
+| `congress_trades` | Trades by members of the House: owner, asset and ticker, purchase or sale, dates and amount range, by member, state, district or ticker | The Clerk's periodic transaction reports, read from their PDFs |
+| `analyst_history` | Every upgrade, downgrade and price-target change by firm, earnings surprises, how the consensus moved, ratings month by month | Yahoo Finance (a vendor's aggregates, labeled so) |
+| `market_movers` | Today's biggest gainers, losers and most traded US stocks, and Yahoo's ready-made lists (most shorted, small-cap gainers...) | Yahoo Finance (no key) |
+| `market_hours` | Is the market open now, the next open and close, a year's holidays and early closes, trading days between two dates | NYSE's rules, computed (no network) |
+| `crypto_options` | Crypto options: each expiry's at-the-money volatility, open interest and put/call ratio, with DVOL, or one expiry's chain in dollars | Deribit public data (no key) |
 | `economic_outlook` | The OECD's projections for the next two years: growth, inflation, unemployment, deficits, debt, current account, rates | OECD Economic Outlook |
 | `world_economy` | Any country's economy: GDP and growth, inflation, unemployment, debt, deficits, trade, reserves, for 200+ countries and regions | World Bank (CC BY 4.0) |
 
@@ -158,14 +175,18 @@ inflation year over year?".
 
 Results are columns and rows, so a series feeds straight into analysis: with
 [canli-mcp](https://www.npmjs.com/package/canli-mcp), `economic_series` or `price_history` output
-goes into any of its 235 quant tools in the same batch.
+goes into any of its 236 quant tools in the same batch, and `factor_returns` into a factor regression.
 
 ## Checked against the source
 
 The tests replay real SEC, Treasury and FRED responses and check values read off the documents:
 Berkshire Hathaway's 13F for the quarter ending 30 June 2026 totals $299,253,556,246 over 89
 entries, exactly the figures on its cover page; Apple's 10-K risk factors come back as Item 1A
-alone; a Tesla Form 4 sale reads 2,605.75 shares at $360.134.
+alone; a Tesla Form 4 sale reads 2,605.75 shares at $360.134. `filing_check` reads all 762 tagged
+figures of Apple's June 2026 10-Q exactly as SEC's own extraction of its XBRL holds them, finds nothing
+in it to flag, and finds the 48,700 shares in Microsoft's FY2026 10-K tagged a million times too large.
+alone; a Tesla Form 4 sale reads 2,605.75 shares at $360.134. Apple's fiscal 2025 buybacks come
+back as its 10-K states them: 402 million shares for $89.3 billion, $90,711 million paid in cash.
 
 ## Limits
 

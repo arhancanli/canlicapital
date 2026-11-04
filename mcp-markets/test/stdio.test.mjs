@@ -11,16 +11,16 @@ import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 async function connect() {
   const c = new Client({ name: "stdio-test", version: "0" });
-  await c.connect(new StdioClientTransport({ command: process.execPath, args: ["--import", path.join(HERE, "replay-preload.mjs"), path.join(HERE, "../src/server.mjs")], env: { PATH: process.env.PATH ?? "", HOME: process.env.HOME ?? "" } }));
+  await c.connect(new StdioClientTransport({ command: process.execPath, args: ["--import", path.join(HERE, "replay-preload.mjs"), path.join(HERE, "../src/server.mjs")], env: { PATH: process.env.PATH ?? "", HOME: process.env.HOME ?? "", CANLI_DISK_CACHE: "0" }}));
   return c;
 }
 
-test("seventy-eight tools, byte-identical across launches, all read-only", async () => {
+test("one hundred and two tools, byte-identical across launches, all read-only", async () => {
   const lists = [];
   for (let i = 0; i < 2; i++) { const c = await connect(); lists.push(JSON.stringify(await c.listTools())); await c.close(); }
   assert.equal(lists[0], lists[1]);
   const tools = JSON.parse(lists[0]).tools;
-  assert.deepEqual(tools.map((t) => t.name).sort(), ["bank_financials", "comment_letters", "company_events", "company_profile", "company_report", "comps", "compute_prices", "consumer_complaints", "credit_cycle", "crypto_fundamentals", "debt_profile", "dividend_history", "drug_pipeline", "earnings_calendar", "earnings_release", "economic_calendar", "economic_outlook", "economic_series", "enforcement_actions", "european_filings", "event_study", "executive_pay", "explain_move", "exposure_map", "fails_to_deliver", "federal_contracts", "federal_debt", "federal_rules", "figure_trace", "filing_diff", "filing_drift", "filing_memory", "filing_sentiment", "filing_tables", "financial_statements", "fomc", "forensic_scores", "fund_holdings", "fund_portfolio", "funding_rates", "futures_curve", "futures_positioning", "guidance_record", "index_constituents", "insider_trades", "investment_advisers", "ipo_pipeline", "large_holders", "latest_filings", "latest_price", "legal_entity", "list_filings", "market_overview", "mentions_trend", "news", "off_exchange_volume", "options_chain", "ownership_breadth", "page_attention", "planned_insider_sales", "portfolio_xray", "prediction_markets", "price_history", "private_offerings", "product_recalls", "read_filing", "reference_rates", "reverse_dcf", "sanctions_check", "screen_companies", "search_filings", "security_identifiers", "segment_revenue", "shareholder_returns", "shipping_activity", "short_interest", "stock_snapshot", "technical_indicators", "token_check", "treasury_auctions", "treasury_yields", "verify_claims", "volatility_surface", "what_happened_next", "world_economy", "world_yields"]);
+  assert.deepEqual(tools.map((t) => t.name).sort(), ["analyst_history", "bank_financials", "buybacks", "comment_letters", "company_emissions", "company_events", "company_profile", "company_report", "comps", "compute_prices", "congress_trades", "consumer_complaints", "credit_cycle", "crypto_fundamentals", "crypto_markets", "crypto_options", "debt_profile", "dividend_history", "drug_pipeline", "earnings_calendar", "earnings_release", "economic_calendar", "economic_outlook", "economic_series", "enforcement_actions", "etf_profile", "european_filings", "event_study", "executive_pay", "explain_move", "exposure_map", "factor_returns", "fails_to_deliver", "federal_budget", "federal_contracts", "federal_debt", "federal_rules", "figure_trace", "filing_check", "filing_diff", "filing_drift", "filing_memory", "filing_sentiment", "filing_tables", "financial_statements", "fomc", "forensic_scores", "fund_holdings", "fund_portfolio", "funding_rates", "futures_curve", "futures_positioning", "guidance_record", "index_constituents", "insider_trades", "investment_advisers", "ipo_pipeline", "large_holders", "latest_filings", "latest_price", "legal_entity", "list_filings", "market_calendar", "market_hours", "market_movers", "market_overview", "mentions_trend", "news", "off_exchange_volume", "options_chain", "ownership_breadth", "page_attention", "planned_insider_sales", "portfolio_xray", "prediction_markets", "price_history", "private_offerings", "product_recalls", "read_filing", "reference_rates", "reverse_dcf", "sanctions_check", "screen_companies", "search_filings", "security_identifiers", "segment_revenue", "shareholder_returns", "shipping_activity", "short_interest", "source_check", "stock_snapshot", "technical_indicators", "token_check", "treasury_auctions", "treasury_cash", "treasury_yields", "unusual_options", "verify_claims", "volatility_surface", "what_happened_next", "world_economy", "world_yields"]);
   for (const t of tools) {
     assert.equal(t.annotations.readOnlyHint, true, t.name);
     assert.equal(t.annotations.openWorldHint, true, t.name);
@@ -51,6 +51,18 @@ test("bad input and an unknown symbol come back as tool errors that say what to 
 // against the tool's output schema, so a mismatch fails here, not for a user. Arguments pin the dates
 // the fixtures were captured for (the spawned server runs on the real clock).
 const NEW_TOOL_CALLS = [
+  ["factor_returns", { model: "carhart", start: "2025-01", end: "2025-06" }],
+  ["treasury_cash", { flows: true }],
+  ["federal_budget", {}],
+  ["crypto_options", { currency: "BTC" }],
+  ["congress_trades", { member: "mcguire", reports: 1 }],
+  ["market_calendar", { kind: "earnings", date: "2026-11-05", min_market_cap: 100000000000 }],
+  ["crypto_markets", { limit: 5 }],
+  ["company_emissions", { company: "Exxon", year: 2023 }],
+  ["unusual_options", { symbol: "AAPL" }],
+  ["filing_check", { company: "AAPL", form: "10-Q" }],
+  ["source_check", { sources: [{ url: "https://www.sec.gov/Archives/edgar/data/320193/000114036126015711/ef20071035_8k.htm", sha256_16: "0123456789abcdef" }] }],
+  ["buybacks", { company: "MSFT", quarterly: true, periods: 4 }],
   ["shareholder_returns", { company: "AAPL", price: false }],
   ["financial_statements", { company: "MSFT", filings: 2 }],
   ["financial_statements", { company: "NVDA", statement: "income", filings: 2, fiscal_year: 2025 }],
