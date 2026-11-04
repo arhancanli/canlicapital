@@ -78,7 +78,7 @@ const clipAt = (s, re) => {
 const CONNECTORS = new Set(["of", "and", "in", "the", "for", "to", "on", "a", "an", "or", "with", "by", "at", "from", "as", "its", "our", "their", "vs"]);
 const broken = (prev, line) => /^[a-z(]/.test(line) || /[,&]$|\b(?:On|In|At|By|As|Also|the|of|and|or|a|an|to|by|for|with|from|as|that|its|our|their)$/.test(prev) || prev.length > 80
   || (prev.match(/\(/g)?.length ?? 0) > (prev.match(/\)/g)?.length ?? 0) || /\b(?:19|20)\d{2}\b/.test(prev) || prev.split(/\s+/).some((w) => /^[a-z]{3,}/.test(w) && !CONNECTORS.has(w));
-function paragraphs(text) {
+export function paragraphs(text) {
   const out = [];
   for (const raw of String(text).split("\n")) {
     const line = raw.replace(/\s+/g, " ").trim();
