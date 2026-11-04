@@ -45,6 +45,7 @@ import { createVault, HOLDOUT_TOOLS } from "./holdout.mjs";
 import { createRegistry, PREREG_TOOL } from "./prereg.mjs";
 import { CAUSES_TOOL, runCauses } from "./causes.mjs";
 import { RECEIPT_CHECK_TOOL, runReceiptCheck } from "./receipt-check.mjs";
+import { runShares, SHARES_TOOL } from "./shares.mjs";
 import { addressedToAi, CAUTION } from "./injection.mjs";
 import { installTripwire, withoutNetwork } from "./tripwire.mjs";
 import { createDelta } from "./delta.mjs";
@@ -61,7 +62,7 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL];
+const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL];
 export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
@@ -481,6 +482,7 @@ export function selfTools(packs, gov, keeper, readOnly = false, vault = null, pr
   const vaulted = (name) => { allowed(name); if (readOnly || !vault) throw new Error("The holdout vault keeps a session, and the hosted server keeps nothing between requests. Run it locally: npx -y canli-mcp"); return vault; };
   tools.restatement_causes = (args) => { allowed("restatement_causes"); return runCauses(desk, args); };
   tools.receipt_check = (args) => { allowed("receipt_check"); return runReceiptCheck(desk, args); };
+  tools.share_counts = (args) => { allowed("share_counts"); return runShares(desk, args); };
   tools.preregister = async (args) => {
     allowed("preregister");
     if (readOnly || !preregs) throw new Error("A pre-registration is named in the receipts of a session's later answers, and the hosted server keeps nothing between requests. Run it locally: npx -y canli-mcp");
