@@ -84,15 +84,16 @@ function witness(session, url, record) {
 export const FACTS_FROM = Object.freeze(new Map([[2115436, 34088]]));
 const factsHome = (url) => url.replace(/^(https:\/\/data\.sec\.gov\/api\/xbrl\/(?:companyfacts|companyconcept)\/CIK)(\d{10})/, (whole, head, cik) => (FACTS_FROM.has(Number(cik)) ? `${head}${String(FACTS_FROM.get(Number(cik))).padStart(10, "0")}` : whole));
 
-export async function getText(session, rawUrl, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false, method = "GET", body, variant, maxAgeMs, timeoutMs = TIMEOUT_MS, retries = 2 } = {}) {
+// fresh: read the source again, past both caches (source_check, which asks whether a document has changed).
+export async function getText(session, rawUrl, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false, method = "GET", body, variant, maxAgeMs, timeoutMs = TIMEOUT_MS, retries = 2, fresh = false } = {}) {
   const url = factsHome(rawUrl);
   const key = method === "GET" ? url : `${method} ${url} ${body ?? ""}`;
   const cacheKey = variant ? `${key}#${variant}` : key;
   const hit = session.cache.lookup(cacheKey, session.now());
   // maxAgeMs: a feed someone polls must not be answered from the ten-minute cache.
-  if (hit && (maxAgeMs === undefined || session.now() - hit.at < maxAgeMs)) { witness(session, key, session.hashes.get(key)); return parse(hit.text); }
+  if (!fresh && hit && (maxAgeMs === undefined || session.now() - hit.at < maxAgeMs)) { witness(session, key, session.hashes.get(key)); return parse(hit.text); }
   // Public data fetched in an earlier session, when still fresh for what it is.
-  const keepsOnDisk = session.disk && method === "GET" && !secret && !Object.keys(headers).length && freshFor(url) > 0;
+  const keepsOnDisk = !fresh && session.disk && method === "GET" && !secret && !Object.keys(headers).length && freshFor(url) > 0;
   const copy = keepsOnDisk ? await session.disk.read(cacheKey) : null;
   const useCopy = () => {
     session.hashes.delete(key);
