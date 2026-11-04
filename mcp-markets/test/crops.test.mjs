@@ -55,7 +55,7 @@ test("the US balance sheet from its own page, with its season-average farm price
 });
 
 test("what cannot be answered says what to ask instead", async () => {
-  await assert.rejects(run({ commodity: "crude oil" }), /not a commodity in the WASDE's world tables/);
+  await assert.rejects(run({ commodity: "crude oil" }), /not a commodity in the WASDE's tables/);
   await assert.rejects(run({ commodity: "corn", region: "Atlantis" }), /has no region "Atlantis"\. It has: World/);
   await assert.rejects(run({ commodity: "corn", report: "1999-01" }), /1999-01 is not among them/);
 });
