@@ -213,6 +213,7 @@ test("what cannot be answered says what to give instead", async () => {
   await assert.rejects(run({ series: "nonsense:1" }), /Name the publisher before the code/);
   await assert.rejects(run({ country: "US", measure: "happiness" }), /not a measure read here/);
   await assert.rejects(run({ country: "Atlantis", measure: "inflation" }), /No country matched Atlantis/);
+  await assert.rejects(run({ country: "Phillipines", measure: "inflation" }), /Did you mean Philippines\?/);
   await assert.rejects(run({ country: "Japan", measure: "core inflation" }), /core inflation is read for the US, Canada, the UK and the EU/);
   await assert.rejects(run({ series: "fred:UNRATE", country: "US" }), /either series/);
 });

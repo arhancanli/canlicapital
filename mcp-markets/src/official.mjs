@@ -111,6 +111,13 @@ export function findCountry(q) {
   const s = squash(q), up = String(q).trim().toUpperCase();
   return COUNTRIES.find((c) => c.code === up || c.iso3 === up) ?? COUNTRIES.find((c) => squash(c.name) === s || c.aka.includes(s)) ?? null;
 }
+// The covered country a misspelt name most likely means (two edits at most), for the error.
+const edits = (x, y) => { const d = Array.from({ length: x.length + 1 }, (_, i) => [i, ...Array(y.length).fill(0)]); for (let j = 1; j <= y.length; j++) d[0][j] = j; for (let i = 1; i <= x.length; i++) for (let j = 1; j <= y.length; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (x[i - 1] === y[j - 1] ? 0 : 1)); return d[x.length][y.length]; };
+export function nearestCountry(q) {
+  const s = squash(q);
+  const best = COUNTRIES.flatMap((c) => [c.name, ...c.aka].map((n) => [c, edits(s, squash(n))])).sort((x, y) => x[1] - y[1])[0];
+  return best && best[1] <= 2 && s.length > 3 ? best[0] : null;
+}
 // Names, codes and groups as one list of countries, each once, in the order asked.
 export function countryList(items) {
   const out = [], unknown = [];
@@ -927,7 +934,10 @@ export async function worldSeries(session, args) {
   const asked = a.countries ?? (a.country ? [a.country] : null);
   if (!asked) throw new Error("Name a country (country) or several (countries).");
   const { countries, unknown } = countryList(asked);
-  if (!countries.length) throw new NotFound(`No country matched ${unknown.join(", ")}. Covered: ${COUNTRIES.map((c) => c.name).join(", ")}; groups: ${Object.keys(GROUPS).join(", ")}.`);
+  if (!countries.length) {
+    const near = unknown.map((u) => nearestCountry(u)).filter(Boolean);
+    throw new NotFound(`No country matched ${unknown.join(", ")}.${near.length ? ` Did you mean ${near.map((c) => c.name).join(", ")}?` : ` Covered: ${COUNTRIES.map((c) => c.name).join(", ")}; groups: ${Object.keys(GROUPS).join(", ")}.`}`);
+  }
   if (countries.length > 30) throw new Error(`That is ${countries.length} countries; ask for up to 30 at once.`);
   const single = countries.length === 1 && !a.countries;
   const shown = a.start ? 600 : a.periods ?? (single ? 13 : 1);
@@ -988,7 +998,7 @@ export async function worldSeries(session, args) {
     ...(checks ? { check: { columns: ["country", "period", "value", "other_value", "difference", "agree", "other_publisher"], rows: checks.map((x) => x.slice(0, 7)), disagree: checks.filter((x) => x[5] === false).map((x) => x[0]), ...(checks.some((x) => x[7]) ? { notes: Object.fromEntries(checks.filter((x) => x[7]).map((x) => [x[0], x[7]])) } : {}), reading: "Each country's figure against a second official publisher at the latest period both report. A gap can come from a definition (a national CPI against the EU's harmonised index, seasonally adjusted against not) as well as from an error." } } : {}),
     ...(shown > 1 ? { history: Object.fromEntries(ok.map(({ c, r }) => [c.name, keepFrom(r.rows, from0).slice(-shown).map(([p, v]) => [p, round(v, 6)])])) } : {}),
     ...(ok.some(({ r }) => staleSince(session, r.rows)) ? { stale: ok.filter(({ r }) => staleSince(session, r.rows)).map(({ c, r }) => `${c.name}: latest ${r.rows.at(-1)[0]}`) } : {}),
-    ...(unknown.length || results.some((x) => x.error) ? { not_found: [...unknown.map((u) => `${u}: not a country or group covered here`), ...results.filter((x) => x.error).map((x) => `${x.c.name}: ${x.error}`)] } : {}),
+    ...(unknown.length || results.some((x) => x.error) ? { not_found: [...unknown.map((u) => `${u}: not a country or group covered here${nearestCountry(u) ? ` (did you mean ${nearestCountry(u).name}?)` : ""}`), ...results.filter((x) => x.error).map((x) => `${x.c.name}: ${x.error}`)] } : {}),
     source: ok[0].r.url, sources: [...new Set(ok.map(({ r }) => r.url))], limits: LIMITS,
   };
 }
