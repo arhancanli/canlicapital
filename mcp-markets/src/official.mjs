@@ -993,17 +993,42 @@ export async function worldSeries(session, args) {
   };
 }
 
+// Several of the OECD's key short-term indicators in one request: every value asked for in each part of the key,
+// then each series taken by its own key. A failed request leaves those measures to their next publisher.
+const KEI_FLOW = "oecd:OECD.SDD.STES,DSD_KEI@DF_KEI,4.0/";
+export async function keiTogether(session, links, failed, want = 27) {
+  const specs = [...new Map(links.filter((l) => l?.batch && typeof l.s === "string" && l.s.startsWith(KEI_FLOW)).map((l) => [l.s, l])).values()];
+  if (specs.length < 2) return new Map();
+  const keys = specs.map((l) => l.s.slice(KEI_FLOW.length).split("."));
+  const dims = keys[0].map((_, i) => [...new Set(keys.map((k) => k[i]))].join("+"));
+  const url = `https://sdmx.oecd.org/public/rest/data/${KEI_FLOW.slice(5, -1)}/${dims.join(".")}?format=csv&lastNObservations=${want}`;
+  const got = new Map();
+  try {
+    const rows = csvRows((await getText(session, url, { retries: 0 })).replace(/^\uFEFF/, ""));
+    const order = ["REF_AREA", "FREQ", "MEASURE", "UNIT_MEASURE", "ACTIVITY", "ADJUSTMENT", "TRANSFORMATION"];
+    const bySeries = new Map();
+    for (const r of rows) { const v = num(r.OBS_VALUE); if (v == null) continue; const k = order.map((d) => r[d]).join("."); bySeries.set(k, [...(bySeries.get(k) ?? []), [period(r.TIME_PERIOD), v]]); }
+    for (const l of specs) {
+      const series = bySeries.get(l.s.slice(KEI_FLOW.length));
+      if (series?.length) got.set(l.s, { rows: series.sort((x, y) => (x[0] < y[0] ? -1 : 1)), title: null, unit: null, url, publisher: PUBLISHERS.oecd.name, code: l.s });
+    }
+  } catch { for (const l of specs) failed.add(l.batch[0]); }
+  return got;
+}
+
 // measure "all": one country's every measure at once, each from the first publisher that answers.
 const OVERVIEW = /^(all|overview|everything|economy|dashboard|snapshot|summary|all measures|the economy)$/;
 async function overview(session, a) {
   if (a.countries || !a.country) throw new Error("measure \"all\" reads one country (country); for several countries name one measure.");
   const c = findCountry(a.country);
   if (!c) throw new NotFound(`No country matched ${a.country}. Covered: ${COUNTRIES.map((x) => x.name).join(", ")}.`);
-  const inflight = new Map();
+  const inflight = new Map(), failed = new Set();
+  // The country's OECD indicators in one request, not one a measure (the OECD limits how often it is asked).
+  const prefetched = await keiTogether(session, Object.keys(MEASURES).flatMap((k) => chain(k, c)), failed);
   const got = await Promise.all(Object.keys(MEASURES).map(async (measure) => {
     const m = MEASURES[measure];
     try {
-      const { r, link } = await readMeasure(session, measure, c, { want: 1 + (m.daily ? 380 : 13), inflight, daily: m.daily });
+      const { r, link } = await readMeasure(session, measure, c, { want: 1 + (m.daily ? 380 : 13), inflight, daily: m.daily, prefetched, failed });
       const s = summary(r.rows);
       return { measure, row: [measure, s.latest.period, s.latest.value, s.year_ago?.value ?? null, link.quote ?? null, link.by, r.code], url: r.url, stale: staleSince(session, r.rows) };
     } catch (err) { return { measure, error: String(err?.message ?? err).slice(0, 200) }; }

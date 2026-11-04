@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { chain, compactDates, compare, countryList, findCountry, findMeasure, jsonStat, moves, onAYear, period, sdmxSeries, worldSeries } from "../src/official.mjs";
+import { chain, compactDates, compare, countryList, findCountry, findMeasure, jsonStat, keiTogether, moves, onAYear, period, sdmxSeries, worldSeries } from "../src/official.mjs";
 import { createSession } from "../src/sources.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
 
@@ -242,4 +242,24 @@ test("retail sales, wages and industrial production: national publishers and Eur
   const ip = (await run({ country: "United States", measure: "industrial production" })).r;
   assert.deepEqual(ip.latest, { period: "2026-09", value: 2.2452 });
   assert.match(ip.series.publisher, /Federal Reserve \(G\.17\)/);
+});
+
+test("one country's OECD indicators come from one request, each series taken by its own key", async () => {
+  const csv = "STRUCTURE,STRUCTURE_ID,ACTION,REF_AREA,FREQ,MEASURE,UNIT_MEASURE,ACTIVITY,ADJUSTMENT,TRANSFORMATION,TIME_PERIOD,OBS_VALUE\n"
+    + "dataflow,OECD.SDD.STES:DSD_KEI@DF_KEI(4.0),I,JPN,M,LI,IX,_T,AA,_Z,2026-09,100.35\n"
+    + "dataflow,OECD.SDD.STES:DSD_KEI@DF_KEI(4.0),I,JPN,M,PRVM,GR,BTE,Y,GY,2026-08,2.21\n"
+    + "dataflow,OECD.SDD.STES:DSD_KEI@DF_KEI(4.0),I,JPN,M,PRVM,IX,BTE,Y,_Z,2026-08,92.7\n";
+  const asked = [];
+  const session = createSession({ fetchImpl: async (url) => { asked.push(url); return new Response(csv, { status: 200 }); }, now: () => NOW, env: {}, sleep: async () => {} });
+  const japan = findCountry("Japan");
+  const got = await keiTogether(session, ["leading_indicator", "industrial_production"].flatMap((k) => chain(k, japan)), new Set());
+  assert.equal(asked.length, 1);
+  assert.match(asked[0], /\/JPN\.M\.LI\+PRVM\.IX\+GR\._T\+BTE\.AA\+Y\._Z\+GY\?format=csv/);
+  assert.deepEqual(got.get("oecd:OECD.SDD.STES,DSD_KEI@DF_KEI,4.0/JPN.M.LI.IX._T.AA._Z").rows, [["2026-09", 100.35]]);
+  assert.deepEqual(got.get("oecd:OECD.SDD.STES,DSD_KEI@DF_KEI,4.0/JPN.M.PRVM.GR.BTE.Y.GY").rows, [["2026-08", 2.21]]);
+  // A failed request leaves both measures to their next publisher.
+  const failed = new Set();
+  const none = await keiTogether(createSession({ fetchImpl: async () => new Response("busy", { status: 500 }), now: () => NOW, env: {}, sleep: async () => {} }), ["leading_indicator", "industrial_production"].flatMap((k) => chain(k, japan)), failed);
+  assert.equal(none.size, 0);
+  assert.equal(failed.size, 2);
 });
