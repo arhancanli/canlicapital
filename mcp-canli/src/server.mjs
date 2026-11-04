@@ -687,6 +687,14 @@ function registerResources(server, packs, gov, { readOnly = false, vault = null 
       const events = createSentinel({ home: canliHome(), call: async () => { throw new Error("not watching"); } }).events({ last: 100 }).events.filter((e) => e.at >= since);
       return json(uri.href, { ...week, sentinel_events: events.length ? events : "none in these seven days (canli-mcp sentinel run, or --channel, watches)" });
     });
+  // A company to attach to a conversation by its address (in Claude Code, @canli:canli://company/AAPL): company_report,
+  // its profile, five fiscal years of figures and its price and risk, cut to the size of an answer.
+  server.registerResource("company", new ResourceTemplate("canli://company/{company}", { list: undefined }), { title: "A company", description: "company_report for the ticker, CIK or name in the address (canli://company/AAPL): profile, five fiscal years of financials, price and risk.", mimeType: "application/json" },
+    async (uri, { company }) => {
+      if (vault?.until()) throw new Error(`canli://company reads the present, which the holdout from ${vault.from()} hides; holdout_status shows it.`);
+      const report = await runOne(packs, { name: "company_report", arguments: { company: decodeURIComponent(String(company)) } }, {}, [], gov);
+      return json(uri.href, fit(report, null, RESULT_CHARS));
+    });
   server.registerResource("catalog", "canli://catalog", { title: "Tool catalog", description: "Every tool: name, pack and title.", mimeType: "application/json" },
     (uri) => json(uri.href, { tools: ENTRIES.filter((e) => packs.includes(e.pack)).length, columns: ["name", "pack", "title"], rows: ENTRIES.filter((e) => packs.includes(e.pack)).map((e) => [e.name, e.pack, e.title]) }));
   server.registerResource("packs", "canli://packs", { title: "Packs", description: "Each pack: its source package and version, tool count, network and disk use, and renamed or omitted tools.", mimeType: "application/json" },

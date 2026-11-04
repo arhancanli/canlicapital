@@ -1,4 +1,5 @@
-// canli://week/{holdings*}: my_week over the holdings in the address, for a host to attach at the start of a
+// canli://week/{holdings*}: my_week over the holdings in the address, and canli://company/{company}, a company by its
+// address, for a host to attach at the start of a
 // session, with the sentinel's events of the same seven days from this machine; and with a holdout set, which
 // hides this week, it does not answer.
 import assert from "node:assert/strict";
@@ -28,8 +29,10 @@ test("the week as a resource: each holding named in the address, this week's sen
     assert.equal(week.rows.length, 2, "one row a holding");
     assert.deepEqual(week.sentinel_events.map((e) => e.id), ["recent"], "the last seven days only");
     assert.equal((await read("canli://week/VOO")).rows.length, 1);
+    assert.ok(resourceTemplates.some((t) => t.uriTemplate === "canli://company/{company}"), "a company by its address");
     await c.callTool({ name: "run_tool", arguments: { name: "holdout_set", arguments: { from: "2024-01-01" } } });
     await assert.rejects(c.readResource({ uri: "canli://week/AAPL" }), /holdout from 2024-01-01 hides/);
+    await assert.rejects(c.readResource({ uri: "canli://company/AAPL" }), /holdout from 2024-01-01 hides/);
   } finally {
     await c.close();
     rmSync(home, { recursive: true, force: true });
