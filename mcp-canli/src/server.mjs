@@ -337,15 +337,16 @@ export function showResult(keeper, args) {
 }
 
 const RUN_INPUT = z.object({
-      name: z.string().max(100).optional().describe("Tool name from find_tool (single call)."),
-      arguments: z.record(z.string(), z.unknown()).optional().describe("The tool's arguments (single call)."),
+      name: z.string().max(100).optional().describe("Tool name from find_tool."),
+      arguments: z.record(z.string(), z.unknown()).optional().describe("The tool's arguments."),
       calls: z.array(z.object({ name: z.string().max(100), arguments: z.record(z.string(), z.unknown()).optional() }).strict()).min(1).max(25).optional().describe("Several calls in one round trip; calls without $result run concurrently."),
       return: z.enum(["all", "last"]).optional().describe("Batch: every result (default) or only the last."),
       digits: z.number().int().min(3).max(10).optional().describe("Round fractional numbers to this many significant figures (default 6; 4 saves tokens); whole numbers never change."),
-      select: z.array(z.string().max(200)).min(1).max(30).optional().describe("Return only these fields of each result, as dotted paths, e.g. [\"verdict\", \"multiple_testing.best\", \"rows.0.accession\"] (table rows take column names)."),
+      select: z.array(z.string().max(200)).min(1).max(30).optional().describe("Only these fields of each result, as dotted paths, e.g. [\"verdict\", \"rows.0.accession\"] (rows take column names)."),
       receipt: z.boolean().optional().describe("Add input and output SHA-256 and pack versions, to recompute and compare later."),
       max_chars: z.number().int().min(1000).max(RESULT_CHARS).optional().describe("Cap each result at this many JSON characters; the rest stays under its ref."),
-      view: z.boolean().optional().describe("Draw the whole result for the person (charts, statements, yield curves, option chains, backtests) where MCP Apps are drawn; you get a summary."),
+      as_of: z.string().max(10).optional().describe("As of this past date (YYYY-MM-DD): only what was public then."),
+      view: z.boolean().optional().describe("Draw the result for the person (charts, statements, yield curves, backtests) where MCP Apps are drawn; you get a summary."),
     }).strict();
 
 export const canliHome = (env = process.env) => env.CANLI_HOME ?? join(homedir(), ".canli");
@@ -356,10 +357,10 @@ export const canliHome = (env = process.env) => env.CANLI_HOME ?? join(homedir()
 const AS_OF_ARG = process.argv.includes("--as-of") ? process.argv[process.argv.indexOf("--as-of") + 1] : process.env.CANLI_AS_OF;
 const TIME_MACHINE = AS_OF_ARG ? createTimeMachine(AS_OF_ARG) : null;
 
-async function runOne(packs, { name, arguments: given }, opts, files, gov) {
+async function runOne(packs, { name, arguments: given }, opts, files, gov, machine = TIME_MACHINE) {
   const tool = await toolFor(name, packs);
-  const args = TIME_MACHINE ? TIME_MACHINE.admit(name, tool.pack, given) : given;
-  const finish = (result) => (TIME_MACHINE ? TIME_MACHINE.seal(name, result) : result);
+  const args = machine ? machine.admit(name, tool.pack, given) : given;
+  const finish = (result) => (machine ? machine.seal(name, result) : result);
   if (!gov?.policy) return finish(await execute(tool, name, args, opts, files));
   try {
     gov.check(BY_NAME.get(name), { destructive: Boolean(tool.annotations?.destructiveHint) });
@@ -434,7 +435,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
   }, guard(({ name }) => describeTool(packs, { name })));
   server.registerTool("run_tool", {
     title: "Run tools",
-    description: "Run a tool find_tool named: one ({name, arguments}), or up to 25 ({calls: [...]}). Independent calls run concurrently; a failed call returns its own error and the rest still run. Read-only unless the paper-trading pack is on. Any argument can be {\"$file\": \"path.csv\", \"column\": \"close\"} (or \"columns\": [...] / \"all\") instead of pasted numbers. {\"$result\": i, \"path\": \"close\"} passes batch call i's output into a later call; every result also has a ref (\"r1\", ...) later calls pass the same way, {\"$result\": \"r1\", \"path\": \"close\"}, so data never needs copying.",
+    description: "Run a tool find_tool named: one ({name, arguments}), or up to 25 ({calls: [...]}). Independent calls run at once; a failed call returns its own error. Read-only unless the paper-trading pack is on. Any argument can be {\"$file\": \"path.csv\", \"column\": \"close\"} (or \"columns\": [...] / \"all\") instead of pasted numbers. {\"$result\": i, \"path\": \"close\"} passes batch call i's output into a later call; every result also has a ref (\"r1\", ...) later calls pass the same way, {\"$result\": \"r1\", \"path\": \"close\"}, so data never needs copying.",
     // Only the paper pack can send anything that changes an account; without it nothing here is destructive.
     annotations: { title: "Run tools", readOnlyHint: Boolean(readOnly), destructiveHint: packs.includes("paper"), idempotentHint: false, openWorldHint: true },
     inputSchema: RUN_INPUT,
@@ -448,7 +449,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     if (a.calls) a.calls = a.calls.flatMap((c) => (c.name === "run_tool" && c.arguments ? (c.arguments.calls ?? [{ name: c.arguments.name, arguments: c.arguments.arguments }]) : [c]));
     // Models sometimes put run_tool's own options inside a call's arguments; move them out when the
     // tool itself has no argument of that name.
-    for (const c of a.calls ?? [a]) for (const k of ["return", "digits", "select", "receipt", "max_chars"]) {
+    for (const c of a.calls ?? [a]) for (const k of ["return", "digits", "select", "receipt", "max_chars", "as_of"]) {
       if (c.arguments && k in c.arguments && !(BY_NAME.get(c.name)?.args ?? "").split(", ").some((x) => x.replace(/\?.*$/, "").replace(/:.*$/, "") === k)) { if (a[k] === undefined) a[k] = c.arguments[k]; delete c.arguments[k]; }
     }
     // The SDK validates the outer envelope. Wrapping and lifting options changes that envelope,
@@ -457,13 +458,15 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     if (!a.calls && !a.name) throw new Error("Pass name (and arguments) for one call, or calls for several.");
     if (a.calls && a.name) throw new Error("Pass either name or calls, not both.");
     const calls = a.calls ?? [{ name: a.name, arguments: a.arguments }], files = [], opts = { digits: a.digits };
+    // as_of: this call as of a past date, under the time machine's locks, and never later than the server's own date.
+    const machine = a.as_of ? createTimeMachine(TIME_MACHINE && TIME_MACHINE.asOf < a.as_of ? TIME_MACHINE.asOf : a.as_of, { call: !TIME_MACHINE }) : TIME_MACHINE;
     // A view is drawn only where the host draws MCP Apps; elsewhere view changes nothing but the
     // backtest curve. A backtest shown as a view gets its curve and trades.
     const viewing = Boolean(a.view) && clientDrawsApps(server);
     if (a.view) for (const c of calls) if (/^backtest_/.test(c.name) && !(c.arguments && "curve" in c.arguments)) { try { if ((await toolFor(c.name, packs)).input?.shape?.curve) c.arguments = { ...(c.arguments ?? {}), curve: true }; } catch { /* reported when it runs */ } }
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
     const SELF = selfTools(packs, gov, keeper, readOnly);
-    const run = (c, args) => (SELF[c.name] ? Promise.resolve().then(() => SELF[c.name](args)) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov));
+    const run = (c, args) => (SELF[c.name] ? Promise.resolve().then(() => { if (machine && !machine.selfAllowed(c.name)) throw machine.refuse(c.name); return SELF[c.name](args); }) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov, machine));
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
     if (calls.length > 1 && destructive.some(Boolean)) throw new Error("A tool that sends orders cannot run inside a batch; call it on its own after previewing.");
     const done = [];

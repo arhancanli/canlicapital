@@ -1,7 +1,8 @@
 // The time machine: start the server as of a past date, and every tool sees only what was public on
 // that day. A model can then be tested on the past without being handed the future: its filings stop
 // at that date, its prices stop at that date, and a tool that cannot be held to the date is switched
-// off and says so. It is set when the server starts and no call can change it.
+// off and says so. It is set when the server starts and no call can change it. One run_tool call can also
+// be asked as of a date (its as_of): the same locks for that call only, and never later than the server's date.
 //
 // Three locks. A tool is allowed only if it is on this list. Its arguments are held to the date. And
 // whatever comes back is read before it goes out: a table row dated later is dropped without a count,
@@ -13,8 +14,8 @@ const DAY = /^\d{4}-\d{2}-\d{2}/;
 const minusDays = (date, n) => new Date(Date.parse(`${date}T00:00:00Z`) - n * 86400000).toISOString().slice(0, 10);
 const atMost = (x, d) => (x && x < d ? x : d);
 export const parseAsOf = (value) => {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value)) || Number.isNaN(Date.parse(`${value}T00:00:00Z`))) throw new Error(`--as-of needs a date as YYYY-MM-DD, not ${value}.`);
-  if (value > new Date().toISOString().slice(0, 10)) throw new Error(`--as-of ${value} is in the future.`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value)) || Number.isNaN(Date.parse(`${value}T00:00:00Z`))) throw new Error(`The as-of date must be YYYY-MM-DD, not ${value}.`);
+  if (value > new Date().toISOString().slice(0, 10)) throw new Error(`The as-of date ${value} is in the future.`);
   return value;
 };
 
@@ -66,10 +67,13 @@ const SELF_ALLOWED = new Set(["find_tool", "describe_tool", "show_result", "swar
 // Fields that are not claims about the world's date: where a figure came from, and how to read it.
 const EXEMPT = new Set(["limits", "meaning", "note", "notes", "source", "sources", "url", "urls", "text", "next", "plain_reading", "how_to_check", "expiration", "expiry", "maturity", "maturity_date", "definitions", "time_machine", "fetched_at", "retrieved_at", "generated_at", "tickers_as_of"]);
 
-export function createTimeMachine(asOf) {
+// call: a machine for one run_tool call (its as_of), not for the whole server; the same three locks.
+export function createTimeMachine(asOf, { call = false } = {}) {
   const d = parseAsOf(asOf);
   const admits = (name, pack) => Boolean(HELD[name]) || GIVEN.has(name) || GIVEN_PACKS.has(pack);
-  const refuse = (name) => new Error(`${name} cannot be held to ${d}, so it is off in this run. This server is running as of ${d}: tools that read the world show only what was public by then. find_tool lists what is on.`);
+  const refuse = (name) => new Error(call
+    ? `${name} cannot be held to ${d}, so it cannot answer as of that date. Tools that read the world answer as of a date only when they can show just what was public by then; find_tool lists them.`
+    : `${name} cannot be held to ${d}, so it is off in this run. This server is running as of ${d}: tools that read the world show only what was public by then. find_tool lists what is on.`);
   return {
     asOf: d,
     admits,
