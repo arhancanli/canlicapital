@@ -171,7 +171,7 @@ payrolls look like before the benchmark revision?".
 | `short_interest` | How heavily a stock is shorted (shares short, days to cover, share of shares outstanding), or the market's most shorted | FINRA |
 | `futures_positioning` | Who is long and short in a futures market (managed money, dealers, asset managers, leveraged funds) and how crowded | CFTC Commitments of Traders |
 | `executive_pay` | What executives are paid against how the company did (reported and actually-paid pay, TSR vs peers), five years; or CEO pay ranked across the market | Proxy pay-versus-performance XBRL |
-| `index_constituents` | The members of the S&P 500, Nasdaq 100, Russell 2000, the Dow and other indexes, with weights | N-PORT of a tracking ETF; the Dow from its trust's (DIA) daily holdings |
+| `index_constituents` | The members of the S&P 500, S&P 400, the Dow, the Nasdaq 100, Russell 2000, the Select Sectors and other indexes, with weights | State Street's daily holdings of SPY, MDY, DIA and the sector SPDRs; otherwise the N-PORT of a tracking ETF |
 | `fund_portfolio` | What a mutual fund or ETF holds (VOO, IVV, AGG): every position, exposures, a bond fund's coupon and maturity, monthly returns and money in and out | Form N-PORT |
 | `economic_calendar` | When the data comes out: BLS, BEA, Census and FOMC release dates and times, the market-moving ones flagged | The agencies' own schedules |
 | `fomc` | The Fed's decisions for a year (action, target range, vote and dissenters), the latest statement and the dot-plot medians | Federal Reserve |

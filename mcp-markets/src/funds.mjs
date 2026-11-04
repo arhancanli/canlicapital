@@ -202,13 +202,21 @@ export const INDEX_ETFS = Object.freeze({
   "msci world": ["URTH", "MSCI World"], "msci acwi": ["ACWI", "MSCI ACWI"], "aggregate bond": ["AGG", "Bloomberg US Aggregate Bond"],
 });
 const UIT_INDEXES = Object.freeze({ dow: "DIA", "dow jones": "DIA", djia: "DIA", "dow jones industrial average": "DIA" });
-// A unit investment trust files no N-PORT; its trustee publishes the holdings each day.
-const DAILY_HOLDINGS = Object.freeze({ DIA: ["https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-dia.xlsx", "Dow Jones Industrial Average"] });
+// Funds whose holdings State Street publishes each day: the unit investment trusts (DIA, SPY, MDY, which file no N-PORT)
+// and the Select Sector SPDRs. Their index is read from the latest day's file before the quarter-old N-PORT.
+const DAILY_HOLDINGS = Object.freeze({
+  DIA: "Dow Jones Industrial Average", SPY: "S&P 500", MDY: "S&P MidCap 400",
+  XLK: "Technology Select Sector", XLF: "Financial Select Sector", XLV: "Health Care Select Sector", XLE: "Energy Select Sector", XLI: "Industrial Select Sector",
+  XLY: "Consumer Discretionary Select Sector", XLP: "Consumer Staples Select Sector", XLU: "Utilities Select Sector", XLB: "Materials Select Sector",
+  XLRE: "Real Estate Select Sector", XLC: "Communication Services Select Sector",
+});
+const DAILY_INDEXES = Object.freeze({ ...UIT_INDEXES, "s&p 500": "SPY", "sp 500": "SPY", spx: "SPY", "s&p 400": "MDY", "s&p midcap 400": "MDY" });
+const dailyUrl = (etf) => `https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-${etf.toLowerCase()}.xlsx`;
 const MONTH = { jan: "01", feb: "02", mar: "03", apr: "04", may: "05", jun: "06", jul: "07", aug: "08", sep: "09", oct: "10", nov: "11", dec: "12" };
 
-// The Dow's members from its trust's daily holdings file (State Street's spreadsheet for DIA), the cash line left out.
-async function trustHoldings(session, etf, limit) {
-  const [url, indexName] = DAILY_HOLDINGS[etf];
+// An index's members from a fund's daily holdings file (State Street's spreadsheet), the cash and futures left out.
+async function dailyHoldings(session, etf, limit) {
+  const url = dailyUrl(etf), indexName = DAILY_HOLDINGS[etf];
   const rows = JSON.parse(await getZipText(session, url, { decode: (bytes) => JSON.stringify(xlsxRows(bytes)) }));
   const head = rows.findIndex((r) => r[0] === "Name" && r.includes("Weight") && r.includes("Ticker"));
   if (head < 0) throw new Error(`${etf}'s daily holdings file had no table of holdings.`);
@@ -232,15 +240,17 @@ async function trustHoldings(session, etf, limit) {
     rows: members.slice(0, limit).map((m) => [m.name, m.ticker, m.cusip, round(m.weight / total, 6), m.shares]),
     source: url,
     limits: [
-      `Members and weights are ${etf}'s holdings as its trustee published them for the date shown, rescaled to add to 1 without the cash; a unit investment trust holds its index exactly and files no N-PORT.`,
-      "The Dow is price-weighted: a member's weight is its share price over the sum of the prices, and the trust holds the same number of shares of each. S&P Dow Jones Indices' own list is authoritative.",
+      `Members and weights are ${etf}'s holdings as State Street published them for the date shown, rescaled to add to 1 without the cash; source: "nport" reads the latest N-PORT of a fund that files one instead.`,
+      ...(etf === "DIA" ? ["The Dow is price-weighted: a member's weight is its share price over the sum of the prices, and the trust holds the same number of shares of each."] : []),
+      "S&P Dow Jones Indices' own list is authoritative; a fund's holdings can differ from its index for a day around a change.",
       "Not investment advice.",
     ],
   };
 }
 
 export const indexInput = z.object({
-  index: z.string().min(1).max(60).describe("An index by name (\"S&P 500\", \"Nasdaq 100\", \"Russell 2000\", \"S&P 400\", \"MSCI EAFE\", \"Dow Jones\"), or the ticker of an ETF that tracks the index you want (VOO, IWM)."),
+  index: z.string().min(1).max(60).describe("An index by name (\"S&P 500\", \"Nasdaq 100\", \"Russell 2000\", \"S&P 400\", \"MSCI EAFE\", \"Dow Jones\"), or the ticker of an ETF that tracks the index you want (VOO, IWM, XLK)."),
+  source: z.enum(["daily", "nport"]).optional().describe("daily (default where State Street publishes the fund's holdings each day: the S&P 500 through SPY, the S&P 400 through MDY, the Dow through DIA, the Select Sector SPDRs) or nport (the latest N-PORT, a quarter old)."),
   limit: z.number().int().min(1).max(5000).optional().describe("Most members to list, by weight; default 50."),
 }).strict();
 
@@ -248,7 +258,16 @@ export async function indexConstituents(session, args) {
   const a = indexInput.parse(args);
   const key = a.index.trim().toLowerCase().replace(/[-\s]+/g, " ").replace(/ index$/, "");
   const uit = own(UIT_INDEXES, key);
-  if (uit) return trustHoldings(session, uit, a.limit ?? 50);
+  const ticker = a.index.trim().toUpperCase();
+  const daily = own(DAILY_INDEXES, key) ?? (own(DAILY_HOLDINGS, ticker) ? ticker : null);
+  let fallback = null;
+  if (daily && (a.source ?? "daily") === "daily") {
+    try { return await dailyHoldings(session, daily, a.limit ?? 50); } catch (err) {
+      if (uit) throw err;
+      fallback = `State Street's daily holdings of ${daily} could not be read (${err.message}); these are the latest N-PORT's.`;
+    }
+  }
+  if (uit) throw new NotFound(`The Dow's ETF (${uit}) is a unit investment trust, which files no N-PORT; its members come from State Street's daily holdings (source: "daily").`);
   const [etf, indexName] = own(INDEX_ETFS, key) ?? [a.index.trim().toUpperCase(), null];
   const f = await resolveFund(session, etf);
   const list = await seriesFilings(session, f.series);
@@ -267,6 +286,7 @@ export async function indexConstituents(session, args) {
     rows: members.slice(0, limit).map((h) => [h.name, h.title, h.cusip, h.isin, h.country, round(h.pct / weight, 6)]),
     source: `${list[0].base}/${list[0].accession}-index.htm`,
     limits: [
+      ...(fallback ? [fallback] : []),
       `Members and weights are ${etf}'s stock holdings in its latest public N-PORT (the last month of a fiscal quarter, made public 60 days later), rescaled to add to 1. An ETF that samples its index can hold fewer names or different weights than the index itself.`,
       "The index provider's own list is authoritative; members added or removed since the report date are not shown.",
       "Not investment advice.",
