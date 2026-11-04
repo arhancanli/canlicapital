@@ -42,6 +42,7 @@ import { createTimeMachine } from "./timemachine.mjs";
 import { signedTrialCount, TRIALS_TOOL } from "./trials.mjs";
 import { createLuck, shownTrials } from "./luck.mjs";
 import { createVault, HOLDOUT_TOOLS } from "./holdout.mjs";
+import { createRegistry, PREREG_TOOL } from "./prereg.mjs";
 import { createDelta } from "./delta.mjs";
 import { runWeek, WEEK_TOOL } from "./week.mjs";
 import { channelSink, CHANNEL_INSTRUCTIONS, SENTINEL_TOOLS } from "./sentinel.mjs";
@@ -56,7 +57,7 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS];
+const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL];
 export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
@@ -420,7 +421,7 @@ async function describeTool(packs, { name }) {
 // client need not ask before each one.
 // The tools this server answers itself rather than through a pack. run_tool and the shell command both
 // come here, so a desk tool is never handed to a pack's runner.
-export function selfTools(packs, gov, keeper, readOnly = false, vault = null) {
+export function selfTools(packs, gov, keeper, readOnly = false, vault = null, preregs = null) {
   const desk = { call: (name, args) => (name === "triangulate" ? runTriangulate(desk, args) : runOne(packs, { name, arguments: args }, {}, [], gov)), keep: (r) => keeper.put(r), get: (ref) => keeper.get(ref), at, toolFor: (name) => toolFor(name, packs), hosted: Boolean(readOnly) };
   // A rule outlives the call that sets it, so it lives on your machine and never on the hosted server.
   const sentinel = async () => {
@@ -433,6 +434,13 @@ export function selfTools(packs, gov, keeper, readOnly = false, vault = null) {
   const tools = { my_week: (args) => { allowed("my_week"); return runWeek(desk, args); }, signed_trial_count: (args) => { allowed("signed_trial_count"); if (readOnly) throw new Error("The signed log is on your own machine. Run it locally: npx -y canli-mcp"); return signedTrialCount(args, { dir: join(canliHome(), "audit"), keys: publicKeys(canliHome()) }); }, sentinel_add: async (args) => { allowed("sentinel_add"); return (await sentinel()).add(args); }, sentinel_list: async () => { allowed("sentinel_list"); return (await sentinel()).list(); }, sentinel_remove: async ({ id }) => { allowed("sentinel_remove"); return (await sentinel()).remove(id); }, sentinel_events: async (args) => { allowed("sentinel_events"); return (await sentinel()).events(args ?? {}); }, brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), stress_worlds: (args) => runWorlds(desk, args), hub_list: (args) => runHubList(args), hub_check: (args) => runHubCheck(args), hub_run: (args) => runHubRun(desk, args), draft_orders: (args) => runDraft(args), triangulate: (args) => runTriangulate(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
   // The holdout vault keeps a session, so it lives on your machine (holdout.mjs).
   const vaulted = (name) => { allowed(name); if (readOnly || !vault) throw new Error("The holdout vault keeps a session, and the hosted server keeps nothing between requests. Run it locally: npx -y canli-mcp"); return vault; };
+  tools.preregister = async (args) => {
+    allowed("preregister");
+    if (readOnly || !preregs) throw new Error("A pre-registration is named in the receipts of a session's later answers, and the hosted server keeps nothing between requests. Run it locally: npx -y canli-mcp");
+    const entry = await preregs.add(args);
+    gov?.audit?.record?.({ tool: "preregister", pack: "desk", args: { sha256: entry.sha256 }, result: { id: entry.id, at: entry.at } });
+    return entry;
+  };
   tools.holdout_set = (args) => vaulted("holdout_set").set(args);
   tools.holdout_status = () => vaulted("holdout_status").status();
   tools.holdout_test = async (args) => {
@@ -459,6 +467,8 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
   const delta = createDelta();
   // A holdout period hidden from every tool until its one test (holdout.mjs); setting it clears what was kept.
   const vault = createVault({ onSet: () => { keeper.clear(); delta.clear(); } });
+  // Hypotheses hashed before the data, named in every later receipt (prereg.mjs); kept in CANLI_HOME on this machine.
+  const preregs = createRegistry({ keep: readOnly ? null : async (line) => (await import("../local/prereg.mjs")).keepPreregistration(canliHome(), line) });
   server.registerTool("find_tool", {
     title: "Find a tool",
     description: `Search the ${ENTRIES.filter((e) => packs.includes(e.pack)).length} finance tools (packs: ${packs.join(", ")}) in plain words, e.g. "deflated sharpe", "revenue as of 2019". Returns the closest matches first, with names, argument signatures and one line each, even when none fits, so check them. Next: run_tool, or describe_tool if an argument is unclear.`,
@@ -498,6 +508,8 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     if (!a.calls && !a.name) throw new Error("Pass name (and arguments) for one call, or calls for several.");
     if (a.calls && a.name) throw new Error("Pass either name or calls, not both.");
     const calls = a.calls ?? [{ name: a.name, arguments: a.arguments }], files = [], opts = { digits: a.digits };
+    // The pre-registrations made before this answer, which its receipt names.
+    const registered = preregs.list();
     // as_of: this call as of a past date, under the time machine's locks, and never later than the server's own date.
     let machine = a.as_of ? createTimeMachine(TIME_MACHINE && TIME_MACHINE.asOf < a.as_of ? TIME_MACHINE.asOf : a.as_of, { call: !TIME_MACHINE }) : TIME_MACHINE;
     // A holdout hides its years from every call but its one test, which runs on its own (holdout_test).
@@ -508,7 +520,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const viewing = Boolean(a.view) && clientDrawsApps(server);
     if (a.view) for (const c of calls) if (/^backtest_/.test(c.name) && !(c.arguments && "curve" in c.arguments)) { try { if ((await toolFor(c.name, packs)).input?.shape?.curve) c.arguments = { ...(c.arguments ?? {}), curve: true }; } catch { /* reported when it runs */ } }
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
-    const SELF = selfTools(packs, gov, keeper, readOnly, vault);
+    const SELF = selfTools(packs, gov, keeper, readOnly, vault, preregs);
     const run = (c, args) => (SELF[c.name] ? Promise.resolve().then(() => { if (machine && !machine.selfAllowed(c.name)) throw machine.refuse(c.name); return SELF[c.name](args); }) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov, machine));
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
     if (calls.length > 1 && destructive.some(Boolean)) throw new Error("A tool that sends orders cannot run inside a batch; call it on its own after previewing.");
@@ -554,7 +566,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const receipt = a.receipt ? hashes : undefined;
     // Every answer's receipt goes to the client in _meta, with the sources the full results were read from.
     const parents = builtFrom(refsRead(calls), keeper);
-    const kept = { ...hashes, sources, at: new Date().toISOString(), ...(parents.length ? { from: parents } : {}) };
+    const kept = { ...hashes, sources, at: new Date().toISOString(), ...(parents.length ? { from: parents } : {}), ...(registered.length ? { after: registered } : {}) };
     for (const d of done) if (d.ref) keeper.sign(d.ref, kept);
     // After the receipt, which hashes the full results: an oversized one is sent as a preview.
     if (!a.select) for (const d of done) if (d.result !== undefined && !SELF[d.name]) d.result = leanResult(d.result, { name: d.name, ref: readOnly ? undefined : d.ref, seen: readLimits, digits: a.digits });
@@ -595,7 +607,9 @@ export const PRIVACY = (packs, gov) => ({
   local_models: "off until you run canli-mcp models install: they run on this machine, and no text leaves it",
   telemetry: "none: no analytics, logging or crash reporting",
   offline: "CANLI_OFFLINE=1 enables only the packs whose network is none (quant, validation), and no other pack's code is loaded",
-  receipts: "opt-in receipts carry SHA-256 hashes, never the data",
+  receipts: "every answer's receipt, in MCP's _meta, carries SHA-256 hashes and the URLs and times of the documents read, never the data",
+  preregistrations: "off until you use preregister: each record is kept in CANLI_HOME/preregistrations.jsonl on this machine, readable only by you",
+  holdout: "a holdout vault is kept in memory for the session and written nowhere",
   policy: gov?.policy ? { tools: gov.policy.tools ?? "all", orders: gov.policy.orders ?? "on", calls_per_minute: gov.policy.calls_per_minute ?? null, audit_log: gov.audit ? { file: gov.audit.path, arguments: gov.policy.audit.arguments ?? "hash" } : "off" } : "none (CANLI_POLICY unset): no policy and no audit log",
 });
 

@@ -64,7 +64,7 @@ const HELD = {
 // Tools that only work on what they are given, or on files and ledgers the caller holds.
 const GIVEN_PACKS = new Set(["quant", "validation"]);
 const GIVEN = new Set(["list_factors", "cpcv", "crisis_replay", "effective_bets", "find_diversifiers", "agent_consensus", "breadth_signals", "league_new", "league_commit", "league_score", "proof_file", "proof_find", "proof_verify", "arena_new", "arena_orders", "arena_step", "exchange_new", "exchange_join", "exchange_view", "exchange_orders", "exchange_step", "exchange_report", "exchange_run"]);
-const SELF_ALLOWED = new Set(["find_tool", "describe_tool", "show_result", "swarm", "holdout_set", "holdout_test", "holdout_status"]);
+const SELF_ALLOWED = new Set(["find_tool", "describe_tool", "show_result", "swarm", "holdout_set", "holdout_test", "holdout_status", "preregister"]);
 // Fields that are not claims about the world's date: where a figure came from, and how to read it.
 const EXEMPT = new Set(["limits", "meaning", "note", "notes", "source", "sources", "url", "urls", "text", "next", "plain_reading", "how_to_check", "expiration", "expiry", "maturity", "maturity_date", "definitions", "time_machine", "fetched_at", "retrieved_at", "generated_at", "tickers_as_of"]);
 

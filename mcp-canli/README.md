@@ -438,6 +438,10 @@ EDGAR posts a filing about a minute after accepting it, so most filings arrive w
 The first read only marks what is already there. Lines of type `error` report a failed read; the
 feed carries on.
 
+## Pre-registration: the hypothesis before the data
+
+`preregister` with `{"hypothesis": "...", "plan": "..."}` hashes both with the time before you read any data. Every later answer's receipt names that hash, so the order (hypothesis, then data) is in your own records, and anyone given the text can hash it again to check. The record is kept in `CANLI_HOME/preregistrations.jsonl`, and in the signed audit log when one is on.
+
 ## The holdout vault: years you test on once
 
 Keep the last years aside and the server keeps them for you. `holdout_set` with `{"from": "2024-01-01"}` hides every date from then on, from every tool, for the rest of the session. Tools answer as of the day before, and a tool that cannot be held to that day is off. Results kept so far are cleared, since they may show those years. When the strategy is final, `holdout_test` runs one call on the hidden years, once, and records it with the hashes of what was asked and answered. A second test is refused, and the years stay hidden. `holdout_status` shows the vault, its test, and how many calls read the world before it was set. It hides what the server's tools read, not data you pass in yourself or what the model remembers. Local server only.
