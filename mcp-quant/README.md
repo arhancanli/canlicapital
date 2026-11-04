@@ -1,6 +1,6 @@
 # canli-quant-mcp
 
-235 quant finance tools in one MCP server: performance and risk, options and exotics, fixed income,
+236 quant finance tools in one MCP server: performance and risk, options and exotics, fixed income,
 portfolio construction, econometrics, technical indicators, execution, sizing, crypto and FX,
 valuation, strategy backtests, a library of 399 strategy sleeves, data checks, and data annotation
 and ML labeling. Every tool
@@ -454,7 +454,8 @@ Every recipe and `backtest_weights` take `curve: true` (and optional `dates`) to
 | `backtest_high_proximity` | Backtest holding the assets trading closest to their trailing high (George-Hwang 52-week-high momentum), re-ranked on a schedule. |
 | `backtest_pairs_trading` | Backtest a pairs trade on two price series: rolling hedge ratio, z-score of the residual spread, market-neutral entries and exits, with costs. |
 | `backtest_weights` | Backtest any strategy from your own target weights per period (decided at each close, applied to the next period) with the same costed, drift-aware engine; null rows mean hold. |
-| `strategy_sweep` | Run one strategy recipe over a parameter grid (up to 400 variants), rank the variants by Sharpe, and deflate the best one for the number tried, so tuning cannot pass off luck as skill. |
+| `lookahead_check` | Check a strategy's target weights for lookahead from the weights alone: their return lined up with the period they were decided for, a period late, several periods late and a period early. An edge that is all in its own period and gone a period later, unexplained by the last period's return, is what weights computed with that period's outcome look like. |
+| `strategy_sweep` | Run one strategy recipe over a parameter grid (up to 400 variants), rank the variants by Sharpe, deflate the best one for the number tried and give the probability of backtest overfitting (CSCV), so tuning cannot pass off luck as skill. |
 
 </details>
 

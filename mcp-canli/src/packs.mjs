@@ -11,7 +11,7 @@ import { z } from "zod";
 // What each pack sends off this machine and keeps on disk. Stated in canli://privacy and checked
 // by test/privacy.test.mjs (offline packs must run with the network disabled).
 export const PACKS = Object.freeze({
-  quant: { title: "Quant finance (235 tools, 399 strategy sleeves)", package: "canli-quant-mcp", network: "none", disk: "none", offline: true },
+  quant: { title: "Quant finance (236 tools, 399 strategy sleeves)", package: "canli-quant-mcp", network: "none", disk: "none", offline: true },
   validation: { title: "Backtest validation (deflated Sharpe, PBO, Reality Check, leakage, placebos)", package: "canli-validation-mcp", network: "none: runs in private local mode", disk: "reads a returns file only when you pass its path", offline: true },
   fundamentals: { title: "SEC fundamentals point in time", package: "canli-fundamentals-mcp", network: "downloads public SEC company data from canlicapital.com, or for a company outside that reference from data.sec.gov (sends the company and measure asked for, never your data)", disk: "caches that public data in ~/.cache/canli-fundamentals (CANLI_CACHE_DIR=\"\" keeps nothing)", offline: false },
   research: { title: "Canli Capital's open research record", package: "canli-research-mcp", network: "downloads public research pages from canlicapital.com (sends the search words)", disk: "none", offline: false },
@@ -44,6 +44,9 @@ export const KEYWORDS = Object.freeze({
   },
   quant: {
     sleeve_tournament: "which sleeves work best on my data test all compare",
+  },
+  validation: {
+    stress_test: "survive survival worst case what if blow up",
   },
   markets: {
     read_filing: "annual report read the annual report 10-k report",
@@ -110,7 +113,7 @@ const LOADERS = {
     const v = await import("canli-validation-mcp/src/server.mjs");
     const session = v.createSession({ local: true, toolsets: v.DEFAULT_TOOLSETS });
     const c = capture(); v.registerTools(c.server, session);
-    return fromRegistered("validation", c.tools);
+    return fromRegistered("validation", c.tools, KEYWORDS.validation);
   },
   async fundamentals() {
     const f = await import("canli-fundamentals-mcp/src/server.mjs");
