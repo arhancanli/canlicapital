@@ -1,7 +1,6 @@
-// canli://week/{holdings*}: my_week over the holdings in the address, and canli://company/{company}, a company by its
-// address, for a host to attach at the start of a
-// session, with the sentinel's events of the same seven days from this machine; and with a holdout set, which
-// hides this week, it does not answer.
+// Resources a host attaches to a conversation: canli://week/{holdings*}, my_week over the holdings in the address
+// with the sentinel's events of the same seven days from this machine, and canli://company/{company}, a company by
+// its address. With a holdout set, which hides the present, neither answers.
 import assert from "node:assert/strict";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
