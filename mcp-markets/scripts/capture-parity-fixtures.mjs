@@ -51,6 +51,7 @@ await cryptoOptions(session, { currency: "SOL" });
 for (const member of ["beyer", "mcguire", "mike kelly"]) await congressTrades(session, { member, reports: 1 });
 // Nasdaq's calendars for 5 November 2026: earnings and ex-dividend dates, and the splits listed then.
 for (const kind of ["earnings", "dividends", "splits"]) await marketCalendar(session, { kind, date: "2026-11-05" });
+await marketCalendar(session, { kind: "ipos", date: "2026-10-01" });
 // CoinGecko: the five largest coins with the whole market, and two coins asked for by symbol and by id.
 await cryptoMarkets(session, { limit: 5 });
 await cryptoMarkets(session, { coins: ["eth", "solana"] });

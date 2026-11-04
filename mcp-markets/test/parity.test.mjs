@@ -181,3 +181,10 @@ test("unusual_options: contracts trading beyond their open interest, largest pre
   assert.match(r.limits[0], /does not say who bought/);
   assert.equal((await unusualOptions(session(), { symbol: "AAPL" })).flagged, 97, "100 contracts by default");
 });
+
+test("market_calendar ipos: a month's IPOs, priced and withdrawn, with price, shares and value", async () => {
+  const r = await marketCalendar(session(), { kind: "ipos", date: "2026-10-01" });
+  assert.equal(r.month, "2026-10");
+  assert.equal(r.rows.length, 53);
+  assert.deepEqual(r.rows[0], ["priced", "2026-10-30", "BBTX", "Bambusa Therapeutics, Inc.", "NASDAQ Global Select", "16.00", 10555555, 168888880]);
+});

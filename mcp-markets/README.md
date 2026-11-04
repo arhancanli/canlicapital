@@ -158,7 +158,7 @@ against the BIS (21 of 21 agreed on 2026-10-15).
 | `company_emissions` | A company's US greenhouse-gas emissions, facility by facility, by gas, with its ownership share and a trend | EPA's Greenhouse Gas Reporting Program |
 | `crypto_markets` | Coins ranked by market value with price, volume, changes, supply and distance from the high, and the whole market's value and bitcoin's share | CoinGecko (no key) |
 | `etf_profile` | What an ETF or fund costs and holds: expense ratio against its category, assets, yield, returns, top holdings, allocation, sectors | Yahoo Finance's fund profile |
-| `market_calendar` | Who reports earnings on given days (with the consensus EPS), who goes ex-dividend, and the splits coming up, across the market | Nasdaq's public calendars |
+| `market_calendar` | Who reports earnings on given days (with the consensus EPS), who goes ex-dividend, the splits coming up, and a month's IPOs, across the market | Nasdaq's public calendars |
 | `congress_trades` | Trades by members of the House: owner, asset and ticker, purchase or sale, dates and amount range, by member, state, district or ticker | The Clerk's periodic transaction reports, read from their PDFs |
 | `analyst_history` | Every upgrade, downgrade and price-target change by firm, earnings surprises, how the consensus moved, ratings month by month | Yahoo Finance (a vendor's aggregates, labeled so) |
 | `market_movers` | Today's biggest gainers, losers and most traded US stocks, and Yahoo's ready-made lists (most shorted, small-cap gainers...) | Yahoo Finance (no key) |

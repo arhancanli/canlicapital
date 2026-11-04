@@ -10,7 +10,7 @@ import { getJson, NotFound } from "./sources.mjs";
 const API = "https://api.nasdaq.com/api/calendar";
 const DATE = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "a date as YYYY-MM-DD");
 export const calendarInput = z.object({
-  kind: z.enum(["earnings", "dividends", "splits"]).describe("earnings: who reports and the consensus EPS; dividends: who goes ex-dividend; splits: splits coming up."),
+  kind: z.enum(["earnings", "dividends", "splits", "ipos"]).describe("earnings: who reports and the consensus EPS; dividends: who goes ex-dividend; splits: splits coming up; ipos: the month's IPOs, priced, expected, filed and withdrawn."),
   date: DATE.optional().describe("The first day; default today."),
   days: z.number().int().min(1).max(10).optional().describe("How many days from date (earnings and dividends); default 1."),
   symbols: z.array(z.string().min(1).max(12)).max(50).optional().describe("Only these tickers."),
@@ -29,6 +29,15 @@ export async function marketCalendar(session, args) {
   const only = a.symbols ? new Set(a.symbols.map((s) => s.toUpperCase())) : null;
   const read = (kind, day) => getJson(session, `${API}/${kind}?date=${day}`, { headers: { Accept: "application/json" }, maxAgeMs: 3600000 });
   const common = { source: "https://www.nasdaq.com/market-activity/earnings", limits: ["Nasdaq's public calendars as its website shows them; dates can move after they are read, and the consensus is a vendor's aggregate of analysts' estimates.", "Not investment advice."] };
+  if (a.kind === "ipos") {
+    // A month's IPOs: priced, expected, filed and withdrawn. ipo_pipeline reads the same companies' SEC filings.
+    const d = await getJson(session, `https://api.nasdaq.com/api/ipo/calendar?date=${start.slice(0, 7)}`, { headers: { Accept: "application/json" }, maxAgeMs: 3600000 });
+    const part = (v) => v?.rows ?? v?.upcomingTable?.rows ?? [];
+    const rows = [["priced", "pricedDate"], ["upcoming", "expectedPriceDate"], ["filed", "filedDate"], ["withdrawn", "withdrawDate"]]
+      .flatMap(([status, when]) => part(d?.data?.[status]).map((r) => [status, iso(r[when]), r.proposedTickerSymbol ?? null, r.companyName, r.proposedExchange ?? null, r.proposedSharePrice ?? null, num(r.sharesOffered), num(r.dollarValueOfSharesOffered)]))
+      .filter((r) => !only || only.has(String(r[2]).toUpperCase()));
+    return { kind: "ipos", month: start.slice(0, 7), columns: ["status", "date", "symbol", "company", "exchange", "price", "shares", "value_usd"], rows: rows.slice(0, limit), note: "price is the offer price once priced, or the expected range before.", ...common, source: "https://www.nasdaq.com/market-activity/ipos" };
+  }
   if (a.kind === "splits") {
     const d = await read("splits", start);
     const rows = (d?.data?.rows ?? []).map((r) => [r.symbol, r.name, String(r.ratio ?? "").replace(/\s+/g, ""), iso(r.executionDate)]).filter((r) => !only || only.has(r[0])).sort((x, y) => String(x[3]).localeCompare(String(y[3])));
