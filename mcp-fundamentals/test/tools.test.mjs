@@ -19,9 +19,10 @@ import {
   toolKnownAsOf,
   toolListConcepts,
   toolRestatements,
+  toolVintageDiff,
   toolVintages,
 } from "../src/server.mjs";
-import { CIK, EXXON, RAW, SHA, fakeFetch, files } from "./fixture.mjs";
+import { CIK, EXXON, FACTS, RAW, SHA, fakeFetch, files } from "./fixture.mjs";
 import { indexFacts } from "../src/server.mjs";
 
 const session = (map, opts = {}) => {
@@ -259,6 +260,82 @@ test("a reference snapshot older than the company's newest report gives way to t
   const { s: off, calls: offCalls } = session(map);
   assert.equal(out(await toolListConcepts(off, { company: "FIX" })).snapshot.read_live, undefined);
   assert.equal(offCalls.some((c) => c.startsWith("/submissions/")), false);
+});
+
+test("a long session sees a report filed after it first read a company, and reads again a few times for figures the SEC's facts do not hold yet", async () => {
+  const list = (...reports) => JSON.stringify({ filings: { recent: { form: reports.map((r) => r[0]), filingDate: reports.map((r) => r[1]), accessionNumber: reports.map((r) => r[2]) } } });
+  // The SEC's company facts with one more filing: a 10-K/A that restates the year to 2020-09-30 from 110 to 112.
+  const withFiling = (accn, filed) => {
+    const facts = structuredClone(FACTS);
+    facts.facts["us-gaap"].Revenues.units.USD.push({ start: "2019-10-01", end: "2020-09-30", val: 112, accn, fy: 2020, fp: "FY", form: "10-K/A", filed });
+    return Buffer.from(JSON.stringify(facts));
+  };
+  let clock = Date.parse("2026-11-05T12:00:00Z");
+  const map = files();
+  map[`/submissions/CIK${CIK}.json`] = list(["10-Q", "2026-08-01", "0000123456-26-000020"]);
+  const { s, calls } = session(map, { secLive: true, now: () => clock });
+  const year = { company: "FIX", concept: "Revenues", end: "2020-09-30", start: "2019-10-01" };
+  const last = async () => out(await toolVintages(s, year)).rows.at(-1);
+  const count = (part) => calls.filter((c) => c.includes(part)).length;
+  assert.equal((await last())[7], 110, "nothing newer than the reference: its figures stand");
+  // The fixture's reference holds no figures from that older 10-Q, as a 10-K/A adding only Part III would not;
+  // the reference stands against it at every check.
+  clock += 16 * 60 * 1000;
+  assert.equal((await last())[7], 110);
+  assert.equal(count("companyfacts"), 0);
+  // A restatement filed later the same session, read within fifteen minutes of the last check.
+  map[`/submissions/CIK${CIK}.json`] = list(["10-K/A", "2026-11-05", "0000123456-26-000041"], ["10-Q", "2026-08-01", "0000123456-26-000020"]);
+  map[`/api/xbrl/companyfacts/CIK${CIK}.json`] = withFiling("0000123456-26-000041", "2026-11-05");
+  clock += 10 * 60 * 1000;
+  assert.equal((await last())[7], 110, "checked at most every fifteen minutes");
+  assert.equal(count("/submissions/"), 2);
+  clock += 6 * 60 * 1000;
+  const restated = out(await toolVintages(s, year));
+  assert.deepEqual(restated.rows.at(-1).slice(2, 5), ["2026-11-05", "10-K/A", "0000123456-26-000041"]);
+  assert.equal(restated.rows.at(-1)[7], 112);
+  assert.equal(restated.snapshot.newer_filing.accession, "0000123456-26-000041");
+  assert.equal(restated.snapshot.reference.sha256, SHA, "the reference it replaced is still named");
+  assert.equal(count("companyfacts"), 1);
+  // Another report the SEC's facts do not hold yet: read again at each check, four reads in all, then let be.
+  map[`/submissions/CIK${CIK}.json`] = list(["10-Q", "2026-11-06", "0000123456-26-000050"], ["10-K/A", "2026-11-05", "0000123456-26-000041"]);
+  for (let i = 0; i < 6; i++) {
+    clock += 16 * 60 * 1000;
+    assert.equal((await last())[7], 112);
+  }
+  assert.equal(count("companyfacts"), 1 + 4);
+  // Facts that catch up within the tries are taken, and reading stops there.
+  map[`/submissions/CIK${CIK}.json`] = list(["10-Q", "2026-11-07", "0000123456-26-000060"], ["10-Q", "2026-11-06", "0000123456-26-000050"]);
+  clock += 16 * 60 * 1000;
+  await last();
+  map[`/api/xbrl/companyfacts/CIK${CIK}.json`] = withFiling("0000123456-26-000060", "2026-11-07");
+  clock += 16 * 60 * 1000;
+  assert.equal((await last())[2], "2026-11-07");
+  for (let i = 0; i < 3; i++) { clock += 16 * 60 * 1000; await last(); }
+  assert.equal(count("companyfacts"), 1 + 4 + 2);
+  // A failed read keeps the figures held.
+  map[`/submissions/CIK${CIK}.json`] = list(["10-Q", "2026-11-08", "0000123456-26-000070"]);
+  delete map[`/api/xbrl/companyfacts/CIK${CIK}.json`];
+  clock += 16 * 60 * 1000;
+  assert.equal((await last())[2], "2026-11-07");
+});
+
+test("vintage_diff lists what changed between two dates, with the filing that changed it, and counts what was new", async () => {
+  const { s } = session();
+  const all = out(await toolVintageDiff(s, { company: "FIX", from: "2020-01-01", to: "2021-01-01", periods: "all" }));
+  assert.deepEqual([all.compared, all.changed, all.first_reported_between, all.splits_excluded], [10, 2, 16, 1]);
+  assert.deepEqual(byCol(all).map((r) => [r.concept, r.value_then, r.value_now, r.form, r.accn]), [
+    ["OperatingLeaseLiability", 0, 30, "10-K", "0000123456-20-000020"],
+    ["Assets", 500, 520, "10-K/A", "0000123456-20-000002"],
+  ], "latest filing first");
+  // A plain name follows its tags, so a value moved to a new tag is a change.
+  const revenue = out(await toolVintageDiff(s, { company: "FIX", concept: "revenue", from: "2020-01-01", to: "2021-01-01" }));
+  assert.deepEqual(revenue.rows, [["revenue", "USD", "2019-09-30", "2018-10-01", 100, "2019-10-30", 90, "2020-10-29", "10-K", "0000123456-20-000020", -10]]);
+  assert.equal(revenue.first_reported_between, 1);
+  // Nothing filed between two dates: nothing changed.
+  const quiet = out(await toolVintageDiff(s, { company: "FIX", from: "2020-11-01", to: "2021-01-01", periods: "all" }));
+  assert.equal(quiet.changed, 0);
+  assert.equal(quiet.first_reported_between, 0);
+  await assert.rejects(toolVintageDiff(s, { company: "FIX", from: "2021-01-01", to: "2020-01-01" }), /must be before/);
 });
 
 test("names people use reach the listed company", async () => {
