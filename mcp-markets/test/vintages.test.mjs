@@ -30,3 +30,10 @@ test("revisions needs a vintage, and a vintage cannot be in the future", async (
   await assert.rejects(run({ series: "PAYEMS", revisions: true }), /give as_of too/);
   await assert.rejects(run({ series: "PAYEMS", as_of: "2027-01-01" }), /in the future/);
 });
+
+test("a series ALFRED keeps no past releases of is read as it stands up to the date, and says so", async () => {
+  const r = await run({ series: "SP500", as_of: "2024-06-03", last: 2 });
+  assert.equal(r.vintage, null);
+  assert.deepEqual(r.latest, { date: "2024-06-03", value: 5283.4 });
+  assert.match(r.as_published, /ALFRED keeps no past releases of SP500/);
+});

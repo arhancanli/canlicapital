@@ -495,8 +495,12 @@ export async function economicSeries(session, args) {
   const { id, matched_from: matched } = resolveSeries(a.series);
   // yoy needs a year before start.
   const fetchStart = a.start && a.transform === "yoy" ? `${Number(a.start.slice(0, 4)) - 1}${a.start.slice(4)}` : a.start;
+  // A series ALFRED keeps no past releases of (the S&P 500 index) is read as it stands, up to as_of: market
+  // prices are not revised, and the answer says which it is.
+  const asOfEnd = a.as_of && (!a.end || a.end > a.as_of) ? a.as_of : a.end;
+  const past = a.as_of ? alfredCsv(session, id, a.as_of, { start: fetchStart, end: a.end }).catch((err) => { if (err instanceof NotFound) return fredCsv(session, id, { start: fetchStart, end: asOfEnd }).then((r) => ({ ...r, vintage: null })); throw err; }) : null;
   const [data, title, today] = await Promise.all([
-    a.as_of ? alfredCsv(session, id, a.as_of, { start: fetchStart, end: a.end }) : fredCsv(session, id, { start: fetchStart, end: a.end }),
+    past ?? fredCsv(session, id, { start: fetchStart, end: a.end }),
     fredTitle(session, id),
     a.revisions ? fredCsv(session, id, { start: fetchStart, end: a.end }) : null,
   ]);
@@ -521,7 +525,7 @@ export async function economicSeries(session, args) {
   if (revised) { if (a.start) revised = revised.filter((r) => r[0] >= a.start); revised = revised.slice(-(a.last ?? 24)); }
   return {
     series: id, ...(matched ? { matched_from: matched } : {}), title, transform: tf, count: rows.length,
-    ...(a.as_of ? { as_of: a.as_of, vintage: data.vintage, as_published: `The values published by ${a.as_of} (ALFRED's vintage of ${data.vintage}), before any later revision.` } : {}),
+    ...(a.as_of ? { as_of: a.as_of, vintage: data.vintage, as_published: data.vintage ? `The values published by ${a.as_of} (ALFRED's vintage of ${data.vintage}), before any later revision.` : `ALFRED keeps no past releases of ${id}: these are today's values up to ${a.as_of}, which for a market price are the values then.` } : {}),
     latest: rows.length ? { date: rows[rows.length - 1][0], value: rows[rows.length - 1][1] } : null,
     dates: rows.map((r) => r[0]), values: rows.map((r) => r[1]),
     ...(cut ? { truncated_to_last: cap } : {}),

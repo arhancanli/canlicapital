@@ -28,7 +28,7 @@ async function recording(url, init = {}) {
 }
 
 const session = createSession({ fetchImpl: recording, now: () => NOW, env: {}, sleep: async () => {} });
-const calls = [{ series: "PAYEMS", as_of: "2025-09-01", revisions: true, start: "2025-01-01" }, { series: "unemployment rate", as_of: "2020-04-01", last: 3 }];
+const calls = [{ series: "PAYEMS", as_of: "2025-09-01", revisions: true, start: "2025-01-01" }, { series: "unemployment rate", as_of: "2020-04-01", last: 3 }, { series: "SP500", as_of: "2024-06-03", last: 2 }];
 for (const args of calls) {
   try {
     const r = await economicSeries(session, args);
