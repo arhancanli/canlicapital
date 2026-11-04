@@ -88,7 +88,7 @@ test("form names keep their number, \"news\" stays news, and a one-word tool nam
 
 // The markets tools added in 0.3.0, asked the way people ask. Measured 37 of 37 first when added.
 const MARKETS_Q = [
-  ["how heavily shorted is gamestop", ["short_interest"]], ["days to cover for tesla", ["short_interest"]], ["most shorted stocks", ["short_interest"]],
+  ["how heavily shorted is gamestop", ["short_interest"]], ["days to cover for tesla", ["short_interest"]], ["most shorted stocks", ["short_interest", "market_movers"]],
   ["dark pool volume for apple", ["off_exchange_volume"]], ["how much of nvda trades off exchange", ["off_exchange_volume"]],
   ["fails to deliver gme", ["fails_to_deliver"]], ["hedge fund positioning in gold futures", ["futures_positioning"]], ["commitments of traders crude oil", ["futures_positioning"]],
   ["what does voo hold", ["fund_portfolio", "index_constituents"]], ["top holdings of the ark innovation etf", ["fund_portfolio"]], ["etf inflows and outflows ivv", ["fund_portfolio"]],
@@ -361,7 +361,8 @@ const Q09 = [
   ["dividend growth rate over ten years for pepsi", ["shareholder_returns"]],
   ["shareholder yield including repurchases", ["shareholder_returns"]],
   ["how many years in a row has the dividend been raised", ["shareholder_returns"]],
-  ["is the share count shrinking", ["shareholder_returns"]],
+  // Since markets 0.13.0, buybacks gives each period's share count change too.
+  ["is the share count shrinking", ["shareholder_returns", "buybacks"]],
 ];
 
 test("requests for the 0.9.0 tools: a right tool first in at least 11 of 12 (the miss, \"european and asian markets\", finds Asian options first)", () => {
