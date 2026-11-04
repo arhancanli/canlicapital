@@ -61,7 +61,7 @@ const CURVES = Object.freeze({
   } },
   uk: { name: "United Kingdom", basis: "nominal zero-coupon gilt yields, published with a few days' lag", source: "Bank of England", load: async (session) => {
     const end = new Date(session.now()), start = new Date(session.now() - 21 * 86400000);
-    const fmt = (d) => `${String(d.getUTCDate()).padStart(2, "0")}/${d.toLocaleString("en-GB", { month: "short", timeZone: "UTC" })}/${d.getUTCFullYear()}`;
+    const fmt = (d) => `${String(d.getUTCDate()).padStart(2, "0")}/${["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][d.getUTCMonth()]}/${d.getUTCFullYear()}`;
     const url = `https://www.bankofengland.co.uk/boeapps/database/_iadb-fromshowcolumns.asp?csv.x=yes&Datefrom=${fmt(start)}&Dateto=${fmt(end)}&SeriesCodes=${Object.values(BOE_SERIES).join(",")}&CSVF=TN&UsingCodes=Y&VPD=Y&VFD=N`;
     return { ...boeCurve(await getText(session, url)), url };
   } },

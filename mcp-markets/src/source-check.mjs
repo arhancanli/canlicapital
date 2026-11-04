@@ -23,6 +23,7 @@ export const HOSTS = new Set([
   "banks.data.fdic.gov", "api.fdic.gov", "api.gleif.org", "api.openfigi.com", "api.gdeltproject.org", "api.coingecko.com", "api.kraken.com", "comtradeapi.un.org", "www.okx.com",
   "polymarket.com", "gamma-api.polymarket.com", "api.elections.kalshi.com", "portwatch.imf.org", "services9.arcgis.com", "filings.xbrl.org", "sourcify.dev",
   "api.tiingo.com", "cirrun.com", "canlicapital.com", "mba.tuck.dartmouth.edu", "www.deribit.com", "www.nyse.com", "disclosures-clerk.house.gov", "api.nasdaq.com", "www.nasdaq.com", "www.coingecko.com", "data.epa.gov", "ghgdata.epa.gov",
+  "api.bcb.gov.br", "api.beta.ons.gov.uk", "api.imf.org", "api.riksbank.se", "api.scb.se", "api.statistiken.bundesbank.de", "apisidra.ibge.gov.br", "app.norges-bank.no", "data.api.abs.gov.au", "data.bis.org", "data.ecb.europa.eu", "data.imf.org", "data.norges-bank.no", "data.snb.ch", "data.ssb.no", "dataexplorer.abs.gov.au", "ec.europa.eu", "edge.boi.gov.il", "ilostat.ilo.org", "sdmx.ilo.org", "sidra.ibge.gov.br", "www.boi.org.il", "www.bundesbank.de", "www.ons.gov.uk", "www.rba.gov.au", "www.riksbank.se", "www.ssb.no", "www.stat-search.boj.or.jp", "www.statistikdatabasen.scb.se", "www150.statcan.gc.ca", "www3.bcb.gov.br",
 ]);
 // An address that carries a key is the caller's, not a document's; it is never fetched.
 const KEYED = /[?&](api_?key|apikey|token|key|access_token|secret)=/i;

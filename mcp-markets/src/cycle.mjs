@@ -15,8 +15,9 @@ export const cycleInput = z.object({
   periods: z.number().int().min(1).max(40).optional().describe("Quarters of history for each series (months three times as many for exchange rates). Default 8."),
 }).strict();
 
-// RFC 4180 rows: the BIS quotes fields that hold commas (its series titles do).
-export function csvRows(text) {
+// RFC 4180 rows: the BIS quotes fields that hold commas (its series titles do). Some central banks separate
+// fields with semicolons (the Bundesbank, Norges Bank, the SNB).
+export function csvRows(text, sep = ",") {
   const rows = [];
   let row = [], field = "", quoted = false;
   for (let i = 0; i < text.length; i += 1) {
@@ -24,7 +25,7 @@ export function csvRows(text) {
     if (quoted) {
       if (ch === '"' && text[i + 1] === '"') { field += '"'; i += 1; } else if (ch === '"') quoted = false; else field += ch;
     } else if (ch === '"') quoted = true;
-    else if (ch === ",") { row.push(field); field = ""; } else if (ch === "\n" || ch === "\r") {
+    else if (ch === sep) { row.push(field); field = ""; } else if (ch === "\n" || ch === "\r") {
       if (ch === "\r" && text[i + 1] === "\n") i += 1;
       row.push(field); field = "";
       if (row.some((c) => c !== "")) rows.push(row);
