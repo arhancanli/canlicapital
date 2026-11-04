@@ -24,7 +24,7 @@ branch and the latest npm release are supported.
   and for US stocks unless you set a key, in which case `data.alpaca.markets` or `api.tiingo.com`
   (`CANLI_KEYLESS_PRICES=0` turns Yahoo off). Nothing goes to Canli Capital;
 - sends what the tool needs and nothing else: the company, form, dates, search words or series
-  asked for. Results link to the publishers' own pages (`www.usaspending.gov`, `banks.data.fdic.gov`, `fiscaldata.treasury.gov`, `data.worldbank.org`, `data-explorer.oecd.org`, `adviserinfo.sec.gov`, `files.adviserinfo.sec.gov`, `reports.adviserinfo.sec.gov`, `polymarket.com`),
+  asked for. Results link to the publishers' own pages (`www.usaspending.gov`, `banks.data.fdic.gov`, `fiscaldata.treasury.gov`, `data.worldbank.org`, `data-explorer.oecd.org`, `adviserinfo.sec.gov`, `files.adviserinfo.sec.gov`, `reports.adviserinfo.sec.gov`, `polymarket.com`, `www.nyse.com` for `market_hours`, which reads nothing),
   which the server never requests, nor `www.finra.org`. SEC requests carry a User-Agent naming this package (or `SEC_USER_AGENT`, which SEC
   asks for: your name and email); other hosts get `canli-markets-mcp`;
 - keeps SEC requests at most 8 a second (SEC's limit is 10), refuses redirects, gives every

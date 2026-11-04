@@ -154,6 +154,7 @@ against the BIS (21 of 21 agreed on 2026-10-15).
 | `treasury_cash` | The Treasury's cash at the Fed each business day since 2005 (the TGA), and the day's largest deposits and withdrawals | Daily Treasury Statement (Fiscal Data) |
 | `federal_budget` | Receipts, outlays and the deficit each month, this fiscal year against the same months of the last | Monthly Treasury Statement (Fiscal Data) |
 | `factor_returns` | The Fama-French factors (market, size, value, profitability, investment, momentum, the T-bill rate), monthly since 1926, daily or by year, as fractions | Kenneth French's data library |
+| `market_hours` | Is the market open now, the next open and close, a year's holidays and early closes, trading days between two dates | NYSE's rules, computed (no network) |
 | `crypto_options` | Crypto options: each expiry's at-the-money volatility, open interest and put/call ratio, with DVOL, or one expiry's chain in dollars | Deribit public data (no key) |
 | `economic_outlook` | The OECD's projections for the next two years: growth, inflation, unemployment, deficits, debt, current account, rates | OECD Economic Outlook |
 | `world_economy` | Any country's economy: GDP and growth, inflation, unemployment, debt, deficits, trade, reserves, for 200+ countries and regions | World Bank (CC BY 4.0) |

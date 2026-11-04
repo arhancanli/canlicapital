@@ -6,6 +6,7 @@ import test from "node:test";
 import { cryptoOptions, parseInstrument } from "../src/deribit.mjs";
 import { factorReturns, parseLibrary } from "../src/factors.mjs";
 import { federalBudget, treasuryCash } from "../src/fiscal.mjs";
+import { calendar, easter, marketHours } from "../src/hours.mjs";
 import { createSession } from "../src/sources.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
 
@@ -77,4 +78,23 @@ test("crypto_options: the term structure with DVOL, one expiry's chain in dollar
   assert.equal(sol.settled_in, "USDC");
   assert.equal(sol.dvol, undefined, "DVOL is published for BTC and ETH");
   await assert.rejects(cryptoOptions(s, { currency: "BTC", view: "chain", expiry: "2026-11-10" }), /No BTC options expire on 2026-11-10\. Expiries listed: 2026-11-05, 2026-11-06/);
+});
+
+test("market_hours: NYSE's holidays and early closes as it published them, the clock across daylight saving, and trading days", () => {
+  const at = (iso) => ({ now: () => Date.parse(iso) });
+  const days = (y) => [...calendar(y).closed.keys()].filter((d) => ![0, 6].includes(new Date(`${d}T12:00:00Z`).getUTCDay())).sort();
+  assert.deepEqual(days(2024), ["2024-01-01", "2024-01-15", "2024-02-19", "2024-03-29", "2024-05-27", "2024-06-19", "2024-07-04", "2024-09-02", "2024-11-28", "2024-12-25"]);
+  assert.deepEqual(days(2025), ["2025-01-01", "2025-01-09", "2025-01-20", "2025-02-17", "2025-04-18", "2025-05-26", "2025-06-19", "2025-07-04", "2025-09-01", "2025-11-27", "2025-12-25"], "with the day of mourning for President Carter");
+  assert.deepEqual([...calendar(2024).early.keys()].sort(), ["2024-07-03", "2024-11-29", "2024-12-24"]);
+  assert.deepEqual([...calendar(2026).early.keys()].sort(), ["2026-11-27", "2026-12-24"], "3 July 2026 is the observed holiday, so no early close");
+  assert.ok(!days(2022).includes("2021-12-31") && days(2022)[0] === "2022-01-17", "New Year's Day on a Saturday is not moved to Friday");
+  assert.equal(easter(2027), "2027-03-28");
+  const r = marketHours(at("2026-03-09T13:00:00Z"), { year: 2024, start: "2024-01-01", end: "2024-12-31", date: "2026-07-03" });
+  assert.equal(r.now.status, "pre-market");
+  assert.deepEqual(r.now.next_open, { eastern: "2026-03-09 09:30", utc: "2026-03-09T13:30:00.000Z" }, "the day after daylight saving starts");
+  assert.equal(r.trading_days.count, 252);
+  assert.deepEqual(r.date, { date: "2026-07-03", trading_day: false, reason: "Independence Day" });
+  assert.equal(marketHours(at("2026-12-24T17:59:00Z"), {}).now.next_close.eastern, "2026-12-24 13:00");
+  assert.match(marketHours(at("2026-11-07T15:00:00Z"), {}).now.status, /closed \(Saturday\)/);
+  assert.equal(marketHours(at("2026-11-04T21:30:00Z"), {}).now.status, "after-hours");
 });
