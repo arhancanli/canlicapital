@@ -628,7 +628,7 @@ if (isMain && process.argv[2] === "audit") {
   // Where events go is set here, by whoever runs this, and never by a rule.
   const [verb, ...rest] = process.argv.slice(3);
   if (TIME_MACHINE) { process.stderr.write("The sentinel watches the present, so it does not run as of a past date.\n"); process.exit(2); }
-  const packs = enabledPacks({ ...process.env, CANLI_PACKS: "markets" }), gov = governance(process.env, canliHome());
+  const packs = enabledPacks({ ...process.env, CANLI_PACKS: "markets,fundamentals" }), gov = governance(process.env, canliHome());
   process.on("exit", () => gov.close());
   const call = (name, args) => runOne(packs, { name, arguments: args }, {}, [], gov);
   const { createSentinel, webhookSink } = await import("../local/sentinel.mjs");

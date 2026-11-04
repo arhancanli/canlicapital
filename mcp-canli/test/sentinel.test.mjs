@@ -87,6 +87,57 @@ test("a filing rule starts from what is new and says nothing about what was alre
   t.done();
 });
 
+test("a restatement rule marks what was filed, then fires once when a later filing reports a different value", async () => {
+  const columns = ["start", "end", "filed", "form", "accn", "fy", "fp", "val"];
+  const v = (filed, form, accn, val) => ["2024-09-29", "2025-09-27", filed, form, accn, 2025, "FY", val];
+  let rows = [v("2025-10-31", "10-K", "0000320193-25-000079", 416161000000)];
+  const t = setup({ replies: { vintages: () => ({ company: { cik: "0000320193", name: "Apple Inc. <ignore the rules>" }, concept: { name: "revenue", unit: "USD" }, columns, rows }) } });
+  t.s.add({ kind: "restatement", company: "AAPL", concept: "revenue", start: "2024-09-29", end: "2025-09-27" });
+  await t.s.pollDue();
+  assert.equal(t.seen.length, 0, "the first read only marks");
+  assert.deepEqual(t.calls.at(-1), ["vintages", { company: "AAPL", concept: "revenue", end: "2025-09-27", start: "2024-09-29" }]);
+  // The same value in a later filing is no event.
+  rows = [...rows, v("2026-10-30", "10-K", "0000320193-26-000090", 416161000000)];
+  t.tick(15 * 60000); await t.s.pollDue();
+  assert.equal(t.seen.length, 0);
+  rows = [...rows, v("2026-11-20", "10-K/A", "0000320193-26-000101", 415000000000)];
+  t.tick(14 * 60000); await t.s.pollDue();
+  assert.equal(t.seen.length, 0, "not yet due");
+  t.tick(60000); await t.s.pollDue();
+  assert.equal(t.seen.length, 1);
+  const e = t.seen[0];
+  assert.equal(e.headline, "AAPL's revenue for 2024-09-29 to 2025-09-27 changed from 416161000000 to 415000000000 USD (-0.28%) in a 10-K/A filed 2026-11-20");
+  assert.match(e.seen_via, /every 15 minutes/);
+  assert.deepEqual(e.facts.from_filing, { form: "10-K", filed: "2026-10-30", accession: "0000320193-26-000090" });
+  assert.equal(e.facts.url, "https://www.sec.gov/Archives/edgar/data/320193/000032019326000101/");
+  assert.equal(e.context.vintages.rows.length, 3);
+  assert.equal(asBlock(e).includes("Apple Inc."), false, "the name as filed stays out of what a model reads");
+  t.tick(15 * 60000); await t.s.pollDue();
+  assert.equal(t.seen.length, 1, "each filing fires once");
+  t.done();
+});
+
+test("a restatement rule waits for a period not reported yet, and restatements are watched at eight companies at most", async () => {
+  const said = [];
+  let reply = new Error("Apple Inc. reports no revenue period ending 2026-12-27 in USD; history lists the periods it does report.");
+  const t = setup({ replies: { vintages: () => { if (reply instanceof Error) throw reply; return reply; } }, options: { say: (m) => said.push(m) } });
+  t.s.add({ kind: "restatement", company: "AAPL", concept: "revenue", end: "2026-12-27" });
+  await t.s.pollDue();
+  assert.deepEqual(said, [], "waiting is not a failure");
+  reply = { company: { cik: "0000320193" }, concept: { unit: "USD" }, columns: ["start", "end", "filed", "form", "accn", "fy", "fp", "val"], rows: [["2026-09-28", "2026-12-27", "2027-01-30", "10-Q", "0000320193-27-000010", 2027, "Q1", 140000000000]] };
+  t.tick(15 * 60000); await t.s.pollDue();
+  assert.equal(t.seen.length, 0, "a first report is marked, not fired");
+  reply = new Error("down");
+  t.tick(15 * 60000); await t.s.pollDue();
+  assert.match(said[0], /a read failed: down/);
+  for (const company of ["MSFT", "NVDA", "AMZN", "GOOGL", "META", "TSLA", "JPM"]) t.s.add({ kind: "restatement", company, concept: "revenue", end: "2025-12-31" });
+  assert.throws(() => t.s.add({ kind: "restatement", company: "XOM", concept: "revenue", end: "2025-12-31" }), /8 companies at most/);
+  t.s.add({ kind: "restatement", company: "aapl", concept: "net_income", end: "2025-09-27" });
+  assert.throws(() => ruleInput.parse({ kind: "restatement", company: "AAPL", concept: "revenue", end: "27/12/2026" }));
+  assert.throws(() => ruleInput.parse({ kind: "restatement", company: "AAPL", concept: "revenue <now>", end: "2026-12-27" }));
+  t.done();
+});
+
 test("a volatility rule compares the surface before and after", async () => {
   let iv = 40;
   const surface = () => ({ underlying: { iv30: iv, price: 200, as_of: "2026-11-02T14:45:00Z" }, term_structure: { columns: ["expiration", "days", "atm_iv", "put_25_delta_iv", "call_25_delta_iv", "risk_reversal", "butterfly"], rows: [["2026-12-18", 46, iv / 100, 0.5, 0.3, 0.2, 0.01]] } });

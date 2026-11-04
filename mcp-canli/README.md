@@ -444,12 +444,15 @@ Set a condition and it is watched from your machine. When it is met, you get wha
 npx canli-mcp sentinel add '{"kind":"price_move","symbol":"BTC-USD","percent":2,"within_minutes":30}'
 npx canli-mcp sentinel add '{"kind":"volatility_move","symbol":"NVDA","points":5,"within_minutes":120}'
 npx canli-mcp sentinel add '{"kind":"filing","company":"NVDA","forms":["8-K"]}'
+npx canli-mcp sentinel add '{"kind":"restatement","company":"AAPL","concept":"revenue","start":"2024-09-29","end":"2025-09-27"}'
 npx canli-mcp sentinel run --exec 'claude -p "A market event just fired. Brief me."'
 ```
 
+A restatement rule watches one figure of one period. It fires when a later filing reports a different value, which may be a restatement, a correction or a reclassification. The event gives both values, both filings and every filing that reported the period. Restatements are watched at 8 companies at most.
+
 A model can set rules too, with `sentinel_add`. Events go to standard output, `--webhook <url>` or `--exec <command>`, which gets the block on standard input. In Claude Code, `canli-mcp --channel` runs the sentinel inside the server and an event wakes the session; channels are a research preview there, so start it with `claude --dangerously-load-development-channels server:canli`. Other hosts cannot be woken by a server, so use `--exec`, or read `sentinel_events` at the start of a session.
 
-Crypto pairs stream from Coinbase's public feed. US stocks stream from Alpaca if you have keys set. Everything else is read on a timer: prices every 30 seconds from Yahoo, option quotes every 5 minutes from Cboe (15 minutes late), filings every 60 seconds from EDGAR. Every event says which, so you know how late it can be.
+Crypto pairs stream from Coinbase's public feed. US stocks stream from Alpaca if you have keys set. Everything else is read on a timer: prices every 30 seconds from Yahoo, option quotes every 5 minutes from Cboe (15 minutes late), filings every 60 seconds from EDGAR, company figures every 15 minutes from the SEC's company facts. Every event says which, so you know how late it can be.
 
 It tells and it never trades. A rule holds a condition and a note and nothing that can reach anything: where events go is set only on the command line, by you. A block carries numbers, dates, form types and SEC links, and no text from a filing or a headline, so outside text cannot talk to your model.
 

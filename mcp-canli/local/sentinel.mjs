@@ -24,8 +24,12 @@ const SEEN = {
   polled: "Yahoo's chart data, read every 30 seconds; it can run late, by 15 minutes or more on some markets",
   cboe: "Cboe's delayed option quotes, read every 5 minutes; they run about 15 minutes late",
   edgar: "EDGAR's latest-filings feed, read every 60 seconds; a filing appears within a minute or two of acceptance",
+  facts: "the SEC's filing list and company facts, read every 15 minutes; a filing's figures reach them minutes after acceptance, so an event can come half an hour or more after the filing",
 };
-const POLL_MS = { price: 30 * 1000, volatility: 5 * 60 * 1000, filing: 60 * 1000 };
+const POLL_MS = { price: 30 * 1000, volatility: 5 * 60 * 1000, filing: 60 * 1000, restatement: 15 * 60 * 1000 };
+// Each company watched for restatements is held in memory by the fundamentals pack, which holds eight; more
+// would be read in full from the SEC on every check.
+const RESTATEMENT_COMPANIES = 8;
 const STALL_MS = 90 * 1000;
 
 // A filer chooses its own name, so a name is outside text. It stays out of what a model reads, and what
@@ -39,6 +43,7 @@ const describeRule = (r) => {
   if (r.kind === "price_move") return `${upper(r.symbol)} moves ${r.percent}% within ${r.within_minutes} minutes`;
   if (r.kind === "price_level") return `${upper(r.symbol)} goes${r.above ? ` above ${r.above}` : ""}${r.above && r.below ? " or" : ""}${r.below ? ` below ${r.below}` : ""}`;
   if (r.kind === "volatility_move") return `${upper(r.symbol)} 30-day implied volatility moves ${r.points} points within ${r.within_minutes} minutes`;
+  if (r.kind === "restatement") return `a later filing changes ${r.company}'s ${r.concept}${r.unit ? ` in ${r.unit}` : ""} for ${r.start ? `${r.start} to ${r.end}` : `the period ending ${r.end}`}`;
   return `a new filing${r.company ? ` by ${r.company}` : ""}${r.forms?.length ? ` on ${r.forms.join(" or ")}` : ""}${r.event ? ` about ${r.event}` : ""}`;
 };
 
@@ -58,6 +63,7 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
     const rule = ruleInput.parse(input);
     if (rule.kind === "price_level" && !rule.above && !rule.below) throw new Error("price_level needs above or below.");
     if (rule.kind === "filing" && !rule.company && !rule.forms?.length && !rule.event) throw new Error("A filing rule needs company, forms or event; every filing in the market is thousands a day.");
+    if (rule.kind === "restatement" && new Set([...rules().filter((r) => r.kind === "restatement").map((r) => upper(r.company)), upper(rule.company)]).size > RESTATEMENT_COMPANIES) throw new Error(`Restatements are watched at ${RESTATEMENT_COMPANIES} companies at most: each is held in memory and checked against the SEC every 15 minutes, and more would be read in full on every check. Remove one first.`);
     const clean = "symbol" in rule ? { ...rule, symbol: upper(rule.symbol) } : rule;
     const { note: _note, cooldown_minutes: _cool, ...condition } = clean;
     const id = `${clean.kind}-${createHash("sha256").update(JSON.stringify(condition)).digest("hex").slice(0, 8)}`;
@@ -84,7 +90,7 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
 
   async function fire(rule, headline, seen, facts, context) {
     const s = stateOf(rule.id);
-    const cool = (rule.cooldown_minutes ?? (rule.kind === "filing" ? 0 : 30)) * 60 * 1000;
+    const cool = (rule.cooldown_minutes ?? (rule.kind === "filing" || rule.kind === "restatement" ? 0 : 30)) * 60 * 1000;
     if (cool && s.last && now() - s.last < cool) return null;
     s.last = now();
     const event = { id: `${rule.id}-${now()}`, rule: rule.id, kind: rule.kind, at: new Date(now()).toISOString(), rule_text: describeRule(rule), ...(rule.note ? { note: rule.note } : {}), headline, seen_via: seen, facts };
@@ -173,6 +179,44 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
     if (s.seen.size > 5000) s.seen = new Set([...s.seen].slice(-3000));
   }
 
+  // Every filing that reported the rule's period, from the fundamentals pack's vintages, which reads the SEC's
+  // own facts when a report is newer than the Canli reference. The first read marks each period's latest value;
+  // a later filing with a different one fires. A period not reported yet is waited for, and its first report is
+  // marked, not fired. The company's name as filed stays out: the headline uses the rule's own words.
+  async function pollRestatement(rule) {
+    let r;
+    try {
+      r = await within(call("vintages", { company: rule.company, concept: rule.concept, end: rule.end, ...(rule.start ? { start: rule.start } : {}), ...(rule.unit ? { unit: rule.unit } : {}) }), 60000);
+    } catch (e) {
+      // The fundamentals pack's words for a period no filing has reported yet.
+      if (/reports no .* period ending/.test(String(e?.message ?? e))) r = { columns: [], rows: [] };
+      else throw e;
+    }
+    const rows = (r.rows ?? []).map((row) => Object.fromEntries((r.columns ?? []).map((c, i) => [c, row[i]])));
+    const s = stateOf(rule.id), first = s.seen === null;
+    s.seen ??= new Set();
+    s.marks ??= new Map();
+    const unit = /^[A-Za-z0-9/_-]{1,20}$/.test(String(r.concept?.unit ?? "")) ? r.concept.unit : null;
+    const cik = /^\d{10}$/.test(String(r.company?.cik ?? "")) ? r.company.cik : null;
+    const who = plain(rule.company, 60), what = String(rule.concept).replace(/[^A-Za-z0-9_:-]/g, "");
+    // Oldest first: each period's values in filing order, so a mark is always the latest before the next.
+    for (const v of rows) {
+      if (typeof v.val !== "number" || typeof v.accn !== "string") continue;
+      const period = `${v.start ?? ""}/${v.end}${v.tag ? `/${v.tag}` : ""}`, key = `${period}|${v.accn}`;
+      if (s.seen.has(key)) continue;
+      s.seen.add(key);
+      const before = s.marks.get(period);
+      s.marks.set(period, v);
+      if (first || !before || before.val === v.val) continue;
+      const form = plain(v.form, 20) ?? "a filing", accession = plain(v.accn, 25), span = v.start ? `${v.start} to ${v.end}` : `the period ending ${v.end}`;
+      const url = cik && accession ? secLink(`https://www.sec.gov/Archives/edgar/data/${Number(cik)}/${accession.replace(/-/g, "")}/`) : null;
+      const change = before.val ? round(((v.val - before.val) / Math.abs(before.val)) * 100) : null;
+      await fire(rule, `${who}'s ${what} for ${span} changed from ${before.val} to ${v.val}${unit ? ` ${unit}` : ""}${change === null ? "" : ` (${change > 0 ? "+" : ""}${change}%)`} in a ${form} filed ${plain(v.filed, 10)}`, SEEN.facts,
+        { company: who, cik, concept: what, unit, start: v.start ?? null, end: v.end, from: before.val, to: v.val, change_percent: change, from_filing: { form: plain(before.form, 20), filed: plain(before.filed, 10), accession: plain(before.accn, 25) }, form, filed: plain(v.filed, 10), accession, url },
+        async () => ({ vintages: { columns: ["start", "end", "filed", "form", "accn", "val"], rows: rows.filter((x) => `${x.start ?? ""}/${x.end}${x.tag ? `/${x.tag}` : ""}` === period).map((x) => [x.start ?? null, x.end, plain(x.filed, 10), plain(x.form, 20), plain(x.accn, 25), x.val]) }, filing: { form, accession, url } }));
+    }
+  }
+
   async function pollPrice(sym) {
     const r = await within(call("latest_price", { symbol: sym }), 15000);
     if (Number.isFinite(r.price)) await onPrice(sym, r.price, now(), "polled");
@@ -188,6 +232,7 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
     for (const r of list) {
       if (r.kind === "volatility_move" && due(r.id, POLL_MS.volatility)) jobs.push(pollVolatility(r));
       if (r.kind === "filing" && due(r.id, POLL_MS.filing)) jobs.push(pollFilings(r));
+      if (r.kind === "restatement" && due(r.id, POLL_MS.restatement)) jobs.push(pollRestatement(r));
     }
     for (const out of await Promise.allSettled(jobs)) if (out.status === "rejected") say(`a read failed: ${String(out.reason?.message ?? out.reason).slice(0, 200)}`);
   }
