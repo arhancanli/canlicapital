@@ -10,12 +10,14 @@ const INDEX = buildIndex(ENTRIES);
 const PACKS = ["quant", "validation", "fundamentals", "research", "backtest", "markets", "paper"];
 const Q = [
   ["did my backtest overfit after trying 40 variants", ["validate_deflated_sharpe", "deflated_sharpe_ratio"]],
-  ["probability of backtest overfitting cscv", ["validate_overfitting"]],
+  // Since quant 0.3.0 a sweep gives the probability of overfitting for its own variants.
+  ["probability of backtest overfitting cscv", ["validate_overfitting", "strategy_sweep"]],
   ["data snooping test on all the variants i tried", ["validate_reality_check"]],
   ["how many years of track record do i need", ["validate_track_record"]],
   ["haircut sharpe harvey liu", ["validate_haircut_sharpe"]],
   ["audit my strategy returns", ["audit_backtest"]],
-  ["does my signal look ahead", ["check_leakage"]],
+  // check_leakage reruns the signal's code; quant 0.3.0's lookahead_check reads the weights alone.
+  ["does my signal look ahead", ["check_leakage", "lookahead_check"]],
   ["run my pipeline on noise placebo", ["placebo_test"]],
   ["will my strategy survive a crash bootstrap drawdown", ["strategy_stress_test"]],
   ["can my broker handle this many orders", ["check_feasibility"]],
@@ -206,7 +208,7 @@ const EVERYDAY_Q = [
   ["forward rate between two years", ["forward_rate"]],
   ["risk parity weights", ["risk_parity_portfolio"]],
   ["is the sharpe ratio significant after many trials", ["validate_deflated_sharpe","deflated_sharpe_ratio","validate_haircut_sharpe"]],
-  ["check my returns for lookahead bias", ["check_leakage"]],
+  ["check my returns for lookahead bias", ["check_leakage", "lookahead_check"]],
   ["how long a track record to prove skill", ["validate_track_record"]],
   ["momentum factor backtest without look-ahead", ["pit_factor","backtest_cross_sectional_momentum","backtest_time_series_momentum"]],
   ["buy spy in my alpaca paper account", ["preview_paper_orders","send_paper_orders"]],
