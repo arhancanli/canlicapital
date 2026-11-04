@@ -6,7 +6,7 @@ import { join } from "node:path";
 import test from "node:test";
 
 import { execSink } from "../local/commands.mjs";
-import { createSentinel, webhookSink } from "../local/sentinel.mjs";
+import { chatSink, createSentinel, webhookSink } from "../local/sentinel.mjs";
 import { asBlock, channelSink, ruleInput } from "../src/sentinel.mjs";
 
 // Waits on what a test is waiting for, not on a timer: a busy machine can take longer than any fixed sleep.
@@ -273,6 +273,19 @@ test("a webhook gets the event, and a failure is an error", async () => {
   assert.equal(got[0][0], "https://example.test/hook");
   assert.equal(got[0][1].headline, "NVDA fell 3%");
   await assert.rejects(webhookSink("https://example.test/hook", async () => ({ ok: false, status: 500 }))(EVENT), /500/);
+});
+
+test("Slack and Discord get a message a person reads, and a failure is an error", async () => {
+  const sent = [];
+  const fetchImpl = async (url, init) => { sent.push([url, JSON.parse(init.body)]); return { ok: !url.includes("down") }; };
+  const event = { headline: "NVDA fell 3% in 5 minutes", rule_text: "NVDA moves 2% within 15 minutes", note: "watch", seen_via: "Coinbase's public trade stream, live", context: { long: "x".repeat(5000) } };
+  await chatSink("https://hooks.slack.com/services/T/B/x", "slack", fetchImpl)(event);
+  await chatSink("https://discord.com/api/webhooks/1/x", "discord", fetchImpl)(event);
+  assert.deepEqual(sent.map(([, body]) => Object.keys(body)), [["text"], ["content"]]);
+  assert.equal(sent[0][1].text, "canli-mcp sentinel: NVDA fell 3% in 5 minutes\nRule: NVDA moves 2% within 15 minutes (watch)\nSeen via Coinbase's public trade stream, live");
+  assert.ok(sent[1][1].content.length <= 1900, "within Discord's limit, the context left out");
+  await assert.rejects(chatSink("https://down.example/hook", "slack", fetchImpl)(event), /slack answered/);
+  assert.throws(() => chatSink("http://hooks.slack.com/x", "slack"), /https address/);
 });
 
 test("a command gets the block on standard input and nothing from the event on its command line", async () => {

@@ -334,6 +334,18 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
   return { add, remove, list, events, start, stop, pollDue, onPrice, sinks, rules, exists: () => existsSync(rulesFile) };
 }
 
+// A chat that shows an event to a person: a Slack or Discord incoming webhook, which takes a message rather than the
+// event as data. The message is what happened, the rule and how it was seen, with no outside text, as the block.
+export function chatSink(url, service, fetchImpl = fetch) {
+  if (!/^https:\/\//.test(String(url))) throw new Error(`--${service} takes the https address of an incoming webhook.`);
+  const key = service === "discord" ? "content" : "text";
+  return async (event) => {
+    const message = [`canli-mcp sentinel: ${event.headline}`, `Rule: ${event.rule_text}${event.note ? ` (${event.note})` : ""}`, `Seen via ${event.seen_via}`].join("\n").slice(0, 1900);
+    const r = await fetchImpl(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ [key]: message }), signal: AbortSignal.timeout(10000) });
+    if (!r.ok) throw new Error(`${service} answered ${r.status}`);
+  };
+}
+
 // Where events go. Each is chosen on the command line by the person running it, never by a rule.
 export function webhookSink(url, fetchImpl = fetch) {
   return async (event) => {

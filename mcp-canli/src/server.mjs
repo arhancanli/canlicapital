@@ -663,7 +663,7 @@ export const PRIVACY = (packs, gov) => ({
   packs: Object.fromEntries(packs.map((p) => [p, { network: packInfo(p).network, disk: packInfo(p).disk, ...(PLUGINS.has(p) ? { plugin: packInfo(p).package } : {}) }])),
   files: "{\"$file\": ...} arguments are read on this machine; nothing is uploaded and nothing is written by the reader",
   compile_cache: "Node keeps compiled JavaScript in its temp folder to start faster; it holds this server's code and nothing of yours",
-  sentinel: "off until you use it: rules and events are kept in CANLI_HOME/sentinel on this machine, and sent only where you say with --webhook, --exec or --channel",
+  sentinel: "off until you use it: rules and events are kept in CANLI_HOME/sentinel on this machine, and sent only where you say with --webhook, --slack, --discord, --exec or --channel",
   local_models: "off until you run canli-mcp models install: they run on this machine, and no text leaves it",
   telemetry: "none: no analytics, logging or crash reporting",
   offline: "CANLI_OFFLINE=1 enables only the packs whose network is none (quant, validation), and no other pack's code is loaded",
@@ -767,14 +767,14 @@ if (isMain && process.argv[2] === "audit") {
     every: Number(flag(argv, "--every") ?? 60),
   }, (line) => process.stdout.write(`${line}\n`));
 } else if (isMain && process.argv[2] === "sentinel") {
-  // `canli-mcp sentinel add '<rule as JSON>' | list | remove <id> | events | run [--webhook url] [--exec 'command'] [--once]`.
+  // `canli-mcp sentinel add '<rule as JSON>' | list | remove <id> | events | run [--webhook url] [--slack url] [--discord url] [--exec 'command'] [--once]`.
   // Where events go is set here, by whoever runs this, and never by a rule.
   const [verb, ...rest] = process.argv.slice(3);
   if (TIME_MACHINE) { process.stderr.write("The sentinel watches the present, so it does not run as of a past date.\n"); process.exit(2); }
   const packs = enabledPacks({ ...process.env, CANLI_PACKS: "markets,fundamentals" }), gov = governance(process.env, canliHome());
   process.on("exit", () => gov.close());
   const call = (name, args) => runOne(packs, { name, arguments: args }, {}, [], gov);
-  const { createSentinel, webhookSink } = await import("../local/sentinel.mjs");
+  const { chatSink, createSentinel, webhookSink } = await import("../local/sentinel.mjs");
   const s = createSentinel({ home: canliHome(), call, say: (m) => process.stderr.write(`${m}\n`) });
   const show = (x) => process.stdout.write(`${JSON.stringify(x)}\n`);
   if (verb === "add") show(s.add(JSON.parse(rest[0] ?? "{}")));
@@ -785,12 +785,13 @@ if (isMain && process.argv[2] === "audit") {
     if (!s.rules().length) { process.stderr.write("No rules yet. Add one: canli-mcp sentinel add '{\"kind\":\"price_move\",\"symbol\":\"BTC-USD\",\"percent\":2,\"within_minutes\":30}'\n"); process.exit(2); }
     s.sinks.add((event) => show(event));
     if (flag(rest, "--webhook")) s.sinks.add(webhookSink(flag(rest, "--webhook")));
+    for (const service of ["slack", "discord"]) if (flag(rest, `--${service}`)) s.sinks.add(chatSink(flag(rest, `--${service}`), service));
     if (flag(rest, "--exec")) s.sinks.add((await import("../local/commands.mjs")).execSink(flag(rest, "--exec")));
     if (rest.includes("--once")) { await s.pollDue(); process.exit(0); }
     for (const signal of ["SIGINT", "SIGTERM"]) process.on(signal, () => { s.stop(); process.exit(0); });
     s.start();
     setInterval(() => {}, 60000);
-  } else { process.stderr.write("usage: canli-mcp sentinel add '<rule as JSON>' | list | remove <id> | events [--last n] | run [--webhook url] [--exec 'command'] [--once]\n"); process.exit(2); }
+  } else { process.stderr.write("usage: canli-mcp sentinel add '<rule as JSON>' | list | remove <id> | events [--last n] | run [--webhook url] [--slack url] [--discord url] [--exec 'command'] [--once]\n"); process.exit(2); }
 } else if (isMain && process.argv[2] === "models") {
   // `canli-mcp models install | status | index <company> [--years n]`. Installing is the one way the
   // optional local models get onto a machine: no tool ever does it.
