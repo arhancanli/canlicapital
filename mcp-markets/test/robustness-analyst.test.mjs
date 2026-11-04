@@ -5,6 +5,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
+import { filingCheck } from "../src/filing-check.mjs";
 import { filingTables, tablesInput } from "../src/filing-tables.mjs";
 import { earningsRelease, releaseInput } from "../src/releases.mjs";
 import { createSession } from "../src/sources.mjs";
@@ -30,6 +31,7 @@ const TOOLS = [
   ["european_filings", europeanFilings, { company: "724500Y6DUVHQD6OXN27", year: 2025 }, ["company", "words"], ["year"]],
   ["prediction_markets", predictionMarkets, { query: "recession", limit: 3 }, ["query", "venue"], ["limit"]],
   ["crypto_fundamentals", cryptoFundamentals, { stablecoin: "USDC" }, ["protocol", "chain", "stablecoin"], ["days"]],
+  ["filing_check", filingCheck, { company: "AAPL", form: "10-Q" }, ["company", "form", "accession"], ["filings"]],
 ];
 
 test("verify_claims: hostile claims give verdicts or clean errors", async () => {

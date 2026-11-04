@@ -194,3 +194,31 @@ export async function futuresCurve(session, args) {
     limits: [...LIMITS, "Daily settlement prices from Cboe Futures Exchange's latest settlement file; the spot index is Cboe's delayed quote."],
   };
 }
+
+// unusual_options: the contracts trading far beyond what is already open in them, from the same delayed
+// quotes: volume at least min_ratio times the open interest (new positions more likely than closing ones),
+// ranked by the premium that changed hands (volume x mid x 100), with the day's call and put premium. The
+// quotes say neither who bought nor whether a trade opened a position: the answer flags, it does not prove.
+export const unusualInput = z.object({
+  symbol: z.string().min(1).max(20).describe("A stock or ETF (AAPL, SPY) or an index (SPX, NDX)."),
+  min_volume: z.number().int().min(1).optional().describe("Only contracts with at least this many traded today; default 100."),
+  min_ratio: z.number().min(0).max(1000).optional().describe("Volume at least this many times the open interest; default 1."),
+  limit: z.number().int().min(1).max(100).optional().describe("Most contracts, largest premium first; default 20."),
+}).strict();
+
+export async function unusualOptions(session, args) {
+  const a = unusualInput.parse(args);
+  const c = await chain(session, a.symbol), t = today(session);
+  const live = c.contracts.filter((x) => x.expiry >= t);
+  const price = (x) => x.mid ?? x.last ?? 0, premium = (x) => x.volume * price(x) * 100;
+  const flagged = live.filter((x) => x.volume >= (a.min_volume ?? 100) && x.volume > (a.min_ratio ?? 1) * x.oi).sort((p, q) => premium(q) - premium(p));
+  const total = (type) => round(live.filter((x) => x.type === type).reduce((s, x) => s + premium(x), 0), 0);
+  const calls = total("call"), puts = total("put");
+  return {
+    symbol: c.symbol, as_of: c.as_of, spot: c.spot, flagged: flagged.length,
+    day_premium_usd: { calls, puts, put_call_ratio: calls ? round(puts / calls, 4) : null },
+    columns: ["expiration", "days", "strike", "type", "volume", "open_interest", "volume_to_open_interest", "mid", "premium_usd", "iv", "delta", "strike_vs_spot_pct"],
+    rows: flagged.slice(0, a.limit ?? 20).map((x) => [x.expiry, days(t, x.expiry), x.strike, x.type, x.volume, x.oi, x.oi ? round(x.volume / x.oi, 2) : null, x.mid == null ? null : round(x.mid, 4), round(premium(x), 0), x.iv, x.delta, c.spot ? round((x.strike / c.spot - 1) * 100, 2) : null]),
+    limits: ["Today's volume against open interest as of the last close, from Cboe's delayed quotes: volume above open interest suggests new positions; the data does not say who bought or whether a trade opened or closed one.", ...LIMITS],
+  };
+}

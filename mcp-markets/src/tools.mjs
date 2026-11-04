@@ -556,7 +556,7 @@ export const priceInput = z.object({
     .describe("A ticker (AAPL, BRK.B), a stock listed abroad with its market suffix (SAP.DE, 7203.T, SHEL.L, 0700.HK), a currency pair (EUR/USD), a future (CL=F, or \"crude oil\", \"gold\"), an index (^GSPC, or \"S&P 500\", \"VIX\", \"10 year yield\") or a crypto pair (BTC/USD, or \"bitcoin\")."),
   start: DATE.optional().describe("First date; default one year ago."),
   end: DATE.optional().describe("Last date; default today."),
-  interval: z.enum(["1Day", "1Week", "1Month", "1Hour"]).optional().describe("Bar size; default 1Day (1Hour needs Alpaca)."),
+  interval: z.enum(["1Day", "1Week", "1Month", "1Hour", "30Min", "15Min", "5Min", "1Min"]).optional().describe("Bar size; default 1Day. Minute bars go back 30 days at 1Min and 60 days at 5 to 30 minutes on the keyless source (default: the last 5 days); Tiingo is daily only."),
   adjusted: z.boolean().optional().describe("Split- and dividend-adjusted; default true."),
   returns: z.boolean().optional().describe("Also return simple returns from close to close (returns[i] is from dates[i] to dates[i+1]), ready for beta, correlation or Sharpe tools."),
 }).strict();
@@ -573,9 +573,14 @@ function priceProvider(env) {
 // Yahoo Finance's public chart endpoint: no key, unofficial, for personal use under Yahoo's terms.
 // "close" there is split-adjusted; "adjclose" also adjusts for dividends, and open, high and low are
 // scaled by the same ratio when adjusted bars are asked for.
+// Bars within a day are stamped to the minute, in the exchange's time.
+const INTRADAY = /Min$|Hour$/;
+// How far back Yahoo's chart data keeps minute bars.
+const MINUTE_DAYS = Object.freeze({ "1Min": 30, "5Min": 60, "15Min": 60, "30Min": 60 });
+
 export function yahooChartUrl(symbol, start, end, interval = "1Day") {
   const sym = symbol.replace(/^([A-Z]{1,5})\.([ABC])$/, "$1-$2");
-  const iv = { "1Day": "1d", "1Week": "1wk", "1Month": "1mo", "1Hour": "1h" }[interval];
+  const iv = { "1Day": "1d", "1Week": "1wk", "1Month": "1mo", "1Hour": "1h", "30Min": "30m", "15Min": "15m", "5Min": "5m", "1Min": "1m" }[interval];
   const p1 = Math.floor(Date.parse(`${start}T00:00:00Z`) / 1000), p2 = Math.floor(Date.parse(`${end}T23:59:59Z`) / 1000);
   return `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?period1=${p1}&period2=${p2}&interval=${iv}&events=div%2Csplit&includeAdjustedClose=true`;
 }
@@ -587,7 +592,11 @@ async function yahooBars(session, symbol, { start, end, interval, adjusted }) {
   const res = r?.chart?.result?.[0];
   if (!res || !res.timestamp) throw new NotFound(`Yahoo Finance has no ${interval} bars for ${symbol} between ${start} and ${end}${r?.chart?.error?.description ? ` (${r.chart.error.description})` : ""}.`);
   const q = res.indicators.quote[0], adj = res.indicators.adjclose?.[0]?.adjclose, off = (res.meta.gmtoffset ?? 0) * 1000;
-  const stamp = (t) => new Date(t * 1000 + off).toISOString().slice(0, interval === "1Hour" ? 16 : 10);
+  // A bar within a day is stamped in the exchange's own time zone, bar by bar: the chart's single offset is
+  // today's, which is an hour off for bars on the other side of a daylight-saving change.
+  const zone = INTRADAY.test(interval) && res.meta.exchangeTimezoneName ? new Intl.DateTimeFormat("en-CA", { timeZone: res.meta.exchangeTimezoneName, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }) : null;
+  const local = (t) => { const p = Object.fromEntries(zone.formatToParts(new Date(t * 1000)).map((x) => [x.type, x.value])); return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}`; };
+  const stamp = (t) => (zone ? local(t) : new Date(t * 1000 + off).toISOString().slice(0, INTRADAY.test(interval) ? 16 : 10));
   const bars = [], adjCloses = [];
   res.timestamp.forEach((t, i) => {
     // A session that opens before midnight UTC (currencies, crypto, Asian markets) is stamped with
@@ -656,8 +665,9 @@ export async function priceHistory(session, args) {
     ? "Prices are off on this server (CANLI_KEYLESS_PRICES=0). On the hosted server, run the local one for prices: npx -y canli-mcp. Locally, set ALPACA_API_KEY_ID and ALPACA_API_SECRET_KEY (a free Alpaca account; paper keys work) or TIINGO_API_KEY, or pass prices to the analysis tools as a CSV file."
     : `${want.symbol} is not a US-listed stock, and its prices come only from Yahoo's chart data, which is off (CANLI_KEYLESS_PRICES=0).`);
   const symbol = want.symbol;
-  const start = a.start ?? daysAgo(session, 365), end = a.end ?? today(session);
   const interval = a.interval ?? "1Day", adjusted = a.adjusted !== false;
+  const start = a.start ?? daysAgo(session, MINUTE_DAYS[interval] ? 5 : 365), end = a.end ?? today(session);
+  if (p.name === "yahoo" && MINUTE_DAYS[interval] && start < daysAgo(session, MINUTE_DAYS[interval] - 1)) throw new Error(`${interval} bars go back ${MINUTE_DAYS[interval]} days on the keyless source; start on or after ${daysAgo(session, MINUTE_DAYS[interval] - 1)}, or use 1Hour or 1Day.`);
   let bars = [], adjCloses = null;
   let source, extra = {};
   if (p.name === "yahoo") {
@@ -672,14 +682,14 @@ export async function priceHistory(session, args) {
       const q = new URLSearchParams({ symbols: symbol, timeframe: interval, start, end, adjustment: adjusted ? "all" : "raw", feed: p.feed, limit: "10000", sort: "asc" });
       if (token) q.set("page_token", token);
       const r = await getJson(session, `https://data.alpaca.markets/v2/stocks/bars?${q}`, { headers: { "APCA-API-KEY-ID": p.id, "APCA-API-SECRET-KEY": p.secret }, secret: true });
-      for (const b of r.bars?.[symbol] ?? []) bars.push([b.t.slice(0, interval === "1Hour" ? 16 : 10), b.o, b.h, b.l, b.c, b.v]);
+      for (const b of r.bars?.[symbol] ?? []) bars.push([b.t.slice(0, INTRADAY.test(interval) ? 16 : 10), b.o, b.h, b.l, b.c, b.v]);
       token = r.next_page_token;
     } while (token && ++pages < 20);
     source = `Alpaca market data (${p.feed} feed)`;
     // adjustment=all adjusts for splits and dividends, so its closes give the total return.
     if (adjusted) adjCloses = bars.map((b) => b[4]);
   } else {
-    if (interval === "1Hour") throw new Error("1Hour bars need Alpaca; Tiingo's end-of-day prices are daily.");
+    if (INTRADAY.test(interval)) throw new Error(`${interval} bars need Alpaca or the keyless source; Tiingo's end-of-day prices are daily.`);
     const freq = { "1Day": "daily", "1Week": "weekly", "1Month": "monthly" }[interval];
     const q = new URLSearchParams({ startDate: start, endDate: end, resampleFreq: freq });
     const r = await getJson(session, `https://api.tiingo.com/tiingo/daily/${encodeURIComponent(symbol.replace(".", "-"))}/prices?${q}`, { headers: { Authorization: `Token ${p.key}` }, secret: true });

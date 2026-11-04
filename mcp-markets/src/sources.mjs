@@ -84,15 +84,16 @@ function witness(session, url, record) {
 export const FACTS_FROM = Object.freeze(new Map([[2115436, 34088]]));
 const factsHome = (url) => url.replace(/^(https:\/\/data\.sec\.gov\/api\/xbrl\/(?:companyfacts|companyconcept)\/CIK)(\d{10})/, (whole, head, cik) => (FACTS_FROM.has(Number(cik)) ? `${head}${String(FACTS_FROM.get(Number(cik))).padStart(10, "0")}` : whole));
 
-export async function getText(session, rawUrl, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false, method = "GET", body, variant, maxAgeMs, timeoutMs = TIMEOUT_MS, retries = 2 } = {}) {
+// fresh: read the source again, past both caches (source_check, which asks whether a document has changed).
+export async function getText(session, rawUrl, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false, method = "GET", body, variant, maxAgeMs, timeoutMs = TIMEOUT_MS, retries = 2, fresh = false } = {}) {
   const url = factsHome(rawUrl);
   const key = method === "GET" ? url : `${method} ${url} ${body ?? ""}`;
   const cacheKey = variant ? `${key}#${variant}` : key;
   const hit = session.cache.lookup(cacheKey, session.now());
   // maxAgeMs: a feed someone polls must not be answered from the ten-minute cache.
-  if (hit && (maxAgeMs === undefined || session.now() - hit.at < maxAgeMs)) { witness(session, key, session.hashes.get(key)); return parse(hit.text); }
+  if (!fresh && hit && (maxAgeMs === undefined || session.now() - hit.at < maxAgeMs)) { witness(session, key, session.hashes.get(key)); return parse(hit.text); }
   // Public data fetched in an earlier session, when still fresh for what it is.
-  const keepsOnDisk = session.disk && method === "GET" && !secret && !Object.keys(headers).length && freshFor(url) > 0;
+  const keepsOnDisk = !fresh && session.disk && method === "GET" && !secret && !Object.keys(headers).length && freshFor(url) > 0;
   const copy = keepsOnDisk ? await session.disk.read(cacheKey) : null;
   const useCopy = () => {
     session.hashes.delete(key);
@@ -163,7 +164,9 @@ export function unzipFirst(bytes, { maxText = 64 * 1024 * 1024 } = {}) {
   return out.toString("utf8");
 }
 
-export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024 } = {}) {
+// decode turns the bytes into the text kept: the zip's first file by default, or another binary format's
+// text (a PDF's, for the House's transaction reports).
+export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024, decode = unzipFirst } = {}) {
   const hit = session.cache.lookup(url, session.now());
   if (hit) { witness(session, url, session.hashes.get(url)); return hit.text; }
   let bytes;
@@ -182,7 +185,7 @@ export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024 } =
   const record = { sha256: createHash("sha256").update(bytes).digest("hex"), bytes: bytes.byteLength, retrieved_at: new Date(session.now()).toISOString() };
   session.hashes.set(url, record);
   witness(session, url, record);
-  const text = unzipFirst(bytes);
+  const text = decode(bytes);
   session.cache.set(url, { at: session.now(), text });
   return text;
 }
@@ -369,7 +372,7 @@ export function continuedFrom(sub, old, before) {
   return { ...sub, filings: { ...sub.filings, recent, files: old.filings?.files ?? [] } };
 }
 
-const FILING_FIELDS = ["accessionNumber", "filingDate", "reportDate", "form", "primaryDocument", "primaryDocDescription", "items"];
+const FILING_FIELDS = ["accessionNumber", "filingDate", "reportDate", "form", "primaryDocument", "primaryDocDescription", "items", "isInlineXBRL"];
 function filingRows(block) {
   const n = block?.accessionNumber?.length ?? 0;
   const out = [];
