@@ -30,7 +30,7 @@ import { runTriangulate, TRIANGULATE_TOOL } from "./triangulate.mjs";
 import { runWorlds, WORLDS_TOOL } from "./worlds.mjs";
 import { HUB_TOOLS, runHubCheck, runHubList, runHubRun } from "./hub.mjs";
 import { DRAFT_TOOL, runDraft } from "./draft.mjs";
-import { OMITTED, PACKS, PLUGINS, RENAMES, enabledPacks, loadPack, loadPlugins, offlineMode, packInfo } from "./packs.mjs";
+import { OMITTED, PACKS, PLUGINS, RENAMES, UPSTREAMS, enabledPacks, loadPack, loadPlugins, loadUpstreams, offlineMode, packInfo } from "./packs.mjs";
 import { signature } from "./signature.mjs";
 import { buildIndex, search } from "./search.mjs";
 import { registerPrompts } from "./prompts.mjs";
@@ -80,8 +80,21 @@ export async function addPlugins(env = process.env) {
     ENTRIES.push(e); BY_NAME.set(e.name, e);
   }
   if (plugins.length) SEARCH = buildIndex(ENTRIES);
-  return plugins.map((p) => p.pack);
+  // Upstream MCP servers connect in the background, so a slow one never delays this server's start;
+  // their tools join the catalog and the search as each answers.
+  const upstreams = loadUpstreams(env, canliHome(env), {
+    taken: (name) => BY_NAME.has(name), version: SERVER_INFO.version,
+    onTools: (pack, tools) => {
+      for (const t of tools) { const e = { name: t.name, pack, toolset: pack, title: t.title, description: t.description, keywords: t.keywords, args: signature(t.input) }; ENTRIES.push(e); BY_NAME.set(e.name, e); }
+      if (tools.length) SEARCH = buildIndex(ENTRIES);
+    },
+  });
+  UPSTREAM_READY.push(...upstreams.map((u) => u.ready));
+  return [...plugins.map((p) => p.pack), ...upstreams.map((u) => u.pack)];
 }
+const UPSTREAM_READY = [];
+// Waits, at most ms, for the upstream servers still connecting.
+const upstreamsSettled = (ms = 8000) => (UPSTREAM_READY.length ? Promise.race([Promise.allSettled(UPSTREAM_READY), new Promise((r) => setTimeout(r, ms).unref?.())]) : null);
 
 // The most asked-for tools, which run_tool takes without a find_tool first: each saves the model a
 // search turn on the commonest questions. Only tools in enabled packs are named.
@@ -128,6 +141,7 @@ const guard = (fn) => async (args, extra) => {
 async function toolFor(name, packs) {
   const desk = DESK.find((t) => t.name === name);
   if (desk) return desk;
+  if (!BY_NAME.has(name)) await upstreamsSettled();
   const e = BY_NAME.get(name);
   if (!e || !packs.includes(e.pack)) {
     const near = search(SEARCH, name.replace(/_/g, " "), { packs, limit: 3 }).map((t) => t.name);
@@ -466,8 +480,9 @@ async function execute(tool, name, args, { digits }, files) {
 
 // No pack filter: in an agent evaluation a model narrowed its search to one pack and missed the tool
 // that fitted its inputs in another.
-function findTool(packs, { query, limit }) {
+async function findTool(packs, { query, limit }) {
   if (typeof query !== "string" || !query.trim()) throw new Error("find_tool: query is what you need, in plain words.");
+  await upstreamsSettled();
   const want = Math.min(Math.max(Number(limit) || 6, 1), 50);
   const all = search(SEARCH, query, { packs: [...packs, "desk"], limit: TIME_MACHINE ? 50 : want });
   const found = TIME_MACHINE ? all.filter((t) => TIME_MACHINE.admits(t.name, t.pack) || TIME_MACHINE.selfAllowed(t.name)).slice(0, want) : all;
@@ -585,6 +600,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
   const vault = createVault({ onSet: () => { keeper.clear(); delta.clear(); } });
   // Hypotheses hashed before the data, named in every later receipt (prereg.mjs); kept in CANLI_HOME on this machine.
   const preregs = createRegistry({ keep: readOnly ? null : async (line) => (await import("../local/prereg.mjs")).keepPreregistration(canliHome(), line) });
+  const writers = packs.filter((p) => UPSTREAMS.get(p)?.write);
   server.registerTool("find_tool", {
     title: "Find a tool",
     description: `Search the ${ENTRIES.filter((e) => packs.includes(e.pack)).length} finance tools (packs: ${packs.join(", ")}) in plain words, e.g. "deflated sharpe", "revenue as of 2019". Returns the closest matches first, with names, argument signatures and one line each, even when none fits, so check them. Next: run_tool, or describe_tool if an argument is unclear.`,
@@ -601,9 +617,9 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
   }, guard(({ name }) => describeTool(packs, { name })));
   server.registerTool("run_tool", {
     title: "Run tools",
-    description: "Run a tool find_tool named: one ({name, arguments}), or up to 25 ({calls: [...]}). Independent calls run at once; a failed call returns its own error. Read-only unless the paper-trading pack is on. Any argument can be {\"$file\": \"path.csv\", \"column\": \"close\"} (or \"columns\": [...] / \"all\") instead of pasted numbers. {\"$result\": i, \"path\": \"close\"} passes batch call i's output into a later call; every result also has a ref (\"r1\", ...) later calls pass the same way, {\"$result\": \"r1\", \"path\": \"close\"}, so data never needs copying.",
-    // Only the paper pack can send anything that changes an account; without it nothing here is destructive.
-    annotations: { title: "Run tools", readOnlyHint: Boolean(readOnly), destructiveHint: packs.includes("paper"), idempotentHint: false, openWorldHint: true },
+    description: `Run a tool find_tool named: one ({name, arguments}), or up to 25 ({calls: [...]}). Independent calls run at once; a failed call returns its own error. Read-only unless the paper-trading pack is on${writers.length ? ` or ${writers.join(", ")} (an upstream server allowed to change things)` : ""}.` + " Any argument can be {\"$file\": \"path.csv\", \"column\": \"close\"} (or \"columns\": [...] / \"all\") instead of pasted numbers. {\"$result\": i, \"path\": \"close\"} passes batch call i's output into a later call; every result also has a ref (\"r1\", ...) later calls pass the same way, {\"$result\": \"r1\", \"path\": \"close\"}, so data never needs copying.",
+    // Only the paper pack, or an upstream server marked write, can change anything; without them nothing here is destructive.
+    annotations: { title: "Run tools", readOnlyHint: Boolean(readOnly), destructiveHint: packs.includes("paper") || writers.length > 0, idempotentHint: false, openWorldHint: true },
     inputSchema: RUN_INPUT,
     outputSchema: open,
     // Hosts that draw MCP Apps show the result in the viewer; others ignore this.
@@ -750,7 +766,7 @@ function auditLog(gov, args) {
 }
 
 export const PRIVACY = (packs, gov) => ({
-  packs: Object.fromEntries(packs.map((p) => [p, { network: packInfo(p).network, disk: packInfo(p).disk, ...(PLUGINS.has(p) ? { plugin: packInfo(p).package } : {}) }])),
+  packs: Object.fromEntries(packs.map((p) => { const info = packInfo(p); return [p, { network: info.network, disk: info.disk, ...(PLUGINS.has(p) ? { plugin: info.package } : {}), ...(UPSTREAMS.has(p) ? { upstream: info.package, tools: info.tools ?? "still connecting", ...(info.error ? { error: info.error } : {}), ...(info.off_because_they_change_things ? { off_because_they_change_things: info.off_because_they_change_things } : {}) } : {}) }]; })),
   files: "{\"$file\": ...} arguments are read on this machine; nothing is uploaded and nothing is written by the reader",
   compile_cache: "Node keeps compiled JavaScript in its temp folder to start faster; it holds this server's code and nothing of yours",
   sentinel: "off until you use it: rules and events are kept in CANLI_HOME/sentinel on this machine, and sent only where you say with --webhook, --slack, --discord, --exec or --channel",
@@ -861,6 +877,18 @@ if (isMain && process.argv[2] === "audit") {
     company: flag(argv, "--company"), event: flag(argv, "--event"),
     every: Number(flag(argv, "--every") ?? 60),
   }, (line) => process.stdout.write(`${line}\n`));
+} else if (isMain && process.argv[2] === "setup") {
+  // `canli-mcp setup [--dry-run] [--only cursor,vscode] [--remove] [--name canli] [--json]`: canli-mcp added to every
+  // MCP client found on this machine (local/setup.mjs).
+  const { formatSetup, setupClients } = await import("../local/setup.mjs");
+  try {
+    const r = setupClients({ home: homedir(), argv: process.argv.slice(3) });
+    process.stdout.write(process.argv.includes("--json") ? `${JSON.stringify(r)}\n` : formatSetup(r));
+  } catch (e) { process.stderr.write(`${e.message}\n`); process.exit(2); }
+} else if (isMain && process.argv[2] === "upstream") {
+  // `canli-mcp upstream add|list|remove`: other MCP servers whose tools join this one (local/upstream.mjs).
+  const { upstreamCommand } = await import("../local/upstream.mjs");
+  try { process.stdout.write(`${JSON.stringify(upstreamCommand(canliHome(), process.argv.slice(3)))}\n`); } catch (e) { process.stderr.write(`${e.message}\n`); process.exit(2); }
 } else if (isMain && process.argv[2] === "pack") {
   // `canli-mcp pack add <ticker, CIK or name>... | list`: companies saved for CANLI_OFFLINE=packs (local/pack.mjs).
   const [verb, ...rest] = process.argv.slice(3);

@@ -1,10 +1,20 @@
-// The only two places this server starts anything, and each only when a person asks on the command line.
+// The only places this server starts anything, and each only when a person asks: on the command line,
+// or by naming an upstream server's command in their own upstreams file.
 //
 // --exec runs the command they named. It gets the block on standard input and the rule's id in its
 // environment. Nothing from an event goes on its command line, so an event cannot change what runs.
 import { spawn, spawnSync } from "node:child_process";
 
+import { StdioClientTransport, getDefaultEnvironment } from "@modelcontextprotocol/client/stdio";
+
 import { asBlock } from "../src/sentinel.mjs";
+
+// An upstream MCP server that runs as a command (src/upstreams.mjs). It gets only the environment the
+// MCP SDK passes by default (PATH, HOME, USER, SHELL, TERM and the like) and the variables its entry
+// names, so no other key in this process's environment reaches it.
+export function stdioTransport({ command, args = [], env = {} }) {
+  return new StdioClientTransport({ command, args, env: { ...getDefaultEnvironment(), ...env }, stderr: "ignore" });
+}
 
 export function execSink(command, spawnImpl = spawn) {
   let queue = Promise.resolve();

@@ -44,7 +44,7 @@ No key and no account. [Add to VS Code](https://insiders.vscode.dev/redirect/mcp
 - New in 0.16.1: `exposure_map` finds the companies whose annual reports name a supplier, customer or other company, with the passage, and `my_week` sums up a week across what you hold in plain words. Answers take 15 to 22% fewer tokens.
 - Fixed in 0.17.1: Hansen's SPA and Romano and Wolf's StepM hold their size (validation 0.15.0), and the time machine no longer lets later filings through in fields without a date.
 - New in 0.17.0: foreign companies such as TSMC, Shell, Novo Nordisk and SAP, read live from the SEC with statements in two currencies; `stock_snapshot` for analysts' targets, valuation ratios and short interest; `technical_indicators`; euro exchange rates from the ECB.
-- Coming in 0.18.0: the holdout vault (years hidden from every tool until their one test), `preregister`, luck counted on every strategy result and every variant of a sweep, restatement alerts from the sentinel, `as_of` and `changes_only` on any call, answer budgets, a receipt and a cost meter on every answer, and the network tripwire.
+- Coming in 0.18.0: any other MCP server behind this one (`canli-mcp upstream add`), its tools found and batched here and none of them in your tool list; `canli-mcp setup` for every client on your machine; the holdout vault (years hidden from every tool until their one test), `preregister`, luck counted on every strategy result and every variant of a sweep, restatement alerts from the sentinel, `as_of` and `changes_only` on any call, answer budgets, a receipt and a cost meter on every answer, and the network tripwire.
 - Point-in-time SEC fundamentals.
 - An analyst's filings, and a check on the answer: financial statements exactly as filed (several
   years joined, restatements and splits shown beside the first-reported figures), the table in any
@@ -96,7 +96,16 @@ Claude Code:
 claude mcp add canli -- npx -y canli-mcp
 ```
 
-Claude Desktop, Cursor or any MCP client:
+Every MCP client on your machine at once (Claude Desktop, Cursor, Windsurf, VS Code, Gemini CLI, Kiro,
+LM Studio, Amazon Q, Codex): each one found gets a `canli` entry, the rest of its file is kept and a copy
+is saved beside it. `--dry-run` shows what would change, `--only cursor,vscode` picks clients and
+`--remove` takes the entry out again.
+
+```bash
+npx -y canli-mcp setup
+```
+
+Claude Desktop, Cursor or any MCP client, by hand:
 
 ```json
 { "mcpServers": { "canli": { "command": "npx", "args": ["-y", "canli-mcp"] } } }
@@ -355,6 +364,7 @@ answers it was built from, never data; `receipt: true` adds the hashes to the an
 | `CANLI_HOME` | Where the paper pack keeps its limits file, kill switch and order log, and the audit log and its keys are kept; default `~/.canli`. |
 | `CANLI_POLICY` | A policy file's path, or the policy itself as JSON (below). Unset: no policy and no audit log. |
 | `CANLI_PLUGINS` | Plugin packs to load (below): package names or `.mjs` paths, comma-separated. |
+| `CANLI_UPSTREAMS` | Other MCP servers whose tools join these (below), as JSON or a file's path. Default: `CANLI_HOME/upstreams.json`, which `canli-mcp upstream add` writes. |
 
 Order-sending tools never run inside a batch: preview first, then send on its own.
 
@@ -415,6 +425,32 @@ Its tools are found by `find_tool`, run in `run_tool` batches with `$file` and `
 under the policy file (`"weather:*"`) and the audit log like any other. A clash with an existing
 tool name stops the start with the reason. A plugin is code you chose to install and runs with the
 server's rights; none loads unless named, and none loads with `CANLI_OFFLINE=1`.
+
+## Other MCP servers behind this one
+
+Any other MCP server can sit behind canli-mcp: a data vendor's hosted server with your key, or one
+that runs as a command. Its tools join `find_tool`'s search and `run_tool`'s batches, `$result`,
+answer budgets, receipts, the policy file and the audit log, and none of them goes in your client's
+tool list, so a server with 250 tools costs the model nothing until one is used.
+
+```bash
+npx canli-mcp upstream add vendor https://mcp.example.com/mcp --header 'Authorization: Bearer ${VENDOR_KEY}'
+npx canli-mcp upstream add local --env 'TOKEN=${LOCAL_TOKEN}' -- npx -y some-mcp-server
+npx canli-mcp upstream list
+```
+
+Each server is a pack under the name you gave it. A tool whose name is already taken here gets that
+name in front (`vendor_history`). Write keys as `${NAME}`: canli-mcp reads them from its environment
+when it starts, so `CANLI_HOME/upstreams.json` (readable only by you) need hold no secret. A command
+gets only the environment the MCP SDK passes by default and the variables you name.
+
+Tools that send orders or change anything stay off: a tool counts as one when its own annotations say
+so, or when it has none and its name starts with a verb that acts (place, cancel, transfer...) or
+names orders. `--write` offers them; then each runs alone, never inside a batch, and run_tool says it
+can change things. `--tools 'get_*,quote'` offers only the tools named. Another server's text is
+scanned for words addressed to a model like any source's. Its tools cannot be held to a past date,
+so they are off under `as_of`, the time machine and a holdout. `canli://privacy` lists each server,
+how many tools it gave, which were left off and why, and the reason one could not connect.
 
 ## Live filings feed
 
