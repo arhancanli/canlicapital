@@ -41,6 +41,7 @@ import { watchFilings } from "./watch.mjs";
 import { createTimeMachine } from "./timemachine.mjs";
 import { signedTrialCount, TRIALS_TOOL } from "./trials.mjs";
 import { createLuck, shownTrials } from "./luck.mjs";
+import { createVault, HOLDOUT_TOOLS } from "./holdout.mjs";
 import { createDelta } from "./delta.mjs";
 import { runWeek, WEEK_TOOL } from "./week.mjs";
 import { channelSink, CHANNEL_INSTRUCTIONS, SENTINEL_TOOLS } from "./sentinel.mjs";
@@ -55,7 +56,7 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL];
+const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS];
 export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
@@ -161,6 +162,7 @@ export function createKeeper() {
     },
     get: (ref) => kept.get(ref)?.result,
     has: (ref) => kept.has(ref),
+    clear: () => { kept.clear(); chars = 0; },
     // The receipt of the answer a kept result came in, for the receipts of answers built from it.
     sign: (ref, receipt) => { const k = kept.get(ref); if (k) k.receipt = receipt; },
     receiptOf: (ref) => kept.get(ref)?.receipt,
@@ -418,7 +420,7 @@ async function describeTool(packs, { name }) {
 // client need not ask before each one.
 // The tools this server answers itself rather than through a pack. run_tool and the shell command both
 // come here, so a desk tool is never handed to a pack's runner.
-export function selfTools(packs, gov, keeper, readOnly = false) {
+export function selfTools(packs, gov, keeper, readOnly = false, vault = null) {
   const desk = { call: (name, args) => (name === "triangulate" ? runTriangulate(desk, args) : runOne(packs, { name, arguments: args }, {}, [], gov)), keep: (r) => keeper.put(r), get: (ref) => keeper.get(ref), at, toolFor: (name) => toolFor(name, packs), hosted: Boolean(readOnly) };
   // A rule outlives the call that sets it, so it lives on your machine and never on the hosted server.
   const sentinel = async () => {
@@ -429,6 +431,21 @@ export function selfTools(packs, gov, keeper, readOnly = false) {
   // A policy that bars these tools bars them here too, as it does for any pack's.
   const allowed = (name) => { if (gov?.policy) gov.check(BY_NAME.get(name), { destructive: false }); };
   const tools = { my_week: (args) => { allowed("my_week"); return runWeek(desk, args); }, signed_trial_count: (args) => { allowed("signed_trial_count"); if (readOnly) throw new Error("The signed log is on your own machine. Run it locally: npx -y canli-mcp"); return signedTrialCount(args, { dir: join(canliHome(), "audit"), keys: publicKeys(canliHome()) }); }, sentinel_add: async (args) => { allowed("sentinel_add"); return (await sentinel()).add(args); }, sentinel_list: async () => { allowed("sentinel_list"); return (await sentinel()).list(); }, sentinel_remove: async ({ id }) => { allowed("sentinel_remove"); return (await sentinel()).remove(id); }, sentinel_events: async (args) => { allowed("sentinel_events"); return (await sentinel()).events(args ?? {}); }, brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), stress_worlds: (args) => runWorlds(desk, args), hub_list: (args) => runHubList(args), hub_check: (args) => runHubCheck(args), hub_run: (args) => runHubRun(desk, args), draft_orders: (args) => runDraft(args), triangulate: (args) => runTriangulate(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
+  // The holdout vault keeps a session, so it lives on your machine (holdout.mjs).
+  const vaulted = (name) => { allowed(name); if (readOnly || !vault) throw new Error("The holdout vault keeps a session, and the hosted server keeps nothing between requests. Run it locally: npx -y canli-mcp"); return vault; };
+  tools.holdout_set = (args) => vaulted("holdout_set").set(args);
+  tools.holdout_status = () => vaulted("holdout_status").status();
+  tools.holdout_test = async (args) => {
+    const v = vaulted("holdout_test");
+    v.check();
+    const a = HOLDOUT_TOOLS[1].input.parse(args ?? {});
+    if (BY_NAME.get(a.name)?.pack === "desk") throw new Error(`holdout_test runs a pack's tool, not ${a.name}.`);
+    // Held only to the server's own date, if it runs as of one: the holdout is what this call may see.
+    const result = await runOne(packs, { name: a.name, arguments: a.arguments ?? {} }, {}, [], gov, TIME_MACHINE ?? undefined);
+    const test = v.record({ tool: a.name, input_sha256: sha256({ name: a.name, arguments: a.arguments ?? {} }), output_sha256: sha256(result) });
+    gov?.audit?.record?.({ tool: "holdout_test", pack: "desk", args: { tool: a.name, from: v.from() }, result: test });
+    return { ...result, holdout: { from: v.from(), test, reading: "The one test of this holdout. It stays hidden after this test, so a second one is refused." } };
+  };
   if (!TIME_MACHINE) return tools;
   return Object.fromEntries(Object.entries(tools).map(([name, run]) => [name, TIME_MACHINE.selfAllowed(name) ? run : () => { throw TIME_MACHINE.refuse(name); }]));
 }
@@ -440,6 +457,8 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
   const luck = createLuck({ scope: readOnly ? "request" : "session" });
   // Each call's last whole result, for changes_only (delta.mjs).
   const delta = createDelta();
+  // A holdout period hidden from every tool until its one test (holdout.mjs); setting it clears what was kept.
+  const vault = createVault({ onSet: () => { keeper.clear(); delta.clear(); } });
   server.registerTool("find_tool", {
     title: "Find a tool",
     description: `Search the ${ENTRIES.filter((e) => packs.includes(e.pack)).length} finance tools (packs: ${packs.join(", ")}) in plain words, e.g. "deflated sharpe", "revenue as of 2019". Returns the closest matches first, with names, argument signatures and one line each, even when none fits, so check them. Next: run_tool, or describe_tool if an argument is unclear.`,
@@ -480,13 +499,16 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     if (a.calls && a.name) throw new Error("Pass either name or calls, not both.");
     const calls = a.calls ?? [{ name: a.name, arguments: a.arguments }], files = [], opts = { digits: a.digits };
     // as_of: this call as of a past date, under the time machine's locks, and never later than the server's own date.
-    const machine = a.as_of ? createTimeMachine(TIME_MACHINE && TIME_MACHINE.asOf < a.as_of ? TIME_MACHINE.asOf : a.as_of, { call: !TIME_MACHINE }) : TIME_MACHINE;
+    let machine = a.as_of ? createTimeMachine(TIME_MACHINE && TIME_MACHINE.asOf < a.as_of ? TIME_MACHINE.asOf : a.as_of, { call: !TIME_MACHINE }) : TIME_MACHINE;
+    // A holdout hides its years from every call but its one test, which runs on its own (holdout_test).
+    const hidden = readOnly ? null : vault.until();
+    if (hidden && (!machine || hidden < machine.asOf)) machine = createTimeMachine(hidden, { reason: `while the holdout from ${vault.from()} is set (holdout_status)` });
     // A view is drawn only where the host draws MCP Apps; elsewhere view changes nothing but the
     // backtest curve. A backtest shown as a view gets its curve and trades.
     const viewing = Boolean(a.view) && clientDrawsApps(server);
     if (a.view) for (const c of calls) if (/^backtest_/.test(c.name) && !(c.arguments && "curve" in c.arguments)) { try { if ((await toolFor(c.name, packs)).input?.shape?.curve) c.arguments = { ...(c.arguments ?? {}), curve: true }; } catch { /* reported when it runs */ } }
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
-    const SELF = selfTools(packs, gov, keeper, readOnly);
+    const SELF = selfTools(packs, gov, keeper, readOnly, vault);
     const run = (c, args) => (SELF[c.name] ? Promise.resolve().then(() => { if (machine && !machine.selfAllowed(c.name)) throw machine.refuse(c.name); return SELF[c.name](args); }) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov, machine));
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
     if (calls.length > 1 && destructive.some(Boolean)) throw new Error("A tool that sends orders cannot run inside a batch; call it on its own after previewing.");
@@ -505,6 +527,8 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
       const note = luck.record(d.name, calls[i]?.arguments, d.result);
       if (note) d.result = { ...d.result, luck: note };
     });
+    // Calls that read the world before a holdout was set may have seen it; its status counts them.
+    for (const d of done) if (!SELF[d.name] && !["quant", "validation"].includes(BY_NAME.get(d.name)?.pack)) vault.saw();
     // Keep each full result (before select) under a ref for later calls.
     for (const d of done) if (d.result !== undefined && !SELF[d.name]) { const ref = keeper.put(d.result); if (ref) d.ref = ref; }
     // The receipt's sources come from the whole results, before select or changes_only narrow them.

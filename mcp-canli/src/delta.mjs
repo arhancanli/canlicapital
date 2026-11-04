@@ -64,6 +64,7 @@ export function diff(a, b, depth = 0) {
 export function createDelta() {
   const last = new Map();
   return {
+    clear: () => last.clear(),
     // What to answer a changes_only call with, given its whole result; the result is kept for the next call.
     changes(name, args, result, at = new Date().toISOString()) {
       const key = createHash("sha256").update(canonical([name, args ?? {}])).digest("hex");
