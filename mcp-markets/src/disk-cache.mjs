@@ -30,6 +30,8 @@ export function freshFor(url) {
   if (/^https:\/\/wikimedia\.org\/api\/rest_v1\/metrics\/pageviews\//.test(url)) return 6 * HOUR;
   // EIA's weekly history pages are slow (up to 5 seconds) and are read for the years before this one.
   if (/^https:\/\/www\.eia\.gov\/dnav\//.test(url)) return 6 * HOUR;
+  // The IMF's COFER is quarterly.
+  if (/^https:\/\/api\.imf\.org\/external\/sdmx\/3\.0\/data\/dataflow\/IMF\.STA\/COFER\//.test(url)) return 6 * HOUR;
   // Indeed's job postings files (up to 12 MB) are refreshed once a week.
   if (/^https:\/\/raw\.githubusercontent\.com\/hiring-lab\//.test(url)) return 6 * HOUR;
   // The Cleveland Fed's nowcast files (5 to 8 MB each) change once a day.
