@@ -73,8 +73,11 @@ test("identical calls in flight share one run, and each caller gets its own copy
 test("a batch reports progress as its calls finish, and a cancelled chain starts no further call", async (t) => {
   const c = await connect(t, { CANLI_PLUGINS: path.join(path.dirname(fileURLToPath(import.meta.url)), "fixtures/count-plugin.mjs") });
   const seen = [];
-  await c.callTool({ name: "run_tool", arguments: { calls: ["p", "q", "r"].map((label) => ({ name: "counter_slow", arguments: { label } })) } }, { onprogress: (p) => seen.push([p.progress, p.total]) });
-  assert.deepEqual(seen, [[1, 3], [2, 3], [3, 3]]);
+  // The calls finish apart, so each report goes out on its own. The client applies a result at once and a report a
+  // tick later (the SDK's order), so the last report, sent just before the result, can come too late to count.
+  await c.callTool({ name: "run_tool", arguments: { calls: [0, 200, 400].map((ms, i) => ({ name: "counter_slow", arguments: { label: "pqr"[i], ms } })) } }, { onprogress: (p) => seen.push([p.progress, p.total]) });
+  assert.deepEqual(seen.slice(0, 2), [[1, 3], [2, 3]]);
+  assert.ok(seen.length === 2 || String(seen[2]) === "3,3", JSON.stringify(seen));
   // A chain, each call reading the one before: cancelled while the second runs, the third never starts.
   const stop = new AbortController();
   const calls = [{ name: "counter_slow", arguments: { label: "a" } }, { name: "counter_slow", arguments: { label: { $result: 0, path: "label" } } }, { name: "counter_slow", arguments: { label: { $result: 1, path: "label" } } }];
