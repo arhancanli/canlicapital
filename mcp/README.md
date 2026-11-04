@@ -1,6 +1,7 @@
 # canli-validation-mcp
 
 [![npm](https://img.shields.io/npm/v/canli-validation-mcp)](https://www.npmjs.com/package/canli-validation-mcp)
+[![npm downloads](https://img.shields.io/npm/dm/canli-validation-mcp)](https://www.npmjs.com/package/canli-validation-mcp)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/arhancanli/canli-validation-mcp/badge)](https://scorecard.dev/viewer/?uri=github.com/arhancanli/canli-validation-mcp)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/14954/badge)](https://www.bestpractices.dev/projects/14954)
 [![Glama score](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp/badges/score.svg)](https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp)
@@ -31,6 +32,28 @@ best of 229 skill-less variants would reach 1.60 by luck alone, so the probabili
 Sharpe is above zero falls from 98.1% to 44.4% once the search is counted. Claude Desktop and any
 other stdio client (Cursor, VS Code) run the same `npx` command; see "Claude Desktop" and
 "Generic stdio client" below.
+
+## What makes it different
+
+- **Every number comes with its limits.** Each result carries the sentences that say what it does
+  not establish. Results from the API also carry an Ed25519-signed receipt, which `verify_receipt`
+  can check offline.
+- **The tests were measured before they were trusted.** Given every variant you tried,
+  `audit_backtest` leads with White's Reality Check, the test a pre-registered simulation study
+  picked before seeing your numbers. In that study's confirmation run
+  ([Null Zoo v1b](https://github.com/arhancanli/canlicapital/blob/main/config/research/null-zoo-v1b-evaluation.json))
+  its false-positive rate was 4.5% to 6.4% at a nominal 5% across nine return shapes, and each
+  result quotes the rate measured for returns shaped like yours.
+- **It counts the search for you.** `backtest_strategy` validates the best variant of a grid with
+  the number of variants that call actually ran, and `placebo_test` ranks your pipeline's real
+  result among its results on placebo data, so every choice the pipeline makes is counted.
+- **Your series can stay with you.** With `CANLI_LOCAL=1` the validators run on your machine: no
+  key, and the series you check is never sent.
+
+If it saves you from a fake backtest, a star on
+[GitHub](https://github.com/arhancanli/canli-validation-mcp) helps other quants find it.
+Contributions are credited by name and earn
+[Contributor access](https://github.com/arhancanli/canlicapital/blob/main/CONTRIBUTING.md#rewards-contributor-access).
 
 ## What it does
 
