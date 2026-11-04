@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.13.0
 
 - Four new tools, each from its publisher with no key. `treasury_cash`: the Treasury General Account each business day since 2005 from the Daily Treasury Statement, read across the three names the statement has given it, with the last day's largest deposits and withdrawals. `federal_budget`: the Monthly Treasury Statement's receipts, outlays and deficit, the fiscal year to date against the same months a year earlier. `factor_returns`: the Fama-French three- and five-factor models and momentum from Kenneth French's data library, monthly, daily or by year, as fractions. `crypto_options`: Deribit's option term structure (at-the-money volatility, open interest, put/call ratio, volume) with DVOL, or one expiry's chain in dollars, for BTC, ETH and the coins it lists in USDC.
 - `unusual_options`: unusual options activity from the Cboe delayed quotes options_chain reads. It lists contracts whose volume is at least as many times their open interest as asked (new positions more likely than closing ones), ranked by the premium that changed hands, with expiry, strike, IV, delta and distance from the price, and the day's call and put premium. The answer says what the quotes cannot show: who bought, and whether a trade opened or closed a position.
