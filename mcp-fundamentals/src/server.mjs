@@ -59,6 +59,12 @@ const REFERENCE_FRESH_MS = 6 * 60 * 60 * 1000;
 const MAX_NAMES_BYTES = 8 * MIB;
 const MAX_SUBMISSIONS_BYTES = 16 * MIB;
 const PERIODIC_FORMS = new Set(["10-K", "10-K/A", "10-Q", "10-Q/A", "20-F", "20-F/A", "40-F", "40-F/A"]);
+// When reading live is on, a company held in memory is checked against the SEC's filing list at most this often,
+// so a long session (a desktop app left open for days, the sentinel) sees a report filed after its first read.
+const RECHECK_MS = 15 * 60 * 1000;
+// The SEC's company facts can trail its filing list by minutes. A report whose figures are not in them yet is
+// read for this many times in all, then taken as a report with no figures.
+const RECHECK_TRIES = 4;
 
 // The boundary every result carries.
 export const LIMITS = Object.freeze([
@@ -365,10 +371,9 @@ async function readCompany(session, cik, { ticker = null, matched, only } = {}) 
   };
 }
 
-// The company's newest annual or quarterly report filed on or after `since` (a date), from the SEC's
-// filing list, or null. A report filed on the day the snapshot was taken may already be in it; the
-// live facts are read then too, which costs a read and never misses a report.
-async function newerReport(session, cik, since) {
+// The company's newest annual or quarterly report, from the SEC's filing list, or null when it lists
+// none or cannot be read.
+async function newestReport(session, cik) {
   let res;
   try {
     res = await fetchBytes(session, `https://data.sec.gov/submissions/CIK${cik}.json`, MAX_SUBMISSIONS_BYTES, { "user-agent": SEC_USER_AGENT });
@@ -385,9 +390,27 @@ async function newerReport(session, cik, since) {
   // Newest first, as the SEC lists them.
   const forms = Array.isArray(recent?.form) ? recent.form : [];
   for (let i = 0; i < forms.length; i++) {
-    if (PERIODIC_FORMS.has(forms[i]) && String(recent.filingDate?.[i] ?? "") >= since) return { form: forms[i], filed: recent.filingDate[i], accession: recent.accessionNumber?.[i] ?? null };
+    if (PERIODIC_FORMS.has(forms[i])) return { form: forms[i], filed: String(recent.filingDate?.[i] ?? ""), accession: recent.accessionNumber?.[i] ?? null };
   }
   return null;
+}
+
+// Whether any figure in a company's index came from this filing.
+function carries(index, accession) {
+  for (const c of index.values()) for (const periods of Object.values(c.units)) for (const p of periods) if (p.vintages.some((v) => v.accn === accession)) return true;
+  return false;
+}
+
+// A company held in memory, checked against the SEC's filing list once RECHECK_MS has passed. Returns the
+// newest report when the figures must be read again: one newer than the report they were read with, or one
+// whose figures were not in them yet. Null while they stand.
+async function staleBy(session, cik, held) {
+  if (!session.secLive || session.now() - held.checked < RECHECK_MS) return null;
+  held.checked = session.now();
+  const newest = await newestReport(session, cik);
+  if (!newest) return null;
+  if (newest.accession !== held.newest) return newest;
+  return held.missing && held.tries < RECHECK_TRIES ? newest : null;
 }
 
 // A company outside the reference: the SEC's own company facts, read live. The same index as a
@@ -417,33 +440,61 @@ async function readFromSec(session, cik, { ticker = null, matched } = {}) {
 
 export async function loadCompany(session, company) {
   const { cik, ticker, matched } = await resolveCompany(session, company);
-  const cached = session.companies.get(cik);
-  if (cached) {
+  const held = session.companies.get(cik);
+  const view = (e) => (ticker || matched ? { ...e, ticker, matched } : e);
+  if (held) {
     // Most recently used last, so the oldest company is the one evicted.
     session.companies.delete(cik);
-    session.companies.set(cik, cached);
-    return ticker || matched ? { ...cached, ticker, matched } : cached;
+    session.companies.set(cik, held);
+    const newest = await staleBy(session, cik, held);
+    if (!newest) return view(held);
+    // Only the SEC's own facts are read again. A read that fails keeps the figures held and counts as a try.
+    const live = await readFromSec(session, cik, { ticker, matched });
+    if (!live) {
+      Object.assign(held, held.newest === newest.accession ? { tries: held.tries + 1 } : { newest: newest.accession, missing: true, tries: 1 });
+      return view(held);
+    }
+    const reference = held.snapshot.read_live ? held.snapshot.reference && { name: held.name, page: held.page, snapshot: held.snapshot.reference } : held;
+    const entry = reference ? overReference(reference, live, newest) : live;
+    keep(session, cik, entry, newest, held);
+    return entry;
   }
+  const newest = session.secLive ? await newestReport(session, cik) : null;
   let entry = await readCompany(session, cik, { ticker, matched });
   // A reference snapshot taken before the company's newest annual or quarterly report is out of date. When
-  // reading live is on, the SEC's own facts are read instead, and the snapshot block names the report and the
-  // reference snapshot it replaced.
-  if (entry && session.secLive && entry.snapshot.fetched_at) {
-    const captured = entry.snapshot.fetched_at.slice(0, 10);
-    const newer = await newerReport(session, cik, captured);
-    const live = newer ? await readFromSec(session, cik, { ticker, matched }) : null;
-    if (live) {
-      const note = `The Canli reference for this company was captured ${captured}; its ${newer.form} filed ${newer.filed} is newer, so the SEC's own company facts were read live.`;
-      entry = { ...live, name: entry.name ?? live.name, page: entry.page, snapshot: { ...live.snapshot, note, newer_filing: newer, reference: { fetched_at: entry.snapshot.fetched_at, sha256: entry.snapshot.sha256, url: entry.snapshot.url } } };
-    }
+  // reading live is on, the SEC's own facts are read instead. A report filed on the day the snapshot was taken
+  // may already be in it; the live facts are read then too, which costs a read and never misses a report.
+  const captured = entry?.snapshot.fetched_at?.slice(0, 10);
+  if (entry && newest && captured && newest.filed >= captured) {
+    const live = await readFromSec(session, cik, { ticker, matched });
+    if (live) entry = overReference(entry, live, newest);
   }
   entry ??= session.secLive ? await readFromSec(session, cik, { ticker, matched }) : null;
   if (!entry) throw new Error(`CIK ${cik} is not in the Canli company reference${session.secLive ? ", and the SEC has no XBRL facts for it" : ""}. It covers the SEC filers listed at ${session.base}/companies; find_company searches them by name.`);
-  // A large filer's index takes 12 to 15 MB of heap; keep the eight most recently used. Evicted
-  // companies reload from the hash-named disk cache.
-  if (session.companies.size >= MAX_COMPANIES) session.companies.delete(session.companies.keys().next().value);
-  session.companies.set(cik, { ...entry, ticker: null, matched: undefined });
+  keep(session, cik, entry, newest, null);
   return entry;
+}
+
+// The SEC's own facts read in place of a reference snapshot; the snapshot block names the report that made the
+// reference out of date and the reference snapshot it replaced.
+function overReference(reference, live, newest) {
+  const captured = String(reference.snapshot.fetched_at).slice(0, 10);
+  const note = `The Canli reference for this company was captured ${captured}; its ${newest.form} filed ${newest.filed} is newer, so the SEC's own company facts were read live.`;
+  return { ...live, name: reference.name ?? live.name, page: reference.page, snapshot: { ...live.snapshot, note, newer_filing: newest, reference: { fetched_at: reference.snapshot.fetched_at, sha256: reference.snapshot.sha256, url: reference.snapshot.url } } };
+}
+
+// A company kept in memory, with what its next check compares against: the newest report when its figures were
+// read, whether they lack it, and how many reads have been made for it. A reference snapshot stands against a
+// report filed before it was taken, which can hold no figures (a 10-K/A adding only Part III). A large filer's
+// index takes 12 to 15 MB of heap; keep the eight most recently used. Evicted companies reload from the
+// hash-named disk cache.
+function keep(session, cik, entry, newest, held) {
+  session.companies.delete(cik);
+  if (session.companies.size >= MAX_COMPANIES) session.companies.delete(session.companies.keys().next().value);
+  const accession = newest?.accession ?? null;
+  const after = entry.snapshot.read_live || newest?.filed >= String(entry.snapshot.fetched_at).slice(0, 10);
+  const missing = Boolean(accession) && after && !carries(entry.index, accession);
+  session.companies.set(cik, { ...entry, ticker: null, matched: undefined, checked: session.now(), newest: accession, missing, tries: held?.newest === accession ? held.tries + 1 : 1 });
 }
 
 // ---------------------------------------------------------------------------------------------

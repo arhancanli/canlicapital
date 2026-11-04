@@ -2,9 +2,10 @@
 
 ## 0.8.1
 
-When reading live is on, answers no longer stop at the date the reference was captured.
+When reading live is on, answers no longer stop at the date the reference was captured, or at the moment a long session first read a company.
 
-- With `secLive` on (the canli-mcp flagship), a company inside the reference whose snapshot was captured before its newest annual or quarterly report is read live from the SEC instead, with `snapshot.newer_filing`, `snapshot.reference` and a note. The reference on canlicapital.com was captured on 2026-09-19, so until this, Apple's answers stopped before the 10-K it filed on 2026-11-03, and every company's before this quarter's 10-Qs. One small request to the SEC's filing list per company per session decides it.
+- With `secLive` on (the canli-mcp flagship), a company inside the reference whose snapshot was captured before its newest annual or quarterly report is read live from the SEC instead, with `snapshot.newer_filing`, `snapshot.reference` and a note. The reference on canlicapital.com was captured on 2026-09-19, so until this, Apple's answers stopped before the 10-K it filed on 2026-11-03, and every company's before this quarter's 10-Qs. One small request to the SEC's filing list per company decides it.
+- A long session sees a report filed after it first read a company. A company held in memory is checked against the SEC's filing list at most every 15 minutes while it is in use, and a newer annual or quarterly report is read live. The SEC's company facts can trail its filing list by minutes, so a report whose figures are not in them yet is read for up to four times in all; a failed read keeps the figures held. Until this, a desktop app left open for days, or the canli-mcp sentinel, kept each company's first read for as long as it ran.
 
 ## 0.8.0
 
