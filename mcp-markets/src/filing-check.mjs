@@ -228,7 +228,7 @@ export function readUnitPhrase(text) {
     const scale = SCALE_WORDS[(h[1] ?? h[2]).toLowerCase()];
     // The words this scale is stated for: those since the clause before.
     const from = i ? hits[i - 1].index + hits[i - 1][0].length : 0;
-    const subject = t.slice(from, h.index).replace(/,?\s*(?:which|that)\s+(?:are|is)\s*(?:reflected|presented|shown|stated|expressed)?\s*$/i, "")
+    const subject = t.slice(from, h.index).replace(/,? ?(?:which|that) (?:are|is)(?: (?:reflected|presented|shown|stated|expressed))? ?$/i, "")
       .split(/\bexcept\b|[;:]|,\s*(?:and\s+)?(?=[a-z])|\band\b/i).pop().replace(/[(),]/g, " ").trim();
     const ofDollars = Boolean(h[2]) || /^\s+of\s+(?:U\.?S\.?\s+)?dollars\b/i.test(t.slice(h.index + h[0].length));
     if (!subject || /^(?:amounts?|figures|all\s+amounts?|dollars?(?:\s+amounts?)?|\$|(?:tabular\s+)?amounts?\s+(?:are\s+)?|in)$/i.test(subject)) {
@@ -322,11 +322,13 @@ export function tableUnits(doc) {
 // The words after a figure that state its scale ("$3.8 billion", "$450M"), and a rate's per cent or
 // basis points sign, in its own cell or the next one.
 const SHORT_SCALE = { k: 3, m: 6, mm: 6, mn: 6, b: 9, bn: 9 };
+// The text after a figure without the spaces and closing parenthesis that may come first.
+const lead = (text) => String(text).replace(/^[\s)]+/, "");
 const scaleAfter = (text) => {
-  const m = String(text).match(/^\s*\)?\s*(?:(thousand|million|billion|trillion)s?\b|(bn|mn|mm|[kmb])(?![\w&-]))/i);
+  const m = lead(text).match(/^(?:(thousand|million|billion|trillion)s?\b|(bn|mn|mm|[kmb])(?![\w&-]))/i);
   return !m ? undefined : m[1] ? SCALE_WORDS[m[1].toLowerCase()] : SHORT_SCALE[m[2].toLowerCase()];
 };
-const percentAfter = (text) => (/^\s*\)?\s*%/.test(text) ? -2 : /^\s*\)?\s*(?:bps|basis points)\b/i.test(text) ? -4 : undefined);
+const percentAfter = (text) => { const t = lead(text); return t.startsWith("%") ? -2 : /^(?:bps|basis points)\b/i.test(t) ? -4 : undefined; };
 const firstWord = (text) => String(text).trim().split(/\s+/)[0] ?? "";
 
 // The unit stated for one money or share figure in a table: its row's label, a heading row above it in
