@@ -9,6 +9,7 @@ import { z } from "zod";
 
 import { mean, normCdf, normInv, std, variance, moments } from "../math.mjs";
 import { MAX_SERIES, ppyArg } from "../inputs.mjs";
+import { defaultSplits, pbo } from "../cscv.mjs";
 import { minVariance } from "./portfolio.mjs";
 
 const pricesArg = z.array(z.number().positive()).min(30).max(MAX_SERIES).describe("Prices oldest first (daily closes by default).");
@@ -358,12 +359,16 @@ export const RECIPES = {
   },
 };
 
+// Every variant's Sharpe, best first, goes back with the periods it was measured on (every_trial), so a server
+// that counts the strategies tried in a session can count each one and not only the best. The probability of
+// backtest overfitting is computed on the variants' net returns over the whole sample, where a variant with a
+// longer lookback is flat for longer at the start.
 function sweep(recipe, base, grid, ppy) {
   const keys = Object.keys(grid), combos = keys.reduce((acc, k) => acc.flatMap((c) => grid[k].map((v) => ({ ...c, [k]: v }))), [{}]);
   if (combos.length > 400) throw new Error(`The grid has ${combos.length} combinations; keep it to 400 or fewer.`);
   const rows = [];
   for (const c of combos) {
-    try { const b = RECIPES[recipe].build({ ...base, ...c }); const r = report(b.P, b.targets, { ...base, ...c, curve: false }, b.rule, b.params); rows.push({ params: c, sharpe: r.sharpe, cagr: r.cagr, max_drawdown: r.max_drawdown, annual_turnover: r.annual_turnover, net: r._net }); }
+    try { const b = RECIPES[recipe].build({ ...base, ...c }); const r = report(b.P, b.targets, { ...base, ...c, curve: false }, b.rule, b.params); rows.push({ params: c, sharpe: r.sharpe, cagr: r.cagr, max_drawdown: r.max_drawdown, annual_turnover: r.annual_turnover, periods: r.periods, net: r._net }); }
     catch (e) { rows.push({ params: c, error: e.message }); }
   }
   const ok = rows.filter((r) => r.sharpe !== null && r.sharpe !== undefined);
@@ -377,7 +382,9 @@ function sweep(recipe, base, grid, ppy) {
     const dsr = normCdf((sr - srStar) * Math.sqrt(n - 1) / Math.sqrt(1 - m.skew * sr + (k4 - 1) / 4 * sr * sr));
     deflation = { trials: Nn, expected_max_sharpe_under_null: srStar * Math.sqrt(ppy), deflated_sharpe_probability: dsr, verdict: dsr > 0.95 ? "The best variant survives deflation for the number tried." : "The best variant does not survive deflation: its Sharpe is what the best of this many tries would show by luck." };
   }
-  return { recipe, combinations: combos.length, columns: ["params", "sharpe", "cagr", "max_drawdown", "annual_turnover"], rows: ok.map((r) => [r.params, r.sharpe, r.cagr, r.max_drawdown, r.annual_turnover]).slice(0, 50), errors: rows.filter((r) => r.error).slice(0, 5).map((r) => ({ params: r.params, error: r.error })), best: best ? { params: best.params, sharpe: best.sharpe } : null, deflation };
+  const n = best?.periods ?? 0;
+  const overfit = ok.length > 1 && n >= 40 ? { ...pbo(ok.map((r) => r.net), defaultSplits(n)), note: "How often the best variant on half the sample landed in the bottom half on the other half; above 0.5, picking the in-sample winner did worse than a random pick." } : null;
+  return { recipe, combinations: combos.length, columns: ["params", "sharpe", "cagr", "max_drawdown", "annual_turnover"], rows: ok.map((r) => [r.params, r.sharpe, r.cagr, r.max_drawdown, r.annual_turnover]).slice(0, 50), errors: rows.filter((r) => r.error).slice(0, 5).map((r) => ({ params: r.params, error: r.error })), best: best ? { params: best.params, sharpe: best.sharpe } : null, deflation, probability_of_backtest_overfitting: overfit, every_trial: { periods: n, periods_per_year: ppy, sharpes: ok.map((r) => r.sharpe) } };
 }
 
 const recipeTool = (name, title, description, keywords) => ({
@@ -425,8 +432,8 @@ export const TOOLS = [
   {
     name: "strategy_sweep",
     title: "Parameter sweep with deflated Sharpe",
-    description: "Run one strategy recipe over a parameter grid (up to 400 variants), rank the variants by Sharpe, and deflate the best one for the number tried, so tuning cannot pass off luck as skill.",
-    keywords: "parameter sweep grid search optimization overfitting deflated sharpe multiple testing backtest robustness",
+    description: "Run one strategy recipe over a parameter grid (up to 400 variants), rank the variants by Sharpe, deflate the best one for the number tried and give the probability of backtest overfitting (CSCV), so tuning cannot pass off luck as skill.",
+    keywords: "parameter sweep grid search optimization overfitting deflated sharpe multiple testing backtest robustness pbo cscv probability of backtest overfitting",
     input: z.object({
       recipe: z.enum(Object.keys(RECIPES)).describe("Which recipe, e.g. ma_crossover."),
       arguments: z.record(z.string(), z.unknown()).describe("Fixed arguments for the recipe, including prices."),

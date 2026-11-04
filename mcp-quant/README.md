@@ -454,7 +454,7 @@ Every recipe and `backtest_weights` take `curve: true` (and optional `dates`) to
 | `backtest_high_proximity` | Backtest holding the assets trading closest to their trailing high (George-Hwang 52-week-high momentum), re-ranked on a schedule. |
 | `backtest_pairs_trading` | Backtest a pairs trade on two price series: rolling hedge ratio, z-score of the residual spread, market-neutral entries and exits, with costs. |
 | `backtest_weights` | Backtest any strategy from your own target weights per period (decided at each close, applied to the next period) with the same costed, drift-aware engine; null rows mean hold. |
-| `strategy_sweep` | Run one strategy recipe over a parameter grid (up to 400 variants), rank the variants by Sharpe, and deflate the best one for the number tried, so tuning cannot pass off luck as skill. |
+| `strategy_sweep` | Run one strategy recipe over a parameter grid (up to 400 variants), rank the variants by Sharpe, deflate the best one for the number tried and give the probability of backtest overfitting (CSCV), so tuning cannot pass off luck as skill. |
 
 </details>
 
