@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 import { Client } from "@modelcontextprotocol/client";
 import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
 
-import { createLuck, trialOf } from "../src/luck.mjs";
+import { createLuck, shownTrials, trialOf, trialsOf } from "../src/luck.mjs";
 
 const ENTRY = path.join(path.dirname(fileURLToPath(import.meta.url)), "../src/server.mjs");
 const result = (sharpe, periods = 500, parameters = { fast: 20, slow: 100 }) => ({ rule: "ma crossover", parameters, sharpe, periods, total_return: 0.1 });
@@ -45,6 +45,28 @@ test("every trial so far is counted and the best one deflated; each sampling fre
   assert.equal(luck.trials, 4);
   // The hosted server says what it counts.
   assert.match(createLuck({ scope: "request" }).record("backtest_ma_crossover", {}, result(1)).reading, /Hosted: only this request is counted/);
+});
+
+test("a sweep counts every variant it tried, named by its settings where its table shows them; the model reads how many", () => {
+  const luck = createLuck({ now: () => "2026-11-04T07:00:00.000Z" });
+  const sharpes = Array.from({ length: 56 }, (_, i) => Number((1.2 - i * 0.02).toFixed(2)));
+  const sweep = { recipe: "ma_crossover", combinations: 56, columns: ["params", "sharpe", "cagr", "max_drawdown", "annual_turnover"], rows: sharpes.slice(0, 50).map((x, i) => [{ fast: 5 + i, slow: 100 }, x, 0.1, -0.2, 3]), every_trial: { periods: 699, periods_per_year: 252, sharpes } };
+  const found = trialsOf("strategy_sweep", { recipe: "ma_crossover", arguments: { prices: [1, 2] }, grid: { fast: [5] } }, sweep);
+  assert.equal(found.length, 56);
+  assert.deepEqual(found[0], { label: "strategy_sweep ma_crossover fast=5 slow=100", sharpe_annualized: 1.2, observations: 699, params: { tool: "strategy_sweep", recipe: "ma_crossover", fast: 5, slow: 100 } });
+  assert.equal(found[55].label, "strategy_sweep ma_crossover variant 56 of 56", "past the table's fifty, its place");
+  const note = luck.record("strategy_sweep", {}, sweep);
+  assert.equal(note.trials, 56);
+  assert.equal(note.best.label, "strategy_sweep ma_crossover fast=5 slow=100");
+  assert.ok(note.expected_best_by_luck_annualized > 0);
+  assert.equal(luck.record("backtest_ma_crossover", { fast: 9, slow: 100 }, result(0.5)).trials, 57, "a later backtest is judged against every try");
+  const tournament = { sleeves_run: 3, leaderboard: [["tsmom-252-vt10-long", "time_series_momentum", 0.8]], every_trial: { periods: 500, periods_per_year: 252, sharpes: [0.8, 0.3, -0.1] } };
+  assert.deepEqual(trialsOf("sleeve_tournament", {}, tournament).map((t) => t.label), ["sleeve_tournament tsmom-252-vt10-long", "sleeve_tournament variant 2 of 3", "sleeve_tournament variant 3 of 3"]);
+  assert.deepEqual(shownTrials(sweep).every_trial, { periods: 699, periods_per_year: 252, counted: 56 });
+  assert.equal(shownTrials(result(1)).sharpe, 1, "anything else is left as it is");
+  // Before canli-quant-mcp 0.3.0 a sweep carried no every_trial, and is not counted, as before.
+  assert.deepEqual(trialsOf("strategy_sweep", {}, { recipe: "ma_crossover", rows: [] }), []);
+  assert.deepEqual(trialsOf("sleeve_tournament", {}, { periods: 900, leaderboard: [] }), []);
 });
 
 test("over stdio, the second backtest of a session is told about the first, and measuring a Sharpe is not counted", async () => {

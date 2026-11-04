@@ -40,7 +40,7 @@ import { governance, publicKeys, verifyAudit } from "./governance.mjs";
 import { watchFilings } from "./watch.mjs";
 import { createTimeMachine } from "./timemachine.mjs";
 import { signedTrialCount, TRIALS_TOOL } from "./trials.mjs";
-import { createLuck } from "./luck.mjs";
+import { createLuck, shownTrials } from "./luck.mjs";
 import { createDelta } from "./delta.mjs";
 import { runWeek, WEEK_TOOL } from "./week.mjs";
 import { channelSink, CHANNEL_INSTRUCTIONS, SENTINEL_TOOLS } from "./sentinel.mjs";
@@ -492,6 +492,8 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     for (const d of done) if (d.result !== undefined && !SELF[d.name]) { const ref = keeper.put(d.result); if (ref) d.ref = ref; }
     // The receipt's sources come from the whole results, before select or changes_only narrow them.
     const sources = sourcesOf(done.map((d) => d.result));
+    // A sweep's list of every variant's Sharpe was for the count; the model reads how many (luck.mjs).
+    for (const d of done) if (d.result !== undefined && !SELF[d.name]) d.result = shownTrials(d.result);
     if (a.changes_only) done.forEach((d, i) => { if (d.result !== undefined && !SELF[d.name]) d.result = delta.changes(d.name, calls[i]?.arguments, d.result); });
     if (a.select) for (const d of done) if (d.result) {
       const full = d.result;
