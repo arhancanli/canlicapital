@@ -23,7 +23,7 @@ export const COMMODITIES = Object.freeze({
 const REGION_NAMES = { us: "United States", usa: "United States", "u.s.": "United States", america: "United States", eu: "European Union", europe: "European Union", "euro area": "European Union" };
 
 export const cropInput = z.object({
-  commodity: z.string().min(2).max(40).describe("wheat, corn, coarse grains, rice, cotton, soybeans, soybean meal or soybean oil (world and US); sorghum, barley, oats, feed grains, beef, pork, broilers, turkey, red meat or poultry (US only)."),
+  commodity: z.string().min(2).max(40).describe("wheat, corn, coarse grains, rice, cotton, soybeans, soybean meal or soybean oil (world and US); sorghum, barley, oats, feed grains, beef, pork, broilers, turkey, red meat, poultry, eggs or dairy prices (US only)."),
   region: z.string().min(2).max(60).optional().describe("A country or region in the USDA's table (China, Brazil, European Union, World...); United States gives the US balance sheet with its farm price; \"all\" for every country at this month's projection. Default World."),
   report: z.string().regex(/^\d{4}-\d{2}$/).optional().describe("The report's month, YYYY-MM; default the latest."),
 }).strict();
@@ -33,7 +33,7 @@ const clean = (s) => String(s ?? "").replace(/\r\n|\s+/g, " ").replace(/\s*\/?\d
 const number = (s) => { const t = String(s ?? "").replace(/,/g, "").replace(/\s*\*+\s*$/, "").trim(); const n = Number(t); return t === "" || !Number.isFinite(n) ? null : n; };
 
 // The commodity a request names: the most specific first ("soybean meal" before "soybeans").
-const RULES = [[/meal/, "soybean_meal"], [/soy\w*\s*oil|soyoil/, "soybean_oil"], [/feed grain/, "feed_grains"], [/coarse/, "coarse_grains"], [/corn|maize/, "corn"], [/wheat/, "wheat"], [/rice/, "rice"], [/cotton/, "cotton"], [/sorghum/, "sorghum"], [/barley/, "barley"], [/\boats?\b/, "oats"], [/soy/, "soybeans"], [/red meat/, "red_meat"], [/beef|cattle/, "beef"], [/pork|hog/, "pork"], [/broiler|chicken/, "broilers"], [/turkey/, "turkey"], [/poultry/, "poultry"]];
+const RULES = [[/meal/, "soybean_meal"], [/soy\w*\s*oil|soyoil/, "soybean_oil"], [/feed grain/, "feed_grains"], [/coarse/, "coarse_grains"], [/corn|maize/, "corn"], [/wheat/, "wheat"], [/rice/, "rice"], [/cotton/, "cotton"], [/sorghum/, "sorghum"], [/barley/, "barley"], [/\boats?\b/, "oats"], [/soy/, "soybeans"], [/red meat/, "red_meat"], [/beef|cattle/, "beef"], [/pork|hog/, "pork"], [/broiler|chicken/, "broilers"], [/turkey/, "turkey"], [/poultry/, "poultry"], [/\beggs?\b/, "eggs"], [/dairy|milk|cheese|butter|whey/, "dairy"]];
 
 // The US balance sheets, with the season-average farm price: each by its page, its table's place on the page and the
 // units the report prints for it (the XML spreads a unit over cells, so they are named here, as the report shows them).
@@ -57,11 +57,15 @@ export const US_TABLES = Object.freeze({
   broilers: { page: /^U\.S\. Meats Supply/i, commodity: /^Broiler/i, units: MEAT },
   turkey: { page: /^U\.S\. Meats Supply/i, commodity: /^Turkey/i, units: MEAT },
   poultry: { page: /^U\.S\. Meats Supply/i, commodity: /^Total\s*Poultry/i, units: MEAT },
+  eggs: { page: /^U\.S\. Egg Supply/i, matrix: 1, units: { qty: "million dozen", per_capita: "eggs per person" } },
+  // Product prices in dollars a pound; the class and all-milk prices in dollars a hundredweight.
+  dairy: { page: /^U\.S\. Dairy Prices/i, matrix: 1, units: { dairy: true } },
 });
 const unitOf = (attribute, units) => {
   if (/price/i.test(attribute)) return attribute.match(/\(([^)]*\/[^)]*)\)/)?.[1] ?? units.price ?? null;
   if (/milling yield/i.test(attribute)) return "percent";
   if (/per capita/i.test(attribute)) return units.per_capita ?? null;
+  if (units.dairy) return /^(class\s*i|all milk)/i.test(attribute) ? "dollars per hundredweight" : "dollars per pound";
   if (/yield/i.test(attribute)) return units.yield ?? null;
   if (/^(area|planted|harvested)/i.test(attribute)) return units.area ?? null;
   return units.qty;
@@ -236,7 +240,7 @@ export async function cropOutlook(session, args) {
     sources: [PUBLICATION, report.url],
     limits: [
       "The USDA's World Agricultural Outlook Board estimates; earlier years are revised as countries report.",
-      "The world tables, the US crop balance sheets and the US meats; the dairy, egg and sugar tables are not read yet.",
+      "The world tables, the US crop balance sheets, the US meats and eggs, and US dairy prices; the US milk and sugar balance sheets are not read yet.",
       "Not investment advice.",
     ],
   };

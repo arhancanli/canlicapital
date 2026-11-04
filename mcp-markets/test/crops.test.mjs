@@ -80,3 +80,12 @@ test("US meats: two projection years, each with its own revision, per capita in 
   assert.deepEqual(beef.rows.find((x) => x[0] === "Per Capita").slice(0, 3), ["Per Capita", "pounds per person (retail weight)", 59.2]);
   assert.equal((await run({ commodity: "chicken" })).rows.find((x) => x[0] === "Production")[4], 49188);
 });
+
+test("US dairy prices in dollars a pound or a hundredweight, and eggs in million dozen", async () => {
+  // Checked against the report's text version: Cheese 2026 Proj. Sep 1.570, Oct 1.525; Class III 16.20, 15.80.
+  const dairy = await run({ commodity: "cheese" });
+  assert.deepEqual(dairy.rows.find((x) => x[0] === "Cheese"), ["Cheese", "dollars per pound", 1.8634, 1.7878, 1.57, 1.525, -0.045, 1.645, 1.615, -0.03]);
+  assert.deepEqual(dairy.rows.find((x) => x[0] === "Class III").slice(0, 6), ["Class III", "dollars per hundredweight", 18.89, 18.01, 16.2, 15.8]);
+  const eggs = await run({ commodity: "eggs" });
+  assert.deepEqual(eggs.rows.find((x) => x[0] === "Production").slice(0, 6), ["Production", "million dozen", 9076.2, 8765, 9140, 9160]);
+});
