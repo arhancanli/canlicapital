@@ -1,10 +1,12 @@
-// Canli Data's first pack, SEC facts as first filed: each period's value from the first filing that reported it
-// and from the latest, changes counted, a restatement in an amendment seen, other forms left out, an IFRS filer
-// read in its own taxonomy, and a file without facts refused.
+// Canli Data's SEC packs. Facts as first filed: each period's value from the first filing that reported it and
+// from the latest, changes counted, a restatement in an amendment seen, other forms left out, an IFRS filer read
+// in its own taxonomy, and a file without facts refused. Report's flags: one row per finding, naming the filing,
+// the rule, the period, the value and the value it was compared with.
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { FIRST_FILED_COLUMNS, firstFiled, packDataset } from "../src/data.mjs";
+import { FINDING_COLUMNS, FIRST_FILED_COLUMNS, findingRows, firstFiled, packDataset } from "../src/data.mjs";
+import { checkSecFilings } from "../src/report.mjs";
 
 const filings = { E1: ["8-K", "2025-01-30"], A1: ["10-K", "2025-02-14"], R1: ["10-K/A", "2025-06-02"], A2: ["10-K", "2026-02-13"] };
 const fact = (accn, end, val, start) => ({ ...(start ? { start } : {}), end, val, accn, form: filings[accn][0], filed: filings[accn][1] });
@@ -46,4 +48,29 @@ test("an IFRS filer is read in its own taxonomy, the pack's rows come out as CSV
   const pack = packDataset({ name: "sec-first-filed", source: "a test", license: "cc-by-4.0", columns: FIRST_FILED_COLUMNS, rows: firstFiled(companyfacts) });
   assert.equal(pack.csv.split("\n")[1], "1234567,Example Holdings Inc.,us-gaap,Assets,USD,,2024-12-31,1000,A1,10-K,2025-02-14,1000,A2,10-K,2026-02-13,3,2");
   assert.throws(() => firstFiled({ facts: { dei: {} } }), /no us-gaap or ifrs-full facts/);
+});
+
+test("Report's flags become rows naming the filing, the rule, the period, the value and what it was compared with", () => {
+  const dates = { A1: "2025-02-14", A2: "2026-02-13", A3: "2027-02-12" };
+  const filed = (accn, end, val) => ({ end, val, accn, form: "10-K", filed: dates[accn] });
+  const flagged = {
+    cik: 1234567,
+    entityName: "Example Holdings Inc.",
+    facts: {
+      "us-gaap": {
+        // Shares authorized filed a thousand times smaller in A2, and back to scale in A3; assets 10 over their total in A2.
+        CommonStockSharesAuthorized: { units: { shares: [filed("A1", "2024-12-31", 1800000000), filed("A2", "2024-12-31", 1800000), filed("A3", "2025-12-31", 1800000000)] } },
+        Assets: { units: { USD: [filed("A2", "2025-12-31", 1400)] } },
+        LiabilitiesAndStockholdersEquity: { units: { USD: [filed("A2", "2025-12-31", 1390)] } },
+      },
+    },
+  };
+  const rows = findingRows(checkSecFilings(flagged, { last: Infinity }));
+  assert.deepEqual(rows.map((r) => [r.accession, r.filed, r.rule, r.concept, r.unit, r.start, r.end, r.value, r.prior_value, r.prior_end, r.prior_flagged]), [
+    ["A2", "2026-02-13", "balance", "Assets", "USD", null, "2025-12-31", 1400, null, null, null],
+    ["A2", "2026-02-13", "scale", "CommonStockSharesAuthorized", "shares", null, "2024-12-31", 1800000, 1800000000, "2024-12-31", false],
+    ["A3", "2027-02-12", "scale", "CommonStockSharesAuthorized", "shares", null, "2025-12-31", 1800000000, 1800000, "2024-12-31", true],
+  ], "A3 is flagged only because A2 slipped: A2 is the filing to read");
+  assert.match(rows[1].detail, /is 1\/1000 of the prior value/);
+  assert.deepEqual(Object.keys(rows[0]), FINDING_COLUMNS.map((c) => c.name), "every row has exactly the columns, in order");
 });

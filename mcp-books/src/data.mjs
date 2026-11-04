@@ -112,3 +112,57 @@ export function firstFiled(companyfacts, { taxonomy, forms = FIRST_FILED_FORMS }
   }
   return rows.sort(byPeriod);
 }
+
+// The second pack: Report's flags on a company's SEC filings (checkSecFilings), one row per finding, with the
+// filing it is in. Flags point at facts to look at, not errors proved.
+const endDay = (period) => (period ? period.instant ?? period.end : null);
+export const FINDING_COLUMNS = [
+  { name: "cik", description: "The company's SEC Central Index Key" },
+  { name: "entity", description: "The company's name as the SEC gives it" },
+  { name: "taxonomy", description: "us-gaap or ifrs-full" },
+  { name: "accession", description: "The accession number of the filing flagged, which names it on EDGAR" },
+  { name: "form", description: "That filing's form, such as 10-K or 10-Q" },
+  { name: "filed", description: "The date that filing reached EDGAR" },
+  { name: "rule", description: "The check: scale (about a thousand or a million times the last filing's value), balance (totals that do not add up), sign (below zero where it never should be) or duplicate (one fact given two values)" },
+  { name: "concept", description: "The XBRL concept flagged" },
+  { name: "unit", description: "Its unit, such as USD or shares" },
+  { name: "start", description: "The first day of its period; empty for a balance at a date" },
+  { name: "end", description: "The last day of its period, or the date of a balance" },
+  { name: "value", description: "The value flagged, in whole units as filed; empty for a fact given two values" },
+  { name: "prior_value", description: "For a scale flag, the value it was compared with, from the last filing of the same form" },
+  { name: "prior_start", description: "That value's first day; empty for a balance" },
+  { name: "prior_end", description: "That value's last day or date" },
+  { name: "prior_flagged", description: "For a scale flag, whether the value it was compared with was itself flagged as a slip in its own filing: then this value is back to scale, and the earlier filing is the one to read" },
+  { name: "detail", description: "The check's own words" },
+];
+
+// Filings oldest first, as checkSecFilings gives them. A scale flag is compared with the last filing of the same
+// form, so it is back to scale when that filing slipped on the very value it was compared with.
+export function findingRows(checked) {
+  const key = (concept, unit, period, value) => `${concept}|${unit}|${JSON.stringify(period)}|${value}`;
+  const slips = new Map();
+  return checked.filings.flatMap((filing) => {
+    const before = slips.get(filing.form) ?? new Set();
+    const rows = filing.findings.map((f) => ({
+      cik: checked.cik,
+      entity: checked.entityName,
+      taxonomy: checked.taxonomy,
+      accession: filing.accession,
+      form: filing.form,
+      filed: filing.filed,
+      rule: f.rule,
+      concept: f.concept,
+      unit: f.unit ?? null,
+      start: f.period?.start ?? null,
+      end: endDay(f.period),
+      value: f.value ?? null,
+      prior_value: f.prior?.value ?? null,
+      prior_start: f.prior?.period?.start ?? null,
+      prior_end: endDay(f.prior?.period),
+      prior_flagged: f.prior ? before.has(key(f.concept, f.unit, f.prior.period, f.prior.value)) : null,
+      detail: f.detail,
+    }));
+    slips.set(filing.form, new Set(filing.findings.filter((f, i) => f.rule === "scale" && !rows[i].prior_flagged).map((f) => key(f.concept, f.unit, f.period, f.value))));
+    return rows;
+  });
+}

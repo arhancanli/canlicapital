@@ -30,7 +30,7 @@ test("every Canli company's tools work on one book through the MCP server", asyn
   };
   try {
     const tools = (await client.listTools()).tools.map((t) => t.name);
-    for (const name of ["books_post", "close_reconcile", "close_consolidate", "report_check", "audit_journal", "planning_runway", "data_pack", "data_pack_sec_first_filed", "books_sign"]) assert.ok(tools.includes(name), name);
+    for (const name of ["books_post", "close_reconcile", "close_consolidate", "report_check", "audit_journal", "planning_runway", "data_pack", "data_pack_sec_first_filed", "data_pack_sec_findings", "books_sign"]) assert.ok(tools.includes(name), name);
 
     await call("books_open", { file, name: "Example Trading LLC", currency: "AED" });
     assert.match(await refused("books_open", { file, name: "Again", currency: "AED" }), /never overwrites/);
@@ -77,6 +77,10 @@ test("every Canli company's tools work on one book through the MCP server", asyn
     const firstPack = await call("data_pack_sec_first_filed", { companyfacts_files: [companyfacts], out_dir: join(dir, "first-filed"), name: "sec-first-filed", license: "cc-by-4.0" });
     assert.deepEqual([firstPack.rows, firstPack.changed, firstPack.companies], [1, 1, 1]);
     assert.match(readFileSync(join(dir, "first-filed", "README.md"), "utf8"), /1 of 1 changed[\s\S]*Example Holdings Inc\. \(CIK 1234567\): companyfacts saved \d{4}-\d{2}-\d{2}, SHA-256 [0-9a-f]{64}/);
+    // And as a pack of Report's flags: the slip, in one of the two filings.
+    const flags = await call("data_pack_sec_findings", { companyfacts_files: [companyfacts], out_dir: join(dir, "flags"), name: "sec-flags", license: "cc-by-4.0" });
+    assert.deepEqual([flags.rows, flags.filings, flags.flagged, flags.counts], [1, 2, 1, { scale: 1 }]);
+    assert.match(readFileSync(join(dir, "flags", "README.md"), "utf8"), /1 flag in 1 of 2 filings \(scale 1\)\. A flag points at a fact to look at, not an error proved/);
     assert.deepEqual((await call("audit_journal", { file, limit: "5000" })).weekend, [26, 28], "10 and 31 January 2026 were Saturdays");
     assert.equal((await call("planning_runway", { file, through: "2026-01-31", months: 1 })).burning, false);
     assert.ok(Math.abs((await call("planning_dcf", { cash_flows: [100, 100, 100], rate: 0.1 })).value - 1000) < 1e-9);

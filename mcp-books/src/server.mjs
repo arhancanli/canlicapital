@@ -4,7 +4,7 @@
 // The Canli Books MCP server, with the first tools of every Canli company on its engine: Books (keep a book
 // file, sign it, prove single entries from it), Close (bank matching, bank lines into entries, what moved, the close checklist, group consolidation),
 // Report (facts and the checks before filing), Audit (Benford and journal-entry tests), Planning (runway, budget,
-// forecast, valuation) and Data (pack a dataset; SEC facts as first filed). It runs on your machine. A book is a file you name, ending in
+// forecast, valuation) and Data (pack a dataset; SEC facts as first filed; Report's flags on SEC filings). It runs on your machine. A book is a file you name, ending in
 // .jsonl, one record per line: a write reads the whole book, checks every record, and only then appends the new
 // lines. A file that does not verify is never written to, and no tool overwrites a file. One writer at a time
 // per book.
@@ -20,7 +20,7 @@ import { z } from "zod";
 import { journalTests } from "./audit.mjs";
 import { smallBusiness } from "./chart.mjs";
 import { bankEntries, checklist, readStatement, reconcile, variance } from "./close.mjs";
-import { FIRST_FILED_COLUMNS, FIRST_FILED_FORMS, firstFiled, packDataset } from "./data.mjs";
+import { FINDING_COLUMNS, FIRST_FILED_COLUMNS, FIRST_FILED_FORMS, findingRows, firstFiled, packDataset } from "./data.mjs";
 import { consolidate, readEcbRates } from "./group.mjs";
 import { addAccount, balanceSheet, explain, fromJsonl, fromMinor, incomeStatement, lock, openBook, post, reverse, toJsonl, trialBalance, TYPES, verify } from "./ledger.mjs";
 import { budgetVsActual, dcf, forecast, runway } from "./planning.mjs";
@@ -232,21 +232,45 @@ export function registerTools(server) {
     return { out_dir: dir, files: ["data.csv", "README.md"], rows: pack.rows, sha256: pack.sha256 };
   };
   tool("data_pack", "Pack a dataset", "Write rows as data.csv with its SHA-256 and a Hugging Face dataset card (README.md) naming the source and licence, into a folder. Refuses to overwrite either file.", z.object({ out_dir: z.string(), name: z.string(), title: z.string().optional(), description: z.string().optional(), source: z.string().min(1), license: z.string().min(1), columns: z.array(z.object({ name: z.string(), description: z.string().optional() }).strict()).min(1), rows: z.array(z.record(z.string(), z.union([z.string(), z.number(), z.boolean(), z.null()]))) }).strict(), WRITES_LOCAL, ({ out_dir, ...spec }) => writePack(out_dir, packDataset(spec)));
-  tool("data_pack_sec_first_filed", "Pack SEC facts as first filed", "From companyfacts JSON files (data.sec.gov/api/xbrl/companyfacts/CIK##########.json, saved beforehand; this server reads only the files given), one row per company, concept, unit and period: the value in the first filing that reported it and in the latest, with their accession numbers, forms and dates, and how many different values were filed. Written as data.csv with its SHA-256 and a dataset card that names each input file's SHA-256, so anyone with the same files can rebuild it. Refuses to overwrite either file.", z.object({ companyfacts_files: z.array(z.string()).min(1).max(500), out_dir: z.string(), name: z.string(), title: z.string().optional(), license: z.string().min(1), forms: z.array(z.string()).min(1).max(20).default([...FIRST_FILED_FORMS]) }).strict(), WRITES_LOCAL, ({ companyfacts_files, out_dir, name, title, license, forms }) => {
-    const inputs = companyfacts_files.map((f) => {
-      const path = resolve(f);
-      const bytes = readFileSync(path);
-      return { facts: JSON.parse(bytes.toString("utf8")), sha256: createHash("sha256").update(bytes).digest("hex"), saved: statSync(path).mtime.toISOString().slice(0, 10) };
-    });
+  // Saved companyfacts files, each with its SHA-256 and the day it was saved, named in the dataset card so anyone
+  // with the same files can rebuild the pack.
+  const SEC_SOURCE = "The SEC's XBRL company facts API (data.sec.gov/api/xbrl/companyfacts), in the files listed above";
+  const companyfactsFiles = z.array(z.string()).min(1).max(500);
+  const readCompanyfacts = (files) => files.map((f) => {
+    const path = resolve(f);
+    const bytes = readFileSync(path);
+    return { facts: JSON.parse(bytes.toString("utf8")), sha256: createHash("sha256").update(bytes).digest("hex"), saved: statSync(path).mtime.toISOString().slice(0, 10) };
+  });
+  const inputLines = (inputs) => inputs.map(({ facts, sha256, saved }) => `- ${facts.entityName ?? "Unnamed"} (CIK ${facts.cik ?? "not given"}): companyfacts saved ${saved}, SHA-256 ${sha256}`);
+  const companies = (n) => (n === 1 ? "one company" : `${n} companies`);
+  tool("data_pack_sec_first_filed", "Pack SEC facts as first filed", "From companyfacts JSON files (data.sec.gov/api/xbrl/companyfacts/CIK##########.json, saved beforehand; this server reads only the files given), one row per company, concept, unit and period: the value in the first filing that reported it and in the latest, with their accession numbers, forms and dates, and how many different values were filed. Written as data.csv with its SHA-256 and a dataset card that names each input file's SHA-256, so anyone with the same files can rebuild it. Refuses to overwrite either file.", z.object({ companyfacts_files: companyfactsFiles, out_dir: z.string(), name: z.string(), title: z.string().optional(), license: z.string().min(1), forms: z.array(z.string()).min(1).max(20).default([...FIRST_FILED_FORMS]) }).strict(), WRITES_LOCAL, ({ companyfacts_files, out_dir, name, title, license, forms }) => {
+    const inputs = readCompanyfacts(companyfacts_files);
     const rows = inputs.flatMap(({ facts }) => firstFiled(facts, { forms }));
     const changed = rows.filter((r) => r.values > 1).length;
     const description = [
-      `Facts from the SEC filings of ${inputs.length === 1 ? "one company" : `${inputs.length} companies`} (forms ${forms.join(", ")}), each with the value as first filed and as last filed: ${changed} of ${rows.length} changed after they were first filed. A change may be a restatement, a reclassification or a correction; the accession numbers name the filings to read.`,
+      `Facts from the SEC filings of ${companies(inputs.length)} (forms ${forms.join(", ")}), each with the value as first filed and as last filed: ${changed} of ${rows.length} changed after they were first filed. A change may be a restatement, a reclassification or a correction; the accession numbers name the filings to read.`,
       "",
-      ...inputs.map(({ facts, sha256, saved }) => `- ${facts.entityName ?? "Unnamed"} (CIK ${facts.cik ?? "not given"}): companyfacts saved ${saved}, SHA-256 ${sha256}`),
+      ...inputLines(inputs),
     ].join("\n");
-    const pack = packDataset({ name, title: title ?? "SEC facts as first filed", description, source: "The SEC's XBRL company facts API (data.sec.gov/api/xbrl/companyfacts), in the files listed above", license, columns: FIRST_FILED_COLUMNS, rows });
+    const pack = packDataset({ name, title: title ?? "SEC facts as first filed", description, source: SEC_SOURCE, license, columns: FIRST_FILED_COLUMNS, rows });
     return { ...writePack(out_dir, pack), companies: inputs.length, changed };
+  });
+  tool("data_pack_sec_findings", "Pack Report's flags on SEC filings", "Report's checks (report_check_sec) on every filing in companyfacts JSON files saved beforehand, one row per finding: the filing (accession, form, date), the rule (scale, balance, sign or duplicate), the concept, unit, period and value, the value a scale flag was compared with, and the check's own words. Flags point at facts to look at, not errors proved. Written as data.csv with its SHA-256 and a dataset card that names each input file's SHA-256. Refuses to overwrite either file.", z.object({ companyfacts_files: companyfactsFiles, out_dir: z.string(), name: z.string(), title: z.string().optional(), license: z.string().min(1), forms: z.array(z.string()).min(1).max(10).default([...SEC_FORMS]) }).strict(), WRITES_LOCAL, ({ companyfacts_files, out_dir, name, title, license, forms }) => {
+    const inputs = readCompanyfacts(companyfacts_files);
+    const checked = inputs.map(({ facts }) => checkSecFilings(facts, { forms, last: Infinity }));
+    const rows = checked.flatMap(findingRows);
+    const filings = checked.reduce((t, c) => t + c.checked, 0);
+    const flagged = checked.reduce((t, c) => t + c.withFindings, 0);
+    const counts = {};
+    for (const r of rows) counts[r.rule] = (counts[r.rule] ?? 0) + 1;
+    const back = rows.filter((r) => r.prior_flagged).length;
+    const description = [
+      `Canli Report's checks on every ${forms.join(", ")} filing of ${companies(inputs.length)}: ${rows.length} flag${rows.length === 1 ? "" : "s"} in ${flagged} of ${filings} filings (${Object.entries(counts).map(([rule, n]) => `${rule} ${n}`).join(", ") || "none"})${back ? `, of which ${back} are values back to scale after the filing before slipped (prior_flagged)` : ""}. A flag points at a fact to look at, not an error proved: read the filing named.`,
+      "",
+      ...inputLines(inputs),
+    ].join("\n");
+    const pack = packDataset({ name, title: title ?? "Flags on SEC filings", description, source: SEC_SOURCE, license, columns: FINDING_COLUMNS, rows });
+    return { ...writePack(out_dir, pack), companies: inputs.length, filings, flagged, counts };
   });
 }
 

@@ -70,6 +70,7 @@ test("a company's SEC filings are checked one by one: a scale slip and assets of
   // Last year's shares authorized, filed again a thousand times smaller: the same date, so the slip is plain.
   assert.deepEqual(a2.findings.map((f) => [f.rule, f.concept, f.prior]), [["scale", "CommonStockSharesAuthorized", { value: 1800000000, period: { instant: "2024-12-31" } }]]);
   assert.deepEqual(q1.findings.map((f) => [f.rule, f.concept]), [["balance", "Assets"]], "the 60 short is left alone; assets 10 over are not");
+  assert.deepEqual([a2.findings[0].unit, a2.findings[0].period, a2.findings[0].value, q1.findings[0].unit, q1.findings[0].period, q1.findings[0].value], ["shares", { instant: "2024-12-31" }, 1800000, "USD", { instant: "2026-03-31" }, 1400], "each finding carries its unit, period and value");
   assert.deepEqual(out.counts, { scale: 1, balance: 1 });
   assert.equal(checkSecFilings(example, { last: 1 }).filings[0].accession, "Q1");
   assert.equal(checkSecFilings(example, { forms: ["10-Q"] }).checked, 1);

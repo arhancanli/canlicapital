@@ -137,7 +137,7 @@ export function checkFacts(facts, { prior = [], taxonomy = "us-gaap", tolerance 
     groups.set(key, [...(groups.get(key) ?? []), f]);
   }
   for (const list of groups.values()) {
-    if (new Set(list.map((f) => f.value)).size > 1) findings.push({ rule: "duplicate", concept: list[0].concept, detail: `the same fact is given ${list.length} values${where(list[0].period)}: ${list.map((f) => f.value).join(", ")}` });
+    if (new Set(list.map((f) => f.value)).size > 1) findings.push({ rule: "duplicate", concept: list[0].concept, unit: list[0].unit, period: list[0].period, value: null, detail: `the same fact is given ${list.length} values${where(list[0].period)}: ${list.map((f) => f.value).join(", ")}` });
   }
   // The first value of each concept at each date and unit.
   const instants = new Map();
@@ -148,20 +148,21 @@ export function checkFacts(facts, { prior = [], taxonomy = "us-gaap", tolerance 
     if (!instants.get(key).has(f.concept)) instants.get(key).set(f.concept, f.value);
   }
   for (const [key, v] of instants) {
-    const at = ` at ${key.split("|")[0]}`;
+    const [instant, unit] = key.split("|");
+    const at = ` at ${instant}`;
     const [A, L, LE] = [v.get(t.assets), v.get(t.liabilities), v.get(t.both)];
     const equityConcept = map.equityWithMinority && v.has(map.equityWithMinority) ? map.equityWithMinority : t.equity;
     const E = v.get(equityConcept);
     const [whole, parts = []] = map.temporary ?? [];
     const tagged = v.has(whole) || parts.some((c) => v.has(c));
     const temporary = v.get(whole) ?? parts.reduce((s, c) => s + (v.get(c) ?? 0), 0);
-    if (A !== undefined && LE !== undefined && Math.abs(A - LE) > tolerance) findings.push({ rule: "balance", concept: t.assets, detail: `${t.assets} ${A} is not ${t.both} ${LE}${at}` });
+    if (A !== undefined && LE !== undefined && Math.abs(A - LE) > tolerance) findings.push({ rule: "balance", concept: t.assets, unit, period: { instant }, value: A, detail: `${t.assets} ${A} is not ${t.both} ${LE}${at}` });
     const gap = L !== undefined && E !== undefined && LE !== undefined ? L + temporary + E - LE : 0;
     if (Math.abs(gap) > tolerance && (!untagged || tagged || gap > 0)) {
-      findings.push({ rule: "balance", concept: t.both, detail: `${t.liabilities} ${L}${temporary ? ` plus temporary equity ${temporary}` : ""} plus ${equityConcept} ${E} is not ${t.both} ${LE}${at}` });
+      findings.push({ rule: "balance", concept: t.both, unit, period: { instant }, value: LE, detail: `${t.liabilities} ${L}${temporary ? ` plus temporary equity ${temporary}` : ""} plus ${equityConcept} ${E} is not ${t.both} ${LE}${at}` });
     }
   }
-  for (const f of facts) if (map.nonNegative.includes(f.concept) && f.value < 0) findings.push({ rule: "sign", concept: f.concept, detail: `${f.concept} is negative: ${f.value}${where(f.period)}` });
+  for (const f of facts) if (map.nonNegative.includes(f.concept) && f.value < 0) findings.push({ rule: "sign", concept: f.concept, unit: f.unit, period: f.period, value: f.value, detail: `${f.concept} is negative: ${f.value}${where(f.period)}` });
   // Against the prior value of the same concept, unit and period, or else the latest of the same kind of period that
   // ends no later than this one (for a flow, one about as long). A scale slip multiplies a value by a thousand or a
   // million, so only a ratio within 10% of 1,000 or 1,000,000 is flagged for a balance and within 5% for a flow;
@@ -184,8 +185,9 @@ export function checkFacts(facts, { prior = [], taxonomy = "us-gaap", tolerance 
     const ratio = Math.abs(f.value / p.value);
     const instant = isInstant(f.period);
     const prior = { value: p.value, period: p.period };
-    if (slip(ratio, instant)) findings.push({ rule: "scale", concept: f.concept, detail: `${f.value}${where(f.period)} is ${Math.round(ratio)} times the prior value ${p.value}${where(p.period)}: check the scale`, prior });
-    else if (slip(1 / ratio, instant)) findings.push({ rule: "scale", concept: f.concept, detail: `${f.value}${where(f.period)} is 1/${Math.round(1 / ratio)} of the prior value ${p.value}${where(p.period)}: check the scale`, prior });
+    const found = { rule: "scale", concept: f.concept, unit: f.unit, period: f.period, value: f.value };
+    if (slip(ratio, instant)) findings.push({ ...found, detail: `${f.value}${where(f.period)} is ${Math.round(ratio)} times the prior value ${p.value}${where(p.period)}: check the scale`, prior });
+    else if (slip(1 / ratio, instant)) findings.push({ ...found, detail: `${f.value}${where(f.period)} is 1/${Math.round(1 / ratio)} of the prior value ${p.value}${where(p.period)}: check the scale`, prior });
   }
   return { ok: !findings.length, findings };
 }
