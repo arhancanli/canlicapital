@@ -57,6 +57,8 @@ const MAX_COMPANIES = 8;
 // by its ETag. A snapshot is named by its hash and never needs revalidating.
 const REFERENCE_FRESH_MS = 6 * 60 * 60 * 1000;
 const MAX_NAMES_BYTES = 8 * MIB;
+const MAX_SUBMISSIONS_BYTES = 16 * MIB;
+const PERIODIC_FORMS = new Set(["10-K", "10-K/A", "10-Q", "10-Q/A", "20-F", "20-F/A", "40-F", "40-F/A"]);
 
 // The boundary every result carries.
 export const LIMITS = Object.freeze([
@@ -363,6 +365,31 @@ async function readCompany(session, cik, { ticker = null, matched, only } = {}) 
   };
 }
 
+// The company's newest annual or quarterly report filed on or after `since` (a date), from the SEC's
+// filing list, or null. A report filed on the day the snapshot was taken may already be in it; the
+// live facts are read then too, which costs a read and never misses a report.
+async function newerReport(session, cik, since) {
+  let res;
+  try {
+    res = await fetchBytes(session, `https://data.sec.gov/submissions/CIK${cik}.json`, MAX_SUBMISSIONS_BYTES, { "user-agent": SEC_USER_AGENT });
+  } catch {
+    return null;
+  }
+  if (res.status !== 200) return null;
+  let recent;
+  try {
+    recent = JSON.parse(res.body)?.filings?.recent;
+  } catch {
+    return null;
+  }
+  // Newest first, as the SEC lists them.
+  const forms = Array.isArray(recent?.form) ? recent.form : [];
+  for (let i = 0; i < forms.length; i++) {
+    if (PERIODIC_FORMS.has(forms[i]) && String(recent.filingDate?.[i] ?? "") >= since) return { form: forms[i], filed: recent.filingDate[i], accession: recent.accessionNumber?.[i] ?? null };
+  }
+  return null;
+}
+
 // A company outside the reference: the SEC's own company facts, read live. The same index as a
 // snapshot, with no published hash to check against, which the snapshot block says. Null when the
 // SEC has no XBRL facts for the CIK.
@@ -397,7 +424,20 @@ export async function loadCompany(session, company) {
     session.companies.set(cik, cached);
     return ticker || matched ? { ...cached, ticker, matched } : cached;
   }
-  const entry = (await readCompany(session, cik, { ticker, matched })) ?? (session.secLive ? await readFromSec(session, cik, { ticker, matched }) : null);
+  let entry = await readCompany(session, cik, { ticker, matched });
+  // A reference snapshot taken before the company's newest annual or quarterly report is out of date. When
+  // reading live is on, the SEC's own facts are read instead, and the snapshot block names the report and the
+  // reference snapshot it replaced.
+  if (entry && session.secLive && entry.snapshot.fetched_at) {
+    const captured = entry.snapshot.fetched_at.slice(0, 10);
+    const newer = await newerReport(session, cik, captured);
+    const live = newer ? await readFromSec(session, cik, { ticker, matched }) : null;
+    if (live) {
+      const note = `The Canli reference for this company was captured ${captured}; its ${newer.form} filed ${newer.filed} is newer, so the SEC's own company facts were read live.`;
+      entry = { ...live, name: entry.name ?? live.name, page: entry.page, snapshot: { ...live.snapshot, note, newer_filing: newer, reference: { fetched_at: entry.snapshot.fetched_at, sha256: entry.snapshot.sha256, url: entry.snapshot.url } } };
+    }
+  }
+  entry ??= session.secLive ? await readFromSec(session, cik, { ticker, matched }) : null;
   if (!entry) throw new Error(`CIK ${cik} is not in the Canli company reference${session.secLive ? ", and the SEC has no XBRL facts for it" : ""}. It covers the SEC filers listed at ${session.base}/companies; find_company searches them by name.`);
   // A large filer's index takes 12 to 15 MB of heap; keep the eight most recently used. Evicted
   // companies reload from the hash-named disk cache.
