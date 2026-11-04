@@ -9,7 +9,7 @@
 [![CodeQL](https://github.com/arhancanli/canli-mcp/actions/workflows/codeql.yml/badge.svg)](https://github.com/arhancanli/canli-mcp/actions/workflows/codeql.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](https://github.com/arhancanli/canli-mcp/blob/main/LICENSE)
 
-Every Canli Capital MCP server in one: 406 finance tools for Claude, Cursor or any MCP client.
+Every Canli Capital MCP server in one: 412 finance tools for Claude, Cursor or any MCP client.
 
 ```bash
 claude mcp add canli -- npx -y canli-mcp
@@ -45,6 +45,7 @@ No key and no account. [Add to VS Code](https://insiders.vscode.dev/redirect/mcp
 - Fixed in 0.17.1: Hansen's SPA and Romano and Wolf's StepM hold their size (validation 0.15.0), and the time machine no longer lets later filings through in fields without a date.
 - New in 0.17.0: foreign companies such as TSMC, Shell, Novo Nordisk and SAP, read live from the SEC with statements in two currencies; `stock_snapshot` for analysts' targets, valuation ratios and short interest; `technical_indicators`; euro exchange rates from the ECB.
 - New in 0.18.0: any other MCP server behind this one (`canli-mcp upstream add`), its tools found and batched here and none of them in your tool list; `canli-mcp setup` for every client on your machine; sixteen markets tools (`filing_check`, `congress_trades`, `market_calendar`, `unusual_options`, `company_emissions`, `crypto_options` and more) and minute bars; the holdout vault (years hidden from every tool until their one test), `preregister`, luck counted on every strategy result and every variant of a sweep, restatement alerts from the sentinel, `as_of` and `changes_only` on any call, answer budgets, a receipt and a cost meter on every answer, and the network tripwire.
+- New in 0.19.0: live prices you can subscribe to (`canli://quote/AAPL,MSFT` tells the client each time a price changes); vendors' own MCP servers added by name (`canli-mcp upstream add fmp`); and six markets tools where the big terminals led: `scenario_risk` (your holdings under a macro shock or a replayed crisis, with the model's own error shown), `bond_offerings` (every bond a company sold, with coupon, yield and spread at issue), `standardized_financials` (US GAAP and IFRS in one template), `trade_flows` (UN Comtrade, Taiwan named), `trade_ticks` (every Kraken trade) and `financial_cycle` (BIS house prices, debt service and credit).
 - Point-in-time SEC fundamentals.
 - An analyst's filings, and a check on the answer: financial statements exactly as filed (several
   years joined, restatements and splits shown beside the first-reported figures), the table in any
@@ -123,19 +124,19 @@ own broker keys. The hosted server keeps nothing between requests, so chain call
 
 ## Context and startup
 
-Measured on Node 24 on 2026-11-03 with `bench/context.py` (o200k tokens of the tool objects a
+Measured on Node 24 on 2026-11-04 with `bench/context.py` (o200k tokens of the tool objects a
 client receives, plus the server instructions; all seven packs enabled with `CANLI_PACKS=all`; start-up is the median time from launch to the
-tool list, on a machine running other work; `bench/context-2026-11-03-0.17.0.json`):
+tool list, on a machine running other work; `bench/context-2026-11-04-0.19.0.json`):
 
 | | seven servers separately | canli-mcp |
 |---|---|---|
-| initial tool list and instructions | 70,862 tokens (158 tools) | 2,524 tokens (5 tools) |
+| initial tool list and instructions | 82,744 tokens (181 tools) | 2,558 tokens (5 tools) |
 | processes | 7 | 1 |
-| start-up | 90-155 ms each | 164 ms |
+| start-up | 96-172 ms each | 197 ms |
 
 Tools the packs add cost the combined server nothing up front: since 0.6.0 the seven servers' own
-lists grew from 39,962 to 70,862 tokens. The interactive views of 0.10.0 added 76 tokens, those of 0.11.0 another 13, and
-the clearer tool descriptions of 0.13.2 another 121.
+lists grew from 39,962 to 82,744 tokens. The interactive views of 0.10.0 added 76 tokens, those of 0.11.0 another 13,
+the clearer tool descriptions of 0.13.2 another 121, and 0.18.0 another 34; 0.19.0's six markets tools added none.
 
 - **Five tools in context.** The model searches with `find_tool`, reads one schema with
   `describe_tool`, and calls anything with `run_tool`; `history` and `financial_statements`, the
@@ -146,7 +147,7 @@ the clearer tool descriptions of 0.13.2 another 121.
   words they used were then added to the index (38 and 40). For the 0.7.0 to 0.9.0 tools, 43 requests
   written before measuring: 41 first, 42 in the top three. `test/search.test.mjs` holds these and
   176 more.
-- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 406 tools; a pack's
+- **Nothing loads until it is used.** Start-up reads a prebuilt index of all 412 tools; a pack's
   code loads the first time one of its tools runs.
 - **Data by file, not by pasting.** Any argument can be `{"$file": "prices.csv", "column": "close"}`
   (or `"columns": ["SPY", "TLT"]` or `"all"`). For 1,000 prices that is 23 tokens instead of 4,893,
@@ -535,7 +536,7 @@ A deflated Sharpe ratio is only as honest as the number of trials put into it, a
 | fundamentals | [canli-fundamentals-mcp](https://www.npmjs.com/package/canli-fundamentals-mcp) | 8 | SEC XBRL filings |
 | research | [canli-research-mcp](https://www.npmjs.com/package/canli-research-mcp) | 6 | the published research record and its hash chain |
 | backtest | [canli-backtest-mcp](https://www.npmjs.com/package/canli-backtest-mcp) | 32 | point-in-time SEC data and the breadth lab's own checks |
-| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 102 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank, Cboe, ECB, Bank of England, BIS, filings.xbrl.org, Polymarket, Kalshi, DefiLlama, USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index: a 13F's total equals its cover page; ESEF figures equal the same companies' Form 20-F at the SEC; central-bank rates agree with the BIS |
+| markets | [canli-markets-mcp](https://www.npmjs.com/package/canli-markets-mcp) | 108 | replayed responses from the SEC, Treasury, FRED, FINRA, CFTC, the Fed, OECD, World Bank, Cboe, ECB, Bank of England, BIS, filings.xbrl.org, Polymarket, Kalshi, DefiLlama, USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index: a 13F's total equals its cover page; ESEF figures equal the same companies' Form 20-F at the SEC; central-bank rates agree with the BIS |
 | paper | [canli-paper-trading-mcp](https://www.npmjs.com/package/canli-paper-trading-mcp) | 5 | a simulated Alpaca paper API |
 
 Two tools differ from their standalone servers. Validation's `stress_test` is `strategy_stress_test`
