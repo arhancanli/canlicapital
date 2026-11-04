@@ -151,6 +151,11 @@ const p2 = (n) => String(n).padStart(2, "0");
 export function period(raw) {
   const s = String(raw).trim();
   let m;
+  // An ISO week (the ECB's weekly statements) as its Friday, the day the Eurosystem's statement is dated.
+  if ((m = /^(\d{4})-?W(\d{2})$/.exec(s))) {
+    const jan4 = Date.UTC(Number(m[1]), 0, 4), monday = jan4 - ((new Date(jan4).getUTCDay() + 6) % 7) * 86400000;
+    return new Date(monday + ((Number(m[2]) - 1) * 7 + 4) * 86400000).toISOString().slice(0, 10);
+  }
   if ((m = /^(\d{4})-?M(\d{1,2})$/i.exec(s))) return `${m[1]}-${p2(m[2])}`;
   if ((m = /^(\d{4})-?[QK](\d)$/i.exec(s))) return `${m[1]}-Q${m[2]}`;
   if ((m = /^(\d{4})-(\d{2})$/.exec(s))) return s;
@@ -166,6 +171,8 @@ export function period(raw) {
 }
 const kind = (p) => (/^\d{4}-\d{2}-\d{2}$/.test(p) ? "day" : /^\d{4}-Q\d$/.test(p) ? "quarter" : /^\d{4}-\d{2}$/.test(p) ? "month" : /^\d{4}$/.test(p) ? "year" : "other");
 const FREQUENCY = { day: "daily", month: "monthly", quarter: "quarterly", year: "annual", other: "as published" };
+// Dated observations a week apart are weekly.
+const frequencyOf = (rows) => { const k = kind(rows.at(-1)?.[0] ?? ""); if (k !== "day" || rows.length < 3) return FREQUENCY[k]; const gap = (Date.parse(rows.at(-1)[0]) - Date.parse(rows.at(-3)[0])) / 86400000 / 2; return gap >= 6 && gap <= 8 ? "weekly" : "daily"; };
 
 // Dates on the first of a month that step by months, quarters or years are months, quarters or years.
 export function compactDates(rows) {
@@ -764,6 +771,19 @@ export const MEASURES = {
     oecd: (c) => kei(c, "M.MABM.GR._Z.Y.GY", { title: "Broad money (M3), seasonally adjusted: change on a year" }),
     tolerance: 0.3,
   },
+  central_bank_assets: {
+    words: "central bank balance sheet total assets qe qt quantitative easing tightening fed balance sheet",
+    basis: "The central bank's total assets, in its own currency (see quote), with the figure a year earlier.",
+    daily: true,
+    national: {
+      US: { s: "fred:WALCL", by: "Federal Reserve (H.4.1), through FRED", title: "Total assets of the Federal Reserve, Wednesday level", quote: "millions of US dollars" },
+      EA: { s: "ecb:ILM/W.U2.C.T000000.Z5.Z01", by: "European Central Bank (the Eurosystem's weekly statement)", title: "Total assets of the Eurosystem", quote: "millions of euros" },
+      JP: { s: "boj:BS01/MABJMTA", by: "Bank of Japan (its accounts)", title: "Bank of Japan total assets, month end", quote: "100 millions of yen" },
+    },
+    euro: "EA",
+    tolerance: 0.01,
+    relative: true,
+  },
   house_prices: {
     words: "house prices home prices housing property prices real estate residential",
     basis: "Residential property prices, nominal, percent change on a year.",
@@ -937,7 +957,7 @@ export function compare(a, b, m, note) {
 export const worldSeriesInput = z.object({
   country: z.string().min(2).max(60).optional().describe("One country or the euro area: a name (Brazil, South Korea, euro area) or an ISO code (BR, KOR)."),
   countries: z.array(z.string().min(2).max(60)).min(1).max(30).optional().describe("Several side by side, or a group: G7, G20, EU, euro area members, BRICS, Nordics, ASEAN, Latin America. Up to 30."),
-  measure: z.string().min(2).max(80).optional().describe("inflation, core_inflation, unemployment, gdp_growth, policy_rate, ten_year_yield, exchange_rate, industrial_production, retail_sales, wages, leading_indicator (the OECD's), consumer_confidence, business_confidence, government_debt, money_supply or house_prices, or all (one country's every measure); plain words work (\"jobless rate\", \"10-year bond yield\")."),
+  measure: z.string().min(2).max(80).optional().describe("inflation, core_inflation, unemployment, gdp_growth, policy_rate, ten_year_yield, exchange_rate, industrial_production, retail_sales, wages, leading_indicator (the OECD's), consumer_confidence, business_confidence, government_debt, money_supply, central_bank_assets or house_prices, or all (one country's every measure); plain words work (\"jobless rate\", \"10-year bond yield\")."),
   series: z.string().min(4).max(300).optional().describe("Any series by its publisher's own code instead: imf:, bis:, ecb:, eurostat:, oecd:, ilo:, fred:, statcan:, boc:, ons:, boe:, boj:, mof:, rba:, abs:, bcb:, ibge:, riksbank:, scb:, ssb:, norges:, snb:, bbk:, boi: (e.g. \"statcan:2062815\", \"eurostat:une_rt_m?geo=DE&s_adj=SA&age=TOTAL&sex=T&unit=PC_ACT\")."),
   periods: z.number().int().min(1).max(600).optional().describe("Observations to return, latest last. Default 13 (one country), 1 (several)."),
   start: z.string().regex(/^\d{4}(-\d{2}(-\d{2})?)?$/).optional().describe("Return everything from this date (YYYY, YYYY-MM or YYYY-MM-DD) instead, up to 600 observations."),
@@ -976,7 +996,7 @@ export async function worldSeries(session, args) {
     const rows = keepFrom(r.rows, from0).slice(-(a.start ? 600 : a.periods ?? 13));
     if (!rows.length) throw new NotFound(`${r.publisher} returned no observations for ${a.series}${a.start ? ` since ${a.start}` : ""}.`);
     return {
-      series: { id: r.code, publisher: r.publisher, title: r.title ?? null, ...(r.description ? { description: r.description } : {}), unit: r.unit ?? null, frequency: FREQUENCY[kind(rows.at(-1)[0])], ...(r.updated ? { updated: r.updated } : {}) },
+      series: { id: r.code, publisher: r.publisher, title: r.title ?? null, ...(r.description ? { description: r.description } : {}), unit: r.unit ?? null, frequency: frequencyOf(r.rows), ...(r.updated ? { updated: r.updated } : {}) },
       ...summary(r.rows),
       columns: ["period", "value"], rows: rows.map(([p, v]) => [p, round(v, 6)]),
       source: r.url, sources: [r.url, ...(r.api ? [r.api] : [])], limits: LIMITS,
@@ -1016,7 +1036,7 @@ export async function worldSeries(session, args) {
     const changes = measure === "policy_rate" ? moves(r.rows) : null;
     return {
       country: c.name, measure, basis: m.basis,
-      series: { id: r.code, publisher: link.by, title: link.title ?? r.title ?? null, ...(link.quote ? { quote: link.quote } : {}), frequency: FREQUENCY[kind(r.rows.at(-1)[0])], ...(link.yoy ? { computed: "change on a year, from the publisher's levels" } : {}), ...(r.updated ? { updated: r.updated } : {}) },
+      series: { id: r.code, publisher: link.by, title: link.title ?? r.title ?? null, ...(link.quote ? { quote: link.quote } : {}), frequency: frequencyOf(r.rows), ...(link.yoy ? { computed: "change on a year, from the publisher's levels" } : {}), ...(r.updated ? { updated: r.updated } : {}) },
       ...summary(r.rows),
       ...(staleSince(session, r.rows) ? { stale: `The latest observation is for ${r.rows.at(-1)[0]}; ${link.by.split(",")[0]} has published nothing newer for ${c.name}.` } : {}),
       ...(changes ? (changes.length ? { changes } : { unchanged_since: r.rows[0][0] }) : {}),

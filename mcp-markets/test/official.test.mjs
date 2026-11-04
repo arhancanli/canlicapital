@@ -308,3 +308,10 @@ test("a country's whole economy with every measure checked against a second offi
   assert.deepEqual(r.check.disagree, []);
   assert.ok(r.check.unchecked.includes("house_prices"), "a measure with one publisher is said to be unchecked");
 });
+
+test("central banks' balance sheets: the Fed's and the Eurosystem's weekly, the Bank of Japan's monthly, each in its own currency", async () => {
+  assert.equal(period("2026-W44"), "2026-10-30");
+  const { r } = await run({ countries: ["United States", "euro area", "Japan"], measure: "central bank assets" });
+  assert.deepEqual(r.rows.map((x) => [x[0], x[3], x[5]]), [["United States", "millions of US dollars", "fred:WALCL"], ["Euro area", "millions of euros", "ecb:ILM/W.U2.C.T000000.Z5.Z01"], ["Japan", "100 millions of yen", "boj:BS01/MABJMTA"]]);
+  assert.deepEqual(r.rows[1].slice(1, 3), ["2026-10-30", 5945410]);
+});
