@@ -12,6 +12,7 @@ import { federalBudget, treasuryCash } from "../src/fiscal.mjs";
 import { marketCalendar } from "../src/nasdaq.mjs";
 import { calendar, easter, marketHours } from "../src/hours.mjs";
 import { createSession } from "../src/sources.mjs";
+import { unusualOptions } from "../src/options.mjs";
 import { priceHistory } from "../src/tools.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
 
@@ -169,4 +170,14 @@ test("company_emissions: EPA's facilities for a parent company, direct and owned
   assert.deepEqual(r.facilities.rows[0].slice(0, 6), ["EXXONMOBIL Bt Site", "BAYTOWN", "TX", "324110", 12693547, 100]);
   assert.equal(r.by_gas_tonnes_co2e.methane > 1e6, true);
   assert.match(r.limits[0], /scope 1/);
+});
+
+test("unusual_options: contracts trading beyond their open interest, largest premium first, with the day's call and put premium", async () => {
+  const r = await unusualOptions(session(), { symbol: "AAPL", min_volume: 10, limit: 3 });
+  assert.equal(r.flagged, 170);
+  assert.deepEqual(r.day_premium_usd, { calls: 107455915, puts: 31444657, put_call_ratio: 0.2926 });
+  assert.deepEqual(r.rows[0], ["2026-10-16", 7, 335, "call", 20763, 15951, 1.3, 5.1, 10589130, 0.2253, 0.5686, -0.32]);
+  assert.ok(r.rows.every((x, i) => i === 0 || x[8] <= r.rows[i - 1][8]), "largest premium first");
+  assert.match(r.limits[0], /does not say who bought/);
+  assert.equal((await unusualOptions(session(), { symbol: "AAPL" })).flagged, 97, "100 contracts by default");
 });

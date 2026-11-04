@@ -154,6 +154,7 @@ against the BIS (21 of 21 agreed on 2026-10-15).
 | `treasury_cash` | The Treasury's cash at the Fed each business day since 2005 (the TGA), and the day's largest deposits and withdrawals | Daily Treasury Statement (Fiscal Data) |
 | `federal_budget` | Receipts, outlays and the deficit each month, this fiscal year against the same months of the last | Monthly Treasury Statement (Fiscal Data) |
 | `factor_returns` | The Fama-French factors (market, size, value, profitability, investment, momentum, the T-bill rate), monthly since 1926, daily or by year, as fractions | Kenneth French's data library |
+| `unusual_options` | Contracts trading far beyond their open interest, largest premium first, and the day's call and put premium | Cboe delayed quotes |
 | `company_emissions` | A company's US greenhouse-gas emissions, facility by facility, by gas, with its ownership share and a trend | EPA's Greenhouse Gas Reporting Program |
 | `crypto_markets` | Coins ranked by market value with price, volume, changes, supply and distance from the high, and the whole market's value and bitcoin's share | CoinGecko (no key) |
 | `etf_profile` | What an ETF or fund costs and holds: expense ratio against its category, assets, yield, returns, top holdings, allocation, sectors | Yahoo Finance's fund profile |
