@@ -533,6 +533,9 @@ const G20 = new Set(["ARG", "AUS", "BRA", "CAN", "CHN", "FRA", "DEU", "IND", "ID
 const bisArea = (c) => (c.code === "EA" ? "XM" : c.code);
 // A spec that can be read for many countries in one request: its code with {} where the area goes.
 const batched = (tpl, area, rest) => ({ s: tpl.replace("{}", area), batch: [tpl, area], ...rest });
+// The OECD's key short-term indicators: its members and the large economies it follows.
+const KEI_AREAS = new Set([...OECD_MEMBERS, "BRA", "CHN", "IND", "IDN", "ZAF", "ARG", "RUS", "SAU"]);
+const kei = (c, key, rest) => (KEI_AREAS.has(c.iso3) ? batched(`oecd:OECD.SDD.STES,DSD_KEI@DF_KEI,4.0/{}.${key}`, c.iso3, { by: OECD_BY(c), ...rest }) : null);
 
 export const MEASURES = {
   inflation: {
@@ -633,6 +636,7 @@ export const MEASURES = {
       SE: { s: "riksbank:SEGVB10YC", by: "Sveriges Riksbank", title: "10-year government bond yield" },
     },
     eu: (c) => (c.code === "EA" ? null : batched("eurostat:irt_lt_mcby_m?geo={}", geo(c), { by: `Eurostat, from ${c.name}'s central bank (the convergence-criterion yield)`, title: "10-year government bond yield, monthly average" })),
+    oecd: (c) => kei(c, "M.IRLT.PA._Z._Z._Z", { title: "Long-term (usually 10-year) government bond yield, monthly average" }),
     world: (c) => (c.code === "EA" ? null : batched("imf:MFS_IR/{}.S13BOND_RT_PT_A_PT.M", c.iso3, { by: IMF_BY(c), title: "Government bond yield, monthly (each country's benchmark maturity, mostly ten years)" })),
     tolerance: 0.15,
   },
@@ -658,6 +662,51 @@ export const MEASURES = {
     world: (c) => (c.code === "US" ? null : c.code === "EA" ? { s: "fred:DEXUSEU", by: "Federal Reserve (H.10), through FRED", title: "US dollars to one euro, noon buying rates in New York", quote: "US dollars per euro", inverse: true } : batched("imf:ER/{}.XDC_USD.PA_RT.M", c.iso3, { by: IMF_BY(c), title: "National currency per US dollar, monthly average", quote: "national currency per US dollar" })),
     tolerance: 0.005,
     relative: true,
+  },
+  industrial_production: {
+    words: "industrial production industry output manufacturing output factory output production index",
+    basis: "Industrial production (volume), percent change on the same month a year earlier.",
+    national: {
+      US: { s: "fred:INDPRO", yoy: true, by: "Federal Reserve (G.17), through FRED", title: "Industrial production index, seasonally adjusted: change on a year" },
+    },
+    eu: (c) => batched("eurostat:sts_inpr_m?geo={}&nace_r2=B-D&s_adj=CA&unit=PCH_SM&indic_bt=PRD", geo(c, "EA21"), { by: `Eurostat, from ${c.code === "EA" ? "the members'" : `${c.name}'s`} statistics office`, title: "Production in industry (mining, manufacturing, energy), calendar adjusted: change on the same month a year earlier" }),
+    oecd: (c) => kei(c, "M.PRVM.GR.BTE.Y.GY", { title: "Industrial production (mining, manufacturing, energy), seasonally adjusted: change on a year" }),
+    tolerance: 0.5,
+  },
+  retail_sales: {
+    words: "retail sales retail trade consumer spending shopping store sales",
+    basis: "Retail sales volume, percent change on the same month a year earlier.",
+    national: {
+      US: { s: "fred:RRSFS", yoy: true, by: "U.S. Census Bureau, deflated by FRED", title: "Real retail and food services sales: change on a year" },
+      GB: { s: "ons:J5EK/DRSI", yoy: true, by: "Office for National Statistics", title: "Retail sales volume, all retailers including fuel, seasonally adjusted: change on a year" },
+    },
+    eu: (c) => batched("eurostat:sts_trtu_m?geo={}&nace_r2=G47&s_adj=CA&unit=PCH_SM&indic_bt=VOL_SLS", geo(c, "EA21"), { by: `Eurostat, from ${c.code === "EA" ? "the members'" : `${c.name}'s`} statistics office`, title: "Retail trade volume, calendar adjusted: change on the same month a year earlier" }),
+    oecd: (c) => kei(c, "M.TOVM.GR.G47.Y.GY", { title: "Retail trade volume, seasonally adjusted: change on a year" }),
+    tolerance: 0.7,
+  },
+  wages: {
+    words: "wages wage growth earnings pay average hourly earnings salaries",
+    basis: "Pay, percent change on a year (each publisher's own measure, in the title).",
+    national: {
+      US: { s: "fred:CES0500000003", yoy: true, by: "U.S. Bureau of Labor Statistics, through FRED", title: "Average hourly earnings, all private employees: change on a year" },
+      GB: { s: "ons:KAI9/LMS", by: "Office for National Statistics", title: "Average weekly earnings, regular pay, whole economy: three-month average, change on a year" },
+    },
+    oecd: (c) => kei(c, "M.H_EARN.GR.C.Y.GY", { title: "Hourly earnings in manufacturing, seasonally adjusted: change on a year" }),
+    tolerance: 0.5,
+  },
+  leading_indicator: {
+    words: "leading indicator leading indicators cli composite leading indicator business cycle turning point turning points cycle outlook momentum",
+    basis: "The OECD's composite leading indicator: 100 is activity's long-term trend; above 100 and rising points to growth above trend, and its turning points have led the business cycle by six to nine months.",
+    national: {},
+    oecd: (c) => kei(c, "M.LI.IX._T.AA._Z", { title: "Composite leading indicator, amplitude adjusted (long-term average = 100)" }),
+    tolerance: 0.2,
+  },
+  consumer_confidence: {
+    words: "consumer confidence consumer sentiment household confidence",
+    basis: "Consumer confidence as each country's own survey measures it (the OECD's compilation): set a country against its own history, not against another country.",
+    national: {},
+    oecd: (c) => kei(c, "M.CCICP.PB._Z.Y._Z", { title: "Composite consumer confidence (the national survey's own scale)" }),
+    tolerance: 0.5,
   },
   house_prices: {
     words: "house prices home prices housing property prices real estate residential",
@@ -739,7 +788,7 @@ async function readMeasure(session, measure, c, opts) {
   if (!links.length) throw new NotFound(`No open source read here covers ${measure.replace(/_/g, " ")} for ${c.name}${measure === "core_inflation" ? " (core inflation is read for the US, Canada, the UK and the EU; for others ask for inflation, or a series by its code)" : ""}.`);
   const tried = [];
   for (let i = 0; i < links.length; i += 1) {
-    if (links[i].batch && opts.failed?.has(links[i].batch[0])) { tried.push({ series: [links[i].s].flat()[0], by: links[i].by, error: "the publisher did not answer the combined request" }); continue; }
+    if (links[i].batch && opts.failed?.has(links[i].batch[0])) { tried.push({ series: [links[i].s].flat()[0], by: links[i].by, error: "the publisher did not answer the combined request just now (it limits how often it is asked); retry in a minute" }); continue; }
     try {
       const r = await readSpec(session, links[i], opts);
       return { r, link: links[i], others: links.slice(i + 1), tried };
@@ -822,7 +871,7 @@ export function compare(a, b, m, note) {
 export const worldSeriesInput = z.object({
   country: z.string().min(2).max(60).optional().describe("One country or the euro area: a name (Brazil, South Korea, euro area) or an ISO code (BR, KOR)."),
   countries: z.array(z.string().min(2).max(60)).min(1).max(30).optional().describe("Several side by side, or a group: G7, G20, EU, euro area members, BRICS, Nordics, ASEAN, Latin America. Up to 30."),
-  measure: z.string().min(2).max(80).optional().describe("inflation, core_inflation, unemployment, gdp_growth, policy_rate, ten_year_yield, exchange_rate or house_prices; plain words work (\"jobless rate\", \"10-year bond yield\")."),
+  measure: z.string().min(2).max(80).optional().describe("inflation, core_inflation, unemployment, gdp_growth, policy_rate, ten_year_yield, exchange_rate, industrial_production, retail_sales, wages, leading_indicator (the OECD's), consumer_confidence or house_prices, or all (one country's every measure); plain words work (\"jobless rate\", \"10-year bond yield\")."),
   series: z.string().min(4).max(300).optional().describe("Any series by its publisher's own code instead: imf:, bis:, ecb:, eurostat:, oecd:, ilo:, fred:, statcan:, boc:, ons:, boe:, boj:, mof:, rba:, abs:, bcb:, ibge:, riksbank:, scb:, ssb:, norges:, snb:, bbk:, boi: (e.g. \"statcan:2062815\", \"eurostat:une_rt_m?geo=DE&s_adj=SA&age=TOTAL&sex=T&unit=PC_ACT\")."),
   periods: z.number().int().min(1).max(600).optional().describe("Observations to return, latest last. Default 13 (one country), 1 (several)."),
   start: z.string().regex(/^\d{4}(-\d{2}(-\d{2})?)?$/).optional().describe("Return everything from this date (YYYY, YYYY-MM or YYYY-MM-DD) instead, up to 600 observations."),

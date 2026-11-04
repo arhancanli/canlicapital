@@ -172,7 +172,7 @@ test("when the OECD does not answer the combined request, each country falls to 
   assert.deepEqual(r.rows.find((x) => x[0] === "India").slice(1, 3), ["2026-Q2", 8.0982]);
   assert.equal(r.rows.find((x) => x[0] === "India")[5], "imf:QNEA/IND.B1GQ.Q.SA.XDC.Q");
   // China is left to the OECD (the IMF's quarterly volume series for China follows nominal GDP), so it waits for the OECD.
-  assert.match(r.not_found[0], /^China: .*did not answer the combined request/);
+  assert.match(r.not_found[0], /^China: .*did not answer the combined request just now/);
 });
 
 test("a euro member's policy rate is the ECB's, read once for all three, said so", async () => {
@@ -221,4 +221,19 @@ test("check across the G20: every country's inflation against a second official 
   assert.match(by.China[6], /^Bank for International Settlements/);
   assert.deepEqual(by.France.slice(1, 6), ["2026-09", 3.4, 3.080308, -0.319692, false]);
   assert.match(r.check.reading, /harmonised index/);
+});
+
+test("retail sales, wages and industrial production: national publishers and Eurostat, each said what it measures", async () => {
+  const retail = (await run({ countries: ["United States", "United Kingdom", "Germany", "France", "euro area"], measure: "retail sales" })).r;
+  assert.equal(retail.measure, "retail_sales");
+  const by = Object.fromEntries(retail.rows.map((x) => [x[0], x]));
+  assert.deepEqual(by.Germany.slice(1, 3), ["2026-09", -2.4]);
+  assert.deepEqual(by.France.slice(1, 3), ["2026-09", 2.8]);
+  assert.equal(by["United Kingdom"][5], "ons:J5EK/DRSI");
+  assert.equal(by["United States"][5], "fred:RRSFS");
+  const pay = (await run({ countries: ["United States", "United Kingdom"], measure: "wage growth" })).r;
+  assert.deepEqual(pay.rows.map((x) => x.slice(0, 3)), [["United States", "2026-09", 3.0245], ["United Kingdom", "2026-08", 3.7]]);
+  const ip = (await run({ country: "United States", measure: "industrial production" })).r;
+  assert.deepEqual(ip.latest, { period: "2026-09", value: 2.2452 });
+  assert.match(ip.series.publisher, /Federal Reserve \(G\.17\)/);
 });
