@@ -4,7 +4,17 @@
 // through the transformation matrices. A scanned page has no text, and comes back empty.
 import { inflateSync, constants } from "node:zlib";
 
-const inflate = (bytes) => { try { return inflateSync(bytes); } catch { try { return inflateSync(bytes, { finishFlush: constants.Z_SYNC_FLUSH }); } catch { return null; } } };
+// A stream inflates to 32 MB at most, so a malformed or hostile file cannot fill the memory. A small stream (deflate
+// expands at most about 1,032 times, so one under 32 KB stays under the cap) is inflated with no options at all: Node
+// reads some of these documents' streams (a declared window smaller than the data uses) only that way, and any
+// options object, even an empty one, fails them. A larger stream is inflated under the cap, or skipped.
+const MAX_STREAM = 32 * 1024 * 1024;
+const inflate = (bytes) => {
+  if (bytes.length <= MAX_STREAM / 1032) {
+    try { return inflateSync(bytes); } catch { try { return inflateSync(bytes, { finishFlush: constants.Z_SYNC_FLUSH }); } catch { return null; } }
+  }
+  try { return inflateSync(bytes, { maxOutputLength: MAX_STREAM }); } catch { return null; }
+};
 
 // Every object: its dictionary text and, for a stream, its decoded bytes.
 function objects(buf) {

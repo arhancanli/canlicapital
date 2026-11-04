@@ -188,3 +188,14 @@ test("market_calendar ipos: a month's IPOs, priced and withdrawn, with price, sh
   assert.equal(r.rows.length, 53);
   assert.deepEqual(r.rows[0], ["priced", "2026-10-30", "BBTX", "Bambusa Therapeutics, Inc.", "NASDAQ Global Select", "16.00", 10555555, 168888880]);
 });
+
+test("the PDF reader skips a stream that would inflate past 32 MB, and reads the House's small streams as before", async () => {
+  const { deflateSync } = await import("node:zlib");
+  const { pdfLines } = await import("../src/pdf.mjs");
+  const big = deflateSync(Buffer.alloc(40 * 1024 * 1024, 32));
+  const pdf = Buffer.concat([Buffer.from(`%PDF-1.4\n1 0 obj\n<< /Type /Page /Contents 2 0 R >>\nendobj\n2 0 obj\n<< /Filter /FlateDecode /Length ${big.length} >>\nstream\n`), big, Buffer.from("\nendstream\nendobj\n")]);
+  assert.deepEqual(pdfLines(pdf), [[]], "40 MB of text is never inflated");
+  const small = deflateSync(Buffer.from("BT /F1 12 Tf 10 700 Td (Hello) Tj ET"));
+  const doc = Buffer.concat([Buffer.from(`%PDF-1.4\n1 0 obj\n<< /Type /Page /Contents 2 0 R /Resources << >> >>\nendobj\n2 0 obj\n<< /Filter /FlateDecode /Length ${small.length} >>\nstream\n`), small, Buffer.from("\nendstream\nendobj\n")]);
+  assert.deepEqual(pdfLines(doc), [["Hello"]]);
+});
