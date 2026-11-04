@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Luck, counted by the server. Every strategy result (the tools `signed_trial_count` counts: `backtest_*`, the sleeve tools, breadth books, `cpcv`, `audit_backtest`) now carries `luck`: how many strategies were tested in the session, the best of them, the Sharpe ratio luck alone would give the best of that many, and the best's deflated Sharpe ratio, with one short reading. Nothing has to be recorded by hand, so a variant cannot be left out. One ledger per sampling frequency (`periods_per_year`); the statistics are canli-validation-mcp's trial ledger. On the hosted server, which keeps nothing between requests, one request is counted, and the reading says so. Measuring a Sharpe ratio (`sharpe_ratio`) is not a trial.
+
 ## 0.17.1
 
 With canli-validation-mcp 0.15.0.
