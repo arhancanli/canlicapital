@@ -192,8 +192,8 @@ test("a euro member's policy rate is the ECB's, read once for all three, said so
 
 test("a country's whole economy in one call, each figure from its own publisher", async () => {
   const { r } = await run({ country: "Brazil", measure: "all" });
-  assert.deepEqual(r.rows.map((x) => x.slice(0, 4)), [["inflation", "2026-09", 4.58, 5.17], ["unemployment", "2026-09", 5.2, 5.6], ["gdp_growth", "2026-Q2", 2, 2.4], ["policy_rate", "2026-11-04", 13.75, 15], ["exchange_rate", "2026-11-04", 5.4778, 5.3846], ["house_prices", "2026-Q2", 5.2362, 5.3575]]);
-  assert.deepEqual(r.rows.map((x) => x[6].split(":")[0]), ["bcb", "bcb", "ibge", "bcb", "bcb", "bis"]);
+  assert.deepEqual(r.rows.map((x) => x.slice(0, 4)), [["inflation", "2026-09", 4.58, 5.17], ["unemployment", "2026-09", 5.2, 5.6], ["gdp_growth", "2026-Q2", 2, 2.4], ["policy_rate", "2026-11-04", 13.75, 15], ["exchange_rate", "2026-11-04", 5.4778, 5.3846], ["government_debt", "2026-Q1", 91.8, 87.8], ["house_prices", "2026-Q2", 5.2362, 5.3575]]);
+  assert.deepEqual(r.rows.map((x) => x[6].split(":")[0]), ["bcb", "bcb", "ibge", "bcb", "bcb", "bis", "bis"]);
   assert.match(r.not_found[0], /^core_inflation: /);
   await assert.rejects(run({ countries: ["G7"], measure: "all" }), /reads one country/);
 });
@@ -271,4 +271,15 @@ test("business confidence from official surveys: the Philadelphia Fed's for the 
   assert.match(r.basis, /not the private PMIs/);
   assert.deepEqual(r.rows.map((x) => x.slice(0, 3)), [["United States", "2026-10", 20.9], ["Euro area", "2026-10", 96.9], ["Germany", "2026-10", 94.1]]);
   assert.equal(r.rows[0][5], "fred:GACDFSA066MSFRBPHI");
+});
+
+test("government debt at nominal value from Eurostat and the BIS, and broad money from the Fed and the ECB", async () => {
+  const debt = (await run({ countries: ["United States", "Japan", "Italy", "China", "euro area"], measure: "government debt" })).r;
+  const by = Object.fromEntries(debt.rows.map((x) => [x[0], x]));
+  assert.deepEqual(by.Japan.slice(1, 3), ["2026-Q1", 193.6]);
+  assert.deepEqual(by.Italy.slice(1, 3), ["2026-Q2", 139.9]);
+  assert.match(by.Italy[5], /^eurostat:gov_10q_ggdebt/);
+  assert.match(by.China[5], /^bis:WS_TC\/Q\.CN\.G\.A\.N\.770\.A$/);
+  const money = (await run({ countries: ["United States", "euro area"], measure: "money supply" })).r;
+  assert.deepEqual(money.rows.map((x) => [x[0], x[1], x[5]]), [["United States", "2026-09", "fred:M2SL"], ["Euro area", "2026-09", "ecb:BSI/M.U2.Y.V.M30.X.I.U2.2300.Z01.A"]]);
 });

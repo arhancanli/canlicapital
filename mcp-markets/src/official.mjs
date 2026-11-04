@@ -730,6 +730,24 @@ export const MEASURES = {
     eu: (c) => batched("eurostat:ei_bssi_m_r2?geo={}&indic=BS-ESI-I&s_adj=SA", geo(c, "EA21"), { by: "the European Commission's business and consumer surveys, through Eurostat", title: "Economic sentiment indicator (long-term average = 100), seasonally adjusted" }),
     tolerance: 1,
   },
+  government_debt: {
+    words: "government debt public debt national debt sovereign debt debt to gdp fiscal",
+    basis: "General government debt as a percent of GDP, at nominal value (the EU's Maastricht measure for its members, the BIS's for the rest).",
+    national: {},
+    eu: (c) => batched("eurostat:gov_10q_ggdebt?geo={}&unit=PC_GDP&sector=S13&na_item=GD", geo(c, "EA21"), { by: `Eurostat, from ${c.code === "EA" ? "the members'" : `${c.name}'s`} government accounts`, title: "General government gross debt (Maastricht), percent of GDP, quarterly" }),
+    world: (c) => ({ s: [`bis:WS_TC/Q.${bisArea(c)}.G.A.N.770.A`, `bis:WS_TC/Q.${bisArea(c)}.G.A.M.770.A`], batch: ["bis:WS_TC/Q.{}.G.A.N.770.A", bisArea(c)], by: `Bank for International Settlements, from ${c.name}'s government accounts`, title: "General government debt, percent of GDP (nominal value, or market value where the BIS has only that)" }),
+    tolerance: 2,
+  },
+  money_supply: {
+    words: "money supply broad money m2 m3 monetary aggregates money growth liquidity",
+    basis: "Broad money, percent change on a year (M2 in the US, M3 in the euro area, each country's broad money in the OECD's compilation).",
+    national: {
+      US: { s: "fred:M2SL", yoy: true, by: "Federal Reserve (H.6), through FRED", title: "M2, seasonally adjusted: change on a year" },
+      EA: { s: "ecb:BSI/M.U2.Y.V.M30.X.I.U2.2300.Z01.A", by: "European Central Bank", title: "M3, annual growth rate" },
+    },
+    oecd: (c) => kei(c, "M.MABM.GR._Z.Y.GY", { title: "Broad money (M3), seasonally adjusted: change on a year" }),
+    tolerance: 0.3,
+  },
   house_prices: {
     words: "house prices home prices housing property prices real estate residential",
     basis: "Residential property prices, nominal, percent change on a year.",
@@ -893,7 +911,7 @@ export function compare(a, b, m, note) {
 export const worldSeriesInput = z.object({
   country: z.string().min(2).max(60).optional().describe("One country or the euro area: a name (Brazil, South Korea, euro area) or an ISO code (BR, KOR)."),
   countries: z.array(z.string().min(2).max(60)).min(1).max(30).optional().describe("Several side by side, or a group: G7, G20, EU, euro area members, BRICS, Nordics, ASEAN, Latin America. Up to 30."),
-  measure: z.string().min(2).max(80).optional().describe("inflation, core_inflation, unemployment, gdp_growth, policy_rate, ten_year_yield, exchange_rate, industrial_production, retail_sales, wages, leading_indicator (the OECD's), consumer_confidence, business_confidence or house_prices, or all (one country's every measure); plain words work (\"jobless rate\", \"10-year bond yield\")."),
+  measure: z.string().min(2).max(80).optional().describe("inflation, core_inflation, unemployment, gdp_growth, policy_rate, ten_year_yield, exchange_rate, industrial_production, retail_sales, wages, leading_indicator (the OECD's), consumer_confidence, business_confidence, government_debt, money_supply or house_prices, or all (one country's every measure); plain words work (\"jobless rate\", \"10-year bond yield\")."),
   series: z.string().min(4).max(300).optional().describe("Any series by its publisher's own code instead: imf:, bis:, ecb:, eurostat:, oecd:, ilo:, fred:, statcan:, boc:, ons:, boe:, boj:, mof:, rba:, abs:, bcb:, ibge:, riksbank:, scb:, ssb:, norges:, snb:, bbk:, boi: (e.g. \"statcan:2062815\", \"eurostat:une_rt_m?geo=DE&s_adj=SA&age=TOTAL&sex=T&unit=PC_ACT\")."),
   periods: z.number().int().min(1).max(600).optional().describe("Observations to return, latest last. Default 13 (one country), 1 (several)."),
   start: z.string().regex(/^\d{4}(-\d{2}(-\d{2})?)?$/).optional().describe("Return everything from this date (YYYY, YYYY-MM or YYYY-MM-DD) instead, up to 600 observations."),
