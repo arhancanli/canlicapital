@@ -10,6 +10,7 @@ import { congressTrades } from "../src/congress.mjs";
 import { cryptoOptions } from "../src/deribit.mjs";
 import { factorReturns } from "../src/factors.mjs";
 import { federalBudget, treasuryCash } from "../src/fiscal.mjs";
+import { marketCalendar } from "../src/nasdaq.mjs";
 import { createSession, PLAIN_USER_AGENT } from "../src/sources.mjs";
 import { NOW } from "../test/replay.mjs";
 
@@ -46,5 +47,7 @@ await cryptoOptions(session, { currency: "SOL" });
 // The House's 2026 index and three members' newest reports: a bond bought jointly, a spouse's stock trades
 // with tickers, and a spouse's municipal bonds.
 for (const member of ["beyer", "mcguire", "mike kelly"]) await congressTrades(session, { member, reports: 1 });
+// Nasdaq's calendars for 5 November 2026: earnings and ex-dividend dates, and the splits listed then.
+for (const kind of ["earnings", "dividends", "splits"]) await marketCalendar(session, { kind, date: "2026-11-05" });
 writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
 console.log(Object.keys(manifest).length, "responses in the manifest");

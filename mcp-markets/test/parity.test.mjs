@@ -7,6 +7,7 @@ import { cryptoOptions, parseInstrument } from "../src/deribit.mjs";
 import { factorReturns, parseLibrary } from "../src/factors.mjs";
 import { congressTrades, parseIndex } from "../src/congress.mjs";
 import { federalBudget, treasuryCash } from "../src/fiscal.mjs";
+import { marketCalendar } from "../src/nasdaq.mjs";
 import { calendar, easter, marketHours } from "../src/hours.mjs";
 import { createSession } from "../src/sources.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
@@ -117,4 +118,20 @@ test("congress_trades: the House index, each report's trades with ticker, owner,
   assert.deepEqual(mu.transactions.rows.map((t) => t[8]), ["2026-09-24", "2026-09-25", "2026-10-01"]);
   await assert.rejects(congressTrades(s, { member: "nobody at all" }), /No periodic transaction reports filed in 2026 by a member named like "nobody at all"/);
   assert.match(beyer.limits.join(" "), /unlawful to obtain or use these reports for a commercial purpose/);
+});
+
+test("market_calendar: Nasdaq's earnings, ex-dividend and split calendars, largest companies first, negatives read as negatives", async () => {
+  const s = session();
+  const big = await marketCalendar(s, { kind: "earnings", date: "2026-11-05", min_market_cap: 1e11 });
+  assert.equal(big.count, 8);
+  assert.deepEqual(big.rows[0], ["2026-11-05", "before the open", "COP", "ConocoPhillips", 176404398000, "Sep/2026", 3.06, 8, 1.61, "2025-11-06"]);
+  const all = await marketCalendar(s, { kind: "earnings", date: "2026-11-05", limit: 500 });
+  assert.equal(all.count, 613);
+  assert.equal(all.truncated_to, 500);
+  assert.deepEqual(all.rows.find((r) => r[2] === "NTRA").slice(6, 9), [-0.17, 4, -0.64], "a loss in parentheses is negative");
+  const div = await marketCalendar(s, { kind: "dividends", date: "2026-11-05" });
+  assert.deepEqual(div.rows[0], ["2026-11-05", "BMRC", "Bank of Marin Bancorp Common Stock", 0.25, 1, "2026-11-05", "2026-11-12", "2026-10-22"]);
+  const splits = await marketCalendar(s, { kind: "splits", date: "2026-11-05" });
+  assert.deepEqual(splits.rows.find((r) => r[0] === "SNDK"), ["SNDK", "Sandisk Corporation", "8:1", "2026-11-20"]);
+  await assert.rejects(marketCalendar(s, { kind: "earnings", date: "2026-11-05", symbols: ["ZZZZ"] }), /None of ZZZZ is on Nasdaq's earnings calendar/);
 });
