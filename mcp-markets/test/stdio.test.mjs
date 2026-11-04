@@ -99,6 +99,11 @@ const NEW_TOOL_CALLS = [
   ["options_chain", { symbol: "AAPL", window: 0.03 }],
   ["volatility_surface", { symbol: "SPX", expirations: 6 }],
   ["futures_curve", {}],
+  ["scenario_risk", { holdings: [{ symbol: "SPY", weight: 0.6 }, { symbol: "TLT", weight: 0.4 }], scenario: "pandemic_crash" }],
+  ["trade_ticks", { pair: "BTC/USD", start: "2024-01-01", requests: 2 }],
+  ["trade_flows", { reporter: "United States", product: "semiconductors" }],
+  ["standardized_financials", { companies: ["AAPL"], years: 3 }],
+  ["financial_cycle", { countries: ["CA", "AU", "CN", "US", "AR"], periods: 4 }],
 ];
 test("every tool this release adds answers over stdio within its output schema", async (t) => {
   const c = await connect(); t.after(() => c.close());

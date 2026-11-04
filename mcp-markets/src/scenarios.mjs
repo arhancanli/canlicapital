@@ -312,7 +312,8 @@ export async function scenarioRisk(session, args) {
     method: crisis
       ? "Today's betas (weekly, least squares on eight factors) times the factors' actual moves over the crisis, beside each holding's actual return."
       : "Weekly betas on eight factors; factors left out move by their mean given the shocked ones under the factors' covariance; the range is about 90% (normal) over the horizon.",
-    source: [...new Set(factorData.flatMap((d) => d.url ?? []))].concat("Yahoo Finance chart data through price_history (no key)"),
+    source: "FRED series (St. Louis Fed) and Yahoo Finance chart data through price_history (no key)",
+    sources: [...new Set(factorData.flatMap((d) => d.url ?? []))],
     limits: [
       `A linear model of the last ${years} years' weekly moves: sensitivities can change in a crisis, and moves beyond history's are extrapolated. A holding's own past drift is left out of every result.`,
       "Returns combine as a weighted sum of each holding's return; the range treats the holdings' own moves as independent.",
