@@ -602,8 +602,9 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
       if (note) d.result = { ...d.result, luck: note };
     });
     // Text from outside that speaks to an AI is marked where it is, and kept as the source gave it (injection.mjs).
+    // A pack that sends nothing reads no outside text, so its results are not read for it.
     for (const d of done) {
-      if (d.result === undefined || SELF[d.name] || !d.result || typeof d.result !== "object") continue;
+      if (d.result === undefined || SELF[d.name] || !d.result || typeof d.result !== "object" || sendsNothing(BY_NAME.get(d.name)?.pack)) continue;
       const found = addressedToAi(d.result);
       if (found.length) d.result = { ...d.result, caution: { note: CAUTION, found } };
     }
