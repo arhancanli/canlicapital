@@ -369,7 +369,7 @@ export function continuedFrom(sub, old, before) {
   return { ...sub, filings: { ...sub.filings, recent, files: old.filings?.files ?? [] } };
 }
 
-const FILING_FIELDS = ["accessionNumber", "filingDate", "reportDate", "form", "primaryDocument", "primaryDocDescription", "items"];
+const FILING_FIELDS = ["accessionNumber", "filingDate", "reportDate", "form", "primaryDocument", "primaryDocDescription", "items", "isInlineXBRL"];
 function filingRows(block) {
   const n = block?.accessionNumber?.length ?? 0;
   const out = [];

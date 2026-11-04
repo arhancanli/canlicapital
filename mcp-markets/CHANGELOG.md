@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- New tool: `filing_check`, every number in a 10-K or 10-Q read twice: as a person reads the document and as machines read its inline XBRL. It lists each figure tagged at a scale other than the unit its words or table state ("in millions", "shares in thousands", "$3.8 billion", "48,700 shares", a per-share amount, a rate with %), each fact tagged twice with values further apart than their rounding, each sum in the filing's own calculation linkbase that its lines do not add up to, and each fact SEC's company facts hold differently or not at all for the filing. Each finding names the concept, period and unit, what is shown and what is tagged, what it was compared with, the table or heading it sits under and a link to the figure; counts say what was checked, so a clean result can be told from one where nothing was. A filing not in inline XBRL gets an error that says so and names `figure_trace` and `financial_statements`. Up to five filings of a form at once.
+- Filings lists carry SEC's flag for inline XBRL, so a filing without it is answered before its document is fetched.
+
 ## 0.12.0
 
 From a test against other finance MCP servers on the newest models. New tools:

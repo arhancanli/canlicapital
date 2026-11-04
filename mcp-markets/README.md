@@ -49,12 +49,14 @@ received and when, so any figure can be checked against the same document later.
 | `financial_statements` | The income statement, balance sheet, cash flow and equity statement exactly as filed, several years joined; what a later filing restated, and what a split changed, beside the first-reported figure | 10-K/10-Q rendered XBRL reports |
 | `filing_tables` | The table that holds a figure, by words, in one filing or followed through several (members, stores, ARPU, segment and region detail, non-GAAP reconciliations, guidance tables) | 10-K/10-Q/8-K documents and XBRL reports |
 | `earnings_release` | A results press release: the results, the guidance as ranges, and last quarter's guidance against this quarter's results | 8-K Item 2.02, exhibit 99 |
+| `filing_check` | Every number in a 10-K or 10-Q read twice, as a person reads the document and as machines read its inline XBRL: figures tagged at a scale other than the unit stated for them, a fact tagged twice with different values, sums in the filing's own calculation that do not add up, and facts SEC's company facts hold differently or not at all, each with a link to the figure and counts of what was checked (Microsoft's FY2026 10-K: "up to 48,700 shares" tagged as 48.7 billion shares) | 10-K/10-Q inline XBRL and calculation linkbase, XBRL company facts |
 | `verify_claims` | Is a figure in a draft answer right? Confirmed, contradicted (with the filed figure and what the wrong one matches: last year, a quarter, a unit slip, the wrong currency), or not reported (a future year, a dividend a company never paid); US and foreign filers (20-F, IFRS) in the currency they report in | XBRL company facts |
 
 Examples: "Show Microsoft's last four years of income statements as filed", "How has Costco's
 paid membership grown over five years?", "Did NVIDIA beat its revenue guidance last quarter, and
 what is it guiding to now?", "What full-year EPS range is Walmart guiding to, and how has it moved
-since the original guide?", "Check this paragraph's numbers before I send it."
+since the original guide?", "Check this paragraph's numbers before I send it.", "Does anything in
+Parsons' latest 10-Q read differently to a machine than to a person?"
 
 ## Beyond the US
 
@@ -165,7 +167,9 @@ goes into any of its 235 quant tools in the same batch.
 The tests replay real SEC, Treasury and FRED responses and check values read off the documents:
 Berkshire Hathaway's 13F for the quarter ending 30 June 2026 totals $299,253,556,246 over 89
 entries, exactly the figures on its cover page; Apple's 10-K risk factors come back as Item 1A
-alone; a Tesla Form 4 sale reads 2,605.75 shares at $360.134.
+alone; a Tesla Form 4 sale reads 2,605.75 shares at $360.134. `filing_check` reads all 762 tagged
+figures of Apple's June 2026 10-Q exactly as SEC's own extraction of its XBRL holds them, finds nothing
+in it to flag, and finds the 48,700 shares in Microsoft's FY2026 10-K tagged a million times too large.
 
 ## Limits
 
