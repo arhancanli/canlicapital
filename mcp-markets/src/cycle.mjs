@@ -97,7 +97,8 @@ export async function financialCycle(session, args) {
     latest, ...tables,
     ...(missing.length ? { not_published: missing } : {}),
     reading: "House price indices are 2010 = 100, the effective exchange rates 2020 = 100 (a higher rate is a stronger currency). Debt service is interest and principal as a share of income; credit is all lenders' credit as a share of GDP, at market value (government at nominal value where the BIS has no market value).",
-    source: reads.map((r) => r.url),
+    source: "Bank for International Settlements statistics (stats.bis.org SDMX API, no key)",
+    sources: reads.map((r) => r.url),
     limits: [
       "As the Bank for International Settlements publishes them from central banks and statistics offices; quarters arrive about two quarters late and are revised.",
       "Coverage differs: debt service ratios cover about 30 economies, house prices and credit 40 to 60. A measure with no series for a country is listed under not_published.",
