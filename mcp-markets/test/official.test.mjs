@@ -119,9 +119,10 @@ test("policy rates with their moves: Bank Rate from the Bank of England, the Sel
   assert.equal(uk.series.id, "boe:IUDBEDR");
   assert.deepEqual(uk.latest, { period: "2026-10-09", value: 3.75 });
   assert.deepEqual(uk.year_ago, { period: "2025-10-09", value: 4 });
-  assert.deepEqual(uk.changes, [{ date: "2025-08-07", from: 4.25, to: 4 }, { date: "2025-12-18", from: 4, to: 3.75 }]);
+  assert.deepEqual(uk.changes, [{ date: "2025-02-06", from: 4.75, to: 4.5 }, { date: "2025-05-08", from: 4.5, to: 4.25 }, { date: "2025-08-07", from: 4.25, to: 4 }, { date: "2025-12-18", from: 4, to: 3.75 }]);
   const br = (await run({ country: "Brazil", measure: "selic", check: true })).r;
-  assert.equal(br.changes.length, 5);
+  assert.equal(br.changes.length, 8);
+  assert.deepEqual(br.changes[0], { date: "2025-03-20", from: 13.25, to: 14.25 });
   assert.deepEqual(br.changes.at(-1), { date: "2026-09-17", from: 14, to: 13.75 });
   assert.equal(br.check.agree, true);
 });
@@ -145,25 +146,39 @@ test("the G20's inflation, each from its own publisher, in nine requests rather 
   assert.equal(r.not_found, undefined);
 });
 
-test("every euro member's 10-year yield in two requests; the G20's growth with Russia's last figure marked stale", async () => {
+test("every euro member's 10-year yield in two requests", async () => {
   const ten = await run({ countries: ["euro area members"], measure: "10 year bond yield" });
   assert.equal(ten.calls.length, 2);
   assert.equal(ten.r.rows.length, 21);
   assert.deepEqual(ten.r.rows.find((x) => x[0] === "Greece").slice(1, 3), ["2026-09", 4.22]);
   assert.equal(ten.r.rows.find((x) => x[0] === "Germany")[4], "Deutsche Bundesbank");
-  const gdp = await run({ countries: ["G20"], measure: "gdp growth" });
-  assert.equal(gdp.calls.length, 8);
-  assert.deepEqual(gdp.r.rows.find((x) => x[0] === "China").slice(1, 3), ["2026-Q3", 4.5]);
-  assert.deepEqual(gdp.r.stale, ["Russia: latest 2021-Q3"]);
 });
 
-test("euro members' policy rate falls back to the BIS's euro area series when the ECB does not answer, read once for all three", async () => {
+test("when the OECD does not answer the G20's combined request, each country falls to the IMF and is not asked of the OECD again", async () => {
+  const { r, calls } = await run({ countries: ["G20"], measure: "gdp growth" });
+  assert.equal(calls.filter((c) => c.url.startsWith("https://sdmx.oecd.org/")).length, 1);
+  assert.equal(r.rows.length, 19);
+  assert.deepEqual(r.rows.find((x) => x[0] === "India").slice(1, 3), ["2026-Q2", 8.0982]);
+  assert.equal(r.rows.find((x) => x[0] === "India")[5], "imf:QNEA/IND.B1GQ.Q.SA.XDC.Q");
+  // China is left to the OECD (the IMF's quarterly volume series for China follows nominal GDP), so it waits for the OECD.
+  assert.match(r.not_found[0], /^China: .*did not answer the combined request/);
+});
+
+test("a euro member's policy rate is the ECB's, read once for all three, said so", async () => {
   const { r, calls } = await run({ countries: ["G7"], measure: "policy rate" });
-  assert.equal(calls.filter((c) => c.url.includes("WS_CBPOL/D.XM")).length, 1);
+  assert.equal(calls.filter((c) => c.url.includes("KR.DFR.LEV")).length, 1);
   const fr = r.rows.find((x) => x[0] === "France");
-  assert.deepEqual(fr.slice(1, 3), ["2026-10-27", 2.5]);
-  assert.match(fr[4], /France uses the euro/);
+  assert.deepEqual(fr.slice(1, 3), ["2026-11-04", 2.5]);
+  assert.match(fr[4], /^European Central Bank \(France uses the euro\)$/);
   assert.deepEqual(r.rows.find((x) => x[0] === "United States").slice(1, 3), ["2026-11-04", 4]);
+});
+
+test("a country's whole economy in one call, each figure from its own publisher", async () => {
+  const { r } = await run({ country: "Brazil", measure: "all" });
+  assert.deepEqual(r.rows.map((x) => x.slice(0, 4)), [["inflation", "2026-09", 4.58, 5.17], ["unemployment", "2026-09", 5.2, 5.6], ["gdp_growth", "2026-Q2", 2, 2.4], ["policy_rate", "2026-11-04", 13.75, 15], ["exchange_rate", "2026-11-04", 5.4778, 5.3846], ["house_prices", "2026-Q2", 5.2362, 5.3575]]);
+  assert.deepEqual(r.rows.map((x) => x[6].split(":")[0]), ["bcb", "bcb", "ibge", "bcb", "bcb", "bis"]);
+  assert.match(r.not_found[0], /^core_inflation: /);
+  await assert.rejects(run({ countries: ["G7"], measure: "all" }), /reads one country/);
 });
 
 test("any series by its publisher's own code", async () => {

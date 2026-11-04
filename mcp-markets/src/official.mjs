@@ -229,7 +229,7 @@ export function sdmxSeries(text, { byArea = false } = {}) {
 
 const lastOr = (want, from, { start = "startPeriod", last = "lastNObservations", fromFormat = (d) => d } = {}) => (from ? `${start}=${fromFormat(from)}` : `${last}=${want}`);
 
-function sdmxPublisher(name, base, { format, headers, path = (flow, key) => `${flow}/${key}`, page, retries }) {
+function sdmxPublisher(name, base, { format, headers, path = (flow, key) => `${flow}/${key}`, page, retries, timeoutMs }) {
   const where = (code, want, from) => {
     const m = /^([^/]+)\/(.+)$/.exec(code);
     if (!m) throw new Error(`${name} codes are a dataflow and a series key, e.g. ${page.example}.`);
@@ -239,13 +239,13 @@ function sdmxPublisher(name, base, { format, headers, path = (flow, key) => `${f
     name, page,
     read: async (session, code, { want, from }) => {
       const url = where(code, want, from);
-      const s = sdmxSeries(await getText(session, url, { headers, retries }));
+      const s = sdmxSeries(await getText(session, url, { headers, retries, timeoutMs }));
       if (!s) throw new NotFound(`${name} has no observations for ${code}.`);
       return { rows: s.rows, title: s.title, unit: s.unit, url };
     },
     readMany: async (session, code, { want, from }) => {
       const url = where(code, want, from);
-      return new Map([...sdmxSeries(await getText(session, url, { headers, retries }), { byArea: true })].map(([a, s]) => [a, { rows: s.rows, title: s.title, unit: s.unit, url, more: s.more }]));
+      return new Map([...sdmxSeries(await getText(session, url, { headers, retries, timeoutMs }), { byArea: true })].map(([a, s]) => [a, { rows: s.rows, title: s.title, unit: s.unit, url, more: s.more }]));
     },
   };
 }
@@ -279,7 +279,7 @@ export const PUBLISHERS = {
     },
   },
   bis: sdmxPublisher("Bank for International Settlements", "https://stats.bis.org/api/v1/data", { format: "csv", page: { url: "https://data.bis.org", example: "bis:WS_CBPOL/D.KR" } }),
-  ecb: sdmxPublisher("European Central Bank", "https://data-api.ecb.europa.eu/service/data", { format: "csvdata", page: { url: "https://data.ecb.europa.eu", example: "ecb:ICP/M.DE.N.000000.4.ANR" } }),
+  ecb: sdmxPublisher("European Central Bank", "https://data-api.ecb.europa.eu/service/data", { format: "csvdata", timeoutMs: 12000, page: { url: "https://data.ecb.europa.eu", example: "ecb:ICP/M.DE.N.000000.4.ANR" } }),
   bbk: sdmxPublisher("Deutsche Bundesbank", "https://api.statistiken.bundesbank.de/rest/data", { format: "sdmx_csv", page: { url: "https://www.bundesbank.de/en/statistics/time-series-databases", example: "bbk:BBSIS/D.I.ZAR.ZI.EUR.S1311.B.A604.R10XX.R.A.A._Z._Z.A" } }),
   norges: sdmxPublisher("Norges Bank", "https://data.norges-bank.no/api/data", { format: "csv", page: { url: "https://app.norges-bank.no/query/", example: "norges:IR/B.KPRA.SD.R" } }),
   boi: sdmxPublisher("Bank of Israel", "https://edge.boi.gov.il/FusionEdgeServer/sdmx/v2/data/dataflow/BOI.STATISTICS", { format: "csv", path: (flow, key) => `${flow}/1.0/${key}`, page: { url: "https://www.boi.org.il/en/economic-roles/statistics/", example: "boi:BR/MNT_RIB_BOI_D" } }),
@@ -653,7 +653,7 @@ export const MEASURES = {
       IL: { s: "boi:EXR/RER_USD_ILS", by: "Bank of Israel", title: "Representative rate, US dollar", quote: "shekels per US dollar" },
     },
     euro: "EA",
-    world: (c) => (c.code === "EA" ? null : batched("imf:ER/{}.XDC_USD.PA_RT.M", c.iso3, { by: IMF_BY(c), title: "National currency per US dollar, monthly average", quote: "national currency per US dollar" })),
+    world: (c) => (c.code === "EA" ? { s: "fred:DEXUSEU", by: "Federal Reserve (H.10), through FRED", title: "US dollars to one euro, noon buying rates in New York", quote: "US dollars per euro", inverse: true } : batched("imf:ER/{}.XDC_USD.PA_RT.M", c.iso3, { by: IMF_BY(c), title: "National currency per US dollar, monthly average", quote: "national currency per US dollar" })),
     tolerance: 0.005,
     relative: true,
   },
@@ -724,7 +724,8 @@ async function readSpec(session, spec, opts) {
       return { r: { ...r, rows, spec } };
     } catch (err) { return { error: err }; }
   }));
-  const ok = got.filter((g) => g.r).sort((x, y) => (startOf(y.r.rows.at(-1)[0]) > startOf(x.r.rows.at(-1)[0]) ? 1 : -1));
+  const latestOf = (g) => startOf(g.r.rows.at(-1)[0]);
+  const ok = got.filter((g) => g.r).sort((x, y) => (latestOf(y) > latestOf(x) ? 1 : latestOf(y) < latestOf(x) ? -1 : 0));
   if (ok.length) return ok[0].r;
   throw got[0].error;
 }
@@ -853,7 +854,7 @@ export async function worldSeries(session, args) {
   const from = from0 ? `${Number(from0.slice(0, 4)) - 1}${from0.slice(4)}` : null;
   if (a.series) {
     if (a.country || a.countries || a.measure) throw new Error("Give either series (a publisher's code) or country and measure, not both.");
-    const r = await readCode(session, a.series, { want: Math.min(1200, (a.periods ?? 13) + 280), from });
+    const r = await readCode(session, a.series, { want: Math.min(1200, (a.periods ?? 13) + 380), from });
     const rows = keepFrom(r.rows, from0).slice(-(a.start ? 600 : a.periods ?? 13));
     if (!rows.length) throw new NotFound(`${r.publisher} returned no observations for ${a.series}${a.start ? ` since ${a.start}` : ""}.`);
     return {
@@ -864,6 +865,7 @@ export async function worldSeries(session, args) {
     };
   }
   if (!a.measure) throw new Error(`Name a measure (${Object.keys(MEASURES).join(", ")}) with a country, or a series by its publisher's code.`);
+  if (OVERVIEW.test(squash(a.measure))) return overview(session, a);
   const measure = findMeasure(a.measure);
   if (!measure) throw new Error(`"${a.measure}" is not a measure read here. Measures: ${Object.keys(MEASURES).join(", ")}. For anything else give a series by its publisher's code (series: "imf:...", "eurostat:...", "fred:...").`);
   const m = MEASURES[measure];
@@ -874,7 +876,7 @@ export async function worldSeries(session, args) {
   if (countries.length > 30) throw new Error(`That is ${countries.length} countries; ask for up to 30 at once.`);
   const single = countries.length === 1 && !a.countries;
   const shown = a.start ? 600 : a.periods ?? (single ? 13 : 1);
-  const want = Math.min(1200, shown + (m.daily ? 280 : 13));
+  const want = Math.min(1200, shown + (m.daily ? 380 : 13));
 
   const inflight = new Map();
   if (single) {
@@ -917,5 +919,33 @@ export async function worldSeries(session, args) {
     ...(ok.some(({ r }) => staleSince(session, r.rows)) ? { stale: ok.filter(({ r }) => staleSince(session, r.rows)).map(({ c, r }) => `${c.name}: latest ${r.rows.at(-1)[0]}`) } : {}),
     ...(unknown.length || results.some((x) => x.error) ? { not_found: [...unknown.map((u) => `${u}: not a country or group covered here`), ...results.filter((x) => x.error).map((x) => `${x.c.name}: ${x.error}`)] } : {}),
     source: ok[0].r.url, sources: [...new Set(ok.map(({ r }) => r.url))], limits: LIMITS,
+  };
+}
+
+// measure "all": one country's every measure at once, each from the first publisher that answers.
+const OVERVIEW = /^(all|overview|everything|economy|dashboard|snapshot|summary|all measures|the economy)$/;
+async function overview(session, a) {
+  if (a.countries || !a.country) throw new Error("measure \"all\" reads one country (country); for several countries name one measure.");
+  const c = findCountry(a.country);
+  if (!c) throw new NotFound(`No country matched ${a.country}. Covered: ${COUNTRIES.map((x) => x.name).join(", ")}.`);
+  const inflight = new Map();
+  const got = await Promise.all(Object.keys(MEASURES).map(async (measure) => {
+    const m = MEASURES[measure];
+    try {
+      const { r, link } = await readMeasure(session, measure, c, { want: 1 + (m.daily ? 380 : 13), inflight });
+      const s = summary(r.rows);
+      return { measure, row: [measure, s.latest.period, s.latest.value, s.year_ago?.value ?? null, link.quote ?? null, link.by, r.code], url: r.url, stale: staleSince(session, r.rows) };
+    } catch (err) { return { measure, error: String(err?.message ?? err).slice(0, 200) }; }
+  }));
+  const ok = got.filter((g) => g.row);
+  if (!ok.length) throw new NotFound(`No publisher answered for ${c.name}: ${got.map((g) => `${g.measure}: ${g.error}`).join("; ")}`);
+  return {
+    country: c.name, measure: "all",
+    columns: ["measure", "period", "value", "year_ago", "quote", "publisher", "series"],
+    rows: ok.map((g) => g.row),
+    ...(ok.some((g) => g.stale) ? { stale: ok.filter((g) => g.stale).map((g) => `${g.measure}: latest ${g.stale}`) } : {}),
+    ...(got.some((g) => g.error) ? { not_found: got.filter((g) => g.error).map((g) => `${g.measure}: ${g.error}`) } : {}),
+    reading: "Each row is the latest figure from its own publisher, with the same period a year earlier. Ask for one measure (measure: \"inflation\", check: true) for its history and a second publisher's figure.",
+    source: ok[0].url, sources: [...new Set(ok.map((g) => g.url))], limits: LIMITS,
   };
 }
