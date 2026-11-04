@@ -36,6 +36,7 @@ const HELD = {
   history: { args: (a, d) => ({ ...a, basis: "as_of", as_of: atMost(a.as_of, d) }), drop: ["changed"] },
   cross_section: { args: asOfArg, drop: ["changed_after", "snapshot_date"] },
   vintages: {},
+  vintage_diff: { args: (a, d) => ({ ...a, from: atMost(a.from, d), to: atMost(a.to, d) }) },
   find_company: {},
   financial_statements: { args: filedBefore },
   filing_tables: { args: filedBefore },
