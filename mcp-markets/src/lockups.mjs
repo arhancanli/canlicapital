@@ -293,7 +293,7 @@ async function marketLockups(session, a) {
   }
   const rows = [], quotes = [];
   const counts = { prospectuses_found: cands.size, prospectuses_read: 0, not_initial_offerings: 0, without_stated_period: 0 };
-  let capped = false;
+  let capped = false, through = null;
   const done = new Set();
   const order = [...cands.values()].sort((x, y) => x.guess.localeCompare(y.guess) || x.acc.localeCompare(y.acc));
   const read = async (c) => { const url = `${archiveBase(c.cik, c.acc)}/${c.file}`; try { return { c, url, terms: lockupTerms(await readDoc(session, url)) }; } catch (err) { if (err instanceof NotFound) return { c, url, terms: null }; throw err; } };
@@ -328,18 +328,19 @@ async function marketLockups(session, a) {
   for (let i = 0; i < order.length; i += READ_BATCH) {
     const ends = rows.map((r) => r[0]).sort();
     if (rows.length >= limit && order[i].guess > addDays(ends[limit - 1], 10)) break;
-    if (counts.prospectuses_read >= MAX_READS) { capped = true; break; }
+    // Unread prospectuses would end no sooner than their guess, less the days a filing can trail its pricing.
+    if (counts.prospectuses_read >= MAX_READS) { capped = true; through = addDays(order[i].guess, -4); break; }
     for (const got of await Promise.all(order.slice(i, i + READ_BATCH).map(read))) if (got.terms) take(got);
   }
   rows.sort((x, y) => x[0].localeCompare(y[0]) || String(x[2]).localeCompare(String(y[2])));
   const shown = rows.slice(0, limit);
-  Object.assign(counts, { lockups_in_window: rows.length, listed: shown.length, ...(capped ? { capped_at_reads: MAX_READS } : {}) });
+  Object.assign(counts, { lockups_in_window: rows.length, listed: shown.length, ...(capped ? { capped_at_reads: MAX_READS, complete_through: through < end ? through : end } : {}) });
   const first = shown[0];
   return {
     window: { from: start, to: end, days },
     columns: COLUMNS,
     rows: shown,
-    note: `Lock-ups of IPOs that end ${start} to ${end}, earliest first, one row per period or dated release the final prospectus states. expiry is counted from the date its words name (counts_from): the prospectus date (priced; a period counted from the pricing or the underwriting agreement uses it too, as a final prospectus is dated the day it is priced), or for a period counted from the closing, the closing date the cover says the underwriters expect (base_date). early_release names what can end the main lock-up sooner (an earnings release, the share price, a blackout period); the company's own call (with company) quotes it. staged release rows are dates a release schedule in the prospectus states. shares_locked is as the prospectus words it (a count, a share of the stock, or substantially all). Found by EDGAR full-text search over final prospectuses (424B4, 424B1); SPACs and funds are left out.${capped ? ` Reading stopped at ${MAX_READS} prospectuses: later lock-ups in the window may be missing.` : ""}`,
+    note: `Lock-ups of IPOs that end ${start} to ${end}, earliest first, one row per period or dated release the final prospectus states. expiry is counted from the date its words name (counts_from): the prospectus date (priced; a period counted from the pricing or the underwriting agreement uses it too, as a final prospectus is dated the day it is priced), or for a period counted from the closing, the closing date the cover says the underwriters expect (base_date). early_release names what can end the main lock-up sooner (an earnings release, the share price, a blackout period); the company's own call (with company) quotes it. staged release rows are dates a release schedule in the prospectus states. shares_locked is as the prospectus words it (a count, a share of the stock, or substantially all). Found by EDGAR full-text search over final prospectuses (424B4, 424B1); SPACs and funds are left out.${capped ? ` Reading stopped at ${MAX_READS} prospectuses: the list is complete through ${counts.complete_through}; ask again with since ${addDays(counts.complete_through, 1)} for the rest of the window.` : ""}`,
     quotes,
     counts,
     reading: `${rows.length} IPO lock-up${rows.length === 1 ? "" : "s"} or dated release${rows.length === 1 ? "" : "s"} end ${start} to ${end}${first ? `, the first ${first[2]}'s on ${first[0]}` : ""}; ${READING_TAIL}.`,
