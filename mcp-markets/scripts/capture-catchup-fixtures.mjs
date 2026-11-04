@@ -1,6 +1,6 @@
 // Captures what the tools added to catch up with the incumbents read (node scripts/capture-catchup-fixtures.mjs):
-// scenario_risk's Yahoo chart data and FRED series, trade_ticks' Kraken trades and trade_flows' UN Comtrade
-// records, once against the live
+// scenario_risk's Yahoo chart data and FRED series, trade_ticks' Kraken trades, trade_flows' UN Comtrade
+// records and standardized_financials' SEC facts and exchange rates, once against the live
 // sources with the tests' clock (test/replay.mjs's NOW). Every response goes into test/fixtures/manifest.json as p###.gz under the
 // exact URL asked for, so the tests replay the same requests. Responses already captured are not fetched again.
 import { readFileSync, writeFileSync } from "node:fs";
@@ -9,6 +9,7 @@ import { gunzipSync, gzipSync } from "node:zlib";
 import { scenarioRisk } from "../src/scenarios.mjs";
 import { tradeTicks } from "../src/ticks.mjs";
 import { tradeFlows } from "../src/trade.mjs";
+import { standardizedFinancials } from "../src/standardized.mjs";
 import { createSession, PLAIN_USER_AGENT } from "../src/sources.mjs";
 import { NOW } from "../test/replay.mjs";
 
@@ -41,5 +42,7 @@ await tradeTicks(session, { pair: "ETH/EUR", start: "2025-04-07T13:30:00Z", end:
 await tradeFlows(session, { reporter: "United States", product: "semiconductors" });
 await tradeFlows(session, { reporter: "USA", partner: "Taiwan", product: "8542" });
 await tradeFlows(session, { reporter: "Germany", partner: "Russia", product: "natural gas", years: [2020, 2021, 2022, 2023] });
+await standardizedFinancials(session, { companies: ["AAPL"], years: 3 });
+await standardizedFinancials(session, { companies: ["AAPL", "1046179"], in_usd: true });
 writeFileSync(new URL("manifest.json", DIR), `${JSON.stringify(manifest, null, 1)}\n`);
 console.log(`manifest: ${Object.keys(manifest).length} responses`);
