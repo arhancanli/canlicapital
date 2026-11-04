@@ -30,3 +30,21 @@ test("a kept answer run again is the same; two answers compare by what changed",
     await c.close();
   }
 });
+
+test("cost_preview says what a tool cost earlier in the session, or that it has not run", async () => {
+  const c = new Client({ name: "cost-test", version: "0" });
+  await c.connect(new StdioClientTransport({ command: process.execPath, args: [ENTRY], env: { PATH: process.env.PATH ?? "", HOME: process.env.HOME ?? "", CANLI_CACHE_DIR: "", CANLI_OFFLINE: "1" } }));
+  try {
+    const call = async (name, args) => { const r = await c.callTool({ name: "run_tool", arguments: { name, arguments: args } }); return r.isError ? { error: r.content[0].text } : JSON.parse(r.content[0].text); };
+    const before = await call("cost_preview", { name: "sharpe_ratio" });
+    assert.equal(before.measured, false);
+    for (let i = 0; i < 2; i++) await call("sharpe_ratio", { returns: Array.from({ length: 200 }, (_, k) => 0.001 * Math.sin(k + i)) });
+    const after = await call("cost_preview", { name: "sharpe_ratio" });
+    assert.equal(after.calls, 2);
+    assert.equal(after.network, "none");
+    assert.ok(after.chars.median > 100 && Number.isInteger(after.ms.median));
+    assert.match((await call("cost_preview", { name: "nope_tool" })).error, /No tool nope_tool/);
+  } finally {
+    await c.close();
+  }
+});

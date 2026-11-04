@@ -48,7 +48,7 @@ import { RECEIPT_CHECK_TOOL, runReceiptCheck } from "./receipt-check.mjs";
 import { runShares, SHARES_TOOL } from "./shares.mjs";
 import { RED_FLAGS_TOOL, runRedFlags } from "./redflags.mjs";
 import { EXPORT_TOOL, exportInput } from "./export.mjs";
-import { COMPARE_TOOLS, compareInput, rerunInput } from "./compare.mjs";
+import { COMPARE_TOOLS, compareInput, previewInput, rerunInput } from "./compare.mjs";
 import { diff } from "./delta.mjs";
 import { addressedToAi, CAUTION } from "./injection.mjs";
 import { installTripwire, withoutNetwork } from "./tripwire.mjs";
@@ -519,6 +519,18 @@ export function selfTools(packs, gov, keeper, readOnly = false, vault = null, pr
     const changed = diff(before, now);
     return { ref: a.ref, rerun: call.name, ...(ref ? { new_ref: ref } : {}), ...(changed === undefined ? { same: true, reading: "The same answer, apart from when its sources were read." } : { same: false, changed }) };
   };
+  tools.cost_preview = (args) => {
+    allowed("cost_preview");
+    const { name } = previewInput.parse(args ?? {});
+    const e = BY_NAME.get(name);
+    if (!e) throw new Error(`No tool ${name}; find_tool names them.`);
+    const list = keeper.costs?.get(name) ?? [];
+    const med = (xs) => [...xs].sort((x, y) => x - y)[Math.floor(xs.length / 2)];
+    const network = sendsNothing(e.pack) ? "none" : (packInfo(e.pack)?.network ?? "the desk tools call other tools");
+    if (!list.length) return { tool: name, measured: false, network, reading: "Not run yet in this session. Reading the network makes a first call slower than later ones, which use caches; max_chars caps an answer's size." };
+    const ms = list.map((x) => x[0]), chars = list.map((x) => x[1]);
+    return { tool: name, measured: true, calls: list.length, ms: { median: Math.round(med(ms)), largest: Math.round(Math.max(...ms)) }, chars: { median: med(chars), largest: Math.max(...chars) }, tokens_about: Math.round(med(chars) / 4), network, reading: `Earlier in this session it took about ${Math.round(med(ms))} ms and answered with about ${med(chars)} characters (${Math.round(med(chars) / 4)} tokens); max_chars or select keep a call smaller.` };
+  };
   tools.export_result = async (args) => {
     allowed("export_result");
     if (readOnly) throw new Error("export_result writes to your own machine. Run it locally: npx -y canli-mcp");
@@ -563,6 +575,8 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
   // Each call's last whole result, for changes_only (delta.mjs).
   const delta = createDelta();
   installTripwire();
+  // What each tool cost when it ran in this session, for cost_preview: milliseconds and answer characters, the last 50.
+  keeper.costs = new Map();
   // A holdout period hidden from every tool until its one test (holdout.mjs); setting it clears what was kept.
   const vault = createVault({ onSet: () => { keeper.clear(); delta.clear(); } });
   // Hypotheses hashed before the data, named in every later receipt (prereg.mjs); kept in CANLI_HOME on this machine.
@@ -619,7 +633,8 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     if (a.view) for (const c of calls) if (/^backtest_/.test(c.name) && !(c.arguments && "curve" in c.arguments)) { try { if ((await toolFor(c.name, packs)).input?.shape?.curve) c.arguments = { ...(c.arguments ?? {}), curve: true }; } catch { /* reported when it runs */ } }
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
     const SELF = selfTools(packs, gov, keeper, readOnly, vault, preregs, machine);
-    const run = (c, args) => (c.ran = args, SELF[c.name] ? Promise.resolve().then(() => { if (machine && !machine.selfAllowed(c.name)) throw machine.refuse(c.name); return SELF[c.name](args); }) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov, machine));
+    const timed = (name, work) => { const t0 = performance.now(); return work.then((out) => { if (!SELF[name]) { const list = keeper.costs.get(name) ?? []; list.push([performance.now() - t0, JSON.stringify(out ?? null).length]); keeper.costs.set(name, list.slice(-50)); } return out; }); };
+    const run = (c, args) => timed(c.name, (c.ran = args, SELF[c.name] ? Promise.resolve().then(() => { if (machine && !machine.selfAllowed(c.name)) throw machine.refuse(c.name); return SELF[c.name](args); }) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov, machine)));
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
     if (calls.length > 1 && destructive.some(Boolean)) throw new Error("A tool that sends orders cannot run inside a batch; call it on its own after previewing.");
     const done = [];
