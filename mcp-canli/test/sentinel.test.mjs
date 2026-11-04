@@ -138,6 +138,30 @@ test("a restatement rule waits for a period not reported yet, and restatements a
   t.done();
 });
 
+test("a reported rule fires once at a figure's first report, and says whether it meets the claim", async () => {
+  const columns = ["start", "end", "filed", "form", "accn", "fy", "fp", "val"];
+  let reply = new Error("Apple Inc. reports no revenue period ending 2026-09-26 in USD; history lists the periods it does report.");
+  const t = setup({ replies: { vintages: () => { if (reply instanceof Error) throw reply; return reply; } } });
+  t.s.add({ kind: "reported", company: "AAPL", concept: "revenue", end: "2026-09-26", above: 400000000000, below: 410000000000 });
+  await t.s.pollDue();
+  assert.equal(t.seen.length, 0, "not reported yet: waited for");
+  // The 10-K reports the year and its fourth quarter; without a start, the year is the one read.
+  reply = { company: { cik: "0000320193" }, concept: { unit: "USD" }, columns, rows: [["2025-09-28", "2026-09-26", "2026-10-30", "10-K", "0000320193-26-000026", 2026, "FY", 416161000000], ["2026-06-28", "2026-09-26", "2026-10-30", "10-K", "0000320193-26-000026", 2026, "FY", 102466000000]] };
+  t.tick(15 * 60000); await t.s.pollDue();
+  assert.equal(t.seen.length, 1);
+  assert.equal(t.seen[0].headline, "AAPL reported revenue for 2025-09-28 to 2026-09-26: 416161000000 USD in a 10-K filed 2026-10-30; above 400000000000: yes, below 410000000000: no");
+  assert.deepEqual(t.seen[0].facts.claim, { above: 400000000000, below: 410000000000, met: false });
+  t.tick(15 * 60000); await t.s.pollDue();
+  assert.equal(t.seen.length, 1, "once");
+  // Already reported when the rule is set: it fires at the first read.
+  t.s.add({ kind: "reported", company: "AAPL", concept: "revenue", end: "2026-09-26", start: "2026-06-28" });
+  t.tick(15 * 60000); await t.s.pollDue();
+  assert.equal(t.seen.length, 2);
+  assert.match(t.seen[1].headline, /for 2026-06-28 to 2026-09-26: 102466000000 USD/);
+  assert.equal(t.seen[1].facts.claim, undefined, "no claim, no verdict");
+  t.done();
+});
+
 test("a volatility rule compares the surface before and after", async () => {
   let iv = 40;
   const surface = () => ({ underlying: { iv30: iv, price: 200, as_of: "2026-11-02T14:45:00Z" }, term_structure: { columns: ["expiration", "days", "atm_iv", "put_25_delta_iv", "call_25_delta_iv", "risk_reversal", "butterfly"], rows: [["2026-12-18", 46, iv / 100, 0.5, 0.3, 0.2, 0.01]] } });
