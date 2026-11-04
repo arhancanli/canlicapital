@@ -162,7 +162,7 @@ export const PLUGINS = new Map();
 const PLUGIN_PACK = /^[a-z]{2,24}$/;
 export async function loadPlugins(env = process.env, taken = new Set()) {
   const specs = String(env.CANLI_PLUGINS ?? "").split(",").map((x) => x.trim()).filter(Boolean);
-  if (!specs.length || /^(1|true|yes)$/i.test(String(env.CANLI_OFFLINE ?? ""))) return [];
+  if (!specs.length || offlineMode(env)) return [];
   const out = [];
   for (const spec of specs) {
     const url = spec.startsWith(".") || isAbsolute(spec) ? pathToFileURL(resolve(spec)).href : spec;
@@ -190,6 +190,13 @@ export async function loadPlugins(env = process.env, taken = new Set()) {
 // A pack's description, built in or plugin.
 export const packInfo = (name) => PACKS[name] ?? PLUGINS.get(name);
 
+// Offline: CANLI_OFFLINE=1 keeps only the packs that never touch the network; CANLI_OFFLINE=packs also keeps the
+// fundamentals pack, which then reads only what canli-mcp pack add saved on this machine, with fetch refused.
+export function offlineMode(env = process.env) {
+  const v = String(env.CANLI_OFFLINE ?? "").trim().toLowerCase();
+  return v === "packs" ? "packs" : /^(1|true|yes)$/.test(v) ? "strict" : null;
+}
+
 // Which packs this process offers. CANLI_PACKS lists them (or "all"); CANLI_OFFLINE=1 keeps only
 // the packs that never touch the network; paper is on only with Alpaca paper keys (or when listed).
 export function enabledPacks(env = process.env) {
@@ -201,6 +208,7 @@ export function enabledPacks(env = process.env) {
     names = raw.split(",").map((s) => s.trim()).filter(Boolean);
     for (const n of names) if (!PACKS[n]) throw new Error(`CANLI_PACKS: no pack ${n}; packs are ${all.join(", ")}, all`);
   } else names = all.filter((n) => n !== "paper" || Boolean(env.ALPACA_PAPER_KEY_ID));
-  if (/^(1|true|yes)$/i.test(String(env.CANLI_OFFLINE ?? ""))) names = names.filter((n) => PACKS[n].offline);
+  const offline = offlineMode(env);
+  if (offline) names = names.filter((n) => PACKS[n].offline || (offline === "packs" && n === "fundamentals"));
   return names;
 }

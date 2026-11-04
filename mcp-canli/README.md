@@ -335,7 +335,7 @@ Everything runs on your machine. `canli://privacy` states, per pack, what leaves
 | markets | SEC EDGAR and the SEC's adviser database, the US Treasury, FRED, FINRA, the CFTC, the Federal Reserve and the New York Fed, BLS, BEA, the Census Bureau, the OECD, the World Bank, Cboe, filings.xbrl.org (European filings), the ECB, the Bank of England, the BIS, Polymarket, Kalshi, DefiLlama, OKX, GDELT (news), USAspending, ClinicalTrials.gov, openFDA, the FDIC and Cirrun's GPU price index directly (the company, form, dates, search words, rate or series you ask for); Yahoo Finance's public data for prices and a quote page's figures (the symbol you ask for), or for US stock prices Alpaca or Tiingo with your key | none |
 | paper | Alpaca's paper API only, with your paper keys | a hash-chained order log in `~/.canli` |
 
-`CANLI_OFFLINE=1` enables only the packs with no network, and no other pack's code is even loaded.
+`CANLI_OFFLINE=1` enables only the packs with no network, and no other pack's code is even loaded. To work offline with company figures too, save the companies first with `npx canli-mcp pack add AAPL MSFT ...` (it reads each one's Canli reference and SEC snapshot once), then run with `CANLI_OFFLINE=packs`: the fundamentals pack joins, reads only what was saved, with `fetch` refused, and answers as of each company's saved snapshot. `canli-mcp pack list` shows what is saved.
 `test/privacy.test.mjs` runs the server that way with `fetch` and every network module made to
 throw, and the quant and validation tools still answer. While the server runs, every quant and validation tool, and any plugin that says it
 sends nothing, runs with `fetch` refused, and an answer whose every call ran so says `network: "none"` in its

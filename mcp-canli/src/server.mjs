@@ -30,7 +30,7 @@ import { runTriangulate, TRIANGULATE_TOOL } from "./triangulate.mjs";
 import { runWorlds, WORLDS_TOOL } from "./worlds.mjs";
 import { HUB_TOOLS, runHubCheck, runHubList, runHubRun } from "./hub.mjs";
 import { DRAFT_TOOL, runDraft } from "./draft.mjs";
-import { OMITTED, PACKS, PLUGINS, RENAMES, enabledPacks, loadPack, loadPlugins, packInfo } from "./packs.mjs";
+import { OMITTED, PACKS, PLUGINS, RENAMES, enabledPacks, loadPack, loadPlugins, offlineMode, packInfo } from "./packs.mjs";
 import { signature } from "./signature.mjs";
 import { buildIndex, search } from "./search.mjs";
 import { registerPrompts } from "./prompts.mjs";
@@ -387,6 +387,12 @@ const TIME_MACHINE = AS_OF_ARG ? createTimeMachine(AS_OF_ARG) : null;
 
 async function runOne(packs, { name, arguments: given }, opts, files, gov, machine = TIME_MACHINE) {
   const tool = await toolFor(name, packs);
+  // Offline with packs, what the fundamentals pack cannot find was never saved: its own words would say the SEC
+  // has no figures, so they are put right.
+  if (OFFLINE_PACKS && tool.pack === "fundamentals") return runOneAt(packs, tool, name, given, opts, files, gov, machine).catch((e) => { throw new Error(`${e.message} Offline: only the companies saved with canli-mcp pack add are here (canli-mcp pack list).`); });
+  return runOneAt(packs, tool, name, given, opts, files, gov, machine);
+}
+async function runOneAt(packs, tool, name, given, opts, files, gov, machine) {
   const args = machine ? machine.admit(name, tool.pack, given) : given;
   const finish = (result) => (machine ? machine.seal(name, result) : result);
   if (!gov?.policy) return finish(await execute(tool, name, args, opts, files));
@@ -402,7 +408,9 @@ async function runOne(packs, { name, arguments: given }, opts, files, gov, machi
 // can change another's. A tool that writes or sends anything always runs.
 const INFLIGHT = new Map();
 // A pack that sends nothing runs with fetch refused (tripwire.mjs).
-const sendsNothing = (pack) => Boolean(PACKS[pack]?.offline) || PLUGINS.get(pack)?.network === "none";
+// With CANLI_OFFLINE=packs, the fundamentals pack is one of them: it reads only what canli-mcp pack add saved.
+const OFFLINE_PACKS = offlineMode() === "packs";
+const sendsNothing = (pack) => Boolean(PACKS[pack]?.offline) || PLUGINS.get(pack)?.network === "none" || (OFFLINE_PACKS && pack === "fundamentals");
 function shared(tool, name, data) {
   const run = sendsNothing(tool.pack) ? () => withoutNetwork(name, tool.pack, () => tool.run(data, tool.pack === "quant" ? { digits: 15 } : undefined)) : () => tool.run(data, tool.pack === "quant" ? { digits: 15 } : undefined);
   if (!tool.annotations?.readOnlyHint || tool.annotations?.destructiveHint) return run();
@@ -681,7 +689,7 @@ export const PRIVACY = (packs, gov) => ({
   sentinel: "off until you use it: rules and events are kept in CANLI_HOME/sentinel on this machine, and sent only where you say with --webhook, --slack, --discord, --exec or --channel",
   local_models: "off until you run canli-mcp models install: they run on this machine, and no text leaves it",
   telemetry: "none: no analytics, logging or crash reporting",
-  offline: "CANLI_OFFLINE=1 enables only the packs whose network is none (quant, validation), and no other pack's code is loaded",
+  offline: "CANLI_OFFLINE=1 enables only the packs whose network is none (quant, validation), and no other pack's code is loaded; CANLI_OFFLINE=packs adds the fundamentals pack, which then reads only what canli-mcp pack add saved on this machine, with fetch refused",
   receipts: "every answer's receipt, in MCP's _meta, carries SHA-256 hashes and the URLs and times of the documents read, never the data",
   preregistrations: "off until you use preregister: each record is kept in CANLI_HOME/preregistrations.jsonl on this machine, readable only by you",
   holdout: "a holdout vault is kept in memory for the session and written nowhere",
@@ -785,6 +793,16 @@ if (isMain && process.argv[2] === "audit") {
     company: flag(argv, "--company"), event: flag(argv, "--event"),
     every: Number(flag(argv, "--every") ?? 60),
   }, (line) => process.stdout.write(`${line}\n`));
+} else if (isMain && process.argv[2] === "pack") {
+  // `canli-mcp pack add <ticker, CIK or name>... | list`: companies saved for CANLI_OFFLINE=packs (local/pack.mjs).
+  const [verb, ...rest] = process.argv.slice(3);
+  const show = (x) => process.stdout.write(`${JSON.stringify(x)}\n`);
+  if (verb === "list") { show((await import("../local/pack.mjs")).packList(canliHome())); process.exit(0); }
+  if (verb !== "add" || !rest.length) { process.stderr.write("usage: canli-mcp pack add <ticker, CIK or name>... | list\n"); process.exit(2); }
+  if (OFFLINE_PACKS) { process.stderr.write("canli-mcp pack add reads from the network: run it without CANLI_OFFLINE.\n"); process.exit(2); }
+  const packs = enabledPacks({ ...process.env, CANLI_PACKS: "fundamentals" }), gov = governance(process.env, canliHome());
+  process.on("exit", () => gov.close());
+  show(await (await import("../local/pack.mjs")).packAdd(canliHome(), (name, args) => runOne(packs, { name, arguments: args }, {}, [], gov), rest.slice(0, 200)));
 } else if (isMain && process.argv[2] === "sentinel") {
   // `canli-mcp sentinel add '<rule as JSON>' | list | remove <id> | events | run [--webhook url] [--slack url] [--discord url] [--exec 'command'] [--once]`.
   // Where events go is set here, by whoever runs this, and never by a rule.
