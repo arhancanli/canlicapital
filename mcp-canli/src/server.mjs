@@ -211,7 +211,7 @@ function resolveResults(value, done, keeper) {
     }
     if (Number.isInteger(value.$result)) {
       const i = value.$result;
-      if (!(i >= 0 && i < done.length)) throw new Error(`$result ${i} refers to a call that has not run in this batch. A number refers to an earlier call in the same batch; to use a result from an earlier run_tool call, pass its ref, for example {"$result": "r1", "path": "close"}.`);
+      if (!(i >= 0 && i < done.length) || !done[i]) throw new Error(`$result ${i} refers to a call that has not run in this batch. A number refers to an earlier call in the same batch; to use a result from an earlier run_tool call, pass its ref, for example {"$result": "r1", "path": "close"}.`);
       if (done[i].error) throw new Error(`$result ${i} failed: ${done[i].error}`);
       let v = at(done[i].result, value.path);
       if (v === undefined) throw new Error(`$result ${i} has nothing at "${value.path}".`);
@@ -223,6 +223,8 @@ function resolveResults(value, done, keeper) {
   return value;
 }
 const usesResults = (v) => (Array.isArray(v) ? v.some(usesResults) : v && typeof v === "object" ? Number.isInteger(v.$result) || typeof v.$result === "string" || Object.values(v).some(usesResults) : false);
+// The calls of the same batch a call reads, by number.
+const batchRefs = (v, out = new Set()) => { if (Array.isArray(v)) v.forEach((x) => batchRefs(x, out)); else if (v && typeof v === "object") { if (Number.isInteger(v.$result)) out.add(v.$result); Object.values(v).forEach((x) => batchRefs(x, out)); } return [...out]; };
 
 // Rounds fractional numbers to `digits` significant figures and never changes a whole number
 // (counts, share amounts, CIKs, dollar totals) or the integer part of a large value.
@@ -652,15 +654,23 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
       Promise.resolve(notify({ method: "notifications/progress", params: { progressToken: token, progress: finished, total: calls.length, message: `${finished} of ${calls.length} calls done` } })).catch(() => {});
     };
     const cancelled = () => Boolean(req.signal?.aborted);
-    if (calls.some((c) => usesResults(c.arguments))) {
-      for (const c of calls) {
-        if (cancelled()) { done.push({ name: c.name, error: "not run: the request was cancelled" }); continue; }
-        try { done.push({ name: c.name, result: await run(c, resolveResults(c.arguments ?? {}, done, keeper)) }); }
-        catch (e) { done.push({ name: c.name, error: e.message }); }
-        progress();
-      }
-    } else {
-      done.push(...await Promise.all(calls.map((c) => run(c, c.arguments).then((result) => ({ name: c.name, result }), (e) => ({ name: c.name, error: e.message })).finally(progress))));
+    // In waves: a call starts as soon as the calls whose results it reads ($result by number) are done, so
+    // independent calls run at once even in a batch where others wait. The results keep the batch's order.
+    const needs = calls.map((c) => batchRefs(c.arguments));
+    done.length = calls.length;
+    const runAt = async (i) => {
+      const c = calls[i];
+      if (cancelled()) { done[i] = { name: c.name, error: "not run: the request was cancelled" }; return; }
+      try { done[i] = { name: c.name, result: await run(c, usesResults(c.arguments) ? resolveResults(c.arguments ?? {}, done, keeper) : c.arguments) }; }
+      catch (e) { done[i] = { name: c.name, error: e.message }; }
+      progress();
+    };
+    for (let left = calls.map((_, i) => i); left.length;) {
+      // A call reading a later or missing call runs last, where resolveResults says why it cannot.
+      const ready = left.filter((i) => needs[i].every((j) => j < i && done[j]));
+      const wave = ready.length ? ready : left.slice(0, 1);
+      await Promise.all(wave.map(runAt));
+      left = left.filter((i) => !wave.includes(i));
     }
     // Each strategy result says what is left after luck across everything tried so far (luck.mjs).
     done.forEach((d, i) => {
