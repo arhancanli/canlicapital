@@ -6,6 +6,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { gzipSync } from "node:zlib";
 
+import { congressTrades } from "../src/congress.mjs";
 import { cryptoOptions } from "../src/deribit.mjs";
 import { factorReturns } from "../src/factors.mjs";
 import { federalBudget, treasuryCash } from "../src/fiscal.mjs";
@@ -26,7 +27,7 @@ async function recording(url, init = {}) {
   const res = await fetch(url, { ...init, headers: { "User-Agent": PLAIN_USER_AGENT, ...(init.headers ?? {}) } });
   const bytes = new Uint8Array(await res.arrayBuffer());
   if (res.ok) {
-    const file = `p${String(++n).padStart(3, "0")}${new URL(url).pathname.endsWith(".zip") ? ".bin.gz" : ".gz"}`;
+    const file = `p${String(++n).padStart(3, "0")}${/\.(zip|pdf)$/.test(new URL(url).pathname) ? ".bin.gz" : ".gz"}`;
     writeFileSync(new URL(file, DIR), gzipSync(bytes, { level: 9 }));
     manifest[url] = file;
   }
@@ -42,5 +43,8 @@ await federalBudget(session, { statement: "2026-03" });
 await cryptoOptions(session, { currency: "BTC" });
 await cryptoOptions(session, { currency: "BTC", view: "chain" });
 await cryptoOptions(session, { currency: "SOL" });
+// The House's 2026 index and three members' newest reports: a bond bought jointly, a spouse's stock trades
+// with tickers, and a spouse's municipal bonds.
+for (const member of ["beyer", "mcguire", "mike kelly"]) await congressTrades(session, { member, reports: 1 });
 writeFileSync(new URL("manifest.json", DIR), JSON.stringify(manifest, null, 1) + "\n");
 console.log(Object.keys(manifest).length, "responses in the manifest");

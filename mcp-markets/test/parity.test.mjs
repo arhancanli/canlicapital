@@ -5,6 +5,7 @@ import test from "node:test";
 
 import { cryptoOptions, parseInstrument } from "../src/deribit.mjs";
 import { factorReturns, parseLibrary } from "../src/factors.mjs";
+import { congressTrades, parseIndex } from "../src/congress.mjs";
 import { federalBudget, treasuryCash } from "../src/fiscal.mjs";
 import { calendar, easter, marketHours } from "../src/hours.mjs";
 import { createSession } from "../src/sources.mjs";
@@ -97,4 +98,23 @@ test("market_hours: NYSE's holidays and early closes as it published them, the c
   assert.equal(marketHours(at("2026-12-24T17:59:00Z"), {}).now.next_close.eastern, "2026-12-24 13:00");
   assert.match(marketHours(at("2026-11-07T15:00:00Z"), {}).now.status, /closed \(Saturday\)/);
   assert.equal(marketHours(at("2026-11-04T21:30:00Z"), {}).now.status, "after-hours");
+});
+
+test("congress_trades: the House index, each report's trades with ticker, owner, dates and amount range, across wrapped lines", async () => {
+  const idx = parseIndex("Prefix\tLast\tFirst\tSuffix\tFilingType\tStateDst\tYear\tFilingDate\tDocID\r\nHon.\tBeyer\tDonald\tJr\tP\tVA08\t2026\t11/1/2026\t20035743\r\n");
+  assert.deepEqual(idx[0], { name: "Hon. Donald Beyer Jr", district: "VA08", type: "P", filed: "2026-11-01", doc: "20035743", year: "2026" });
+  const s = session();
+  const beyer = await congressTrades(s, { member: "beyer", reports: 1 });
+  assert.deepEqual(beyer.reports.rows[0], ["2026-11-01", "Hon. Donald Sternoff Beyer Jr", "VA08", "20035743", 1, "https://disclosures-clerk.house.gov/public_disc/ptr-pdfs/2026/20035743.pdf"]);
+  assert.deepEqual(beyer.transactions.rows[0].slice(3, 12), ["joint", "California CMNTY VAR 11/01/54", null, "GS", "purchase", "2026-10-07", "2026-11-01", 15001, 50000], "the amount's two halves on two lines");
+  const mcguire = await congressTrades(s, { member: "mcguire", reports: 1 });
+  assert.equal(mcguire.transactions.rows.length, 4);
+  assert.deepEqual(mcguire.transactions.rows[0].slice(3, 12), ["spouse", "Broadcom Inc. - Common Stock (AVGO)", "AVGO", "ST", "partial sale", "2026-09-24", "2026-10-02", 1001, 15000]);
+  const kelly = await congressTrades(s, { member: "mike kelly", reports: 1 });
+  assert.equal(kelly.transactions.rows[1][4], "California Cmnty Choice Fing A Sustainabl 5% due 9/1/36", "an asset's name continued on the next line");
+  assert.deepEqual(kelly.transactions.rows[1].slice(10, 12), [50001, 100000]);
+  const mu = await congressTrades(s, { member: "mcguire", ticker: "mu", reports: 1 });
+  assert.deepEqual(mu.transactions.rows.map((t) => t[8]), ["2026-09-24", "2026-09-25", "2026-10-01"]);
+  await assert.rejects(congressTrades(s, { member: "nobody at all" }), /No periodic transaction reports filed in 2026 by a member named like "nobody at all"/);
+  assert.match(beyer.limits.join(" "), /unlawful to obtain or use these reports for a commercial purpose/);
 });

@@ -22,7 +22,7 @@ export const HOSTS = new Set([
   "www.federalregister.gov", "www.consumerfinance.gov", "www.census.gov", "www.bls.gov", "www.bea.gov", "data.worldbank.org", "api.worldbank.org",
   "banks.data.fdic.gov", "api.fdic.gov", "api.gleif.org", "api.openfigi.com", "api.gdeltproject.org", "api.coingecko.com", "www.okx.com",
   "polymarket.com", "gamma-api.polymarket.com", "api.elections.kalshi.com", "portwatch.imf.org", "services9.arcgis.com", "filings.xbrl.org", "sourcify.dev",
-  "api.tiingo.com", "cirrun.com", "canlicapital.com", "mba.tuck.dartmouth.edu", "www.deribit.com", "www.nyse.com",
+  "api.tiingo.com", "cirrun.com", "canlicapital.com", "mba.tuck.dartmouth.edu", "www.deribit.com", "www.nyse.com", "disclosures-clerk.house.gov",
 ]);
 // An address that carries a key is the caller's, not a document's; it is never fetched.
 const KEYED = /[?&](api_?key|apikey|token|key|access_token|secret)=/i;

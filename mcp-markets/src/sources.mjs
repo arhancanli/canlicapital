@@ -164,7 +164,9 @@ export function unzipFirst(bytes, { maxText = 64 * 1024 * 1024 } = {}) {
   return out.toString("utf8");
 }
 
-export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024 } = {}) {
+// decode turns the bytes into the text kept: the zip's first file by default, or another binary format's
+// text (a PDF's, for the House's transaction reports).
+export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024, decode = unzipFirst } = {}) {
   const hit = session.cache.lookup(url, session.now());
   if (hit) { witness(session, url, session.hashes.get(url)); return hit.text; }
   let bytes;
@@ -183,7 +185,7 @@ export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024 } =
   const record = { sha256: createHash("sha256").update(bytes).digest("hex"), bytes: bytes.byteLength, retrieved_at: new Date(session.now()).toISOString() };
   session.hashes.set(url, record);
   witness(session, url, record);
-  const text = unzipFirst(bytes);
+  const text = decode(bytes);
   session.cache.set(url, { at: session.now(), text });
   return text;
 }
