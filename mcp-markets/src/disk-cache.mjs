@@ -30,6 +30,8 @@ export function freshFor(url) {
   if (/^https:\/\/wikimedia\.org\/api\/rest_v1\/metrics\/pageviews\//.test(url)) return 6 * HOUR;
   // EIA's weekly history pages are slow (up to 5 seconds) and are read for the years before this one.
   if (/^https:\/\/www\.eia\.gov\/dnav\//.test(url)) return 6 * HOUR;
+  // The Cleveland Fed's nowcast files (5 to 8 MB each) change once a day.
+  if (/^https:\/\/www\.clevelandfed\.org\/-\/media\/files\/webcharts\/inflationnowcasting\//.test(url)) return HOUR;
   // The New York Fed's SOMA summary (all weeks since 2003) changes on Thursdays.
   if (/^https:\/\/markets\.newyorkfed\.org\/api\/soma\//.test(url)) return HOUR;
   return 0;
