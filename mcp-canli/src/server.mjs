@@ -45,6 +45,7 @@ import { createVault, HOLDOUT_TOOLS } from "./holdout.mjs";
 import { createRegistry, PREREG_TOOL } from "./prereg.mjs";
 import { CAUSES_TOOL, runCauses } from "./causes.mjs";
 import { RECEIPT_CHECK_TOOL, runReceiptCheck } from "./receipt-check.mjs";
+import { addressedToAi, CAUTION } from "./injection.mjs";
 import { installTripwire, withoutNetwork } from "./tripwire.mjs";
 import { createDelta } from "./delta.mjs";
 import { runWeek, WEEK_TOOL } from "./week.mjs";
@@ -600,6 +601,12 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
       const note = luck.record(d.name, calls[i]?.arguments, d.result);
       if (note) d.result = { ...d.result, luck: note };
     });
+    // Text from outside that speaks to an AI is marked where it is, and kept as the source gave it (injection.mjs).
+    for (const d of done) {
+      if (d.result === undefined || SELF[d.name] || !d.result || typeof d.result !== "object") continue;
+      const found = addressedToAi(d.result);
+      if (found.length) d.result = { ...d.result, caution: { note: CAUTION, found } };
+    }
     // Calls that read the world before a holdout was set may have seen it; its status counts them.
     for (const d of done) if (!SELF[d.name] && !["quant", "validation"].includes(BY_NAME.get(d.name)?.pack)) vault.saw();
     // Keep each full result (before select) under a ref for later calls.
