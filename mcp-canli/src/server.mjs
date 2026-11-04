@@ -482,7 +482,7 @@ export function selfTools(packs, gov, keeper, readOnly = false, vault = null, pr
   const vaulted = (name) => { allowed(name); if (readOnly || !vault) throw new Error("The holdout vault keeps a session, and the hosted server keeps nothing between requests. Run it locally: npx -y canli-mcp"); return vault; };
   tools.restatement_causes = (args) => { allowed("restatement_causes"); return runCauses(desk, args); };
   tools.receipt_check = (args) => { allowed("receipt_check"); return runReceiptCheck(desk, args); };
-  tools.share_counts = (args) => { allowed("share_counts"); return runShares(desk, args); };
+  tools.reconcile_shares = (args) => { allowed("reconcile_shares"); return runShares(desk, args); };
   tools.preregister = async (args) => {
     allowed("preregister");
     if (readOnly || !preregs) throw new Error("A pre-registration is named in the receipts of a session's later answers, and the hosted server keeps nothing between requests. Run it locally: npx -y canli-mcp");

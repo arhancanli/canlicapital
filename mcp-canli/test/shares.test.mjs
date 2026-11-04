@@ -1,4 +1,4 @@
-// share_counts: a filing's share counts side by side, flagging only what cannot be ordinary: a count about a
+// reconcile_shares: a filing's share counts side by side, flagging only what cannot be ordinary: a count about a
 // thousand times off the others (Apple's April 2014 10-Q), issued below outstanding, diluted below basic; treasury
 // shares and a concept the company does not tag are ordinary.
 import assert from "node:assert/strict";

@@ -12,9 +12,9 @@ export const sharesInput = z.object({
 }).strict();
 
 export const SHARES_TOOL = Object.freeze({
-  name: "share_counts", pack: "desk", toolset: "desk", title: "A company's share counts reconciled filing by filing", input: sharesInput, annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: true },
+  name: "reconcile_shares", pack: "desk", toolset: "desk", title: "Reconcile a filing's shares: cover page, balance sheet, EPS", input: sharesInput, annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: true },
   description: "The share counts in each filing side by side (cover page, outstanding and issued at the period's end, the basic and diluted weighted averages behind EPS), with what cannot be ordinary flagged: a count about a thousand or a million times the others (a scale slip), fewer shares issued than outstanding, or a diluted average below the basic one.",
-  keywords: "share count shares outstanding issued weighted average diluted basic eps denominator reconcile cover page scale slip thousands data quality",
+  keywords: "reconcile reconciliation cover page issued weighted average diluted basic eps denominator scale slip filed in thousands mismatch data quality",
   args: "company: string, filings?: integer",
 });
 
