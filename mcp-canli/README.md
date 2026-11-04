@@ -96,7 +96,16 @@ Claude Code:
 claude mcp add canli -- npx -y canli-mcp
 ```
 
-Claude Desktop, Cursor or any MCP client:
+Every MCP client on your machine at once (Claude Desktop, Cursor, Windsurf, VS Code, Gemini CLI, Kiro,
+LM Studio, Amazon Q, Codex): each one found gets a `canli` entry, the rest of its file is kept and a copy
+is saved beside it. `--dry-run` shows what would change, `--only cursor,vscode` picks clients and
+`--remove` takes the entry out again.
+
+```bash
+npx -y canli-mcp setup
+```
+
+Claude Desktop, Cursor or any MCP client, by hand:
 
 ```json
 { "mcpServers": { "canli": { "command": "npx", "args": ["-y", "canli-mcp"] } } }

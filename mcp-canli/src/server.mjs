@@ -877,6 +877,14 @@ if (isMain && process.argv[2] === "audit") {
     company: flag(argv, "--company"), event: flag(argv, "--event"),
     every: Number(flag(argv, "--every") ?? 60),
   }, (line) => process.stdout.write(`${line}\n`));
+} else if (isMain && process.argv[2] === "setup") {
+  // `canli-mcp setup [--dry-run] [--only cursor,vscode] [--remove] [--name canli] [--json]`: canli-mcp added to every
+  // MCP client found on this machine (local/setup.mjs).
+  const { formatSetup, setupClients } = await import("../local/setup.mjs");
+  try {
+    const r = setupClients({ home: homedir(), argv: process.argv.slice(3) });
+    process.stdout.write(process.argv.includes("--json") ? `${JSON.stringify(r)}\n` : formatSetup(r));
+  } catch (e) { process.stderr.write(`${e.message}\n`); process.exit(2); }
 } else if (isMain && process.argv[2] === "upstream") {
   // `canli-mcp upstream add|list|remove`: other MCP servers whose tools join this one (local/upstream.mjs).
   const { upstreamCommand } = await import("../local/upstream.mjs");
