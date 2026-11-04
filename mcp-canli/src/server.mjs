@@ -50,6 +50,7 @@ import { RED_FLAGS_TOOL, runRedFlags } from "./redflags.mjs";
 import { EXPORT_TOOL, exportInput } from "./export.mjs";
 import { COMPARE_TOOLS, compareInput, previewInput, rerunInput } from "./compare.mjs";
 import { diff } from "./delta.mjs";
+import { FISCAL_TOOL, runFiscal } from "./fiscal.mjs";
 import { addressedToAi, CAUTION } from "./injection.mjs";
 import { installTripwire, withoutNetwork } from "./tripwire.mjs";
 import { createDelta } from "./delta.mjs";
@@ -66,7 +67,7 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL, EXPORT_TOOL, ...COMPARE_TOOLS];
+const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL, EXPORT_TOOL, ...COMPARE_TOOLS, FISCAL_TOOL];
 export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
@@ -499,6 +500,7 @@ export function selfTools(packs, gov, keeper, readOnly = false, vault = null, pr
   tools.receipt_check = (args) => { allowed("receipt_check"); return runReceiptCheck(desk, args); };
   tools.reconcile_shares = (args) => { allowed("reconcile_shares"); return runShares(desk, args); };
   tools.red_flags = (args) => { allowed("red_flags"); return runRedFlags(desk, args); };
+  tools.fiscal_calendar = (args) => { allowed("fiscal_calendar"); return runFiscal(desk, args); };
   const keptOrThrow = (ref) => { if (!keeper.has(ref)) throw new Error(`${ref} is not kept; refs name earlier results (the last ${KEEP_COUNT} are kept).`); return keeper.get(ref); };
   tools.compare_answers = (args) => {
     allowed("compare_answers");
