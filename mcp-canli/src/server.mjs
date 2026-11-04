@@ -461,8 +461,10 @@ async function describeTool(packs, { name }) {
 // client need not ask before each one.
 // The tools this server answers itself rather than through a pack. run_tool and the shell command both
 // come here, so a desk tool is never handed to a pack's runner.
-export function selfTools(packs, gov, keeper, readOnly = false, vault = null, preregs = null) {
-  const desk = { call: (name, args) => (name === "triangulate" ? runTriangulate(desk, args) : runOne(packs, { name, arguments: args }, {}, [], gov)), keep: (r) => keeper.put(r), get: (ref) => keeper.get(ref), at, toolFor: (name) => toolFor(name, packs), hosted: Boolean(readOnly) };
+// machine: the time machine this call answers under (the server's, its own as_of, or a holdout's), which every call a
+// desk tool makes is held to as well.
+export function selfTools(packs, gov, keeper, readOnly = false, vault = null, preregs = null, machine = TIME_MACHINE) {
+  const desk = { call: (name, args) => (name === "triangulate" ? runTriangulate(desk, args) : runOne(packs, { name, arguments: args }, {}, [], gov, machine)), keep: (r) => keeper.put(r), get: (ref) => keeper.get(ref), at, toolFor: (name) => toolFor(name, packs), hosted: Boolean(readOnly) };
   // A rule outlives the call that sets it, so it lives on your machine and never on the hosted server.
   const sentinel = async () => {
     if (readOnly) throw new Error("The sentinel watches from your own machine. Run it locally: npx -y canli-mcp");
@@ -561,7 +563,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const viewing = Boolean(a.view) && clientDrawsApps(server);
     if (a.view) for (const c of calls) if (/^backtest_/.test(c.name) && !(c.arguments && "curve" in c.arguments)) { try { if ((await toolFor(c.name, packs)).input?.shape?.curve) c.arguments = { ...(c.arguments ?? {}), curve: true }; } catch { /* reported when it runs */ } }
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
-    const SELF = selfTools(packs, gov, keeper, readOnly, vault, preregs);
+    const SELF = selfTools(packs, gov, keeper, readOnly, vault, preregs, machine);
     const run = (c, args) => (SELF[c.name] ? Promise.resolve().then(() => { if (machine && !machine.selfAllowed(c.name)) throw machine.refuse(c.name); return SELF[c.name](args); }) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov, machine));
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
     if (calls.length > 1 && destructive.some(Boolean)) throw new Error("A tool that sends orders cannot run inside a batch; call it on its own after previewing.");

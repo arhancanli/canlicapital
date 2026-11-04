@@ -49,3 +49,18 @@ test("under a server-wide date, a call cannot ask for a later one", async () => 
     await c.close();
   }
 });
+
+test("a desk tool's own calls are held to the call's date: swarm under as_of, and under a holdout", async () => {
+  const c = await connect();
+  try {
+    const swarm = async (extra = {}) => JSON.parse((await c.callTool({ name: "run_tool", arguments: { name: "swarm", arguments: { tool: "latest_price", companies: ["AAPL", "MSFT"], argument: "symbol" }, ...extra } })).content[0].text);
+    const dated = await swarm({ as_of: "2020-01-02" });
+    assert.equal(dated.failed, 2);
+    assert.ok(dated.failures.rows.every(([, error]) => /latest_price cannot be held to 2020-01-02/.test(error)), JSON.stringify(dated.failures.rows));
+    await c.callTool({ name: "run_tool", arguments: { name: "holdout_set", arguments: { from: "2024-01-01" } } });
+    const held = await swarm();
+    assert.ok(held.failures.rows.every(([, error]) => /cannot be held to 2023-12-31, so it is off while the holdout from 2024-01-01 is set/.test(error)), JSON.stringify(held.failures.rows));
+  } finally {
+    await c.close();
+  }
+});
