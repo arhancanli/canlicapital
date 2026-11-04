@@ -40,6 +40,7 @@ import { governance, publicKeys, verifyAudit } from "./governance.mjs";
 import { watchFilings } from "./watch.mjs";
 import { createTimeMachine } from "./timemachine.mjs";
 import { signedTrialCount, TRIALS_TOOL } from "./trials.mjs";
+import { createLuck } from "./luck.mjs";
 import { runWeek, WEEK_TOOL } from "./week.mjs";
 import { channelSink, CHANNEL_INSTRUCTIONS, SENTINEL_TOOLS } from "./sentinel.mjs";
 
@@ -359,6 +360,8 @@ export function selfTools(packs, gov, keeper, readOnly = false) {
 export function registerAll(server, packs = enabledPacks(), gov = governance(process.env, canliHome()), { readOnly = false } = {}) {
   const keeper = createKeeper();
   const readLimits = new Set();
+  // Every strategy result counted against the whole search (luck.mjs): a session here, one request when hosted.
+  const luck = createLuck({ scope: readOnly ? "request" : "session" });
   server.registerTool("find_tool", {
     title: "Find a tool",
     description: `Search the ${ENTRIES.filter((e) => packs.includes(e.pack)).length} finance tools (packs: ${packs.join(", ")}) in plain words, e.g. "deflated sharpe", "revenue as of 2019". Returns the closest matches first, with names, argument signatures and one line each, even when none fits, so check them. Next: run_tool, or describe_tool if an argument is unclear.`,
@@ -416,6 +419,12 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     } else {
       done.push(...await Promise.all(calls.map((c) => run(c, c.arguments).then((result) => ({ name: c.name, result }), (e) => ({ name: c.name, error: e.message })))));
     }
+    // Each strategy result says what is left after luck across everything tried so far (luck.mjs).
+    done.forEach((d, i) => {
+      if (d.result === undefined || SELF[d.name]) return;
+      const note = luck.record(d.name, calls[i]?.arguments, d.result);
+      if (note) d.result = { ...d.result, luck: note };
+    });
     // Keep each full result (before select) under a ref for later calls.
     for (const d of done) if (d.result !== undefined && !SELF[d.name]) { const ref = keeper.put(d.result); if (ref) d.ref = ref; }
     if (a.select) for (const d of done) if (d.result) {
