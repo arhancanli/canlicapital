@@ -550,6 +550,8 @@ export const MEASURES = {
     },
     eu: (c) => batched("eurostat:prc_hicp_minr?geo={}&unit=RCH_A&coicop18=TOTAL", geo(c), { by: `Eurostat's harmonised index (HICP), from ${c.code === "EA" ? "the euro area members' statistics offices" : `${c.name}'s statistics office`}`, title: "HICP, all items (ECOICOP 2): annual rate of change" }),
     world: (c) => (c.code === "EA" ? null : batched("imf:CPI/{}.CPI._T.YOY_PCH_PA_PT.M", c.iso3, { by: IMF_BY(c), title: "Consumer price index, all items: change on the same month a year earlier" })),
+    // A second compilation for the check: the BIS's consumer prices, about sixty economies.
+    alt: (c) => batched("bis:WS_LONG_CPI/M.{}.771", bisArea(c), { by: `Bank for International Settlements, from ${c.code === "EA" ? "Eurostat" : `${c.name}'s statistics office`}`, title: "Consumer prices: change on a year" }),
     tolerance: 0.15,
   },
   core_inflation: {
@@ -653,7 +655,7 @@ export const MEASURES = {
       IL: { s: "boi:EXR/RER_USD_ILS", by: "Bank of Israel", title: "Representative rate, US dollar", quote: "shekels per US dollar" },
     },
     euro: "EA",
-    world: (c) => (c.code === "EA" ? { s: "fred:DEXUSEU", by: "Federal Reserve (H.10), through FRED", title: "US dollars to one euro, noon buying rates in New York", quote: "US dollars per euro", inverse: true } : batched("imf:ER/{}.XDC_USD.PA_RT.M", c.iso3, { by: IMF_BY(c), title: "National currency per US dollar, monthly average", quote: "national currency per US dollar" })),
+    world: (c) => (c.code === "US" ? null : c.code === "EA" ? { s: "fred:DEXUSEU", by: "Federal Reserve (H.10), through FRED", title: "US dollars to one euro, noon buying rates in New York", quote: "US dollars per euro", inverse: true } : batched("imf:ER/{}.XDC_USD.PA_RT.M", c.iso3, { by: IMF_BY(c), title: "National currency per US dollar, monthly average", quote: "national currency per US dollar" })),
     tolerance: 0.005,
     relative: true,
   },
@@ -676,6 +678,7 @@ export function chain(measure, c) {
   if (m.eu && (EU.has(c.code) || c.code === "EA")) out.push(m.eu(c));
   if (m.oecd) out.push(m.oecd(c));
   if (m.world) out.push(m.world(c));
+  if (m.alt) out.push(m.alt(c));
   return out.filter(Boolean);
 }
 
@@ -911,10 +914,24 @@ export async function worldSeries(session, args) {
   });
   const ok = results.filter((x) => !x.error);
   if (!ok.length) throw new NotFound(`No publisher answered for any of them: ${results.map((x) => `${x.c.name}: ${x.error}`).join("; ").slice(0, 900)}`);
+  // check: each country's figure against its next publisher, those read together too (one request per publisher).
+  let checks = null;
+  if (a.check) {
+    const seconds = ok.map(({ others }) => others[0] ?? null);
+    const second = await prefetch(session, seconds, { want, from }, failed);
+    checks = await limited(ok, 6, async ({ c, r, link, others }) => {
+      if (!others.length) return [c.name, null, null, null, null, null, "no second publisher here"];
+      try {
+        const x = compare(r, await readSpec(session, others[0], { want, from, prefetched: second, failed, inflight }), m, link.note);
+        return [c.name, x.period ?? null, x.value ?? null, x.other_value ?? null, x.difference ?? null, x.agree ?? null, x.other.by, x.note ?? null];
+      } catch (err) { return [c.name, null, null, null, null, null, `${others[0].by}: ${String(err?.message ?? err).slice(0, 120)}`]; }
+    });
+  }
   return {
     measure, basis: m.basis,
     columns: ["country", "period", "value", "quote", "publisher", "series"],
     rows: ok.map(({ c, r, link }) => { const last = r.rows.at(-1); return [c.name, last[0], round(last[1], 6), link.quote ?? null, link.by, r.code]; }),
+    ...(checks ? { check: { columns: ["country", "period", "value", "other_value", "difference", "agree", "other_publisher"], rows: checks.map((x) => x.slice(0, 7)), disagree: checks.filter((x) => x[5] === false).map((x) => x[0]), ...(checks.some((x) => x[7]) ? { notes: Object.fromEntries(checks.filter((x) => x[7]).map((x) => [x[0], x[7]])) } : {}), reading: "Each country's figure against a second official publisher at the latest period both report. A gap can come from a definition (a national CPI against the EU's harmonised index, seasonally adjusted against not) as well as from an error." } } : {}),
     ...(shown > 1 ? { history: Object.fromEntries(ok.map(({ c, r }) => [c.name, keepFrom(r.rows, from0).slice(-shown).map(([p, v]) => [p, round(v, 6)])])) } : {}),
     ...(ok.some(({ r }) => staleSince(session, r.rows)) ? { stale: ok.filter(({ r }) => staleSince(session, r.rows)).map(({ c, r }) => `${c.name}: latest ${r.rows.at(-1)[0]}`) } : {}),
     ...(unknown.length || results.some((x) => x.error) ? { not_found: [...unknown.map((u) => `${u}: not a country or group covered here`), ...results.filter((x) => x.error).map((x) => `${x.c.name}: ${x.error}`)] } : {}),

@@ -6,9 +6,11 @@ import { createSession } from "../src/sources.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
 
 // The calls these tests make are captured in fixtures by scripts/capture-world-fixtures.mjs (test/world-calls.json).
-const run = async (args) => {
+const run = async (args, { down = null } = {}) => {
   const { fetchImpl, calls } = replayFetch();
-  const r = await worldSeries(createSession({ fetchImpl, now: () => NOW, env: {}, sleep: async () => {} }), args);
+  // down: a host that answers every request with HTTP 500, as the OECD did on the night these were captured.
+  const fetching = down ? (url, init) => (url.startsWith(down) ? (calls.push({ url }), Promise.resolve(new Response("busy", { status: 500 }))) : fetchImpl(url, init)) : fetchImpl;
+  const r = await worldSeries(createSession({ fetchImpl: fetching, now: () => NOW, env: {}, sleep: async () => {} }), args);
   return { r, calls };
 };
 
@@ -36,8 +38,8 @@ test("measures and countries by the words people use; groups open into their mem
 
 test("each country's own publisher first, then the EU's, the OECD's, then the IMF's or BIS's", () => {
   const c = (q) => findCountry(q);
-  assert.deepEqual(chain("inflation", c("Brazil")).map((l) => l.s), ["bcb:13522", "imf:CPI/BRA.CPI._T.YOY_PCH_PA_PT.M"]);
-  assert.deepEqual(chain("inflation", c("euro area")).map((l) => l.s), ["eurostat:prc_hicp_minr?geo=EA&unit=RCH_A&coicop18=TOTAL"]);
+  assert.deepEqual(chain("inflation", c("Brazil")).map((l) => l.s), ["bcb:13522", "imf:CPI/BRA.CPI._T.YOY_PCH_PA_PT.M", "bis:WS_LONG_CPI/M.BR.771"]);
+  assert.deepEqual(chain("inflation", c("euro area")).map((l) => l.s), ["eurostat:prc_hicp_minr?geo=EA&unit=RCH_A&coicop18=TOTAL", "bis:WS_LONG_CPI/M.XM.771"]);
   // A euro member's policy rate and currency are the euro area's, said so.
   const de = chain("policy_rate", c("Germany"));
   assert.deepEqual(de.map((l) => l.s), ["ecb:FM/D.U2.EUR.4F.KR.DFR.LEV", "bis:WS_CBPOL/D.XM"]);
@@ -154,8 +156,17 @@ test("every euro member's 10-year yield in two requests", async () => {
   assert.equal(ten.r.rows.find((x) => x[0] === "Germany")[4], "Deutsche Bundesbank");
 });
 
-test("when the OECD does not answer the G20's combined request, each country falls to the IMF and is not asked of the OECD again", async () => {
+test("the G20's growth: the OECD's compilation in one request where no national service answers, Russia's last figure marked stale", async () => {
   const { r, calls } = await run({ countries: ["G20"], measure: "gdp growth" });
+  assert.equal(calls.filter((c) => c.url.startsWith("https://sdmx.oecd.org/")).length, 1);
+  assert.equal(r.rows.length, 20);
+  assert.deepEqual(r.rows.find((x) => x[0] === "China").slice(1, 3), ["2026-Q3", 4.5]);
+  assert.match(r.rows.find((x) => x[0] === "China")[4], /^OECD/);
+  assert.deepEqual(r.stale, ["Russia: latest 2021-Q3"]);
+});
+
+test("when the OECD does not answer the combined request, each country falls to the IMF and is not asked of the OECD again", async () => {
+  const { r, calls } = await run({ countries: ["G20"], measure: "gdp growth" }, { down: "https://sdmx.oecd.org/" });
   assert.equal(calls.filter((c) => c.url.startsWith("https://sdmx.oecd.org/")).length, 1);
   assert.equal(r.rows.length, 19);
   assert.deepEqual(r.rows.find((x) => x[0] === "India").slice(1, 3), ["2026-Q2", 8.0982]);
@@ -198,4 +209,16 @@ test("what cannot be answered says what to give instead", async () => {
   await assert.rejects(run({ country: "Atlantis", measure: "inflation" }), /No country matched Atlantis/);
   await assert.rejects(run({ country: "Japan", measure: "core inflation" }), /core inflation is read for the US, Canada, the UK and the EU/);
   await assert.rejects(run({ series: "fred:UNRATE", country: "US" }), /either series/);
+});
+
+test("check across the G20: every country's inflation against a second official compilation, read together", async () => {
+  const { r, calls } = await run({ countries: ["G20"], measure: "inflation", check: true });
+  assert.ok(calls.length <= 12, `${calls.length} requests`);
+  assert.equal(r.check.rows.length, 20);
+  assert.deepEqual(r.check.disagree, ["France", "United Kingdom"]);
+  const by = Object.fromEntries(r.check.rows.map((x) => [x[0], x]));
+  assert.deepEqual(by.China.slice(1, 6), ["2026-09", 0.899931, 0.9, 0.000069, true]);
+  assert.match(by.China[6], /^Bank for International Settlements/);
+  assert.deepEqual(by.France.slice(1, 6), ["2026-09", 3.4, 3.080308, -0.319692, false]);
+  assert.match(r.check.reading, /harmonised index/);
 });
