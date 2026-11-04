@@ -572,7 +572,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const results = (a.return === "last" ? done.slice(-1) : done).map(({ name, ref, result, error }) => ({ name, ...(ref ? { ref } : {}), ...(error ? { error } : { result }) }));
     return sealed(shown({ results, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) }));
   }));
-  registerResources(server, packs, gov);
+  registerResources(server, packs, gov, { readOnly, vault });
   registerView(server);
   registerPrompts(server, BY_NAME, packs);
   registerPackGuides(server, packs);
@@ -599,8 +599,23 @@ export const PRIVACY = (packs, gov) => ({
   policy: gov?.policy ? { tools: gov.policy.tools ?? "all", orders: gov.policy.orders ?? "on", calls_per_minute: gov.policy.calls_per_minute ?? null, audit_log: gov.audit ? { file: gov.audit.path, arguments: gov.policy.audit.arguments ?? "hash" } : "off" } : "none (CANLI_POLICY unset): no policy and no audit log",
 });
 
-function registerResources(server, packs, gov) {
+function registerResources(server, packs, gov, { readOnly = false, vault = null } = {}) {
   const json = (uri, v) => ({ contents: [{ uri, mimeType: "application/json", text: JSON.stringify(v) }] });
+  // The week, for a host to attach at the start of a session: my_week over the holdings in the address, with the
+  // sentinel's events of the same days on a local server. It reads the present, so a server running as of a past
+  // date, or with a holdout set, does not answer it.
+  server.registerResource("week", new ResourceTemplate("canli://week/{holdings*}", { list: undefined }), { title: "This week", description: "my_week over the holdings in the address, comma-separated (canli://week/AAPL,NVDA,VOO), with the sentinel's events of the same seven days on a local server.", mimeType: "application/json" },
+    async (uri, { holdings }) => {
+      if (TIME_MACHINE) throw TIME_MACHINE.refuse("canli://week");
+      if (vault?.until()) throw new Error(`canli://week reads this week, which the holdout from ${vault.from()} hides; holdout_status shows it.`);
+      const list = [holdings].flat().flatMap((x) => decodeURIComponent(String(x)).split(/[,+\s]+/)).filter(Boolean).slice(0, 25);
+      const week = await runWeek({ call: (name, args) => runOne(packs, { name, arguments: args }, {}, [], gov) }, { holdings: list });
+      if (readOnly) return json(uri.href, week);
+      const { createSentinel } = await import("../local/sentinel.mjs");
+      const since = new Date(Date.now() - 7 * 86400000).toISOString();
+      const events = createSentinel({ home: canliHome(), call: async () => { throw new Error("not watching"); } }).events({ last: 100 }).events.filter((e) => e.at >= since);
+      return json(uri.href, { ...week, sentinel_events: events.length ? events : "none in these seven days (canli-mcp sentinel run, or --channel, watches)" });
+    });
   server.registerResource("catalog", "canli://catalog", { title: "Tool catalog", description: "Every tool: name, pack and title.", mimeType: "application/json" },
     (uri) => json(uri.href, { tools: ENTRIES.filter((e) => packs.includes(e.pack)).length, columns: ["name", "pack", "title"], rows: ENTRIES.filter((e) => packs.includes(e.pack)).map((e) => [e.name, e.pack, e.title]) }));
   server.registerResource("packs", "canli://packs", { title: "Packs", description: "Each pack: its source package and version, tool count, network and disk use, and renamed or omitted tools.", mimeType: "application/json" },
