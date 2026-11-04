@@ -230,7 +230,7 @@ test("Microsoft's FY2026 10-K: 48,700 shares tagged as 48.7 billion, and a par v
   assert.deepEqual(scale.compared_with, { stated: "48,700 shares", stated_in: "the words after the figure", scale_stated: 0, scale_tagged: 6, a_person_reads: 48700 });
   assert.equal(scale.reading, "Shown as 48,700 shares; tagged at scale 6, so a machine reads 48,700,000,000, 1,000,000 times the 48,700 a person reads.");
   // The 10-K's words.
-  const words = gunzip(MANIFEST["https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm"]).replace(/<[^>]+>/g, "").replace(/\s+/g, " ");
+  const words = htmlToText(gunzip(MANIFEST["https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm"])).replace(/\s+/g, " ");
   assert.match(words, /The trading plan is intended to permit Ms\. Hood to sell \(i\) up to 48,700 shares of our common stock/);
   assert.match(words, /Common stock, \$0\.00000625 par value per share/);
   const par = row(x.findings, 1);
