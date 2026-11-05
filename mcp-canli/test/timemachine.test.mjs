@@ -102,8 +102,12 @@ test("where a figure came from is not a claim about the date, and today's date d
   assert.equal(r.text, "Notes due 2030-01-01");
 });
 
-test("warnings travel with what they warn about", () => {
-  assert.match(tm.seal("economic_series", { dates: ["2020-01-01"] }).time_machine.warning, /revised/);
+test("warnings travel with what they warn about; economic_series is read as published that day, so it needs none", () => {
+  assert.match(tm.seal("world_economy", { dates: ["2020-01-01"] }).time_machine.warning, /revised/);
+  assert.equal(tm.seal("economic_series", { dates: ["2020-01-01"] }).time_machine?.warning, undefined);
+  // as_of is the machine's date (ALFRED's vintage), or the caller's if earlier; revisions would tell of later figures.
+  assert.deepEqual(tm.admit("economic_series", "markets", { series: "PAYEMS", revisions: true }), { series: "PAYEMS", end: "2020-03-01", start: "2015-03-03", as_of: "2020-03-01" });
+  assert.equal(tm.admit("economic_series", "markets", { series: "PAYEMS", as_of: "2019-06-01" }).as_of, "2019-06-01");
   assert.match(tm.seal("price_history", { dates: ["2020-01-02"] }).time_machine.warning, /splits/);
 });
 
