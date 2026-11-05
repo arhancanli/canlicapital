@@ -48,6 +48,9 @@ export function freshFor(url) {
   if (/^https:\/\/www\.newyorkfed\.org\/medialibrary\/interactives\/sce\/|^https:\/\/www\.finra\.org\/sites\/default\/files\//.test(url)) return 12 * HOUR;
   // The Cleveland Fed's nowcast files (5 to 8 MB each) change once a day.
   if (/^https:\/\/www\.clevelandfed\.org\/-\/media\/files\/webcharts\/inflationnowcasting\//.test(url)) return HOUR;
+  // The OFR's stress index (0.5 MB) changes once a day; the Fed Board's excess bond premium once a month.
+  if (/^https:\/\/www\.financialresearch\.gov\/financial-stress-index\/data\//.test(url)) return 6 * HOUR;
+  if (/^https:\/\/www\.federalreserve\.gov\/econres\/notes\/feds-notes\/ebp_csv\.csv$/.test(url)) return 12 * HOUR;
   // The New York Fed's SOMA summary (all weeks since 2003) changes on Thursdays.
   if (/^https:\/\/markets\.newyorkfed\.org\/api\/soma\//.test(url)) return HOUR;
   return 0;
