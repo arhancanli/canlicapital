@@ -157,6 +157,44 @@ test("price_history: keyless from Yahoo, adjusted, with dividends; off with CANL
   await assert.rejects(T.priceHistory(off.s, { symbol: "AAPL" }), /CANLI_KEYLESS_PRICES=0/);
 });
 
+test("price_history as traded: NVIDIA around its 10-for-1 split, every price, volume and dividend as it was; changes from split-adjusted closes", async () => {
+  const { s, calls } = session();
+  const w = { symbol: "NVDA", start: "2024-03-01", end: "2024-06-14" };
+  const traded = await T.priceHistory(s, { ...w, adjustment: "none", returns: true });
+  const splits = await T.priceHistory(s, { ...w, adjustment: "splits", returns: true });
+  const all = await T.priceHistory(s, w);
+  const at = (r, d, k = "close") => r[k][r.dates.indexOf(d)];
+  assert.deepEqual([traded.adjusted, traded.adjustment, splits.adjusted, splits.adjustment, all.adjusted, all.adjustment], [false, "none", false, "splits", true, "all"]);
+  assert.deepEqual(traded.splits, [["2024-06-10", "10:1"]]);
+  assert.equal(traded.later_splits, undefined, "no split after the window, read up to today");
+  assert.ok(calls.some((c) => c.url.includes("interval=1mo")), "the splits after the window were asked for");
+  // The Friday before the split traded at $1,208.88 on 41.2 million shares; Yahoo keeps it as 120.888 on 412 million.
+  assert.deepEqual([at(traded, "2024-06-07"), at(splits, "2024-06-07"), at(all, "2024-06-07")], [1208.88, 120.888, 120.5443]);
+  assert.deepEqual([at(traded, "2024-06-07", "volume"), at(splits, "2024-06-07", "volume")], [41238600, 412386000]);
+  assert.deepEqual([at(traded, "2024-06-10"), at(splits, "2024-06-10")], [121.79, 121.79]);
+  assert.deepEqual(traded.dividends, [["2024-03-05", 0.04], ["2024-06-11", 0.01]], "March's dividend as paid, before the split");
+  // A split is not a loss: price changes and returns come from the split-adjusted closes either way.
+  assert.deepEqual([traded.change.price_return, splits.change.price_return], [0.60283912, 0.60283912]);
+  assert.deepEqual(traded.returns, splits.returns);
+  assert.equal(traded.returns[traded.returns_dates.indexOf("2024-06-10")], 0.0074614519);
+  assert.equal((await T.priceHistory(s, { ...w, adjusted: false })).adjustment, "none", "adjusted: false is as traded on every source");
+  await assert.rejects(T.priceHistory(s, { ...w, adjusted: false, adjustment: "all" }), /disagree/);
+});
+
+test("price_history with Tiingo: as traded, or split-adjusted from Tiingo's split factors", async () => {
+  // A 2-for-1 split on 10 June: Tiingo gives prices as traded with the split's factor on its date.
+  const day = (date, o, h, l, c, v, splitFactor = 1) => ({ date: `${date}T00:00:00.000Z`, open: o, high: h, low: l, close: c, volume: v, adjOpen: null, adjHigh: null, adjLow: null, adjClose: null, adjVolume: null, splitFactor });
+  const url = "https://api.tiingo.com/tiingo/daily/XYZ/prices?startDate=2024-06-06&endDate=2024-06-10&resampleFreq=daily";
+  const { s } = session({ [url]: [day("2024-06-06", 100, 102, 99, 101, 1000), day("2024-06-07", 101, 104, 100, 103, 1200), day("2024-06-10", 52, 53, 51, 52.5, 2600, 2)] }, { TIINGO_API_KEY: "k" });
+  const w = { symbol: "XYZ", start: "2024-06-06", end: "2024-06-10" };
+  const traded = await T.priceHistory(s, { ...w, adjustment: "none", returns: true });
+  assert.deepEqual([traded.close, traded.volume], [[101, 103, 52.5], [1000, 1200, 2600]]);
+  assert.deepEqual([traded.change.price_return, traded.returns], [0.03960396, [0.0198019802, 0.0194174757]], "from 50.5, 51.5 and 52.5: the split is not a loss");
+  const split = await T.priceHistory(s, { ...w, adjustment: "splits" });
+  assert.deepEqual([split.close, split.open, split.volume], [[50.5, 51.5, 52.5], [50, 50.5, 52], [2000, 2400, 2600]]);
+  assert.equal(split.change.price_return, traded.change.price_return);
+});
+
 test("price_history: with Alpaca keys the key stays in headers", async () => {
   const { s } = session();
   void s;
