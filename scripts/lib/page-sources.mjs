@@ -84,6 +84,7 @@ export const PAGE_SOURCES = {
   "/benchmarks/filingfacts": ["scripts/build-filingfacts-leaderboard.mjs", "public/datasets/filing-facts/v0/leaderboard.json"],
   "/datasets/filing-facts": ["scripts/build-datasets-page.mjs", "public/datasets/filing-facts/v1/SHA256SUMS", "public/datasets/filing-facts/v1/ERRATA.md"],
   "/benchmarks/finance-mcp-servers": ["scripts/build-mcp-head-to-head.mjs", "config/mcp-head-to-head.json", "config/canli-mcp.json"],
+  "/benchmarks/fresh-filings": ["scripts/build-fresh-filings-page.mjs", "scripts/build-fresh-filings.mjs", "scripts/lib/clear-page.mjs", "css/clear.css", "public/benchmarks/fresh-filings.json"],
   "/annotate": ["scripts/build-annotate.mjs", "js/annotate.js", "js/annotate-core.js", "js/filing-facts-packet.js", "scripts/canonical-json.mjs", "public/datasets/filing-facts/v0/gold-packet-v0.json"],
   "/developers": [
     // Owned by another generator (scripts/build-standards-and-developers.mjs) this fix does not
@@ -103,7 +104,7 @@ export const PAGE_SOURCES = {
   ],
   ...Object.fromEntries(['', '/validation', '/fundamentals', '/research'].map(suffix => [`/mcp-servers${suffix}`, [
     'scripts/build-mcp-pages.mjs', 'config/mcp-discovery.json', 'config/mcp-hosted-releases.json',
-    ...(suffix ? [`mcp-released${suffix}`] : ['mcp-released']),
+    ...(suffix ? [`mcp-released${suffix}`] : ['mcp-released', 'scripts/lib/clear-page.mjs', 'css/clear.css', 'public/benchmarks/fresh-filings.json']),
   ]])),
   ...Object.fromEntries(['markets', 'backtest', 'quant', 'paper-trading'].map((id) => [`/mcp-servers/${id}`, ["scripts/build-mcp-pages.mjs", "config/mcp-package-pages.json", "mcp-canli/src/index.json"]])),
   "/mcp-servers/install": ["scripts/lib/mcp-catalog.mjs", "config/canli-mcp.json"],

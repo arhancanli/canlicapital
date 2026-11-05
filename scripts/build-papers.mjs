@@ -209,6 +209,7 @@ const STATIC_ROUTES = [
   { path: "/benchmarks/filingfacts", priority: "0.9", changefreq: "weekly" },
   { path: "/datasets/filing-facts", priority: "0.8", changefreq: "monthly" },
   { path: "/benchmarks/finance-mcp-servers", priority: "0.9", changefreq: "weekly" },
+  { path: "/benchmarks/fresh-filings", priority: "0.9", changefreq: "weekly" },
   { path: "/record", priority: "0.8", changefreq: "daily" },
   { path: "/vision", priority: "0.9", changefreq: "monthly" },
   { path: "/stats", priority: "0.7", changefreq: "daily" },

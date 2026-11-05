@@ -11,6 +11,7 @@ import { fitDescription } from './lib/descriptions.mjs';
 import { sourceDate } from './lib/page-sources.mjs';
 import { EXECUTION_ROUTE, executionSource, executionSourceHref } from './lib/execution-workflow.mjs';
 import { installButtons, renderFlagship } from './lib/mcp-flagship.mjs';
+import { clearDocument, crumbs, faq as clearFaq, faqSchema, longDate, proof as clearProof, receipt as clearReceipt } from './lib/clear-page.mjs';
 import { ANSWERS_ROUTE, answerFile, answerRoute, callsOf, checkAnswers, compactJson, firstTable, resultsOf, tableHtml, toolsNamed, toolsOf, withTools } from './lib/mcp-answers.mjs';
 import { HOW_ROUTE, howBody, INSTALL_ROUTE, installBody, installClients, navOf, TOOLS_ROUTE, toolsBody } from './lib/mcp-catalog.mjs';
 import { TIERS } from '../api/_lib/tiers.js';
@@ -52,7 +53,7 @@ export function releasedCatalog() {
 }
 
 function breadcrumbs(route, label) {
-  const parts = [['Home', '/'], ['Finance MCP servers', MCP_ROUTE]];
+  const parts = [['Home', '/'], ['canli-mcp', MCP_ROUTE]];
   if (route.startsWith(`${ANSWERS_ROUTE}/`)) parts.push(['Questions it answers', ANSWERS_ROUTE]);
   if (route !== MCP_ROUTE) parts.push([label, route]);
   return { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: parts.map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, item: ORIGIN + path })) };
@@ -314,21 +315,84 @@ export function installPage({ flagship, install = read('config/canli-mcp.json').
 // The recorded views the page plays (mcp-canli/bench/record-site-demos.mjs); none if they are absent.
 const recordedDemos = () => { try { return read('public/demos/canli-mcp/index.json').demos; } catch { return []; } };
 
-export function directoryPage(servers, { h2h = read('public/benchmarks/finance-mcp-servers.json'), npmRows = read('public/stats/adoption.json').npm?.rows ?? [], demos = recordedDemos(), tiers = TIERS, answers = [], videos = recordedVideos(), packages = packagePages() } = {}) {
-  const title = 'Finance MCP servers: canli-mcp and the family';
-  const f = h2h.flagship;
-  const summary = `canli-mcp is one open-source MCP server for SEC filings, company fundamentals, Treasury and FRED data, prices, quant analytics, backtest validation and paper trading: ${f.tools} tools behind ${f.front.length}, with interactive views in the chat.`;
+// The flagship page, rebuilt (November 2026): what canli-mcp does for the person reading, in plain words,
+// with its proof printed as a receipt from the weekly test. Technical depth lives one click away (/mcp-servers/how-it-works,
+// /mcp-servers/tools); every figure comes from the published files named in canli:sources.
+const PACK_ROUTE = { paper: '/mcp-servers/paper-trading' };
+const ASK_FIRST = ['connect-claude-to-stock-data', 'sec-financial-statements-for-ai', 'insider-trades-ai-agent', 'does-a-company-beat-its-guidance', 'hedge-fund-13f-holdings-ai', 'economic-data-for-ai-agents', 'is-my-backtest-overfit', 'compare-stocks-in-claude'];
+export function directoryPage(servers, { h2h = read('public/benchmarks/finance-mcp-servers.json'), answers = [], packages = packagePages(), fresh = read('public/benchmarks/fresh-filings.json'), install = read('config/canli-mcp.json').install } = {}) {
+  const f = h2h.flagship, cur = f.current;
+  const week = fresh.weeks[0], alone = week.runs.find(r => !r.with), tooled = week.runs.find(r => r.with), ex = week.example;
+  const said = run => ex.answers.find(a => (a.with?.name ?? null) === (run.with?.name ?? null))?.said ?? '';
+  const ours = h2h.arms.find(a => a.id === h2h.headline.ours), best = h2h.arms.find(a => a.id === h2h.headline.best_rival);
+  const pct = x => `${Math.round(x * 100)}%`;
+  const title = 'canli-mcp: give your AI real financial data';
+  const summary = `canli-mcp gives Claude, ChatGPT, Cursor and other AI assistants SEC filings, market and economic data and ${f.tools} finance tools. Free, with no key or account.`;
+  const clients = installClients(f, install);
+  const asks = [...ASK_FIRST.map(slug => answers.find(a => a.slug === slug)).filter(Boolean), ...answers.filter(a => !ASK_FIRST.includes(a.slug))].slice(0, 8);
+  const questions = [
+    ['Is it free?', `Yes. canli-mcp is open source under the MIT licence. It needs no API key and no account, on your computer or as a connector.`],
+    ['Does it give investment advice?', 'No. It shows what companies filed and what the data says, with the source of each figure. What you do with it is your decision.'],
+    ['Where does the data come from?', 'From the people who publish it: the SEC\'s filings and their XBRL data, the Federal Reserve, the Treasury, the Bureau of Labor Statistics, FRED and others. Prices come from Yahoo Finance\'s public chart data unless you add your own Alpaca or Tiingo key.'],
+    ['What do I need to run it?', `As a connector, nothing: paste the URL into Claude or ChatGPT. On your own computer, Node.js ${esc(String(f.node_minimum))} or later. One command adds it to every AI app it finds.`],
+    ['Who makes it?', 'Arhan Canli, 15, in Dubai, in the open on <a href="https://github.com/arhancanli/canli-mcp">GitHub</a>. Corrections are published on the <a href="/progress">corrections page</a>.'],
+  ];
   const list = { '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: [...servers, ...packages].map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.package, url: ORIGIN + s.route })) };
-  const app = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', '@id': `${ORIGIN}${MCP_ROUTE}#canli-mcp`, name: f.package, description: summary, url: ORIGIN + MCP_ROUTE, applicationCategory: 'DeveloperApplication', operatingSystem: 'Any MCP client (stdio)', codeRepository: `${f.source.repository}/tree/main/${f.source.path}`, license: 'https://opensource.org/licenses/MIT', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, author: { '@id': ORIGIN + '/#arhan-canli' } };
-  const body = `<section class="dev-hero">${nav(MCP_ROUTE, servers)}<p class="dev-kicker">canli-mcp${f.current ? ` ${esc(f.current.version)}` : ''} / The flagship MCP server</p><h1>canli-mcp: every finance tool an agent needs, drawn in the chat</h1><p class="dev-lead">${esc(summary)} The model sees ${f.front.length} tools; the rest wait behind them, and a chart costs it a summary.</p><div class="dev-actions"><a class="dev-button dev-button--primary" href="#install">Add canli-mcp to your agent</a>${demos.length ? '<a class="dev-button" href="#views">Try the views</a>' : ''}<a class="dev-button" href="#cloud">Hosted plans</a><a class="dev-button" href="/benchmarks/finance-mcp-servers">See the benchmark</a></div><p class="dev-hero-note">canli-mcp loads every Canli Capital server in one process. Each of them also runs on its own, below.</p></section>
-${renderFlagship(h2h, { npmRows, hosted: servers, demos, tiers, answers, videos, videoTag })}
-<section class="dev-section" id="servers"><p class="eyebrow">Each server on its own</p><h2>Hosted servers, nothing to install</h2><div class="mcp-cards">${servers.map(s => `<article><p class="mcp-count">${s.tools.length} tools / Hosted ${esc(s.version)}</p><h3><a href="${s.route}">${esc(s.title)}</a></h3><p>${esc(s.summary)}</p><p><code>${esc(s.package)}</code></p><a href="${s.route}#connect">Connect ${esc(s.id)}</a></article>`).join('')}</div></section>
-<section class="dev-section" id="on-your-machine"><h2>On your own machine</h2><div class="mcp-cards">${packages.map(p => `<article><p class="mcp-count">${p.tools.length} tools / npm ${esc(p.version)}</p><h3><a href="${p.route}">${esc(p.title)}</a></h3><p>${esc(p.one_line)}</p><p><code>${esc(p.package)}</code></p><a href="${p.route}#add">Add ${esc(p.id.replaceAll('-', ' '))}</a></article>`).join('')}</div></section>
-<section class="dev-section"><h2>Using them together</h2><p>Start with research to see what has been tried and what failed. Use fundamentals to rebuild what a company had reported by your decision date. Once you have built a strategy's returns, with your own care for costs and look-ahead, use validation to check whether the result could be luck.</p><p>Each answers a different question. Accounting numbers are not returns, a paper can describe a failed test, and no statistic promises future profit.</p></section>
-<section class="dev-section"><h2>Source data, datasets and reproduction</h2><ul class="mcp-related">${links([{path:'/companies',label:'SEC company reference and source filings'},{path:'/research/filing-facts-v0',label:'FilingFacts dataset: financial questions with source evidence'},{path:'/annotate',label:'FilingFacts review and annotation workspace'},{path:'/research/null-zoo-v0',label:'Null Zoo research benchmark'},{path:'/standards/paper-evidence',label:'Open paper evidence reporting standard'},{path:'/engineering',label:'ALPHAC, point-in-time lake and backtester repositories'}])}</ul><p>FilingFacts v0 is machine-checked; its review packet does not establish independently adjudicated human gold. The paper evidence standard is a proposal with disclosed implementation and review limits.</p></section>
-<section class="dev-section"><h2>Versions, privacy and trading</h2><p>The hosted servers run the released version shown on each card; npm can lag behind it for a short while. Read the setup guide before sending private strategy data anywhere.</p><p>The research and fundamentals servers read public records only. Hosted validation stores a signed receipt of each check under the free-key quotas; the npm server in local mode keeps your returns on your machine. A separate, unreleased <a href="${EXECUTION_ROUTE}">local paper-trading workflow</a> handles position sizing, pre-trade checks and signed trade journals. It connects to no broker. The <a href="/tools/execution">execution-cost calculator</a> is available in the browser. Download the <a href="/glassbox/mcp_discovery.json">discovery record with the hosted release pins and examples</a>.</p></section>`;
-  const clips = (f.views ?? []).filter((v) => videos[v.id]).map((v) => videoObject(v, videos[v.id], MCP_ROUTE));
-  return document({ route: MCP_ROUTE, title, description: fitDescription(summary), structured: [list, app, ...clips], body, sources: 'mcp_discovery.json benchmarks/finance-mcp-servers.json stats/adoption.json demos/canli-mcp/index.json', scripts: demos.length ? ['/js/mcp-demo.js'] : [] });
+  const app = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', '@id': `${ORIGIN}${MCP_ROUTE}#canli-mcp`, name: f.package, description: summary, url: ORIGIN + MCP_ROUTE, applicationCategory: 'DeveloperApplication', operatingSystem: 'Any MCP client', codeRepository: `${f.source.repository}/tree/main/${f.source.path}`, license: 'https://opensource.org/licenses/MIT', ...(cur ? { softwareVersion: cur.version } : {}), offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } };
+  const body = `<section class="cl-hero">
+<div>
+${crumbs([['Home', '/'], ['canli-mcp', MCP_ROUTE]])}
+<p class="cl-kicker">canli-mcp${cur ? ` ${esc(cur.version)}` : ''} · free and open source</p>
+<h1>Give your AI real financial data.</h1>
+<p class="cl-lede">canli-mcp connects Claude, ChatGPT, Cursor and other AI assistants to SEC filings, market and economic data and ${integer.format(f.tools)} finance tools. Every answer says where its numbers came from. No key, no account.</p>
+<div class="cl-actions"><a class="cl-button" href="#add">Add it to your assistant</a><a class="cl-quiet" href="/benchmarks/fresh-filings">See how it is tested</a></div>
+<p class="cl-command"><code>${esc(install.npx)}</code></p>
+</div>
+${clearReceipt({
+    head: 'Same question, asked twice',
+    question: `${esc(ex.company)}: revenue for its fiscal year, from the ${esc(ex.filed.form)} it filed on ${longDate(ex.filed.date)}`,
+    rows: [['AI on its own', `"${esc(said(alone))}"`, 'wrong'], ['AI with canli-mcp', `$${integer.format(Number(said(tooled)))}`, 'right'], ['Filed with the SEC', `$${integer.format(ex.filed.value)}`]],
+    stamp: 'Matches the filing', right: true, link: { href: ex.filed.url, label: `Open the ${ex.filed.form} on SEC.gov` },
+    caption: `${esc(alone.model)}, ${longDate(alone.date)}: one of ${integer.format(alone.questions)} questions from that week's annual reports. <a href="/benchmarks/fresh-filings">The whole test</a>.`,
+  })}
+</section>
+${clearProof([
+    [`${tooled.correct} of ${tooled.questions}`, `questions about last week's filings answered right with canli-mcp, and ${tooled.wrong_numbers} wrong numbers; ${alone.correct} of ${alone.questions} by the same AI on its own`],
+    [integer.format(f.tools), 'finance tools, which your assistant finds as it needs them'],
+    [integer.format(f.front.length), `tools loaded at the start${cur ? `: ${integer.format(cur.tokens)} tokens instead of ${integer.format(cur.separately_tokens)}, so your assistant keeps its room to think` : ''}`],
+    ['Free', 'open source under the MIT licence, with no key and no account'],
+  ], 'canli-mcp in figures')}
+<section class="cl-section" id="ask"><p class="cl-eyebrow">What you can ask</p><h2>Ask in plain words. It looks up the answer.</h2>
+<p class="cl-intro">Your assistant picks the right tool and shows where each figure came from: the filing, the agency or the market data behind it.</p>
+<ul class="cl-asks">${asks.map(a => `<li><a href="${esc(a.route)}">${esc(a.question)}<small>${esc(a.short ?? '')}</small></a></li>`).join('')}</ul>
+<p><a href="${ANSWERS_ROUTE}">More questions it answers</a></p></section>
+<div class="cl-band"><section class="cl-section" id="works-with"><p class="cl-eyebrow">Works with</p><h2>The assistant you already use</h2>
+<ul class="cl-chips">${clients.map(c => `<li>${esc(c.name.replace(/\s*[,(].*$/, ''))}</li>`).join('')}</ul></section></div>
+<section class="cl-section" id="add"><p class="cl-eyebrow">Add it</p><h2>One step, then ask</h2>
+<ol class="cl-steps">
+<li><h3>In Claude or ChatGPT, as a connector</h3><p>Add a custom connector with this address. Nothing to install.</p><pre>${esc(install.hosted)}</pre></li>
+<li><h3>In Claude Code</h3><pre>${esc(install.claude_code)}</pre></li>
+<li><h3>In every AI app on your computer at once</h3><p>It finds Claude Desktop, Cursor, VS Code and the others, adds one entry to each and keeps a copy of every file it changes.</p><pre>${esc(install.npx)} setup</pre></li>
+</ol>
+<p><a href="${INSTALL_ROUTE}">Step-by-step for each app</a></p></section>
+<div class="cl-band"><section class="cl-section" id="inside"><p class="cl-eyebrow">What is inside</p><h2>Seven toolkits in one</h2>
+<p class="cl-intro">Each is also its own server. canli-mcp loads them together, so your assistant reaches all ${integer.format(f.tools)} tools through one connection.</p>
+<ul class="cl-grid">${f.packs.map(p => `<li class="cl-card"><p class="cl-count">${integer.format(p.tools)} tools</p><h3>${esc(p.label)}</h3><p>${esc(p.covers)}</p><a class="cl-more" href="${PACK_ROUTE[p.id] ?? `${MCP_ROUTE}/${p.id}`}">About ${esc(p.label.toLowerCase())}</a></li>`).join('')}</ul>
+<p><a href="${TOOLS_ROUTE}">Every tool, what it does and what it takes</a></p></section></div>
+<section class="cl-section" id="views"><p class="cl-eyebrow">It can draw, too</p><h2>Charts in the chat, for a short summary's cost</h2>
+<p class="cl-intro">In apps that show MCP views, the result opens as a chart or table you can sort and zoom, while the assistant reads only a short summary.</p>
+<ul class="cl-grid">${(f.views ?? []).map(v => `<li class="cl-card"><h3>${esc(v.label)}</h3><p>${esc(v.does)}</p></li>`).join('')}</ul></section>
+<div class="cl-band"><section class="cl-section" id="tested"><p class="cl-eyebrow">How it is tested</p><h2>Checked against the filings, every week</h2>
+<ul class="cl-grid">
+<li class="cl-card"><p class="cl-count">Every week</p><h3>Questions about last week's filings</h3><p>${esc(alone.model)} alone answered ${alone.correct} of ${alone.questions}; with canli-mcp, ${tooled.correct} of ${tooled.questions}.</p><a class="cl-more" href="/benchmarks/fresh-filings">The weekly test</a></li>
+<li class="cl-card"><p class="cl-count">${longDate(h2h.captured)}</p><h3>Against other finance servers</h3><p>${pct(ours.common.accuracy)} right on the ${integer.format(h2h.questions_common)} questions every server finished; the best of the others, ${pct(best.common.accuracy)}.</p><a class="cl-more" href="/benchmarks/finance-mcp-servers">The comparison</a></li>
+<li class="cl-card"><p class="cl-count">Every release</p><h3>How it works and is tested</h3><p>Each tool against reference cases, every search for a tool, every number's source.</p><a class="cl-more" href="${HOW_ROUTE}">How it works</a></li>
+</ul></section></div>
+<section class="cl-section" id="questions"><p class="cl-eyebrow">Questions</p><h2>Before you add it</h2>${clearFaq(questions)}</section>
+<section class="cl-section" id="servers"><p class="cl-eyebrow">The family</p><h2>Every Canli server</h2>
+<ul class="cl-grid">${[...servers.map(s => [s.route, s.title, s.summary, `${s.tools.length} tools, hosted`]), ...packages.map(p => [p.route, p.title, p.one_line, `${p.tools.length} tools, on npm`])].map(([route, name, text, count]) => `<li class="cl-card"><p class="cl-count">${esc(count)}</p><h3><a href="${route}">${esc(name)}</a></h3><p>${esc(text)}</p></li>`).join('')}</ul>
+<p class="cl-note">For developers: <a href="${EXECUTION_ROUTE}">a local paper-trading workflow</a>, not yet released. Not investment advice. The hosted servers can run an earlier release than npm; each card shows its own.</p></section>`;
+  return clearDocument({ route: MCP_ROUTE, title, description: fitDescription(summary), body, active: 'mcp-servers', page: 'mcp-discovery', modified: sourceDate(ROOT, MCP_ROUTE), sources: 'mcp_discovery.json benchmarks/finance-mcp-servers.json benchmarks/fresh-filings.json demos/canli-mcp/index.json', structured: [breadcrumbs(MCP_ROUTE, title), list, app, faqSchema(questions)] });
 }
 
 export function buildMcpPages({ loadExecution = executionSource, write = writeFileSync, makeDir = mkdirSync } = {}) {

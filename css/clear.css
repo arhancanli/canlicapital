@@ -1,0 +1,161 @@
+/* The rebuilt pages (November 2026): the homepage's cobalt desk and till receipt, carried to every page.
+   A first screen that says what the page does for you, one button, then the proof printed as a receipt. */
+@font-face{font-family:'Bricolage Grotesque';src:url('/fonts/bricolage-grotesque/Variable.woff2') format('woff2');font-weight:200 800;font-display:swap}
+@font-face{font-family:Inter;src:url('/fonts/inter/InterVariable.woff2') format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'IBM Plex Mono';src:url('/fonts/ibm-plex-mono/400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'IBM Plex Mono';src:url('/fonts/ibm-plex-mono/500.woff2') format('woff2');font-weight:500;font-display:swap}
+
+.clear {
+  --cl-cobalt: #0016cb;
+  --cl-deep: #000e85;
+  --cl-paper: #ffffff;
+  --cl-ice: #e9eefb;
+  --cl-ink: #0a1030;
+  --cl-muted: #515a78;
+  --cl-line: #d5dcf0;
+  --cl-wrong: #c4210f;
+  --cl-right: #0a7a4f;
+  --cl-display: "Bricolage Grotesque", Inter, system-ui, sans-serif;
+  --cl-body: Inter, system-ui, sans-serif;
+  --cl-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --cl-gutter: clamp(16px, 6vw, 96px);
+  margin: 0;
+  background: var(--cl-paper);
+  color: var(--cl-ink);
+  font: 400 1.0625rem/1.6 var(--cl-body);
+}
+.clear main { display: block; }
+.clear main#content { max-width: none; width: auto; margin: 0; padding: 0; }
+.clear a { color: var(--cl-cobalt); text-underline-offset: .2em; }
+.clear :is(a, button, summary):focus-visible { outline: 3px solid #ffb703; outline-offset: 3px; border-radius: 4px; }
+.clear code { font-family: var(--cl-mono); font-size: .92em; }
+
+/* First screen */
+.cl-hero {
+  background: var(--cl-cobalt);
+  color: var(--cl-paper);
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: center;
+  padding: clamp(104px, 13vh, 144px) var(--cl-gutter) clamp(56px, 7vw, 96px);
+}
+.cl-hero a { color: inherit; }
+.cl-crumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 20px; padding: 0; font-size: .875rem; opacity: .85; }
+.cl-crumbs li + li::before { content: "/"; margin-right: 6px; opacity: .7; }
+.cl-crumbs a { color: inherit; }
+.cl-kicker { font: 500 .8125rem/1.4 var(--cl-mono); letter-spacing: .04em; text-transform: uppercase; margin: 0 0 18px; opacity: .9; }
+.cl-hero h1 {
+  font: 700 clamp(2.5rem, 5.4vw, 5rem)/.98 var(--cl-display);
+  letter-spacing: -.03em;
+  margin: 0 0 24px;
+  max-width: 14ch;
+}
+.cl-lede { font-size: clamp(1.05rem, 1.5vw, 1.3rem); line-height: 1.5; max-width: 46ch; margin: 0 0 32px; }
+.cl-actions { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; }
+.cl-button {
+  display: inline-block;
+  background: var(--cl-paper);
+  color: var(--cl-cobalt) !important;
+  font: 700 1.0625rem/1 var(--cl-display);
+  padding: 16px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.cl-button:hover { background: var(--cl-ice); }
+.cl-quiet { font-weight: 600; }
+.cl-command { margin: 22px 0 0; font: 500 .9375rem var(--cl-mono); opacity: .9; }
+.cl-command code { background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 4px; }
+
+/* The receipt */
+.cl-receipt {
+  margin: 0;
+  background: var(--cl-paper);
+  color: var(--cl-ink);
+  font-family: var(--cl-mono);
+  padding: 22px 22px 28px;
+  box-shadow: 0 18px 40px rgba(0, 8, 70, .35);
+  transform: rotate(1.2deg);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), 95% 100%, 90% calc(100% - 10px), 85% 100%, 80% calc(100% - 10px), 75% 100%, 70% calc(100% - 10px), 65% 100%, 60% calc(100% - 10px), 55% 100%, 50% calc(100% - 10px), 45% 100%, 40% calc(100% - 10px), 35% 100%, 30% calc(100% - 10px), 25% 100%, 20% calc(100% - 10px), 15% 100%, 10% calc(100% - 10px), 5% 100%, 0 calc(100% - 10px));
+}
+.cl-receipt__head { display: flex; justify-content: space-between; gap: 12px; font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; border-bottom: 1px dashed var(--cl-line); padding-bottom: 10px; margin: 0 0 14px; }
+.cl-receipt__q { font: 600 1rem/1.4 var(--cl-body); margin: 0 0 16px; }
+.cl-receipt dl { margin: 0; display: grid; gap: 10px; }
+.cl-receipt dl div { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; border-bottom: 1px dotted var(--cl-line); padding-bottom: 8px; }
+.cl-receipt dt { font-size: .8125rem; color: var(--cl-muted); }
+.cl-receipt dd { margin: 0; font-weight: 500; text-align: right; }
+.cl-stamp { display: inline-block; margin: 18px 0 10px; padding: 6px 10px; border: 2px solid currentColor; font: 700 .875rem var(--cl-display); text-transform: uppercase; letter-spacing: .05em; transform: rotate(-3deg); }
+.cl-stamp.is-right { color: var(--cl-right); }
+.cl-stamp.is-wrong { color: var(--cl-wrong); }
+.cl-receipt .cl-was-wrong { color: var(--cl-wrong); }
+.cl-receipt .cl-was-right { color: var(--cl-right); }
+.cl-receipt a { display: block; font-size: .8125rem; }
+.cl-receipt figcaption { font: 400 .75rem/1.45 var(--cl-body); color: var(--cl-muted); margin-top: 12px; }
+
+/* Proof strip */
+.cl-proof { background: var(--cl-deep); color: var(--cl-paper); padding: 28px var(--cl-gutter); }
+.cl-proof ul { list-style: none; margin: 0 auto; padding: 0; max-width: 1240px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.cl-proof b { display: block; font: 700 clamp(1.75rem, 3vw, 2.5rem)/1 var(--cl-display); margin-bottom: 8px; }
+.cl-proof span { font-size: .9375rem; line-height: 1.45; opacity: .92; }
+
+/* Sections */
+.cl-section { padding: clamp(56px, 8vw, 104px) var(--cl-gutter); max-width: 1240px; margin: 0 auto; box-sizing: content-box; }
+.cl-section + .cl-section { border-top: 1px solid var(--cl-line); }
+.cl-band { background: var(--cl-ice); }
+.cl-band > .cl-section { border-top: 0; }
+.cl-eyebrow { font: 500 .8125rem var(--cl-mono); text-transform: uppercase; letter-spacing: .06em; color: var(--cl-cobalt); margin: 0 0 12px; }
+.cl-section h2 { font: 700 clamp(1.75rem, 3.4vw, 2.75rem)/1.08 var(--cl-display); letter-spacing: -.02em; margin: 0 0 16px; max-width: 24ch; }
+.cl-intro { font-size: 1.125rem; color: var(--cl-muted); max-width: 60ch; margin: 0 0 32px; }
+.cl-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.cl-card { background: var(--cl-paper); border: 1px solid var(--cl-line); border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 8px; }
+.cl-band .cl-card { border-color: transparent; }
+.cl-card h3 { font: 700 1.25rem/1.2 var(--cl-display); margin: 0; }
+.cl-card p { margin: 0; color: var(--cl-muted); font-size: .9875rem; }
+.cl-card .cl-count { font: 500 .8125rem var(--cl-mono); color: var(--cl-cobalt); }
+.cl-card a.cl-more { margin-top: auto; font-weight: 600; }
+.cl-asks { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.cl-asks li { display: flex; }
+.cl-asks li a, .cl-asks li span { flex: 1; display: block; background: var(--cl-paper); border: 1px solid var(--cl-line); border-radius: 8px; padding: 16px 18px; font-weight: 600; color: var(--cl-ink); text-decoration: none; }
+.cl-asks li a:hover { border-color: var(--cl-cobalt); }
+.cl-asks li small { display: block; font-weight: 400; color: var(--cl-muted); margin-top: 4px; }
+.cl-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.cl-chips li { border: 1px solid var(--cl-line); border-radius: 999px; padding: 8px 16px; font-weight: 600; background: var(--cl-paper); }
+.cl-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: step; }
+.cl-steps li { background: var(--cl-paper); border: 1px solid var(--cl-line); border-radius: 8px; padding: 18px 20px; }
+.cl-steps h3 { font: 700 1.125rem var(--cl-display); margin: 0 0 6px; }
+.cl-steps p { margin: 0 0 10px; color: var(--cl-muted); }
+.cl-steps pre { margin: 0; background: var(--cl-ink); color: var(--cl-paper); padding: 14px 16px; border-radius: 6px; overflow-x: auto; font: 500 .9rem/1.5 var(--cl-mono); }
+.cl-faq details { border-bottom: 1px solid var(--cl-line); padding: 18px 0; }
+.cl-faq summary { cursor: pointer; font: 700 1.125rem var(--cl-display); }
+.cl-faq details p { margin: 10px 0 0; color: var(--cl-muted); max-width: 70ch; }
+.cl-table { width: 100%; border-collapse: collapse; font-size: .9875rem; }
+.cl-table th, .cl-table td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--cl-line); vertical-align: top; }
+.cl-table th { font: 600 .8125rem var(--cl-mono); text-transform: uppercase; letter-spacing: .04em; color: var(--cl-muted); }
+.cl-table td.cl-num { font-family: var(--cl-mono); text-align: right; white-space: nowrap; }
+.cl-note { font-size: .9375rem; color: var(--cl-muted); max-width: 72ch; }
+
+/* Status of a product line: what exists, said in one word. */
+.cl-status { align-self: flex-start; font: 600 .75rem var(--cl-mono); text-transform: uppercase; letter-spacing: .04em; padding: 4px 8px; border-radius: 4px; }
+.cl-status--live { background: #e3f4ec; color: var(--cl-right); }
+.cl-status--dev { background: #e8ecff; color: var(--cl-cobalt); }
+.cl-status--plan, .cl-status--later { background: #eef0f5; color: var(--cl-muted); }
+.cl-status--paper { background: #fff4dc; color: #7a4f00; }
+.cl-never { list-style: none; margin: 0 0 24px; padding: 0; display: grid; gap: 12px; }
+.cl-never li { position: relative; padding-left: 30px; font-weight: 600; }
+.cl-never li::before { content: "\2715"; position: absolute; left: 0; color: var(--cl-wrong); }
+
+/* Grid and list items may shrink below their longest word, so a command scrolls inside its box instead of widening the page. */
+.cl-grid > li, .cl-asks > li, .cl-steps > li, .cl-proof li { min-width: 0; margin: 0; }
+.cl-steps pre { max-width: 100%; }
+.cl-card, .cl-asks a { overflow-wrap: anywhere; }
+
+@media (max-width: 900px) {
+  .cl-hero { grid-template-columns: 1fr; }
+  .cl-receipt { transform: none; max-width: 520px; }
+  .cl-proof ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 520px) {
+  .cl-proof ul { grid-template-columns: 1fr; }
+  .cl-table { font-size: .875rem; }
+}
+@media (prefers-reduced-motion: reduce) { .cl-receipt, .cl-stamp { transform: none; } }
