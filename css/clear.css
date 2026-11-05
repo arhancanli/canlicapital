@@ -134,8 +134,18 @@
 .cl-table td.cl-num { font-family: var(--cl-mono); text-align: right; white-space: nowrap; }
 .cl-note { font-size: .9375rem; color: var(--cl-muted); max-width: 72ch; }
 
+/* Status of a product line: what exists, said in one word. */
+.cl-status { align-self: flex-start; font: 600 .75rem var(--cl-mono); text-transform: uppercase; letter-spacing: .04em; padding: 4px 8px; border-radius: 4px; }
+.cl-status--live { background: #e3f4ec; color: var(--cl-right); }
+.cl-status--dev { background: #e8ecff; color: var(--cl-cobalt); }
+.cl-status--plan, .cl-status--later { background: #eef0f5; color: var(--cl-muted); }
+.cl-status--paper { background: #fff4dc; color: #7a4f00; }
+.cl-never { list-style: none; margin: 0 0 24px; padding: 0; display: grid; gap: 12px; }
+.cl-never li { position: relative; padding-left: 30px; font-weight: 600; }
+.cl-never li::before { content: "\2715"; position: absolute; left: 0; color: var(--cl-wrong); }
+
 /* Grid and list items may shrink below their longest word, so a command scrolls inside its box instead of widening the page. */
-.cl-grid > li, .cl-asks > li, .cl-steps > li, .cl-proof li { min-width: 0; }
+.cl-grid > li, .cl-asks > li, .cl-steps > li, .cl-proof li { min-width: 0; margin: 0; }
 .cl-steps pre { max-width: 100%; }
 .cl-card, .cl-asks a { overflow-wrap: anywhere; }
 
