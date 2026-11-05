@@ -11,6 +11,7 @@ const run = (args) => housingMarket(createSession({ fetchImpl: replayFetch().fet
 test("a metro matched across Zillow's and Realtor.com's names, and Zillow's wide file kept as its recent months", () => {
   assert.equal(metroKey("Austin, TX"), metroKey("Austin-Round Rock-San Marcos, TX"));
   assert.equal(metroKey("New York-Newark-Jersey City, NY-NJ"), "new york|ny");
+  assert.equal(metroKey("Louisville/Jefferson County, KY-IN"), metroKey("Louisville, KY"));
   const z = JSON.parse(zillowFile("RegionID,SizeRank,RegionName,RegionType,StateName,2026-08-31,2026-09-30\n102001,0,United States,country,,365800.1,366157.2\n394355,29,\"Austin, TX\",msa,TX,415000,414273.4\n"));
   assert.deepEqual(z.months, ["2026-08", "2026-09"]);
   assert.deepEqual(z.regions[1], { name: "Austin, TX", type: "msa", rank: 29, values: [415000, 414273.4] });

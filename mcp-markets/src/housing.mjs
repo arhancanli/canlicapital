@@ -26,7 +26,8 @@ const num = (s) => (s === "" || s == null || !Number.isFinite(Number(s)) ? null 
 const change = (a, b) => (a == null || !b ? null : round((a / b - 1) * 100));
 // A metro's key across sources: its first city and first state ("austin|tx").
 export const metroKey = (name) => {
-  const m = /^\s*([^,-]+?)\s*(?:-[^,]*)?,\s*([A-Za-z]{2})/.exec(String(name ?? ""));
+  // The first city, before a hyphen or a slash (Realtor.com's "Louisville/Jefferson County, KY-IN" is Zillow's "Louisville, KY").
+  const m = /^\s*([^,/-]+?)\s*(?:[-/][^,]*)?,\s*([A-Za-z]{2})/.exec(String(name ?? ""));
   return m ? `${m[1].toLowerCase()}|${m[2].toLowerCase()}` : String(name ?? "").trim().toLowerCase();
 };
 
