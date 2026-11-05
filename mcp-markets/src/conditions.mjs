@@ -11,7 +11,7 @@ import { fredCsv, getText, NotFound } from "./sources.mjs";
 const OFR = "https://www.financialresearch.gov/financial-stress-index/data/fsi.csv";
 const OFR_PAGE = "https://www.financialresearch.gov/financial-stress-index/";
 const EBP = "https://www.federalreserve.gov/econres/notes/feds-notes/ebp_csv.csv";
-const EBP_PAGE = "https://www.federalreserve.gov/econres/notes/feds-notes/updating-the-recession-risk-and-the-excess-bond-premium-20161006.html";
+export const EBP_PAGE = "https://www.federalreserve.gov/econres/notes/feds-notes/updating-the-recession-risk-and-the-excess-bond-premium-20161006.html";
 // The OFR's columns: the index, its five categories and its three regions (each set adds up to the index).
 const OFR_PARTS = { credit: "Credit", equity_valuation: "Equity valuation", safe_assets: "Safe assets", funding: "Funding", volatility: "Volatility" };
 const OFR_REGIONS = { united_states: "United States", other_advanced_economies: "Other advanced economies", emerging_markets: "Emerging markets" };
@@ -71,7 +71,7 @@ export function ebpFile(text) {
 }
 
 const readOfr = (session) => getText(session, OFR, { transform: ofrFile, parse: JSON.parse, timeoutMs: 30000 });
-const readEbp = (session) => getText(session, EBP, { transform: ebpFile, parse: JSON.parse });
+export const readEbp = (session) => getText(session, EBP, { transform: ebpFile, parse: JSON.parse });
 
 // A measure's observations, [date, value] with no gaps, oldest first.
 async function series(session, source, files) {

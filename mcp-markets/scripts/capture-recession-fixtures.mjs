@@ -1,5 +1,5 @@
 // Captures what recession_watch reads (node scripts/capture-recession-fixtures.mjs): FRED's GS10, TB3MS, SAHMREALTIME,
-// RECPROUSM156N, T10Y2Y, IC4WSA and GDPNOW, once, with the tests' clock (test/replay.mjs's NOW).
+// RECPROUSM156N, T10Y2Y, IC4WSA and GDPNOW, and the Fed Board's excess bond premium file, once, with the tests' clock (test/replay.mjs's NOW).
 // Every response goes into test/fixtures/manifest.json as k###.gz under the exact URL asked for. Responses already
 // captured are not fetched again.
 import { readFileSync, writeFileSync } from "node:fs";
