@@ -196,6 +196,9 @@ test("a country's whole economy in one call, each figure from its own publisher"
   assert.deepEqual(r.rows.map((x) => x[6].split(":")[0]), ["bcb", "bcb", "ibge", "bcb", "bcb", "ibge", "ibge", "bis", "bis"]);
   assert.match(r.not_found[0], /^core_inflation: /);
   await assert.rejects(run({ countries: ["G7"], measure: "all" }), /reads one country/);
+  // A country on its own is the same answer.
+  assert.deepEqual((await run({ country: "Brazil" })).r.rows, r.rows);
+  await assert.rejects(run({ countries: ["G7"] }), /Name a measure/);
 });
 
 test("any series by its publisher's own code", async () => {

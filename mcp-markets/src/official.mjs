@@ -957,7 +957,7 @@ export function compare(a, b, m, note) {
 export const worldSeriesInput = z.object({
   country: z.string().min(2).max(60).optional().describe("One country or the euro area: a name (Brazil, South Korea, euro area) or an ISO code (BR, KOR)."),
   countries: z.array(z.string().min(2).max(60)).min(1).max(30).optional().describe("Several side by side, or a group: G7, G20, EU, euro area members, BRICS, Nordics, ASEAN, Latin America. Up to 30."),
-  measure: z.string().min(2).max(80).optional().describe("inflation, core_inflation, unemployment, gdp_growth, policy_rate, ten_year_yield, exchange_rate, industrial_production, retail_sales, wages, leading_indicator (the OECD's), consumer_confidence, business_confidence, government_debt, money_supply, central_bank_assets or house_prices, or all (one country's every measure); plain words work (\"jobless rate\", \"10-year bond yield\")."),
+  measure: z.string().min(2).max(80).optional().describe("inflation, core_inflation, unemployment, gdp_growth, policy_rate, ten_year_yield, exchange_rate, industrial_production, retail_sales, wages, leading_indicator (the OECD's), consumer_confidence, business_confidence, government_debt, money_supply, central_bank_assets or house_prices, or all (one country's every measure, the default for one country); plain words work (\"jobless rate\", \"10-year bond yield\")."),
   series: z.string().min(4).max(300).optional().describe("Any series by its publisher's own code instead: imf:, bis:, ecb:, eurostat:, oecd:, ilo:, fred:, statcan:, boc:, ons:, boe:, boj:, mof:, rba:, abs:, bcb:, ibge:, riksbank:, scb:, ssb:, norges:, snb:, bbk:, boi: (e.g. \"statcan:2062815\", \"eurostat:une_rt_m?geo=DE&s_adj=SA&age=TOTAL&sex=T&unit=PC_ACT\")."),
   periods: z.number().int().min(1).max(600).optional().describe("Observations to return, latest last. Default 13 (one country), 1 (several)."),
   start: z.string().regex(/^\d{4}(-\d{2}(-\d{2})?)?$/).optional().describe("Return everything from this date (YYYY, YYYY-MM or YYYY-MM-DD) instead, up to 600 observations."),
@@ -1002,6 +1002,8 @@ export async function worldSeries(session, args) {
       source: r.url, sources: [r.url, ...(r.api ? [r.api] : [])], limits: LIMITS,
     };
   }
+  // A country on its own is asked about as a whole: every measure, as measure "all".
+  if (!a.measure && a.country && !a.countries) return overview(session, a);
   if (!a.measure) throw new Error(`Name a measure (${Object.keys(MEASURES).join(", ")}) with a country, or a series by its publisher's code.`);
   if (OVERVIEW.test(squash(a.measure))) return overview(session, a);
   const measure = findMeasure(a.measure);
