@@ -204,6 +204,7 @@ payrolls look like before the benchmark revision?".
 | `crypto_options` | Crypto options: each expiry's at-the-money volatility, open interest and put/call ratio, with DVOL, or one expiry's chain in dollars | Deribit public data (no key) |
 | `economic_outlook` | The OECD's projections for the next two years: growth, inflation, unemployment, deficits, debt, current account, rates | OECD Economic Outlook |
 | `treasury_holders` | Who holds US Treasuries: the major foreign holders by country at the last thirteen month ends, each with its change on a year, share and rank, and foreign official holdings by bills and notes | Treasury TIC system (no key) |
+| `state_economy` | A US state beside the nation (unemployment, payroll jobs, the Philadelphia Fed's activity index, house prices, real GDP, each with its change on a year), or every state and DC ranked | BLS, FHFA, BEA and Philadelphia Fed via FRED (no key) |
 | `recession_watch` | The recession indicators against their lines: the New York Fed's yield-curve model (reproduced exactly, month by month), the Sahm rule, the 10y-2y curve, jobless claims, the Chauvet-Piger probability, GDPNow | FRED (no key) |
 | `options_sentiment` | The total, equity, index, ETF, VIX and SPX put/call ratios of the latest trading day with volumes, and the main ratios day by day with 10- and 20-day averages | Cboe daily market statistics (no key) |
 | `margin_debt` | Margin debt each month since 1997 with its change on a month and a year, the record and the free credit balances | FINRA margin statistics (no key) |
