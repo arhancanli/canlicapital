@@ -97,7 +97,8 @@ export async function jobPostings(session, args) {
     const top = rows[0], bottom = rows.at(-1);
     return {
       country: COUNTRIES[code], code, by,
-      summary: top && bottom && top !== bottom ? [`In ${named(code)}, ${top[0]} postings rose most on a year (${top[5] >= 0 ? "+" : ""}${top[5]}%, to ${top[2]}) and ${bottom[0]} fell most (${bottom[5]}%, to ${bottom[2]}), each against its own 1 February 2020 level.`] : [],
+      // The words follow the signs: when every one fell, the first fell least.
+      summary: top && bottom && top !== bottom ? [`In ${named(code)}, ${top[0]} postings ${top[5] >= 0 ? "rose most" : "fell least"} on a year (${top[5] >= 0 ? "+" : ""}${top[5]}%, to ${top[2]}) and ${bottom[0]} ${bottom[5] < 0 ? "fell most" : "rose least"} (${bottom[5] >= 0 ? "+" : ""}${bottom[5]}%, to ${bottom[2]}), each against its own 1 February 2020 level.`] : [],
       columns: [by, "date", "index", "change_4_weeks_points", "change_52_weeks_points", "change_52_weeks_pct"], rows,
       reading: `Job postings on Indeed in each ${by} of ${COUNTRIES[code]} against its own 1 February 2020 level (= 100), ranked by the change on a year.`,
       source: `${REPO}${code}/${file} (Indeed Hiring Lab)`, limits: LIMITS,

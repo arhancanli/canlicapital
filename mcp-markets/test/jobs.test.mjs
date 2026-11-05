@@ -40,3 +40,17 @@ test("sectors ranked by their change on a year, states by code, and every econom
   assert.deepEqual(all.rows[0], ["Australia", "AU", "2026-10-30", 150.39, 1.33, 0.9]);
   await assert.rejects(run({ country: "IT", by: "region" }), /regional postings for/);
 });
+
+test("the ranking's words follow the signs when every sector moved the same way", async () => {
+  const base = replayFetch().fetchImpl;
+  // Every sector's index a year back set far above today, so all fell on the year.
+  const fell = async (url, init) => {
+    const res = await base(url, init);
+    if (!/job_postings_by_sector_US/.test(url)) return res;
+    const [head, ...lines] = (await res.text()).trim().split("\n");
+    const last = lines.reduce((m, l) => (l.slice(0, 10) > m ? l.slice(0, 10) : m), "");
+    return new Response([head, ...lines.map((l) => (l.slice(0, 10) === last ? l : l.replace(/,([\d.]+),total postings/, ",500,total postings")))].join("\n"), { status: 200 });
+  };
+  const r = await jobPostings(createSession({ fetchImpl: fell, now: () => NOW, env: {}, sleep: async () => {} }), { by: "sector" });
+  assert.match(r.summary[0], /postings fell least on a year \(-[\d.]+%.*fell most \(-[\d.]+%/);
+});
