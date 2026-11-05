@@ -18,7 +18,7 @@ export const calendarInput = z.object({
   limit: z.number().int().min(1).max(500).optional().describe("Most rows; default 100, largest companies first for earnings."),
 }).strict();
 
-const num = (s) => { if (typeof s === "number") return s; const t = String(s ?? "").trim(); if (!t || t === "N/A") return null; const v = Number(t.replace(/[$,()\s]/g, "")); return Number.isFinite(v) ? (/^\(.*\)$/.test(t) ? -v : v) : null; };
+export const num = (s) => { if (typeof s === "number") return s; const t = String(s ?? "").trim(); if (!t || t === "N/A") return null; const v = Number(t.replace(/[$,()\s]/g, "")); return Number.isFinite(v) ? (/^\(.*\)$/.test(t) ? -v : v) : null; };
 const iso = (mdy) => { const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(String(mdy ?? "").trim()); return m ? `${m[3]}-${m[1]}-${m[2]}` : null; };
 const WHEN = Object.freeze({ "time-pre-market": "before the open", "time-after-hours": "after the close" });
 const addDays = (s, n) => new Date(Date.parse(`${s}T12:00:00Z`) + n * 86400000).toISOString().slice(0, 10);

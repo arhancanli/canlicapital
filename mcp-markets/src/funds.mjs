@@ -210,6 +210,8 @@ const DAILY_HOLDINGS = Object.freeze({
   XLY: "Consumer Discretionary Select Sector", XLP: "Consumer Staples Select Sector", XLU: "Utilities Select Sector", XLB: "Materials Select Sector",
   XLRE: "Real Estate Select Sector", XLC: "Communication Services Select Sector",
 });
+// The Select Sector SPDRs split the S&P 500 by GICS sector.
+export const SECTOR_FUNDS = Object.freeze({ XLK: "Information Technology", XLF: "Financials", XLV: "Health Care", XLE: "Energy", XLI: "Industrials", XLY: "Consumer Discretionary", XLP: "Consumer Staples", XLU: "Utilities", XLB: "Materials", XLRE: "Real Estate", XLC: "Communication Services" });
 const DAILY_INDEXES = Object.freeze({ ...UIT_INDEXES, "s&p 500": "SPY", "sp 500": "SPY", spx: "SPY", "s&p 400": "MDY", "s&p midcap 400": "MDY" });
 const dailyUrl = (etf) => `https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-${etf.toLowerCase()}.xlsx`;
 const MONTH = { jan: "01", feb: "02", mar: "03", apr: "04", may: "05", jun: "06", jul: "07", aug: "08", sep: "09", oct: "10", nov: "11", dec: "12" };
