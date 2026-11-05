@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Fix: `price_history` with `adjusted: false` on the keyless source gave split-adjusted prices, because Yahoo's own close is adjusted for splits, while Alpaca and Tiingo gave prices as traded. It now gives prices as traded on every source: each price, volume and dividend is multiplied back (a volume divided) by the splits after its date, read up to today. NVIDIA on 7 June 2024, the day before its 10-for-1 split: $1,208.88 on 41.2 million shares, where it said $120.89 on 412 million; March's dividend $0.04, where it said $0.004. `price_return` and `returns` come from split-adjusted closes, so a split is not read as a loss. Behind it, Altman's market value and other figures that set a price against a filing's share count now get the price of that date.
+- `price_history` `adjustment`: all (splits and dividends, the default), splits (comparable across a split, dividends left out) or none (as traded). `market_overview` asks for splits, as before. With Tiingo, split-adjusted prices come from its split factors.
+
 - `index_constituents` on a past date: `as_of` gives an index's members as the tracking ETF's N-PORT reported them for the last quarter-end on or before the date, companies since removed included, so a backtest's universe has no survivorship bias; `changes_from` lists who joined and who left between two dates, matched by CUSIP (by ISIN where the filing gives no CUSIP). The S&P 500 through IVV: on 30 November 2020 the 30 September report's 505 members, without Tesla; from then to 31 December 2020, Tesla, Viatris, Pool and Vontier joined, and E*TRADE, Mylan, Apartment Investment and Management, and Noble Energy left. A past date reads N-PORT only: State Street's daily files hold the latest day, so the Dow (DIA files no N-PORT) has no past members here.
 
 ## 0.15.0

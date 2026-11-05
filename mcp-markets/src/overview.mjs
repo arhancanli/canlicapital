@@ -41,7 +41,7 @@ export async function marketOverview(session, args) {
   const out = {};
   await Promise.all(groups.map(async (g) => {
     const rows = await Promise.all(GROUPS[g].map(async ([symbol, name]) => {
-      const p = await priceHistory(session, { symbol, start, adjusted: false }).catch((err) => { missing.push(`${symbol}: ${String(err.message).slice(0, 120)}`); return null; });
+      const p = await priceHistory(session, { symbol, start, adjustment: "splits" }).catch((err) => { missing.push(`${symbol}: ${String(err.message).slice(0, 120)}`); return null; });
       if (!p?.close?.length) return null;
       if (p.source) sources.add(p.source);
       const c = changes(p.dates, p.close, { points: YIELDS.has(symbol) });
