@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `index_constituents` on a past date: `as_of` gives an index's members as the tracking ETF's N-PORT reported them for the last quarter-end on or before the date, companies since removed included, so a backtest's universe has no survivorship bias; `changes_from` lists who joined and who left between two dates, matched by CUSIP (by ISIN where the filing gives no CUSIP). The S&P 500 through IVV: on 30 November 2020 the 30 September report's 505 members, without Tesla; from then to 31 December 2020, Tesla, Viatris, Pool and Vontier joined, and E*TRADE, Mylan, Apartment Investment and Management, and Noble Energy left. A past date reads N-PORT only: State Street's daily files hold the latest day, so the Dow (DIA files no N-PORT) has no past members here.
+
 ## 0.15.0
 
 ### The economy, from the publishers

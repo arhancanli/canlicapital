@@ -423,6 +423,32 @@ test("index_constituents: the S&P 500 from SPY's daily holdings or through IVV's
   await assert.rejects(F.indexConstituents(s, { index: "Dow", source: "nport" }), /files no N-PORT; its members come from State Street's daily holdings/);
 });
 
+test("index_constituents on a past date: IVV's N-PORT for the quarter-end before it, and who joined and left between two dates", async () => {
+  const { s, calls } = session();
+  // IVV's N-PORT for 30 September 2020 (filed 25 November) and 31 December 2020 (filed 25 February 2021), around Tesla's addition.
+  const before = await F.indexConstituents(s, { index: "S&P 500", as_of: "2020-11-30", limit: 5000 });
+  assert.deepEqual([before.requested_as_of, before.as_of, before.filed, before.members], ["2020-11-30", "2020-09-30", "2020-11-25", 505]);
+  assert.equal(before.rows.some((x) => /tesla/i.test(x[0])), false, "not yet a member");
+  assert.ok(!calls.some((c) => /ssga\.com/.test(c.url)), "a past date never reads State Street's latest-day file");
+  const after = await F.indexConstituents(s, { index: "S&P 500", as_of: "2020-12-31", changes_from: "2020-11-30", limit: 3 });
+  assert.deepEqual([after.as_of, after.filed, after.members, after.stock_weight_of_fund, after.top_10_weight], ["2020-12-31", "2021-02-25", 505, 0.9975, 0.2739]);
+  assert.deepEqual(after.rows.map((x) => [x[0], x[5]]), [["Apple Inc", 0.066988], ["Microsoft Corp", 0.053121], ["Amazon.com Inc", 0.043877]]);
+  assert.deepEqual([after.changes.from.as_of, after.changes.from.filed, after.changes.counts], ["2020-09-30", "2020-11-25", { added: 4, removed: 4 }]);
+  assert.deepEqual(after.changes.rows, [
+    ["added", "Tesla Inc", "88160R101", "US88160R1014", null, 0.016903], ["added", "Viatris Inc", "92556V106", "US92556V1061", null, 0.000712],
+    ["added", "Pool Corp", "73278L105", "US73278L1052", null, 0.000469], ["added", "Vontier Corp", "928881101", "US9288811014", null, 0.000145],
+    ["removed", "E*TRADE Financial Corp", "269246401", "US2692464017", 0.00039, null],
+    // Filed with a placeholder CUSIP, so it is matched by its ISIN.
+    ["removed", "Mylan NV", "000000000", "NL0011031208", 0.000271, null],
+    ["removed", "Apartment Investment and Management Co", "03748R754", "US03748R7540", 0.000175, null], ["removed", "Noble Energy Inc", "655044105", "US6550441058", 0.00015, null],
+  ]);
+  assert.match(before.limits[1], /^A member added or removed between 2020-09-30 and 2020-11-30 is not shown/);
+  assert.equal(after.limits[1], "The index provider's own list is authoritative.", "the report is for the date asked");
+  assert.match(after.limits[2], /by CUSIP/);
+  await assert.rejects(F.indexConstituents(s, { index: "Dow", as_of: "2020-12-31" }), /which hold only the latest day/);
+  await assert.rejects(F.indexConstituents(s, { index: "S&P 500", as_of: "2020-11-30", changes_from: "2020-12-31" }), /changes_from must be before as_of/);
+});
+
 test("off_exchange_volume: Apple's weekly dark pool and OTC volume; venue shares come from the same totals", async () => {
   const { s } = session();
   const r = await Pos.offExchangeVolume(s, { symbol: "AAPL", weeks: 6 });
