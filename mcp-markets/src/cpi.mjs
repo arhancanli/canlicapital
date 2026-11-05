@@ -61,10 +61,19 @@ export async function inflationBreakdown(session, args) {
   const parts = ["shelter", "core_goods", "core_services", "energy", "food"].filter((k) => by[k]?.[4] != null).map((k) => `${short(k, by[k][1])} ${by[k][4]}%`);
   const ranked = rows.filter((r) => !["all_items", "core"].includes(r[0]) && r[4] != null).sort((x, y) => y[4] - x[4]);
   const history = (a.months ?? 13);
+  // A month's change by its sign, and the year's only where there is an index a year earlier (the BLS published none
+  // for October 2025, during the shutdown).
+  const sayChange = (what, r) => {
+    if (!r) return `${what} were not published`;
+    const month = r[2] == null ? "" : r[2] > 0 ? `rose ${r[2]}% on the month` : r[2] < 0 ? `fell ${Math.abs(r[2])}% on the month` : "were unchanged on the month";
+    const adjusted = month && r[0] === "all_items" ? " (seasonally adjusted)" : "";
+    if (r[4] == null) return `${what} ${month || "were not published for the month"}${adjusted}, with no index a year earlier for the change on a year`;
+    return `${what} ${month}${adjusted}${month ? " and " : ""}were ${r[4] >= 0 ? "up" : "down"} ${Math.abs(r[4])}% on a year${r[5] != null ? ` (${r[5]}% the month before)` : ""}`;
+  };
   return {
     month,
     summary: [
-      `In ${month} consumer prices rose ${by.all_items?.[2]}% on the month (seasonally adjusted) and ${by.all_items?.[4]}% on a year; core prices ${by.core?.[2]}% and ${by.core?.[4]}%${by.core?.[5] != null ? ` (${by.core[4] > by.core[5] ? "up from" : by.core[4] < by.core[5] ? "down from" : "as"} ${by.core[5]}% the month before)` : ""}.`,
+      `In ${month} ${sayChange("consumer prices", by.all_items)}; ${sayChange("core prices", by.core)}.`,
       ...(parts.length ? [`On a year: ${parts.join(", ")}.`] : []),
       ...(ranked.length > 1 ? [`Fastest on a year: ${short(ranked[0][0], ranked[0][1])} (${ranked[0][4]}%); slowest: ${short(ranked.at(-1)[0], ranked.at(-1)[1])} (${ranked.at(-1)[4]}%).`] : []),
     ],
