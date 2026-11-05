@@ -1,5 +1,5 @@
 // recession_watch: the indicators economists read for a US recession, each beside the line it is read against: the
-// New York Fed's yield-curve model (the chance of a recession twelve months ahead from the 10-year less 3-month spread,
+// New York Fed's yield-curve model (the chance of being in recession twelve months ahead from the 10-year less 3-month spread,
 // computed as the New York Fed publishes it), the Sahm rule, the 10-year less 2-year curve and how long it has been
 // inverted, jobless claims against a year earlier, the Chauvet-Piger probability that a recession is under way, and
 // GDPNow. Every input from FRED. No key.
@@ -45,8 +45,8 @@ export async function recessionWatch(session, args) {
   });
   const lastCurve = curve.at(-1);
   if (lastCurve) {
-    rows.push(["yield_curve_model", "chance of a recession twelve months ahead (New York Fed model)", lastCurve[2], lastCurve[0], "percent", "30%, the line it is commonly read against; it rose past it before most recessions since 1970, and from 2022 to 2024 without one", lastCurve[2] >= 30 ? "warning" : "clear"]);
-    summary.push(`The New York Fed's yield-curve model gives a ${lastCurve[2]}% chance of a recession by ${monthAhead(lastCurve[0], 12)} (10-year less 3-month spread ${lastCurve[1]} points in ${lastCurve[0]}).`);
+    rows.push(["yield_curve_model", "chance of being in recession twelve months ahead (New York Fed model)", lastCurve[2], lastCurve[0], "percent", "30%, the line it is commonly read against; it rose past it before most recessions since 1970, and from 2022 to 2024 without one", lastCurve[2] >= 30 ? "warning" : "clear"]);
+    summary.push(`The New York Fed's yield-curve model gives a ${lastCurve[2]}% chance of the US being in recession in ${monthAhead(lastCurve[0], 12)}, twelve months ahead (10-year less 3-month spread ${lastCurve[1]} points in ${lastCurve[0]}).`);
   }
   const s = valid(sahm).at(-1);
   if (s) {
@@ -79,7 +79,7 @@ export async function recessionWatch(session, args) {
     summary,
     columns: ["indicator", "measures", "latest", "as_of", "unit", "line_read_against", "signal", "change_on_year_pct"], rows: rows.map((r) => [...r.slice(0, 7), r[7] ?? null]),
     yield_curve_model: { columns: ["month", "spread_10y_less_3m", "recession_chance_12m_pct"], rows: curve.slice(-(a.months ?? 13)) },
-    reading: "Each indicator's latest reading beside the line economists read it against; signal says whether it is past that line. The yield-curve model's chance is for a recession within twelve months of the month shown.",
+    reading: "Each indicator's latest reading beside the line economists read it against; signal says whether it is past that line. The yield-curve model's chance is of the economy being in recession in the month twelve months after the one shown, not of one starting at any time before then.",
     source: "FRED: GS10 and TB3MS (the New York Fed's yield-curve model, its published coefficients -0.5333 and -0.6330), SAHMREALTIME, T10Y2Y, IC4WSA, RECPROUSM156N, GDPNOW",
     limits: [
       "Each indicator has missed or given false alarms (the curve was inverted from 2022 into 2024 without a recession); none is a forecast of the Federal Reserve. Lines are those their authors and the literature use.",

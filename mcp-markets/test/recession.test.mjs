@@ -19,7 +19,7 @@ test("the New York Fed's yield-curve model, reproduced: September 2026's spread 
 test("each indicator beside its line, a count of those past it, and the model month by month", async () => {
   const r = await run({ months: 3 });
   assert.equal(r.summary[0], "0 of 6 recession indicators are past their lines.");
-  assert.equal(r.summary[1], "The New York Fed's yield-curve model gives a 12.42% chance of a recession by 2027-10 (10-year less 3-month spread 0.98128 points in 2026-10).");
+  assert.equal(r.summary[1], "The New York Fed's yield-curve model gives a 12.42% chance of the US being in recession in 2027-10, twelve months ahead (10-year less 3-month spread 0.98128 points in 2026-10).");
   assert.deepEqual(r.yield_curve_model.rows, [["2026-08", 0.87253, 13.88], ["2026-09", 0.95509, 12.76], ["2026-10", 0.98128, 12.42]]);
   const by = Object.fromEntries(r.rows.map((x) => [x[0], x]));
   assert.deepEqual([by.curve_10y_2y[2], by.curve_10y_2y[3], by.curve_10y_2y[6]], [0.32, "2026-11-04", "clear"]);
