@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Null Zoo v0 | Canli Capital</title>
 <meta name="description" content="Every correction for backtest overfitting makes a promise: that a skill-less strategy will pass it no more often than its stated level. The level is 5.0%." />
-<meta name="alphac-source-sha256" content="7ef8444fda820f565b3d1d4234f3246b9f329f9b82a2c34209767458bc13db1a" />
+<meta name="alphac-source-sha256" content="1b43122f1e06f3a172dbb7dc72d62cb5e855d31c203ff219f9325adf3dfc50db" />
 
 <link rel="canonical" href="https://canlicapital.com/research/null-zoo-v0" />
 <meta name="author" content="Arhan Canli" />
@@ -30,7 +30,7 @@
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Null Zoo v0: backtest-overfitting corrections scored on ground truth","description":"Every correction for backtest overfitting makes a promise: that a skill-less strategy will pass it no more often than its stated level. The level is 5.0%.","url":"https://canlicapital.com/research/null-zoo-v0","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","dateModified":"2026-09-26","image":{"@type":"ImageObject","url":"https://canlicapital.com/og.png","width":1200,"height":630},"author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/null-zoo-v0.md","encodingFormat":"text/markdown"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Null Zoo v0: backtest-overfitting corrections scored on ground truth","description":"Every correction for backtest overfitting makes a promise: that a skill-less strategy will pass it no more often than its stated level. The level is 5.0%.","url":"https://canlicapital.com/research/null-zoo-v0","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","dateModified":"2026-11-05","image":{"@type":"ImageObject","url":"https://canlicapital.com/og.png","width":1200,"height":630},"author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/null-zoo-v0.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"Null Zoo v0","item":"https://canlicapital.com/research/null-zoo-v0"}]}</script>
 <!-- site-design:start -->
 <link rel="stylesheet" href="/css/product-shell.css" />
@@ -188,7 +188,7 @@ checks: <code>scripts/research/null-zoo/</code> in the open repository.</p>
 <td>0.048</td>
 </tr>
 <tr>
-<td>Autocorrelated returns (AR(1))</td>
+<td>Autocorrelated returns (AR(1) 0.2, a stress level)</td>
 <td>0.200</td>
 <td>0.059</td>
 <td>0.201</td>
@@ -283,7 +283,7 @@ checks: <code>scripts/research/null-zoo/</code> in the open repository.</p>
 <td>0.476</td>
 </tr>
 <tr>
-<td>Autocorrelated returns (AR(1))</td>
+<td>Autocorrelated returns (AR(1) 0.2, a stress level)</td>
 <td>0.603</td>
 <td>0.358</td>
 <td>0.604</td>
@@ -315,9 +315,14 @@ checks: <code>scripts/research/null-zoo/</code> in the open repository.</p>
 </tbody></table></div><!-- design-table:end -->
 <h2 id="reader-section-4" data-reader-anchor="true">What it shows</h2>
 <ul>
-<li>Autocorrelated returns break every best-of-N test that ignores them: luck-equivalent trials
-rejected 0.200 and the Bonferroni haircut 0.132
-of skill-less searches. Lo&#39;s correction brings luck-equivalent trials to 0.059.</li>
+<li>Autocorrelated returns break every best-of-N test that ignores them. At a lag-one autocorrelation
+of 0.2, a stress level, luck-equivalent trials rejected 0.200 and the Bonferroni
+haircut 0.132 of skill-less searches; Lo&#39;s correction brings luck-equivalent
+trials to 0.059. Smaller values matter too, because a best-of-20 cutoff sits far in the
+tail: in a follow-up with 10000 searches per autocorrelation (<a href="/glassbox/research/null-zoo-v1-ar1-levels.json"><code>/glassbox/research/null-zoo-v1-ar1-levels.json</code></a>),
+the one-sided Bonferroni haircut rejected 0.076 at 0.05 and 0.106 at 0.1, close to the
+closed form (0.073 and 0.105), and Lo&#39;s correction held it at
+0.055 and 0.050.</li>
 <li>The deflated Sharpe ratio read as a test at 0.95 almost never calls noise skilled
 (0.000) but finds the skilled strategy in only 0.090
 of searches, against 0.533 for luck-equivalent trials. It subtracts the
