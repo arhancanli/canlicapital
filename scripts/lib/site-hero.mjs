@@ -107,7 +107,8 @@ function crumbsOf(html, mainStart, h1Start, trailNav) {
 }
 
 export function applyHero(html, file, { trailNav = null } = {}) {
-  if (html.includes('<header class="cc-hero"')) return html;
+  // A rebuilt page (css/clear.css) brings its own first screen; it keeps it.
+  if (html.includes('<header class="cc-hero"') || html.includes('<section class="cl-hero"')) return html;
   const main = /<main\b[^>]*>/.exec(html);
   if (!main) return html;
   const mainStart = main.index, inner = main.index + main[0].length;

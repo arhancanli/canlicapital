@@ -107,6 +107,7 @@ say(`- [The record](${ORIGIN}/record): The ALPHAC paper-trading record, publishe
 say(`- [Vision](${ORIGIN}/vision): What Canli Capital is building for AI agents in finance, pillar by pillar, with what exists today and what comes next.`);
 say(`- [MCP downloads](${ORIGIN}/stats): npm downloads of the open MCP servers, read from npm at each build.`);
 say(`- [FilingFacts benchmark](${ORIGIN}/benchmarks/filingfacts): AI models answering SEC filing questions on their own and with an MCP server that reads the filings, from public, rescorable run records.`);
+say(`- [Weekly test on new filings](${ORIGIN}/benchmarks/fresh-filings): each week, questions only that week's annual reports can answer, put to a model alone and with canli-mcp, every answer checked against the filing.`);
 say(`- [Methodology](${ORIGIN}/methodology): Evidence-linked answers to how the research is actually done.`);
 say(`- [How to validate a backtest](${ORIGIN}/how-to-validate-a-backtest): A step-by-step walk-through of this site's own instruments, in order, with the calculator and API route beside each step.`);
 say(`- [Status](${ORIGIN}/performance): The honest numbers and what each one is and is not.`);
