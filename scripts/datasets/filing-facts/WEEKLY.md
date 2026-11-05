@@ -51,3 +51,22 @@ history, and the checker refused no item. Five figures were read in the filed do
 on 5 November: WD-40's total assets ($494,377 thousand), Greenbrier's revenue for the two years
 ($2,461.1 and $3,240.2 million) and net earnings ($79.0 million), and Rafael Holdings' total assets
 and total liabilities ($83,055 and $11,085 thousand). Each matched the item's figure.
+
+### First scored run (5 November 2026)
+
+gpt-6.1-terra through OpenAI's Responses API at its default reasoning effort, at most six turns,
+on 91 of the 93 items (`eval.mjs`'s stratified sample: at most 30 a template, seed 20260926). The
+records are in `runs/2026-11-05/`; each binds the sha256 of `items.jsonl`.
+
+| | answered correctly | wrong numbers | other | mean tokens a question |
+|---|---|---|---|---|
+| the model alone | 0 of 91 | 0 | "not reported" 88, "unable to verify" 1, no answer line 2 | 456 |
+| with canli-mcp 0.20.0 (from npm, with its server instructions) | 89 of 91 | 0 | stopped at the six-turn limit 2 | 6,769 |
+
+By template with canli-mcp: change 30 of 30, lookup 28 of 28, ratio 19 of 20, net_assets 12 of 13;
+130 tool calls in all, 1.43 a question. The model alone gave no number at all, so it never
+invented one. The two misses are one company: Here Group Limited (CIK 1932770) has a new name,
+which its companyfacts carries, while canli-mcp's company index still names it QuantaSing Group
+Limited. Searching the new name matched 14 other companies; the model found the CIK through
+full-text search on its fifth call and ran out of turns on the sixth. Company search should know
+new and former names (EDGAR lists both); that fix belongs to the next canli-mcp release.
