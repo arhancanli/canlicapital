@@ -122,11 +122,15 @@ export async function inflationNowcast(session, args) {
   const quarters = qtr.periods.filter((p) => alive(p) && keys.some((k) => !p.actual[k])).flatMap((p) => keys.map((k) => [p.period, k, round(last(p, k)?.value), round(p.actual[k]?.value)]));
   const summary = open.map((p) => {
     const y = yearOf(p.period);
-    const parts = keys.filter((k) => !p.actual[k] && last(p, k)).map((k) => `${MEASURES[k]} ${round(last(p, k).value)}% on the month and ${round(y ? last(y, k)?.value : null)}% on a year`);
+    // The month and year files are cached apart, so for a while a new month can be in one and not the other.
+    const parts = keys.filter((k) => !p.actual[k] && last(p, k)).map((k) => { const yv = y ? last(y, k)?.value : null; return `${MEASURES[k]} ${round(last(p, k).value)}% on the month${yv == null ? "" : ` and ${round(yv)}% on a year`}`; });
     return parts.length ? `The Cleveland Fed's nowcast for ${p.period}, not yet published: ${parts.join("; ")}.` : null;
   }).filter(Boolean);
-  const q = qtr.periods.filter((p) => alive(p) && keys.some((k) => !p.actual[k])).at(0);
-  if (q) summary.push(`${q.period} at an annualized rate: ${keys.filter((k) => last(q, k)).map((k) => `${MEASURES[k]} ${round(last(q, k).value)}%`).join(", ")}.`);
+  // Each quarter still open, with only the measures not yet published (a quarter's CPI is out weeks before its PCE).
+  for (const q of qtr.periods.filter((p) => alive(p) && keys.some((k) => !p.actual[k]))) {
+    const parts = keys.filter((k) => !q.actual[k] && last(q, k)).map((k) => `${MEASURES[k]} ${round(last(q, k).value)}%`);
+    if (parts.length) summary.push(`${q.period} at an annualized rate, not yet published: ${parts.join(", ")}.`);
+  }
   return {
     updated: mom.updated, summary,
     months: { columns: ["month", "measure", "nowcast_month_pct", "nowcast_year_pct", "actual_month_pct", "actual_year_pct", "published"], rows },
