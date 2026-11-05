@@ -199,7 +199,7 @@ export async function sanctionsCheck(session, args) {
   const want = keyWords(a.name);
   if (want.join("").length < 3) throw new Error("A name of at least three letters is needed to search the list.");
   const has = (text) => { const words = new Set(nameWords(text)); return want.every((w) => words.has(w)); };
-  const list = (url) => getEncodedText(session, url, { encoding: "latin1", redirectHost: /^[\w-]+\.s3\.us-gov-west-1\.amazonaws\.com$/, maxBytes: 32 * 1024 * 1024, timeoutMs: 60000 });
+  const list = (url) => getEncodedText(session, url, { encoding: "latin1", maxBytes: 32 * 1024 * 1024, timeoutMs: 60000 });
   const [sdn, alt] = await Promise.all([list(SDN), list(ALT)]);
   const listed = csvRows(sdn);
   const aliasOf = new Map();

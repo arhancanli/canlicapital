@@ -1,6 +1,8 @@
 // Filing documents as text a model can read: HTML to lines, and a filing cut into its items.
 // No dependencies; EDGAR's HTML is regular enough for this, and the tests pin real filings.
 
+// Accented Latin letters by their HTML names ("&uuml;" in T&uuml;rkiye, "&eacute;" in Soci&eacute;t&eacute;), each case kept.
+const ACCENTED = Object.fromEntries([..."AEIOUY"].flatMap((v) => [["grave", "\u0300"], ["acute", "\u0301"], ["circ", "\u0302"], ["tilde", "\u0303"], ["uml", "\u0308"]].flatMap(([name, mark]) => [[`${v}${name}`, `${v}${mark}`.normalize("NFC")], [`${v.toLowerCase()}${name}`, `${v.toLowerCase()}${mark}`.normalize("NFC")]])).concat([["Ntilde", "Ñ"], ["ntilde", "ñ"], ["Ccedil", "Ç"], ["ccedil", "ç"], ["Aring", "Å"], ["aring", "å"], ["AElig", "Æ"], ["aelig", "æ"], ["Oslash", "Ø"], ["oslash", "ø"], ["szlig", "ß"]]).filter(([, c]) => c.length === 1));
 const ENTITIES = { amp: "&", lt: "<", gt: ">", quot: "\"", apos: "'", nbsp: " ", rsquo: "'", lsquo: "'", rdquo: "\"", ldquo: "\"", ndash: "-", mdash: "-", bull: "*", hellip: "...", reg: "(R)", trade: "(TM)", copy: "(C)", sect: "§", middot: "·", euro: "€", pound: "£", yen: "¥" };
 
 export function decodeEntities(s) {
@@ -15,7 +17,7 @@ export function decodeEntities(s) {
       if (code === 128) return "€";
       return Number.isFinite(code) && code > 0 && code < 0x110000 ? String.fromCodePoint(code) : "";
     }
-    return ENTITIES[e.toLowerCase()] ?? m;
+    return ACCENTED[e] ?? ENTITIES[e.toLowerCase()] ?? m;
   });
 }
 
