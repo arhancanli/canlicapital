@@ -174,7 +174,8 @@ const EVERYDAY_Q = [
   ["canli research on value investing", ["search_research"]],
   ["what is the current cpi", ["economic_series"]],
   ["chart of the 10 year yield since 2020", ["treasury_yields","economic_series"]],
-  ["are we in a recession", ["economic_series","economic_outlook"]],
+  // recession_watch (markets 0.15.0) sets each recession indicator against its line, the question's own answer.
+  ["are we in a recession", ["economic_series","economic_outlook","recession_watch"]],
   ["eurozone unemployment forecast", ["economic_outlook"]],
   ["brazil inflation history", ["world_economy"]],
   ["next fomc meeting date", ["fomc","economic_calendar"]],
@@ -264,7 +265,8 @@ const NEW_Q = [
   ["bank of england base rate", ["reference_rates"]],
   ["sonia overnight rate", ["reference_rates"]],
   ["bank of japan policy rate", ["reference_rates"]],
-  ["central bank interest rates around the world", ["reference_rates"]],
+  // world_series reads each central bank's own policy rate, up to 30 countries side by side.
+  ["central bank interest rates around the world", ["reference_rates", "world_series"]],
   ["effective federal funds rate daily", ["reference_rates", "economic_series"]],
   ["airbus net income from its annual financial report", ["european_filings"]],
   ["lvmh revenue in its esef annual financial report", ["european_filings"]],

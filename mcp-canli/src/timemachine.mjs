@@ -55,7 +55,8 @@ const HELD = {
   pit_factor: { args: endArg(365 * 5) },
   treasury_yields: { args: (a, d) => (a.date ? { ...a, date: atMost(a.date, d) } : endArg(365)(a, d)) },
   reference_rates: { args: endArg(365) },
-  economic_series: { args: endArg(365 * 5), warning: REVISED },
+  // ALFRED's vintage of the date: what had been published by then, at the values then shown; revisions would tell of later ones.
+  economic_series: { args: (a, d) => { const { revisions: _later, ...rest } = a; return { ...endArg(365 * 5)(rest, d), as_of: atMost(a.as_of, d) }; } },
   world_economy: { args: (a, d) => { const year = Number(d.slice(0, 4)); return { ...a, end: Math.min(a.end ?? year, year), start: Math.min(a.start ?? year - 10, year) }; }, warning: REVISED },
   federal_debt: { args: endArg(365) },
   news: { args: endArg(30) },

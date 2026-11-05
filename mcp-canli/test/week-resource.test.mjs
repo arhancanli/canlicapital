@@ -37,3 +37,20 @@ test("the week as a resource: each holding named in the address, this week's sen
     rmSync(home, { recursive: true, force: true });
   }
 });
+
+test("a country's economy by its address where the markets pack is on, and nothing while a holdout is set", async () => {
+  const home = mkdtempSync(path.join(tmpdir(), "economy-"));
+  const c = new Client({ name: "economy-test", version: "0" });
+  await c.connect(new StdioClientTransport({ command: process.execPath, args: [ENTRY], env: { PATH: process.env.PATH ?? "", HOME: process.env.HOME ?? "", CANLI_HOME: home, CANLI_CACHE_DIR: "", CANLI_PACKS: "markets,quant" } }));
+  try {
+    const { resourceTemplates } = await c.listResourceTemplates();
+    assert.ok(resourceTemplates.some((t) => t.uriTemplate === "canli://economy/{country}"));
+    await c.callTool({ name: "run_tool", arguments: { name: "holdout_set", arguments: { from: "2024-01-01" } } });
+    await assert.rejects(c.readResource({ uri: "canli://economy/Brazil" }), /holdout from 2024-01-01 hides/);
+    assert.ok((await c.listResources()).resources.some((r) => r.uri === "canli://fed"));
+    await assert.rejects(c.readResource({ uri: "canli://fed" }), /holdout from 2024-01-01 hides/);
+  } finally {
+    await c.close();
+    rmSync(home, { recursive: true, force: true });
+  }
+});

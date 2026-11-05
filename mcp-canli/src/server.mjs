@@ -826,6 +826,24 @@ function registerResources(server, packs, gov, { readOnly = false, vault = null,
       const report = await runOne(packs, { name: "company_report", arguments: { company: decodeURIComponent(String(company)) } }, {}, [], gov);
       return json(uri.href, fit(report, null, RESULT_CHARS));
     });
+  // A country to attach the same way (canli://economy/Brazil, canli://economy/JP): world_series with measure "all", every
+  // measure from the country's own statistics office or central bank beside the figure a year earlier.
+  if (packs.includes("markets") && BY_NAME.has("world_series")) server.registerResource("economy", new ResourceTemplate("canli://economy/{country}", { list: undefined }), { title: "A country's economy", description: "world_series for the country in the address (canli://economy/Brazil, canli://economy/JP): inflation, unemployment, growth, the policy rate, the 10-year yield, the currency and more, each from the country's own statistics office or central bank, beside the figure a year earlier.", mimeType: "application/json" },
+    async (uri, { country }) => {
+      if (vault?.until()) throw new Error(`canli://economy reads the present, which the holdout from ${vault.from()} hides; holdout_status shows it.`);
+      const economy = await runOne(packs, { name: "world_series", arguments: { country: decodeURIComponent(String(country)), measure: "all" } }, {}, [], gov);
+      return json(uri.href, fit(economy, null, RESULT_CHARS));
+    });
+  // The Fed today, to attach: what fed funds futures price for its next meetings, its footprint in the money markets, and
+  // the nowcasts of this quarter's growth and of the inflation not yet published, and what the Board said lately. A part
+  // whose source fails says so.
+  const FED_PARTS = [["rate_expectations", { meetings: 4 }], ["fed_liquidity", {}], ["money_markets", {}], ["inflation_nowcast", {}], ["gdp_nowcast", { quarters: 4 }], ["fed_speeches", { limit: 5 }]];
+  if (packs.includes("markets") && FED_PARTS.every(([n]) => BY_NAME.has(n))) server.registerResource("fed", "canli://fed", { title: "The Fed today", description: "What fed funds futures price for the Fed's next four meetings, its repo facilities, holdings, reserves and net liquidity, the money markets around them (repo by segment against its rates, money funds, dealers), the nowcasts of this quarter's growth and of the inflation not yet published, and the Board's latest speeches and releases, each from its source.", mimeType: "application/json" },
+    async (uri) => {
+      if (vault?.until()) throw new Error(`canli://fed reads the present, which the holdout from ${vault.from()} hides; holdout_status shows it.`);
+      const parts = await Promise.all(FED_PARTS.map(([name, args]) => runOne(packs, { name, arguments: args }, {}, [], gov).catch((err) => ({ error: err.message }))));
+      return json(uri.href, fit(Object.fromEntries(FED_PARTS.map(([name], i) => [name, parts[i]])), null, RESULT_CHARS));
+    });
   server.registerResource("catalog", "canli://catalog", { title: "Tool catalog", description: "Every tool: name, pack and title.", mimeType: "application/json" },
     (uri) => json(uri.href, { tools: ENTRIES.filter((e) => packs.includes(e.pack)).length, columns: ["name", "pack", "title"], rows: ENTRIES.filter((e) => packs.includes(e.pack)).map((e) => [e.name, e.pack, e.title]) }));
   server.registerResource("packs", "canli://packs", { title: "Packs", description: "Each pack: its source package and version, tool count, network and disk use, and renamed or omitted tools.", mimeType: "application/json" },
