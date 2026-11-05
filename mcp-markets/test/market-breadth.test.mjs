@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { across, marketBreadth, memberOn, returns } from "../src/market-breadth.mjs";
+import { across, closed, marketBreadth, memberOn, returns } from "../src/market-breadth.mjs";
 import { createSession, NotFound } from "../src/sources.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
 
@@ -51,4 +51,22 @@ test("indexes it does not read, sectors outside the S&P 500, and prices turned o
   await assert.rejects(run({ index: "Nikkei" }), NotFound);
   await assert.rejects(run({ index: "Dow", by_sector: true }), /by_sector splits the S&P 500/);
   await assert.rejects(run({}, { CANLI_KEYLESS_PRICES: "0" }), /CANLI_KEYLESS_PRICES=0/);
+});
+
+test("a quote's price stands in for a close only once its session has ended", () => {
+  const at = (iso) => Date.parse(iso) / 1000;
+  const period = (day) => ({ regular: { start: at(`${day}T14:30:00Z`), end: at(`${day}T21:00:00Z`) } });
+  // Mid-session on 5 November, at the close on 4 November, and after hours with the period already on the next day.
+  assert.equal(closed({ regularMarketTime: at("2026-11-05T18:00:00Z"), currentTradingPeriod: period("2026-11-05"), gmtoffset: -18000 }), false);
+  assert.equal(closed({ regularMarketTime: at("2026-11-04T21:00:00Z"), currentTradingPeriod: period("2026-11-04"), gmtoffset: -18000 }), true);
+  assert.equal(closed({ regularMarketTime: at("2026-11-04T21:00:00Z"), currentTradingPeriod: period("2026-11-05"), gmtoffset: -18000 }), true);
+  assert.equal(closed({ regularMarketTime: at("2026-07-01T19:00:00Z"), gmtoffset: -14400 }), false);
+  assert.equal(closed({ regularMarketTime: at("2026-07-01T20:00:00Z"), gmtoffset: -14400 }), true);
+});
+
+test("each share is of the members with closes enough for its average, and names are looked up safely", async () => {
+  const x = across([memberOn(up, 250), memberOn(up.slice(0, 120), 119), memberOn(down, 250)]);
+  assert.deepEqual([x.members, x.above_200d, x.with_200d, x.pct_above_200d, x.above_50d, x.with_50d, x.pct_above_50d], [3, 1, 2, 50, 2, 3, 66.7]);
+  await assert.rejects(run({ index: "constructor" }), NotFound);
+  assert.equal((await run({ index: "Dow Jones Industrial Average" })).through, "DIA");
 });

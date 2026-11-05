@@ -7,9 +7,9 @@
 import { z } from "zod";
 
 import { dailyHoldings } from "./funds.mjs";
-import { getJson, NotFound } from "./sources.mjs";
+import { getJson, NotFound, own } from "./sources.mjs";
 
-const INDEXES = { "s&p 500": "SPY", "sp 500": "SPY", spx: "SPY", spy: "SPY", "s&p 400": "MDY", "s&p midcap 400": "MDY", midcap: "MDY", mdy: "MDY", dow: "DIA", "dow jones": "DIA", djia: "DIA", dia: "DIA" };
+const INDEXES = { "s&p 500": "SPY", "sp 500": "SPY", spx: "SPY", spy: "SPY", "s&p 400": "MDY", "s&p midcap 400": "MDY", midcap: "MDY", mdy: "MDY", dow: "DIA", "dow jones": "DIA", "dow jones industrial average": "DIA", djia: "DIA", dia: "DIA" };
 // The Select Sector SPDRs split the S&P 500 by GICS sector.
 const SECTORS = { XLK: "Information Technology", XLF: "Financials", XLV: "Health Care", XLE: "Energy", XLI: "Industrials", XLY: "Consumer Discretionary", XLP: "Consumer Staples", XLU: "Utilities", XLB: "Materials", XLRE: "Real Estate", XLC: "Communication Services" };
 const SPARK = (symbols) => `https://query1.finance.yahoo.com/v7/finance/spark?symbols=${encodeURIComponent(symbols.join(","))}&range=1y&interval=1d`;
@@ -26,8 +26,16 @@ const pct = (n, of) => (of ? round((100 * n) / of) : null);
 const median = (xs) => { const s = xs.filter(Number.isFinite).sort((a, b) => a - b); return s.length ? (s.length % 2 ? s[(s.length - 1) / 2] : (s[s.length / 2 - 1] + s[s.length / 2]) / 2) : null; };
 const yahoo = (ticker) => ticker.replace(/\./g, "-");
 
+// Whether the quote's regular session has ended: its trading period's end when that is the quote's own day (after the
+// close the period still describes it), or else 16:00 in New York. During the session its price is live, not a close.
+export function closed(m) {
+  const end = m.currentTradingPeriod?.regular?.end, day = (s) => new Date(s * 1000).toISOString().slice(0, 10);
+  if (end && day(end) === day(m.regularMarketTime)) return m.regularMarketTime >= end;
+  return (((m.regularMarketTime + (m.gmtoffset ?? -18000)) % 86400) + 86400) % 86400 >= 16 * 3600;
+}
+
 // Each member's daily closes over the past year, twenty to a request. Until the day's bar is filled in, the latest
-// session's close is the quote's regular market price, stamped at the close.
+// session's close is the quote's regular market price, once that session has closed; a session still trading is left out.
 async function yearOfCloses(session, tickers) {
   const out = new Map(), batches = [];
   for (let i = 0; i < tickers.length; i += 20) batches.push(tickers.slice(i, i + 20));
@@ -39,7 +47,7 @@ async function yearOfCloses(session, tickers) {
           const r = x?.response?.[0], ts = r?.timestamp ?? [], close = r?.indicators?.quote?.[0]?.close ?? [], m = r?.meta ?? {};
           // US sessions open at 13:30 or 14:30 UTC and close by 21:00, so a bar's UTC date is its session's.
           const rows = ts.map((t, i) => [new Date(t * 1000).toISOString().slice(0, 10), close[i]]);
-          if (rows.length && rows.at(-1)[1] == null && m.regularMarketPrice > 0 && m.regularMarketTime && new Date(m.regularMarketTime * 1000).toISOString().slice(0, 10) === rows.at(-1)[0]) rows.at(-1)[1] = m.regularMarketPrice;
+          if (rows.length && rows.at(-1)[1] == null && m.regularMarketPrice > 0 && m.regularMarketTime && closed(m) && new Date(m.regularMarketTime * 1000).toISOString().slice(0, 10) === rows.at(-1)[0]) rows.at(-1)[1] = m.regularMarketPrice;
           const kept = rows.filter(([, v]) => Number.isFinite(v) && v > 0);
           if (kept.length) out.set(x.symbol, kept);
         }
@@ -71,8 +79,9 @@ export function across(list) {
   const above50 = list.filter((x) => x.above50).length, above200 = list.filter((x) => x.above200).length;
   return {
     members: list.length,
-    above_50d: above50, pct_above_50d: pct(above50, known("above50").length),
-    above_200d: above200, pct_above_200d: pct(above200, known("above200").length),
+    // Each share is of the members with closes enough for that average.
+    above_50d: above50, with_50d: known("above50").length, pct_above_50d: pct(above50, known("above50").length),
+    above_200d: above200, with_200d: known("above200").length, pct_above_200d: pct(above200, known("above200").length),
     advancers: list.filter((x) => x.move > 0).length, decliners: list.filter((x) => x.move < 0).length, unchanged: list.filter((x) => x.move === 0).length,
     new_highs: list.filter((x) => x.newHigh).length, new_lows: list.filter((x) => x.newLow).length,
     median_from_high_pct: round(median(list.map((x) => x.fromHigh))),
@@ -101,7 +110,7 @@ export async function marketBreadth(session, args) {
   const a = breadthInput.parse(args);
   if (session.env?.CANLI_KEYLESS_PRICES === "0") throw new Error("Breadth needs each member's prices, which are off on this server (CANLI_KEYLESS_PRICES=0). On the hosted server, run the local one: npx -y canli-mcp.");
   const asked = String(a.index ?? "S&P 500").trim();
-  const etf = INDEXES[asked.toLowerCase().replace(/\s+index$/, "").replace(/\s+/g, " ")] ?? (SECTORS[asked.toUpperCase()] ? asked.toUpperCase() : null);
+  const etf = own(INDEXES, asked.toLowerCase().replace(/\s+index$/, "").replace(/\s+/g, " ")) ?? (own(SECTORS, asked.toUpperCase()) ? asked.toUpperCase() : null);
   if (!etf) throw new NotFound(`market_breadth reads the S&P 500, the S&P 400, the Dow and the eleven Select Sector SPDRs (${Object.keys(SECTORS).join(", ")}); "${asked}" is not one of them.`);
   if (a.by_sector && etf !== "SPY") throw new Error("by_sector splits the S&P 500; for one sector, name its Select Sector SPDR as the index (XLK, XLF...).");
   const holdings = await dailyHoldings(session, etf, 5000);
@@ -127,11 +136,11 @@ export async function marketBreadth(session, args) {
   const top10 = holdings.top_10_weight;
   const name = holdings.index, dow = etf === "DIA";
   const summary = [
-    `On ${session0}, ${latest.above_200d} of the ${current.length} ${name} members priced (${latest.pct_above_200d}%) closed above their 200-day average and ${latest.above_50d} (${latest.pct_above_50d}%) above their 50-day; ${latest.advancers} rose and ${latest.decliners} fell${latest.unchanged ? ` (${latest.unchanged} unchanged)` : ""}; ${latest.new_highs} closed at a 52-week high and ${latest.new_lows} at a 52-week low.`,
+    `On ${session0}, ${latest.above_200d} of the ${latest.with_200d} ${name} members ${latest.with_200d === current.length ? "priced" : "with 200 sessions of closes"} (${latest.pct_above_200d}%) closed above their 200-day average and ${latest.above_50d}${latest.with_50d === latest.with_200d ? "" : ` of ${latest.with_50d}`} (${latest.pct_above_50d}%) above their 50-day; ${latest.advancers} rose and ${latest.decliners} fell${latest.unchanged ? ` (${latest.unchanged} unchanged)` : ""}; ${latest.new_highs} closed at a 52-week high and ${latest.new_lows} at a 52-week low.`,
     `The typical member closed ${Math.abs(latest.median_from_high_pct)}% below its 52-week closing high; ${latest.down_20pct_from_high} (${pct(latest.down_20pct_from_high, current.length)}%) are 20% or more below theirs.`,
   ];
   const [yr, mo] = [rets.find((r) => r[0] === "year"), rets.find((r) => r[0] === "month")];
-  if (yr[1] != null) summary.push(`Over the past year the average member returned ${yr[1]}% and the index, weighted ${dow ? "by share price as the Dow is" : "by size"}, about ${yr[2]}%; over the month ${mo[1]}% against ${mo[2]}%.${top10 != null && !dow ? ` The ten largest members are ${round(top10 * 100)}% of the index.` : ""}`);
+  if (yr[1] != null) summary.push(`Over the past year the average member returned ${yr[1]}%${yr[2] != null ? ` and the index, weighted ${dow ? "by share price as the Dow is" : "by size"}, about ${yr[2]}%` : ""}${mo[1] != null ? `; over the month ${mo[1]}%${mo[2] != null ? ` against ${mo[2]}%` : ""}` : ""}.${top10 != null && !dow ? ` The ten largest members are ${round(top10 * 100)}% of the index.` : ""}`);
   if (daily.length > 1) summary.push(`${daily.length - 1} sessions earlier (${daily[0][0]}), ${daily[0][2]}% were above their 200-day average and ${daily[0][1]}% above their 50-day.`);
   let sectors = null;
   if (a.by_sector) {
@@ -155,11 +164,11 @@ export async function marketBreadth(session, args) {
     returns: { columns: ["period", "average_member_pct", "index_weighted_pct", "members_with_prices"], rows: rets },
     daily: { columns: ["date", "pct_above_50d", "pct_above_200d", "advancers", "decliners"], rows: daily },
     ...(sectors ? { sectors } : {}),
-    reading: "Breadth across the index's members on the latest session: the share closing above their 50- and 200-day averages, how many rose and fell, closes at a 52-week high or low, and the median distance below a 52-week closing high. returns sets the average member's return beside the index's own, rebuilt from today's weights; daily gives the shares above each average for each recent session.",
+    reading: "Breadth across the index's members on the latest session: the share closing above their 50- and 200-day averages, how many rose and fell, closes at a 52-week high or low, and the median distance below a 52-week closing high. returns sets the average member's return beside the index's own, rebuilt from the shares the fund holds; daily gives the shares above each average for each recent session.",
     source: `${holdings.source} (members and weights); ${SPARK(["..."]).replace("%2E%2E%2E", "<members>")} (daily closes, Yahoo Finance)`,
     limits: [
       "Computed here from each member's daily closes (Yahoo Finance's quotes, no key; CANLI_KEYLESS_PRICES=0 turns them off) and State Street's holdings for the date shown. Averages and highs are of closing prices, and today's members stand in for every past day, so a company added after rising counts as if it had always been a member.",
-      `The index's own return is rebuilt from the shares the fund holds and each member's price change. On 4 November 2026 it was within 0.1 points of SPY's own price change over the day and the month, and about a point above it over the year, as members added during the year bring their gains with them; the average member was within a point of the equal-weight RSP's.${current.length < listed.length ? ` ${listed.length - current.length} of ${listed.length} members had no price for ${session0} and are left out.` : ""}`,
+      `The index's own return is rebuilt from the shares the fund holds and each member's price change. Checked on 4 November 2026: the rebuilt Dow matched the index itself over the day and the month, and the rebuilt S&P 500 was within 0.1 points of SPY's price change over them (about a point above it over the year, as members added during the year bring their gains with them). A session still trading is left out until it closes.${current.length < listed.length ? ` ${listed.length - current.length} of ${listed.length} members had no price for ${session0} and are left out.` : ""}`,
       "Not investment advice.",
     ],
   };
