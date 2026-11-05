@@ -196,10 +196,15 @@ async function nameIndex(session) {
     const { status, json } = await referenceJson(session, "/api/v1/company-names.json", "company-names.json", MAX_NAMES_BYTES, "The company name index");
     if (status >= 400) throw new Error(`The company name index returned HTTP ${status}.`);
     const cik10 = (cik) => String(cik).padStart(10, "0");
+    // The names the SEC's ticker file gives a company where they differ from the reference's: a company
+    // renamed since the reference was captured is still found by its new name (Here Group Ltd, which the
+    // reference names QuantaSing Group Limited). An index without them still works.
+    const other = new Map((Array.isArray(json?.other_names?.rows) ? json.other_names.rows : []).map(([cik, list]) => [cik10(cik), Array.isArray(list) ? list.map(String) : []]));
     session.names = {
       companies: (Array.isArray(json?.rows) ? json.rows : []).map(([cik, name, tickers]) => {
         const words = nameWords(name);
-        return { cik: cik10(cik), name: String(name), tickers: Array.isArray(tickers) ? tickers : [], words, key: words.join("") };
+        const aliases = (other.get(cik10(cik)) ?? []).map((alias) => { const w = nameWords(alias); return { name: alias, words: w, key: w.join("") }; });
+        return { cik: cik10(cik), name: String(name), tickers: Array.isArray(tickers) ? tickers : [], words, key: words.join(""), ...(aliases.length ? { aliases } : {}) };
       }),
       outside: new Map((Array.isArray(json?.outside?.rows) ? json.outside.rows : []).map(([ticker, cik, name]) => [String(ticker), { ticker: String(ticker), cik: cik10(cik), name: String(name) }])),
       captured: json?.source?.captured ?? null,
@@ -235,10 +240,11 @@ export async function findCompanies(session, query, limit = 8) {
   const names = await nameIndex(session);
   const found = new Map();
   let widest = 6;
-  const add = (c, level) => {
+  // via: the other name a company matched by, when its own name matched less well (or not at all).
+  const add = (c, level, via) => {
     if (level > widest) return;
     const prior = found.get(c.cik);
-    if (!prior || level < prior.level) found.set(c.cik, { c, level });
+    if (!prior || level < prior.level) found.set(c.cik, { c, level, via });
   };
   const qWords = nameWords(text);
   const qKey = qWords.join("");
@@ -249,11 +255,15 @@ export async function findCompanies(session, query, limit = 8) {
     if (c.tickers.includes(ticker) || c.tickers.includes(ticker.replace(/\./g, "-")) || c.tickers.includes(ticker.replace(/-/g, "."))) add(c, 0);
     if (cik && c.cik === cik) add(c, 1);
     if (!qKey) return;
-    if (c.key === qKey) add(c, 2);
-    else if (holderKey && c.key === holderKey) add(c, 3);
-    else if (qWords.every((w, i) => c.words[i] === w)) add(c, 4);
-    else if (qWords.every((w) => c.words.includes(w))) add(c, 5);
-    else if (qKey.length >= 4 && c.key.includes(qKey)) add(c, 6);
+    // The reference's name first, so at an equal level it is the one reported.
+    for (const n of [c, ...(c.aliases ?? [])]) {
+      const via = n === c ? undefined : n.name;
+      if (n.key === qKey) add(c, 2, via);
+      else if (holderKey && n.key === holderKey) add(c, 3, via);
+      else if (qWords.every((w, i) => n.words[i] === w)) add(c, 4, via);
+      else if (qWords.every((w) => n.words.includes(w))) add(c, 5, via);
+      else if (qKey.length >= 4 && n.key.includes(qKey)) add(c, 6, via);
+    }
   };
   for (const c of names.companies) look(c);
   // Companies outside this release, read live from the SEC, when nothing here is clearly the one
@@ -278,9 +288,9 @@ export async function findCompanies(session, query, limit = 8) {
   // since a question about the other one would otherwise get this one's figures without a word.
   const alike = pick && tied.length > 1 ? tied.filter((r) => r !== pick).map(({ c }) => ({ cik: c.cik, name: c.name, tickers: c.tickers })) : [];
   return {
-    matches: ranked.slice(0, limit).map(({ c, level }) => ({ cik: c.cik, name: c.name, tickers: c.tickers, match: MATCH_LEVELS[level], ...(c.outside ? { read_live_from_sec: true } : {}) })),
+    matches: ranked.slice(0, limit).map(({ c, level, via }) => ({ cik: c.cik, name: c.name, tickers: c.tickers, match: MATCH_LEVELS[level], ...(via ? { matched_name: via } : {}), ...(c.outside ? { read_live_from_sec: true } : {}) })),
     total: ranked.length,
-    resolved: pick ? { cik: pick.c.cik, name: pick.c.name, match: MATCH_LEVELS[pick.level], ...(pick.c.outside ? { read_live_from_sec: true } : {}), ...(alike.length ? { also_matching: alike } : {}) } : null,
+    resolved: pick ? { cik: pick.c.cik, name: pick.c.name, match: MATCH_LEVELS[pick.level], ...(pick.via ? { matched_name: pick.via } : {}), ...(pick.c.outside ? { read_live_from_sec: true } : {}), ...(alike.length ? { also_matching: alike } : {}) } : null,
     outside,
     captured: names.captured,
   };
@@ -312,10 +322,11 @@ export async function resolveCompany(session, company) {
     const note = [found.resolved.match === "same_name_as_ticker_holder" ? `${heldBy}; the covered filer with the same name was used.` : null,
       found.resolved.match === "name_start" && /^[A-Z]{1,5}$/.test(text) ? `${text} is not a current ticker in the reference, so it was read as the start of this company's name; a company's former ticker is not looked up.` : null,
       found.resolved.read_live_from_sec ? `${found.resolved.name} is outside the Canli company reference, so its figures are read live from the SEC.` : null,
+      found.resolved.matched_name ? `Matched by ${found.resolved.matched_name}, the name the SEC's ticker file gives CIK ${found.resolved.cik}; the Canli company reference names it ${found.resolved.name}.` : null,
       alike ? `Also named "${text}": ${alike}. This is ${found.resolved.name} (CIK ${found.resolved.cik}), the one with a current ticker; pass another CIK as company for a different filer, such as a former company of that name.` : null].filter(Boolean).join(" ") || undefined;
     return { cik: found.resolved.cik, ticker: null, matched: { query: text, by: found.resolved.match, ...(note ? { note } : {}) } };
   }
-  const options = found.matches.map((m) => `${m.name} (CIK ${m.cik}${m.tickers.length ? `, ${m.tickers.join("/")}` : ""})`).join("; ");
+  const options = found.matches.map((m) => `${m.name} (CIK ${m.cik}${m.tickers.length ? `, ${m.tickers.join("/")}` : ""}${m.matched_name ? `, SEC name ${m.matched_name}` : ""})`).join("; ");
   if (options) throw new Error(`${heldBy ? `${heldBy}. ` : ""}"${text}" matches ${found.total} companies; pass one CIK as company: ${options}.`);
   throw new Error(`${heldBy ? `${heldBy}. ` : ""}"${text}" is not a current ticker or a company name in the Canli company reference. Former tickers are not listed: find_company searches by name, and the SEC CIK always works.`);
 }
@@ -1268,10 +1279,11 @@ export async function toolFindCompany(session, args) {
     total: found.total,
     columns: ["cik", "name", "tickers", "match"],
     rows: found.matches.map((m) => [m.cik, m.name, m.tickers, m.match]),
+    ...(found.matches.some((m) => m.matched_name) ? { matched_by_other_name: found.matches.filter((m) => m.matched_name).map((m) => ({ cik: m.cik, sec_name: m.matched_name })) } : {}),
     ...(found.outside ? { ticker_holder: { ...found.outside, in_reference: false } } : {}),
     tickers_as_of: found.captured,
     next: found.resolved ? `Every other tool takes "${query}" as company and reads CIK ${found.resolved.cik}.` : "Pass one cik above as company to any other tool.",
-    meaning: "match: ticker, cik, name (the same name once Inc, Corp and punctuation are ignored), same_name_as_ticker_holder (the SEC gives this ticker to a company outside the reference, named in ticker_holder; this covered filer has the same name), name_start, name_words or name_contains. resolved is the company the other tools use for this query; it is set only when one match is clearly best.",
+    meaning: "match: ticker, cik, name (the same name once Inc, Corp and punctuation are ignored), same_name_as_ticker_holder (the SEC gives this ticker to a company outside the reference, named in ticker_holder; this covered filer has the same name), name_start, name_words or name_contains. resolved is the company the other tools use for this query; it is set only when one match is clearly best. matched_by_other_name lists companies found by a name the SEC's ticker file gives them that differs from the reference's, such as a company renamed since the reference was captured.",
     limits: FIND_LIMITS,
   });
 }

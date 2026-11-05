@@ -53,15 +53,25 @@ export function buildCompanyNames({ names, tickerIndex, secBytes, admission, act
   });
   const sec = JSON.parse(secBytes);
   const outside = {};
+  const titles = {};
   for (const row of Array.isArray(sec) ? sec : Object.values(sec)) {
     const cik = String(row.cik_str).padStart(10, "0");
     const ticker = String(row.ticker).toUpperCase();
+    if (admission.companies[cik] && !excluded[cik] && String(row.title ?? "").trim()) (titles[cik] ??= new Set()).add(String(row.title).trim());
     if (!/^[A-Z0-9.\-]{1,10}$/.test(ticker) || (admission.companies[cik] && !excluded[cik]) || ticker in outside) continue;
     outside[ticker] = [ticker, Number(cik), String(row.title).trim()];
   }
+  // The SEC's names for a covered company that differ from the release's in more than case and
+  // punctuation: a company renamed since the release was captured (QuantaSing Group Limited is now
+  // Here Group Ltd) or a filer the catalog names after a co-registrant. Clients match them too.
+  const plain = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "");
+  const otherNames = covered.flatMap((cik) => {
+    const list = [...(titles[cik] ?? [])].filter((title) => plain(title) !== plain(names[cik])).sort();
+    return list.length ? [[Number(cik), list]] : [];
+  });
   return {
     schema: "canli.company-names.v1",
-    claim_boundary: "Names are the company names in this company reference release. Tickers are the SEC's ticker file on the captured date: a company that no longer trades has none, and a ticker can be reused after a delisting, so the CIK is the identity. outside lists tickers the SEC assigns to companies this release does not cover.",
+    claim_boundary: "Names are the company names in this company reference release. Tickers are the SEC's ticker file on the captured date: a company that no longer trades has none, and a ticker can be reused after a delisting, so the CIK is the identity. outside lists tickers the SEC assigns to companies this release does not cover. other_names lists the names the same SEC file gives a covered company where they differ from the release's name.",
     release_hash: activation.release_hash,
     admission: activation.admission.path,
     catalog_root: admission.catalog_root,
@@ -70,19 +80,29 @@ export function buildCompanyNames({ names, tickerIndex, secBytes, admission, act
     columns: ["cik", "name", "tickers"],
     rows,
     outside: { columns: ["ticker", "cik", "name"], rows: Object.values(outside).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)) },
+    other_names: { columns: ["cik", "names"], rows: otherNames },
   };
+}
+
+// The names a committed index already holds, for rebuilding it without the catalog objects at hand:
+// only an index built from the same release and catalog root is accepted.
+export function indexNames(prior, { admission, activation }) {
+  if (prior.catalog_root !== admission.catalog_root || prior.release_hash !== activation.release_hash) throw new Error("that name index was built from another release or catalog; use --objects");
+  return Object.fromEntries(prior.rows.map(([cik, name]) => [String(cik).padStart(10, "0"), name]));
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const arg = (name) => { const i = process.argv.indexOf(name); return i > 0 ? process.argv[i + 1] : undefined; };
   const objects = arg("--objects");
+  const namesFrom = arg("--names-from");
   const secPath = arg("--sec");
-  if (!objects || !secPath) throw new Error("usage: --objects <catalog objects dir> --sec <company_tickers.json>");
+  if ((!objects && !namesFrom) || !secPath) throw new Error("usage: (--objects <catalog objects dir> | --names-from <company-names.json of this release>) --sec <company_tickers.json>");
   const activation = JSON.parse(readFileSync(resolve(ROOT, "config/company-production-activation.json"), "utf8"));
   const admission = JSON.parse(readFileSync(resolve(ROOT, activation.admission.path), "utf8"));
   const tickerIndex = JSON.parse(readFileSync(resolve(ROOT, TICKERS), "utf8"));
-  const names = catalogNames(admission.catalog_root, (hash) => readFileSync(join(objects, `${hash}.json`)));
+  const names = objects ? catalogNames(admission.catalog_root, (hash) => readFileSync(join(objects, `${hash}.json`)))
+    : indexNames(JSON.parse(readFileSync(namesFrom, "utf8")), { admission, activation });
   const index = buildCompanyNames({ names, tickerIndex, secBytes: readFileSync(secPath), admission, activation });
   writeFileSync(resolve(ROOT, OUTPUT), `${JSON.stringify(index)}\n`);
-  console.log(`${OUTPUT}: ${index.count} companies (${index.rows.filter((r) => r[2].length).length} with tickers), ${index.outside.rows.length} tickers outside the release`);
+  console.log(`${OUTPUT}: ${index.count} companies (${index.rows.filter((r) => r[2].length).length} with tickers), ${index.outside.rows.length} tickers outside the release, ${index.other_names.rows.length} with other SEC names`);
 }

@@ -407,6 +407,21 @@ test("find_company: best match first, resolved only when one is clearly best, an
   await assert.rejects(toolFindCompany(s, { query: "" }), /find_company: query/);
 });
 
+test("a company renamed since the reference was captured is found by its new SEC name, and says so", async () => {
+  const { s } = session();
+  const here = out(await toolFindCompany(s, { query: "Here Group Limited" }));
+  assert.deepEqual(here.resolved, { cik: "0001932770", name: "QuantaSing Group Limited", match: "name", matched_name: "Here Group Ltd" });
+  assert.deepEqual(here.rows.map((r) => [r[0], r[3]]), [["0001932770", "name"], ["0000820318", "name_contains"]], "Coherent only holds the letters");
+  assert.deepEqual(here.matched_by_other_name, [{ cik: "0001932770", sec_name: "Here Group Ltd" }]);
+  const resolved = await resolveCompany(s, "Here Group");
+  assert.equal(resolved.cik, "0001932770");
+  assert.equal(resolved.matched.note, "Matched by Here Group Ltd, the name the SEC's ticker file gives CIK 0001932770; the Canli company reference names it QuantaSing Group Limited.");
+  // The reference's own name still resolves, and says nothing about another name.
+  const old = out(await toolFindCompany(s, { query: "QuantaSing" }));
+  assert.deepEqual([old.resolved.cik, old.resolved.matched_name, old.matched_by_other_name], ["0001932770", undefined, undefined]);
+  assert.equal((await resolveCompany(s, "HERE")).cik, "0001932770", "the ticker as before");
+});
+
 test("a snapshot whose hash does not match its record is refused", async () => {
   const { s } = session(files({ sha: "0".repeat(64) }));
   await assert.rejects(toolListConcepts(s, { company: "FIX" }), /does not match the SHA-256 its record publishes/);

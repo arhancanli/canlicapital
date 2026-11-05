@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
-import { buildCompanyNames, catalogNames } from "./build-company-names.mjs";
+import { buildCompanyNames, catalogNames, indexNames } from "./build-company-names.mjs";
 import { catalogHash } from "../api/_lib/company-catalog.js";
 
 const read = (p) => JSON.parse(readFileSync(new URL(`../${p}`, import.meta.url), "utf8"));
@@ -24,6 +24,24 @@ test("the name index is bound to the active release, its catalog and the ticker 
   assert.deepEqual(index.source, tickers.source);
   assert.deepEqual(index.columns, ["cik", "name", "tickers"]);
   assert.equal(index.count, index.rows.length);
+  assert.deepEqual(index.other_names.columns, ["cik", "names"]);
+});
+
+test("other_names: the SEC file's names for a covered company, only where they differ from the release's", () => {
+  const names = new Map(index.rows.map(([cik, name]) => [cik, name]));
+  const plain = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "");
+  let last = 0;
+  for (const [cik, list] of index.other_names.rows) {
+    assert.ok(cik > last, "in CIK order, once each");
+    last = cik;
+    assert.ok(names.has(cik), `${cik} is covered`);
+    assert.ok(Array.isArray(list) && list.length > 0, `${cik}`);
+    for (const name of list) assert.ok(name && name.trim() === name && plain(name) !== plain(names.get(cik)), `${cik}: ${name}`);
+  }
+  const other = new Map(index.other_names.rows);
+  assert.deepEqual(other.get(1932770), ["Here Group Ltd"], "renamed after the release was captured (QuantaSing Group Limited)");
+  assert.deepEqual(other.get(38777), ["FRANKLIN TEMPLETON INC"]);
+  assert.equal(other.get(320193), undefined, "Apple's names differ only in case and punctuation");
 });
 
 test("one row per covered company, in CIK order, each with a name", () => {
@@ -69,4 +87,16 @@ test("the builder checks every catalog object's hash and refuses a ticker index 
   const tickerIndex = { release_hash: "r", source: { sha256: "c".repeat(64) }, tickers: {} };
   const small = { companies: { "0000000001": {} }, catalog_root: hash };
   assert.throws(() => buildCompanyNames({ names: {}, tickerIndex, secBytes: Buffer.from("{}"), admission: small, activation: { release_hash: "r", admission: { path: "x" } } }), /is not the one/);
+});
+
+test("the builder lists the SEC file's other names, and rebuilds from a committed index only of the same release and catalog", () => {
+  const secBytes = Buffer.from(JSON.stringify({ 0: { cik_str: 1, ticker: "ONE", title: "ONE CO" }, 1: { cik_str: 2, ticker: "TWO", title: "Renamed Two Inc" }, 2: { cik_str: 3, ticker: "OUT", title: "Outside Co" } }));
+  const tickerIndex = { release_hash: "r", source: { sha256: catalogHash(secBytes) }, tickers: { ONE: "0000000001", TWO: "0000000002" } };
+  const admission = { companies: { "0000000001": {}, "0000000002": {} }, catalog_root: "root" };
+  const activation = { release_hash: "r", admission: { path: "x" } };
+  const built = buildCompanyNames({ names: { "0000000001": "One Co.", "0000000002": "Two Ltd" }, tickerIndex, secBytes, admission, activation });
+  assert.deepEqual(built.other_names, { columns: ["cik", "names"], rows: [[2, ["Renamed Two Inc"]]] }, "ONE CO is One Co. in other letters");
+  assert.deepEqual(built.outside.rows, [["OUT", 3, "Outside Co"]]);
+  assert.deepEqual(indexNames(built, { admission, activation }), { "0000000001": "One Co.", "0000000002": "Two Ltd" });
+  assert.throws(() => indexNames({ ...built, catalog_root: "another" }, { admission, activation }), /another release or catalog/);
 });
