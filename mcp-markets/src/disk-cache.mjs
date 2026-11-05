@@ -36,6 +36,9 @@ export function freshFor(url) {
   if (/^https:\/\/api\.imf\.org\/external\/sdmx\/3\.0\/data\/dataflow\/IMF\.STA\/COFER\//.test(url)) return 6 * HOUR;
   // Indeed's job postings files (up to 12 MB) are refreshed once a week.
   if (/^https:\/\/raw\.githubusercontent\.com\/hiring-lab\//.test(url)) return 6 * HOUR;
+  // The World Bank's Pink Sheet changes once a month; its page names the workbook's address.
+  if (/^https:\/\/www\.worldbank\.org\/en\/research\/commodity-markets$/.test(url)) return 6 * HOUR;
+  if (/^https:\/\/thedocs\.worldbank\.org\//.test(url)) return 12 * HOUR;
   // A trading day's Cboe statistics never change once published.
   if (/^https:\/\/cdn\.cboe\.com\/data\/us\/options\/market_statistics\/daily\/\d{4}-\d{2}-\d{2}_daily_options$/.test(url)) return 30 * DAY;
   // Workbooks read as a few tabs: GDPNow's (11 MB, updated after each release), State Street's daily holdings, the
