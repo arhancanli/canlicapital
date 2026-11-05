@@ -28,7 +28,7 @@ checks: `scripts/research/null-zoo/` in the open repository.
 | Negative skew | 0.088 | 0.088 | 0.051 | 0.054 | 0.056 | 0.001 | 0.053 |
 | Positive skew | 0.036 | 0.037 | 0.070 | 0.014 | 0.017 | 0.001 | 0.058 |
 | Volatility clustering (GARCH) | 0.046 | 0.050 | 0.048 | 0.024 | 0.026 | 0.000 | 0.048 |
-| Autocorrelated returns (AR(1)) | 0.200 | 0.059 | 0.201 | 0.132 | 0.027 | 0.002 | 0.171 |
+| Autocorrelated returns (AR(1) 0.2, a stress level) | 0.200 | 0.059 | 0.201 | 0.132 | 0.027 | 0.002 | 0.171 |
 | Two volatility regimes | 0.051 | 0.051 | 0.056 | 0.025 | 0.024 | 0.000 | 0.051 |
 | Correlated trials (one common factor) | 0.035 | 0.035 | 0.034 | 0.017 | 0.019 | 0.013 | 0.032 |
 
@@ -41,15 +41,20 @@ checks: `scripts/research/null-zoo/` in the open repository.
 | Negative skew | 0.556 | 0.564 | 0.451 | 0.461 | 0.466 | 0.079 | 0.423 |
 | Positive skew | 0.549 | 0.545 | 0.649 | 0.450 | 0.453 | 0.121 | 0.544 |
 | Volatility clustering (GARCH) | 0.544 | 0.546 | 0.544 | 0.444 | 0.445 | 0.104 | 0.476 |
-| Autocorrelated returns (AR(1)) | 0.603 | 0.358 | 0.604 | 0.508 | 0.268 | 0.071 | 0.544 |
+| Autocorrelated returns (AR(1) 0.2, a stress level) | 0.603 | 0.358 | 0.604 | 0.508 | 0.268 | 0.071 | 0.544 |
 | Two volatility regimes | 0.539 | 0.537 | 0.540 | 0.451 | 0.450 | 0.121 | 0.488 |
 | Correlated trials (one common factor) | 0.501 | 0.502 | 0.498 | 0.403 | 0.405 | 0.225 | 0.442 |
 
 ## What it shows
 
-- Autocorrelated returns break every best-of-N test that ignores them: luck-equivalent trials
-  rejected 0.200 and the Bonferroni haircut 0.132
-  of skill-less searches. Lo's correction brings luck-equivalent trials to 0.059.
+- Autocorrelated returns break every best-of-N test that ignores them. At a lag-one autocorrelation
+  of 0.2, a stress level, luck-equivalent trials rejected 0.200 and the Bonferroni
+  haircut 0.132 of skill-less searches; Lo's correction brings luck-equivalent
+  trials to 0.059. Smaller values matter too, because a best-of-20 cutoff sits far in the
+  tail: in a follow-up with 10000 searches per autocorrelation ([`/glassbox/research/null-zoo-v1-ar1-levels.json`](/glassbox/research/null-zoo-v1-ar1-levels.json)),
+  the one-sided Bonferroni haircut rejected 0.076 at 0.05 and 0.106 at 0.1, close to the
+  closed form (0.073 and 0.105), and Lo's correction held it at
+  0.055 and 0.050.
 - The deflated Sharpe ratio read as a test at 0.95 almost never calls noise skilled
   (0.000) but finds the skilled strategy in only 0.090
   of searches, against 0.533 for luck-equivalent trials. It subtracts the
