@@ -2,7 +2,9 @@
 // inflated when read, shared strings are resolved, and a worksheet comes back as rows of text, numbers as written.
 import { inflateRawSync } from "node:zlib";
 
-const unescape = (s) => s.replace(/<[^>]+>/g, "").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, "\"").replace(/&apos;/g, "'").replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n))).replace(/&amp;/g, "&");
+// XML's escapes undone once, &amp; last; a cell's text is the text of its <t> elements (a rich-text cell has several).
+const decode = (s) => s.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, "\"").replace(/&apos;/g, "'").replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n))).replace(/&amp;/g, "&");
+const textOf = (xml) => decode([...xml.matchAll(/<t(?:\s[^>]*[^/>])?>([\s\S]*?)<\/t>/g)].map((t) => t[1]).join(""));
 
 // Every entry of a zip archive by name, each read (stored or deflated) only when asked for.
 export function zipEntries(bytes, { maxText = 64 * 1024 * 1024 } = {}) {
@@ -40,11 +42,11 @@ export function xlsxRows(bytes, sheet = 1) {
 export function xlsxSheets(bytes, sheets) {
   const entries = zipEntries(bytes);
   const read = (name) => (entries.has(name) ? entries.get(name)().toString("utf8") : null);
-  const shared = [...(read("xl/sharedStrings.xml") ?? "").matchAll(/<si>([\s\S]*?)<\/si>/g)].map((m) => unescape([...m[1].matchAll(/<t\b[^>]*>([\s\S]*?)<\/t>/g)].map((t) => t[1]).join("")));
+  const shared = [...(read("xl/sharedStrings.xml") ?? "").matchAll(/<si>([\s\S]*?)<\/si>/g)].map((m) => textOf(m[1]));
   const workbook = read("xl/workbook.xml") ?? "", rels = read("xl/_rels/workbook.xml.rels") ?? "";
   const path = (sheet) => {
     if (typeof sheet === "number") return `xl/worksheets/sheet${sheet}.xml`;
-    const id = [...workbook.matchAll(/<sheet\b([^>]*)\/?>/g)].map((m) => m[1]).find((a) => unescape(/\bname="([^"]*)"/.exec(a)?.[1] ?? "") === sheet)?.match(/\br:id="([^"]+)"/)?.[1];
+    const id = [...workbook.matchAll(/<sheet\b([^>]*)\/?>/g)].map((m) => m[1]).find((a) => decode(/\bname="([^"]*)"/.exec(a)?.[1] ?? "") === sheet)?.match(/\br:id="([^"]+)"/)?.[1];
     const target = id ? [...rels.matchAll(/<Relationship\b([^>]*)\/?>/g)].map((m) => m[1]).find((a) => a.includes(`Id="${id}"`))?.match(/\bTarget="([^"]+)"/)?.[1] : null;
     return target ? `xl/${target.replace(/^\/?xl\//, "")}` : null;
   };
@@ -62,7 +64,7 @@ function sheetRows(xml, shared) {
     for (const c of r[1].matchAll(/<c\b([^>]*?)(?:\/>|>([\s\S]*?)<\/c>)/g)) {
       const ref = /\br="([A-Z]+)\d+"/.exec(c[1])?.[1], type = /\bt="([^"]+)"/.exec(c[1])?.[1];
       const v = /<v>([\s\S]*?)<\/v>/.exec(c[2] ?? "")?.[1];
-      const value = type === "s" ? shared[Number(v)] ?? "" : type === "inlineStr" ? unescape(/<is>([\s\S]*?)<\/is>/.exec(c[2] ?? "")?.[1] ?? "") : v == null ? "" : unescape(v);
+      const value = type === "s" ? shared[Number(v)] ?? "" : type === "inlineStr" ? textOf(/<is>([\s\S]*?)<\/is>/.exec(c[2] ?? "")?.[1] ?? "") : v == null ? "" : decode(v);
       row[ref ? [...ref].reduce((n, ch) => n * 26 + ch.charCodeAt(0) - 64, 0) - 1 : row.length] = value;
     }
     rows.push(Array.from(row, (x) => x ?? ""));

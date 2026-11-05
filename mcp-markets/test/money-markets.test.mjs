@@ -37,15 +37,15 @@ test("one part with its history: repo day by day, money funds month by month, de
 
 test("a source that is down leaves the others in the overview, and is named when its part is asked for", async () => {
   const base = replayFetch().fetchImpl;
-  const down = async (url, init) => (/markets\.newyorkfed\.org\/api\/pd\//.test(url) ? new Response("down", { status: 503 }) : base(url, init));
+  const down = async (url, init) => (/^https:\/\/markets\.newyorkfed\.org\/api\/pd\//.test(url) ? new Response("down", { status: 503 }) : base(url, init));
   const r = await run({}, down);
   assert.equal(r.dealers, undefined);
   assert.equal(r.summary.length, 3);
-  const ofrDown = async (url, init) => (/data\.financialresearch\.gov/.test(url) ? new Response("down", { status: 503 }) : base(url, init));
+  const ofrDown = async (url, init) => (/^https:\/\/data\.financialresearch\.gov\//.test(url) ? new Response("down", { status: 503 }) : base(url, init));
   await assert.rejects(run({ part: "money_funds" }, ofrDown), /HTTP 503/);
   await assert.rejects(run({ part: "dealers" }, down), /The New York Fed's primary dealer statistics came back empty/);
   // FRED down: SOFR is still said, without the Fed's rates rather than with made-up ones.
-  const fredDown = async (url, init) => (/fred\.stlouisfed\.org/.test(url) ? new Response("down", { status: 503 }) : base(url, init));
+  const fredDown = async (url, init) => (/^https:\/\/fred\.stlouisfed\.org\//.test(url) ? new Response("down", { status: 503 }) : base(url, init));
   const f = await run({}, fredDown);
   assert.equal(f.summary[0], "SOFR was 3.97% on 2026-11-03 on $3.26 trillion of trades.");
   assert.deepEqual(f.repo.fed, { iorb_pct: null, on_rrp_pct: null, as_of: "2026-11-03" });

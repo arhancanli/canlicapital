@@ -23,7 +23,7 @@ async function recording(url, init = {}) {
   await new Promise((r) => setTimeout(r, 300));
   const res = await fetch(url, { ...init, headers: { "User-Agent": PLAIN_USER_AGENT, ...(init.headers ?? {}) } });
   let text = await res.text();
-  if (res.ok && /api\.nasdaq\.com\/api\/calendar\/earnings/.test(url)) {
+  if (res.ok && /^https:\/\/api\.nasdaq\.com\/api\/calendar\/earnings\?/.test(url)) {
     const d = JSON.parse(text);
     if (d?.data?.rows) d.data.rows = d.data.rows.filter((r) => members.has(String(r.symbol).replace(/[^A-Z0-9]/gi, "").toUpperCase()));
     text = JSON.stringify(d);
