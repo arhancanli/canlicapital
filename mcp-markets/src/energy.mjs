@@ -13,7 +13,7 @@ import { getEncodedText, getText } from "./sources.mjs";
 const WPSR = "https://ir.eia.gov/wpsr/";
 const GAS = "https://ir.eia.gov/ngs/wngsr.json";
 // The weekly files sit behind one redirect to a signed address on the same host; the tables are Windows-1252.
-const release = (session, url, encoding = "utf-8") => getEncodedText(session, url, { encoding, redirectHost: /^ir\.eia\.gov$/ });
+const release = (session, url, encoding = "utf-8") => getEncodedText(session, url, { encoding });
 const HISTORY = (id) => `https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&s=${id}&f=W`;
 
 // The stocks shown, by table 4's names, with EIA's weekly series for the five-year comparison.

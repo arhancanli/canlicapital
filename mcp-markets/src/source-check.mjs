@@ -8,7 +8,7 @@ import { gunzipSync } from "node:zlib";
 
 import { z } from "zod";
 
-import { getText } from "./sources.mjs";
+import { getText, NotText, readBytes, REDIRECTS } from "./sources.mjs";
 
 // The hosts this pack reads (test/source-check.test.mjs checks every address in src/ is here), and the Canli
 // reference's snapshots, which canli-mcp's receipts name too.
@@ -46,7 +46,16 @@ async function readAgain(session, url) {
     if (!res.ok) throw new Error(`returned HTTP ${res.status}`);
     return sha(gunzipSync(Buffer.from(await res.arrayBuffer()), { maxOutputLength: 512 * 1024 * 1024 }));
   }
-  return sha(await getText(session, url, { fresh: true, maxBytes: 64 * 1024 * 1024 }));
+  const maxBytes = 64 * 1024 * 1024;
+  // A file behind a redirect (EIA's tables, OFAC's lists) or one that is not UTF-8 (a workbook, a zip, a table in
+  // Windows-1252) was recorded by its bytes; every other document by the UTF-8 text received.
+  if (Object.hasOwn(REDIRECTS, new URL(url).hostname)) return sha(await readBytes(session, url, { maxBytes }));
+  try {
+    return sha(await getText(session, url, { fresh: true, maxBytes }));
+  } catch (e) {
+    if (!(e instanceof NotText)) throw e;
+    return sha(await readBytes(session, url, { maxBytes }));
+  }
 }
 
 export async function sourceCheck(session, args) {

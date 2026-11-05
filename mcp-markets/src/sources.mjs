@@ -63,6 +63,7 @@ function fetchError(error, { url, secret, aborted, maxBytes, timeoutMs = TIMEOUT
     if (error.code === "HTTP" && (error.status === 401 || error.status === 403)) return new Error(`${host(url)} refused the key (HTTP ${error.status}).`);
     if (error.code === "HTTP" && error.status >= 500) return new Error(`${where} returned HTTP ${error.status}; the service may be busy (some throttle bursts of queries), so retry in a minute.`);
     if (error.code === "HTTP") return new Error(`${where} returned HTTP ${error.status}.`);
+    if (error.code === "INVALID_UTF8") return new NotText(`${where} is not UTF-8 text.`);
     if (error.code === "TOO_LARGE") return new Error(`${where} is larger than ${Math.round(maxBytes / 1048576)} MB; not read.`);
   }
   return new Error(`${where} could not be reached (${error?.message ?? error}).`);
@@ -141,6 +142,8 @@ export async function getText(session, rawUrl, { headers = {}, maxBytes = 16 * 1
 }
 
 export class NotFound extends Error {}
+// A document that is not UTF-8 text (a workbook, a zip, a table in Windows-1252), which only a read of its bytes takes.
+export class NotText extends Error {}
 
 // A lookup table's own entry for a key from a request, never an inherited property ("constructor").
 export const own = (map, key) => (Object.hasOwn(map, key) ? map[key] : undefined);
@@ -207,15 +210,16 @@ export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024, de
   return text;
 }
 
-// A public file that is not UTF-8 (Japan's Ministry of Finance) or that sits behind one redirect to a
-// host named here (OFAC's lists, to a signed storage address that is never shown or kept). Every
-// other fetch refuses redirects. Evidence is recorded under the stable address.
-export async function getEncodedText(session, url, { encoding = "utf-8", redirectHost = null, maxBytes = 16 * 1024 * 1024, timeoutMs = TIMEOUT_MS } = {}) {
-  const hit = session.cache.lookup(url, session.now());
-  if (hit) { witness(session, url, session.hashes.get(url)); return hit.text; }
+// The sources whose files sit behind one redirect, and the host each may lead to: EIA's weekly tables (to another
+// address on its own host) and OFAC's lists (to a signed storage address that is never shown or kept). Every other
+// read refuses redirects.
+export const REDIRECTS = Object.freeze({ "ir.eia.gov": /^ir\.eia\.gov$/, "sanctionslistservice.ofac.treas.gov": /^[\w-]+\.s3\.us-gov-west-1\.amazonaws\.com$/ });
+
+// A document's exact bytes, past every cache, following at most one redirect, to the host named for it.
+export async function readBytes(session, url, { redirectHost = own(REDIRECTS, new URL(url).hostname) ?? null, maxBytes = 16 * 1024 * 1024, timeoutMs = TIMEOUT_MS } = {}) {
+  if (isSec(url)) await secTurn(session);
   const signal = AbortSignal.timeout(timeoutMs);
-  const headers = { "User-Agent": PLAIN_USER_AGENT };
-  let bytes;
+  const headers = { "User-Agent": isSec(url) ? session.userAgent : PLAIN_USER_AGENT };
   try {
     let response = await session.fetchImpl(url, { signal, redirect: "manual", headers });
     if (response.status >= 300 && response.status < 400) {
@@ -224,10 +228,18 @@ export async function getEncodedText(session, url, { encoding = "utf-8", redirec
       if (!redirectHost || !redirectHost.test(target.hostname) || target.protocol !== "https:") throw new Error(`${url} redirected to an unexpected host.`);
       response = await session.fetchImpl(target.href, { signal, redirect: "error", headers });
     }
-    bytes = await readBoundedResponse(response, { signal, maxBytes, as: "bytes" });
+    return await readBoundedResponse(response, { signal, maxBytes, as: "bytes" });
   } catch (error) {
     throw error instanceof Error && /unexpected host/.test(error.message) ? error : fetchError(error, { url, aborted: signal.aborted, maxBytes, timeoutMs });
   }
+}
+
+// A public file that is not UTF-8 (Japan's Ministry of Finance, EIA's tables) or that sits behind one redirect
+// (REDIRECTS). Evidence is recorded under the stable address, by the bytes received.
+export async function getEncodedText(session, url, { encoding = "utf-8", redirectHost, maxBytes = 16 * 1024 * 1024, timeoutMs = TIMEOUT_MS } = {}) {
+  const hit = session.cache.lookup(url, session.now());
+  if (hit) { witness(session, url, session.hashes.get(url)); return hit.text; }
+  const bytes = await readBytes(session, url, { redirectHost, maxBytes, timeoutMs });
   const record = { sha256: createHash("sha256").update(bytes).digest("hex"), bytes: bytes.byteLength, retrieved_at: new Date(session.now()).toISOString() };
   session.hashes.set(url, record);
   witness(session, url, record);
