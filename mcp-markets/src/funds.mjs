@@ -215,7 +215,7 @@ const dailyUrl = (etf) => `https://www.ssga.com/library-content/products/fund-da
 const MONTH = { jan: "01", feb: "02", mar: "03", apr: "04", may: "05", jun: "06", jul: "07", aug: "08", sep: "09", oct: "10", nov: "11", dec: "12" };
 
 // An index's members from a fund's daily holdings file (State Street's spreadsheet), the cash and futures left out.
-async function dailyHoldings(session, etf, limit) {
+export async function dailyHoldings(session, etf, limit) {
   const url = dailyUrl(etf), indexName = DAILY_HOLDINGS[etf];
   const rows = JSON.parse(await getZipText(session, url, { decode: (bytes) => JSON.stringify(xlsxRows(bytes)) }));
   const head = rows.findIndex((r) => r[0] === "Name" && r.includes("Weight") && r.includes("Ticker"));

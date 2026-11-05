@@ -181,6 +181,7 @@ payrolls look like before the benchmark revision?".
 | `volatility_surface` | Implied volatility term structure, 25-delta skew and the smile | Cboe delayed quotes |
 | `futures_curve` | The VIX futures curve (and other Cboe futures) against the index: contango or backwardation | Cboe settlements |
 | `market_overview` | The market at a glance: US indices and the VIX, the eleven sectors ranked by the month, Treasury yields, the dollar and major currencies, oil, gas, gold, silver, copper, bitcoin, ether and the main markets abroad, each over a day, a week, a month, three months, the year to date and a year | Yahoo Finance chart data (no key) |
+| `market_breadth` | How many of the S&P 500's (or the S&P 400's, the Dow's, or one sector's) members take part: the share above their 50- and 200-day averages, risers and fallers, 52-week highs and lows, the median distance from the high, the average member against the index, recent sessions, by sector | State Street holdings, Yahoo Finance closes (no key) |
 | `price_history` | One-minute to monthly bars (minute bars for the last 30 to 60 days) for stocks in the US and abroad, currencies, futures, indices and crypto, adjusted, with dividends and splits, as columns | Yahoo Finance (no key), or Alpaca or Tiingo (your key) for US stocks |
 | `treasury_auctions` | How each Treasury auction went (yield, bid-to-cover, who bought) and which auctions come next | US Treasury Fiscal Data |
 | `federal_debt` | The US debt each business day, and the average rate the Treasury pays on it | US Treasury Fiscal Data |
