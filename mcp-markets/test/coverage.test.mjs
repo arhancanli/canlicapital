@@ -429,7 +429,7 @@ test("index_constituents on a past date: IVV's N-PORT for the quarter-end before
   const before = await F.indexConstituents(s, { index: "S&P 500", as_of: "2020-11-30", limit: 5000 });
   assert.deepEqual([before.requested_as_of, before.as_of, before.filed, before.members], ["2020-11-30", "2020-09-30", "2020-11-25", 505]);
   assert.equal(before.rows.some((x) => /tesla/i.test(x[0])), false, "not yet a member");
-  assert.ok(!calls.some((c) => /ssga\.com/.test(c.url)), "a past date never reads State Street's latest-day file");
+  assert.ok(!calls.some((c) => new URL(c.url).hostname === "www.ssga.com"), "a past date never reads State Street's latest-day file");
   const after = await F.indexConstituents(s, { index: "S&P 500", as_of: "2020-12-31", changes_from: "2020-11-30", limit: 3 });
   assert.deepEqual([after.as_of, after.filed, after.members, after.stock_weight_of_fund, after.top_10_weight], ["2020-12-31", "2021-02-25", 505, 0.9975, 0.2739]);
   assert.deepEqual(after.rows.map((x) => [x[0], x[5]]), [["Apple Inc", 0.066988], ["Microsoft Corp", 0.053121], ["Amazon.com Inc", 0.043877]]);
