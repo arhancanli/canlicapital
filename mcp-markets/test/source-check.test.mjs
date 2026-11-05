@@ -55,3 +55,25 @@ test("each document read again: same, changed, unreachable, or named and not fet
   assert.match(out.reading, /1 of the documents changed/);
   assert.ok(!fetched.some((u) => /attacker|tiingo|http:\/\/|POST/.test(u)), "nothing outside the sources is fetched");
 });
+
+test("a workbook and a file behind its one allowed redirect are read again by their bytes, as the tools recorded them", async () => {
+  const { getEncodedText, getZipText } = await import("../src/sources.mjs");
+  const book = "https://www.worldbank.org/content/dam/CMO-Historical-Data-Monthly.xlsx";
+  const table = "https://ir.eia.gov/wpsr/table1.csv", away = "https://ir.eia.gov/wpsr/table4.csv";
+  // Bytes that are not UTF-8: a zip's header, and a Windows-1252 en dash.
+  const files = new Map([[book, Buffer.from([0x50, 0x4b, 0x03, 0x04, 0x14, 0x00, 0xff, 0xfe, 0x80])], ["https://ir.eia.gov/wpsr/2026/table1.csv", Buffer.from("Crude oil \x96 stocks,1\n", "latin1")]]);
+  const fetchImpl = async (url) => {
+    if (url === table) return new Response(null, { status: 302, headers: { location: "/wpsr/2026/table1.csv" } });
+    if (url === away) return new Response(null, { status: 302, headers: { location: "https://elsewhere.example.com/table4.csv" } });
+    return files.has(url) ? new Response(files.get(url)) : new Response("down", { status: 500 });
+  };
+  const session = createSession({ fetchImpl, env: {}, now: () => Date.parse("2026-11-04T09:00:00Z"), sleep: async () => {} });
+  await getZipText(session, book, { decode: () => "tabs" });
+  await getEncodedText(session, table, { encoding: "windows-1252" });
+  const recorded = (url) => session.hashes.get(url).sha256;
+  const first = await sourceCheck(session, { sources: [{ url: book, sha256: recorded(book) }, { url: table, sha256: recorded(table) }, { url: away, sha256: recorded(table) }] });
+  assert.deepEqual(first.rows.map((r) => r[3].split(":")[0]), ["same", "same", "unreachable"]);
+  assert.match(first.rows[2][3], /redirected to an unexpected host/);
+  files.set(book, Buffer.from([0x50, 0x4b, 0x03, 0x04, 0x14, 0x00, 0xff, 0xfe, 0x81]));
+  assert.equal((await sourceCheck(session, { sources: [{ url: book, sha256: recorded(book) }] })).rows[0][3], "changed");
+});

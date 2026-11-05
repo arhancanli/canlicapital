@@ -34,7 +34,7 @@ function keyless(session) {
   if (/^(0|false|no)$/i.test(String(session.env.CANLI_KEYLESS_OPTIONS ?? ""))) throw new Error("Cboe's delayed option data is turned off (CANLI_KEYLESS_OPTIONS=0).");
 }
 
-async function chain(session, q) {
+export async function chain(session, q) {
   keyless(session);
   const s = cboeSymbol(q);
   let d;

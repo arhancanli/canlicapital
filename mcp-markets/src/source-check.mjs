@@ -8,14 +8,14 @@ import { gunzipSync } from "node:zlib";
 
 import { z } from "zod";
 
-import { getText } from "./sources.mjs";
+import { getText, NotText, readBytes, REDIRECTS } from "./sources.mjs";
 
 // The hosts this pack reads (test/source-check.test.mjs checks every address in src/ is here), and the Canli
 // reference's snapshots, which canli-mcp's receipts name too.
 export const HOSTS = new Set([
   "www.sec.gov", "data.sec.gov", "efts.sec.gov", "adviserinfo.sec.gov", "reports.adviserinfo.sec.gov", "files.adviserinfo.sec.gov", "api.adviserinfo.sec.gov",
   "query1.finance.yahoo.com", "finance.yahoo.com", "fc.yahoo.com", "api.llama.fi", "stablecoins.llama.fi", "www.cboe.com", "cdn-api.cboe.com",
-  "data-api.ecb.europa.eu", "www.finra.org", "api.finra.org", "fred.stlouisfed.org", "www.federalreserve.gov", "markets.newyorkfed.org",
+  "data-api.ecb.europa.eu", "www.finra.org", "api.finra.org", "fred.stlouisfed.org", "alfred.stlouisfed.org", "esmis.nal.usda.gov", "ticdata.treasury.gov", "ir.eia.gov", "www.eia.gov", "www.clevelandfed.org", "raw.githubusercontent.com", "files.zillowstatic.com", "econdata.s3-us-west-2.amazonaws.com", "www.ssga.com", "www.atlantafed.org", "www.financialresearch.gov", "data.financialresearch.gov", "www.newyorkfed.org", "cdn.cboe.com", "www.worldbank.org", "thedocs.worldbank.org", "www.bis.org", "www.federalreserve.gov", "markets.newyorkfed.org",
   "www.bankofengland.co.uk", "www.bankofcanada.ca", "www.mof.go.jp", "stats.bis.org", "sdmx.oecd.org", "data-explorer.oecd.org",
   "sanctionslistservice.ofac.treas.gov", "home.treasury.gov", "fiscaldata.treasury.gov", "api.fiscaldata.treasury.gov", "publicreporting.cftc.gov",
   "en.wikipedia.org", "wikimedia.org", "data.alpaca.markets", "clinicaltrials.gov", "api.fda.gov", "api.nhtsa.gov", "www.usaspending.gov", "api.usaspending.gov",
@@ -23,6 +23,7 @@ export const HOSTS = new Set([
   "banks.data.fdic.gov", "api.fdic.gov", "api.gleif.org", "api.openfigi.com", "api.gdeltproject.org", "api.coingecko.com", "api.kraken.com", "comtradeapi.un.org", "www.okx.com",
   "polymarket.com", "gamma-api.polymarket.com", "api.elections.kalshi.com", "portwatch.imf.org", "services9.arcgis.com", "filings.xbrl.org", "sourcify.dev",
   "api.tiingo.com", "cirrun.com", "canlicapital.com", "mba.tuck.dartmouth.edu", "www.deribit.com", "www.nyse.com", "disclosures-clerk.house.gov", "api.nasdaq.com", "www.nasdaq.com", "www.coingecko.com", "data.epa.gov", "ghgdata.epa.gov",
+  "api.bcb.gov.br", "api.beta.ons.gov.uk", "api.imf.org", "api.riksbank.se", "api.scb.se", "api.statistiken.bundesbank.de", "apisidra.ibge.gov.br", "app.norges-bank.no", "data.api.abs.gov.au", "data.bis.org", "data.ecb.europa.eu", "data.imf.org", "data.norges-bank.no", "data.snb.ch", "data.ssb.no", "dataexplorer.abs.gov.au", "ec.europa.eu", "edge.boi.gov.il", "ilostat.ilo.org", "sdmx.ilo.org", "sidra.ibge.gov.br", "www.boi.org.il", "www.bundesbank.de", "www.ons.gov.uk", "www.rba.gov.au", "www.riksbank.se", "www.ssb.no", "www.stat-search.boj.or.jp", "www.statistikdatabasen.scb.se", "www150.statcan.gc.ca", "www3.bcb.gov.br",
 ]);
 // An address that carries a key is the caller's, not a document's; it is never fetched.
 const KEYED = /[?&](api_?key|apikey|token|key|access_token|secret)=/i;
@@ -45,7 +46,16 @@ async function readAgain(session, url) {
     if (!res.ok) throw new Error(`returned HTTP ${res.status}`);
     return sha(gunzipSync(Buffer.from(await res.arrayBuffer()), { maxOutputLength: 512 * 1024 * 1024 }));
   }
-  return sha(await getText(session, url, { fresh: true, maxBytes: 64 * 1024 * 1024 }));
+  const maxBytes = 64 * 1024 * 1024;
+  // A file behind a redirect (EIA's tables, OFAC's lists) or one that is not UTF-8 (a workbook, a zip, a table in
+  // Windows-1252) was recorded by its bytes; every other document by the UTF-8 text received.
+  if (Object.hasOwn(REDIRECTS, new URL(url).hostname)) return sha(await readBytes(session, url, { maxBytes }));
+  try {
+    return sha(await getText(session, url, { fresh: true, maxBytes }));
+  } catch (e) {
+    if (!(e instanceof NotText)) throw e;
+    return sha(await readBytes(session, url, { maxBytes }));
+  }
 }
 
 export async function sourceCheck(session, args) {

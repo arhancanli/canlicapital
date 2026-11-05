@@ -4,11 +4,16 @@
 import { AsyncLocalStorage } from "node:async_hooks";
 import { Buffer } from "node:buffer";
 import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 import { inflateRawSync } from "node:zlib";
 
 import { BoundedCache } from "./bounded-cache.mjs";
 import { createDiskCache, freshFor } from "./disk-cache.mjs";
 import { readBoundedResponse, fetchBoundedText, ResponseReadError } from "./bounded-response.mjs";
+
+// A document kept on disk in a form a transform or decoder made is kept under the package's version, so an upgrade that
+// changes the form never reads an older one.
+const VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
 
 // SEC asks every client to identify itself with a contact; SEC_USER_AGENT replaces the default.
 // Other hosts get the plain product name: Treasury's servers hold any request whose User-Agent
@@ -58,6 +63,7 @@ function fetchError(error, { url, secret, aborted, maxBytes, timeoutMs = TIMEOUT
     if (error.code === "HTTP" && (error.status === 401 || error.status === 403)) return new Error(`${host(url)} refused the key (HTTP ${error.status}).`);
     if (error.code === "HTTP" && error.status >= 500) return new Error(`${where} returned HTTP ${error.status}; the service may be busy (some throttle bursts of queries), so retry in a minute.`);
     if (error.code === "HTTP") return new Error(`${where} returned HTTP ${error.status}.`);
+    if (error.code === "INVALID_UTF8") return new NotText(`${where} is not UTF-8 text.`);
     if (error.code === "TOO_LARGE") return new Error(`${where} is larger than ${Math.round(maxBytes / 1048576)} MB; not read.`);
   }
   return new Error(`${where} could not be reached (${error?.message ?? error}).`);
@@ -94,7 +100,8 @@ export async function getText(session, rawUrl, { headers = {}, maxBytes = 16 * 1
   if (!fresh && hit && (maxAgeMs === undefined || session.now() - hit.at < maxAgeMs)) { witness(session, key, session.hashes.get(key)); return parse(hit.text); }
   // Public data fetched in an earlier session, when still fresh for what it is.
   const keepsOnDisk = !fresh && session.disk && method === "GET" && !secret && !Object.keys(headers).length && freshFor(url) > 0;
-  const copy = keepsOnDisk ? await session.disk.read(cacheKey) : null;
+  const diskKey = transform ? `${cacheKey}@${VERSION}` : cacheKey;
+  const copy = keepsOnDisk ? await session.disk.read(diskKey) : null;
   const useCopy = () => {
     session.hashes.delete(key);
     session.hashes.set(key, copy.record);
@@ -128,12 +135,15 @@ export async function getText(session, rawUrl, { headers = {}, maxBytes = 16 * 1
   witness(session, key, record);
   if (transform) text = transform(text);
   const value = parse(text);
-  session.cache.set(cacheKey, { at: session.now(), text });
-  if (keepsOnDisk) session.disk.write(cacheKey, { at: session.now(), text, record });
+  // A fresh read (source_check's) is the raw document: kept, it would stand in for the form a transform makes.
+  if (!fresh) session.cache.set(cacheKey, { at: session.now(), text });
+  if (keepsOnDisk) session.disk.write(diskKey, { at: session.now(), text, record });
   return value;
 }
 
 export class NotFound extends Error {}
+// A document that is not UTF-8 text (a workbook, a zip, a table in Windows-1252), which only a read of its bytes takes.
+export class NotText extends Error {}
 
 // A lookup table's own entry for a key from a request, never an inherited property ("constructor").
 export const own = (map, key) => (Object.hasOwn(map, key) ? map[key] : undefined);
@@ -165,10 +175,19 @@ export function unzipFirst(bytes, { maxText = 64 * 1024 * 1024 } = {}) {
 }
 
 // decode turns the bytes into the text kept: the zip's first file by default, or another binary format's
-// text (a PDF's, for the House's transaction reports).
+// text (a PDF's, for the House's transaction reports, or a spreadsheet's tabs). A file fresh for a while (freshFor) is
+// also kept on disk as its decoded text, so a large workbook is not fetched again by the next session.
 export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024, decode = unzipFirst } = {}) {
   const hit = session.cache.lookup(url, session.now());
   if (hit) { witness(session, url, session.hashes.get(url)); return hit.text; }
+  const keepsOnDisk = session.disk && freshFor(url) > 0;
+  const copy = keepsOnDisk ? await session.disk.read(`${url}#decoded@${VERSION}`) : null;
+  if (copy && session.now() - copy.at < freshFor(url)) {
+    session.hashes.set(url, copy.record);
+    witness(session, url, copy.record);
+    session.cache.set(url, { at: session.now(), text: copy.text });
+    return copy.text;
+  }
   let bytes;
   for (let attempt = 0; ; attempt++) {
     if (isSec(url)) await secTurn(session);
@@ -187,18 +206,20 @@ export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024, de
   witness(session, url, record);
   const text = decode(bytes);
   session.cache.set(url, { at: session.now(), text });
+  if (keepsOnDisk) session.disk.write(`${url}#decoded@${VERSION}`, { at: session.now(), text, record });
   return text;
 }
 
-// A public file that is not UTF-8 (Japan's Ministry of Finance) or that sits behind one redirect to a
-// host named here (OFAC's lists, to a signed storage address that is never shown or kept). Every
-// other fetch refuses redirects. Evidence is recorded under the stable address.
-export async function getEncodedText(session, url, { encoding = "utf-8", redirectHost = null, maxBytes = 16 * 1024 * 1024, timeoutMs = TIMEOUT_MS } = {}) {
-  const hit = session.cache.lookup(url, session.now());
-  if (hit) { witness(session, url, session.hashes.get(url)); return hit.text; }
+// The sources whose files sit behind one redirect, and the host each may lead to: EIA's weekly tables (to another
+// address on its own host) and OFAC's lists (to a signed storage address that is never shown or kept). Every other
+// read refuses redirects.
+export const REDIRECTS = Object.freeze({ "ir.eia.gov": /^ir\.eia\.gov$/, "sanctionslistservice.ofac.treas.gov": /^[\w-]+\.s3\.us-gov-west-1\.amazonaws\.com$/ });
+
+// A document's exact bytes, past every cache, following at most one redirect, to the host named for it.
+export async function readBytes(session, url, { redirectHost = own(REDIRECTS, new URL(url).hostname) ?? null, maxBytes = 16 * 1024 * 1024, timeoutMs = TIMEOUT_MS } = {}) {
+  if (isSec(url)) await secTurn(session);
   const signal = AbortSignal.timeout(timeoutMs);
-  const headers = { "User-Agent": PLAIN_USER_AGENT };
-  let bytes;
+  const headers = { "User-Agent": isSec(url) ? session.userAgent : PLAIN_USER_AGENT };
   try {
     let response = await session.fetchImpl(url, { signal, redirect: "manual", headers });
     if (response.status >= 300 && response.status < 400) {
@@ -207,10 +228,18 @@ export async function getEncodedText(session, url, { encoding = "utf-8", redirec
       if (!redirectHost || !redirectHost.test(target.hostname) || target.protocol !== "https:") throw new Error(`${url} redirected to an unexpected host.`);
       response = await session.fetchImpl(target.href, { signal, redirect: "error", headers });
     }
-    bytes = await readBoundedResponse(response, { signal, maxBytes, as: "bytes" });
+    return await readBoundedResponse(response, { signal, maxBytes, as: "bytes" });
   } catch (error) {
     throw error instanceof Error && /unexpected host/.test(error.message) ? error : fetchError(error, { url, aborted: signal.aborted, maxBytes, timeoutMs });
   }
+}
+
+// A public file that is not UTF-8 (Japan's Ministry of Finance, EIA's tables) or that sits behind one redirect
+// (REDIRECTS). Evidence is recorded under the stable address, by the bytes received.
+export async function getEncodedText(session, url, { encoding = "utf-8", redirectHost, maxBytes = 16 * 1024 * 1024, timeoutMs = TIMEOUT_MS } = {}) {
+  const hit = session.cache.lookup(url, session.now());
+  if (hit) { witness(session, url, session.hashes.get(url)); return hit.text; }
+  const bytes = await readBytes(session, url, { redirectHost, maxBytes, timeoutMs });
   const record = { sha256: createHash("sha256").update(bytes).digest("hex"), bytes: bytes.byteLength, retrieved_at: new Date(session.now()).toISOString() };
   session.hashes.set(url, record);
   witness(session, url, record);
@@ -510,6 +539,22 @@ export async function fredCsv(session, id, { start, end } = {}) {
     out.push([d, v === "" || v === "." ? null : Number(v)]);
   }
   return { url: `https://fred.stlouisfed.org/series/${encodeURIComponent(id)}`, rows: out };
+}
+
+// A series as it was published on a date (ALFRED, FRED's archive of past releases): only what had been released by
+// then, at the values then shown, before any later revision. The column is named for the vintage it holds.
+export async function alfredCsv(session, id, asOf, { start, end } = {}) {
+  const url = `https://alfred.stlouisfed.org/graph/alfredgraph.csv?id=${encodeURIComponent(id)}&vintage_date=${asOf}${start ? `&cosd=${start}` : ""}${end ? `&coed=${end}` : ""}`;
+  const text = await getText(session, url, { maxBytes: 8 * 1024 * 1024 });
+  const head = text.slice(0, text.indexOf("\n"));
+  const vintage = /^observation_date,[A-Z0-9_]+_(\d{4})(\d{2})(\d{2})\s*$/i.exec(head);
+  if (!vintage) throw new NotFound(`ALFRED has no vintage of ${id} published by ${asOf} (the series may be newer than that date, or not kept in vintages).`);
+  const out = [];
+  for (const line of text.trim().split(/\r?\n/).slice(1)) {
+    const [d, v] = line.split(",");
+    out.push([d, v === "" || v === "." ? null : Number(v)]);
+  }
+  return { url: `https://alfred.stlouisfed.org/series?seid=${encodeURIComponent(id)}`, csv: url, vintage: `${vintage[1]}-${vintage[2]}-${vintage[3]}`, rows: out };
 }
 
 export async function fredTitle(session, id) {

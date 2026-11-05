@@ -15,12 +15,12 @@ async function connect() {
   return c;
 }
 
-test("one hundred and eight tools, byte-identical across launches, all read-only", async () => {
+test("one hundred and thirty-seven tools, byte-identical across launches, all read-only", async () => {
   const lists = [];
   for (let i = 0; i < 2; i++) { const c = await connect(); lists.push(JSON.stringify(await c.listTools())); await c.close(); }
   assert.equal(lists[0], lists[1]);
   const tools = JSON.parse(lists[0]).tools;
-  assert.deepEqual(tools.map((t) => t.name).sort(), ["analyst_history", "bank_financials", "bond_offerings", "buybacks", "comment_letters", "company_emissions", "company_events", "company_profile", "company_report", "comps", "compute_prices", "congress_trades", "consumer_complaints", "credit_cycle", "crypto_fundamentals", "crypto_markets", "crypto_options", "debt_profile", "dividend_history", "drug_pipeline", "earnings_calendar", "earnings_release", "economic_calendar", "economic_outlook", "economic_series", "enforcement_actions", "etf_profile", "european_filings", "event_study", "executive_pay", "explain_move", "exposure_map", "factor_returns", "fails_to_deliver", "federal_budget", "federal_contracts", "federal_debt", "federal_rules", "figure_trace", "filing_check", "filing_diff", "filing_drift", "filing_memory", "filing_sentiment", "filing_tables", "financial_cycle", "financial_statements", "fomc", "forensic_scores", "fund_holdings", "fund_portfolio", "funding_rates", "futures_curve", "futures_positioning", "guidance_record", "index_constituents", "insider_trades", "investment_advisers", "ipo_pipeline", "large_holders", "latest_filings", "latest_price", "legal_entity", "list_filings", "market_calendar", "market_hours", "market_movers", "market_overview", "mentions_trend", "news", "off_exchange_volume", "options_chain", "ownership_breadth", "page_attention", "planned_insider_sales", "portfolio_xray", "prediction_markets", "price_history", "private_offerings", "product_recalls", "read_filing", "reference_rates", "reverse_dcf", "sanctions_check", "scenario_risk", "screen_companies", "search_filings", "security_identifiers", "segment_revenue", "shareholder_returns", "shipping_activity", "short_interest", "source_check", "standardized_financials", "stock_snapshot", "technical_indicators", "token_check", "trade_flows", "trade_ticks", "treasury_auctions", "treasury_cash", "treasury_yields", "unusual_options", "verify_claims", "volatility_surface", "what_happened_next", "world_economy", "world_yields"]);
+  assert.deepEqual(tools.map((t) => t.name).sort(), ["analyst_history", "audit_signals", "bank_financials", "bond_offerings", "buybacks", "central_bank_speeches", "comment_letters", "commodity_prices", "company_emissions", "company_events", "company_profile", "company_report", "comps", "compute_prices", "congress_trades", "consumer_complaints", "consumer_expectations", "credit_cycle", "crop_outlook", "crypto_fundamentals", "crypto_markets", "crypto_options", "debt_profile", "dividend_history", "drug_pipeline", "earnings_calendar", "earnings_move", "earnings_release", "earnings_season", "economic_calendar", "economic_outlook", "economic_series", "energy_report", "enforcement_actions", "etf_profile", "european_filings", "event_study", "executive_pay", "explain_move", "exposure_map", "factor_returns", "fails_to_deliver", "fed_liquidity", "fed_speeches", "federal_budget", "federal_contracts", "federal_debt", "federal_rules", "figure_trace", "filing_check", "filing_diff", "filing_drift", "filing_memory", "filing_sentiment", "filing_tables", "financial_conditions", "financial_cycle", "financial_statements", "fomc", "forensic_scores", "fund_holdings", "fund_portfolio", "funding_rates", "futures_curve", "futures_positioning", "gdp_nowcast", "guidance_record", "housing_market", "index_constituents", "inflation_breakdown", "inflation_nowcast", "insider_trades", "investment_advisers", "ipo_pipeline", "job_postings", "labor_market", "large_holders", "latest_filings", "latest_price", "legal_entity", "list_filings", "lockup_calendar", "margin_debt", "market_breadth", "market_calendar", "market_hours", "market_movers", "market_overview", "mentions_trend", "money_markets", "news", "off_exchange_volume", "options_chain", "options_sentiment", "ownership_breadth", "page_attention", "planned_insider_sales", "portfolio_xray", "prediction_markets", "price_history", "private_offerings", "product_recalls", "rate_expectations", "read_filing", "recession_watch", "reference_rates", "release_check", "reserve_currencies", "reverse_dcf", "sanctions_check", "scenario_risk", "screen_companies", "search_filings", "security_identifiers", "segment_revenue", "shareholder_returns", "shipping_activity", "short_interest", "source_check", "standardized_financials", "state_economy", "stock_snapshot", "technical_indicators", "token_check", "trade_flows", "trade_ticks", "treasury_auctions", "treasury_cash", "treasury_holders", "treasury_yields", "unusual_options", "verify_claims", "volatility_surface", "what_happened_next", "world_economy", "world_series", "world_yields"]);
   for (const t of tools) {
     assert.equal(t.annotations.readOnlyHint, true, t.name);
     assert.equal(t.annotations.openWorldHint, true, t.name);
@@ -51,6 +51,33 @@ test("bad input and an unknown symbol come back as tool errors that say what to 
 // against the tool's output schema, so a mismatch fails here, not for a user. Arguments pin the dates
 // the fixtures were captured for (the spawned server runs on the real clock).
 const NEW_TOOL_CALLS = [
+  ["earnings_season", { since: "2026-10-27", until: "2026-11-04" }],
+  ["earnings_move", { company: "AAPL" }],
+  ["money_markets", {}],
+  ["market_breadth", { index: "Dow" }],
+  ["financial_conditions", {}],
+  ["labor_market", {}],
+  ["central_bank_speeches", { limit: 5 }],
+  ["commodity_prices", {}],
+  ["fed_speeches", { limit: 5 }],
+  ["inflation_breakdown", {}],
+  ["state_economy", { state: "TX" }],
+  ["recession_watch", {}],
+  ["options_sentiment", { days: 5 }],
+  ["margin_debt", {}],
+  ["consumer_expectations", {}],
+  ["gdp_nowcast", {}],
+  ["housing_market", {}],
+  ["reserve_currencies", {}],
+  ["job_postings", {}],
+  ["rate_expectations", {}],
+  ["inflation_nowcast", {}],
+  ["fed_liquidity", {}],
+  ["energy_report", { by_district: true }],
+  ["treasury_holders", { country: "China" }],
+  ["crop_outlook", { commodity: "corn" }],
+  ["world_series", { series: "imf:CPI/IND.CPI._T.YOY_PCH_PA_PT.M", periods: 3 }],
+  ["world_series", { country: "euro area", measure: "core inflation" }],
   ["factor_returns", { model: "carhart", start: "2025-01", end: "2025-06" }],
   ["treasury_cash", { flows: true }],
   ["federal_budget", {}],
@@ -105,6 +132,9 @@ const NEW_TOOL_CALLS = [
   ["standardized_financials", { companies: ["AAPL"], years: 3 }],
   ["financial_cycle", { countries: ["CA", "AU", "CN", "US", "AR"], periods: 4 }],
   ["bond_offerings", { company: "AAPL", years: 7, deals: 8 }],
+  ["release_check", { company: "751978", period: "2024-03-31" }],
+  ["audit_signals", { company: "1056358", signal: "auditor_change", limit: 2 }],
+  ["lockup_calendar", { company: "2077709" }],
 ];
 test("every tool this release adds answers over stdio within its output schema", async (t) => {
   const c = await connect(); t.after(() => c.close());
