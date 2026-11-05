@@ -96,7 +96,7 @@ export async function earningsSeason(session, args) {
   const largest = [...list].sort((x, y) => y.weight - x.weight).slice(0, 10);
   const signed = (x) => (x > 0 ? `+${x}` : `${x}`);
   const summary = [
-    `Of the S&P 500's ${companies} companies, ${t.reported} reported results between ${list[0].date} and ${list.at(-1).date}: ${t.beat_pct}% beat the consensus EPS estimate, ${round(100 - t.beat_pct - t.missed_pct)}% matched it and ${t.missed_pct}% missed (of ${t.with_consensus} with an estimate); the median surprise was ${signed(t.median_surprise_pct)}%.`,
+    `Of the S&P 500's ${companies} companies, ${t.reported} reported results between ${list[0].date} and ${list.at(-1).date}${t.with_consensus ? `: ${t.beat_pct}% beat the consensus EPS estimate, ${round(100 - t.beat_pct - t.missed_pct)}% matched it and ${t.missed_pct}% missed (of ${t.with_consensus} with an estimate)${t.median_surprise_pct != null ? `; the median surprise was ${signed(t.median_surprise_pct)}%` : ""}` : ", none with a consensus estimate to compare"}.`,
     `Of the ten largest that reported: ${largest.map((r) => `${r.ticker} ${r.surprise == null ? "no estimate" : `${signed(round(r.surprise))}%`}`).join(", ")}.`,
   ];
   const upcoming = [...due.values()].sort((x, y) => x.date.localeCompare(y.date) || y.weight - x.weight);

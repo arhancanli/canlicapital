@@ -26,6 +26,8 @@ test("each past release's move from the session before its reaction session, aft
   const closes = [100, 102, 99.96, 50, 50, 54];
   const rows = pastMoves([["2026-08-26", "Wednesday", "16:21", "after the close"], ["2026-05-20", "Wednesday", "08:00", "before the open"], ["2026-01-02", "Friday", "16:00", "after the close"]], dates, closes);
   assert.deepEqual(rows, [["2026-08-26", "after the close", "2026-08-27", 8], ["2026-05-20", "before the open", "2026-05-20", 2], ["2026-01-02", "after the close", null, null]]);
+  // The reaction session still trading: no move yet.
+  assert.deepEqual(pastMoves([["2026-08-26", "Wednesday", "16:21", "after the close"]], dates, closes, "2026-08-27"), [["2026-08-26", "after the close", null, null]]);
 });
 
 test("Apple's past reactions from its own releases and closes, and the options named when they cannot price the date", async () => {

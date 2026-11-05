@@ -45,11 +45,12 @@ export function resultsMove(after, before, asOf) {
 }
 
 // Each past release's move: from the close of the session before the reaction session to the reaction session's close.
-export function pastMoves(releases, dates, closes) {
+// A reaction session still trading (open, a day that has not closed yet) has no move yet.
+export function pastMoves(releases, dates, closes, open = null) {
   const at = (date) => dates.findIndex((d) => d >= date);
   return releases.map(([date, , , timing]) => {
     const i = at(afterClose(timing) ? plusDays(date, 1) : date);
-    if (i <= 0 || Date.parse(dates[i]) - Date.parse(date) > 5 * DAY) return [date, timing, null, null];
+    if (i <= 0 || Date.parse(dates[i]) - Date.parse(date) > 5 * DAY || dates[i] === open) return [date, timing, null, null];
     return [date, timing, dates[i], round((closes[i] / closes[i - 1] - 1) * 100)];
   });
 }
@@ -89,7 +90,9 @@ export async function earningsMove(session, args) {
   let moves = releases.map(([date, , , timing]) => [date, timing, null, null]);
   try {
     const p = await priceHistory(session, { symbol, start: plusDays(releases.at(-1)[0], -14), end: new Date(session.now()).toISOString().slice(0, 10) });
-    moves = pastMoves(releases, p.dates, p.close);
+    // US sessions close by 21:00 UTC; before then today's bar is still moving.
+    const now = new Date(session.now());
+    moves = pastMoves(releases, p.dates, p.close, now.getUTCHours() < 21 ? now.toISOString().slice(0, 10) : null);
   } catch (err) {
     limits.push(`The share prices could not be read: ${String(err?.message ?? err).slice(0, 200)}`);
   }
