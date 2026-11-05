@@ -82,9 +82,16 @@ async function series(session, source, files) {
 
 // The value a given number of days before the latest observation, from an observation close to that day (so a
 // monthly series has no change on a week).
-function ago(rows, days, slack = 8) {
-  const last = Date.parse(rows.at(-1)[0]), cut = iso(last - days * DAY), floor = iso(last - (days + slack) * DAY);
-  for (let i = rows.length - 2; i >= 0; i--) if (rows[i][0] <= cut) return rows[i][0] >= floor ? rows[i][1] : null;
+export function ago(rows, days, slack = 8) {
+  const last = Date.parse(rows.at(-1)[0]), cut = iso(last - days * DAY), floor = iso(last - (days + slack) * DAY), past = iso(last - (days - 3) * DAY);
+  for (let i = rows.length - 2; i >= 0; i--) {
+    if (rows[i][0] > cut) continue;
+    if (rows[i][0] >= floor) return rows[i][1];
+    // A month a short calendar month back (1 March's month before is 1 February, 28 days): a reading up to three days
+    // after the cut counts, so no monthly series loses its change on a month in March.
+    const next = rows[i + 1];
+    return next && next[0] <= past && i + 1 < rows.length - 1 ? next[1] : null;
+  }
   return null;
 }
 
@@ -105,8 +112,9 @@ export function standing(rows) {
 }
 
 // "the lowest since 2007-06-01", only when that is more than ninety days back; "the lowest in its history" when it is.
-function extreme(s) {
-  if (!s.since) return `the ${s.side} in its history (from ${s.from})`;
+// FRED carries only three years of the ICE BofA spreads, so their history is said as those years.
+function extreme(s, short = false) {
+  if (!s.since) return short ? `the ${s.side} in the three years FRED provides (from ${s.from})` : `the ${s.side} in its history (from ${s.from})`;
   return Date.parse(s.date) - Date.parse(s.since) > 90 * DAY ? `the ${s.side} since ${s.since}` : null;
 }
 
@@ -147,22 +155,22 @@ export async function financialConditions(session, args) {
   // FRED refuses too many open connections at once: eight at a time.
   const got = [];
   for (let i = 0; i < MEASURES.length; i += 8) got.push(...(await Promise.all(MEASURES.slice(i, i + 8).map((m) => series(session, m[1], files).catch(() => null)))));
-  const rows = [], by = {};
-  MEASURES.forEach(([key, , about, unit], i) => {
+  const rows = [], by = {}, missing = [];
+  MEASURES.forEach(([key, source, about, unit], i) => {
     const all = got[i];
-    if (!all?.length) return;
+    if (!all?.length) { missing.push(key); return; }
     const s = standing(all);
     const change = (days, slack) => { const b = ago(all, days, slack); return b == null ? null : round(s.value - b); };
     by[key] = { ...s, all };
-    rows.push([key, about, unit, s.date, round(s.value), change(7), change(30), change(365, 10), s.percentile, s.from, extreme(s)]);
+    rows.push([key, about, unit, s.date, round(s.value), change(7), change(30), change(365, 10), s.percentile, s.from, extreme(s, /^BAML/.test(source))]);
   });
   if (!rows.length) throw new NotFound("None of the financial conditions measures could be read (the OFR, the Fed Board and FRED all failed).");
   const summary = [];
   const ofr = await files.ofr;
   const o = ofr?.filter((r) => r[1] != null).at(-1);
   if (o && by.ofr_fsi) {
-    const s = by.ofr_fsi, parts = Object.keys(OFR_PARTS).map((k, i) => `${k.replace("_", " ")} ${signed(round(o[2 + i], 2))}`);
-    summary.push(`The OFR's Financial Stress Index was ${round(o[1], 2)} on ${o[0]} (0 is average stress), ${s.side === "lowest" ? `lower than on ${s.above_pct}%` : `higher than on ${s.below_pct}%`} of days since ${s.from.slice(0, 4)}; by category, ${parts.join(", ")} (the categories add up to the index).`);
+    const s = by.ofr_fsi, parts = Object.keys(OFR_PARTS).map((k, i) => (o[2 + i] == null ? null : `${k.replace("_", " ")} ${signed(round(o[2 + i], 2))}`)).filter(Boolean);
+    summary.push(`The OFR's Financial Stress Index was ${round(o[1], 2)} on ${o[0]} (0 is average stress), ${s.side === "lowest" ? `lower than on ${s.above_pct}%` : `higher than on ${s.below_pct}%`} of days since ${s.from.slice(0, 4)}${parts.length === 5 ? `; by category, ${parts.join(", ")} (the categories add up to the index)` : parts.length ? `; by category, ${parts.join(", ")}` : ""}.`);
   }
   if (by.nfci) {
     const s = by.nfci, others = [by.stlfsi && `the St. Louis Fed's stress index ${round(by.stlfsi.value, 2)} (${by.stlfsi.date})`, by.kcfsi && `the Kansas City Fed's ${round(by.kcfsi.value, 2)} (${by.kcfsi.date.slice(0, 7)})`].filter(Boolean);
@@ -180,7 +188,7 @@ export async function financialConditions(session, args) {
   }
   if (by.excess_bond_premium) {
     const s = by.excess_bond_premium;
-    summary.push(`The Fed Board's excess bond premium was ${round(s.value, 2)} points in ${s.date.slice(0, 7)} (${s.value < 0 ? "below 0: investors asking less than expected defaults warrant" : "above 0: investors asking more than expected defaults warrant"})${by.gz_spread ? `, the GZ spread ${round(by.gz_spread.value, 2)}` : ""}.`);
+    summary.push(`The Fed Board's excess bond premium was ${round(s.value, 2)} points in ${s.date.slice(0, 7)} (${s.value < 0 ? "below 0: spreads tighter than default risk alone usually brings, a sign of appetite for credit risk" : "above 0: spreads wider than default risk alone usually brings, a sign of investors pulling back from credit risk"})${by.gz_spread ? `, the GZ spread ${round(by.gz_spread.value, 2)}` : ""}.`);
   }
   if (by.vix) {
     const s = by.vix;
@@ -189,6 +197,7 @@ export async function financialConditions(session, args) {
   return {
     summary,
     columns: ["measure", "about", "unit", "as_of", "latest", "change_on_week", "change_on_month", "change_on_year", "percentile_in_history", "history_from", "most_extreme_since"], rows,
+    ...(missing.length ? { missing } : {}),
     ...(o ? { ofr: { date: o[0], index: round(o[1]), categories: Object.fromEntries(Object.keys(OFR_PARTS).map((k, i) => [k, round(o[2 + i])])), regions: Object.fromEntries(Object.keys(OFR_REGIONS).map((k, i) => [k, round(o[7 + i])])) } } : {}),
     reading: "Each measure's latest reading with its change on a week, a month and a year (in its own units: index points, percentage points of spread, VIX points) and its percentile in its own history (100 is the highest it has been). The stress and conditions indexes are 0 at their average; spreads and the VIX have no fixed line and are read against their history.",
     source: SOURCE, limits: LIMITS,

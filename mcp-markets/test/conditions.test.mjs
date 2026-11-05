@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { ebpFile, financialConditions, ofrFile, standing } from "../src/conditions.mjs";
+import { ago, ebpFile, financialConditions, ofrFile, standing } from "../src/conditions.mjs";
 import { createSession } from "../src/sources.mjs";
 import { NOW, replayFetch } from "./replay.mjs";
 
@@ -58,4 +58,29 @@ test("a source that is down leaves the others standing in the overview, and is n
   assert.equal(r.ofr, undefined);
   assert.match(r.summary[0], /^The Chicago Fed's NFCI/);
   await assert.rejects(run({ measure: "ofr_fsi" }, down), /HTTP 503/);
+});
+
+test("a monthly index keeps its change on a month in March, and has none on a week", () => {
+  const monthly = [["2026-01-01", -0.9], ["2026-02-01", -0.95], ["2026-03-01", -0.99]];
+  assert.ok(Math.abs(ago(monthly, 30) - -0.95) < 1e-12);
+  assert.equal(ago(monthly, 7), null);
+  const april = [...monthly, ["2026-04-01", -1]];
+  assert.ok(Math.abs(ago(april, 30) - -0.99) < 1e-12);
+});
+
+test("FRED's three years of ICE spreads are said as such, and a measure that fails is named", async () => {
+  const base = replayFetch().fetchImpl;
+  // An investment-grade spread tighter than any day FRED carries.
+  const tight = async (url, init) => {
+    const res = await base(url, init);
+    if (!/id=BAMLC0A0CM$/.test(url)) return res;
+    const lines = (await res.text()).trim().split("\n");
+    lines[lines.length - 1] = `${lines.at(-1).split(",")[0]},0.50`;
+    return new Response(lines.join("\n"), { status: 200 });
+  };
+  const r = await run({}, tight);
+  assert.equal(r.rows.find((x) => x[0] === "investment_grade")[10], "the lowest in the three years FRED provides (from 2023-11-06)");
+  const gone = await run({}, async (url, init) => (/id=VIXCLS$/.test(url) ? new Response("down", { status: 503 }) : base(url, init)));
+  assert.deepEqual(gone.missing, ["vix"]);
+  assert.ok(!gone.summary.some((s) => /VIX/.test(s)));
 });

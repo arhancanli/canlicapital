@@ -56,7 +56,7 @@ export async function recessionWatch(session, args) {
   if (e) {
     const pct = round(e[3] * 100, 1);
     rows.push(["ebp_model", "chance of a recession starting within twelve months (Fed Board staff's excess bond premium model)", pct, e[0].slice(0, 7), "percent", "50%, more likely than not, the line used here; its authors set none", pct >= 50 ? "warning" : "clear"]);
-    summary.push(`The Fed Board staff's excess bond premium model gives a ${pct}% chance of a recession starting within twelve months (${e[0].slice(0, 7)}; the premium ${round(e[2])} points).`);
+    summary.push(`The Fed Board staff's excess bond premium model gives a ${pct}% chance of a recession starting within twelve months (${e[0].slice(0, 7)}${e[2] == null ? "" : `; the premium ${round(e[2])} points`}).`);
   }
   const s = valid(sahm).at(-1);
   if (s) {
@@ -92,7 +92,7 @@ export async function recessionWatch(session, args) {
     reading: "Each indicator's latest reading beside the line economists read it against; signal says whether it is past that line. The yield-curve model's chance is of the economy being in recession in the month twelve months after the one shown, not of one starting at any time before then.",
     source: `FRED: GS10 and TB3MS (the New York Fed's yield-curve model, its published coefficients -0.5333 and -0.6330), SAHMREALTIME, T10Y2Y, IC4WSA, RECPROUSM156N, GDPNOW; the Fed Board's excess bond premium file (${EBP_PAGE})`,
     limits: [
-      "Each indicator has missed or given false alarms (the curve was inverted from 2022 into 2024 without a recession); none is a forecast of the Federal Reserve. Lines are those their authors and the literature use.",
+      "Each indicator has missed or given false alarms (the curve was inverted from 2022 into 2024 without a recession); none is a forecast of the Federal Reserve. Each line is the one its authors or the literature use, or, where the row says so, the one used here.",
       "The excess bond premium model is the Fed Board staff's research product, not an official statistic; it is posted about the fourth business day of each month and may be revised.",
       "Not investment advice.",
     ],
