@@ -80,3 +80,68 @@ export async function fedSpeeches(session, args) {
     ],
   };
 }
+
+// central_bank_speeches: the latest speeches by central bankers everywhere, from the BIS's collection (its feed of
+// the latest fifty): speaker, role and bank, title, date and link; one bank's or one speaker's; or one speech read, a few
+// of its passages on policy quoted briefly with the source, as the BIS allows.
+const BIS_FEED = "https://www.bis.org/doclist/cbspeeches.rss";
+const BANKS = { ecb: "European Central Bank", boe: "Bank of England", boj: "Bank of Japan", fed: "Federal Reserve", "federal reserve": "Federal Reserve", rba: "Reserve Bank of Australia", boc: "Bank of Canada", snb: "Swiss National Bank", rbi: "Reserve Bank of India", pboc: "People's Bank of China", bundesbank: "Deutsche Bundesbank", "banque de france": "Bank of France", riksbank: "Sveriges Riksbank", "norges bank": "Norges Bank", rbnz: "Reserve Bank of New Zealand" };
+
+export const cbSpeechesInput = z.object({
+  bank: z.string().min(2).max(60).optional().describe("A central bank by name or short name (ECB, Bank of England, Bundesbank, BoJ, RBA...): its speakers' speeches."),
+  speaker: z.string().min(2).max(40).optional().describe("A speaker by surname (Lagarde, Bailey, Nagel...)."),
+  limit: z.number().int().min(1).max(50).optional().describe("Most speeches listed, newest first; default 15."),
+  read: z.string().url().max(300).optional().describe("A speech page on bis.org (a link from the list): its paragraphs on monetary policy, quoted."),
+}).strict();
+
+// A BIS item's description: "Speech by Dr Joachim Nagel, President of the Deutsche Bundesbank, at the ...".
+export function bisSpeaker(description) {
+  const m = /^(.*?)\bby (?:(?:Mr|Ms|Mrs|Miss|Dr|Prof|Professor|Sir|Dame|Lord|Lady)\.?\s+)*([^,]+?),\s+(.+?)(?:,\s+(?:at|on|in|before|to|for|during|via)\b|\.\s*$|$)/.exec(String(description ?? ""));
+  return m ? { form: m[1].trim() || null, speaker: m[2].trim(), role: m[3].trim().replace(/[.,]$/, "") } : { form: null, speaker: null, role: null };
+}
+
+export function bisItems(xml) {
+  return [...String(xml).matchAll(/<item\b[^>]*>([\s\S]*?)<\/item>/g)].map(([, it]) => {
+    const get = (k) => text(new RegExp(`<${k}[^>]*>([\\s\\S]*?)</${k}>`).exec(it)?.[1]);
+    const description = get("description"), who = bisSpeaker(description);
+    return { date: (get("dc:date") || get("cb:occurrenceDate")).slice(0, 10) || null, speaker: who.speaker, role: who.role, title: get("title"), link: get("link") };
+  });
+}
+
+export async function centralBankSpeeches(session, args) {
+  const a = cbSpeechesInput.parse(args);
+  if (a.read) {
+    const url = new URL(a.read);
+    if (url.hostname !== "www.bis.org" || !/^\/speeches\//.test(url.pathname)) throw new NotFound("read takes a speech page on www.bis.org, a link from this tool's list.");
+    const html = await getText(session, url.href, { maxBytes: 4 * 1024 * 1024 });
+    const meta = (name) => text(new RegExp(`<meta name="${name}" content="([^"]*)"`).exec(html)?.[1]);
+    const body = /<div class="text__component">([\s\S]*?)<\/div>/.exec(html)?.[1] ?? "";
+    const paragraphs = [...body.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/g)].map((m) => text(m[1])).filter(Boolean);
+    if (!paragraphs.length) throw new NotFound(`${url.href} held no speech text on the page (the BIS gives some as a PDF only).`);
+    const policy = paragraphs.filter((p) => POLICY.test(p) && p.length > 80);
+    return {
+      title: meta("citation_title") || null, speaker: meta("citation_author") || null, about: meta("description") || null,
+      paragraphs: paragraphs.length, policy_paragraphs: policy.length,
+      columns: ["passage"], rows: policy.slice(0, 5).map((p) => [p.length > 400 ? `${p.slice(0, 397)}...` : p]),
+      reading: "Brief excerpts of the speech's passages on monetary policy and the economy, in order, as the BIS allows with the source stated; the speech is at the link.",
+      source: url.href,
+      limits: ["A speaker speaks for themself unless the speech says otherwise; the BIS collects the speeches, the central banks publish them.", "Not investment advice."],
+    };
+  }
+  let items = bisItems(await getText(session, BIS_FEED)).sort((x, y) => String(y.date).localeCompare(String(x.date)));
+  if (!items.length) throw new NotFound("The BIS's feed of central bankers' speeches answered with no items.");
+  if (a.bank) {
+    const want = (BANKS[a.bank.trim().toLowerCase()] ?? a.bank).toLowerCase();
+    items = items.filter((i) => (i.role ?? "").toLowerCase().includes(want));
+  }
+  if (a.speaker) items = items.filter((i) => (i.speaker ?? "").toLowerCase().split(/\s+/).includes(a.speaker.trim().toLowerCase().split(/\s+/).at(-1)));
+  if (!items.length) throw new NotFound(`None of the BIS's latest fifty speeches is by ${[a.speaker, a.bank].filter(Boolean).join(" of ")}.`);
+  const shown = items.slice(0, a.limit ?? 15);
+  return {
+    summary: [`The latest central bank speech the BIS lists: ${shown[0].speaker ?? "a speaker"}${shown[0].role ? ` (${shown[0].role})` : ""}, "${shown[0].title}" (${shown[0].date}).`],
+    columns: ["date", "speaker", "role", "title", "link"], rows: shown.map((i) => [i.date, i.speaker, i.role, i.title, i.link]),
+    reading: "Central bankers' speeches as the BIS collects them, newest first; read one with read: <link>.",
+    source: BIS_FEED,
+    limits: ["The BIS's feed holds the latest fifty speeches from central banks everywhere; a bank's own site has more.", "Not investment advice."],
+  };
+}
