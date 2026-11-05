@@ -51,6 +51,9 @@ export function freshFor(url) {
   // The OFR's stress index (0.5 MB) changes once a day; the Fed Board's excess bond premium once a month.
   if (/^https:\/\/www\.financialresearch\.gov\/financial-stress-index\/data\//.test(url)) return 6 * HOUR;
   if (/^https:\/\/www\.federalreserve\.gov\/econres\/notes\/feds-notes\/ebp_csv\.csv$/.test(url)) return 12 * HOUR;
+  // The OFR's repo and money market fund series change once a day; the New York Fed's dealer statistics once a week.
+  if (/^https:\/\/data\.financialresearch\.gov\/v1\/series\//.test(url)) return HOUR;
+  if (/^https:\/\/markets\.newyorkfed\.org\/api\/pd\/get\//.test(url)) return 6 * HOUR;
   // The New York Fed's SOMA summary (all weeks since 2003) changes on Thursdays.
   if (/^https:\/\/markets\.newyorkfed\.org\/api\/soma\//.test(url)) return HOUR;
   return 0;
