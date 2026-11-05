@@ -67,5 +67,15 @@ export function faq(entries) {
   return `<div class="cl-faq">${entries.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${a}</p></details>`).join("")}</div>`;
 }
 
-// FAQPage structured data from the same entries, as plain text: tags removed, then any angle bracket left over.
-export const faqSchema = (entries) => ({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: entries.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: String(a).replace(/<[^>]*>/g, "").replace(/[<>]/g, "") } })) });
+// Plain text from an answer's markup: tags removed until none are left, then any stray angle bracket.
+function plainText(html) {
+  let text = String(html), before;
+  do {
+    before = text;
+    text = text.replace(/<[^<>]*>/g, "");
+  } while (text !== before);
+  return text.replace(/[<>]/g, "");
+}
+
+// FAQPage structured data from the same entries, as plain text.
+export const faqSchema = (entries) => ({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: entries.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: plainText(a) } })) });
