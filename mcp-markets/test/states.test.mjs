@@ -30,3 +30,14 @@ test("every state and DC ranked", async () => {
   assert.deepEqual(r.rows[0], ["District of Columbia", "DC", "2026-09", 5.6, -1]);
   await assert.rejects(run({}), /Name a state/);
 });
+
+test("a failed US series drops its clause, and a state FRED did not return is named, not silently left out", async () => {
+  const base = replayFetch().fetchImpl;
+  const failing = async (url, init) => (/id=(UNRATE|PAYEMS)&|id=SDUR&/.test(url) ? new Response("down", { status: 503 }) : base(url, init));
+  const session = createSession({ fetchImpl: failing, now: () => NOW, env: {}, sleep: async () => {} });
+  const r = await stateEconomy(session, { state: "TX" });
+  assert.deepEqual(r.summary, ["Texas's unemployment rate was 4.4% in 2026-09, up 0.1 points on a year.", "Payroll jobs grew 1.1% on a year; house prices rose 1.6% (the US 3%)."]);
+  const k = await stateEconomy(session, { rank: "unemployment" });
+  assert.equal(k.rows.length, 50);
+  assert.equal(k.limits[0], "FRED returned nothing for South Dakota this time; it is left out of the ranking.");
+});
