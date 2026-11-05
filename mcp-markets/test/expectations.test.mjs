@@ -49,3 +49,13 @@ test("a server with keyless prices off says so", async () => {
   const session = createSession({ fetchImpl: replayFetch().fetchImpl, now: () => AT, env: { CANLI_KEYLESS_PRICES: "0" }, sleep: async () => {} });
   await assert.rejects(rateExpectations(session, {}), /CANLI_KEYLESS_PRICES=0/);
 });
+
+test("a meeting decided earlier this month: the next starts from today's effective rate, not the month's mixed contract", () => {
+  // 16 September cut 4.08% to 3.83%; on 20 September futures price no change at the 28 October meeting.
+  const months = [
+    { key: "2026-09", days: 30, meeting: "2026-09-16", implied: (16 * 4.08 + 14 * 3.83) / 30 },
+    { key: "2026-10", days: 31, meeting: "2026-10-28", implied: 3.83 },
+    { key: "2026-11", days: 30, meeting: null, implied: 3.83 },
+  ];
+  assert.deepEqual(meetingRates(months, 3.83, "2026-09-20"), [{ meeting: "2026-10-28", start: 3.83, end: 3.83 }]);
+});

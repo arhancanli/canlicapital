@@ -27,12 +27,14 @@ const range = (low) => `${low.toFixed(2)}-${(low + STEP).toFixed(2)}`;
 // Each meeting month's rate going in and coming out, by FedWatch's method: a month's contract settles on the average
 // effective rate, so with d days at the old rate (the change takes effect the day after the decision) of N,
 // average = (d * in + (N - d) * out) / N. A month without a meeting holds one rate, so its contract anchors the month
-// on either side; between two meeting months the rate is carried forward.
-export function meetingRates(months, effr) {
+// on either side; between two meeting months the rate is carried forward. A meeting earlier this month has been
+// decided: its month's contract mixes the old rate and the new, so the next meeting starts from today's effective rate.
+export function meetingRates(months, effr, today = null) {
   const out = [];
   let carried = null;
   months.forEach((m, i) => {
     if (!m.meeting) { carried = m.implied; return; }
+    if (today && m.meeting < today) { carried = effr; return; }
     const prev = months[i - 1], next = months[i + 1];
     const start = prev && !prev.meeting && prev.implied != null ? prev.implied : carried ?? effr;
     const d = Number(m.meeting.slice(8, 10)), n = m.days;
@@ -59,6 +61,9 @@ export async function rateExpectations(session, args) {
     fredCsv(session, "DFEDTARL", { start }), fredCsv(session, "DFEDTARU", { start }), fredCsv(session, "EFFR", { start }),
   ]);
   // Every contract to the tenth meeting is read in one request, whatever is shown, so one answer serves them all.
+  // This month's meeting stays in the months even once decided, so its contract is not read as one rate.
+  const monthStart = `${today.slice(0, 8)}01`;
+  const decided = calendar.filter((m) => m.end >= monthStart && m.end < today);
   const meetings = calendar.filter((m) => m.end >= today).slice(0, 10), shown = a.meetings ?? 8;
   if (!meetings.length) throw new Error("The Fed's calendar lists no FOMC meeting after today.");
   const lastOf = (rows) => rows.filter(([, v]) => v != null).at(-1);
@@ -66,8 +71,8 @@ export async function rateExpectations(session, args) {
   // A contract for every month from this one to the month after the last meeting, the anchor on its far side.
   const months = [];
   const [y0, m0] = today.split("-").map(Number), [y1, m1] = meetings.at(-1).end.split("-").map(Number);
-  for (let y = y0, m = m0; y < y1 || (y === y1 && m <= m1 + 1); m === 12 ? (y += 1, m = 1) : (m += 1)) {
-    months.push({ key: monthKey(y, m), symbol: contractOf(y, m), days: daysIn(y, m), meeting: meetings.find((x) => x.end.startsWith(monthKey(y, m)))?.end ?? null, implied: null, price: null, quoted: null });
+  for (let y = y0, m = m0; y * 12 + m <= y1 * 12 + m1 + 1; m === 12 ? (y += 1, m = 1) : (m += 1)) {
+    months.push({ key: monthKey(y, m), symbol: contractOf(y, m), days: daysIn(y, m), meeting: [...decided, ...meetings].find((x) => x.end.startsWith(monthKey(y, m)))?.end ?? null, implied: null, price: null, quoted: null });
   }
   const quotes = await getJson(session, SPARK(months.map((m) => m.symbol)), { timeoutMs: 12000 });
   for (const x of quotes?.spark?.result ?? []) {
@@ -75,7 +80,7 @@ export async function rateExpectations(session, args) {
     if (m && meta?.regularMarketPrice > 0) { m.price = meta.regularMarketPrice; m.implied = 100 - meta.regularMarketPrice; m.quoted = meta.regularMarketTime ? new Date(meta.regularMarketTime * 1000).toISOString().slice(0, 10) : null; }
   }
   if (!months.some((m) => m.implied != null)) throw new Error("No fed funds futures price could be read from Yahoo.");
-  const rates = meetingRates(months, effr);
+  const rates = meetingRates(months, effr, today);
   // The tree: each meeting's moves applied to every range the last meeting could have left, from today's range.
   let dist = new Map([[0, 1]]);
   const rows = [], ranges = [];

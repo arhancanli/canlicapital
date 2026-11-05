@@ -4,11 +4,16 @@
 import { AsyncLocalStorage } from "node:async_hooks";
 import { Buffer } from "node:buffer";
 import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 import { inflateRawSync } from "node:zlib";
 
 import { BoundedCache } from "./bounded-cache.mjs";
 import { createDiskCache, freshFor } from "./disk-cache.mjs";
 import { readBoundedResponse, fetchBoundedText, ResponseReadError } from "./bounded-response.mjs";
+
+// A document kept on disk in a form a transform or decoder made is kept under the package's version, so an upgrade that
+// changes the form never reads an older one.
+const VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
 
 // SEC asks every client to identify itself with a contact; SEC_USER_AGENT replaces the default.
 // Other hosts get the plain product name: Treasury's servers hold any request whose User-Agent
@@ -94,7 +99,8 @@ export async function getText(session, rawUrl, { headers = {}, maxBytes = 16 * 1
   if (!fresh && hit && (maxAgeMs === undefined || session.now() - hit.at < maxAgeMs)) { witness(session, key, session.hashes.get(key)); return parse(hit.text); }
   // Public data fetched in an earlier session, when still fresh for what it is.
   const keepsOnDisk = !fresh && session.disk && method === "GET" && !secret && !Object.keys(headers).length && freshFor(url) > 0;
-  const copy = keepsOnDisk ? await session.disk.read(cacheKey) : null;
+  const diskKey = transform ? `${cacheKey}@${VERSION}` : cacheKey;
+  const copy = keepsOnDisk ? await session.disk.read(diskKey) : null;
   const useCopy = () => {
     session.hashes.delete(key);
     session.hashes.set(key, copy.record);
@@ -128,8 +134,9 @@ export async function getText(session, rawUrl, { headers = {}, maxBytes = 16 * 1
   witness(session, key, record);
   if (transform) text = transform(text);
   const value = parse(text);
-  session.cache.set(cacheKey, { at: session.now(), text });
-  if (keepsOnDisk) session.disk.write(cacheKey, { at: session.now(), text, record });
+  // A fresh read (source_check's) is the raw document: kept, it would stand in for the form a transform makes.
+  if (!fresh) session.cache.set(cacheKey, { at: session.now(), text });
+  if (keepsOnDisk) session.disk.write(diskKey, { at: session.now(), text, record });
   return value;
 }
 
@@ -171,7 +178,7 @@ export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024, de
   const hit = session.cache.lookup(url, session.now());
   if (hit) { witness(session, url, session.hashes.get(url)); return hit.text; }
   const keepsOnDisk = session.disk && freshFor(url) > 0;
-  const copy = keepsOnDisk ? await session.disk.read(`${url}#decoded`) : null;
+  const copy = keepsOnDisk ? await session.disk.read(`${url}#decoded@${VERSION}`) : null;
   if (copy && session.now() - copy.at < freshFor(url)) {
     session.hashes.set(url, copy.record);
     witness(session, url, copy.record);
@@ -196,7 +203,7 @@ export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024, de
   witness(session, url, record);
   const text = decode(bytes);
   session.cache.set(url, { at: session.now(), text });
-  if (keepsOnDisk) session.disk.write(`${url}#decoded`, { at: session.now(), text, record });
+  if (keepsOnDisk) session.disk.write(`${url}#decoded@${VERSION}`, { at: session.now(), text, record });
   return text;
 }
 

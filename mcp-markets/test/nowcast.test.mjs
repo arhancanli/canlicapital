@@ -44,3 +44,11 @@ test("the nowcast's record against what was published, and one month day by day"
   assert.deepEqual(path.published, { cpi: null });
   await assert.rejects(run({ month: "2013-01" }), /2013-01 is not among them/);
 });
+
+test("source_check reading the same file leaves the nowcast's cached form alone", async () => {
+  const { sourceCheck } = await import("../src/source-check.mjs");
+  const session = createSession({ fetchImpl: replayFetch().fetchImpl, now: () => NOW, env: {}, sleep: async () => {} });
+  const first = await inflationNowcast(session, {});
+  await sourceCheck(session, { sources: [{ url: "https://www.clevelandfed.org/-/media/files/webcharts/inflationnowcasting/nowcast_month.json", sha256: "0".repeat(64) }] });
+  assert.deepEqual((await inflationNowcast(session, {})).summary, first.summary);
+});
