@@ -165,10 +165,19 @@ export function unzipFirst(bytes, { maxText = 64 * 1024 * 1024 } = {}) {
 }
 
 // decode turns the bytes into the text kept: the zip's first file by default, or another binary format's
-// text (a PDF's, for the House's transaction reports).
+// text (a PDF's, for the House's transaction reports, or a spreadsheet's tabs). A file fresh for a while (freshFor) is
+// also kept on disk as its decoded text, so a large workbook is not fetched again by the next session.
 export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024, decode = unzipFirst } = {}) {
   const hit = session.cache.lookup(url, session.now());
   if (hit) { witness(session, url, session.hashes.get(url)); return hit.text; }
+  const keepsOnDisk = session.disk && freshFor(url) > 0;
+  const copy = keepsOnDisk ? await session.disk.read(`${url}#decoded`) : null;
+  if (copy && session.now() - copy.at < freshFor(url)) {
+    session.hashes.set(url, copy.record);
+    witness(session, url, copy.record);
+    session.cache.set(url, { at: session.now(), text: copy.text });
+    return copy.text;
+  }
   let bytes;
   for (let attempt = 0; ; attempt++) {
     if (isSec(url)) await secTurn(session);
@@ -187,6 +196,7 @@ export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024, de
   witness(session, url, record);
   const text = decode(bytes);
   session.cache.set(url, { at: session.now(), text });
+  if (keepsOnDisk) session.disk.write(`${url}#decoded`, { at: session.now(), text, record });
   return text;
 }
 
