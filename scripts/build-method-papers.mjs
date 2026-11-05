@@ -13,11 +13,15 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 export const STUDIES = Object.freeze({
   luck: "config/research/luck-trials-size-study.json",
   zoo: "config/research/null-zoo-v0.json",
+  ar1: "config/research/null-zoo-v1-ar1-levels.json",
 });
 
 const read = (rel) => JSON.parse(readFileSync(resolve(ROOT, rel), "utf8"));
 const f3 = (x) => x.toFixed(3);
 const pct = (x) => `${(100 * x).toFixed(1)}%`;
+// The autocorrelation follow-up at one lag-one autocorrelation, and its link.
+const atPhi = (ar1, phi) => ar1.levels.find((l) => l.phi === phi);
+const AR1_LINK = "[`/glassbox/research/null-zoo-v1-ar1-levels.json`](/glassbox/research/null-zoo-v1-ar1-levels.json)";
 
 const LUCK_METHODS = { student_t_null: "Student t null (shipped)", dsr_standard_error: "Non-normal standard error (deflated Sharpe convention)", bootstrap: "Bootstrap of the best trial's returns" };
 const ZOO_FAMILIES = {
@@ -26,13 +30,13 @@ const ZOO_FAMILIES = {
   skew_negative: "Negative skew",
   skew_positive: "Positive skew",
   garch: "Volatility clustering (GARCH)",
-  ar1: "Autocorrelated returns (AR(1))",
+  ar1: "Autocorrelated returns (AR(1) 0.2, a stress level)",
   regimes: "Two volatility regimes",
   correlated_trials: "Correlated trials (one common factor)",
 };
 const ZOO_VALIDATORS = { luck_trials: "Luck-equivalent trials", luck_trials_lo: "Luck-equivalent trials, Lo-corrected", luck_trials_nonnormal_se: "Luck trials, non-normal SE", haircut_bonferroni: "Haircut Sharpe (Bonferroni)", haircut_bonferroni_lo: "Haircut Sharpe (Bonferroni, Lo-corrected)", deflated_sharpe: "Deflated Sharpe ratio at 0.95", bootstrap_best: "Bootstrap of the best trial" };
 
-export function luckPaper(luck, zoo) {
+export function luckPaper(luck, zoo, ar1) {
   const designs = [...new Set(luck.rows.map((r) => r.t))].sort((a, b) => a - b);
   const longest = designs.at(-1);
   const rows = luck.rows.filter((r) => r.t === longest);
@@ -40,6 +44,7 @@ export function luckPaper(luck, zoo) {
     ...rows.map((r) => `| ${ZOO_FAMILIES[r.distribution === "student_t4" ? "student_t4" : r.distribution] ?? r.distribution.replaceAll("_", " ")} | ${Object.keys(LUCK_METHODS).map((m) => f3(r.size[m].at_5_percent)).join(" | ")} |`)].join("\n");
   const ar = zoo.rows.find((r) => r.family === "ar1");
   const iid = zoo.rows.find((r) => r.family === "iid_normal");
+  const [low, mid] = [atPhi(ar1, 0.05), atPhi(ar1, 0.1)];
   return `# Luck-equivalent trials: how many skill-less strategies it takes to reach a Sharpe by luck
 
 **Short title:** Luck-equivalent trials
@@ -82,10 +87,16 @@ but inherits the selection that made that trial the best.
 ## Autocorrelation
 
 On the Null Zoo ([\`/research/null-zoo-v0\`](/research/null-zoo-v0)), autocorrelated returns
-make a skill-less search look skilled: at the same level the statistic rejected ${f3(ar.size.luck_trials)}
-of searches. Correcting the Sharpe for the returns' own autocorrelation as Lo (2002) does brings it
-to ${f3(ar.size.luck_trials_lo)}, and costs nothing where there is no autocorrelation (${f3(iid.size.luck_trials)}
-before, ${f3(iid.size.luck_trials_lo)} after). The API and the MCP tool accept the autocorrelation.
+make a skill-less search look skilled: with a lag-one autocorrelation of 0.2, a stress level, the
+statistic rejected ${f3(ar.size.luck_trials)} of searches at the same level. Smaller values matter too,
+because the cutoff for the best of ${ar1.design.trials} sits far in the tail. In a follow-up with
+${ar1.reps_per_level} searches per autocorrelation (${AR1_LINK}), it rejected
+${f3(low.size.luck_trials["0.05"])} of searches at 0.05 and ${f3(mid.size.luck_trials["0.05"])} at 0.1, close to the
+closed form (${f3(low.closed_form.luck_trials["0.05"])} and ${f3(mid.closed_form.luck_trials["0.05"])}). Correcting the Sharpe for the
+returns' own autocorrelation as Lo (2002) does brings it to ${f3(ar.size.luck_trials_lo)} at 0.2, and to
+${f3(low.size.luck_trials_lo["0.05"])} and ${f3(mid.size.luck_trials_lo["0.05"])} at 0.05 and 0.1, and costs nothing where there is no
+autocorrelation (${f3(iid.size.luck_trials)} before, ${f3(iid.size.luck_trials_lo)} after). The API and the MCP tool accept
+the autocorrelation.
 
 ## Use it
 
@@ -100,12 +111,14 @@ will make money. Its calibration is measured on the return shapes above and no o
 `;
 }
 
-export function zooPaper(zoo) {
+export function zooPaper(zoo, ar1) {
   const validators = Object.keys(ZOO_VALIDATORS).filter((v) => zoo.rows[0].size[v] !== undefined);
   const table = (kind) => ["| Returns | " + validators.map((v) => ZOO_VALIDATORS[v]).join(" | ") + " |", "|---|" + validators.map(() => "---").join("|") + "|",
     ...zoo.rows.map((r) => `| ${ZOO_FAMILIES[r.family] ?? r.family} | ${validators.map((v) => f3(r[kind][v])).join(" | ")} |`)].join("\n");
   const ar = zoo.rows.find((r) => r.family === "ar1");
   const iid = zoo.rows.find((r) => r.family === "iid_normal");
+  const [low, mid] = [atPhi(ar1, 0.05), atPhi(ar1, 0.1)];
+  const haircut = "haircut_bonferroni_one_sided";
   return `# Null Zoo v0: backtest-overfitting corrections scored on ground truth
 
 **Short title:** Null Zoo v0
@@ -137,9 +150,14 @@ ${table("power")}
 
 ## What it shows
 
-- Autocorrelated returns break every best-of-N test that ignores them: luck-equivalent trials
-  rejected ${f3(ar.size.luck_trials)} and the Bonferroni haircut ${f3(ar.size.haircut_bonferroni)}
-  of skill-less searches. Lo's correction brings luck-equivalent trials to ${f3(ar.size.luck_trials_lo)}.
+- Autocorrelated returns break every best-of-N test that ignores them. At a lag-one autocorrelation
+  of 0.2, a stress level, luck-equivalent trials rejected ${f3(ar.size.luck_trials)} and the Bonferroni
+  haircut ${f3(ar.size.haircut_bonferroni)} of skill-less searches; Lo's correction brings luck-equivalent
+  trials to ${f3(ar.size.luck_trials_lo)}. Smaller values matter too, because a best-of-${ar1.design.trials} cutoff sits far in the
+  tail: in a follow-up with ${ar1.reps_per_level} searches per autocorrelation (${AR1_LINK}),
+  the one-sided Bonferroni haircut rejected ${f3(low.size[haircut]["0.05"])} at 0.05 and ${f3(mid.size[haircut]["0.05"])} at 0.1, close to the
+  closed form (${f3(low.closed_form[haircut]["0.05"])} and ${f3(mid.closed_form[haircut]["0.05"])}), and Lo's correction held it at
+  ${f3(low.size.haircut_bonferroni_lo_one_sided["0.05"])} and ${f3(mid.size.haircut_bonferroni_lo_one_sided["0.05"])}.
 - The deflated Sharpe ratio read as a test at 0.95 almost never calls noise skilled
   (${f3(iid.size.deflated_sharpe)}) but finds the skilled strategy in only ${f3(iid.power.deflated_sharpe)}
   of searches, against ${f3(iid.power.luck_trials)} for luck-equivalent trials. It subtracts the
@@ -158,7 +176,8 @@ shape the zoo does not contain.
 export function build({ write = true } = {}) {
   const luck = read(STUDIES.luck);
   const zoo = read(STUDIES.zoo);
-  const pages = { "public/research/luck-equivalent-trials.md": luckPaper(luck, zoo), "public/research/null-zoo-v0.md": zooPaper(zoo) };
+  const ar1 = read(STUDIES.ar1);
+  const pages = { "public/research/luck-equivalent-trials.md": luckPaper(luck, zoo, ar1), "public/research/null-zoo-v0.md": zooPaper(zoo, ar1) };
   if (write) {
     mkdirSync(resolve(ROOT, "public/glassbox/research"), { recursive: true });
     for (const rel of Object.values(STUDIES)) copyFileSync(resolve(ROOT, rel), resolve(ROOT, "public/glassbox/research", rel.split("/").at(-1)));
