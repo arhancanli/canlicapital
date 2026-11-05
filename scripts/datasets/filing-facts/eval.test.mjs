@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { behaviour, runClaudeItem, runItem, scoreAnswer, stratifiedSample } from "./eval.mjs";
+import { RESPONSES_MODEL, behaviour, runClaudeItem, runItem, runResponsesItem, scoreAnswer, stratifiedSample, systemFor } from "./eval.mjs";
 
 const item = (kind, value) => ({ answer: { kind, value, unit: kind === "number" ? "USD" : kind } });
 
@@ -128,6 +128,33 @@ test("Claude runs return each tool result to the model and keep the whole assist
   assert.deepEqual(seen[0].tools, [{ name: "company", description: "d", input_schema: { type: "object" } }]);
   assert.deepEqual(seen[1].messages[1].content, replies[0].content);
   assert.deepEqual(seen[1].messages[2].content, [{ type: "tool_result", tool_use_id: "t1", content: "company:1" }]);
+});
+
+test("Responses API runs chain by previous_response_id, send only the tool outputs back and keep the final text", async () => {
+  const seen = [];
+  const replies = [
+    { id: "r1", model: "fixture", status: "completed", usage: { input_tokens: 10, output_tokens: 5 },
+      output: [{ type: "reasoning", summary: [] }, { type: "function_call", call_id: "c1", name: "company", arguments: "{\"cik\":\"1\"}" }] },
+    { id: "r2", model: "fixture", status: "completed", usage: { input_tokens: 20, output_tokens: 3 },
+      output: [{ type: "message", content: [{ type: "output_text", text: "The value is 42.\nANSWER: 42" }] }] },
+  ];
+  const mcp = { tools: [{ type: "function", function: { name: "company", description: "d", parameters: { type: "object" } } }],
+    instructions: "Call company first.",
+    client: { callTool: async ({ name, arguments: args }) => ({ content: [{ text: `${name}:${args.cik}` }] }) } };
+  const run = await runResponsesItem({ id: "x", question: "Q" }, { model: "fixture", arm: "mcp", mcp,
+    request: async (model, body) => { seen.push(structuredClone(body)); return replies[seen.length - 1]; } });
+  assert.equal(run.response_text, "The value is 42.\nANSWER: 42");
+  assert.equal(scoreAnswer({ template: "lookup", answer: { kind: "number", value: 42 } }, run.response_text).correct, true);
+  assert.equal(run.tokens, 38);
+  assert.equal(run.tool_calls, 1);
+  assert.deepEqual(seen[0].tools, [{ type: "function", name: "company", description: "d", parameters: { type: "object" }, strict: false }]);
+  assert.equal(seen[0].input, "Q");
+  assert.match(seen[0].instructions, /Server instructions:\nCall company first\.$/);
+  assert.equal(seen[1].previous_response_id, "r1");
+  assert.deepEqual(seen[1].input, [{ type: "function_call_output", call_id: "c1", output: "company:1" }]);
+  assert.equal(systemFor("closed", mcp).includes("Call company first."), false, "a closed-book prompt never carries server instructions");
+  assert.equal(systemFor("mcp", { ...mcp, instructions: null }).includes("Server instructions"), false, "the default server's prompt is unchanged");
+  assert.ok(RESPONSES_MODEL.test("gpt-6.1-terra") && RESPONSES_MODEL.test("gpt-5.5") && !RESPONSES_MODEL.test("gpt-5.4-mini"));
 });
 
 test("a Claude refusal is recorded as an error, never as an answer", async () => {
