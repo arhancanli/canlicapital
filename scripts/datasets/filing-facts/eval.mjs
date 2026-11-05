@@ -88,6 +88,8 @@ export function stratifiedSample(items, perTemplate, seed) {
 
 const SYSTEM_CLOSED = "You are a financial analyst. Answer from what you know. End with one final line 'ANSWER: <value>': a plain number without commas, units or percent signs (a percent as its number, e.g. 12.34), or 'not reported' if the data does not exist.";
 const SYSTEM_MCP = "You are a financial analyst with a tool that returns a company's SEC-reported financial history (XBRL facts with filing accession numbers). Use it; do not guess numbers. End with one final line 'ANSWER: <value>': a plain number without commas, units or percent signs (a percent as its number, e.g. 12.34), or 'not reported' if the filings do not report it.";
+// A server named by CANLI_EVAL_SERVER also gives the model its instructions, as MCP clients do.
+export const systemFor = (arm, mcp) => (arm !== "mcp" ? SYSTEM_CLOSED : SYSTEM_MCP + (mcp?.instructions ? `\n\nServer instructions:\n${mcp.instructions}` : ""));
 
 async function chat(model, messages, tools) {
   const key = readFileSync(resolve(homedir(), ".config/canli/openai_benchmark_key"), "utf8").trim();
@@ -104,13 +106,80 @@ async function chat(model, messages, tools) {
   }
 }
 
+// The mcp arm runs canli-validation-mcp's company tool. CANLI_EVAL_SERVER names another stdio server to
+// run with its own defaults instead (canli-mcp as installed from npm, say); the capture's tool_contract
+// records the server that answered and every tool it offered.
 async function mcpClient() {
   const { Client } = await import(resolve(HERE, "../../../mcp/node_modules/@modelcontextprotocol/client/dist/index.mjs"));
   const { StdioClientTransport } = await import(resolve(HERE, "../../../mcp/node_modules/@modelcontextprotocol/client/dist/stdio.mjs"));
   const client = new Client({ name: "filing-facts-eval", version: "0" });
-  await client.connect(new StdioClientTransport({ command: process.execPath, args: [resolve(HERE, "../../../mcp/src/server.mjs")], env: { ...process.env, CANLI_TOOLSETS: "company", CANLI_KEY: "" } }));
+  const other = process.env.CANLI_EVAL_SERVER;
+  await client.connect(new StdioClientTransport({ command: process.execPath, args: [other ? resolve(other) : resolve(HERE, "../../../mcp/src/server.mjs")],
+    env: other ? { ...process.env } : { ...process.env, CANLI_TOOLSETS: "company", CANLI_KEY: "" } }));
   const tools = (await client.listTools()).tools.map((t) => ({ type: "function", function: { name: t.name, description: t.description, parameters: (({ $schema, ...p }) => p)(t.inputSchema) } }));
-  return { client, tools, server_info: client.getServerVersion() ?? null };
+  return { client, tools, server_info: client.getServerVersion() ?? null, instructions: other ? client.getInstructions() ?? null : null };
+}
+
+// GPT-5.5 and later take function tools with their reasoning on only through the Responses API; the
+// world test (mcp-canli/bench/rivals/run.mjs) runs them the same way, at the model's default effort.
+export const RESPONSES_MODEL = /^gpt-(?:5\.[5-9]|[6-9])/;
+
+async function respond(model, body) {
+  const key = readFileSync(resolve(homedir(), ".config/canli/openai_benchmark_key"), "utf8").trim();
+  for (let attempt = 0; ; attempt++) {
+    let res;
+    // A connection that fails before any answer is the network's fault, not the model's: try again.
+    try {
+      res = await fetch("https://api.openai.com/v1/responses", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ model, ...body, max_output_tokens: 16000 }),
+      });
+    } catch (e) {
+      if (attempt < 3) { await new Promise((r) => setTimeout(r, 5000 * (attempt + 1))); continue; }
+      throw e;
+    }
+    const out = await res.json();
+    if (res.status === 429 && attempt < 12) { await new Promise((r) => setTimeout(r, 5000 * (attempt + 1))); continue; }
+    if (!res.ok) throw new Error(`OpenAI HTTP ${res.status}: ${out?.error?.message ?? "error"}`);
+    return out;
+  }
+}
+
+// The Responses API keeps the conversation by previous_response_id; each tool turn sends only the outputs.
+export async function runResponsesItem(item, { model, arm, mcp, request = respond }) {
+  const instructions = systemFor(arm, mcp);
+  // strict: false, as MCP clients send them: left out, this API makes every optional field required.
+  const tools = arm === "mcp" ? mcp.tools.map((t) => ({ type: "function", name: t.function.name, description: t.function.description, parameters: t.function.parameters, strict: false })) : undefined;
+  let tokens = 0, final = null, calls = 0, error = null, previous = null, input = item.question;
+  const providerResponses = [], toolTrace = [];
+  try {
+    for (let turn = 0; turn < 6; turn++) {
+      const out = await request(model, { instructions, input, ...(tools ? { tools } : {}), ...(previous ? { previous_response_id: previous } : {}) });
+      tokens += (out.usage?.input_tokens ?? 0) + (out.usage?.output_tokens ?? 0);
+      providerResponses.push({ response_id: out.id ?? null, model: out.model ?? null, usage: out.usage ?? null, status: out.status ?? null });
+      previous = out.id;
+      const uses = (out.output ?? []).filter((o) => o.type === "function_call");
+      if (!uses.length) {
+        final = (out.output ?? []).filter((o) => o.type === "message").flatMap((o) => o.content ?? []).filter((c) => c.type === "output_text").map((c) => c.text).join("\n");
+        break;
+      }
+      input = [];
+      for (const use of uses) {
+        calls++;
+        let text;
+        try { text = (await mcp.client.callTool({ name: use.name, arguments: JSON.parse(use.arguments || "{}") })).content.map((c) => c.text ?? "").join("\n"); }
+        catch (e) { text = `Tool error: ${e.message}`; }
+        const suppliedText = text.slice(0, 20000);
+        toolTrace.push({ tool_call_id: use.call_id, name: use.name, arguments: use.arguments,
+          response_text: suppliedText, truncated: suppliedText.length !== text.length });
+        input.push({ type: "function_call_output", call_id: use.call_id, output: suppliedText });
+      }
+    }
+    if (final === null && error === null) error = "No final response within the six-turn limit";
+  } catch (e) { error = e.message; }
+  return { id: item.id, response_text: final, tokens, tool_calls: calls, error,
+    provider_responses: providerResponses, tool_trace: toolTrace };
 }
 
 // Claude models: the Messages API through the official SDK. The whole assistant content (thinking
@@ -128,7 +197,7 @@ async function claude(model, system, messages, tools) {
 }
 
 export async function runClaudeItem(item, { model, arm, mcp, request = claude }) {
-  const system = arm === "mcp" ? SYSTEM_MCP : SYSTEM_CLOSED;
+  const system = systemFor(arm, mcp);
   const tools = arm === "mcp" ? mcp.tools.map((t) => ({ name: t.function.name, description: t.function.description, input_schema: t.function.parameters })) : undefined;
   const messages = [{ role: "user", content: item.question }];
   let tokens = 0, final = null, calls = 0, error = null;
@@ -162,7 +231,7 @@ export async function runClaudeItem(item, { model, arm, mcp, request = claude })
 }
 
 export async function runItem(item, { model, arm, mcp, request = chat }) {
-  const messages = [{ role: "system", content: arm === "mcp" ? SYSTEM_MCP : SYSTEM_CLOSED }, { role: "user", content: item.question }];
+  const messages = [{ role: "system", content: systemFor(arm, mcp) }, { role: "user", content: item.question }];
   let tokens = 0, final = null, calls = 0, error = null;
   const providerResponses = [], toolTrace = [];
   try {
@@ -209,11 +278,13 @@ async function main() {
     mcp = arm === "mcp" ? await mcpClient() : null;
     const runs = [];
     const queue = [...sample];
-    await Promise.all(Array.from({ length: 4 }, async () => { while (queue.length) runs.push(await (provider === "anthropic" ? runClaudeItem : runItem)(queue.shift(), { model, arm, mcp })); }));
+    const runner = provider === "anthropic" ? runClaudeItem : RESPONSES_MODEL.test(model) ? runResponsesItem : runItem;
+    await Promise.all(Array.from({ length: 4 }, async () => { while (queue.length) runs.push(await runner(queue.shift(), { model, arm, mcp })); }));
     const capture = { schema: CAPTURE_SCHEMA, provider, model, arm,
+      api: provider === "anthropic" ? "messages" : runner === runResponsesItem ? "responses" : "chat.completions",
       recorded_at: startedAt, completed_at: new Date().toISOString(), dataset_sha256: dataset.sha256,
       sampling: { method: "stratified", seed, per_template: perTemplate, item_ids: sample.map((item) => item.id) },
-      system_prompt: arm === "mcp" ? SYSTEM_MCP : SYSTEM_CLOSED,
+      system_prompt: systemFor(arm, mcp),
       ...(mcp ? { tool_contract: { server_info: mcp.server_info, tools: mcp.tools } } : {}), runs };
     const evidence = evaluateCapture(bytes, capture);
     writeFileSync(output, JSON.stringify(evidence, null, 2) + "\n");

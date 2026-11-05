@@ -1,0 +1,3832 @@
+{
+  "schema": "canli.filing-facts-evaluation.v1",
+  "scoring": {
+    "version": "canli.filing-facts-scoring.v1",
+    "scorer_sha256": "fd56c8115cf9d344d08056f1f16384092e719bcf38e9208c48c0b94f4f038726",
+    "evidence_runner_sha256": "19eb441408d832890be1fe0c8669e4db36d7a5b3fc585b52056a276d89c65bd2",
+    "sources": {
+      "eval.mjs": "fd56c8115cf9d344d08056f1f16384092e719bcf38e9208c48c0b94f4f038726",
+      "evidence.mjs": "19eb441408d832890be1fe0c8669e4db36d7a5b3fc585b52056a276d89c65bd2",
+      "generate.mjs": "bdf1f304d83e54b0d82343a73d31837d3d4930cfdf45e5e3f27f0a97dbe377ac",
+      "check.mjs": "a12d8add05d602bd8d28a8b1b10b2021e5b572433df0d7668658999b08f27796",
+      "templates.mjs": "4c21c2ff57f22771d474fe46a95d606da6e1249977e06f3cc1ac9fdae77ebea4",
+      "../../canonical-json.mjs": "881196513013ba1a9ab868d5fc2e30d7c7fba4e7bc760445d39356a10aacee0b",
+      "replay-evaluation.mjs": "c6a877d8d576c772606cc523f1e85d65c968433961bbf5b23bf7523151688911"
+    }
+  },
+  "dataset": {
+    "schema": "canli.filing-facts-item.v1",
+    "sha256": "e4b8527d07b918d936315999163f076331629198b82498719749acc70de0af5e",
+    "bytes": 98906,
+    "items": 93
+  },
+  "capture_sha256": "12b0503eeced022aaff6b32eb01c72f242ef57e93456783c8815794539fd41ab",
+  "capture": {
+    "schema": "canli.filing-facts-answer-capture.v1",
+    "provider": "openai",
+    "model": "gpt-6.1-terra",
+    "arm": "closed",
+    "api": "responses",
+    "recorded_at": "2026-11-05T10:15:10.892Z",
+    "completed_at": "2026-11-05T10:22:39.393Z",
+    "dataset_sha256": "e4b8527d07b918d936315999163f076331629198b82498719749acc70de0af5e",
+    "sampling": {
+      "method": "stratified",
+      "seed": 20260926,
+      "per_template": 30,
+      "item_ids": [
+        "5a69716fa209ca3a",
+        "0169eaa12b316ba6",
+        "8a5b49314939842c",
+        "3a2da9eda1df4c7d",
+        "218f71d0ba766e7a",
+        "91fbe78b822cfb1c",
+        "d06757a0b0a6976d",
+        "ef312c81fb5d7e58",
+        "7e208273e23bd487",
+        "b0a7ee3f89252714",
+        "110dc82446fdf354",
+        "09081007844ce448",
+        "07c28afe34b0e3be",
+        "783cdc63ee44c36e",
+        "f2740afa386f7f76",
+        "4acd1b8a569f4f94",
+        "f57c44b632f26eb9",
+        "46844a74ded65d4b",
+        "7b5b7dc31becb296",
+        "41eefb902f9a3cf8",
+        "35e8ac6459329a04",
+        "df1c9854ae915016",
+        "9856d25e744d4fbb",
+        "70245479d7104a6b",
+        "403dd026b13be020",
+        "b8a6022e11af4f03",
+        "981e67e34773038a",
+        "eca81e66eca32c64",
+        "b4ddb728f879fb10",
+        "26f440a3132d7aa1",
+        "6b9eb63c065e6bf0",
+        "8ca570c281f0718e",
+        "bd1cdd74845cd420",
+        "b75ba12036479200",
+        "e43a5757f48abc6a",
+        "29cef64eb817969f",
+        "36b36b18c203a4d2",
+        "b220f936a116c714",
+        "effb32bbfa86a99f",
+        "dae2bb660234441c",
+        "633ccfb1507e7dd2",
+        "b0106df6a1717458",
+        "1dcdcd92a436a72f",
+        "30014490007eb483",
+        "dcf4d19ef52fc16a",
+        "e4b619484aa030f6",
+        "f9fba7c5df4dad18",
+        "a224e0041b4a202c",
+        "695c69c8808d8e39",
+        "107534c2c49c61af",
+        "fe24b1f87b0ce8d9",
+        "c27c98c8cd6da6cb",
+        "499a73b749fe0410",
+        "8677ef010b6d50eb",
+        "a97b109f4cc5682c",
+        "3059074ef81f5100",
+        "d22a8bca21abfdfa",
+        "6adaae947a921109",
+        "387905653aa9d5c8",
+        "b2af2887539f24c1",
+        "27351f91b8b34b9a",
+        "73c2bdc7ec870ded",
+        "1b4160ecdfb1f529",
+        "ff9b33f38d1ebd7f",
+        "c64654e6eaf1b5d7",
+        "9aee7af41225d47c",
+        "32aa5335e875cd72",
+        "5312633a53b506d3",
+        "ea556de3e92bf44f",
+        "6ed5b2000813d6ad",
+        "4a0cc964822cb542",
+        "80ad3353c5993ee0",
+        "2e5482f91c7297aa",
+        "6cbb766fbaa93014",
+        "1f40add1d8df2f1a",
+        "da278ca6bff51c55",
+        "a3d99c8502681033",
+        "20c096d548af5213",
+        "a9ee3199ab14c153",
+        "96f0fd81372cf45f",
+        "ab7166b588604a53",
+        "ea611d88e0f1cd15",
+        "2b15da02d9431d23",
+        "5edab6b4d081ddb9",
+        "97f046eba734f56d",
+        "355d67d8454ee3c4",
+        "a51427a56e0e91e0",
+        "10e1cb97dca91827",
+        "b90a330e409f6ccd",
+        "2f4f19b576acf60f",
+        "3ec7cb5b97c62101"
+      ]
+    },
+    "system_prompt": "You are a financial analyst. Answer from what you know. End with one final line 'ANSWER: <value>': a plain number without commas, units or percent signs (a percent as its number, e.g. 12.34), or 'not reported' if the data does not exist.",
+    "runs": [
+      {
+        "id": "5a69716fa209ca3a",
+        "response_text": "The total asset balance as of 2026-08-29 has not been reported, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+        "tokens": 357,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_062ffeb6a179c773006aec572f97a087d286ff8bbe6cc2d900",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 133,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 224,
+              "output_tokens_details": {
+                "reasoning_tokens": 188
+              },
+              "total_tokens": 357
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "0169eaa12b316ba6",
+        "response_text": "PriceSmart’s total assets as of August 31, 2026 have not been reported, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+        "tokens": 339,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0bf456b1565b8e02006aec572fe57087d2b610968a535d012f",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 134,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 205,
+              "output_tokens_details": {
+                "reasoning_tokens": 168
+              },
+              "total_tokens": 339
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "8a5b49314939842c",
+        "response_text": "Net income (loss) for the fiscal year ended June 30, 2026 has not been reported, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+        "tokens": 405,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0b5d626dd7da17d2006aec572fb74c87d29eb6c68f8db8bb5a",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 136,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 269,
+              "output_tokens_details": {
+                "reasoning_tokens": 229
+              },
+              "total_tokens": 405
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "3a2da9eda1df4c7d",
+        "response_text": "Insteel Industries has not reported revenue for the fiscal year ended October 3, 2026, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+        "tokens": 407,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0ddc441837b6e5e1006aec572fbab487d2926687d8c8c91321",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 139,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 268,
+              "output_tokens_details": {
+                "reasoning_tokens": 230
+              },
+              "total_tokens": 407
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "ef312c81fb5d7e58",
+        "response_text": "I can’t verify the total liabilities balances needed to calculate the change.\n\nANSWER: not reported",
+        "tokens": 450,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0d054c34f0d4735c006aec573531e487d2843a9dd57eafac0f",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 133,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 317,
+              "output_tokens_details": {
+                "reasoning_tokens": 293
+              },
+              "total_tokens": 450
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "91fbe78b822cfb1c",
+        "response_text": "The July 31, 2026 cash and cash equivalents balance is not available, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+        "tokens": 509,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0d7a5b2ba8a54903006aec5734e0a087d293f573e4a5c1992f",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 143,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 366,
+              "output_tokens_details": {
+                "reasoning_tokens": 331
+              },
+              "total_tokens": 509
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "218f71d0ba766e7a",
+        "response_text": "I can’t verify the total liabilities balances for those dates from the information available to me.\n\nANSWER: not reported",
+        "tokens": 582,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0ffdc698ef47d08e006aec57344aa887d289bd677fb79ae5d4",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 138,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 444,
+              "output_tokens_details": {
+                "reasoning_tokens": 416
+              },
+              "total_tokens": 582
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "d06757a0b0a6976d",
+        "response_text": "I can’t verify NAPLOY CORP.’s annual XBRL figures for those fiscal years, so I can’t calculate the change.\n\nANSWER: not reported",
+        "tokens": 573,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_097daa747d183c03006aec5734e9dc87d2964618ab18af953a",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 138,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 435,
+              "output_tokens_details": {
+                "reasoning_tokens": 396
+              },
+              "total_tokens": 573
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "110dc82446fdf354",
+        "response_text": "The 2026-07-31 balance has not yet been reported.\n\nANSWER: not reported",
+        "tokens": 260,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0884b766d5e1c996006aec573c233487d287aec9d895b9466a",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 137,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 123,
+              "output_tokens_details": {
+                "reasoning_tokens": 98
+              },
+              "total_tokens": 260
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "b0a7ee3f89252714",
+        "response_text": "The percentage change cannot be calculated because net income (loss) for the fiscal year ended July 31, 2026, has not been reported.\n\nANSWER: not reported",
+        "tokens": 390,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0eb7f1fb3cfa4436006aec573acfbc87d28261e1765e00b5cd",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 144,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 246,
+              "output_tokens_details": {
+                "reasoning_tokens": 206
+              },
+              "total_tokens": 390
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "07c28afe34b0e3be",
+        "response_text": "Greenbrier’s fiscal 2026 annual revenue has not been reported, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+        "tokens": 360,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0b174f5215de4c75006aec573efd2087d2a03f6da6ea9bf8b4",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 142,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 218,
+              "output_tokens_details": {
+                "reasoning_tokens": 185
+              },
+              "total_tokens": 360
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "09081007844ce448",
+        "response_text": "The fiscal 2026 capital expenditure payments are not reported, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+        "tokens": 550,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0df312ba86c37eb1006aec573c7fb887d29478701ffc0b1921",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 136,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 414,
+              "output_tokens_details": {
+                "reasoning_tokens": 384
+              },
+              "total_tokens": 550
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "7e208273e23bd487",
+        "response_text": "I can’t verify the annual XBRL figures needed to calculate the change.\n\nANSWER: not reported",
+        "tokens": 819,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_074df5f82fc632e9006aec573a97d087d29fb5ff558b83b8b3",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 134,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 685,
+              "output_tokens_details": {
+                "reasoning_tokens": 659
+              },
+              "total_tokens": 819
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "783cdc63ee44c36e",
+        "response_text": "I cannot verify the 2026-08-29 equity balance, so I cannot calculate the change.\n\nANSWER: not reported",
+        "tokens": 525,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0c40ebf992552633006aec573feffc87d292c87b2db82133a0",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 137,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 388,
+              "output_tokens_details": {
+                "reasoning_tokens": 357
+              },
+              "total_tokens": 525
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "f2740afa386f7f76",
+        "response_text": "WD-40 Company’s fiscal 2026 annual revenue from contracts with customers is not available, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+        "tokens": 365,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0535cf23e1f64be1006aec5743542887d2a614174b89e332ba",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 136,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 229,
+              "output_tokens_details": {
+                "reasoning_tokens": 192
+              },
+              "total_tokens": 365
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "7b5b7dc31becb296",
+        "response_text": "The July 31, 2026 stockholders’ equity balance has not yet been reported, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+        "tokens": 253,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0343dfd8a71544be006aec574854ac87d2950c48a08040c22b",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 137,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 116,
+              "output_tokens_details": {
+                "reasoning_tokens": 79
+              },
+              "total_tokens": 253
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "f57c44b632f26eb9",
+        "response_text": "I can’t verify the operating cash flow figures for the two fiscal years, so I can’t calculate the change.\n\nANSWER: not reported",
+        "tokens": 469,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0227fc3ce2ca6df1006aec5745ef9887d2ad8d7e747a866163",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 143,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 326,
+              "output_tokens_details": {
+                "reasoning_tokens": 293
+              },
+              "total_tokens": 469
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "46844a74ded65d4b",
+        "response_text": "AutoZone has not reported annual operating cash flow for the fiscal year ended August 29, 2026, so the change cannot be calculated.\n\nANSWER: not reported",
+        "tokens": 546,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_009bc7cec4571deb006aec5746a14087d287d2ef4785c0c849",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 143,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 403,
+              "output_tokens_details": {
+                "reasoning_tokens": 364
+              },
+              "total_tokens": 546
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "4acd1b8a569f4f94",
+        "response_text": "The fiscal 2026 net income (loss) is not available in the data I know, so I cannot calculate the change.\n\nANSWER: not reported",
+        "tokens": 481,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_017067ba177b9650006aec574437c887d28c0870aaca46d04b",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 137,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 344,
+              "output_tokens_details": {
+                "reasoning_tokens": 308
+              },
+              "total_tokens": 481
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "41eefb902f9a3cf8",
+        "response_text": "I can’t verify MindForge Inc.’s XBRL revenue figures for either fiscal year, so I can’t calculate the change.\n\nANSWER: not reported",
+        "tokens": 393,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_091f3eb444083f83006aec574b93f487d28d1a49fb9ce07770",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 132,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 261,
+              "output_tokens_details": {
+                "reasoning_tokens": 224
+              },
+              "total_tokens": 393
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "9856d25e744d4fbb",
+        "response_text": "The revenue figure for the fiscal year ended August 31, 2026 is not reported, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+        "tokens": 343,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0c38d8532c9a7a8e006aec574d742087d2bb3282cdf3e7fb18",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 140,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 203,
+              "output_tokens_details": {
+                "reasoning_tokens": 166
+              },
+              "total_tokens": 343
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "df1c9854ae915016",
+        "response_text": "I cannot verify a reported total stockholders’ equity balance for July 31, 2026, so I cannot calculate the change.\n\nANSWER: not reported",
+        "tokens": 581,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0b4b389af0b46c72006aec574d629487d2af09b5a3df886ef9",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 138,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 443,
+              "output_tokens_details": {
+                "reasoning_tokens": 406
+              },
+              "total_tokens": 581
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "403dd026b13be020",
+        "response_text": "The fiscal 2026 net income (loss) is not reported, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+        "tokens": 341,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0ade92170a4463e3006aec5751d85487d28239014887fdfd5a",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 140,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 201,
+              "output_tokens_details": {
+                "reasoning_tokens": 169
+              },
+              "total_tokens": 341
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "70245479d7104a6b",
+        "response_text": "I can’t verify NAPLOY CORP.’s equity balances for those dates from the information available to me.\n\nANSWER: not reported",
+        "tokens": 371,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_015312bdb8ae2fdf006aec5751378087d2b6209acdf1a85fb9",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 138,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 233,
+              "output_tokens_details": {
+                "reasoning_tokens": 200
+              },
+              "total_tokens": 371
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "35e8ac6459329a04",
+        "response_text": "I can’t determine the percentage change without the two annual XBRL revenue values. “Not reported” here reflects that I can’t verify the values, not a finding that CLINUVEL omitted them.\n\nANSWER: not reported",
+        "tokens": 709,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_05aacca8a3722c81006aec574bff4c87d28c404a095a9452e6",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 142,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 567,
+              "output_tokens_details": {
+                "reasoning_tokens": 516
+              },
+              "total_tokens": 709
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "b4ddb728f879fb10",
+        "response_text": "The fiscal 2026 annual net income (loss) is not reported, so the change cannot be calculated.\n\nANSWER: not reported",
+        "tokens": 393,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_02abcce8f961650e006aec5755ecec87d2b6023057206c41a0",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 142,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 251,
+              "output_tokens_details": {
+                "reasoning_tokens": 219
+              },
+              "total_tokens": 393
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "b8a6022e11af4f03",
+        "response_text": "I can’t verify the XBRL balances needed to calculate the change.\n\nANSWER: not reported",
+        "tokens": 570,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_058a2eb7d3d34a9d006aec57554c2c87d2843e10147fd52572",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 140,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 430,
+              "output_tokens_details": {
+                "reasoning_tokens": 405
+              },
+              "total_tokens": 570
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "981e67e34773038a",
+        "response_text": "I can’t verify the annual XBRL figures needed to calculate the change.\n\nANSWER: not reported",
+        "tokens": 585,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_087be221835b3194006aec57556a7c87d290bb5e1b857f1bd8",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 136,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 449,
+              "output_tokens_details": {
+                "reasoning_tokens": 423
+              },
+              "total_tokens": 585
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "eca81e66eca32c64",
+        "response_text": "I can’t verify the two equity balances needed to calculate the change.\n\nANSWER: not reported",
+        "tokens": 598,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_02e5006245b16662006aec5755d63c87d2bb70dd199c95dd44",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 141,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 457,
+              "output_tokens_details": {
+                "reasoning_tokens": 433
+              },
+              "total_tokens": 598
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "26f440a3132d7aa1",
+        "response_text": "I can’t verify PURE Bioscience’s fiscal 2026 annual XBRL revenue, so I can’t calculate the change.\n\nANSWER: not reported",
+        "tokens": 437,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0ec72d8ab01f4d6b006aec575b199487d28d72e84bd4eb0533",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 138,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 299,
+              "output_tokens_details": {
+                "reasoning_tokens": 263
+              },
+              "total_tokens": 437
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "6b9eb63c065e6bf0",
+        "response_text": "I can’t access the filing to verify the amount. The response below does not establish that the figure was omitted from the filing.\n\nANSWER: not reported",
+        "tokens": 467,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0f565bb03be608ca006aec575c3bcc87d29316399076dea565",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 128,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 339,
+              "output_tokens_details": {
+                "reasoning_tokens": 303
+              },
+              "total_tokens": 467
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "8ca570c281f0718e",
+        "response_text": "I can’t verify the cited filing or determine the cash balance from the information available to me.\n\nANSWER: not reported",
+        "tokens": 577,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_07071770b6a4709d006aec575cdf2487d2953318c824d622ce",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 128,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 449,
+              "output_tokens_details": {
+                "reasoning_tokens": 420
+              },
+              "total_tokens": 577
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "bd1cdd74845cd420",
+        "response_text": "I can’t verify the filing or determine the reported amount from the information available to me.\n\nANSWER: not reported",
+        "tokens": 528,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0daa75be437c079d006aec575d514887d289654efc45be1041",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 139,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 389,
+              "output_tokens_details": {
+                "reasoning_tokens": 361
+              },
+              "total_tokens": 528
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "b75ba12036479200",
+        "response_text": "I can’t access the specified filing to verify the figure or determine whether it was reported.\n\nANSWER: not reported",
+        "tokens": 474,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0abef2563c0f6798006aec57609ea487d2a6ac74d0886d0d79",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 140,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 334,
+              "output_tokens_details": {
+                "reasoning_tokens": 306
+              },
+              "total_tokens": 474
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "29cef64eb817969f",
+        "response_text": "I can’t verify the specified filing’s XBRL data, so I can’t determine the total-assets figure.\n\nANSWER: not reported",
+        "tokens": 457,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_055fac78383dd520006aec576423ac87d2836837184f74c9b8",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 126,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 331,
+              "output_tokens_details": {
+                "reasoning_tokens": 298
+              },
+              "total_tokens": 457
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "e43a5757f48abc6a",
+        "response_text": "I can’t verify the filing or determine whether the figure was reported.\n\nANSWER: not reported",
+        "tokens": 534,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0fd83c33d856ab70006aec5762aed487d29b9d7352d54cae53",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 133,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 401,
+              "output_tokens_details": {
+                "reasoning_tokens": 377
+              },
+              "total_tokens": 534
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "b220f936a116c714",
+        "response_text": "I can’t verify the filing’s XBRL data, so I can’t determine the revenue figure. This does not establish that revenue was absent from the filing.\n\nANSWER: not reported",
+        "tokens": 597,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0e234d342e19197e006aec57669a0487d2b143c359df7caddc",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 128,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 469,
+              "output_tokens_details": {
+                "reasoning_tokens": 426
+              },
+              "total_tokens": 597
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "effb32bbfa86a99f",
+        "response_text": "I can’t verify the XBRL figure from the specified filing.\n\nANSWER: not reported",
+        "tokens": 411,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_09ee26bda7d96175006aec5769942887d29251a4fbc7fbc918",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 130,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 281,
+              "output_tokens_details": {
+                "reasoning_tokens": 257
+              },
+              "total_tokens": 411
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "36b36b18c203a4d2",
+        "response_text": "I can’t verify the figure from the filing’s XBRL data.\n\nANSWER: not reported",
+        "tokens": 495,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_009104db0302a8be006aec5765101c87d28e54e88bfb102aee",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 128,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 367,
+              "output_tokens_details": {
+                "reasoning_tokens": 342
+              },
+              "total_tokens": 495
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "dae2bb660234441c",
+        "response_text": "I can’t verify the filing’s XBRL data, so I can’t determine the amount.\n\nANSWER: not reported",
+        "tokens": 478,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0d45f0fb1ba6cb21006aec576befc487d287e86c6cb0472ec9",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 141,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 337,
+              "output_tokens_details": {
+                "reasoning_tokens": 307
+              },
+              "total_tokens": 478
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "633ccfb1507e7dd2",
+        "response_text": "I can’t verify the cited filing or its capital expenditure amount.\n\nANSWER: not reported",
+        "tokens": 470,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0ca3edf695cf184d006aec576f0cb887d2a8e6344babb1f7ee",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 131,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 339,
+              "output_tokens_details": {
+                "reasoning_tokens": 316
+              },
+              "total_tokens": 470
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "b0106df6a1717458",
+        "response_text": "I can’t verify the filing’s XBRL data, so I can’t determine the total assets figure.\n\nANSWER: not reported",
+        "tokens": 632,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_09b488c374ff14ea006aec576f605087d28a97c127d44695b6",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 127,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 505,
+              "output_tokens_details": {
+                "reasoning_tokens": 473
+              },
+              "total_tokens": 632
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "30014490007eb483",
+        "response_text": "I can’t verify the specified filing or its net income figure.\n\nANSWER: not reported",
+        "tokens": 457,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_07d89812d3753e61006aec5772269887d28b2e1f594203d38f",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 135,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 322,
+              "output_tokens_details": {
+                "reasoning_tokens": 299
+              },
+              "total_tokens": 457
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "1dcdcd92a436a72f",
+        "response_text": "I can’t verify the filing’s XBRL data, so I can’t determine the amount. This does not mean the figure was absent from the filing.\n\nANSWER: unable to verify",
+        "tokens": 688,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_08004d632a4a3a4e006aec5770d7ec87d29e064ce5f274968f",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 129,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 559,
+              "output_tokens_details": {
+                "reasoning_tokens": 516
+              },
+              "total_tokens": 688
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "dcf4d19ef52fc16a",
+        "response_text": "I can’t verify the specified filing’s XBRL data, so I can’t determine the net income figure.\n\nANSWER: not reported",
+        "tokens": 451,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_00ef2f87164f26c7006aec5774c44087d28ec26870436e431f",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 134,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 317,
+              "output_tokens_details": {
+                "reasoning_tokens": 284
+              },
+              "total_tokens": 451
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "e4b619484aa030f6",
+        "response_text": "I can’t verify the XBRL data in the cited filing, so I can’t determine the amount.\n\nANSWER: not reported",
+        "tokens": 386,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0c43152e383300d6006aec5777746087d2934b0d9d02956bea",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 128,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 258,
+              "output_tokens_details": {
+                "reasoning_tokens": 226
+              },
+              "total_tokens": 386
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "a224e0041b4a202c",
+        "response_text": "I can’t verify the cited filing or its XBRL data from the information available to me.\n\nANSWER: not reported",
+        "tokens": 454,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_053608a41b9d84b0006aec5779f91887d2a1a8b0969773bb4c",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 131,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 323,
+              "output_tokens_details": {
+                "reasoning_tokens": 293
+              },
+              "total_tokens": 454
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "695c69c8808d8e39",
+        "response_text": "I can’t verify the specified filing or its XBRL data, so I can’t determine the figure.\n\nANSWER: not reported",
+        "tokens": 552,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0595beb97a2ba1be006aec577a34c087d2ba9f3b176661a1d1",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 126,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 426,
+              "output_tokens_details": {
+                "reasoning_tokens": 394
+              },
+              "total_tokens": 552
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "107534c2c49c61af",
+        "response_text": "I can’t access or verify the filing’s XBRL data, so I can’t determine the reported net income or loss.",
+        "tokens": 607,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0f0c44d0d37b2c32006aec577cf6b887d2aa188502c4b7155a",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 132,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 475,
+              "output_tokens_details": {
+                "reasoning_tokens": 443
+              },
+              "total_tokens": 607
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "fe24b1f87b0ce8d9",
+        "response_text": "I can’t access or verify the filing’s XBRL data, so I can’t determine the cash balance.\n\nANSWER: not reported",
+        "tokens": 552,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_081568e53f266d67006aec578001e087d2b92f9d59bc576c69",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 129,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 423,
+              "output_tokens_details": {
+                "reasoning_tokens": 390
+              },
+              "total_tokens": 552
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "c27c98c8cd6da6cb",
+        "response_text": "I can’t access the filing’s XBRL data to verify the amount.",
+        "tokens": 740,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_036511f5573525b6006aec5780d3e487d2b6f41c9eea4d374e",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 128,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 612,
+              "output_tokens_details": {
+                "reasoning_tokens": 590
+              },
+              "total_tokens": 740
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "499a73b749fe0410",
+        "response_text": "I can’t verify the specified filing or its XBRL revenue figure.\n\nANSWER: not reported",
+        "tokens": 677,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_091ed5f59c9873ef006aec57850c2487d2a04629929511bf17",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 136,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 541,
+              "output_tokens_details": {
+                "reasoning_tokens": 516
+              },
+              "total_tokens": 677
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "a97b109f4cc5682c",
+        "response_text": "I can’t verify the cited filing’s XBRL data.\n\nANSWER: not reported",
+        "tokens": 395,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0fc0794e7603321f006aec578a1a6c87d2aaf17f6f2f788376",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 132,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 263,
+              "output_tokens_details": {
+                "reasoning_tokens": 240
+              },
+              "total_tokens": 395
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "d22a8bca21abfdfa",
+        "response_text": "I can’t verify the XBRL figure from the filing. This does not establish that the figure was absent.\n\nANSWER: not reported",
+        "tokens": 470,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_005b94f9201ca9a2006aec578f6e1c87d2b38e382caf0b0351",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 136,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 334,
+              "output_tokens_details": {
+                "reasoning_tokens": 301
+              },
+              "total_tokens": 470
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "3059074ef81f5100",
+        "response_text": "I can’t verify the filing’s XBRL data or determine the amount.\n\nANSWER: not reported",
+        "tokens": 606,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_03ddef8986be7446006aec578e24dc87d2a41bba976dd489e2",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 133,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 473,
+              "output_tokens_details": {
+                "reasoning_tokens": 447
+              },
+              "total_tokens": 606
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "387905653aa9d5c8",
+        "response_text": "I can’t verify the company’s XBRL balance sheet data for 2026-07-31.\n\nANSWER: not reported",
+        "tokens": 282,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_030259933b6f0ed0006aec5795c4f487d293ef64c8a7dae7da",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 109,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 173,
+              "output_tokens_details": {
+                "reasoning_tokens": 141
+              },
+              "total_tokens": 282
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "6adaae947a921109",
+        "response_text": "I can’t verify the filing’s XBRL revenue figure from the information available to me.\n\nANSWER: not reported",
+        "tokens": 512,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_08bba741ee9d91b4006aec5794f71c87d29082e20d340fe390",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 130,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 382,
+              "output_tokens_details": {
+                "reasoning_tokens": 353
+              },
+              "total_tokens": 512
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "b2af2887539f24c1",
+        "response_text": "The 2026-07-31 balance sheet has not yet been reported.\n\nANSWER: not reported",
+        "tokens": 185,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0f11c45e26401460006aec57998e2887d2833129262aabf965",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 105,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 80,
+              "output_tokens_details": {
+                "reasoning_tokens": 54
+              },
+              "total_tokens": 185
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "27351f91b8b34b9a",
+        "response_text": "I can’t verify TMD Energy Limited’s XBRL balance sheet for June 30, 2026.\n\nANSWER: not reported",
+        "tokens": 374,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_05866443095e2e83006aec579c2c0487d2be6d9264b15b4a34",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 104,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 270,
+              "output_tokens_details": {
+                "reasoning_tokens": 237
+              },
+              "total_tokens": 374
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "73c2bdc7ec870ded",
+        "response_text": "I cannot verify the XBRL balance sheet figures for that date from the information available.\n\nANSWER: not reported",
+        "tokens": 387,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0f032a27c4734a1f006aec579c3f4c87d28f92a417b999a3b4",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 104,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 283,
+              "output_tokens_details": {
+                "reasoning_tokens": 255
+              },
+              "total_tokens": 387
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "1b4160ecdfb1f529",
+        "response_text": "RISE GOLD CORP.’s balance sheet for July 31, 2026 has not yet been reported.\n\nANSWER: not reported",
+        "tokens": 257,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0d6add8474c89891006aec57a0e1c887d2a6855971f227a6d0",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 106,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 151,
+              "output_tokens_details": {
+                "reasoning_tokens": 118
+              },
+              "total_tokens": 257
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "ff9b33f38d1ebd7f",
+        "response_text": "I can’t verify MAASE Inc.’s XBRL balance sheet data for that date.\n\nANSWER: not reported",
+        "tokens": 383,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_096743b51623b8bb006aec57a1360c87d286e88c1892ed8355",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 105,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 278,
+              "output_tokens_details": {
+                "reasoning_tokens": 248
+              },
+              "total_tokens": 383
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "c64654e6eaf1b5d7",
+        "response_text": "I can’t verify Intercont (Cayman) Limited’s balance sheet data for 2026-06-30.\n\nANSWER: not reported",
+        "tokens": 348,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_09999b64d050c7d6006aec57a4f9c887d2bcd8cc2ee2eda860",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 108,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 240,
+              "output_tokens_details": {
+                "reasoning_tokens": 205
+              },
+              "total_tokens": 348
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "9aee7af41225d47c",
+        "response_text": "I can’t verify PriceSmart’s XBRL balance sheet data for August 31, 2026.\n\nANSWER: not reported",
+        "tokens": 372,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0897f1ca5159ad7d006aec57a6a87087d281a94e3ccadfcf26",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 105,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 267,
+              "output_tokens_details": {
+                "reasoning_tokens": 235
+              },
+              "total_tokens": 372
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "32aa5335e875cd72",
+        "response_text": "I can’t verify the company’s XBRL balance sheet data for 2026-06-30, so I can’t calculate the difference.\n\nANSWER: not reported",
+        "tokens": 319,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_054ba708d72046e5006aec57a9309087d28bfd0b27b14d84e1",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 106,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 213,
+              "output_tokens_details": {
+                "reasoning_tokens": 173
+              },
+              "total_tokens": 319
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "5312633a53b506d3",
+        "response_text": "I can’t verify the company’s XBRL balance sheet data for June 30, 2026.\n\nANSWER: not reported",
+        "tokens": 412,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_075e00b55f90c3ac006aec57abfb3487d2bdbe3cc772298687",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 106,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 306,
+              "output_tokens_details": {
+                "reasoning_tokens": 274
+              },
+              "total_tokens": 412
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "ea556de3e92bf44f",
+        "response_text": "I can’t verify Rafael Holdings’ XBRL balance sheet data for July 31, 2026.\n\nANSWER: not reported",
+        "tokens": 376,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0c9e9fedd94aff3f006aec57ad918c87d2827bebc1650a8bf1",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 108,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 268,
+              "output_tokens_details": {
+                "reasoning_tokens": 236
+              },
+              "total_tokens": 376
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "6ed5b2000813d6ad",
+        "response_text": "I can’t verify Here Group Limited’s XBRL balance sheet figures for 2026-06-30.\n\nANSWER: not reported",
+        "tokens": 378,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0cb150964d02a143006aec57b1d94487d2b29546c75f5ce2d0",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 104,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 274,
+              "output_tokens_details": {
+                "reasoning_tokens": 241
+              },
+              "total_tokens": 378
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "4a0cc964822cb542",
+        "response_text": "I can’t verify the specified XBRL balance sheet figures.\n\nANSWER: not reported",
+        "tokens": 363,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0f4dac974666c5cf006aec57b2c58087d284e23dab0ce3d6e8",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 104,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 259,
+              "output_tokens_details": {
+                "reasoning_tokens": 236
+              },
+              "total_tokens": 363
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "2e5482f91c7297aa",
+        "response_text": "I can’t verify MindForge Inc.’s XBRL data for the period ending 2026-06-30, so I can’t calculate the ratio.\n\nANSWER: not reported",
+        "tokens": 344,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0ad0be60a11ee6b0006aec57b7b68087d2ab99b20c6c69a0c8",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 113,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 231,
+              "output_tokens_details": {
+                "reasoning_tokens": 188
+              },
+              "total_tokens": 344
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "6cbb766fbaa93014",
+        "response_text": "I can’t verify the annual XBRL figures for 2026-06-30, so I can’t calculate the ratio.\n\nANSWER: not reported",
+        "tokens": 563,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0013906d7d501c1c006aec57bcc43087d2bfd7d3a1f7608183",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 118,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 445,
+              "output_tokens_details": {
+                "reasoning_tokens": 408
+              },
+              "total_tokens": 563
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "1f40add1d8df2f1a",
+        "response_text": "I can’t verify the reported total liabilities and total assets for that period.\n\nANSWER: not reported",
+        "tokens": 419,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_044f357050a3267c006aec57c5edd887d29ac1b62078c7939d",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 113,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 306,
+              "output_tokens_details": {
+                "reasoning_tokens": 281
+              },
+              "total_tokens": 419
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "da278ca6bff51c55",
+        "response_text": "The net profit margin is not reported for the period ending 2026-07-31.\n\nANSWER: not reported",
+        "tokens": 459,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0f60e4a211b6b6d5006aec57cbf1d887d29c3cb3bd7b1c26b6",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 118,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 341,
+              "output_tokens_details": {
+                "reasoning_tokens": 312
+              },
+              "total_tokens": 459
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "a3d99c8502681033",
+        "response_text": "The period ending June 30, 2026 has not yet ended, so its annual net profit margin has not been reported.\n\nANSWER: not reported",
+        "tokens": 279,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0d00fab7d98766e2006aec57d24ef087d2843030c26ae41198",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 121,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 158,
+              "output_tokens_details": {
+                "reasoning_tokens": 122
+              },
+              "total_tokens": 279
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "20c096d548af5213",
+        "response_text": "I can’t verify the net income and total assets reported for that period.\n\nANSWER: not reported",
+        "tokens": 441,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0fdcfd15f9af9e92006aec57d5c70487d2a14618c1643768cc",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 119,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 322,
+              "output_tokens_details": {
+                "reasoning_tokens": 297
+              },
+              "total_tokens": 441
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "a9ee3199ab14c153",
+        "response_text": "I can’t verify the net income and total assets needed to calculate the ratio for that period.\n\nANSWER: not reported",
+        "tokens": 451,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_056976930ff407db006aec57dafb9087d29f49f5d97db4a811",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 121,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 330,
+              "output_tokens_details": {
+                "reasoning_tokens": 301
+              },
+              "total_tokens": 451
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "96f0fd81372cf45f",
+        "response_text": "PriceSmart’s annual XBRL data does not report the figures needed to calculate net profit margin for the period ending 2026-08-31.\n\nANSWER: not reported",
+        "tokens": 354,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0a631faa43827345006aec57e0fcd087d29b2b2c140ab7932e",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 121,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 233,
+              "output_tokens_details": {
+                "reasoning_tokens": 192
+              },
+              "total_tokens": 354
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "ab7166b588604a53",
+        "response_text": "No annual XBRL data is reported for the period ending June 30, 2026.\n\nANSWER: not reported",
+        "tokens": 509,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_02f09627019b3020006aec57e5876487d295f2420225af4ff8",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 117,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 392,
+              "output_tokens_details": {
+                "reasoning_tokens": 362
+              },
+              "total_tokens": 509
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "ea611d88e0f1cd15",
+        "response_text": "I can’t verify net income and total assets from annual XBRL data for the year ended March 31, 2026, so I can’t calculate the ratio.\n\nANSWER: not reported",
+        "tokens": 410,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_05f59a82f5f29d35006aec57ecf8e887d29790e363ea348477",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 117,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 293,
+              "output_tokens_details": {
+                "reasoning_tokens": 248
+              },
+              "total_tokens": 410
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "2b15da02d9431d23",
+        "response_text": "ANSWER: not reported",
+        "tokens": 316,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_03892588d2fbc0c1006aec57f29b2487d2b389b9cc9c9d6b42",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 113,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 203,
+              "output_tokens_details": {
+                "reasoning_tokens": 193
+              },
+              "total_tokens": 316
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "5edab6b4d081ddb9",
+        "response_text": "I don’t have reported revenue and net income for the period ending 2026-06-30 to calculate the margin.\n\nANSWER: not reported",
+        "tokens": 521,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_09e26900e03a1557006aec57f6acc087d286667fa16b92d9b1",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 116,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 405,
+              "output_tokens_details": {
+                "reasoning_tokens": 370
+              },
+              "total_tokens": 521
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "97f046eba734f56d",
+        "response_text": "I can’t verify the cash and total assets figures for that period without the annual XBRL filing.\n\nANSWER: not reported",
+        "tokens": 448,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0b8ede3623f44ec7006aec57fcc91087d2a9b21ddd22cb4488",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 115,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 333,
+              "output_tokens_details": {
+                "reasoning_tokens": 302
+              },
+              "total_tokens": 448
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "355d67d8454ee3c4",
+        "response_text": "I can’t verify the net income and total assets figures for that fiscal year end.\n\nANSWER: not reported",
+        "tokens": 441,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_052416b3a968d8b8006aec5801e9d487d28d0e90ba8b7dd9c4",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 121,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 320,
+              "output_tokens_details": {
+                "reasoning_tokens": 293
+              },
+              "total_tokens": 441
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "a51427a56e0e91e0",
+        "response_text": "I can’t verify the 2025 XBRL figures needed to calculate the ratio.\n\nANSWER: not reported",
+        "tokens": 444,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_09a5acecc89b94c2006aec5807dc8487d2a51ecc6cf3140f37",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 126,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 318,
+              "output_tokens_details": {
+                "reasoning_tokens": 290
+              },
+              "total_tokens": 444
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "10e1cb97dca91827",
+        "response_text": "I cannot verify net income or total assets for the requested period from the information available to me.\n\nANSWER: not reported",
+        "tokens": 518,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_06070debc4ae82d9006aec580de7b887d2b02fb76d331b634c",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 121,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 397,
+              "output_tokens_details": {
+                "reasoning_tokens": 368
+              },
+              "total_tokens": 518
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "b90a330e409f6ccd",
+        "response_text": "I cannot verify annual XBRL data for the period ending 2026-08-29.\n\nANSWER: not reported",
+        "tokens": 429,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0ad041e5867826ef006aec5814ecc087d28c1445efc815bc06",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 116,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 313,
+              "output_tokens_details": {
+                "reasoning_tokens": 283
+              },
+              "total_tokens": 429
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "2f4f19b576acf60f",
+        "response_text": "ANSWER: not reported",
+        "tokens": 327,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0bcd5ed2953e03eb006aec581a9cd087d2bde9ad5e867ae72a",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 123,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 204,
+              "output_tokens_details": {
+                "reasoning_tokens": 194
+              },
+              "total_tokens": 327
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "3ec7cb5b97c62101",
+        "response_text": "The fiscal 2026 annual XBRL data is not reported.\n\nANSWER: not reported",
+        "tokens": 336,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_0d8bb693a671bae1006aec581f4ab887d294ec682d25403a68",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 123,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 213,
+              "output_tokens_details": {
+                "reasoning_tokens": 189
+              },
+              "total_tokens": 336
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "f9fba7c5df4dad18",
+        "response_text": "I can’t verify the cited filing or its XBRL data, so I can’t determine the amount.\n\nANSWER: not reported",
+        "tokens": 453,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_078bf9053369e939006aec58aa81ec87d29ee19b720d313f8a",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 139,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 314,
+              "output_tokens_details": {
+                "reasoning_tokens": 282
+              },
+              "total_tokens": 453
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "8677ef010b6d50eb",
+        "response_text": "I can’t verify the filing or its XBRL data, so I can’t determine the total assets figure.\n\nANSWER: not reported",
+        "tokens": 527,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_04ff0bab406173a4006aec58b9137487d28566f69d3a420485",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 126,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 401,
+              "output_tokens_details": {
+                "reasoning_tokens": 368
+              },
+              "total_tokens": 527
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      },
+      {
+        "id": "80ad3353c5993ee0",
+        "response_text": "I don’t have verified annual XBRL figures for the period ending June 30, 2026.\n\nANSWER: not reported",
+        "tokens": 429,
+        "tool_calls": 0,
+        "error": null,
+        "provider_responses": [
+          {
+            "response_id": "resp_05b7601482cfbd91006aec58e925f487d284eb4af34f788806",
+            "model": "gpt-6.1-terra",
+            "usage": {
+              "input_tokens": 117,
+              "input_tokens_details": {
+                "cache_write_tokens": 0,
+                "cached_tokens": 0
+              },
+              "output_tokens": 312,
+              "output_tokens_details": {
+                "reasoning_tokens": 280
+              },
+              "total_tokens": 429
+            },
+            "status": "completed"
+          }
+        ],
+        "tool_trace": []
+      }
+    ]
+  },
+  "summary": {
+    "model": "gpt-6.1-terra",
+    "arm": "closed",
+    "items": 91,
+    "accuracy": 0,
+    "coverage": {
+      "expected": 91,
+      "captured": 91,
+      "responses": 91,
+      "missing_captures": 0,
+      "missing_responses": 0,
+      "request_errors": 0,
+      "no_final_answers": 2
+    },
+    "response_accuracy": 0,
+    "behaviour": {
+      "answerable": 91,
+      "answerable_accuracy": 0,
+      "answerable_abstention": 0.967032967032967,
+      "numbers_given": 0,
+      "numbers_wrong": null,
+      "unanswerable": 0,
+      "unanswerable_abstention": null,
+      "unanswerable_invented_number": null
+    },
+    "errors": 0,
+    "mean_tokens": 456,
+    "by_template": {
+      "change": {
+        "n": 30,
+        "accuracy": 0,
+        "mean_tokens": 465
+      },
+      "lookup": {
+        "n": 28,
+        "accuracy": 0,
+        "mean_tokens": 523
+      },
+      "net_assets": {
+        "n": 13,
+        "accuracy": 0,
+        "mean_tokens": 341
+      },
+      "ratio": {
+        "n": 20,
+        "accuracy": 0,
+        "mean_tokens": 422
+      }
+    }
+  },
+  "runs": [
+    {
+      "id": "5a69716fa209ca3a",
+      "template": "change",
+      "status": "response",
+      "response_text": "The total asset balance as of 2026-08-29 has not been reported, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -15,
+      "tokens": 357,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "0169eaa12b316ba6",
+      "template": "change",
+      "status": "response",
+      "response_text": "PriceSmart’s total assets as of August 31, 2026 have not been reported, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 14.71,
+      "tokens": 339,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "8a5b49314939842c",
+      "template": "change",
+      "status": "response",
+      "response_text": "Net income (loss) for the fiscal year ended June 30, 2026 has not been reported, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 5.8,
+      "tokens": 405,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "3a2da9eda1df4c7d",
+      "template": "change",
+      "status": "response",
+      "response_text": "Insteel Industries has not reported revenue for the fiscal year ended October 3, 2026, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 14.17,
+      "tokens": 407,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "218f71d0ba766e7a",
+      "template": "change",
+      "status": "response",
+      "response_text": "I can’t verify the total liabilities balances for those dates from the information available to me.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 35.57,
+      "tokens": 582,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "91fbe78b822cfb1c",
+      "template": "change",
+      "status": "response",
+      "response_text": "The July 31, 2026 cash and cash equivalents balance is not available, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -6.11,
+      "tokens": 509,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "d06757a0b0a6976d",
+      "template": "change",
+      "status": "response",
+      "response_text": "I can’t verify NAPLOY CORP.’s annual XBRL figures for those fiscal years, so I can’t calculate the change.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -52.92,
+      "tokens": 573,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "ef312c81fb5d7e58",
+      "template": "change",
+      "status": "response",
+      "response_text": "I can’t verify the total liabilities balances needed to calculate the change.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 13.38,
+      "tokens": 450,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "7e208273e23bd487",
+      "template": "change",
+      "status": "response",
+      "response_text": "I can’t verify the annual XBRL figures needed to calculate the change.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -16.84,
+      "tokens": 819,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "b0a7ee3f89252714",
+      "template": "change",
+      "status": "response",
+      "response_text": "The percentage change cannot be calculated because net income (loss) for the fiscal year ended July 31, 2026, has not been reported.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -32.66,
+      "tokens": 390,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "110dc82446fdf354",
+      "template": "change",
+      "status": "response",
+      "response_text": "The 2026-07-31 balance has not yet been reported.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 197.37,
+      "tokens": 260,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "09081007844ce448",
+      "template": "change",
+      "status": "response",
+      "response_text": "The fiscal 2026 capital expenditure payments are not reported, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -97.75,
+      "tokens": 550,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "07c28afe34b0e3be",
+      "template": "change",
+      "status": "response",
+      "response_text": "Greenbrier’s fiscal 2026 annual revenue has not been reported, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -24.04,
+      "tokens": 360,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "783cdc63ee44c36e",
+      "template": "change",
+      "status": "response",
+      "response_text": "I cannot verify the 2026-08-29 equity balance, so I cannot calculate the change.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 2.77,
+      "tokens": 525,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "f2740afa386f7f76",
+      "template": "change",
+      "status": "response",
+      "response_text": "WD-40 Company’s fiscal 2026 annual revenue from contracts with customers is not available, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 10.97,
+      "tokens": 365,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "4acd1b8a569f4f94",
+      "template": "change",
+      "status": "response",
+      "response_text": "The fiscal 2026 net income (loss) is not available in the data I know, so I cannot calculate the change.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -12.25,
+      "tokens": 481,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "f57c44b632f26eb9",
+      "template": "change",
+      "status": "response",
+      "response_text": "I can’t verify the operating cash flow figures for the two fiscal years, so I can’t calculate the change.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -785.45,
+      "tokens": 469,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "46844a74ded65d4b",
+      "template": "change",
+      "status": "response",
+      "response_text": "AutoZone has not reported annual operating cash flow for the fiscal year ended August 29, 2026, so the change cannot be calculated.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 4.23,
+      "tokens": 546,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "7b5b7dc31becb296",
+      "template": "change",
+      "status": "response",
+      "response_text": "The July 31, 2026 stockholders’ equity balance has not yet been reported, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -7.26,
+      "tokens": 253,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "41eefb902f9a3cf8",
+      "template": "change",
+      "status": "response",
+      "response_text": "I can’t verify MindForge Inc.’s XBRL revenue figures for either fiscal year, so I can’t calculate the change.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -49.93,
+      "tokens": 393,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "35e8ac6459329a04",
+      "template": "change",
+      "status": "response",
+      "response_text": "I can’t determine the percentage change without the two annual XBRL revenue values. “Not reported” here reflects that I can’t verify the values, not a finding that CLINUVEL omitted them.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 5.54,
+      "tokens": 709,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "df1c9854ae915016",
+      "template": "change",
+      "status": "response",
+      "response_text": "I cannot verify a reported total stockholders’ equity balance for July 31, 2026, so I cannot calculate the change.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 138.21,
+      "tokens": 581,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "9856d25e744d4fbb",
+      "template": "change",
+      "status": "response",
+      "response_text": "The revenue figure for the fiscal year ended August 31, 2026 is not reported, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 5.74,
+      "tokens": 343,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "70245479d7104a6b",
+      "template": "change",
+      "status": "response",
+      "response_text": "I can’t verify NAPLOY CORP.’s equity balances for those dates from the information available to me.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -284.65,
+      "tokens": 371,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "403dd026b13be020",
+      "template": "change",
+      "status": "response",
+      "response_text": "The fiscal 2026 net income (loss) is not reported, so the percentage change cannot be calculated.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -3.24,
+      "tokens": 341,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "b8a6022e11af4f03",
+      "template": "change",
+      "status": "response",
+      "response_text": "I can’t verify the XBRL balances needed to calculate the change.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -28.4,
+      "tokens": 570,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "981e67e34773038a",
+      "template": "change",
+      "status": "response",
+      "response_text": "I can’t verify the annual XBRL figures needed to calculate the change.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -708.92,
+      "tokens": 585,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "eca81e66eca32c64",
+      "template": "change",
+      "status": "response",
+      "response_text": "I can’t verify the two equity balances needed to calculate the change.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -63.62,
+      "tokens": 598,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "b4ddb728f879fb10",
+      "template": "change",
+      "status": "response",
+      "response_text": "The fiscal 2026 annual net income (loss) is not reported, so the change cannot be calculated.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -61.29,
+      "tokens": 393,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "26f440a3132d7aa1",
+      "template": "change",
+      "status": "response",
+      "response_text": "I can’t verify PURE Bioscience’s fiscal 2026 annual XBRL revenue, so I can’t calculate the change.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 5.27,
+      "tokens": 437,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "6b9eb63c065e6bf0",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t access the filing to verify the amount. The response below does not establish that the figure was omitted from the filing.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 7592000,
+      "tokens": 467,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "8ca570c281f0718e",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the cited filing or determine the cash balance from the information available to me.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 2549951,
+      "tokens": 577,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "bd1cdd74845cd420",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the filing or determine the reported amount from the information available to me.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -103413000,
+      "tokens": 528,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "b75ba12036479200",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t access the specified filing to verify the figure or determine whether it was reported.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -34904262,
+      "tokens": 474,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "e43a5757f48abc6a",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the filing or determine whether the figure was reported.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 2418296,
+      "tokens": 534,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "29cef64eb817969f",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the specified filing’s XBRL data, so I can’t determine the total-assets figure.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 494377000,
+      "tokens": 457,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "36b36b18c203a4d2",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the figure from the filing’s XBRL data.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 10161886,
+      "tokens": 495,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "b220f936a116c714",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the filing’s XBRL data, so I can’t determine the revenue figure. This does not establish that revenue was absent from the filing.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 14856829,
+      "tokens": 597,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "effb32bbfa86a99f",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the XBRL figure from the specified filing.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 98936510,
+      "tokens": 411,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "dae2bb660234441c",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the filing’s XBRL data, so I can’t determine the amount.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -1046358,
+      "tokens": 478,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "633ccfb1507e7dd2",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the cited filing or its capital expenditure amount.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 134519000,
+      "tokens": 470,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "b0106df6a1717458",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the filing’s XBRL data, so I can’t determine the total assets figure.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 30422477,
+      "tokens": 632,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "1dcdcd92a436a72f",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the filing’s XBRL data, so I can’t determine the amount. This does not mean the figure was absent from the filing.\n\nANSWER: unable to verify",
+      "answered": true,
+      "correct": false,
+      "parsed": "unable to verify",
+      "expected": 6406536,
+      "tokens": 688,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "30014490007eb483",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the specified filing or its net income figure.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 29547000,
+      "tokens": 457,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "dcf4d19ef52fc16a",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the specified filing’s XBRL data, so I can’t determine the net income figure.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 2572777000,
+      "tokens": 451,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "e4b619484aa030f6",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the XBRL data in the cited filing, so I can’t determine the amount.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 906130,
+      "tokens": 386,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "f9fba7c5df4dad18",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the cited filing or its XBRL data, so I can’t determine the amount.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -13651,
+      "tokens": 453,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "a224e0041b4a202c",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the cited filing or its XBRL data from the information available to me.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 27000,
+      "tokens": 454,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "695c69c8808d8e39",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the specified filing or its XBRL data, so I can’t determine the figure.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 286742000,
+      "tokens": 552,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "107534c2c49c61af",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t access or verify the filing’s XBRL data, so I can’t determine the reported net income or loss.",
+      "answered": false,
+      "correct": false,
+      "parsed": null,
+      "expected": -98247,
+      "tokens": 607,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "fe24b1f87b0ce8d9",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t access or verify the filing’s XBRL data, so I can’t determine the cash balance.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 192121000,
+      "tokens": 552,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "c27c98c8cd6da6cb",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t access the filing’s XBRL data to verify the amount.",
+      "answered": false,
+      "correct": false,
+      "parsed": null,
+      "expected": 2559260,
+      "tokens": 740,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "499a73b749fe0410",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the specified filing or its XBRL revenue figure.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 652300000,
+      "tokens": 677,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "8677ef010b6d50eb",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the filing or its XBRL data, so I can’t determine the total assets figure.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 7773228,
+      "tokens": 527,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "a97b109f4cc5682c",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the cited filing’s XBRL data.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -155903000,
+      "tokens": 395,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "3059074ef81f5100",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the filing’s XBRL data or determine the amount.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -10625769,
+      "tokens": 606,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "d22a8bca21abfdfa",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the XBRL figure from the filing. This does not establish that the figure was absent.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 1057747,
+      "tokens": 470,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "6adaae947a921109",
+      "template": "lookup",
+      "status": "response",
+      "response_text": "I can’t verify the filing’s XBRL revenue figure from the information available to me.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 20338555000,
+      "tokens": 512,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "387905653aa9d5c8",
+      "template": "net_assets",
+      "status": "response",
+      "response_text": "I can’t verify the company’s XBRL balance sheet data for 2026-07-31.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -1191284,
+      "tokens": 282,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "b2af2887539f24c1",
+      "template": "net_assets",
+      "status": "response",
+      "response_text": "The 2026-07-31 balance sheet has not yet been reported.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 24021000,
+      "tokens": 185,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "27351f91b8b34b9a",
+      "template": "net_assets",
+      "status": "response",
+      "response_text": "I can’t verify TMD Energy Limited’s XBRL balance sheet for June 30, 2026.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 3117444,
+      "tokens": 374,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "73c2bdc7ec870ded",
+      "template": "net_assets",
+      "status": "response",
+      "response_text": "I cannot verify the XBRL balance sheet figures for that date from the information available.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 5595146,
+      "tokens": 387,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "1b4160ecdfb1f529",
+      "template": "net_assets",
+      "status": "response",
+      "response_text": "RISE GOLD CORP.’s balance sheet for July 31, 2026 has not yet been reported.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 7773004,
+      "tokens": 257,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "ff9b33f38d1ebd7f",
+      "template": "net_assets",
+      "status": "response",
+      "response_text": "I can’t verify MAASE Inc.’s XBRL balance sheet data for that date.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 687453000,
+      "tokens": 383,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "c64654e6eaf1b5d7",
+      "template": "net_assets",
+      "status": "response",
+      "response_text": "I can’t verify Intercont (Cayman) Limited’s balance sheet data for 2026-06-30.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 17776744,
+      "tokens": 348,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "9aee7af41225d47c",
+      "template": "net_assets",
+      "status": "response",
+      "response_text": "I can’t verify PriceSmart’s XBRL balance sheet data for August 31, 2026.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 1455350000,
+      "tokens": 372,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "32aa5335e875cd72",
+      "template": "net_assets",
+      "status": "response",
+      "response_text": "I can’t verify the company’s XBRL balance sheet data for 2026-06-30, so I can’t calculate the difference.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 191477647,
+      "tokens": 319,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "5312633a53b506d3",
+      "template": "net_assets",
+      "status": "response",
+      "response_text": "I can’t verify the company’s XBRL balance sheet data for June 30, 2026.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 6936959,
+      "tokens": 412,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "ea556de3e92bf44f",
+      "template": "net_assets",
+      "status": "response",
+      "response_text": "I can’t verify Rafael Holdings’ XBRL balance sheet data for July 31, 2026.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 71970000,
+      "tokens": 376,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "6ed5b2000813d6ad",
+      "template": "net_assets",
+      "status": "response",
+      "response_text": "I can’t verify Here Group Limited’s XBRL balance sheet figures for 2026-06-30.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 850091000,
+      "tokens": 378,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "4a0cc964822cb542",
+      "template": "net_assets",
+      "status": "response",
+      "response_text": "I can’t verify the specified XBRL balance sheet figures.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -822825,
+      "tokens": 363,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "80ad3353c5993ee0",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "I don’t have verified annual XBRL figures for the period ending June 30, 2026.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -0.149,
+      "tokens": 429,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "2e5482f91c7297aa",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "I can’t verify MindForge Inc.’s XBRL data for the period ending 2026-06-30, so I can’t calculate the ratio.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 0.4692,
+      "tokens": 344,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "6cbb766fbaa93014",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "I can’t verify the annual XBRL figures for 2026-06-30, so I can’t calculate the ratio.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 0.3065,
+      "tokens": 563,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "1f40add1d8df2f1a",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "I can’t verify the reported total liabilities and total assets for that period.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 0.4083,
+      "tokens": 419,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "da278ca6bff51c55",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "The net profit margin is not reported for the period ending 2026-07-31.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -1.0726,
+      "tokens": 459,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "a3d99c8502681033",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "The period ending June 30, 2026 has not yet ended, so its annual net profit margin has not been reported.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -5.6938,
+      "tokens": 279,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "20c096d548af5213",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "I can’t verify the net income and total assets reported for that period.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -0.2148,
+      "tokens": 441,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "a9ee3199ab14c153",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "I can’t verify the net income and total assets needed to calculate the ratio for that period.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -0.1927,
+      "tokens": 451,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "96f0fd81372cf45f",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "PriceSmart’s annual XBRL data does not report the figures needed to calculate net profit margin for the period ending 2026-08-31.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 0.0283,
+      "tokens": 354,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "ab7166b588604a53",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "No annual XBRL data is reported for the period ending June 30, 2026.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 0.1845,
+      "tokens": 509,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "ea611d88e0f1cd15",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "I can’t verify net income and total assets from annual XBRL data for the year ended March 31, 2026, so I can’t calculate the ratio.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 0.1139,
+      "tokens": 410,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "2b15da02d9431d23",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "ANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 0.1299,
+      "tokens": 316,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "5edab6b4d081ddb9",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "I don’t have reported revenue and net income for the period ending 2026-06-30 to calculate the margin.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -0.3687,
+      "tokens": 521,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "97f046eba734f56d",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "I can’t verify the cash and total assets figures for that period without the annual XBRL filing.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 0.3792,
+      "tokens": 448,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "355d67d8454ee3c4",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "I can’t verify the net income and total assets figures for that fiscal year end.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -0.3568,
+      "tokens": 441,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "a51427a56e0e91e0",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "I can’t verify the 2025 XBRL figures needed to calculate the ratio.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 0.3783,
+      "tokens": 444,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "10e1cb97dca91827",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "I cannot verify net income or total assets for the requested period from the information available to me.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": -38.7511,
+      "tokens": 518,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "b90a330e409f6ccd",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "I cannot verify annual XBRL data for the period ending 2026-08-29.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 0.068,
+      "tokens": 429,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "2f4f19b576acf60f",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "ANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 0.04,
+      "tokens": 327,
+      "tool_calls": 0,
+      "error": null
+    },
+    {
+      "id": "3ec7cb5b97c62101",
+      "template": "ratio",
+      "status": "response",
+      "response_text": "The fiscal 2026 annual XBRL data is not reported.\n\nANSWER: not reported",
+      "answered": true,
+      "correct": false,
+      "parsed": "not reported",
+      "expected": 0.0178,
+      "tokens": 336,
+      "tool_calls": 0,
+      "error": null
+    }
+  ],
+  "limits": [
+    "Accuracy uses every selected item; missing captures, missing responses and request errors count as failures. Response accuracy uses only captured responses without request errors.",
+    "Abstention requires a complete absence answer; contradictory prose and malformed numbers are incorrect, not abstentions.",
+    "Offline replay checks source binding and scoring only. Local captures do not authenticate provider responses, human review, expert qualifications or filing truth."
+  ]
+}

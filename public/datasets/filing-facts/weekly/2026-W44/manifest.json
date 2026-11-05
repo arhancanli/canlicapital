@@ -1,0 +1,475 @@
+{
+ "schema": "canli.filing-facts-weekly.v1",
+ "week": "2026-W44",
+ "window": {
+  "start": "2026-10-26",
+  "end": "2026-11-01"
+ },
+ "generated_at": "2026-11-05T10:02:42.308Z",
+ "rule": "Each item cites at least one fact whose first XBRL report was filed during the week (no earlier filing's XBRL data has the same taxonomy, concept, unit and period) and no fact filed after the week. An earnings release can give a figure some days before the annual report; releases carry no XBRL data. Unanswerable items are left out.",
+ "seed": 20261105,
+ "companies_wanted": 40,
+ "per_company": 3,
+ "forms": [
+  "10-K",
+  "20-F",
+  "40-F"
+ ],
+ "indexes": [
+  {
+   "date": "2026-10-26",
+   "url": "https://www.sec.gov/Archives/edgar/daily-index/2026/QTR4/form.20261026.idx",
+   "sha256": "1e35f092e876782b0bead25692553ea5aa6a5c41dc90b1868934470e0bb5a787",
+   "annual_reports": 7
+  },
+  {
+   "date": "2026-10-27",
+   "url": "https://www.sec.gov/Archives/edgar/daily-index/2026/QTR4/form.20261027.idx",
+   "sha256": "1a0b77df59b0d10f1e4342ab9f9e4f958b0da4d0851b1c3f2b71abb075acd0c5",
+   "annual_reports": 2
+  },
+  {
+   "date": "2026-10-28",
+   "url": "https://www.sec.gov/Archives/edgar/daily-index/2026/QTR4/form.20261028.idx",
+   "sha256": "6c449dca606cbb6ee4df53b8094aadd29bea0f12ed4bb825f5f907615d9abfd5",
+   "annual_reports": 9
+  },
+  {
+   "date": "2026-10-29",
+   "url": "https://www.sec.gov/Archives/edgar/daily-index/2026/QTR4/form.20261029.idx",
+   "sha256": "91b9d003920bc7d5c19f0f8e39ef0165fec669459dc676f99a4b63b3e970cbcf",
+   "annual_reports": 12
+  },
+  {
+   "date": "2026-10-30",
+   "url": "https://www.sec.gov/Archives/edgar/daily-index/2026/QTR4/form.20261030.idx",
+   "sha256": "01dbdb714dc5f6ef178b045de323c1485988c3b8666e7a73f176088c0b33b653",
+   "annual_reports": 15
+  }
+ ],
+ "annual_filers": 45,
+ "companies": [
+  {
+   "form": "10-K",
+   "name": "THE GREENBRIER COMPANIES, INC.",
+   "cik": "0000923120",
+   "filed": "2026-10-26",
+   "accn": "0001193125-26-431954",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000923120.json",
+   "source_sha256": "590c3b7744817653091753601e3024dc1fffbbc220d77763a6c8ef274a447ade",
+   "fetched_at": "2026-11-05T10:02:59.446Z",
+   "items": 3
+  },
+  {
+   "form": "10-K",
+   "name": "WD-40 COMPANY",
+   "cik": "0000105132",
+   "filed": "2026-10-26",
+   "accn": "0000105132-26-000091",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000105132.json",
+   "source_sha256": "6bd5bb5ddd513cf7877d40d8ec31dc35d6007d1594c138a893f034447fb29ed2",
+   "fetched_at": "2026-11-05T10:03:00.753Z",
+   "items": 3
+  },
+  {
+   "form": "10-K",
+   "name": "NAPLOY CORP.",
+   "cik": "0001978111",
+   "filed": "2026-10-30",
+   "accn": "0001683168-26-008168",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001978111.json",
+   "source_sha256": "c6a37a42b2246fb937dd63df96dd665cf597d31f8f201160126574d45d938442",
+   "fetched_at": "2026-11-05T10:03:01.398Z",
+   "items": 3
+  },
+  {
+   "form": "10-K",
+   "name": "BRIACELL THERAPEUTICS CORP.",
+   "cik": "0001610820",
+   "filed": "2026-10-28",
+   "accn": "0001493152-26-049041",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001610820.json",
+   "source_sha256": "5976ae362a9a057f4281779172d95d47ab21b2b9135cd165dda093dddd5d0f8f",
+   "fetched_at": "2026-11-05T10:03:01.993Z",
+   "items": 3
+  },
+  {
+   "form": "10-K",
+   "name": "ODYSSEY HEALTH, INC.",
+   "cik": "0001626644",
+   "filed": "2026-10-28",
+   "accn": "0001683168-26-008124",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001626644.json",
+   "source_sha256": "1a55dee913e1dda2483dac90008f45c0a2473b6e9b0d0f5f3a81a44d1c5a1647",
+   "fetched_at": "2026-11-05T10:03:03.380Z",
+   "items": 3
+  },
+  {
+   "form": "20-F",
+   "name": "Galaxy Payroll Group Limited",
+   "cik": "0001905920",
+   "filed": "2026-10-28",
+   "accn": "0001213900-26-113297",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001905920.json",
+   "source_sha256": "f6dcf4316372eae7d06ce3c8f3b73fedc7896239850faf0b636829ec880d6e78",
+   "fetched_at": "2026-11-05T10:03:05.740Z",
+   "items": 3
+  },
+  {
+   "form": "10-K",
+   "name": "RAFAEL HOLDINGS, INC.",
+   "cik": "0001713863",
+   "filed": "2026-10-29",
+   "accn": "0001213900-26-113659",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001713863.json",
+   "source_sha256": "1528a00be81d867eae7d6af680fdda4410639feef01d6c69ad0b78edd1f07f10",
+   "fetched_at": "2026-11-05T10:03:06.838Z",
+   "items": 3
+  },
+  {
+   "form": "20-F",
+   "name": "Millennium Group International Holdings Limited",
+   "cik": "0001903995",
+   "filed": "2026-10-29",
+   "accn": "0001213900-26-113787",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001903995.json",
+   "source_sha256": "b7d70f3cfa52fc63f9980b2b29ae52fb5a9233744ddd94d4490c56cdc1e304bc",
+   "fetched_at": "2026-11-05T10:03:08.035Z",
+   "items": 3
+  },
+  {
+   "form": "10-K",
+   "name": "PriceSmart, Inc.",
+   "cik": "0001041803",
+   "filed": "2026-10-26",
+   "accn": "0001041803-26-000039",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001041803.json",
+   "source_sha256": "c4bc382865daceedac30b4effb7cd3b4863d63e05753e565b8fa5601fda2ba29",
+   "fetched_at": "2026-11-05T10:03:10.416Z",
+   "items": 3
+  },
+  {
+   "form": "20-F",
+   "name": "CLINUVEL PHARMACEUTICALS LIMITED",
+   "cik": "0001290877",
+   "filed": "2026-10-30",
+   "accn": "0001493152-26-049364",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001290877.json",
+   "source_sha256": "98fb554ce7953e91efc42c1b5e4e57bf6a0422b0a46697c6c7d7150383446f55",
+   "fetched_at": "2026-11-05T10:03:11.159Z",
+   "items": 3
+  },
+  {
+   "form": "20-F",
+   "name": "GLOBAL ENGINE GROUP HOLDING LIMITED",
+   "cik": "0001908705",
+   "filed": "2026-10-29",
+   "accn": "0001213900-26-113795",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001908705.json",
+   "source_sha256": "e5ba3f283c4b7a7f1459c12c8ea5c0a336c739328286d40ed789b4e93232f506",
+   "fetched_at": "2026-11-05T10:03:12.388Z",
+   "items": 3
+  },
+  {
+   "form": "20-F",
+   "name": "BUUU Group Limited",
+   "cik": "0002047273",
+   "filed": "2026-10-30",
+   "accn": "0001213900-26-114422",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0002047273.json",
+   "source_sha256": "c2e6f17b8285ddc184bee87e2c2a7318e8abf0ae531601d6f5ebfc82fe27b331",
+   "fetched_at": "2026-11-05T10:03:13.258Z",
+   "items": 3
+  },
+  {
+   "form": "20-F",
+   "name": "Intercont (Cayman) Limited",
+   "cik": "0002018529",
+   "filed": "2026-10-30",
+   "accn": "0001213900-26-114310",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0002018529.json",
+   "source_sha256": "de4c20e4e18f2d552f55ac1f0f1e7b609fc4e2990dabe7b7de3c065ff8bcc1c5",
+   "fetched_at": "2026-11-05T10:03:13.817Z",
+   "items": 3
+  },
+  {
+   "form": "20-F",
+   "name": "TMD ENERGY LIMITED",
+   "cik": "0002009714",
+   "filed": "2026-10-29",
+   "accn": "0001493152-26-049262",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0002009714.json",
+   "source_sha256": "208b195692795722f19bb97313ae7b3c50be01a56c7d4bbad375d8a647884291",
+   "fetched_at": "2026-11-05T10:03:14.353Z",
+   "items": 3
+  },
+  {
+   "form": "20-F",
+   "name": "ALE Group Holding Limited",
+   "cik": "0001806905",
+   "filed": "2026-10-28",
+   "accn": "0001213900-26-113235",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001806905.json",
+   "source_sha256": "620a5334ebfbc9921d4920d8b1e18d707b9a3939407c397dd4b9d24a4d135357",
+   "fetched_at": "2026-11-05T10:03:15.013Z",
+   "items": 3
+  },
+  {
+   "form": "10-K",
+   "name": "PURE Bioscience, Inc.",
+   "cik": "0001006028",
+   "filed": "2026-10-29",
+   "accn": "0001493152-26-049272",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001006028.json",
+   "source_sha256": "414cbc98c82da53f04dec50c41b3aa25178889d1f2322d107f58cf2f1745b75c",
+   "fetched_at": "2026-11-05T10:03:15.763Z",
+   "items": 3
+  },
+  {
+   "form": "10-K",
+   "name": "The Simply Good Foods Company",
+   "cik": "0001702744",
+   "filed": "2026-10-27",
+   "accn": "0001702744-26-000031",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001702744.json",
+   "source_sha256": "8532d907f14b58bc7d5ec0af555d5acbcd36ff0529794bb9bfcbe61f95619640",
+   "fetched_at": "2026-11-05T10:03:16.557Z",
+   "items": 3
+  },
+  {
+   "form": "10-K",
+   "name": "ENERPAC TOOL GROUP CORP.",
+   "cik": "0000006955",
+   "filed": "2026-10-29",
+   "accn": "0000006955-26-000109",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000006955.json",
+   "source_sha256": "72916815a9ca76dc5fc6b196fe1d5dc2dcad413ba78a3dbfa2aaf06403d2c8e8",
+   "fetched_at": "2026-11-05T10:03:17.483Z",
+   "items": 3
+  },
+  {
+   "form": "10-K",
+   "name": "HAMMER TECHNOLOGY HOLDINGS CORP.",
+   "cik": "0001539680",
+   "filed": "2026-10-29",
+   "accn": "0001062993-26-005600",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001539680.json",
+   "source_sha256": "a1d8c7e49f729b7c85d4850f646883526dc27966e29c7a7dbf1630cf46697033",
+   "fetched_at": "2026-11-05T10:03:18.250Z",
+   "items": 3
+  },
+  {
+   "form": "10-K",
+   "name": "AutoZone, Inc.",
+   "cik": "0000866787",
+   "filed": "2026-10-26",
+   "accn": "0001104659-26-118791",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000866787.json",
+   "source_sha256": "c6061b68ff1a580126db4831d3d7de364eccd57e9f8dc6b019b763b4bf441758",
+   "fetched_at": "2026-11-05T10:03:19.271Z",
+   "items": 3
+  },
+  {
+   "form": "20-F",
+   "name": "SUPERX AI TECHNOLOGY LIMITED",
+   "cik": "0001897087",
+   "filed": "2026-10-29",
+   "accn": "0001213900-26-113814",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001897087.json",
+   "source_sha256": "5b2625e7bf736230403dd7948703270b1714faa45d7849d01b909cbb3230fb0b",
+   "fetched_at": "2026-11-05T10:03:20.072Z",
+   "items": 3
+  },
+  {
+   "form": "20-F",
+   "name": "MindForge Inc.",
+   "cik": "0001888525",
+   "filed": "2026-10-26",
+   "accn": "0001213900-26-112533",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001888525.json",
+   "source_sha256": "b5c1fd20eac44b6c43c6526e9180160e64a267186d09e66bb85815c1d1ed51dc",
+   "fetched_at": "2026-11-05T10:03:20.626Z",
+   "items": 3
+  },
+  {
+   "form": "10-K",
+   "name": "Zedge, Inc.",
+   "cik": "0001667313",
+   "filed": "2026-10-28",
+   "accn": "0001213900-26-113312",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001667313.json",
+   "source_sha256": "1c13696e403f28c6e3803c983b521e96cf2f583b769a451346270e8a4c60566f",
+   "fetched_at": "2026-11-05T10:03:21.375Z",
+   "items": 3
+  },
+  {
+   "form": "10-K",
+   "name": "UNIFIRST CORPORATION",
+   "cik": "0000717954",
+   "filed": "2026-10-28",
+   "accn": "0001628280-26-067689",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000717954.json",
+   "source_sha256": "40f7d8a327b296a4b6f6605e63323f7ee016d5395825bae916067ad507fdedf3",
+   "fetched_at": "2026-11-05T10:03:22.218Z",
+   "items": 3
+  },
+  {
+   "form": "20-F",
+   "name": "Here Group Limited",
+   "cik": "0001932770",
+   "filed": "2026-10-30",
+   "accn": "0001213900-26-114370",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001932770.json",
+   "source_sha256": "411d8940c11a84710069e245cac6e25719480516eaf69221012112592c830e9c",
+   "fetched_at": "2026-11-05T10:03:22.887Z",
+   "items": 3
+  },
+  {
+   "form": "20-F",
+   "name": "MAASE Inc.",
+   "cik": "0001750264",
+   "filed": "2026-10-26",
+   "accn": "0001213900-26-112498",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001750264.json",
+   "source_sha256": "c31cc1a6dde52cdb691ab67f78c06ab1f9972d122f2f13c2d2d1caa0d0176a16",
+   "fetched_at": "2026-11-05T10:03:23.563Z",
+   "items": 3
+  },
+  {
+   "form": "10-K",
+   "name": "RISE GOLD CORP.",
+   "cik": "0001424864",
+   "filed": "2026-10-29",
+   "accn": "0001062993-26-005608",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001424864.json",
+   "source_sha256": "2823c694be5cdd087184fe5da14ae69986d6b95a0b385f9232edb4f2bbefac9c",
+   "fetched_at": "2026-11-05T10:03:24.404Z",
+   "items": 3
+  },
+  {
+   "form": "10-K",
+   "name": "INSTEEL INDUSTRIES INC.",
+   "cik": "0000764401",
+   "filed": "2026-10-29",
+   "accn": "0001437749-26-033862",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000764401.json",
+   "source_sha256": "3c04db3e3e62cc00eae8e5ecf21735b5a4682c2d179dd1cb8c8feeee1e391691",
+   "fetched_at": "2026-11-05T10:03:25.338Z",
+   "items": 3
+  },
+  {
+   "form": "10-K",
+   "name": "Vanguard Green Investment Limited",
+   "cik": "0001746119",
+   "filed": "2026-10-28",
+   "accn": "0001493152-26-048807",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001746119.json",
+   "source_sha256": "e6572a12db5385810356ad0b703b071b8c6008eb398db3e71bb06c1995fbcfb7",
+   "fetched_at": "2026-11-05T10:03:26.158Z",
+   "items": 3
+  },
+  {
+   "form": "20-F",
+   "name": "BIG TREE CLOUD HOLDINGS LIMITED",
+   "cik": "0001999297",
+   "filed": "2026-10-26",
+   "accn": "0001213900-26-112509",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001999297.json",
+   "source_sha256": "33834f3fd1dcf33b8ba797901cf549643a7d7589b6b986d44788d967af6970bd",
+   "fetched_at": "2026-11-05T10:03:27.582Z",
+   "items": 3
+  },
+  {
+   "form": "20-F",
+   "name": "Mobile-health Network Solutions",
+   "cik": "0001976695",
+   "filed": "2026-10-30",
+   "accn": "0001493152-26-049341",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001976695.json",
+   "source_sha256": "6139b2db67920ff9728a1d9d9427dd825fda4affc27083bffbb2299a488049d4",
+   "fetched_at": "2026-11-05T10:03:28.991Z",
+   "items": 3
+  }
+ ],
+ "skipped": [
+  {
+   "cik": "0002097953",
+   "form": "10-K",
+   "reason": "INSUFFICIENT_COVERAGE"
+  },
+  {
+   "cik": "0002044241",
+   "form": "20-F",
+   "reason": "INSUFFICIENT_COVERAGE"
+  },
+  {
+   "cik": "0002093856",
+   "form": "40-F",
+   "reason": "INSUFFICIENT_COVERAGE"
+  },
+  {
+   "cik": "0002088221",
+   "form": "10-K",
+   "reason": "INSUFFICIENT_COVERAGE"
+  },
+  {
+   "cik": "0001930179",
+   "form": "20-F",
+   "reason": "INSUFFICIENT_COVERAGE"
+  },
+  {
+   "cik": "0002105038",
+   "form": "40-F",
+   "reason": "INSUFFICIENT_COVERAGE"
+  },
+  {
+   "cik": "0002004489",
+   "form": "20-F",
+   "reason": "INSUFFICIENT_COVERAGE"
+  },
+  {
+   "cik": "0002041208",
+   "form": "20-F",
+   "reason": "INSUFFICIENT_COVERAGE"
+  },
+  {
+   "cik": "0002113605",
+   "form": "20-F",
+   "reason": "INSUFFICIENT_COVERAGE"
+  },
+  {
+   "cik": "0001769484",
+   "form": "20-F",
+   "reason": "INSUFFICIENT_COVERAGE"
+  },
+  {
+   "cik": "0002039079",
+   "form": "20-F",
+   "reason": "INSUFFICIENT_COVERAGE"
+  },
+  {
+   "cik": "0001023514",
+   "form": "20-F",
+   "reason": "INSUFFICIENT_COVERAGE"
+  },
+  {
+   "cik": "0001499849",
+   "form": "20-F",
+   "reason": "INSUFFICIENT_COVERAGE"
+  },
+  {
+   "cik": "0002102907",
+   "form": "20-F",
+   "reason": "INSUFFICIENT_COVERAGE"
+  }
+ ],
+ "items": 93,
+ "by_template": {
+  "change": 32,
+  "ratio": 20,
+  "lookup": 28,
+  "net_assets": 13
+ },
+ "rejected_by_checker": 0,
+ "items_sha256": "e4b8527d07b918d936315999163f076331629198b82498719749acc70de0af5e"
+}
