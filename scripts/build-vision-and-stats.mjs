@@ -146,7 +146,7 @@ const PARTS = [
 // canli-mcp's next releases (owner, 6 Nov: live data, "a lab with millions of strategies and sleeves that will power
 // the tools", "our own finance models for all people", features nobody has; docs/goal/MCP_NEXT_20261106.md). Each is
 // labelled with what exists; nothing here is live until it is.
-const NEXT = [
+export const NEXT = [
   ["Live data you connect", "Building, November 2026", "Prices that update by themselves in your assistant: crypto from the exchanges' public feeds with no key, stocks through your own data key. On your own computer, under each provider's terms."],
   ["Tests for forecasts and crashes", "Building, November 2026", "Whether one forecast really beats another, and thousands of synthetic crashes built from free daily data, to test a strategy against markets that have not happened yet."],
   ["Your data stays yours", "Building, November 2026", "Run the maths on data you already pay for, on your own machine. Nothing is stored or sent."],
@@ -156,13 +156,13 @@ const NEXT = [
 ];
 
 // The next months, then the long road (owner's order: tools first, the funds later). Goals, not dates already met.
-const NEAR = [
+export const NEAR = [
   ["November 2026", "Live data and new tests in canli-mcp", "Live prices you connect, the forecast test and the crash generator, and your own data kept on your machine."],
   ["December 2026", "The Lab, Canli Books and the challenge", "The first release of Canli Books, the Lab's library of strategies, Canli Report's first check, and the pilot season of the challenge."],
   ["Early 2027", "Canli Close and the first models", "Bank reconciliation and month-end close on Canli Books, and Canli models with their first months of public record."],
   ["Spring 2027", "Canli Audit", "Journal-entry tests, Benford's law and restatement risk for auditors and audit committees."],
 ];
-const ROAD = [
+export const ROAD = [
   ["Mid-2027", "Tools developers pay for", "Finance MCP servers measured on independent tests; the first paid developer tier; the sleeve library opening to developers; ALPHAC adding new, uncorrelated families with a year of forward record."],
   ["2027", "The research platform", "The training environment and testing servers, the expert annotation network, and ALPHAC across asset classes with far more independent bets."],
   ["2028", "Groundwork for the funds", "The US company, counsel and compliance, and a real-money track record through the legal path, before any fund opens."],
@@ -183,7 +183,7 @@ export function visionFigures({ h2h, stats, leaderboard }) {
 
 // The product lines (owner's plan, 2026-11-03: docs/goal/COMPANIES_PLAN_20261103.md). Each starts as a product line under
 // the Canli Capital name and becomes its own company once it has paying customers; its status says what exists.
-const LINES = [
+export const LINES = [
   ["Canli Markets", "live", "Live", "What this site is today: the claim checker, company data, canli-mcp and the research."],
   ["Canli Data", "live", "Live", "Open datasets built from public filings, such as FilingFacts, to test and train AI models."],
   ["Canli Research and the Lab", "live", "Live", "Research that keeps its failures, and a library of strategy sleeves developers can build on."],
@@ -195,7 +195,7 @@ const LINES = [
   ["ALPHAC", "paper", "Paper only", "The open-source engine that combines many weakly related strategies. A public paper record, not funded."],
   ["The funds", "later", "Later", "Funds run from the US, only after licensing, a legal entity and a forward record that justifies them."],
 ];
-const NEVER = ["Investment advice, or telling anyone what to buy or sell.", "Holding or moving anyone's money.", "Audit opinions or tax advice.", "Filing on anyone's behalf.", "Keeping a company's books on our servers before hosting has had its security work."];
+export const NEVER = ["Investment advice, or telling anyone what to buy or sell.", "Holding or moving anyone's money.", "Audit opinions or tax advice.", "Filing on anyone's behalf.", "Keeping a company's books on our servers before hosting has had its security work."];
 
 export function renderVision({ h2h, stats, leaderboard, fresh }) {
   const route = "/vision";
