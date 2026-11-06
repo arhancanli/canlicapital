@@ -41,6 +41,13 @@ export function fromStatement(table, m) {
   return lines.length ? { value: lines[0].value, tag: lines[0].tag, end: endOf(table.columns[column]), lines } : null;
 }
 
+// A bank's income statement has no single revenue line: interest income and non-interest income, with revenue tags
+// only on components (Cathay General's $7.6 million of fees from contracts beside $1.3 billion of interest income).
+// Its revenue is read on the other two roads only, not set against a component.
+export function bankStatement(table) {
+  return Boolean(table?.rows?.some((r) => /:(InterestAndDividendIncomeOperating|InterestIncomeExpenseNet|InterestIncomeExpenseAfterProvisionForLoanLoss)$/.test(String(r[1]))));
+}
+
 // How two figures for one line stand: the same within rounding, apart by a whole scale, or just apart. A
 // statement in millions rounds to half a million, so the tolerance follows its units.
 export function compare(a, b, { perShare, scale = 1 } = {}) {
@@ -83,7 +90,7 @@ export async function runTriangulate(ctx, args) {
   // A filer whose statements cannot be read still has two roads, at the latest year in the facts.
   let end = null;
   MEASURES.forEach((m, i) => {
-    const s = fromStatement(statements?.[m.statement], m);
+    const s = m.key === "revenue" && bankStatement(statements?.income) ? null : fromStatement(statements?.[m.statement], m);
     end = end ?? s?.end ?? null;
     const at = s?.end ?? end ?? report?.financials?.rows?.at(-1)?.[0] ?? null;
     const history = histories[i];
