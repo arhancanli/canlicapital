@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.9.1
 
 - A company renamed since the reference was captured is found by its new name. The site's name index now also lists the names the SEC's ticker file gives a covered company where they differ from the reference's (908 companies), and `find_company` and every tool that takes a company name match them, saying which name matched: "Here Group Limited" is CIK 1932770, which the reference names QuantaSing Group Limited; "Franklin Templeton" is Franklin Resources; "Bank of America" is CIK 70858. FilingFacts weekly found this: both of canli-mcp 0.20.0's misses on 2026-W44 were Here Group, searched by its new name. An index without the new list still works, and older versions of this package ignore it.
 
