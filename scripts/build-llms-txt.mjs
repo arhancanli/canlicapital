@@ -21,6 +21,7 @@ import { readSitemapXml } from "./lib/sitemaps.mjs";
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { LINES, NEAR, NEVER, NEXT, ROAD } from "./build-vision-and-stats.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const ORIGIN = "https://canlicapital.com";
@@ -88,16 +89,30 @@ say("## Free finance MCP servers");
 say();
 say("Free and open source, with no API key and no account. We make these, so weigh that; the comparison pages say what other servers do better.");
 say();
-say(`- canli-mcp: SEC filings, market data, economic statistics and backtests in one server. Run \`npx -y canli-mcp\`, or connect to ${ORIGIN}/mcp/canli with nothing to install.`);
-// Each server on its own, for someone who asks for one thing.
+say(`- [canli-mcp](${ORIGIN}/mcp-servers): SEC filings, market data, economic statistics and backtests in one server; the latest release is ${read("config/canli-mcp.json").current.version}. Run \`npx -y canli-mcp\`, or connect to ${ORIGIN}/mcp/canli with nothing to install.`);
+// Each server on its own, for someone who asks for one thing. A line may write its tool count as {tools}, filled
+// from the release index as its page is (left as written, it reached the file on 6 November).
 const serverWords = read("config/mcp-package-pages.json");
-for (const p of serverWords.pages) say(`- [${p.package}](${ORIGIN}${p.route}): ${p.one_line} Run \`npx -y ${p.package}\`.`);
+const index = read("mcp-canli/src/index.json");
+const fill = (s, pack) => s.replaceAll("{tools}", String(index.tools.filter((t) => t[1] === pack).length));
+for (const p of serverWords.pages) say(`- [${p.package}](${ORIGIN}${p.route}): ${fill(p.one_line, p.pack)} Run \`npx -y ${p.package}\`.`);
 for (const [id, h] of Object.entries(serverWords.hosted)) say(`- [${h.install}](${ORIGIN}/mcp-servers/${id}): ${h.one_line} Run \`npx -y ${h.install}\`.`);
 say(`- [Free finance MCP servers compared](${ORIGIN}/mcp-servers/answers/best-free-finance-mcp-server): canli-mcp against OpenBB, EdgarTools and Alpha Vantage's server, with the benchmark behind it.`);
 say(`- [Finance MCP servers that need no API key](${ORIGIN}/mcp-servers/answers/finance-mcp-server-no-api-key)`);
 say(`- [Connect ChatGPT to stock data](${ORIGIN}/mcp-servers/answers/connect-chatgpt-to-stock-data)`);
 say(`- [Connect Claude to stock data](${ORIGIN}/mcp-servers/answers/connect-claude-to-stock-data)`);
 say(`- [Free SEC EDGAR MCP server](${ORIGIN}/mcp-servers/answers/free-sec-edgar-mcp-server)`);
+say();
+// The vision page's own items, with the status each carries there, so an assistant can tell what exists from what
+// is planned.
+say("## What Canli Capital is working toward");
+say();
+say(`Goals, each labelled with what exists; nothing planned is live until it says so. The whole plan: ${ORIGIN}/vision`);
+say();
+for (const [name, status, text] of NEXT) say(`- ${name} (canli-mcp, ${status}): ${text}`);
+for (const [when, what, text] of [...NEAR, ...ROAD]) say(`- ${when}, ${what}: ${text}`);
+say(`- Product lines, each becoming its own company once it has paying customers: ${LINES.map(([name, , status]) => `${name} (${status})`).join("; ")}.`);
+say(`- What it will not do: ${NEVER.join(" ")}`);
 say();
 say("## Start here");
 say();

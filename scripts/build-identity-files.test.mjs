@@ -8,7 +8,8 @@ import { identityFiles, securityExpiry } from "./build-identity-files.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const answers = JSON.parse(readFileSync(resolve(ROOT, "config", "home-answers.json"), "utf8"));
-const files = identityFiles(answers);
+const flagship = JSON.parse(readFileSync(resolve(ROOT, "config", "canli-mcp.json"), "utf8"));
+const files = identityFiles(answers, flagship);
 const read = (path) => readFileSync(resolve(ROOT, path), "utf8");
 
 test("the committed identity files are what the generator writes", () => {
@@ -104,4 +105,10 @@ test("crawlers that walk the catalogue and send no readers are kept off it; the 
   for (const agent of ["*", "googlebot", "exasearchbot", "shapbot", "amazonbot", ...RETRIEVAL_AGENTS.map((a) => a.toLowerCase())]) {
     assert.ok(!groups.some((g) => g.agents.includes(agent) && g.rules.some((r) => r.type === "disallow" && r.path === "/companies/")), `${agent} may read the catalogue`);
   }
+});
+
+test("the AI files name the latest canli-mcp release and the vision page", () => {
+  assert.match(files["public/ai.txt"], new RegExp(`^Latest-Release: canli-mcp ${flagship.current.version.replaceAll(".", "\\.")}$`, "m"));
+  assert.match(files["public/ai.txt"], /^Vision: https:\/\/canlicapital\.com\/vision$/m);
+  assert.match(JSON.parse(files["public/ai.json"]).summaryForAI, new RegExp(`latest release is canli-mcp ${flagship.current.version.replaceAll(".", "\\.")}\\.`));
 });

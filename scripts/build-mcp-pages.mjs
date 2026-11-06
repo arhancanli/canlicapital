@@ -328,8 +328,9 @@ export function directoryPage(servers, { h2h = read('public/benchmarks/finance-m
   const said = run => ex.answers.find(a => (a.with?.name ?? null) === (run.with?.name ?? null))?.said ?? '';
   const ours = h2h.arms.find(a => a.id === h2h.headline.ours), best = h2h.arms.find(a => a.id === h2h.headline.best_rival);
   const pct = x => `${Math.round(x * 100)}%`;
-  const title = 'canli-mcp: give your AI real financial data';
-  const summary = `canli-mcp gives Claude, ChatGPT, Cursor and other AI assistants SEC filings, market and economic data and ${f.tools} finance tools. Free, with no key or account.`;
+  // The title and first sentence name what it is in the words people search for ("finance MCP server").
+  const title = 'canli-mcp: free finance MCP server for AI agents';
+  const summary = `canli-mcp is a free finance MCP server: SEC filings, market and economic data and ${f.tools} finance tools for Claude, ChatGPT and Cursor. No key or account.`;
   const clients = installClients(f, install);
   const asks = [...ASK_FIRST.map(slug => answers.find(a => a.slug === slug)).filter(Boolean), ...answers.filter(a => !ASK_FIRST.includes(a.slug))].slice(0, 8);
   const questions = [
@@ -346,7 +347,7 @@ export function directoryPage(servers, { h2h = read('public/benchmarks/finance-m
 ${crumbs([['Home', '/'], ['canli-mcp', MCP_ROUTE]])}
 <p class="cl-kicker">canli-mcp${cur ? ` ${esc(cur.version)}` : ''} · free and open source</p>
 <h1>Give your AI real financial data.</h1>
-<p class="cl-lede">canli-mcp connects Claude, ChatGPT, Cursor and other AI assistants to SEC filings, market and economic data and ${integer.format(f.tools)} finance tools. Every answer says where its numbers came from. No key, no account.</p>
+<p class="cl-lede">canli-mcp is a free finance MCP server that connects Claude, ChatGPT, Cursor and other AI assistants to SEC filings, market and economic data and ${integer.format(f.tools)} finance tools. Every answer says where its numbers came from. No key, no account.</p>
 <div class="cl-actions"><a class="cl-button" href="#add">Add it to your assistant</a><a class="cl-quiet" href="/benchmarks/fresh-filings">See how it is tested</a></div>
 <p class="cl-command"><code>${esc(install.npx)}</code></p>
 </div>
