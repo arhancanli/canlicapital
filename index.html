@@ -6,8 +6,8 @@
   <title>Check a stock claim against the filing, free | Canli Capital</title>
   <meta name="description" content="Paste what you read about a public company. Canli Capital compares each figure with what the company filed with the SEC. Free, with no account." />
   <meta name="author" content="Arhan Canli" />
-  <!-- The published file every figure on this page is read from. -->
-  <meta name="canli:sources" content="claim-check-example.json" />
+  <!-- The published files every figure on this page is read from. -->
+  <meta name="canli:sources" content="claim-check-example.json benchmarks/fresh-filings.json benchmarks/finance-mcp-servers.json" />
   <meta name="theme-color" content="#0016cb" />
   <link rel="canonical" href="https://canlicapital.com/" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
@@ -152,6 +152,25 @@
       </div>
     </section>
 
+    <!-- home-doors:start -->
+    <section class="ck-proof" aria-label="What stands behind a check">
+      <ul>
+        <li><b>89 of 91</b> <span>questions on that week&#39;s new filings, answered right by an AI using our data. Without it: 0 of 91.</span> <a href="/benchmarks/fresh-filings">The weekly test</a></li>
+        <li><b>Every figure</b> <span>links to the filing it came from, on SEC.gov.</span></li>
+        <li><b>Mistakes stay public</b> <span>Each correction is published with what changed.</span> <a href="/progress#corrections">Corrections</a></li>
+      </ul>
+    </section>
+
+    <section class="ck-doors" aria-labelledby="ck-doors-title">
+      <h2 class="ck-hidden" id="ck-doors-title">Start here</h2>
+      <ul>
+        <li class="ck-door"><p class="ck-door__who">A company</p><h3><a href="/companies">Look up a company</a></h3><p>Its filed figures, year by year, each linked to its filing.</p></li>
+        <li class="ck-door"><p class="ck-door__who">Learning</p><h3><a href="/learn">Learn to read the numbers</a></h3><p>Short lessons, shown with real filings.</p></li>
+        <li class="ck-door"><p class="ck-door__who">AI and developers</p><h3><a href="/mcp-servers">Give your AI real financial data</a></h3><p>canli-mcp: 441 finance tools for Claude, ChatGPT and Cursor. Free, no key.</p></li>
+      </ul>
+    </section>
+    <!-- home-doors:end -->
+
     <section class="ck-scope" aria-labelledby="ck-scope-title">
       <h2 id="ck-scope-title">Canli Capital checks claims about public companies against their SEC filings.</h2>
       <ul>
@@ -159,7 +178,7 @@
         <li><b>What it can't check</b> Forecasts, opinions, adjusted figures and companies that don't file with the SEC.</li>
         <li><b>What it isn't</b> Advice. It shows what was filed, not what to buy.</li>
       </ul>
-      <p class="ck-learn"><a href="/learn">Five short lessons</a> <a href="/tools/look-through">See what you really own</a></p>
+      <p class="ck-learn"><a href="/tools/look-through">See what you really own</a></p>
     </section>
 
     <section class="ck-next" id="waitlist" aria-labelledby="ck-next-title">
@@ -168,7 +187,6 @@
         <form class="access-form" id="waitlist-form" action="/api/waitlist" method="post" novalidate><label for="email">Your email</label><div class="access-form__control"><input id="email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="you@example.com" required aria-describedby="form-status" /><button type="submit">Keep me posted</button></div><div class="honeypot"><label for="company">Leave this field blank</label><input id="company" name="company" tabindex="-1" autocomplete="off" /></div><p id="form-status" role="status" aria-live="polite">Only notes about new lessons and markets. Everything here stays free either way.</p></form>
       </div>
       <nav aria-label="More from Canli Capital">
-        <a href="/companies">Look up any company</a>
         <a href="/agents">Add these checks to your AI agent</a>
       </nav>
     </section>
