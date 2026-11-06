@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { analystHistory, etfProfile, marketMovers } from "../src/analysts.mjs";
+import { stockSnapshot } from "../src/snapshot.mjs";
 import { createSession } from "../src/sources.mjs";
 
 const NOW = Date.parse("2026-11-04T12:00:00Z");
@@ -84,4 +85,15 @@ test("etf_profile: costs against the category, size, returns, allocation, top ho
   assert.deepEqual(r.sectors_pct.rows, [["technology", 40.45], ["realestate", 1.7]], "largest first");
   const { s: stock } = yahoo({ quoteSummary: { result: [{ price: { longName: "Apple Inc." } }], error: null } });
   await assert.rejects(etfProfile(stock, { symbol: "AAPL" }), /AAPL is not a fund on Yahoo Finance/);
+});
+
+test("Yahoo's data is off where keyless prices are off (the hosted server): every tool reading it refuses, nothing is fetched", async () => {
+  for (const off of ["0", "false"]) {
+    const calls = [];
+    const s = createSession({ fetchImpl: async (url) => { calls.push(String(url)); return new Response("{}"); }, env: { CANLI_KEYLESS_PRICES: off }, now: () => NOW, sleep: async () => {} });
+    for (const [tool, args] of [[stockSnapshot, { symbol: "AAPL" }], [analystHistory, { symbol: "NVDA" }], [marketMovers, {}], [etfProfile, { symbol: "SPY" }]]) {
+      await assert.rejects(tool(s, args), /Yahoo Finance's data is off on this server \(CANLI_KEYLESS_PRICES=0\).*npx -y canli-mcp/, tool.name);
+    }
+    assert.deepEqual(calls, []);
+  }
 });

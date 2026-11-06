@@ -17,7 +17,8 @@ Set `SEC_USER_AGENT` to your name and email (`"Jane Doe jane@example.com"`), as 
 policy asks. Prices need no key: they come from Yahoo Finance's public chart data, which is
 unofficial and for personal use under Yahoo's terms. To use your own account instead, set
 `ALPACA_API_KEY_ID` and `ALPACA_API_SECRET_KEY` (paper keys work) or `TIINGO_API_KEY`;
-`CANLI_KEYLESS_PRICES=0` turns the keyless source off.
+`CANLI_KEYLESS_PRICES=0` turns the keyless source off, and with it every other read of Yahoo's data
+(`stock_snapshot`, `analyst_history`, `market_movers`, `etf_profile`).
 
 **[canli-markets-mcp on canlicapital.com](https://canlicapital.com/mcp-servers/markets)** · [All Canli Capital MCP servers](https://canlicapital.com/mcp-servers). Free, MIT-licensed. For every server behind one install, use [canli-mcp](https://www.npmjs.com/package/canli-mcp).
 
