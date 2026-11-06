@@ -27,6 +27,9 @@ export function applySiteDesign(html, path, { labels = null } = {}) {
   next = next.replace(/\sdata-film-scene="[^"]*"/g, '');
   next = next.replace('<html ', `<html data-design="${family(path)}" `);
   next = next.replace(/<!-- evidence-film:start -->[\s\S]*?<!-- evidence-film:end -->\s*/g, '');
+  // One look (6 Nov): headers sit on the Canli blue band; the film stills once set behind them are taken out of
+  // the pages that already have a header, as scripts/lib/site-hero.mjs no longer writes them.
+  next = next.replace(/<picture class="cc-hero__art"[^>]*>[\s\S]*?<\/picture>/g, '');
   next = next.replace(/<!-- contributor-chapter:start -->[\s\S]*?<!-- contributor-chapter:end -->\s*/g, '');
   if (family(path) === 'home') {
     next = next.replace(/(<section class="home-next")/, `<!-- contributor-chapter:start -->${renderContributorChapter()}<!-- contributor-chapter:end -->$1`);
