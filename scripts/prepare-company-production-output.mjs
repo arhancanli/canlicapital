@@ -61,8 +61,8 @@ export function prepareCompanyProductionOutput(root, { environment = process.env
     }
     if (indexes !== admission.filings.filing_indexes_admitted || filings !== admission.filings.filings_admitted) throw new Error(`Filing admission yields ${indexes} indexes/${filings} filings; admission counts ${admission.filings.filing_indexes_admitted}/${admission.filings.filings_admitted}`);
   }
-  // Company pages state the later of their data date and the template date (company-markup-date.mjs);
-  // the sitemap says the same, so Google re-reads pages whose markup changed.
+  // Company pages state their data date (company-markup-date.mjs), and the sitemap says the same: a
+  // template change no longer re-dates 900,000 URLs.
   for (const urls of Object.values(family)) for (const entry of urls) if (entry.lastmod) entry.lastmod = companyLastmod(entry.lastmod);
   const companies = Object.values(family).flat();
   const expected = admission.counts.urls_admitted;
