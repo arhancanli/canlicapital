@@ -350,6 +350,10 @@ for (const file of htmlFiles) {
     compactScaleOf.set(match[1], COMPACT_SCALE[match[2] ?? match[3]]);
     if (match[4] === "+") compactFloor.add(match[1]);
   }
+  // A minus before the currency sign belongs to the figure: "-$147.8 billion" (an operating cash outflow) is
+  // -147.8e9, and is traced against the negative value only, never its positive twin.
+  const compactNegative = new Set();
+  for (const match of text.matchAll(/(?<![\w.])-[$€£](\d[\d,]*(?:\.\d+)?)(?:\s?[KMBT]|\s(?:thousand|million|billion|trillion))(?!\w)/g)) compactNegative.add(match[1]);
 
   // RECOMPUTED. A company history page opens with a summary derived from its own table (the change
   // on the prior year, the compound annual rate, the share of its statement total). Such a figure is in no artifact; it traces when the
@@ -403,9 +407,10 @@ for (const file of htmlFiles) {
       // A "+" figure is judged ONLY as a floor: "24.8M+" is false for 24,750,503 even though
       // 24,750,503 rounds to 24.8M.
       const isFloor = compactFloor.has(token) || compactFloor.has(bare);
+      const signed = compactNegative.has(token) || compactNegative.has(bare) ? -value : value;
       const traced = isFloor
-        ? floorsScaled(scope, value * scale, decimals, scale)
-        : roundsScaled(scope, value * scale, decimals, scale);
+        ? floorsScaled(scope, signed * scale, decimals, scale)
+        : roundsScaled(scope, signed * scale, decimals, scale);
       if (traced) {
         reasons.COMPACT += 1;
         continue;
