@@ -161,7 +161,7 @@ export function renderHomeFilm(h2h, leaderboard) {
 <li><b>The sleeve library</b><span>Where developers build, train and test millions of strategy sleeves, with honest statistics on each.</span><em class="chip chip-next">Started</em></li>
 <li><b>ALPHAC</b><span>One book from hundreds of thousands of weakly correlated sleeves. Correlation sets the ceiling.</span><em class="chip chip-next">Paper only</em></li>
 <li><b>The breakthroughs lab</b><span>New statistics that tell a real edge from luck, published with their code.</span><em class="chip chip-next">Started</em></li>
-<li><b>The flagship funds</b><span>From the US, trading the best of all five. Paper only until a licensed entity exists.</span><em class="chip chip-next">Paper only</em></li>
+<li><b>The flagship funds</b><span>From the US, built on all five. Paper only until a licensed entity exists.</span><em class="chip chip-next">Paper only</em></li>
 </ol>
 <p class="links"><a href="/vision">Read the full vision</a></p>`, "dense"),
 

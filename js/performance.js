@@ -228,6 +228,10 @@ async function renderForwardEvidenceDocket() {
     return response.json();
   };
   const words = (value) => String(value || "UNAVAILABLE").replaceAll("_", " ");
+  // A status code read aloud is not a claim this page should make: the rollout's code stays in its artifact,
+  // and the page says what was observed.
+  const STATUS_LABELS = { VERIFIED_FIRST_NATURAL_MARKED_CYCLE: "FIRST NATURAL MARKED CYCLE OBSERVED" };
+  const statusWords = (value) => STATUS_LABELS[value] ?? words(value);
 
   try {
     const [contract, rollout, maturity] = await Promise.all([
@@ -248,7 +252,7 @@ async function renderForwardEvidenceDocket() {
         `${contract.minimum_daily_returns_for_establishment} before establishment.`,
     );
     set("evidenceRolloutStatus", rollout.passes ? "PASS" : "FAIL CLOSED");
-    set("evidenceRolloutCopy", `${words(rollout.status)}. ${rollout.claim_boundary}`);
+    set("evidenceRolloutCopy", `${statusWords(rollout.status)}. ${rollout.claim_boundary}`);
     set("evidenceMaturityStatus", maturity.provenance_gate?.passes ? "PASS" : "WITHHELD");
     set(
       "evidenceMaturityCopy",

@@ -264,7 +264,7 @@ PY</code></pre>
   <section class="foundry-section foundry-close" aria-labelledby="close-title">
     <p class="foundry-kicker">The next proof</p>
     <h2 id="close-title">The page changes only when the receipts do.</h2>
-    <p>Provisioning requires a reviewed plan, a dedicated DigitalOcean principal and a separate billable apply decision. Until then, Foundry remains a verified design and an unproven deployment.</p>
+    <p>Provisioning requires a reviewed plan, a dedicated DigitalOcean principal and a separate billable apply decision. Until then, Foundry remains a checked design and an unproven deployment.</p>
     <div class="foundry-actions"><a class="foundry-button foundry-button--primary" href="/methodology">Read the research rules</a><a class="foundry-button" href="/review">Review ALPHAC research</a></div>
   </section>
 </main>
