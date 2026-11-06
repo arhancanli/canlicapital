@@ -235,7 +235,7 @@ ${renderProductShellHeader({ active: "founder" })}
       <dl>
         <div><dt>Paper record since</dt><dd>${escapeHtml(facts.goLive)}</dd></div>
         <div><dt>Forward observations in snapshot</dt><dd>${forward.daily_return_observations}</dd></div>
-        <div><dt>Sleeves</dt><dd>${forward.current_sleeves} / ${forward.target_sleeves}</dd></div>
+        <div><dt>Sleeve objective</dt><dd>${forward.current_sleeves} / ${forward.target_sleeves}</dd></div>
         <div><dt>External reviews</dt><dd>${external.completed_reviews}</dd></div>
         <div><dt>Foundry</dt><dd>${escapeHtml(foundryStatus)}</dd></div>
       </dl>
@@ -289,7 +289,7 @@ ${renderProductShellHeader({ active: "founder" })}
     <div class="founder-burden__intro"><p class="founder-label">Open burden</p><h2 id="burden-title">The unfinished work belongs in the result.</h2><p>I do not have a mature forward Sharpe, independent review, a deployed research Foundry or funded performance. Those are not footnotes. They define what the next evidence must establish.</p></div>
     <dl class="founder-burden__grid">
       <div><dt>Forward snapshot through ${escapeHtml(snapshot.lastMark)}</dt><dd>${forward.daily_return_observations} observations</dd><small>${escapeHtml(humanizeStatus(forward.sharpe_status))}</small></div>
-      <div><dt>Sleeve objective</dt><dd>${forward.current_sleeves} of ${forward.target_sleeves}</dd><small>Target not achieved</small></div>
+      <div><dt>Sleeve objective</dt><dd>${forward.current_sleeves} of ${forward.target_sleeves}</dd><small>Target not achieved; the live book runs ${systems.alpaca_sleeves_reconciled} broker-reconciled sleeves</small></div>
       <div><dt>Independent review</dt><dd>${external.completed_reviews} completed</dd><small>${external.independent_replications} replications</small></div>
       <div><dt>Foundry deployment</dt><dd>Planned</dd><small>Not applied to DigitalOcean. <a href="/foundry">Inspect the design status.</a></small></div>
     </dl>
