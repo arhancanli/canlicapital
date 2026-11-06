@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Fix: names as fund reports write them now find their company. A place in brackets picks among same-named companies by the SEC's state tag ("FIRST BANCORP (PUERTO RICO)" is FIRST BANCORP /PR/, not /NC/; "INDEPENDENT BANK CORP (MASSACHUSETTS)" is not the /MI/ one) and "(US)" is dropped; "LLC" and "LP" count as legal suffixes, so "BRIGHT HORIZONS FAMILY SOLUTIONS LLC" is the listed company, not an old subsidiary filer of that name; and two companies renamed after June 2026 are found by their old names (Madison Square Garden Sports, now MSG Knickerbockers; Indivior Pharmaceuticals, now Supernus). Six of the S&P SmallCap 600 fund's holdings found no company before.
+- Fix: names as fund reports write them now find their company. A place in brackets picks among same-named companies by the SEC's state tag ("FIRST BANCORP (PUERTO RICO)" is FIRST BANCORP /PR/, not /NC/; "INDEPENDENT BANK CORP (MASSACHUSETTS)" is not the /MI/ one) and "(US)" is dropped; "LLC" and "LP" count as legal suffixes, so "BRIGHT HORIZONS FAMILY SOLUTIONS LLC" is the listed company, not an old subsidiary filer of that name; and two companies renamed after June 2026 are found by their old names (Madison Square Garden Sports, now MSG Knickerbockers; Indivior Pharmaceuticals, now Supernus). Plurals count as the same word ("TWO HARBORS INVESTMENTS CORP" is TWO HARBORS INVESTMENT CORP.), a trailing "REAL ESTATE INVESTMENT TRUST" goes, the whole name comes before a longer one ("UNIVERSAL CORP" is UNIVERSAL CORP /VA/, not Universal Music Group), and Navient Holdings, which has no annual report yet, reads its history from NAVIENT CORP, as ExxonMobil Holdings does from Exxon Mobil. Twelve of the S&P SmallCap 600 fund's holdings found no company before.
 
 ## 0.16.0
 

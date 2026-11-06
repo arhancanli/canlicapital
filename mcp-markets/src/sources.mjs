@@ -86,8 +86,9 @@ function witness(session, url, record) {
 // timeoutMs and retries: a source that can stall (GDELT) asks for less waiting than the default.
 // A company that has just moved under a new holding company files its reports under the old CIK until the
 // new one's first annual report: Exxon Mobil's ticker moved in 2026 to ExxonMobil Holdings Corp. Its XBRL
-// history is read from the old filer. Remove an entry once the new filer has an annual report in XBRL.
-export const FACTS_FROM = Object.freeze(new Map([[2115436, 34088]]));
+// history is read from the old filer. Remove an entry once the new filer has an annual report in XBRL. Navient
+// Holdings (2026, first 10-Q on 4 Nov) continues NAVIENT CORP, now Navient LLC (checked 2026-11-06).
+export const FACTS_FROM = Object.freeze(new Map([[2115436, 34088], [2152623, 1593538]]));
 const factsHome = (url) => url.replace(/^(https:\/\/data\.sec\.gov\/api\/xbrl\/(?:companyfacts|companyconcept)\/CIK)(\d{10})/, (whole, head, cik) => (FACTS_FROM.has(Number(cik)) ? `${head}${String(FACTS_FROM.get(Number(cik))).padStart(10, "0")}` : whole));
 
 // fresh: read the source again, past both caches (source_check, which asks whether a document has changed).
@@ -332,13 +333,18 @@ export function listedByName(table, q) {
   if (!joined) return [];
   const known = knownAs(words.join(" "));
   if (known && typeof known !== "string") return [];
+  // A plural is the same word ("TWO HARBORS INVESTMENTS CORP" in a fund report is TWO HARBORS INVESTMENT CORP.).
+  const stem = (w) => (w && w.length > 4 && w.endsWith("s") ? w.slice(0, -1) : w);
   const rows = Object.values(table).filter((row) => {
     if (known) return row.ticker === known;
     const title = nameWords(row.title);
-    return words.every((w, i) => title[i] === w) || (joined.length >= 5 && title.join("").startsWith(joined));
+    return words.every((w, i) => title[i] === w || stem(title[i]) === stem(w)) || (joined.length >= 5 && title.join("").startsWith(joined));
   });
+  // The whole name before a longer one that starts with it: "UNIVERSAL CORP" is UNIVERSAL CORP /VA/, not Universal Music
+  // Group, which the ticker file lists first. A state tag is not part of the name.
+  const whole = (row) => nameWords(String(row.title).replace(/\s*[/\\]\s*[a-z]{2,3}\s*[/\\]?\s*$/i, "")).join(" ") === words.join(" ");
   const seen = new Set();
-  return rows.filter((row) => !seen.has(row.cik_str) && seen.add(row.cik_str));
+  return rows.filter((row) => !seen.has(row.cik_str) && seen.add(row.cik_str)).sort((a, b) => Number(whole(b)) - Number(whole(a)));
 }
 
 // A company or fund by ticker, CIK or name. A name is looked for among listed companies first, then
@@ -364,7 +370,9 @@ export async function resolveEntity(session, query) {
   const base = bracket ? q.slice(0, bracket.index).trim() : q;
   const filer = knownAs(nameWords(base).join(" "));
   if (filer && typeof filer !== "string") return { cik: filer.cik, name: filer.name, ticker: null, matched_by: "name" };
-  const tidied = base.replace(/\s*\/\s*(?:the|[a-z]{2,3})\s*\/?\s*$/i, "").replace(/['\u2019]/g, "").replace(/\bcos\b/i, "Companies").trim();
+  // A fund report may also add the trust's form ("CENTERSPACE REAL ESTATE INVESTMENT TRUST" is CENTERSPACE).
+  const tidied = base.replace(/\s*\/\s*(?:the|[a-z]{2,3})\s*\/?\s*$/i, "").replace(/['\u2019]/g, "").replace(/\bcos\b/i, "Companies")
+    .replace(/\s+real estate investment trust\s*$/i, "").trim();
   const asWritten = listedByName(table, base);
   let listed = asWritten.length ? asWritten : listedByName(table, tidied);
   // SEC often writes a person's name family name first ("SCHWAB CHARLES CORP", "HORTON D R INC", "PRICE T ROWE
