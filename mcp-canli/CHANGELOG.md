@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `triangulate`: a bank's income statement has no single revenue line, only revenue tags on components, so its revenue is now read on the facts and history roads alone. Cathay General, Park National and Pathward showed revenue 86 to 95% apart because a component (Cathay's $7.6 million of fees) was set against total revenue; all three now agree. Found running `triangulate` over the S&P SmallCap 600.
+
 ## 0.21.0
 
 - canli-markets-mcp 0.16.0, 442 tools in all. `portfolio_rules`: where a list of holdings stands against the US lines that bring a filing or cap concentration, each with its rule's text linked: a position over 5% of its class (Schedule 13D or 13G) or 10% (a Section 16 insider), the $100 million Form 13F line, concentration (largest issuer, top five, HHI, effective positions), the 75-5-10 and RIC diversification tests, and days to exit at a share of FINRA's average daily volume. A check, not compliance advice.
