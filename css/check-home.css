@@ -23,9 +23,9 @@
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: clamp(32px, 6vw, 96px);
-  align-items: start;
+  align-items: center;
   padding: clamp(104px, 13vh, 144px) clamp(16px, 6vw, 96px) clamp(48px, 6vw, 80px);
-  min-height: min(100vh, 900px);
+  min-height: min(92vh, 820px);
 }
 .ck-hero h1 {
   font-family: var(--ck-display);
@@ -172,7 +172,9 @@
 .ck-scope ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
 .ck-scope li { line-height: 1.5; color: var(--ck-ink); }
 .ck-scope li b { display: block; margin-bottom: 6px; font-family: var(--ck-display); font-size: 1.1rem; }
-.ck-next { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; background: var(--ck-paper); }
+/* Rows laid out side by side start level: the site's list spacing (li + li) is for stacked lists. */
+.ck-proof li + li, .ck-doors li + li, .ck-scope li + li { margin-top: 0; }
+.ck-next { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; background: var(--ck-paper); }
 .ck-next nav { display: grid; gap: 12px; align-content: start; }
 .ck-next nav a { color: var(--ck-cobalt); font-weight: 600; padding: 4px 0; }
 
