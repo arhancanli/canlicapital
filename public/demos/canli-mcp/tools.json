@@ -1,20 +1,20 @@
 {
  "package": "canli-mcp",
- "version": "0.20.0",
+ "version": "0.21.0",
  "packs": {
   "quant": "0.3.0",
   "validation": "0.15.0",
-  "fundamentals": "0.9.0",
+  "fundamentals": "0.9.1",
   "research": "0.3.1",
   "backtest": "0.5.1",
-  "markets": "0.15.0",
+  "markets": "0.16.0",
   "paper": "0.3.1"
  },
- "count": 441,
+ "count": 442,
  "markets_themes": {
   "Filings and what they say": 18,
   "Results and valuation": 23,
-  "Ownership and insiders": 10,
+  "Ownership and insiders": 11,
   "Prices and trading": 29,
   "Funds": 2,
   "Rates and the economy": 34,
@@ -2688,7 +2688,7 @@
    "pack": "markets",
    "group": "markets",
    "title": "Price history",
-   "description": "Price bars (open, high, low, close, volume), monthly to one-minute, for US stocks and ETFs, stocks listed abroad (SAP.DE, 7203.T), currency pairs (EUR/USD), futures (crude oil, gold), indices and yields (S&P 500, VIX, 10 year yield) and crypto (bitcoin), by symbol or plain name. Stocks adjust for splits and dividends by default, with dividends, splits and the total return; returns: true adds daily returns. No key needed; uses the user's Alpaca or Tiingo key for US stocks when set."
+   "description": "Price bars (open, high, low, close, volume), monthly to one-minute, for US stocks and ETFs, stocks listed abroad (SAP.DE, 7203.T), currency pairs (EUR/USD), futures (crude oil, gold), indices and yields (S&P 500, VIX, 10 year yield) and crypto (bitcoin), by symbol or plain name. Stocks adjust for splits and dividends by default (adjustment: none is as traded), with dividends, splits and the total return; returns: true adds daily returns. No key needed; uses the user's Alpaca or Tiingo key for US stocks when set."
   },
   {
    "name": "fund_portfolio",
@@ -2758,7 +2758,7 @@
    "pack": "markets",
    "group": "markets",
    "title": "Index constituents",
-   "description": "The members of a stock index (S&P 500, S&P 400, the Dow, Nasdaq 100, Russell 2000, MSCI EAFE, a Select Sector) with their weights: from the latest day's holdings State Street publishes (SPY, MDY, DIA, the sector SPDRs), or the N-PORT of an ETF that tracks the index, with the date, the number of members and how concentrated the top ten are."
+   "description": "The members of a stock index (S&P 500, S&P 400, the Dow, Nasdaq 100, Russell 2000, MSCI EAFE, a Select Sector) with their weights: from the latest day's holdings State Street publishes (SPY, MDY, DIA, the sector SPDRs), or the N-PORT of an ETF that tracks the index, with the date, the number of members and how concentrated the top ten are. as_of gives the members on a past date from the ETF's N-PORT for that quarter, companies since removed included; changes_from lists who joined and who left between two dates."
   },
   {
    "name": "fomc",
@@ -2787,6 +2787,13 @@
    "group": "markets",
    "title": "Short interest (FINRA)",
    "description": "Short interest in US stocks from FINRA, twice a month: shares short, the change, average daily volume and days to cover over several reports, and the share of shares outstanding from the company's latest SEC cover page; or, with no stock, the market ranked by days to cover, change or size."
+  },
+  {
+   "name": "portfolio_rules",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Ownership lines, Form 13F and diversification",
+   "description": "Where your holdings stand against the US lines that bring a filing or cap concentration: more than 5% of a company's class (Schedule 13D or 13G), more than 10% (Section 16 insider), $100 million in 13(f) securities (Form 13F), and the 75-5-10 and RIC diversification tests; each position's share of its class from the last cover page and days to exit from FINRA's volume. A check, not compliance advice."
   },
   {
    "name": "off_exchange_volume",
