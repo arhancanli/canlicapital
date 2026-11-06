@@ -537,7 +537,7 @@
       "slug": "best-free-finance-mcp-server",
       "cites": "benchmarks/finance-mcp-servers.json",
       "title": "Free finance MCP servers compared",
-      "question": "What is the best free MCP server for finance?",
+      "question": "Which free MCP server should I use for finance?",
       "short": "Free servers compared",
       "answer": "We make canli-mcp, so weigh this accordingly: it is free, needs no API key, and in our open benchmark, with the same model and questions, it answered 79% of the questions every server finished, against 54% for the best other open setup. OpenBB covers far more if you hold data-provider keys, EdgarTools is strong on SEC filings alone, and Alpha Vantage's official server needs its own API key.",
       "call": {
@@ -559,7 +559,7 @@
       "title": "A finance MCP server with no API key",
       "question": "Is there a finance MCP server that needs no API key?",
       "short": "No API key",
-      "answer": "Yes. canli-mcp needs no API key and no account: it reads SEC filings, Treasury and FRED data and prices from their public sources, and it runs on your machine or at a free hosted address.",
+      "answer": "Yes. canli-mcp needs no API key and no account: it reads SEC filings, Treasury and FRED data and prices from their public sources. It runs on your machine, or at a free hosted address that leaves prices out.",
       "call": {
         "name": "treasury_yields",
         "arguments": {
@@ -579,19 +579,18 @@
       "title": "Connect ChatGPT to free stock market data",
       "question": "How do I connect ChatGPT to free stock market data?",
       "short": "ChatGPT",
-      "answer": "Add canli-mcp's free hosted server as a connector in ChatGPT, at https://canlicapital.com/mcp/canli. It needs no API key, and ChatGPT can then read prices, SEC filings and economic data. Custom connectors depend on your ChatGPT plan and settings, so check yours first.",
+      "answer": "Add canli-mcp's free hosted server as a connector in ChatGPT, at https://canlicapital.com/mcp/canli. It needs no API key, and ChatGPT can then read SEC filings, insider trades and economic data. Share prices are not on the hosted server; they come with canli-mcp on your own computer. Custom connectors depend on your ChatGPT plan and settings, so check yours first.",
       "call": {
-        "name": "price_history",
+        "name": "insider_trades",
         "arguments": {
-          "symbol": "AAPL",
-          "start": "2026-10-01",
-          "interval": "1Day"
+          "company": "AAPL",
+          "since": "2026-10-01"
         }
       },
-      "ask": "How has Apple's share price moved this month?",
+      "ask": "Have Apple's insiders been buying or selling since October?",
       "related": [
         "connect-claude-to-stock-data",
-        "market-overview-in-claude",
+        "insider-trades-ai-agent",
         "fact-check-financial-figures"
       ]
     },
@@ -600,7 +599,7 @@
       "title": "Connect Claude to free stock market data",
       "question": "How do I connect Claude to free stock market data?",
       "short": "Claude",
-      "answer": "Run claude mcp add canli -- npx -y canli-mcp in Claude Code, or add https://canlicapital.com/mcp/canli as a connector in claude.ai if your plan allows it. Both are free and need no API key, and Claude can then read prices, filings and economic data from their sources.",
+      "answer": "Run claude mcp add canli -- npx -y canli-mcp in Claude Code, or add https://canlicapital.com/mcp/canli as a connector in claude.ai if your plan allows it. Both are free and need no API key. Claude can then read filings and economic data from their sources. Prices and the market overview below come with the Claude Code install; the hosted connector leaves prices out.",
       "call": {
         "name": "market_overview",
         "arguments": {}
@@ -717,7 +716,7 @@
       "title": "Search every annual report a company filed",
       "question": "How can I search every annual report a company has filed for one subject?",
       "short": "Every annual report",
-      "answer": "canli-mcp's filing_memory reads every annual report a company has on EDGAR, on your machine, and returns the best passages and how often a subject came up each year, free with no key. Across Coca-Cola's 33 reports back to 1994, the year 2000 problem is counted only in those for 1997, 1998 and 1999.",
+      "answer": "canli-mcp's filing_memory reads every annual report a company has on EDGAR, on your machine, and returns the most relevant passages and how often a subject came up each year, free with no key. Across Coca-Cola's 33 reports back to 1994, the year 2000 problem is counted only in those for 1997, 1998 and 1999.",
       "call": {
         "name": "filing_memory",
         "arguments": {

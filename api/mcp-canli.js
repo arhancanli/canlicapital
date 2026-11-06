@@ -28,6 +28,10 @@ import { TIERS, tierLimits } from "./_lib/tiers.js";
 // The markets pack reads this when it first loads, on the first request; with it off, price tools
 // say that prices need a key instead of fetching Yahoo's data.
 process.env.CANLI_KEYLESS_PRICES = "0";
+// A company named in words that matches several filers is put to the person by MCP elicitation on a local
+// server. Each request here builds a fresh, stateless server with no stream to wait on an answer, so the best
+// match stands with the others listed, as a client that cannot be asked gets it.
+process.env.CANLI_ASK = "0";
 
 export const HOSTED_PACKS = ["quant", "validation", "fundamentals", "research", "backtest", "markets"];
 // Series go inline here (there are no files): a megabyte holds about 50,000 numbers.
