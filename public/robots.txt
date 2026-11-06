@@ -50,6 +50,14 @@ User-agent: serpstatbot
 Disallow: /companies/
 Disallow: /company-data/
 
+# Two more crawlers walk the company catalogue in full and send no readers, so they
+# are kept off it the same way and may read everything else. Search engines, answer
+# engines and the search services that AI agents use (Exa, Parallel) are not here.
+User-agent: QlyzeBot
+User-agent: Reflectionbot
+Disallow: /companies/
+Disallow: /company-data/
+
 Sitemap: https://canlicapital.com/sitemap.xml
 
 # An LLM-oriented map of the site, in the llmstxt.org convention. It leads with the
