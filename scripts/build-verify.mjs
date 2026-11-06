@@ -285,7 +285,7 @@ ${renderProductShellHeader({ active: "verify" })}
         the market inside it is any good, which is what the research library exists to argue about
         and what the forward record exists to settle.</p>
         <p><strong>And none of it is funded performance.</strong> The published ALPHAC book trades on
-        paper, nothing here is investment advice, and a verified record of a simulation is
+        paper, nothing here is investment advice, and a checked record of a simulation is
         still a record of a simulation.</p>
       </section>
 

@@ -13,7 +13,9 @@
 // the filing's own figures, hub snippets without "Free JSON.", the plain top navigation.
 // 2026-10-26: the same ordinary case in filing-index snippets and the "All ... filings" and
 // "All ... financial histories" links, which still printed the SEC's all-capitals name.
-export const COMPANY_MARKUP_DATE = '2026-10-26';
+// 2026-11-06: titles drop the SEC's state tag where a ticker tells the company apart ("Qualcomm (QCOM)",
+// "Bank of America (BAC)"), "AMAZON COM" reads "Amazon.com", and the most-searched footer uses the same names.
+export const COMPANY_MARKUP_DATE = '2026-11-06';
 
 export const COMPANY_MARKUP_SOURCES = [
   'scripts/lib/company-page-renderer.mjs',

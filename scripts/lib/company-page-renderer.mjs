@@ -3,7 +3,7 @@ import { companyFilingNotes } from './company-filing-notes.mjs';
 import { companyCoverage, coverageByUnit, historicalFiler, latestFiling, latestObservationsByUnit } from './company-coverage.mjs';
 import { renderProductShellHeader, renderProductShellFooter, renderProductShellStylesheet } from '../product-shell.mjs';
 import { escapeXml as esc } from './sitemaps.mjs';
-import { companyLabel, displayCase, primaryTicker, titleLabel } from './company-label.mjs';
+import { companyLabel, displayCase, primaryTicker, registeredName, titleLabel } from './company-label.mjs';
 import { fitDescription } from './descriptions.mjs';
 import { historySummary, summaryDescription, summarySentences } from './company-history-summary.mjs';
 import { relatedConcepts, shareSentence } from './company-concept-groups.mjs';
@@ -110,6 +110,8 @@ function withholdingNotices(exclusions) {
 // filingLink(accession): this site's filing page for a cited accession, or null to cite sec.gov
 // only. latestFilings: up to five { accession, form, filed } the overview lists, newest first.
 export function renderCompanyPages(company, { target = 'all', filings = null, linkConcept = () => true, filingLink = () => null, latestFilings = [], robots = 'index, follow' } = {}) {
+  // Every heading, title and structured-data name below uses the name the SEC registers the company under.
+  company = { ...company, name: registeredName(company) };
   const conceptRef = (concept) => (linkConcept(concept.tag) ? `<a href="${metricPath(company, concept)}">${esc(concept.label)}</a>` : esc(concept.label));
   if (company.schema !== 'canli.company-reference.v1' || !/^\d{10}$/.test(company.cik) || company.concepts.length < 4 || !/^[a-f0-9]{64}$/.test(company.source_sha256)) throw new Error('Invalid company reference');
   if (filings !== null && (!Number.isSafeInteger(filings?.filings) || filings.filings < 1)) throw new Error('Invalid filings summary');

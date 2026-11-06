@@ -132,8 +132,8 @@
       "route": "/mcp-servers/quant",
       "title": "Free quant finance MCP server",
       "heading": "canli-quant-mcp: quant finance tools checked against independent libraries",
-      "one_line": "235 quant tools: performance and risk, options and exotics, fixed income, portfolios, econometrics, indicators and 399 strategy sleeves.",
-      "answer": "canli-quant-mcp is a free, open-source MCP server with 235 quant finance tools: performance and risk, options and exotics, fixed income, portfolios, econometrics, technical indicators and a library of 399 strategy sleeves. It runs on your machine with no key, no account and no network calls, and its results are checked against independent libraries such as QuantLib.",
+      "one_line": "{tools} quant tools: performance and risk, options and exotics, fixed income, portfolios, econometrics, indicators and 399 strategy sleeves.",
+      "answer": "canli-quant-mcp is a free, open-source MCP server with {tools} quant finance tools: performance and risk, options and exotics, fixed income, portfolios, econometrics, technical indicators and a library of 399 strategy sleeves. It runs on your machine with no key, no account and no network calls, and its results are checked against independent libraries such as QuantLib.",
       "asks": [
         [
           "Price this option and give me the Greeks",
@@ -174,7 +174,7 @@
           "Each tool's results are checked in the test suite against an independent implementation, such as QuantLib, statsmodels, arch, TA-Lib, scikit-learn or scipy: 465 reference cases, plus planted-defect tests for the data checks."
         ],
         [
-          "Will 235 tools fill my model's context?",
+          "Will {tools} tools fill my model's context?",
           "No. By default it lists three tools, find_tool, describe_tool and run_tool, and the model searches the rest in plain words."
         ],
         [

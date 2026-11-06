@@ -168,7 +168,9 @@ export function packagePages({ index = read('mcp-canli/src/index.json'), config 
     const tools = index.tools.filter((t) => t[1] === p.pack).map(([name, , toolset, title, description]) => ({ name, toolset, title, description }));
     if (!tools.length) throw new Error(`${p.id}: no tools in the index for pack ${p.pack}`);
     for (const [, tool] of p.asks) if (!tools.some((t) => t.name === tool)) throw new Error(`${p.id}: no tool ${tool}`);
-    return { ...p, version: index.versions[p.pack], tools };
+    // A page writes its tool count as {tools}, filled from the release index, so the count moves with each release.
+    const page = JSON.parse(JSON.stringify(p).replaceAll('{tools}', String(tools.length)));
+    return { ...page, version: index.versions[p.pack], tools };
   });
 }
 
@@ -320,7 +322,7 @@ const recordedDemos = () => { try { return read('public/demos/canli-mcp/index.js
 // /mcp-servers/tools); every figure comes from the published files named in canli:sources.
 const PACK_ROUTE = { paper: '/mcp-servers/paper-trading' };
 const ASK_FIRST = ['connect-claude-to-stock-data', 'sec-financial-statements-for-ai', 'insider-trades-ai-agent', 'does-a-company-beat-its-guidance', 'hedge-fund-13f-holdings-ai', 'economic-data-for-ai-agents', 'is-my-backtest-overfit', 'compare-stocks-in-claude'];
-export function directoryPage(servers, { h2h = read('public/benchmarks/finance-mcp-servers.json'), answers = [], packages = packagePages(), fresh = read('public/benchmarks/fresh-filings.json'), install = read('config/canli-mcp.json').install } = {}) {
+export function directoryPage(servers, { h2h = read('public/benchmarks/finance-mcp-servers.json'), answers = [], packages = packagePages(), fresh = read('public/benchmarks/fresh-filings.json'), install = read('config/canli-mcp.json').install, hosted = read('package.json').dependencies['canli-mcp'] } = {}) {
   const f = h2h.flagship, cur = f.current;
   const week = fresh.weeks[0], alone = week.runs.find(r => !r.with), tooled = week.runs.find(r => r.with), ex = week.example;
   const said = run => ex.answers.find(a => (a.with?.name ?? null) === (run.with?.name ?? null))?.said ?? '';
@@ -370,7 +372,7 @@ ${clearProof([
 <ul class="cl-chips">${clients.map(c => `<li>${esc(c.name.replace(/\s*[,(].*$/, ''))}</li>`).join('')}</ul></section></div>
 <section class="cl-section" id="add"><p class="cl-eyebrow">Add it</p><h2>One step, then ask</h2>
 <ol class="cl-steps">
-<li><h3>In Claude or ChatGPT, as a connector</h3><p>Add a custom connector with this address. Nothing to install.</p><pre>${esc(install.hosted)}</pre></li>
+<li><h3>In Claude or ChatGPT, as a connector</h3><p>Add a custom connector with this address. Nothing to install. The connector runs canli-mcp ${esc(hosted)} and leaves out share prices and your own files; for those, and the newest release, run it on your computer.</p><pre>${esc(install.hosted)}</pre></li>
 <li><h3>In Claude Code</h3><pre>${esc(install.claude_code)}</pre></li>
 <li><h3>In every AI app on your computer at once</h3><p>It finds Claude Desktop, Cursor, VS Code and the others, adds one entry to each and keeps a copy of every file it changes.</p><pre>${esc(install.npx)} setup</pre></li>
 </ol>
