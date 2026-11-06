@@ -195,6 +195,15 @@ export const PROMPTS = Object.freeze({
     ],
     ask: (a) => `X-ray this portfolio with canli-mcp: ${a.holdings}. ${batch(PROMPTS.portfolio_xray.calls(a))}\nThen write: the largest look-through positions with their weights, how much the funds overlap with each other, and anything concentrated that the fund names hide. Name the date of each fund's holdings report. ${SOURCES}`,
   },
+  portfolio_rules: {
+    title: "Portfolio filing and concentration lines",
+    description: "Where a list of holdings stands against the US lines that bring a filing or cap concentration: more than 5% or 10% of a company's shares (Schedule 13D or 13G, Section 16), the $100 million Form 13F line, concentration, the diversified-fund and RIC tests, and days to exit. A check, not compliance advice.",
+    args: { holdings: z.string().min(2).max(600).refine((v) => v.split(",").every((part) => HOLDING.test(part)), "symbol:shares pairs, e.g. AAPL:1000, MSFT:500").describe("Symbols and share counts, e.g. AAPL:1000, MSFT:500.") },
+    calls: ({ holdings }) => [
+      { name: "portfolio_rules", arguments: { holdings: String(holdings).split(",").map((x) => x.split(":")).map(([s, n]) => ({ symbol: s.trim().toUpperCase(), shares: Number(n) })) } },
+    ],
+    ask: (a) => `Check this portfolio against the US filing and concentration lines with canli-mcp: ${a.holdings}. ${batch(PROMPTS.portfolio_rules.calls(a))}\nThen write: each position's share of its company's class and any line it crosses (more than 5%: Schedule 13D or 13G; more than 10%: Section 16), with the deadline from the rule's text; whether the book is over the $100 million Form 13F line; how concentrated it is; whether it passes the 75-5-10 and RIC tests; and the positions that would take longest to sell. Say it is a check, not compliance advice. ${SOURCES}`,
+  },
   peers_and_red_flags: {
     title: "Peers and red flags",
     description: "A company against its industry peers, its debt and borrowing, how many institutions hold it quarter by quarter, and three accounting screens (Beneish, Piotroski, Altman) with every input named.",

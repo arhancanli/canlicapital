@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.21.0
+
+- canli-markets-mcp 0.16.0, 442 tools in all. `portfolio_rules`: where a list of holdings stands against the US lines that bring a filing or cap concentration, each with its rule's text linked: a position over 5% of its class (Schedule 13D or 13G) or 10% (a Section 16 insider), the $100 million Form 13F line, concentration (largest issuer, top five, HHI, effective positions), the 75-5-10 and RIC diversification tests, and days to exit at a share of FINRA's average daily volume. A check, not compliance advice.
+- `index_constituents` on a past date: an index's members as its tracking ETF's N-PORT reported them, companies since removed included, and who joined and left between two dates, so a backtest's universe has no survivorship bias.
+- Prices as traded on every source: `price_history` with `adjusted: false` gave split-adjusted prices on the keyless source; `adjustment` now chooses all (the default), splits or none.
+- Yahoo's data is off wherever keyless prices are off, as on the hosted server: `stock_snapshot`, `analyst_history`, `market_movers` and `etf_profile` now say so there and point to the local install.
+- canli-fundamentals-mcp 0.9.1: a company renamed since the reference was captured is found by its new name ("Here Group Limited" is CIK 1932770; "Franklin Templeton" is Franklin Resources), which caused both of 0.20.0's misses in FilingFacts' week 44.
+
 ## 0.20.0
 
 - A company named in words that matches more than one filer ("Delta": Delta Air Lines, Delta Apparel, Delta Natural Gas) is put to the person, where their client can be asked (MCP elicitation), and the call runs again for the one they pick; the answer says what was asked and chosen under `asked`. On the 2025 protocol the question goes out while the call waits; on the 2026-07-28 protocol it rides an `input_required` result and the client's retry carries the answer, and a client is only sent a question it said it can answer. A client that cannot be asked, a person who declines, or `CANLI_ASK=0` leaves the first match standing with the others listed, as before.
