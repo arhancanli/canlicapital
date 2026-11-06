@@ -50,3 +50,23 @@ test("an all-capitals SEC name reads in ordinary case; acronyms, tickers, states
   ];
   for (const [name, ticker, shown] of cases) assert.equal(displayCase(name, ticker), shown, name);
 });
+
+test("a company with a ticker drops the filer's state or re-registration tag with its suffix; without one the tag stays as filed", () => {
+  const cases = [
+    ["QUALCOMM INC/DE", "QCOM", "Qualcomm"],
+    ["BANK OF AMERICA CORP /DE/", "BAC", "Bank of America"],
+    ["COMCAST CORP /NEW/", "CMCSA", "Comcast"],
+    ["Costco Wholesale Corp /NEW", "COST", "Costco Wholesale"],
+    ["QUALCOMM INC/DE", null, "Qualcomm Inc/DE"],
+    ["Costco Wholesale Corp /NEW", null, "Costco Wholesale Corp /NEW"],
+    ["NOVO NORDISK A/S", "NVO", "Novo Nordisk A/S"],
+  ];
+  for (const [name, ticker, label] of cases) assert.equal(companyLabel(name, ticker), label, `${name} ${ticker}`);
+  assert.equal(displayCase("QUALCOMM INC/DE"), "Qualcomm Inc/DE");
+});
+
+test("an SEC name ending in COM is the company's .com name", () => {
+  assert.equal(companyLabel("AMAZON COM INC", "AMZN"), "Amazon.com");
+  assert.equal(companyLabel("PRICELINE COM INC"), "Priceline.com");
+  assert.equal(companyLabel("Overstock.com, Inc."), "Overstock.com");
+});

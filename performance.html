@@ -243,7 +243,7 @@
       <p class="gauntlet__blurb body">Out-of-sample by construction, with a purge and embargo around every train and test boundary. If an edge only exists in-sample, it disappears here.</p>
       <div class="gauntlet__verdict">
         <span class="gauntlet__value" data-empty="0">+0.04 Sharpe, unstable</span>
-        <span class="chip chip--hold">Holds</span>
+        <span class="chip chip--hold">Fails</span>
       </div>
     </div><div role="listitem" class="gauntlet__row">
       <span class="gauntlet__idx mono-label" aria-hidden="true">02</span>
@@ -254,7 +254,7 @@
       <p class="gauntlet__blurb body">A Sharpe discounted for the number of trials behind it and the non-normal shape of real returns. Given how hard we looked, how impressed should we be.</p>
       <div class="gauntlet__verdict">
         <span class="gauntlet__value" data-empty="0">0.21</span>
-        <span class="chip chip--hold">Holds</span>
+        <span class="chip chip--hold">Fails</span>
       </div>
     </div><div role="listitem" class="gauntlet__row">
       <span class="gauntlet__idx mono-label" aria-hidden="true">03</span>
@@ -265,7 +265,7 @@
       <p class="gauntlet__blurb body">The probability that the true Sharpe sits above zero, given the sample. A confidence statement, not a point estimate.</p>
       <div class="gauntlet__verdict">
         <span class="gauntlet__value" data-empty="0">0.54</span>
-        <span class="chip chip--hold">Holds</span>
+        <span class="chip chip--hold">Fails</span>
       </div>
     </div><div role="listitem" class="gauntlet__row">
       <span class="gauntlet__idx mono-label" aria-hidden="true">04</span>
@@ -276,7 +276,7 @@
       <p class="gauntlet__blurb body">Estimated by combinatorially symmetric cross-validation. The chance the best in-sample configuration is no better than median out-of-sample. Lower is better.</p>
       <div class="gauntlet__verdict">
         <span class="gauntlet__value" data-empty="0">0.88</span>
-        <span class="chip chip--hold">Holds</span>
+        <span class="chip chip--hold">Fails</span>
       </div>
     </div><div role="listitem" class="gauntlet__row">
       <span class="gauntlet__idx mono-label" aria-hidden="true">05</span>
@@ -287,7 +287,7 @@
       <p class="gauntlet__blurb body">Performance estimated across many purged train and test combinations, so the headline figure is not one lucky path through history.</p>
       <div class="gauntlet__verdict">
         <span class="gauntlet__value" data-empty="0">clusters at zero</span>
-        <span class="chip chip--hold">Holds</span>
+        <span class="chip chip--hold">Fails</span>
       </div>
     </div><div role="listitem" class="gauntlet__row">
       <span class="gauntlet__idx mono-label" aria-hidden="true">06</span>
@@ -298,7 +298,7 @@
       <p class="gauntlet__blurb body">Every configuration tried is counted and fed into the deflation, and the strategy must beat a simple honest baseline by a margin. Beating zero is not the bar.</p>
       <div class="gauntlet__verdict">
         <span class="gauntlet__value" data-empty="0">did not beat</span>
-        <span class="chip chip--hold">Holds</span>
+        <span class="chip chip--hold">Fails</span>
       </div>
     </div></div>
 
