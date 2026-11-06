@@ -17,9 +17,10 @@ const MODEL = process.argv[2] ?? "gpt-5.4-mini";
 const REPS = Number(process.argv[3] ?? 2);
 const ONLY = process.argv[4]?.split(",");
 const OUT = new URL(process.env.OUT ?? "./results.jsonl", import.meta.url);
-// SET=fresh runs the held-out questions (tasks_fresh.json, truth_fresh.json).
+// SET=fresh runs the held-out questions (tasks_fresh.json, truth_fresh.json). A question marked "dropped" (with the
+// date and the reason) is no longer asked or scored, for any server.
 const SUFFIX = process.env.SET ? `_${process.env.SET}` : "";
-const TASKS = JSON.parse(readFileSync(new URL(`./tasks${SUFFIX}.json`, import.meta.url), "utf8")).filter((t) => !process.env.TASKS || process.env.TASKS.split(",").includes(t.id));
+const TASKS = JSON.parse(readFileSync(new URL(`./tasks${SUFFIX}.json`, import.meta.url), "utf8")).filter((t) => !t.dropped && (!process.env.TASKS || process.env.TASKS.split(",").includes(t.id)));
 const TRUTH = JSON.parse(readFileSync(new URL(`./truth${SUFFIX}.json`, import.meta.url), "utf8"));
 // claude-* models run on the Anthropic API, deepseek-* on DeepSeek's OpenAI-compatible API (thinking
 // off), others on OpenAI; the same tools, prompt and limits.
