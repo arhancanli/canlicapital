@@ -906,5 +906,6 @@
  "https://www.sec.gov/Archives/edgar/data/1100663/000175272421040719/primary_doc.xml": "ih004.gz",
  "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?period1=1709251200&period2=1718409599&interval=1d&events=div%2Csplit&includeAdjustedClose=true": "at001.gz",
  "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?period1=1718409600&period2=1791590399&interval=1mo&events=div%2Csplit&includeAdjustedClose=true": "at002.gz",
- "https://query1.finance.yahoo.com/v8/finance/chart/AAPL?period1=1791504000&period2=1791590399&interval=1mo&events=div%2Csplit&includeAdjustedClose=true": "at003.gz"
+ "https://query1.finance.yahoo.com/v8/finance/chart/AAPL?period1=1791504000&period2=1791590399&interval=1mo&events=div%2Csplit&includeAdjustedClose=true": "at003.gz",
+ "POST https://api.finra.org/data/group/otcMarket/name/consolidatedShortInterest {\"limit\":2,\"compareFilters\":[{\"fieldName\":\"symbolCode\",\"fieldValue\":\"GME\",\"compareType\":\"EQUAL\"}],\"dateRangeFilters\":[{\"fieldName\":\"settlementDate\",\"startDate\":\"2026-09-15\",\"endDate\":\"2026-09-30\"}]}": "p001.gz"
 }
