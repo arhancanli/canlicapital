@@ -37,6 +37,9 @@ main:has(> .cc-hero) { padding-top: 0 !important; }
 }
 /* a hairline where the band meets the page */
 .cc-hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; pointer-events: none; background: rgba(255, 255, 255, 0.18); }
+/* design-system.css styles small callouts named .note (a tinted box in small muted type); a note page's whole article
+   is <article class="note">, so it read as one giant callout. The article is plain reading text. */
+body.note-page article.note { background: none; border-left: 0; padding: 0; font-size: 1.0625rem; color: var(--cc-ink); }
 /* the header draws its own separator between label parts, so a typed one beside it is hidden */
 .cc-hero__inner > p:is([class*="kicker"], [class*="eyebrow"]) span[aria-hidden="true"] { display: none; }
 .cc-hero__inner { position: relative; width: min(1200px, calc(100% - 2 * var(--cc-gutter, 32px))); margin-inline: auto; display: flex; flex-direction: column; align-items: flex-start; }
