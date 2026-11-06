@@ -18,7 +18,7 @@ export const HOSTS = new Set([
   "data-api.ecb.europa.eu", "www.finra.org", "api.finra.org", "fred.stlouisfed.org", "alfred.stlouisfed.org", "esmis.nal.usda.gov", "ticdata.treasury.gov", "ir.eia.gov", "www.eia.gov", "www.clevelandfed.org", "raw.githubusercontent.com", "files.zillowstatic.com", "econdata.s3-us-west-2.amazonaws.com", "www.ssga.com", "www.atlantafed.org", "www.financialresearch.gov", "data.financialresearch.gov", "www.newyorkfed.org", "cdn.cboe.com", "www.worldbank.org", "thedocs.worldbank.org", "www.bis.org", "www.federalreserve.gov", "markets.newyorkfed.org",
   "www.bankofengland.co.uk", "www.bankofcanada.ca", "www.mof.go.jp", "stats.bis.org", "sdmx.oecd.org", "data-explorer.oecd.org",
   "sanctionslistservice.ofac.treas.gov", "home.treasury.gov", "fiscaldata.treasury.gov", "api.fiscaldata.treasury.gov", "publicreporting.cftc.gov",
-  "en.wikipedia.org", "wikimedia.org", "data.alpaca.markets", "clinicaltrials.gov", "api.fda.gov", "api.nhtsa.gov", "www.usaspending.gov", "api.usaspending.gov",
+  "en.wikipedia.org", "wikimedia.org", "www.law.cornell.edu", "data.alpaca.markets", "clinicaltrials.gov", "api.fda.gov", "api.nhtsa.gov", "www.usaspending.gov", "api.usaspending.gov",
   "www.federalregister.gov", "www.consumerfinance.gov", "www.census.gov", "www.bls.gov", "www.bea.gov", "data.worldbank.org", "api.worldbank.org",
   "banks.data.fdic.gov", "api.fdic.gov", "api.gleif.org", "api.openfigi.com", "api.gdeltproject.org", "api.coingecko.com", "api.kraken.com", "comtradeapi.un.org", "www.okx.com",
   "polymarket.com", "gamma-api.polymarket.com", "api.elections.kalshi.com", "portwatch.imf.org", "services9.arcgis.com", "filings.xbrl.org", "sourcify.dev",

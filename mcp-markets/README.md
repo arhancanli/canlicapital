@@ -172,6 +172,7 @@ payrolls look like before the benchmark revision?".
 | `fails_to_deliver` | Shares that failed to settle for a stock over the last month, or the largest fails across the market | SEC fails-to-deliver data |
 | `off_exchange_volume` | How much of a stock trades in dark pools and with other off-exchange dealers each week, and where | FINRA OTC transparency |
 | `short_interest` | How heavily a stock is shorted (shares short, days to cover, share of shares outstanding), or the market's most shorted | FINRA |
+| `portfolio_rules` | Where your holdings stand against the lines that bring a filing or cap concentration: over 5% of a class (13D or 13G), over 10% (Section 16), $100 million in 13(f) securities (13F), the 75-5-10 and RIC diversification tests, and days to exit | Companies' cover pages (SEC), FINRA volume |
 | `futures_positioning` | Who is long and short in a futures market (managed money, dealers, asset managers, leveraged funds) and how crowded | CFTC Commitments of Traders |
 | `executive_pay` | What executives are paid against how the company did (reported and actually-paid pay, TSR vs peers), five years; or CEO pay ranked across the market | Proxy pay-versus-performance XBRL |
 | `index_constituents` | The members of the S&P 500, S&P 400, the Dow, the Nasdaq 100, Russell 2000, the Select Sectors and other indexes, with weights | State Street's daily holdings of SPY, MDY, DIA and the sector SPDRs; otherwise the N-PORT of a tracking ETF |
