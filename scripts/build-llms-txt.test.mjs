@@ -18,5 +18,5 @@ test("llms.txt names the latest canli-mcp release and carries the vision with ea
   assert.ok(llms.includes(`the latest release is ${current.version}`));
   assert.match(llms, /^## What Canli Capital is working toward$/m);
   assert.match(llms, /\(canli-mcp, (Building|Planned)/);
-  assert.ok(llms.includes("https://canlicapital.com/vision"));
+  assert.match(llms, /^Goals, each labelled with what exists; .* The whole plan: https:\/\/canlicapital\.com\/vision$/m);
 });
