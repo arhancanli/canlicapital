@@ -104,7 +104,7 @@ const PARTS = [
       `canli-mcp puts ${f.tools} tools behind ${f.front}: SEC filings, fundamentals, Treasury and FRED data, prices, quant analytics, backtest validation and paper trading, in ${f.tokens} tokens of context.`,
       `${f.onNpm} servers of the family are on npm, and canli-mcp and three of them are also hosted at canlicapital.com/mcp.`,
       `In the open benchmark, canli-mcp answered ${f.ours} of the questions every server finished; the best of the other open servers, ${f.best}.`],
-    next: "The independent test on public expert questions (Vals.ai's finance set and FinanceBench) against the strongest open servers, then canli-mcp 1.0, more servers in the family and a paid tier for developers.",
+    next: "The independent test on public expert questions (Vals.ai's finance set and FinanceBench) against the strongest open servers, then canli-mcp's first major version, more servers in the family and a paid tier for developers.",
     links: [["/mcp-servers", "canli-mcp and the servers"], ["/benchmarks/finance-mcp-servers", "The benchmark"]] },
   { id: "data", n: "02", name: "Data and annotation", status: ["next", "Started"],
     goal: "Financial datasets to train and test AI models, computed from public filings and checked by qualified people. The aim is expert annotation that experts in finance trust.",
@@ -143,9 +143,27 @@ const PARTS = [
     links: [["/record", "The paper record"], ["/progress", "Corrections"]] },
 ];
 
-// The road, in the owner's order (tools first, the funds later). Goals, not dates already met.
+// canli-mcp's next releases (owner, 6 Nov: live data, "a lab with millions of strategies and sleeves that will power
+// the tools", "our own finance models for all people", features nobody has; docs/goal/MCP_NEXT_20261106.md). Each is
+// labelled with what exists; nothing here is live until it is.
+const NEXT = [
+  ["Live data you connect", "Building, November 2026", "Prices that update by themselves in your assistant: crypto from the exchanges' public feeds with no key, stocks through your own data key. On your own computer, under each provider's terms."],
+  ["Tests for forecasts and crashes", "Building, November 2026", "Whether one forecast really beats another, and thousands of synthetic crashes built from free daily data, to test a strategy against markets that have not happened yet."],
+  ["Your data stays yours", "Building, November 2026", "Run the maths on data you already pay for, on your own machine. Nothing is stored or sent."],
+  ["The Lab: a million strategies", "Planned, December 2026", "A library of a million strategies built from free data, every one counted. Ask whether your strategy is new, how it compares with the closest of the million, and whether it survives the luck of the search."],
+  ["Canli models for everyone", "Planned, from December 2026", "Open models anyone can use: factors, default risk, a nowcast of the economy, the range a company's own filings imply for its value, and the odds of an earnings surprise. Each is judged only on a public record that starts the day it launches, and none is advice."],
+  ["Checks no tool does yet", "Planned", "Whether a strategy is original, a reader that finds look-ahead and overfitting in a backtest, an alert when a company you follow restates or changes auditor, and the chain from any number back to the line it came from."],
+];
+
+// The next months, then the long road (owner's order: tools first, the funds later). Goals, not dates already met.
+const NEAR = [
+  ["November 2026", "Live data and new tests in canli-mcp", "Live prices you connect, the forecast test and the crash generator, and your own data kept on your machine."],
+  ["December 2026", "The Lab, Canli Books and the challenge", "The first release of Canli Books, the Lab's library of strategies, Canli Report's first check, and the pilot season of the challenge."],
+  ["Early 2027", "Canli Close and the first models", "Bank reconciliation and month-end close on Canli Books, and Canli models with their first months of public record."],
+  ["Spring 2027", "Canli Audit", "Journal-entry tests, Benford's law and restatement risk for auditors and audit committees."],
+];
 const ROAD = [
-  ["Now to mid-2027", "Tools developers pay for", "Finance MCP servers measured on independent tests; the first paid developer tier; the sleeve library opening to developers; ALPHAC adding new, uncorrelated families with a year of forward record."],
+  ["Mid-2027", "Tools developers pay for", "Finance MCP servers measured on independent tests; the first paid developer tier; the sleeve library opening to developers; ALPHAC adding new, uncorrelated families with a year of forward record."],
   ["2027", "The research platform", "The training environment and testing servers, the expert annotation network, and ALPHAC across asset classes with far more independent bets."],
   ["2028", "Groundwork for the funds", "The US company, counsel and compliance, and a real-money track record through the legal path, before any fund opens."],
 ];
@@ -220,10 +238,18 @@ ${proof([
 <p class="cl-intro">Each starts as a product line under the Canli Capital name and becomes its own company once it has paying customers. The label on each says what exists today.</p>
 <ul class="cl-grid">${LINES.map(([name, tone, status, text]) => `<li class="cl-card">${chip(tone, status)}<h3>${esc(name)}</h3><p>${esc(text)}</p></li>`).join("")}</ul></section></div>
 <section class="cl-section" id="fit"><p class="cl-eyebrow">How they fit</p><h2>One engine underneath</h2>
-<p class="cl-intro">Every number keeps its source and every check is recorded, in each product. A figure recorded in Books is closed in Close, filed through Report, tested by Audit, planned in Planning and read by investors in Markets, so each new product starts mostly built.</p>
-<ol class="cl-steps">${ROAD.map(([when, name, what]) => `<li><p class="cl-count">${esc(when)}</p><h3>${esc(name)}</h3><p>${esc(what)}</p></li>`).join("")}</ol></section>
-<div class="cl-band"><section class="cl-section" id="branches"><p class="cl-eyebrow">The research side</p><h2>Five branches, one destination</h2>
-<ul class="cl-grid">${PARTS.map((p) => `<li class="cl-card">${chip(p.status[0] === "live" ? "live" : "plan", p.status[1])}<h3>${esc(p.name)}</h3><p>${esc(p.goal)}</p><a class="cl-more" href="${esc(p.links[0][0])}">${esc(p.links[0][1])}</a></li>`).join("")}</ul></section></div>
+<p class="cl-intro">Every number keeps its source and every check is recorded, in each product. A figure recorded in Books is closed in Close, filed through Report, tested by Audit, planned in Planning and read by investors in Markets, so each new product starts mostly built.</p></section>
+<div class="cl-band"><section class="cl-section" id="next"><p class="cl-eyebrow">The next releases</p><h2>canli-mcp next: live data, a lab of a million strategies, our own models</h2>
+<p class="cl-intro">Planned in this order. Each ships tested, names its sources, and stays labelled as building or planned until it is live.</p>
+<ul class="cl-grid">${NEXT.map(([name, status, text]) => `<li class="cl-card">${chip(/^Building/.test(status) ? "dev" : "plan", status)}<h3>${esc(name)}</h3><p>${esc(text)}</p></li>`).join("")}</ul></section></div>
+<section class="cl-section" id="branches"><p class="cl-eyebrow">The research side</p><h2>Five branches, one destination</h2>
+<p class="cl-intro">What each part is for, what exists today and what comes next.</p>
+<ul class="cl-grid">${PARTS.map((p) => `<li class="cl-card">${chip(p.status[0] === "live" ? "live" : "plan", p.status[1])}<h3>${esc(p.name)}</h3><p>${esc(p.goal)}</p><p><strong>Today.</strong> ${p.today(f).map(esc).join(" ")}</p><p><strong>Next.</strong> ${esc(p.next)}</p><a class="cl-more" href="${esc(p.links[0][0])}">${esc(p.links[0][1])}</a></li>`).join("")}</ul></section>
+<div class="cl-band"><section class="cl-section" id="challenge"><p class="cl-eyebrow">For students and investors</p><h2>A challenge judged on data nobody has seen</h2>
+<p class="cl-intro">A public challenge where strategies run on data held back from everyone, with every entry's luck counted, and professors invited as judges. The pilot season is planned for December 2026; the rules come before it opens.</p></section></div>
+<section class="cl-section" id="road"><p class="cl-eyebrow">The road</p><h2>The next months, then the long road</h2>
+<p class="cl-intro">Goals with the month they are aimed at. A date that slips is shown as slipped, not quietly moved.</p>
+<ol class="cl-steps">${[...NEAR, ...ROAD].map(([when, name, what]) => `<li><p class="cl-count">${esc(when)}</p><h3>${esc(name)}</h3><p>${esc(what)}</p></li>`).join("")}</ol></section>
 <section class="cl-section" id="never"><p class="cl-eyebrow">Lines we do not cross</p><h2>What Canli Capital will not do</h2>
 <ul class="cl-never">${NEVER.map((line) => `<li>${esc(line)}</li>`).join("")}</ul>
 <p class="cl-note">Targets stay targets until they are measured. Nothing here is investment advice or an offer. <a href="/progress">Corrections</a> · <a href="/founder">Who builds it</a> · <a href="/stats">Usage</a></p></section>`;
