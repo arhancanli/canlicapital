@@ -216,6 +216,8 @@ function parseNote(slug, markdown) {
 
   const dateMatch = markdown.match(/\*\*Published (\d{4}-\d{2}-\d{2})[.,]/);
   if (!dateMatch) throw new Error(`${slug}: no "**Published YYYY-MM-DD" line`);
+  // A note changed after publication says so with "**Updated YYYY-MM-DD.**"; that date is its dateModified.
+  const updatedMatch = markdown.match(/\*\*Updated (\d{4}-\d{2}-\d{2})[.,]/);
 
   // Body excludes the H1 and the standfirst; the page renders those itself.
   let bodyStart = titleLine + 1;
@@ -234,7 +236,7 @@ function parseNote(slug, markdown) {
     slug, title, documentTitle, dek, sources,
     lesson: lessonLine ? Number(lessonLine[1]) : null,
     description: metaDescription(slug, dek, plain(body)),
-    date: dateMatch[1], body, words,
+    date: dateMatch[1], updated: updatedMatch?.[1], body, words,
     minutes: Math.max(1, Math.round(words / 220)),
   };
 }
@@ -285,7 +287,7 @@ function renderNote(note, siblings) {
     description: note.dek,
     url: `${ORIGIN}${route}`,
     datePublished: note.date,
-    dateModified: note.date,
+    dateModified: note.updated ?? note.date,
     wordCount: note.words,
     inLanguage: "en",
     author: { "@type": "Person", "@id": `${ORIGIN}/#arhan-canli`, name: "Arhan Canli", url: `${ORIGIN}/founder` },

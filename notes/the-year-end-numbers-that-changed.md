@@ -41,6 +41,17 @@ Here is what happened in each case:
 
 We searched each later report for restatement and error language and found none about these figures.
 
+## What an accounting professor added
+
+**Updated 2026-11-06.** Preeti Choudhary, Professor of Accounting at the University of Arizona, studies immaterial error corrections. She read these cases after we published and explained them:
+
+- A spin-off, or a business reported as discontinued, requires the earlier periods to be reclassified. That fits Aptiv and Becton Dickinson.
+- A new accounting standard often does not have to be applied to past periods, but a company may choose to. It is permitted, though not common, and eBay did it.
+- Carnival may have had a new noncontrolling interest this year, which then has to be shown separately for the earlier years too.
+- W. R. Berkley's change looks like one that needs an explanation, especially if it is material.
+
+She suspects the same check would find more of these differences among smaller companies, where accounting quality may be lower. That is our next run.
+
 ## Why it matters
 
 If you read company numbers: a figure can change after it is published, and that is often no scandal. A spin-off or a new accounting rule can rewrite the past. Check which filing a number came from, and its date.
