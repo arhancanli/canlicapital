@@ -1,9 +1,9 @@
-# The validation API keeps its keys and quotas, and the company pages their files, in a Supabase project on the
-# free plan, and a free project pauses after about a week without a database query. The API's status endpoint
-# runs one small query, so asking for it twice a day keeps the project awake. A run that finds the store
-# unreachable fails, and GitHub emails the owner. Until now the only keep-alive was the Mac's nightly health
-# check, which stopped reaching the site on 1 November; the project paused on 6 November, and every company
-# page and keyed validation answered 503.
+# The validation API keeps its keys and quotas, the waitlist its sign-ups, and the company pages their files in
+# the Supabase project canlicapital. On 6 November 2026 every company page and keyed validation answered 503:
+# an invoice had gone unpaid, so Supabase moved the organization to the Free plan and paused its projects, and
+# nothing here noticed. This asks the API's status endpoint twice a day. A run that finds the store unreachable,
+# for any reason, fails, and GitHub emails the owner. The endpoint runs one small database query, which also
+# keeps a Free-plan project from pausing after a week without one.
 name: Keep the store awake
 
 on:
