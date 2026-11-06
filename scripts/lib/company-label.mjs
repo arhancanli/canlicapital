@@ -33,14 +33,30 @@ function caseWord(token, first, ticker) {
 export function displayCase(name, ticker = null) {
   const text = String(name);
   if (/[a-z]/.test(text) || !/[A-Z]{2}/.test(text)) return text;
-  // "/DE/", "/NEW": the filer's state or a re-registration, kept as filed.
-  return text.split(/(\s+)/).map((token, i) => (/^\s+$/.test(token) || /\d/.test(token) || token.startsWith('/') ? token : caseWord(token, i === 0, ticker))).join('');
+  // "/DE/", "/NEW": the filer's state or a re-registration, kept as filed, also when it is joined to the word
+  // before it ("INC/DE" reads "Inc/DE", not "Inc/de").
+  const caseToken = (token, first) => {
+    const slash = token.indexOf('/');
+    return slash > 0 ? caseWord(token.slice(0, slash), first, ticker) + token.slice(slash) : caseWord(token, first, ticker);
+  };
+  return text.split(/(\s+)/).map((token, i) => (/^\s+$/.test(token) || /\d/.test(token) || token.startsWith('/') ? token : caseToken(token, i === 0))).join('');
 }
 
-// ticker: the company's own, kept in capitals where it is also a word of the name (MSCI, FTAI).
+// The filer's state or a re-registration at the end of an SEC name: "QUALCOMM INC/DE", "BANK OF AMERICA CORP /DE/".
+const TAG = /\s*\/[A-Z]{2,4}\/?\s*$/i;
+
+// ticker: the company's own, kept in capitals where it is also a word of the name (MSCI, FTAI). A company with a
+// ticker is told apart by it, so its state or re-registration tag goes with the legal suffix ("Qualcomm"); without
+// one the tag stays as filed, to tell two registrants of one name apart. "AMAZON COM INC" is Amazon.com.
 export function companyLabel(name, ticker = null) {
-  const original = displayCase(String(name), ticker).replace(/[\s ]+$/, '');
-  const short = original.replace(SUFFIX, '').replace(/[\s, ]+$/, '');
+  let filed = String(name);
+  if (ticker) {
+    let untagged = filed;
+    while (TAG.test(untagged)) untagged = untagged.replace(TAG, '');
+    if (untagged.trim().length >= 2) filed = untagged;
+  }
+  const original = displayCase(filed, ticker).replace(/[\s ]+$/, '');
+  const short = original.replace(SUFFIX, '').replace(/[\s, ]+$/, '').replace(/ COM$/, '.com');
   return short.length >= 2 ? short : original.replace(/[\s, ]+$/, '');
 }
 

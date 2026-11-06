@@ -74,7 +74,7 @@ function renderGauntlet() {
     let chipClass = "chip chip--reserved";
     let chipText = "Reserved";
     if (live && m.passed === true) { chipClass = "chip chip--pass"; chipText = "Clears"; }
-    else if (live && m.passed === false) { chipClass = "chip chip--hold"; chipText = "Holds"; }
+    else if (live && m.passed === false) { chipClass = "chip chip--hold"; chipText = "Fails"; }
 
     const hasValue = live && m.value !== null && m.value !== undefined;
     const valueText = hasValue ? String(m.value) : "--";
