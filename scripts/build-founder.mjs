@@ -248,7 +248,7 @@ ${renderProductShellHeader({ active: "founder" })}
     <header class="founder-section__head">
       <p class="founder-label">The project in six stops</p>
       <h2 id="walkthrough-title">Follow the decision, not the pitch.</h2>
-      <p>Six evidence stops tell the story in order.</p>
+      <p>Six evidence stops tell the story in order, written as the script of a 90-second walkthrough. The video has not been recorded.</p>
     </header>
     <p class="founder-boundary">The stops preserve the published evidence-map snapshot. Its forward count covers marks through ${escapeHtml(snapshot.lastMark)}; it is not a current observation count.</p>
     <ol class="founder-spine">${walkthrough.chapters.map(renderChapter).join("\n")}</ol>

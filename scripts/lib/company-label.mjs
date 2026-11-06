@@ -1,4 +1,5 @@
 import { PRIMARY_TICKERS } from './company-primary-tickers.mjs';
+import { REGISTERED_NAMES } from './company-registered-names.mjs';
 
 // The short company name used in titles and link text: the SEC entity name without a trailing
 // legal suffix and the comma before it. "LAKELAND INDUSTRIES, INC." -> "LAKELAND INDUSTRIES",
@@ -32,7 +33,9 @@ function caseWord(token, first, ticker) {
 }
 export function displayCase(name, ticker = null) {
   const text = String(name);
-  if (/[a-z]/.test(text) || !/[A-Z]{2}/.test(text)) return text;
+  // A name the company cases itself is kept ("NIKE, Inc."); the SEC's bare "Co" after a name in capitals
+  // ("SOUTHERN CALIFORNIA EDISON Co") is not the company's casing.
+  if (/[a-z]/.test(text.replace(/\sCo$/, '')) || !/[A-Z]{2}/.test(text)) return text;
   // "/DE/", "/NEW": the filer's state or a re-registration, kept as filed, also when it is joined to the word
   // before it ("INC/DE" reads "Inc/DE", not "Inc/de").
   const caseToken = (token, first) => {
@@ -66,8 +69,15 @@ export function primaryTicker(cik) {
   return PRIMARY_TICKERS[String(cik).padStart(10, '0')] ?? null;
 }
 
+// The name the SEC registers a company under, where the release recorded another: a co-registrant's from a
+// jointly filed report (CIK 70858 recorded as "BofA Finance LLC") or a name from before a rename.
+export function registeredName(company) {
+  return REGISTERED_NAMES[String(company.cik).padStart(10, '0')] ?? company.name;
+}
+
 // The title form of a company: "Lockheed Martin (LMT)", or the short name alone without a ticker.
 export function titleLabel(company) {
   const ticker = primaryTicker(company.cik);
-  return ticker ? `${companyLabel(company.name, ticker)} (${ticker})` : companyLabel(company.name);
+  const name = registeredName(company);
+  return ticker ? `${companyLabel(name, ticker)} (${ticker})` : companyLabel(name);
 }
