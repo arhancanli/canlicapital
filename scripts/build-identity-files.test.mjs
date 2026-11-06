@@ -93,3 +93,15 @@ test("search-marketing crawlers are kept off the company catalogue only; search 
   assert.deepEqual(seo.rules, [{ type: "disallow", path: "/companies/" }, { type: "disallow", path: "/company-data/" }]);
   for (const agent of ["*", "googlebot", ...RETRIEVAL_AGENTS.map((a) => a.toLowerCase())]) assert.ok(!seo.agents.includes(agent), `${agent} is not fenced off`);
 });
+
+test("crawlers that walk the catalogue and send no readers are kept off it; the search services AI agents use are not", () => {
+  const groups = robotsGroups(read("public/robots.txt"));
+  const fenced = groups.find((g) => g.agents.includes("qlyzebot"));
+  assert.ok(fenced, "the group exists");
+  assert.ok(fenced.agents.includes("reflectionbot"));
+  assert.deepEqual(fenced.rules, [{ type: "disallow", path: "/companies/" }, { type: "disallow", path: "/company-data/" }]);
+  // Exa and Parallel (ShapBot) power the web search of AI agents, Amazonbot answers in Alexa: they keep the * group.
+  for (const agent of ["*", "googlebot", "exasearchbot", "shapbot", "amazonbot", ...RETRIEVAL_AGENTS.map((a) => a.toLowerCase())]) {
+    assert.ok(!groups.some((g) => g.agents.includes(agent) && g.rules.some((r) => r.type === "disallow" && r.path === "/companies/")), `${agent} may read the catalogue`);
+  }
+});
