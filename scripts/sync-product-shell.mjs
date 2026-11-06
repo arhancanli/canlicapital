@@ -2,8 +2,8 @@
 // sync-product-shell.mjs
 // -----------------------------------------------------------------------------
 // The generated pages get their chrome from product-shell.mjs at build time. The
-// six hand-authored pages had it PASTED IN, so every shell change had to be made
-// in seven places and the copies had already drifted from the source.
+// hand-authored pages had it PASTED IN, so every shell change had to be made
+// in each of them and the copies had already drifted from the source.
 //
 // This makes product-shell.mjs the single source of truth for all of them: it
 // rewrites the <header class="cc-shell"> and <footer class="cc-footer"> blocks in
@@ -28,6 +28,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 //: renderer, so including it here would be redundant, not wrong.
 const HAND_AUTHORED = [
   "index.html",
+  "agents.html",
   "systems.html",
   "open.html",
   "progress.html",
@@ -38,10 +39,11 @@ const HAND_AUTHORED = [
 
 //: The hand-authored pages whose footer lists the company records searchers find most
 //: (renderProductShellFooter companies option); developers.html gets it from its generator.
-const COMPANY_LINKED = new Set(["index.html", "research.html"]);
+const COMPANY_LINKED = new Set(["index.html", "agents.html", "research.html"]);
 
-//: Pages that run their own motion (js/home-film.js) and so skip the shared site-motion script.
-const FILM_PAGES = new Set(["index.html"]);
+//: Pages that skip the shared site-motion script: the landing runs its own motion (js/home-film.js), and
+//: agents.html, built on the landing's design, has never loaded it (syncing its shell is not a design change).
+const OWN_MOTION = new Set(["index.html", "agents.html"]);
 
 function replaceBlock(source, file, openTag, closeTag, replacement) {
   const start = source.indexOf(openTag);
@@ -69,7 +71,7 @@ for (const file of HAND_AUTHORED) {
   );
   after = replaceBlock(
     after, file, '<footer class="cc-footer"', "</footer>",
-    renderProductShellFooter({ companies: COMPANY_LINKED.has(file) ? demandCompanies().companies : [], motion: !FILM_PAGES.has(file) }),
+    renderProductShellFooter({ companies: COMPANY_LINKED.has(file) ? demandCompanies().companies : [], motion: !OWN_MOTION.has(file) }),
   );
 
   if (after !== before) {

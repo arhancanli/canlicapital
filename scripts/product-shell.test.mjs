@@ -8,8 +8,10 @@
 //      titled "Performance", so the same destination read as two different
 //      names depending on where you saw the link.
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 
+import { demandCompanies } from "./lib/demand-companies.mjs";
 import { renderProductShellFooter, renderProductShellHeader } from "./product-shell.mjs";
 
 function ariaLabels(html) {
@@ -99,4 +101,14 @@ test("the Explore menu groups every destination once, by what a visitor wants to
   assert.deepEqual(hrefs, [...new Set(hrefs)], "a destination appears twice in the menu");
   assert.deepEqual([...panel.matchAll(/cc-shell__panel-label">([^<]+)</g)].map((m) => m[1]), ["Use it", "Research and record", "About and trust", "Source code"]);
   for (const href of ["/mcp-servers/answers", "/companies", "/benchmarks/finance-mcp-servers", "/vision", "/verify"]) assert.ok(hrefs.includes(href), href);
+});
+
+test("agents.html carries the shared shell, as sync-product-shell.mjs writes it", () => {
+  // It was edited by hand when the footer changed (6 Nov) because the sync did not cover it.
+  const page = readFileSync(new URL("../agents.html", import.meta.url), "utf8");
+  const block = (open, close) => page.slice(page.indexOf(open), page.indexOf(close, page.indexOf(open)) + close.length);
+  assert.equal(block('<header class="cc-shell"', "</header>"), renderProductShellHeader({ active: "agents", dynamicStatus: false }));
+  assert.equal(block('<footer class="cc-footer"', "</footer>"), renderProductShellFooter({ companies: demandCompanies().companies, motion: false }));
+  const sync = readFileSync(new URL("./sync-product-shell.mjs", import.meta.url), "utf8");
+  assert.match(sync, /"agents\.html",\n/);
 });
