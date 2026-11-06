@@ -224,9 +224,9 @@ ${renderProductShellHeader({ active: "founder" })}
     <div class="founder-hero__copy">
       <p class="founder-kicker"><span>Founder evidence map</span><span>Arhan Canli</span></p>
       <h1 id="founder-title">I built a system that keeps the evidence that proves me wrong.</h1>
-      <p class="founder-hero__lead">ALPHAC is my attempt to make quantitative research publicly falsifiable. The interesting part is not a perfect curve. It is the machinery that freezes each attempt, keeps corrections visible and separates what I know from what I still need to prove.</p>
+      <p class="founder-hero__lead">ALPHAC is my attempt to make quantitative research publicly falsifiable. The interesting part is not a perfect curve. It is the machinery that freezes each attempt, keeps corrections visible and separates what I know from what I still need to prove. I also build <a href="/mcp-servers">canli-mcp</a>, which gives AI assistants SEC filings and market data with the source of every figure.</p>
       <div class="founder-hero__actions">
-        <a class="founder-button founder-button--primary" href="#walkthrough">Walk the 90-second case</a>
+        <a class="founder-button founder-button--primary" href="#walkthrough">Follow the case in six stops</a>
         <a class="founder-button" href="#contribution">Inspect who did what</a>
       </div>
     </div>
@@ -240,19 +240,18 @@ ${renderProductShellHeader({ active: "founder" })}
         <div><dt>Foundry</dt><dd>${escapeHtml(foundryStatus)}</dd></div>
       </dl>
       <p>Forward evidence generated <time datetime="${escapeHtml(snapshot.generatedAt)}">${escapeHtml(new Date(snapshot.generatedAt).toISOString().slice(0, 16).replace("T", " "))} UTC</time>, covering the current configuration from ${escapeHtml(snapshot.firstMark)} through ${escapeHtml(snapshot.lastMark)}. This is a published snapshot, not a live count. <a href="/glassbox/forward_evidence_maturity.json">Inspect the source report.</a></p>
-      <p>These are project facts, not an admissions claim or a performance claim.</p>
+      <p>These are project facts, not a performance claim.</p>
     </aside>
   </section>
 
   <section class="founder-section founder-walkthrough" id="walkthrough" aria-labelledby="walkthrough-title">
     <header class="founder-section__head">
-      <p class="founder-label">A 90-second project case</p>
+      <p class="founder-label">The project in six stops</p>
       <h2 id="walkthrough-title">Follow the decision, not the pitch.</h2>
-      <p>Six evidence stops tell the story in order. The script is ready. The video has not been recorded.</p>
+      <p>Six evidence stops tell the story in order, written as the script of a 90-second walkthrough. The video has not been recorded.</p>
     </header>
-    <p class="founder-boundary">The narration preserves the published evidence-map snapshot. Its forward count covers marks through ${escapeHtml(snapshot.lastMark)}; it is not a current observation count.</p>
+    <p class="founder-boundary">The stops preserve the published evidence-map snapshot. Its forward count covers marks through ${escapeHtml(snapshot.lastMark)}; it is not a current observation count.</p>
     <ol class="founder-spine">${walkthrough.chapters.map(renderChapter).join("\n")}</ol>
-    <p class="founder-boundary">${escapeHtml(walkthrough.claim_boundary)}</p>
   </section>
 
   <section class="founder-section founder-contribution" id="contribution" aria-labelledby="contribution-title">

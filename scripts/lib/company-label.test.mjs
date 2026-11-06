@@ -18,7 +18,8 @@ test("legal suffixes and the comma before them are removed; names ending in '& C
     "Example Partners LLC": "Example Partners",
     "Example plc": "Example",
     "AT&T INC.": "AT&T",
-    "PROCTER & GAMBLE Co": "PROCTER & GAMBLE",
+    // The SEC writes a bare "Co" after a name in capitals; that is not the company casing its own name.
+    "PROCTER & GAMBLE Co": "Procter & Gamble",
     "JPMORGAN CHASE & CO": "JPMorgan Chase & Co",
     "JPMORGAN CHASE & CO.": "JPMorgan Chase & Co.",
     "CO": "Co",
@@ -49,4 +50,40 @@ test("an all-capitals SEC name reads in ordinary case; acronyms, tickers, states
     ["TherapeuticsMD, Inc.", null, "TherapeuticsMD, Inc."],
   ];
   for (const [name, ticker, shown] of cases) assert.equal(displayCase(name, ticker), shown, name);
+});
+
+test("a company with a ticker drops the filer's state or re-registration tag with its suffix; without one the tag stays as filed", () => {
+  const cases = [
+    ["QUALCOMM INC/DE", "QCOM", "Qualcomm"],
+    ["BANK OF AMERICA CORP /DE/", "BAC", "Bank of America"],
+    ["COMCAST CORP /NEW/", "CMCSA", "Comcast"],
+    ["Costco Wholesale Corp /NEW", "COST", "Costco Wholesale"],
+    ["QUALCOMM INC/DE", null, "Qualcomm Inc/DE"],
+    ["Costco Wholesale Corp /NEW", null, "Costco Wholesale Corp /NEW"],
+    ["NOVO NORDISK A/S", "NVO", "Novo Nordisk A/S"],
+  ];
+  for (const [name, ticker, label] of cases) assert.equal(companyLabel(name, ticker), label, `${name} ${ticker}`);
+  assert.equal(displayCase("QUALCOMM INC/DE"), "Qualcomm Inc/DE");
+});
+
+test("an SEC name ending in COM is the company's .com name", () => {
+  assert.equal(companyLabel("AMAZON COM INC", "AMZN"), "Amazon.com");
+  assert.equal(companyLabel("PRICELINE COM INC"), "Priceline.com");
+  assert.equal(companyLabel("Overstock.com, Inc."), "Overstock.com");
+});
+
+test("a company is named as the SEC registers it where the release recorded a co-registrant's or an older name", async () => {
+  const { registeredName, titleLabel } = await import("./company-label.mjs");
+  assert.equal(registeredName({ cik: "0000070858", name: "BofA Finance LLC" }), "BANK OF AMERICA CORP /DE/");
+  assert.equal(titleLabel({ cik: "0000070858", name: "BofA Finance LLC" }), "Bank of America (BAC)");
+  assert.equal(registeredName({ cik: "0000092103", name: "EDISON INTERNATIONAL" }), "SOUTHERN CALIFORNIA EDISON Co");
+  assert.equal(registeredName({ cik: "0000320193", name: "Apple Inc." }), "Apple Inc.");
+});
+
+test("the registered names are exactly the name index's other_names, so the two cannot drift apart", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { REGISTERED_NAMES } = await import("./company-registered-names.mjs");
+  const { registeredNames, SOURCE } = await import("../build-company-registered-names.mjs");
+  const index = JSON.parse(readFileSync(new URL(`../../${SOURCE}`, import.meta.url), "utf8"));
+  assert.deepEqual({ ...REGISTERED_NAMES }, registeredNames(index), "run node scripts/build-company-registered-names.mjs");
 });
