@@ -47,7 +47,7 @@ test("the published flagship answers by URL: three tools, the viewer, the hosted
   });
 });
 
-test("a computation runs; paper trading and prices stay with the local server", async () => {
+test("a computation runs; paper trading, prices and Yahoo's data stay with the local server", async () => {
   await withHandler(createCanliHandler(), async (url) => {
     const stats = await call(url, "return_stats", { returns: [0.01, -0.02, 0.015, 0.003, -0.004, 0.012] });
     assert.equal(stats.body.result.isError ?? false, false, text(stats));
@@ -59,6 +59,10 @@ test("a computation runs; paper trading and prices stay with the local server", 
     const price = await call(url, "price_history", { symbol: "SPY" });
     assert.equal(price.body.result.isError, true);
     assert.match(text(price), /Prices are off on this server/, "no request to Yahoo is made");
+    const snapshot = await call(url, "stock_snapshot", { symbol: "AAPL" });
+    assert.equal(snapshot.body.result.isError, true);
+    assert.match(text(snapshot), /Yahoo Finance's data is off on this server/, "no request to Yahoo's quote summary is made");
+    assert.match(HOSTED_NOTE, /Yahoo's data/);
   });
 });
 

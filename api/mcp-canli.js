@@ -26,7 +26,9 @@ import { slidingMinute } from "./_lib/limiter.js";
 import { TIERS, tierLimits } from "./_lib/tiers.js";
 
 // The markets pack reads this when it first loads, on the first request; with it off, price tools
-// say that prices need a key instead of fetching Yahoo's data.
+// say that prices need a key instead of fetching Yahoo's data, and from canli-markets-mcp 0.16.0 so do the
+// tools that read Yahoo's quote summary or screener (stock_snapshot, analyst_history, market_movers,
+// etf_profile): Yahoo's data is for personal use under its terms.
 process.env.CANLI_KEYLESS_PRICES = "0";
 // A company named in words that matches several filers is put to the person by MCP elicitation on a local
 // server. Each request here builds a fresh, stateless server with no stream to wait on an answer, so the best
@@ -37,7 +39,7 @@ export const HOSTED_PACKS = ["quant", "validation", "fundamentals", "research", 
 // Series go inline here (there are no files): a megabyte holds about 50,000 numbers.
 export const MAX_FLAGSHIP_BODY_BYTES = TIERS.free.max_body_bytes;
 export const REQUESTS_PER_MINUTE = TIERS.free.requests_per_minute;
-export const HOSTED_NOTE = " This is the hosted server (canlicapital.com/mcp/canli), and it keeps nothing between requests: chain tools inside one run_tool call ({\"calls\": [...]}, where {\"$result\": 0} passes the first call's output on); refs such as \"r1\" do not carry over. File arguments, paper trading and prices need the local server: npx canli-mcp.";
+export const HOSTED_NOTE = " This is the hosted server (canlicapital.com/mcp/canli), and it keeps nothing between requests: chain tools inside one run_tool call ({\"calls\": [...]}, where {\"$result\": 0} passes the first call's output on); refs such as \"r1\" do not carry over. File arguments, paper trading, prices and Yahoo's data (stock snapshots, analysts' history, market movers, ETF profiles) need the local server: npx canli-mcp.";
 
 // Whether a request's arguments name a file anywhere: a {"$file": ...}, or a tool's own path argument
 // (returns_file, league_dir, out_file and so on), however deeply nested. Either would read or write the
