@@ -21,7 +21,7 @@ async function settlementDates(session) {
 }
 
 // Shares outstanding as the company last reported them on a filing's cover page (dei taxonomy).
-async function sharesOutstanding(session, cik) {
+export async function sharesOutstanding(session, cik) {
   try {
     const d = await getJson(session, `https://data.sec.gov/api/xbrl/companyconcept/CIK${pad10(cik)}/dei/EntityCommonStockSharesOutstanding.json`);
     const facts = d?.units?.shares ?? [];
@@ -31,6 +31,16 @@ async function sharesOutstanding(session, cik) {
     if (err instanceof NotFound) return null;
     throw err;
   }
+}
+
+// FINRA's average daily volume for one stock in its latest short interest report (the figure behind days to cover),
+// or null when FINRA lists the stock on neither of its last two settlement dates.
+export async function averageDailyVolume(session, symbol) {
+  const window = (await settlementDates(session)).slice(0, 2);
+  if (!window.length) return null;
+  const rows = await postJson(session, SI, { limit: 2, compareFilters: [{ fieldName: "symbolCode", fieldValue: symbol.toUpperCase().replace(/-/g, "."), compareType: "EQUAL" }], dateRangeFilters: [{ fieldName: "settlementDate", startDate: window[window.length - 1], endDate: window[0] }] });
+  const last = (Array.isArray(rows) ? rows : []).filter((r) => n(r.averageDailyVolumeQuantity) > 0).sort((x, y) => y.settlementDate.localeCompare(x.settlementDate))[0];
+  return last ? { average_daily_volume: n(last.averageDailyVolumeQuantity), settlement_date: last.settlementDate } : null;
 }
 
 const SORTS = Object.freeze({ days_to_cover: "daysToCoverQuantity", change_pct: "changePercent", short_position: "currentShortPositionQuantity" });
