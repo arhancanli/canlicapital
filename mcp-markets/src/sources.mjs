@@ -277,6 +277,8 @@ export async function tickerTable(session) {
 const KNOWN_AS = Object.freeze({
   // Renamed, and still written the old way in fund reports and by people.
   "franklin resources": "BEN", "hartford financial services group": "HIG", "blackrock funding": "BLK",
+  // Renamed after the S&P SmallCap 600 fund's June 2026 report (the SEC's former names, checked 2026-11-06).
+  "madison square garden sports": "MSGS", "indivior pharmaceuticals": "INDV", indivior: "INDV",
   google: "GOOGL", youtube: "GOOGL", facebook: "META", instagram: "META", whatsapp: "META", "p and g": "PG", bofa: "BAC", tsmc: "TSM",
   vanguard: { cik: 102909, name: "VANGUARD GROUP INC" }, fidelity: { cik: 315066, name: "FMR LLC" }, "fidelity investments": { cik: 315066, name: "FMR LLC" },
   citadel: { cik: 1423053, name: "CITADEL ADVISORS LLC" }, "de shaw": { cik: 1009207, name: "D. E. Shaw & Co., Inc." }, "d e shaw": { cik: 1009207, name: "D. E. Shaw & Co., Inc." },
@@ -287,7 +289,29 @@ const KNOWN_AS = Object.freeze({
   soros: { cik: 1029160, name: "SOROS FUND MANAGEMENT LLC" }, "ark invest": { cik: 1697748, name: "ARK Investment Management LLC" },
   baupost: { cik: 1061768, name: "BAUPOST GROUP LLC/MA" }, "lone pine": { cik: 1061165, name: "LONE PINE CAPITAL LLC" },
 });
-const SUFFIXES = new Set(["inc", "corp", "corporation", "co", "company", "companies", "plc", "ltd", "limited", "the", "holdings", "holding", "group", "sa", "nv", "ag", "se"]);
+const SUFFIXES = new Set(["inc", "corp", "corporation", "co", "company", "companies", "plc", "ltd", "limited", "the", "holdings", "holding", "group", "sa", "nv", "ag", "se", "llc", "lp"]);
+// A place in brackets after a name, as fund reports write it, and the SEC's tag for it: "FIRST BANCORP (PUERTO RICO)" is
+// FIRST BANCORP /PR/, not /NC/ or /ME/.
+const STATES = Object.freeze({
+  alabama: "AL", alaska: "AK", arizona: "AZ", arkansas: "AR", california: "CA", colorado: "CO", connecticut: "CT", delaware: "DE",
+  florida: "FL", georgia: "GA", hawaii: "HI", idaho: "ID", illinois: "IL", indiana: "IN", iowa: "IA", kansas: "KS", kentucky: "KY",
+  louisiana: "LA", maine: "ME", maryland: "MD", massachusetts: "MA", michigan: "MI", minnesota: "MN", mississippi: "MS", missouri: "MO",
+  montana: "MT", nebraska: "NE", nevada: "NV", "new hampshire": "NH", "new jersey": "NJ", "new mexico": "NM", "new york": "NY",
+  "north carolina": "NC", "north dakota": "ND", ohio: "OH", oklahoma: "OK", oregon: "OR", pennsylvania: "PA", "rhode island": "RI",
+  "south carolina": "SC", "south dakota": "SD", tennessee: "TN", texas: "TX", utah: "UT", vermont: "VT", virginia: "VA",
+  washington: "WA", "west virginia": "WV", wisconsin: "WI", wyoming: "WY", "puerto rico": "PR", "district of columbia": "DC",
+});
+const tagOf = (title) => /\/\s*([A-Z]{2})\s*\/?\s*$/.exec(String(title))?.[1] ?? null;
+// The place picks among same-named companies: the one tagged with it, else the one with no tag (Massachusetts's
+// INDEPENDENT BANK CORP beside INDEPENDENT BANK CORP /MI/). A place that is not a state, such as "(US)", only goes.
+export function byPlace(rows, place) {
+  const code = STATES[String(place ?? "").toLowerCase().replace(/[^a-z ]+/g, " ").replace(/\s+/g, " ").trim()];
+  if (!code || rows.length < 2) return rows;
+  const tagged = rows.filter((r) => tagOf(r.title) === code);
+  if (tagged.length) return tagged;
+  const untagged = rows.filter((r) => !tagOf(r.title));
+  return untagged.length ? untagged : rows;
+}
 // A title's words, with initials written apart joined up: "HORTON D R INC" also holds "dr".
 const titleWords = (title) => {
   const raw = String(title).toLowerCase().replace(/[^a-z0-9 ]+/g, " ").split(/\s+/).filter(Boolean);
@@ -334,11 +358,14 @@ export async function resolveEntity(session, query) {
   if (fund) return { cik: fund.cik, name: null, ticker: want, matched_by: "fund ticker", series: fund.series, class: fund.class };
   // Written like a ticker but in neither file: not a name to guess at ("VOO" is not Vooy, Inc.).
   if (funds && /^\$?[A-Z]{1,5}([.-][A-Z])?$/.test(q)) throw new NotFound(`${want} is not a ticker in the SEC's files of listed companies, mutual funds and ETFs (a delisted or changed ticker, or a foreign listing). Pass the company's name or CIK instead.`);
-  const filer = knownAs(nameWords(q).join(" "));
+  // Fund reports write names their own way: "TJX Cos Inc/The", "Lowe's Cos Inc", "Hess Corp/DE", and a place in
+  // brackets, "FIRST BANCORP (PUERTO RICO)" (byPlace).
+  const bracket = /\s*\(([^()]+)\)\s*$/.exec(q);
+  const base = bracket ? q.slice(0, bracket.index).trim() : q;
+  const filer = knownAs(nameWords(base).join(" "));
   if (filer && typeof filer !== "string") return { cik: filer.cik, name: filer.name, ticker: null, matched_by: "name" };
-  // Fund reports write names their own way: "TJX Cos Inc/The", "Lowe's Cos Inc", "Hess Corp/DE".
-  const tidied = q.replace(/\s*\/\s*(?:the|[a-z]{2,3})\s*\/?\s*$/i, "").replace(/['\u2019]/g, "").replace(/\bcos\b/i, "Companies").trim();
-  const asWritten = listedByName(table, q);
+  const tidied = base.replace(/\s*\/\s*(?:the|[a-z]{2,3})\s*\/?\s*$/i, "").replace(/['\u2019]/g, "").replace(/\bcos\b/i, "Companies").trim();
+  const asWritten = listedByName(table, base);
   let listed = asWritten.length ? asWritten : listedByName(table, tidied);
   // SEC often writes a person's name family name first ("SCHWAB CHARLES CORP", "HORTON D R INC", "PRICE T ROWE
   // GROUP INC"): every word in any order, initials joined, for a handful of companies at most. It also beats a
@@ -348,6 +375,7 @@ export async function resolveEntity(session, query) {
     const anyOrder = want.length >= 2 ? [...new Map(Object.values(table).filter((row) => !FUND_LIKE.test(row.title) && want.every((w) => titleWords(row.title).has(w))).map((row) => [row.cik_str, row])).values()] : [];
     if (anyOrder.length && anyOrder.length <= 3) listed = anyOrder;
   }
+  listed = byPlace(listed, bracket?.[1]);
   if (listed.length) {
     const [top, ...others] = listed;
     return {
@@ -355,7 +383,7 @@ export async function resolveEntity(session, query) {
       ...(others.length ? { other_matches: others.slice(0, 4).map((r) => ({ cik: r.cik_str, name: r.title, ticker: r.ticker })) } : {}),
     };
   }
-  const found = await getJson(session, `https://efts.sec.gov/LATEST/search-index?keysTyped=${encodeURIComponent(q)}`);
+  const found = await getJson(session, `https://efts.sec.gov/LATEST/search-index?keysTyped=${encodeURIComponent(base)}`);
   const hits = found?.hits?.hits ?? [];
   if (!hits.length) throw new NotFound(`No SEC filer matches "${q}". Try the ticker, the CIK, or the name as registered (for example "Berkshire Hathaway").`);
   // EDGAR's search returns any filer whose name resembles the words: individuals, shells and funds. A name must

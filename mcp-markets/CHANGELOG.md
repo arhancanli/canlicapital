@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fix: names as fund reports write them now find their company. A place in brackets picks among same-named companies by the SEC's state tag ("FIRST BANCORP (PUERTO RICO)" is FIRST BANCORP /PR/, not /NC/; "INDEPENDENT BANK CORP (MASSACHUSETTS)" is not the /MI/ one) and "(US)" is dropped; "LLC" and "LP" count as legal suffixes, so "BRIGHT HORIZONS FAMILY SOLUTIONS LLC" is the listed company, not an old subsidiary filer of that name; and two companies renamed after June 2026 are found by their old names (Madison Square Garden Sports, now MSG Knickerbockers; Indivior Pharmaceuticals, now Supernus). Six of the S&P SmallCap 600 fund's holdings found no company before.
+
 ## 0.16.0
 
 Where a portfolio stands against the US filing and concentration lines, prices as traded on every source, and an index's members on a past date. 138 tools.
