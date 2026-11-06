@@ -5,11 +5,11 @@ import { renderProductShellHeader, renderProductShellFooter, renderProductShellS
 import { escapeXml as esc } from './sitemaps.mjs';
 import { companyLabel, displayCase, primaryTicker, registeredName, titleLabel } from './company-label.mjs';
 import { fitDescription } from './descriptions.mjs';
-import { historySummary, summaryDescription, summarySentences } from './company-history-summary.mjs';
+import { compactAmount, historySummary, summaryDescription, summarySentences } from './company-history-summary.mjs';
 import { relatedConcepts, shareSentence } from './company-concept-groups.mjs';
 import { overviewDescription, overviewTitle } from './company-overview-search.mjs';
 import { companyLastmod } from './company-markup-date.mjs';
-import { heroArt } from './site-hero.mjs';
+import { longDate, receipt } from './clear-page.mjs';
 const origin = 'https://canlicapital.com';
 const pathFor = (company) => `/companies/${company.cik}`;
 const dataFor = (company) => `/company-data/${company.cik}.json`;
@@ -23,7 +23,7 @@ const accessionLink = (company, observation) => `https://www.sec.gov/Archives/ed
 
 // robots: the page's own robots directive. A runtime page the server marks noindex says so in the
 // HTML too, so the two signals never disagree.
-export function renderReferenceDocument({ path, title, description, heading, body, sources, lastmod, dataset, coverage, robots = 'index, follow' }) {
+export function renderReferenceDocument({ path, title, description, heading, body, sources, lastmod, dataset, coverage, robots = 'index, follow', kicker = null, aside = '' }) {
   // The heading as read: an all-capitals SEC name in ordinary case (company-label.mjs). The
   // breadcrumb below still cuts the filed name off the heading it was built from.
   const filedHeading = heading;
@@ -54,7 +54,7 @@ ${renderProductShellStylesheet()}
 <script type="application/ld+json">${JSON.stringify([schema, breadcrumbs]).replaceAll('<', '\\u003c')}</script></head>
 <body class="paper"><a class="paper__skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: 'companies' })}
-<main class="company-reference" id="content" tabindex="-1"><header class="cc-hero" data-scene="district">${heroArt('district')}<div class="cc-hero__inner"><nav class="cc-crumbs company-reference__breadcrumbs" aria-label="Breadcrumb"><ol>${crumbs.map((crumb, i) => `<li>${i === crumbs.length - 1 ? `<span aria-current="page">${esc(crumb.name)}</span>` : `<a href="${crumb.path}">${esc(crumb.name)}</a>`}</li>`).join('')}</ol></nav><h1>${headingHtml(heading)}</h1><p class="company-reference__intro">${esc(introduction)}</p></div></header>${body}</main>
+<main class="company-reference" id="content" tabindex="-1"><header class="cl-hero clear company-hero${aside ? '' : ' company-hero--single'}"><div><nav class="cl-crumbs" aria-label="Breadcrumb"><ol>${crumbs.map((crumb, i) => `<li>${i === crumbs.length - 1 ? `<span aria-current="page">${esc(crumb.name)}</span>` : `<a href="${crumb.path}">${esc(crumb.name)}</a>`}</li>`).join('')}</ol></nav>${kicker ? `<p class="cl-kicker">${esc(kicker)}</p>` : ''}<h1>${headingHtml(heading)}</h1><p class="cl-lede">${esc(introduction)}</p></div>${aside}</header>${body}</main>
 ${renderProductShellFooter({ developerStrip: false })}</body></html>\n`;
   return { path, html, lastmod, loc: origin + path };
 }
@@ -78,6 +78,43 @@ export function provenance(company) {
 <details><summary>Read the published dataset with Python</summary><pre><code>${esc(`import json\nfrom urllib.request import urlopen\n\nwith urlopen("${origin}${dataFor(company)}") as response:\n    record = json.load(response)\nprint(record["fetched_at"])\nprint(record["policy"])\nfor concept in record["concepts"]:\n    print(concept["tag"], next(iter(concept["observations"])))`)}</code></pre></details></section>`;
 }
 
+
+// The receipt on a company's first screen: the headline figures of its latest annual report, each the value
+// the company tagged for that report's fiscal year end, from the report its revenue (or, without revenue, its
+// profit) comes from. Where a measure is reported under two tags (Apple's "Revenues" ends in 2018, when it moved
+// to the ASC 606 contract-revenue tag), the tag with the latest period wins, as in the overview's title.
+const RECEIPT_MEASURES = Object.freeze([
+  { label: 'Revenue', tags: ['RevenueFromContractWithCustomerExcludingAssessedTax', 'Revenues'] },
+  { label: 'Net income', tags: ['NetIncomeLoss'] },
+  { label: 'Diluted EPS', tags: ['EarningsPerShareDiluted'] },
+  { label: 'Operating cash flow', tags: ['NetCashProvidedByUsedInOperatingActivities'] },
+  { label: 'Cash', tags: ['CashAndCashEquivalentsAtCarryingValue'] },
+  { label: 'Total assets', tags: ['Assets'] },
+  { label: 'Total liabilities', tags: ['Liabilities'] },
+]);
+const STALE_MS = 730 * 86_400_000;
+
+export function annualReceipt(company, { linkConcept = () => true } = {}) {
+  const latestOf = (tags) => tags.map(tag => company.concepts.find(concept => concept.tag === tag)).filter(Boolean)
+    .map(concept => ({ concept, summary: historySummary(concept) })).filter(item => item.summary)
+    .sort((a, b) => b.summary.latest.end.localeCompare(a.summary.latest.end))[0] ?? null;
+  const found = RECEIPT_MEASURES.map(measure => ({ ...measure, hit: latestOf(measure.tags) })).filter(measure => measure.hit);
+  const anchor = (found.find(m => m.label === 'Revenue') ?? found.find(m => m.label === 'Net income'))?.hit.summary.latest;
+  if (!anchor?.accn || !anchor.form) return '';
+  const rows = found.filter(m => m.hit.summary.latest.end === anchor.end).map(({ label: name, hit }) => {
+    const shown = esc(compactAmount(hit.summary.latest.val, hit.summary.unit));
+    return [name, linkConcept(hit.concept.tag) ? `<a href="${metricPath(company, hit.concept)}">${shown}</a>` : shown];
+  });
+  if (rows.length < 2) return '';
+  const stale = Date.parse(company.fetched_at) - Date.parse(anchor.end) > STALE_MS;
+  return receipt({
+    head: stale ? 'Last annual report on record' : 'Latest annual report',
+    question: `${esc(anchor.form)} for the fiscal year ended ${longDate(anchor.end)}, filed ${longDate(anchor.filed)}`,
+    rows, stamp: 'As filed', right: true,
+    link: { href: accessionLink(company, anchor), label: `Open the ${anchor.form} on SEC.gov` },
+    caption: 'The figures the company tagged in that report. Each opens its full history below.',
+  });
+}
 
 function withholdingNotices(exclusions) {
   const groups = new Map();
@@ -127,11 +164,19 @@ export function renderCompanyPages(company, { target = 'all', filings = null, li
   const editorialNote = company.editorial_exclusions?.length ? `<section aria-labelledby="editorial-scope"><h2 id="editorial-scope">Limits of the selected measures</h2>${withholdingNotices(company.editorial_exclusions)}</section>` : '';
   const overviewNotes = [...new Set(company.concepts.flatMap(concept => companyFilingNotes(company, concept.tag)).filter(note => note.include_on_overview))];
   const overviewContext = overviewNotes.length ? `<section aria-labelledby="filing-context"><h2 id="filing-context">Context from the filing</h2>${overviewNotes.map(note => `<p>${esc(note.text)} <a href="${esc(note.filing_url)}">Read the source filing</a>.</p>`).join('')}</section>` : '';
-  const rows = company.concepts.flatMap((concept) => latestObservationsByUnit(concept.observations).map((latest) => {
-    return `<tr><th scope="row">${conceptRef(concept)}</th>${periodStartCell(latest)}<td>${esc(latest.end)}</td>${numberCell(latest.val)}<td>${esc(latest.unit)}</td><td>${esc(latest.filed)}</td></tr>`;
-  })).join('');
-  if (target === 'all' || target === 'overview') page({ path: pathFor(company), title: overviewTitle(titleLabel(company), company.concepts, company.fetched_at), description: overviewDescription(label(company), company.concepts, company.concepts.length, company.fetched_at), heading: `${company.name}: financial reference`, sources, lastmod, dataset: company,
-    body: `${historicalNote}${editorialNote}${overviewContext}<section><h2>Reported financial histories</h2><p>Choose a measure to inspect its definition, complete selected history and filing provenance. Each row shows the latest period available for that selected concept and original unit. Separate currencies and reporting intervals remain separate rows. Coverage dates can differ between concepts. A recent capture does not imply recent accounting coverage; these amounts are not prices.</p><div class="company-reference__table" role="region" aria-label="Latest financial observations" tabindex="0"><table><caption>Latest periods by selected concept and original unit</caption><thead><tr><th scope="col">Measure</th><th scope="col">Period start</th><th scope="col">Period end</th><th scope="col" class="company-reference__num">Value</th><th scope="col">Unit</th><th scope="col">Filed</th></tr></thead><tbody>${rows}</tbody></table></div></section>${filingsSection}${provenance(company)}` });
+  // Each measure's latest value, compact, with the exact figure in its title; a measure the company has not
+  // reported in the two years before capture goes under "Older measures", never among current figures.
+  const capture = Date.parse(company.fetched_at);
+  const measured = company.concepts.flatMap((concept) => latestObservationsByUnit(concept.observations).map((latest) => ({ concept, latest })));
+  const rowHtml = ({ concept, latest }) => `<tr><th scope="row">${conceptRef(concept)}</th>${periodStartCell(latest)}<td>${esc(latest.end)}</td><td class="company-reference__num" title="${esc(number(latest.val))} ${esc(latest.unit)}">${esc(compactAmount(latest.val, latest.unit))}</td><td>${esc(latest.filed)}</td></tr>`;
+  const measureTable = (items, caption) => `<div class="company-reference__table" role="region" aria-label="${esc(caption)}" tabindex="0"><table><caption>${esc(caption)}</caption><thead><tr><th scope="col">Measure</th><th scope="col">Period start</th><th scope="col">Period end</th><th scope="col" class="company-reference__num">Value</th><th scope="col">Filed</th></tr></thead><tbody>${items.map(rowHtml).join('')}</tbody></table></div>`;
+  const current = measured.filter(item => capture - Date.parse(item.latest.end) <= STALE_MS);
+  const older = measured.filter(item => capture - Date.parse(item.latest.end) > STALE_MS);
+  const measuresSection = `<section><h2>Every reported measure</h2><p>The latest value of each measure the company reports, as filed. Choose one for its full history, its definition and the filing behind each figure. Separate currencies and reporting intervals stay separate rows; these are reported amounts, not prices.</p>${current.length ? measureTable(current, 'Latest value of each measure') : ''}${older.length ? `<details class="company-reference__older"><summary>Older measures: ${older.length} not reported in the two years before ${esc(company.fetched_at.slice(0, 10))}</summary>${measureTable(older, 'Measures last reported more than two years before capture')}</details>` : ''}</section>`;
+  if (target === 'all' || target === 'overview') page({ path: pathFor(company), title: overviewTitle(titleLabel(company), company.concepts, company.fetched_at), description: overviewDescription(label(company), company.concepts, company.concepts.length, company.fetched_at), heading: company.name, sources, lastmod, dataset: company,
+    kicker: `SEC filer · CIK ${company.cik}${primaryTicker(company.cik) ? ` · ${primaryTicker(company.cik)}` : ''}`,
+    aside: annualReceipt(company, { linkConcept }),
+    body: `${historicalNote}${editorialNote}${overviewContext}${measuresSection}${filingsSection}${provenance(company)}` });
   for (const concept of company.concepts) {
     if (target !== 'all' && target !== concept.tag) continue;
     const coverage = companyCoverage(concept.observations, company.fetched_at);
