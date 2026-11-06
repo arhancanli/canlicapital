@@ -151,3 +151,8 @@ test("every path argument of every tool in the catalog is caught by the gate", (
   }
   assert.deepEqual(missed, []);
 });
+
+test("the hosted server never waits on a question to the person: a name that matches several filers keeps the best match, with the others listed", () => {
+  // Each request builds a fresh stateless server, so there is no stream an elicitation answer could come back on.
+  assert.equal(process.env.CANLI_ASK, "0");
+});
