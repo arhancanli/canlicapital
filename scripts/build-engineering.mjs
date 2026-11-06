@@ -25,6 +25,9 @@ import {
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const SOURCE_NAME = "engineering_open_source.json";
 const SOURCE_PATH = resolve(ROOT, "public", "glassbox", SOURCE_NAME);
+// The record's start date, read as /methodology reads it, so the two pages cannot disagree when the engine restarts it.
+const TRACK_NAME = "track_record.json";
+const TRACK_PATH = resolve(ROOT, "public", "glassbox", TRACK_NAME);
 const OUT_PATH = resolve(ROOT, "engineering.html");
 const ORIGIN = "https://canlicapital.com";
 
@@ -206,6 +209,8 @@ function renderProblem(p) {
 function main() {
   const doc = JSON.parse(readFileSync(SOURCE_PATH, "utf8"));
   assertSource(doc);
+  const goLive = JSON.parse(readFileSync(TRACK_PATH, "utf8")).go_live_date;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(goLive ?? "")) throw new Error(`engineering page: ${TRACK_NAME} has no go_live_date`);
   const commit = doc.extractions[0].pinned_engine_commit;
   // Read the totals from the artifact rather than recomputing them here, so the
   // page and the artifact cannot disagree, then check the artifact's own sum.
@@ -262,7 +267,7 @@ function main() {
 <meta name="description" content="${esc(description)}" />
 <link rel="canonical" href="${ORIGIN}/engineering" />
 <meta name="author" content="Arhan Canli" />
-<meta name="canli:sources" content="${SOURCE_NAME}" />
+<meta name="canli:sources" content="${SOURCE_NAME} ${TRACK_NAME}" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
@@ -306,7 +311,7 @@ ${renderProductShellHeader({ active: "engineering" })}
   <section class="eng-section" aria-labelledby="eng-repos-title">
     <div class="eng-section__head">
       <h2 id="eng-repos-title">Three repositories</h2>
-      <p>One system, plus two focused extractions of the parts most worth reading on their own.</p>
+      <p>One system, plus two focused extractions of the parts most worth reading on their own. This website, canli-mcp and the validation API have their own public repository, <a href="https://github.com/arhancanli/canlicapital" rel="noreferrer">arhancanli/canlicapital</a>.</p>
     </div>
     <article class="eng-repo eng-repo--engine">
       <header>
@@ -401,7 +406,7 @@ ${renderProductShellHeader({ active: "engineering" })}
         process honest enough to produce it. That is why there are two years of engineering
         behind a paper record measured in weeks, and not the other way around.</p>
       <p class="eng-lab__boundary"><strong>The distinction that matters.</strong> The engineering
-        began in July 2024. The public paper record began on 2026-08-07. Everything between those
+        began in July 2024. The public paper record began on ${esc(goLive)}. Everything between those
         dates is infrastructure and method, not performance. This site does not present it as a
         track record, and neither should anyone citing it.</p>
     </div>

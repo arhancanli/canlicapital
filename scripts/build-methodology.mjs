@@ -257,7 +257,7 @@ function questions(f) {
       q: "Is this real money, and why is there no return to look at?",
       a: `<p>The published ALPHAC record is not funded. Every sleeve shown here trades on paper,
       nothing on this site
-      is investment advice, an offer or a solicitation, and a verified record of a simulation is
+      is investment advice, an offer or a solicitation, and a checked record of a simulation is
       still a record of a simulation.</p>
       <p>The live paper record began ${escapeHtml(f.goLive)} and has accrued ${f.liveDays} days.
       That is far too short to say anything about skill, which is stated everywhere the record
