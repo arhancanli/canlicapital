@@ -133,7 +133,7 @@ test("Finnhub: the key in the address, one subscribe per symbol, the trades of a
   const { s, prices } = make({ FINNHUB_API_KEY: "a b" });
   s.watch(["AAPL", "BTC-USD"]);
   await tick();
-  const fh = FakeSocket.all.find((w) => w.url.startsWith("wss://ws.finnhub.io"));
+  const fh = FakeSocket.all.find((w) => new URL(w.url).host === "ws.finnhub.io");
   assert.equal(fh.url, "wss://ws.finnhub.io?token=a%20b");
   fh.emit("open");
   assert.deepEqual(fh.sent, [{ type: "subscribe", symbol: "AAPL" }]);
