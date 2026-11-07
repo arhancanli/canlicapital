@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Live price streams for `canli://quote`: a subscribed crypto pair streams from Coinbase's public ticker with no key, or Kraken's when Coinbase cannot be reached (three tries with no price) or does not list the pair; US stocks stream from Alpaca's trade stream with your Alpaca keys, or Finnhub's with `FINNHUB_API_KEY`. The client is told as prices trade, at most once a second for each address, instead of every 15 seconds, and each streamed quote says which exchange it came from (`streamed_from`). Symbols no stream carries are checked on the timer as before. Works on Node 20 (the `ws` package) and on Node 22 and later (Node's own WebSocket); streams close when the client goes; `CANLI_STREAMS=0` turns them off.
+
 ## 0.21.0
 
 - canli-markets-mcp 0.16.0, 442 tools in all. `portfolio_rules`: where a list of holdings stands against the US lines that bring a filing or cap concentration, each with its rule's text linked: a position over 5% of its class (Schedule 13D or 13G) or 10% (a Section 16 insider), the $100 million Form 13F line, concentration (largest issuer, top five, HHI, effective positions), the 75-5-10 and RIC diversification tests, and days to exit at a share of FINRA's average daily volume. A check, not compliance advice.
