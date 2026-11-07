@@ -780,6 +780,7 @@ export const PRIVACY = (packs, gov) => ({
   packs: Object.fromEntries(packs.map((p) => { const info = packInfo(p); return [p, { network: info.network, disk: info.disk, ...(PLUGINS.has(p) ? { plugin: info.package } : {}), ...(UPSTREAMS.has(p) ? { upstream: info.package, tools: info.tools ?? "still connecting", ...(info.error ? { error: info.error } : {}), ...(info.off_because_they_change_things ? { off_because_they_change_things: info.off_because_they_change_things } : {}) } : {}) }]; })),
   files: "{\"$file\": ...} arguments are read on this machine; nothing is uploaded and nothing is written by the reader",
   compile_cache: "Node keeps compiled JavaScript in its temp folder to start faster; it holds this server's code and nothing of yours",
+  price_streams: "off until a client subscribes to canli://quote on a local server: the symbols in the address go to Coinbase or Kraken (crypto, no key) or, with your keys, to Alpaca or Finnhub (US stocks); CANLI_STREAMS=0 turns them off",
   sentinel: "off until you use it: rules and events are kept in CANLI_HOME/sentinel on this machine, and sent only where you say with --webhook, --slack, --discord, --exec or --channel",
   local_models: "off until you run canli-mcp models install: they run on this machine, and no text leaves it",
   telemetry: "none: no analytics, logging or crash reporting",
