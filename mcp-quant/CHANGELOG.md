@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `crisis_scenarios`: thousands of synthetic years from a portfolio's own daily history, ordinary and with a crisis forced in. A day is stress when the portfolio's trailing volatility is in the top tenth of the sample; a two-state Markov chain says how often stress starts and how long it lasts; days are drawn in blocks of consecutive real days of the same regime, so volatility clustering and the higher cross-asset correlation of stress days are kept. Crisis years force one stress spell as long as the longest in the data (or `crisis_days`) at a random start. `correlation_shock` moves stress days toward the day's cross-asset average and `vol_multiplier` scales them, for crises beyond the sample. Returns the distribution of maximum drawdown (median, 90th, 95th, 99th percentile, worst), the chance of a drawdown beyond 10%, 20% and 30%, one-year returns and the worst month for both sets, beside the history's own figures and the regimes found. Seeded (mulberry32); tested on properties (a falling stress regime makes crisis years worse, shocks and longer crises deepen the tail, the planted regimes are found).
+
 ## 0.3.0
 
 - `lookahead_check`: target weights checked for lookahead from the weights alone. Their return is lined up with the period each was decided for, one, two and five periods late, and one period early (the return that had just happened). Weights computed with their own period's outcome show an edge all in that period, gone a period later and unexplained by the last return; the verdict reads so when that holds beyond about two standard errors of the Sharpe ratio. On simulated data it flags weights that peek every day and one day in seven, and not momentum, reversal or weights with no edge. It reads the weights, not the code behind them: hindsight in the universe, revised data or survivorship can leave no such pattern.

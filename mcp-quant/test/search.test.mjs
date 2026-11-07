@@ -10,7 +10,7 @@ const PLAIN = [
  ["how risky is my portfolio value at risk", "value_at_risk"], ["cvar of my returns", "expected_shortfall"], ["sharpe ratio with confidence interval", "sharpe_ratio"],
  ["worst drawdown of my strategy", "max_drawdown"], ["did my backtest overfit after trying 50 variants", "deflated_sharpe_ratio"], ["price a call option", "black_scholes"],
  ["implied vol from option price", "implied_volatility"], ["american put early exercise", "american_option"], ["knock out barrier option price", "barrier_option"],
- ["heston stochastic volatility price", "heston_option"], ["bond yield to maturity", "bond_yield"], ["duration and convexity of a bond", "bond_price"],
+ ["heston stochastic volatility price", "heston_option"], ["bond yield to maturity", "bond_yield"], ["simulate a market crash on my portfolio", "crisis_scenarios"], ["duration and convexity of a bond", "bond_price"],
  ["build zero curve from par yields", "bootstrap_zero_curve"], ["value an interest rate swap", "interest_rate_swap"], ["npv of cash flows", "net_present_value"],
  ["irr of an investment", "internal_rate_of_return"], ["mortgage payment schedule", "amortization_schedule"], ["discounted cash flow valuation", "dcf_valuation"],
  ["what growth does the stock price imply", "reverse_dcf"], ["bankruptcy risk score", "altman_z_score"], ["earnings manipulation check", "beneish_m_score"],
