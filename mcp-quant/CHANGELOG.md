@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- `conditional_forecast_test`: the Giacomini-White (2006) test of conditional predictive ability. The loss differential is interacted with instruments known when the forecast was made (a constant and the loss differential tau periods earlier, or a constant alone for the unconditional test); the Wald statistic uses the uncentred Newey-West matrix with tau - 1 lags and is compared with chi-squared. It tests forecasting methods, estimation included, and its decision rule says in what share of periods each forecast is predicted to do better. Checked against an independent numpy implementation (three cases).
+- `model_confidence_set`: the Hansen, Lunde and Nason (2011) model confidence set from several forecasts (or a loss matrix): models are eliminated while the stationary-bootstrap test of equal accuracy rejects, with the R (largest pairwise t) or max statistic; each model's mean loss, MCS p-value and elimination step, and the set at the chosen confidence (default 0.9). The bootstrap uses mulberry32(seed), so results reproduce exactly; checked against an independent numpy implementation drawing the same indices (two cases).
 - `forecast_accuracy_test`: is forecast A really better than forecast B? The Diebold-Mariano test on squared or absolute errors, h steps ahead, with the Harvey-Leybourne-Newbold small-sample correction (Student's t on T - 1 degrees of freedom), and which forecast is better, if either is. Checked against an independent numpy and scipy implementation of the published formulas (scripts/reference/forecast.py): the true AR(1) forecast against a random walk gives DM -3.55, p 0.0005; two near-identical forecasts give no difference.
 
 ## 0.3.0
