@@ -44,7 +44,7 @@ function checkDates(...dates) {
 }
 
 // A record's hash is SHA-256 over its other fields as JSON with sorted keys, so anyone can recompute it.
-const canonical = (v) => (Array.isArray(v) ? `[${v.map(canonical).join(",")}]` : v && typeof v === "object" ? `{${Object.keys(v).sort().map((k) => `${JSON.stringify(k)}:${canonical(v[k])}`).join(",")}}` : JSON.stringify(v));
+export const canonical = (v) => (Array.isArray(v) ? `[${v.map(canonical).join(",")}]` : v && typeof v === "object" ? `{${Object.keys(v).sort().map((k) => `${JSON.stringify(k)}:${canonical(v[k])}`).join(",")}}` : JSON.stringify(v));
 
 export function hashRecord(record) {
   const { hash, ...fields } = record;
