@@ -51,3 +51,14 @@ test("a call with every optional argument null works as if they were left out", 
   const badInner = await c.callTool({ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { returns: null } } });
   assert.ok(badInner.isError || /returns/.test(text(badInner)), text(badInner));
 });
+
+test("an error after nulls are dropped names only what is still wrong", async (t) => {
+  const c = new Client({ name: "nulls", version: "0" });
+  await c.connect(new StdioClientTransport({ command: process.execPath, args: [ENTRY], env: { PATH: process.env.PATH ?? "", HOME: process.env.HOME ?? "", CANLI_CACHE_DIR: "", CANLI_OFFLINE: "1" } }));
+  t.after(() => c.close());
+  const text = (r) => r.content?.[0]?.text ?? "";
+  const answer = (args) => c.callTool({ name: "find_tool", arguments: args }).then((r) => text(r), (e) => String(e?.message ?? e));
+  assert.equal(await answer({ limit: null }), await answer({}), "find_tool without a query: the same answer with limit null");
+  const inner = await c.callTool({ name: "run_tool", arguments: { name: "sharpe_ratio", arguments: { returns: null, periods_per_year: null } } });
+  assert.doesNotMatch(text(inner), /periods_per_year/);
+});

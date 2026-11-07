@@ -473,15 +473,14 @@ function corrected(tool, given, resolved, issues) {
   return call.length <= 600 ? ` ${renames.join("; ")}: the call is ${call}.` : ` ${renames.join("; ")}, and with that the call checks.`;
 }
 // Some frameworks send every optional argument, as null when unset (CrewAI through mcpadapt; OpenAI's strict
-// function calling). An argument that is null where null is not allowed counts as not given; anything still wrong is
-// reported as sent.
+// function calling). An argument that is null where null is not allowed counts as not given, so an error names only what
+// is still wrong, not the nulls.
 export const withoutNulls = (value) => (value && typeof value === "object" && !Array.isArray(value) && Object.values(value).includes(null) ? Object.fromEntries(Object.entries(value).filter(([, v]) => v !== null)) : null);
 function parseLenient(schema, value) {
   const parsed = schema.safeParse(value);
   if (parsed.success) return parsed;
   const kept = withoutNulls(value);
-  const again = kept && schema.safeParse(kept);
-  return again?.success ? again : parsed;
+  return kept ? schema.safeParse(kept) : parsed;
 }
 // The SDK checks a tool's arguments before its handler runs, so the same rule is applied there.
 function acceptNulls(server) {
@@ -493,7 +492,7 @@ function acceptNulls(server) {
     } catch (err) {
       const kept = withoutNulls(args);
       if (!kept) throw err;
-      try { return await validate(tool, kept, name); } catch { throw err; }
+      return validate(tool, kept, name);
     }
   };
   server.__acceptsNulls = true;
