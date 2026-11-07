@@ -574,7 +574,27 @@ const ANNOTATIONS = { readOnlyHint: true, destructiveHint: false, idempotentHint
 
 const issues = (err) => (err?.issues ? err.issues.map((i) => `${i.path.join(".") || "input"}: ${i.message}`).join("; ") : String(err?.message ?? err));
 
+// Some MCP clients (CrewAI through mcpadapt, OpenAI strict mode) send every optional argument they leave unset as null.
+// Where null is not allowed, it means "not given": the call is checked again without those keys, and if that fails too, the
+// error names only what is still wrong.
+export const withoutNulls = (value) => (value && typeof value === "object" && !Array.isArray(value) && Object.values(value).includes(null) ? Object.fromEntries(Object.entries(value).filter(([, v]) => v !== null)) : null);
+export function acceptNulls(server) {
+  if (server.__acceptsNulls || typeof server.validateToolInput !== "function") return;
+  const validate = server.validateToolInput.bind(server);
+  server.validateToolInput = async (tool, args, name) => {
+    try {
+      return await validate(tool, args, name);
+    } catch (err) {
+      const kept = withoutNulls(args);
+      if (!kept) throw err;
+      return validate(tool, kept, name);
+    }
+  };
+  server.__acceptsNulls = true;
+}
+
 export function registerTools(server, session) {
+  acceptNulls(server);
   for (const [name, [input, run]] of Object.entries(TOOLS)) {
     server.registerTool(name, { title: TITLES[name], description: TOOL_DESCRIPTIONS[name], inputSchema: input, outputSchema: OUTPUT_SCHEMAS[name], annotations: { title: TITLES[name], ...ANNOTATIONS } }, async (args) => {
       try {

@@ -69,7 +69,27 @@ const ANNOTATIONS = {
 };
 const TITLES = { paper_account: "Paper account", preview_paper_orders: "Preview paper orders", rebalance_to_weights: "Rebalance to weights", send_paper_orders: "Send paper orders", verify_attestation: "Verify an attestation" };
 
+// Some MCP clients (CrewAI through mcpadapt, OpenAI strict mode) send every optional argument they leave unset as null.
+// Where null is not allowed, it means "not given": the call is checked again without those keys, and if that fails too, the
+// error names only what is still wrong.
+export const withoutNulls = (value) => (value && typeof value === "object" && !Array.isArray(value) && Object.values(value).includes(null) ? Object.fromEntries(Object.entries(value).filter(([, v]) => v !== null)) : null);
+export function acceptNulls(server) {
+  if (server.__acceptsNulls || typeof server.validateToolInput !== "function") return;
+  const validate = server.validateToolInput.bind(server);
+  server.validateToolInput = async (tool, args, name) => {
+    try {
+      return await validate(tool, args, name);
+    } catch (err) {
+      const kept = withoutNulls(args);
+      if (!kept) throw err;
+      return validate(tool, kept, name);
+    }
+  };
+  server.__acceptsNulls = true;
+}
+
 export function registerAll(server, { broker, home }) {
+  acceptNulls(server);
   const run = { paper_account: () => broker.account(), preview_paper_orders: (a) => broker.preview(a), rebalance_to_weights: (a) => broker.rebalance(a), send_paper_orders: (a) => broker.send(a), verify_attestation: (a) => { const dir = home ?? join(homedir(), ".canli"), local = (f) => { try { return readFileSync(join(dir, f), "utf8"); } catch { return null; } }; return verifyAttestation(a.attestation, a.public_key_pem ?? local("attest-ed25519.pub.pem"), a.openings ?? [], a.pq_public_key_pem ?? (a.public_key_pem ? null : local("attest-ml-dsa-65.pub.pem"))); } };
   for (const name of Object.keys(INPUTS)) {
     server.registerTool(name, { title: TITLES[name], description: DESCRIPTIONS[name], annotations: { title: TITLES[name], ...ANNOTATIONS[name] }, inputSchema: INPUTS[name], outputSchema: z.looseObject({}) }, async (args) => {
