@@ -650,10 +650,24 @@ test("an 8-K does not restate a company's year: Essential Utilities' merger 8-K 
   const index = indexFacts({ facts: { "us-gaap": { Revenues: { units: { USD: [row(2474610000, "10-K", "2026-02-26"), row(5121000000, "8-K", "2026-03-30")] } } } } });
   const p = index.get("us-gaap:Revenues").units.USD[0];
   assert.deepEqual(p.vintages.map((v) => [v.val, v.form]), [[2474610000, "10-K"]], "the periodic report's value stands");
-  assert.deepEqual(p.currentReports.map((v) => [v.val, v.form]), [[5121000000, "8-K"]], "the 8-K's value is kept apart");
+  assert.deepEqual(p.setApart.map((v) => [v.val, v.form, v.why]), [[5121000000, "8-K", "8-K"]], "the 8-K's value is kept apart");
   // A period only an 8-K carries keeps its 8-K value (nothing periodic to prefer).
   const only = indexFacts({ facts: { "us-gaap": { Revenues: { units: { USD: [row(5121000000, "8-K", "2026-03-30")] } } } } });
   assert.deepEqual(only.get("us-gaap:Revenues").units.USD[0].vintages.map((v) => v.form), ["8-K"]);
+});
+
+test("a pay-versus-performance table is not a restatement: Genco's 10-K/A $(4.5) million never replaces the 10-K's $4,366,000", () => {
+  const row = (val, form, filed) => ({ start: "2025-01-01", end: "2025-12-31", val, form, filed, accn: `a-${filed}`, fy: 2025, fp: "FY" });
+  const y24 = (val, form, filed) => ({ ...row(val, form, filed), start: "2024-01-01", end: "2024-12-31" });
+  const p = indexFacts({ facts: { "us-gaap": { ProfitLoss: { units: { USD: [row(-4366000, "10-K", "2026-02-18"), row(-4500000, "10-K/A", "2026-04-30"), y24(76401000, "10-K", "2026-02-18"), y24(76500000, "10-K/A", "2026-04-30")] } } } } }).get("us-gaap:ProfitLoss").units.USD[0];
+  assert.deepEqual(p.vintages.map((v) => v.val), [-4366000]);
+  assert.deepEqual(p.setApart.map((v) => [v.val, v.why]), [[-4500000, "rounded repeat in an amendment"]]);
+  // A real restatement stays one: Richtech's 10-K/A restated an operating loss to a round $17,200,000, but its
+  // 2024 figure ($7,780,000) is not round; and a lone round value is never enough.
+  const real = (val, other) => indexFacts({ facts: { "us-gaap": { OperatingIncomeLoss: { units: { USD: [row(-17944000, "10-K", "2026-01-20"), row(val, "10-K/A", "2026-08-07"), ...(other ? [y24(-7700000, "10-K", "2025-01-20"), y24(other, "10-K/A", "2026-08-07")] : [])] } } } } }).get("us-gaap:OperatingIncomeLoss").units.USD[0].vintages.map((v) => v.val);
+  assert.deepEqual(real(-17200000, -7780000), [-17944000, -17200000]);
+  assert.deepEqual(real(-17200000), [-17944000, -17200000]);
+  assert.deepEqual(real(-6000000, -7800000), [-17944000, -6000000], "round but far from the first value");
 });
 
 test("a 10-Q does not restate a full year: Comfort Systems' $1.83 billion never replaces the 10-K's $9.1 billion", () => {

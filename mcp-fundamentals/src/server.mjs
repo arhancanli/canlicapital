@@ -525,18 +525,46 @@ const SKIP_TAXONOMIES = new Set(["ffd"]);
 // Proxy statements too: their pay-versus-performance tables repeat net income in the proxy's own rounded
 // units (Arista's 2025 net income as 3,511), which read as the latest filing would replace the real figure.
 const NON_PERIODIC_FORM = /^(424B|S-\d|F-\d|POS |DEF|PRE|DFAN|ARS)/;
-// An 8-K is not where a company's periodic figures are replaced. Essential Utilities' March 2026 8-K for its
-// pending merger tagged American Water's 2025 results under Essential's own filing ($5.12 billion of revenue
-// against Essential's $2.47 billion), which read as a restatement. Where a periodic report carries a period, its
-// 8-K values are kept apart (currentReports) and never become the first or latest value; a recast filed in an
-// 8-K counts once a periodic report repeats it, and is shown apart until then.
+// Values that are not a company restating its figures are kept apart (setApart, each with why) and never become
+// the first or latest value of a period:
+// - An 8-K, where a periodic report carries the period. Essential Utilities' March 2026 8-K for its pending
+//   merger tagged American Water's 2025 results under Essential's own filing ($5.12 billion of revenue against
+//   Essential's $2.47 billion). A recast filed in an 8-K counts once a periodic report repeats it.
+// - A rounded repeat in an amended annual report: a Part III amendment's pay-versus-performance table gives net
+//   income to the nearest $100,000 (Genco's 10-K/A of April 2026: "$(4.5)" million, tagged ProfitLoss, against
+//   the 10-K's $4,366,000). Such a table rounds every year it shows, so an amendment counts as one only when all
+//   its values for the measure (two or more) are whole multiples of 100,000, each within 5% of an earlier, finer
+//   value. A real restatement can land on a round figure (Richtech's 10-K/A: an operating loss of $17,200,000)
+//   but not every year at once (its 2024: $7,780,000).
 const CURRENT_REPORT_FORM = /^8-K/;
-function apartCurrentReports(p) {
-  if (!p.vintages.some((v) => CURRENT_REPORT_FORM.test(v.form ?? ""))) return;
-  const periodic = p.vintages.filter((v) => !CURRENT_REPORT_FORM.test(v.form ?? ""));
-  if (!periodic.length) return;
-  p.currentReports = [...(p.currentReports ?? []), ...p.vintages.filter((v) => CURRENT_REPORT_FORM.test(v.form ?? ""))].sort(byFiling);
-  p.vintages = periodic;
+const AMENDED_ANNUAL_FORM = /^(10-K|10-KT|20-F|40-F)\/A$/;
+const isRound = (v) => Number.isInteger(v.val) && v.val !== 0 && v.val % 100000 === 0;
+// Accession numbers of amended annual reports whose every value in these periods is round (two or more).
+function roundFilings(periods) {
+  const seen = new Map();
+  for (const p of periods) for (const v of p.vintages) {
+    if (!AMENDED_ANNUAL_FORM.test(v.form ?? "")) continue;
+    const s = seen.get(v.accn) ?? { n: 0, round: true };
+    s.n += 1; s.round &&= isRound(v);
+    seen.set(v.accn, s);
+  }
+  return new Set([...seen].filter(([, s]) => s.round && s.n >= 2).map(([accn]) => accn));
+}
+function roundedRepeat(v, earlier, round) {
+  if (!round.has(v.accn)) return false;
+  return earlier.some((e) => e.val % 100000 !== 0 && Math.abs(v.val - e.val) <= 0.05 * Math.abs(e.val));
+}
+function setApart(p, round = new Set()) {
+  const kept = [], apart = [];
+  const periodic = p.vintages.some((v) => !CURRENT_REPORT_FORM.test(v.form ?? ""));
+  for (const v of p.vintages) {
+    if (periodic && CURRENT_REPORT_FORM.test(v.form ?? "")) apart.push({ ...v, why: "8-K" });
+    else if (kept.length && roundedRepeat(v, kept, round)) apart.push({ ...v, why: "rounded repeat in an amendment" });
+    else kept.push(v);
+  }
+  if (!apart.length) return;
+  p.setApart = [...(p.setApart ?? []), ...apart].sort(byFiling);
+  p.vintages = kept;
 }
 
 // A duration is annual at 350 to 380 days (52- and 53-week years included) and quarterly at 80 to
@@ -593,8 +621,9 @@ export function indexFacts(facts, only) {
           // A 10-Q is not where a full year is restated: Comfort Systems' April 2026 10-Q tagged a quarter's
           // $1.83 billion as all of 2025, which would have replaced the 10-K's $9.1 billion.
           if (p.start && durationKind(p.start, p.end) === "annual" && p.vintages.some((v) => ANNUAL_FORM.test(v.form ?? ""))) p.vintages = p.vintages.filter((v) => !INTERIM_FORM.test(v.form ?? ""));
-          apartCurrentReports(p);
         }
+        const round = roundFilings(list);
+        for (const p of list) setApart(p, round);
         list.sort((a, b) => b.end.localeCompare(a.end) || String(b.start).localeCompare(String(a.start)));
         if (list.length) units[unit] = list;
       }
@@ -683,7 +712,7 @@ function buildSeries(concepts, unit) {
       let m = periods.get(key);
       if (!m) periods.set(key, (m = { start: p.start, end: p.end, all: [], apart: [] }));
       for (const v of p.vintages) m.all.push({ ...v, tag: conceptName(c), rank });
-      for (const v of p.currentReports ?? []) m.apart.push({ ...v, tag: conceptName(c) });
+      for (const v of p.setApart ?? []) m.apart.push({ ...v, tag: conceptName(c) });
     }
   });
   const list = [...periods.values()];
@@ -698,10 +727,14 @@ function buildSeries(concepts, unit) {
     }
     m.vintages = [...perFiling.values()].sort(byFiling);
     // One value per filing, as for the vintages (two tags in one 8-K often carry the same figure).
-    if (m.apart.length) m.currentReports = [...new Map(m.apart.map((v) => [`${v.filed}|${v.accn}|${v.val}`, v])).values()].sort(byFiling);
+    if (m.apart.length) m.setApart = [...new Map(m.apart.map((v) => [`${v.filed}|${v.accn}|${v.val}`, v])).values()].sort(byFiling);
     delete m.all;
     delete m.apart;
-    apartCurrentReports(m);
+  }
+  // Second pass: an amendment is a rounded table only by all its values across the periods.
+  const round = roundFilings(list);
+  for (const m of list) {
+    setApart(m, round);
     const first = m.vintages[0];
     const last = m.vintages[m.vintages.length - 1];
     m.kind = m.start ? durationKind(m.start, m.end) : instantKind(first.form);
@@ -954,10 +987,10 @@ export async function toolHistory(session, args) {
     .filter((p) => !p.start && p.kind !== "annual" && !onYearEnds.has(p.end) && p.vintages.some((v) => ANNUAL_FORM.test(v.form ?? "")))
     .map((p) => ({ p, sel: select(p, basis, asOf) })).filter((r) => r.sel).slice(0, 10)
     .map(({ p, sel }) => [p.end, sel.v.val, sel.v.filed, sel.v.form, sel.v.accn]) : [];
-  // 8-K values that differ from the periodic reports' value for a period shown: kept apart, never the value used.
-  const apart = picked.slice(0, limit).flatMap(({ p, sel }) => (p.currentReports ?? [])
+  // Values set apart (8-Ks, rounded repeats) that differ from the value shown for a period: listed, never used.
+  const apart = picked.slice(0, limit).flatMap(({ p, sel }) => (p.setApart ?? [])
     .filter((v) => v.val !== sel.v.val && (!asOf || v.filed <= asOf))
-    .map((v) => [p.end, v.val, v.filed, v.form, v.accn]))
+    .map((v) => [p.end, v.val, v.filed, v.form, v.accn, v.why]))
     .filter((r, i, all) => all.findIndex((x) => x.join("|") === r.join("|")) === i).slice(0, 10);
   return asText({
     ...head(e, asOf),
@@ -976,7 +1009,7 @@ export async function toolHistory(session, args) {
     columns,
     ...shown,
     ...(s.newer ? { newer_series: s.newer } : {}),
-    ...(apart.length ? { current_reports: { note: "Values an 8-K reported for these periods that differ from the periodic reports (10-K, 10-Q). Not used: an 8-K can carry a recast the next periodic report repeats, or another company's figures (a merger partner's statements). Read the 8-K before relying on one.", columns: ["end", "val", "filed", "form", "accn"], rows: apart } } : {}),
+    ...(apart.length ? { set_apart: { note: "Values other filings gave for these periods, not used: an 8-K (it can carry a recast the next periodic report repeats, or a merger partner's figures) or a rounded repeat in an amended annual report (a pay-versus-performance table). Read the filing before relying on one.", columns: ["end", "val", "filed", "form", "accn", "why"], rows: apart } } : {}),
     ...(otherDates.length ? { other_dates: { note: "Balances annual reports also carry on dates that are not year ends (an opening balance after a new accounting standard, a transition period's end); not used in change_pct.", columns: ["end", "val", "filed", "form", "accn"], rows: otherDates } } : {}),
     meaning: (latestBasis
       ? "changed: the latest value differs from the period's first report; first_val and first_filed give that first report."
