@@ -645,6 +645,17 @@ test("a proxy statement's pay table is not a filing of the results: Arista's 3,5
   assert.deepEqual(vintages.map((v) => [v.val, v.form]), [[3511400000, "10-K"]]);
 });
 
+test("an 8-K does not restate a company's year: Essential Utilities' merger 8-K never replaces its $2.47 billion", () => {
+  const row = (val, form, filed) => ({ start: "2025-01-01", end: "2025-12-31", val, form, filed, accn: `a-${filed}`, fy: 2025, fp: "FY" });
+  const index = indexFacts({ facts: { "us-gaap": { Revenues: { units: { USD: [row(2474610000, "10-K", "2026-02-26"), row(5121000000, "8-K", "2026-03-30")] } } } } });
+  const p = index.get("us-gaap:Revenues").units.USD[0];
+  assert.deepEqual(p.vintages.map((v) => [v.val, v.form]), [[2474610000, "10-K"]], "the periodic report's value stands");
+  assert.deepEqual(p.currentReports.map((v) => [v.val, v.form]), [[5121000000, "8-K"]], "the 8-K's value is kept apart");
+  // A period only an 8-K carries keeps its 8-K value (nothing periodic to prefer).
+  const only = indexFacts({ facts: { "us-gaap": { Revenues: { units: { USD: [row(5121000000, "8-K", "2026-03-30")] } } } } });
+  assert.deepEqual(only.get("us-gaap:Revenues").units.USD[0].vintages.map((v) => v.form), ["8-K"]);
+});
+
 test("a 10-Q does not restate a full year: Comfort Systems' $1.83 billion never replaces the 10-K's $9.1 billion", () => {
   const row = (val, form, filed) => ({ start: "2025-01-01", end: "2025-12-31", val, form, filed, accn: `a-${filed}`, fy: 2025, fp: "FY" });
   const index = indexFacts({ facts: { "us-gaap": { Revenues: { units: { USD: [row(9101641000, "10-K", "2026-02-19"), row(1831286000, "10-Q", "2026-04-23")] } } } } });

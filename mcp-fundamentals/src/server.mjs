@@ -525,6 +525,19 @@ const SKIP_TAXONOMIES = new Set(["ffd"]);
 // Proxy statements too: their pay-versus-performance tables repeat net income in the proxy's own rounded
 // units (Arista's 2025 net income as 3,511), which read as the latest filing would replace the real figure.
 const NON_PERIODIC_FORM = /^(424B|S-\d|F-\d|POS |DEF|PRE|DFAN|ARS)/;
+// An 8-K is not where a company's periodic figures are replaced. Essential Utilities' March 2026 8-K for its
+// pending merger tagged American Water's 2025 results under Essential's own filing ($5.12 billion of revenue
+// against Essential's $2.47 billion), which read as a restatement. Where a periodic report carries a period, its
+// 8-K values are kept apart (currentReports) and never become the first or latest value; a recast filed in an
+// 8-K counts once a periodic report repeats it, and is shown apart until then.
+const CURRENT_REPORT_FORM = /^8-K/;
+function apartCurrentReports(p) {
+  if (!p.vintages.some((v) => CURRENT_REPORT_FORM.test(v.form ?? ""))) return;
+  const periodic = p.vintages.filter((v) => !CURRENT_REPORT_FORM.test(v.form ?? ""));
+  if (!periodic.length) return;
+  p.currentReports = [...(p.currentReports ?? []), ...p.vintages.filter((v) => CURRENT_REPORT_FORM.test(v.form ?? ""))].sort(byFiling);
+  p.vintages = periodic;
+}
 
 // A duration is annual at 350 to 380 days (52- and 53-week years included) and quarterly at 80 to
 // 125 days, which covers 12- to 17-week quarters (Kroger's first quarter is 16 weeks, Costco's
@@ -580,6 +593,7 @@ export function indexFacts(facts, only) {
           // A 10-Q is not where a full year is restated: Comfort Systems' April 2026 10-Q tagged a quarter's
           // $1.83 billion as all of 2025, which would have replaced the 10-K's $9.1 billion.
           if (p.start && durationKind(p.start, p.end) === "annual" && p.vintages.some((v) => ANNUAL_FORM.test(v.form ?? ""))) p.vintages = p.vintages.filter((v) => !INTERIM_FORM.test(v.form ?? ""));
+          apartCurrentReports(p);
         }
         list.sort((a, b) => b.end.localeCompare(a.end) || String(b.start).localeCompare(String(a.start)));
         if (list.length) units[unit] = list;
@@ -667,8 +681,9 @@ function buildSeries(concepts, unit) {
     for (const p of c.units[unit] ?? []) {
       const key = `${p.start ?? ""}/${p.end}`;
       let m = periods.get(key);
-      if (!m) periods.set(key, (m = { start: p.start, end: p.end, all: [] }));
+      if (!m) periods.set(key, (m = { start: p.start, end: p.end, all: [], apart: [] }));
       for (const v of p.vintages) m.all.push({ ...v, tag: conceptName(c), rank });
+      for (const v of p.currentReports ?? []) m.apart.push({ ...v, tag: conceptName(c) });
     }
   });
   const list = [...periods.values()];
@@ -682,7 +697,11 @@ function buildSeries(concepts, unit) {
       if (!kept || (v.tag === firstTag && kept.tag !== firstTag)) perFiling.set(k, v);
     }
     m.vintages = [...perFiling.values()].sort(byFiling);
+    // One value per filing, as for the vintages (two tags in one 8-K often carry the same figure).
+    if (m.apart.length) m.currentReports = [...new Map(m.apart.map((v) => [`${v.filed}|${v.accn}|${v.val}`, v])).values()].sort(byFiling);
     delete m.all;
+    delete m.apart;
+    apartCurrentReports(m);
     const first = m.vintages[0];
     const last = m.vintages[m.vintages.length - 1];
     m.kind = m.start ? durationKind(m.start, m.end) : instantKind(first.form);
@@ -935,6 +954,11 @@ export async function toolHistory(session, args) {
     .filter((p) => !p.start && p.kind !== "annual" && !onYearEnds.has(p.end) && p.vintages.some((v) => ANNUAL_FORM.test(v.form ?? "")))
     .map((p) => ({ p, sel: select(p, basis, asOf) })).filter((r) => r.sel).slice(0, 10)
     .map(({ p, sel }) => [p.end, sel.v.val, sel.v.filed, sel.v.form, sel.v.accn]) : [];
+  // 8-K values that differ from the periodic reports' value for a period shown: kept apart, never the value used.
+  const apart = picked.slice(0, limit).flatMap(({ p, sel }) => (p.currentReports ?? [])
+    .filter((v) => v.val !== sel.v.val && (!asOf || v.filed <= asOf))
+    .map((v) => [p.end, v.val, v.filed, v.form, v.accn]))
+    .filter((r, i, all) => all.findIndex((x) => x.join("|") === r.join("|")) === i).slice(0, 10);
   return asText({
     ...head(e, asOf),
     concept: { name: s.name, label: s.label, unit: s.unit, units: s.units, tags: s.tags.map(tagName) },
@@ -952,6 +976,7 @@ export async function toolHistory(session, args) {
     columns,
     ...shown,
     ...(s.newer ? { newer_series: s.newer } : {}),
+    ...(apart.length ? { current_reports: { note: "Values an 8-K reported for these periods that differ from the periodic reports (10-K, 10-Q). Not used: an 8-K can carry a recast the next periodic report repeats, or another company's figures (a merger partner's statements). Read the 8-K before relying on one.", columns: ["end", "val", "filed", "form", "accn"], rows: apart } } : {}),
     ...(otherDates.length ? { other_dates: { note: "Balances annual reports also carry on dates that are not year ends (an opening balance after a new accounting standard, a transition period's end); not used in change_pct.", columns: ["end", "val", "filed", "form", "accn"], rows: otherDates } } : {}),
     meaning: (latestBasis
       ? "changed: the latest value differs from the period's first report; first_val and first_filed give that first report."
