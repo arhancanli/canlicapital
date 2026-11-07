@@ -1,6 +1,6 @@
 # canli-quant-mcp
 
-236 quant finance tools in one MCP server: performance and risk, options and exotics, fixed income,
+237 quant finance tools in one MCP server: performance and risk, options and exotics, fixed income,
 portfolio construction, econometrics, technical indicators, execution, sizing, crypto and FX,
 valuation, strategy backtests, a library of 399 strategy sleeves, data checks, and data annotation
 and ML labeling. Every tool
@@ -17,7 +17,7 @@ and the calculation's domain. Ordinary finite answers and null warm-up positions
 
 **[canli-quant-mcp on canlicapital.com](https://canlicapital.com/mcp-servers/quant)** · [All Canli Capital MCP servers](https://canlicapital.com/mcp-servers). Free, MIT-licensed. For every server behind one install, use [canli-mcp](https://www.npmjs.com/package/canli-mcp).
 
-## Three tools in context, 235 behind them
+## Three tools in context, 237 behind them
 
 Listing 238 tools directly costs **83,944 tokens** of context (o200k) on every request. By default
 this server lists three, **680 tokens**:
@@ -338,7 +338,7 @@ randomness is the sleeve bootstrap, drawn from a stated seed.
 
 </details>
 
-<details><summary><b>risk</b>: Portfolio risk and stress (7)</summary>
+<details><summary><b>risk</b>: Portfolio risk and stress (8)</summary>
 
 | tool | what it does |
 |---|---|
@@ -349,6 +349,7 @@ randomness is the sleeve bootstrap, drawn from a stated seed.
 | `concentration_metrics` | Measure how concentrated a portfolio is: Herfindahl index, effective number of positions, largest and top-k shares, and the Gini coefficient of weights. |
 | `liquidation_horizon` | Estimate how many days each position takes to exit at a maximum share of average daily volume, and how much of the book can be liquidated within 1, 5 and 20 days. |
 | `extreme_value_tail` | Model the loss tail with extreme value theory: fit a generalized Pareto distribution to losses beyond a high threshold (peaks over threshold) and estimate value at risk and expected shortfall far into the tail, with the Hill tail index. |
+| `crisis_scenarios` | Generate thousands of synthetic years, ordinary and with a crisis forced in, from a portfolio's own daily history (calm and stress regimes, a Markov chain for when stress starts and ends, a block bootstrap of real days within each regime), with optional shocks to stress-day correlation and volatility; returns the distribution of maximum drawdown, the chance of 10%, 20% and 30% drawdowns, one-year returns and the worst month. |
 
 </details>
 
