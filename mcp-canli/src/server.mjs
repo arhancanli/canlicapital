@@ -56,7 +56,8 @@ import { installTripwire, withoutNetwork } from "./tripwire.mjs";
 import { createDelta } from "./delta.mjs";
 import { runWeek, WEEK_TOOL } from "./week.mjs";
 import { askWhich } from "./ask.mjs";
-import { quoteSeconds, registerQuotes } from "./quotes.mjs";
+import { createLive } from "./live.mjs";
+import { LIVE_QUOTES_TOOL, quoteSeconds, registerQuotes, runLiveQuotes } from "./quotes.mjs";
 import { channelSink, CHANNEL_INSTRUCTIONS, SENTINEL_TOOLS } from "./sentinel.mjs";
 
 const PKG = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
@@ -69,7 +70,7 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL, EXPORT_TOOL, ...COMPARE_TOOLS, FISCAL_TOOL];
+const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, LIVE_QUOTES_TOOL, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL, EXPORT_TOOL, ...COMPARE_TOOLS, FISCAL_TOOL];
 export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
@@ -507,7 +508,7 @@ async function describeTool(packs, { name }) {
 // come here, so a desk tool is never handed to a pack's runner.
 // machine: the time machine this call answers under (the server's, its own as_of, or a holdout's), which every call a
 // desk tool makes is held to as well.
-export function selfTools(packs, gov, keeper, readOnly = false, vault = null, preregs = null, machine = TIME_MACHINE) {
+export function selfTools(packs, gov, keeper, readOnly = false, vault = null, preregs = null, machine = TIME_MACHINE, liveHub = null) {
   const desk = { call: (name, args) => (name === "triangulate" ? runTriangulate(desk, args) : runOne(packs, { name, arguments: args }, {}, [], gov, machine)), keep: (r) => keeper.put(r), get: (ref) => keeper.get(ref), at, toolFor: (name) => toolFor(name, packs), hosted: Boolean(readOnly) };
   // A rule outlives the call that sets it, so it lives on your machine and never on the hosted server.
   const sentinel = async () => {
@@ -520,6 +521,7 @@ export function selfTools(packs, gov, keeper, readOnly = false, vault = null, pr
   const tools = { my_week: (args) => { allowed("my_week"); return runWeek(desk, args); }, signed_trial_count: (args) => { allowed("signed_trial_count"); if (readOnly) throw new Error("The signed log is on your own machine. Run it locally: npx -y canli-mcp"); return signedTrialCount(args, { dir: join(canliHome(), "audit"), keys: publicKeys(canliHome()) }); }, sentinel_add: async (args) => { allowed("sentinel_add"); return (await sentinel()).add(args); }, sentinel_list: async () => { allowed("sentinel_list"); return (await sentinel()).list(); }, sentinel_remove: async ({ id }) => { allowed("sentinel_remove"); return (await sentinel()).remove(id); }, sentinel_events: async (args) => { allowed("sentinel_events"); return (await sentinel()).events(args ?? {}); }, brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), stress_worlds: (args) => runWorlds(desk, args), hub_list: (args) => runHubList(args), hub_check: (args) => runHubCheck(args), hub_run: (args) => runHubRun(desk, args), draft_orders: (args) => runDraft(args), triangulate: (args) => runTriangulate(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
   // The holdout vault keeps a session, so it lives on your machine (holdout.mjs).
   const vaulted = (name) => { allowed(name); if (readOnly || !vault) throw new Error("The holdout vault keeps a session, and the hosted server keeps nothing between requests. Run it locally: npx -y canli-mcp"); return vault; };
+  tools.live_quotes = (args) => { allowed("live_quotes"); return runLiveQuotes({ hub: liveHub, readOnly, price: (symbol) => runOne(packs, { name: "latest_price", arguments: { symbol } }, {}, [], gov, machine) }, args); };
   tools.restatement_causes = (args) => { allowed("restatement_causes"); return runCauses(desk, args); };
   tools.receipt_check = (args) => { allowed("receipt_check"); return runReceiptCheck(desk, args); };
   tools.reconcile_shares = (args) => { allowed("reconcile_shares"); return runShares(desk, args); };
@@ -607,6 +609,8 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
   // A holdout period hidden from every tool until its one test (holdout.mjs); setting it clears what was kept.
   const vault = createVault({ onSet: () => { keeper.clear(); delta.clear(); } });
   // Hypotheses hashed before the data, named in every later receipt (prereg.mjs); kept in CANLI_HOME on this machine.
+  // Live price streams, shared by canli://quote subscriptions and live_quotes, on a local server only (live.mjs).
+  const liveHub = live && !readOnly && !TIME_MACHINE && packs.includes("markets") ? createLive() : null;
   const preregs = createRegistry({ keep: readOnly ? null : async (line) => (await import("../local/prereg.mjs")).keepPreregistration(canliHome(), line) });
   const writers = packs.filter((p) => UPSTREAMS.get(p)?.write);
   server.registerTool("find_tool", {
@@ -660,7 +664,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const viewing = Boolean(a.view) && clientDrawsApps(server);
     if (a.view) for (const c of calls) if (/^backtest_/.test(c.name) && !(c.arguments && "curve" in c.arguments)) { try { if ((await toolFor(c.name, packs)).input?.shape?.curve) c.arguments = { ...(c.arguments ?? {}), curve: true }; } catch { /* reported when it runs */ } }
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
-    const SELF = selfTools(packs, gov, keeper, readOnly, vault, preregs, machine);
+    const SELF = selfTools(packs, gov, keeper, readOnly, vault, preregs, machine, liveHub);
     const timed = (name, work) => { const t0 = performance.now(); return work.then((out) => { if (!SELF[name]) { const list = keeper.costs.get(name) ?? []; list.push([performance.now() - t0, JSON.stringify(out ?? null).length]); keeper.costs.set(name, list.slice(-50)); } return out; }); };
     const run = (c, args) => timed(c.name, (c.ran = args, SELF[c.name] ? Promise.resolve().then(() => { if (machine && !machine.selfAllowed(c.name)) throw machine.refuse(c.name); return SELF[c.name](args); }) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov, machine)));
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
@@ -759,7 +763,8 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const results = (a.return === "last" ? done.slice(-1) : done).map(({ name, ref, result, error }) => ({ name, ...(ref ? { ref } : {}), ...(error ? { error } : { result }) }));
     return sealed(shown({ results, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) }));
   }));
-  registerResources(server, packs, gov, { readOnly, vault, live });
+  registerResources(server, packs, gov, { readOnly, vault, live, liveHub });
+  if (liveHub) { const before = server.server.onclose; server.server.onclose = () => { liveHub.stop(); before?.(); }; }
   registerView(server);
   registerPrompts(server, BY_NAME, packs);
   registerPackGuides(server, packs);
@@ -780,7 +785,8 @@ export const PRIVACY = (packs, gov) => ({
   packs: Object.fromEntries(packs.map((p) => { const info = packInfo(p); return [p, { network: info.network, disk: info.disk, ...(PLUGINS.has(p) ? { plugin: info.package } : {}), ...(UPSTREAMS.has(p) ? { upstream: info.package, tools: info.tools ?? "still connecting", ...(info.error ? { error: info.error } : {}), ...(info.off_because_they_change_things ? { off_because_they_change_things: info.off_because_they_change_things } : {}) } : {}) }]; })),
   files: "{\"$file\": ...} arguments are read on this machine; nothing is uploaded and nothing is written by the reader",
   compile_cache: "Node keeps compiled JavaScript in its temp folder to start faster; it holds this server's code and nothing of yours",
-  price_streams: "off until a client subscribes to canli://quote on a local server: the symbols in the address go to Coinbase or Kraken (crypto, no key) or, with your keys, to Alpaca or Finnhub (US stocks); CANLI_STREAMS=0 turns them off",
+  keys: "kept where you put them: the environment, or the OS keychain with canli-mcp connect (CANLI_HOME/keychain.json lists names only); each is sent only to its own provider",
+  price_streams: "off until a client subscribes to canli://quote on a local server or calls live_quotes (then for 15 minutes): the symbols go to Coinbase or Kraken (crypto, no key) or, with your keys, to Massive, Alpaca or Finnhub (US stocks); one-minute bars are kept in memory only; CANLI_STREAMS=0 turns them off",
   sentinel: "off until you use it: rules and events are kept in CANLI_HOME/sentinel on this machine, and sent only where you say with --webhook, --slack, --discord, --exec or --channel",
   local_models: "off until you run canli-mcp models install: they run on this machine, and no text leaves it",
   telemetry: "none: no analytics, logging or crash reporting",
@@ -793,7 +799,7 @@ export const PRIVACY = (packs, gov) => ({
   policy: gov?.policy ? { tools: gov.policy.tools ?? "all", orders: gov.policy.orders ?? "on", calls_per_minute: gov.policy.calls_per_minute ?? null, audit_log: gov.audit ? { file: gov.audit.path, arguments: gov.policy.audit.arguments ?? "hash" } : "off" } : "none (CANLI_POLICY unset): no policy and no audit log",
 });
 
-function registerResources(server, packs, gov, { readOnly = false, vault = null, live = false } = {}) {
+function registerResources(server, packs, gov, { readOnly = false, vault = null, live = false, liveHub = null } = {}) {
   const json = (uri, v) => ({ contents: [{ uri, mimeType: "application/json", text: JSON.stringify(v) }] });
   // Prices by address, and on a local server a subscription that notifies when they change. They are the present,
   // so a holdout or a past date hides them.
@@ -801,7 +807,7 @@ function registerResources(server, packs, gov, { readOnly = false, vault = null,
     registerQuotes(server, {
       price: (symbol) => runOne(packs, { name: "latest_price", arguments: { symbol } }, {}, [], gov),
       refuse: () => (TIME_MACHINE ? TIME_MACHINE.refuse("canli://quote") : vault?.until() ? new Error(`canli://quote reads the present, which the holdout from ${vault.from()} hides; holdout_status shows it.`) : null),
-      live: live && !readOnly && !TIME_MACHINE, seconds: quoteSeconds(),
+      live: live && !readOnly && !TIME_MACHINE, seconds: quoteSeconds(), hub: liveHub,
     });
   }
   // The week, for a host to attach at the start of a session: my_week over the holdings in the address, with the
@@ -896,7 +902,21 @@ const isMain = (() => { try { const run = realpathSync(process.argv[1] ?? ""); r
 // `canli-mcp check returns.csv --trials 40` is the luck check for a CI job, and `canli-mcp run <tool>
 // '<json>'` runs one tool from a shell.
 const flag = (argv, name) => { const i = argv.indexOf(name); return i >= 0 ? argv[i + 1] : undefined; };
-if (isMain && process.argv[2] === "audit") {
+// Keys kept in this machine's keychain (canli-mcp connect) join the environment before anything reads it; a variable
+// already set wins. Only the names are in CANLI_HOME/keychain.json, so a machine that never used connect reads nothing.
+if (isMain && !["connect", "disconnect"].includes(process.argv[2]) && (() => { try { return statSync(join(canliHome(), "keychain.json")).isFile(); } catch { return false; } })()) {
+  try { (await import("../local/keychain.mjs")).loadKeys(process.env, canliHome()); } catch (e) { process.stderr.write(`canli-mcp: keys in the keychain not read: ${String(e?.message ?? e).slice(0, 200)}\n`); }
+}
+
+if (isMain && (process.argv[2] === "connect" || process.argv[2] === "disconnect")) {
+  // `canli-mcp connect <provider or VARIABLE>` | `connect --list` | `disconnect <provider or VARIABLE>`: API keys in the
+  // OS keychain, typed with nothing shown or read from stdin, never in a file or an argument (local/keychain.mjs).
+  const { askHidden, connectCommand, disconnectCommand } = await import("../local/keychain.mjs");
+  try {
+    const out = process.argv[2] === "connect" ? await connectCommand(canliHome(), process.argv.slice(3), { ask: askHidden() }) : disconnectCommand(canliHome(), process.argv.slice(3));
+    process.stdout.write(out.usage ? `${out.usage}\n` : `${JSON.stringify(out)}\n`);
+  } catch (e) { process.stderr.write(`${e.message}\n`); process.exit(2); }
+} else if (isMain && process.argv[2] === "audit") {
   const argv = process.argv.slice(3), home = canliHome();
   if (argv[0] !== "verify") { process.stderr.write("usage: canli-mcp audit verify [file or directory] [--ed25519 pub.pem] [--ml-dsa pub.pem]\n"); process.exit(2); }
   const target = argv[1] && !argv[1].startsWith("--") ? argv[1] : join(home, "audit");
