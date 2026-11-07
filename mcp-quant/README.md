@@ -1,12 +1,12 @@
 # canli-quant-mcp
 
-237 quant finance tools in one MCP server: performance and risk, options and exotics, fixed income,
+239 quant finance tools in one MCP server: performance and risk, options and exotics, fixed income,
 portfolio construction, econometrics, technical indicators, execution, sizing, crypto and FX,
 valuation, strategy backtests, a library of 399 strategy sleeves, data checks, and data annotation
 and ML labeling. Every tool
 computes on the data you send, and every tool's results are checked in the test suite against an
 independent implementation (QuantLib, statsmodels, arch, TA-Lib, numpy-financial, scikit-learn,
-empyrical, scipy, pandas, dcor): 467 reference cases, plus planted-defect tests for the data checks.
+empyrical, scipy, pandas, dcor): 472 reference cases, plus planted-defect tests for the data checks.
 
 Local stdio, no key, no account, no network calls: your data never leaves your machine (see
 [Privacy](#privacy), enforced by tests).
@@ -17,7 +17,7 @@ and the calculation's domain. Ordinary finite answers and null warm-up positions
 
 **[canli-quant-mcp on canlicapital.com](https://canlicapital.com/mcp-servers/quant)** · [All Canli Capital MCP servers](https://canlicapital.com/mcp-servers). Free, MIT-licensed. For every server behind one install, use [canli-mcp](https://www.npmjs.com/package/canli-mcp).
 
-## Three tools in context, 237 behind them
+## Three tools in context, 239 behind them
 
 Listing every tool directly (240 with these three) costs **86,848 tokens** of context (o200k) on every request.
 By default this server lists three, **731 tokens** (both measured 6 November 2026):
@@ -266,7 +266,7 @@ randomness is the sleeve bootstrap, drawn from a stated seed.
 
 </details>
 
-<details><summary><b>econometrics</b>: Statistics and econometrics (27)</summary>
+<details><summary><b>econometrics</b>: Statistics and econometrics (29)</summary>
 
 | tool | what it does |
 |---|---|
@@ -290,6 +290,8 @@ randomness is the sleeve bootstrap, drawn from a stated seed.
 | `compare_sharpe_ratios` | Test whether two strategies' Sharpe ratios differ (Jobson-Korkie with Memmel's correction) using their returns over the same periods. |
 | `welch_t_test` | Test whether two samples (e.g. returns in two regimes, before and after a change) have different means, without assuming equal variances (Welch). |
 | `forecast_accuracy_test` | Test whether two forecasts of the same series are equally accurate: the Diebold-Mariano test on squared or absolute errors, h steps ahead, with the Harvey-Leybourne-Newbold small-sample correction. Says which forecast is better, if either is. |
+| `conditional_forecast_test` | Test whether two forecasts are equally accurate given what was known when they were made (Giacomini-White): the loss differential times instruments (a constant and the last loss differential), a Wald statistic against chi-squared, and the decision rule's share of periods where each is predicted better. |
+| `model_confidence_set` | From several forecasts or models' losses, the set that contains the best one at a chosen confidence (Hansen, Lunde and Nason): stationary-bootstrap eliminations with the R or max statistic, each model's mean loss, MCS p-value and elimination step. |
 | `markov_regime_switching` | Fit a Hamilton Markov-switching model with a mean and volatility per regime (2 or 3 regimes) by maximum likelihood: regime means and volatilities, transition probabilities, expected durations, the current regime probabilities and how much time was spent in each. |
 | `johansen_cointegration` | Test how many cointegrating relationships tie several price series together (Johansen trace and maximum-eigenvalue tests with Osterwald-Lenum critical values), with the rank chosen at 5% and the normalized cointegrating vectors. |
 | `recursive_stability_test` | Check whether a regression's coefficients stayed stable over time: recursive least squares coefficient paths, and the CUSUM and CUSUM-of-squares tests of Brown, Durbin and Evans with 5% bounds and the first period each one crosses. |
