@@ -113,6 +113,7 @@ jobs:
       - run: npm ci --prefix mcp-canli
       - run: npm audit --prefix mcp-canli --audit-level=high
       - run: npm test --prefix mcp-canli
+      - run: npm test --prefix broker
       - run: npm ci --prefix mcp-fundamentals
       - run: npm audit --prefix mcp-fundamentals --audit-level=high
       - run: npm test --prefix mcp-fundamentals

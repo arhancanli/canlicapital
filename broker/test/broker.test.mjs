@@ -1,0 +1,508 @@
+// Everything here talks to a stand-in for each broker that records what it was asked. No real order
+// has been sent by these tests, and no real key is used.
+import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
+import { generateKeyPairSync, verify } from "node:crypto";
+import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import path from "node:path";
+import test from "node:test";
+import { fileURLToPath } from "node:url";
+
+import { coinbaseToken } from "../src/adapters/coinbase.mjs";
+import { krakenSign } from "../src/adapters/kraken.mjs";
+import { makeHttp } from "../src/http.mjs";
+import { readIntent } from "../src/intent.mjs";
+import { run, STOP_FILE } from "../src/send.mjs";
+import { clean, Refused } from "../src/util.mjs";
+
+const CLI = fileURLToPath(new URL("../src/cli.mjs", import.meta.url));
+const ok = (json, status = 200) => ({ status, ok: status >= 200 && status < 300, json, text: JSON.stringify(json) });
+
+function setup(t, { orders = [{ symbol: "AAPL", side: "buy", quantity: 2, type: "market" }], limits = null, reason = "a test" } = {}) {
+  const home = mkdtempSync(path.join(tmpdir(), "canli-broker-"));
+  t.after(() => rmSync(home, { recursive: true, force: true }));
+  const file = path.join(home, "orders.json");
+  writeFileSync(file, JSON.stringify({ schema: "canli.order-intent.v1", reason, orders }));
+  if (limits) writeFileSync(path.join(home, "broker-limits.json"), JSON.stringify(limits));
+  return { home, file };
+}
+const LIMITS = { live_enabled: true, max_order_usd: 1000, max_day_usd: 2000, allowed_symbols: ["AAPL", "MSFT"] };
+const PAPER = { ALPACA_PAPER_KEY_ID: "PKTEST", ALPACA_PAPER_SECRET_KEY: "s3cret" };
+const LIVE = { ALPACA_LIVE_KEY_ID: "AKTEST", ALPACA_LIVE_SECRET_KEY: "s3cret" };
+
+// A stand-in for Alpaca: last trade 100, holding nothing unless told, every order accepted unless told.
+function alpacaStub({ held = 0, refuse = null, boom = null } = {}) {
+  const calls = [];
+  const http = async (url, opts = {}) => {
+    calls.push({ url, method: opts.method ?? "GET", body: opts.body ? JSON.parse(opts.body) : null, headers: opts.headers });
+    if (url.includes("/trades/latest")) return ok({ trade: { p: 100 } });
+    if (url.includes("/v2/positions/")) return held ? ok({ qty: String(held) }) : ok({}, 404);
+    if (url.endsWith("/v2/orders")) {
+      const n = calls.filter((c) => c.url.endsWith("/v2/orders")).length;
+      if (boom === n) throw new Error("connection lost");
+      if (refuse === n) return ok({ message: "insufficient buying power" }, 403);
+      return ok({ id: `o${n}`, status: "accepted" });
+    }
+    return ok({}, 404);
+  };
+  return { http, calls, orders: () => calls.filter((c) => c.url.endsWith("/v2/orders")) };
+}
+const go = (extra) => run({ command: "send", broker: "alpaca", env: PAPER, ask: async () => true, print: () => {}, ...extra });
+
+test("the order file is read strictly, and what it says is cleaned before it is printed", () => {
+  const base = { schema: "canli.order-intent.v1", orders: [{ symbol: "AAPL", side: "buy", quantity: 1, type: "market" }] };
+  assert.equal(readIntent(JSON.stringify(base)).intent.orders[0].time_in_force, "day");
+  const bad = (patch, why) => assert.throws(() => readIntent(JSON.stringify(patch)), why);
+  bad({ ...base, schema: "x" }, /schema/);
+  bad({ ...base, orders: [] }, /no orders/);
+  const o = base.orders[0];
+  bad({ ...base, orders: [{ ...o, symbol: "aapl; rm -rf" }] }, /upper case/);
+  bad({ ...base, orders: [{ ...o, side: "short" }] }, /buy or sell/);
+  bad({ ...base, orders: [{ ...o, quantity: -1 }] }, /positive/);
+  bad({ ...base, orders: [{ ...o, notional_usd: 5 }] }, /one of them/);
+  bad({ ...base, orders: [{ ...o, type: "stop" }] }, /market or limit/);
+  bad({ ...base, orders: [{ ...o, type: "limit" }] }, /limit_price/);
+  bad({ ...base, orders: [{ ...o, leverage: 10 }] }, /does not understand/);
+  assert.throws(() => readIntent("not json"), /not JSON/);
+  assert.throws(() => readIntent("[]"), /not an object/);
+  assert.equal(clean("safe\u001b[2Jtext‮"), "safe [2Jtext");
+  const { hash } = readIntent(JSON.stringify(base));
+  assert.equal(readIntent(JSON.stringify({ ...base, reason: "another reason" })).hash, hash, "the hash is of the orders");
+  assert.notEqual(readIntent(JSON.stringify({ ...base, orders: [{ ...o, quantity: 2 }] })).hash, hash);
+});
+
+test("paper is the default: the paper host, paper keys, and nothing near the live host", async (t) => {
+  const { home, file } = setup(t), s = alpacaStub();
+  const r = await go({ file, home, http: s.http });
+  assert.equal(r.sent, 1);
+  assert.ok(s.calls.every((c) => new URL(c.url).host !== "api.alpaca.markets"));
+  assert.equal(s.orders()[0].url, "https://paper-api.alpaca.markets/v2/orders");
+  assert.equal(s.orders()[0].headers["APCA-API-KEY-ID"], "PKTEST");
+  assert.deepEqual({ ...s.orders()[0].body, client_order_id: undefined }, { symbol: "AAPL", side: "buy", type: "market", time_in_force: "day", qty: "2", client_order_id: undefined });
+  assert.match(s.orders()[0].body.client_order_id, /^canli-[0-9a-f]{16}-0$/);
+});
+
+test("a key for one environment is refused on the other, and a missing key names what to set, never a value", async (t) => {
+  const { home, file } = setup(t, { limits: LIMITS }), s = alpacaStub();
+  await assert.rejects(go({ file, home, http: s.http, env: { ALPACA_PAPER_KEY_ID: "AKLIVE", ALPACA_PAPER_SECRET_KEY: "x" } }), /does not look like a paper key/);
+  await assert.rejects(go({ file, home, http: s.http, live: true, env: { ALPACA_LIVE_KEY_ID: "PKPAPER", ALPACA_LIVE_SECRET_KEY: "x" } }), /does not look like a live key/);
+  await assert.rejects(go({ file, home, http: s.http, env: {} }), /Set ALPACA_PAPER_KEY_ID and ALPACA_PAPER_SECRET_KEY/);
+  assert.equal(s.calls.length, 0);
+});
+
+test("live needs your limits file, and each limit holds", async (t) => {
+  const none = setup(t), s = alpacaStub();
+  await assert.rejects(go({ ...none, http: s.http, live: true, env: LIVE }), /need your limits file/);
+  const off = setup(t, { limits: { ...LIMITS, live_enabled: false } });
+  await assert.rejects(go({ ...off, http: s.http, live: true, env: LIVE }), /live_enabled/);
+  const notListed = setup(t, { limits: LIMITS, orders: [{ symbol: "TSLA", side: "buy", quantity: 1, type: "market" }] });
+  await assert.rejects(go({ ...notListed, http: s.http, live: true, env: LIVE }), /TSLA is not in allowed_symbols/);
+  const big = setup(t, { limits: LIMITS, orders: [{ symbol: "AAPL", side: "buy", quantity: 11, type: "market" }] });
+  await assert.rejects(go({ ...big, http: s.http, live: true, env: LIVE }), /over max_order_usd/);
+  assert.equal(s.orders().length, 0, "nothing was sent in any of those");
+});
+
+test("the day's cap counts what was already sent", async (t) => {
+  const a = setup(t, { limits: { ...LIMITS, max_day_usd: 1500 }, orders: [{ symbol: "AAPL", side: "buy", quantity: 10, type: "market" }] }), s = alpacaStub();
+  await go({ ...a, http: s.http, live: true, env: LIVE });
+  const second = path.join(a.home, "more.json");
+  writeFileSync(second, JSON.stringify({ schema: "canli.order-intent.v1", reason: "x", orders: [{ symbol: "MSFT", side: "buy", quantity: 6, type: "market" }] }));
+  await assert.rejects(go({ file: second, home: a.home, http: s.http, live: true, env: LIVE }), /over max_day_usd/);
+  assert.equal(s.orders().length, 1);
+});
+
+test("the day's cap covers every broker together, and counts an order whose outcome is unknown", async (t) => {
+  const a = setup(t, { limits: { ...LIMITS, max_day_usd: 1500 }, orders: [{ symbol: "AAPL", side: "buy", quantity: 10, type: "market" }] });
+  await go({ ...a, http: alpacaStub().http, live: true, env: LIVE });
+  const more = path.join(a.home, "tradier.json");
+  writeFileSync(more, JSON.stringify({ schema: "canli.order-intent.v1", reason: "x", orders: [{ symbol: "MSFT", side: "buy", quantity: 12, type: "market" }] }));
+  const quotes = async (u) => (u.includes("/markets/quotes") ? ok({ quotes: { quote: { last: 50 } } }) : ok({}, 404));
+  await assert.rejects(run({ command: "send", broker: "tradier", live: true, env: { TRADIER_TOKEN: "t", TRADIER_ACCOUNT: "a" }, file: more, home: a.home, http: quotes, ask: async () => true, print: () => {} }), /already sent today that is over max_day_usd/, "$1,000 at Alpaca and $600 at Tradier");
+  const b = setup(t, { limits: { ...LIMITS, max_day_usd: 1500 }, orders: [{ symbol: "AAPL", side: "buy", quantity: 10, type: "market" }] });
+  await assert.rejects(go({ ...b, http: alpacaStub({ boom: 1 }).http, live: true, env: LIVE }), /connection lost/);
+  const after = path.join(b.home, "next.json");
+  writeFileSync(after, JSON.stringify({ schema: "canli.order-intent.v1", reason: "x", orders: [{ symbol: "MSFT", side: "buy", quantity: 6, type: "market" }] }));
+  await assert.rejects(go({ file: after, home: b.home, http: alpacaStub().http, live: true, env: LIVE }), /over max_day_usd/, "the unknown order may have gone through");
+});
+
+test("live means typing a phrase tied to this file: --yes cannot skip it, and a wrong answer sends nothing", async (t) => {
+  const a = setup(t, { limits: LIMITS }), s = alpacaStub();
+  await assert.rejects(go({ ...a, http: s.http, live: true, env: LIVE, yes: true }), /--yes works only for paper/);
+  let asked = null;
+  await assert.rejects(go({ ...a, http: s.http, live: true, env: LIVE, ask: async (q, want) => { asked = want; return false; } }), /Not confirmed/);
+  assert.match(asked, /^SEND 1 LIVE [0-9A-F]{4}$/);
+  assert.equal(s.orders().length, 0);
+  await go({ ...a, http: s.http, live: true, env: LIVE });
+  assert.equal(s.orders()[0].url, "https://api.alpaca.markets/v2/orders");
+});
+
+test("short selling is refused, and when live a holding that cannot be read is refused too", async (t) => {
+  const sell = { orders: [{ symbol: "AAPL", side: "sell", quantity: 5, type: "market" }] };
+  const a = setup(t, sell);
+  await assert.rejects(go({ ...a, http: alpacaStub({ held: 3 }).http }), /Short selling is refused/);
+  const fine = alpacaStub({ held: 5 });
+  assert.equal((await go({ ...setup(t, sell), http: fine.http })).sent, 1);
+  const blind = async (url, o) => (url.includes("/positions/") ? ok({}, 500) : fine.http(url, o));
+  await assert.rejects(go({ ...setup(t, { ...sell, limits: LIMITS }), http: blind, live: true, env: LIVE }), /could not be read/);
+});
+
+test("the stop file stops everything, before a run and in the middle of one", async (t) => {
+  const a = setup(t), s = alpacaStub();
+  writeFileSync(path.join(a.home, STOP_FILE), "stop");
+  await assert.rejects(go({ ...a, http: s.http }), /nothing is sent/);
+  assert.equal(s.calls.length, 0);
+  const b = setup(t, { orders: [{ symbol: "AAPL", side: "buy", quantity: 1, type: "market" }, { symbol: "MSFT", side: "buy", quantity: 1, type: "market" }] }), m = alpacaStub();
+  const http = async (url, o) => { const r = await m.http(url, o); if (url.endsWith("/v2/orders")) writeFileSync(path.join(b.home, STOP_FILE), "stop"); return r; };
+  await assert.rejects(go({ ...b, http }), /appeared, so this stopped after 1 order/);
+  assert.equal(m.orders().length, 1);
+});
+
+test("a run stops at the first failure, says what went out, and a rerun sends only what did not", async (t) => {
+  const orders = ["AAPL", "MSFT", "GOOG"].map((symbol) => ({ symbol, side: "buy", quantity: 1, type: "market" }));
+  const a = setup(t, { orders }), s = alpacaStub({ refuse: 2 });
+  await assert.rejects(go({ ...a, http: s.http }), /Order 2 \(MSFT\) did not go through: Alpaca said 403: insufficient buying power\n1 sent before it/);
+  assert.equal(s.orders().length, 2);
+  const again = alpacaStub();
+  assert.equal((await go({ ...a, http: again.http })).sent, 2);
+  assert.deepEqual(again.orders().map((c) => c.body.symbol), ["MSFT", "GOOG"]);
+  const third = alpacaStub();
+  assert.equal((await go({ ...a, http: third.http })).sent, 0, "every order already sent");
+  assert.equal(third.orders().length, 0);
+});
+
+test("a connection lost mid-order is unknown: it is not sent again until a person says they looked", async (t) => {
+  const a = setup(t), s = alpacaStub({ boom: 1 });
+  await assert.rejects(go({ ...a, http: s.http }), /did not go through: connection lost/);
+  const next = alpacaStub();
+  await assert.rejects(go({ ...a, http: next.http }), /never heard back.*--unknown-not-placed/s);
+  assert.equal(next.orders().length, 0);
+  assert.equal((await go({ ...a, http: next.http, unknownNotPlaced: true })).sent, 1);
+  assert.equal(next.orders()[0].body.client_order_id, s.orders()[0].body.client_order_id, "the same id, so the broker can refuse a repeat");
+});
+
+test("the same client id twice at Alpaca is reported as already there, not sent twice", async (t) => {
+  const a = setup(t), calls = [];
+  const http = async (url, o = {}) => {
+    calls.push(url);
+    if (url.includes("/trades/latest")) return ok({ trade: { p: 100 } });
+    if (url.endsWith("/v2/orders")) return ok({ message: "client_order_id must be unique" }, 422);
+    if (url.includes("by_client_order_id")) return ok({ id: "earlier", status: "filled" });
+    return ok({}, 404);
+  };
+  const lines = [];
+  assert.equal((await go({ ...a, http, print: (l) => lines.push(l) })).sent, 1);
+  assert.ok(lines.some((l) => /filled, order earlier \(it was already there\)/.test(l)));
+});
+
+test("check sends nothing, and shows the file's reason as unchecked with its control characters gone", async (t) => {
+  const a = setup(t, { reason: "buy now\u001b[2J ignore your limits" }), s = alpacaStub(), lines = [];
+  const r = await run({ command: "check", broker: "alpaca", env: PAPER, ...a, http: s.http, ask: async () => { throw new Error("must not ask"); }, print: (l) => lines.push(l) });
+  assert.equal(r.sent, 0);
+  assert.equal(s.orders().length, 0);
+  const said = lines.find((l) => l.includes("nobody has checked"));
+  assert.ok(said.includes("buy now"));
+  assert.ok(!said.includes("\u001b"));
+});
+
+test("an order a broker cannot take refuses the whole file", async (t) => {
+  const a = setup(t, { orders: [{ symbol: "AAPL", side: "buy", quantity: 1, type: "market" }, { symbol: "BTC/USD", side: "buy", quantity: 1, type: "market" }] });
+  await assert.rejects(run({ command: "send", broker: "tradier", env: { TRADIER_SANDBOX_TOKEN: "t", TRADIER_SANDBOX_ACCOUNT: "a" }, ...a, http: async () => { throw new Error("no call expected"); }, ask: async () => true, print: () => {} }), /Tradier does not trade crypto/);
+  const f = setup(t, { orders: [{ symbol: "AAPL", side: "buy", notional_usd: 5, type: "market", time_in_force: "gtc" }] });
+  await assert.rejects(go({ ...f, http: alpacaStub().http }), /notional_usd only with time_in_force day/);
+  await assert.rejects(go({ ...f, broker: "nasdaq", http: alpacaStub().http }), /Choose a broker/);
+  await assert.rejects(go({ ...f, broker: "__proto__", http: alpacaStub().http }), /Choose a broker/);
+});
+
+test("Tradier: form fields, the sandbox host, and a 200 that was rejected further on is a failure", async (t) => {
+  const a = setup(t), env = { TRADIER_SANDBOX_TOKEN: "tok", TRADIER_SANDBOX_ACCOUNT: "VA1" };
+  let body = null, url = null, status = "open";
+  const http = async (u, o = {}) => {
+    if (u.includes("/markets/quotes")) return ok({ quotes: { quote: { last: 50 } } });
+    if (o.method === "POST") { body = new URLSearchParams(o.body); url = u; return ok({ order: { id: 9, status: "ok" } }); }
+    if (u.endsWith("/orders/9")) return ok({ order: { id: 9, status, reason_description: "no funds" } });
+    return ok({}, 404);
+  };
+  const opts = { command: "send", broker: "tradier", env, ...a, http, ask: async () => true, print: () => {} };
+  assert.equal((await run(opts)).sent, 1);
+  assert.equal(url, "https://sandbox.tradier.com/v1/accounts/VA1/orders");
+  assert.deepEqual(Object.fromEntries(["class", "symbol", "side", "quantity", "type", "duration"].map((k) => [k, body.get(k)])), { class: "equity", symbol: "AAPL", side: "buy", quantity: "2", type: "market", duration: "day" });
+  status = "rejected";
+  const b = setup(t);
+  await assert.rejects(run({ ...opts, ...b }), /Tradier rejected order 9: no funds/);
+});
+
+test("IBKR: a paper run refuses a live login and back, and its warnings wait for a person", async (t) => {
+  const a = setup(t);
+  const gateway = (accounts, { warn = true } = {}) => {
+    const log = [];
+    const http = async (u, o = {}) => {
+      log.push([u, o.method ?? "GET", o.body ?? null]);
+      if (u.endsWith("/iserver/accounts")) return ok({ accounts });
+      if (u.includes("/secdef/search")) return ok([{ symbol: "AAPL", conid: 265598, description: "NASDAQ", sections: [{ secType: "STK" }] }, { symbol: "AAPL", conid: 1, description: "MEXI", sections: [{ secType: "STK" }] }]);
+      if (u.includes("/marketdata/snapshot")) return ok([{ 31: "C100.5" }]);
+      if (u.endsWith("/orders")) return ok(warn ? [{ id: "r1", message: ["This order is large."] }] : [{ order_id: "77", order_status: "Submitted" }]);
+      if (u.includes("/iserver/reply/r1")) return ok([{ order_id: "77", order_status: "Submitted" }]);
+      return ok({}, 404);
+    };
+    return { http, log };
+  };
+  const opts = { command: "send", broker: "ibkr", env: {}, ...a, print: () => {} };
+  await assert.rejects(run({ ...opts, http: gateway(["U123"]).http, ask: async () => true }), /logged in to a live account/);
+  writeFileSync(path.join(a.home, "broker-limits.json"), JSON.stringify(LIMITS));
+  await assert.rejects(run({ ...opts, live: true, http: gateway(["DU123"]).http, ask: async () => true }), /logged in to a paper account/);
+  await assert.rejects(run({ ...opts, http: gateway(["DU1", "DU2"]).http, ask: async () => true }), /set IBKR_ACCOUNT/);
+  const refused = gateway(["DU123"]), seen = [];
+  await assert.rejects(run({ ...opts, http: refused.http, ask: async (q, want) => { seen.push(q); return !q.includes("IBKR asks"); } }), /did not accept IBKR's warning/);
+  assert.ok(seen.some((q) => q.includes("This order is large.")));
+  assert.equal(refused.log.filter(([u]) => u.includes("/reply/")).length, 0, "a warning is never accepted on the person's behalf");
+  const b = setup(t), yes = gateway(["DU123"]);
+  assert.equal((await run({ ...opts, ...b, http: yes.http, ask: async () => true })).sent, 1);
+  const sent = JSON.parse(yes.log.find(([u, m]) => u.endsWith("/orders") && m === "POST")[2]).orders[0];
+  assert.deepEqual({ conid: sent.conid, orderType: sent.orderType, side: sent.side, quantity: sent.quantity, tif: sent.tif }, { conid: 265598, orderType: "MKT", side: "BUY", quantity: 2, tif: "DAY" });
+  assert.ok(yes.log.every(([u]) => u.startsWith("https://localhost:5000/v1/api/")));
+});
+
+test("Coinbase: a token anyone can verify, and a paper run only previews", async (t) => {
+  const { privateKey, publicKey } = generateKeyPairSync("ec", { namedCurve: "P-256" });
+  const pem = privateKey.export({ type: "pkcs8", format: "pem" });
+  const token = coinbaseToken("organizations/o/apiKeys/k", privateKey, "POST", "/api/v3/brokerage/orders", 1000, "aa");
+  const [head, body, sig] = token.split(".");
+  assert.deepEqual(JSON.parse(Buffer.from(body, "base64url")), { sub: "organizations/o/apiKeys/k", iss: "cdp", nbf: 1000, exp: 1120, uri: "POST api.coinbase.com/api/v3/brokerage/orders" });
+  assert.deepEqual(JSON.parse(Buffer.from(head, "base64url")), { alg: "ES256", kid: "organizations/o/apiKeys/k", nonce: "aa", typ: "JWT" });
+  assert.ok(verify("sha256", Buffer.from(`${head}.${body}`), { key: publicKey, dsaEncoding: "ieee-p1363" }, Buffer.from(sig, "base64url")));
+  const a = setup(t, { orders: [{ symbol: "BTC/USD", side: "buy", notional_usd: 50, type: "market", time_in_force: "gtc" }] }), calls = [];
+  const http = async (u, o = {}) => {
+    calls.push([u, o.method ?? "GET", o.body ? JSON.parse(o.body) : null]);
+    if (u.endsWith("/orders/preview")) return ok({ order_total: "50.3", errs: [] });
+    if (u.endsWith("/orders")) return ok({ success: true, success_response: { order_id: "cb1" } });
+    return ok({}, 404);
+  };
+  const env = { COINBASE_KEY_NAME: "organizations/o/apiKeys/k", COINBASE_KEY_SECRET: pem.replace(/\n/g, "\\n") };
+  const lines = [];
+  await run({ command: "send", broker: "coinbase", env, ...a, http, ask: async () => true, print: (l) => lines.push(l) });
+  assert.ok(lines.some((l) => /previewed only, nothing placed/.test(l)));
+  assert.equal(calls.filter(([u]) => u.endsWith("/orders")).length, 0, "paper places nothing");
+  assert.deepEqual(calls.find(([u]) => u.endsWith("/orders/preview"))[2].order_configuration, { market_market_ioc: { quote_size: "50" } });
+  const b = setup(t, { limits: { ...LIMITS, allowed_symbols: "any" }, orders: [{ symbol: "BTC/USD", side: "buy", notional_usd: 50, type: "market", time_in_force: "gtc" }] });
+  await run({ command: "send", broker: "coinbase", live: true, env, ...b, http, ask: async () => true, print: () => {} });
+  const live = calls.find(([u]) => u.endsWith("/orders"));
+  assert.equal(live[0], "https://api.coinbase.com/api/v3/brokerage/orders");
+  assert.match(live[2].client_order_id, /^canli-/);
+});
+
+test("Kraken: the signature matches Kraken's published example, and a paper run only asks for a check", async (t) => {
+  assert.equal(
+    krakenSign("/0/private/AddOrder", "1616492376594", "nonce=1616492376594&ordertype=limit&pair=XBTUSD&price=37500&type=buy&volume=1.25", "kQH5HW/8p1uGOVjbgWA7FunAmGO8lsSUXNsu3eow76sz84Q18fWxnyRzBHCd3pd5nE9qa99HAZtuZuj6F1huXg=="),
+    "4/dpxb3iT4tp/ZCVEwSnEsLxx0bqyhLpdfOpc6fn7OR8+UClSV5n9E6aSS8MPtnRfp32bAb0nmbRn6H8ndwLUQ==",
+  );
+  const calls = [];
+  const http = async (u, o = {}) => {
+    calls.push({ u, headers: o.headers, body: Object.fromEntries(new URLSearchParams(o.body ?? "")) });
+    if (u.includes("/public/Ticker")) return ok({ error: [], result: { XXBTZUSD: { c: ["50000.0", "1"] } } });
+    if (u.endsWith("/private/Balance")) return ok({ error: [], result: { XXBT: "0.5", ZUSD: "100" } });
+    if (u.endsWith("/private/AddOrder")) return ok({ error: [], result: { descr: { order: "buy 50 XBTUSD @ market" }, txid: ["OU22CG-KLAF2-FWUDD7"] } });
+    return ok({}, 404);
+  };
+  const env = { KRAKEN_API_KEY: "k", KRAKEN_API_SECRET: Buffer.from("secret").toString("base64") };
+  const buy = { symbol: "BTC/USD", side: "buy", notional_usd: 50, type: "market", time_in_force: "gtc" };
+  const a = setup(t, { orders: [buy] }), lines = [];
+  await run({ command: "send", broker: "kraken", env, ...a, http, ask: async () => true, print: (l) => lines.push(l) });
+  assert.ok(lines.some((l) => /preview only: Kraken has no paper account/.test(l)));
+  assert.ok(lines.some((l) => /checked by Kraken, nothing placed/.test(l)));
+  const paper = calls.find((c) => c.u.endsWith("/AddOrder"));
+  assert.equal(paper.body.validate, "true", "paper never trades");
+  assert.equal(paper.body.pair, "XBTUSD");
+  assert.equal(paper.body.oflags, "viqc");
+  assert.match(paper.body.cl_ord_id, /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-a[0-9a-f]{3}-[0-9a-f]{12}$/);
+  assert.equal(paper.headers["API-Sign"], krakenSign("/0/private/AddOrder", paper.body.nonce, new URLSearchParams(paper.body).toString(), env.KRAKEN_API_SECRET));
+  assert.ok(!JSON.stringify(calls).includes("c2VjcmV0"), "the secret itself is never sent");
+  calls.length = 0;
+  const b = setup(t, { limits: { ...LIMITS, allowed_symbols: "any" }, orders: [buy] });
+  await run({ command: "send", broker: "kraken", live: true, env, ...b, http, ask: async () => true, print: () => {} });
+  const live = calls.find((c) => c.u.endsWith("/AddOrder"));
+  assert.equal(live.u, "https://api.kraken.com/0/private/AddOrder");
+  assert.equal(live.body.validate, undefined, "a live order is not a check");
+  const nonces = calls.filter((c) => c.u.includes("/private/")).map((c) => Number(c.body.nonce));
+  assert.deepEqual(nonces, [...nonces].sort((x, y) => x - y), "nonces only rise");
+  const refused = async (order, pattern) => {
+    const c = setup(t, { orders: [order] }), sent = [];
+    await assert.rejects(run({ command: "send", broker: "kraken", env, ...c, http: async (u, o) => { sent.push(u); return http(u, o); }, ask: async () => true, print: () => {} }), pattern);
+    assert.equal(sent.filter((u) => u.endsWith("/AddOrder")).length, 0);
+  };
+  await refused({ symbol: "AAPL", side: "buy", quantity: 1, type: "market" }, /only crypto pairs/);
+  await refused({ symbol: "BTC/USD", side: "sell", notional_usd: 50, type: "market", time_in_force: "gtc" }, /only on a market buy/);
+  const rejected = setup(t, { orders: [buy] }), said = [];
+  const failing = async (u, o) => (u.endsWith("/AddOrder") ? ok({ error: ["EOrder:Insufficient funds"] }) : http(u, o));
+  await run({ command: "send", broker: "kraken", env, ...rejected, http: failing, ask: async () => true, print: (l) => said.push(l) }).catch((e) => said.push(e.message));
+  assert.ok(said.some((l) => /Insufficient funds/.test(l)), "an error in a 200 reply is an error");
+  assert.match(readFileSync(path.join(rejected.home, "broker-journal.jsonl"), "utf8"), /"event":"failed"/);
+  const busy = setup(t, { orders: [buy] });
+  const down = async (u, o) => (u.endsWith("/AddOrder") ? ok({ error: ["EService:Deadline elapsed"] }) : http(u, o));
+  await assert.rejects(run({ command: "send", broker: "kraken", env, ...busy, http: down, ask: async () => true, print: () => {} }), /does not say if the order was placed/);
+  assert.doesNotMatch(readFileSync(path.join(busy.home, "broker-journal.jsonl"), "utf8"), /"event":"failed"/, "a service error may have placed it, so it stays unknown");
+  await assert.rejects(run({ command: "send", broker: "kraken", env, ...busy, http, ask: async () => true, print: () => {} }), /never heard back.*--unknown-not-placed/s);
+});
+
+test("a crypto pair must be priced in USD: limits are in dollars, and 50 on ETH/BTC would be 50 BTC", async (t) => {
+  for (const symbol of ["ETH/BTC", "BTC/USDT", "X/BTUSD", "A/B/USD"]) {
+    for (const broker of ["coinbase", "kraken", "alpaca"]) {
+      const a = setup(t, { orders: [{ symbol, side: "buy", notional_usd: 50, type: "market", time_in_force: "gtc" }] }), calls = [];
+      const env = { ...PAPER, COINBASE_KEY_NAME: "k", COINBASE_KEY_SECRET: "s", KRAKEN_API_KEY: "k", KRAKEN_API_SECRET: "cw==" };
+      await assert.rejects(run({ command: "send", broker, env, ...a, http: async (u) => { calls.push(u); return ok({}); }, ask: async () => true, print: () => {} }), /priced in USD/, `${symbol} on ${broker}`);
+      assert.equal(calls.length, 0, "refused before any request");
+    }
+  }
+});
+
+test("the local gateway is never simply trusted: no certificate file, no request", async () => {
+  const http = makeHttp({});
+  await assert.rejects(http("https://localhost:5000/v1/api/iserver/accounts"), /Set CANLI_IBKR_CA/);
+  await assert.rejects(makeHttp({ CANLI_IBKR_CA: "/no/such/file" })("https://localhost:5000/v1/api/iserver/accounts"), /could not be read/);
+  assert.doesNotMatch(readFileSync(fileURLToPath(new URL("../src/http.mjs", import.meta.url)), "utf8"), /rejectUnauthorized/);
+});
+
+test("the journal holds no secrets, and its file is private", async (t) => {
+  const a = setup(t), s = alpacaStub();
+  await go({ ...a, http: s.http });
+  const text = readFileSync(path.join(a.home, "broker-journal.jsonl"), "utf8");
+  assert.ok(!text.includes("s3cret") && !text.includes("PKTEST"));
+  assert.match(text, /"event":"sent"/);
+});
+
+test("the source reaches only the brokers' own hosts, and is not an MCP tool", () => {
+  const dir = fileURLToPath(new URL("../src/", import.meta.url)), files = [...readdirSync(dir).filter((f) => f.endsWith(".mjs")), ...readdirSync(path.join(dir, "adapters")).map((f) => `adapters/${f}`)];
+  const allowed = new Set(["paper-api.alpaca.markets", "api.alpaca.markets", "data.alpaca.markets", "sandbox.tradier.com", "api.tradier.com", "docs.alpaca.markets", "docs.tradier.com", "docs.cdp.coinbase.com", "api.kraken.com", "docs.kraken.com", "localhost"]);
+  for (const f of files) {
+    const text = readFileSync(path.join(dir, f), "utf8");
+    for (const m of text.matchAll(/https:\/\/([a-z0-9.-]+)/g)) assert.ok(allowed.has(m[1]), `${f} reaches ${m[1]}`);
+    assert.doesNotMatch(text, /@modelcontextprotocol|registerTool|child_process|\beval\s*\(/, f);
+  }
+  assert.match(readFileSync(path.join(dir, "adapters/coinbase.mjs"), "utf8"), /const HOST = "api\.coinbase\.com"/);
+  assert.deepEqual(JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).dependencies, undefined, "no dependencies at all");
+});
+
+test("from the command line: with no terminal, a person cannot be asked, so nothing is sent", (t) => {
+  const a = setup(t), env = { ...process.env, ...PAPER, CANLI_HOME: a.home };
+  const help = spawnSync(process.execPath, [CLI], { encoding: "utf8", env });
+  assert.equal(help.status, 0);
+  assert.match(help.stdout, /canli-broker check/);
+  assert.equal(spawnSync(process.execPath, [CLI, "nonsense"], { encoding: "utf8", env }).status, 2);
+  const noKey = spawnSync(process.execPath, [CLI, "check", a.file, "--broker", "alpaca"], { encoding: "utf8", env: { PATH: process.env.PATH, CANLI_HOME: a.home } });
+  assert.equal(noKey.status, 1);
+  assert.match(noKey.stderr, /Set ALPACA_PAPER_KEY_ID/);
+  const stop = spawnSync(process.execPath, [CLI, "stop"], { encoding: "utf8", env });
+  assert.equal(stop.status, 0);
+  assert.ok(existsSync(path.join(a.home, STOP_FILE)));
+  const stopped = spawnSync(process.execPath, [CLI, "send", a.file, "--broker", "alpaca"], { encoding: "utf8", env });
+  assert.equal(stopped.status, 1);
+  assert.match(stopped.stderr, /nothing is sent/);
+  assert.ok(Refused);
+});
+
+// ---------------------------------------------------------------------------------------------
+// FIX: real sockets on this machine, against a small simulator of a gateway.
+import { createServer as createTcpServer } from "node:net";
+import { decode, encode, fixTime } from "../src/fix.mjs";
+import { fix, plainNumber } from "../src/adapters/fix.mjs";
+
+const SOH = "\x01";
+function fixSim({ onOrder = () => ({ status: "0", id: "FX1" }), refuseLogon = false, testRequest = false, dropOnOrder = false, sessionReject = null, logoffOnOrder = null } = {}) {
+  const seen = [];
+  const server = createTcpServer((socket) => {
+    let buffer = "", seq = 1;
+    socket.setEncoding("latin1");
+    const reply = (type, fields) => { socket.write(encode(type, fields, { sender: "GATE", target: "ME", seq }), "latin1"); seq += 1; };
+    socket.on("error", () => {});
+    socket.on("data", (chunk) => {
+      const { messages, rest } = decode(buffer + chunk);
+      buffer = rest;
+      for (const m of messages) {
+        seen.push(m);
+        const type = m.get("35");
+        if (type === "A") { if (refuseLogon) reply("5", [["58", "bad password"]]); else { reply("A", [["98", "0"], ["108", "30"]]); if (testRequest) reply("1", [["112", "hello"]]); } }
+        if (type === "D") {
+          if (dropOnOrder) { socket.destroy(); return; }
+          if (logoffOnOrder) { reply("5", [["58", logoffOnOrder]]); return; }
+          if (sessionReject) { reply("3", [["45", sessionReject.ref === "order" ? m.get("34") : "1"], ["58", sessionReject.text]]); return; }
+          const r = onOrder(m);
+          reply("8", [["11", m.get("11")], ["37", r.id ?? "NONE"], ["150", r.status], ["39", r.status], ...(r.text ? [["58", r.text]] : [])]);
+        }
+      }
+    });
+  });
+  return new Promise((ok) => server.listen(0, "127.0.0.1", () => ok({ port: server.address().port, seen, close: () => new Promise((d) => server.close(d)) })));
+}
+const fixEnv = (port, extra = {}) => ({ CANLI_FIX_ENVIRONMENT: "test", CANLI_FIX_HOST: "127.0.0.1", CANLI_FIX_PORT: String(port), CANLI_FIX_TLS: "0", CANLI_FIX_SENDER: "ME", CANLI_FIX_TARGET: "GATE", ...extra });
+const ORDER = { symbol: "AAPL", side: "buy", type: "limit", quantity: 10, limit_price: 150.25, time_in_force: "day" };
+
+test("FIX: lengths and checksums are written and checked", () => {
+  const raw = encode("D", [["55", "AAPL"]], { sender: "ME", target: "GATE", seq: 7, now: new Date("2026-11-02T10:00:00.123Z") });
+  assert.match(raw, new RegExp(`^8=FIX\\.4\\.4${SOH}9=\\d+${SOH}35=D${SOH}49=ME${SOH}56=GATE${SOH}34=7${SOH}52=20261102-10:00:00\\.123${SOH}55=AAPL${SOH}10=\\d{3}${SOH}$`));
+  const { messages, rest } = decode(raw);
+  assert.equal(messages[0].get("55"), "AAPL");
+  assert.equal(rest, "");
+  assert.equal(decode(raw.slice(0, 20)).messages.length, 0, "half a message waits for the rest");
+  assert.throws(() => decode(raw.replace("AAPL", "AAPM")), /checksum/);
+  assert.throws(() => encode("D", [["55", `AAPL${SOH}54=2`]], { sender: "ME", target: "GATE", seq: 1 }), /separator/, "a field cannot smuggle in another");
+  assert.equal(fixTime(new Date("2026-01-02T03:04:05.006Z")), "20260102-03:04:05.006");
+});
+
+test("FIX: an order goes out whole, and its execution report comes back", async () => {
+  const sim = await fixSim({ testRequest: true });
+  const cfg = await fix.setup("paper", fixEnv(sim.port, { CANLI_FIX_USERNAME: "u", CANLI_FIX_PASSWORD: "p", CANLI_FIX_ACCOUNT: "ACC1" }));
+  const r = await fix.place(cfg, null, ORDER, "client-1");
+  assert.deepEqual(r, { id: "FX1", status: "new" });
+  const logon = sim.seen.find((m) => m.get("35") === "A"), order = sim.seen.find((m) => m.get("35") === "D");
+  assert.equal(logon.get("553"), "u");
+  assert.equal(logon.get("141"), "Y");
+  assert.deepEqual(["11", "1", "55", "54", "38", "40", "44", "59"].map((k) => order.get(k)), ["client-1", "ACC1", "AAPL", "1", "10", "2", "150.25", "0"]);
+  assert.equal(sim.seen.find((m) => m.get("35") === "0")?.get("112"), "hello", "a test request is answered");
+  await sim.close();
+});
+
+test("FIX: a rejection is a definite no, and a dropped line is not", async () => {
+  const no = await fixSim({ onOrder: () => ({ status: "8", text: "price too far" }) });
+  await assert.rejects(fix.place(await fix.setup("paper", fixEnv(no.port)), null, ORDER, "c"), (e) => e instanceof Refused && /rejected: price too far/.test(e.message));
+  await no.close();
+  const gone = await fixSim({ dropOnOrder: true });
+  await assert.rejects(fix.place(await fix.setup("paper", fixEnv(gone.port)), null, ORDER, "c"), (e) => !(e instanceof Refused) && /closed the connection/.test(e.message));
+  await gone.close();
+  const refused = await fixSim({ refuseLogon: true });
+  await assert.rejects(fix.place(await fix.setup("paper", fixEnv(refused.port)), null, ORDER, "c"), /refused the logon: bad password/);
+  await refused.close();
+});
+
+test("FIX: paper needs a declared test venue, live a declared production one, and a password needs TLS across a network", async () => {
+  await assert.rejects(fix.setup("paper", fixEnv(1, { CANLI_FIX_ENVIRONMENT: "production" })), /this run is paper/);
+  await assert.rejects(fix.setup("live", fixEnv(1)), /this run is live/);
+  await assert.rejects(fix.setup("paper", fixEnv(1, { CANLI_FIX_HOST: "gateway.example.com" })), /needs TLS/);
+  await assert.rejects(fix.setup("paper", { ...fixEnv(1), CANLI_FIX_SENDER: "" }), /CANLI_FIX_SENDER is not set/);
+  assert.match(fix.cannot({ ...ORDER, type: "market" }), /only limit orders/);
+  assert.match(fix.cannot({ ...ORDER, symbol: "BTC/USD" }), /only stocks/);
+  assert.equal(fix.cannot(ORDER), null);
+});
+
+test("FIX: a session reject is a no only if it names this order; a gateway's words cannot turn unknown into no", async () => {
+  const mine = await fixSim({ sessionReject: { ref: "order", text: "bad field" } });
+  await assert.rejects(fix.place(await fix.setup("paper", fixEnv(mine.port)), null, ORDER, "c"), (e) => e instanceof Refused && /bad field/.test(e.message));
+  await mine.close();
+  const other = await fixSim({ sessionReject: { ref: "other", text: "order rejected" } });
+  await assert.rejects(fix.place(await fix.setup("paper", fixEnv(other.port)), null, ORDER, "c"), (e) => !(e instanceof Refused) && !/rejected/.test(e.message));
+  await other.close();
+  const off = await fixSim({ logoffOnOrder: "all orders rejected" });
+  await assert.rejects(fix.place(await fix.setup("paper", fixEnv(off.port)), null, ORDER, "c"), (e) => !(e instanceof Refused) && !/rejected/.test(e.message));
+  await off.close();
+});
+
+test("FIX: numbers go as plain digits, or not at all", () => {
+  assert.equal(plainNumber(150.25), "150.25");
+  assert.equal(plainNumber(100), "100");
+  assert.equal(plainNumber(1e21), null);
+  assert.equal(plainNumber(1e-7), "0.0000001");
+  assert.equal(plainNumber(1.123456789), null, "more than eight decimals");
+  assert.equal(plainNumber(-1), null);
+  assert.match(fix.cannot({ ...ORDER, quantity: 1.5 }), /whole share/);
+  assert.match(fix.cannot({ ...ORDER, quantity: 1e21 }), /whole share/);
+  assert.match(fix.cannot({ ...ORDER, limit_price: 1e21 }), /cannot be written plainly/);
+});
