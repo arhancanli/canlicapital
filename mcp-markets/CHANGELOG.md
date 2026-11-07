@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fix: `read_filing` with `find` and a small `max_chars` dropped a matching passage longer than the characters left, and answered that no passage held the words. Digital Turbine's 10-Q of 5 August 2026 says it "identified an immaterial error"; at `max_chars` 500 or 800 the tool found nothing, at 1,499 the 1,108-character passage. A passage is now cut around its first word to fit what is left instead of being dropped; each match's `offset` is where its text starts (a passage cut from a long paragraph gave the paragraph's start before); and when `max_chars` ends the passages before the words run out, `more` says so.
+
 ## 0.16.0
 
 Where a portfolio stands against the US filing and concentration lines, prices as traded on every source, and an index's members on a past date. 138 tools.
