@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `triangulate`: a later filing that prints a figure in tenths of a million no longer reads as a change. Resolute Holdings' equity, 6,523 thousand in the 10-K and 6.5 million in its 10-Qs, was reported "history apart by 0.4%"; a whole number of 100,000 within half of that of a figure that is not one now agrees, and the reading says "agree (history rounded to 0.1 million)". A real change stays a disagreement: Resolute's assets, down 0.69 million in a reclassification, still read apart.
+
 ## 0.21.0
 
 - canli-markets-mcp 0.16.0, 442 tools in all. `portfolio_rules`: where a list of holdings stands against the US lines that bring a filing or cap concentration, each with its rule's text linked: a position over 5% of its class (Schedule 13D or 13G) or 10% (a Section 16 insider), the $100 million Form 13F line, concentration (largest issuer, top five, HHI, effective positions), the 75-5-10 and RIC diversification tests, and days to exit at a share of FINRA's average daily volume. A check, not compliance advice.
