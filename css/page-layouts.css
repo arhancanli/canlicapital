@@ -1716,7 +1716,7 @@ body.dsr-page::before{position:fixed;z-index:-1;inset:0;content:""}
 .eng-path li{grid-template-columns:1fr;gap:6px}}
 
 /* notes */
-.note-skip{position:fixed;z-index:1000;top:12px;left:12px;padding:10px 14px}
+.note-skip{position:fixed;z-index:1000;top:12px;left:12px;padding:10px 14px;color:#fff;background:#0016cb;text-decoration:none;transform:translateY(-160%)}.note-skip:focus{transform:translateY(0)}
 .note-hero{padding:clamp(76px, 10vw, 132px) clamp(24px, 7vw, 112px) clamp(48px, 6vw, 76px)}
 .note-kicker{margin:0 0 20px}
 .note-hero h1{max-width:20ch;margin:0}
