@@ -27,6 +27,9 @@
 .clear main { display: block; }
 .clear main#content { max-width: none; width: auto; margin: 0; padding: 0; }
 .clear a { color: var(--cl-cobalt); text-underline-offset: .2em; }
+/* The footer stays dark on these pages: its links keep their light colour (cobalt on night is 1.85:1). */
+.clear .cc-footer a { color: #b6cdd9; }
+.clear .cc-footer a:hover { color: #fff; }
 .clear :is(a, button, summary):focus-visible { outline: 3px solid #ffb703; outline-offset: 3px; border-radius: 4px; }
 .clear code { font-family: var(--cl-mono); font-size: .92em; }
 
