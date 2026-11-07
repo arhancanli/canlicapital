@@ -11,6 +11,8 @@ import { Client } from "@modelcontextprotocol/client";
 import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
 
 import { createStreams, feedsFor } from "../local/streams.mjs";
+import { createLive } from "../src/live.mjs";
+import { runLiveQuotes } from "../src/quotes.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const tick = () => new Promise((r) => setImmediate(r));
@@ -142,6 +144,144 @@ test("Finnhub: the key in the address, one subscribe per symbol, the trades of a
   assert.equal(s.latest("AAPL").time, new Date(1794063600500).toISOString());
   fh.say({ type: "ping" });
   s.stop();
+});
+
+test("Massive: first for stocks with its key, the key once connected, symbols once authenticated, trades as prices", async () => {
+  fresh();
+  const env = { POLYGON_API_KEY: "pk", ALPACA_API_KEY_ID: "id", ALPACA_API_SECRET_KEY: "secret" };
+  assert.deepEqual(feedsFor("AAPL", env), ["massive", "alpaca"]);
+  const { s, prices } = make(env);
+  s.watch(["AAPL", "MSFT"]);
+  await tick();
+  const ws = FakeSocket.all[0];
+  assert.equal(ws.url, "wss://socket.massive.com/stocks");
+  ws.emit("open");
+  assert.deepEqual(ws.sent, [], "nothing until Massive says connected");
+  ws.say([{ ev: "status", status: "connected", message: "Connected Successfully" }]);
+  assert.deepEqual(ws.sent, [{ action: "auth", params: "pk" }]);
+  ws.say([{ ev: "status", status: "auth_success", message: "authenticated" }]);
+  assert.deepEqual(ws.sent[1], { action: "subscribe", params: "T.AAPL,T.MSFT" });
+  ws.say([{ ev: "T", sym: "AAPL", p: 230.5, s: 100, t: 1794063600000 }, { ev: "Q", sym: "AAPL", bp: 1 }]);
+  assert.deepEqual(prices, [["AAPL", 230.5, "massive"]]);
+  s.watch(["AAPL"]);
+  assert.deepEqual(ws.sent.at(-1), { action: "unsubscribe", params: "T.MSFT" });
+  s.stop();
+  fresh();
+  const delayed = make({ MASSIVE_API_KEY: "k", MASSIVE_DATA_FEED: "delayed" }).s;
+  delayed.watch(["AAPL"]);
+  await tick();
+  assert.equal(FakeSocket.all[0].url, "wss://delayed.massive.com/stocks");
+  delayed.stop();
+});
+
+test("a key refused (Massive's auth_failed, Alpaca's 402) ends that feed at once and its symbols go to the next", async () => {
+  fresh();
+  const { s, prices } = make({ MASSIVE_API_KEY: "bad", ALPACA_API_KEY_ID: "id", ALPACA_API_SECRET_KEY: "wrong", FINNHUB_API_KEY: "f" });
+  s.watch(["AAPL"]);
+  await tick();
+  const massive = FakeSocket.all[0];
+  massive.emit("open");
+  massive.say([{ ev: "status", status: "connected" }]);
+  massive.say([{ ev: "status", status: "auth_failed", message: "authentication failed" }]);
+  assert.ok(massive.closed);
+  await tick();
+  const alpaca = FakeSocket.all.find((w) => w.url.includes("alpaca"));
+  assert.ok(alpaca, "Alpaca takes AAPL after one refusal, not three");
+  alpaca.emit("open");
+  alpaca.say([{ T: "error", code: 402, msg: "auth failed" }]);
+  await tick();
+  const fh = FakeSocket.all.find((w) => new URL(w.url).host === "ws.finnhub.io");
+  assert.ok(fh, "then Finnhub");
+  fh.emit("open");
+  fh.say({ type: "trade", data: [{ s: "AAPL", p: 231, t: 1794063600000 }] });
+  assert.deepEqual(prices, [["AAPL", 231, "finnhub"]]);
+  assert.deepEqual(s.feeds(), { finnhub: ["AAPL"] });
+  s.stop();
+});
+
+test("one-minute bars: by each price's own minute, a late price in its minute, the last two hours kept", async () => {
+  fresh();
+  const { s } = make();
+  s.watch(["BTC-USD"]);
+  await tick();
+  const ws = FakeSocket.all[0];
+  ws.emit("open");
+  const tickAt = (iso, price) => ws.say({ type: "ticker", product_id: "BTC-USD", price: String(price), time: iso });
+  tickAt("2026-11-07T15:00:05Z", 100); tickAt("2026-11-07T15:00:40Z", 103); tickAt("2026-11-07T15:00:59.9Z", 99);
+  tickAt("2026-11-07T15:01:10Z", 101);
+  tickAt("2026-11-07T15:00:30Z", 104); // late, into 15:00
+  tickAt("2026-11-07T15:03:00Z", 102); // no price at 15:02: no bar
+  assert.deepEqual(s.bars("btc-usd"), [
+    { minute: "2026-11-07T15:00:00Z", open: 100, high: 104, low: 99, close: 104, prices: 4 },
+    { minute: "2026-11-07T15:01:00Z", open: 101, high: 101, low: 101, close: 101, prices: 1 },
+    { minute: "2026-11-07T15:03:00Z", open: 102, high: 102, low: 102, close: 102, prices: 1 },
+  ]);
+  const start = Date.parse("2026-11-07T16:00:00Z");
+  for (let i = 0; i < 130; i += 1) tickAt(new Date(start + i * 60000).toISOString(), 200 + i);
+  const kept = s.bars("BTC-USD");
+  assert.equal(kept.length, 120);
+  assert.equal(kept[0].open, 210, "the oldest ten went");
+  tickAt("2026-11-07T15:00:10Z", 1);
+  assert.equal(s.bars("BTC-USD").length, 120, "a price older than every bar kept is left out");
+  assert.equal(s.bars("BTC-USD")[0].open, 210);
+  s.stop();
+});
+
+test("the hub: one set of streams for every owner, the union watched, a timed want running out, nothing left after", async () => {
+  fresh();
+  let clock = 1_000_000;
+  const timers = [];
+  const hub = createLive({ env: {}, WS: FakeSocket, load: () => import("../local/streams.mjs"), now: () => clock, setTimer: (fn, ms) => { timers.push([fn, ms]); return { unref() {} }; }, every: () => null, stopEvery: () => {} });
+  const heard = [];
+  hub.listen((symbol, q) => heard.push([symbol, q.price]));
+  await hub.want("quote", ["BTC-USD"]);
+  await hub.want("tool:ETH-USD", ["ETH-USD"], { forMs: 60000 });
+  await tick();
+  assert.equal(FakeSocket.all.length, 1, "one Coinbase socket for both");
+  const ws = FakeSocket.all[0];
+  ws.emit("open");
+  assert.deepEqual(ws.sent.flatMap((m) => m.product_ids), ["BTC-USD", "ETH-USD"]);
+  ws.say({ type: "ticker", product_id: "ETH-USD", price: "3000", time: "2026-11-07T15:00:00Z" });
+  assert.deepEqual(heard, [["ETH-USD", 3000]]);
+  assert.ok(hub.live("ETH-USD") && hub.bars("ETH-USD").length === 1);
+  clock += 61000;
+  await timers.at(-1)[0]();
+  assert.deepEqual(ws.sent.at(-1), { type: "unsubscribe", product_ids: ["ETH-USD"], channels: ["ticker"] }, "the tool's minute ran out");
+  await hub.drop("quote");
+  assert.ok(ws.closed && !hub.running(), "nobody wants anything: closed");
+  hub.stop();
+});
+
+test("live_quotes refuses on the hosted server and outside a running server, before any stream opens", async () => {
+  await assert.rejects(runLiveQuotes({ hub: createLive(), readOnly: true, price: async () => ({}) }, { symbols: ["BTC-USD"] }), /hosted server keeps no connection/);
+  await assert.rejects(runLiveQuotes({ hub: null, price: async () => ({}) }, { symbols: ["BTC-USD"] }), /inside a running server/);
+});
+
+test("live_quotes: a streamed pair with its bars, a stock with no stream from latest_price, both in one call", async () => {
+  const home = mkdtempSync(path.join(tmpdir(), "live-"));
+  const c = new Client({ name: "live-test", version: "0" });
+  await c.connect(new StdioClientTransport({ command: process.execPath, args: ["--import", path.join(HERE, "quote-preload.mjs"), "--import", path.join(HERE, "stream-preload.mjs"), path.join(HERE, "../src/server.mjs")], env: { PATH: process.env.PATH ?? "", HOME: home, CANLI_HOME: home, CANLI_CACHE_DIR: "" } }));
+  try {
+    const r = await c.callTool({ name: "run_tool", arguments: { name: "live_quotes", arguments: { symbols: ["BTC-USD", "AAPL"], wait_seconds: 5 } } });
+    const body = JSON.parse(r.content[0].text);
+    assert.ok(!r.isError, r.content[0].text);
+    const [btc, aapl] = body.quotes;
+    assert.equal(btc.streaming, true, JSON.stringify(btc));
+    assert.match(btc.source, /Coinbase/);
+    assert.ok(btc.price > 70000 && btc.bars.length >= 1 && btc.bars.at(-1).prices >= 1, JSON.stringify(btc));
+    assert.equal(aapl.streaming, false);
+    assert.match(aapl.note, /No stream carries it/);
+    assert.ok(aapl.price > 100, JSON.stringify(aapl));
+    assert.match(body.streaming_for, /15 minutes/);
+    await wait(400);
+    const again = JSON.parse((await c.callTool({ name: "run_tool", arguments: { name: "live_quotes", arguments: { symbols: ["BTC-USD"], minutes: 0, wait_seconds: 0 } } })).content[0].text);
+    assert.equal(again.quotes[0].streaming, true, "still streaming from the first call");
+    assert.ok(again.quotes[0].price > btc.price, "a fresher price");
+    assert.equal(again.quotes[0].bars, undefined, "minutes 0: no bars");
+  } finally {
+    await c.close();
+    rmSync(home, { recursive: true, force: true });
+  }
 });
 
 test("canli://quote: a streamed pair notifies as it trades and reads at the streamed price", async () => {
