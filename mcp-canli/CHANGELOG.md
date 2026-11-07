@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Optional arguments sent as null count as not given, at the front tools and inside `run_tool`. CrewAI (through mcpadapt) sends every unset optional argument as null, and OpenAI's strict function calling does the same, so with CrewAI 1.15 every call was refused (`limit: expected number, received null`). A null where a value is required is still refused, with the message as sent.
+
 ## 0.21.0
 
 - canli-markets-mcp 0.16.0, 442 tools in all. `portfolio_rules`: where a list of holdings stands against the US lines that bring a filing or cap concentration, each with its rule's text linked: a position over 5% of its class (Schedule 13D or 13G) or 10% (a Section 16 insider), the $100 million Form 13F line, concentration (largest issuer, top five, HHI, effective positions), the 75-5-10 and RIC diversification tests, and days to exit at a share of FINRA's average daily volume. A check, not compliance advice.
