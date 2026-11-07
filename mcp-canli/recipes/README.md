@@ -6,9 +6,9 @@ Starting points for three steps in order: read the data and check it against the
 |---|---|---|
 | `pipeline.mjs` | Node | Runs end to end with no model. Start here: every step is plain code you can read |
 | `claude_agent.mjs` | Node, Claude Code or an API key | Run once on claude-haiku-5-5: the model found the tool, ran it and answered |
-| `langgraph_agent.py` | Python 3.12, a model key | CI runs the model loop with a small model on the runner, and counts the tool calls the server received. It does not judge the answers |
-| `openai_agents_agent.py` | Python 3.12, a model key | CI runs the model loop with a small model on the runner, and counts the tool calls the server received. It does not judge the answers |
-| `crewai_agent.py` | Python 3.12, a model key | CI runs the model loop with a small model on the runner, and counts the tool calls the server received. It does not judge the answers |
+| `langgraph_agent.py` | Python 3.12, a model key | CI runs the model loop with a small model on the runner, and counts the tool calls that ran without an error. It does not judge the answers |
+| `openai_agents_agent.py` | Python 3.12, a model key | CI runs the model loop with a small model on the runner, and counts the tool calls that ran without an error. It does not judge the answers |
+| `crewai_agent.py` | Python 3.12, a model key | CI runs the model loop with a small model on the runner, and counts the tool calls that ran without an error. It does not judge the answers |
 | `agent_backtest.mjs` | Node, any OpenAI-compatible model | Backtests a model with `--as-of`, so it cannot see what came next, and checks whether it simply remembers. CI runs it on a small model to check the plumbing, not the model |
 | `exchange_agents.mjs` | Node, any OpenAI-compatible models | Different models against each other in the paper exchange, each through its own server. CI runs it on a small model to check the plumbing |
 | `kubernetes/cpcv-indexed-job.yaml` | A cluster | CI runs this file on a kind cluster on one machine, then merges the eight shards. Not run on a multi-node cluster |

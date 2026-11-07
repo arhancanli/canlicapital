@@ -472,9 +472,34 @@ function corrected(tool, given, resolved, issues) {
   const call = JSON.stringify({ name: tool.name, arguments: fixed });
   return call.length <= 600 ? ` ${renames.join("; ")}: the call is ${call}.` : ` ${renames.join("; ")}, and with that the call checks.`;
 }
+// Some frameworks send every optional argument, as null when unset (CrewAI through mcpadapt; OpenAI's strict
+// function calling). An argument that is null where null is not allowed counts as not given, so an error names only what
+// is still wrong, not the nulls.
+export const withoutNulls = (value) => (value && typeof value === "object" && !Array.isArray(value) && Object.values(value).includes(null) ? Object.fromEntries(Object.entries(value).filter(([, v]) => v !== null)) : null);
+function parseLenient(schema, value) {
+  const parsed = schema.safeParse(value);
+  if (parsed.success) return parsed;
+  const kept = withoutNulls(value);
+  return kept ? schema.safeParse(kept) : parsed;
+}
+// The SDK checks a tool's arguments before its handler runs, so the same rule is applied there.
+function acceptNulls(server) {
+  if (server.__acceptsNulls || typeof server.validateToolInput !== "function") return;
+  const validate = server.validateToolInput.bind(server);
+  server.validateToolInput = async (tool, args, name) => {
+    try {
+      return await validate(tool, args, name);
+    } catch (err) {
+      const kept = withoutNulls(args);
+      if (!kept) throw err;
+      return validate(tool, kept, name);
+    }
+  };
+  server.__acceptsNulls = true;
+}
 async function execute(tool, name, args, { digits }, files) {
   const resolved = resolveRefs(args ?? {}, files);
-  const parsed = tool.input.safeParse(resolved);
+  const parsed = parseLenient(tool.input, resolved);
   const plain = args && typeof args === "object" && !Array.isArray(args) && resolved && typeof resolved === "object" && !Array.isArray(resolved);
   if (!parsed.success) throw new Error(`${name}: ${parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "arguments"}: ${i.message}`).join("; ")}.${plain ? corrected({ ...tool, name }, args, resolved, parsed.error.issues) : ""} Arguments: ${BY_NAME.get(name).args}. describe_tool ${name} explains each one.`);
   // Packs return full precision (quant's own default); rounding happens once, here.
@@ -595,6 +620,7 @@ export function selfTools(packs, gov, keeper, readOnly = false, vault = null, pr
 
 // live: a local stdio server, which can keep a subscription and poll for it; hosted and browser servers cannot.
 export function registerAll(server, packs = enabledPacks(), gov = governance(process.env, canliHome()), { readOnly = false, live = false } = {}) {
+  acceptNulls(server);
   const keeper = createKeeper();
   const readLimits = new Set();
   // Every strategy result counted against the whole search (luck.mjs): a session here, one request when hosted.
@@ -868,6 +894,7 @@ export function frontTools(packs, env = process.env) {
   return [...new Set(names)].filter((n) => BY_NAME.has(n) && packs.includes(BY_NAME.get(n).pack));
 }
 export async function registerFront(server, packs, names = frontTools(packs), gov = null, shared = null) {
+  acceptNulls(server);
   for (const name of names) {
     const t = await toolFor(name, packs);
     server.registerTool(name, {
