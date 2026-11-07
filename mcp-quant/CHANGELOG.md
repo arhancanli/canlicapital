@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `forecast_accuracy_test`: is forecast A really better than forecast B? The Diebold-Mariano test on squared or absolute errors, h steps ahead, with the Harvey-Leybourne-Newbold small-sample correction (Student's t on T - 1 degrees of freedom), and which forecast is better, if either is. Checked against an independent numpy and scipy implementation of the published formulas (scripts/reference/forecast.py): the true AR(1) forecast against a random walk gives DM -3.55, p 0.0005; two near-identical forecasts give no difference.
+
 ## 0.3.0
 
 - `lookahead_check`: target weights checked for lookahead from the weights alone. Their return is lined up with the period each was decided for, one, two and five periods late, and one period early (the return that had just happened). Weights computed with their own period's outcome show an edge all in that period, gone a period later and unexplained by the last return; the verdict reads so when that holds beyond about two standard errors of the Sharpe ratio. On simulated data it flags weights that peek every day and one day in seven, and not momentum, reversal or weights with no edge. It reads the weights, not the code behind them: hindsight in the universe, revised data or survivorship can leave no such pattern.
