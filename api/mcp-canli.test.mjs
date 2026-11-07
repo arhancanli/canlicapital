@@ -236,3 +236,17 @@ test("without the signing key (a preview or a local run) the receipt is served w
     assert.deepEqual(checkAnswerSignature(receipt, keys), verifyAnswerReceipt(receipt, keys));
   });
 });
+
+test("with canli-mcp's own signer (after 0.21.0), the receipt a model reads in the answer is the signed one, and signing it again here changes nothing", async () => {
+  const key = receiptKey();
+  const next = await import("../mcp-canli/src/server.mjs");
+  await withHandler(createCanliHandler({ env: key.env, flagship: next }), async (url) => {
+    const res = await rpc(url, "tools/call", { name: "run_tool", arguments: { name: "return_stats", arguments: { returns: RETURNS }, receipt: true } });
+    assert.equal(res.body.result.isError ?? false, false, text(res));
+    const read = JSON.parse(text(res)).receipt;
+    assert.deepEqual(read, res.body.result._meta[ANSWER_RECEIPT_KEY], "signed by canli-mcp, then by signReceiptsOf to the same bytes");
+    assert.equal(read.endpoint, HOSTED_ENDPOINT);
+    assert.deepEqual(verifyAnswerReceipt(read, [key.published]), { valid: true, checks: { signed: true, key_published: true, signature_valid: true }, key_id: key.published.key_id });
+    assert.equal(checkAnswerSignature(read, [key.published]).valid, true);
+  });
+});

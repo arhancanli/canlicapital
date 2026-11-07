@@ -21,8 +21,10 @@
 //
 // Every answer's receipt (MCP _meta, "canlicapital.com/receipt") leaves here signed with the published
 // receipt key, naming this endpoint (api/_lib/answer-receipts.js), so it can be checked offline later.
+// canli-mcp after 0.21.0 signs with the same signer itself (registerAll's receipts option, which 0.21.0
+// ignores), so the receipt an answer carries with receipt: true, the one a model sees, is signed too.
 import * as canli from "canli-mcp/src/server.mjs";
-import { signReceiptsOf } from "./_lib/answer-receipts.js";
+import { signAnswerReceipt, signReceiptsOf } from "./_lib/answer-receipts.js";
 import { bearerKey, hashKey } from "./_lib/auth.js";
 import { defaultStore } from "./_lib/handler.js";
 import { createStatelessMcpHandler } from "./_lib/mcp-stateless.js";
@@ -82,7 +84,8 @@ export function createTierResolver({ store, now = () => Date.now(), ttlMs = 60_0
   };
 }
 
-export function createCanliHandler({ limiter = createLimiter(), tierOf = createTierResolver(), env = process.env } = {}) {
+// flagship: the canli-mcp module served; tests pass the repository's own, unreleased one.
+export function createCanliHandler({ limiter = createLimiter(), tierOf = createTierResolver(), env = process.env, flagship = canli } = {}) {
   // Who is asking and at which tier, worked out once per request (the size limit is needed before
   // the body is read, the rate after).
   const admissions = new WeakMap();
@@ -111,9 +114,9 @@ export function createCanliHandler({ limiter = createLimiter(), tierOf = createT
     return null;
   };
   return createStatelessMcpHandler({
-    serverInfo: canli.SERVER_INFO,
-    instructions: `${canli.instructions(HOSTED_PACKS)}${HOSTED_NOTE}`,
-    register: (server) => canli.registerAll(signReceiptsOf(server, { endpoint: HOSTED_ENDPOINT, env }), HOSTED_PACKS, undefined, { readOnly: true }),
+    serverInfo: flagship.SERVER_INFO,
+    instructions: `${flagship.instructions(HOSTED_PACKS)}${HOSTED_NOTE}`,
+    register: (server) => flagship.registerAll(signReceiptsOf(server, { endpoint: HOSTED_ENDPOINT, env }), HOSTED_PACKS, undefined, { readOnly: true, receipts: { endpoint: HOSTED_ENDPOINT, sign: (receipt) => signAnswerReceipt(receipt, env) } }),
     path: "/mcp/canli",
     maxBodyBytes: async (req) => tierLimits((await admit(req)).tier).max_body_bytes,
     screen,

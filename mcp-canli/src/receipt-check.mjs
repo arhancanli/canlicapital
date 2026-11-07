@@ -33,7 +33,7 @@ export function checkAnswerSignature(receipt, keys = PUBLISHED_KEYS) {
 function signatureOf(receipt) {
   const checked = checkAnswerSignature(receipt);
   const reading = !checked.checks.signed
-    ? "Not signed: the hosted server (canlicapital.com/mcp/canli) signs the receipt in an answer's _meta; a local server's receipts, and the copy an answer carries with receipt: true, are not."
+    ? "Not signed: the hosted server (canlicapital.com/mcp/canli) signs its receipts; a local server holds no key, so its receipts are not."
     : checked.valid
       ? `Signed with canlicapital.com's published key ${checked.key_id}${typeof receipt.endpoint === "string" ? ` by ${receipt.endpoint}` : ""}: nothing in this receipt has changed since.`
       : checked.checks.key_published
@@ -48,7 +48,7 @@ export const receiptCheckInput = z.object({
 
 export const RECEIPT_CHECK_TOOL = Object.freeze({
   name: "receipt_check", pack: "desk", toolset: "desk", title: "Check an answer's receipt against its documents now", input: receiptCheckInput, annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: true },
-  description: "Read again the documents an earlier answer's receipt names, and those of the answers it was built from: each the same, changed since, or unreachable (the markets pack's source_check). An answer whose documents changed may no longer hold. A receipt the hosted server signed (in an answer's _meta) has its signature checked offline against the keys canlicapital.com publishes.",
+  description: "Read again the documents an earlier answer's receipt names, and those of the answers it was built from: each the same, changed since, or unreachable (the markets pack's source_check). An answer whose documents changed may no longer hold. A receipt the hosted server signed has its signature checked offline against the keys canlicapital.com publishes.",
   keywords: "receipt check verify sources changed since stale drift documents hash audit trail provenance signature signed",
   args: "receipt: object",
 });

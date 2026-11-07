@@ -8,6 +8,7 @@ import { keyIdFor } from "canli-validation-mcp/src/local/js/receipt-statement.js
 import { canonicalJson } from "canli-validation-mcp/src/local/scripts/canonical-json.mjs";
 
 import { ANSWER_SIGNATURE_SCHEMA, checkAnswerSignature, documentsOf, receiptCheckInput, runReceiptCheck } from "../src/receipt-check.mjs";
+import { RECEIPT_KEY, registerAll } from "../src/server.mjs";
 
 const doc = (url, extra = {}) => ({ url, sha256_16: "0123456789abcdef", retrieved_at: "2026-11-04T06:00:00.000Z", ...extra });
 
@@ -67,7 +68,7 @@ test("receipt_check reads the signature with the keys canlicapital.com publishes
   const ctx = { call: async () => ({ same: 1, changed: 0, not_checked: 0, rows: [] }) };
   const local = await runReceiptCheck(ctx, { receipt: HOSTED });
   assert.equal(local.signature.valid, false);
-  assert.match(local.signature.reading, /^Not signed: the hosted server .* signs the receipt in an answer's _meta/);
+  assert.match(local.signature.reading, /^Not signed: the hosted server .* signs its receipts; a local server holds no key/);
   assert.equal(local.same, 1);
   // Signed, but not with a published key: a test key is not one of them.
   const other = await runReceiptCheck(ctx, { receipt: signedWith(receiptKey(), HOSTED) });
@@ -79,4 +80,26 @@ test("receipt_check reads the signature with the keys canlicapital.com publishes
   assert.deepEqual(forged.signature.checks, { signed: true, key_published: true, signature_valid: false });
   assert.match(forged.signature.reading, /^The signature does not match this receipt/);
   assert.equal(forged.documents, 0);
+});
+
+test("a server that signs its receipts puts the whole signed receipt in the answer, which receipt_check reads as signed", async () => {
+  const key = receiptKey();
+  const handlers = (options) => {
+    const h = {};
+    registerAll({ registerTool: (name, _c, fn) => { h[name] = fn; }, registerResource: () => {}, registerPrompt: () => {} }, ["quant"], undefined, options);
+    return h;
+  };
+  const call = { name: "return_stats", arguments: { returns: [0.01, -0.02, 0.015, 0.003, -0.004, 0.012] }, receipt: true };
+  const signing = await handlers({ readOnly: true, receipts: { endpoint: "example.org/mcp", sign: (receipt) => signedWith(key, receipt).signature } }).run_tool(call);
+  const meta = signing._meta[RECEIPT_KEY];
+  assert.equal(meta.endpoint, "example.org/mcp");
+  assert.deepEqual(signing.structuredContent.receipt, meta, "the receipt in the answer is the signed one in _meta");
+  const read = JSON.parse(signing.content[0].text).receipt;
+  assert.deepEqual(read, meta, "and it is in the text the model reads");
+  assert.equal(checkAnswerSignature(read, [key.published]).valid, true);
+  // A server that signs nothing keeps the short receipt in the answer, and its _meta receipt names no endpoint.
+  const plain = await handlers({ readOnly: true }).run_tool(call);
+  assert.deepEqual(Object.keys(plain.structuredContent.receipt).sort(), ["input_sha256", "output_sha256", "packs", "server", "sources"]);
+  assert.deepEqual([plain._meta[RECEIPT_KEY].endpoint, plain._meta[RECEIPT_KEY].signature], [undefined, undefined]);
+  assert.equal(plain._meta[RECEIPT_KEY].output_sha256, meta.output_sha256, "signing changes nothing that was answered");
 });
