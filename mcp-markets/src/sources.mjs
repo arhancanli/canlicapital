@@ -338,7 +338,9 @@ export function listedByName(table, q) {
   const rows = Object.values(table).filter((row) => {
     if (known) return row.ticker === known;
     const title = nameWords(row.title);
-    return words.every((w, i) => title[i] === w || stem(title[i]) === stem(w)) || (joined.length >= 5 && title.join("").startsWith(joined));
+    // "TheRealReal, Inc." is one word in the ticker file; a fund report writes "RealReal, Inc. (The)".
+    const run = title.join("");
+    return words.every((w, i) => title[i] === w || stem(title[i]) === stem(w)) || (joined.length >= 5 && (run.startsWith(joined) || run.replace(/^the/, "").startsWith(joined)));
   });
   // The whole name before a longer one that starts with it: "UNIVERSAL CORP" is UNIVERSAL CORP /VA/, not Universal Music
   // Group, which the ticker file lists first. A state tag is not part of the name.

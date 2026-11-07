@@ -19,7 +19,7 @@ const ROWS = [
   [39311, "IBCP", "INDEPENDENT BANK CORP /MI/"], [765207, "FNLC", "First Bancorp, Inc /ME/"], [1625297, "INDV", "Supernus, Inc."],
   [1890126, "UNVGY", "Universal Music Group N.V./ADR"], [352915, "UHS", "UNIVERSAL HEALTH SERVICES INC"], [798359, "CSR", "CENTERSPACE"],
   [102037, "UVV", "UNIVERSAL CORP /VA/"], [1689796, "JBGS", "JBG SMITH Properties"], [2152623, "NAVI", "Navient Holdings, Inc."],
-  [1465740, "TWOD", "TWO HARBORS INVESTMENT CORP."],
+  [1465740, "TWOD", "TWO HARBORS INVESTMENT CORP."], [1573221, "REAL", "TheRealReal, Inc."],
 ];
 // The SEC's fund ticker file, cut to two ETFs.
 const FUNDS = { fields: ["cik", "seriesId", "classId", "symbol"], data: [[36405, "S000002839", "C000092055", "VOO"], [1067839, "S000101292", "C000271435", "QQQ"]] };
@@ -61,6 +61,7 @@ test("names: a fund report's names, with a place in brackets, LLC, or the name b
     "MADISON SQUARE GARDEN SPORTS CORP": ["MSGS", 1636519], "INDIVIOR PHARMACEUTICALS INC": ["INDV", 1625297],
     "TWO HARBORS INVESTMENTS CORP": ["TWOD", 1465740], "UNIVERSAL CORP": ["UVV", 102037], "JBG SMITH PROPERTIES LP": ["JBGS", 1689796],
     "CENTERSPACE REAL ESTATE INVESTMENT TRUST": ["CSR", 798359], "NAVIENT CORP": ["NAVI", 2152623],
+    "RealReal, Inc. (The)": ["REAL", 1573221],
   };
   for (const [q, [ticker, cik]] of Object.entries(want)) {
     const { s, asked } = offline();
