@@ -9,6 +9,7 @@ import { createServer } from "node:http";
 import test from "node:test";
 
 import { keyIdFor } from "../js/receipt-statement.js";
+import { checkAnswerSignature } from "../mcp-canli/src/receipt-check.mjs";
 import { canonicalJson } from "../scripts/canonical-json.mjs";
 import { ANSWER_RECEIPT_KEY, ANSWER_SIGNATURE_SCHEMA, answerStatement, signAnswerReceipt, verifyAnswerReceipt } from "./_lib/answer-receipts.js";
 import { createCanliHandler, createLimiter, HOSTED_ENDPOINT, HOSTED_NOTE, MAX_FLAGSHIP_BODY_BYTES, namesAFile } from "./mcp-canli.js";
@@ -198,8 +199,14 @@ test("every answer's receipt leaves signed with the published receipt key, namin
     // Kept by a client in another key order, it still checks: the content is signed, not its layout.
     const reordered = JSON.parse(JSON.stringify(Object.fromEntries(Object.entries(receipt).reverse())));
     assert.equal(verifyAnswerReceipt(reordered, [key.published]).valid, true);
+    // canli-mcp's receipt_check (mcp-canli/src/receipt-check.mjs) reads every receipt here as this does, a document
+    // with a name outside ASCII included.
+    const readsAlike = (r, keys = [key.published]) => assert.deepEqual(checkAnswerSignature(r, keys), verifyAnswerReceipt(r, keys));
+    for (const r of [receipt, reordered]) readsAlike(r);
+    const accented = { ...content, sources: [{ url: "https://www.sec.gov/x.htm", title: "Société Générale, 20-F", sha256: "0".repeat(64) }] };
+    assert.equal(checkAnswerSignature({ ...accented, signature: signAnswerReceipt(accented, key.env) }, [key.published]).valid, true);
 
-    const holds = (edit) => verifyAnswerReceipt({ ...receipt, ...edit }, [key.published]).checks.signature_valid;
+    const holds = (edit) => { readsAlike({ ...receipt, ...edit }); return verifyAnswerReceipt({ ...receipt, ...edit }, [key.published]).checks.signature_valid; };
     assert.equal(holds({ output_sha256: "0".repeat(64) }), false, "another answer");
     assert.equal(holds({ at: "2026-01-01T00:00:00.000Z" }), false, "another time");
     assert.equal(holds({ endpoint: "example.com/mcp" }), false, "another endpoint");
@@ -209,6 +216,8 @@ test("every answer's receipt leaves signed with the published receipt key, namin
     const other = receiptKey();
     assert.deepEqual(verifyAnswerReceipt(receipt, [other.published]).checks, { signed: true, key_published: false, signature_valid: false }, "a key canlicapital.com does not publish");
     assert.equal(verifyAnswerReceipt(receipt, [{ ...other.published, key_id: key.published.key_id }]).checks.signature_valid, false, "a published entry whose key is not its key id");
+    readsAlike(receipt, [other.published]);
+    readsAlike(receipt, [{ ...other.published, key_id: key.published.key_id }]);
 
     // An answer with no receipt (find_tool, describe_tool) passes through as it was.
     const found = (await rpc(url, "tools/call", { name: "find_tool", arguments: { query: "sharpe ratio" } })).body.result;
@@ -222,6 +231,8 @@ test("without the signing key (a preview or a local run) the receipt is served w
     const receipt = (await call(url, "return_stats", { returns: RETURNS })).body.result._meta[ANSWER_RECEIPT_KEY];
     assert.equal(receipt.endpoint, HOSTED_ENDPOINT);
     assert.equal(receipt.signature, null);
-    assert.deepEqual(verifyAnswerReceipt(receipt, [receiptKey().published]), { valid: false, checks: { signed: false, key_published: false, signature_valid: false }, key_id: null });
+    const keys = [receiptKey().published];
+    assert.deepEqual(verifyAnswerReceipt(receipt, keys), { valid: false, checks: { signed: false, key_published: false, signature_valid: false }, key_id: null });
+    assert.deepEqual(checkAnswerSignature(receipt, keys), verifyAnswerReceipt(receipt, keys));
   });
 });
