@@ -365,6 +365,8 @@ Live prices stream only while a client subscribes to `canli://quote` on a local 
 
 ## Configuration
 
+Keys can live in your operating system's keychain instead of a client's config file: `npx -y canli-mcp connect finnhub` (or `massive`, `alpaca`, `tiingo`, an upstream such as `fmp`, or any variable name) asks for the key with nothing shown, or reads it from stdin, and stores it in the macOS Keychain or, on Linux, the Secret Service (`secret-tool`). canli-mcp reads it into its own environment when it starts; a variable that is set wins. `CANLI_HOME/keychain.json` lists the names only, never a value. `connect --list` shows what is stored and `disconnect <name>` removes it. Windows has no keychain command that reads a secret back, so there set the variable.
+
 | variable | effect |
 |---|---|
 | `CANLI_PACKS` | Packs to enable: `quant,validation,fundamentals,research,backtest,markets,paper` or `all`. Default: all but paper. |

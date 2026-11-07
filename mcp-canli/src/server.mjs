@@ -785,6 +785,7 @@ export const PRIVACY = (packs, gov) => ({
   packs: Object.fromEntries(packs.map((p) => { const info = packInfo(p); return [p, { network: info.network, disk: info.disk, ...(PLUGINS.has(p) ? { plugin: info.package } : {}), ...(UPSTREAMS.has(p) ? { upstream: info.package, tools: info.tools ?? "still connecting", ...(info.error ? { error: info.error } : {}), ...(info.off_because_they_change_things ? { off_because_they_change_things: info.off_because_they_change_things } : {}) } : {}) }]; })),
   files: "{\"$file\": ...} arguments are read on this machine; nothing is uploaded and nothing is written by the reader",
   compile_cache: "Node keeps compiled JavaScript in its temp folder to start faster; it holds this server's code and nothing of yours",
+  keys: "kept where you put them: the environment, or the OS keychain with canli-mcp connect (CANLI_HOME/keychain.json lists names only); each is sent only to its own provider",
   price_streams: "off until a client subscribes to canli://quote on a local server or calls live_quotes (then for 15 minutes): the symbols go to Coinbase or Kraken (crypto, no key) or, with your keys, to Massive, Alpaca or Finnhub (US stocks); one-minute bars are kept in memory only; CANLI_STREAMS=0 turns them off",
   sentinel: "off until you use it: rules and events are kept in CANLI_HOME/sentinel on this machine, and sent only where you say with --webhook, --slack, --discord, --exec or --channel",
   local_models: "off until you run canli-mcp models install: they run on this machine, and no text leaves it",
@@ -901,7 +902,21 @@ const isMain = (() => { try { const run = realpathSync(process.argv[1] ?? ""); r
 // `canli-mcp check returns.csv --trials 40` is the luck check for a CI job, and `canli-mcp run <tool>
 // '<json>'` runs one tool from a shell.
 const flag = (argv, name) => { const i = argv.indexOf(name); return i >= 0 ? argv[i + 1] : undefined; };
-if (isMain && process.argv[2] === "audit") {
+// Keys kept in this machine's keychain (canli-mcp connect) join the environment before anything reads it; a variable
+// already set wins. Only the names are in CANLI_HOME/keychain.json, so a machine that never used connect reads nothing.
+if (isMain && !["connect", "disconnect"].includes(process.argv[2]) && (() => { try { return statSync(join(canliHome(), "keychain.json")).isFile(); } catch { return false; } })()) {
+  try { (await import("../local/keychain.mjs")).loadKeys(process.env, canliHome()); } catch (e) { process.stderr.write(`canli-mcp: keys in the keychain not read: ${String(e?.message ?? e).slice(0, 200)}\n`); }
+}
+
+if (isMain && (process.argv[2] === "connect" || process.argv[2] === "disconnect")) {
+  // `canli-mcp connect <provider or VARIABLE>` | `connect --list` | `disconnect <provider or VARIABLE>`: API keys in the
+  // OS keychain, typed with nothing shown or read from stdin, never in a file or an argument (local/keychain.mjs).
+  const { askHidden, connectCommand, disconnectCommand } = await import("../local/keychain.mjs");
+  try {
+    const out = process.argv[2] === "connect" ? await connectCommand(canliHome(), process.argv.slice(3), { ask: askHidden() }) : disconnectCommand(canliHome(), process.argv.slice(3));
+    process.stdout.write(out.usage ? `${out.usage}\n` : `${JSON.stringify(out)}\n`);
+  } catch (e) { process.stderr.write(`${e.message}\n`); process.exit(2); }
+} else if (isMain && process.argv[2] === "audit") {
   const argv = process.argv.slice(3), home = canliHome();
   if (argv[0] !== "verify") { process.stderr.write("usage: canli-mcp audit verify [file or directory] [--ed25519 pub.pem] [--ml-dsa pub.pem]\n"); process.exit(2); }
   const target = argv[1] && !argv[1].startsWith("--") ? argv[1] : join(home, "audit");
