@@ -18,7 +18,11 @@
 // instead of per address. A request with no key is free and never touches the key store. A key the
 // store does not know, or a revoked one, is refused; if the store cannot be reached, a keyed request
 // is served at the free tier's limits rather than refused.
+//
+// Every answer's receipt (MCP _meta, "canlicapital.com/receipt") leaves here signed with the published
+// receipt key, naming this endpoint (api/_lib/answer-receipts.js), so it can be checked offline later.
 import * as canli from "canli-mcp/src/server.mjs";
+import { signReceiptsOf } from "./_lib/answer-receipts.js";
 import { bearerKey, hashKey } from "./_lib/auth.js";
 import { defaultStore } from "./_lib/handler.js";
 import { createStatelessMcpHandler } from "./_lib/mcp-stateless.js";
@@ -36,6 +40,8 @@ process.env.CANLI_KEYLESS_PRICES = "0";
 process.env.CANLI_ASK = "0";
 
 export const HOSTED_PACKS = ["quant", "validation", "fundamentals", "research", "backtest", "markets"];
+// What each signed receipt names as the endpoint that issued it.
+export const HOSTED_ENDPOINT = "canlicapital.com/mcp/canli";
 // Series go inline here (there are no files): a megabyte holds about 50,000 numbers.
 export const MAX_FLAGSHIP_BODY_BYTES = TIERS.free.max_body_bytes;
 export const REQUESTS_PER_MINUTE = TIERS.free.requests_per_minute;
@@ -76,7 +82,7 @@ export function createTierResolver({ store, now = () => Date.now(), ttlMs = 60_0
   };
 }
 
-export function createCanliHandler({ limiter = createLimiter(), tierOf = createTierResolver() } = {}) {
+export function createCanliHandler({ limiter = createLimiter(), tierOf = createTierResolver(), env = process.env } = {}) {
   // Who is asking and at which tier, worked out once per request (the size limit is needed before
   // the body is read, the rate after).
   const admissions = new WeakMap();
@@ -107,7 +113,7 @@ export function createCanliHandler({ limiter = createLimiter(), tierOf = createT
   return createStatelessMcpHandler({
     serverInfo: canli.SERVER_INFO,
     instructions: `${canli.instructions(HOSTED_PACKS)}${HOSTED_NOTE}`,
-    register: (server) => canli.registerAll(server, HOSTED_PACKS, undefined, { readOnly: true }),
+    register: (server) => canli.registerAll(signReceiptsOf(server, { endpoint: HOSTED_ENDPOINT, env }), HOSTED_PACKS, undefined, { readOnly: true }),
     path: "/mcp/canli",
     maxBodyBytes: async (req) => tierLimits((await admit(req)).tier).max_body_bytes,
     screen,
