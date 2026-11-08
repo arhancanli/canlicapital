@@ -30,7 +30,7 @@ test("every Canli company's tools work on one book through the MCP server", asyn
   };
   try {
     const tools = (await client.listTools()).tools.map((t) => t.name);
-    for (const name of ["books_post", "close_reconcile", "close_consolidate", "report_check", "audit_journal", "planning_runway", "data_pack", "data_pack_sec_first_filed", "data_pack_sec_findings", "books_sign"]) assert.ok(tools.includes(name), name);
+    for (const name of ["books_post", "close_reconcile", "close_consolidate", "report_check", "report_xbrl_json", "audit_journal", "planning_runway", "data_pack", "data_pack_sec_first_filed", "data_pack_sec_findings", "books_sign", "books_share_statements", "books_check_statements"]) assert.ok(tools.includes(name), name);
 
     await call("books_open", { file, name: "Example Trading LLC", currency: "AED" });
     assert.match(await refused("books_open", { file, name: "Again", currency: "AED" }), /never overwrites/);
@@ -75,6 +75,13 @@ test("every Canli company's tools work on one book through the MCP server", asyn
 
     const report = await call("report_check", { file, as_of: "2026-01-31", from: "2026-01-01", to: "2026-01-31" });
     assert.deepEqual([report.ok, report.unmapped.length], [true, 0]);
+    const xbrl = join(dir, "report.json");
+    const written = await call("report_xbrl_json", { file, as_of: "2026-01-31", from: "2026-01-01", to: "2026-01-31", out_file: xbrl, entity: "LEI-TEST-0001" });
+    assert.equal(written.document_type, "https://xbrl.org/2021/xbrl-json");
+    const facts = Object.values(JSON.parse(readFileSync(xbrl, "utf8")).facts);
+    assert.equal(facts.length, written.facts);
+    assert.ok(facts.every((f) => f.dimensions.entity === "entity:LEI-TEST-0001" && f.dimensions.unit === "iso4217:AED"));
+    assert.match(await refused("report_xbrl_json", { file, as_of: "2026-01-31", from: "2026-01-01", to: "2026-01-31", out_file: xbrl }), /never overwrites/);
     // The same checks on a company's SEC filings, from the companyfacts JSON: last year's shares filed in thousands.
     const companyfacts = join(dir, "CIK0001234567.json");
     const shares = (accn, filed, val) => ({ end: "2024-12-31", val, accn, fy: Number(filed.slice(0, 4)), fp: "FY", form: "10-K", filed });
@@ -102,6 +109,11 @@ test("every Canli company's tools work on one book through the MCP server", asyn
     await call("books_new_keys", keys);
     await call("books_sign", { file, private_key_file: keys.private_key_file });
     assert.equal((await call("books_check_signature", { file, public_key_file: keys.public_key_file })).ok, true);
+    // Statements for a lender's agent, signed with the head; checked without the book; proofs check against the same file.
+    const statementsFile = join(dir, "statements.json");
+    const shared = await call("books_share_statements", { file, private_key_file: keys.private_key_file, from: "2026-01-01", to: "2026-01-31", out_file: statementsFile });
+    const lender = await call("books_check_statements", { statements_file: statementsFile, public_key_file: keys.public_key_file });
+    assert.deepEqual([lender.ok, lender.adds_up, lender.income_statement.netIncome, lender.balance_sheet.totalAssets], [true, true, shared.netIncome, shared.totalAssets]);
 
     // One entry shown to a lender without the book: a proof against the signed root, checked with the public key.
     const proved = await call("books_prove", { file, seqs: [rent.posted.seq] });
@@ -109,6 +121,7 @@ test("every Canli company's tools work on one book through the MCP server", asyn
     const check = (proofs) => call("books_check_proof", { proofs, signature_file: `${file}.sig.json`, public_key_file: keys.public_key_file });
     const checkedProof = await check(proved);
     assert.deepEqual([checkedProof.ok, checkedProof.book], [true, { name: "Example Trading LLC", currency: "AED" }]);
+    assert.equal((await call("books_check_proof", { proofs: proved, signature_file: statementsFile, public_key_file: keys.public_key_file })).ok, true, "the statements file carries the head the proofs lead to");
     const forged = structuredClone(proved);
     forged.proofs[0].record.lines[0].debit = 30000;
     assert.equal((await check(forged)).ok, false, "a changed amount fails");
@@ -125,6 +138,42 @@ test("every Canli company's tools work on one book through the MCP server", asyn
     const before = readFileSync(file, "utf8");
     assert.match(await refused("books_post", { file, date: "2026-02-02", lines: [{ account: "6100", debit: "10" }, { account: "1000", credit: "10" }] }), /does not verify.*Nothing was written/);
     assert.equal(readFileSync(file, "utf8"), before, "nothing was appended to a book that does not verify");
+  } finally {
+    await client.close();
+  }
+});
+
+test("a month closed from the bank statement in one call: proposed, then posted, reconciled, checked and drafted as XBRL", async () => {
+  const dir = mkdtempSync(join(tmpdir(), "canli-month-"));
+  const file = join(dir, "month.jsonl");
+  const client = new Client({ name: "books-month-test", version: "0" });
+  await client.connect(new StdioClientTransport({ command: process.execPath, args: [SERVER] }));
+  const call = async (name, args) => {
+    const res = await client.callTool({ name, arguments: args });
+    assert.ok(!res.isError, `${name}: ${JSON.stringify(res.content)}`);
+    return res.structuredContent;
+  };
+  try {
+    await call("books_open", { file, name: "Month Test LLC", currency: "AED" });
+    await call("books_post", { file, date: "2026-01-02", memo: "Share capital paid in", lines: [{ account: "1000", debit: "50000" }, { account: "3000", credit: "50000" }] });
+    await call("books_post", { file, date: "2026-01-15", memo: "January rent", lines: [{ account: "6100", debit: "3000" }, { account: "1000", credit: "3000" }] });
+    const statement = join(dir, "bank.csv");
+    writeFileSync(statement, "date,description,amount\n2026-01-02,Capital,50000\n2026-01-16,Landlord,-3000\n2026-01-31,Bank fee,-25\n2026-01-31,Unknown transfer,-10\n");
+    const args = { file, statement_file: statement, rules: [{ contains: "fee", account: "6500", direction: "out" }], from: "2026-01-01", to: "2026-01-31" };
+    const looked = await call("close_month", args);
+    assert.deepEqual([looked.entries.proposed.length, looked.entries.posted, looked.entries.unassigned.length, looked.reconciliation.reconciled], [1, [], 1, false]);
+    assert.ok(looked.left.includes("1 entries proposed, not posted: post: true writes them"));
+    assert.ok(looked.left.includes("1 statement lines no rule fits"), "the unknown transfer is listed, never guessed");
+    const out_file = join(dir, "january.json");
+    const closed = await call("close_month", { ...args, post: true, out_file });
+    assert.equal(closed.entries.posted.length, 1);
+    assert.equal(closed.statements.netIncome, "-3025.00");
+    assert.equal(closed.report.ok, true);
+    assert.equal(closed.xbrl.facts, Object.keys(JSON.parse(readFileSync(out_file, "utf8")).facts).length);
+    assert.ok(!closed.left.some((l) => /proposed/.test(l)));
+    assert.ok(closed.left.includes("The bank is reconciled"), "the unknown transfer still keeps it open");
+    const again = await call("close_month", { ...args, post: true });
+    assert.deepEqual(again.entries.posted, [], "the same statement again posts nothing");
   } finally {
     await client.close();
   }
