@@ -42,14 +42,17 @@ export function trialOf(name, args, result) {
 // canli-backtest-mcp's breadth_sweep return every_trial, every variant's annualized Sharpe best first with the periods
 // behind them (one number for all, or one per variant), so a grid of 400 is 400 tries and not one. A label names the
 // variant's settings where the answer's own table shows them (the top 50 of a sweep, the tournament's leaderboard,
-// every row of a breadth sweep), and its place among the rest otherwise.
+// every row of a breadth sweep), its combination k where a breadth sweep's shard lists it with no table, and its place
+// among the rest otherwise.
 const SWEEPS = /^(strategy_sweep|sleeve_tournament|breadth_sweep)$/;
 const BREADTH_SETTINGS = ["k", "signals", "smoothing", "target_vol", "cost_bps", "min_names"];
 
-// A breadth sweep's row i, when it is the variant every_trial lists i-th: its settings by the table's column names.
-function breadthSettings(result, i, sharpe) {
-  const cols = result.columns, row = result.rows?.[i];
-  if (!Array.isArray(cols) || !Array.isArray(row) || row[cols.findIndex((c) => /^sharpe(_search)?$/.test(c))] !== sharpe) return null;
+// A breadth sweep's combination k (every_trial lists each variant's): its settings by the table's column names where
+// the answer has its row, else k alone, as in a shard's answer.
+function breadthSettings(result, k) {
+  const cols = result.columns, at = Array.isArray(cols) ? cols.indexOf("k") : -1;
+  const row = at < 0 || !Array.isArray(result.rows) ? undefined : result.rows.find((r) => Array.isArray(r) && r[at] === k);
+  if (!row) return { k };
   return Object.fromEntries(BREADTH_SETTINGS.map((c) => [c, row[cols.indexOf(c)]]).filter(([, v]) => v !== null && v !== undefined));
 }
 
@@ -58,7 +61,8 @@ export function trialsOf(name, args, result) {
   if (!every || !Array.isArray(every.sharpes)) { const one = trialOf(name, args, result); return one ? [one] : []; }
   const total = every.sharpes.length, periodsAt = (i) => (Array.isArray(every.periods) ? every.periods[i] : every.periods);
   const settings = (i) => {
-    const params = name === "strategy_sweep" ? result.rows?.[i]?.[0] : name === "breadth_sweep" ? breadthSettings(result, i, every.sharpes[i]) : null;
+    const k = name === "breadth_sweep" && Array.isArray(every.k) ? every.k[i] : undefined;
+    const params = name === "strategy_sweep" ? result.rows?.[i]?.[0] : Number.isInteger(k) ? breadthSettings(result, k) : null;
     const sleeve = name === "sleeve_tournament" ? result.leaderboard?.[i]?.[0] : null;
     if (params && typeof params === "object" && !Array.isArray(params)) return { label: `${name} ${result.recipe ?? ""} ${Object.entries(params).slice(0, 8).map(([k, v]) => `${k}=${shortValue(v)}`).join(" ")}`.replace(/ +/g, " ").trim(), params: { ...(result.recipe ? { recipe: result.recipe } : {}), ...params } };
     if (typeof sleeve === "string") return { label: `${name} ${sleeve}`, params: { sleeve } };
@@ -68,7 +72,8 @@ export function trialsOf(name, args, result) {
     const periods = periodsAt(i);
     if (!Number.isFinite(sharpe) || !Number.isInteger(periods) || periods < 2) return [];
     const { label, params } = settings(i);
-    // A breadth sweep's variant is the same try wherever it is run again: its sweep_id names the files, grid and split.
+    // A breadth sweep's variant is the same try wherever it is run again, whole or in a shard: its sweep_id names the
+    // files, grid and split.
     const key = name === "breadth_sweep" && typeof result.sweep_id === "string" && Number.isInteger(params.k) ? `${result.sweep_id}:${params.k}` : undefined;
     return [{ label, sharpe_annualized: sharpe, observations: periods, params: { tool: name, ...params }, ...(key ? { key } : {}) }];
   });
@@ -78,7 +83,7 @@ export function trialsOf(name, args, result) {
 // answer's ref.
 export function shownTrials(result) {
   if (!result || !Array.isArray(result.every_trial?.sharpes)) return result;
-  const { sharpes, periods, ...rest } = result.every_trial;
+  const { sharpes, periods, k, ...rest } = result.every_trial;
   return { ...result, every_trial: { ...(Number.isInteger(periods) ? { periods } : {}), ...rest, counted: sharpes.length } };
 }
 
@@ -122,7 +127,7 @@ export function createLuck({ scope = "session", now = () => new Date().toISOStri
             ? `The first strategy tested in this ${scope}; every later one is judged with it.`
             : `${s.trials} strategies tested in this ${scope}. The best (trial ${s.best.n}, Sharpe ${two(s.best.sharpe_annualized)}) against about ${two(s.expected_best_by_luck_annualized)} from luck alone: deflated Sharpe ${dsr === null ? "not yet defined" : two(dsr)}, the chance its true Sharpe is above zero.`,
           elsewhere ? `${elsewhere} more at other frequencies, counted apart.` : "",
-          again === found.length ? "This sweep (the same files, grid and split) was counted already; nothing is added." : again ? `${again} of its ${found.length} variants were counted already.` : "",
+          again === found.length ? "These variants (the same files, grid and split) were counted already; nothing is added." : again ? `${again} of these ${found.length} variants were counted already.` : "",
           scope === "request" ? "Hosted: only this request is counted; run the search as one batch, or locally with npx canli-mcp." : "",
         ].filter(Boolean).join(" "),
       };

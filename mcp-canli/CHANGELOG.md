@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Luck counts every variant of a `breadth_sweep` (from canli-backtest-mcp's next release), each named by its row's settings and measured on its own days. A breadth sweep is named by its files, grid and split (`sweep_id`), so the same sweep run again, or its shards merged after it ran whole, adds nothing, and the answer says it was counted already.
+- Luck counts every variant of a `breadth_sweep` (from canli-backtest-mcp's next release), each named by its row's settings and measured on its own days. A breadth sweep is named by its files, grid and split (`sweep_id`), so the same sweep run again, or its shards merged after it ran whole, adds nothing, and the answer says it was counted already. Its shards are counted as they run, each variant by its combination: an agent that reads a shard's results and stops there has still tried them, and the merge adds only the variants this session has not counted (those of shards run on other machines).
 
 ## 0.21.0
 

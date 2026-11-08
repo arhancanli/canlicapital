@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- `breadth_sweep` returns `every_trial`: every variant's annualized Sharpe, best first, with the days it was measured on (one number when all variants share them, else one per variant) and `periods_per_year`. With `split_date` it is the Sharpe the settings were chosen on. A server that counts what a session tries, as canli-mcp does, counts each variant and not only the best, as with canli-quant-mcp's `strategy_sweep`.
+- `breadth_sweep` returns `every_trial`: every variant's annualized Sharpe, best first, with its combination `k`, the days it was measured on (one number when all variants share them, else one per variant) and `periods_per_year`. With `split_date` it is the Sharpe the settings were chosen on. A server that counts what a session tries, as canli-mcp does, counts each variant and not only the best, as with canli-quant-mcp's `strategy_sweep`. A shard's answer carries `every_trial` for its own variants, so they are counted as each shard runs, not first at the merge.
 
 ## 0.5.1
 
