@@ -52,7 +52,7 @@ import { BEAT_TOOL, runBeat } from "./beat.mjs";
 import { createVault, HOLDOUT_TOOLS } from "./holdout.mjs";
 import { createRegistry, PREREG_TOOL } from "./prereg.mjs";
 import { CAUSES_TOOL, runCauses } from "./causes.mjs";
-import { answerRoot } from "./answer-tree.mjs";
+import { answerTree } from "./answer-tree.mjs";
 import { RECEIPT_CHECK_TOOL, runReceiptCheck } from "./receipt-check.mjs";
 import { runShares, SHARES_TOOL } from "./shares.mjs";
 import { RED_FLAGS_TOOL, runRedFlags } from "./redflags.mjs";
@@ -416,6 +416,11 @@ const RUN_INPUT = z.object({
       changes_only: z.boolean().optional().describe("Only what changed since this call last ran in this session."),
       view: z.boolean().optional().describe("Draw the result for the person (charts, statements, yield curves, backtests) where MCP Apps are drawn; you get a summary."),
     }).strict();
+// prove is listed only where the server signs its receipts: a proof is checked against the root a signed receipt
+// carries, and a local server holds no key, so there it would cost every session its tokens for nothing.
+const RUN_PROVE = RUN_INPUT.extend({
+  prove: z.array(z.string().max(300)).min(1).max(20).optional().describe("Values to prove, as JSON Pointers into the calls' output (e.g. /0/result/sharpe): each comes with a proof against the signed receipt, for receipt_check."),
+});
 
 export const canliHome = (env = process.env) => env.CANLI_HOME ?? join(homedir(), ".canli");
 
@@ -686,7 +691,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     description: `Run a tool find_tool named: one ({name, arguments}), or up to 25 ({calls: [...]}). Independent calls run at once; a failed call returns its own error. Read-only unless the paper-trading pack is on${writers.length ? ` or ${writers.join(", ")} (an upstream server allowed to change things)` : ""}.` + " Any argument can be {\"$file\": \"path.csv\", \"column\": \"close\"} (or \"columns\": [...] / \"all\") instead of pasted numbers. {\"$result\": i, \"path\": \"close\"} passes batch call i's output into a later call; every result also has a ref (\"r1\", ...) later calls pass the same way, {\"$result\": \"r1\", \"path\": \"close\"}, so data never needs copying.",
     // Only the paper pack, or an upstream server marked write, can change anything; without them nothing here is destructive.
     annotations: { title: "Run tools", readOnlyHint: Boolean(readOnly), destructiveHint: packs.includes("paper") || writers.length > 0, idempotentHint: false, openWorldHint: true },
-    inputSchema: RUN_INPUT,
+    inputSchema: receipts ? RUN_PROVE : RUN_INPUT,
     outputSchema: open,
     // Hosts that draw MCP Apps show the result in the viewer; others ignore this.
     _meta: { ui: { resourceUri: VIEW_URI } },
@@ -697,12 +702,13 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     if (a.calls) a.calls = a.calls.flatMap((c) => (c.name === "run_tool" && c.arguments ? (c.arguments.calls ?? [{ name: c.arguments.name, arguments: c.arguments.arguments }]) : [c]));
     // Models sometimes put run_tool's own options inside a call's arguments; move them out when the
     // tool itself has no argument of that name.
-    for (const c of a.calls ?? [a]) for (const k of ["return", "digits", "select", "receipt", "max_chars", "as_of", "changes_only"]) {
+    for (const c of a.calls ?? [a]) for (const k of ["return", "digits", "select", "receipt", "max_chars", "as_of", "changes_only", "prove"]) {
       if (c.arguments && k in c.arguments && !(BY_NAME.get(c.name)?.args ?? "").split(", ").some((x) => x.replace(/\?.*$/, "").replace(/:.*$/, "") === k)) { if (a[k] === undefined) a[k] = c.arguments[k]; delete c.arguments[k]; }
     }
     // The SDK validates the outer envelope. Wrapping and lifting options changes that envelope,
     // so validate the resulting request again before loading or executing any tool.
-    a = RUN_INPUT.parse(a);
+    if (a.prove !== undefined && !receipts) throw new Error("prove needs a signed receipt: a proof is checked against the root the receipt carries, and this server holds no key to sign one. The hosted server (canlicapital.com/mcp/canli) signs its receipts; here, receipt: true gives the answer's SHA-256.");
+    a = (receipts ? RUN_PROVE : RUN_INPUT).parse(a);
     if (!a.calls && !a.name) throw new Error("Pass name (and arguments) for one call, or calls for several.");
     if (a.calls && a.name) throw new Error("Pass either name or calls, not both.");
     const calls = a.calls ?? [{ name: a.name, arguments: a.arguments }], files = [], opts = { digits: a.digits };
@@ -807,14 +813,18 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     // Where the server signs its receipts, the receipt also carries the root of a Merkle tree over the output's values
     // (answer-tree.mjs), so one value can later be proved with a short path instead of the whole output. A local
     // receipt, unsigned, proves nothing to anyone else, so it is spared the hashing (about 1.6 µs a value).
-    const tree = receipts ? answerRoot(output) : null;
+    const tree = receipts ? answerTree(output) : null;
     // Every answer's receipt goes to the client in _meta, with the sources the full results were read from.
     const parents = builtFrom(refsRead(calls), keeper);
     const quiet = calls.every((c) => (SELF[c.name] ? ["find_tool", "describe_tool", "show_result"].includes(c.name) : sendsNothing(BY_NAME.get(c.name)?.pack)));
     const kept = signedBy(receipts, { ...hashes, ...(tree ? { output_root: tree.root, output_values: tree.values } : {}), sources, at: new Date().toISOString(), ...(quiet ? { network: "none: every call ran where fetch is refused" } : {}), ...(parents.length ? { from: parents } : {}), ...(registered.length ? { after: registered } : {}) });
-    // receipt: true puts the receipt in the answer, with the documents it names, for receipt_check. Where the server
-    // signs its receipts it is the whole signed one, since a model rarely sees _meta.
-    const receipt = a.receipt ? (receipts ? kept : { ...hashes, sources }) : undefined;
+    // prove: each value named, as hashed, with its path up to the root the signed receipt carries. A pointer that names
+    // no single value gets its own error, and the rest are still proved.
+    const proofs = a.prove?.map((pointer) => { try { return tree.prove(pointer); } catch (e) { return { pointer, error: e.message }; } });
+    // receipt: true puts the receipt in the answer, with the documents it names, for receipt_check, and so does prove,
+    // whose proofs are checked against it. Where the server signs its receipts it is the whole signed one, since a model
+    // rarely sees _meta.
+    const receipt = a.receipt || proofs ? (receipts ? kept : { ...hashes, sources }) : undefined;
     for (const d of done) if (d.ref) keeper.sign(d.ref, kept);
     // After the receipt, which hashes the full results: an oversized one is sent as a preview.
     if (!a.select) for (const d of done) if (d.result !== undefined && !SELF[d.name]) d.result = leanResult(d.result, { name: d.name, ref: readOnly ? undefined : d.ref, seen: readLimits, digits: a.digits });
@@ -828,9 +838,9 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
       return out;
     };
     const sealed = (out) => { RECEIPTS.set(out, kept); return out; };
-    if (!a.calls) { if (done[0].error) throw new Error(done[0].error); return sealed(shown({ ...(done[0].ref ? { ref: done[0].ref } : {}), ...done[0].result, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) })); }
+    if (!a.calls) { if (done[0].error) throw new Error(done[0].error); return sealed(shown({ ...(done[0].ref ? { ref: done[0].ref } : {}), ...done[0].result, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}), ...(proofs ? { proofs } : {}) })); }
     const results = (a.return === "last" ? done.slice(-1) : done).map(({ name, ref, result, error }) => ({ name, ...(ref ? { ref } : {}), ...(error ? { error } : { result }) }));
-    return sealed(shown({ results, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) }));
+    return sealed(shown({ results, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}), ...(proofs ? { proofs } : {}) }));
   }));
   registerResources(server, packs, gov, { readOnly, vault, live });
   registerView(server);
