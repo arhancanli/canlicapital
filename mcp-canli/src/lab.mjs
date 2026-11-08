@@ -67,7 +67,8 @@ export function toMonthly(returns, dates) {
 export function openLab(dir) {
   if (!exists(join(dir, "manifest.json"))) throw new Error(`The Lab is not built on this machine. Build it once: npx -y canli-mcp lab build (downloads Kenneth French's daily files and runs about a million strategies; about 1.2 GB, minutes with --shards).`);
   const manifest = JSON.parse(readFileSync(join(dir, "manifest.json"), "utf8"));
-  const offsets = new Uint32Array(readFileSync(join(dir, "offsets.u32")).buffer.slice(0));
+  // A Buffer can sit inside a larger shared one (Node pools small reads): copy its own bytes, never .buffer whole.
+  const ob = readFileSync(join(dir, "offsets.u32")), offsets = new Uint32Array(ob.buffer.slice(ob.byteOffset, ob.byteOffset + ob.length));
   const statsBuf = readFileSync(join(dir, "stats.f32")), stats = new Float32Array(statsBuf.buffer, statsBuf.byteOffset, statsBuf.length / 4);
   const S = manifest.stats.length, V = manifest.variants, file = join(dir, "monthly.i16");
   const stat = (id, name) => stats[id * S + manifest.stats.indexOf(name)];

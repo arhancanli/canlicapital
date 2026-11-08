@@ -9,7 +9,7 @@ import { join } from "node:path";
 import test from "node:test";
 
 import { runBreadth } from "../src/breadth.mjs";
-import { breadthSweep, combinations, expectedMaxSharpe, loadInputs, summarize, TRIAL_RETURNS } from "../src/sweep.mjs";
+import { breadthSweep, combinations, expectedMaxSharpe, loadInputs, summarize, TRIAL_DATES, TRIAL_RETURNS } from "../src/sweep.mjs";
 
 function panel(path, seed0 = 7) {
   let seed = seed0; const rnd = () => { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648; };
@@ -68,6 +68,8 @@ test("a parallel sweep, and its shards merged, give the same ranking; each shard
       assert.deepEqual(handed[i], Float64Array.from(book, (v) => (Number.isNaN(v) ? 0 : v)), `variant ${k}`);
     }
     assert.ok(handed.every((x) => x.length === 700 && x.every(Number.isFinite) && x.some((v) => v !== 0)), "every date of the file");
+    assert.deepEqual(full[TRIAL_DATES], base.dates, "each day's date, the file's own");
+    assert.ok(!JSON.stringify(full).includes(base.dates[350]), "and JSON leaves them out");
     const s0 = await breadthSweep({}, { ...args, shard: { index: 0, of: 2 }, out_file: join(dir, "s0.json") });
     const s1 = await breadthSweep({}, { ...args, shard: { index: 1, of: 2 }, out_file: join(dir, "s1.json") });
     assert.equal(s0.ran + s1.ran, 4);
@@ -92,6 +94,8 @@ test("a parallel sweep, and its shards merged, give the same ranking; each shard
     assert.deepEqual(merged.rows, full.rows, "the shards add up to the full sweep");
     assert.deepEqual(merged.every_trial, full.every_trial);
     assert.equal(merged[TRIAL_RETURNS], undefined, "a merge has none: a session pools each shard's as it runs");
+    assert.equal(merged[TRIAL_DATES], undefined);
+    assert.deepEqual(s0[TRIAL_DATES], base.dates);
     await assert.rejects(breadthSweep({}, { merge_files: [join(dir, "s0.json"), join(dir, "s0.json")] }), /appears in two shards/);
     await breadthSweep({}, { ...args, prices_file: other, shard: { index: 1, of: 2 }, out_file: join(dir, "x1.json") });
     await assert.rejects(breadthSweep({}, { merge_files: [join(dir, "s0.json"), join(dir, "x1.json")] }), /not a shard of the same sweep/);
