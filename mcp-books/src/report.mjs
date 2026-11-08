@@ -37,10 +37,13 @@ const MAPS = {
     },
     totals: { assets: "Assets", liabilities: "Liabilities", equity: "StockholdersEquity", both: "LiabilitiesAndStockholdersEquity", retained: "RetainedEarningsAccumulatedDeficit", net: "NetIncomeLoss" },
     // In a filing, liabilities and equity add up with the minority interests in equity and any temporary
-    // (mezzanine) equity between them: the total if it is tagged, otherwise its two parts.
+    // (mezzanine) equity between them: each total if it is tagged, otherwise its parts.
     equityWithMinority: "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+    minority: "MinorityInterest",
     temporary: ["TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests", ["TemporaryEquityCarryingAmountAttributableToParent", "RedeemableNoncontrollingInterestEquityCarryingAmount"]],
-    nonNegative: ["Assets", "Liabilities", "Revenues", "CashAndCashEquivalentsAtCarryingValue"],
+    // Not Revenues: a commodity pool's, an investment firm's or a bank's can be below zero in the filing itself,
+    // net of trading or investment losses.
+    nonNegative: ["Assets", "Liabilities", "CashAndCashEquivalentsAtCarryingValue"],
   },
   "ifrs-full": {
     accounts: {
@@ -124,10 +127,11 @@ const where = (period) => (!period ? "" : isInstant(period) ? ` at ${period.inst
 // Checks on facts from any source, this book or a filing read elsewhere: each finding names its rule, the
 // concept and the numbers. The totals are checked period by period and unit by unit, since a filing also carries
 // last year's figures. prior: the last period's or the last filing's facts, for the scale check. untagged: a
-// filing may tag temporary equity in a concept of its own, which leaves liabilities and equity short of their
-// total by that amount, so the parts are then flagged only when they come to more than the total or when the
-// temporary equity is tagged.
-export function checkFacts(facts, { prior = [], taxonomy = "us-gaap", tolerance = 0, untagged = false } = {}) {
+// filing may tag temporary equity in a concept of its own, or only by class or series, which leaves liabilities
+// and equity short of their total by that amount, so the parts are then flagged only when they come to more than
+// the total or when the temporary equity is tagged, and a shortfall is said to be what such tags would leave.
+// rounded: the figures are rounded as filed, so a total may miss the sum of its parts by their rounding.
+export function checkFacts(facts, { prior = [], taxonomy = "us-gaap", tolerance = 0, untagged = false, rounded = false } = {}) {
   const map = mapFor(taxonomy);
   const t = map.totals;
   const findings = [];
@@ -147,19 +151,36 @@ export function checkFacts(facts, { prior = [], taxonomy = "us-gaap", tolerance 
     if (!instants.has(key)) instants.set(key, new Map());
     if (!instants.get(key).has(f.concept)) instants.get(key).set(f.concept, f.value);
   }
+  // A filed figure is rounded, to thousands say, by up to half its unit, so a total may miss the sum of its parts by
+  // half a unit for each figure. The unit is read from the figures: for each, the largest power of ten, up to a
+  // billion, that divides it (a figure filed in thousands ends in 000), and the smallest of these in the sum, since a
+  // figure in thousands can end in 000000 by chance.
+  const unitOf = (x) => {
+    let u = 1;
+    while (u < 1e9 && x % (u * 10) === 0) u *= 10;
+    return u;
+  };
+  const slack = (terms) => (rounded ? Math.max(tolerance, (terms.length * Math.min(...terms.map(unitOf))) / 2) : tolerance);
   for (const [key, v] of instants) {
     const [instant, unit] = key.split("|");
     const at = ` at ${instant}`;
     const [A, L, LE] = [v.get(t.assets), v.get(t.liabilities), v.get(t.both)];
-    const equityConcept = map.equityWithMinority && v.has(map.equityWithMinority) ? map.equityWithMinority : t.equity;
+    const withMinority = map.equityWithMinority && v.has(map.equityWithMinority);
+    const equityConcept = withMinority ? map.equityWithMinority : t.equity;
     const E = v.get(equityConcept);
+    const minority = !withMinority && map.minority && v.has(map.minority) ? v.get(map.minority) : undefined;
     const [whole, parts = []] = map.temporary ?? [];
     const tagged = v.has(whole) || parts.some((c) => v.has(c));
-    const temporary = v.get(whole) ?? parts.reduce((s, c) => s + (v.get(c) ?? 0), 0);
-    if (A !== undefined && LE !== undefined && Math.abs(A - LE) > tolerance) findings.push({ rule: "balance", concept: t.assets, unit, period: { instant }, value: A, detail: `${t.assets} ${A} is not ${t.both} ${LE}${at}` });
-    const gap = L !== undefined && E !== undefined && LE !== undefined ? L + temporary + E - LE : 0;
-    if (Math.abs(gap) > tolerance && (!untagged || tagged || gap > 0)) {
-      findings.push({ rule: "balance", concept: t.both, unit, period: { instant }, value: LE, detail: `${t.liabilities} ${L}${temporary ? ` plus temporary equity ${temporary}` : ""} plus ${equityConcept} ${E} is not ${t.both} ${LE}${at}` });
+    // One amount can be tagged as two of the parts (redeemable minority interests as both): it counts once.
+    const temporaries = v.has(whole) ? [v.get(whole)] : [...new Set(parts.filter((c) => v.has(c)).map((c) => v.get(c)))];
+    const temporary = temporaries.reduce((s, x) => s + x, 0);
+    if (A !== undefined && LE !== undefined && Math.abs(A - LE) > slack([A, LE])) findings.push({ rule: "balance", concept: t.assets, unit, period: { instant }, value: A, detail: `${t.assets} ${A} is not ${t.both} ${LE}${at}` });
+    if (L === undefined || E === undefined || LE === undefined) continue;
+    const terms = [L, ...temporaries, E, ...(minority === undefined ? [] : [minority])];
+    const gap = terms.reduce((s, x) => s + x, 0) - LE;
+    if (Math.abs(gap) > slack([...terms, LE]) && (!untagged || tagged || gap > 0)) {
+      const short = untagged && gap < 0 ? `: short by ${-gap}, as when temporary equity is tagged only by class or series` : "";
+      findings.push({ rule: "balance", concept: t.both, unit, period: { instant }, value: LE, detail: `${t.liabilities} ${L}${temporary ? ` plus temporary equity ${temporary}` : ""} plus ${equityConcept} ${E}${minority === undefined ? "" : ` plus ${map.minority} ${minority}`} is not ${t.both} ${LE}${at}${short}` });
     }
   }
   for (const f of facts) if (map.nonNegative.includes(f.concept) && f.value < 0) findings.push({ rule: "sign", concept: f.concept, unit: f.unit, period: f.period, value: f.value, detail: `${f.concept} is negative: ${f.value}${where(f.period)}` });
@@ -178,6 +199,9 @@ export function checkFacts(facts, { prior = [], taxonomy = "us-gaap", tolerance 
     earlier.set(key, [...(earlier.get(key) ?? []), q]);
   }
   for (const f of facts) {
+    // Not rates and percentages: an effective tax rate can be a thousand times last year's when pre-tax income is
+    // near zero. Counts are checked, since a count filed in thousands is a slip.
+    if (f.unit === "pure" && /Rate|Percent/.test(f.concept)) continue;
     const candidates = (earlier.get(`${f.concept}|${f.unit}|${isInstant(f.period)}`) ?? []).filter((q) => endOf(q.period) <= endOf(f.period) && alike(q, f));
     const same = candidates.find((q) => JSON.stringify(q.period) === JSON.stringify(f.period));
     const p = same ?? candidates.reduce((best, q) => (!best || endOf(q.period) > endOf(best.period) ? q : best), null);
@@ -225,7 +249,7 @@ export function checkSecFilings(companyfacts, { forms = SEC_FORMS, last = 8, tax
   const filings = [...secFactsByFiling(companyfacts, tax).values()].filter((x) => forms.includes(x.filing.form)).sort((a, b) => (a.filing.filed === b.filing.filed ? (a.filing.accession < b.filing.accession ? -1 : 1) : a.filing.filed < b.filing.filed ? -1 : 1));
   const before = new Map();
   const rows = filings.map(({ filing, facts }) => {
-    const checked = checkFacts(facts, { prior: before.get(filing.form) ?? [], taxonomy: tax, untagged: true });
+    const checked = checkFacts(facts, { prior: before.get(filing.form) ?? [], taxonomy: tax, untagged: true, rounded: true });
     before.set(filing.form, facts);
     return { ...filing, facts: facts.length, ...checked };
   });
