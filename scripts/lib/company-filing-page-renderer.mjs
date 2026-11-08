@@ -8,7 +8,7 @@ import { renderReferenceDocument, provenance, historicalFilerNotice } from './co
 import { historicalCutoff } from './company-coverage.mjs';
 import { filingPath, filingsIndexPath } from './company-filings.mjs';
 import { escapeXml as esc } from './sitemaps.mjs';
-import { companyLabel, displayCase, primaryTicker, titleLabel } from './company-label.mjs';
+import { companyLabel, displayCase, primaryTicker, registeredName, titleLabel } from './company-label.mjs';
 import { compactAmount } from './company-history-summary.mjs';
 import { DESCRIPTION_MAX } from './descriptions.mjs';
 
@@ -60,7 +60,7 @@ function validate(document) {
 }
 
 function company(document) {
-  return { name: document.name, cik: document.cik, fetched_at: document.fetched_at, source_url: document.source_url, source_sha256: document.source_sha256, source_snapshot: `/company-data/sources/${document.source_sha256}.json.gz`, policy: document.policy, claim_boundary: document.claim_boundary };
+  return { name: registeredName(document), cik: document.cik, fetched_at: document.fetched_at, source_url: document.source_url, source_sha256: document.source_sha256, source_snapshot: `/company-data/sources/${document.source_sha256}.json.gz`, policy: document.policy, claim_boundary: document.claim_boundary };
 }
 
 export function renderFilingsIndexPage(document, { robots = 'index, follow' } = {}) {
@@ -71,7 +71,7 @@ export function renderFilingsIndexPage(document, { robots = 'index, follow' } = 
   const thin = document.summary.thin_filings ? `<p>${document.summary.thin_filings} further ${document.summary.thin_filings === 1 ? 'filing tags' : 'filings tag'} fewer than eight published concepts and ${document.summary.thin_filings === 1 ? 'has' : 'have'} no page.</p>` : '';
   // The latest filing with published measures; the same two-year rule as the overview.
   const latest = document.filings[0];
-  const historicalNote = latest && latest.filed < historicalCutoff(document.fetched_at) ? historicalFilerNotice(document.name, { filed: latest.filed, form: latest.form }, document.fetched_at) : '';
+  const historicalNote = latest && latest.filed < historicalCutoff(document.fetched_at) ? historicalFilerNotice(registeredName(document), { filed: latest.filed, form: latest.form }, document.fetched_at) : '';
   return renderReferenceDocument({
     robots,
     path: filingsIndexPath(document.cik), lastmod: companyLastmod(document.fetched_at.slice(0, 10)), dataset, sources: [`company-data/${document.cik}.json`],

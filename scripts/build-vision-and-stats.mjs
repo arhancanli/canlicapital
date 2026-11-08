@@ -15,6 +15,7 @@ import { fileURLToPath } from "node:url";
 import { renderProductShellFooter, renderProductShellHeader, renderProductShellStylesheet } from "./product-shell.mjs";
 import { liveContext } from "./lib/mcp-flagship.mjs";
 import { OUT as STATS } from "./build-adoption-stats.mjs";
+import { clearDocument, crumbs, proof, receipt } from "./lib/clear-page.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const ORIGIN = "https://canlicapital.com";
@@ -98,15 +99,15 @@ const ORGANIZATION = {
 // figures are read from published files; a goal stays labelled as a goal.
 const PARTS = [
   { id: "mcp", n: "01", name: "MCP servers and API", status: ["live", "Live"],
-    goal: "The best finance tools for AI agents: primary-source data and quant tools behind one MCP server, for as few tokens as possible, proved on someone else's test.",
+    goal: "Finance tools for AI agents: primary-source data and quant tools behind one MCP server, for as few tokens as possible, measured on tests other people wrote.",
     today: (f) => [
       `canli-mcp puts ${f.tools} tools behind ${f.front}: SEC filings, fundamentals, Treasury and FRED data, prices, quant analytics, backtest validation and paper trading, in ${f.tokens} tokens of context.`,
-      `${f.onNpm} servers of the family are on npm, three of them also hosted at canlicapital.com/mcp.`,
+      `${f.onNpm} servers of the family are on npm, and canli-mcp and three of them are also hosted at canlicapital.com/mcp.`,
       `In the open benchmark, canli-mcp answered ${f.ours} of the questions every server finished; the best of the other open servers, ${f.best}.`],
-    next: "The independent test on public expert questions (Vals.ai's finance set and FinanceBench) against the strongest open servers, then canli-mcp 1.0, more servers in the family and a paid tier for developers.",
+    next: "The independent test on public expert questions (Vals.ai's finance set and FinanceBench) against the strongest open servers, then canli-mcp's first major version, more servers in the family and a paid tier for developers.",
     links: [["/mcp-servers", "canli-mcp and the servers"], ["/benchmarks/finance-mcp-servers", "The benchmark"]] },
   { id: "data", n: "02", name: "Data and annotation", status: ["next", "Started"],
-    goal: "Financial datasets to train and test AI models, computed from public filings and checked by qualified people. The aim is the best expert annotation in finance.",
+    goal: "Financial datasets to train and test AI models, computed from public filings and checked by qualified people. The aim is expert annotation that experts in finance trust.",
     today: (f) => [
       `FilingFacts asks AI models questions about what companies reported to the SEC. On their own, ${f.closedModel} answered ${f.closed} correctly; with a Canli MCP server reading the filings, ${f.mcp}.`,
       "Every answer is recomputed by an independent checker and cites its filing. No item is called human-verified until two people have checked it."],
@@ -134,7 +135,7 @@ const PARTS = [
     next: "Papers for peer review, and new tests built for the way AI agents now search through strategies.",
     links: [["/research", "Research"], ["/tools", "The calculators"]] },
   { id: "funds", n: "06", name: "The flagship funds", status: ["next", "Paper only"],
-    goal: "The destination all five branches feed: funds run from the US, open to investors worldwide under US rules, trading the best of everything above.",
+    goal: "The destination all five branches feed: funds run from the US, under US rules, once licensing, a legal entity and a forward record allow it.",
     today: () => [
       "A public paper-traded record, not funded, with every position, decision and broker reconciliation published.",
       "canli-paper-trading-mcp places Alpaca paper orders behind pre-trade checks and a kill switch."],
@@ -142,9 +143,27 @@ const PARTS = [
     links: [["/record", "The paper record"], ["/progress", "Corrections"]] },
 ];
 
-// The road, in the owner's order (tools first, the funds later). Goals, not dates already met.
-const ROAD = [
-  ["Now to mid-2027", "Tools developers pay for", "The best finance MCP servers, proved on independent tests; the first paid developer tier; the sleeve library opening to developers; ALPHAC adding new, uncorrelated families with a year of forward record."],
+// canli-mcp's next releases (owner, 6 Nov: live data, "a lab with millions of strategies and sleeves that will power
+// the tools", "our own finance models for all people", features nobody has; docs/goal/MCP_NEXT_20261106.md). Each is
+// labelled with what exists; nothing here is live until it is.
+export const NEXT = [
+  ["Live data you connect", "Building, November 2026", "Prices that update by themselves in your assistant: crypto from the exchanges' public feeds with no key, stocks through your own data key. On your own computer, under each provider's terms."],
+  ["Tests for forecasts and crashes", "Building, November 2026", "Whether one forecast really beats another, and thousands of synthetic crashes built from free daily data, to test a strategy against markets that have not happened yet."],
+  ["Your data stays yours", "Building, November 2026", "Run the maths on data you already pay for, on your own machine. Nothing is stored or sent."],
+  ["The Lab: a million strategies", "Planned, December 2026", "A library of a million strategies built from free data, every one counted. Ask whether your strategy is new, how it compares with the closest of the million, and whether it survives the luck of the search."],
+  ["Canli models for everyone", "Planned, from December 2026", "Open models anyone can use: factors, default risk, a nowcast of the economy, the range a company's own filings imply for its value, and the odds of an earnings surprise. Each is judged only on a public record that starts the day it launches, and none is advice."],
+  ["Checks no tool does yet", "Planned", "Whether a strategy is original, a reader that finds look-ahead and overfitting in a backtest, an alert when a company you follow restates or changes auditor, and the chain from any number back to the line it came from."],
+];
+
+// The next months, then the long road (owner's order: tools first, the funds later). Goals, not dates already met.
+export const NEAR = [
+  ["November 2026", "Live data and new tests in canli-mcp", "Live prices you connect, the forecast test and the crash generator, and your own data kept on your machine."],
+  ["December 2026", "The Lab, Canli Books and the challenge", "The first release of Canli Books, the Lab's library of strategies, Canli Report's first check, and the pilot season of the challenge."],
+  ["Early 2027", "Canli Close and the first models", "Bank reconciliation and month-end close on Canli Books, and Canli models with their first months of public record."],
+  ["Spring 2027", "Canli Audit", "Journal-entry tests, Benford's law and restatement risk for auditors and audit committees."],
+];
+export const ROAD = [
+  ["Mid-2027", "Tools developers pay for", "Finance MCP servers measured on independent tests; the first paid developer tier; the sleeve library opening to developers; ALPHAC adding new, uncorrelated families with a year of forward record."],
   ["2027", "The research platform", "The training environment and testing servers, the expert annotation network, and ALPHAC across asset classes with far more independent bets."],
   ["2028", "Groundwork for the funds", "The US company, counsel and compliance, and a real-money track record through the legal path, before any fund opens."],
 ];
@@ -162,41 +181,79 @@ export function visionFigures({ h2h, stats, leaderboard }) {
     month: stats.npm?.downloads_last_month_all_packages ?? null };
 }
 
-export function renderVision({ h2h, stats, leaderboard }) {
+// The product lines (owner's plan, 2026-11-03: docs/goal/COMPANIES_PLAN_20261103.md). Each starts as a product line under
+// the Canli Capital name and becomes its own company once it has paying customers; its status says what exists.
+export const LINES = [
+  ["Canli Markets", "live", "Live", "What this site is today: the claim checker, company data, canli-mcp and the research."],
+  ["Canli Data", "live", "Live", "Open datasets built from public filings, such as FilingFacts, to test and train AI models."],
+  ["Canli Research and the Lab", "live", "Live", "Research that keeps its failures, and a library of strategy sleeves developers can build on."],
+  ["Canli Books", "dev", "In development", "An open-source ledger that AI agents and apps can keep books in: every entry balances, a posted entry never changes and every balance traces to its entries. The first release is planned for December 2026."],
+  ["Canli Report", "plan", "Planned, from December 2026", "A free check of a filing's tagged numbers before it goes in, built on the errors found in real filings; later, the tagged statements themselves."],
+  ["Canli Close", "plan", "Planned, early 2027", "Bank reconciliation and month-end close on Canli Books, with QuickBooks and Xero imports."],
+  ["Canli Audit", "plan", "Planned, spring 2027", "Analytics for auditors and audit committees: journal-entry tests, Benford's law and restatement risk. Analytics only; audit opinions need licensed auditors."],
+  ["Canli Treasury and Planning", "plan", "Planned, mid-2027", "Cash forecasts, budgets and scenarios straight from the books."],
+  ["ALPHAC", "paper", "Paper only", "The open-source engine that combines many weakly related strategies. A public paper record, not funded."],
+  ["The funds", "later", "Later", "Funds run from the US, only after licensing, a legal entity and a forward record that justifies them."],
+];
+export const NEVER = ["Investment advice, or telling anyone what to buy or sell.", "Holding or moving anyone's money.", "Audit opinions or tax advice.", "Filing on anyone's behalf.", "Keeping a company's books on our servers before hosting has had its security work."];
+
+export function renderVision({ h2h, stats, leaderboard, fresh }) {
   const route = "/vision";
   const title = "What Canli Capital is building";
-  const description = "Canli Capital is building an open research platform for quants and AI agents in five branches: MCP servers, data, a sleeve library, ALPHAC and a breakthroughs lab.";
+  const description = "Canli Capital builds free tools that check financial numbers against their source: canli-mcp and the claim checker today, tools for companies and funds later.";
   const f = visionFigures({ h2h, stats, leaderboard });
-  const schema = { "@context": "https://schema.org", "@graph": [ORGANIZATION,
-    { "@type": "AboutPage", name: title, description, url: `${ORIGIN}${route}`, about: { "@id": `${ORIGIN}/#organization` } }, breadcrumbList(VISION_TRAIL)] };
-  const strip = [[f.tools, "finance tools behind one MCP server"], [String(f.onNpm), "servers of the family on npm"], ...(f.month === null ? [] : [[number(f.month), "npm downloads in the last 30 days"]]), [f.ours, `correct in the open benchmark; the best of the others, ${f.best}`], [f.mcp, `of FilingFacts questions right for ${f.closedModel} with a Canli MCP server, against ${f.closed} on its own`]];
-  const parts = PARTS.map((p) => `
-  <section class="vision-part" data-part="${p.id}" aria-labelledby="part-${p.id}">
-    <p class="vision-part__n">${p.n}</p>
-    <div class="vision-part__head"><h2 id="part-${p.id}">${esc(p.name)}</h2><em class="vision-chip vision-chip--${p.status[0]}">${esc(p.status[1])}</em></div>
-    <p class="vision-part__goal">${esc(p.goal)}</p>
-    <div class="vision-part__cols"><div><h3>Today</h3><ul>${p.today(f).map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div><div><h3>Next</h3><p>${esc(p.next)}</p></div></div>
-    <p class="vision-part__links">${p.links.map(([href, text]) => `<a href="${esc(href)}">${esc(text)}</a>`).join("")}</p>
-  </section>`).join("");
-  return `${head({ route, title, description, schema, sources: ["benchmarks/finance-mcp-servers.json", "stats/adoption.json", "datasets/filing-facts/v0/leaderboard.json"] }).replace('<main class="paper__main" id="content">\n  <article class="paper__article">', '<main class="vision" id="content">')}
-  <section class="vision-opening">
-    ${breadcrumbNav(VISION_TRAIL)}
-    <p class="vision-eyebrow">The vision</p>
-    <h1>Picture the market at dawn, every agent working from checked numbers</h1>
-    <p class="vision-lead">AI agents will research, test and trade at machine speed. The goal is to build the biggest research platform in finance and quant for them and for the people who direct them, in the open, in five branches: the tools they use, the data they learn from, a library of strategies to build on, an engine that combines them and new methods that keep them honest. Flagship funds from the US are where the best of it is meant to trade.</p>
-    <div class="vision-actions"><a href="#parts">The five branches</a><a href="/mcp-servers">Start with canli-mcp</a></div>
-  </section>
-  <section class="flagship-figures" aria-label="Where it stands today"><ul>${strip.map(([value, label]) => `<li><b>${esc(value)}</b><span>${esc(label)}</span></li>`).join("")}</ul></section>
-  <section class="vision-intro dev-section flagship-section" id="parts"><p class="eyebrow">Five branches, one destination</p><h2>What it stands on</h2><p class="flagship-intro">Financial software was built for people at terminals. More and more of the work is now done by AI agents. Each branch feeds the others: developers come for the tools and data and build in the library, the most different strategies feed ALPHAC, the methods keep every result honest, and the funds' record brings more developers. Everything is open source and published as it is built, including the tests that fail; each branch says what exists today and what comes next, and a goal stays a goal until it is built and measured.</p></section>
-  <div class="vision-parts">${parts}
-  </div>
-  <section class="dev-section flagship-section vision-road" aria-labelledby="road-h"><p class="eyebrow">The road</p><h2 id="road-h">Tools first, the funds later</h2><ol class="vision-road__steps">${ROAD.map(([when, name, what]) => `<li><p class="vision-part__n">${esc(when)}</p><h3>${esc(name)}</h3><p>${esc(what)}</p></li>`).join("")}</ol><p class="flagship-intro">Every target here is a target until it is built and measured, and a Sharpe ratio counts only on a forward record after real costs.</p></section>
-  <section class="dev-section flagship-section vision-follow"><p class="eyebrow">Follow and use it</p><h2>Build on it</h2><p class="vision-part__links"><a href="/mcp-servers">Install canli-mcp</a><a href="/developers">Developer guide</a><a href="/stats">Usage</a><a href="https://github.com/arhancanli/canlicapital">Source on GitHub</a><a href="/founder">The founder</a></p></section>
-</main>
-${renderProductShellFooter()}
-</body>
-</html>
-`;
+  const week = fresh.weeks[0], tooled = week.runs.find((r) => r.with);
+  const schema = [ORGANIZATION, { "@context": "https://schema.org", "@type": "AboutPage", name: title, description, url: `${ORIGIN}${route}`, about: { "@id": `${ORIGIN}/#organization` } }];
+  const trail = VISION_TRAIL.map(([name, href]) => [name === "Canli Capital" ? "Home" : name, href]);
+  const chip = (tone, text) => `<span class="cl-status cl-status--${tone}">${esc(text)}</span>`;
+  const body = `<section class="cl-hero">
+<div>
+${crumbs(trail)}
+<p class="cl-kicker">The vision</p>
+<h1>Every financial number, with its source.</h1>
+<p class="cl-lede">Canli Capital builds free, open tools that read the numbers companies publish and check them, for people deciding about their money and for the AI assistants that now help them. It starts with checking. It grows into tools for the companies that make the numbers, and later into funds.</p>
+<div class="cl-actions"><a class="cl-button" href="#lines">See every product line</a><a class="cl-quiet" href="/mcp-servers">Start with canli-mcp</a></div>
+</div>
+${receipt({
+    head: "Where it stands",
+    question: "What exists, what is being built and what is still a plan",
+    rows: [["Live", "Checker, company data, canli-mcp"], ["In development", "Canli Books"], ["Planned", "Report, Close, Audit, Planning"], ["Later", "Funds, after licensing"]],
+    stamp: "Plans labelled as plans", right: true,
+    caption: "Every figure on this page is read from a published file; a goal stays labelled as a goal.",
+  })}
+</section>
+${proof([
+    [f.tools, "finance tools in canli-mcp, free and open source"],
+    [String(f.onNpm), "servers of the family on npm"],
+    ...(f.month === null ? [] : [[number(f.month), "npm downloads in the last 30 days"]]),
+    [`${tooled.correct} of ${tooled.questions}`, "questions about last week's filings answered right with canli-mcp"],
+  ], "Where it stands today")}
+<section class="cl-section" id="who"><p class="cl-eyebrow">Who it is for</p><h2>Three kinds of people, one rule: show the source</h2>
+<ul class="cl-grid">
+<li class="cl-card"><h3>People deciding about their money</h3><p>Check a number you heard against what the company filed, read a company's figures in plain words, and learn to read the reports yourself. Free, and never advice.</p><a class="cl-more" href="/">Check a number</a></li>
+<li class="cl-card"><h3>People building with AI</h3><p>canli-mcp gives AI assistants SEC filings, market and economic data and ${esc(f.tools)} finance tools, each answer naming its source.</p><a class="cl-more" href="/mcp-servers">Add canli-mcp</a></li>
+<li class="cl-card"><h3>Researchers and quants</h3><p>Tests that tell skill from luck, open datasets, and every trial published, including the ones that failed.</p><a class="cl-more" href="/research">The research</a></li>
+</ul></section>
+<div class="cl-band"><section class="cl-section" id="lines"><p class="cl-eyebrow">The product lines</p><h2>From the numbers investors read to the books companies keep</h2>
+<p class="cl-intro">Each starts as a product line under the Canli Capital name and becomes its own company once it has paying customers. The label on each says what exists today.</p>
+<ul class="cl-grid">${LINES.map(([name, tone, status, text]) => `<li class="cl-card">${chip(tone, status)}<h3>${esc(name)}</h3><p>${esc(text)}</p></li>`).join("")}</ul></section></div>
+<section class="cl-section" id="fit"><p class="cl-eyebrow">How they fit</p><h2>One engine underneath</h2>
+<p class="cl-intro">Every number keeps its source and every check is recorded, in each product. A figure recorded in Books is closed in Close, filed through Report, tested by Audit, planned in Planning and read by investors in Markets, so each new product starts mostly built.</p></section>
+<div class="cl-band"><section class="cl-section" id="next"><p class="cl-eyebrow">The next releases</p><h2>canli-mcp next: live data, a lab of a million strategies, our own models</h2>
+<p class="cl-intro">Planned in this order. Each ships tested, names its sources, and stays labelled as building or planned until it is live.</p>
+<ul class="cl-grid">${NEXT.map(([name, status, text]) => `<li class="cl-card">${chip(/^Building/.test(status) ? "dev" : "plan", status)}<h3>${esc(name)}</h3><p>${esc(text)}</p></li>`).join("")}</ul></section></div>
+<section class="cl-section" id="branches"><p class="cl-eyebrow">The research side</p><h2>Five branches, one destination</h2>
+<p class="cl-intro">What each part is for, what exists today and what comes next.</p>
+<ul class="cl-grid">${PARTS.map((p) => `<li class="cl-card">${chip(p.status[0] === "live" ? "live" : "plan", p.status[1])}<h3>${esc(p.name)}</h3><p>${esc(p.goal)}</p><p><strong>Today.</strong> ${p.today(f).map(esc).join(" ")}</p><p><strong>Next.</strong> ${esc(p.next)}</p><a class="cl-more" href="${esc(p.links[0][0])}">${esc(p.links[0][1])}</a></li>`).join("")}</ul></section>
+<div class="cl-band"><section class="cl-section" id="challenge"><p class="cl-eyebrow">For students and investors</p><h2>A challenge judged on data nobody has seen</h2>
+<p class="cl-intro">A public challenge where strategies run on data held back from everyone, with every entry's luck counted, and professors invited as judges. The pilot season is planned for December 2026; the rules come before it opens.</p></section></div>
+<section class="cl-section" id="road"><p class="cl-eyebrow">The road</p><h2>The next months, then the long road</h2>
+<p class="cl-intro">Goals with the month they are aimed at. A date that slips is shown as slipped, not quietly moved.</p>
+<ol class="cl-steps">${[...NEAR, ...ROAD].map(([when, name, what]) => `<li><p class="cl-count">${esc(when)}</p><h3>${esc(name)}</h3><p>${esc(what)}</p></li>`).join("")}</ol></section>
+<section class="cl-section" id="never"><p class="cl-eyebrow">Lines we do not cross</p><h2>What Canli Capital will not do</h2>
+<ul class="cl-never">${NEVER.map((line) => `<li>${esc(line)}</li>`).join("")}</ul>
+<p class="cl-note">Targets stay targets until they are measured. Nothing here is investment advice or an offer. <a href="/progress">Corrections</a> · <a href="/founder">Who builds it</a> · <a href="/stats">Usage</a></p></section>`;
+  return clearDocument({ route, title, description, body, active: "vision", page: "vision", trail, structured: schema, sources: "benchmarks/finance-mcp-servers.json stats/adoption.json datasets/filing-facts/v0/leaderboard.json benchmarks/fresh-filings.json" });
 }
 
 export function renderStats(stats) {
@@ -234,7 +291,7 @@ ${foot}`;
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const read = (path) => JSON.parse(readFileSync(resolve(ROOT, path), "utf8"));
-  writeFileSync(resolve(ROOT, "vision.html"), renderVision({ h2h: read("public/benchmarks/finance-mcp-servers.json"), stats: read(STATS), leaderboard: read("public/datasets/filing-facts/v0/leaderboard.json") }));
+  writeFileSync(resolve(ROOT, "vision.html"), renderVision({ h2h: read("public/benchmarks/finance-mcp-servers.json"), stats: read(STATS), leaderboard: read("public/datasets/filing-facts/v0/leaderboard.json"), fresh: read("public/benchmarks/fresh-filings.json") }));
   writeFileSync(resolve(ROOT, "stats.html"), renderStats(JSON.parse(readFileSync(resolve(ROOT, STATS), "utf8"))));
   console.log("  /vision and /stats built");
 }

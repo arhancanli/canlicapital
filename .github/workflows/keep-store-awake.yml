@@ -1,0 +1,27 @@
+# The validation API keeps its keys and quotas, the waitlist its sign-ups, and the company pages their files in
+# the Supabase project canlicapital. On 6 November 2026 every company page and keyed validation answered 503:
+# an invoice had gone unpaid, so Supabase moved the organization to the Free plan and paused its projects, and
+# nothing here noticed. This asks the API's status endpoint twice a day. A run that finds the store unreachable,
+# for any reason, fails, and GitHub emails the owner. The endpoint runs one small database query, which also
+# keeps a Free-plan project from pausing after a week without one.
+name: Keep the store awake
+
+on:
+  schedule:
+    - cron: "41 5,17 * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Ask the validation API whether it reaches its store
+        run: |
+          body="$(curl -sS --retry 3 --retry-delay 20 --retry-all-errors --max-time 30 https://canlicapital.com/api/v1/validate/status)" || { echo "The status endpoint did not answer." >> "$GITHUB_STEP_SUMMARY"; exit 1; }
+          # A retried request prints every answer it got, so read the last one.
+          reachable="$(printf '%s' "$body" | jq -rs 'last | .data.store_reachable | tostring')" || reachable="unreadable"
+          echo "store_reachable: $reachable" >> "$GITHUB_STEP_SUMMARY"
+          if [ "$reachable" != "true" ]; then echo "The store is unreachable: restore the Supabase project (dashboard, project canlicapital, Restore)." >> "$GITHUB_STEP_SUMMARY"; exit 1; fi

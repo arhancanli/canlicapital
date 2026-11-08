@@ -11,16 +11,16 @@ import { StdioClientTransport } from "@modelcontextprotocol/client/stdio";
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 async function connect() {
   const c = new Client({ name: "stdio-test", version: "0" });
-  await c.connect(new StdioClientTransport({ command: process.execPath, args: ["--import", path.join(HERE, "replay-preload.mjs"), path.join(HERE, "../src/server.mjs")], env: { PATH: process.env.PATH ?? "", HOME: process.env.HOME ?? "" } }));
+  await c.connect(new StdioClientTransport({ command: process.execPath, args: ["--import", path.join(HERE, "replay-preload.mjs"), path.join(HERE, "../src/server.mjs")], env: { PATH: process.env.PATH ?? "", HOME: process.env.HOME ?? "", CANLI_DISK_CACHE: "0" }}));
   return c;
 }
 
-test("seventy-eight tools, byte-identical across launches, all read-only", async () => {
+test("one hundred and thirty-nine tools, byte-identical across launches, all read-only", async () => {
   const lists = [];
   for (let i = 0; i < 2; i++) { const c = await connect(); lists.push(JSON.stringify(await c.listTools())); await c.close(); }
   assert.equal(lists[0], lists[1]);
   const tools = JSON.parse(lists[0]).tools;
-  assert.deepEqual(tools.map((t) => t.name).sort(), ["bank_financials", "comment_letters", "company_events", "company_profile", "company_report", "comps", "compute_prices", "consumer_complaints", "credit_cycle", "crypto_fundamentals", "debt_profile", "dividend_history", "drug_pipeline", "earnings_calendar", "earnings_release", "economic_calendar", "economic_outlook", "economic_series", "enforcement_actions", "european_filings", "event_study", "executive_pay", "explain_move", "exposure_map", "fails_to_deliver", "federal_contracts", "federal_debt", "federal_rules", "figure_trace", "filing_diff", "filing_drift", "filing_memory", "filing_sentiment", "filing_tables", "financial_statements", "fomc", "forensic_scores", "fund_holdings", "fund_portfolio", "funding_rates", "futures_curve", "futures_positioning", "guidance_record", "index_constituents", "insider_trades", "investment_advisers", "ipo_pipeline", "large_holders", "latest_filings", "latest_price", "legal_entity", "list_filings", "market_overview", "mentions_trend", "news", "off_exchange_volume", "options_chain", "ownership_breadth", "page_attention", "planned_insider_sales", "portfolio_xray", "prediction_markets", "price_history", "private_offerings", "product_recalls", "read_filing", "reference_rates", "reverse_dcf", "sanctions_check", "screen_companies", "search_filings", "security_identifiers", "segment_revenue", "shareholder_returns", "shipping_activity", "short_interest", "stock_snapshot", "technical_indicators", "token_check", "treasury_auctions", "treasury_yields", "verify_claims", "volatility_surface", "what_happened_next", "world_economy", "world_yields"]);
+  assert.deepEqual(tools.map((t) => t.name).sort(), ["analyst_history", "audit_signals", "bank_financials", "bond_offerings", "buybacks", "central_bank_speeches", "comment_letters", "commodity_prices", "company_emissions", "company_events", "company_profile", "company_report", "comps", "compute_prices", "congress_trades", "consumer_complaints", "consumer_expectations", "credit_cycle", "crop_outlook", "crypto_fundamentals", "crypto_markets", "crypto_options", "debt_profile", "default_risk", "dividend_history", "drug_pipeline", "earnings_calendar", "earnings_move", "earnings_release", "earnings_season", "economic_calendar", "economic_outlook", "economic_series", "energy_report", "enforcement_actions", "etf_profile", "european_filings", "event_study", "executive_pay", "explain_move", "exposure_map", "factor_returns", "fails_to_deliver", "fed_liquidity", "fed_speeches", "federal_budget", "federal_contracts", "federal_debt", "federal_rules", "figure_trace", "filing_check", "filing_diff", "filing_drift", "filing_memory", "filing_sentiment", "filing_tables", "financial_conditions", "financial_cycle", "financial_statements", "fomc", "forensic_scores", "fund_holdings", "fund_portfolio", "funding_rates", "futures_curve", "futures_positioning", "gdp_nowcast", "guidance_record", "housing_market", "index_constituents", "inflation_breakdown", "inflation_nowcast", "insider_trades", "investment_advisers", "ipo_pipeline", "job_postings", "labor_market", "large_holders", "latest_filings", "latest_price", "legal_entity", "list_filings", "lockup_calendar", "margin_debt", "market_breadth", "market_calendar", "market_hours", "market_movers", "market_overview", "mentions_trend", "money_markets", "news", "off_exchange_volume", "options_chain", "options_sentiment", "ownership_breadth", "page_attention", "planned_insider_sales", "portfolio_rules", "portfolio_xray", "prediction_markets", "price_history", "private_offerings", "product_recalls", "rate_expectations", "read_filing", "recession_watch", "reference_rates", "release_check", "reserve_currencies", "reverse_dcf", "sanctions_check", "scenario_risk", "screen_companies", "search_filings", "security_identifiers", "segment_revenue", "shareholder_returns", "shipping_activity", "short_interest", "source_check", "standardized_financials", "state_economy", "stock_snapshot", "technical_indicators", "token_check", "trade_flows", "trade_ticks", "treasury_auctions", "treasury_cash", "treasury_holders", "treasury_yields", "unusual_options", "verify_claims", "volatility_surface", "what_happened_next", "world_economy", "world_series", "world_yields"]);
   for (const t of tools) {
     assert.equal(t.annotations.readOnlyHint, true, t.name);
     assert.equal(t.annotations.openWorldHint, true, t.name);
@@ -51,6 +51,45 @@ test("bad input and an unknown symbol come back as tool errors that say what to 
 // against the tool's output schema, so a mismatch fails here, not for a user. Arguments pin the dates
 // the fixtures were captured for (the spawned server runs on the real clock).
 const NEW_TOOL_CALLS = [
+  ["earnings_season", { since: "2026-10-27", until: "2026-11-04" }],
+  ["earnings_move", { company: "AAPL" }],
+  ["money_markets", {}],
+  ["market_breadth", { index: "Dow" }],
+  ["financial_conditions", {}],
+  ["labor_market", {}],
+  ["central_bank_speeches", { limit: 5 }],
+  ["commodity_prices", {}],
+  ["fed_speeches", { limit: 5 }],
+  ["inflation_breakdown", {}],
+  ["state_economy", { state: "TX" }],
+  ["recession_watch", {}],
+  ["options_sentiment", { days: 5 }],
+  ["margin_debt", {}],
+  ["consumer_expectations", {}],
+  ["gdp_nowcast", {}],
+  ["housing_market", {}],
+  ["reserve_currencies", {}],
+  ["job_postings", {}],
+  ["rate_expectations", {}],
+  ["inflation_nowcast", {}],
+  ["fed_liquidity", {}],
+  ["energy_report", { by_district: true }],
+  ["treasury_holders", { country: "China" }],
+  ["crop_outlook", { commodity: "corn" }],
+  ["world_series", { series: "imf:CPI/IND.CPI._T.YOY_PCH_PA_PT.M", periods: 3 }],
+  ["world_series", { country: "euro area", measure: "core inflation" }],
+  ["factor_returns", { model: "carhart", start: "2025-01", end: "2025-06" }],
+  ["treasury_cash", { flows: true }],
+  ["federal_budget", {}],
+  ["crypto_options", { currency: "BTC" }],
+  ["congress_trades", { member: "mcguire", reports: 1 }],
+  ["market_calendar", { kind: "earnings", date: "2026-11-05", min_market_cap: 100000000000 }],
+  ["crypto_markets", { limit: 5 }],
+  ["company_emissions", { company: "Exxon", year: 2023 }],
+  ["unusual_options", { symbol: "AAPL" }],
+  ["filing_check", { company: "AAPL", form: "10-Q" }],
+  ["source_check", { sources: [{ url: "https://www.sec.gov/Archives/edgar/data/320193/000114036126015711/ef20071035_8k.htm", sha256_16: "0123456789abcdef" }] }],
+  ["buybacks", { company: "MSFT", quarterly: true, periods: 4 }],
   ["shareholder_returns", { company: "AAPL", price: false }],
   ["financial_statements", { company: "MSFT", filings: 2 }],
   ["financial_statements", { company: "NVDA", statement: "income", filings: 2, fiscal_year: 2025 }],
@@ -77,6 +116,7 @@ const NEW_TOOL_CALLS = [
   ["company_events", { company: "AAPL", event: "executive_change", since: "2025-01-01", limit: 3 }],
   ["private_offerings", { company: "2159753" }],
   ["short_interest", { symbol: "GME" }],
+  ["portfolio_rules", { holdings: [{ symbol: "GME", shares: 1000000, value: 25000000 }] }],
   ["futures_positioning", { market: "gold" }],
   ["fails_to_deliver", { symbol: "GME" }],
   ["executive_pay", { company: "NVDA" }],
@@ -87,6 +127,15 @@ const NEW_TOOL_CALLS = [
   ["options_chain", { symbol: "AAPL", window: 0.03 }],
   ["volatility_surface", { symbol: "SPX", expirations: 6 }],
   ["futures_curve", {}],
+  ["scenario_risk", { holdings: [{ symbol: "SPY", weight: 0.6 }, { symbol: "TLT", weight: 0.4 }], scenario: "pandemic_crash" }],
+  ["trade_ticks", { pair: "BTC/USD", start: "2024-01-01", requests: 2 }],
+  ["trade_flows", { reporter: "United States", product: "semiconductors" }],
+  ["standardized_financials", { companies: ["AAPL"], years: 3 }],
+  ["financial_cycle", { countries: ["CA", "AU", "CN", "US", "AR"], periods: 4 }],
+  ["bond_offerings", { company: "AAPL", years: 7, deals: 8 }],
+  ["release_check", { company: "751978", period: "2024-03-31" }],
+  ["audit_signals", { company: "1056358", signal: "auditor_change", limit: 2 }],
+  ["lockup_calendar", { company: "2077709" }],
 ];
 test("every tool this release adds answers over stdio within its output schema", async (t) => {
   const c = await connect(); t.after(() => c.close());

@@ -5,7 +5,7 @@ import { z } from "zod";
 
 import { getJson, NotFound } from "./sources.mjs";
 
-const BROWSER = "Mozilla/5.0 (compatible; canli-markets-mcp)";
+export const BROWSER = "Mozilla/5.0 (compatible; canli-markets-mcp)";
 const MODULES = "price,financialData,defaultKeyStatistics,summaryDetail,recommendationTrend,earningsTrend,calendarEvents,majorHoldersBreakdown";
 const FRESH_MS = 60 * 60 * 1000;
 
@@ -13,8 +13,11 @@ export const snapshotInput = z.object({
   symbol: z.string().min(1).max(20).describe("The ticker on Yahoo Finance: AAPL, BRK-B, 7203.T, SHEL.L."),
 }).strict();
 
-// Yahoo asks for a cookie and a token, both free and needing no account; kept for an hour.
-async function access(session) {
+// Yahoo asks for a cookie and a token, both free and needing no account; kept for an hour. Every tool that reads
+// Yahoo's quote summary or screener comes through here, so a server with keyless prices off (CANLI_KEYLESS_PRICES=0,
+// as the hosted one runs: Yahoo's data is for personal use under its terms) reads none of it either.
+export async function access(session) {
+  if (/^(0|false|no)$/i.test(String(session.env?.CANLI_KEYLESS_PRICES ?? ""))) throw new Error("Yahoo Finance's data is off on this server (CANLI_KEYLESS_PRICES=0): it is for personal use under Yahoo's terms. On the hosted server, run the local one: npx -y canli-mcp.");
   if (session.yahooAccess && session.now() - session.yahooAccess.at < FRESH_MS) return session.yahooAccess;
   const headers = { "User-Agent": BROWSER };
   const home = await session.fetchImpl("https://fc.yahoo.com/", { headers, redirect: "manual", signal: AbortSignal.timeout(15000) });

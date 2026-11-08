@@ -1,0 +1,1156 @@
+{
+ "schema": "canli.placebo-evaluation.v2",
+ "bars": {
+  "alpha": 0.05,
+  "size_max": 0.065,
+  "size_max_why": "1,000 simulated tests per cell give a Monte Carlo standard error of 0.69 percentage points at a true size of 5%; 6.5% is about 2.2 standard errors above.",
+  "cell_roles": {
+   "tsfm": {
+    "iid_normal": "exchangeable",
+    "garch_const": "claim_false",
+    "garch_meanvar": "report",
+    "trend_0.2": "power"
+   },
+   "csfm": {
+    "iid_normal": "exchangeable",
+    "garch_const": "claim_false",
+    "garch_meanvar": "report",
+    "trend_0.2": "power"
+   },
+   "indmom": {
+    "iid_normal": "exchangeable",
+    "garch_const": "claim_false",
+    "garch_meanvar": "report",
+    "trend_0.2": "power"
+   },
+   "vmf": {
+    "iid_normal": "exchangeable",
+    "garch_const": "power",
+    "garch_meanvar": "claim_false",
+    "trend_0.2": "report"
+   }
+  }
+ },
+ "calibration": {
+  "cells": [
+   {
+    "claim": "tsfm",
+    "family": "iid_normal",
+    "tests": 1000,
+    "rejection": 0.053,
+    "naive": 0.98,
+    "bonferroni": 0.73,
+    "role": "exchangeable"
+   },
+   {
+    "claim": "tsfm",
+    "family": "garch_const",
+    "tests": 1000,
+    "rejection": 0.077,
+    "naive": 0.977,
+    "bonferroni": 0.763,
+    "role": "claim_false"
+   },
+   {
+    "claim": "tsfm",
+    "family": "garch_meanvar",
+    "tests": 1000,
+    "rejection": 0.052,
+    "naive": 0.986,
+    "bonferroni": 0.749,
+    "role": "report"
+   },
+   {
+    "claim": "tsfm",
+    "family": "trend_0.2",
+    "tests": 1000,
+    "rejection": 0.838,
+    "naive": 1,
+    "bonferroni": 0.998,
+    "role": "power"
+   },
+   {
+    "claim": "csfm",
+    "family": "iid_normal",
+    "tests": 1000,
+    "rejection": 0.041,
+    "naive": 0.95,
+    "bonferroni": 0.633,
+    "role": "exchangeable"
+   },
+   {
+    "claim": "csfm",
+    "family": "garch_const",
+    "tests": 1000,
+    "rejection": 0.066,
+    "naive": 0.971,
+    "bonferroni": 0.66,
+    "role": "claim_false"
+   },
+   {
+    "claim": "csfm",
+    "family": "garch_meanvar",
+    "tests": 1000,
+    "rejection": 0.046,
+    "naive": 0.968,
+    "bonferroni": 0.681,
+    "role": "report"
+   },
+   {
+    "claim": "csfm",
+    "family": "trend_0.2",
+    "tests": 1000,
+    "rejection": 0.926,
+    "naive": 1,
+    "bonferroni": 1,
+    "role": "power"
+   },
+   {
+    "claim": "vmf",
+    "family": "iid_normal",
+    "tests": 1000,
+    "rejection": 0.044,
+    "naive": 0.524,
+    "bonferroni": 0.021,
+    "role": "exchangeable"
+   },
+   {
+    "claim": "vmf",
+    "family": "garch_const",
+    "tests": 1000,
+    "rejection": 0.274,
+    "naive": 0.779,
+    "bonferroni": 0.199,
+    "role": "power"
+   },
+   {
+    "claim": "vmf",
+    "family": "garch_meanvar",
+    "tests": 1000,
+    "rejection": 0.046,
+    "naive": 0.39,
+    "bonferroni": 0.015,
+    "role": "claim_false"
+   },
+   {
+    "claim": "vmf",
+    "family": "trend_0.2",
+    "tests": 1000,
+    "rejection": 0.064,
+    "naive": 0.553,
+    "bonferroni": 0.025,
+    "role": "report"
+   },
+   {
+    "claim": "indmom",
+    "family": "iid_normal",
+    "tests": 1000,
+    "rejection": 0.056,
+    "naive": 0.998,
+    "bonferroni": 0.902,
+    "role": "exchangeable"
+   },
+   {
+    "claim": "indmom",
+    "family": "garch_const",
+    "tests": 1000,
+    "rejection": 0.06,
+    "naive": 1,
+    "bonferroni": 0.899,
+    "role": "claim_false"
+   },
+   {
+    "claim": "indmom",
+    "family": "garch_meanvar",
+    "tests": 1000,
+    "rejection": 0.048,
+    "naive": 0.999,
+    "bonferroni": 0.884,
+    "role": "report"
+   },
+   {
+    "claim": "indmom",
+    "family": "trend_0.2",
+    "tests": 1000,
+    "rejection": 1,
+    "naive": 1,
+    "bonferroni": 1,
+    "role": "power"
+   }
+  ],
+  "failures": [
+   {
+    "claim": "tsfm",
+    "family": "garch_const",
+    "tests": 1000,
+    "rejection": 0.077,
+    "naive": 0.977,
+    "bonferroni": 0.763,
+    "role": "claim_false"
+   },
+   {
+    "claim": "csfm",
+    "family": "garch_const",
+    "tests": 1000,
+    "rejection": 0.066,
+    "naive": 0.971,
+    "bonferroni": 0.66,
+    "role": "claim_false"
+   }
+  ],
+  "code_check_failures": [],
+  "labelled_pipelines": [
+   "tsfm",
+   "csfm"
+  ]
+ },
+ "real": [
+  {
+   "claim": "tsfm",
+   "test": "in_sample_search",
+   "months": [
+    196901,
+    201512
+   ],
+   "scored_months": 564,
+   "rules": 84,
+   "rule": {
+    "universe": "with_umd",
+    "lookback": 60,
+    "skip": 0,
+    "hold": 1
+   },
+   "real": 0.797766,
+   "naive_p": 0,
+   "bonferroni_p": 0.000002,
+   "placebos": 999,
+   "as_good_as_real": 749,
+   "p_value": 0.75,
+   "placebo": {
+    "median": 0.862319,
+    "q95": 1.031461,
+    "max": 1.191427
+   },
+   "family": "primary",
+   "holm_p": 1
+  },
+  {
+   "claim": "tsfm",
+   "test": "oos_published",
+   "months": [
+    201601,
+    202609
+   ],
+   "scored_months": 129,
+   "rules": 1,
+   "rule": {
+    "universe": "no_umd",
+    "lookback": 12,
+    "skip": 0,
+    "hold": 1
+   },
+   "real": 0.399219,
+   "naive_p": 0.095279,
+   "bonferroni_p": 0.095279,
+   "placebos": 999,
+   "as_good_as_real": 147,
+   "p_value": 0.148,
+   "placebo": {
+    "median": 0.102164,
+    "q95": 0.572464,
+    "max": 1.036441
+   },
+   "family": "primary",
+   "holm_p": 0.444
+  },
+  {
+   "claim": "tsfm",
+   "test": "oos_selected",
+   "months": [
+    201601,
+    202609
+   ],
+   "scored_months": 129,
+   "rules": 1,
+   "rule": {
+    "universe": "with_umd",
+    "lookback": 60,
+    "skip": 0,
+    "hold": 1
+   },
+   "real": 0.420747,
+   "naive_p": 0.083869,
+   "bonferroni_p": 0.083869,
+   "placebos": 999,
+   "as_good_as_real": 87,
+   "p_value": 0.088,
+   "placebo": {
+    "median": 0.099514,
+    "q95": 0.475296,
+    "max": 0.824203
+   },
+   "family": "secondary",
+   "holm_p": 1
+  },
+  {
+   "claim": "tsfm",
+   "test": "oos_search",
+   "months": [
+    201601,
+    202609
+   ],
+   "scored_months": 129,
+   "rules": 84,
+   "rule": {
+    "universe": "no_umd",
+    "lookback": 12,
+    "skip": 1,
+    "hold": 6
+   },
+   "real": 0.479329,
+   "naive_p": 0.058023,
+   "bonferroni_p": 1,
+   "placebos": 999,
+   "as_good_as_real": 651,
+   "p_value": 0.652,
+   "placebo": {
+    "median": 0.546789,
+    "q95": 0.926186,
+    "max": 1.440854
+   },
+   "family": "secondary",
+   "holm_p": 1
+  },
+  {
+   "claim": "tsfm",
+   "test": "full_search",
+   "months": [
+    196901,
+    202609
+   ],
+   "scored_months": 693,
+   "rules": 84,
+   "rule": {
+    "universe": "with_umd",
+    "lookback": 60,
+    "skip": 0,
+    "hold": 1
+   },
+   "real": 0.722482,
+   "naive_p": 0,
+   "bonferroni_p": 0.000002,
+   "placebos": 999,
+   "as_good_as_real": 310,
+   "p_value": 0.311,
+   "placebo": {
+    "median": 0.678703,
+    "q95": 0.831496,
+    "max": 1.068746
+   },
+   "family": "secondary",
+   "holm_p": 1
+  },
+  {
+   "claim": "csfm",
+   "test": "in_sample_search",
+   "months": [
+    196901,
+    201512
+   ],
+   "scored_months": 564,
+   "rules": 84,
+   "rule": {
+    "universe": "with_umd",
+    "lookback": 1,
+    "skip": 0,
+    "hold": 1,
+    "side": "half"
+   },
+   "real": 0.574612,
+   "naive_p": 0.000041,
+   "bonferroni_p": 0.003432,
+   "placebos": 999,
+   "as_good_as_real": 2,
+   "p_value": 0.003,
+   "placebo": {
+    "median": 0.245266,
+    "q95": 0.419327,
+    "max": 0.594774
+   },
+   "family": "primary",
+   "holm_p": 0.018
+  },
+  {
+   "claim": "csfm",
+   "test": "oos_published",
+   "months": [
+    201601,
+    202609
+   ],
+   "scored_months": 129,
+   "rules": 1,
+   "rule": {
+    "universe": "no_umd",
+    "lookback": 12,
+    "skip": 0,
+    "hold": 1,
+    "side": "half"
+   },
+   "real": 0.549182,
+   "naive_p": 0.035882,
+   "bonferroni_p": 0.035882,
+   "placebos": 999,
+   "as_good_as_real": 67,
+   "p_value": 0.068,
+   "placebo": {
+    "median": 0.147453,
+    "q95": 0.598621,
+    "max": 0.943378
+   },
+   "family": "primary",
+   "holm_p": 0.272
+  },
+  {
+   "claim": "csfm",
+   "test": "oos_selected",
+   "months": [
+    201601,
+    202609
+   ],
+   "scored_months": 129,
+   "rules": 1,
+   "rule": {
+    "universe": "with_umd",
+    "lookback": 1,
+    "skip": 0,
+    "hold": 1,
+    "side": "half"
+   },
+   "real": -0.065139,
+   "naive_p": 0.584559,
+   "bonferroni_p": 0.584559,
+   "placebos": 999,
+   "as_good_as_real": 641,
+   "p_value": 0.642,
+   "placebo": {
+    "median": 0.038072,
+    "q95": 0.577808,
+    "max": 1.183994
+   },
+   "family": "secondary",
+   "holm_p": 1
+  },
+  {
+   "claim": "csfm",
+   "test": "oos_search",
+   "months": [
+    201601,
+    202609
+   ],
+   "scored_months": 129,
+   "rules": 84,
+   "rule": {
+    "universe": "no_umd",
+    "lookback": 36,
+    "skip": 0,
+    "hold": 1,
+    "side": "half"
+   },
+   "real": 0.550102,
+   "naive_p": 0.035645,
+   "bonferroni_p": 1,
+   "placebos": 999,
+   "as_good_as_real": 609,
+   "p_value": 0.61,
+   "placebo": {
+    "median": 0.604424,
+    "q95": 0.92769,
+    "max": 1.24448
+   },
+   "family": "secondary",
+   "holm_p": 1
+  },
+  {
+   "claim": "csfm",
+   "test": "full_search",
+   "months": [
+    196901,
+    202609
+   ],
+   "scored_months": 693,
+   "rules": 84,
+   "rule": {
+    "universe": "no_umd",
+    "lookback": 1,
+    "skip": 0,
+    "hold": 1,
+    "side": "half"
+   },
+   "real": 0.475055,
+   "naive_p": 0.000153,
+   "bonferroni_p": 0.012855,
+   "placebos": 999,
+   "as_good_as_real": 7,
+   "p_value": 0.008,
+   "placebo": {
+    "median": 0.240052,
+    "q95": 0.397322,
+    "max": 0.560415
+   },
+   "family": "secondary",
+   "holm_p": 0.152
+  },
+  {
+   "claim": "vmf",
+   "test": "in_sample_search",
+   "months": [
+    196401,
+    201512
+   ],
+   "scored_months": 624,
+   "rules": 36,
+   "rule": {
+    "factor": "vm:UMD",
+    "window": 3,
+    "power": 1
+   },
+   "real": 0.965219,
+   "naive_p": 0,
+   "bonferroni_p": 0,
+   "placebos": 999,
+   "as_good_as_real": 0,
+   "p_value": 0.001,
+   "placebo": {
+    "median": 0.259261,
+    "q95": 0.416787,
+    "max": 0.564609
+   },
+   "family": "primary",
+   "holm_p": 0.008
+  },
+  {
+   "claim": "vmf",
+   "test": "oos_published",
+   "months": [
+    201601,
+    202609
+   ],
+   "scored_months": 129,
+   "rules": 6,
+   "rule": null,
+   "real": -0.064645,
+   "naive_p": null,
+   "bonferroni_p": null,
+   "placebos": 999,
+   "as_good_as_real": 714,
+   "p_value": 0.715,
+   "placebo": {
+    "median": 0.00009,
+    "q95": 0.212349,
+    "max": 0.395146
+   },
+   "family": "primary",
+   "holm_p": 1
+  },
+  {
+   "claim": "vmf",
+   "test": "oos_selected",
+   "months": [
+    201601,
+    202609
+   ],
+   "scored_months": 129,
+   "rules": 1,
+   "rule": {
+    "factor": "vm:UMD",
+    "window": 3,
+    "power": 1
+   },
+   "real": 0.405113,
+   "naive_p": 0.092147,
+   "bonferroni_p": 0.092147,
+   "placebos": 999,
+   "as_good_as_real": 96,
+   "p_value": 0.097,
+   "placebo": {
+    "median": -0.020254,
+    "q95": 0.525834,
+    "max": 0.935292
+   },
+   "family": "secondary",
+   "holm_p": 1
+  },
+  {
+   "claim": "vmf",
+   "test": "oos_search",
+   "months": [
+    201601,
+    202609
+   ],
+   "scored_months": 129,
+   "rules": 36,
+   "rule": {
+    "factor": "vm:UMD",
+    "window": 6,
+    "power": 1
+   },
+   "real": 0.511397,
+   "naive_p": 0.046872,
+   "bonferroni_p": 1,
+   "placebos": 999,
+   "as_good_as_real": 578,
+   "p_value": 0.579,
+   "placebo": {
+    "median": 0.544582,
+    "q95": 0.87205,
+    "max": 1.296991
+   },
+   "family": "secondary",
+   "holm_p": 1
+  },
+  {
+   "claim": "vmf",
+   "test": "full_search",
+   "months": [
+    196401,
+    202609
+   ],
+   "scored_months": 753,
+   "rules": 36,
+   "rule": {
+    "factor": "vm:UMD",
+    "window": 3,
+    "power": 1
+   },
+   "real": 0.903084,
+   "naive_p": 0,
+   "bonferroni_p": 0,
+   "placebos": 999,
+   "as_good_as_real": 0,
+   "p_value": 0.001,
+   "placebo": {
+    "median": 0.231465,
+    "q95": 0.370313,
+    "max": 0.508639
+   },
+   "family": "secondary",
+   "holm_p": 0.024
+  },
+  {
+   "claim": "indmom",
+   "test": "in_sample_search",
+   "months": [
+    196507,
+    199507
+   ],
+   "scored_months": 361,
+   "rules": 64,
+   "rule": {
+    "universe": "ind30",
+    "lookback": 1,
+    "skip": 0,
+    "hold": 1,
+    "side": "third"
+   },
+   "real": 1.195224,
+   "naive_p": 0,
+   "bonferroni_p": 0,
+   "placebos": 999,
+   "as_good_as_real": 0,
+   "p_value": 0.001,
+   "placebo": {
+    "median": 0.268003,
+    "q95": 0.491,
+    "max": 0.666534
+   },
+   "family": "primary",
+   "holm_p": 0.008
+  },
+  {
+   "claim": "indmom",
+   "test": "oos_published",
+   "months": [
+    199508,
+    202609
+   ],
+   "scored_months": 374,
+   "rules": 1,
+   "rule": {
+    "universe": "ind30",
+    "lookback": 6,
+    "skip": 0,
+    "hold": 6,
+    "side": "third"
+   },
+   "real": 0.391992,
+   "naive_p": 0.014321,
+   "bonferroni_p": 0.014321,
+   "placebos": 999,
+   "as_good_as_real": 14,
+   "p_value": 0.015,
+   "placebo": {
+    "median": 0.005242,
+    "q95": 0.284972,
+    "max": 0.598201
+   },
+   "family": "primary",
+   "holm_p": 0.075
+  },
+  {
+   "claim": "indmom",
+   "test": "oos_selected",
+   "months": [
+    199508,
+    202609
+   ],
+   "scored_months": 374,
+   "rules": 1,
+   "rule": {
+    "universe": "ind30",
+    "lookback": 1,
+    "skip": 0,
+    "hold": 1,
+    "side": "third"
+   },
+   "real": 0.221552,
+   "naive_p": 0.10807,
+   "bonferroni_p": 0.10807,
+   "placebos": 999,
+   "as_good_as_real": 113,
+   "p_value": 0.114,
+   "placebo": {
+    "median": -0.006353,
+    "q95": 0.307101,
+    "max": 0.679986
+   },
+   "family": "secondary",
+   "holm_p": 1
+  },
+  {
+   "claim": "indmom",
+   "test": "oos_search",
+   "months": [
+    199508,
+    202609
+   ],
+   "scored_months": 374,
+   "rules": 64,
+   "rule": {
+    "universe": "ind30",
+    "lookback": 12,
+    "skip": 0,
+    "hold": 1,
+    "side": "third"
+   },
+   "real": 0.508107,
+   "naive_p": 0.00228,
+   "bonferroni_p": 0.145902,
+   "placebos": 999,
+   "as_good_as_real": 48,
+   "p_value": 0.049,
+   "placebo": {
+    "median": 0.274076,
+    "q95": 0.504727,
+    "max": 0.721142
+   },
+   "family": "secondary",
+   "holm_p": 0.833
+  },
+  {
+   "claim": "indmom",
+   "test": "full_search",
+   "months": [
+    196507,
+    202609
+   ],
+   "scored_months": 735,
+   "rules": 64,
+   "rule": {
+    "universe": "ind30",
+    "lookback": 12,
+    "skip": 0,
+    "hold": 1,
+    "side": "third"
+   },
+   "real": 0.654828,
+   "naive_p": 0,
+   "bonferroni_p": 0.00001,
+   "placebos": 999,
+   "as_good_as_real": 0,
+   "p_value": 0.001,
+   "placebo": {
+    "median": 0.200686,
+    "q95": 0.356186,
+    "max": 0.489834
+   },
+   "family": "secondary",
+   "holm_p": 0.024
+  },
+  {
+   "claim": "vmf_mkt",
+   "test": "in_sample_search",
+   "months": [
+    192701,
+    201512
+   ],
+   "scored_months": 1068,
+   "rules": 6,
+   "rule": {
+    "factor": "vm:Mkt-RF",
+    "window": 1,
+    "power": 1
+   },
+   "real": 0.335269,
+   "naive_p": 0.000843,
+   "bonferroni_p": 0.005058,
+   "placebos": 999,
+   "as_good_as_real": 4,
+   "p_value": 0.005,
+   "placebo": {
+    "median": 0.075868,
+    "q95": 0.247818,
+    "max": 0.449075
+   },
+   "family": "secondary",
+   "holm_p": 0.105
+  },
+  {
+   "claim": "vmf_mkt",
+   "test": "oos_published",
+   "months": [
+    201601,
+    202609
+   ],
+   "scored_months": 129,
+   "rules": 1,
+   "rule": {
+    "factor": "vm:Mkt-RF",
+    "window": 1,
+    "power": 2
+   },
+   "real": 0.115183,
+   "naive_p": 0.356707,
+   "bonferroni_p": 0.356707,
+   "placebos": 999,
+   "as_good_as_real": 368,
+   "p_value": 0.369,
+   "placebo": {
+    "median": 0.011594,
+    "q95": 0.521054,
+    "max": 0.965489
+   },
+   "family": "secondary",
+   "holm_p": 1
+  },
+  {
+   "claim": "vmf_smb",
+   "test": "in_sample_search",
+   "months": [
+    192701,
+    201512
+   ],
+   "scored_months": 1068,
+   "rules": 6,
+   "rule": {
+    "factor": "vm:SMB",
+    "window": 6,
+    "power": 2
+   },
+   "real": -0.027495,
+   "naive_p": 0.60212,
+   "bonferroni_p": 1,
+   "placebos": 999,
+   "as_good_as_real": 864,
+   "p_value": 0.865,
+   "placebo": {
+    "median": 0.065333,
+    "q95": 0.197653,
+    "max": 0.350702
+   },
+   "family": "secondary",
+   "holm_p": 1
+  },
+  {
+   "claim": "vmf_smb",
+   "test": "oos_published",
+   "months": [
+    201601,
+    202609
+   ],
+   "scored_months": 129,
+   "rules": 1,
+   "rule": {
+    "factor": "vm:SMB",
+    "window": 1,
+    "power": 2
+   },
+   "real": -0.282417,
+   "naive_p": 0.822346,
+   "bonferroni_p": 0.822346,
+   "placebos": 999,
+   "as_good_as_real": 822,
+   "p_value": 0.823,
+   "placebo": {
+    "median": 0.020649,
+    "q95": 0.579762,
+    "max": 1.089158
+   },
+   "family": "secondary",
+   "holm_p": 1
+  },
+  {
+   "claim": "vmf_hml",
+   "test": "in_sample_search",
+   "months": [
+    192701,
+    201512
+   ],
+   "scored_months": 1068,
+   "rules": 6,
+   "rule": {
+    "factor": "vm:HML",
+    "window": 3,
+    "power": 1
+   },
+   "real": 0.252228,
+   "naive_p": 0.009014,
+   "bonferroni_p": 0.054087,
+   "placebos": 999,
+   "as_good_as_real": 9,
+   "p_value": 0.01,
+   "placebo": {
+    "median": 0.06609,
+    "q95": 0.201782,
+    "max": 0.302414
+   },
+   "family": "secondary",
+   "holm_p": 0.18
+  },
+  {
+   "claim": "vmf_hml",
+   "test": "oos_published",
+   "months": [
+    201601,
+    202609
+   ],
+   "scored_months": 129,
+   "rules": 1,
+   "rule": {
+    "factor": "vm:HML",
+    "window": 1,
+    "power": 2
+   },
+   "real": -0.369514,
+   "naive_p": 0.887153,
+   "bonferroni_p": 0.887153,
+   "placebos": 999,
+   "as_good_as_real": 890,
+   "p_value": 0.891,
+   "placebo": {
+    "median": 0.024276,
+    "q95": 0.514765,
+    "max": 0.92628
+   },
+   "family": "secondary",
+   "holm_p": 1
+  },
+  {
+   "claim": "vmf_umd",
+   "test": "in_sample_search",
+   "months": [
+    192707,
+    201512
+   ],
+   "scored_months": 1062,
+   "rules": 6,
+   "rule": {
+    "factor": "vm:UMD",
+    "window": 3,
+    "power": 1
+   },
+   "real": 0.948077,
+   "naive_p": 0,
+   "bonferroni_p": 0,
+   "placebos": 999,
+   "as_good_as_real": 0,
+   "p_value": 0.001,
+   "placebo": {
+    "median": 0.130437,
+    "q95": 0.358771,
+    "max": 0.559057
+   },
+   "family": "secondary",
+   "holm_p": 0.024
+  },
+  {
+   "claim": "vmf_umd",
+   "test": "oos_published",
+   "months": [
+    201601,
+    202609
+   ],
+   "scored_months": 129,
+   "rules": 1,
+   "rule": {
+    "factor": "vm:UMD",
+    "window": 1,
+    "power": 2
+   },
+   "real": 0.166258,
+   "naive_p": 0.292923,
+   "bonferroni_p": 0.292923,
+   "placebos": 999,
+   "as_good_as_real": 335,
+   "p_value": 0.336,
+   "placebo": {
+    "median": 0.004419,
+    "q95": 0.542416,
+    "max": 1.004602
+   },
+   "family": "secondary",
+   "holm_p": 1
+  },
+  {
+   "claim": "vmf_rmw",
+   "test": "in_sample_search",
+   "months": [
+    196401,
+    201512
+   ],
+   "scored_months": 624,
+   "rules": 6,
+   "rule": {
+    "factor": "vm:RMW",
+    "window": 1,
+    "power": 2
+   },
+   "real": 0.445764,
+   "naive_p": 0.000704,
+   "bonferroni_p": 0.004222,
+   "placebos": 999,
+   "as_good_as_real": 5,
+   "p_value": 0.006,
+   "placebo": {
+    "median": 0.10804,
+    "q95": 0.334206,
+    "max": 0.480878
+   },
+   "family": "secondary",
+   "holm_p": 0.12
+  },
+  {
+   "claim": "vmf_rmw",
+   "test": "oos_published",
+   "months": [
+    201601,
+    202609
+   ],
+   "scored_months": 129,
+   "rules": 1,
+   "rule": {
+    "factor": "vm:RMW",
+    "window": 1,
+    "power": 2
+   },
+   "real": 0.258663,
+   "naive_p": 0.198786,
+   "bonferroni_p": 0.198786,
+   "placebos": 999,
+   "as_good_as_real": 205,
+   "p_value": 0.206,
+   "placebo": {
+    "median": -0.009651,
+    "q95": 0.486922,
+    "max": 0.910298
+   },
+   "family": "secondary",
+   "holm_p": 1
+  },
+  {
+   "claim": "vmf_cma",
+   "test": "in_sample_search",
+   "months": [
+    196401,
+    201512
+   ],
+   "scored_months": 624,
+   "rules": 6,
+   "rule": {
+    "factor": "vm:CMA",
+    "window": 6,
+    "power": 2
+   },
+   "real": 0.156696,
+   "naive_p": 0.13196,
+   "bonferroni_p": 0.791758,
+   "placebos": 999,
+   "as_good_as_real": 294,
+   "p_value": 0.295,
+   "placebo": {
+    "median": 0.092206,
+    "q95": 0.28058,
+    "max": 0.525277
+   },
+   "family": "secondary",
+   "holm_p": 1
+  },
+  {
+   "claim": "vmf_cma",
+   "test": "oos_published",
+   "months": [
+    201601,
+    202609
+   ],
+   "scored_months": 129,
+   "rules": 1,
+   "rule": {
+    "factor": "vm:CMA",
+    "window": 1,
+    "power": 2
+   },
+   "real": -0.276042,
+   "naive_p": 0.817284,
+   "bonferroni_p": 0.817284,
+   "placebos": 999,
+   "as_good_as_real": 796,
+   "p_value": 0.797,
+   "placebo": {
+    "median": 0.013201,
+    "q95": 0.508563,
+    "max": 0.874643
+   },
+   "family": "secondary",
+   "holm_p": 1
+  }
+ ],
+ "claims": [
+  {
+   "claim": "tsfm",
+   "label": "Time-series factor momentum",
+   "in_sample": "not below",
+   "out_of_sample": "not below",
+   "caveat": "the simulated claim-false cell for this pipeline exceeded the size bar: a small p-value here shows time-series structure, not the claim"
+  },
+  {
+   "claim": "csfm",
+   "label": "Cross-sectional factor momentum",
+   "in_sample": "below",
+   "out_of_sample": "not below",
+   "caveat": "the simulated claim-false cell for this pipeline exceeded the size bar: a small p-value here shows time-series structure, not the claim"
+  },
+  {
+   "claim": "vmf",
+   "label": "Volatility-managed factors",
+   "in_sample": "below",
+   "out_of_sample": "not below",
+   "caveat": null
+  },
+  {
+   "claim": "indmom",
+   "label": "Industry momentum",
+   "in_sample": "below",
+   "out_of_sample": "not below",
+   "caveat": null
+  }
+ ]
+}

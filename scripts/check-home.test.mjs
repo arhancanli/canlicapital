@@ -90,7 +90,9 @@ test("the counter takes only known action names, and needs no storage to answer"
 test("the homepage does one job, in few words, and the privacy page says what is counted", () => {
   const html = readFileSync("index.html", "utf8");
   const main = html.slice(html.indexOf("<main"), html.indexOf("</main>")).replace(/<[^>]+>/g, " ");
-  assert.ok(main.split(/\s+/).length < 190, "words on the homepage");
+  // 190 held the checker, what it covers and the email form; the three facts behind a check and the three doors
+  // under it (scripts/build-home-doors.mjs) take about ninety more. Anything beyond that has to earn its place.
+  assert.ok(main.split(/\s+/).length < 280, "words on the homepage");
   assert.equal((html.match(/<h1/g) ?? []).length, 1);
   assert.match(html, /id="check-form"/);
   const privacy = readFileSync("privacy.html", "utf8");

@@ -1,7 +1,8 @@
 // The time machine: start the server as of a past date, and every tool sees only what was public on
 // that day. A model can then be tested on the past without being handed the future: its filings stop
 // at that date, its prices stop at that date, and a tool that cannot be held to the date is switched
-// off and says so. It is set when the server starts and no call can change it.
+// off and says so. It is set when the server starts and no call can change it. One run_tool call can also
+// be asked as of a date (its as_of): the same locks for that call only, and never later than the server's date.
 //
 // Three locks. A tool is allowed only if it is on this list. Its arguments are held to the date. And
 // whatever comes back is read before it goes out: a table row dated later is dropped without a count,
@@ -13,8 +14,8 @@ const DAY = /^\d{4}-\d{2}-\d{2}/;
 const minusDays = (date, n) => new Date(Date.parse(`${date}T00:00:00Z`) - n * 86400000).toISOString().slice(0, 10);
 const atMost = (x, d) => (x && x < d ? x : d);
 export const parseAsOf = (value) => {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value)) || Number.isNaN(Date.parse(`${value}T00:00:00Z`))) throw new Error(`--as-of needs a date as YYYY-MM-DD, not ${value}.`);
-  if (value > new Date().toISOString().slice(0, 10)) throw new Error(`--as-of ${value} is in the future.`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value)) || Number.isNaN(Date.parse(`${value}T00:00:00Z`))) throw new Error(`The as-of date must be YYYY-MM-DD, not ${value}.`);
+  if (value > new Date().toISOString().slice(0, 10)) throw new Error(`The as-of date ${value} is in the future.`);
   return value;
 };
 
@@ -35,6 +36,7 @@ const HELD = {
   history: { args: (a, d) => ({ ...a, basis: "as_of", as_of: atMost(a.as_of, d) }), drop: ["changed"] },
   cross_section: { args: asOfArg, drop: ["changed_after", "snapshot_date"] },
   vintages: {},
+  vintage_diff: { args: (a, d) => ({ ...a, from: atMost(a.from, d), to: atMost(a.to, d) }) },
   find_company: {},
   financial_statements: { args: filedBefore },
   filing_tables: { args: filedBefore },
@@ -53,7 +55,8 @@ const HELD = {
   pit_factor: { args: endArg(365 * 5) },
   treasury_yields: { args: (a, d) => (a.date ? { ...a, date: atMost(a.date, d) } : endArg(365)(a, d)) },
   reference_rates: { args: endArg(365) },
-  economic_series: { args: endArg(365 * 5), warning: REVISED },
+  // ALFRED's vintage of the date: what had been published by then, at the values then shown; revisions would tell of later ones.
+  economic_series: { args: (a, d) => { const { revisions: _later, ...rest } = a; return { ...endArg(365 * 5)(rest, d), as_of: atMost(a.as_of, d) }; } },
   world_economy: { args: (a, d) => { const year = Number(d.slice(0, 4)); return { ...a, end: Math.min(a.end ?? year, year), start: Math.min(a.start ?? year - 10, year) }; }, warning: REVISED },
   federal_debt: { args: endArg(365) },
   news: { args: endArg(30) },
@@ -62,14 +65,21 @@ const HELD = {
 // Tools that only work on what they are given, or on files and ledgers the caller holds.
 const GIVEN_PACKS = new Set(["quant", "validation"]);
 const GIVEN = new Set(["list_factors", "cpcv", "crisis_replay", "effective_bets", "find_diversifiers", "agent_consensus", "breadth_signals", "league_new", "league_commit", "league_score", "proof_file", "proof_find", "proof_verify", "arena_new", "arena_orders", "arena_step", "exchange_new", "exchange_join", "exchange_view", "exchange_orders", "exchange_step", "exchange_report", "exchange_run"]);
-const SELF_ALLOWED = new Set(["find_tool", "describe_tool", "show_result", "swarm"]);
+// red_team runs its strategy tool through the same locks, so it may run under them.
+const SELF_ALLOWED = new Set(["find_tool", "describe_tool", "show_result", "swarm", "holdout_set", "holdout_test", "holdout_status", "preregister", "red_team"]);
 // Fields that are not claims about the world's date: where a figure came from, and how to read it.
 const EXEMPT = new Set(["limits", "meaning", "note", "notes", "source", "sources", "url", "urls", "text", "next", "plain_reading", "how_to_check", "expiration", "expiry", "maturity", "maturity_date", "definitions", "time_machine", "fetched_at", "retrieved_at", "generated_at", "tickers_as_of"]);
 
-export function createTimeMachine(asOf) {
+// call: a machine for one run_tool call (its as_of), not for the whole server; the same three locks.
+// reason: why the date holds, when it is not the call's own (a holdout), for the refusal.
+export function createTimeMachine(asOf, { call = false, reason = null } = {}) {
   const d = parseAsOf(asOf);
   const admits = (name, pack) => Boolean(HELD[name]) || GIVEN.has(name) || GIVEN_PACKS.has(pack);
-  const refuse = (name) => new Error(`${name} cannot be held to ${d}, so it is off in this run. This server is running as of ${d}: tools that read the world show only what was public by then. find_tool lists what is on.`);
+  const refuse = (name) => new Error(reason
+    ? `${name} cannot be held to ${d}, so it is off ${reason}. Tools that read the world answer only when they can show just what was public by ${d}; find_tool lists them.`
+    : call
+      ? `${name} cannot be held to ${d}, so it cannot answer as of that date. Tools that read the world answer as of a date only when they can show just what was public by then; find_tool lists them.`
+      : `${name} cannot be held to ${d}, so it is off in this run. This server is running as of ${d}: tools that read the world show only what was public by then. find_tool lists what is on.`);
   return {
     asOf: d,
     admits,

@@ -1,6 +1,6 @@
 # Canli Capital
 
-> Canli Capital is an open-source lab that connects AI agents to financial data and quant tools they can check. Its flagship MCP server, canli-mcp, reads SEC filings, market data and economic statistics at the source and puts 388 finance tools behind five, with interactive charts in the chat. It is free, MIT-licensed and needs no API key or account. Built and maintained by Arhan Canli.
+> Canli Capital is an open-source lab that connects AI agents to financial data and quant tools they can check. Its flagship MCP server, canli-mcp, reads SEC filings, market data and economic statistics at the source and puts 442 finance tools behind five, with interactive charts in the chat. It is free, MIT-licensed and needs no API key or account. Built and maintained by Arhan Canli.
 
 ## Claim boundary: read this before summarising anything on this site
 
@@ -15,10 +15,10 @@
 
 Free and open source, with no API key and no account. We make these, so weigh that; the comparison pages say what other servers do better.
 
-- canli-mcp: SEC filings, market data, economic statistics and backtests in one server. Run `npx -y canli-mcp`, or connect to https://canlicapital.com/mcp/canli with nothing to install.
+- [canli-mcp](https://canlicapital.com/mcp-servers): SEC filings, market data, economic statistics and backtests in one server; the latest release is 0.21.0. Run `npx -y canli-mcp`, or connect to https://canlicapital.com/mcp/canli with nothing to install.
 - [canli-markets-mcp](https://canlicapital.com/mcp-servers/markets): SEC filings and statements as filed, insider trades, 13F holders, options chains, Treasury yields, FRED and central banks, with no key. Run `npx -y canli-markets-mcp`.
 - [canli-backtest-mcp](https://canlicapital.com/mcp-servers/backtest): Point-in-time factors from SEC filings, backtests with lookahead blocked in code, costs on the actual trades, and a ledger of every variant. Run `npx -y canli-backtest-mcp`.
-- [canli-quant-mcp](https://canlicapital.com/mcp-servers/quant): 235 quant tools: performance and risk, options and exotics, fixed income, portfolios, econometrics, indicators and 399 strategy sleeves. Run `npx -y canli-quant-mcp`.
+- [canli-quant-mcp](https://canlicapital.com/mcp-servers/quant): 236 quant tools: performance and risk, options and exotics, fixed income, portfolios, econometrics, indicators and 399 strategy sleeves. Run `npx -y canli-quant-mcp`.
 - [canli-paper-trading-mcp](https://canlicapital.com/mcp-servers/paper-trading): An agent trades your Alpaca paper account behind your own limits, a kill switch and confirmation tokens. Live keys are refused. Run `npx -y canli-paper-trading-mcp`.
 - [canli-validation-mcp](https://canlicapital.com/mcp-servers/validation): Is your best backtest real? Deflated Sharpe, overfitting probability and data-snooping tests, with signed receipts. Run `npx -y canli-validation-mcp`.
 - [canli-fundamentals-mcp](https://canlicapital.com/mcp-servers/fundamentals): What a company reported, and when: first-reported values, what was known on any date, and later restatements flagged. Run `npx -y canli-fundamentals-mcp`.
@@ -29,6 +29,26 @@ Free and open source, with no API key and no account. We make these, so weigh th
 - [Connect Claude to stock data](https://canlicapital.com/mcp-servers/answers/connect-claude-to-stock-data)
 - [Free SEC EDGAR MCP server](https://canlicapital.com/mcp-servers/answers/free-sec-edgar-mcp-server)
 
+## What Canli Capital is working toward
+
+Goals, each labelled with what exists; nothing planned is live until it says so. The whole plan: https://canlicapital.com/vision
+
+- Live data you connect (canli-mcp, Building, November 2026): Prices that update by themselves in your assistant: crypto from the exchanges' public feeds with no key, stocks through your own data key. On your own computer, under each provider's terms.
+- Tests for forecasts and crashes (canli-mcp, Building, November 2026): Whether one forecast really beats another, and thousands of synthetic crashes built from free daily data, to test a strategy against markets that have not happened yet.
+- Your data stays yours (canli-mcp, Building, November 2026): Run the maths on data you already pay for, on your own machine. Nothing is stored or sent.
+- The Lab: a million strategies (canli-mcp, Planned, December 2026): A library of a million strategies built from free data, every one counted. Ask whether your strategy is new, how it compares with the closest of the million, and whether it survives the luck of the search.
+- Canli models for everyone (canli-mcp, Planned, from December 2026): Open models anyone can use: factors, default risk, a nowcast of the economy, the range a company's own filings imply for its value, and the odds of an earnings surprise. Each is judged only on a public record that starts the day it launches, and none is advice.
+- Checks no tool does yet (canli-mcp, Planned): Whether a strategy is original, a reader that finds look-ahead and overfitting in a backtest, an alert when a company you follow restates or changes auditor, and the chain from any number back to the line it came from.
+- November 2026, Live data and new tests in canli-mcp: Live prices you connect, the forecast test and the crash generator, and your own data kept on your machine.
+- December 2026, The Lab, Canli Books and the challenge: The first release of Canli Books, the Lab's library of strategies, Canli Report's first check, and the pilot season of the challenge.
+- Early 2027, Canli Close and the first models: Bank reconciliation and month-end close on Canli Books, and Canli models with their first months of public record.
+- Spring 2027, Canli Audit: Journal-entry tests, Benford's law and restatement risk for auditors and audit committees.
+- Mid-2027, Tools developers pay for: Finance MCP servers measured on independent tests; the first paid developer tier; the sleeve library opening to developers; ALPHAC adding new, uncorrelated families with a year of forward record.
+- 2027, The research platform: The training environment and testing servers, the expert annotation network, and ALPHAC across asset classes with far more independent bets.
+- 2028, Groundwork for the funds: The US company, counsel and compliance, and a real-money track record through the legal path, before any fund opens.
+- Product lines, each becoming its own company once it has paying customers: Canli Markets (Live); Canli Data (Live); Canli Research and the Lab (Live); Canli Books (In development); Canli Report (Planned, from December 2026); Canli Close (Planned, early 2027); Canli Audit (Planned, spring 2027); Canli Treasury and Planning (Planned, mid-2027); ALPHAC (Paper only); The funds (Later).
+- What it will not do: Investment advice, or telling anyone what to buy or sell. Holding or moving anyone's money. Audit opinions or tax advice. Filing on anyone's behalf. Keeping a company's books on our servers before hosting has had its security work.
+
 ## Start here
 
 - [Home](https://canlicapital.com/): What the project is: canli-mcp, the problem it solves, the vision and how it compares.
@@ -37,6 +57,7 @@ Free and open source, with no API key and no account. We make these, so weigh th
 - [Vision](https://canlicapital.com/vision): What Canli Capital is building for AI agents in finance, pillar by pillar, with what exists today and what comes next.
 - [MCP downloads](https://canlicapital.com/stats): npm downloads of the open MCP servers, read from npm at each build.
 - [FilingFacts benchmark](https://canlicapital.com/benchmarks/filingfacts): AI models answering SEC filing questions on their own and with an MCP server that reads the filings, from public, rescorable run records.
+- [Weekly test on new filings](https://canlicapital.com/benchmarks/fresh-filings): each week, questions only that week's annual reports can answer, put to a model alone and with canli-mcp, every answer checked against the filing.
 - [Methodology](https://canlicapital.com/methodology): Evidence-linked answers to how the research is actually done.
 - [How to validate a backtest](https://canlicapital.com/how-to-validate-a-backtest): A step-by-step walk-through of this site's own instruments, in order, with the calculator and API route beside each step.
 - [Status](https://canlicapital.com/performance): The honest numbers and what each one is and is not.
@@ -111,7 +132,7 @@ Short lessons for people investing their own money, using figures from real fili
   - [How can an AI agent compute technical indicators like RSI and MACD?](https://canlicapital.com/mcp-servers/answers/technical-indicators-ai-agent)
   - [How can an AI agent search SEC filings?](https://canlicapital.com/mcp-servers/answers/search-sec-filings-ai)
   - [How can an AI agent tell what growth a stock price implies?](https://canlicapital.com/mcp-servers/answers/company-valuation-reverse-dcf)
-  - [What is the best free MCP server for finance?](https://canlicapital.com/mcp-servers/answers/best-free-finance-mcp-server)
+  - [Which free MCP server should I use for finance?](https://canlicapital.com/mcp-servers/answers/best-free-finance-mcp-server)
   - [Is there a finance MCP server that needs no API key?](https://canlicapital.com/mcp-servers/answers/finance-mcp-server-no-api-key)
   - [How do I connect ChatGPT to free stock market data?](https://canlicapital.com/mcp-servers/answers/connect-chatgpt-to-stock-data)
   - [How do I connect Claude to free stock market data?](https://canlicapital.com/mcp-servers/answers/connect-claude-to-stock-data)

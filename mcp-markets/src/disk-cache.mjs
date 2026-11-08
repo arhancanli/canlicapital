@@ -28,6 +28,34 @@ export function freshFor(url) {
   // PortWatch answers slowly and changes weekly; page views change daily.
   if (/^https:\/\/services9\.arcgis\.com\//.test(url)) return 6 * HOUR;
   if (/^https:\/\/wikimedia\.org\/api\/rest_v1\/metrics\/pageviews\//.test(url)) return 6 * HOUR;
+  // EIA's weekly history pages are slow (up to 5 seconds) and are read for the years before this one.
+  if (/^https:\/\/www\.eia\.gov\/dnav\//.test(url)) return 6 * HOUR;
+  // Zillow's and Realtor.com's housing files (up to 4.5 MB) change once a month.
+  if (/^https:\/\/files\.zillowstatic\.com\/research\/|^https:\/\/econdata\.s3-us-west-2\.amazonaws\.com\/Reports\//.test(url)) return 12 * HOUR;
+  // The IMF's COFER is quarterly.
+  if (/^https:\/\/api\.imf\.org\/external\/sdmx\/3\.0\/data\/dataflow\/IMF\.STA\/COFER\//.test(url)) return 6 * HOUR;
+  // Indeed's job postings files (up to 12 MB) are refreshed once a week.
+  if (/^https:\/\/raw\.githubusercontent\.com\/hiring-lab\//.test(url)) return 6 * HOUR;
+  // The World Bank's Pink Sheet changes once a month; its page names the workbook's address.
+  if (/^https:\/\/www\.worldbank\.org\/en\/research\/commodity-markets$/.test(url)) return 6 * HOUR;
+  if (/^https:\/\/thedocs\.worldbank\.org\//.test(url)) return 12 * HOUR;
+  // A trading day's Cboe statistics never change once published.
+  if (/^https:\/\/cdn\.cboe\.com\/data\/us\/options\/market_statistics\/daily\/\d{4}-\d{2}-\d{2}_daily_options$/.test(url)) return 30 * DAY;
+  // Workbooks read as a few tabs: GDPNow's (11 MB, updated after each release), State Street's daily holdings, the
+  // New York Fed's consumer survey and FINRA's margin statistics (monthly).
+  if (/^https:\/\/www\.atlantafed\.org\/-\/media\//.test(url)) return HOUR;
+  if (/^https:\/\/www\.ssga\.com\/library-content\//.test(url)) return 6 * HOUR;
+  if (/^https:\/\/www\.newyorkfed\.org\/medialibrary\/interactives\/sce\/|^https:\/\/www\.finra\.org\/sites\/default\/files\//.test(url)) return 12 * HOUR;
+  // The Cleveland Fed's nowcast files (5 to 8 MB each) change once a day.
+  if (/^https:\/\/www\.clevelandfed\.org\/-\/media\/files\/webcharts\/inflationnowcasting\//.test(url)) return HOUR;
+  // The OFR's stress index (0.5 MB) changes once a day; the Fed Board's excess bond premium once a month.
+  if (/^https:\/\/www\.financialresearch\.gov\/financial-stress-index\/data\//.test(url)) return 6 * HOUR;
+  if (/^https:\/\/www\.federalreserve\.gov\/econres\/notes\/feds-notes\/ebp_csv\.csv$/.test(url)) return 12 * HOUR;
+  // The OFR's repo and money market fund series change once a day; the New York Fed's dealer statistics once a week.
+  if (/^https:\/\/data\.financialresearch\.gov\/v1\/series\//.test(url)) return HOUR;
+  if (/^https:\/\/markets\.newyorkfed\.org\/api\/pd\/get\//.test(url)) return 6 * HOUR;
+  // The New York Fed's SOMA summary (all weeks since 2003) changes on Thursdays.
+  if (/^https:\/\/markets\.newyorkfed\.org\/api\/soma\//.test(url)) return HOUR;
   return 0;
 }
 

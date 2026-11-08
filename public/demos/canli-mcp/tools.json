@@ -1,16 +1,27 @@
 {
  "package": "canli-mcp",
- "version": "0.17.0",
+ "version": "0.21.0",
  "packs": {
-  "quant": "0.2.0",
-  "validation": "0.14.1",
-  "fundamentals": "0.8.0",
+  "quant": "0.3.0",
+  "validation": "0.15.0",
+  "fundamentals": "0.9.1",
   "research": "0.3.1",
   "backtest": "0.5.1",
-  "markets": "0.12.0",
+  "markets": "0.16.0",
   "paper": "0.3.1"
  },
- "count": 388,
+ "count": 442,
+ "markets_themes": {
+  "Filings and what they say": 18,
+  "Results and valuation": 23,
+  "Ownership and insiders": 11,
+  "Prices and trading": 29,
+  "Funds": 2,
+  "Rates and the economy": 34,
+  "News and public records": 12,
+  "Who is who": 2,
+  "Crypto and compute": 7
+ },
  "tools": [
   {
    "name": "return_stats",
@@ -1301,11 +1312,18 @@
    "description": "Backtest any strategy from your own target weights per period (decided at each close, applied to the next period) with the same costed, drift-aware engine; null rows mean hold."
   },
   {
+   "name": "lookahead_check",
+   "pack": "quant",
+   "group": "strategies",
+   "title": "Check target weights for lookahead",
+   "description": "Check a strategy's target weights for lookahead from the weights alone: their return lined up with the period they were decided for, a period late, several periods late and a period early. An edge that is all in its own period and gone a period later, unexplained by the last period's return, is what weights computed with that period's outcome look like."
+  },
+  {
    "name": "strategy_sweep",
    "pack": "quant",
    "group": "strategies",
    "title": "Parameter sweep with deflated Sharpe",
-   "description": "Run one strategy recipe over a parameter grid (up to 400 variants), rank the variants by Sharpe, and deflate the best one for the number tried, so tuning cannot pass off luck as skill."
+   "description": "Run one strategy recipe over a parameter grid (up to 400 variants), rank the variants by Sharpe, deflate the best one for the number tried and give the probability of backtest overfitting (CSCV), so tuning cannot pass off luck as skill."
   },
   {
    "name": "list_sleeves",
@@ -1798,6 +1816,13 @@
    "description": "List periods whose value changed in a later filing, with first and latest values, % change and cause (stock splits left out by default). Omit concept to scan everything."
   },
   {
+   "name": "vintage_diff",
+   "pack": "fundamentals",
+   "group": "fundamentals",
+   "title": "History as known on two dates",
+   "description": "A company's history as known on two dates: each period whose value changed between them, with the filing that changed it, and how many periods were first reported in between."
+  },
+  {
    "name": "vintages",
    "pack": "fundamentals",
    "group": "fundamentals",
@@ -2288,6 +2313,20 @@
    "description": "A quarter's results press release (8-K Item 2.02): the headline, the results it states (each with the part of the business it belongs to and what a change is measured against), its guidance parsed into ranges (low, high, midpoint, unit, measure, basis, period, and the sentence or table row), and the previous release's guidance for this quarter set against the company's results: above, within or below the range, in basis points for rates."
   },
   {
+   "name": "release_check",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Earnings release against the 10-Q or 10-K",
+   "description": "A quarter's results press release set against the 10-Q or 10-K filed after it: every figure in the release's tables looked for among the report's inline XBRL facts for the same period. Lists the figures that changed (release value, filed value, difference, percent, the XBRL concept and how the line was matched), release figures with no counterpart (non-GAAP measures, metrics) and lines the report adds, such as a charge booked after the release."
+  },
+  {
+   "name": "audit_signals",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Going-concern doubts, auditor changes and critical audit matters",
+   "description": "What auditors and companies say when something is wrong, from SEC filings. Going-concern doubt: each 10-K and 10-Q whose text says there is substantial doubt about the company's ability to continue, as a timeline (first raised, still raised, lifted), or across the market the companies whose latest report newly raised it. Auditor changes (8-K Item 4.01): who left and who came, resigned or dismissed, disagreements and reportable events. The latest 10-K's critical audit matters. Each row quotes the filing."
+  },
+  {
    "name": "screen_companies",
    "pack": "markets",
    "group": "markets",
@@ -2358,6 +2397,279 @@
    "description": "A fund manager's 13F holdings for a quarter (latest by default): positions by value with portfolio weights, the total checked against the filing's cover page, and what changed since the previous quarter (new, exited, added, reduced)."
   },
   {
+   "name": "unusual_options",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Unusual options activity (Cboe)",
+   "description": "Unusual options activity for a stock, ETF or index from Cboe's delayed quotes: contracts trading at least as many times their open interest as asked (new positions more likely than closing), ranked by the premium that changed hands, with strike, expiry, IV and delta, and the day's call and put premium."
+  },
+  {
+   "name": "company_emissions",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Company emissions (EPA greenhouse-gas reports)",
+   "description": "A company's greenhouse-gas emissions from its US facilities as they reported them to EPA (the Greenhouse Gas Reporting Program): direct emissions in tonnes of CO2e, the company's ownership share of them, by gas, the largest facilities, and a trend over up to five years. Scope 1 from the measurements, not a vendor's ESG score."
+  },
+  {
+   "name": "crypto_markets",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Crypto markets (CoinGecko)",
+   "description": "The crypto market from CoinGecko: coins ranked by market value with price, volume, change over a day, a week and a month, supply and distance from the all-time high, and the whole market's value with bitcoin's and ether's shares; or the coins named, by symbol or CoinGecko id."
+  },
+  {
+   "name": "etf_profile",
+   "pack": "markets",
+   "group": "markets",
+   "title": "ETF or fund profile: costs and holdings",
+   "description": "What an ETF or mutual fund costs and holds, from Yahoo Finance's fund profile: the expense ratio beside its category's average, turnover, total assets, yield, year-to-date and five-year returns, beta, inception, top holdings with weights, the mix of stocks, bonds and cash, and sector weights."
+  },
+  {
+   "name": "market_calendar",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Market calendar: earnings, dividends, splits (Nasdaq)",
+   "description": "The whole market's schedule from Nasdaq's public calendars: who reports earnings on given days (before the open or after the close, consensus EPS and number of estimates, last year's EPS), who goes ex-dividend (amount, record and payment dates), stock splits coming up, and a month's IPOs (priced, expected, filed, withdrawn); filter by tickers or market value."
+  },
+  {
+   "name": "congress_trades",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Congress trades (House transaction reports)",
+   "description": "Stock and bond trades by members of the House, read from their periodic transaction reports on the Clerk's site: owner (self, spouse, joint, child), asset and ticker, purchase or sale, trade date, date notified and the amount range, for one member, a state or district, a ticker, or the newest reports filed, with each report's link."
+  },
+  {
+   "name": "analyst_history",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Analyst rating changes, surprises and revisions",
+   "description": "A stock's analyst history from Yahoo Finance: every upgrade, downgrade, initiation and target change by firm over any window, the last four quarters' earnings surprises, how the EPS estimate moved over 90 days with the analysts revising it up and down, and the rating counts month by month. stock_snapshot has today's targets and estimates. A vendor's aggregates, labeled so."
+  },
+  {
+   "name": "market_movers",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Market movers (gainers, losers, most active)",
+   "description": "Today's biggest US stock gainers, losers and most traded (price, change, volume, average volume, market value), or Yahoo Finance's other ready-made lists: small-cap gainers, most shorted, undervalued growth, growth technology, aggressive small caps, undervalued large caps."
+  },
+  {
+   "name": "market_hours",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Market hours and holidays (NYSE, Nasdaq)",
+   "description": "The US stock market's calendar (NYSE and Nasdaq): open, pre-market, after-hours or closed now, the next open and close in Eastern time and UTC, a year's holidays and 1 p.m. early closes, whether a date trades, and how many trading days lie between two dates. Computed from NYSE's rules and its unscheduled closures since 2000, with no network."
+  },
+  {
+   "name": "factor_returns",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Fama-French factors",
+   "description": "The Fama-French factors from Kenneth French's data library at Dartmouth: the market over the T-bill (Mkt-RF), size (SMB), value (HML), profitability (RMW), investment (CMA) and momentum (Mom), with the one-month T-bill rate (RF), monthly since 1926, daily or by year, as fractions ready for a factor regression."
+  },
+  {
+   "name": "scenario_risk",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Portfolio scenarios: macro shocks and past crises",
+   "description": "A portfolio's holdings under a macro shock or a past crisis. Shock some of eight factors (US stocks, the 2- and 10-year Treasury yields, the Baa-Aaa spread, oil, the dollar, gold, the VIX) and the rest move as history says they do alongside, with a 90% range; or replay a crisis (2008, 2020, 2022 and eight more) beside each holding's actual return then, with the model's error. Betas from weekly returns over the last years. Local server (prices)."
+  },
+  {
+   "name": "trade_ticks",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Crypto trades, tick by tick",
+   "description": "Every trade on Kraken's public market for a crypto pair (BTC/USD, ETH/EUR, SOL/USD) from any moment back to the market's opening, tick by tick: time to the microsecond, price, size, which side took liquidity and the order type, with the VWAP, buying against selling, the largest trades and one-minute bars built from the ticks. Up to 10,000 trades a call; next_since reads on exactly where it stopped. No key."
+  },
+  {
+   "name": "trade_flows",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Trade between countries by product",
+   "description": "What countries buy from and sell to each other, by product, from UN Comtrade: who supplies a country's chips, oil or soybeans and with what share, or how one partner's share moved year by year (in US dollars and kilograms). Products by HS code or plain words. Names Taiwan (listed as Other Asia, nes) and says how much of a total names no partner, which customs offices sometimes withhold. Goods, customs figures a year or two behind. No key."
+  },
+  {
+   "name": "standardized_financials",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Financials in one template across US GAAP and IFRS",
+   "description": "A company's income statement, balance sheet and cash flow in one template whether it files US GAAP or IFRS, 26 lines with 14 ratios, each figure saying which tag it came from or the arithmetic that made it. One company over up to 10 fiscal years, or up to five side by side (Apple beside TSMC beside SAP), optionally in US dollars at each year's average and year-end rates. From annual reports at SEC, restatements applied."
+  },
+  {
+   "name": "bond_offerings",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Bonds a company sold",
+   "description": "The bonds a company sold, tranche by tranche, from the SEC filings that priced them: amount, coupon, maturity, price, yield, spread over Treasuries (mid-swaps for euro bonds, the index for floating notes), benchmark and CUSIP from each final term sheet, with the XBRL fee tables of final prospectuses confirming amounts and adding deals priced without one. Each dollar yield is recomputed from its price. Yearly totals by currency. Registered deals only."
+  },
+  {
+   "name": "financial_cycle",
+   "pack": "markets",
+   "group": "markets",
+   "title": "House prices, debt service, credit and exchange rates by country",
+   "description": "Where countries stand in their financial cycle, from the Bank for International Settlements: house prices (real and nominal, with the change on a year), the share of income households and companies spend servicing debt, credit to households, companies and government as a share of GDP, and real and nominal effective exchange rates. Up to eight countries side by side, 40 to 60 economies covered, with history. No key."
+  },
+  {
+   "name": "treasury_cash",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Treasury cash (Daily Treasury Statement)",
+   "description": "The Treasury's cash at the Fed each business day since 2005 (the Treasury General Account, from the Daily Treasury Statement), its change and range over the window, and optionally the last day's largest deposits and withdrawals by category (taxes withheld, debt issued and redeemed, interest, Social Security) with month and fiscal year to date."
+  },
+  {
+   "name": "fed_liquidity",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Fed liquidity: repo facilities, holdings, reserves",
+   "description": "The Fed's footprint in the money markets: the overnight reverse repo facility's daily take-up and the standing repo facility's lending (New York Fed, its test trades kept apart), the Fed's securities holdings week by week with the pace they change by type, and its balance sheet: total assets, reserve balances, the TGA and net liquidity (assets less the TGA and the reverse repo). Each with changes over a week, four weeks and a year, a plain summary first; or any of them day by day or week by week. No key."
+  },
+  {
+   "name": "money_markets",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Money markets: repo, money funds and dealers",
+   "description": "The US money markets' plumbing, no key: overnight repo by segment (SOFR, TGCR, BGCR, tri-party without the Fed, GCF, cleared bilateral DVP), each rate with its volume and its spread to the Fed's interest on reserves and overnight reverse repo rate; what US money market funds hold by type and whom their repo is with (Form N-MFP, via the OFR); and primary dealers' net Treasury positions by maturity (New York Fed). part gives one with its history."
+  },
+  {
+   "name": "inflation_nowcast",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Inflation nowcast (Cleveland Fed)",
+   "description": "The Cleveland Fed's daily nowcast of inflation not yet published: its estimate of CPI, core CPI, PCE and core PCE for the coming months and the quarter, on the month, on a year and annualized, beside the last month published. month gives one month's nowcast day by day and its figure once out; record sets the last nowcast before each release against the published figure, with the average miss. A plain summary first. No key."
+  },
+  {
+   "name": "rate_expectations",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Fed rate odds from futures (FedWatch method)",
+   "description": "What the futures market expects the Fed to do: from 30-day fed funds futures, the rate implied after each scheduled FOMC meeting, the expected change there and from today, the chances of no change, a hike or a cut, and of each target range after each meeting, by the method CME's FedWatch publishes, with the contracts behind it and today's range and effective rate. A plain summary first. No key."
+  },
+  {
+   "name": "job_postings",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Job postings (Indeed Hiring Lab)",
+   "description": "Labour demand as Indeed sees it, day by day: job postings against 1 February 2020 (= 100), seasonally adjusted, in the US, Canada, the UK, Australia, Germany, France, Ireland, Italy, Spain, the Netherlands and the euro area, with the change over four weeks, a quarter and a year and the distance from the peak; by occupational sector or by state, province or region, ranked; or every economy side by side. Indeed Hiring Lab data (CC BY 4.0). No key."
+  },
+  {
+   "name": "reserve_currencies",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Currencies of the world's reserves (IMF COFER)",
+   "description": "What the world's central banks hold their foreign exchange reserves in, from the IMF's COFER: each currency's share of the reserves whose currency is reported (the dollar, euro, yen, sterling, renminbi and others) and its value in dollars at the latest quarter, the change in share on a year and over ten years, and the shares quarter by quarter. A plain summary first. No key."
+  },
+  {
+   "name": "housing_market",
+   "pack": "markets",
+   "group": "markets",
+   "title": "US housing market (Zillow, Realtor.com)",
+   "description": "The US housing market, nationally or for a metro area: Zillow's typical home value with its change on a month, a year and five years and its distance from the peak; Realtor.com's listings (median listing price, active and new listings, days on market, the share with a price cut, pending sales), each against a year earlier; and the 30-year mortgage rate. rank lists the largest metros by how fast home values rise or fall. A plain summary first. No key."
+  },
+  {
+   "name": "gdp_nowcast",
+   "pack": "markets",
+   "group": "markets",
+   "title": "GDP nowcast (Atlanta Fed GDPNow)",
+   "description": "The Atlanta Fed's GDPNow, its running estimate of real GDP before the BEA publishes it (annualized): the latest nowcast and each update since the first with the data releases behind it, what each part of spending adds and each part's own pace, the BEA's latest estimates beside it, and the model's record against the BEA's advance estimates. Read from the Atlanta Fed's workbook. A plain summary first. No key."
+  },
+  {
+   "name": "consumer_expectations",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Consumer expectations (New York Fed survey)",
+   "description": "What American households expect, from the New York Fed's Survey of Consumer Expectations, monthly: inflation over one, three and five years, home prices, the prices of gas, food, rent, medical care and college, earnings, income and spending, and the chances of losing or finding a job, of higher unemployment, of missing a debt payment and of stocks rising; the latest month beside a month and a year before, or one topic month by month. No key."
+  },
+  {
+   "name": "margin_debt",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Margin debt (FINRA)",
+   "description": "How much investors borrow against their stocks, from FINRA's monthly margin statistics since 1997: margin debt (customers' debit balances at member firms) with its change on a month and a year, the record and how far the latest is from it, the free credit balances in cash and margin accounts, and the months before. A plain summary first. No key."
+  },
+  {
+   "name": "options_sentiment",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Options sentiment: put/call ratios (Cboe)",
+   "description": "How much protection options traders buy, from Cboe's daily market statistics: the total, equity, index, ETF, VIX and SPX put/call ratios of the latest trading day with the calls and puts traded, and the total, equity, index and SPX ratios day by day with their 10- and 20-day averages. A plain summary first. No key."
+  },
+  {
+   "name": "recession_watch",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Recession indicators against their lines",
+   "description": "The indicators read for a US recession, each beside the line it is read against and whether it is past it: the New York Fed's yield-curve model (the chance of being in recession twelve months ahead, computed as the New York Fed publishes it, month by month), the Sahm rule, the 10-year less 2-year curve and its last inversion, jobless claims against a year earlier, the Chauvet-Piger probability, GDPNow, and the Fed Board staff's excess bond premium model. A plain summary first. No key."
+  },
+  {
+   "name": "state_economy",
+   "pack": "markets",
+   "group": "markets",
+   "title": "US state economies (BLS, FHFA, BEA, Philadelphia Fed)",
+   "description": "A US state's economy beside the nation's: the unemployment rate, payroll jobs, the Philadelphia Fed's coincident index of activity, house prices (FHFA) and real GDP, each with its change on a year; or every state and DC ranked by unemployment or by the growth of jobs, activity or house prices. A plain summary first. No key."
+  },
+  {
+   "name": "inflation_breakdown",
+   "pack": "markets",
+   "group": "markets",
+   "title": "CPI by component (BLS)",
+   "description": "What is driving US consumer prices, from the BLS's CPI: all items and core beside food (at home and away), energy and gasoline, core goods and used cars, core services, shelter, rent, owners' equivalent rent, medical care and transportation services, each on the month (seasonally adjusted), over three months at an annual rate and on a year as the BLS states it, with the headline and core month by month. A plain summary first. No key."
+  },
+  {
+   "name": "fed_speeches",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Fed speeches and releases",
+   "description": "What the Federal Reserve Board says, from its own feeds: the latest speeches and testimony by its members and its monetary policy releases (statements, minutes), with speaker, title, date, venue and link; one member's; or one speech read, its paragraphs on monetary policy and the economy quoted as given. A plain summary first. No key."
+  },
+  {
+   "name": "central_bank_speeches",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Central bankers' speeches (BIS)",
+   "description": "What central bankers everywhere are saying, from the BIS's collection of their speeches: the latest fifty with speaker, role and bank, title, date and link; one bank's (ECB, Bank of England, Bundesbank, Bank of Japan...) or one speaker's; or one speech read, brief excerpts of its passages on policy. A plain summary first. No key."
+  },
+  {
+   "name": "financial_conditions",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Financial conditions and market stress",
+   "description": "How loose or tight US financial conditions are and how much stress markets show, in one answer: the OFR's daily Financial Stress Index with what credit, equity valuation, safe assets, funding and volatility each add; the Chicago Fed's NFCI and its parts; the St. Louis and Kansas City Feds' stress indexes; corporate bond spreads by rating (ICE BofA), Moody's Baa spread and the Fed Board's excess bond premium; the VIX. Each with its changes and its place in its own history."
+  },
+  {
+   "name": "market_breadth",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Market breadth: how many members take part",
+   "description": "How many of an index's members take part in its moves, computed from the members themselves: the share of the S&P 500's (or the S&P 400's, the Dow's, or one sector's) members above their 50- and 200-day averages, how many rose and fell, new 52-week highs and lows, how far the typical member is below its high, the average member's return beside the index's own over a day, a month, the year to date and a year, recent sessions' breadth, and by_sector for the eleven sectors."
+  },
+  {
+   "name": "labor_market",
+   "pack": "markets",
+   "group": "markets",
+   "title": "US jobs report in one answer",
+   "description": "The US jobs picture in one answer: payroll gains with the three-month average, the unemployment rate and U-6, participation and the prime-age employment ratio, wages and hours, JOLTS openings, quits and layoffs with openings per unemployed person, and weekly jobless claims, each beside the reading before and a year before, with payroll gains month by month. A plain summary first. No key."
+  },
+  {
+   "name": "commodity_prices",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Commodity prices (World Bank Pink Sheet)",
+   "description": "World commodity prices from the World Bank's Pink Sheet, monthly since 1960: oil, gas, LNG and coal, metals and precious metals, grains, oilseeds, coffee, cocoa, sugar, cotton, rubber, timber and fertilizers, each with its change on a month, a year and five years, beside the World Bank's sector indexes; or one commodity month by month with its record; all for every commodity. A plain summary first. No key."
+  },
+  {
+   "name": "federal_budget",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Federal budget (Monthly Treasury Statement)",
+   "description": "The US federal budget month by month from the Monthly Treasury Statement (since 2015): receipts, outlays and the deficit for this fiscal year and the last, and the fiscal year to date against the same months a year earlier, for the latest statement or any month's."
+  },
+  {
+   "name": "crypto_options",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Crypto options (Deribit)",
+   "description": "Crypto options from Deribit's public data: each expiry's at-the-money implied volatility, call and put open interest, put/call ratio and the day's volume, with DVOL (Deribit's 30-day implied volatility index) for BTC and ETH; or one expiry's chain, strike by strike, with bids, asks and implied volatilities in US dollars. BTC, ETH, SOL, XRP and others."
+  },
+  {
    "name": "treasury_yields",
    "pack": "markets",
    "group": "markets",
@@ -2369,14 +2681,14 @@
    "pack": "markets",
    "group": "markets",
    "title": "Economic series (FRED)",
-   "description": "Any FRED economic series (inflation, unemployment, GDP, payrolls, rates, credit spreads, oil, FX, money supply, recession indicators) by id or plain words, as dates and values, optionally as changes or year-over-year rates. Feed values straight into analysis tools."
+   "description": "Any FRED economic series (inflation, unemployment, GDP, payrolls, rates, credit spreads, oil, FX, money supply, recession indicators) by id or plain words, as dates and values, optionally as changes or year-over-year rates. as_of reads it as published on a past date (ALFRED vintages: before later revisions), and revisions shows each value then against now. Feed values straight into analysis tools."
   },
   {
    "name": "price_history",
    "pack": "markets",
    "group": "markets",
    "title": "Price history",
-   "description": "Price bars (open, high, low, close, volume), daily to hourly, for US stocks and ETFs, stocks listed abroad (SAP.DE, 7203.T), currency pairs (EUR/USD), futures (crude oil, gold), indices and yields (S&P 500, VIX, 10 year yield) and crypto (bitcoin), by symbol or plain name. Stocks adjust for splits and dividends by default, with dividends, splits and the total return; returns: true adds daily returns. No key needed; uses the user's Alpaca or Tiingo key for US stocks when set."
+   "description": "Price bars (open, high, low, close, volume), monthly to one-minute, for US stocks and ETFs, stocks listed abroad (SAP.DE, 7203.T), currency pairs (EUR/USD), futures (crude oil, gold), indices and yields (S&P 500, VIX, 10 year yield) and crypto (bitcoin), by symbol or plain name. Stocks adjust for splits and dividends by default (adjustment: none is as traded), with dividends, splits and the total return; returns: true adds daily returns. No key needed; uses the user's Alpaca or Tiingo key for US stocks when set."
   },
   {
    "name": "fund_portfolio",
@@ -2414,6 +2726,20 @@
    "description": "How a reported figure is built, from the filing itself: the lines the company's own XBRL calculation adds up to it, each line's value, every sum recomputed and checked, what the figure feeds into, and how the filing splits it by segment, product or region. It shows the filing agrees with itself, not that the figures are right."
   },
   {
+   "name": "filing_check",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Filing check: the document against its XBRL",
+   "description": "Every number in a 10-K or 10-Q read twice: as a person reads the document and as machines read its inline XBRL. Lists each figure tagged at a scale other than the unit its table or words state, each fact tagged twice with different values, each sum in the filing's own calculation that does not add up, and each fact SEC's company facts hold differently or not at all, with a link to the figure, and counts of what was checked."
+  },
+  {
+   "name": "source_check",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Source check: are the documents still the same",
+   "description": "Whether the documents behind an answer are still the bytes it was read from: give the evidence rows (or a canli-mcp receipt's sources) and each document is read again, past every cache, as the same, changed since, or unreachable. Only documents from the sources this server reads are fetched."
+  },
+  {
    "name": "token_check",
    "pack": "markets",
    "group": "markets",
@@ -2432,7 +2758,7 @@
    "pack": "markets",
    "group": "markets",
    "title": "Index constituents",
-   "description": "The members of a stock index (S&P 500, Nasdaq 100, Russell 2000, S&P 400, MSCI EAFE) with their weights, read from the N-PORT of an ETF that tracks it, with the report date, the number of members and how concentrated the top ten are."
+   "description": "The members of a stock index (S&P 500, S&P 400, the Dow, Nasdaq 100, Russell 2000, MSCI EAFE, a Select Sector) with their weights: from the latest day's holdings State Street publishes (SPY, MDY, DIA, the sector SPDRs), or the N-PORT of an ETF that tracks the index, with the date, the number of members and how concentrated the top ten are. as_of gives the members on a past date from the ETF's N-PORT for that quarter, companies since removed included; changes_from lists who joined and who left between two dates."
   },
   {
    "name": "fomc",
@@ -2461,6 +2787,13 @@
    "group": "markets",
    "title": "Short interest (FINRA)",
    "description": "Short interest in US stocks from FINRA, twice a month: shares short, the change, average daily volume and days to cover over several reports, and the share of shares outstanding from the company's latest SEC cover page; or, with no stock, the market ranked by days to cover, change or size."
+  },
+  {
+   "name": "portfolio_rules",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Ownership lines, Form 13F and diversification",
+   "description": "Where your holdings stand against the US lines that bring a filing or cap concentration: more than 5% of a company's class (Schedule 13D or 13G), more than 10% (Section 16 insider), $100 million in 13(f) securities (Form 13F), and the 75-5-10 and RIC diversification tests; each position's share of its class from the last cover page and days to exit from FINRA's volume. A check, not compliance advice."
   },
   {
    "name": "off_exchange_volume",
@@ -2582,6 +2915,13 @@
    "description": "What a company has paid its shareholders, year by year from its annual XBRL: dividends per share (split-adjusted record: years raised in a row, 5- and 10-year growth) and in total, buybacks and shares issued for cash, the diluted share count and its change, the payout ratio and the share of free cash flow paid out, and at the last close the dividend yield and shareholder yield."
   },
   {
+   "name": "buybacks",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Share buybacks, authorized and bought",
+   "description": "A company's share buybacks period by period from its own XBRL (SEC company facts): for each fiscal year or quarter, the cash paid for repurchases, the shares bought and the value recorded for them, the average price, the program's authorized and remaining amounts where tagged, and the change in shares outstanding. Each figure names the filing it came from (accession, form, date); a figure the company does not tag is said to be untagged, not estimated."
+  },
+  {
    "name": "market_overview",
    "pack": "markets",
    "group": "markets",
@@ -2645,6 +2985,13 @@
    "description": "The IPO pipeline from EDGAR: companies that filed or amended a registration (S-1, F-1) in a window, labelled IPO candidate, SPAC, fund or already listed, and offerings priced (424B4) with price, shares and proceeds from the prospectus cover."
   },
   {
+   "name": "lockup_calendar",
+   "pack": "markets",
+   "group": "markets",
+   "title": "IPO lock-up expiries (from the prospectus)",
+   "description": "When insiders' shares from recent IPOs may be sold, from each company's final prospectus (424B4). Across the market, the lock-ups ending in a window: company, IPO date, length as stated (usually 180 days), the date it counts from and the expiry computed from it, staged releases, early-release triggers (earnings release, share price), shares locked up and shares sold. For one company, its terms quoted and later filings that waive or release them."
+  },
+  {
    "name": "large_holders",
    "pack": "markets",
    "group": "markets",
@@ -2659,11 +3006,53 @@
    "description": "Earnings dates from the companies' own 8-Ks (Item 2.02, results of operations). For a company: its recent results releases with the quarter each covered and whether it came before the open or after the close (EDGAR's acceptance time), and the next release estimated from the same quarter a year earlier, with a window. Across the market: who is due to report in a window, from when they reported in the same weeks last year, marked once they have. Estimates, not announcements."
   },
   {
+   "name": "earnings_move",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Earnings move: priced against past reactions",
+   "description": "The move the options market prices for a company's next results beside the moves its shares made after its past ones, no key: the next release estimated from a year earlier, the at-the-money straddle of the first expiration after it (Cboe), the results' own move backed out of the expirations either side, and each of the last eight releases' reaction close to close, with the average and how many moved more than priced now."
+  },
+  {
+   "name": "earnings_season",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Earnings season: beats, misses and surprises",
+   "description": "How the S&P 500's reporting season is going, no key: how many of its companies have reported, the share that beat, matched or missed the consensus EPS estimate and the median surprise (Nasdaq's calendar, Zacks' consensus), how the ten largest did, the largest beats and misses, by_sector for the eleven sectors, and who is due in the coming days; symbols gives named companies' results first. Members are SPY's daily holdings; share classes count once."
+  },
+  {
    "name": "investment_advisers",
    "pack": "markets",
    "group": "markets",
    "title": "Investment advisers (Form ADV)",
    "description": "Investment advisers from the SEC's Form ADV database (IAPD) by name or CRD: matching firms with SEC file numbers, status, whether they report disclosure events, offices and branch counts, then the best match in full: registration and since when, other names and relying advisers, its latest ADV date, and links to its Form ADV and brochures."
+  },
+  {
+   "name": "treasury_holders",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Foreign holders of US Treasuries (TIC)",
+   "description": "Who holds US Treasury securities, from the Treasury's TIC system: the major foreign holders by country at the last thirteen month ends, each with its change on a year, share of all foreign holdings and rank, the total and what foreign official institutions hold (bills against notes and bonds); or one country's holdings month by month. No key."
+  },
+  {
+   "name": "crop_outlook",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Crop supply and demand (USDA WASDE)",
+   "description": "The USDA's world supply and demand estimates (WASDE) for wheat, corn, coarse grains, rice, cotton, soybeans, soybean meal and soybean oil: beginning stocks, production, imports, use, exports and ending stocks by country for the last two market years and this year's projection, with last month's projection beside it and the revision between them. Any month's report, or every country at once. No key."
+  },
+  {
+   "name": "energy_report",
+   "pack": "markets",
+   "group": "markets",
+   "title": "US oil and gas inventories (EIA weekly)",
+   "description": "The week in US oil and gas from the EIA's weekly reports: crude (commercial, Cushing, the SPR), gasoline, distillate, jet fuel and propane stocks with the change on the week and the year and against the five-year average and range for the week; refinery utilization; production, trade and products supplied (demand) over four weeks; natural gas in storage by region against a year ago and the five-year average. by_district adds PADD districts; stock gives one stock week by week. Summary first. No key."
+  },
+  {
+   "name": "world_series",
+   "pack": "markets",
+   "group": "markets",
+   "title": "A country's economy from its own statistics office and central bank",
+   "description": "A country's economy from the statistics office or central bank that publishes it: inflation, unemployment, GDP growth, policy rate, 10-year yield, exchange rate, industrial production, retail sales, wages, house prices, the OECD's leading indicator, for 70 countries and the euro area, one or up to 30 side by side (G7, G20, EU), or all of one country's. Any series by its publisher's code (IMF, BIS, ECB, Eurostat, OECD, ONS, Bank of Japan, 17 more). check: true compares a second official publisher."
   },
   {
    "name": "world_economy",

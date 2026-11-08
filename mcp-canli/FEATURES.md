@@ -1,8 +1,8 @@
 # Finance coverage and quality, 0.6.0
 
-The flagship combines seven exact published Canli packages. Its full catalog has 388 tools;
+The flagship combines seven exact published Canli packages. Its full catalog has 442 tools;
 paper trading is enabled with paper credentials or an explicit pack selection. Five tools are
-advertised initially (three for discovery and running, two common ones). The 56 prompts, 15 static resources (one is the result viewer drawn by clients with MCP Apps) and nine resource templates
+advertised initially (three for discovery and running, two common ones). The 60 prompts, 16 static resources (one is the result viewer drawn by clients with MCP Apps) and thirteen resource templates
 appear only for enabled packs. This is a coverage inventory, not a worldwide ranking.
 
 | Area | Available in this release | Scope and remaining work |

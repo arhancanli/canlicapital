@@ -10,12 +10,14 @@ const INDEX = buildIndex(ENTRIES);
 const PACKS = ["quant", "validation", "fundamentals", "research", "backtest", "markets", "paper"];
 const Q = [
   ["did my backtest overfit after trying 40 variants", ["validate_deflated_sharpe", "deflated_sharpe_ratio"]],
-  ["probability of backtest overfitting cscv", ["validate_overfitting"]],
+  // Since quant 0.3.0 a sweep gives the probability of overfitting for its own variants.
+  ["probability of backtest overfitting cscv", ["validate_overfitting", "strategy_sweep"]],
   ["data snooping test on all the variants i tried", ["validate_reality_check"]],
   ["how many years of track record do i need", ["validate_track_record"]],
   ["haircut sharpe harvey liu", ["validate_haircut_sharpe"]],
   ["audit my strategy returns", ["audit_backtest"]],
-  ["does my signal look ahead", ["check_leakage"]],
+  // check_leakage reruns the signal's code; quant 0.3.0's lookahead_check reads the weights alone.
+  ["does my signal look ahead", ["check_leakage", "lookahead_check"]],
   ["run my pipeline on noise placebo", ["placebo_test"]],
   ["will my strategy survive a crash bootstrap drawdown", ["strategy_stress_test"]],
   ["can my broker handle this many orders", ["check_feasibility"]],
@@ -86,7 +88,7 @@ test("form names keep their number, \"news\" stays news, and a one-word tool nam
 
 // The markets tools added in 0.3.0, asked the way people ask. Measured 37 of 37 first when added.
 const MARKETS_Q = [
-  ["how heavily shorted is gamestop", ["short_interest"]], ["days to cover for tesla", ["short_interest"]], ["most shorted stocks", ["short_interest"]],
+  ["how heavily shorted is gamestop", ["short_interest"]], ["days to cover for tesla", ["short_interest"]], ["most shorted stocks", ["short_interest", "market_movers"]],
   ["dark pool volume for apple", ["off_exchange_volume"]], ["how much of nvda trades off exchange", ["off_exchange_volume"]],
   ["fails to deliver gme", ["fails_to_deliver"]], ["hedge fund positioning in gold futures", ["futures_positioning"]], ["commitments of traders crude oil", ["futures_positioning"]],
   ["what does voo hold", ["fund_portfolio", "index_constituents"]], ["top holdings of the ark innovation etf", ["fund_portfolio"]], ["etf inflows and outflows ivv", ["fund_portfolio"]],
@@ -172,7 +174,8 @@ const EVERYDAY_Q = [
   ["canli research on value investing", ["search_research"]],
   ["what is the current cpi", ["economic_series"]],
   ["chart of the 10 year yield since 2020", ["treasury_yields","economic_series"]],
-  ["are we in a recession", ["economic_series","economic_outlook"]],
+  // recession_watch (markets 0.15.0) sets each recession indicator against its line, the question's own answer.
+  ["are we in a recession", ["economic_series","economic_outlook","recession_watch"]],
   ["eurozone unemployment forecast", ["economic_outlook"]],
   ["brazil inflation history", ["world_economy"]],
   ["next fomc meeting date", ["fomc","economic_calendar"]],
@@ -206,7 +209,7 @@ const EVERYDAY_Q = [
   ["forward rate between two years", ["forward_rate"]],
   ["risk parity weights", ["risk_parity_portfolio"]],
   ["is the sharpe ratio significant after many trials", ["validate_deflated_sharpe","deflated_sharpe_ratio","validate_haircut_sharpe"]],
-  ["check my returns for lookahead bias", ["check_leakage"]],
+  ["check my returns for lookahead bias", ["check_leakage", "lookahead_check"]],
   ["how long a track record to prove skill", ["validate_track_record"]],
   ["momentum factor backtest without look-ahead", ["pit_factor","backtest_cross_sectional_momentum","backtest_time_series_momentum"]],
   ["buy spy in my alpaca paper account", ["preview_paper_orders","send_paper_orders"]],
@@ -262,7 +265,8 @@ const NEW_Q = [
   ["bank of england base rate", ["reference_rates"]],
   ["sonia overnight rate", ["reference_rates"]],
   ["bank of japan policy rate", ["reference_rates"]],
-  ["central bank interest rates around the world", ["reference_rates"]],
+  // world_series reads each central bank's own policy rate, up to 30 countries side by side.
+  ["central bank interest rates around the world", ["reference_rates", "world_series"]],
   ["effective federal funds rate daily", ["reference_rates", "economic_series"]],
   ["airbus net income from its annual financial report", ["european_filings"]],
   ["lvmh revenue in its esef annual financial report", ["european_filings"]],
@@ -359,7 +363,8 @@ const Q09 = [
   ["dividend growth rate over ten years for pepsi", ["shareholder_returns"]],
   ["shareholder yield including repurchases", ["shareholder_returns"]],
   ["how many years in a row has the dividend been raised", ["shareholder_returns"]],
-  ["is the share count shrinking", ["shareholder_returns"]],
+  // Since markets 0.13.0, buybacks gives each period's share count change too.
+  ["is the share count shrinking", ["shareholder_returns", "buybacks"]],
 ];
 
 test("requests for the 0.9.0 tools: a right tool first in at least 11 of 12 (the miss, \"european and asian markets\", finds Asian options first)", () => {

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { releasedCatalog, serverPage, directoryPage } from './build-mcp-pages.mjs';
+import { releasedCatalog, serverPage, directoryPage, packagePages } from './build-mcp-pages.mjs';
 import { inspectHtml } from './audit-live-seo.mjs';
 import { jsonLdProblems } from './lib/jsonld-rules.mjs';
 
@@ -77,4 +77,16 @@ test('each question page answers in its first paragraph, shows the recorded resu
   const index = answersIndexPage(answers, { flagship });
   for (const a of answers) assert.ok(index.includes(`href="${a.route}"`));
   assert.ok(directoryPage(releasedCatalog(), { answers }).includes('href="/mcp-servers/answers"'), 'the flagship page links the questions');
+});
+
+test('a package page states its tool count from the release index, never a typed number', () => {
+  const raw = readFileSync(new URL('../config/mcp-package-pages.json', import.meta.url), 'utf8');
+  assert.doesNotMatch(raw, /\b\d+ (?:quant |finance |market )?tools\b/, 'write the count as {tools}');
+  const index = JSON.parse(readFileSync(new URL('../mcp-canli/src/index.json', import.meta.url), 'utf8'));
+  for (const page of packagePages()) {
+    assert.equal(page.tools.length, index.tools.filter((t) => t[1] === page.pack).length, page.id);
+    assert.doesNotMatch(JSON.stringify(page), /\{tools\}/, `${page.id} still holds a placeholder`);
+  }
+  const quant = packagePages().find((p) => p.id === 'quant');
+  assert.match(quant.one_line, new RegExp(`^${quant.tools.length} quant tools`));
 });

@@ -5,7 +5,7 @@ import { z } from "zod";
 
 import { parse13F, parseForm4 } from "./forms.mjs";
 import { crossReferenced, findSections, htmlToText, resolveSection } from "./html.mjs";
-import { archiveBase, filingDocuments, filings, fredCsv, fredTitle, getJson, getText, NotFound, own, resolveEntity, submissions, TREASURY_CURVES, treasuryYear } from "./sources.mjs";
+import { alfredCsv, archiveBase, filingDocuments, filings, fredCsv, fredTitle, getJson, getText, NotFound, own, resolveEntity, submissions, TREASURY_CURVES, treasuryYear } from "./sources.mjs";
 import { topMatches, vocabulary } from "./words.mjs";
 
 const DATE = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "a date as YYYY-MM-DD");
@@ -156,7 +156,7 @@ export async function readFiling(session, args) {
   }
   // find: passages containing every word (or the quoted phrase), each with its offset, so a long
   // filing is searched in one call instead of paged through.
-  let matches = null;
+  let matches = null, cut = false;
   if (a.find) {
     const phrase = a.find.match(/^"(.+)"$/)?.[1];
     const terms = phrase ? [phrase.toLowerCase()] : a.find.toLowerCase().split(/\s+/).filter((w) => w.length > 1);
@@ -174,11 +174,19 @@ export async function readFiling(session, args) {
       if (!terms.some((t) => own.includes(t))) continue;
       const window = lower.slice(from, to);
       if (!terms.every((t) => window.includes(t))) continue;
-      let text = body.slice(from, to);
-      if (text.length > 1500) { const k = own.indexOf(terms.find((t) => own.includes(t))); text = body.slice(Math.max(from, paras[i][0] + k - 600), paras[i][0] + k + 900); }
-      if (chars + text.length > maxChars) break;
+      // A passage longer than 1,500 characters, or than the max_chars left, is cut around its first
+      // word (two fifths before, three after) rather than dropped, so a small max_chars still finds
+      // what is there; once under 200 characters are left, the answer says more passages match.
+      const room = Math.min(1500, maxChars - chars);
+      if (room < 200) { cut = true; break; }
+      let start = from;
+      if (to - from > room) {
+        const k = paras[i][0] + own.indexOf(terms.find((t) => own.includes(t)));
+        start = Math.max(from, Math.min(k - Math.floor(room * 0.4), to - room));
+      }
+      const text = body.slice(start, Math.min(to, start + room));
       chars += text.length;
-      matches.push({ offset: from, text });
+      matches.push({ offset: start, text });
       covered = to + 1;
     }
   }
@@ -196,7 +204,7 @@ export async function readFiling(session, args) {
     ...(docs ? { documents: { columns: ["name", "type", "description"], rows: docs.filter((d) => /\.(htm|html|txt|xml)$/i.test(d.name)).slice(0, 40).map((d) => [d.name, d.type, d.description]) } } : {}),
     total_chars: body.length,
     // How often each word appears, inside longer words too ("tariff" in "tariffs"): the passages stop at twelve.
-    ...(matches ? { find: a.find, occurrences_in_document: Object.fromEntries((a.find.match(/^"(.+)"$/)?.[1] ? [a.find.slice(1, -1).toLowerCase()] : a.find.toLowerCase().split(/\s+/).filter((w) => w.length > 1)).map((t) => [t, body.toLowerCase().split(t).length - 1])), matches: matches.length ? matches : "no passage contains every word; try fewer or other words, or read without find" } : { offset, ...(end < body.length ? { next_offset: end, more: `${body.length - end} more characters: pass offset ${end}, or use find to jump to the words you need` } : {}), text: slice }),
+    ...(matches ? { find: a.find, occurrences_in_document: Object.fromEntries((a.find.match(/^"(.+)"$/)?.[1] ? [a.find.slice(1, -1).toLowerCase()] : a.find.toLowerCase().split(/\s+/).filter((w) => w.length > 1)).map((t) => [t, body.toLowerCase().split(t).length - 1])), matches: matches.length ? matches : "no passage contains every word; try fewer or other words, or read without find", ...(cut ? { more: "more passages match than max_chars holds: raise max_chars, add words to find, or read on from an offset" } : {}) } : { offset, ...(end < body.length ? { next_offset: end, more: `${body.length - end} more characters: pass offset ${end}, or use find to jump to the words you need` } : {}), text: slice }),
     url,
     limits: SEC_LIMITS,
   };
@@ -455,7 +463,8 @@ export const COMMON_SERIES = Object.freeze([
   ["M2SL", "m2 money supply"], ["M1SL", "m1 money supply"], ["WALCL", "fed balance sheet total assets"], ["RRPONTSYD", "overnight reverse repo"], ["TOTALSL", "consumer credit growth"], ["TOTLL", "bank loans leases lending"], ["DPRIME", "bank prime loan lending rate"],
   ["INDPRO", "industrial production"], ["RSAFS", "retail sales"], ["DGORDER", "durable goods orders"], ["HOUST", "housing starts"], ["PERMIT", "building permits"], ["HSN1F", "new home sales"],
   ["CSUSHPINSA", "case shiller home house price index"], ["UMCSENT", "consumer sentiment michigan"],
-  ["USREC", "us recession indicator nber"], ["RECPROUSM156N", "recession probability smoothed"], ["SP500", "s&p 500 index level"], ["NASDAQCOM", "nasdaq composite index"],
+  ["USREC", "us recession indicator nber"], ["RECPROUSM156N", "recession probability smoothed"], ["SAHMREALTIME", "sahm rule recession indicator real time"],
+  ["GDPNOW", "gdpnow gdp nowcast atlanta fed current quarter estimate"], ["T5YIFR", "5y5y five year forward inflation expectation"], ["SP500", "s&p 500 index level"], ["NASDAQCOM", "nasdaq composite index"],
 ]);
 // The series are all US, so naming the country is filler here; "interest" only says what kind of rate.
 const FRED_WORDS = vocabulary({ kind: "interest", filler: "us usa united states america american fred" });
@@ -484,14 +493,32 @@ export const fredInput = z.object({
   start: DATE.optional(), end: DATE.optional(),
   transform: z.enum(["level", "change", "pct_change", "yoy"]).optional().describe("level (default), change from the previous observation, pct_change (fraction), or yoy (fraction against the value a year earlier)."),
   last: z.number().int().min(1).max(100000).optional().describe("Only the most recent n observations."),
+  as_of: DATE.optional().describe("The series as it was published on this date (ALFRED's vintage): only what had been released by then, at the values then shown, before later revisions."),
+  revisions: z.boolean().optional().describe("With as_of: each date's value then against today's, and how much it was revised."),
 }).strict();
 export async function economicSeries(session, args) {
   const a = fredInput.parse(args);
+  if (a.revisions && !a.as_of) throw new Error("revisions compares a past vintage with today's figures: give as_of too.");
+  if (a.as_of && a.as_of > new Date(session.now()).toISOString().slice(0, 10)) throw new Error(`as_of ${a.as_of} is in the future.`);
   const { id, matched_from: matched } = resolveSeries(a.series);
   // yoy needs a year before start.
   const fetchStart = a.start && a.transform === "yoy" ? `${Number(a.start.slice(0, 4)) - 1}${a.start.slice(4)}` : a.start;
-  const [data, title] = await Promise.all([fredCsv(session, id, { start: fetchStart, end: a.end }), fredTitle(session, id)]);
+  // A series ALFRED keeps no past releases of (the S&P 500 index) is read as it stands, up to as_of: market
+  // prices are not revised, and the answer says which it is.
+  const asOfEnd = a.as_of && (!a.end || a.end > a.as_of) ? a.as_of : a.end;
+  const past = a.as_of ? alfredCsv(session, id, a.as_of, { start: fetchStart, end: a.end }).catch((err) => { if (err instanceof NotFound) return fredCsv(session, id, { start: fetchStart, end: asOfEnd }).then((r) => ({ ...r, vintage: null })); throw err; }) : null;
+  const [data, title, today] = await Promise.all([
+    past ?? fredCsv(session, id, { start: fetchStart, end: a.end }),
+    fredTitle(session, id),
+    a.revisions ? fredCsv(session, id, { start: fetchStart, end: a.end }) : null,
+  ]);
   let rows = data.rows.filter((r) => r[1] != null);
+  // revisions: each date's level then and now, before any transform.
+  let revised = null;
+  if (today) {
+    const now = new Map(today.rows.filter((r) => r[1] != null));
+    revised = rows.filter((r) => now.has(r[0])).map((r) => [r[0], r[1], now.get(r[0]), round(now.get(r[0]) - r[1], 6), r[1] ? round(now.get(r[0]) / r[1] - 1, 6) : null]);
+  }
   const tf = a.transform ?? "level";
   if (tf === "change" || tf === "pct_change") rows = rows.slice(1).map((r, i) => [r[0], tf === "change" ? round(r[1] - rows[i][1], 6) : round(r[1] / rows[i][1] - 1, 6)]);
   else if (tf === "yoy") {
@@ -503,12 +530,15 @@ export async function economicSeries(session, args) {
   const cap = 5000;
   const cut = rows.length > cap;
   if (cut) rows = rows.slice(-cap);
+  if (revised) { if (a.start) revised = revised.filter((r) => r[0] >= a.start); revised = revised.slice(-(a.last ?? 24)); }
   return {
     series: id, ...(matched ? { matched_from: matched } : {}), title, transform: tf, count: rows.length,
+    ...(a.as_of ? { as_of: a.as_of, vintage: data.vintage, as_published: data.vintage ? `The values published by ${a.as_of} (ALFRED's vintage of ${data.vintage}), before any later revision.` : `ALFRED keeps no past releases of ${id}: these are today's values up to ${a.as_of}, which for a market price are the values then.` } : {}),
     latest: rows.length ? { date: rows[rows.length - 1][0], value: rows[rows.length - 1][1] } : null,
     dates: rows.map((r) => r[0]), values: rows.map((r) => r[1]),
     ...(cut ? { truncated_to_last: cap } : {}),
-    source: data.url,
+    ...(revised ? { revisions: { columns: ["date", "then", "now", "revision", "revision_pct"], rows: revised, largest: revised.reduce((x, r) => (r[3] != null && (x == null || Math.abs(r[3]) > Math.abs(x[3])) ? r : x), null) } } : {}),
+    source: data.url, ...(a.as_of ? { sources: [data.csv, ...(today ? [today.url] : [])] } : {}),
     limits: ["Federal Reserve Bank of St. Louis (FRED) as published; recent values of many series are revised later.", "Some series are copyrighted by their sources; see the source page before republishing.", "Not investment advice."],
   };
 }
@@ -556,8 +586,9 @@ export const priceInput = z.object({
     .describe("A ticker (AAPL, BRK.B), a stock listed abroad with its market suffix (SAP.DE, 7203.T, SHEL.L, 0700.HK), a currency pair (EUR/USD), a future (CL=F, or \"crude oil\", \"gold\"), an index (^GSPC, or \"S&P 500\", \"VIX\", \"10 year yield\") or a crypto pair (BTC/USD, or \"bitcoin\")."),
   start: DATE.optional().describe("First date; default one year ago."),
   end: DATE.optional().describe("Last date; default today."),
-  interval: z.enum(["1Day", "1Week", "1Month", "1Hour"]).optional().describe("Bar size; default 1Day (1Hour needs Alpaca)."),
-  adjusted: z.boolean().optional().describe("Split- and dividend-adjusted; default true."),
+  interval: z.enum(["1Day", "1Week", "1Month", "1Hour", "30Min", "15Min", "5Min", "1Min"]).optional().describe("Bar size; default 1Day. Minute bars go back 30 days at 1Min and 60 days at 5 to 30 minutes on the keyless source (default: the last 5 days); Tiingo is daily only."),
+  adjusted: z.boolean().optional().describe("Split- and dividend-adjusted; default true. false is adjustment: none, prices as traded."),
+  adjustment: z.enum(["all", "splits", "none"]).optional().describe("all: adjusted for splits and dividends (the default); splits: for splits only, so prices compare across a split and leave dividends out; none: as traded each day, the price a trade or a filing of that date shows."),
   returns: z.boolean().optional().describe("Also return simple returns from close to close (returns[i] is from dates[i] to dates[i+1]), ready for beta, correlation or Sharpe tools."),
 }).strict();
 
@@ -573,35 +604,62 @@ function priceProvider(env) {
 // Yahoo Finance's public chart endpoint: no key, unofficial, for personal use under Yahoo's terms.
 // "close" there is split-adjusted; "adjclose" also adjusts for dividends, and open, high and low are
 // scaled by the same ratio when adjusted bars are asked for.
+// Bars within a day are stamped to the minute, in the exchange's time.
+const INTRADAY = /Min$|Hour$/;
+// How far back Yahoo's chart data keeps minute bars.
+const MINUTE_DAYS = Object.freeze({ "1Min": 30, "5Min": 60, "15Min": 60, "30Min": 60 });
+
 export function yahooChartUrl(symbol, start, end, interval = "1Day") {
   const sym = symbol.replace(/^([A-Z]{1,5})\.([ABC])$/, "$1-$2");
-  const iv = { "1Day": "1d", "1Week": "1wk", "1Month": "1mo", "1Hour": "1h" }[interval];
+  const iv = { "1Day": "1d", "1Week": "1wk", "1Month": "1mo", "1Hour": "1h", "30Min": "30m", "15Min": "15m", "5Min": "5m", "1Min": "1m" }[interval];
   const p1 = Math.floor(Date.parse(`${start}T00:00:00Z`) / 1000), p2 = Math.floor(Date.parse(`${end}T23:59:59Z`) / 1000);
   return `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(sym)}?period1=${p1}&period2=${p2}&interval=${iv}&events=div%2Csplit&includeAdjustedClose=true`;
 }
 
-async function yahooBars(session, symbol, { start, end, interval, adjusted }) {
+// The splits Yahoo knows after a date, read up to today: its prices are adjusted for them, so prices as traded
+// multiply them back. A symbol with no data after the date has none.
+async function splitsAfter(session, symbol, date) {
+  const from = new Date(Date.parse(`${date}T00:00:00Z`) + 86400000).toISOString().slice(0, 10), to = today(session);
+  if (from > to) return [];
+  let r;
+  try { r = await getJson(session, yahooChartUrl(symbol, from, to, "1Month")); } catch (err) { if (err instanceof NotFound) return []; throw err; }
+  return Object.values(r?.chart?.result?.[0]?.events?.splits ?? {});
+}
+
+// mode: all (splits and dividends, from "adjclose"), splits (Yahoo's own "close") or none (as traded).
+async function yahooBars(session, symbol, { start, end, interval, mode }) {
   const url = yahooChartUrl(symbol, start, end, interval);
   let r;
   try { r = await getJson(session, url); } catch (err) { if (err instanceof NotFound) throw new NotFound(`Yahoo Finance has no prices for ${symbol}.`); throw err; }
   const res = r?.chart?.result?.[0];
   if (!res || !res.timestamp) throw new NotFound(`Yahoo Finance has no ${interval} bars for ${symbol} between ${start} and ${end}${r?.chart?.error?.description ? ` (${r.chart.error.description})` : ""}.`);
   const q = res.indicators.quote[0], adj = res.indicators.adjclose?.[0]?.adjclose, off = (res.meta.gmtoffset ?? 0) * 1000;
-  const stamp = (t) => new Date(t * 1000 + off).toISOString().slice(0, interval === "1Hour" ? 16 : 10);
-  const bars = [], adjCloses = [];
+  // A bar within a day is stamped in the exchange's own time zone, bar by bar: the chart's single offset is
+  // today's, which is an hour off for bars on the other side of a daylight-saving change.
+  const zone = INTRADAY.test(interval) && res.meta.exchangeTimezoneName ? new Intl.DateTimeFormat("en-CA", { timeZone: res.meta.exchangeTimezoneName, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }) : null;
+  const local = (t) => { const p = Object.fromEntries(zone.formatToParts(new Date(t * 1000)).map((x) => [x.type, x.value])); return `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}`; };
+  const stamp = (t) => (zone ? local(t) : new Date(t * 1000 + off).toISOString().slice(0, INTRADAY.test(interval) ? 16 : 10));
+  const ev = res.events ?? {};
+  // As traded: Yahoo's prices, volumes and dividends are adjusted for every split it knows, so each is
+  // multiplied back (a volume divided) by the splits after its date, in the window and after it.
+  const later = mode === "none" ? (await splitsAfter(session, symbol, end)).sort((a, b) => a.date - b.date) : [];
+  const splitList = [...Object.values(ev.splits ?? {}).sort((a, b) => a.date - b.date), ...later];
+  const undo = (date) => (mode === "none" ? splitList.filter((s) => stamp(s.date).slice(0, 10) > date).reduce((k, s) => k * (s.numerator / s.denominator), 1) : 1);
+  const bars = [], adjCloses = [], splitCloses = [];
   res.timestamp.forEach((t, i) => {
     // A session that opens before midnight UTC (currencies, crypto, Asian markets) is stamped with
     // its local date, which can fall after the window asked for.
     if (q.close[i] == null || stamp(t).slice(0, 10) > end || stamp(t).slice(0, 10) < start) return;
-    const k = adjusted && adj && adj[i] != null && q.close[i] ? adj[i] / q.close[i] : 1;
+    const k = mode === "all" ? (adj && adj[i] != null && q.close[i] ? adj[i] / q.close[i] : 1) : undo(stamp(t).slice(0, 10));
     const f = (v) => (v == null ? null : round(v * k, 4));
-    bars.push([stamp(t), f(q.open[i]), f(q.high[i]), f(q.low[i]), f(q.close[i]), q.volume[i]]);
+    bars.push([stamp(t), f(q.open[i]), f(q.high[i]), f(q.low[i]), f(q.close[i]), mode !== "none" || q.volume[i] == null ? q.volume[i] : Math.round(q.volume[i] / k)]);
     adjCloses.push(adj && adj[i] != null ? adj[i] : null);
+    splitCloses.push(round(q.close[i], 4));
   });
-  const ev = res.events ?? {};
-  const dividends = Object.values(ev.dividends ?? {}).sort((a, b) => a.date - b.date).map((d) => [stamp(d.date).slice(0, 10), d.amount]);
+  const dividends = Object.values(ev.dividends ?? {}).sort((a, b) => a.date - b.date).map((d) => { const day = stamp(d.date).slice(0, 10); return [day, mode === "none" ? round(d.amount * undo(day), 6) : d.amount]; });
   const splits = Object.values(ev.splits ?? {}).sort((a, b) => a.date - b.date).map((d) => [stamp(d.date).slice(0, 10), `${d.numerator}:${d.denominator}`]);
-  return { bars, adjCloses, dividends, splits, currency: res.meta.currency ?? null, exchange: res.meta.fullExchangeName ?? res.meta.exchangeName ?? null, kind: res.meta.instrumentType ?? null, name: res.meta.longName ?? res.meta.shortName ?? null };
+  return { bars, adjCloses, splitCloses, dividends, splits, later_splits: later.map((d) => [stamp(d.date).slice(0, 10), `${d.numerator}:${d.denominator}`]),
+    currency: res.meta.currency ?? null, exchange: res.meta.fullExchangeName ?? res.meta.exchangeName ?? null, kind: res.meta.instrumentType ?? null, name: res.meta.longName ?? res.meta.shortName ?? null };
 }
 
 // What a price means for each kind of market Yahoo reports.
@@ -656,42 +714,59 @@ export async function priceHistory(session, args) {
     ? "Prices are off on this server (CANLI_KEYLESS_PRICES=0). On the hosted server, run the local one for prices: npx -y canli-mcp. Locally, set ALPACA_API_KEY_ID and ALPACA_API_SECRET_KEY (a free Alpaca account; paper keys work) or TIINGO_API_KEY, or pass prices to the analysis tools as a CSV file."
     : `${want.symbol} is not a US-listed stock, and its prices come only from Yahoo's chart data, which is off (CANLI_KEYLESS_PRICES=0).`);
   const symbol = want.symbol;
-  const start = a.start ?? daysAgo(session, 365), end = a.end ?? today(session);
-  const interval = a.interval ?? "1Day", adjusted = a.adjusted !== false;
-  let bars = [], adjCloses = null;
+  const interval = a.interval ?? "1Day";
+  if (a.adjusted === false && a.adjustment === "all") throw new RangeError("adjusted: false and adjustment: all disagree; pass one of them.");
+  // adjusted: false means as traded, on every source (Yahoo's own "close" is split-adjusted).
+  const mode = a.adjustment ?? (a.adjusted === false ? "none" : "all"), adjusted = mode === "all";
+  const start = a.start ?? daysAgo(session, MINUTE_DAYS[interval] ? 5 : 365), end = a.end ?? today(session);
+  if (p.name === "yahoo" && MINUTE_DAYS[interval] && start < daysAgo(session, MINUTE_DAYS[interval] - 1)) throw new Error(`${interval} bars go back ${MINUTE_DAYS[interval]} days on the keyless source; start on or after ${daysAgo(session, MINUTE_DAYS[interval] - 1)}, or use 1Hour or 1Day.`);
+  // levels: closes adjusted for splits, for price changes and returns when the bars are as traded, so a split
+  // is never read as a loss.
+  let bars = [], adjCloses = null, levels = null;
   let source, extra = {};
   if (p.name === "yahoo") {
-    const y = await yahooBars(session, symbol, { start, end, interval, adjusted });
+    const y = await yahooBars(session, symbol, { start, end, interval, mode });
     bars = y.bars;
     adjCloses = y.adjCloses;
-    extra = { currency: y.currency, exchange: y.exchange, ...kindOut(y), dividends: y.dividends, splits: y.splits };
+    if (mode === "none") levels = y.splitCloses;
+    extra = { currency: y.currency, exchange: y.exchange, ...kindOut(y), dividends: y.dividends, splits: y.splits, ...(y.later_splits.length ? { later_splits: y.later_splits } : {}) };
     source = "Yahoo Finance chart data (no key)";
   } else if (p.name === "alpaca") {
     let token = null, pages = 0;
     do {
-      const q = new URLSearchParams({ symbols: symbol, timeframe: interval, start, end, adjustment: adjusted ? "all" : "raw", feed: p.feed, limit: "10000", sort: "asc" });
+      const q = new URLSearchParams({ symbols: symbol, timeframe: interval, start, end, adjustment: { all: "all", splits: "split", none: "raw" }[mode], feed: p.feed, limit: "10000", sort: "asc" });
       if (token) q.set("page_token", token);
       const r = await getJson(session, `https://data.alpaca.markets/v2/stocks/bars?${q}`, { headers: { "APCA-API-KEY-ID": p.id, "APCA-API-SECRET-KEY": p.secret }, secret: true });
-      for (const b of r.bars?.[symbol] ?? []) bars.push([b.t.slice(0, interval === "1Hour" ? 16 : 10), b.o, b.h, b.l, b.c, b.v]);
+      for (const b of r.bars?.[symbol] ?? []) bars.push([b.t.slice(0, INTRADAY.test(interval) ? 16 : 10), b.o, b.h, b.l, b.c, b.v]);
       token = r.next_page_token;
     } while (token && ++pages < 20);
     source = `Alpaca market data (${p.feed} feed)`;
     // adjustment=all adjusts for splits and dividends, so its closes give the total return.
     if (adjusted) adjCloses = bars.map((b) => b[4]);
   } else {
-    if (interval === "1Hour") throw new Error("1Hour bars need Alpaca; Tiingo's end-of-day prices are daily.");
+    if (INTRADAY.test(interval)) throw new Error(`${interval} bars need Alpaca or the keyless source; Tiingo's end-of-day prices are daily.`);
     const freq = { "1Day": "daily", "1Week": "weekly", "1Month": "monthly" }[interval];
     const q = new URLSearchParams({ startDate: start, endDate: end, resampleFreq: freq });
     const r = await getJson(session, `https://api.tiingo.com/tiingo/daily/${encodeURIComponent(symbol.replace(".", "-"))}/prices?${q}`, { headers: { Authorization: `Token ${p.key}` }, secret: true });
-    for (const b of r ?? []) bars.push(adjusted ? [b.date.slice(0, 10), b.adjOpen, b.adjHigh, b.adjLow, b.adjClose, b.adjVolume] : [b.date.slice(0, 10), b.open, b.high, b.low, b.close, b.volume]);
-    adjCloses = (r ?? []).map((b) => b.adjClose ?? null);
+    const rows = r ?? [];
+    // Tiingo's prices are as traded with each split's factor on its date: a day's split-adjusted price is its
+    // price over the product of the factors after it.
+    const after = [];
+    for (let i = rows.length - 1, k = 1; i >= 0; i--) { after[i] = k; k *= rows[i].splitFactor || 1; }
+    const s = (v, i) => (v == null ? null : round(v / after[i], 4));
+    rows.forEach((b, i) => bars.push(adjusted ? [b.date.slice(0, 10), b.adjOpen, b.adjHigh, b.adjLow, b.adjClose, b.adjVolume]
+      : mode === "splits" ? [b.date.slice(0, 10), s(b.open, i), s(b.high, i), s(b.low, i), s(b.close, i), b.volume == null ? null : Math.round(b.volume * after[i])]
+        : [b.date.slice(0, 10), b.open, b.high, b.low, b.close, b.volume]));
+    if (mode === "none") levels = rows.map((b, i) => s(b.close, i));
+    adjCloses = rows.map((b) => b.adjClose ?? null);
     source = "Tiingo end-of-day prices";
   }
   if (!bars.length) throw new NotFound(`${source} returned no ${interval} bars for ${symbol} between ${start} and ${end}.`);
-  const rets = a.returns ? bars.slice(1).map((b, i) => (bars[i][4] ? round(b[4] / bars[i][4] - 1, 10) : null)) : null;
+  const series = levels ?? bars.map((b) => b[4]);
+  const rets = a.returns ? series.slice(1).map((c, i) => (series[i] ? round(c / series[i] - 1, 10) : null)) : null;
   // Over the whole window, close to close: the price change, and the total return with dividends
   // reinvested (from dividend-adjusted closes, whichever closes were asked for).
-  const first = bars[0][4], last = bars[bars.length - 1][4];
+  const first = series[0], last = series[series.length - 1];
   const a0 = adjCloses?.[0], a1 = adjCloses?.[adjCloses.length - 1];
   const change = {
     from: bars[0][0], to: bars[bars.length - 1][0],
@@ -700,7 +775,7 @@ export async function priceHistory(session, args) {
     ...(a0 && a1 ? {} : { total_return_note: "needs dividend-adjusted closes, which this source did not return for these settings" }),
   };
   return {
-    symbol, ...(want.resolved_from ? { resolved_from: want.resolved_from } : {}), interval, adjusted, start: bars[0][0], end: bars[bars.length - 1][0], count: bars.length, change,
+    symbol, ...(want.resolved_from ? { resolved_from: want.resolved_from } : {}), interval, adjusted, adjustment: mode, start: bars[0][0], end: bars[bars.length - 1][0], count: bars.length, change,
     ...(rets ? { returns: rets, returns_dates: bars.slice(1).map((b) => b[0]) } : {}),
     dates: bars.map((b) => b[0]), open: bars.map((b) => b[1]), high: bars.map((b) => b[2]), low: bars.map((b) => b[3]), close: bars.map((b) => b[4]), volume: bars.map((b) => b[5]),
     ...extra,
@@ -708,6 +783,9 @@ export async function priceHistory(session, args) {
     limits: [
       p.name === "yahoo" ? "Yahoo Finance's public chart data: unofficial, for personal use under Yahoo's terms, and it can change or stop without notice. Set ALPACA_API_KEY_ID/ALPACA_API_SECRET_KEY or TIINGO_API_KEY to use your own account instead, or CANLI_KEYLESS_PRICES=0 to turn it off."
         : p.name === "alpaca" && p.feed === "iex" ? "Alpaca's free IEX feed: prices are IEX trades, so volume is IEX volume only (a few percent of the consolidated tape)." : `${source} under your own account's terms.`,
+      ...(mode === "none" && p.name === "yahoo" ? ["As traded: Yahoo's prices, volumes and dividends are adjusted for splits, so each is multiplied back (a volume divided) by every split after its date, read up to today; price_return and returns use the split-adjusted closes, so a split is not a loss."] : []),
+      ...(mode === "none" && p.name === "tiingo" ? ["As traded; price_return and returns use closes adjusted for Tiingo's split factors, so a split is not a loss."] : []),
+      ...(mode === "none" && p.name === "alpaca" ? ["As traded: price_return and returns compare closes as traded, so across a split they are not returns; adjustment: splits gives comparable closes."] : []),
       "Not investment advice.",
     ],
   };

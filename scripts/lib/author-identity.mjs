@@ -7,5 +7,5 @@ export const AUTHOR_SAME_AS = Object.freeze([
   'https://orcid.org/0009-0004-4138-7907',
   'https://x.com/arhancanli',
   'https://huggingface.co/arhancanli',
-  'https://dev.to/arhancanli',
+  'https://hashnode.com/@arhancanli',
 ]);

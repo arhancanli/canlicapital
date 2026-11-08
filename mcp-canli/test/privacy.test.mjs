@@ -17,8 +17,9 @@ import { enabledPacks } from "../src/packs.mjs";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = path.join(ROOT, "src");
 
-test("src imports only the SDK, zod, the published packs and file, path, os, url and crypto helpers", () => {
-  const allowed = /^(zod|@modelcontextprotocol\/client|@modelcontextprotocol\/server(\/stdio)?|node:(crypto|fs|os|path|url)|canli-[a-z-]+-mcp\/.+)$/;
+test("src imports only the SDK, zod, the published packs and file, path, os, url, crypto and async-context helpers", () => {
+  // node:async_hooks is for the network tripwire alone (tripwire.mjs): it tells which tool a fetch came from.
+  const allowed = /^(zod|@modelcontextprotocol\/client|@modelcontextprotocol\/server(\/stdio)?|node:(async_hooks|crypto|fs|os|path|url)|canli-[a-z-]+-mcp\/.+)$/;
   // start.mjs turns on Node's compile cache, and imports node:module for that alone.
   assert.deepEqual([...readFileSync(path.join(SRC, "start.mjs"), "utf8").matchAll(/(?:from\s+|import\()\s*"([^"]+)"/g)].map((m) => m[1]), ["node:module", "./server.mjs"]);
   for (const f of readdirSync(SRC).filter((f) => f.endsWith(".mjs") && f !== "start.mjs")) {
@@ -33,7 +34,7 @@ test("src imports only the SDK, zod, the published packs and file, path, os, url
       continue;
     }
     assert.doesNotMatch(code, /\bfetch\s*\(|XMLHttpRequest|WebSocket|child_process|worker_threads|writeFile|appendFile|createWriteStream|mkdir|unlink|\beval\s*\(|new Function|console\.(log|error|warn|info)/, f);
-    for (const n of (text.match(/import\s*\{([^}]*)\}\s*from\s*"node:fs"/)?.[1] ?? "").split(",").map((s) => s.trim()).filter(Boolean)) assert.ok(["closeSync", "fstatSync", "openSync", "readFileSync", "realpathSync", "statSync"].includes(n), `${f} imports ${n} from node:fs`);
+    for (const n of (text.match(/import\s*\{([^}]*)\}\s*from\s*"node:fs"/)?.[1] ?? "").split(",").map((s) => s.trim()).filter(Boolean)) assert.ok(["closeSync", "fstatSync", "openSync", "readFileSync", "readSync", "realpathSync", "statSync"].includes(n), `${f} imports ${n} from node:fs`);
     for (const m of code.matchAll(/openSync\(([^)]*)\)/g)) assert.match(m[1], /,\s*"r"\s*$/, `${f} opens a file for writing`);
   }
 });

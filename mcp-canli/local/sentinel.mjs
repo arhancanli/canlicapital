@@ -24,8 +24,13 @@ const SEEN = {
   polled: "Yahoo's chart data, read every 30 seconds; it can run late, by 15 minutes or more on some markets",
   cboe: "Cboe's delayed option quotes, read every 5 minutes; they run about 15 minutes late",
   edgar: "EDGAR's latest-filings feed, read every 60 seconds; a filing appears within a minute or two of acceptance",
+  forms4: "insiders' Form 4 filings on EDGAR, read hourly; a Form 4 is due two business days after the trade",
+  facts: "the SEC's filing list and company facts, read every 15 minutes; a filing's figures reach them minutes after acceptance, so an event can come half an hour or more after the filing",
 };
-const POLL_MS = { price: 30 * 1000, volatility: 5 * 60 * 1000, filing: 60 * 1000 };
+const POLL_MS = { price: 30 * 1000, volatility: 5 * 60 * 1000, filing: 60 * 1000, restatement: 15 * 60 * 1000, insiders: 60 * 60 * 1000 };
+// Each company watched for restatements is held in memory by the fundamentals pack, which holds eight; more
+// would be read in full from the SEC on every check.
+const RESTATEMENT_COMPANIES = 8;
 const STALL_MS = 90 * 1000;
 
 // A filer chooses its own name, so a name is outside text. It stays out of what a model reads, and what
@@ -34,11 +39,18 @@ const plain = (v, max) => (v == null ? null : String(v).replace(/[^A-Za-z0-9 .,&
 const secLink = (u) => (/^https:\/\/www\.sec\.gov\/[A-Za-z0-9/_.?=&-]+$/.test(String(u ?? "")) ? u : null);
 const round = (x, d = 2) => (x == null || !Number.isFinite(x) ? null : Number(x.toFixed(d)));
 const upper = (s) => String(s).toUpperCase();
+// What may reach the block from a source's table: dates, accession numbers and numbers in their own shapes, or null.
+const day = (x) => (/^\d{4}-\d{2}-\d{2}$/.test(String(x ?? "")) ? x : null);
+const accn = (x) => (/^\d{10}-\d{2}-\d{6}$/.test(String(x ?? "")) ? x : null);
+const num = (x) => (typeof x === "number" && Number.isFinite(x) ? x : null);
 const within = (promise, ms) => Promise.race([promise, new Promise((_, no) => { const t = setTimeout(() => no(new Error("timed out")), ms); t.unref?.(); })]);
 const describeRule = (r) => {
   if (r.kind === "price_move") return `${upper(r.symbol)} moves ${r.percent}% within ${r.within_minutes} minutes`;
   if (r.kind === "price_level") return `${upper(r.symbol)} goes${r.above ? ` above ${r.above}` : ""}${r.above && r.below ? " or" : ""}${r.below ? ` below ${r.below}` : ""}`;
   if (r.kind === "volatility_move") return `${upper(r.symbol)} 30-day implied volatility moves ${r.points} points within ${r.within_minutes} minutes`;
+  if (r.kind === "insider_cluster") return `${r.insiders ?? 3} or more ${r.company} insiders ${r.side === "sell" ? "sell" : "buy"} in the open market within ${r.within_days ?? 30} days${r.min_value ? `, trades of ${r.min_value} or more` : ""}`;
+  if (r.kind === "reported") return `${r.company} first reports ${r.concept}${r.unit ? ` in ${r.unit}` : ""} for ${r.start ? `${r.start} to ${r.end}` : `the period ending ${r.end}`}${r.above !== undefined ? `, above ${r.above}?` : ""}${r.below !== undefined ? `, below ${r.below}?` : ""}`;
+  if (r.kind === "restatement") return `a later filing changes ${r.company}'s ${r.concept}${r.unit ? ` in ${r.unit}` : ""} for ${r.start ? `${r.start} to ${r.end}` : `the period ending ${r.end}`}`;
   return `a new filing${r.company ? ` by ${r.company}` : ""}${r.forms?.length ? ` on ${r.forms.join(" or ")}` : ""}${r.event ? ` about ${r.event}` : ""}`;
 };
 
@@ -58,6 +70,8 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
     const rule = ruleInput.parse(input);
     if (rule.kind === "price_level" && !rule.above && !rule.below) throw new Error("price_level needs above or below.");
     if (rule.kind === "filing" && !rule.company && !rule.forms?.length && !rule.event) throw new Error("A filing rule needs company, forms or event; every filing in the market is thousands a day.");
+    const figures = (k) => k === "restatement" || k === "reported";
+    if (figures(rule.kind) && new Set([...rules().filter((r) => figures(r.kind)).map((r) => upper(r.company)), upper(rule.company)]).size > RESTATEMENT_COMPANIES) throw new Error(`Restatements and first reports are watched at ${RESTATEMENT_COMPANIES} companies at most: each is held in memory and checked against the SEC every 15 minutes, and more would be read in full on every check. Remove one first.`);
     const clean = "symbol" in rule ? { ...rule, symbol: upper(rule.symbol) } : rule;
     const { note: _note, cooldown_minutes: _cool, ...condition } = clean;
     const id = `${clean.kind}-${createHash("sha256").update(JSON.stringify(condition)).digest("hex").slice(0, 8)}`;
@@ -84,7 +98,7 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
 
   async function fire(rule, headline, seen, facts, context) {
     const s = stateOf(rule.id);
-    const cool = (rule.cooldown_minutes ?? (rule.kind === "filing" ? 0 : 30)) * 60 * 1000;
+    const cool = (rule.cooldown_minutes ?? (["filing", "restatement", "reported", "insider_cluster"].includes(rule.kind) ? 0 : 30)) * 60 * 1000;
     if (cool && s.last && now() - s.last < cool) return null;
     s.last = now();
     const event = { id: `${rule.id}-${now()}`, rule: rule.id, kind: rule.kind, at: new Date(now()).toISOString(), rule_text: describeRule(rule), ...(rule.note ? { note: rule.note } : {}), headline, seen_via: seen, facts };
@@ -157,6 +171,24 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
     if (fired) s.window = [{ at, iv, rows: table.rows }];
   }
 
+  // filing_check on a new report: the checks inside the document only (scale against the stated unit, the same fact
+  // tagged twice, sums), since the SEC's company facts trail a filing minutes old. What reaches the block is counts,
+  // concept names, numbers and links, held to their own shapes.
+  async function checkFiling(company, accession) {
+    try {
+      const r = await within(call("filing_check", { company, ...(accession ? { accession } : {}) }), 180000);
+      const res = Array.isArray(r?.results) ? r.results[0] : r;
+      const t = res?.findings ?? { columns: [], rows: [] };
+      const rows = (t.rows ?? []).map((row) => Object.fromEntries((t.columns ?? []).map((c, i) => [c, row[i]]))).filter((x) => ["scale", "duplicate", "sum"].includes(x.kind));
+      const by_kind = {};
+      for (const x of rows) by_kind[x.kind] = (by_kind[x.kind] ?? 0) + 1;
+      const tag = (x) => (/^[A-Za-z][A-Za-z0-9_-]*:[A-Za-z0-9_]{1,120}$/.test(String(x ?? "")) ? x : null);
+      return { found: rows.length, by_kind, first: rows.slice(0, 5).map((x) => ({ kind: x.kind, concept: tag(x.concept), value: num(x.value), url: secLink(String(x.url ?? "").split("#")[0]) })) };
+    } catch (e) {
+      return { unavailable: String(e?.message ?? e).slice(0, 160) };
+    }
+  }
+
   async function pollFilings(rule) {
     const r = await within(call("latest_filings", { ...(rule.forms?.length ? { forms: rule.forms } : {}), ...(rule.company ? { company: rule.company } : {}), ...(rule.event ? { event: rule.event } : {}), limit: 100 }), 30000);
     const rows = (r.rows ?? []).map((row) => Object.fromEntries((r.columns ?? []).map((c, i) => [c, row[i]])));
@@ -167,10 +199,107 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
       // The first read marks what is already there, so events start with what comes next.
       if (!first) {
         const form = plain(f.form, 20) ?? "a form", cik = plain(f.cik, 12), items = Array.isArray(f.items) ? f.items.filter((x) => /^\d\.\d{2}$/.test(x)) : [];
-        await fire(rule, `${rule.company ? plain(rule.company, 60) : cik ? `CIK ${cik}` : "A company"} filed ${form}${items.length ? ` (items ${items.join(", ")})` : ""}`, SEEN.edgar, { form, company_as_filed: plain(f.company, 40), cik, accession: plain(f.accession, 25), accepted: plain(f.accepted, 30), items, url: secLink(f.url) }, async () => ({ filing: { form, cik, accession: plain(f.accession, 25), items, url: secLink(f.url) } }));
+        const check = rule.check && /^(10-K|10-Q)(\/A)?$/.test(form) ? await checkFiling(cik ?? rule.company, plain(f.accession, 25)) : null;
+        const said = check ? (check.unavailable ? "; filing_check could not run" : check.found ? `; filing_check found ${check.found} to look at (${Object.entries(check.by_kind).map(([k, n]) => `${k} ${n}`).join(", ")})` : "; filing_check found nothing") : "";
+        await fire(rule, `${rule.company ? plain(rule.company, 60) : cik ? `CIK ${cik}` : "A company"} filed ${form}${items.length ? ` (items ${items.join(", ")})` : ""}${said}`, SEEN.edgar, { ...(check ? { check } : {}), form, company_as_filed: plain(f.company, 40), cik, accession: plain(f.accession, 25), accepted: plain(f.accepted, 30), items, url: secLink(f.url) }, async () => ({ filing: { form, cik, accession: plain(f.accession, 25), items, url: secLink(f.url) }, ...(check ? { filing_check: check } : {}) }));
       }
     }
     if (s.seen.size > 5000) s.seen = new Set([...s.seen].slice(-3000));
+  }
+
+  // Every filing that reported the rule's period, from the fundamentals pack's vintages, which reads the SEC's
+  // own facts when a report is newer than the Canli reference. The first read marks each period's latest value;
+  // a later filing with a different one fires. A period not reported yet is waited for, and its first report is
+  // marked, not fired. The company's name as filed stays out: the headline uses the rule's own words.
+  // Every filing that reported a rule's period, oldest first; none yet is an empty list.
+  async function readVintages(rule) {
+    let r;
+    try {
+      r = await within(call("vintages", { company: rule.company, concept: rule.concept, end: rule.end, ...(rule.start ? { start: rule.start } : {}), ...(rule.unit ? { unit: rule.unit } : {}) }), 60000);
+    } catch (e) {
+      // The fundamentals pack's words for a period no filing has reported yet.
+      if (/reports no .* period ending/.test(String(e?.message ?? e))) r = { columns: [], rows: [] };
+      else throw e;
+    }
+    return { r, rows: (r.rows ?? []).map((row) => Object.fromEntries((r.columns ?? []).map((c, i) => [c, row[i]]))) };
+  }
+
+  async function pollRestatement(rule) {
+    const { r, rows } = await readVintages(rule);
+    const s = stateOf(rule.id), first = s.seen === null;
+    s.seen ??= new Set();
+    s.marks ??= new Map();
+    const unit = /^[A-Za-z0-9/_-]{1,20}$/.test(String(r.concept?.unit ?? "")) ? r.concept.unit : null;
+    const cik = /^\d{10}$/.test(String(r.company?.cik ?? "")) ? r.company.cik : null;
+    const who = plain(rule.company, 60), what = String(rule.concept).replace(/[^A-Za-z0-9_:-]/g, "");
+    // Oldest first: each period's values in filing order, so a mark is always the latest before the next.
+    for (const v of rows) {
+      if (typeof v.val !== "number" || typeof v.accn !== "string") continue;
+      const period = `${v.start ?? ""}/${v.end}${v.tag ? `/${v.tag}` : ""}`, key = `${period}|${v.accn}`;
+      if (s.seen.has(key)) continue;
+      s.seen.add(key);
+      const before = s.marks.get(period);
+      s.marks.set(period, v);
+      if (first || !before || before.val === v.val) continue;
+      const form = plain(v.form, 20) ?? "a filing", accession = plain(v.accn, 25), span = v.start ? `${v.start} to ${v.end}` : `the period ending ${v.end}`;
+      const url = cik && accession ? secLink(`https://www.sec.gov/Archives/edgar/data/${Number(cik)}/${accession.replace(/-/g, "")}/`) : null;
+      const change = before.val ? round(((v.val - before.val) / Math.abs(before.val)) * 100) : null;
+      await fire(rule, `${who}'s ${what} for ${span} changed from ${before.val} to ${v.val}${unit ? ` ${unit}` : ""}${change === null ? "" : ` (${change > 0 ? "+" : ""}${change}%)`} in a ${form} filed ${plain(v.filed, 10)}`, SEEN.facts,
+        { company: who, cik, concept: what, unit, start: v.start ?? null, end: v.end, from: before.val, to: v.val, change_percent: change, from_filing: { form: plain(before.form, 20), filed: plain(before.filed, 10), accession: plain(before.accn, 25) }, form, filed: plain(v.filed, 10), accession, url },
+        async () => ({ vintages: { columns: ["start", "end", "filed", "form", "accn", "val"], rows: rows.filter((x) => `${x.start ?? ""}/${x.end}${x.tag ? `/${x.tag}` : ""}` === period).map((x) => [day(x.start), day(x.end), day(x.filed), plain(x.form, 20), accn(x.accn), num(x.val)]) }, filing: { form, accession: accn(accession), url } }));
+    }
+  }
+
+  // A figure's first report, and whether it meets the rule's claim. It fires once: when a filing first reports the
+  // period, or at the first read when one already has. Without a start, the longest period ending that day is the
+  // one read (the year at a fiscal year's end). Restatements after it are a restatement rule's to watch.
+  async function pollReported(rule) {
+    const s = stateOf(rule.id);
+    if (s.resolved) return;
+    const { r, rows } = await readVintages(rule);
+    const reports = rows.filter((v) => typeof v.val === "number" && typeof v.accn === "string" && (!rule.start || v.start === rule.start));
+    if (!reports.length) return;
+    const longest = reports.reduce((x, v) => ((v.start ?? v.end) < (x.start ?? x.end) ? v : x)).start ?? null;
+    const v = reports.filter((x) => (x.start ?? null) === longest)[0];
+    s.resolved = true;
+    const unit = /^[A-Za-z0-9/_-]{1,20}$/.test(String(r.concept?.unit ?? "")) ? r.concept.unit : null;
+    const cik = /^\d{10}$/.test(String(r.company?.cik ?? "")) ? r.company.cik : null;
+    const who = plain(rule.company, 60), what = String(rule.concept).replace(/[^A-Za-z0-9_:-]/g, "");
+    const form = plain(v.form, 20) ?? "a filing", accession = plain(v.accn, 25), span = v.start ? `${v.start} to ${v.end}` : `the period ending ${v.end}`;
+    const url = cik && accession ? secLink(`https://www.sec.gov/Archives/edgar/data/${Number(cik)}/${accession.replace(/-/g, "")}/`) : null;
+    const checks = [...(rule.above !== undefined ? [["above", rule.above, v.val > rule.above]] : []), ...(rule.below !== undefined ? [["below", rule.below, v.val < rule.below]] : [])];
+    const met = checks.length ? checks.every(([, , ok]) => ok) : null;
+    const claim = checks.map(([side, x, ok]) => `${side} ${x}: ${ok ? "yes" : "no"}`).join(", ");
+    await fire(rule, `${who} reported ${what} for ${span}: ${v.val}${unit ? ` ${unit}` : ""} in a ${form} filed ${plain(v.filed, 10)}${claim ? `; ${claim}` : ""}`, SEEN.facts,
+      { company: who, cik, concept: what, unit, start: v.start ?? null, end: v.end, value: v.val, form, filed: plain(v.filed, 10), accession, url, ...(checks.length ? { claim: { ...(rule.above !== undefined ? { above: rule.above } : {}), ...(rule.below !== undefined ? { below: rule.below } : {}), met } } : {}) },
+      async () => ({ filing: { form, accession: accn(accession), url } }));
+  }
+
+  // Several insiders trading the same way in the open market within days: Form 4 code P (a purchase) or S (a sale),
+  // counted by insider. It fires when that count reaches the rule's and when it grows after; the first read marks
+  // the count, so events start with what comes next. Insiders' names and roles are the filer's own text: they are
+  // kept in the event's facts for a person's log and stay out of what a model reads.
+  async function pollInsiders(rule) {
+    const days = rule.within_days ?? 30, need = rule.insiders ?? 3, code = rule.side === "sell" ? "S" : "P";
+    const since = new Date(now() - days * 86400000).toISOString().slice(0, 10);
+    let r;
+    try {
+      r = await within(call("insider_trades", { company: rule.company, since, codes: [code] }), 60000);
+    } catch (e) {
+      if (/no Form 4|filed no|no insider/i.test(String(e?.message ?? e))) r = { columns: [], rows: [] };
+      else throw e;
+    }
+    const trades = (r.rows ?? []).map((row) => Object.fromEntries((r.columns ?? []).map((c, i) => [c, row[i]]))).filter((t) => t.code === code && typeof t.date === "string" && t.date >= since && !t.amendment && (!rule.min_value || (typeof t.value === "number" && t.value >= rule.min_value)));
+    const by = new Map();
+    for (const t of trades) by.set(t.insider, [...(by.get(t.insider) ?? []), t]);
+    const s = stateOf(rule.id), before = s.seen;
+    s.seen = by.size;
+    if (before === null || by.size < need || by.size <= before) return;
+    const total = trades.reduce((x, t) => x + (typeof t.value === "number" ? t.value : 0), 0);
+    const who = plain(rule.company, 60), verb = code === "P" ? "bought" : "sold";
+    await fire(rule, `${by.size} ${who} insiders ${verb} shares in the open market within ${days} days, ${round(total, 0)} in all`, SEEN.forms4,
+      { company: who, insiders: by.size, side: rule.side ?? "buy", within_days: days, total_value: round(total, 0), trades: [...by].map(([name, list]) => ({ insider: plain(name, 60), role: plain(list[0].role, 60), trades: list.length, value: round(list.reduce((x, t) => x + (t.value ?? 0), 0), 0), last: plain(list.map((t) => t.date).sort().at(-1), 10) })) },
+      async () => ({ trades: { columns: ["date", "code", "shares", "price", "value", "filed", "accession"], rows: trades.map((t) => [day(t.date), code, num(t.shares), num(t.price), num(t.value), day(t.filed), accn(t.accession)]) } }));
   }
 
   async function pollPrice(sym) {
@@ -188,6 +317,9 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
     for (const r of list) {
       if (r.kind === "volatility_move" && due(r.id, POLL_MS.volatility)) jobs.push(pollVolatility(r));
       if (r.kind === "filing" && due(r.id, POLL_MS.filing)) jobs.push(pollFilings(r));
+      if (r.kind === "restatement" && due(r.id, POLL_MS.restatement)) jobs.push(pollRestatement(r));
+      if (r.kind === "reported" && due(r.id, POLL_MS.restatement)) jobs.push(pollReported(r));
+      if (r.kind === "insider_cluster" && due(r.id, POLL_MS.insiders)) jobs.push(pollInsiders(r));
     }
     for (const out of await Promise.allSettled(jobs)) if (out.status === "rejected") say(`a read failed: ${String(out.reason?.message ?? out.reason).slice(0, 200)}`);
   }
@@ -254,6 +386,18 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
   }
 
   return { add, remove, list, events, start, stop, pollDue, onPrice, sinks, rules, exists: () => existsSync(rulesFile) };
+}
+
+// A chat that shows an event to a person: a Slack or Discord incoming webhook, which takes a message rather than the
+// event as data. The message is what happened, the rule and how it was seen, with no outside text, as the block.
+export function chatSink(url, service, fetchImpl = fetch) {
+  if (!/^https:\/\//.test(String(url))) throw new Error(`--${service} takes the https address of an incoming webhook.`);
+  const key = service === "discord" ? "content" : "text";
+  return async (event) => {
+    const message = [`canli-mcp sentinel: ${event.headline}`, `Rule: ${event.rule_text}${event.note ? ` (${event.note})` : ""}`, `Seen via ${event.seen_via}`].join("\n").slice(0, 1900);
+    const r = await fetchImpl(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ [key]: message }), signal: AbortSignal.timeout(10000) });
+    if (!r.ok) throw new Error(`${service} answered ${r.status}`);
+  };
 }
 
 // Where events go. Each is chosen on the command line by the person running it, never by a rule.

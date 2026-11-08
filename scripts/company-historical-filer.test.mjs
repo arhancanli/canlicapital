@@ -37,7 +37,7 @@ test('the overview and the filing index state the last filing at company level o
   const latest = latestFiling(record);
   assert.ok(historical.includes(`<h2 id="historical-filer">Filing record ends ${latest.filed}</h2>`));
   assert.ok(historical.includes(`a ${latest.form} filed ${latest.filed}`) && historical.includes('captured on 2032-09-19') && historical.includes('nothing on this page describes its current status'));
-  assert.ok(historical.indexOf('id="historical-filer"') < historical.indexOf('Reported financial histories'), 'the notice opens the page');
+  assert.ok(historical.indexOf('id="historical-filer"') < historical.indexOf('Every reported measure'), 'the notice opens the page');
   // History pages are unchanged by the company-level rule (they carry their own coverage note).
   const history = renderCompanyPages({ ...later(record), source_snapshot: `/company-data/sources/${record.source_sha256}.json.gz` }, { target: record.concepts[0].tag })[0].html;
   assert.ok(!history.includes('id="historical-filer"'));

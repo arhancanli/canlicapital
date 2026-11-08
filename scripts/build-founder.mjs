@@ -224,9 +224,9 @@ ${renderProductShellHeader({ active: "founder" })}
     <div class="founder-hero__copy">
       <p class="founder-kicker"><span>Founder evidence map</span><span>Arhan Canli</span></p>
       <h1 id="founder-title">I built a system that keeps the evidence that proves me wrong.</h1>
-      <p class="founder-hero__lead">ALPHAC is my attempt to make quantitative research publicly falsifiable. The interesting part is not a perfect curve. It is the machinery that freezes each attempt, keeps corrections visible and separates what I know from what I still need to prove.</p>
+      <p class="founder-hero__lead">ALPHAC is my attempt to make quantitative research publicly falsifiable. The interesting part is not a perfect curve. It is the machinery that freezes each attempt, keeps corrections visible and separates what I know from what I still need to prove. I also build <a href="/mcp-servers">canli-mcp</a>, which gives AI assistants SEC filings and market data with the source of every figure.</p>
       <div class="founder-hero__actions">
-        <a class="founder-button founder-button--primary" href="#walkthrough">Walk the 90-second case</a>
+        <a class="founder-button founder-button--primary" href="#walkthrough">Follow the case in six stops</a>
         <a class="founder-button" href="#contribution">Inspect who did what</a>
       </div>
     </div>
@@ -235,24 +235,23 @@ ${renderProductShellHeader({ active: "founder" })}
       <dl>
         <div><dt>Paper record since</dt><dd>${escapeHtml(facts.goLive)}</dd></div>
         <div><dt>Forward observations in snapshot</dt><dd>${forward.daily_return_observations}</dd></div>
-        <div><dt>Sleeves</dt><dd>${forward.current_sleeves} / ${forward.target_sleeves}</dd></div>
+        <div><dt>Sleeve objective</dt><dd>${forward.current_sleeves} / ${forward.target_sleeves}</dd></div>
         <div><dt>External reviews</dt><dd>${external.completed_reviews}</dd></div>
         <div><dt>Foundry</dt><dd>${escapeHtml(foundryStatus)}</dd></div>
       </dl>
       <p>Forward evidence generated <time datetime="${escapeHtml(snapshot.generatedAt)}">${escapeHtml(new Date(snapshot.generatedAt).toISOString().slice(0, 16).replace("T", " "))} UTC</time>, covering the current configuration from ${escapeHtml(snapshot.firstMark)} through ${escapeHtml(snapshot.lastMark)}. This is a published snapshot, not a live count. <a href="/glassbox/forward_evidence_maturity.json">Inspect the source report.</a></p>
-      <p>These are project facts, not an admissions claim or a performance claim.</p>
+      <p>These are project facts, not a performance claim.</p>
     </aside>
   </section>
 
   <section class="founder-section founder-walkthrough" id="walkthrough" aria-labelledby="walkthrough-title">
     <header class="founder-section__head">
-      <p class="founder-label">A 90-second project case</p>
+      <p class="founder-label">The project in six stops</p>
       <h2 id="walkthrough-title">Follow the decision, not the pitch.</h2>
-      <p>Six evidence stops tell the story in order. The script is ready. The video has not been recorded.</p>
+      <p>Six evidence stops tell the story in order, written as the script of a 90-second walkthrough. The video has not been recorded.</p>
     </header>
-    <p class="founder-boundary">The narration preserves the published evidence-map snapshot. Its forward count covers marks through ${escapeHtml(snapshot.lastMark)}; it is not a current observation count.</p>
+    <p class="founder-boundary">The stops preserve the published evidence-map snapshot. Its forward count covers marks through ${escapeHtml(snapshot.lastMark)}; it is not a current observation count.</p>
     <ol class="founder-spine">${walkthrough.chapters.map(renderChapter).join("\n")}</ol>
-    <p class="founder-boundary">${escapeHtml(walkthrough.claim_boundary)}</p>
   </section>
 
   <section class="founder-section founder-contribution" id="contribution" aria-labelledby="contribution-title">
@@ -289,7 +288,7 @@ ${renderProductShellHeader({ active: "founder" })}
     <div class="founder-burden__intro"><p class="founder-label">Open burden</p><h2 id="burden-title">The unfinished work belongs in the result.</h2><p>I do not have a mature forward Sharpe, independent review, a deployed research Foundry or funded performance. Those are not footnotes. They define what the next evidence must establish.</p></div>
     <dl class="founder-burden__grid">
       <div><dt>Forward snapshot through ${escapeHtml(snapshot.lastMark)}</dt><dd>${forward.daily_return_observations} observations</dd><small>${escapeHtml(humanizeStatus(forward.sharpe_status))}</small></div>
-      <div><dt>Sleeve objective</dt><dd>${forward.current_sleeves} of ${forward.target_sleeves}</dd><small>Target not achieved</small></div>
+      <div><dt>Sleeve objective</dt><dd>${forward.current_sleeves} of ${forward.target_sleeves}</dd><small>Target not achieved; the live book runs ${systems.alpaca_sleeves_reconciled} broker-reconciled sleeves</small></div>
       <div><dt>Independent review</dt><dd>${external.completed_reviews} completed</dd><small>${external.independent_replications} replications</small></div>
       <div><dt>Foundry deployment</dt><dd>Planned</dd><small>Not applied to DigitalOcean. <a href="/foundry">Inspect the design status.</a></small></div>
     </dl>

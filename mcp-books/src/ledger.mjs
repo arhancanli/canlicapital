@@ -147,15 +147,17 @@ export function addAccount(book, { code, name, type } = {}) {
   return append(book, fields);
 }
 
-// Lines take amounts as plain decimals ("1050.00"); the book keeps them in the smallest unit.
-export function post(book, { date, memo = "", lines } = {}) {
+// Lines take amounts as plain decimals ("1050.00"); the book keeps them in the smallest unit. A source names the
+// documents behind the entry (the Cirrun receipts it records), kept in the record and so under its hash.
+export function post(book, { date, memo = "", lines, source } = {}) {
+  if (source !== undefined && (source === null || typeof source !== "object" || Array.isArray(source) || JSON.stringify(source).length > 200000)) throw new Error("An entry's source is an object of at most 200,000 characters as JSON");
   const s = state(book);
   const converted = (Array.isArray(lines) ? lines : []).map((line, i) => {
     const given = ["debit", "credit"].filter((side) => line?.[side] !== undefined && line?.[side] !== null && line?.[side] !== "");
     if (given.length !== 1) throw new Error(`Line ${i + 1}: give a debit or a credit, not both or neither`);
     return { account: String(line.account ?? "").trim(), [given[0]]: toMinor(line[given[0]], s.currency) };
   });
-  const fields = { kind: "entry", date, memo: String(memo).slice(0, 500), lines: converted };
+  const fields = { kind: "entry", date, memo: String(memo).slice(0, 500), lines: converted, ...(source === undefined ? {} : { source }) };
   checkEntry(s, fields);
   return append(book, fields);
 }

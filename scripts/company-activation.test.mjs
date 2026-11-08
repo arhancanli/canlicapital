@@ -24,8 +24,9 @@ test('committed activation pins the v22 release, public storage and the owner-ap
   assert.equal(sha256(readFileSync(raw.admission.path)), raw.admission.sha256);
   const activation = loadCompanyActivation();
   assert.equal(activation.releaseHash, RELEASE);
-  assert.match(activation.catalogBase, /^https:\/\/[a-z0-9]+\.supabase\.co\/storage\/v1\/object\/public\/company-reference-staging\/catalog\/$/);
-  assert.match(activation.deliveryBase, /^https:\/\/[a-z0-9]+\.supabase\.co\/storage\/v1\/object\/public\/company-reference-staging\/delivery\/$/);
+  // Cloudflare R2 since 2026-11-06 (no egress fees); the objects and keys are those of the Supabase bucket.
+  assert.equal(activation.catalogBase, 'https://files.cirrun.com/catalog/');
+  assert.equal(activation.deliveryBase, 'https://files.cirrun.com/delivery/');
   const { counts, excluded_companies: excluded } = activation.admission;
   assert.deepEqual(counts, { overviews_admitted: 12738, histories_admitted: 498608, histories_withheld_flagged: 14564, histories_withheld_company: 730, overviews_withheld_company: 15, directory_pages: 256, histories_admitted_with_notices: 260052, filing_indexes_admitted: 12715, filings_admitted: 391891, filing_indexes_withheld_company: 15, filings_withheld_company: 631, urls_admitted: 916208 });
   assert.equal(counts.histories_admitted + counts.histories_withheld_flagged + counts.histories_withheld_company, activation.admission.histories_in_release);

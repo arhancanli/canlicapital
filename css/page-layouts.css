@@ -1904,3 +1904,24 @@ html[data-page="developers"] .dev-mode + .dev-mode{margin-top:24px}
 html[data-page="developers"] .dev-step > * + *{margin-top:20px}
 html[data-page="developers"] .dev-step > h3{max-width:20ch}
 .dev-language-tabs button{flex:1}}
+
+/* Company pages: the first screen in the one look (css/clear.css), edge to edge, with the latest annual report's
+   receipt beside the company's name; the reading column below keeps its 1120px width. A page without a receipt
+   (a single history, the directory) takes the full width. */
+/* Outranks the shared reading-width rule (html[data-design]:not([data-design=home]) main) on company pages only. */
+html[data-design=reference][data-page=companies] main.company-reference{max-width:none;margin:0;padding:0 0 80px}
+.company-reference>:not(.company-hero){max-width:1120px;margin-inline:auto;padding-inline:28px;box-sizing:border-box}
+.company-reference>.company-hero+*{margin-top:56px}
+.company-hero--single{grid-template-columns:minmax(0,1fr)}
+.company-hero h1{max-width:20ch;overflow-wrap:anywhere}
+.company-hero a{color:inherit}
+.company-hero .cl-lede{max-width:52ch}
+.company-hero p{max-width:none}
+.company-hero .cl-receipt a{color:var(--cl-cobalt)}
+.company-hero .cl-receipt dd a{text-decoration:none;border-bottom:1px dashed currentColor}
+.company-hero .cl-receipt p{line-height:1.4}
+.company-hero .cl-receipt .cl-receipt__head{margin:0 0 14px}
+.company-hero .cl-receipt .cl-receipt__q{margin:0 0 16px}
+.company-hero .cl-receipt .cl-stamp{margin:18px 0 10px}
+.company-reference__older>summary{cursor:pointer;font-weight:600;margin:20px 0 12px}
+@media (max-width:650px){html[data-design=reference][data-page=companies] main.company-reference{padding:0 0 56px}.company-reference>:not(.company-hero){padding-inline:16px}}

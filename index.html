@@ -6,8 +6,8 @@
   <title>Check a stock claim against the filing, free | Canli Capital</title>
   <meta name="description" content="Paste what you read about a public company. Canli Capital compares each figure with what the company filed with the SEC. Free, with no account." />
   <meta name="author" content="Arhan Canli" />
-  <!-- The published file every figure on this page is read from. -->
-  <meta name="canli:sources" content="claim-check-example.json" />
+  <!-- The published files every figure on this page is read from. -->
+  <meta name="canli:sources" content="claim-check-example.json benchmarks/fresh-filings.json benchmarks/finance-mcp-servers.json" />
   <meta name="theme-color" content="#0016cb" />
   <link rel="canonical" href="https://canlicapital.com/" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
@@ -30,10 +30,10 @@
   {
     "@context": "https://schema.org",
     "@graph": [
-      {"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","foundingDate":"2024-07","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"},"founder":{"@id":"https://canlicapital.com/#arhan-canli"},"description":"Canli Capital is an open-source lab that connects AI agents to financial data and quant tools they can check. Its flagship MCP server, canli-mcp, reads SEC filings, Treasury and FRED data at the source and puts 388 finance tools behind five. It is free, MIT-licensed and needs no API key or account. It is not a fund and manages no money.","knowsAbout":["Backtest overfitting","Deflated Sharpe ratio","Probability of backtest overfitting","Minimum track record length","Quantitative finance","SEC financial filings","Model Context Protocol","MCP servers for finance","SEC EDGAR filings","Financial data for AI agents"],"sameAs":["https://github.com/arhancanli/canlicapital"]},
-      {"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url": "https://canlicapital.com/founder","worksFor":{"@id":"https://canlicapital.com/#organization"},"sameAs":["https://github.com/arhancanli","https://orcid.org/0009-0004-4138-7907","https://x.com/arhancanli","https://huggingface.co/arhancanli","https://dev.to/arhancanli"]},
+      {"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","foundingDate":"2024-07","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"},"founder":{"@id":"https://canlicapital.com/#arhan-canli"},"description":"Canli Capital is an open-source lab that connects AI agents to financial data and quant tools they can check. Its flagship MCP server, canli-mcp, reads SEC filings, Treasury and FRED data at the source and puts 442 finance tools behind five. It is free, MIT-licensed and needs no API key or account. It is not a fund and manages no money.","knowsAbout":["Backtest overfitting","Deflated Sharpe ratio","Probability of backtest overfitting","Minimum track record length","Quantitative finance","SEC financial filings","Model Context Protocol","MCP servers for finance","SEC EDGAR filings","Financial data for AI agents"],"sameAs":["https://github.com/arhancanli/canlicapital"]},
+      {"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url": "https://canlicapital.com/founder","worksFor":{"@id":"https://canlicapital.com/#organization"},"sameAs":["https://github.com/arhancanli","https://orcid.org/0009-0004-4138-7907","https://x.com/arhancanli","https://huggingface.co/arhancanli","https://hashnode.com/@arhancanli"]},
       {"@type":"WebSite","@id":"https://canlicapital.com/#website","url":"https://canlicapital.com/","name":"Canli Capital","publisher":{"@id":"https://canlicapital.com/#organization"},"inLanguage":"en"},
-      {"@type":"SoftwareApplication","@id":"https://canlicapital.com/#canli-mcp","name":"canli-mcp","alternateName":"Canli Capital MCP server","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux (Node.js 20.10 or later)","url":"https://canlicapital.com/#ch-6","description":"Every Canli Capital MCP server in one process: 388 finance tools behind five (find_tool, describe_tool and run_tool), with SEC filings, insider trades, 13F holdings, Treasury yields, FRED series, prices, quant analytics and backtest validation.","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://canlicapital.com/#organization"},"author":{"@id":"https://canlicapital.com/#arhan-canli"},"sameAs":["https://github.com/arhancanli/canlicapital/tree/main/mcp-canli"]},
+      {"@type":"SoftwareApplication","@id":"https://canlicapital.com/#canli-mcp","name":"canli-mcp","alternateName":"Canli Capital MCP server","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux (Node.js 20.10 or later)","url":"https://canlicapital.com/mcp-servers","description":"Every Canli Capital MCP server in one process: 442 finance tools behind five (find_tool, describe_tool, run_tool, history and financial_statements), with SEC filings, insider trades, 13F holdings, Treasury yields, FRED series, prices, quant analytics and backtest validation.","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://canlicapital.com/#organization"},"author":{"@id":"https://canlicapital.com/#arhan-canli"},"sameAs":["https://github.com/arhancanli/canlicapital/tree/main/mcp-canli"]},
       {"@type":"SoftwareApplication","@id":"https://canlicapital.com/#canli-validation-mcp","name":"Canli Validation MCP server","alternateName":"canli-validation-mcp","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux (Node.js 20.10 or later), or the hosted endpoint","url":"https://canlicapital.com/developers#ai-assistant","description":"Checks whether a trading backtest is real: deflated Sharpe ratio, probability of backtest overfitting (CSCV), minimum track record length and luck-equivalent trials, from Claude, Cursor or any MCP client. Hosted at https://canlicapital.com/mcp.","downloadUrl":"https://www.npmjs.com/package/canli-validation-mcp","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://canlicapital.com/#organization"},"sameAs":["https://github.com/arhancanli/canli-validation-mcp","https://www.npmjs.com/package/canli-validation-mcp","https://glama.ai/mcp/servers/arhancanli/canli-validation-mcp","https://www.producthunt.com/products/canli-validation"]},
       {"@type":"SoftwareApplication","@id":"https://canlicapital.com/#canli-fundamentals-mcp","name":"Canli Fundamentals MCP server","alternateName":"canli-fundamentals-mcp","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux (Node.js 20.10 or later), or the hosted endpoint","url":"https://canlicapital.com/mcp-servers","description":"Point-in-time company financials from SEC filings: the value as it stood on a date, later restatements flagged, and the accession number of the filing behind each figure. Hosted at https://canlicapital.com/mcp/fundamentals.","downloadUrl":"https://www.npmjs.com/package/canli-fundamentals-mcp","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://canlicapital.com/#organization"},"sameAs":["https://github.com/arhancanli/canli-fundamentals-mcp","https://www.npmjs.com/package/canli-fundamentals-mcp","https://glama.ai/mcp/servers/arhancanli/canli-fundamentals-mcp"]},
       {"@type":"SoftwareApplication","@id":"https://canlicapital.com/#canli-research-mcp","name":"Canli Research MCP server","alternateName":"canli-research-mcp","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux (Node.js 20.10 or later), or the hosted endpoint","url":"https://canlicapital.com/mcp-servers","description":"Searches Canli Capital's open research record: papers, trial ledger, live paper record and the signed chain head, including the failed work. Hosted at https://canlicapital.com/mcp/research.","downloadUrl":"https://www.npmjs.com/package/canli-research-mcp","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@id":"https://canlicapital.com/#organization"},"sameAs":["https://github.com/arhancanli/canli-research-mcp","https://www.npmjs.com/package/canli-research-mcp","https://glama.ai/mcp/servers/arhancanli/canli-research-mcp"]}
@@ -152,6 +152,25 @@
       </div>
     </section>
 
+    <!-- home-doors:start -->
+    <section class="ck-proof" aria-label="What stands behind a check">
+      <ul>
+        <li><b>89 of 91</b> <span>questions on that week&#39;s new filings, answered right by an AI using our data. Without it: 0 of 91.</span> <a href="/benchmarks/fresh-filings">The weekly test</a></li>
+        <li><b>Every figure</b> <span>links to the filing it came from, on SEC.gov.</span></li>
+        <li><b>Mistakes stay public</b> <span>Each correction is published with what changed.</span> <a href="/progress#corrections">Corrections</a></li>
+      </ul>
+    </section>
+
+    <section class="ck-doors" aria-labelledby="ck-doors-title">
+      <h2 class="ck-hidden" id="ck-doors-title">Start here</h2>
+      <ul>
+        <li class="ck-door"><p class="ck-door__who">A company</p><h3><a href="/companies">Look up a company</a></h3><p>Its filed figures, year by year, each linked to its filing.</p></li>
+        <li class="ck-door"><p class="ck-door__who">Learning</p><h3><a href="/learn">Learn to read the numbers</a></h3><p>Short lessons, shown with real filings.</p></li>
+        <li class="ck-door"><p class="ck-door__who">AI and developers</p><h3><a href="/mcp-servers">Give your AI real financial data</a></h3><p>canli-mcp: 442 finance tools for Claude, ChatGPT and Cursor. Free, no key.</p></li>
+      </ul>
+    </section>
+    <!-- home-doors:end -->
+
     <section class="ck-scope" aria-labelledby="ck-scope-title">
       <h2 id="ck-scope-title">Canli Capital checks claims about public companies against their SEC filings.</h2>
       <ul>
@@ -159,7 +178,7 @@
         <li><b>What it can't check</b> Forecasts, opinions, adjusted figures and companies that don't file with the SEC.</li>
         <li><b>What it isn't</b> Advice. It shows what was filed, not what to buy.</li>
       </ul>
-      <p class="ck-learn"><a href="/learn">Five short lessons</a> <a href="/tools/look-through">See what you really own</a></p>
+      <p class="ck-learn"><a href="/tools/look-through">See what you really own</a></p>
     </section>
 
     <section class="ck-next" id="waitlist" aria-labelledby="ck-next-title">
@@ -168,7 +187,6 @@
         <form class="access-form" id="waitlist-form" action="/api/waitlist" method="post" novalidate><label for="email">Your email</label><div class="access-form__control"><input id="email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="you@example.com" required aria-describedby="form-status" /><button type="submit">Keep me posted</button></div><div class="honeypot"><label for="company">Leave this field blank</label><input id="company" name="company" tabindex="-1" autocomplete="off" /></div><p id="form-status" role="status" aria-live="polite">Only notes about new lessons and markets. Everything here stays free either way.</p></form>
       </div>
       <nav aria-label="More from Canli Capital">
-        <a href="/companies">Look up any company</a>
         <a href="/agents">Add these checks to your AI agent</a>
       </nav>
     </section>
@@ -277,10 +295,10 @@
       <a href="/companies/0000915389">Eastman Chemical (EMN)</a>
       <a href="/companies/0000046080">Hasbro (HAS)</a>
       <a href="/companies/0000732712">Verizon Communications (VZ)</a>
-      <a href="/companies/0000804328">Qualcomm Inc/de (QCOM)</a>
+      <a href="/companies/0000804328">Qualcomm (QCOM)</a>
       <a href="/companies/0000320187">NIKE (NKE)</a>
       <a href="/companies/0000024545">Molson Coors Beverage Company (TAP)</a>
-      <a href="/companies/0001018724">Amazon COM (AMZN)</a>
+      <a href="/companies/0001018724">Amazon.com (AMZN)</a>
       <a href="/companies/0000858877">Cisco Systems (CSCO)</a>
       <a href="/companies/0000026172">Cummins (CMI)</a>
       <a href="/companies/0001327811">Workday (WDAY)</a>

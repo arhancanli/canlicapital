@@ -16,6 +16,8 @@ test("arguments are held to the date, however they are asked for", () => {
   assert.equal(tm.admit("known_as_of", "fundamentals", { company: "AAPL", as_of: "2019-01-01" }).as_of, "2019-01-01", "an earlier one stands");
   assert.deepEqual(tm.admit("history", "fundamentals", { company: "AAPL", basis: "latest" }).basis, "as_of", "latest values would hold later restatements");
   assert.equal(tm.admit("read_filing", "markets", { company: "AAPL" }).filed_before, D);
+  assert.deepEqual(tm.admit("vintage_diff", "fundamentals", { company: "AAPL", from: "2019-06-01" }), { company: "AAPL", from: "2019-06-01", to: D }, "what changed between a date and today stops at the date");
+  assert.equal(tm.admit("vintage_diff", "fundamentals", { company: "AAPL", from: "2021-01-01", to: "2022-01-01" }).from, D);
   const p = tm.admit("price_history", "markets", { symbol: "AAPL", end: "2026-01-01" });
   assert.equal(p.end, D);
   assert.equal(p.start, "2019-03-02", "the default start comes from the date, not from today");
@@ -100,8 +102,12 @@ test("where a figure came from is not a claim about the date, and today's date d
   assert.equal(r.text, "Notes due 2030-01-01");
 });
 
-test("warnings travel with what they warn about", () => {
-  assert.match(tm.seal("economic_series", { dates: ["2020-01-01"] }).time_machine.warning, /revised/);
+test("warnings travel with what they warn about; economic_series is read as published that day, so it needs none", () => {
+  assert.match(tm.seal("world_economy", { dates: ["2020-01-01"] }).time_machine.warning, /revised/);
+  assert.equal(tm.seal("economic_series", { dates: ["2020-01-01"] }).time_machine?.warning, undefined);
+  // as_of is the machine's date (ALFRED's vintage), or the caller's if earlier; revisions would tell of later figures.
+  assert.deepEqual(tm.admit("economic_series", "markets", { series: "PAYEMS", revisions: true }), { series: "PAYEMS", end: "2020-03-01", start: "2015-03-03", as_of: "2020-03-01" });
+  assert.equal(tm.admit("economic_series", "markets", { series: "PAYEMS", as_of: "2019-06-01" }).as_of, "2019-06-01");
   assert.match(tm.seal("price_history", { dates: ["2020-01-02"] }).time_machine.warning, /splits/);
 });
 
