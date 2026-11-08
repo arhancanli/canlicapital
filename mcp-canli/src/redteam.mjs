@@ -95,6 +95,16 @@ export async function runRedTeam(ctx, args) {
   checks.overfitting = f.pbo === null
     ? { measure: "probability of backtest overfitting (CSCV)", value: null, passed: null, why: "Not measured: this tool ran one setting. Run the grid you would have tried (strategy_sweep or backtest_strategy) so the choice among settings is measured." }
     : { measure: "probability of backtest overfitting (CSCV)", value: f.pbo, bar: `below ${bar.overfitting}`, passed: f.pbo < bar.overfitting, why: f.pbo < bar.overfitting ? "The in-sample winner mostly stayed in the top half out of sample." : "The setting that won in sample did no better than a random pick out of sample at least half the time." };
+  // Overfitting across the whole search: every variant this session ran on this data, from the tools that hand over
+  // their returns (luck.mjs), judged as one grid. A loop that rewrites until a grid passes can pass each grid and still
+  // overfit across them. Judged only once the pool holds more than this attempt's own grid, which the check above has.
+  const across = note.overfitting_across_session;
+  if (across && across.variants > tried.length) {
+    checks.overfitting_across_session = {
+      measure: `probability of backtest overfitting across the ${across.variants} variants this session ran on this data (CSCV)`,
+      value: across.probability, bar: `below ${bar.overfitting}`, passed: across.probability < bar.overfitting, why: across.reading,
+    };
+  }
   checks.beats_holding = f.holdSharpe === null
     ? { measure: "Sharpe against buying and holding the same prices", value: null, passed: null, why: "Not reported by this tool." }
     : { measure: "Sharpe against buying and holding the same prices", value: { strategy: mine.sharpe_annualized, buy_and_hold: f.holdSharpe }, passed: mine.sharpe_annualized > f.holdSharpe, why: mine.sharpe_annualized > f.holdSharpe ? "It earns more per unit of risk than holding." : "Holding the asset did as well or better: a timing rule that is long most of the time can earn the asset's own premium without any timing skill." };
@@ -145,6 +155,7 @@ export async function runRedTeam(ctx, args) {
     luck_all_sessions: "Earlier sessions already tried this data: a new session is not a fresh start. zoo_search shows what they ran.",
     luck: dsr === null ? "Try the alternatives you would have tried anyway, as one grid (strategy_sweep), so they are judged together." : !isBest ? "Go back to the better earlier idea, or change the idea, not a parameter: small tweaks add tries without adding evidence." : "Each attempt adds to this count. Fewer, larger changes, each stated before it runs (preregister), beat many small ones.",
     overfitting: "Use a smaller grid, and pick settings whose neighbours also do well rather than the single best cell.",
+    overfitting_across_session: "Across every attempt on this data, the best variant is mostly a lucky one: more rewrites on the same data will not fix that. State one hypothesis (preregister) and test it once on the holdout, or on data this session has not seen.",
     beats_holding: "Compare against holding the same asset; if the rule is long most of the time, test the timing itself (placebo_test shuffles the months and keeps the premium).",
     track_record: "More history, a lower-turnover version, or a less ambitious Sharpe claim.",
   };
@@ -168,7 +179,7 @@ export async function runRedTeam(ctx, args) {
     verdict: failed.length ? `fails: ${failed.join(", ")}` : unmeasured.length ? `clears the checks that ran (${unmeasured.join(", ")} not measured)` : "clears every check that ran",
     checks,
     next,
-    search: { attempts: ctx.log.attempts.length, strategies_counted: note.trials, luck_bar_now: row.luck_bar, luck_bar_at_first: firstBar ?? row.luck_bar, reading: note.reading },
+    search: { attempts: ctx.log.attempts.length, strategies_counted: note.trials, luck_bar_now: row.luck_bar, luck_bar_at_first: firstBar ?? row.luck_bar, reading: note.reading, overfitting_across_session: across ? { probability: across.probability, variants: across.variants } : null },
     attempts: { columns: ["attempt", "tool", "change", "best_sharpe", "variants", "strategies_so_far", "deflated_sharpe", "failed"], rows: log.map((x) => [x.attempt, x.tool, x.change ?? null, x.best_sharpe, x.variants, x.strategies_so_far, x.deflated_sharpe, x.failed]), ...(ctx.log.attempts.length > SHOWN ? { earlier: ctx.log.attempts.length - SHOWN } : {}) },
     null_zoo: zooNote,
     result,
