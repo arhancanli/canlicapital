@@ -79,7 +79,11 @@ test("a changed value, place, count, path or root does not check, and only one v
   assert.equal(fails({ value: { auditor: "Example LLP" }, pointer: "/notes" }), "a proof is of one value, not an object or a list");
   assert.equal(checkValue(undefined).problem, "the proof names no pointer and value");
   assert.throws(() => proveValue(answer, "/notes"), /\/notes holds more than one value: prove one of them, such as \/notes\/auditor/);
-  assert.throws(() => proveValue(answer, "/revenue/3"), /The answer has no value at "\/revenue\/3"/);
+  // A pointer to nothing is answered with values of the nearest object or list that is there.
+  assert.throws(() => proveValue(answer, "/revenue/3"), { message: 'The answer has no value at "/revenue/3": give a JSON Pointer to one value, such as /revenue/0 or /revenue/1 or /revenue/2' });
+  assert.throws(() => proveValue(answer, "/notes/partner/name"), { message: 'The answer has no value at "/notes/partner/name": give a JSON Pointer to one value, such as /notes/auditor' });
+  assert.throws(() => proveValue(answer, "income"), { message: 'The answer has no value at "income": give a JSON Pointer to one value, such as /cash or /debt or /name' });
+  assert.throws(() => proveValue(7, "/0"), { message: 'The answer has no value at "/0": give a JSON Pointer to one value' });
   // The hashes in a path say nothing about the other values: none of them is a leaf's hash.
   const leaves = new Set(valuesOf(answer).map(([p, v]) => hex(leafOf(p, v))));
   assert.equal(proveValue(answer, "/cash").path.some((h) => leaves.has(h) && h !== hex(leafOf("/debt", 120))), false);
