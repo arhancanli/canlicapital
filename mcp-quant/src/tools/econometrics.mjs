@@ -568,4 +568,41 @@ export const TOOLS = [
       return { t_stat: t, df, p_value: tPValue(t, df), mean_a: mean(a), mean_b: mean(b), one_sided_p_a_greater: 1 - tCdf(t, df) };
     },
   },
+  {
+    name: "forecast_accuracy_test",
+    title: "Compare two forecasts (Diebold-Mariano)",
+    description: "Test whether two forecasts of the same series are equally accurate: the Diebold-Mariano test on squared or absolute errors, h steps ahead, with the Harvey-Leybourne-Newbold small-sample correction. Says which forecast is better, if either is.",
+    keywords: "diebold mariano forecast accuracy compare two forecasts models predictive accuracy loss differential harvey leybourne newbold which model predicts better",
+    input: z.object({
+      actual: series("The values that were realised."),
+      forecast_a: series("Forecast A of the same periods."),
+      forecast_b: series("Forecast B of the same periods."),
+      loss: z.enum(["squared", "absolute"]).optional().describe("Loss on each error; default squared."),
+      horizon: z.number().int().min(1).max(60).optional().describe("Forecast horizon h in periods; default 1."),
+    }).strict(),
+    run({ actual: y, forecast_a: fa, forecast_b: fb, loss = "squared", horizon: h = 1 }) {
+      if (fa.length !== y.length || fb.length !== y.length) throw new Error("The actual values and both forecasts need the same periods.");
+      const L = loss === "absolute" ? Math.abs : (e) => e * e;
+      const la = y.map((v, i) => L(v - fa[i])), lb = y.map((v, i) => L(v - fb[i])), d = la.map((v, i) => v - lb[i]);
+      const T = d.length, dbar = mean(d);
+      if (h >= T) throw new Error("The horizon must be shorter than the series.");
+      // Autocovariances of the loss differential up to lag h - 1 (Diebold and Mariano 1995)
+      const gamma = (k) => { let s = 0; for (let t = k; t < T; t++) s += (d[t] - dbar) * (d[t - k] - dbar); return s / T; };
+      const g = Array.from({ length: h }, (_, k) => gamma(k));
+      if (!(g[0] > 0)) throw new Error("The two forecasts have the same loss in every period; there is nothing to test.");
+      let longRun = g[0] + 2 * g.slice(1).reduce((s, x) => s + x, 0), variance_method = "autocovariance";
+      // A negative long-run variance can occur for h > 1; Bartlett weights keep it positive (Newey and West).
+      if (!(longRun > 0)) { longRun = g[0] + 2 * g.slice(1).reduce((s, x, i) => s + (1 - (i + 1) / h) * x, 0); variance_method = "bartlett"; }
+      const dm = dbar / Math.sqrt(longRun / T);
+      // Harvey, Leybourne and Newbold (1997): scale, then compare with Student's t on T - 1 degrees of freedom.
+      const stat = dm * Math.sqrt((T + 1 - 2 * h + (h * (h - 1)) / T) / T), df = T - 1;
+      const p = tPValue(stat, df), mean_loss_a = mean(la), mean_loss_b = mean(lb);
+      return {
+        mean_loss_a, mean_loss_b, mean_loss_difference: dbar, dm_stat: stat, dm_stat_uncorrected: dm, df, p_value: p,
+        p_value_a_better: tCdf(stat, df), p_value_b_better: 1 - tCdf(stat, df),
+        better: p < 0.05 ? (mean_loss_a < mean_loss_b ? "a" : "b") : "neither at the 5% level",
+        loss, horizon: h, periods: T, variance_method,
+      };
+    },
+  },
 ];
