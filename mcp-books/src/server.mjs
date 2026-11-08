@@ -20,6 +20,7 @@ import { z } from "zod";
 
 import { journalTests } from "./audit.mjs";
 import { smallBusiness } from "./chart.mjs";
+import { cirrunEntry, readCirrunReceipt } from "./cirrun.mjs";
 import { bankEntries, checklist, entryChecks, readStatement, reconcile, variance } from "./close.mjs";
 import { FINDING_COLUMNS, FIRST_FILED_COLUMNS, FIRST_FILED_FORMS, findingRows, firstFiled, packDataset } from "./data.mjs";
 import { consolidate, readEcbRates } from "./group.mjs";
@@ -122,6 +123,23 @@ export function registerTools(server) {
   tool("books_reverse", "Reverse an entry", "Correct a posted entry with its mirror image (debits and credits swapped), dated in an open period. The original stays in the book.", z.object({ file, seq: z.number().int().positive(), date: date.optional(), memo: z.string().max(500).optional() }).strict(), WRITES_LOCAL, ({ file: f, seq, ...rest }) => {
     const done = change(f, (book) => reverse(book, seq, rest));
     return shown({ reversal: done.result }, done.currency);
+  });
+  tool("books_record_cirrun", "Record Cirrun runs", "Record what Cirrun runs cost, from their signed receipts. Each folder is one `cirrun share` made (receipt.json, receipt.sig.json, signer.pem). Every receipt is checked first, as cirrun.com/verify checks it, against the signer's key you trust: public_key_file (their public key, from them, not from the folder) or fingerprint (its 64 hex digits; each folder's signer.pem must be that key). One entry for the runs: account debited (default 6300) and pay_from credited (default 2000, accounts payable; a prepaid-credits or intercompany account works too) with the wholesale cost plus Cirrun's fee, in the book's currency at rate, units per US dollar (none for a USD book; AED and SAR take their pegs). The entry is dated at the last run unless date is given, and keeps each run's receipt hash. Runs already in the book are left alone, so a run is never recorded twice. A receipt that does not check, or runs from two months without a date, stop everything. Nothing is written unless post is true.", z.object({ file, receipts: z.array(z.string()).min(1).max(500).describe("Folders made by `cirrun share`, one per run."), public_key_file: z.string().optional(), fingerprint: z.string().regex(/^[0-9a-fA-F]{64}$/).optional(), account: z.string().default("6300"), pay_from: z.string().default("2000"), rate: amount.optional(), date: date.optional(), post: z.boolean().default(false) }).strict(), APPENDS_ONCE, ({ file: f, receipts, public_key_file, fingerprint, account, pay_from, rate, date: on, post: write }) => {
+    if (Boolean(public_key_file) === Boolean(fingerprint)) throw new Error("Give the signer's key you trust: public_key_file or fingerprint, one of them");
+    const trust = fingerprint ? { fingerprint } : { publicKeyPem: readFileSync(resolve(public_key_file), "utf8") };
+    const runs = receipts.map((folder) => readCirrunReceipt(folder, trust));
+    const options = { account, payFrom: pay_from, rate: rate === undefined ? undefined : String(rate), date: on };
+    if (!write) {
+      const { book } = load(f);
+      const planned = cirrunEntry(book, runs, options);
+      return { posted: null, proposed: planned.entry, ...(planned.reason ? { reason: planned.reason } : {}), already: planned.already, totals: planned.totals ?? null, runs };
+    }
+    let planned;
+    const done = change(f, (book) => {
+      planned = cirrunEntry(book, runs, options);
+      return planned.entry ? post(book, planned.entry) : null;
+    });
+    return { posted: done.result ? shown(done.result, done.currency) : null, ...(planned.reason ? { reason: planned.reason } : {}), already: planned.already, totals: planned.totals ?? null, runs };
   });
   tool("books_lock", "Lock a period", "Lock the books through a date: nothing dated on or before it can be posted afterwards. A lock only moves forward.", z.object({ file, through: date }).strict(), WRITES_LOCAL, ({ file: f, through }) => ({ locked: change(f, (book) => lock(book, through)).result }));
   tool("books_trial_balance", "Trial balance", "Each account's balance as a debit or a credit, and the totals, as of a date (or now).", z.object({ file, as_of: date.optional() }).strict(), READ_ONLY, ({ file: f, as_of }) => {
