@@ -697,6 +697,23 @@
         "paper trading mcp server",
         "alpaca paper trading mcp"
       ]
+    },
+    {
+      "path": "/notes/factor-timing-against-a-placebo",
+      "intent": "Check whether factor-timing claims such as factor momentum or volatility-managed portfolios survive a placebo test",
+      "queries": [
+        "factor momentum placebo test",
+        "volatility managed portfolios replication",
+        "does factor timing work"
+      ]
+    },
+    {
+      "path": "/mcp-servers/tools",
+      "intent": "Find an MCP tool for one finance task by name",
+      "queries": [
+        "canli-mcp tools",
+        "finance mcp tool list"
+      ]
     }
   ],
   "expansion_policy": "Add a distinct canonical owner only when its useful answer and source evidence exist. Synonyms stay on the same page. No arbitrary company-by-keyword permutations. Gaps remain explicit until addressed.",
