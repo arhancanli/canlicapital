@@ -1,0 +1,44 @@
+{
+ "schema": "canli.developers-proof.v1",
+ "purpose": "The proof on /developers: one real call to the public validation API, its answer and its signed receipt, so a reader can fetch the receipt and the certificate and recompute it. Captured by calling the live API; no key is kept here.",
+ "captured": "2026-11-07T13:59:54Z",
+ "request": {
+  "method": "POST",
+  "path": "/api/v1/validate/deflated-sharpe",
+  "body": {
+   "observed_sharpe_annualized": 1.5,
+   "observations": 730,
+   "periods_per_year": 365,
+   "skew": -0.5,
+   "non_excess_kurtosis": 5,
+   "effective_independent_trials": 229,
+   "cross_trial_sharpe_sd_annualized": 0.57
+  }
+ },
+ "claim_class": "USER_SUBMITTED_SCENARIO",
+ "result": {
+  "observed_sharpe_per_period": 0.07851358838853206,
+  "cross_trial_sharpe_variance_per_period": 0.0008901369863013697,
+  "expected_max_sharpe_per_period": 0.08382167718470877,
+  "expected_max_sharpe_annualized": 1.6014108940590472,
+  "psr_against_zero": 0.9809279924681973,
+  "deflated_sharpe_ratio": 0.4442626812204422,
+  "non_normality_variance_term": 1.04542117775591,
+  "search_haircut_annualized": -0.10141089405904724,
+  "psr_z_score": 2.073303802377121,
+  "dsr_z_score": -0.140170394836724
+ },
+ "plain_reading": "Counting only sample uncertainty, the probability this Sharpe is above zero is 98.1 percent. Deflated for the best-by-luck Sharpe the declared search would produce (1.601 annualised), it is 44.4 percent. Neither number is a forecast.",
+ "receipt": {
+  "id": "b54f553842bde0fe41ab6802",
+  "url": "https://canlicapital.com/api/v1/receipts/b54f553842bde0fe41ab6802",
+  "certificate": "https://canlicapital.com/audit/b54f553842bde0fe41ab6802",
+  "input_sha256": "sha256:1fcf00add7401f2ef3e4fe6e1006cc9a208da744bfd8955189803de3e7a668f2",
+  "output_sha256": "sha256:55a7cdaf410672862a3e7850c897717142ab754741313b2b70ab2f481093552e",
+  "signature": {
+   "alg": "Ed25519",
+   "key_id": "269d381734732ea6",
+   "keys": "https://canlicapital.com/.well-known/canli-receipt-keys.json"
+  }
+ }
+}

@@ -1,0 +1,104 @@
+{
+ "model": "beat_probability v1",
+ "dataset": "guidance_lines-2026-11-02.csv (2,334 guidance lines from the press releases of the 500 companies in VOO, up to 12 quarters each)",
+ "k": 4,
+ "min_own_quarters": 2,
+ "measures": {
+  "eps": {
+   "quarters_scored": 356,
+   "companies": 56,
+   "brier": {
+    "base_rate": 0.494,
+    "own_record": 0.4291,
+    "blend": 0.4076
+   },
+   "gain_over_base_rate": {
+    "mean": 0.0865,
+    "ci95_by_company": [
+     0.0457,
+     0.1318
+    ]
+   },
+   "calibration_of_p_above": [
+    {
+     "predicted": 0.186,
+     "observed": 0,
+     "quarters": 2
+    },
+    {
+     "predicted": 0.32,
+     "observed": 0.282,
+     "quarters": 71
+    },
+    {
+     "predicted": 0.512,
+     "observed": 0.609,
+     "quarters": 87
+    },
+    {
+     "predicted": 0.712,
+     "observed": 0.787,
+     "quarters": 141
+    },
+    {
+     "predicted": 0.836,
+     "observed": 0.891,
+     "quarters": 55
+    }
+   ],
+   "base_rate_all": {
+    "above": 318,
+    "within": 136,
+    "below": 41
+   }
+  },
+  "revenue": {
+   "quarters_scored": 278,
+   "companies": 42,
+   "brier": {
+    "base_rate": 0.5279,
+    "own_record": 0.4947,
+    "blend": 0.469
+   },
+   "gain_over_base_rate": {
+    "mean": 0.059,
+    "ci95_by_company": [
+     0.0093,
+     0.1146
+    ]
+   },
+   "calibration_of_p_above": [
+    {
+     "predicted": 0.186,
+     "observed": 0.222,
+     "quarters": 9
+    },
+    {
+     "predicted": 0.304,
+     "observed": 0.353,
+     "quarters": 102
+    },
+    {
+     "predicted": 0.492,
+     "observed": 0.573,
+     "quarters": 75
+    },
+    {
+     "predicted": 0.679,
+     "observed": 0.692,
+     "quarters": 78
+    },
+    {
+     "predicted": 0.849,
+     "observed": 1,
+     "quarters": 14
+    }
+   ],
+   "base_rate_all": {
+    "above": 217,
+    "within": 158,
+    "below": 22
+   }
+  }
+ }
+}
