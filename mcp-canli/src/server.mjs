@@ -41,6 +41,7 @@ import { watchFilings } from "./watch.mjs";
 import { createTimeMachine } from "./timemachine.mjs";
 import { signedTrialCount, TRIALS_TOOL } from "./trials.mjs";
 import { createLuck, shownTrials } from "./luck.mjs";
+import { createRedTeam, RED_TEAM_TOOL, runRedTeam } from "./redteam.mjs";
 import { createVault, HOLDOUT_TOOLS } from "./holdout.mjs";
 import { createRegistry, PREREG_TOOL } from "./prereg.mjs";
 import { CAUSES_TOOL, runCauses } from "./causes.mjs";
@@ -69,7 +70,7 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL, EXPORT_TOOL, ...COMPARE_TOOLS, FISCAL_TOOL];
+const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL, EXPORT_TOOL, ...COMPARE_TOOLS, FISCAL_TOOL, RED_TEAM_TOOL];
 export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
@@ -507,7 +508,8 @@ async function describeTool(packs, { name }) {
 // come here, so a desk tool is never handed to a pack's runner.
 // machine: the time machine this call answers under (the server's, its own as_of, or a holdout's), which every call a
 // desk tool makes is held to as well.
-export function selfTools(packs, gov, keeper, readOnly = false, vault = null, preregs = null, machine = TIME_MACHINE) {
+// session: what the server keeps across calls for red_team (the luck count and its attempt log); a lone call gets its own.
+export function selfTools(packs, gov, keeper, readOnly = false, vault = null, preregs = null, machine = TIME_MACHINE, session = {}) {
   const desk = { call: (name, args) => (name === "triangulate" ? runTriangulate(desk, args) : runOne(packs, { name, arguments: args }, {}, [], gov, machine)), keep: (r) => keeper.put(r), get: (ref) => keeper.get(ref), at, toolFor: (name) => toolFor(name, packs), hosted: Boolean(readOnly) };
   // A rule outlives the call that sets it, so it lives on your machine and never on the hosted server.
   const sentinel = async () => {
@@ -525,6 +527,9 @@ export function selfTools(packs, gov, keeper, readOnly = false, vault = null, pr
   tools.reconcile_shares = (args) => { allowed("reconcile_shares"); return runShares(desk, args); };
   tools.red_flags = (args) => { allowed("red_flags"); return runRedFlags(desk, args); };
   tools.fiscal_calendar = (args) => { allowed("fiscal_calendar"); return runFiscal(desk, args); };
+  // Every attempt counted with everything this session tried (redteam.mjs); its strategy tool runs under the same locks.
+  const redTeamLog = session.redTeam ?? createRedTeam(), redTeamLuck = session.luck ?? createLuck({ scope: "call" });
+  tools.red_team = async (args) => { allowed("red_team"); const out = await runRedTeam({ call: desk.call, luck: redTeamLuck, log: redTeamLog, vault, hosted: Boolean(readOnly) }, args); return { ...out, result: shownTrials(out.result) }; };
   const keptOrThrow = (ref) => { if (!keeper.has(ref)) throw new Error(`${ref} is not kept; refs name earlier results (the last ${KEEP_COUNT} are kept).`); return keeper.get(ref); };
   tools.compare_answers = (args) => {
     allowed("compare_answers");
@@ -599,6 +604,8 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
   const readLimits = new Set();
   // Every strategy result counted against the whole search (luck.mjs): a session here, one request when hosted.
   const luck = createLuck({ scope: readOnly ? "request" : "session" });
+  // red_team's attempts in this session, each judged with every strategy the luck count holds (redteam.mjs).
+  const redTeam = createRedTeam();
   // Each call's last whole result, for changes_only (delta.mjs).
   const delta = createDelta();
   installTripwire();
@@ -660,7 +667,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const viewing = Boolean(a.view) && clientDrawsApps(server);
     if (a.view) for (const c of calls) if (/^backtest_/.test(c.name) && !(c.arguments && "curve" in c.arguments)) { try { if ((await toolFor(c.name, packs)).input?.shape?.curve) c.arguments = { ...(c.arguments ?? {}), curve: true }; } catch { /* reported when it runs */ } }
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
-    const SELF = selfTools(packs, gov, keeper, readOnly, vault, preregs, machine);
+    const SELF = selfTools(packs, gov, keeper, readOnly, vault, preregs, machine, { luck, redTeam });
     const timed = (name, work) => { const t0 = performance.now(); return work.then((out) => { if (!SELF[name]) { const list = keeper.costs.get(name) ?? []; list.push([performance.now() - t0, JSON.stringify(out ?? null).length]); keeper.costs.set(name, list.slice(-50)); } return out; }); };
     const run = (c, args) => timed(c.name, (c.ran = args, SELF[c.name] ? Promise.resolve().then(() => { if (machine && !machine.selfAllowed(c.name)) throw machine.refuse(c.name); return SELF[c.name](args); }) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov, machine)));
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));

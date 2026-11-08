@@ -38,14 +38,23 @@ export function trialOf(name, args, result) {
   return { label: shown ? `${name} ${shown}` : name, sharpe_annualized: sharpe, observations: periods, params: { tool: name, ...params } };
 }
 
-// A sweep's variants, each its own trial: canli-quant-mcp's strategy_sweep and sleeve_tournament and
-// canli-backtest-mcp's breadth_sweep return every_trial, every variant's annualized Sharpe best first with the periods
+// A sweep's variants, each its own trial: canli-quant-mcp's strategy_sweep and sleeve_tournament,
+// canli-backtest-mcp's breadth_sweep and canli-validation-mcp's backtest_strategy return every_trial, every variant's annualized Sharpe best first with the periods
 // behind them (one number for all, or one per variant), so a grid of 400 is 400 tries and not one. A label names the
 // variant's settings where the answer's own table shows them (the top 50 of a sweep, the tournament's leaderboard,
 // every row of a breadth sweep), its combination k where a breadth sweep's shard lists it with no table, and its place
 // among the rest otherwise.
-const SWEEPS = /^(strategy_sweep|sleeve_tournament|breadth_sweep)$/;
+const SWEEPS = /^(strategy_sweep|sleeve_tournament|breadth_sweep|backtest_strategy)$/;
 const BREADTH_SETTINGS = ["k", "signals", "smoothing", "target_vol", "cost_bps", "min_names"];
+
+// canli-validation-mcp's backtest_strategy: a variant's settings from its row of top (best first, as every_trial is),
+// the columns before sharpe; the variants past top are labelled by their place.
+function gridSettings(result, i) {
+  const cols = result.variants?.columns, row = result.variants?.top?.[i];
+  if (!Array.isArray(cols) || !Array.isArray(row)) return null;
+  const end = cols.indexOf("sharpe");
+  return end > 0 ? Object.fromEntries(cols.slice(0, end).map((c, j) => [c, row[j]])) : null;
+}
 
 // A breadth sweep's combination k (every_trial lists each variant's): its settings by the table's column names where
 // the answer has its row, else k alone, as in a shard's answer.
@@ -56,17 +65,27 @@ function breadthSettings(result, k) {
   return Object.fromEntries(BREADTH_SETTINGS.map((c) => [c, row[cols.indexOf(c)]]).filter(([, v]) => v !== null && v !== undefined));
 }
 
+// backtest_strategy from canli-validation-mcp before 0.16 lists only its top variants: those are counted.
+function everyTrialOf(name, result) {
+  if (!SWEEPS.test(name)) return null;
+  if (result?.every_trial || name !== "backtest_strategy") return result?.every_trial ?? null;
+  const cols = result?.variants?.columns, top = result?.variants?.top, at = Array.isArray(cols) ? cols.indexOf("sharpe") : -1;
+  if (at < 0 || !Array.isArray(top) || !top.length) return null;
+  return { sharpes: top.map((row) => row?.[at]), periods: result.window?.evaluated_returns, periods_per_year: result.settings?.periods_per_year };
+}
+
 export function trialsOf(name, args, result) {
-  const every = SWEEPS.test(name) ? result?.every_trial : null;
+  const every = everyTrialOf(name, result);
   if (!every || !Array.isArray(every.sharpes)) { const one = trialOf(name, args, result); return one ? [one] : []; }
   const total = every.sharpes.length, periodsAt = (i) => (Array.isArray(every.periods) ? every.periods[i] : every.periods);
   const settings = (i) => {
     const k = name === "breadth_sweep" && Array.isArray(every.k) ? every.k[i] : undefined;
-    const params = name === "strategy_sweep" ? result.rows?.[i]?.[0] : Number.isInteger(k) ? breadthSettings(result, k) : null;
+    const params = name === "strategy_sweep" ? result.rows?.[i]?.[0] : name === "backtest_strategy" ? gridSettings(result, i) : Number.isInteger(k) ? breadthSettings(result, k) : null;
+    const recipe = result.recipe ?? (name === "backtest_strategy" ? result.family : undefined);
     const sleeve = name === "sleeve_tournament" ? result.leaderboard?.[i]?.[0] : null;
-    if (params && typeof params === "object" && !Array.isArray(params)) return { label: `${name} ${result.recipe ?? ""} ${Object.entries(params).slice(0, 8).map(([k, v]) => `${k}=${shortValue(v)}`).join(" ")}`.replace(/ +/g, " ").trim(), params: { ...(result.recipe ? { recipe: result.recipe } : {}), ...params } };
+    if (params && typeof params === "object" && !Array.isArray(params)) return { label: `${name} ${recipe ?? ""} ${Object.entries(params).slice(0, 8).map(([k, v]) => `${k}=${shortValue(v)}`).join(" ")}`.replace(/ +/g, " ").trim(), params: { ...(recipe ? { recipe } : {}), ...params } };
     if (typeof sleeve === "string") return { label: `${name} ${sleeve}`, params: { sleeve } };
-    return { label: `${name}${result.recipe ? ` ${result.recipe}` : ""} variant ${i + 1} of ${total}`, params: { variant: i + 1 } };
+    return { label: `${name}${recipe ? ` ${recipe}` : ""} variant ${i + 1} of ${total}`, params: { variant: i + 1 } };
   };
   return every.sharpes.flatMap((sharpe, i) => {
     const periods = periodsAt(i);
@@ -100,7 +119,8 @@ export function createLuck({ scope = "session", now = () => new Date().toISOStri
     record(name, args, result) {
       const found = trialsOf(name, args, result);
       if (!found.length) return null;
-      const stated = Number(result?.every_trial?.periods_per_year) > 0 ? Number(result.every_trial.periods_per_year) : Number(args?.periods_per_year);
+      const listed = result?.every_trial?.periods_per_year ?? (name === "backtest_strategy" ? result?.settings?.periods_per_year : undefined);
+      const stated = Number(listed) > 0 ? Number(listed) : Number(args?.periods_per_year);
       const ppy = stated > 0 ? stated : PERIODS_PER_YEAR;
       if (!ledgers.has(ppy)) ledgers.set(ppy, []);
       const trials = ledgers.get(ppy);
