@@ -51,6 +51,27 @@ test("read_filing: Apple's 10-K items, and Item 1A on its own", async () => {
   assert.match(none.matches, /no passage/);
 });
 
+test("read_filing: find with a small max_chars cuts a long passage around the words instead of dropping it", async () => {
+  const { s } = session();
+  // The employees paragraph is about 1,100 characters; at max_chars 500 it was dropped and the answer
+  // said no passage held the words (Digital Turbine's "immaterial error" note was missed this way).
+  const whole = await T.readFiling(s, { company: "AAPL", find: "full-time employees" });
+  const small = await T.readFiling(s, { company: "AAPL", find: "full-time employees", max_chars: 500 });
+  assert.ok(Array.isArray(small.matches), String(small.matches));
+  assert.equal(small.matches[0].text.length, 500);
+  assert.match(small.matches[0].text, /full-time equivalent employees/);
+  const phrase = await T.readFiling(s, { company: "AAPL", find: "\"human capital\"", max_chars: 500 });
+  assert.match(phrase.matches[0].text, /human capital/i);
+  // Each offset is where its passage's text starts.
+  const full = await T.readFiling(s, { company: "AAPL", max_chars: 100000 });
+  for (const m of [...whole.matches, ...small.matches, ...phrase.matches]) assert.equal(full.text.slice(m.offset, m.offset + m.text.length), m.text);
+  // When max_chars ends the passages before the words run out, the answer says so.
+  const risk = await T.readFiling(s, { company: "AAPL", find: "risk", max_chars: 2000 });
+  assert.ok(risk.matches.reduce((n, m) => n + m.text.length, 0) <= 2000);
+  assert.match(risk.more, /max_chars/);
+  assert.equal(whole.more, undefined);
+});
+
 test("read_filing: an 8-K's press release by exhibit type, with the filing's documents listed", async () => {
   const { s } = session();
   const r = await T.readFiling(s, { company: "TSLA", form: "8-K", document: "EX-99.1" });
