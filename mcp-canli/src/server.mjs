@@ -43,6 +43,7 @@ import { signedTrialCount, TRIALS_TOOL } from "./trials.mjs";
 import { createLuck, shownTrials } from "./luck.mjs";
 import { createRedTeam, RED_TEAM_TOOL, runRedTeam } from "./redteam.mjs";
 import { runZooSearch, runZooStats, ZOO_TOOLS } from "./zoo.mjs";
+import { LAKE_TOOLS, runLake } from "./lake.mjs";
 import { createVault, HOLDOUT_TOOLS } from "./holdout.mjs";
 import { createRegistry, PREREG_TOOL } from "./prereg.mjs";
 import { CAUSES_TOOL, runCauses } from "./causes.mjs";
@@ -71,7 +72,7 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL, EXPORT_TOOL, ...COMPARE_TOOLS, FISCAL_TOOL, RED_TEAM_TOOL, ...ZOO_TOOLS];
+const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL, EXPORT_TOOL, ...COMPARE_TOOLS, FISCAL_TOOL, RED_TEAM_TOOL, ...ZOO_TOOLS, ...LAKE_TOOLS];
 export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
@@ -535,6 +536,8 @@ export function selfTools(packs, gov, keeper, readOnly = false, vault = null, pr
   const zooOf = async (name) => { allowed(name); const z = readOnly ? null : await session.zoo?.(); if (!z) throw new Error(readOnly ? "The Null Zoo is kept on your own machine. Run it locally: npx -y canli-mcp" : "The Null Zoo is off on this server (CANLI_NULL_ZOO=off)."); return z; };
   tools.zoo_search = async (args) => runZooSearch(await zooOf("zoo_search"), args);
   tools.zoo_stats = async () => runZooStats(await zooOf("zoo_stats"));
+  // The data lake on this machine (local/lake.mjs): DuckDB over Parquet, reaching only the lake folder.
+  for (const { name } of LAKE_TOOLS) tools[name] = async (args) => { allowed(name); if (readOnly || !session.lake) throw new Error("The data lake is kept on your own machine. Run it locally: npx -y canli-mcp"); return runLake({ call: desk.call, at, lake: session.lake }, name, args); };
   const keptOrThrow = (ref) => { if (!keeper.has(ref)) throw new Error(`${ref} is not kept; refs name earlier results (the last ${KEEP_COUNT} are kept).`); return keeper.get(ref); };
   tools.compare_answers = (args) => {
     allowed("compare_answers");
@@ -614,6 +617,9 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
   // The Null Zoo: red_team's tries kept across sessions on this machine, opened on first use (local/zoo.mjs).
   let zooOpened = null;
   const zoo = readOnly || /^(off|0|false|no)$/i.test(process.env.CANLI_NULL_ZOO ?? "") ? null : () => (zooOpened ??= import("../local/zoo.mjs").then((m) => m.openZoo(canliHome())));
+  // The data lake, opened on first use; a failed open (DuckDB not installed yet) is tried again next time.
+  let lakeOpened = null;
+  const lake = readOnly ? null : () => (lakeOpened ??= import("../local/lake.mjs").then((m) => m.openLake(canliHome())).catch((e) => { lakeOpened = null; throw e; }));
   // Each call's last whole result, for changes_only (delta.mjs).
   const delta = createDelta();
   installTripwire();
@@ -675,7 +681,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const viewing = Boolean(a.view) && clientDrawsApps(server);
     if (a.view) for (const c of calls) if (/^backtest_/.test(c.name) && !(c.arguments && "curve" in c.arguments)) { try { if ((await toolFor(c.name, packs)).input?.shape?.curve) c.arguments = { ...(c.arguments ?? {}), curve: true }; } catch { /* reported when it runs */ } }
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
-    const SELF = selfTools(packs, gov, keeper, readOnly, vault, preregs, machine, { luck, redTeam, zoo });
+    const SELF = selfTools(packs, gov, keeper, readOnly, vault, preregs, machine, { luck, redTeam, zoo, lake });
     const timed = (name, work) => { const t0 = performance.now(); return work.then((out) => { if (!SELF[name]) { const list = keeper.costs.get(name) ?? []; list.push([performance.now() - t0, JSON.stringify(out ?? null).length]); keeper.costs.set(name, list.slice(-50)); } return out; }); };
     const run = (c, args) => timed(c.name, (c.ran = args, SELF[c.name] ? Promise.resolve().then(() => { if (machine && !machine.selfAllowed(c.name)) throw machine.refuse(c.name); return SELF[c.name](args); }) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov, machine)));
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
@@ -978,6 +984,19 @@ if (isMain && process.argv[2] === "audit") {
     s.start();
     setInterval(() => {}, 60000);
   } else { process.stderr.write("usage: canli-mcp sentinel add '<rule as JSON>' | list | remove <id> | events [--last n] | run [--webhook url] [--slack url] [--discord url] [--exec 'command'] [--once]\n"); process.exit(2); }
+} else if (isMain && process.argv[2] === "lake") {
+  // `canli-mcp lake setup | status`: DuckDB for the data lake, pinned, into CANLI_HOME/lake-engine. No tool installs it.
+  const [verb] = process.argv.slice(3);
+  const L = await import("../local/lake.mjs");
+  if (verb === "setup") {
+    const dir = L.engineDir(canliHome()), { installPackage } = await import("../local/commands.mjs");
+    process.stderr.write(`Installing ${L.DUCKDB_PACKAGE} into ${dir} (about 66 MB). The lake itself is ${L.lakeDir(canliHome())}.\n`);
+    process.exit(installPackage(dir, L.DUCKDB_PACKAGE));
+  } else if (verb === "status") {
+    let ready = true;
+    try { (await L.openLake(canliHome())).close(); } catch { ready = false; }
+    process.stdout.write(`${JSON.stringify({ duckdb: ready ? "installed" : "not installed: canli-mcp lake setup", engine: L.engineDir(canliHome()), lake: L.lakeDir(canliHome()), package: L.DUCKDB_PACKAGE })}\n`);
+  } else { process.stderr.write("usage: canli-mcp lake setup | status\n"); process.exit(2); }
 } else if (isMain && process.argv[2] === "models") {
   // `canli-mcp models install | status | index <company> [--years n]`. Installing is the one way the
   // optional local models get onto a machine: no tool ever does it.
