@@ -705,6 +705,12 @@ export const TOOLS = [
       if (reps * T * M > 2e8) throw new Error(`reps x periods x models = ${reps * T * M} exceeds the 200,000,000 budget; lower reps to ${Math.floor(2e8 / (T * M))} or fewer.`);
       const block = a.block ?? Math.max(1, Math.round(T ** (1 / 3))), seed = a.seed ?? 7, rand = mulberry32(seed);
       const Lbar = Array.from({ length: M }, (_, i) => mean(Lm.map((r) => r[i])));
+      // How persistent the models' loss differences are: each model's loss less the models' average, its first-order
+      // autocorrelation. Persistent differences make the set drop models more often than 1 - confidence in samples of
+      // this size (the size study in the README), so the answer says so when they are.
+      const lag1 = (x) => { const m = mean(x); let num = 0, den = 0; x.forEach((v, t) => { den += (v - m) ** 2; if (t) num += (v - m) * (x[t - 1] - m); }); return den > 0 ? num / den : null; };
+      const rhos = Array.from({ length: M }, (_, i) => lag1(Lm.map((r) => r[i] - r.reduce((a, v) => a + v, 0) / M))).filter((x) => x !== null).sort((x, y) => x - y);
+      const persistence = rhos.length ? { lag1_autocorrelation_max: rhos.at(-1), lag1_autocorrelation_median: rhos[Math.floor((rhos.length - 1) / 2)] } : null;
       // Bootstrap means of each model's loss, one index set per resample, shared by every step.
       const Lb = Array.from({ length: reps }, () => {
         const idx = stationaryIndices(T, block, rand), m = new Float64Array(M);
@@ -750,9 +756,9 @@ export const TOOLS = [
         columns: ["model", "mean_loss", "mcs_p_value", "eliminated_at_step", "in_set"],
         rows: [...Array(M).keys()].sort((x, y) => order[x] - order[y]).map((i) => [names[i], Lbar[i], pvals[i], order[i] === M ? null : order[i], pvals[i] > size]),
         in_set: names.filter((_, i) => pvals[i] > size),
-        confidence: cl, method, reps, block, seed, periods: T, models: M,
+        confidence: cl, method, reps, block, seed, periods: T, models: M, persistence,
         bootstrap: "stationary (Politis-Romano), mulberry32(seed), one index set per resample shared by every step",
-        note: `The set contains the best model with probability about ${cl} asymptotically; with persistent losses and a few hundred or thousand periods it drops models more often (the size study in the README), so pass a longer block for strongly persistent losses. A model's MCS p-value is the largest elimination p-value up to its step; the last model left has 1.`,
+        note: `The set contains the best model with probability about ${cl} asymptotically; with persistent losses and a few hundred or thousand periods it drops models more often (the size study in the README), so pass a longer block for strongly persistent losses. A model's MCS p-value is the largest elimination p-value up to its step; the last model left has 1.${persistence && persistence.lag1_autocorrelation_max >= 0.3 ? ` Here the loss differences are persistent (first-order autocorrelation up to ${persistence.lag1_autocorrelation_max.toFixed(2)}): in the size study, with the default block, the 90% set dropped a model it should keep in 15 to 24% of runs at 0.5 and 35 to 69% at 0.9, against 10%; read an eliminated model with care.` : ""}`,
       };
     },
   },
