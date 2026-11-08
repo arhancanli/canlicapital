@@ -20,6 +20,7 @@ import { z } from "zod";
 
 import { journalTests } from "./audit.mjs";
 import { smallBusiness } from "./chart.mjs";
+import { cirrunEntry, readCirrunReceipt } from "./cirrun.mjs";
 import { bankEntries, checklist, entryChecks, readStatement, reconcile, variance } from "./close.mjs";
 import { FINDING_COLUMNS, FIRST_FILED_COLUMNS, FIRST_FILED_FORMS, findingRows, firstFiled, packDataset } from "./data.mjs";
 import { consolidate, readEcbRates } from "./group.mjs";
@@ -123,6 +124,23 @@ export function registerTools(server) {
     const done = change(f, (book) => reverse(book, seq, rest));
     return shown({ reversal: done.result }, done.currency);
   });
+  tool("books_record_cirrun", "Record Cirrun runs", "Record what Cirrun runs cost, from their signed receipts. Each folder is one `cirrun share` made (receipt.json, receipt.sig.json, signer.pem). Every receipt is checked first, as cirrun.com/verify checks it, against the signer's key you trust: public_key_file (their public key, from them, not from the folder) or fingerprint (its 64 hex digits; each folder's signer.pem must be that key). One entry for the runs: account debited (default 6300) and pay_from credited (default 2000, accounts payable; a prepaid-credits or intercompany account works too) with the wholesale cost plus Cirrun's fee, in the book's currency at rate, units per US dollar (none for a USD book; AED and SAR take their pegs). The entry is dated at the last run unless date is given, and keeps each run's receipt hash. Runs already in the book are left alone, so a run is never recorded twice. A receipt that does not check, or runs from two months without a date, stop everything. Nothing is written unless post is true.", z.object({ file, receipts: z.array(z.string()).min(1).max(500).describe("Folders made by `cirrun share`, one per run."), public_key_file: z.string().optional(), fingerprint: z.string().regex(/^[0-9a-fA-F]{64}$/).optional(), account: z.string().default("6300"), pay_from: z.string().default("2000"), rate: amount.optional(), date: date.optional(), post: z.boolean().default(false) }).strict(), APPENDS_ONCE, ({ file: f, receipts, public_key_file, fingerprint, account, pay_from, rate, date: on, post: write }) => {
+    if (Boolean(public_key_file) === Boolean(fingerprint)) throw new Error("Give the signer's key you trust: public_key_file or fingerprint, one of them");
+    const trust = fingerprint ? { fingerprint } : { publicKeyPem: readFileSync(resolve(public_key_file), "utf8") };
+    const runs = receipts.map((folder) => readCirrunReceipt(folder, trust));
+    const options = { account, payFrom: pay_from, rate: rate === undefined ? undefined : String(rate), date: on };
+    if (!write) {
+      const { book } = load(f);
+      const planned = cirrunEntry(book, runs, options);
+      return { posted: null, proposed: planned.entry, ...(planned.reason ? { reason: planned.reason } : {}), already: planned.already, totals: planned.totals ?? null, runs };
+    }
+    let planned;
+    const done = change(f, (book) => {
+      planned = cirrunEntry(book, runs, options);
+      return planned.entry ? post(book, planned.entry) : null;
+    });
+    return { posted: done.result ? shown(done.result, done.currency) : null, ...(planned.reason ? { reason: planned.reason } : {}), already: planned.already, totals: planned.totals ?? null, runs };
+  });
   tool("books_lock", "Lock a period", "Lock the books through a date: nothing dated on or before it can be posted afterwards. A lock only moves forward.", z.object({ file, through: date }).strict(), WRITES_LOCAL, ({ file: f, through }) => ({ locked: change(f, (book) => lock(book, through)).result }));
   tool("books_trial_balance", "Trial balance", "Each account's balance as a debit or a credit, and the totals, as of a date (or now).", z.object({ file, as_of: date.optional() }).strict(), READ_ONLY, ({ file: f, as_of }) => {
     const { book, currency } = load(f);
@@ -221,7 +239,7 @@ export function registerTools(server) {
     const prior = prior_facts_file ? JSON.parse(readFileSync(resolve(prior_facts_file), "utf8")) : [];
     return { ...out, ...checkFacts(out.facts, { prior, taxonomy }) };
   });
-  tool("report_check_sec", "Checks on SEC filings", "The same checks on each of a company's SEC filings, from the companyfacts JSON the SEC publishes (data.sec.gov/api/xbrl/companyfacts/CIK##########.json, the data canli-mcp's fundamentals tools read; this server reads only the file given): assets against liabilities and equity at every date, values below zero that never should be, a fact given two values, and a value about a thousand or a million times the last filing's for the same item (a scale slip). Findings point at facts to look at, not errors proved.", z.object({ companyfacts_file: z.string(), forms: z.array(z.string()).min(1).max(10).default([...SEC_FORMS]), last: z.number().int().min(1).max(500).default(8) }).strict(), READ_ONLY, ({ companyfacts_file, forms, last }) => checkSecFilings(JSON.parse(readFileSync(resolve(companyfacts_file), "utf8")), { forms, last }));
+  tool("report_check_sec", "Checks on SEC filings", "The same checks on each of a company's SEC filings, from the companyfacts JSON the SEC publishes (data.sec.gov/api/xbrl/companyfacts/CIK##########.json, the data canli-mcp's fundamentals tools read; this server reads only the file given): assets against liabilities and equity at every date within the figures' rounding, values below zero that never should be, a fact given two values, and a value about a thousand or a million times the last filing's for the same item, compared at the same date or period when the filing repeats one (a scale slip; rates and percentages other than exchange rates are not checked for it). Findings point at facts to look at, not errors proved.", z.object({ companyfacts_file: z.string(), forms: z.array(z.string()).min(1).max(10).default([...SEC_FORMS]), last: z.number().int().min(1).max(500).default(8) }).strict(), READ_ONLY, ({ companyfacts_file, forms, last }) => checkSecFilings(JSON.parse(readFileSync(resolve(companyfacts_file), "utf8")), { forms, last }));
 
   // Canli Audit
   tool("audit_journal", "Journal-entry tests", "Benford's law on the amounts against Nigrini's bands, and the entries with round amounts, weekend dates, duplicates, amounts just under an approval limit, no memo, or a reversal. Analytics that point at entries to look at, not an audit opinion.", z.object({ file, round_to: amount.default("1000"), limit: amount.optional(), under: z.number().min(0).max(50).default(5), weekend: z.array(z.number().int().min(0).max(6)).default([6, 0]) }).strict(), READ_ONLY, ({ file: f, round_to, limit, under, weekend }) => journalTests(load(f).book, { roundTo: round_to, limit, under, weekend }));
