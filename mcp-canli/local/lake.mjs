@@ -9,7 +9,7 @@
 // DuckDB is optional (about 66 MB): `canli-mcp lake setup` installs a pinned version into CANLI_HOME/lake-engine. Each
 // connection is locked before any SQL runs: it reaches only the lake folder (no other file, no network, no
 // extensions), and the lock cannot be lifted from SQL. Queries must be one read-only statement.
-import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { closeSync, existsSync, fstatSync, mkdirSync, openSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { basename, extname, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -85,17 +85,23 @@ export async function openLake(home, { now = () => new Date().toISOString() } = 
       const full = resolve(String(file));
       const ext = extname(full).toLowerCase();
       if (![".csv", ".parquet", ".tsv"].includes(ext)) throw new Error("lake_import reads .csv, .tsv or .parquet files.");
-      if (!statSync(full).isFile()) throw new Error(`${file} is not a file.`);
+      // One descriptor: the file checked is the file read, and the copy and its hash are of the same bytes.
+      const fd = openSync(full, "r");
+      let bytes;
+      try {
+        if (!fstatSync(fd).isFile()) throw new Error(`${file} is not a file.`);
+        bytes = readFileSync(fd);
+      } finally { closeSync(fd); }
       mkdirSync(join(dir, name), { recursive: true, mode: 0o700 });
       const savedAt = now(), staging = join(dir, ".staging", `${name}-${stamp()}${ext}`);
-      copyFileSync(full, staging);
+      writeFileSync(staging, bytes, { mode: 0o600 });
       const out = join(dir, name, `${stamp()}.parquet`);
       try {
         const source = ext === ".parquet" ? `read_parquet(${sqlString(staging)})` : `read_csv_auto(${sqlString(staging)})`;
         await conn.run(`COPY (SELECT *, TIMESTAMPTZ ${sqlString(savedAt)} AS _saved_at FROM ${source}) TO ${sqlString(out)} (FORMAT parquet)`);
       } finally { rmSync(staging, { force: true }); }
       const n = (await read(`SELECT count(*) FROM read_parquet(${sqlString(out)})`)).rows[0][0];
-      writeMeta(name, { saved_at: savedAt, file: basename(out), rows: n, imported_from: basename(full), sha256: (await import("node:crypto")).createHash("sha256").update(readFileSync(full)).digest("hex") });
+      writeMeta(name, { saved_at: savedAt, file: basename(out), rows: n, imported_from: basename(full), sha256: (await import("node:crypto")).createHash("sha256").update(bytes).digest("hex") });
       return { dataset: name, saved_at: savedAt, rows: n, file: out };
     },
     async list() {

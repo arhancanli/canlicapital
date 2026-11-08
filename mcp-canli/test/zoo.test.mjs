@@ -3,7 +3,7 @@
 // is judged with the first session's tries; and over stdio, red_team writes to it, zoo_stats reads it, and
 // CANLI_NULL_ZOO=off keeps it closed.
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { closeSync, fstatSync, mkdtempSync, openSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -16,6 +16,8 @@ import { openZoo } from "../local/zoo.mjs";
 import { createLuck } from "../src/luck.mjs";
 import { createRedTeam, runRedTeam } from "../src/redteam.mjs";
 import { allSessionsLuck, dataKeyOf, runZooSearch, runZooStats } from "../src/zoo.mjs";
+
+const modeOf = (file) => { const fd = openSync(file, "r"); try { return fstatSync(fd).mode & 0o777; } finally { closeSync(fd); } };
 
 const ENTRY = path.join(path.dirname(fileURLToPath(import.meta.url)), "../src/server.mjs");
 const temp = (t) => { const d = mkdtempSync(path.join(tmpdir(), "canli-zoo-")); t.after(() => rmSync(d, { recursive: true, force: true })); return d; };
@@ -30,8 +32,8 @@ test("trials are kept encrypted and chained; a removed line shows; a wrong or ma
   assert.equal(broken, null);
   const text = readFileSync(zoo.file, "utf8");
   assert.ok(!text.includes("lookback") && !text.includes("breakout"), "nothing readable in the file");
-  assert.equal(statSync(zoo.file).mode & 0o777, 0o600);
-  assert.equal(statSync(path.join(home, "null-zoo", "key")).mode & 0o777, 0o600);
+  assert.equal(modeOf(zoo.file), 0o600);
+  assert.equal(modeOf(path.join(home, "null-zoo", "key")), 0o600);
   // A middle line removed: the chain breaks there.
   const lines = text.split("\n").filter(Boolean);
   writeFileSync(zoo.file, `${[lines[0], lines[2]].join("\n")}\n`);

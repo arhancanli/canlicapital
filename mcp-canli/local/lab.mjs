@@ -8,7 +8,7 @@
 // rebalances), so any strategy can be run again exactly from its number and the same files. Each strategy's monthly
 // returns (basis points, int16) and summary statistics are kept; daily returns are recomputed when asked for.
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { inflateRawSync } from "node:zlib";
 
@@ -59,13 +59,16 @@ export async function downloadLibrary(dir, { fetchImpl = fetch, log = () => {}, 
   mkdirSync(dir, { recursive: true, mode: 0o700 });
   const page = await (await fetchImpl(`${LIBRARY}data_library.html`, { headers: { "user-agent": UA } })).text();
   const files = [...new Set([...page.matchAll(/ftp\/([A-Za-z0-9_\-]+[Dd]aily[A-Za-z0-9_\-]*_CSV\.zip)/g)].map((m) => m[1]))].sort();
-  const got = [];
+  const got = [], have = new Set(readdirSync(dir));
   for (const f of files) {
     const path = join(dir, f);
-    if (!existsSync(path)) {
+    if (!have.has(f)) {
       const res = await fetchImpl(`${LIBRARY}ftp/${f}`, { headers: { "user-agent": UA } });
       if (!res.ok) { log(`skipped ${f}: HTTP ${res.status}`); continue; }
-      writeFileSync(`${path}.part`, Buffer.from(await res.arrayBuffer()));
+      const body = Buffer.from(await res.arrayBuffer());
+      // Only a zip archive is written: anything else (an error page, a redirect's HTML) is skipped, not saved.
+      if (body.length < 22 || body.readUInt32LE(0) !== 0x04034b50) { log(`skipped ${f}: not a zip archive`); continue; }
+      writeFileSync(`${path}.part`, body, { mode: 0o600 });
       renameSync(`${path}.part`, path);
       log(`downloaded ${f}`);
       await new Promise((r) => setTimeout(r, pause));
