@@ -732,6 +732,15 @@
         "guidance beat rate by company",
         "does management sandbag guidance"
       ]
+    },
+    {
+      "path": "/notes/a-million-simple-strategies",
+      "intent": "Check whether a trading strategy is original and whether it beats simple rules on public data",
+      "queries": [
+        "is my trading strategy original",
+        "library of simple trading strategies",
+        "strategy originality check"
+      ]
     }
   ],
   "expansion_policy": "Add a distinct canonical owner only when its useful answer and source evidence exist. Synonyms stay on the same page. No arbitrary company-by-keyword permutations. Gaps remain explicit until addressed.",
