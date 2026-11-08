@@ -1,12 +1,13 @@
-// breadth_sweep: the grid's combinations, the luck benchmark, a parallel run, and shards that merge
-// back into the same result while a shard of other data, a gap or a duplicate is refused.
+// breadth_sweep: the grid's combinations, the luck benchmark, every variant's Sharpe for a server that counts each
+// try, a parallel run, and shards that list their own variants as they run and merge back into the same result while
+// a shard of other data, a gap or a duplicate is refused.
 import assert from "node:assert/strict";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
 
-import { breadthSweep, combinations, expectedMaxSharpe } from "../src/sweep.mjs";
+import { breadthSweep, combinations, expectedMaxSharpe, summarize } from "../src/sweep.mjs";
 
 function panel(path, seed0 = 7) {
   let seed = seed0; const rnd = () => { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648; };
@@ -33,7 +34,18 @@ test("the best of many trials is expected to look good by luck", () => {
   assert.ok(many > few && few > 0, "more trials, higher luck bar");
 });
 
-test("a parallel sweep, and its shards merged, give the same ranking; mismatched shards are refused", async () => {
+test("every variant's Sharpe goes back best first with the days behind it, in the table's order", () => {
+  const combos = combinations({ smoothing: [2, 4, 8] }), stat = (sharpe, days) => ({ days, sharpe });
+  const whole = summarize([{ k: 0, ok: true, all: stat(0.4, 500) }, { k: 1, ok: true, all: stat(1.1, 500) }, { k: 2, ok: false, error: "too few names" }], combos, null);
+  assert.deepEqual(whole.every_trial, { periods: 500, periods_per_year: 252, k: [1, 0], sharpes: [1.1, 0.4] }, "a failed variant is no try");
+  assert.deepEqual(whole.rows.slice(0, 2).map((r) => [r[0], r[8]]), [[1, 1.1], [0, 0.4]], "in the table's order, each with its k");
+  // With split_date, the Sharpe the settings were chosen on and its days; one number of days per variant where they differ.
+  const split = summarize([0.4, 1.1, -0.2].map((x, k) => ({ k, ok: true, all: stat(9, 700), search: stat(x, [480, 450, 470][k]), test: stat(0, 200) })), combos, "2023-12-29");
+  assert.deepEqual(split.every_trial, { periods: [450, 480, 470], periods_per_year: 252, k: [1, 0, 2], sharpes: [1.1, 0.4, -0.2] });
+  assert.deepEqual(summarize([{ k: 0, ok: false, error: "x" }], [{ k: 0 }], null).every_trial, { periods: [], periods_per_year: 252, k: [], sharpes: [] });
+});
+
+test("a parallel sweep, and its shards merged, give the same ranking; each shard lists its own variants; mismatched shards are refused", async () => {
   const dir = mkdtempSync(join(tmpdir(), "canli-sweep-"));
   try {
     const prices = join(dir, "p.csv"), other = join(dir, "q.csv");
@@ -42,11 +54,27 @@ test("a parallel sweep, and its shards merged, give the same ranking; mismatched
     const full = await breadthSweep({}, args);
     assert.equal(full.trials, 4);
     assert.ok(full.luck.expected_best_sharpe_by_luck > 0);
+    assert.deepEqual(full.every_trial.sharpes, full.rows.map((r) => r[8]), "every variant, best first");
+    assert.deepEqual(full.every_trial.k, full.rows.map((r) => r[0]));
+    assert.ok(Number.isInteger(full.every_trial.periods) && full.every_trial.periods >= 60, "the days before the split");
     const s0 = await breadthSweep({}, { ...args, shard: { index: 0, of: 2 }, out_file: join(dir, "s0.json") });
     const s1 = await breadthSweep({}, { ...args, shard: { index: 1, of: 2 }, out_file: join(dir, "s1.json") });
     assert.equal(s0.ran + s1.ran, 4);
+    // Each shard lists its own variants as the whole sweep does, written to a file or not, so they are counted as they run.
+    const inline = await breadthSweep({}, { ...args, shard: { index: 1, of: 2 } });
+    assert.ok(Array.isArray(inline.results) && !s1.results, "the results themselves only when not written to a file");
+    assert.deepEqual(inline.every_trial, s1.every_trial);
+    const sharpeOf = new Map(full.every_trial.k.map((k, i) => [k, full.every_trial.sharpes[i]]));
+    for (const [s, index] of [[s0, 0], [s1, 1]]) {
+      assert.equal(s.sweep_id, full.sweep_id);
+      assert.ok(s.every_trial.k.length === 2 && s.every_trial.k.every((k) => k % 2 === index), "only the shard's combinations");
+      assert.deepEqual(s.every_trial.sharpes, s.every_trial.k.map((k) => sharpeOf.get(k)), "with the whole sweep's Sharpes");
+      assert.deepEqual(s.every_trial.sharpes, [...s.every_trial.sharpes].sort((x, y) => y - x), "best first");
+      assert.equal(s.every_trial.periods, full.every_trial.periods);
+    }
     const merged = await breadthSweep({}, { merge_files: [join(dir, "s0.json"), join(dir, "s1.json")] });
     assert.deepEqual(merged.rows, full.rows, "the shards add up to the full sweep");
+    assert.deepEqual(merged.every_trial, full.every_trial);
     await assert.rejects(breadthSweep({}, { merge_files: [join(dir, "s0.json"), join(dir, "s0.json")] }), /appears in two shards/);
     await breadthSweep({}, { ...args, prices_file: other, shard: { index: 1, of: 2 }, out_file: join(dir, "x1.json") });
     await assert.rejects(breadthSweep({}, { merge_files: [join(dir, "s0.json"), join(dir, "x1.json")] }), /not a shard of the same sweep/);
