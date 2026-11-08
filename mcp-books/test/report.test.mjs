@@ -133,6 +133,24 @@ test("tax rates and percentages are not checked for scale; exchange rates, count
   assert.deepEqual(scale("PublicUtilitiesApprovedRateIncreaseDecreaseAmount", "USD", 12000, 12000000), ["scale"], "an amount, though its name says Rate");
 });
 
+test("a thousandfold change the filing states itself, beside the year before as filed, is real; a slip shows at the period both filings give", () => {
+  const trust = (value, y) => ({ concept: "AssetsHeldInTrustNoncurrent", unit: "USD", value, period: { instant: `${y}-12-31` } });
+  const income = (value, y) => year("InvestmentIncomeInterest", "USD", value, y);
+  const earlier = [trust(25000, 2024), trust(20000, 2023), income(120, 2024), income(95, 2023)];
+  // A blank-check company's trust after its IPO, about a thousand times what it held, and a year of interest on it:
+  // the filing repeats the year before as it was filed, so the change is its own.
+  assert.deepEqual(flags([trust(25100000, 2025), trust(25000, 2024), income(125000, 2025), income(120, 2024)], { prior: earlier }), []);
+  // The same new figures in a filing that does not repeat the year before are still compared across the years.
+  assert.deepEqual(flags([trust(25100000, 2025), income(125000, 2025)], { prior: earlier }), ["scale AssetsHeldInTrustNoncurrent", "scale InvestmentIncomeInterest"]);
+  assert.deepEqual(flags([trust(25100000, 2025), { ...trust(23000, 2024), unit: "EUR" }], { prior: earlier }), ["scale AssetsHeldInTrustNoncurrent"], "the year before in another currency is another figure");
+  // The earlier filing's figure a thousand times too large, given rightly in the later one: one flag, at the date both
+  // filings give, against the earlier filing's figure; the new year is not flagged across the years as well.
+  const found = checkFacts([trust(26000, 2025), trust(25000, 2024)], { prior: [trust(25000000, 2024)] }).findings;
+  assert.deepEqual(found.map((f) => [f.rule, f.period, f.value, f.prior]), [["scale", { instant: "2024-12-31" }, 25000, { value: 25000000, period: { instant: "2024-12-31" } }]]);
+  // The later filing's year before slipped as well as its new year: the year before shows the slip.
+  assert.deepEqual(flags([trust(26000000, 2025), trust(25000000, 2024)], { prior: [trust(25000, 2024)] }), ["scale AssetsHeldInTrustNoncurrent"]);
+});
+
 test("an account with no concept is listed as unmapped, not guessed", () => {
   const book = month();
   addAccount(book, { code: "7000", name: "Consulting fees", type: "income" });

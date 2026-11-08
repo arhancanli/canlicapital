@@ -190,6 +190,10 @@ export function checkFacts(facts, { prior = [], taxonomy = "us-gaap", tolerance 
   // real changes rarely land there (holdings grown from 6 million to 4.5 billion are 753 times). On every filing of
   // five companies (Apple, Microsoft, JPMorgan, Simon Property, TSMC) this keeps slips such as shares authorized
   // filed in thousands and drops the coincidences.
+  // A filing that gives the earlier period itself (an annual filing repeats last year's figures) states the change
+  // from there in one document, and its own figure for that period is compared with the earlier filing's, same
+  // period to same period: a slip in either filing shows there, while a real change of a thousandfold (an IPO, a
+  // reverse split, a new grant) does not. So the new figure is compared across periods only when the filing does not.
   const slip = (ratio, instant) => [1e3, 1e6].find((k) => Math.abs(ratio / k - 1) <= (instant ? 0.1 : 0.05));
   const days = (period) => (Date.parse(period.end) - Date.parse(period.start)) / 864e5;
   const alike = (q, f) => isInstant(f.period) || Math.abs(days(q.period) / days(f.period) - 1) <= 0.2;
@@ -198,6 +202,7 @@ export function checkFacts(facts, { prior = [], taxonomy = "us-gaap", tolerance 
     const key = `${q.concept}|${q.unit}|${isInstant(q.period)}`;
     earlier.set(key, [...(earlier.get(key) ?? []), q]);
   }
+  const given = new Set(facts.map((f) => `${f.concept}|${f.unit}|${JSON.stringify(f.period)}`));
   for (const f of facts) {
     // Not tax rates and other percentages: an effective tax rate can be a thousand times last year's when pre-tax
     // income is near zero. Exchange rates are checked, since a currency rarely moves a thousandfold between filings
@@ -207,7 +212,7 @@ export function checkFacts(facts, { prior = [], taxonomy = "us-gaap", tolerance 
     const candidates = (earlier.get(`${f.concept}|${f.unit}|${isInstant(f.period)}`) ?? []).filter((q) => endOf(q.period) <= endOf(f.period) && alike(q, f));
     const same = candidates.find((q) => JSON.stringify(q.period) === JSON.stringify(f.period));
     const p = same ?? candidates.reduce((best, q) => (!best || endOf(q.period) > endOf(best.period) ? q : best), null);
-    if (!p || !p.value || !f.value) continue;
+    if (!p || !p.value || !f.value || (!same && given.has(`${f.concept}|${f.unit}|${JSON.stringify(p.period)}`))) continue;
     const ratio = Math.abs(f.value / p.value);
     const instant = isInstant(f.period);
     const prior = { value: p.value, period: p.period };
