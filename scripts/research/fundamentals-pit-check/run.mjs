@@ -18,7 +18,7 @@ const session = createSession({ cacheDir });
 
 const ours = [];
 for (const asOf of DATES) {
-  const r = (await toolCrossSection(session, { companies: COMPANIES, concept: "NetIncomeLoss", as_of: asOf })).structuredContent;
+  const r = (await toolCrossSection(session, { companies: COMPANIES, concept: "NetIncomeLoss", as_of: asOf, changed_after: true })).structuredContent;
   const col = Object.fromEntries(r.columns.map((c, i) => [c, i]));
   for (const row of r.rows) ours.push({ cik: row[col.cik], as_of: asOf, pick: { end: row[col.end], start: row[col.start], val: row[col.val], filed: row[col.filed], accn: row[col.accn], changed_after: row[col.changed_after] } });
   // A company with no value is compared too: the reference must also find none.

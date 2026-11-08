@@ -72,6 +72,7 @@ test("Report's flags become rows naming the filing, the rule, the period, the va
     ["A2", "2026-02-13", "scale", "CommonStockSharesAuthorized", "shares", null, "2024-12-31", 1800000, 1800000000, "2024-12-31", false],
     ["A3", "2027-02-12", "scale", "CommonStockSharesAuthorized", "shares", null, "2025-12-31", 1800000000, 1800000, "2024-12-31", true],
   ], "A3 is flagged only because A2 slipped: A2 is the filing to read");
+  assert.deepEqual(rows.map((r) => [r.prior_accession, r.prior_filed, r.out_of_line, r.others]), [[null, null, null, null], ["A1", "2025-02-14", null, null], ["A2", "2026-02-13", "A2", "A1"]], "A1, filed before A3, gives A2's date at A3's scale: A2 is out of line");
   assert.match(rows[1].detail, /is 1\/1000 of the prior value/);
   assert.deepEqual(Object.keys(rows[0]), FINDING_COLUMNS.map((c) => c.name), "every row has exactly the columns, in order");
 });
