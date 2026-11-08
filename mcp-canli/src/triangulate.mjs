@@ -47,6 +47,10 @@ export function compare(a, b, { perShare, scale = 1 } = {}) {
   if (a == null || b == null) return null;
   const slack = perShare ? 0.011 : Math.max(Math.abs(a), Math.abs(b)) * 0.001 + scale;
   if (Math.abs(a - b) <= slack) return "agree";
+  // A later filing can print the same figure in tenths of a million, as a 10-Q in millions does against the 10-K's
+  // thousands (Resolute's equity: 6,523 thousand, then 6.5 million). A whole number of 100,000 within half of that
+  // of a figure that is not one is that figure rounded; the reading names the rounding rather than hiding it.
+  if (!perShare && a && b && tenths(a) !== tenths(b) && Math.abs(a - b) <= 5e4) return "agree, rounded to 0.1 million";
   if (a && b) {
     const r = Math.abs(a / b);
     for (const k of [1e3, 1e6, 1e9]) if (Math.abs(r / k - 1) < 0.01 || Math.abs((1 / r) / k - 1) < 0.01) return `apart by a factor of ${k.toLocaleString("en-US")}`;
@@ -54,6 +58,8 @@ export function compare(a, b, { perShare, scale = 1 } = {}) {
   if (a && Math.abs(a + b) <= slack) return "opposite signs";
   return `apart by ${(Math.abs(a - b) / Math.max(Math.abs(a), Math.abs(b)) * 100).toFixed(1)}%`;
 }
+const tenths = (v) => Math.abs(v / 1e5 - Math.round(v / 1e5)) < 1e-9;
+const agrees = (v) => v === "agree" || String(v).startsWith("agree,");
 
 // Two roads apart on one line are either two readings of one fact, which should match, or two measures under
 // different tags (cash with or without restricted cash; net income before or after preferred dividends), which
@@ -94,15 +100,17 @@ export async function runTriangulate(ctx, args) {
     const repTag = report?.financials?.latest_tags?.[m.report] ?? null;
     const scale = s && !m.perShare ? statements[m.statement].money_scale ?? 1 : 1;
     // Agreement with any of the statement's lines for the measure counts.
-    const against = (other) => { const v = compare(s?.value, other, { perShare: m.perShare, scale }); return v && v !== "agree" && s.lines.some((l) => compare(l.value, other, { perShare: m.perShare, scale }) === "agree") ? "agree" : v; };
+    const against = (other) => { const v = compare(s?.value, other, { perShare: m.perShare, scale }); return v && !agrees(v) ? s.lines.map((l) => compare(l.value, other, { perShare: m.perShare, scale })).find(agrees) ?? v : v; };
     const lineTags = s?.lines.map((l) => l.tag) ?? [];
     const verdicts = [["facts", against(rep), repTag, lineTags], ["history", against(hist), histTag, lineTags]];
     if (s == null) verdicts.push(["facts and history", compare(rep, hist, { perShare: m.perShare }), repTag, [histTag]]);
-    const off = verdicts.filter(([, v]) => v && v !== "agree");
+    const off = verdicts.filter(([, v]) => v && !agrees(v));
+    const rounded = verdicts.filter(([, v]) => v && v !== "agree" && agrees(v));
     const measure = off.filter(([, , tag, others]) => differentMeasure(tag, others)), real = off.filter((o) => !measure.includes(o));
     const roads = [s?.value, rep, hist].filter((v) => v != null).length;
     const say = ([w, v, tag]) => `${w} ${v}${tag && measure.some((x) => x[0] === w) ? ` (reads ${shortTag(tag)})` : ""}`;
-    rows.push([m.key, s?.value ?? null, rep, hist, roads, roads < 2 ? "one road only" : off.length ? off.map(say).join("; ") : "agree"]);
+    const agreed = rounded.length ? `agree (${rounded.map(([w, v]) => `${w} ${v.slice("agree, ".length)}`).join("; ")})` : "agree";
+    rows.push([m.key, s?.value ?? null, rep, hist, roads, roads < 2 ? "one road only" : off.length ? off.map(say).join("; ") : agreed]);
     if (real.length) problems.push(`${m.key} (${real.map(say).join(", ")})`);
     if (measure.length) measures.push(`${m.key} (${measure.map(say).join(", ")})`);
   });
@@ -113,7 +121,7 @@ export async function runTriangulate(ctx, args) {
     filing: statements?.filings?.rows?.[0] ? { form: statements.filings.rows[0][1], filed: statements.filings.rows[0][2], index: statements.filings.rows[0][4] } : null,
     checked, agreements: checked - problems.length - measures.length, disagreements: problems.length, disagreement_text: problems.join("; ") || null, different_measures: measures.length, different_measures_text: measures.join("; ") || null,
     columns: ["measure", "statement_as_filed", "xbrl_facts", "point_in_time_history", "roads", "reading"], rows,
-    meaning: "Each figure reached by separate code from separate SEC files. Agreement is within the statement's rounding. Different measures are one line read under different tags, such as cash with restricted cash: both can be right. A disagreement is left when the tags do not explain the gap: a filer's slip, a restatement or a reading error here. Open the filing to see which.",
+    meaning: "Each figure reached by separate code from separate SEC files. Agreement is within the statement's rounding, or within a later filing's rounding to tenths of a million, which the reading names. Different measures are one line read under different tags, such as cash with restricted cash: both can be right. A disagreement is left when the tags do not explain the gap: a filer's slip, a restatement or a reading error here. Open the filing to see which.",
     limits: ["The roads share one origin, the company's own filing: this finds inconsistency, not fraud or error in what the company reports.", "History comes from Canli Capital's dated company reference, which can lag a recent filing; its absence is shown, not counted against the figure.", "Not investment advice."],
   };
 }
