@@ -13,78 +13,15 @@
 // - Scores: AUC pooled over the test years, each year's AUC, the share of bankruptcies in each year's riskiest tenth,
 //   Brier and log loss against the training base rate, calibration by tenth; 95% intervals for the AUC gains from
 //   resampling companies (2,000 resamples). The same on reports of companies with at least $10M of assets.
+// The ratios, benchmarks and fit are canli-markets' default-risk.mjs, the code the tool runs.
 // Run: node scripts/research/default-risk/validate.mjs panel.csv > config/research/default-risk-v1/validation.json
 import { readFileSync } from "node:fs";
+import { pathToFileURL } from "node:url";
 
-export const FEATURES = ["ni_ta", "tl_ta", "wc_ta", "re_ta", "cfo_ta", "cash_ta", "ebit_ta", "sales_ta", "int_ta", "ltd_ta", "cl_ca", "chin", "log_ta", "neg_equity", "two_losses"];
+import { design, FEATURES, fit, ohlsonO, predict, ratios, vectorOf, zDoublePrime } from "../../../mcp-markets/src/default-risk.mjs";
+
 const LAMBDA = 1, FIRST = 2014, LAST = 2025, CUTOFF = "2025-11-07", BOOT = 2000;
-
 const num = (x) => (x === "" || x === undefined || x === null ? null : Number(x));
-const div = (a, b) => (a === null || b === null || !b ? null : a / b);
-// The ratios from one report's figures (null where a figure is missing).
-export function ratios(r) {
-  const ta = r.total_assets, tl = r.total_liabilities ?? (r.liabilities_and_equity !== null && r.equity !== null ? r.liabilities_and_equity - r.equity : null);
-  const ni = r.net_income, nip = r.net_income_prior;
-  return {
-    ni_ta: div(ni, ta), tl_ta: div(tl, ta), wc_ta: r.current_assets !== null && r.current_liabilities !== null ? div(r.current_assets - r.current_liabilities, ta) : null,
-    re_ta: div(r.retained_earnings, ta), cfo_ta: div(r.operating_cash_flow, ta), cash_ta: div(r.cash, ta), ebit_ta: div(r.operating_income, ta),
-    sales_ta: div(r.revenue, ta), int_ta: div(r.interest_expense, ta), ltd_ta: div(r.long_term_debt, ta),
-    cl_ca: div(r.current_liabilities, r.current_assets), chin: ni !== null && nip !== null && Math.abs(ni) + Math.abs(nip) > 0 ? (ni - nip) / (Math.abs(ni) + Math.abs(nip)) : null,
-    log_ta: ta > 0 ? Math.log(ta / 1e6) : null, neg_equity: tl === null ? null : tl > ta ? 1 : 0, two_losses: ni !== null && nip !== null ? (ni < 0 && nip < 0 ? 1 : 0) : null,
-    tl, bv_tl: r.equity !== null && tl ? r.equity / tl : null, ffo_tl: div(r.operating_cash_flow, tl),
-  };
-}
-// Altman Z'' (1995) and Ohlson O (1980) with their published weights; null when an input is missing. Higher = riskier.
-export function zDoublePrime(q) { return [q.wc_ta, q.re_ta, q.ebit_ta, q.bv_tl].some((x) => x === null) ? null : -(6.56 * q.wc_ta + 3.26 * q.re_ta + 6.72 * q.ebit_ta + 1.05 * q.bv_tl); }
-export function ohlsonO(q) { return [q.log_ta, q.tl_ta, q.wc_ta, q.cl_ca, q.neg_equity, q.ni_ta, q.ffo_tl, q.two_losses, q.chin].some((x) => x === null) ? null : -1.32 - 0.407 * q.log_ta + 6.03 * q.tl_ta - 1.43 * q.wc_ta + 0.0757 * q.cl_ca - 1.72 * q.neg_equity - 2.37 * q.ni_ta - 1.83 * q.ffo_tl + 0.285 * q.two_losses - 0.521 * q.chin; }
-
-// Fit: a design (caps, medians, means, sds) from training rows, then Newton steps on the penalised log likelihood.
-export function design(rows) {
-  const d = { caps: {}, median: {}, mean: {}, sd: {}, flags: [] };
-  for (const f of FEATURES) {
-    const v = rows.map((r) => r.q[f]).filter((x) => x !== null && Number.isFinite(x)).sort((a, b) => a - b);
-    const at = (p) => v[Math.min(v.length - 1, Math.floor(p * v.length))];
-    d.caps[f] = [at(0.01), at(0.99)]; d.median[f] = at(0.5);
-    if (v.length < rows.length) d.flags.push(f);
-  }
-  const raw = rows.map((r) => vectorRaw(d, r.q));
-  const k = FEATURES.length + d.flags.length;
-  d.mean = Array.from({ length: k }, (_, j) => raw.reduce((s, x) => s + x[j], 0) / raw.length);
-  d.sd = Array.from({ length: k }, (_, j) => Math.sqrt(raw.reduce((s, x) => s + (x[j] - d.mean[j]) ** 2, 0) / raw.length) || 1);
-  return d;
-}
-function vectorRaw(d, q) {
-  const x = FEATURES.map((f) => { const v = q[f]; return v === null || !Number.isFinite(v) ? d.median[f] : Math.min(d.caps[f][1], Math.max(d.caps[f][0], v)); });
-  for (const f of d.flags) x.push(q[f] === null || !Number.isFinite(q[f]) ? 1 : 0);
-  return x;
-}
-export const vectorOf = (d, q) => vectorRaw(d, q).map((v, j) => (v - d.mean[j]) / d.sd[j]);
-function solve(A, b) { // Cholesky, A symmetric positive definite.
-  const n = b.length, L = A.map((r) => r.map(() => 0));
-  for (let i = 0; i < n; i += 1) for (let j = 0; j <= i; j += 1) { let s = A[i][j]; for (let k = 0; k < j; k += 1) s -= L[i][k] * L[j][k]; L[i][j] = i === j ? Math.sqrt(s) : s / L[j][j]; }
-  const y = Array(n).fill(0), x = Array(n).fill(0);
-  for (let i = 0; i < n; i += 1) { let s = b[i]; for (let k = 0; k < i; k += 1) s -= L[i][k] * y[k]; y[i] = s / L[i][i]; }
-  for (let i = n - 1; i >= 0; i -= 1) { let s = y[i]; for (let k = i + 1; k < n; k += 1) s -= L[k][i] * x[k]; x[i] = s / L[i][i]; }
-  return x;
-}
-export function fit(X, y, lambda = LAMBDA) {
-  const k = X[0].length + 1; let w = Array(k).fill(0);
-  w[0] = Math.log((y.reduce((s, v) => s + v, 0) + 0.5) / (y.length - y.reduce((s, v) => s + v, 0) + 0.5));
-  for (let it = 0; it < 50; it += 1) {
-    const g = Array(k).fill(0), H = Array.from({ length: k }, () => Array(k).fill(0));
-    for (let i = 0; i < X.length; i += 1) {
-      const xi = [1, ...X[i]]; let z = 0; for (let j = 0; j < k; j += 1) z += w[j] * xi[j];
-      const p = 1 / (1 + Math.exp(-z)), r = p - y[i], h = p * (1 - p);
-      for (let a = 0; a < k; a += 1) { g[a] += r * xi[a]; const ha = h * xi[a]; for (let b = 0; b <= a; b += 1) H[a][b] += ha * xi[b]; }
-    }
-    for (let a = 1; a < k; a += 1) { g[a] += lambda * w[a]; H[a][a] += lambda; }
-    for (let a = 0; a < k; a += 1) for (let b = a + 1; b < k; b += 1) H[a][b] = H[b][a];
-    const step = solve(H, g); w = w.map((v, j) => v - step[j]);
-    if (Math.max(...step.map(Math.abs)) < 1e-8) break;
-  }
-  return w;
-}
-export const predict = (w, x) => 1 / (1 + Math.exp(-(w[0] + x.reduce((s, v, j) => s + v * w[j + 1], 0))));
 
 // AUC by ranks (ties shared), on [score, label] pairs.
 export function auc(pairs) {
@@ -93,11 +30,13 @@ export function auc(pairs) {
   const neg = s.length - pos; return pos && neg ? (sumPos - (pos * (pos + 1)) / 2) / (pos * neg) : null;
 }
 
-if (process.argv[2]) {
+// The sample: each report with positive assets, its label, and its ratios; reports filed within a year after the
+// company's own Item 1.03 8-K are left out.
+export function loadRows(panelPath) {
   const LAB = new URL("../../../config/research/default-risk-v1/bankruptcy_8k.csv", import.meta.url);
   const events = new Map();
   for (const line of readFileSync(LAB, "utf8").trim().split("\n").slice(1)) { const [cik, filed] = line.split(","); (events.get(Number(cik)) ?? events.set(Number(cik), []).get(Number(cik))).push(filed); }
-  const text = readFileSync(process.argv[2], "utf8").trim().split("\n"), head = text[0].split(",");
+  const text = readFileSync(panelPath, "utf8").trim().split("\n"), head = text[0].split(",");
   const dayMs = 86400000, after = (a, b) => (Date.parse(b) - Date.parse(a)) / dayMs;
   const rows = [];
   for (const line of text.slice(1)) {
@@ -107,6 +46,11 @@ if (process.argv[2]) {
     if (ev.some((d) => after(d, r.filed) >= 0 && after(d, r.filed) <= 365)) continue;
     rows.push({ cik: Number(r.cik), filed: r.filed, ta: r.total_assets, y: ev.some((d) => after(r.filed, d) > 0 && after(r.filed, d) <= 365) ? 1 : 0, q: ratios(r) });
   }
+  return rows;
+}
+
+if (process.argv[2] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const rows = loadRows(process.argv[2]), dayMs = 86400000, after = (a, b) => (Date.parse(b) - Date.parse(a)) / dayMs;
   const tested = [], coefs = {};
   for (let Y = FIRST; Y <= LAST; Y += 1) {
     const start = `${Y}-01-01`, train = rows.filter((r) => after(r.filed, start) > 365), test = rows.filter((r) => r.filed.startsWith(String(Y)) && r.filed <= CUTOFF);

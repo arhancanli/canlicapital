@@ -2,9 +2,12 @@
 // companyfacts archive, with the figures that report gave for its own fiscal year (balances at the year's end, flows
 // over the year ending then, last year's net income as the same report restated it), and the day it was filed. Only
 // what the report itself said: later amendments and restatements are other filings and are not read.
+// The figures are read by canli-markets' default-risk.mjs, the code the tool reads a company with.
 // Run: node scripts/research/default-risk/panel.mjs companyfacts.zip > panel.csv
 import { closeSync, fstatSync, openSync, readSync } from "node:fs";
 import { inflateRawSync } from "node:zlib";
+
+import { FIGURES as FIELDS, reportsOf } from "../../../mcp-markets/src/default-risk.mjs";
 
 function readAt(fd, length, position) {
   const buf = Buffer.alloc(length);
@@ -29,60 +32,6 @@ function* zipEntries(path) {
       yield { name, bytes: method === 8 ? inflateRawSync(data) : data };
     }
   } finally { closeSync(fd); }
-}
-
-// Each figure: the concepts tried in order (the first the report used wins).
-export const CONCEPTS = {
-  total_assets: ["Assets"],
-  total_liabilities: ["Liabilities"],
-  liabilities_and_equity: ["LiabilitiesAndStockholdersEquity"],
-  current_assets: ["AssetsCurrent"],
-  current_liabilities: ["LiabilitiesCurrent"],
-  retained_earnings: ["RetainedEarningsAccumulatedDeficit"],
-  equity: ["StockholdersEquity", "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"],
-  cash: ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents", "Cash"],
-  net_income: ["NetIncomeLoss", "ProfitLoss", "NetIncomeLossAvailableToCommonStockholdersBasic"],
-  operating_income: ["OperatingIncomeLoss"],
-  operating_cash_flow: ["NetCashProvidedByUsedInOperatingActivities", "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations"],
-  revenue: ["Revenues", "RevenueFromContractWithCustomerExcludingAssessedTax", "SalesRevenueNet", "RevenueFromContractWithCustomerIncludingAssessedTax"],
-  interest_expense: ["InterestExpense", "InterestExpenseNonoperating", "InterestExpenseDebt", "InterestPaidNet", "InterestPaid"],
-  long_term_debt: ["LongTermDebtNoncurrent", "LongTermDebt"],
-};
-const FLOWS = new Set(["net_income", "operating_income", "operating_cash_flow", "revenue", "interest_expense"]);
-const FIELDS = Object.keys(CONCEPTS);
-const days = (a, b) => (Date.parse(b) - Date.parse(a)) / 86400000;
-
-export function reportsOf(json, cik = json.cik) {
-  const gaap = json.facts?.["us-gaap"];
-  if (!gaap?.Assets) return [];
-  const usd = (c) => gaap[c]?.units?.USD ?? [];
-  // The original 10-Ks: their accession, filing day and own fiscal year end (the latest Assets balance they report).
-  const reports = new Map();
-  for (const f of usd("Assets")) {
-    if (f.form !== "10-K") continue;
-    const r = reports.get(f.accn);
-    if (!r) reports.set(f.accn, { accn: f.accn, filed: f.filed, end: f.end });
-    else if (f.end > r.end) r.end = f.end;
-  }
-  const out = [];
-  for (const r of reports.values()) {
-    const row = { cik: Number(cik), accn: r.accn, filed: r.filed, fy_end: r.end };
-    if (days(r.end, r.filed) > 400 || days(r.end, r.filed) < 0) continue;
-    for (const field of FIELDS) {
-      row[field] = null;
-      for (const c of CONCEPTS[field]) {
-        const hit = usd(c).find((f) => f.accn === r.accn && f.end === r.end && (FLOWS.has(field) ? f.start && Math.abs(days(f.start, f.end) - 365) <= 20 : !f.start));
-        if (hit) { row[field] = hit.val; break; }
-      }
-    }
-    row.net_income_prior = null;
-    for (const c of CONCEPTS.net_income) {
-      const hit = usd(c).find((f) => f.accn === r.accn && f.start && Math.abs(days(f.end, r.end) - 365) <= 20 && Math.abs(days(f.start, f.end) - 365) <= 20);
-      if (hit) { row.net_income_prior = hit.val; break; }
-    }
-    out.push(row);
-  }
-  return out;
 }
 
 if (process.argv[2]) {
