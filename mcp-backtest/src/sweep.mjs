@@ -97,19 +97,26 @@ function runParallel(files, combos, splitDate, workers) {
 }
 
 const r3 = (x) => (Number.isFinite(x) ? Math.round(x * 1000) / 1000 : null);
+const DAY_YEAR = 252; // breadth books are daily (breadth.mjs)
 
-// The summary over a complete set of results.
+// The summary over a complete set of results. Every variant's Sharpe, best first, goes back with the days it was
+// measured on (every_trial: one number when all variants share them, else one per variant), so a server that counts
+// the strategies tried in a session counts each one and not only the best, as with canli-quant-mcp's strategy_sweep.
+// With split_date that is the Sharpe the settings were chosen on, before the split.
 export function summarize(results, combos, splitDate) {
   const byK = new Map(results.map((r) => [r.k, r]));
-  const rows = combos.map((c) => { const r = byK.get(c.k) ?? {}; const pick = splitDate ? r.search : r.all; return [c.k, c.signals ? c.signals.join("+") : "all", c.smoothing ?? null, c.target_vol ?? null, c.cost_bps ?? null, c.min_names ?? null, r.sleeves ?? null, r.bets ?? null, pick?.sharpe ?? null, splitDate ? r.test?.sharpe ?? null : null, r.ok === false ? r.error : null]; });
+  const pickOf = (k) => { const r = byK.get(k) ?? {}; return splitDate ? r.search : r.all; };
+  const rows = combos.map((c) => { const r = byK.get(c.k) ?? {}; return [c.k, c.signals ? c.signals.join("+") : "all", c.smoothing ?? null, c.target_vol ?? null, c.cost_bps ?? null, c.min_names ?? null, r.sleeves ?? null, r.bets ?? null, pickOf(c.k)?.sharpe ?? null, splitDate ? r.test?.sharpe ?? null : null, r.ok === false ? r.error : null]; });
   const ranked = [...rows].sort((x, y) => (y[8] ?? -99) - (x[8] ?? -99));
   const best = ranked[0], luck = expectedMaxSharpe(rows.map((r) => r[8]));
-  const trials = rows.filter((r) => Number.isFinite(r[8])).length;
+  const tried = ranked.filter((r) => Number.isFinite(r[8])), days = tried.map((r) => pickOf(r[0])?.days ?? null);
+  const trials = tried.length;
   return {
     trials, columns: ["k", "signals", "smoothing", "target_vol", "cost_bps", "min_names", "sleeves", "effective_bets", splitDate ? "sharpe_search" : "sharpe", "sharpe_after_split", "error"],
     rows: ranked,
     best: best ? { k: best[0], settings: combos[best[0]], sharpe: best[8], ...(splitDate ? { sharpe_after_split: best[9] } : {}) } : null,
     luck: { expected_best_sharpe_by_luck: r3(luck), best_minus_luck: best && luck != null && Number.isFinite(best[8]) ? r3(best[8] - luck) : null, note: `The best of ${trials} trials would reach about ${r3(luck)} by luck alone, from the spread of their Sharpes; only the excess above it is evidence. Correlated trials (they share data) make this benchmark conservative.` },
+    every_trial: { periods: trials && days.every((d) => d === days[0]) ? days[0] : days, periods_per_year: DAY_YEAR, sharpes: tried.map((r) => r[8]) },
   };
 }
 

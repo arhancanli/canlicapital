@@ -1,7 +1,8 @@
 // Luck counted by the server itself: a strategy result recognised by its tool, Sharpe and periods, labelled by
 // its settings and not its data; every trial so far counted and the best one deflated; a ledger per sampling
-// frequency; the hosted server saying it counts one request; and over stdio, a second backtest told about the
-// first while a tool that only measures a Sharpe is left alone.
+// frequency; the hosted server saying it counts one request; every variant of a sweep, a breadth sweep's counted
+// once however often it runs; and over stdio, a second backtest told about the first while a tool that only
+// measures a Sharpe is left alone.
 import assert from "node:assert/strict";
 import path from "node:path";
 import test from "node:test";
@@ -67,6 +68,31 @@ test("a sweep counts every variant it tried, named by its settings where its tab
   // Before canli-quant-mcp 0.3.0 a sweep carried no every_trial, and is not counted, as before.
   assert.deepEqual(trialsOf("strategy_sweep", {}, { recipe: "ma_crossover", rows: [] }), []);
   assert.deepEqual(trialsOf("sleeve_tournament", {}, { periods: 900, leaderboard: [] }), []);
+  assert.deepEqual(trialsOf("breadth_sweep", {}, { trials: 2, rows: [], best: { k: 0, sharpe: 1.2 } }), [], "nor a breadth sweep before canli-backtest-mcp gave one");
+});
+
+test("a breadth sweep counts each variant by its row, with its own days, and the same sweep run again adds nothing", () => {
+  const columns = ["k", "signals", "smoothing", "target_vol", "cost_bps", "min_names", "sleeves", "effective_bets", "sharpe_search", "sharpe_after_split", "error"];
+  const sweep = (id, sharpes, periods) => ({ sweep_id: id, trials: sharpes.length, columns, rows: [...sharpes.map((x, i) => [i + 1, i ? "momentum_12_1+low_vol" : "momentum_12_1", 6, null, 20, null, 4, 2.1, x, 0.1, null]), [0, "all", 2, null, 5, null, null, null, null, null, "too few names"]], every_trial: { periods, periods_per_year: 252, sharpes } });
+  const first = sweep("4a1f", [0.9, 0.5, 0.1], [450, 480, 470]);
+  const found = trialsOf("breadth_sweep", { prices_file: "p.csv", grid: { smoothing: [6] } }, first);
+  assert.deepEqual(found[0], { label: "breadth_sweep k=1 signals=momentum_12_1 smoothing=6 cost_bps=20", sharpe_annualized: 0.9, observations: 450, params: { tool: "breadth_sweep", k: 1, signals: "momentum_12_1", smoothing: 6, cost_bps: 20 }, key: "4a1f:1" });
+  assert.deepEqual(found.map((t) => t.observations), [450, 480, 470], "each variant's own days");
+  const luck = createLuck({ now: () => "2026-11-08T01:00:00.000Z" });
+  assert.equal(luck.record("breadth_sweep", {}, first).trials, 3);
+  const again = luck.record("breadth_sweep", {}, sweep("4a1f", [0.9, 0.5, 0.1], [450, 480, 470]));
+  assert.equal(again.trials, 3, "run again, or its shards merged: the same tries");
+  assert.match(again.reading, /This sweep \(the same files, grid and split\) was counted already; nothing is added\.$/);
+  const other = luck.record("breadth_sweep", {}, sweep("77c0", [0.3, 0.2], 500));
+  assert.equal(other.trials, 5, "other files, grid or split: new tries");
+  assert.doesNotMatch(other.reading, /counted already/);
+  assert.equal(luck.trials, 5);
+  assert.equal(luck.record("breadth_sweep", {}, { ...first, every_trial: { ...first.every_trial, periods_per_year: 12 } }), null, "nothing new, and nothing at that frequency yet: no note");
+  // A table out of step with the list names the variant by its place, and a variant with too few days is no try.
+  const odd = sweep("90bb", [0.4, 0.2], [300, 1]);
+  odd.rows[0][8] = 0.41;
+  assert.deepEqual(trialsOf("breadth_sweep", {}, odd).map((t) => [t.label, t.key]), [["breadth_sweep variant 1 of 2", undefined]]);
+  assert.deepEqual(shownTrials(first).every_trial, { periods_per_year: 252, counted: 3 }, "a list of days stays under the ref too");
 });
 
 test("over stdio, the second backtest of a session is told about the first, and measuring a Sharpe is not counted", async () => {

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Luck counts every variant of a `breadth_sweep` (from canli-backtest-mcp's next release), each named by its row's settings and measured on its own days. A breadth sweep is named by its files, grid and split (`sweep_id`), so the same sweep run again, or its shards merged after it ran whole, adds nothing, and the answer says it was counted already.
+
 ## 0.21.0
 
 - canli-markets-mcp 0.16.0, 442 tools in all. `portfolio_rules`: where a list of holdings stands against the US lines that bring a filing or cap concentration, each with its rule's text linked: a position over 5% of its class (Schedule 13D or 13G) or 10% (a Section 16 insider), the $100 million Form 13F line, concentration (largest issuer, top five, HHI, effective positions), the 75-5-10 and RIC diversification tests, and days to exit at a share of FINRA's average daily volume. A check, not compliance advice.
