@@ -1,16 +1,16 @@
 {
  "package": "canli-mcp",
- "version": "0.21.0",
+ "version": "0.22.0",
  "packs": {
-  "quant": "0.3.0",
-  "validation": "0.15.0",
-  "fundamentals": "0.9.1",
+  "quant": "0.4.0",
+  "validation": "0.16.0",
+  "fundamentals": "0.10.0",
   "research": "0.3.1",
-  "backtest": "0.5.1",
-  "markets": "0.16.0",
+  "backtest": "0.6.0",
+  "markets": "0.17.0",
   "paper": "0.3.1"
  },
- "count": 469,
+ "count": 470,
  "markets_themes": {
   "Filings and what they say": 18,
   "Results and valuation": 23,
@@ -2305,9 +2305,9 @@
    "pack": "fundamentals",
    "group": "fundamentals",
    "title": "Known as of a date",
-   "description": "Get what a company had reported as of a date: per measure, the latest period filed by then, its value, and whether it was later restated; optionally ratios from those filings. For point-in-time backtests.",
+   "description": "Get what a company had reported as of a date: per measure, the latest period filed by then and its value (changed_after: true adds whether a filing after the date changed it); optionally ratios from those filings. For point-in-time backtests.",
    "keywords": "financials fundamentals snapshot revenue income eps balance sheet reported date",
-   "args": "company: string, as_of: string, concepts?: string[], periods?: annual|quarterly, ratios?: boolean"
+   "args": "company: string, as_of: string, concepts?: string[], periods?: annual|quarterly, ratios?: boolean, changed_after?: boolean"
   },
   {
    "name": "history",
@@ -2368,9 +2368,9 @@
    "pack": "fundamentals",
    "group": "fundamentals",
    "title": "Cross-section as of a date",
-   "description": "Get one measure for up to 50 companies as filed by a date: each one's latest period, its value then, and whether it was later restated. For point-in-time peer and factor work.",
+   "description": "Get one measure for up to 50 companies as filed by a date: each one's latest period and its value then (changed_after: true adds whether a filing after the date changed it). For point-in-time peer and factor work.",
    "keywords": "compare companies peers screen revenue income many",
-   "args": "companies: string[], concept: string, as_of: string, periods?: annual|quarterly"
+   "args": "companies: string[], concept: string, as_of: string, periods?: annual|quarterly, changed_after?: boolean"
   },
   {
    "name": "search_research",
@@ -3712,6 +3712,15 @@
    "description": "Three accounting screens in one call from the company's own annual XBRL for its last two years: Beneish's M-score (earnings manipulation), Piotroski's F-score (financial strength) and Altman's Z-score (distress), every input with its tag.",
    "keywords": "forensic accounting beneish m-score manipulation fraud piotroski f-score altman z-score bankruptcy distress earnings quality red flags",
    "args": "company: string"
+  },
+  {
+   "name": "default_risk",
+   "pack": "markets",
+   "group": "markets",
+   "title": "Default risk: the chance of a bankruptcy filing (Canli model)",
+   "description": "A Canli model: the chance a company reports a bankruptcy (an 8-K under Item 1.03) within a year of its latest annual report, from that 10-K's own figures, with how it ranks among the year's reports and Ohlson's O and Altman's Z'' beside it. Tested walk-forward on every US GAAP 10-K from 2014 to 2025, the test's results (including where Ohlson's O did better) returned with it. as_of reads the company as it stood on a past day.",
+   "keywords": "default risk bankruptcy probability chance of bankruptcy chapter 11 distress credit risk insolvency will it go bankrupt failure prediction ohlson o-score altman z model",
+   "args": "company: string, as_of?: string"
   },
   {
    "name": "funding_rates",
