@@ -314,3 +314,13 @@ shows an annual or quarterly report filed on or after the day its reference snap
 company facts are read instead. The snapshot block then carries `read_live`, `newer_filing` (the form, date and
 accession number of that report), `reference` (the snapshot it replaced) and a note, so an answer is never quietly
 older than the company's latest report.
+
+## As of a date, nothing from later (Unreleased)
+
+An answer as of a date holds only what had been filed by then. `known_as_of` and `cross_section` leave out
+`changed_after` (whether a filing made after the date changed a value) unless the call asks for it with
+`changed_after: true`: nobody knew it on that date, so it is for checking a backtest, not for its decisions, and a
+pipeline that reads a value as of each decision date no longer sees, beside it, that a later filing changed it.
+With `as_of`, `history`'s `changed` counts only filings made by that date; `vintages` and `restatements` show the
+later ones. This replaces the `changed_after` flag the tools table above describes. The time machine in canli-mcp
+already dropped the field.
