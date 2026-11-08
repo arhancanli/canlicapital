@@ -6,7 +6,7 @@
 // owner. Encryption protects the file when it is copied, synced or shared without the key; it does not protect it
 // from someone who can read this account's files. Nothing here is sent anywhere, and the hosted server never loads it.
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
-import { appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { appendFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 export const ZOO_SCHEMA = "canli.null-zoo.trial.v1";
@@ -20,7 +20,7 @@ function keyOf(dir, env) {
     return { key: Buffer.from(given, "hex"), from: "CANLI_ZOO_KEY" };
   }
   const file = join(dir, "key");
-  if (!existsSync(file)) writeFileSync(file, randomBytes(32).toString("hex"), { mode: 0o600, flag: "wx" });
+  try { writeFileSync(file, randomBytes(32).toString("hex"), { mode: 0o600, flag: "wx" }); } catch (e) { if (e.code !== "EEXIST") throw e; }
   return { key: Buffer.from(readFileSync(file, "utf8").trim(), "hex"), from: file };
 }
 
@@ -45,8 +45,9 @@ export function openZoo(home, { env = process.env } = {}) {
     file, keyFrom: from,
     // Every record, checked against its chain; broken is the first line where the chain fails, or null.
     read() {
-      if (!existsSync(file)) return { records: [], broken: null };
-      const lines = readFileSync(file, "utf8").split("\n").filter(Boolean);
+      let text;
+      try { text = readFileSync(file, "utf8"); } catch (e) { if (e.code === "ENOENT") return { records: [], broken: null }; throw e; }
+      const lines = text.split("\n").filter(Boolean);
       const records = [];
       let prev = GENESIS, broken = null;
       lines.forEach((line, i) => {

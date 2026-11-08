@@ -3,12 +3,12 @@
 // exactly; and originality_check finds a Lab strategy's own returns as its nearest, ranks a series among those covering
 // the same months, while lab_search filters and the effective number is reported.
 import assert from "node:assert/strict";
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
 
-import { firstTable, finishBuild, buildShard, loadSeries, prepare, runDaily, runMonthly, unzipFirst, VARIANTS, variantOf } from "../local/lab.mjs";
+import { downloadLibrary, firstTable, finishBuild, buildShard, loadSeries, prepare, runDaily, runMonthly, unzipFirst, VARIANTS, variantOf } from "../local/lab.mjs";
 import { openLab, runLabSearch, runLabStatus, runLabStrategy, runOriginality, toMonthly } from "../src/lab.mjs";
 
 // A zip of one stored (uncompressed) file, as French's are read.
@@ -95,4 +95,24 @@ test("a strategy is its number: positions from the close before, next-close entr
   assert.ok(found.rows[0][2] >= found.rows.at(-1)[2]);
   const apart = runLabSearch(lab, { uncorrelated_with: { returns, dates }, max_abs_corr: 0.1, limit: 200 });
   assert.ok(apart.rows.every((row) => Math.abs(row.at(-1)) <= 0.1) && apart.matched > 0);
+});
+
+test("the library's download: only zips are kept, a file already here is not fetched again", async (t) => {
+  const dir = mkdtempSync(path.join(tmpdir(), "canli-lab-dl-"));
+  t.after(() => rmSync(dir, { recursive: true, force: true }));
+  writeFileSync(path.join(dir, "Old_daily_CSV.zip"), "kept");
+  const zip = zipOf("A.CSV", "x"), asked = [], logged = [];
+  const fetchImpl = async (url) => {
+    asked.push(url.split("/").pop());
+    if (url.endsWith("data_library.html")) return new Response("ftp/A_daily_CSV.zip ftp/B_Daily_CSV.zip ftp/Old_daily_CSV.zip ftp/C_monthly_CSV.zip");
+    if (url.endsWith("A_daily_CSV.zip")) return new Response(zip);
+    return new Response("<html>moved</html>");
+  };
+  const got = await downloadLibrary(dir, { fetchImpl, log: (m) => logged.push(m), pause: 0 });
+  assert.deepEqual(got, ["A_daily_CSV.zip", "Old_daily_CSV.zip"]);
+  assert.deepEqual(asked, ["data_library.html", "A_daily_CSV.zip", "B_Daily_CSV.zip"]);
+  assert.ok(readFileSync(path.join(dir, "A_daily_CSV.zip")).equals(zip));
+  assert.equal(existsSync(path.join(dir, "B_Daily_CSV.zip")), false);
+  assert.ok(logged.includes("skipped B_Daily_CSV.zip: not a zip archive"));
+  assert.equal(readFileSync(path.join(dir, "Old_daily_CSV.zip"), "utf8"), "kept");
 });

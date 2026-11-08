@@ -2,7 +2,7 @@
 // its close; the latest commit before a day counts and one made on the day is ignored; a day committed but not shown,
 // a shown day that does not match, or a changed ledger stops the score; published heads are checked as anchors.
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { closeSync, fstatSync, mkdtempSync, openSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -11,6 +11,8 @@ import { appendRecords } from "canli-backtest-mcp/src/proof.mjs";
 
 import { trackCommit as commit, trackScore as score } from "../local/track.mjs";
 import { TRACK_TOOLS } from "../src/track.mjs";
+
+const modeOf = (file) => { const fd = openSync(file, "r"); try { return fstatSync(fd).mode & 0o777; } finally { closeSync(fd); } };
 
 // As the tools call them: arguments parsed by their schemas first.
 const trackCommit = (args, opts) => commit(TRACK_TOOLS[0].input.parse(args), opts);
@@ -33,7 +35,7 @@ test("only a salted hash goes in the ledger, and a day must be committed before 
   assert.match(c.commitment, /^[0-9a-f]{64}$/);
   const text = readFileSync(ledger, "utf8");
   assert.ok(!text.includes("AAA") && !text.includes("0.6"), "the positions are not in the ledger");
-  assert.equal(statSync(c.reveals_file).mode & 0o777, 0o600);
+  assert.equal(modeOf(c.reveals_file), 0o600);
   assert.ok(readFileSync(c.reveals_file, "utf8").includes("\"AAA\":0.6"));
 });
 

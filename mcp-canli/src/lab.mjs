@@ -5,7 +5,7 @@
 // Sharpe ranks among all of them over the same months; the best of them over those months is the luck bar that
 // real, simple rules set, not a formula's. lab_search finds strategies by family, series, Sharpe, or low correlation
 // with your book; lab_strategy shows one. Reads only: the Lab's files are on this machine.
-import { closeSync, openSync, readFileSync, readSync, statSync } from "node:fs";
+import { closeSync, fstatSync, openSync, readFileSync, readSync, statSync } from "node:fs";
 import { join } from "node:path";
 
 import { z } from "zod";
@@ -85,7 +85,7 @@ export function openLab(dir) {
   // Every strategy's monthly block in file order, read in chunks: visit(id, first, int16 view).
   const order = (() => { const ids = new Uint32Array(manifest.strategies); for (let i = 0; i < ids.length; i += 1) ids[i] = i; return ids.sort((a, b) => offsets[a * 3] - offsets[b * 3]); })();
   const scan = (visit) => {
-    const size = statSync(file).size, chunk = 64 * 1024 * 1024, fd = openSync(file, "r");
+    const fd = openSync(file, "r"), size = fstatSync(fd).size, chunk = 64 * 1024 * 1024;
     let buf = Buffer.alloc(0), base = 0;
     try {
       for (const id of order) {
