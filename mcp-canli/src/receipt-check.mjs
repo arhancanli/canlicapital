@@ -1,13 +1,16 @@
 // receipt_check: an earlier answer's receipt (canlicapital.com/receipt in _meta, or the answer itself with
 // receipt: true) and the receipts it was built from, their documents read again by the markets pack's
 // source_check: the same, changed since, or unreachable. An answer whose documents changed may no longer hold.
-// A receipt from the hosted server carries its signature, which is checked here offline.
+// A receipt from the hosted server carries its signature, which is checked here offline, and the root of its answer's
+// values, against which a proof that one value is in the answer is checked without the rest of it.
 import { createPublicKey, verify } from "node:crypto";
 import { readFileSync } from "node:fs";
 
 import { keyIdFor, KEYS_URL } from "canli-validation-mcp/src/local/js/receipt-statement.js";
 import { canonicalJson } from "canli-validation-mcp/src/local/scripts/canonical-json.mjs";
 import { z } from "zod";
+
+import { checkValue } from "./answer-tree.mjs";
 
 // The hosted server (canlicapital.com/mcp/canli) signs each answer's receipt with a key canlicapital.com publishes:
 // Ed25519 over the canonical JSON of {schema, receipt}, the receipt as sent in JSON without its signature (the site's
@@ -44,14 +47,35 @@ function signatureOf(receipt) {
 
 export const receiptCheckInput = z.object({
   receipt: z.looseObject({ sources: z.array(z.looseObject({})).optional(), from: z.array(z.looseObject({})).optional() }).describe("The receipt: canlicapital.com/receipt from an answer's _meta, or the receipt an answer carries with receipt: true."),
+  proofs: z.array(z.looseObject({})).min(1).max(20).optional().describe("Proofs run_tool gave with prove, each checked against the receipt's output_root."),
 }).strict();
 
 export const RECEIPT_CHECK_TOOL = Object.freeze({
   name: "receipt_check", pack: "desk", toolset: "desk", title: "Check an answer's receipt against its documents now", input: receiptCheckInput, annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: true },
-  description: "Read again the documents an earlier answer's receipt names, and those of the answers it was built from: each the same, changed since, or unreachable (the markets pack's source_check). An answer whose documents changed may no longer hold. A receipt the hosted server signed has its signature checked offline against the keys canlicapital.com publishes.",
-  keywords: "receipt check verify sources changed since stale drift documents hash audit trail provenance signature signed",
-  args: "receipt: object",
+  description: "Read again the documents an earlier answer's receipt names, and those of the answers it was built from: each the same, changed since, or unreachable (the markets pack's source_check). An answer whose documents changed may no longer hold. A receipt the hosted server signed has its signature checked offline against the keys canlicapital.com publishes, and proofs from run_tool's prove are checked against its output_root: each value is in the signed answer or not, without the rest of the answer.",
+  keywords: "receipt check verify sources changed since stale drift documents hash audit trail provenance signature signed proof prove value merkle",
+  args: "receipt: object, proofs?: array",
 });
+
+// Proofs that values are in the answer (answer-tree.mjs), each checked against the root and the count of values the
+// receipt carries. That the receipt is the server's is for its signature; a receipt with no root proves nothing.
+export function proofsOf(receipt, proofs, signature) {
+  if (typeof receipt.output_root !== "string" || !Number.isInteger(receipt.output_values)) {
+    return { in_answer: 0, of: proofs.length, reading: "This receipt carries no output_root, so no value can be checked against it: only a receipt the hosted server signs carries one (run_tool with prove gives both)." };
+  }
+  const rows = proofs.map((proof) => {
+    const checked = checkValue(proof, { root: receipt.output_root, values: receipt.output_values });
+    return checked.ok ? { pointer: checked.pointer, value: checked.value, in_answer: true } : { pointer: typeof proof.pointer === "string" ? proof.pointer : null, in_answer: false, problem: checked.problem };
+  });
+  const n = rows.length, held = rows.filter((r) => r.in_answer).length, bad = n - held;
+  const said = !bad ? (n === 1 ? "The value is in the answer this receipt names." : `All ${n} values are in the answer this receipt names.`)
+    : n === 1 ? "The value is not in the answer this receipt names: its row says why."
+      : `${bad} of ${n} values ${bad === 1 ? "is" : "are"} not in the answer this receipt names (each row says why)${held ? `; the other ${held === 1 ? "one is" : `${held} are`}` : ""}.`;
+  const whose = !held ? "" : signature.valid
+    ? ` The receipt is signed with canlicapital.com's published key, so the server's answer held ${held === 1 ? "that value" : "those values"}.`
+    : ` The receipt is not shown to be the server's (see signature), so this does not show the server gave ${held === 1 ? "it" : "them"}.`;
+  return { in_answer: held, of: n, rows, reading: said + whose };
+}
 
 // The documents of a receipt and of every receipt it was built from that is written out, once each, at most 25.
 export function documentsOf(receipt) {
@@ -68,14 +92,16 @@ export function documentsOf(receipt) {
 }
 
 export async function runReceiptCheck(ctx, args) {
-  const { receipt } = receiptCheckInput.parse(args ?? {});
+  const { receipt, proofs } = receiptCheckInput.parse(args ?? {});
   const signature = signatureOf(receipt);
+  const proved = proofs ? { proofs: proofsOf(receipt, proofs, signature) } : {};
   const docs = documentsOf(receipt);
-  if (!docs.length) return { signature, documents: 0, reading: "This receipt names no documents: the answer was worked out from what it was given, so nothing can have changed under it." };
+  if (!docs.length) return { signature, ...proved, documents: 0, reading: "This receipt names no documents: the answer was worked out from what it was given, so nothing can have changed under it." };
   const checked = await ctx.call("source_check", { sources: docs.slice(0, 25) });
   return {
     answer: { input_sha256: receipt.input_sha256 ?? null, output_sha256: receipt.output_sha256 ?? null, at: receipt.at ?? null },
     signature,
+    ...proved,
     documents: docs.length,
     ...(docs.length > 25 ? { more: `${docs.length - 25} more documents were not read: 25 at a time` } : {}),
     ...checked,
