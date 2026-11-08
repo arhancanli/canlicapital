@@ -340,7 +340,7 @@ export function effectiveNumber(out, { sample = 1500, seed = 7 } = {}) {
   let sum2 = 0;
   for (let i = 0; i < Z.length; i += 1) for (let j = 0; j < Z.length; j += 1) { let c = 0; const a = Z[i], b = Z[j]; for (let k = 0; k < T; k += 1) c += a[k] * b[k]; c /= T; sum2 += c * c; }
   const n = Z.length, ratio = (n * n) / sum2;
-  return { sample: n, months: T, from: "1991-01", participation_ratio: Number(ratio.toFixed(1)), share: Number((ratio / n).toFixed(4)), scaled_to_lab: Math.round((ratio / n) * N), reading: `On a sample of ${n} strategies over ${T} months, they behave like about ${ratio.toFixed(0)} independent ones (${((100 * ratio) / n).toFixed(1)}%). The share is an estimate for the whole Lab, not a count.` };
+  return { sample: n, months: T, from: "1991-01", participation_ratio: Number(ratio.toFixed(1)), reading: `A seeded sample of ${n} strategies, over the ${T} months they share from 1991, varies like about ${ratio.toFixed(0)} independent ones (participation ratio of their correlations). It is the strict measure: a few common movements, the market's above all, dominate it, and it does not grow in proportion to the Lab's size.` };
 }
 
 // Merge, remove the shard files, and record the effective number in the manifest.
