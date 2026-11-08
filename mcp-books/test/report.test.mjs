@@ -68,8 +68,10 @@ test("a company's SEC filings are checked one by one: a scale slip and assets of
   assert.deepEqual([out.entityName, out.taxonomy, out.checked, out.withFindings], ["Example Holdings Inc.", "us-gaap", 3, 2]);
   const [a1, a2, q1] = out.filings;
   assert.deepEqual([a1.accession, a1.ok, a1.facts], ["A1", true, 7], "seven us-gaap facts; the dei one is not checked");
-  // Last year's shares authorized, filed again a thousand times smaller: the same date, so the slip is plain.
-  assert.deepEqual(a2.findings.map((f) => [f.rule, f.concept, f.prior]), [["scale", "CommonStockSharesAuthorized", { value: 1800000000, period: { instant: "2024-12-31" } }]]);
+  // Last year's shares authorized, filed again a thousand times smaller: the same date, so the slip is plain. The
+  // value compared with is named with its filing; no other filing gives it, so neither is found out of line.
+  assert.deepEqual(a2.findings.map((f) => [f.rule, f.concept, f.prior, f.out_of_line, f.others]), [["scale", "CommonStockSharesAuthorized", { value: 1800000000, period: { instant: "2024-12-31" }, accession: "A1", form: "10-K", filed: "2025-02-14" }, null, []]]);
+  assert.equal(a2.findings[0].detail, "1800000 at 2024-12-31 is 1/1000 of the prior value 1800000000 at 2024-12-31 in 10-K A1, filed 2025-02-14: check the scale");
   assert.deepEqual(q1.findings.map((f) => [f.rule, f.concept]), [["balance", "Assets"]], "the 60 short is left alone; assets 13 over are not");
   assert.deepEqual([a2.findings[0].unit, a2.findings[0].period, a2.findings[0].value, q1.findings[0].unit, q1.findings[0].period, q1.findings[0].value], ["shares", { instant: "2024-12-31" }, 1800000, "USD", { instant: "2026-03-31" }, 1403], "each finding carries its unit, period and value");
   assert.deepEqual(out.counts, { scale: 1, balance: 1 });
@@ -149,6 +151,65 @@ test("a thousandfold change the filing states itself, beside the year before as 
   assert.deepEqual(found.map((f) => [f.rule, f.period, f.value, f.prior]), [["scale", { instant: "2024-12-31" }, 25000, { value: 25000000, period: { instant: "2024-12-31" } }]]);
   // The later filing's year before slipped as well as its new year: the year before shows the slip.
   assert.deepEqual(flags([trust(26000000, 2025), trust(25000000, 2024)], { prior: [trust(25000, 2024)] }), ["scale AssetsHeldInTrustNoncurrent"]);
+});
+
+// One company's figures for one concept as [filing, date, value], each filing's form and date as EDGAR gives them,
+// and its scale flags with what the company's other filings say about them.
+const dated = { K1: ["10-K", "2011-02-25"], Q1: ["10-Q", "2011-05-06"], S1: ["S-1", "2011-06-01"], K2: ["10-K", "2012-02-29"], E1: ["8-K", "2012-04-02"], Q2: ["10-Q", "2012-05-08"], K3: ["10-K", "2013-02-28"], Q3: ["10-Q", "2013-05-08"], E2: ["8-K", "2013-05-20"], KA: ["10-K/A", "2013-06-03"] };
+const scaleFlags = (concept, figures) => {
+  const facts = { "us-gaap": { [concept]: { units: { USD: figures.map(([accn, end, val]) => ({ end, val, accn, form: dated[accn][0], filed: dated[accn][1] })) } } } };
+  const flags = checkSecFilings({ facts }, { last: Infinity }).filings.flatMap((r) => r.findings.map((f) => ({ in: r.accession, at: f.period.instant, earlier: f.prior.accession, out_of_line: f.out_of_line, others: f.others.map((o) => o.accession), said: f.detail.split("check the scale")[1] })));
+  return flags.sort((a, b) => (a.in + a.at < b.in + b.at ? -1 : 1));
+};
+
+test("a scale flag names both filings, and the company's other filings, by when they were filed, find the one out of line", () => {
+  // A table in billions tagged as millions in one annual report (K2). Its own flag finds only a 10-Q before it that
+  // agrees with the annual report before, as a scale kept for years and then corrected would also show; the next
+  // annual report's flag finds K2 out of line, since a 10-Q filed between the two gave the figure at the later scale.
+  const pledged = [["K1", "2010-12-31", 200e9], ["Q1", "2011-03-31", 205e9], ["Q1", "2010-12-31", 200e9], ["K2", "2011-12-31", 210e6], ["K2", "2010-12-31", 200e6], ["K3", "2012-12-31", 220e9], ["K3", "2011-12-31", 210e9]];
+  const before = ". Filings before this one give these figures at the earlier filing's scale (10-Q Q1): this filing slipped, or it corrects a scale they shared.";
+  assert.deepEqual(scaleFlags("SecurityOwnedAndPledgedAsCollateralFairValue", [...pledged, ["Q2", "2012-03-31", 212e9], ["Q2", "2011-12-31", 210e9]]), [
+    { in: "K2", at: "2010-12-31", earlier: "K1", out_of_line: null, others: ["Q1"], said: before },
+    { in: "K3", at: "2011-12-31", earlier: "K2", out_of_line: "K2", others: ["Q2"], said: ". Other filings give these figures at this filing's scale (10-Q Q2): the earlier filing is out of line." },
+  ]);
+  // Without that 10-Q, a later amendment giving K2's date at K3's scale cannot tell a slip from a new scale; with a
+  // filing between them at each scale, neither filing is named.
+  assert.deepEqual(scaleFlags("SecurityOwnedAndPledgedAsCollateralFairValue", [...pledged, ["KA", "2011-12-31", 210e9]]).map((f) => [f.in, f.out_of_line, f.said]), [
+    ["K2", null, before],
+    ["K3", null, ". Later filings give these figures at this filing's scale (10-K/A KA): the earlier filing slipped, or a new scale began with this one."],
+  ]);
+  const split = scaleFlags("SecurityOwnedAndPledgedAsCollateralFairValue", [...pledged, ["E1", "2011-12-31", 210e6], ["Q2", "2011-12-31", 210e9]]).at(-1);
+  assert.deepEqual([split.in, split.out_of_line, split.said], ["K3", null, ". Other filings give these figures at both scales (8-K E1, 10-Q Q2)."]);
+  // A 10-Q's cash in thousands (Q2), compared across quarters: annual reports before and after it give its date at the
+  // earlier 10-Q's scale, so Q2 is out of line. A date no other filing gives is left undecided, and so is the next
+  // 10-Q's flag, back to scale against Q2's other date: an annual report that gives the new figure as filed says
+  // nothing against the old one. A later amendment at Q2's own scale leaves the two scales side by side.
+  const cash = [
+    ["K1", "2010-12-31", 9e9], ["Q1", "2011-03-31", 9.1e9], ["Q1", "2010-12-31", 9e9], ["K2", "2011-12-31", 9.5e9], ["K2", "2010-12-31", 9e9], ["Q2", "2012-03-31", 9.6e6],
+    ["Q2", "2011-12-31", 9.5e6], ["K3", "2012-12-31", 9.8e9], ["K3", "2011-12-31", 9.5e9], ["Q3", "2013-03-31", 9.9e9], ["Q3", "2012-12-31", 9.8e9],
+  ];
+  assert.deepEqual(scaleFlags("CashAndCashEquivalentsAtCarryingValue", cash).map((f) => [f.in, f.at, f.earlier, f.out_of_line, f.others.join(" "), f.said.slice(0, 40)]), [
+    ["Q2", "2011-12-31", "Q1", "Q2", "K2 K3", ". Other filings give these figures at th"],
+    ["Q2", "2012-03-31", "Q1", null, "", ""],
+    ["Q3", "2012-12-31", "Q2", null, "K3", ""],
+    ["Q3", "2013-03-31", "Q2", null, "", ""],
+  ]);
+  const amended = scaleFlags("CashAndCashEquivalentsAtCarryingValue", [...cash, ["KA", "2011-12-31", 9.5e6]])[0];
+  assert.deepEqual([amended.in, amended.at, amended.out_of_line, amended.said], ["Q2", "2011-12-31", null, ". Other filings give these figures at both scales (10-K K2, 10-K K3, 10-K/A KA)."]);
+  // Likewise a later filing that gives the earlier 10-Q's date as filed says nothing against Q2's new figure.
+  const asFiled = scaleFlags("CashAndCashEquivalentsAtCarryingValue", [...cash, ["E2", "2011-03-31", 9.1e9]]).find((f) => f.in === "Q2" && f.at === "2012-03-31");
+  assert.deepEqual([asFiled.out_of_line, asFiled.others, asFiled.said], [null, ["E2"], ""]);
+  // A figure filed at the wrong scale for years, then corrected (K3): the filings before agree with the earlier one,
+  // which is no evidence against the correction, so neither is named; a later filing at the corrected scale sets the
+  // two scales side by side.
+  const years = [["K1", "2010-12-31", 25e3], ["Q1", "2011-03-31", 25.5e3], ["Q1", "2010-12-31", 25e3], ["K2", "2011-12-31", 26e3], ["K2", "2010-12-31", 25e3], ["Q2", "2012-03-31", 26.5e3], ["Q2", "2011-12-31", 26e3], ["K3", "2012-12-31", 27e6], ["K3", "2011-12-31", 26e6]];
+  assert.deepEqual(scaleFlags("AssetsHeldInTrustNoncurrent", years), [{ in: "K3", at: "2011-12-31", earlier: "K2", out_of_line: null, others: ["Q2"], said: ". Filings before this one give these figures at the earlier filing's scale (10-Q Q2): this filing slipped, or it corrects a scale they shared." }]);
+  assert.deepEqual(scaleFlags("AssetsHeldInTrustNoncurrent", [...years, ["KA", "2011-12-31", 26e6]]).map((f) => [f.out_of_line, f.said]), [[null, ". Other filings give these figures at both scales (10-Q Q2, 10-K/A KA)."]]);
+  // A thousandfold change between two years, each year's figure given as filed by another filing, a registration
+  // statement before and a current report after: the change may be real, and neither filing is named.
+  assert.deepEqual(scaleFlags("AssetsHeldInTrustNoncurrent", [["K1", "2010-12-31", 25e3], ["S1", "2010-12-31", 25e3], ["K2", "2011-12-31", 25.1e6], ["E1", "2011-12-31", 25.1e6]]), [
+    { in: "K2", at: "2011-12-31", earlier: "K1", out_of_line: null, others: ["S1", "E1"], said: ". Other filings give both figures as filed (S-1 S1, 8-K E1): the change may be real." },
+  ]);
 });
 
 test("an account with no concept is listed as unmapped, not guessed", () => {

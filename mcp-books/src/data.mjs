@@ -132,7 +132,11 @@ export const FINDING_COLUMNS = [
   { name: "prior_value", description: "For a scale flag, the value it was compared with, from the last filing of the same form" },
   { name: "prior_start", description: "That value's first day; empty for a balance" },
   { name: "prior_end", description: "That value's last day or date" },
+  { name: "prior_accession", description: "For a scale flag, the filing that value is from: the last filing of the same form before this one" },
+  { name: "prior_filed", description: "The date that filing reached EDGAR" },
   { name: "prior_flagged", description: "For a scale flag, whether the value it was compared with was itself flagged as a slip in its own filing: then this value is back to scale, and the earlier filing is the one to read" },
+  { name: "out_of_line", description: "For a scale flag, the accession number of the filing out of line with the company's other filings that give the same figures, this one or the prior one; empty when they do not decide it" },
+  { name: "others", description: "For a scale flag, the company's other filings that give either figure (the same concept, unit and period), by accession number, at most ten" },
   { name: "detail", description: "The check's own words" },
 ];
 
@@ -159,7 +163,11 @@ export function findingRows(checked) {
       prior_value: f.prior?.value ?? null,
       prior_start: f.prior?.period?.start ?? null,
       prior_end: endDay(f.prior?.period),
+      prior_accession: f.prior?.accession ?? null,
+      prior_filed: f.prior?.filed ?? null,
       prior_flagged: f.prior ? before.has(key(f.concept, f.unit, f.prior.period, f.prior.value)) : null,
+      out_of_line: f.out_of_line ?? null,
+      others: f.others?.length ? [...new Set(f.others.map((o) => o.accession))].join(" ") : null,
       detail: f.detail,
     }));
     slips.set(filing.form, new Set(filing.findings.filter((f, i) => f.rule === "scale" && !rows[i].prior_flagged).map((f) => key(f.concept, f.unit, f.period, f.value))));
