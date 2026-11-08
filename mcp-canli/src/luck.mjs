@@ -22,8 +22,8 @@ import { TESTS } from "./trials.mjs";
 import { dataKeyOf } from "./zoo.mjs";
 
 // Each variant's period returns, in every_trial's order or one series for one strategy, which a pack running in this
-// process (canli-quant-mcp's backtests, strategy_sweep and sleeve_tournament) hands over under a symbol key that JSON
-// leaves out, so the model never reads them.
+// process (canli-quant-mcp's backtests, strategy_sweep and sleeve_tournament; canli-backtest-mcp's breadth_sweep, a
+// shard's as it runs) hands over under a symbol key that JSON leaves out, so the model never reads them.
 export const TRIAL_RETURNS = Symbol.for("canli.trial_returns");
 // What a session pools at most, which bounds memory.
 const POOL = { variants: 1000, numbers: 8_000_000 };

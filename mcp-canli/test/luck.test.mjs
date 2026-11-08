@@ -1,10 +1,12 @@
 // Luck counted by the server itself: a strategy result recognised by its tool, Sharpe and periods, labelled by
 // its settings and not its data; every trial so far counted and the best one deflated; a ledger per sampling
 // frequency; the hosted server saying it counts one request; every variant of a sweep, a breadth sweep's counted
-// once however often it runs, its shards as they run; variants run on the same data pooled across the session and
-// picking the best of them measured for overfitting; and over stdio, a second backtest told about the first while a
-// tool that only measures a Sharpe is left alone.
+// once however often it runs, its shards as they run; variants run on the same data pooled across the session (a
+// breadth sweep's by its prices file's bytes) and picking the best of them measured for overfitting; and over stdio, a
+// second backtest told about the first while a tool that only measures a Sharpe is left alone.
 import assert from "node:assert/strict";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
@@ -194,6 +196,37 @@ test("variants are pooled apart by data, length and frequency, a variant run aga
   assert.deepEqual([kept.variants, kept.variants_tried], [3, 4], "numbers for three series of 320");
 });
 
+// A breadth sweep's answer as canli-backtest-mcp gives it in this process: every variant's Sharpe best first with its
+// k, and its daily book returns in the same order under the symbol key.
+const breadthOf = (id, series, k0 = 0) => {
+  const best = series.map((x, i) => [x, k0 + i]).sort(([x], [y]) => annual(y) - annual(x));
+  return { sweep_id: id, every_trial: { periods: series[0].length, periods_per_year: 252, k: best.map(([, k]) => k), sharpes: best.map(([x]) => annual(x)) }, [TRIAL_RETURNS]: best.map(([x]) => x) };
+};
+
+test("breadth sweeps on the same prices file are pooled across the session, a shard's as it runs; a merge hands over none", () => {
+  const dir = mkdtempSync(path.join(tmpdir(), "canli-luck-breadth-"));
+  try {
+    const [prices, copy, other] = ["p.csv", "copy.csv", "q.csv"].map((f) => path.join(dir, f));
+    writeFileSync(prices, "date,A,B\n2024-01-02,10,20\n"); writeFileSync(copy, "date,A,B\n2024-01-02,10,20\n"); writeFileSync(other, "date,A,B\n2024-01-02,10,21\n");
+    const luck = createLuck({ now: () => "2026-11-08T08:00:00.000Z" }), books = noiseOf(21, 8, 500);
+    const across = (args, answer) => luck.record("breadth_sweep", args, answer)?.overfitting_across_session;
+    const one = across({ prices_file: prices, grid: { smoothing: [2, 4, 6] } }, breadthOf("a1", books.slice(0, 3)));
+    assert.deepEqual([one.variants, one.periods, one.splits], [3, 500, 12]);
+    // Another grid, or a split, on the same bytes under another name: one pool. Other bytes: a pool of their own.
+    const two = across({ prices_file: copy, grid: { cost_bps: [5, 20] }, split_date: "2024-06-28" }, breadthOf("b2", books.slice(3, 5)));
+    const pooled = [...breadthOf("a1", books.slice(0, 3))[TRIAL_RETURNS], ...breadthOf("b2", books.slice(3, 5))[TRIAL_RETURNS]];
+    assert.deepEqual([two.variants, two.probability], [5, pbo(pooled, 12).probability]);
+    assert.equal(across({ prices_file: other }, breadthOf("c3", books.slice(5, 7))).variants, 2);
+    // A shard's variants are pooled as it runs; its merge names no prices file and hands over none, and still counts.
+    const shard = { ...breadthOf("d4", books.slice(7, 8), 1), shard: { index: 1, of: 2 } };
+    assert.equal(across({ prices_file: prices, grid: { smoothing: [2, 4] }, shard: { index: 1, of: 2 } }, shard).variants, 6);
+    const merged = luck.record("breadth_sweep", { merge_files: ["s0.json", "s1.json"] }, { sweep_id: "d4", merged_from: 2, every_trial: { periods: 500, periods_per_year: 252, k: [1, 0], sharpes: [annual(books[7]), 0.1] } });
+    assert.equal(merged.overfitting_across_session, undefined);
+    assert.match(merged.reading, /1 of these 2 variants were counted already\.$/);
+    assert.equal(across({ prices_file: prices, grid: { smoothing: [2, 4, 6] } }, breadthOf("a1", books.slice(0, 3))).variants, 6, "the same sweep run again is pooled once");
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
 test("a large pool is measured on fewer splits, so the measure stays quick", () => {
   const luck = createLuck(), many = noiseOf(16, 120, 700), across = (series) => luck.record("strategy_sweep", swept([7]), sweepOf(series)).overfitting_across_session;
   const first = across(many.slice(0, 116));
@@ -244,5 +277,38 @@ test("over stdio, two sweeps and a backtest on the same prices are pooled, and t
     assert.deepEqual(batch.results.map((r) => r.result.luck.overfitting_across_session?.variants), [undefined, 4, 8]);
   } finally {
     await c.close();
+  }
+});
+
+// 40 names over 700 weekdays of seeded prices, as canli-backtest-mcp's own sweep test makes them.
+function panelFile(file, seed0 = 7) {
+  let seed = seed0; const rnd = () => { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648; };
+  const tick = Array.from({ length: 40 }, (_, i) => `T${i}`), px = tick.map(() => 50), lines = [`date,${tick.join(",")}`];
+  let d = Date.parse("2022-01-03");
+  for (let i = 0; i < 700; i++) {
+    while ([0, 6].includes(new Date(d).getUTCDay())) d += 86400000;
+    lines.push(`${new Date(d).toISOString().slice(0, 10)},${px.map((p, j) => (px[j] = p * (1 + (rnd() - 0.5) * 0.04)).toFixed(4)).join(",")}`);
+    d += 86400000;
+  }
+  writeFileSync(file, lines.join("\n"));
+}
+
+const sweepsHandOver = await import("canli-backtest-mcp/src/sweep.mjs").then((m) => m.TRIAL_RETURNS, () => undefined);
+test("over stdio, breadth sweeps on one prices file are pooled across the session, and the model reads no returns", { skip: sweepsHandOver ? false : "the installed canli-backtest-mcp hands over no returns yet" }, async () => {
+  const dir = mkdtempSync(path.join(tmpdir(), "canli-luck-breadth-"));
+  const c = new Client({ name: "luck-test", version: "0" });
+  // The backtest pack alone: it is off with CANLI_OFFLINE=1, since its other tools read SEC filings; a sweep reads none.
+  await c.connect(new StdioClientTransport({ command: process.execPath, args: [ENTRY], env: { PATH: process.env.PATH ?? "", HOME: process.env.HOME ?? "", CANLI_CACHE_DIR: "", CANLI_PACKS: "backtest", CANLI_HOME: path.join(dir, "home") } }));
+  try {
+    const prices = path.join(dir, "p.csv");
+    panelFile(prices);
+    const run = async (grid) => (await c.callTool({ name: "run_tool", arguments: { name: "breadth_sweep", arguments: { prices_file: prices, grid, split_date: "2023-12-29", workers: 2 } } })).content[0].text;
+    const a = await run({ smoothing: [2, 6] }), b = await run({ cost_bps: [5, 20] });
+    assert.deepEqual([a, b].map((t) => JSON.parse(t).luck.overfitting_across_session.variants), [2, 4]);
+    assert.equal(JSON.parse(b).luck.overfitting_across_session.periods, 700, "every date of the file");
+    assert.ok(b.length < 20000, `the returns stay off the answer (${b.length} characters)`);
+  } finally {
+    await c.close();
+    rmSync(dir, { recursive: true, force: true });
   }
 });
