@@ -10,9 +10,29 @@
 //
 // One set of ledgers per server: on a local server, the whole session; on the hosted server, which keeps nothing
 // between requests, one request, so a batch is counted together and the answer says that is all it saw.
+//
+// Where a tool hands over each variant's returns, the variants run on the same data are pooled across the session and
+// the answer also gives the probability of backtest overfitting (CSCV) of picking the best of all of them.
+import { createHash } from "node:crypto";
+
+import { defaultSplits, pbo } from "canli-quant-mcp/src/cscv.mjs";
 import { buildTrial, GENESIS, summarize } from "canli-validation-mcp/src/ledger-core.mjs";
 
 import { TESTS } from "./trials.mjs";
+import { dataKeyOf } from "./zoo.mjs";
+
+// Each variant's period returns, in every_trial's order or one series for one strategy, which a pack running in this
+// process (canli-quant-mcp's backtests, strategy_sweep and sleeve_tournament) hands over under a symbol key that JSON
+// leaves out, so the model never reads them.
+export const TRIAL_RETURNS = Symbol.for("canli.trial_returns");
+// What a session pools at most, which bounds memory.
+const POOL = { variants: 1000, numbers: 8_000_000 };
+// Splits as a sweep takes them (defaultSplits), fewer for a large pool: every way to pick half of the chunks ranks
+// every variant, so the measure stays under about half a second (C(16, 8) = 12,870 ways for up to 116 variants,
+// C(12, 6) = 924 for a thousand).
+const WORK = 1_500_000;
+const halves = (S) => { let c = 1; for (let i = 1; i <= S / 2; i++) c = (c * (S / 2 + i)) / i; return c; };
+const splitsFor = (n, variants) => { let S = defaultSplits(n); while (S > 4 && halves(S) * variants > WORK) S -= 2; return S; };
 
 const PERIODS_PER_YEAR = 252;
 // Arguments that are data, not settings: left out of a trial's label and parameters.
@@ -106,17 +126,56 @@ export function shownTrials(result) {
   return { ...result, every_trial: { ...(Number.isInteger(periods) ? { periods } : {}), ...rest, counted: sharpes.length } };
 }
 
+// The data a strategy ran on, by the Null Zoo's key, with a sweep's fixed arguments read as a backtest's own, so
+// strategy_sweep and a backtest on the same prices share it.
+const dataOf = (args) => {
+  const inner = args?.arguments;
+  return dataKeyOf(inner && typeof inner === "object" && !Array.isArray(inner) ? { ...args, ...inner, arguments: undefined } : args);
+};
+
 // One ledger for each sampling frequency (the tools' periods_per_year, 252 by default), since a deflated
 // Sharpe compares trials measured the same way. A variant that names itself (a breadth sweep's) is counted once.
-export function createLuck({ scope = "session", now = () => new Date().toISOString() } = {}) {
-  const ledgers = new Map(), counted = new Set();
+export function createLuck({ scope = "session", now = () => new Date().toISOString(), pool = POOL } = {}) {
+  const ledgers = new Map(), counted = new Set(), pools = new Map();
+  let pooled = 0;
+  // Variants with returns of the same length on the same data, at the same frequency, are one pool; a variant run
+  // again (the same returns) is pooled once. The measure is taken again when the pool grows.
+  const across = (ppy, series, data) => {
+    const n = series?.[0]?.length;
+    if (!Array.isArray(series) || !Number.isInteger(n) || n < 40 || !series.every((x) => x?.length === n && Array.prototype.every.call(x, Number.isFinite))) return null;
+    const key = dataOf(data);
+    if (!key) return null;
+    const id = `${ppy}:${n}:${key}`;
+    if (!pools.has(id)) pools.set(id, { series: [], seen: new Set(), measured: null });
+    const p = pools.get(id);
+    let grew = false;
+    for (const x of series) {
+      const values = Float64Array.from(x), hash = createHash("sha256").update(new Uint8Array(values.buffer)).digest("base64");
+      if (p.seen.has(hash)) continue;
+      p.seen.add(hash);
+      if (p.series.length >= pool.variants || pooled + n > pool.numbers) continue;
+      p.series.push(values);
+      pooled += n;
+      grew = true;
+    }
+    if (p.series.length < 2) return null;
+    if (grew || !p.measured) p.measured = { ...pbo(p.series, splitsFor(n, p.series.length)), variants: p.series.length };
+    const { probability, splits, combinations, variants } = p.measured, tried = p.seen.size;
+    return {
+      probability, variants, ...(tried > variants ? { variants_tried: tried } : {}), periods: n, splits,
+      reading: `Picking the best of the ${variants} variants run on this data in this ${scope}: in ${Math.round(probability * 100)}% of the ${combinations} ways to split the periods in halves (CSCV), the in-sample winner was below the median out of sample; above 50%, the choice did worse than a random pick.${tried > variants ? ` Measured on the first ${variants} of ${tried}, as many as this ${scope} keeps.` : ""}`,
+    };
+  };
   return {
     get trials() {
       return [...ledgers.values()].reduce((t, l) => t + l.length, 0);
     },
     // Records the result if it is a strategy's performance, or a sweep's every variant; returns the luck note to
-    // add to it, or null.
-    record(name, args, result) {
+    // add to it, or null. ran: the arguments as run, with other calls' results read in, for the data's key. The
+    // variants' returns are taken off the result, so nothing that keeps it keeps them.
+    record(name, args, result, ran = args) {
+      const series = result && typeof result === "object" ? result[TRIAL_RETURNS] : undefined;
+      if (series !== undefined) delete result[TRIAL_RETURNS];
       const found = trialsOf(name, args, result);
       if (!found.length) return null;
       const listed = result?.every_trial?.periods_per_year ?? (name === "backtest_strategy" ? result?.settings?.periods_per_year : undefined);
@@ -135,6 +194,7 @@ export function createLuck({ scope = "session", now = () => new Date().toISOStri
       const elsewhere = this.trials - trials.length;
       const dsr = s.deflated?.deflated_sharpe_ratio ?? null;
       const two = (x) => Number(x).toFixed(2);
+      const overfitting = across(ppy, series, ran);
       // Kept short: it rides on every strategy answer, and a model reads it each time.
       return {
         trials: s.trials,
@@ -142,6 +202,7 @@ export function createLuck({ scope = "session", now = () => new Date().toISOStri
         best: { trial: s.best.n, label: s.best.label, sharpe_annualized: s.best.sharpe_annualized },
         expected_best_by_luck_annualized: s.expected_best_by_luck_annualized,
         deflated_sharpe_ratio: dsr,
+        ...(overfitting ? { overfitting_across_session: overfitting } : {}),
         reading: [
           s.trials === 1
             ? `The first strategy tested in this ${scope}; every later one is judged with it.`

@@ -17,6 +17,11 @@ function* combinations(n, k) {
   }
 }
 
+// Each variant's period returns, in the order of the answer's every_trial Sharpes (one series for one strategy), under
+// a symbol key: JSON leaves it out, so a client never reads them, while a server that runs this package in its own
+// process (canli-mcp) can measure overfitting across everything a session tried on the same data.
+export const TRIAL_RETURNS = Symbol.for("canli.trial_returns");
+
 // The default number of chunks for n periods: 16 when each chunk has 40 periods or more, else fewer, at least 4.
 export const defaultSplits = (n) => (n >= 16 * 40 ? 16 : Math.max(4, 2 * Math.floor(n / 80)));
 
