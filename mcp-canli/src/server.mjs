@@ -42,6 +42,7 @@ import { createTimeMachine } from "./timemachine.mjs";
 import { signedTrialCount, TRIALS_TOOL } from "./trials.mjs";
 import { createLuck, shownTrials } from "./luck.mjs";
 import { createRedTeam, RED_TEAM_TOOL, runRedTeam } from "./redteam.mjs";
+import { runZooSearch, runZooStats, ZOO_TOOLS } from "./zoo.mjs";
 import { createVault, HOLDOUT_TOOLS } from "./holdout.mjs";
 import { createRegistry, PREREG_TOOL } from "./prereg.mjs";
 import { CAUSES_TOOL, runCauses } from "./causes.mjs";
@@ -70,7 +71,7 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL, EXPORT_TOOL, ...COMPARE_TOOLS, FISCAL_TOOL, RED_TEAM_TOOL];
+const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL, EXPORT_TOOL, ...COMPARE_TOOLS, FISCAL_TOOL, RED_TEAM_TOOL, ...ZOO_TOOLS];
 export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
@@ -529,7 +530,11 @@ export function selfTools(packs, gov, keeper, readOnly = false, vault = null, pr
   tools.fiscal_calendar = (args) => { allowed("fiscal_calendar"); return runFiscal(desk, args); };
   // Every attempt counted with everything this session tried (redteam.mjs); its strategy tool runs under the same locks.
   const redTeamLog = session.redTeam ?? createRedTeam(), redTeamLuck = session.luck ?? createLuck({ scope: "call" });
-  tools.red_team = async (args) => { allowed("red_team"); const out = await runRedTeam({ call: desk.call, luck: redTeamLuck, log: redTeamLog, vault, hosted: Boolean(readOnly) }, args); return { ...out, result: shownTrials(out.result) }; };
+  tools.red_team = async (args) => { allowed("red_team"); const out = await runRedTeam({ call: desk.call, luck: redTeamLuck, log: redTeamLog, vault, hosted: Boolean(readOnly), zoo: session.zoo, session: redTeamLog.id }, args); return { ...out, result: shownTrials(out.result) }; };
+  // The Null Zoo on this machine (local/zoo.mjs), opened when first used; never on the hosted server.
+  const zooOf = async (name) => { allowed(name); const z = readOnly ? null : await session.zoo?.(); if (!z) throw new Error(readOnly ? "The Null Zoo is kept on your own machine. Run it locally: npx -y canli-mcp" : "The Null Zoo is off on this server (CANLI_NULL_ZOO=off)."); return z; };
+  tools.zoo_search = async (args) => runZooSearch(await zooOf("zoo_search"), args);
+  tools.zoo_stats = async () => runZooStats(await zooOf("zoo_stats"));
   const keptOrThrow = (ref) => { if (!keeper.has(ref)) throw new Error(`${ref} is not kept; refs name earlier results (the last ${KEEP_COUNT} are kept).`); return keeper.get(ref); };
   tools.compare_answers = (args) => {
     allowed("compare_answers");
@@ -606,6 +611,9 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
   const luck = createLuck({ scope: readOnly ? "request" : "session" });
   // red_team's attempts in this session, each judged with every strategy the luck count holds (redteam.mjs).
   const redTeam = createRedTeam();
+  // The Null Zoo: red_team's tries kept across sessions on this machine, opened on first use (local/zoo.mjs).
+  let zooOpened = null;
+  const zoo = readOnly || /^(off|0|false|no)$/i.test(process.env.CANLI_NULL_ZOO ?? "") ? null : () => (zooOpened ??= import("../local/zoo.mjs").then((m) => m.openZoo(canliHome())));
   // Each call's last whole result, for changes_only (delta.mjs).
   const delta = createDelta();
   installTripwire();
@@ -667,7 +675,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const viewing = Boolean(a.view) && clientDrawsApps(server);
     if (a.view) for (const c of calls) if (/^backtest_/.test(c.name) && !(c.arguments && "curve" in c.arguments)) { try { if ((await toolFor(c.name, packs)).input?.shape?.curve) c.arguments = { ...(c.arguments ?? {}), curve: true }; } catch { /* reported when it runs */ } }
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
-    const SELF = selfTools(packs, gov, keeper, readOnly, vault, preregs, machine, { luck, redTeam });
+    const SELF = selfTools(packs, gov, keeper, readOnly, vault, preregs, machine, { luck, redTeam, zoo });
     const timed = (name, work) => { const t0 = performance.now(); return work.then((out) => { if (!SELF[name]) { const list = keeper.costs.get(name) ?? []; list.push([performance.now() - t0, JSON.stringify(out ?? null).length]); keeper.costs.set(name, list.slice(-50)); } return out; }); };
     const run = (c, args) => timed(c.name, (c.ran = args, SELF[c.name] ? Promise.resolve().then(() => { if (machine && !machine.selfAllowed(c.name)) throw machine.refuse(c.name); return SELF[c.name](args); }) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov, machine)));
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));

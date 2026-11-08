@@ -14,6 +14,7 @@
 import { z } from "zod";
 
 import { trialsOf } from "./luck.mjs";
+import { allSessionsLuck, dataKeyOf } from "./zoo.mjs";
 
 // The tools that backtest a strategy (a subset of what trials.mjs counts: cpcv and audit_backtest judge returns).
 export const STRATEGY_TOOLS = /^(backtest_[a-z0-9_]+|run_sleeve|sleeve_tournament|sleeve_walk_forward|combine_sleeves|breadth_book|breadth_sweep|strategy_sweep)$/;
@@ -33,7 +34,7 @@ export const redTeamInput = z.object({
 export const RED_TEAM_TOOL = Object.freeze({
   name: "red_team", pack: "desk", toolset: "desk", title: "Red-team a strategy, counting every attempt", input: redTeamInput,
   annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true },
-  description: "Run one strategy tool and judge the result against everything this session has tried: deflated Sharpe at the session's true count of strategies (every attempt and every variant in it), overfitting probability for a grid, against buying and holding, and track-record length. Returns what failed and what to change, and the attempt log. Rewriting until it passes is a search, so every attempt is added to the count it is judged against; the final check is holdout_test on years the loop never saw. Clearing the checks is not admission to anything and not a forecast.",
+  description: "Run one strategy tool and judge the result against everything this session has tried: deflated Sharpe at the session's true count of strategies (every attempt and every variant in it), overfitting probability for a grid, against buying and holding, and track-record length. Returns what failed and what to change, and the attempt log. Locally, every attempt is kept in the Null Zoo (zoo_search), and a later session on the same data is judged with the tries before it. Rewriting until it passes is a search, so every attempt is added to the count it is judged against; the final check is holdout_test on years the loop never saw. Clearing the checks is not admission to anything and not a forecast.",
   keywords: "red team auto correct loop rewrite strategy until valid self correcting agent backtest audit overfitting deflated sharpe pbo cscv data mining bias feedback fix next attempt",
   args: "name: string, arguments?: object, change?: string, bar?: {deflated_sharpe?, overfitting?}",
 });
@@ -43,7 +44,9 @@ export const RED_TEAM_LIMITS = "Clearing these checks is not admission to anythi
 // One session's attempt log.
 export function createRedTeam({ now = () => new Date().toISOString() } = {}) {
   const attempts = [];
-  return { attempts, add(row) { attempts.push({ attempt: attempts.length + 1, at: now(), ...row }); return attempts.at(-1); } };
+  // This session's name in the Null Zoo, so its tries are told apart from earlier sessions'.
+  const id = `${now().slice(0, 19)}-${Math.random().toString(16).slice(2, 10)}`;
+  return { id, attempts, add(row) { attempts.push({ attempt: attempts.length + 1, at: now(), ...row }); return attempts.at(-1); } };
 }
 
 const two = (x) => (x === null || x === undefined ? "n/a" : Number(x).toFixed(2));
@@ -58,7 +61,8 @@ function figuresOf(result) {
   return { pbo, holdSharpe, minPeriods, periods };
 }
 
-// ctx: { call(name, args), luck (luck.mjs, the session's), log (createRedTeam), vault (holdout.mjs) or null, hosted }.
+// ctx: { call(name, args), luck (luck.mjs, the session's), log (createRedTeam), vault (holdout.mjs) or null, hosted,
+// zoo: () => the Null Zoo (local/zoo.mjs) or null when off or hosted, session: this server's id in the zoo }.
 export async function runRedTeam(ctx, args) {
   const a = redTeamInput.parse(args ?? {});
   if (!STRATEGY_TOOLS.test(a.name)) throw new Error(`red_team runs a tool that backtests a strategy (a backtest_ recipe, backtest_strategy, strategy_sweep, run_sleeve, breadth_sweep, ...), not ${a.name}. To audit returns you already have, use audit_backtest.`);
@@ -108,13 +112,37 @@ export async function runRedTeam(ctx, args) {
         ? { measure: "years the loop never saw", passed: null, why: `The holdout from ${vaultState.holdout.from} was tested once (${vaultState.test.tool}); read that test. It cannot be opened again.` }
         : { measure: "years the loop never saw", passed: null, why: `Hidden from ${vaultState.holdout.from}; this attempt did not see them.` };
 
+  // Every session's tries on the same data, from the Null Zoo: a new session does not start the count again.
+  let zoo = null, prior = [], dataKey = null, zooNote;
+  try { zoo = ctx.hosted ? null : (await ctx.zoo?.()) ?? null; } catch (e) { zooNote = { error: String(e?.message ?? e) }; }
+  if (zoo) { prior = zoo.read().records; dataKey = dataKeyOf(a.arguments ?? {}); }
+  const ppy = note.periods_per_year ?? 252, at = new Date().toISOString(), session = ctx.session ?? "session";
+  const rows = tried.map((t) => ({ at, session, tool: a.name, label: t.label, params: t.params, sharpe_annualized: t.sharpe_annualized, periods: t.observations, periods_per_year: ppy, data_key: dataKey, ...(a.change ? { change: a.change } : {}) }));
+  if (zoo) {
+    const all = dataKey ? allSessionsLuck([...prior, ...rows], dataKey, ppy) : null;
+    checks.luck_all_sessions = !dataKey
+      ? { measure: "deflated Sharpe counting earlier sessions on the same data", value: null, passed: null, why: "The data came from another call's result or was read by the tool itself, so earlier sessions cannot be matched to it." }
+      : !all || all.sessions < 2
+        ? { measure: "deflated Sharpe counting earlier sessions on the same data", value: null, passed: null, why: "No earlier session in the Null Zoo ran on this data." }
+        : { measure: `deflated Sharpe counting all ${all.trials} tries on this data across ${all.sessions} sessions`, value: all.deflated_sharpe_ratio, bar: `at least ${bar.deflated_sharpe}`,
+            passed: all.deflated_sharpe_ratio !== null && mine.sharpe_annualized >= all.best.sharpe_annualized - 1e-12 && all.deflated_sharpe_ratio >= bar.deflated_sharpe,
+            why: mine.sharpe_annualized < all.best.sharpe_annualized - 1e-12 ? `An earlier session did better on this data (${all.best.label}, Sharpe ${two(all.best.sharpe_annualized)}).` : `Sharpe ${two(mine.sharpe_annualized)} against about ${two(all.expected_best_by_luck_annualized)} from luck across every session's tries.` };
+  }
   const failed = Object.entries(checks).filter(([, c]) => c.passed === false).map(([k]) => k);
+  if (zoo) {
+    const best = rows.indexOf(rows.find((r) => r.sharpe_annualized === mine.sharpe_annualized));
+    try {
+      zoo.append(rows.map((r, i) => ({ ...r, outcome: i === best && !failed.length ? "cleared" : "failed", failed: i === best ? failed : ["beaten in its own grid"] })));
+      zooNote = { written: rows.length, earlier_trials: prior.length, ...(dataKey ? { data_key: dataKey.slice(0, 12), earlier_on_this_data: prior.filter((r) => r.data_key === dataKey).length } : {}), file: zoo.file };
+    } catch (e) { zooNote = { error: String(e?.message ?? e) }; }
+  } else if (!zooNote) zooNote = { off: ctx.hosted ? "hosted: nothing is kept" : "CANLI_NULL_ZOO=off, or no zoo on this server" };
   const unmeasured = Object.entries(checks).filter(([k, c]) => c.passed === null && k !== "holdout").map(([k]) => k);
   const row = ctx.log.add({ tool: a.name, ...(a.change ? { change: a.change } : {}), best_sharpe: mine.sharpe_annualized, variants: tried.length, strategies_so_far: note.trials, deflated_sharpe: dsr, failed });
   const firstBar = ctx.log.attempts.find((x) => x.luck_bar !== undefined && x.luck_bar !== null)?.luck_bar ?? null;
   row.luck_bar = note.expected_best_by_luck_annualized ?? null;
 
   const fixes = {
+    luck_all_sessions: "Earlier sessions already tried this data: a new session is not a fresh start. zoo_search shows what they ran.",
     luck: dsr === null ? "Try the alternatives you would have tried anyway, as one grid (strategy_sweep), so they are judged together." : !isBest ? "Go back to the better earlier idea, or change the idea, not a parameter: small tweaks add tries without adding evidence." : "Each attempt adds to this count. Fewer, larger changes, each stated before it runs (preregister), beat many small ones.",
     overfitting: "Use a smaller grid, and pick settings whose neighbours also do well rather than the single best cell.",
     beats_holding: "Compare against holding the same asset; if the rule is long most of the time, test the timing itself (placebo_test shuffles the months and keeps the premium).",
@@ -142,6 +170,7 @@ export async function runRedTeam(ctx, args) {
     next,
     search: { attempts: ctx.log.attempts.length, strategies_counted: note.trials, luck_bar_now: row.luck_bar, luck_bar_at_first: firstBar ?? row.luck_bar, reading: note.reading },
     attempts: { columns: ["attempt", "tool", "change", "best_sharpe", "variants", "strategies_so_far", "deflated_sharpe", "failed"], rows: log.map((x) => [x.attempt, x.tool, x.change ?? null, x.best_sharpe, x.variants, x.strategies_so_far, x.deflated_sharpe, x.failed]), ...(ctx.log.attempts.length > SHOWN ? { earlier: ctx.log.attempts.length - SHOWN } : {}) },
+    null_zoo: zooNote,
     result,
     limits: RED_TEAM_LIMITS + (ctx.hosted ? " Hosted: only this request is counted; run the loop locally with npx -y canli-mcp." : ""),
   };

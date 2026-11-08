@@ -3,6 +3,8 @@
 // an earlier one cannot pass; the count only grows; many failed attempts are told to stop; a pass points at the holdout,
 // once; and over stdio, the attempts of a session are counted together with every other backtest it ran.
 import assert from "node:assert/strict";
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
@@ -97,8 +99,10 @@ test("a pass with a holdout set points at its one test; ten failed attempts are 
 });
 
 test("over stdio, red_team's attempts are counted with every other backtest of the session", async (t) => {
+  const home = mkdtempSync(path.join(tmpdir(), "canli-redteam-"));
+  t.after(() => rmSync(home, { recursive: true, force: true }));
   const client = new Client({ name: "redteam-test", version: "0.0.0" });
-  const transport = new StdioClientTransport({ command: process.execPath, args: [ENTRY], env: { PATH: process.env.PATH ?? "", HOME: process.env.HOME ?? "", CANLI_CACHE_DIR: "", CANLI_OFFLINE: "1" } });
+  const transport = new StdioClientTransport({ command: process.execPath, args: [ENTRY], env: { PATH: process.env.PATH ?? "", HOME: process.env.HOME ?? "", CANLI_HOME: home, CANLI_CACHE_DIR: "", CANLI_OFFLINE: "1" } });
   await client.connect(transport);
   t.after(() => client.close());
   let p = 100, s = 7;
