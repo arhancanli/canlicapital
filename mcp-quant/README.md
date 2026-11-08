@@ -1,12 +1,12 @@
 # canli-quant-mcp
 
-237 quant finance tools in one MCP server: performance and risk, options and exotics, fixed income,
+239 quant finance tools in one MCP server: performance and risk, options and exotics, fixed income,
 portfolio construction, econometrics, technical indicators, execution, sizing, crypto and FX,
 valuation, strategy backtests, a library of 399 strategy sleeves, data checks, and data annotation
 and ML labeling. Every tool
 computes on the data you send, and every tool's results are checked in the test suite against an
 independent implementation (QuantLib, statsmodels, arch, TA-Lib, numpy-financial, scikit-learn,
-empyrical, scipy, pandas, dcor): 467 reference cases, plus planted-defect tests for the data checks.
+empyrical, scipy, pandas, dcor): 472 reference cases, plus planted-defect tests for the data checks.
 
 Local stdio, no key, no account, no network calls: your data never leaves your machine (see
 [Privacy](#privacy), enforced by tests).
@@ -17,7 +17,7 @@ and the calculation's domain. Ordinary finite answers and null warm-up positions
 
 **[canli-quant-mcp on canlicapital.com](https://canlicapital.com/mcp-servers/quant)** · [All Canli Capital MCP servers](https://canlicapital.com/mcp-servers). Free, MIT-licensed. For every server behind one install, use [canli-mcp](https://www.npmjs.com/package/canli-mcp).
 
-## Three tools in context, 237 behind them
+## Three tools in context, 239 behind them
 
 Listing every tool directly (240 with these three) costs **86,848 tokens** of context (o200k) on every request.
 By default this server lists three, **731 tokens** (both measured 6 November 2026):
@@ -266,7 +266,7 @@ randomness is the sleeve bootstrap, drawn from a stated seed.
 
 </details>
 
-<details><summary><b>econometrics</b>: Statistics and econometrics (27)</summary>
+<details><summary><b>econometrics</b>: Statistics and econometrics (29)</summary>
 
 | tool | what it does |
 |---|---|
@@ -290,6 +290,8 @@ randomness is the sleeve bootstrap, drawn from a stated seed.
 | `compare_sharpe_ratios` | Test whether two strategies' Sharpe ratios differ (Jobson-Korkie with Memmel's correction) using their returns over the same periods. |
 | `welch_t_test` | Test whether two samples (e.g. returns in two regimes, before and after a change) have different means, without assuming equal variances (Welch). |
 | `forecast_accuracy_test` | Test whether two forecasts of the same series are equally accurate: the Diebold-Mariano test on squared or absolute errors, h steps ahead, with the Harvey-Leybourne-Newbold small-sample correction. Says which forecast is better, if either is. |
+| `conditional_forecast_test` | Test whether two forecasts are equally accurate given what was known when they were made (Giacomini-White): the loss differential times instruments (a constant and the last loss differential), a Wald statistic against chi-squared, and the decision rule's share of periods where each is predicted better. |
+| `model_confidence_set` | From several forecasts or models' losses, the set that contains the best one at a chosen confidence (Hansen, Lunde and Nason): stationary-bootstrap eliminations with the R or max statistic, each model's mean loss, MCS p-value and elimination step. |
 | `markov_regime_switching` | Fit a Hamilton Markov-switching model with a mean and volatility per regime (2 or 3 regimes) by maximum likelihood: regime means and volatilities, transition probabilities, expected durations, the current regime probabilities and how much time was spent in each. |
 | `johansen_cointegration` | Test how many cointegrating relationships tie several price series together (Johansen trace and maximum-eigenvalue tests with Osterwald-Lenum critical values), with the rank chosen at 5% and the normalized cointegrating vectors. |
 | `recursive_stability_test` | Check whether a regression's coefficients stayed stable over time: recursive least squares coefficient paths, and the CUSUM and CUSUM-of-squares tests of Brown, Durbin and Evans with 5% bounds and the first period each one crosses. |
@@ -552,6 +554,33 @@ unfamiliar data first. A backtest of one parameter set says little if many were 
 and use `strategy_sweep`, `sleeve_tournament` or `deflated_sharpe_ratio`. A sleeve that survives
 every correction on one history is still a backtest: forward results are the evidence. Closed-form models (Black-Scholes, Heston,
 SABR, Kirk) carry their assumptions; the result names the model.
+
+### The model confidence set with persistent losses
+
+`model_confidence_set` keeps the best model with probability about its confidence only asymptotically. A Monte
+Carlo (`mcp-quant/scripts/research/mcs-size.mjs` in the canlicapital repository, results beside it): five equally good models whose loss
+differentials follow an AR(1), 1,000 runs per row, the R statistic, 1,000 resamples. The share of runs in which the
+90% set dropped a model it should have kept (nominal 10%):
+
+| AR(1) | periods | default block, round(T^(1/3)) | block twice as long | four times as long |
+|---|---|---|---|---|
+| 0 | 250 | 14.5% (block 6) | 18.9% | 26.8% |
+| 0 | 500 | 12.3% (block 8) | 15.4% | 22.1% |
+| 0 | 1,000 | 11.8% (block 10) | 13.5% | 18.4% |
+| 0 | 2,500 | 11.1% (block 14) | 11.9% | 14.9% |
+| 0.5 | 250 | 23.8% (block 6) | 25.3% | 31.8% |
+| 0.5 | 500 | 19.4% (block 8) | 19.1% | 23.7% |
+| 0.5 | 1,000 | 15.6% (block 10) | 15.5% | 18.5% |
+| 0.5 | 2,500 | 15.4% (block 14) | 14.6% | 15.5% |
+| 0.9 | 250 | 69.2% (block 6) | 57.9% | 56.9% |
+| 0.9 | 500 | 55.5% (block 8) | 42.3% | 38.4% |
+| 0.9 | 1,000 | 47.3% (block 10) | 36.1% | 33.5% |
+| 0.9 | 2,500 | 35.2% (block 14) | 24.5% | 21.6% |
+
+With no persistence the default block is close to 10% from 1,000 periods on and longer blocks make it worse. With
+persistent losses the set drops models far more often than one minus its confidence, and longer blocks help only
+when the persistence is strong, without removing the excess. Read an eliminated model with care when its losses are
+persistent, and pass a longer `block` for strongly persistent ones.
 
 ## Development
 

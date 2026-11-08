@@ -1,0 +1,412 @@
+{
+ "design": {
+  "models": 5,
+  "confidence": 0.9,
+  "statistic": "R",
+  "loss": "1 + AR(1), unit variance, independent across models",
+  "burn_in": 200
+ },
+ "results": [
+  {
+   "phi": 0,
+   "T": 250,
+   "block": 6,
+   "block_rule": "round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 145,
+   "rate": 0.145,
+   "se": 0.01113440613593738
+  },
+  {
+   "phi": 0,
+   "T": 250,
+   "block": 12,
+   "block_rule": "2 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 189,
+   "rate": 0.189,
+   "se": 0.012380589646701001
+  },
+  {
+   "phi": 0,
+   "T": 250,
+   "block": 24,
+   "block_rule": "4 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 268,
+   "rate": 0.268,
+   "se": 0.014006284303840188
+  },
+  {
+   "phi": 0,
+   "T": 500,
+   "block": 8,
+   "block_rule": "round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 123,
+   "rate": 0.123,
+   "se": 0.010386096475577337
+  },
+  {
+   "phi": 0,
+   "T": 500,
+   "block": 16,
+   "block_rule": "2 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 154,
+   "rate": 0.154,
+   "se": 0.011414201680362931
+  },
+  {
+   "phi": 0,
+   "T": 500,
+   "block": 32,
+   "block_rule": "4 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 221,
+   "rate": 0.221,
+   "se": 0.013120937466507492
+  },
+  {
+   "phi": 0,
+   "T": 1000,
+   "block": 10,
+   "block_rule": "round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 118,
+   "rate": 0.118,
+   "se": 0.01020176455325254
+  },
+  {
+   "phi": 0,
+   "T": 1000,
+   "block": 20,
+   "block_rule": "2 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 135,
+   "rate": 0.135,
+   "se": 0.010806248192596726
+  },
+  {
+   "phi": 0,
+   "T": 1000,
+   "block": 40,
+   "block_rule": "4 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 184,
+   "rate": 0.184,
+   "se": 0.012253326079069307
+  },
+  {
+   "phi": 0,
+   "T": 2500,
+   "block": 14,
+   "block_rule": "round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 111,
+   "rate": 0.111,
+   "se": 0.00993373041711924
+  },
+  {
+   "phi": 0,
+   "T": 2500,
+   "block": 28,
+   "block_rule": "2 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 119,
+   "rate": 0.119,
+   "se": 0.010239091756596383
+  },
+  {
+   "phi": 0,
+   "T": 2500,
+   "block": 56,
+   "block_rule": "4 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 149,
+   "rate": 0.149,
+   "se": 0.01126050620531777
+  },
+  {
+   "phi": 0.5,
+   "T": 250,
+   "block": 6,
+   "block_rule": "round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 238,
+   "rate": 0.238,
+   "se": 0.01346684818359515
+  },
+  {
+   "phi": 0.5,
+   "T": 250,
+   "block": 12,
+   "block_rule": "2 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 253,
+   "rate": 0.253,
+   "se": 0.013747399754135324
+  },
+  {
+   "phi": 0.5,
+   "T": 250,
+   "block": 24,
+   "block_rule": "4 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 318,
+   "rate": 0.318,
+   "se": 0.014726710426975875
+  },
+  {
+   "phi": 0.5,
+   "T": 500,
+   "block": 8,
+   "block_rule": "round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 194,
+   "rate": 0.194,
+   "se": 0.012504559168559283
+  },
+  {
+   "phi": 0.5,
+   "T": 500,
+   "block": 16,
+   "block_rule": "2 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 191,
+   "rate": 0.191,
+   "se": 0.012430567163247218
+  },
+  {
+   "phi": 0.5,
+   "T": 500,
+   "block": 32,
+   "block_rule": "4 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 237,
+   "rate": 0.237,
+   "se": 0.013447341744746431
+  },
+  {
+   "phi": 0.5,
+   "T": 1000,
+   "block": 10,
+   "block_rule": "round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 156,
+   "rate": 0.156,
+   "se": 0.011474493452871897
+  },
+  {
+   "phi": 0.5,
+   "T": 1000,
+   "block": 20,
+   "block_rule": "2 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 155,
+   "rate": 0.155,
+   "se": 0.011444430960078356
+  },
+  {
+   "phi": 0.5,
+   "T": 1000,
+   "block": 40,
+   "block_rule": "4 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 185,
+   "rate": 0.185,
+   "se": 0.012279047194306243
+  },
+  {
+   "phi": 0.5,
+   "T": 2500,
+   "block": 14,
+   "block_rule": "round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 154,
+   "rate": 0.154,
+   "se": 0.011414201680362931
+  },
+  {
+   "phi": 0.5,
+   "T": 2500,
+   "block": 28,
+   "block_rule": "2 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 146,
+   "rate": 0.146,
+   "se": 0.011166198995181842
+  },
+  {
+   "phi": 0.5,
+   "T": 2500,
+   "block": 56,
+   "block_rule": "4 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 155,
+   "rate": 0.155,
+   "se": 0.011444430960078356
+  },
+  {
+   "phi": 0.9,
+   "T": 250,
+   "block": 6,
+   "block_rule": "round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 692,
+   "rate": 0.692,
+   "se": 0.014599178059055244
+  },
+  {
+   "phi": 0.9,
+   "T": 250,
+   "block": 12,
+   "block_rule": "2 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 579,
+   "rate": 0.579,
+   "se": 0.015612783224012303
+  },
+  {
+   "phi": 0.9,
+   "T": 250,
+   "block": 24,
+   "block_rule": "4 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 569,
+   "rate": 0.569,
+   "se": 0.015660108556456435
+  },
+  {
+   "phi": 0.9,
+   "T": 500,
+   "block": 8,
+   "block_rule": "round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 555,
+   "rate": 0.555,
+   "se": 0.01571543826942157
+  },
+  {
+   "phi": 0.9,
+   "T": 500,
+   "block": 16,
+   "block_rule": "2 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 423,
+   "rate": 0.423,
+   "se": 0.015622771841129857
+  },
+  {
+   "phi": 0.9,
+   "T": 500,
+   "block": 32,
+   "block_rule": "4 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 384,
+   "rate": 0.384,
+   "se": 0.015379986996093333
+  },
+  {
+   "phi": 0.9,
+   "T": 1000,
+   "block": 10,
+   "block_rule": "round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 473,
+   "rate": 0.473,
+   "se": 0.01578831846651188
+  },
+  {
+   "phi": 0.9,
+   "T": 1000,
+   "block": 20,
+   "block_rule": "2 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 361,
+   "rate": 0.361,
+   "se": 0.01518812035770062
+  },
+  {
+   "phi": 0.9,
+   "T": 1000,
+   "block": 40,
+   "block_rule": "4 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 335,
+   "rate": 0.335,
+   "se": 0.014925649064613574
+  },
+  {
+   "phi": 0.9,
+   "T": 2500,
+   "block": 14,
+   "block_rule": "round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 352,
+   "rate": 0.352,
+   "se": 0.015102847413650183
+  },
+  {
+   "phi": 0.9,
+   "T": 2500,
+   "block": 28,
+   "block_rule": "2 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 245,
+   "rate": 0.245,
+   "se": 0.013600551459407815
+  },
+  {
+   "phi": 0.9,
+   "T": 2500,
+   "block": 56,
+   "block_rule": "4 x round(T^(1/3))",
+   "sims": 1000,
+   "reps": 1000,
+   "dropped": 216,
+   "rate": 0.216,
+   "se": 0.013013224043256921
+  }
+ ],
+ "run": {
+  "date": "2026-11-08",
+  "command": "node scripts/research/mcs-size.mjs mcs-size-20261108.json 1000 1000",
+  "seconds": 740
+ }
+}

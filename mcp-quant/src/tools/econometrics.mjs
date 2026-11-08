@@ -7,10 +7,21 @@
 // p-values and critical values, KPSS lag rule and table, HAC and HC1 covariances).
 import { z } from "zod";
 
-import { chi2Sf, fSf, leastSquares, mean, moments, nelderMead, normCdf, normInv, std, sum, symmetricEigen, tCdf, tPValue, variance } from "../math.mjs";
+import { chi2Sf, fSf, inverse, leastSquares, mean, moments, mulberry32, nelderMead, normCdf, normInv, std, sum, symmetricEigen, tCdf, tPValue, variance } from "../math.mjs";
 import { MAX_SERIES, ppyArg, seriesFields, seriesFrom } from "../inputs.mjs";
 
 const series = (what) => z.array(z.number()).min(10).max(MAX_SERIES).describe(what);
+
+// Loss of each error: squared or absolute.
+const lossOf = (loss) => (loss === "absolute" ? Math.abs : (e) => e * e);
+
+// Stationary bootstrap indices (Politis and Romano 1994), the same draw order as bootstrap_confidence_interval.
+function stationaryIndices(n, block, rand) {
+  const p = 1 / block, idx = new Int32Array(n);
+  let cur = 0;
+  for (let t = 0; t < n; t++) { const u = rand(); cur = t === 0 || u < p ? Math.floor(rand() * n) : (cur + 1) % n; idx[t] = cur; }
+  return idx;
+}
 const matrixArg = (what) => z.array(z.array(z.number()).min(1).max(50)).min(5).max(MAX_SERIES).describe(what);
 const lagsArg = z.number().int().min(0).max(500).optional();
 
@@ -602,6 +613,152 @@ export const TOOLS = [
         p_value_a_better: tCdf(stat, df), p_value_b_better: 1 - tCdf(stat, df),
         better: p < 0.05 ? (mean_loss_a < mean_loss_b ? "a" : "b") : "neither at the 5% level",
         loss, horizon: h, periods: T, variance_method,
+      };
+    },
+  },
+  {
+    name: "conditional_forecast_test",
+    title: "Compare two forecasts given what was known (Giacomini-White)",
+    description: "Test whether two forecasts are equally accurate given the information available when they were made (Giacomini and White 2006): the loss differential is interacted with instruments known at forecast time (by default a constant and the last observed loss differential), and a Wald statistic is compared with chi-squared. Unlike Diebold-Mariano it tests the forecasting methods, estimation included, and can say when each forecast does better.",
+    keywords: "giacomini white conditional predictive ability forecast comparison test which forecast better when instruments forecasting method",
+    input: z.object({
+      actual: series("The values that were realised."),
+      forecast_a: series("Forecast A of the same periods."),
+      forecast_b: series("Forecast B of the same periods."),
+      loss: z.enum(["squared", "absolute"]).optional().describe("Loss on each error; default squared."),
+      horizon: z.number().int().min(1).max(60).optional().describe("Forecast horizon tau in periods; default 1. The instrument lag and the Newey-West lags (tau - 1) follow it."),
+      instruments: z.enum(["lagged_difference", "constant"]).optional().describe("lagged_difference (default): a constant and the loss differential tau periods earlier; constant: the unconditional test."),
+    }).strict(),
+    run({ actual: y, forecast_a: fa, forecast_b: fb, loss = "squared", horizon: tau = 1, instruments = "lagged_difference" }) {
+      if (fa.length !== y.length || fb.length !== y.length) throw new Error("The actual values and both forecasts need the same periods.");
+      const L = lossOf(loss), d = y.map((v, i) => L(v - fa[i]) - L(v - fb[i]));
+      const lag = instruments === "constant" ? 0 : tau;
+      const n = d.length - lag;
+      if (n < 10 + tau) throw new Error("Too few periods after the instrument lag; send a longer series.");
+      if (d.every((v) => v === 0)) throw new Error("The two forecasts have the same loss in every period; there is nothing to test.");
+      // Z_t = h_t * d_t, with h_t = (1, d_{t - tau}) known when the forecast of period t was made.
+      const Z = Array.from({ length: n }, (_, k) => { const t = k + lag; return instruments === "constant" ? [d[t]] : [d[t], d[t - tau] * d[t]]; });
+      const q = Z[0].length, zbar = Array.from({ length: q }, (_, j) => mean(Z.map((z) => z[j])));
+      // Omega: uncentred Newey-West with tau - 1 lags (for tau = 1 the plain second moment, Giacomini's gwtest).
+      const omega = Array.from({ length: q }, () => new Array(q).fill(0));
+      for (let k = 0; k < tau; k++) {
+        const w = k === 0 ? 1 : 1 - k / tau;
+        for (let t = k; t < n; t++) for (let a = 0; a < q; a++) for (let b = 0; b < q; b++) {
+          const v = Z[t][a] * Z[t - k][b] / n;
+          omega[a][b] += k === 0 ? v : w * (v + Z[t - k][a] * Z[t][b] / n);
+        }
+      }
+      let inv;
+      try { inv = inverse(omega); } catch { throw new Error("The instruments are collinear with the loss differential; try instruments: \"constant\"."); }
+      let stat = 0;
+      for (let a = 0; a < q; a++) for (let b = 0; b < q; b++) stat += zbar[a] * inv[a][b] * zbar[b];
+      stat *= n;
+      const p = chi2Sf(stat, q), mean_loss_a = mean(y.map((v, i) => L(v - fa[i]))), mean_loss_b = mean(y.map((v, i) => L(v - fb[i])));
+      // Decision rule (Giacomini and White, section 4): fit d_t on h_t and count the periods where A is predicted worse.
+      let share_a_predicted_worse = null;
+      if (instruments !== "constant") {
+        const X = Array.from({ length: n }, (_, k) => [1, d[k + lag - tau]]), yy = Array.from({ length: n }, (_, k) => d[k + lag]);
+        const { coef: beta } = leastSquares(X, yy);
+        share_a_predicted_worse = X.filter((x) => beta[0] + beta[1] * x[1] > 0).length / n;
+      }
+      return {
+        mean_loss_a, mean_loss_b, mean_loss_difference: mean(d), gw_stat: stat, df: q, p_value: p,
+        better: p < 0.05 ? (share_a_predicted_worse === null ? (mean_loss_a < mean_loss_b ? "a" : "b") : share_a_predicted_worse > 0.5 ? "b" : "a") : "neither at the 5% level",
+        share_a_predicted_worse, loss, horizon: tau, instruments, periods: n,
+        note: "better follows the decision rule: when the test rejects, the forecast predicted to have the lower loss in most periods. A rejection can also mean one forecast is better in some states and worse in others; share_a_predicted_worse shows how the periods split.",
+      };
+    },
+  },
+  {
+    name: "model_confidence_set",
+    title: "Which forecasts could be the best (model confidence set)",
+    description: "From several forecasts (or models' losses) of the same series, find the set that contains the best one at a chosen confidence (Hansen, Lunde and Nason 2011): models are eliminated one by one while the stationary-bootstrap test of equal accuracy rejects. Gives each model's mean loss, its MCS p-value, the order of elimination and whether it is in the set.",
+    keywords: "model confidence set hansen lunde nason mcs superior set of models best forecast many forecasts compare models multiple forecast comparison",
+    input: z.object({
+      actual: series("The values that were realised; with forecasts.").optional(),
+      forecasts: z.array(z.array(z.number()).min(10).max(MAX_SERIES)).min(2).max(50).optional().describe("Forecasts of the same periods, one array per model."),
+      losses: z.array(z.array(z.number()).min(2).max(50)).min(10).max(MAX_SERIES).optional().describe("Instead of actual and forecasts: each period's loss for each model, one row per period, one column per model."),
+      models: z.array(z.string().max(60)).max(50).optional().describe("Model names."),
+      loss: z.enum(["squared", "absolute"]).optional().describe("Loss on each forecast error; default squared."),
+      method: z.enum(["R", "max"]).optional().describe("Test statistic: R (default; the largest pairwise t) or max (each model against the set's average)."),
+      confidence: z.number().gt(0).lt(1).optional().describe("Confidence of the set; default 0.9 (models with an MCS p-value above 0.1)."),
+      reps: z.number().int().min(100).max(20000).optional().describe("Bootstrap resamples; default 1000."),
+      block: z.number().int().min(1).max(1000).optional().describe("Mean block length; default round(T^(1/3))."),
+      seed: z.number().int().min(0).max(4294967295).optional().describe("Default 7."),
+    }).strict(),
+    run(a) {
+      let Lm;
+      if (a.losses) {
+        if (a.actual || a.forecasts) throw new Error("Send losses, or actual with forecasts, not both.");
+        Lm = a.losses;
+        const m0 = Lm[0].length;
+        Lm.forEach((r, t) => { if (r.length !== m0) throw new Error(`losses row ${t} has ${r.length} values; row 0 has ${m0}.`); });
+      } else {
+        if (!a.actual || !a.forecasts) throw new Error("Send actual and forecasts, or losses.");
+        a.forecasts.forEach((f, i) => { if (f.length !== a.actual.length) throw new Error(`forecast ${i + 1} has ${f.length} periods; actual has ${a.actual.length}.`); });
+        const L = lossOf(a.loss ?? "squared");
+        Lm = a.actual.map((v, t) => a.forecasts.map((f) => L(v - f[t])));
+      }
+      const T = Lm.length, M = Lm[0].length, method = a.method ?? "R", reps = a.reps ?? 1000, cl = a.confidence ?? 0.9;
+      const names = a.models ?? Array.from({ length: M }, (_, i) => `model_${i + 1}`);
+      if (names.length !== M) throw new Error(`models has ${names.length} names for ${M} models.`);
+      if (reps * T * M > 2e8) throw new Error(`reps x periods x models = ${reps * T * M} exceeds the 200,000,000 budget; lower reps to ${Math.floor(2e8 / (T * M))} or fewer.`);
+      const block = a.block ?? Math.max(1, Math.round(T ** (1 / 3))), seed = a.seed ?? 7, rand = mulberry32(seed);
+      const Lbar = Array.from({ length: M }, (_, i) => mean(Lm.map((r) => r[i])));
+      // How persistent the models' loss differences are: each model's loss less the models' average, its first-order
+      // autocorrelation. Persistent differences make the set drop models more often than 1 - confidence in samples of
+      // this size (the size study in the README), so the answer says so when they are.
+      const lag1 = (x) => { const m = mean(x); let num = 0, den = 0; x.forEach((v, t) => { den += (v - m) ** 2; if (t) num += (v - m) * (x[t - 1] - m); }); return den > 0 ? num / den : null; };
+      const rhos = Array.from({ length: M }, (_, i) => lag1(Lm.map((r) => r[i] - r.reduce((a, v) => a + v, 0) / M))).filter((x) => x !== null).sort((x, y) => x - y);
+      const persistence = rhos.length ? { lag1_autocorrelation_max: rhos.at(-1), lag1_autocorrelation_median: rhos[Math.floor((rhos.length - 1) / 2)] } : null;
+      // Bootstrap means of each model's loss, one index set per resample, shared by every step.
+      const Lb = Array.from({ length: reps }, () => {
+        const idx = stationaryIndices(T, block, rand), m = new Float64Array(M);
+        for (let t = 0; t < T; t++) { const r = Lm[idx[t]]; for (let i = 0; i < M; i++) m[i] += r[i]; }
+        for (let i = 0; i < M; i++) m[i] /= T;
+        return m;
+      });
+      let set = [...Array(M).keys()];
+      const pvals = new Array(M).fill(null), order = new Array(M).fill(null);
+      let running = 0, step = 0;
+      while (set.length > 1) {
+        let stat, bootStats, elim;
+        if (method === "max") {
+          const avg = mean(set.map((i) => Lbar[i]));
+          const dbar = set.map((i) => Lbar[i] - avg);
+          const dstar = Lb.map((m) => { const av = set.reduce((s, i) => s + m[i], 0) / set.length; return set.map((i) => m[i] - av); });
+          const sd = set.map((_, k) => Math.sqrt(mean(dstar.map((ds) => (ds[k] - dbar[k]) ** 2))));
+          if (sd.some((s) => !(s > 0))) throw new Error("A model's loss never differs from the set's average; there is nothing to test.");
+          const tv = dbar.map((v, k) => v / sd[k]);
+          stat = Math.max(...tv); elim = set[tv.indexOf(stat)];
+          bootStats = dstar.map((ds) => Math.max(...ds.map((v, k) => (v - dbar[k]) / sd[k])));
+        } else {
+          const K = set.length, dbar = [], sd = [];
+          for (let x = 0; x < K; x++) { dbar.push([]); sd.push([]); for (let y = 0; y < K; y++) {
+            const i = set[x], j = set[y], d = Lbar[i] - Lbar[j];
+            dbar[x].push(d);
+            sd[x].push(x === y ? 0 : Math.sqrt(mean(Lb.map((m) => (m[i] - m[j] - d) ** 2))));
+          } }
+          for (let x = 0; x < K; x++) for (let y = 0; y < K; y++) if (x !== y && !(sd[x][y] > 0)) throw new Error(`${names[set[x]]} and ${names[set[y]]} have the same loss in every period; drop one.`);
+          const tRow = dbar.map((row, x) => Math.max(...row.map((d, y) => (x === y ? -Infinity : d / sd[x][y]))));
+          stat = Math.max(...dbar.flatMap((row, x) => row.map((d, y) => (x === y ? 0 : Math.abs(d / sd[x][y])))));
+          elim = set[tRow.indexOf(Math.max(...tRow))];
+          bootStats = Lb.map((m) => { let mx = 0; for (let x = 0; x < K; x++) for (let y = 0; y < K; y++) if (x !== y) { const v = Math.abs((m[set[x]] - m[set[y]] - dbar[x][y]) / sd[x][y]); if (v > mx) mx = v; } return mx; });
+        }
+        const p = bootStats.filter((b) => b >= stat).length / reps;
+        running = Math.max(running, p);
+        pvals[elim] = running; order[elim] = ++step;
+        set = set.filter((i) => i !== elim);
+      }
+      pvals[set[0]] = 1; order[set[0]] = M;
+      const size = 1 - cl;
+      return {
+        columns: ["model", "mean_loss", "mcs_p_value", "eliminated_at_step", "in_set"],
+        rows: [...Array(M).keys()].sort((x, y) => order[x] - order[y]).map((i) => [names[i], Lbar[i], pvals[i], order[i] === M ? null : order[i], pvals[i] > size]),
+        in_set: names.filter((_, i) => pvals[i] > size),
+        confidence: cl, method, reps, block, seed, periods: T, models: M, persistence,
+        bootstrap: "stationary (Politis-Romano), mulberry32(seed), one index set per resample shared by every step",
+        note: `The set contains the best model with probability about ${cl} asymptotically; with persistent losses and a few hundred or thousand periods it drops models more often (the size study in the README), so pass a longer block for strongly persistent losses. A model's MCS p-value is the largest elimination p-value up to its step; the last model left has 1.${persistence && persistence.lag1_autocorrelation_max >= 0.3 ? ` Here the loss differences are persistent (first-order autocorrelation up to ${persistence.lag1_autocorrelation_max.toFixed(2)}): in the size study, with the default block, the 90% set dropped a model it should keep in 15 to 24% of runs at 0.5 and 35 to 69% at 0.9, against 10%; read an eliminated model with care.` : ""}`,
       };
     },
   },
