@@ -34,7 +34,7 @@ test("src imports only the SDK, zod, the published packs and file, path, os, url
       continue;
     }
     assert.doesNotMatch(code, /\bfetch\s*\(|XMLHttpRequest|WebSocket|child_process|worker_threads|writeFile|appendFile|createWriteStream|mkdir|unlink|\beval\s*\(|new Function|console\.(log|error|warn|info)/, f);
-    for (const n of (text.match(/import\s*\{([^}]*)\}\s*from\s*"node:fs"/)?.[1] ?? "").split(",").map((s) => s.trim()).filter(Boolean)) assert.ok(["closeSync", "fstatSync", "openSync", "readFileSync", "realpathSync", "statSync"].includes(n), `${f} imports ${n} from node:fs`);
+    for (const n of (text.match(/import\s*\{([^}]*)\}\s*from\s*"node:fs"/)?.[1] ?? "").split(",").map((s) => s.trim()).filter(Boolean)) assert.ok(["closeSync", "fstatSync", "openSync", "readFileSync", "readSync", "realpathSync", "statSync"].includes(n), `${f} imports ${n} from node:fs`);
     for (const m of code.matchAll(/openSync\(([^)]*)\)/g)) assert.match(m[1], /,\s*"r"\s*$/, `${f} opens a file for writing`);
   }
 });

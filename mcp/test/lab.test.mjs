@@ -66,6 +66,11 @@ test("backtest_strategy over stdio: the grid count drives the validation, and th
   const out = await call(client, "backtest_strategy", { family: "sma_cross", grid: { fast: [10, 20, 50], slow: [100, 200] }, prices, cost_bps: 5 });
   assert.equal(out.variants.count, 6);
   assert.equal(out.validation.trials_counted, 6);
+  // Every variant's Sharpe, best first as in top, for a server that counts a session's trials.
+  assert.equal(out.every_trial.sharpes.length, 6);
+  assert.deepEqual([out.every_trial.periods, out.every_trial.periods_per_year], [out.window.evaluated_returns, 252]);
+  assert.deepEqual(out.every_trial.sharpes.slice(0, out.variants.top.length), out.variants.top.map((row) => row[out.variants.columns.indexOf("sharpe")]));
+  assert.equal(out.every_trial.sharpes[0], out.selected.metrics.sharpe);
   assert.ok(out.validation.deflated_sharpe.probability >= 0 && out.validation.deflated_sharpe.probability <= 1);
   assert.match(out.source.input_sha256, /^[0-9a-f]{64}$/);
   assert.match(out.source.computed, /no receipt/);
