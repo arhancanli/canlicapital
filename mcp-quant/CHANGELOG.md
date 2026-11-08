@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.4.0
 
 - Each variant's returns, for a server that runs this package in its own process: `strategy_sweep` and `sleeve_tournament` (in `every_trial`'s order) and every backtest in the strategies toolset (its one series) carry them under `Symbol.for("canli.trial_returns")`, a key JSON leaves out, so a client reading the answer never gets them and the answer's size does not change. `runTool` keeps them through rounding. canli-mcp pools them to measure overfitting across everything a session tried on the same data.
 

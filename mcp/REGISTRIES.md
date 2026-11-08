@@ -1,6 +1,13 @@
 # Registry listings for CanliCapital MCP servers
 
-## Current distribution checkpoint: 2026-11-03 Dubai
+## Current distribution checkpoint: 2026-11-08 Dubai
+
+`canli-validation-mcp@0.16.0` is released from tag `mcp-v0.16.0` to npm and the official MCP
+Registry: `backtest_strategy` returns `every_trial`, every grid variant's Sharpe, so canli-mcp's
+luck counts each variant run (CHANGELOG 0.16.0). Released with it: canli-markets-mcp 0.17.0,
+canli-fundamentals-mcp 0.10.0, canli-quant-mcp 0.4.0 and canli-backtest-mcp 0.6.0.
+
+## Earlier checkpoint: 2026-11-03 Dubai
 
 `canli-validation-mcp@0.15.0` is released from tag `mcp-v0.15.0` to npm and the official MCP
 Registry: `validate_reality_check` now studentizes inside the bootstrap and counts ties, so

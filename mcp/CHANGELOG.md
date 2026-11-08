@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.0
+
+- `backtest_strategy` returns `every_trial`: every grid variant's annualized Sharpe, best first as in `top`, with the periods evaluated and `periods_per_year`, so a server that counts what a session tries (canli-mcp's luck) counts each variant run and not one, as with canli-quant-mcp's `strategy_sweep`.
+
 ## 0.15.0
 
 - Fixed: `validate_reality_check` studentizes inside the bootstrap. Hansen's SPA and Romano-Wolf
