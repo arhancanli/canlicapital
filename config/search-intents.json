@@ -717,6 +717,21 @@
       ]
     },
     {
+      "path": "/datasets",
+      "intent": "Find free financial datasets built from SEC filings",
+      "queries": ["free financial datasets", "sec filings dataset", "open finance datasets csv"]
+    },
+    {
+      "path": "/datasets/company-guidance",
+      "intent": "Download company earnings guidance against reported results",
+      "queries": ["earnings guidance dataset", "guidance vs actual results dataset", "s&p 500 guidance data"]
+    },
+    {
+      "path": "/datasets/bankruptcy-filings",
+      "intent": "Download a list of US public company bankruptcy filings",
+      "queries": ["bankruptcy dataset", "chapter 11 filings list csv", "8-k item 1.03 bankruptcy"]
+    },
+    {
       "path": "/mcp-servers/tools",
       "intent": "Find an MCP tool for one finance task by name",
       "queries": [
