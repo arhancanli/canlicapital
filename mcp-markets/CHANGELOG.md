@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.17.0
+
+`default_risk`, the second Canli model, and two fixes to reading filings and fund-report names. 139 tools.
 
 - `default_risk`, a Canli model: the chance a company reports a bankruptcy (an 8-K under Item 1.03) within a year of its latest annual report, from that 10-K's own figures, with its rank among the 2025 reports and Ohlson's O and Altman's Z'' beside it. `as_of` reads the company as it stood on a past day. Tested walk-forward on every US GAAP 10-K filed from 2014 to 2025 (71,130 reports, 553 bankruptcies), with the design committed before the first run. Across all reports it ranked bankruptcies better than both benchmarks (AUC 0.79 against 0.73 and 0.72). Among companies with at least $10M of assets Ohlson's O did better (0.83 against 0.81); the tool says so in its answer. The data, scripts and results are in `config/research/default-risk-v1` and `scripts/research/default-risk`. 139 tools.
 - Fix: `read_filing` with `find` and a small `max_chars` dropped a matching passage longer than the characters left, and answered that no passage held the words. Digital Turbine's 10-Q of 5 August 2026 says it "identified an immaterial error"; at `max_chars` 500 or 800 the tool found nothing, at 1,499 the 1,108-character passage. A passage is now cut around its first word to fit what is left instead of being dropped; each match's `offset` is where its text starts (a passage cut from a long paragraph gave the paragraph's start before); and when `max_chars` ends the passages before the words run out, `more` says so.
