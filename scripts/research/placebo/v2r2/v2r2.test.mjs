@@ -113,3 +113,15 @@ test("round 2 builds the same real-data tests as round 1 (synthetic registration
     assert.deepEqual(b[i].view.returns, t.view.returns);
   });
 });
+
+test("real-shaped panels copy a series that is identical to an earlier one", () => {
+  const base = simulatePanel("iid_normal", 3, 300, xoshiro(21));
+  const view = { returns: [base.returns[0], base.returns[1], base.returns[0], base.returns[2]], variance: [null, null, null, null] };
+  const p = shapeParams(view);
+  assert.equal(p.k, 3);
+  assert.deepEqual(p.map, [0, 1, 0, 2]);
+  const sim = simulateShaped(p, 50, xoshiro(1), xoshiro(2), { kind: "trend", s: 0.1 }, false);
+  assert.equal(sim.returns.length, 4);
+  assert.deepEqual(sim.returns[2], sim.returns[0]);
+  assert.notDeepEqual(sim.returns[1], sim.returns[0]);
+});

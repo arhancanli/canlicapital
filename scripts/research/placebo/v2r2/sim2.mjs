@@ -71,7 +71,24 @@ export const RS = Object.freeze({ garchA: 0.1, garchB: 0.85, trendRho: 0.95, day
  * Sample mean, covariance (divisor n - 1) and its Cholesky factor of the rows of a view; with
  * useVariance, the log-AR(1) fit of its realized variance (volatility management), else GARCH.
  */
-export function shapeParams(view, { useVariance = false } = {}) {
+export function shapeParams(full, { useVariance = false } = {}) {
+  // A series identical to an earlier one in every month (four of the 30 library industries equal
+  // their 12-industry counterparts) is not drawn: it is copied from the earlier series, as in the
+  // real data, and the covariance is that of the distinct series. (Deviation 1, 8 November 2026:
+  // the registered run stopped here because the 42 industry series have a singular covariance.)
+  const kFull = full.returns.length, nFull = full.returns[0].length;
+  const map = new Int32Array(kFull), distinct = [];
+  for (let i = 0; i < kFull; i++) {
+    let same = -1;
+    for (let d = 0; d < distinct.length && same < 0; d++) {
+      const a = full.returns[distinct[d]], b = full.returns[i];
+      let eq = true;
+      for (let t = 0; t < nFull && eq; t++) eq = a[t] === b[t];
+      if (eq) same = d;
+    }
+    if (same >= 0) map[i] = same; else { map[i] = distinct.length; distinct.push(i); }
+  }
+  const view = { returns: distinct.map((i) => full.returns[i]), variance: full.variance ? distinct.map((i) => full.variance[i]) : null };
   const k = view.returns.length, n = view.returns[0].length;
   const mu = Float64Array.from(view.returns, (c) => c.reduce((a, x) => a + x, 0) / n);
   const cov = new Float64Array(k * k);
@@ -91,7 +108,7 @@ export function shapeParams(view, { useVariance = false } = {}) {
     } else L[i * k + j] = s / L[j * k + j];
   }
   const sd = Float64Array.from({ length: k }, (_, i) => Math.sqrt(cov[i * k + i]));
-  const out = { k, mu: Array.from(mu), sd: Array.from(sd), chol: Array.from(L), variance: { kind: "garch" } };
+  const out = { k, kFull, map: Array.from(map), mu: Array.from(mu), sd: Array.from(sd), chol: Array.from(L), variance: { kind: "garch" } };
   if (useVariance) {
     // x_t = log of the average across series of realized variance over its own sample mean.
     const means = view.variance.map((v) => v.reduce((a, y) => a + y, 0) / n);
@@ -175,7 +192,8 @@ export function simulateShaped(p, months, rz, rt, effect, withVariance) {
     if (logar) { x = p.variance.phi * x + p.variance.sigma * rz.gauss(); h = Math.exp(x - s2 / 2); }
     else { const u = sum / Math.sqrt(k); h = omega + RS.garchA * h * u * u + RS.garchB * h; }
   }
-  return { returns, variance };
+  if (!p.map || p.kFull === k) return { returns, variance };
+  return { returns: p.map.map((d) => returns[d]), variance: p.map.map((d) => variance[d]) };
 }
 
 /**

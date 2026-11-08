@@ -33,7 +33,15 @@ function rates(cell, K, B, alpha) {
 export function evaluate2(pre1, ev1, sim1, pre2, calib, power, real) {
   const alpha = pre2.bars.alpha;
   const B = pre2.block.lengths;
-  const deviations = [];
+  // Dated deviations from the registration, recorded as they happened.
+  const deviations = [
+    {
+      date: "2026-11-08",
+      what: "The power run stopped before computing anything: the covariance of the 42 industry series (12- and 30-industry portfolios) is singular, because four 30-industry portfolios (Hlth, Util, Telcm, Fin) are identical in every month to their 12-industry counterparts (Hlth, Utils, Telcm, Money), so its Cholesky factor does not exist.",
+      change: "The real-shaped generator draws only the distinct series and copies each identical series from its twin, as in the real data (sim2.mjs shapeParams and simulateShaped). Nothing else changed; the power run was repeated with the registered seeds. Calibration and real-data results were already complete and do not use this code.",
+      effect: "Industry momentum's real-shaped panels keep the four identical pairs identical; without the fix the industry-momentum power cells could not be run.",
+    },
+  ];
 
   // ---- calibration (D1, D2, D3, D5) ----
   const cells = calib.cells.map((c) => ({
