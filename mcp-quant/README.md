@@ -555,6 +555,33 @@ and use `strategy_sweep`, `sleeve_tournament` or `deflated_sharpe_ratio`. A slee
 every correction on one history is still a backtest: forward results are the evidence. Closed-form models (Black-Scholes, Heston,
 SABR, Kirk) carry their assumptions; the result names the model.
 
+### The model confidence set with persistent losses
+
+`model_confidence_set` keeps the best model with probability about its confidence only asymptotically. A Monte
+Carlo (`mcp-quant/scripts/research/mcs-size.mjs` in the canlicapital repository, results beside it): five equally good models whose loss
+differentials follow an AR(1), 1,000 runs per row, the R statistic, 1,000 resamples. The share of runs in which the
+90% set dropped a model it should have kept (nominal 10%):
+
+| AR(1) | periods | default block, round(T^(1/3)) | block twice as long | four times as long |
+|---|---|---|---|---|
+| 0 | 250 | 14.5% (block 6) | 18.9% | 26.8% |
+| 0 | 500 | 12.3% (block 8) | 15.4% | 22.1% |
+| 0 | 1,000 | 11.8% (block 10) | 13.5% | 18.4% |
+| 0 | 2,500 | 11.1% (block 14) | 11.9% | 14.9% |
+| 0.5 | 250 | 23.8% (block 6) | 25.3% | 31.8% |
+| 0.5 | 500 | 19.4% (block 8) | 19.1% | 23.7% |
+| 0.5 | 1,000 | 15.6% (block 10) | 15.5% | 18.5% |
+| 0.5 | 2,500 | 15.4% (block 14) | 14.6% | 15.5% |
+| 0.9 | 250 | 69.2% (block 6) | 57.9% | 56.9% |
+| 0.9 | 500 | 55.5% (block 8) | 42.3% | 38.4% |
+| 0.9 | 1,000 | 47.3% (block 10) | 36.1% | 33.5% |
+| 0.9 | 2,500 | 35.2% (block 14) | 24.5% | 21.6% |
+
+With no persistence the default block is close to 10% from 1,000 periods on and longer blocks make it worse. With
+persistent losses the set drops models far more often than one minus its confidence, and longer blocks help only
+when the persistence is strong, without removing the excess. Read an eliminated model with care when its losses are
+persistent, and pass a longer `block` for strongly persistent ones.
+
 ## Development
 
 ```bash

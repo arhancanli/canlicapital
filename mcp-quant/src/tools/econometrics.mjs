@@ -752,7 +752,7 @@ export const TOOLS = [
         in_set: names.filter((_, i) => pvals[i] > size),
         confidence: cl, method, reps, block, seed, periods: T, models: M,
         bootstrap: "stationary (Politis-Romano), mulberry32(seed), one index set per resample shared by every step",
-        note: `The set contains the best model with probability about ${cl} (asymptotically). A model's MCS p-value is the largest elimination p-value up to its step; the last model left has 1.`,
+        note: `The set contains the best model with probability about ${cl} asymptotically; with persistent losses and a few hundred or thousand periods it drops models more often (the size study in the README), so pass a longer block for strongly persistent losses. A model's MCS p-value is the largest elimination p-value up to its step; the last model left has 1.`,
       };
     },
   },
