@@ -36,7 +36,7 @@ export const PAGE_SOURCES = {
   "/record": ["record.html", "scripts/build-hero-fallbacks.mjs", "scripts/lib/paper-curve-controls.mjs"],
   "/systems": ["systems.html"],
   "/performance": ["performance.html"],
-  "/agents": ["agents.html"],
+  "/agents": ["agents.html", "config/home-answers.json", "scripts/build-home-answers.mjs"],
   "/progress": ["progress.html"],
   "/open": ["open.html"],
   // "/research" and "/measurements" and "/trials" and "/notes" are hub indexes whose lastmod is
