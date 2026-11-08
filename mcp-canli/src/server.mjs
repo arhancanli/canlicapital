@@ -46,6 +46,7 @@ import { runZooSearch, runZooStats, ZOO_TOOLS } from "./zoo.mjs";
 import { LAKE_TOOLS, runLake } from "./lake.mjs";
 import { TRACK_TOOLS } from "./track.mjs";
 import { LAB_TOOLS, openLab, runLabSearch, runLabStatus, runLabStrategy, runOriginality } from "./lab.mjs";
+import { createLabNotes, LAB_NOTES_PER_ANSWER, TRIAL_DATES } from "./labnote.mjs";
 import { FORENSICS_TOOL, runForensics } from "./forensics.mjs";
 import { BEAT_TOOL, runBeat } from "./beat.mjs";
 import { createVault, HOLDOUT_TOOLS } from "./holdout.mjs";
@@ -495,7 +496,7 @@ async function execute(tool, name, args, { digits }, files) {
   const bad = nonFinitePaths(out);
   const result = digits ? roundNumbers(out, digits) : out;
   // roundNumbers rebuilds the tree, which leaves out symbol keys: a pack's variant returns go on to luck as they were.
-  if (result !== out && out?.[TRIAL_RETURNS] && result && typeof result === "object") result[TRIAL_RETURNS] = out[TRIAL_RETURNS];
+  if (result !== out && result && typeof result === "object") for (const k of [TRIAL_RETURNS, TRIAL_DATES]) if (out?.[k]) result[k] = out[k];
   if (!bad.length || !result || typeof result !== "object" || Array.isArray(result)) return result;
   return { ...result, non_finite_values: { count: bad.length, paths: bad.slice(0, 8), note: "These numbers are not finite (an overflow, or a division by zero in the inputs) and print as null." } };
 }
@@ -656,6 +657,8 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
   // The Lab, read once when first used (src/lab.mjs); not built yet is said again next time.
   let labOpened = null;
   const lab = readOnly ? null : () => (labOpened ??= openLab(join(canliHome(), "lab", "v1")));
+  // Every dated strategy answer set against the Lab over the same months (labnote.mjs); CANLI_LAB_NOTES=off stops it.
+  const labNotes = createLabNotes({ lab, runOriginality, enabled: !/^(off|0|false|no)$/i.test(process.env.CANLI_LAB_NOTES ?? "") });
   // The data lake, opened on first use; a failed open (DuckDB not installed yet) is tried again next time.
   let lakeOpened = null;
   const lake = readOnly ? null : () => (lakeOpened ??= import("../local/lake.mjs").then((m) => m.openLake(canliHome())).catch((e) => { lakeOpened = null; throw e; }));
@@ -760,11 +763,20 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     // A company named in words that matched several filers: the person picks, where the client can ask (ask.mjs).
     const question = await askWhich({ server, extra, calls, done, rerun: (i, args) => run(calls[i], args) });
     if (question) return question;
-    // Each strategy result says what is left after luck across everything tried so far (luck.mjs).
+    // Each strategy result says what is left after luck across everything tried so far (luck.mjs), and, where the Lab
+    // is built here and the result is dated, where it ranks among the Lab's strategies over the same months (labnote.mjs).
+    let labChecks = 0;
     done.forEach((d, i) => {
       if (d.result === undefined || SELF[d.name]) return;
-      const note = luck.record(d.name, calls[i]?.arguments, d.result, calls[i]?.ran ?? calls[i]?.arguments);
-      if (note) d.result = { ...d.result, luck: note };
+      const series = d.result && typeof d.result === "object" ? d.result[TRIAL_RETURNS] : undefined;
+      const handed = d.result && typeof d.result === "object" ? d.result[TRIAL_DATES] : undefined;
+      if (handed !== undefined) delete d.result[TRIAL_DATES];
+      const ran = calls[i]?.ran ?? calls[i]?.arguments;
+      const note = luck.record(d.name, calls[i]?.arguments, d.result, ran);
+      if (!note) return;
+      const labNote = labChecks < LAB_NOTES_PER_ANSWER ? labNotes.note(series, handed, ran) : null;
+      if (labNote?.months) labChecks += 1;
+      d.result = { ...d.result, luck: note, ...(labNote ? { lab: labNote } : {}) };
     });
     // Text from outside that speaks to an AI is marked where it is, and kept as the source gave it (injection.mjs).
     // A pack that sends nothing reads no outside text, so its results are not read for it.
