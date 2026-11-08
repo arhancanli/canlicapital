@@ -119,6 +119,24 @@ test("a breadth sweep's shards are counted as they run, and their merge adds onl
   assert.deepEqual(shownTrials(shard(1, [3, 1], [0.5, 0.3])).every_trial, { periods: 450, periods_per_year: 252, counted: 2 }, "the model reads the count, not the list");
 });
 
+test("backtest_strategy's grid counts every variant it ran, named by its row of top, and its own sampling frequency", () => {
+  const columns = ["lookback", "skip", "sharpe", "cagr", "max_drawdown", "turnover_per_year"];
+  const top = [[120, 0, 0.987, 0.13, -0.14, 8.9], [20, 0, 0.681, 0.07, -0.13, 26], [60, 0, 0.627, 0.07, -0.13, 8.9]];
+  const out = { schema: "canli.backtest.v1", family: "momentum", settings: { periods_per_year: 12, cost_bps: 5, allow_short: false }, window: { evaluated_returns: 679 }, variants: { count: 4, columns, top }, every_trial: { sharpes: [0.987, 0.681, 0.627, 0.1], periods: 679, periods_per_year: 12 } };
+  const found = trialsOf("backtest_strategy", { family: "momentum", prices: [1, 2] }, out);
+  assert.deepEqual(found.map((t) => t.label), ["backtest_strategy momentum lookback=120 skip=0", "backtest_strategy momentum lookback=20 skip=0", "backtest_strategy momentum lookback=60 skip=0", "backtest_strategy momentum variant 4 of 4"]);
+  assert.deepEqual(found[0].params, { tool: "backtest_strategy", recipe: "momentum", lookback: 120, skip: 0 });
+  assert.deepEqual(found.map((t) => t.observations), [679, 679, 679, 679]);
+  const luck = createLuck({ now: () => "2026-11-08T12:00:00.000Z" });
+  const note = luck.record("backtest_strategy", {}, out);
+  assert.deepEqual([note.trials, note.periods_per_year, note.best.sharpe_annualized], [4, 12, 0.987], "a monthly grid in the monthly ledger");
+  // An older canli-validation-mcp lists only its top variants: those are counted.
+  const { every_trial, ...older } = out;
+  assert.equal(trialsOf("backtest_strategy", {}, older).length, 3);
+  assert.equal(createLuck().record("backtest_strategy", {}, older).periods_per_year, 12);
+  assert.deepEqual(shownTrials(out).every_trial, { periods: 679, periods_per_year: 12, counted: 4 });
+});
+
 test("over stdio, the second backtest of a session is told about the first, and measuring a Sharpe is not counted", async () => {
   const c = new Client({ name: "luck-test", version: "0" });
   await c.connect(new StdioClientTransport({ command: process.execPath, args: [ENTRY], env: { PATH: process.env.PATH ?? "", HOME: process.env.HOME ?? "", CANLI_CACHE_DIR: "", CANLI_OFFLINE: "1" } }));
