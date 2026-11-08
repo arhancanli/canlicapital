@@ -32,7 +32,7 @@ export function groupTools(tools, packs, catalog) {
 
 const toolItem = (t, heading) => {
   const [name, , , title, description, keywords, args] = t;
-  return `<li id="${esc(name)}" data-search="${esc(`${name} ${title} ${description} ${keywords}`.toLowerCase())}"><${heading}><code>${esc(name)}</code><span>${esc(title)}</span></${heading}><p>${esc(description)}</p>${args ? `<p class="mcp-tool__args">Arguments: <code>${esc(args)}</code></p>` : ""}</li>`;
+  return `<li id="${esc(name)}" data-search="${esc(`${name} ${title} ${description} ${keywords}`.toLowerCase())}"><${heading}><a href="${TOOLS_ROUTE}/${esc(name.replace(/_/g, "-"))}"><code>${esc(name)}</code><span>${esc(title)}</span></a></${heading}><p>${esc(description)}</p>${args ? `<p class="mcp-tool__args">Arguments: <code>${esc(args)}</code></p>` : ""}</li>`;
 };
 // A long pack folds by theme; a short one is listed open.
 const groupHtml = (p, g) => (g.label
