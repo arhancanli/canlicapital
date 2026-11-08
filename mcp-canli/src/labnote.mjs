@@ -32,7 +32,7 @@ const two = (x) => Number(x).toFixed(2);
 // The note for one series: compact, since it rides on the answer. lab: the opened Lab; runOriginality from lab.mjs.
 export function labNote(lab, runOriginality, returns, dates) {
   let o;
-  try { o = runOriginality(lab, { returns: Array.from(returns), dates, nearest: 1 }); }
+  try { o = runOriginality(lab, { returns: Array.from(returns), dates, nearest: 1 }, { blends: false }); }
   catch (e) { return { checked: false, why: e.message.split(/(?<=\.) /)[0] }; }
   const near = o.nearest.rows[0];
   const ranked = o.rank.against > 0;

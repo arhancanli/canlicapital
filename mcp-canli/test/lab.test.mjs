@@ -9,7 +9,7 @@ import path from "node:path";
 import test from "node:test";
 
 import { downloadLibrary, firstTable, finishBuild, buildShard, loadSeries, prepare, runDaily, runMonthly, unzipFirst, VARIANTS, variantOf } from "../local/lab.mjs";
-import { openLab, runLabSearch, runLabStatus, runLabStrategy, runOriginality, toMonthly } from "../src/lab.mjs";
+import { blendCount, blendMonthly, blendRank, openLab, runLabSearch, runLabStatus, runLabStrategy, runOriginality, toMonthly } from "../src/lab.mjs";
 
 // A zip of one stored (uncompressed) file, as French's are read.
 function zipOf(name, text) {
@@ -89,12 +89,51 @@ test("a strategy is its number: positions from the close before, next-close entr
   assert.match(o.reading, /Lab strategies covering the same months/);
   assert.throws(() => toMonthly([0.1, 0.2], ["2020-01", "2020-02"]), /at least 24/);
 
+  // Blends: every pair counted; ranked among the pairs of a seeded sample of strategies covering every month.
+  const N = 3 * VARIANTS;
+  assert.equal(o.blends.counted, blendCount(N));
+  assert.equal(blendCount(986664), 486752431116);
+  assert.ok(o.blends.sampled_strategies >= 2 && o.blends.blends_scored <= (o.blends.sampled_strategies * (o.blends.sampled_strategies - 1)) / 2);
+  assert.ok(o.blends.beats_percent >= 0 && o.blends.beats_percent <= 100);
+  assert.match(o.blends.reading, /half and half/);
+  assert.equal(runOriginality(lab, { returns, dates, nearest: 3 }, { blends: false }).blends, undefined);
+  assert.deepEqual(runOriginality(lab, { returns, dates, nearest: 3 }).blends, o.blends, "seeded: the same sample every time");
+  // A blend rebuilt: each month the average of its parents', statistics over the months both have.
+  const pair = [7, VARIANTS + 11], bl = runLabStrategy(lab, { blend: pair });
+  const [pa, pb] = pair.map((x) => runLabStrategy(lab, { id: x }).monthly);
+  const both = blendMonthly(lab, pair);
+  assert.equal(bl.monthly.first_month, pa.first_month > pb.first_month ? pa.first_month : pb.first_month);
+  const at = (m, month) => m.returns[month - (Number(m.first_month.slice(0, 4)) * 12 + Number(m.first_month.slice(5)) - 1)];
+  both.values.forEach((v, k) => { const month = both.first + k, x = at(pa, month), y = at(pb, month); assert.equal(v, x === null || y === null ? null : (x + y) / 2); });
+  const okv = both.values.filter((v) => v !== null), mu = okv.reduce((q, v) => q + v, 0) / okv.length, sdv = Math.sqrt(okv.reduce((q, v) => q + (v - mu) ** 2, 0) / (okv.length - 1));
+  assert.ok(Math.abs(bl.stats.sharpe - (mu / sdv) * Math.sqrt(12)) < 1e-4);
+  assert.deepEqual(bl.parents.map((x) => x.id), pair);
+  assert.throws(() => runLabStrategy(lab, { blend: [7, 7] }), /two different/);
+  assert.throws(() => runLabStrategy(lab, { id: 7, blend: pair }), /not both/);
+  assert.throws(() => runLabStrategy(lab, { blend: [7, N] }), /ids 0 to/);
+  assert.equal(runLabStatus(out).blends.count, blendCount(N));
+
   const found = runLabSearch(lab, { family: "vol_target", series: "Lo", sort: "sharpe", limit: 5 });
   assert.equal(found.matched, 80);
   assert.ok(found.rows.every((row) => row[1].startsWith("vol_target") && row[1].endsWith("Two_Portfolios_daily:Lo")));
   assert.ok(found.rows[0][2] >= found.rows.at(-1)[2]);
   const apart = runLabSearch(lab, { uncorrelated_with: { returns, dates }, max_abs_corr: 0.1, limit: 200 });
   assert.ok(apart.rows.every((row) => Math.abs(row.at(-1)) <= 0.1) && apart.matched > 0);
+});
+
+test("blend ranks: each pair's Sharpe exact, as the averaged series gives it", () => {
+  const r = rng(5), T = 60, sample = Array.from({ length: 9 }, (_, i) => ({ id: 100 + i, x: Float64Array.from({ length: T }, () => 0.004 * i + r() * 0.05) }));
+  const sharpeOf = (x) => { const m = x.reduce((q, v) => q + v, 0) / x.length, sd = Math.sqrt(x.reduce((q, v) => q + (v - m) ** 2, 0) / (x.length - 1)); return (m / sd) * Math.sqrt(12); };
+  const all = [];
+  for (let a = 0; a < 9; a += 1) for (let b = a + 1; b < 9; b += 1) all.push([sharpeOf(sample[a].x.map((v, k) => (v + sample[b].x[k]) / 2)), [sample[a].id, sample[b].id]]);
+  const mine = 0.5, got = blendRank(sample, mine, 1000);
+  assert.equal(got.blends_scored, 36);
+  assert.equal(got.counted, 499500);
+  assert.equal(got.beats_percent, Number(((100 * all.filter(([x]) => x < mine).length) / 36).toFixed(4)));
+  const top = all.sort((p, q) => q[0] - p[0])[0];
+  assert.ok(Math.abs(got.best_in_sample.sharpe - top[0]) < 1e-4);
+  assert.deepEqual(got.best_in_sample.blend, top[1]);
+  assert.equal(blendRank(sample.slice(0, 1), mine, 1000), null);
 });
 
 test("the library's download: only zips are kept, a file already here is not fetched again", async (t) => {
