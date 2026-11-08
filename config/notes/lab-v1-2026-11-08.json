@@ -1,0 +1,48 @@
+{
+ "schema": "canli.note-data.lab-v1.v1",
+ "built_at": "2026-11-08T04:22:35.396Z",
+ "strategies": 986664,
+ "series": 1678,
+ "rules": 294,
+ "rules_by_family": {
+  "tsmom": 48,
+  "ma_cross": 74,
+  "breakout": 54,
+  "zscore_reversion": 36,
+  "rsi_reversion": 18,
+  "vol_target": 40,
+  "tsmom_vol_target": 24
+ },
+ "rebalance": [
+  "daily",
+  "monthly"
+ ],
+ "variants_per_series": 588,
+ "lag_days": 1,
+ "cost_bps": 5,
+ "data": {
+  "library": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/",
+  "files": 104,
+  "sha256_of_each_file": "in the build's manifest.json"
+ },
+ "sharpe_across_strategies": {
+  "strategies_with_a_sharpe": 986664,
+  "p1": -0.903,
+  "p10": -0.1111,
+  "median": 0.373,
+  "p90": 0.79,
+  "p99": 1.3403,
+  "max": 5.4536,
+  "share_above_0": 0.8518,
+  "share_above_1": 0.0367,
+  "note": "Annualized Sharpe of each strategy's daily returns over its whole history, after costs; histories differ in length."
+ },
+ "effective": {
+  "sample": 1500,
+  "months": 429,
+  "from": "1991-01",
+  "participation_ratio": 14.8,
+  "reading": "A seeded sample of 1500 strategies, over the 429 months they share from 1991, varies like about 15 independent ones (participation ratio of their correlations). It is the strict measure: a few common movements, the market's above all, dominate it, and it does not grow in proportion to the Lab's size."
+ },
+ "limits": "The Lab's strategies run on Kenneth French's portfolio and factor returns: not investable, with a flat cost of 5 basis points per unit of turnover. They are a reference for what simple rules on public data could have earned, counted in full; resembling one is not proof of copying, and beating them is not a forecast."
+}

@@ -543,12 +543,13 @@ function publishNoteData() {
   // config/notes/, where a second copy could drift from the one the study wrote.
   const cited = new Set();
   for (const f of readdirSync(SRC_DIR).filter((name) => name.endsWith(".md"))) {
-    for (const [, file] of readFileSync(resolve(SRC_DIR, f), "utf8").matchAll(/\/glassbox\/research\/([A-Za-z0-9._-]+\.json)/g)) cited.add(file);
+    // One study folder deep at most (config/research/<study>/<file>.json), never a path that climbs out.
+    for (const [, file] of readFileSync(resolve(SRC_DIR, f), "utf8").matchAll(/\/glassbox\/research\/((?:[A-Za-z0-9_-][A-Za-z0-9._-]*\/)?[A-Za-z0-9_-][A-Za-z0-9._-]*\.json)/g)) if (!file.split("/").includes("..")) cited.add(file);
   }
   for (const file of [...cited].sort()) {
     const source = resolve(ROOT, "config", "research", file);
     if (!existsSync(source)) continue;
-    mkdirSync(resolve(ROOT, "public", "glassbox", "research"), { recursive: true });
+    mkdirSync(dirname(resolve(ROOT, "public", "glassbox", "research", file)), { recursive: true });
     copyFileSync(source, resolve(ROOT, "public", "glassbox", "research", file));
     published.push(`research/${file}`);
   }

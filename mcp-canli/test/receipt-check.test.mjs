@@ -8,7 +8,7 @@ import { keyIdFor } from "canli-validation-mcp/src/local/js/receipt-statement.js
 import { canonicalJson } from "canli-validation-mcp/src/local/scripts/canonical-json.mjs";
 
 import { answerRoot, checkValue, proveValue, valuesOf } from "../src/answer-tree.mjs";
-import { ANSWER_SIGNATURE_SCHEMA, checkAnswerSignature, documentsOf, receiptCheckInput, runReceiptCheck } from "../src/receipt-check.mjs";
+import { ANSWER_SIGNATURE_SCHEMA, checkAnswerSignature, documentsOf, proofsOf, receiptCheckInput, runReceiptCheck } from "../src/receipt-check.mjs";
 import { RECEIPT_KEY, registerAll } from "../src/server.mjs";
 
 const doc = (url, extra = {}) => ({ url, sha256_16: "0123456789abcdef", retrieved_at: "2026-11-04T06:00:00.000Z", ...extra });
@@ -83,13 +83,15 @@ test("receipt_check reads the signature with the keys canlicapital.com publishes
   assert.equal(forged.documents, 0);
 });
 
+// run_tool and the rest as a server registers them, with the input schema each is listed with.
+const handlers = (options) => {
+  const h = {};
+  registerAll({ registerTool: (name, config, fn) => { h[name] = Object.assign(fn, { input: config.inputSchema }); }, registerResource: () => {}, registerPrompt: () => {} }, ["quant"], undefined, options);
+  return h;
+};
+
 test("a server that signs its receipts puts the whole signed receipt in the answer, which receipt_check reads as signed", async () => {
   const key = receiptKey();
-  const handlers = (options) => {
-    const h = {};
-    registerAll({ registerTool: (name, _c, fn) => { h[name] = fn; }, registerResource: () => {}, registerPrompt: () => {} }, ["quant"], undefined, options);
-    return h;
-  };
   const call = { name: "return_stats", arguments: { returns: [0.01, -0.02, 0.015, 0.003, -0.004, 0.012] }, receipt: true };
   const signing = await handlers({ readOnly: true, receipts: { endpoint: "example.org/mcp", sign: (receipt) => signedWith(key, receipt).signature } }).run_tool(call);
   const meta = signing._meta[RECEIPT_KEY];
@@ -116,4 +118,54 @@ test("a server that signs its receipts puts the whole signed receipt in the answ
   assert.deepEqual(Object.keys(plain.structuredContent.receipt).sort(), ["input_sha256", "output_sha256", "packs", "server", "sources"]);
   assert.deepEqual([plain._meta[RECEIPT_KEY].endpoint, plain._meta[RECEIPT_KEY].signature, plain._meta[RECEIPT_KEY].output_root], [undefined, undefined, undefined]);
   assert.equal(plain._meta[RECEIPT_KEY].output_sha256, meta.output_sha256, "signing changes nothing that was answered");
+});
+
+test("prove: each value named comes with its path to the signed receipt's root, and receipt_check checks it against that receipt", async () => {
+  const key = receiptKey();
+  const signing = handlers({ readOnly: true, receipts: { endpoint: "example.org/mcp", sign: (receipt) => signedWith(key, receipt).signature } });
+  const local = handlers({ readOnly: true });
+  // Listed only where the server signs: a local server holds no key, so a proof from it would prove nothing.
+  assert.equal("prove" in signing.run_tool.input.shape, true);
+  assert.equal("prove" in local.run_tool.input.shape, false);
+  const returns = [0.01, -0.02, 0.015, 0.003, -0.004, 0.012];
+  const calls = [{ name: "return_stats", arguments: { returns } }, { name: "return_stats", arguments: { returns: returns.slice(1) } }];
+  const out = (await signing.run_tool({ calls, prove: ["/1/result/sharpe", "/0/result", "/1/result/mean"] })).structuredContent;
+  const { receipt } = out;
+  assert.equal(checkAnswerSignature(receipt, [key.published]).valid, true, "prove brings the signed receipt with it");
+  assert.equal((await signing.run_tool({ calls, receipt: true })).structuredContent.receipt.output_root, receipt.output_root, "proving changes nothing that was answered");
+  const [proof, whole, missing] = out.proofs;
+  assert.deepEqual([proof.pointer, proof.root, proof.values], ["/1/result/sharpe", receipt.output_root, receipt.output_values]);
+  assert.equal(checkValue(proof, { root: receipt.output_root, values: receipt.output_values }).ok, true);
+  // The value as hashed, in full, where the answer shows it to six significant figures.
+  assert.equal(out.results[1].result.sharpe, Number(proof.value.toPrecision(6)));
+  assert.match(whole.error, /^\/0\/result holds more than one value: prove one of them, such as \/0\/result\//);
+  assert.match(missing.error, /^The answer has no value at "\/1\/result\/mean": give a JSON Pointer to one value, such as \/1\/result\//);
+  // One call alone is answered flat, but its output, and so its pointers, are a batch of one.
+  const one = (await signing.run_tool({ ...calls[0], prove: ["/0/result/sharpe"] })).structuredContent;
+  assert.equal(checkValue(one.proofs[0], { root: one.receipt.output_root, values: one.receipt.output_values }).ok, true);
+  assert.equal(one.sharpe, Number(one.proofs[0].value.toPrecision(6)));
+
+  // receipt_check: the proof against the receipt, offline, beside its signature (a test key is not a published one).
+  const ctx = { call: async () => { throw new Error("the receipt names no documents to read"); } };
+  const checked = await runReceiptCheck(ctx, { receipt, proofs: [proof] });
+  assert.deepEqual(checked.proofs.rows, [{ pointer: "/1/result/sharpe", value: proof.value, in_answer: true }]);
+  assert.equal(checked.proofs.reading, "The value is in the answer this receipt names. The receipt is not shown to be the server's (see signature), so this does not show the server gave it.");
+  assert.equal(proofsOf(receipt, [proof], { valid: true }).reading, "The value is in the answer this receipt names. The receipt is signed with canlicapital.com's published key, so the server's answer held that value.");
+  const problems = (proofs, r = receipt) => proofsOf(r, proofs, { valid: true }).rows.map((row) => row.problem ?? "in the answer");
+  assert.deepEqual(problems([{ ...proof, value: proof.value * 2 }]), ["the path does not lead to the root"], "another value");
+  assert.deepEqual(problems([{ ...proof, pointer: "/0/result/sharpe" }]), ["the path does not lead to the root"], "the value moved to another call");
+  assert.deepEqual(problems([proof], { ...receipt, output_root: "0".repeat(64) }), ["the proof's root is not the receipt's"], "another answer's receipt");
+  assert.deepEqual(problems([proof], { ...receipt, output_values: receipt.output_values + 1 }), [`the proof is for ${proof.values} values, the receipt for ${proof.values + 1}`]);
+  assert.equal(proofsOf(receipt, [proof, { ...proof, value: 0 }], { valid: true }).reading, "1 of 2 values is not in the answer this receipt names (each row says why); the other one is. The receipt is signed with canlicapital.com's published key, so the server's answer held that value.");
+  assert.equal(proofsOf(receipt, [{ ...proof, value: 0 }, { ...proof, value: 1 }], { valid: true }).reading, "2 of 2 values are not in the answer this receipt names (each row says why).");
+  // A receipt with no root, as a local server's: nothing to check a value against.
+  const plain = (await local.run_tool({ calls, receipt: true })).structuredContent.receipt;
+  assert.match((await runReceiptCheck(ctx, { receipt: plain, proofs: [proof] })).proofs.reading, /^This receipt carries no output_root, so no value can be checked against it/);
+
+  // A local server refuses prove before running anything, also when it comes inside a call's arguments.
+  for (const asked of [{ calls, prove: ["/1/result/sharpe"] }, { name: "return_stats", arguments: { returns, prove: ["/0/result/sharpe"] } }]) {
+    const refused = await local.run_tool(asked);
+    assert.equal(refused.isError, true);
+    assert.match(refused.content[0].text, /^prove needs a signed receipt: a proof is checked against the root the receipt carries, and this server holds no key/);
+  }
 });
