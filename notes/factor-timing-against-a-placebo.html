@@ -1,0 +1,316 @@
+<!doctype html>
+<html data-design="reader" lang="en" data-page="notes">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Factor timing against a placebo | Canli Capital</title>
+<meta name="description" content="Four published factor-timing claims, retested with placebos that keep a market&#39;s volatility clustering. Volatility-managed factors kept their in-sample verdict…" />
+<link rel="canonical" href="https://canlicapital.com/notes/factor-timing-against-a-placebo" />
+<link rel="alternate" type="application/atom+xml" title="Canli Capital: research and notes" href="/feed.xml" />
+<meta name="author" content="Arhan Canli" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Do factor-timing claims beat a placebo?" />
+<meta property="og:description" content="Four published factor-timing claims, retested with placebos that keep a market&#39;s volatility clustering. Volatility-managed factors kept their in-sample verdict…" />
+<meta property="og:url" content="https://canlicapital.com/notes/factor-timing-against-a-placebo" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Do factor-timing claims beat a placebo?" />
+<meta name="twitter:description" content="Four published factor-timing claims, retested with placebos that keep a market&#39;s volatility clustering. Volatility-managed factors kept their in-sample verdict…" />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Do factor-timing claims beat a placebo?","description":"Four published factor-timing claims, retested with placebos that keep a market's volatility clustering. Volatility-managed factors kept their in-sample verdict under every block length. Industry momentum kept it only with the shortest blocks, and cross-sectional factor momentum lost it. No verdict after the papers' samples changed.","url":"https://canlicapital.com/notes/factor-timing-against-a-placebo","datePublished":"2026-11-08","dateModified":"2026-11-08","wordCount":671,"inLanguage":"en","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","url":"https://canlicapital.com/founder"},"image":{"@type":"ImageObject","url":"https://canlicapital.com/og.png","width":1200,"height":630},"publisher":{"@id":"https://canlicapital.com/#organization"},"mainEntityOfPage":"https://canlicapital.com/notes/factor-timing-against-a-placebo","isPartOf":{"@type":"Blog","@id":"https://canlicapital.com/notes","name":"Engineering notes"}}</script>
+<!-- site-design:start -->
+<link rel="stylesheet" href="/css/product-shell.css" />
+<!-- site-design:end -->
+</head>
+<body class="note-page">
+<a class="note-skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="/mcp-servers">canli-mcp</a>
+<a class="cc-shell__link" href="/companies">Company data</a>
+<a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/performance">Performance</a>
+<a class="cc-shell__link" href="/developers">Developers</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Use it</span>
+        <nav aria-label="Products and tools"><a class="cc-shell__panel-link" href="/mcp-servers">canli-mcp, the MCP server</a>
+<a class="cc-shell__panel-link" href="/mcp-servers/install">Add it to your client</a>
+<a class="cc-shell__panel-link" href="/mcp-servers/tools">Every tool</a>
+<a class="cc-shell__panel-link" href="/mcp-servers/how-it-works">How it works and is tested</a>
+<a class="cc-shell__panel-link" href="/mcp-servers/answers">Questions it answers</a>
+<a class="cc-shell__panel-link" href="/companies">Company reference</a>
+<a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a>
+<a class="cc-shell__panel-link" href="/tools">Calculators</a>
+<a class="cc-shell__panel-link" href="/developers">Developer API</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Research and record</span>
+        <nav aria-label="Research and record"><a class="cc-shell__panel-link" href="/research">Research</a>
+<a class="cc-shell__panel-link" href="/benchmarks/finance-mcp-servers">MCP benchmark</a>
+<a class="cc-shell__panel-link" href="/performance">Performance</a>
+<a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live record</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">About and trust</span>
+        <nav aria-label="About and trust"><a class="cc-shell__panel-link" href="/vision">Vision</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/contributors">Contributors</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Source code</span>
+        <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
+<a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
+<a class="cc-shell__panel-link" href="/standards/paper-evidence">Evidence standard</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac (engine)</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
+      </div>
+      <div class="cc-shell__panel-foot">
+        <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span>Public paper record</span></a>
+        <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      </div>
+    </div>
+  </details>
+  <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
+  <a class="cc-shell__cta" href="/mcp-servers#install">Add canli-mcp</a>
+  <script type="module" src="/js/navigation.js"></script>
+</header>
+<main id="content" tabindex="-1"><header class="cc-hero" data-scene="canyon"><div class="cc-hero__inner"><nav class="note-trail" aria-label="Breadcrumb">
+      <a href="/notes">Engineering notes</a>
+    </nav><h1>Do factor-timing claims beat a placebo?</h1><p class="note-dek">Four published factor-timing claims, retested with placebos that keep a market&#39;s volatility clustering. Volatility-managed factors kept their in-sample verdict under every block length. Industry momentum kept it only with the shortest blocks, and cross-sectional factor momentum lost it. No verdict after the papers&#39; samples changed.</p><p class="note-meta">
+        <span>Arhan Canli</span>
+        <time datetime="2026-11-08">2026-11-08</time>
+        <span>3 min read</span>
+      </p></div></header>
+  <article class="note">
+
+    <div class="note-body">
+<p><strong>Published 2026-11-08. The design, the decision rules and the predictions were registered and pushed before the
+run, in <a href="/glassbox/research/placebo-v2r2-prereg.json"><code>placebo-v2r2-prereg.json</code></a>; every verdict below is read from
+<a href="/glassbox/research/placebo-v2r2-evaluation.json"><code>placebo-v2r2-evaluation.json</code></a>. The first round is
+<a href="/glassbox/research/placebo-v2-evaluation.json"><code>placebo-v2-evaluation.json</code></a>.</strong></p>
+<h2>The question</h2>
+<p>A factor-timing paper tests a rule, often one of several it could have chosen, on decades of factor returns. A
+t-test on the winner ignores that search. A placebo test does not: it reruns the whole search, every rule in the
+grid, on the same returns put in a random order, many times, and asks how often the real winner&#39;s result is beaten
+by chance. This study does that for four claims:</p>
+<ul>
+<li><strong>Time-series factor momentum</strong> (Ehsani and Linnainmaa; Gupta and Kelly): a factor that rose over the past months
+keeps rising.</li>
+<li><strong>Cross-sectional factor momentum</strong> (Ehsani and Linnainmaa; Arnott, Kalesnik and Linnainmaa): the factors that did
+best recently beat the ones that did worst.</li>
+<li><strong>Volatility-managed factors</strong> (Moreira and Muir): scaling a factor down when its recent volatility is high raises
+its Sharpe ratio.</li>
+<li><strong>Industry momentum</strong> (Moskowitz and Grinblatt): the industries that rose most keep rising.</li>
+</ul>
+<p>Each claim is tested on the papers&#39; own sample and on the months after it, on Kenneth French&#39;s factors and
+industries. The wording rule was set beforehand: we do not say a published paper is wrong; we report which claims
+keep a p-value below 5% once a plausible search is counted.</p>
+<h2>What the second round changed</h2>
+<p>A plain shuffle breaks every link between one month and the next, including the clustering of volatility that real
+returns have, so a rule that only exploits clustering can look like timing skill. The second round shuffles whole
+blocks of 3, 6 or 12 months instead, which keeps short-range clustering, with 999 placebos per test. It also runs
+White&#39;s Reality Check, Hansen&#39;s SPA test and Romano and Wolf&#39;s StepM on the same grids, measures how much power each
+method has against timing effects of stated sizes, and repeats factor momentum on the Open Source Asset Pricing
+long-short portfolios rather than the handful of French-library factors.</p>
+<h2>What it found</h2>
+<!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>First round, in sample</th>
+<th>Blocks of 3 months</th>
+<th>Blocks of 6</th>
+<th>Blocks of 12</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Volatility-managed factors</td>
+<td>below 5%</td>
+<td>below</td>
+<td>below</td>
+<td>below</td>
+</tr>
+<tr>
+<td>Industry momentum</td>
+<td>below 5%</td>
+<td>below</td>
+<td>not below</td>
+<td>not below</td>
+</tr>
+<tr>
+<td>Cross-sectional factor momentum</td>
+<td>below 5%</td>
+<td>not below</td>
+<td>not below</td>
+<td>not below</td>
+</tr>
+<tr>
+<td>Time-series factor momentum</td>
+<td>not below</td>
+<td>not below</td>
+<td>not below</td>
+<td>not below</td>
+</tr>
+</tbody></table></div><!-- design-table:end -->
+<ul>
+<li><strong>Volatility-managed factors</strong> are the one in-sample result that survives at every block length.</li>
+<li><strong>Industry momentum</strong> survives only with the shortest blocks, and the evaluation marks that verdict as showing
+time-series structure rather than the claim itself.</li>
+<li><strong>Cross-sectional factor momentum</strong> loses its first-round verdict at every block length. On the Open Source
+Asset Pricing factors neither factor-momentum claim beats its placebos in sample.</li>
+<li><strong>After the papers&#39; samples</strong>, no claim&#39;s verdict changed: none was below 5% in the first round, and none is now.</li>
+</ul>
+<h2>What did not work</h2>
+<p>The registration predicted that block permutation would bring the test&#39;s false-positive rate back to its nominal
+level in simulated markets with clustered volatility. It largely did not, and the evaluation file reports the rates
+cell by cell. The power runs also show that the tests after the papers&#39; samples have little power against timing
+effects of the sizes tested, so a claim that is &quot;not below&quot; there is weak evidence against it, not evidence that
+it is false. One change was made during the run and is dated in the file: four of the 30 industry portfolios are
+identical to their 12-industry counterparts, so the simulator copies each twin instead of drawing it.</p>
+<h2>Use it</h2>
+<p>The placebo test is <code>placebo_test</code> in <a href="/mcp-servers">canli-mcp</a>, on your machine, with no account and no key. The
+first round&#39;s method and its size study are in <a href="/notes/would-it-beat-a-placebo">Would your backtest beat a placebo?</a>.</p>
+
+    </div>
+    <footer class="note-foot">
+      <p class="note-boundary"><strong>Boundary.</strong> These notes describe engineering and
+      method. They are not performance claims. The paper record and its limits are on
+      <a href="/performance">status</a>, the withdrawn figures on <a href="/progress">corrections</a>,
+      and the code on <a href="/engineering">engineering</a>.</p>
+      <div class="note-more">
+        <h2>More notes</h2>
+        <ul><li><a href="/notes/how-often-companies-beat-their-guidance">How often companies beat their own guidance</a></li><li><a href="/notes/the-year-end-numbers-that-changed">The year-end numbers that changed later</a></li><li><a href="/notes/best-of-399-strategies">Was the winning strategy skill or luck?</a></li></ul>
+      </div>
+    </footer>
+  </article>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
+  <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
+    <h2 id="cc-footer-dev-title">Build on it</h2>
+    <div class="cc-footer__dev-item">
+      <span>MCP server</span>
+      <p>Finance tools for Claude, Cursor or any MCP client: filings, markets, quant and backtests.</p>
+      <code>npx -y canli-mcp</code>
+      <nav aria-label="MCP server listings"><a href="/mcp-servers">canli-mcp</a><a href="/mcp-servers/answers">Questions it answers</a><a href="https://www.npmjs.com/package/canli-mcp" rel="noreferrer">npm</a><a href="https://registry.modelcontextprotocol.io/v0/servers?search=io.github.arhancanli/canli-mcp" rel="noreferrer">MCP Registry</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Open source</span>
+      <p>The engine, the point-in-time lake and the backtester, in public.</p>
+      <nav aria-label="GitHub repositories"><a href="https://github.com/arhancanli/alphac" rel="noreferrer">arhancanli/alphac</a><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">arhancanli/canli-pit-lake</a><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">arhancanli/canli-backtest</a></nav>
+    </div>
+    <div class="cc-footer__dev-item">
+      <span>Validation API</span>
+      <p>Free API key. Deflated Sharpe, overfitting and cost checks over HTTP.</p>
+      <nav aria-label="Validation API"><a class="cc-footer__dev-cta" href="/developers#quickstart">Get a free API key</a></nav>
+    </div>
+  </section>
+  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
+    <div class="cc-handoff__viewport">
+      <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
+      <div class="cc-handoff__stage" aria-hidden="true">
+        <svg class="cc-handoff__route" viewBox="0 0 1000 300" preserveAspectRatio="none"><path class="cc-handoff__track" d="M120 210C280 210 310 85 500 85S720 210 880 210"/><path class="cc-handoff__trace" pathLength="1" d="M120 210C280 210 310 85 500 85S720 210 880 210"/></svg>
+        <div class="cc-handoff__dock cc-handoff__dock--inputs"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__gate"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__dock cc-handoff__dock--record"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__packet">
+          <img src="/cinema/optical-master-v3-1536.webp" width="1536" height="1536" loading="lazy" alt="" />
+        </div>
+      </div>
+      <div class="cc-handoff__steps">
+        <a href="/research" data-handoff-step="0"><span>Define</span><strong>The research packet</strong><small>Inputs, rules and the failed trials.</small><em>Inspect the research ↗</em></a>
+        <a href="/developers#validation" data-handoff-step="1"><span>Reproduce</span><strong>The calculation receipt</strong><small>Your inputs. Declared arithmetic.</small><em>Explore the validation API ↗</em></a>
+        <a href="/verify" data-handoff-step="2"><span>Inspect</span><strong>The published record</strong><small>Sources, corrections and boundaries.</small><em>Verify the evidence ↗</em></a>
+      </div>
+      <p class="cc-handoff__boundary">Conceptual workflow. This animation sends no request. A receipt is not proof of future returns.</p>
+    </div>
+  </section></details>
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/record">Paper record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/benchmarks/finance-mcp-servers">Finance MCP benchmark</a>
+      <a href="/benchmarks/filingfacts">FilingFacts benchmark</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/costs">What costs are charged</a>
+      <a href="/verify">Verify record</a>
+      <a href="/privacy">Privacy policy</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+      <a href="/companies">Company reference</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/vision">Vision</a>
+      <a href="/stats">MCP downloads</a>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Performance</a>
+      <a href="/founder">Arhan Canli</a>
+    </nav>
+    <nav aria-label="Calculators">
+      <span>Run it yourself</span>
+      <a href="/tools">All calculators</a>
+      <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/backtest-overfitting">Backtest overfitting calculator</a>
+      <a href="/tools/selection-risk">Selection Risk Lab</a>
+      <a href="/tools/breadth">Breadth Lab</a>
+      <a href="/tools/execution">Execution Reality Lab</a>
+      <a href="/tools/trial-accounting">Trial accounting</a>
+      <a href="/tools/evidence-chain">Evidence chain</a>
+    </nav>
+    <nav aria-label="Open source">
+      <span>Source code</span>
+      <a href="/developers">Developers</a>
+      <a href="/developers#quickstart">Get an API key</a>
+      <a href="/developers#ai-assistant">Connect the MCP server</a>
+      <a href="/engineering">Engineering</a>
+      <a href="/notes">Engineering notes</a>
+      <a href="/standards/paper-evidence">Evidence standard</a>
+      <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
+      <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+      <a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Engineered independently by Arhan Canli in Dubai since July 2024. Inspect the
+    <a href="/performance">public paper record and its observation dates</a>.
+    Earlier engineering is not a track record.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+  <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
+  <script type="module" src="/js/site-motion.js"></script>
+</footer>
+</body>
+</html>

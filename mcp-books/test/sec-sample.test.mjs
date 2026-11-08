@@ -19,7 +19,7 @@ const sha256 = (text) => createHash("sha256").update(text).digest("hex");
 const WINDOW = { from: "2025-09-19", to: "2026-09-19" };
 
 let n = 0;
-const flag = (over) => ({ cik: 320193, entity: "Example Inc.", taxonomy: "us-gaap", accession: `0000320193-26-${String(++n).padStart(6, "0")}`, form: "10-Q", filed: "2026-02-01", rule: "scale", concept: "Revenues", unit: "USD", start: "2025-10-01", end: "2025-12-31", value: n * 1000, prior_value: n, prior_start: "2025-10-01", prior_end: "2025-12-31", prior_flagged: false, detail: "check the scale", ...over });
+const flag = (over) => ({ cik: 320193, entity: "Example Inc.", taxonomy: "us-gaap", accession: `0000320193-26-${String(++n).padStart(6, "0")}`, form: "10-Q", filed: "2026-02-01", rule: "scale", concept: "Revenues", unit: "USD", start: "2025-10-01", end: "2025-12-31", value: n * 1000, prior_value: n, prior_start: "2025-10-01", prior_end: "2025-12-31", prior_accession: "0000320193-25-000009", prior_filed: "2025-11-01", prior_flagged: false, out_of_line: null, others: null, detail: "check the scale", ...over });
 const FLAGS = [
   ...Array.from({ length: 30 }, () => flag()),
   flag({ entity: 'Owens & "Minor", Inc.' }),
@@ -28,7 +28,7 @@ const FLAGS = [
   ...Array.from({ length: 5 }, () => flag({ unit: "shares", concept: "WeightedAverageNumberOfSharesOutstandingBasic" })),
   flag({ unit: "USD/shares", concept: "EarningsPerShareBasic" }),
   flag({ unit: "pure", concept: "EffectiveIncomeTaxRateContinuingOperations" }),
-  ...Array.from({ length: 3 }, () => flag({ rule: "balance", concept: "Assets", start: null, prior_value: null, prior_start: null, prior_end: null })),
+  ...Array.from({ length: 3 }, () => flag({ rule: "balance", concept: "Assets", start: null, prior_value: null, prior_start: null, prior_end: null, prior_accession: null, prior_filed: null })),
   flag({ rule: "sign", concept: "Revenues", value: -5 }),
   flag({ filed: "2025-09-19" }),
   flag({ filed: "2026-09-20" }),

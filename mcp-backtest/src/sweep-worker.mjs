@@ -1,5 +1,6 @@
 // One worker of breadth_sweep: reads the panel once, runs its share of the settings, posts each
-// result back. Runs in a worker thread; nothing here writes files.
+// result back with the book's daily returns (a flat day as 0), moved rather than copied. Runs in a
+// worker thread; nothing here writes files.
 import { parentPort, workerData } from "node:worker_threads";
 
 import { runBreadth } from "./breadth.mjs";
@@ -11,7 +12,8 @@ for (const c of combos) {
   try {
     const r = runBreadth({ ...base, signals: c.signals ?? null, minNames: c.min_names ?? 10, smoothing: c.smoothing ?? null, costBps: c.cost_bps ?? 10, targetVol: c.target_vol ?? 0.1, splitDate });
     const book = r.book ?? {};
-    parentPort.postMessage({ k: c.k, ok: true, sleeves: r.sleeves ?? 0, bets: r.effective_bets?.effective_bets ?? null, all: book.netted ?? null, search: book.search?.netted ?? null, test: book.test?.netted ?? null });
+    const daily = Float64Array.from(r.series?.book ?? [], (v) => (Number.isNaN(v) ? 0 : v));
+    parentPort.postMessage({ k: c.k, ok: true, sleeves: r.sleeves ?? 0, bets: r.effective_bets?.effective_bets ?? null, all: book.netted ?? null, search: book.search?.netted ?? null, test: book.test?.netted ?? null, daily }, [daily.buffer]);
   } catch (err) {
     parentPort.postMessage({ k: c.k, ok: false, error: String(err?.message ?? err).slice(0, 200) });
   }

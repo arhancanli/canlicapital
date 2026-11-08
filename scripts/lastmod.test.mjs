@@ -8,7 +8,7 @@ import { PAGE_SOURCES, SHARED_PAGE_SOURCES, sourceDate } from "./lib/page-source
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
-test("shared markup keeps portable page dates current when generated timestamps change", async () => {
+test("a page is dated by its own sources: shared markup does not re-date it, its generator does, and a Git-free build keeps the date", async () => {
   const { mkdtempSync, mkdirSync, writeFileSync, rmSync } = await import("node:fs");
   const { tmpdir } = await import("node:os");
   const { execFileSync } = await import("node:child_process");
@@ -20,7 +20,8 @@ test("shared markup keeps portable page dates current when generated timestamps 
   const write = (file, text) => { mkdirSync(dirname(resolve(root, file)), { recursive: true }); writeFileSync(resolve(root, file), text); };
   try {
     for (const files of Object.values(PAGE_SOURCES)) {
-      for (const shared of SHARED_PAGE_SOURCES) assert.ok(files.includes(shared));
+      // The shell and design files date no page (the contributors page's own config still dates it).
+      for (const shared of SHARED_PAGE_SOURCES.filter((f) => /^(?:(?:css|js|public)\/.+|scripts\/(?:product-shell|build-site-design)\.mjs)$/.test(f))) assert.ok(!files.includes(shared), `${shared} is not a page's date source`);
     }
     write("scripts/build-verify.mjs", "// original generator\n");
     write("public/glassbox/record.json", '{"generated_at":"2026-09-06T00:00:00Z","value":1}');
@@ -31,12 +32,16 @@ test("shared markup keeps portable page dates current when generated timestamps 
     write("scripts/build-site-design.mjs", "// updated shared markup\n");
     git("2026-10-04T12:00:00Z", "add", ".");
     git("2026-10-04T12:00:00Z", "-c", "user.name=Test", "-c", "user.email=test@example.invalid", "-c", "commit.gpgsign=false", "commit", "-m", "updated markup");
-    assert.equal(sourceDate(root, "/verify"), "2026-10-04");
+    assert.equal(sourceDate(root, "/verify"), "2026-09-06", "a design change does not re-date the page");
+    write("scripts/build-verify.mjs", "// updated generator\n");
+    git("2026-10-05T12:00:00Z", "add", ".");
+    git("2026-10-05T12:00:00Z", "-c", "user.name=Test", "-c", "user.email=test@example.invalid", "-c", "commit.gpgsign=false", "commit", "-m", "updated generator");
+    assert.equal(sourceDate(root, "/verify"), "2026-10-05", "the page's own generator does");
     writeSourceDates(root);
     rmSync(resolve(root, ".git"), { recursive: true });
-    write("public/glassbox/record.json", '{"generated_at":"2026-10-05T00:00:00Z","value":1}');
+    write("public/glassbox/record.json", '{"generated_at":"2026-10-06T00:00:00Z","value":1}');
     assert.equal(gitCommitDate(root, "public/glassbox"), null, "changed input bytes cannot reuse their old date");
-    assert.equal(sourceDate(root, "/verify"), "2026-10-04", "retain the committed markup date without inventing a build date");
+    assert.equal(sourceDate(root, "/verify"), "2026-10-05", "retain the committed date without inventing a build date");
   } finally { rmSync(root, { recursive: true, force: true }); }
 });
 
