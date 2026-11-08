@@ -424,7 +424,13 @@ ${asked.length ? `<section class="dev-section" id="words"><h2>Words that find it
 ${questions.length ? `<section class="dev-section" id="questions"><h2>Recorded questions that use it</h2><p>Each page shows the call and the full answer it returned, recorded with no API key.</p><ul class="mcp-related">${links(questions.map((q) => ({ path: q.route, label: q.question })))}</ul></section>` : ''}
 ${related.length ? `<section class="dev-section" id="related"><h2>Tools near it</h2><ul class="mcp-related">${related.map((t) => `<li><a href="${esc(toolRoute(t[0]))}"><code>${esc(t[0])}</code></a>: ${esc(t[3])}</li>`).join('')}</ul></section>` : ''}
 <section class="dev-section"><h2>More</h2><ul class="mcp-related"><li><a href="${TOOLS_ROUTE}#${esc(name)}">Every canli-mcp tool, by pack</a></li><li><a href="${HOW_ROUTE}">How canli-mcp works, and how it is tested</a></li><li><a href="${INSTALL_ROUTE}">Install canli-mcp in your client</a></li></ul><p class="flagship-note">Nothing here is investment advice.</p></section>`;
-  return document({ route, title: `${name}: ${title}`, description: fitDescription(description), structured: [app], body, sources: 'demos/canli-mcp/tools.json', modified });
+  // The page title fits search results (65 characters with the site's name): the tool and its title, else the title,
+  // else its first clause, else the tool's name; the H1 keeps the whole title.
+  const fits = (s) => `${s} | Canli Capital`.length <= 65;
+  const clause = title.split(/[:,;(]| - /)[0].trim();
+  const pageTitle = [`${name}: ${title}`, title, `${name}: ${clause}`, clause, name].find((s) => s && s.length >= 8 && fits(s)) ?? name;
+  const more = [`${name} is a canli-mcp tool, free and MIT-licensed, with no account and no API key.`, 'A model finds it with find_tool and runs it with run_tool.'];
+  return document({ route, title: pageTitle, description: fitDescription(description, more), structured: [app], body, sources: 'demos/canli-mcp/tools.json', modified });
 }
 
 export function buildMcpPages({ loadExecution = executionSource, write = writeFileSync, makeDir = mkdirSync } = {}) {
