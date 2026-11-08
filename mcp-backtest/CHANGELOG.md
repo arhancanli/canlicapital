@@ -4,6 +4,7 @@
 
 - `breadth_sweep` returns `every_trial`: every variant's annualized Sharpe, best first, with its combination `k`, the days it was measured on (one number when all variants share them, else one per variant) and `periods_per_year`. With `split_date` it is the Sharpe the settings were chosen on. A server that counts what a session tries, as canli-mcp does, counts each variant and not only the best, as with canli-quant-mcp's `strategy_sweep`. A shard's answer carries `every_trial` for its own variants, so they are counted as each shard runs, not first at the merge.
 - `breadth_sweep` hands each variant's daily book returns to a server that runs this package in its own process, as canli-quant-mcp's sweeps do: every date of the prices file (a flat day as 0, so variants with longer warm-ups line up), in `every_trial`'s order, under `Symbol.for("canli.trial_returns")`. JSON leaves that key out, so the answer, `out_file` and shard files are unchanged. A shard hands over its own variants' returns as it runs; a merge hands over none. canli-mcp pools them by the prices file's bytes to measure overfitting across everything a session tried on that data.
+- With those returns, the date of each day (the prices file's first column) under `Symbol.for("canli.trial_dates")`, so canli-mcp can set the best variant against the Lab's strategies over the same months. JSON leaves it out too.
 
 ## 0.5.1
 
