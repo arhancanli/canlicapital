@@ -5,7 +5,9 @@
 // Sharpe the best of that many trials would reach by luck alone (the expected maximum of N draws,
 // Bailey and Lopez de Prado), and, with split_date, the in-sample winner's Sharpe after the split is
 // reported beside it, the honest check. A shard carries the hash of the inputs and of the grid, so a
-// merge refuses shards run on other data or settings, and refuses gaps and duplicates.
+// merge refuses shards run on other data or settings, and refuses gaps and duplicates. Each variant's
+// daily book returns go back beside the answer, under a symbol key that JSON leaves out, for a server
+// that runs this package in its own process (canli-mcp) to measure overfitting across a session.
 import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync } from "node:fs";
 import { availableParallelism } from "node:os";
@@ -99,6 +101,12 @@ function runParallel(files, combos, splitDate, workers) {
 const r3 = (x) => (Number.isFinite(x) ? Math.round(x * 1000) / 1000 : null);
 const DAY_YEAR = 252; // breadth books are daily (breadth.mjs)
 
+// Each variant's daily book returns over every date of the prices file (a flat day as 0, so variants with longer
+// warm-ups line up), in every_trial's order. The key is canli-quant-mcp's: JSON leaves it out, so the answer, a shard
+// file and out_file never carry them. With split_date too, since the table shows every variant after the split.
+export const TRIAL_RETURNS = Symbol.for("canli.trial_returns");
+const handOver = (daily, every) => ({ [TRIAL_RETURNS]: every.k.map((k) => daily.get(k)) });
+
 // The summary over a complete set of results. Every variant's Sharpe, best first, goes back with its combination k and
 // the days it was measured on (every_trial: one number when all variants share them, else one per variant), so a
 // server that counts the strategies tried in a session counts each one and not only the best, as with
@@ -147,15 +155,18 @@ export async function breadthSweep(session, args) {
   const t0 = Date.now();
   const results = await runParallel(files, mine, a.split_date ?? null, workers);
   const seconds = Math.round((Date.now() - t0) / 100) / 10;
+  // The returns leave the results, which a shard file and a shard's answer carry; a merge has none to hand over.
+  const daily = new Map();
+  for (const r of results) if (r.daily) { daily.set(r.k, r.daily); delete r.daily; }
   if (a.shard) {
     const shard = { schema: "canli.breadth-sweep-shard.v1", sweep_id: sweepId, shard: a.shard, inputs, split_date: a.split_date ?? null, combos, results };
     if (a.out_file) writeFileSync(a.out_file, JSON.stringify(shard));
     // The shard's own variants, as the whole sweep lists them, so a server that counts tries counts them as they run
     // and not first at the merge, which then adds only the variants that server has not seen.
     const { every_trial } = summarize(results, mine, a.split_date ?? null);
-    return { sweep_id: sweepId, shard: a.shard, ran: mine.length, of: combos.length, seconds, workers, ...(a.out_file ? { shard_file: a.out_file } : { results }), every_trial, next: "Run the other shards (same files, grid and split_date) on any machine, then breadth_sweep with merge_files." };
+    return { sweep_id: sweepId, shard: a.shard, ran: mine.length, of: combos.length, seconds, workers, ...(a.out_file ? { shard_file: a.out_file } : { results }), every_trial, next: "Run the other shards (same files, grid and split_date) on any machine, then breadth_sweep with merge_files.", ...handOver(daily, every_trial) };
   }
   const out = { sweep_id: sweepId, inputs, workers, seconds, ...summarize(results, combos, a.split_date ?? null) };
   if (a.out_file) writeFileSync(a.out_file, JSON.stringify(out));
-  return { ...out, limits: ["Trials share the same data, so they are correlated: counting each as an independent trial makes the luck benchmark conservative (it overstates luck).", "Judge the chosen settings on sharpe_after_split only if nothing was chosen on those dates.", "Not investment advice."] };
+  return { ...out, limits: ["Trials share the same data, so they are correlated: counting each as an independent trial makes the luck benchmark conservative (it overstates luck).", "Judge the chosen settings on sharpe_after_split only if nothing was chosen on those dates.", "Not investment advice."], ...handOver(daily, out.every_trial) };
 }

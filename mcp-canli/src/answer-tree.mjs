@@ -61,32 +61,44 @@ function levels(values) {
   return all;
 }
 
-// The root of an answer's tree and how many values it holds: about 1.6 µs a value (80 ms for 50,000).
-export function answerRoot(answer) {
+// An answer's tree, built once: its root, how many values it holds, and a proof for any of its values. Building it
+// takes about 1.6 µs a value (80 ms for 50,000); each proof after that is a lookup and a walk up the levels.
+export function answerTree(answer) {
   const values = valuesOf(answer);
   const tree = levels(values);
-  return { values: values.length, root: tree[tree.length - 1][0].toString("hex") };
+  const root = tree[tree.length - 1][0].toString("hex");
+  // A proof that the value at `pointer` is in the answer: the value, where it sits, and the sibling hashes from it up
+  // to the root (RFC 9162, section 2.1.3.1). A value is proved, not an object or a list as a whole.
+  const prove = (pointer) => {
+    const index = values.findIndex(([p]) => p === pointer);
+    if (index < 0) {
+      const under = (prefix) => values.filter(([p]) => p.startsWith(`${prefix}/`)).slice(0, 3).map(([p]) => p);
+      const inside = under(pointer);
+      if (inside.length) throw new Error(`${pointer} holds more than one value: prove one of them, such as ${inside.join(" or ")}`);
+      // The values of the nearest object or list that is there, as examples.
+      let near = [];
+      for (let up = pointer; up && !near.length;) near = under((up = up.slice(0, Math.max(0, up.lastIndexOf("/")))));
+      throw new Error(`The answer has no value at ${JSON.stringify(pointer)}: give a JSON Pointer to one value${near.length ? `, such as ${near.join(" or ")}` : ""}`);
+    }
+    const path = [];
+    let i = index;
+    for (const level of tree.slice(0, -1)) {
+      if (i % 2) path.push(level[i - 1]);
+      else if (i + 1 < level.length) path.push(level[i + 1]);
+      i = Math.floor(i / 2);
+    }
+    return { pointer, value: values[index][1], index, values: values.length, path: path.map((h) => h.toString("hex")), root };
+  };
+  return { root, values: values.length, prove };
 }
 
-// A proof that the value at `pointer` is in the answer: the value, where it sits, and the sibling hashes from it up
-// to the root (RFC 9162, section 2.1.3.1). A value is proved, not an object or a list as a whole.
-export function proveValue(answer, pointer) {
-  const values = valuesOf(answer);
-  const index = values.findIndex(([p]) => p === pointer);
-  if (index < 0) {
-    const inside = values.filter(([p]) => p.startsWith(`${pointer}/`)).slice(0, 3).map(([p]) => p);
-    throw new Error(inside.length ? `${pointer} holds more than one value: prove one of them, such as ${inside.join(" or ")}` : `The answer has no value at ${JSON.stringify(pointer)}: give a JSON Pointer such as /0/result/name`);
-  }
-  const tree = levels(values);
-  const path = [];
-  let i = index;
-  for (const level of tree.slice(0, -1)) {
-    if (i % 2) path.push(level[i - 1]);
-    else if (i + 1 < level.length) path.push(level[i + 1]);
-    i = Math.floor(i / 2);
-  }
-  return { pointer, value: values[index][1], index, values: values.length, path: path.map((h) => h.toString("hex")), root: tree[tree.length - 1][0].toString("hex") };
+// The root of an answer's tree and how many values it holds.
+export function answerRoot(answer) {
+  const { root, values } = answerTree(answer);
+  return { values, root };
 }
+
+export const proveValue = (answer, pointer) => answerTree(answer).prove(pointer);
 
 // Checks a proof (RFC 9162, section 2.1.3.2): the value's leaf, where it sits and its path must lead to the root. A
 // path does not fix how many values the tree holds (a proof for 7 can pass as one for 8), so, as Certificate
