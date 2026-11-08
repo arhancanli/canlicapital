@@ -199,9 +199,11 @@ export function checkFacts(facts, { prior = [], taxonomy = "us-gaap", tolerance 
     earlier.set(key, [...(earlier.get(key) ?? []), q]);
   }
   for (const f of facts) {
-    // Not rates and percentages: an effective tax rate can be a thousand times last year's when pre-tax income is
-    // near zero. Counts are checked, since a count filed in thousands is a slip.
-    if (f.unit === "pure" && /Rate|Percent/.test(f.concept)) continue;
+    // Not tax rates and other percentages: an effective tax rate can be a thousand times last year's when pre-tax
+    // income is near zero. Exchange rates are checked, since a currency rarely moves a thousandfold between filings
+    // and a rate tagged with the wrong scale (7,100 yuan to the dollar) is a slip; so are counts, since a count filed
+    // in thousands is a slip.
+    if (f.unit === "pure" && /Rate|Percent/.test(f.concept) && !/ExchangeRate/.test(f.concept)) continue;
     const candidates = (earlier.get(`${f.concept}|${f.unit}|${isInstant(f.period)}`) ?? []).filter((q) => endOf(q.period) <= endOf(f.period) && alike(q, f));
     const same = candidates.find((q) => JSON.stringify(q.period) === JSON.stringify(f.period));
     const p = same ?? candidates.reduce((best, q) => (!best || endOf(q.period) > endOf(best.period) ? q : best), null);

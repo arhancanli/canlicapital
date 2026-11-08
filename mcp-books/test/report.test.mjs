@@ -121,10 +121,14 @@ test("a filing's minority interests are counted, one amount under two temporary-
   assert.deepEqual(over.map((f) => f.detail), ["Liabilities 1204000 plus temporary equity 51000 plus StockholdersEquity 954000 is not LiabilitiesAndStockholdersEquity 2158000 at 2025-12-31"]);
 });
 
-test("rates and percentages are not checked for scale; counts and amounts are, whatever their names", () => {
+test("tax rates and percentages are not checked for scale; exchange rates, counts and amounts are, whatever their names", () => {
   const scale = (concept, unit, before, now) => checkFacts([year(concept, unit, now, 2025)], { prior: [year(concept, unit, before, 2024)] }).findings.map((f) => f.rule);
   assert.deepEqual(scale("EffectiveIncomeTaxRateContinuingOperations", "pure", 0.0012, 1.25), [], "about 1,042 times, a real change");
   assert.deepEqual(scale("ConcentrationRiskPercentage1", "pure", 0.31, 310), []);
+  // A currency rarely moves a thousandfold between filings: a rate tagged with the wrong scale, either way, is a slip.
+  assert.deepEqual(scale("ForeignCurrencyExchangeRateTranslation1", "pure", 7.1, 7100), ["scale"], "7,100 yuan to the dollar");
+  assert.deepEqual(scale("ForeignCurrencyExchangeRateRemeasurement1", "pure", 1320, 1.32), ["scale"], "1.32 won to the dollar");
+  assert.deepEqual(scale("ForeignCurrencyExchangeRateTranslation1", "pure", 7.1, 7.3), [], "a real move");
   assert.deepEqual(scale("DebtSecuritiesAvailableForSaleUnrealizedLossPositionNumberOfPositions", "pure", 150000, 151), ["scale"], "a count filed in thousands");
   assert.deepEqual(scale("PublicUtilitiesApprovedRateIncreaseDecreaseAmount", "USD", 12000, 12000000), ["scale"], "an amount, though its name says Rate");
 });
