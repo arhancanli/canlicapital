@@ -1,0 +1,855 @@
+{
+ "model": "default_risk v1",
+ "data": {
+  "panel": "panel.mjs on the SEC companyfacts archive downloaded 2026-11-08",
+  "labels": "bankruptcy_8k.csv: Item 1.03 8-Ks, 2009 to 2026-11-07, from EDGAR full-text search"
+ },
+ "fixed_before_running": {
+  "features": [
+   "ni_ta",
+   "tl_ta",
+   "wc_ta",
+   "re_ta",
+   "cfo_ta",
+   "cash_ta",
+   "ebit_ta",
+   "sales_ta",
+   "int_ta",
+   "ltd_ta",
+   "cl_ca",
+   "chin",
+   "log_ta",
+   "neg_equity",
+   "two_losses"
+  ],
+  "l2_penalty": 1,
+  "test_years": [
+   2014,
+   2025
+  ],
+  "cutoff": "2025-11-07",
+  "resamples": 2000
+ },
+ "all_reports": {
+  "reports": 71130,
+  "companies": 11808,
+  "bankruptcies": 553,
+  "auc": {
+   "model": 0.7767
+  },
+  "on_reports_every_benchmark_can_score": {
+   "reports": 45510,
+   "bankruptcies": 440,
+   "auc": {
+    "model": 0.7923,
+    "altman_z_double_prime": 0.7243,
+    "ohlson_o": 0.7327,
+    "leverage_alone": 0.7268
+   },
+   "gain_over": {
+    "altman_z_double_prime": {
+     "mean": 0.068,
+     "ci95_by_company": [
+      0.0426,
+      0.0934
+     ]
+    },
+    "ohlson_o": {
+     "mean": 0.0596,
+     "ci95_by_company": [
+      0.0349,
+      0.0833
+     ]
+    },
+    "leverage_alone": {
+     "mean": 0.0654,
+     "ci95_by_company": [
+      0.0421,
+      0.0882
+     ]
+    }
+   }
+  },
+  "share_of_bankruptcies_in_riskiest_tenth": 0.4557,
+  "brier": {
+   "model": 0.0076,
+   "base_rate": 0.0077
+  },
+  "log_loss": {
+   "model": 0.042,
+   "base_rate": 0.0458
+  },
+  "by_year": [
+   [
+    2014,
+    6710,
+    43,
+    0.7848
+   ],
+   [
+    2015,
+    6704,
+    47,
+    0.8324
+   ],
+   [
+    2016,
+    6275,
+    75,
+    0.5973
+   ],
+   [
+    2017,
+    5916,
+    37,
+    0.775
+   ],
+   [
+    2018,
+    5760,
+    37,
+    0.8074
+   ],
+   [
+    2019,
+    5552,
+    54,
+    0.8459
+   ],
+   [
+    2020,
+    5363,
+    55,
+    0.8262
+   ],
+   [
+    2021,
+    5597,
+    12,
+    0.7639
+   ],
+   [
+    2022,
+    6327,
+    34,
+    0.7751
+   ],
+   [
+    2023,
+    6083,
+    79,
+    0.7559
+   ],
+   [
+    2024,
+    5671,
+    54,
+    0.8713
+   ],
+   [
+    2025,
+    5172,
+    26,
+    0.8433
+   ]
+  ],
+  "calibration_by_tenth": {
+   "columns": [
+    "tenth",
+    "reports",
+    "predicted",
+    "happened"
+   ],
+   "rows": [
+    [
+     1,
+     7113,
+     0.0002,
+     0.0037
+    ],
+    [
+     2,
+     7113,
+     0.0007,
+     0.0021
+    ],
+    [
+     3,
+     7113,
+     0.0011,
+     0.0017
+    ],
+    [
+     4,
+     7113,
+     0.0016,
+     0.0015
+    ],
+    [
+     5,
+     7113,
+     0.0022,
+     0.0018
+    ],
+    [
+     6,
+     7113,
+     0.003,
+     0.0035
+    ],
+    [
+     7,
+     7113,
+     0.0043,
+     0.0052
+    ],
+    [
+     8,
+     7113,
+     0.0069,
+     0.008
+    ],
+    [
+     9,
+     7113,
+     0.0124,
+     0.0148
+    ],
+    [
+     10,
+     7113,
+     0.0363,
+     0.0354
+    ]
+   ]
+  }
+ },
+ "assets_at_least_10m": {
+  "reports": 57782,
+  "companies": 9366,
+  "bankruptcies": 474,
+  "auc": {
+   "model": 0.8103
+  },
+  "on_reports_every_benchmark_can_score": {
+   "reports": 37247,
+   "bankruptcies": 388,
+   "auc": {
+    "model": 0.8055,
+    "altman_z_double_prime": 0.8174,
+    "ohlson_o": 0.8306,
+    "leverage_alone": 0.7939
+   },
+   "gain_over": {
+    "altman_z_double_prime": {
+     "mean": -0.0119,
+     "ci95_by_company": [
+      -0.0371,
+      0.0123
+     ]
+    },
+    "ohlson_o": {
+     "mean": -0.025,
+     "ci95_by_company": [
+      -0.0479,
+      -0.0019
+     ]
+    },
+    "leverage_alone": {
+     "mean": 0.0117,
+     "ci95_by_company": [
+      -0.0129,
+      0.035
+     ]
+    }
+   }
+  },
+  "share_of_bankruptcies_in_riskiest_tenth": 0.5042,
+  "brier": {
+   "model": 0.008,
+   "base_rate": 0.0081
+  },
+  "log_loss": {
+   "model": 0.0419,
+   "base_rate": 0.048
+  },
+  "by_year": [
+   [
+    2014,
+    4937,
+    36,
+    0.7924
+   ],
+   [
+    2015,
+    5029,
+    42,
+    0.8451
+   ],
+   [
+    2016,
+    4838,
+    52,
+    0.7579
+   ],
+   [
+    2017,
+    4594,
+    27,
+    0.816
+   ],
+   [
+    2018,
+    4572,
+    28,
+    0.8761
+   ],
+   [
+    2019,
+    4520,
+    45,
+    0.8517
+   ],
+   [
+    2020,
+    4464,
+    52,
+    0.8535
+   ],
+   [
+    2021,
+    4717,
+    12,
+    0.767
+   ],
+   [
+    2022,
+    5535,
+    33,
+    0.7732
+   ],
+   [
+    2023,
+    5268,
+    76,
+    0.752
+   ],
+   [
+    2024,
+    4855,
+    49,
+    0.8717
+   ],
+   [
+    2025,
+    4453,
+    22,
+    0.8666
+   ]
+  ],
+  "calibration_by_tenth": {
+   "columns": [
+    "tenth",
+    "reports",
+    "predicted",
+    "happened"
+   ],
+   "rows": [
+    [
+     1,
+     5778,
+     0.0003,
+     0.0017
+    ],
+    [
+     2,
+     5778,
+     0.0008,
+     0.0019
+    ],
+    [
+     3,
+     5778,
+     0.0012,
+     0.0017
+    ],
+    [
+     4,
+     5778,
+     0.0016,
+     0.0014
+    ],
+    [
+     5,
+     5779,
+     0.0022,
+     0.0017
+    ],
+    [
+     6,
+     5778,
+     0.0029,
+     0.0033
+    ],
+    [
+     7,
+     5778,
+     0.0041,
+     0.0062
+    ],
+    [
+     8,
+     5778,
+     0.0064,
+     0.0083
+    ],
+    [
+     9,
+     5778,
+     0.0116,
+     0.0151
+    ],
+    [
+     10,
+     5779,
+     0.037,
+     0.0407
+    ]
+   ]
+  }
+ },
+ "final_fit_years": {
+  "2014": {
+   "train_reports": 8992,
+   "train_bankruptcies": 44,
+   "intercept": -6.623284612067972,
+   "weights": {
+    "ni_ta": 0.2971,
+    "tl_ta": 0.378,
+    "wc_ta": -0.1064,
+    "re_ta": 0.2266,
+    "cfo_ta": 0.5964,
+    "cash_ta": -0.1397,
+    "ebit_ta": 0.449,
+    "sales_ta": -0.0132,
+    "int_ta": 0.1487,
+    "ltd_ta": -0.3524,
+    "cl_ca": -0.2799,
+    "chin": -0.3004,
+    "log_ta": 0.8869,
+    "neg_equity": 0.8666,
+    "two_losses": 1.1034,
+    "ni_ta_missing": 0.0372,
+    "tl_ta_missing": -0.1724,
+    "wc_ta_missing": -0.0112,
+    "re_ta_missing": -0.0746,
+    "cfo_ta_missing": 0.0511,
+    "cash_ta_missing": -0.4773,
+    "ebit_ta_missing": -0.0955,
+    "sales_ta_missing": 0.0377,
+    "int_ta_missing": -0.3572,
+    "ltd_ta_missing": -0.4725,
+    "cl_ca_missing": -0.0369,
+    "chin_missing": 0.2293,
+    "neg_equity_missing": -0.1724,
+    "two_losses_missing": 0.2416
+   }
+  },
+  "2015": {
+   "train_reports": 15576,
+   "train_bankruptcies": 72,
+   "intercept": -6.697509985728108,
+   "weights": {
+    "ni_ta": 0.5857,
+    "tl_ta": 0.0064,
+    "wc_ta": -0.0729,
+    "re_ta": 0.0661,
+    "cfo_ta": 0.488,
+    "cash_ta": -0.165,
+    "ebit_ta": 0.4484,
+    "sales_ta": -0.0331,
+    "int_ta": 0.2364,
+    "ltd_ta": -0.1154,
+    "cl_ca": 0.0497,
+    "chin": -0.3057,
+    "log_ta": 0.8739,
+    "neg_equity": 0.8282,
+    "two_losses": 1.094,
+    "ni_ta_missing": -0.0235,
+    "tl_ta_missing": -0.1878,
+    "wc_ta_missing": 0.0552,
+    "re_ta_missing": -0.2289,
+    "cfo_ta_missing": -0.0466,
+    "cash_ta_missing": -0.5298,
+    "ebit_ta_missing": 0.006,
+    "sales_ta_missing": 0.0375,
+    "int_ta_missing": -0.2218,
+    "ltd_ta_missing": -0.3159,
+    "cl_ca_missing": -0.0616,
+    "chin_missing": 0.2289,
+    "neg_equity_missing": -0.1878,
+    "two_losses_missing": 0.2601
+   }
+  },
+  "2016": {
+   "train_reports": 22286,
+   "train_bankruptcies": 115,
+   "intercept": -6.469813078831879,
+   "weights": {
+    "ni_ta": 0.5463,
+    "tl_ta": 0.0384,
+    "wc_ta": 0.0327,
+    "re_ta": 0.063,
+    "cfo_ta": 0.0969,
+    "cash_ta": -0.2457,
+    "ebit_ta": 0.1638,
+    "sales_ta": 0.0435,
+    "int_ta": 0.1236,
+    "ltd_ta": -0.0687,
+    "cl_ca": 0.0036,
+    "chin": -0.3062,
+    "log_ta": 0.8139,
+    "neg_equity": 0.5773,
+    "two_losses": 1.2319,
+    "ni_ta_missing": -0.1293,
+    "tl_ta_missing": -0.2318,
+    "wc_ta_missing": -0.0426,
+    "re_ta_missing": -0.131,
+    "cfo_ta_missing": -0.0671,
+    "cash_ta_missing": -0.5674,
+    "ebit_ta_missing": 0.1123,
+    "sales_ta_missing": -0.0916,
+    "int_ta_missing": -0.3426,
+    "ltd_ta_missing": -0.2034,
+    "cl_ca_missing": -0.1411,
+    "chin_missing": 0.2532,
+    "neg_equity_missing": -0.2318,
+    "two_losses_missing": 0.3255
+   }
+  },
+  "2017": {
+   "train_reports": 28990,
+   "train_bankruptcies": 162,
+   "intercept": -6.474620345052984,
+   "weights": {
+    "ni_ta": 0.7306,
+    "tl_ta": 0.091,
+    "wc_ta": 0.0686,
+    "re_ta": 0.1772,
+    "cfo_ta": 0.0716,
+    "cash_ta": -0.4054,
+    "ebit_ta": 0.0885,
+    "sales_ta": -0.0005,
+    "int_ta": 0.0902,
+    "ltd_ta": 0.0081,
+    "cl_ca": -0.0216,
+    "chin": -0.2777,
+    "log_ta": 0.7875,
+    "neg_equity": 0.5138,
+    "two_losses": 1.2032,
+    "ni_ta_missing": -0.1624,
+    "tl_ta_missing": -0.2516,
+    "wc_ta_missing": -0.0786,
+    "re_ta_missing": -0.1275,
+    "cfo_ta_missing": 0.0601,
+    "cash_ta_missing": -0.599,
+    "ebit_ta_missing": 0.103,
+    "sales_ta_missing": -0.0979,
+    "int_ta_missing": -0.4725,
+    "ltd_ta_missing": -0.1573,
+    "cl_ca_missing": -0.2124,
+    "chin_missing": 0.205,
+    "neg_equity_missing": -0.2516,
+    "two_losses_missing": 0.2841
+   }
+  },
+  "2018": {
+   "train_reports": 35265,
+   "train_bankruptcies": 237,
+   "intercept": -6.10104307040129,
+   "weights": {
+    "ni_ta": 0.5058,
+    "tl_ta": 0.0165,
+    "wc_ta": 0.043,
+    "re_ta": 0.3722,
+    "cfo_ta": 0.5809,
+    "cash_ta": -0.5058,
+    "ebit_ta": -0.1956,
+    "sales_ta": -0.0354,
+    "int_ta": 0.1528,
+    "ltd_ta": 0.1054,
+    "cl_ca": -0.0984,
+    "chin": -0.3261,
+    "log_ta": 0.6122,
+    "neg_equity": 0.4096,
+    "two_losses": 1.1043,
+    "ni_ta_missing": -0.1868,
+    "tl_ta_missing": 0.1379,
+    "wc_ta_missing": -0.1374,
+    "re_ta_missing": -0.0572,
+    "cfo_ta_missing": 0.0874,
+    "cash_ta_missing": -0.2013,
+    "ebit_ta_missing": 0.2148,
+    "sales_ta_missing": 0.0949,
+    "int_ta_missing": -0.1502,
+    "ltd_ta_missing": -0.1009,
+    "cl_ca_missing": -0.3993,
+    "chin_missing": 0.0482,
+    "neg_equity_missing": 0.1379,
+    "two_losses_missing": 0.2716
+   }
+  },
+  "2019": {
+   "train_reports": 41181,
+   "train_bankruptcies": 274,
+   "intercept": -5.956705413543673,
+   "weights": {
+    "ni_ta": 0.0088,
+    "tl_ta": 0.2155,
+    "wc_ta": 0.0459,
+    "re_ta": 0.0331,
+    "cfo_ta": 0.379,
+    "cash_ta": -0.4413,
+    "ebit_ta": 0.1385,
+    "sales_ta": 0.0082,
+    "int_ta": 0.0529,
+    "ltd_ta": 0.1115,
+    "cl_ca": -0.0853,
+    "chin": -0.2869,
+    "log_ta": 0.6534,
+    "neg_equity": 0.4292,
+    "two_losses": 1.0911,
+    "ni_ta_missing": -0.1677,
+    "tl_ta_missing": 0.1348,
+    "wc_ta_missing": -0.0749,
+    "re_ta_missing": -0.0623,
+    "cfo_ta_missing": 0.0793,
+    "cash_ta_missing": -0.2162,
+    "ebit_ta_missing": 0.1755,
+    "sales_ta_missing": 0.0941,
+    "int_ta_missing": -0.1782,
+    "ltd_ta_missing": -0.0987,
+    "cl_ca_missing": -0.4146,
+    "chin_missing": 0.0389,
+    "neg_equity_missing": 0.1348,
+    "two_losses_missing": 0.258
+   }
+  },
+  "2020": {
+   "train_reports": 46941,
+   "train_bankruptcies": 311,
+   "intercept": -5.933448431008519,
+   "weights": {
+    "ni_ta": -0.0066,
+    "tl_ta": 0.1115,
+    "wc_ta": 0.0078,
+    "re_ta": 0.0044,
+    "cfo_ta": 0.261,
+    "cash_ta": -0.4177,
+    "ebit_ta": 0.0781,
+    "sales_ta": -0.0012,
+    "int_ta": 0.0466,
+    "ltd_ta": 0.0824,
+    "cl_ca": -0.108,
+    "chin": -0.2084,
+    "log_ta": 0.6594,
+    "neg_equity": 0.473,
+    "two_losses": 1.1086,
+    "ni_ta_missing": -0.1181,
+    "tl_ta_missing": 0.1233,
+    "wc_ta_missing": -0.0546,
+    "re_ta_missing": -0.0381,
+    "cfo_ta_missing": 0.0883,
+    "cash_ta_missing": -0.2254,
+    "ebit_ta_missing": 0.1647,
+    "sales_ta_missing": 0.0567,
+    "int_ta_missing": -0.1457,
+    "ltd_ta_missing": -0.1316,
+    "cl_ca_missing": -0.4296,
+    "chin_missing": 0.0353,
+    "neg_equity_missing": 0.1233,
+    "two_losses_missing": 0.2386
+   }
+  },
+  "2021": {
+   "train_reports": 52493,
+   "train_bankruptcies": 365,
+   "intercept": -5.906313008990491,
+   "weights": {
+    "ni_ta": 0.0113,
+    "tl_ta": 0.097,
+    "wc_ta": 0.0141,
+    "re_ta": 0.0072,
+    "cfo_ta": 0.2182,
+    "cash_ta": -0.4212,
+    "ebit_ta": 0.0804,
+    "sales_ta": 0.0285,
+    "int_ta": 0.0358,
+    "ltd_ta": 0.0697,
+    "cl_ca": -0.1051,
+    "chin": -0.2338,
+    "log_ta": 0.6555,
+    "neg_equity": 0.4851,
+    "two_losses": 1.1255,
+    "ni_ta_missing": -0.0814,
+    "tl_ta_missing": 0.1151,
+    "wc_ta_missing": -0.0552,
+    "re_ta_missing": -0.0344,
+    "cfo_ta_missing": 0.1051,
+    "cash_ta_missing": -0.2354,
+    "ebit_ta_missing": 0.1128,
+    "sales_ta_missing": 0.0228,
+    "int_ta_missing": -0.1098,
+    "ltd_ta_missing": -0.1773,
+    "cl_ca_missing": -0.4189,
+    "chin_missing": 0.0469,
+    "neg_equity_missing": 0.1151,
+    "two_losses_missing": 0.2404
+   }
+  },
+  "2022": {
+   "train_reports": 57856,
+   "train_bankruptcies": 420,
+   "intercept": -5.851663771447686,
+   "weights": {
+    "ni_ta": 0.0801,
+    "tl_ta": 0.0624,
+    "wc_ta": -0.1192,
+    "re_ta": 0.0372,
+    "cfo_ta": 0.1602,
+    "cash_ta": -0.4909,
+    "ebit_ta": 0.0163,
+    "sales_ta": 0.0094,
+    "int_ta": 0.0185,
+    "ltd_ta": 0.0757,
+    "cl_ca": -0.1232,
+    "chin": -0.3074,
+    "log_ta": 0.7052,
+    "neg_equity": 0.4841,
+    "two_losses": 1.0974,
+    "ni_ta_missing": -0.0964,
+    "tl_ta_missing": 0.1055,
+    "wc_ta_missing": -0.0315,
+    "re_ta_missing": -0.0308,
+    "cfo_ta_missing": 0.0931,
+    "cash_ta_missing": -0.177,
+    "ebit_ta_missing": 0.1172,
+    "sales_ta_missing": -0.0083,
+    "int_ta_missing": -0.0977,
+    "ltd_ta_missing": -0.1756,
+    "cl_ca_missing": -0.4321,
+    "chin_missing": 0.0432,
+    "neg_equity_missing": 0.1055,
+    "two_losses_missing": 0.251
+   }
+  },
+  "2023": {
+   "train_reports": 63453,
+   "train_bankruptcies": 432,
+   "intercept": -5.894373614552808,
+   "weights": {
+    "ni_ta": 0.1009,
+    "tl_ta": 0.0483,
+    "wc_ta": -0.1307,
+    "re_ta": 0.0569,
+    "cfo_ta": 0.1355,
+    "cash_ta": -0.5451,
+    "ebit_ta": -0.0067,
+    "sales_ta": 0.0153,
+    "int_ta": 0.0122,
+    "ltd_ta": 0.0829,
+    "cl_ca": -0.1369,
+    "chin": -0.2899,
+    "log_ta": 0.6672,
+    "neg_equity": 0.4824,
+    "two_losses": 1.0875,
+    "ni_ta_missing": -0.1112,
+    "tl_ta_missing": 0.1051,
+    "wc_ta_missing": 0.0238,
+    "re_ta_missing": -0.0343,
+    "cfo_ta_missing": 0.0889,
+    "cash_ta_missing": -0.1799,
+    "ebit_ta_missing": 0.1299,
+    "sales_ta_missing": 0.0084,
+    "int_ta_missing": -0.1217,
+    "ltd_ta_missing": -0.1576,
+    "cl_ca_missing": -0.4318,
+    "chin_missing": 0.0368,
+    "neg_equity_missing": 0.1051,
+    "two_losses_missing": 0.2544
+   }
+  },
+  "2024": {
+   "train_reports": 69780,
+   "train_bankruptcies": 466,
+   "intercept": -5.88165823366515,
+   "weights": {
+    "ni_ta": 0.1401,
+    "tl_ta": 0.0399,
+    "wc_ta": -0.1233,
+    "re_ta": 0.0649,
+    "cfo_ta": 0.0937,
+    "cash_ta": -0.4823,
+    "ebit_ta": -0.0182,
+    "sales_ta": 0.0392,
+    "int_ta": 0.0005,
+    "ltd_ta": 0.0898,
+    "cl_ca": -0.1417,
+    "chin": -0.3166,
+    "log_ta": 0.633,
+    "neg_equity": 0.4638,
+    "two_losses": 1.077,
+    "ni_ta_missing": -0.1138,
+    "tl_ta_missing": 0.0986,
+    "wc_ta_missing": 0.0179,
+    "re_ta_missing": -0.0058,
+    "cfo_ta_missing": 0.0966,
+    "cash_ta_missing": -0.1798,
+    "ebit_ta_missing": 0.1397,
+    "sales_ta_missing": 0.0125,
+    "int_ta_missing": -0.1776,
+    "ltd_ta_missing": -0.1429,
+    "cl_ca_missing": -0.4274,
+    "chin_missing": 0.0462,
+    "neg_equity_missing": 0.0986,
+    "two_losses_missing": 0.2668
+   }
+  },
+  "2025": {
+   "train_reports": 75863,
+   "train_bankruptcies": 545,
+   "intercept": -5.766856733622656,
+   "weights": {
+    "ni_ta": 0.1899,
+    "tl_ta": -0.0292,
+    "wc_ta": -0.1391,
+    "re_ta": 0.0798,
+    "cfo_ta": 0.0184,
+    "cash_ta": -0.3774,
+    "ebit_ta": -0.0332,
+    "sales_ta": 0.0525,
+    "int_ta": -0.0109,
+    "ltd_ta": 0.0727,
+    "cl_ca": -0.1232,
+    "chin": -0.3166,
+    "log_ta": 0.6512,
+    "neg_equity": 0.4758,
+    "two_losses": 1.0893,
+    "ni_ta_missing": -0.1169,
+    "tl_ta_missing": 0.0917,
+    "wc_ta_missing": 0.0385,
+    "re_ta_missing": 0.0049,
+    "cfo_ta_missing": 0.095,
+    "cash_ta_missing": -0.1881,
+    "ebit_ta_missing": 0.0879,
+    "sales_ta_missing": -0.022,
+    "int_ta_missing": -0.1401,
+    "ltd_ta_missing": -0.1377,
+    "cl_ca_missing": -0.389,
+    "chin_missing": 0.0594,
+    "neg_equity_missing": 0.0917,
+    "two_losses_missing": 0.2985
+   }
+  }
+ }
+}
