@@ -34,3 +34,11 @@ export function execSink(command, spawnImpl = spawn) {
 export function installPackage(dir, spec) {
   return spawnSync("npm", ["install", "--prefix", dir, "--no-audit", "--no-fund", "--silent", spec], { stdio: "inherit", shell: process.platform === "win32" }).status ?? 1;
 }
+
+// canli-mcp lab build --shards n: this same command, once per shard, at once; resolves to the first non-zero exit.
+export function runShards(entry, n, extra = []) {
+  return Promise.all(Array.from({ length: n }, (_, i) => new Promise((done) => {
+    const child = spawn(process.execPath, [entry, "lab", "shard", String(i), String(n), ...extra], { stdio: ["ignore", "inherit", "inherit"] });
+    child.on("exit", (code) => done(code ?? 1));
+  }))).then((codes) => codes.find((c) => c !== 0) ?? 0);
+}
