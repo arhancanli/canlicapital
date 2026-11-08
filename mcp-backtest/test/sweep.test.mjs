@@ -1,13 +1,15 @@
 // breadth_sweep: the grid's combinations, the luck benchmark, every variant's Sharpe for a server that counts each
 // try, a parallel run, and shards that list their own variants as they run and merge back into the same result while
-// a shard of other data, a gap or a duplicate is refused.
+// a shard of other data, a gap or a duplicate is refused; each variant's daily book returns handed over beside the
+// answer, never in it or in a file.
 import assert from "node:assert/strict";
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
 
-import { breadthSweep, combinations, expectedMaxSharpe, summarize } from "../src/sweep.mjs";
+import { runBreadth } from "../src/breadth.mjs";
+import { breadthSweep, combinations, expectedMaxSharpe, loadInputs, summarize, TRIAL_RETURNS } from "../src/sweep.mjs";
 
 function panel(path, seed0 = 7) {
   let seed = seed0; const rnd = () => { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648; };
@@ -57,6 +59,15 @@ test("a parallel sweep, and its shards merged, give the same ranking; each shard
     assert.deepEqual(full.every_trial.sharpes, full.rows.map((r) => r[8]), "every variant, best first");
     assert.deepEqual(full.every_trial.k, full.rows.map((r) => r[0]));
     assert.ok(Number.isInteger(full.every_trial.periods) && full.every_trial.periods >= 60, "the days before the split");
+    // Each variant's daily book returns beside the answer, in every_trial's order: its own book over every date of the
+    // file as its settings give it, a flat day as 0.
+    const handed = full[TRIAL_RETURNS], base = loadInputs({ prices_file: prices }), combos = combinations(args.grid);
+    assert.equal(handed.length, full.every_trial.k.length);
+    for (const [i, k] of full.every_trial.k.entries()) {
+      const book = runBreadth({ ...base, smoothing: combos[k].smoothing, costBps: combos[k].cost_bps, splitDate: args.split_date }).series.book;
+      assert.deepEqual(handed[i], Float64Array.from(book, (v) => (Number.isNaN(v) ? 0 : v)), `variant ${k}`);
+    }
+    assert.ok(handed.every((x) => x.length === 700 && x.every(Number.isFinite) && x.some((v) => v !== 0)), "every date of the file");
     const s0 = await breadthSweep({}, { ...args, shard: { index: 0, of: 2 }, out_file: join(dir, "s0.json") });
     const s1 = await breadthSweep({}, { ...args, shard: { index: 1, of: 2 }, out_file: join(dir, "s1.json") });
     assert.equal(s0.ran + s1.ran, 4);
@@ -72,9 +83,15 @@ test("a parallel sweep, and its shards merged, give the same ranking; each shard
       assert.deepEqual(s.every_trial.sharpes, [...s.every_trial.sharpes].sort((x, y) => y - x), "best first");
       assert.equal(s.every_trial.periods, full.every_trial.periods);
     }
+    // A shard hands over its own variants' returns, the whole sweep's; neither its results nor its file carry them.
+    const at = new Map(full.every_trial.k.map((k, i) => [k, handed[i]]));
+    for (const s of [s0, s1, inline]) assert.deepEqual(s[TRIAL_RETURNS], s.every_trial.k.map((k) => at.get(k)));
+    assert.ok(inline.results.every((r) => !("daily" in r)), "not in the answer's results");
+    assert.ok(JSON.parse(readFileSync(join(dir, "s0.json"), "utf8")).results.every((r) => !("daily" in r)), "nor in the shard file");
     const merged = await breadthSweep({}, { merge_files: [join(dir, "s0.json"), join(dir, "s1.json")] });
     assert.deepEqual(merged.rows, full.rows, "the shards add up to the full sweep");
     assert.deepEqual(merged.every_trial, full.every_trial);
+    assert.equal(merged[TRIAL_RETURNS], undefined, "a merge has none: a session pools each shard's as it runs");
     await assert.rejects(breadthSweep({}, { merge_files: [join(dir, "s0.json"), join(dir, "s0.json")] }), /appears in two shards/);
     await breadthSweep({}, { ...args, prices_file: other, shard: { index: 1, of: 2 }, out_file: join(dir, "x1.json") });
     await assert.rejects(breadthSweep({}, { merge_files: [join(dir, "s0.json"), join(dir, "x1.json")] }), /not a shard of the same sweep/);

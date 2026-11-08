@@ -40,7 +40,7 @@ import { governance, publicKeys, verifyAudit } from "./governance.mjs";
 import { watchFilings } from "./watch.mjs";
 import { createTimeMachine } from "./timemachine.mjs";
 import { signedTrialCount, TRIALS_TOOL } from "./trials.mjs";
-import { createLuck, shownTrials } from "./luck.mjs";
+import { createLuck, shownTrials, TRIAL_RETURNS } from "./luck.mjs";
 import { createRedTeam, RED_TEAM_TOOL, runRedTeam } from "./redteam.mjs";
 import { runZooSearch, runZooStats, ZOO_TOOLS } from "./zoo.mjs";
 import { LAKE_TOOLS, runLake } from "./lake.mjs";
@@ -489,6 +489,8 @@ async function execute(tool, name, args, { digits }, files) {
   const out = await shared(tool, name, parsed.data);
   const bad = nonFinitePaths(out);
   const result = digits ? roundNumbers(out, digits) : out;
+  // roundNumbers rebuilds the tree, which leaves out symbol keys: a pack's variant returns go on to luck as they were.
+  if (result !== out && out?.[TRIAL_RETURNS] && result && typeof result === "object") result[TRIAL_RETURNS] = out[TRIAL_RETURNS];
   if (!bad.length || !result || typeof result !== "object" || Array.isArray(result)) return result;
   return { ...result, non_finite_values: { count: bad.length, paths: bad.slice(0, 8), note: "These numbers are not finite (an overflow, or a division by zero in the inputs) and print as null." } };
 }
@@ -755,7 +757,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     // Each strategy result says what is left after luck across everything tried so far (luck.mjs).
     done.forEach((d, i) => {
       if (d.result === undefined || SELF[d.name]) return;
-      const note = luck.record(d.name, calls[i]?.arguments, d.result);
+      const note = luck.record(d.name, calls[i]?.arguments, d.result, calls[i]?.ran ?? calls[i]?.arguments);
       if (note) d.result = { ...d.result, luck: note };
     });
     // Text from outside that speaks to an AI is marked where it is, and kept as the source gave it (injection.mjs).
