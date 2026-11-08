@@ -1,0 +1,189 @@
+{
+ "schema": "canli.note-data.default-risk-cases.v1",
+ "run": "2026-11-08",
+ "tool": "canli-markets-mcp default_risk (model default_risk v1), as_of set to a day before each bankruptcy 8-K",
+ "caveat": "In sample: the final model was fitted on reports filed up to 2025-11-07, which include these four companies' last reports and their bankruptcies. These runs show what the tool answers; the out-of-sample evidence is the walk-forward test in config/research/default-risk-v1/validation.json.",
+ "labels": "config/research/default-risk-v1/bankruptcy_8k.csv",
+ "cases": [
+  {
+   "case": "WeWork",
+   "cik": "1813756",
+   "as_of": "2023-10-31",
+   "bankruptcy_8k": {
+    "filed": "2023-11-07",
+    "accession": "0001193125-23-271902"
+   },
+   "company": {
+    "cik": 1813756,
+    "name": "WEWORK INC.",
+    "ticker": null
+   },
+   "report": {
+    "form": "10-K",
+    "accession": "0001813756-23-000016",
+    "filed": "2023-03-29",
+    "fiscal_year_end": "2022-12-31",
+    "url": "https://www.sec.gov/Archives/edgar/data/1813756/000181375623000016/"
+   },
+   "chance_of_bankruptcy_filing_within_a_year": 0.0908,
+   "riskier_than": {
+    "share": 0.99,
+    "of": "the 5433 annual reports (10-K) filed in 2025"
+   },
+   "cross_checks": {
+    "ohlson_o": {
+     "score": 0.9642,
+     "meaning": "Ohlson (1980), published weights; higher is riskier.",
+     "auc_in_validation": {
+      "all_reports": 0.7327,
+      "assets_at_least_10m": 0.8306
+     }
+    },
+    "altman_z_double_prime": {
+     "score": -4.2975,
+     "meaning": "Altman Z'' (1995, book equity); lower is riskier, under 1.1 is his distress zone.",
+     "auc_in_validation": {
+      "all_reports": 0.7243,
+      "assets_at_least_10m": 0.8174
+     }
+    }
+   },
+   "model": "default_risk v1"
+  },
+  {
+   "case": "Rite Aid",
+   "cik": "84129",
+   "as_of": "2023-09-30",
+   "bankruptcy_8k": {
+    "filed": "2023-10-16",
+    "accession": "0001104659-23-109413"
+   },
+   "company": {
+    "cik": 84129,
+    "name": "Rite Aid Corporation",
+    "ticker": null
+   },
+   "report": {
+    "form": "10-K",
+    "accession": "0001558370-23-007488",
+    "filed": "2023-05-01",
+    "fiscal_year_end": "2023-03-04",
+    "url": "https://www.sec.gov/Archives/edgar/data/84129/000155837023007488/"
+   },
+   "chance_of_bankruptcy_filing_within_a_year": 0.1658,
+   "riskier_than": {
+    "share": 0.99,
+    "of": "the 5433 annual reports (10-K) filed in 2025"
+   },
+   "cross_checks": {
+    "ohlson_o": {
+     "score": 0.4431,
+     "meaning": "Ohlson (1980), published weights; higher is riskier.",
+     "auc_in_validation": {
+      "all_reports": 0.7327,
+      "assets_at_least_10m": 0.8306
+     }
+    },
+    "altman_z_double_prime": {
+     "score": null,
+     "meaning": "Altman Z'' (1995, book equity); lower is riskier, under 1.1 is his distress zone.",
+     "auc_in_validation": {
+      "all_reports": 0.7243,
+      "assets_at_least_10m": 0.8174
+     }
+    }
+   },
+   "model": "default_risk v1"
+  },
+  {
+   "case": "Bed Bath & Beyond",
+   "cik": "886158",
+   "as_of": "2023-03-31",
+   "bankruptcy_8k": {
+    "filed": "2023-04-24",
+    "accession": "0001193125-23-111754"
+   },
+   "company": {
+    "cik": 886158,
+    "name": "20230930-DK-BUTTERFLY-1, INC.",
+    "ticker": null
+   },
+   "report": {
+    "form": "10-K",
+    "accession": "0000886158-22-000047",
+    "filed": "2022-04-21",
+    "fiscal_year_end": "2022-02-26",
+    "url": "https://www.sec.gov/Archives/edgar/data/886158/000088615822000047/"
+   },
+   "chance_of_bankruptcy_filing_within_a_year": 0.0427,
+   "riskier_than": {
+    "share": 0.97,
+    "of": "the 5433 annual reports (10-K) filed in 2025"
+   },
+   "cross_checks": {
+    "ohlson_o": {
+     "score": 1.8512,
+     "meaning": "Ohlson (1980), published weights; higher is riskier.",
+     "auc_in_validation": {
+      "all_reports": 0.7327,
+      "assets_at_least_10m": 0.8306
+     }
+    },
+    "altman_z_double_prime": {
+     "score": 6.0137,
+     "meaning": "Altman Z'' (1995, book equity); lower is riskier, under 1.1 is his distress zone.",
+     "auc_in_validation": {
+      "all_reports": 0.7243,
+      "assets_at_least_10m": 0.8174
+     }
+    }
+   },
+   "model": "default_risk v1"
+  },
+  {
+   "case": "Spirit Airlines",
+   "cik": "1498710",
+   "as_of": "2024-10-31",
+   "bankruptcy_8k": {
+    "filed": "2024-11-18",
+    "accession": "0000950103-24-016405"
+   },
+   "company": {
+    "cik": 1498710,
+    "name": "Spirit Aviation Holdings, Inc.",
+    "ticker": null
+   },
+   "report": {
+    "form": "10-K",
+    "accession": "0001498710-24-000117",
+    "filed": "2024-02-09",
+    "fiscal_year_end": "2023-12-31",
+    "url": "https://www.sec.gov/Archives/edgar/data/1498710/000149871024000117/"
+   },
+   "chance_of_bankruptcy_filing_within_a_year": 0.0302,
+   "riskier_than": {
+    "share": 0.94,
+    "of": "the 5433 annual reports (10-K) filed in 2025"
+   },
+   "cross_checks": {
+    "ohlson_o": {
+     "score": 0.764,
+     "meaning": "Ohlson (1980), published weights; higher is riskier.",
+     "auc_in_validation": {
+      "all_reports": 0.7327,
+      "assets_at_least_10m": 0.8306
+     }
+    },
+    "altman_z_double_prime": {
+     "score": -0.3014,
+     "meaning": "Altman Z'' (1995, book equity); lower is riskier, under 1.1 is his distress zone.",
+     "auc_in_validation": {
+      "all_reports": 0.7243,
+      "assets_at_least_10m": 0.8174
+     }
+    }
+   },
+   "model": "default_risk v1"
+  }
+ ]
+}
