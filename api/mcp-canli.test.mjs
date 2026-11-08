@@ -68,6 +68,11 @@ test("a computation runs; paper trading, prices and Yahoo's data stay with the l
     assert.equal(snapshot.body.result.isError, true);
     assert.match(text(snapshot), /Yahoo Finance's data is off on this server/, "no request to Yahoo's quote summary is made");
     assert.match(HOSTED_NOTE, /Yahoo's data/);
+    // The Lab is built on the user's machine: the hosted server refuses its tools and its note sends people there.
+    const lab = await call(url, "lab_status", {});
+    assert.equal(lab.body.result.isError, true);
+    assert.match(text(lab), /local|npx/i);
+    assert.match(HOSTED_NOTE, /the Lab of a million strategies, the data lake and the Null Zoo need the local server/);
   });
 });
 
