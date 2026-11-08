@@ -44,6 +44,7 @@ import { createLuck, shownTrials } from "./luck.mjs";
 import { createRedTeam, RED_TEAM_TOOL, runRedTeam } from "./redteam.mjs";
 import { runZooSearch, runZooStats, ZOO_TOOLS } from "./zoo.mjs";
 import { LAKE_TOOLS, runLake } from "./lake.mjs";
+import { TRACK_TOOLS, trackCommit, trackScore } from "./track.mjs";
 import { createVault, HOLDOUT_TOOLS } from "./holdout.mjs";
 import { createRegistry, PREREG_TOOL } from "./prereg.mjs";
 import { CAUSES_TOOL, runCauses } from "./causes.mjs";
@@ -72,7 +73,7 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL, EXPORT_TOOL, ...COMPARE_TOOLS, FISCAL_TOOL, RED_TEAM_TOOL, ...ZOO_TOOLS, ...LAKE_TOOLS];
+const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL, EXPORT_TOOL, ...COMPARE_TOOLS, FISCAL_TOOL, RED_TEAM_TOOL, ...ZOO_TOOLS, ...LAKE_TOOLS, ...TRACK_TOOLS];
 export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
@@ -536,6 +537,10 @@ export function selfTools(packs, gov, keeper, readOnly = false, vault = null, pr
   const zooOf = async (name) => { allowed(name); const z = readOnly ? null : await session.zoo?.(); if (!z) throw new Error(readOnly ? "The Null Zoo is kept on your own machine. Run it locally: npx -y canli-mcp" : "The Null Zoo is off on this server (CANLI_NULL_ZOO=off)."); return z; };
   tools.zoo_search = async (args) => runZooSearch(await zooOf("zoo_search"), args);
   tools.zoo_stats = async () => runZooStats(await zooOf("zoo_stats"));
+  // A track record committed before each day and scored on public prices (track.mjs); files on this machine.
+  const local = (name) => { allowed(name); if (readOnly) throw new Error(`${name} keeps files on your own machine. Run it locally: npx -y canli-mcp`); };
+  tools.track_commit = (args) => { local("track_commit"); return trackCommit(args); };
+  tools.track_score = (args) => { local("track_score"); return trackScore(args); };
   // The data lake on this machine (local/lake.mjs): DuckDB over Parquet, reaching only the lake folder.
   for (const { name } of LAKE_TOOLS) tools[name] = async (args) => { allowed(name); if (readOnly || !session.lake) throw new Error("The data lake is kept on your own machine. Run it locally: npx -y canli-mcp"); return runLake({ call: desk.call, at, lake: session.lake }, name, args); };
   const keptOrThrow = (ref) => { if (!keeper.has(ref)) throw new Error(`${ref} is not kept; refs name earlier results (the last ${KEEP_COUNT} are kept).`); return keeper.get(ref); };
