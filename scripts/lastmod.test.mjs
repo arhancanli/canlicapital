@@ -21,7 +21,7 @@ test("a page is dated by its own sources: shared markup does not re-date it, its
   try {
     for (const files of Object.values(PAGE_SOURCES)) {
       // The shell and design files date no page (the contributors page's own config still dates it).
-      for (const shared of SHARED_PAGE_SOURCES.filter((f) => /^(css|js|public)\/|product-shell|build-site-design/.test(f))) assert.ok(!files.includes(shared), `${shared} is not a page's date source`);
+      for (const shared of SHARED_PAGE_SOURCES.filter((f) => /^(?:(?:css|js|public)\/.+|scripts\/(?:product-shell|build-site-design)\.mjs)$/.test(f))) assert.ok(!files.includes(shared), `${shared} is not a page's date source`);
     }
     write("scripts/build-verify.mjs", "// original generator\n");
     write("public/glassbox/record.json", '{"generated_at":"2026-09-06T00:00:00Z","value":1}');
