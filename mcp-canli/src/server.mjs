@@ -44,6 +44,7 @@ import { createLuck, shownTrials } from "./luck.mjs";
 import { createVault, HOLDOUT_TOOLS } from "./holdout.mjs";
 import { createRegistry, PREREG_TOOL } from "./prereg.mjs";
 import { CAUSES_TOOL, runCauses } from "./causes.mjs";
+import { answerRoot } from "./answer-tree.mjs";
 import { RECEIPT_CHECK_TOOL, runReceiptCheck } from "./receipt-check.mjs";
 import { runShares, SHARES_TOOL } from "./shares.mjs";
 import { RED_FLAGS_TOOL, runRedFlags } from "./redflags.mjs";
@@ -744,11 +745,16 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
       d.result = Object.fromEntries(paths.map((p) => [p, at(full, p) ?? null]));
       if (paths.some((p) => at(full, p) === undefined)) d.result.available_fields = Object.entries(full).flatMap(([k, v]) => (v && typeof v === "object" && !Array.isArray(v) ? Object.keys(v).slice(0, 12).map((x) => `${k}.${x}`) : [k])).slice(0, 60);
     }
-    const hashes = { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(done.map(({ ref, ...d }) => d)) };
+    const output = done.map(({ ref, ...d }) => d);
+    const hashes = { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(output) };
+    // Where the server signs its receipts, the receipt also carries the root of a Merkle tree over the output's values
+    // (answer-tree.mjs), so one value can later be proved with a short path instead of the whole output. A local
+    // receipt, unsigned, proves nothing to anyone else, so it is spared the hashing (about 1.6 µs a value).
+    const tree = receipts ? answerRoot(output) : null;
     // Every answer's receipt goes to the client in _meta, with the sources the full results were read from.
     const parents = builtFrom(refsRead(calls), keeper);
     const quiet = calls.every((c) => (SELF[c.name] ? ["find_tool", "describe_tool", "show_result"].includes(c.name) : sendsNothing(BY_NAME.get(c.name)?.pack)));
-    const kept = signedBy(receipts, { ...hashes, sources, at: new Date().toISOString(), ...(quiet ? { network: "none: every call ran where fetch is refused" } : {}), ...(parents.length ? { from: parents } : {}), ...(registered.length ? { after: registered } : {}) });
+    const kept = signedBy(receipts, { ...hashes, ...(tree ? { output_root: tree.root, output_values: tree.values } : {}), sources, at: new Date().toISOString(), ...(quiet ? { network: "none: every call ran where fetch is refused" } : {}), ...(parents.length ? { from: parents } : {}), ...(registered.length ? { after: registered } : {}) });
     // receipt: true puts the receipt in the answer, with the documents it names, for receipt_check. Where the server
     // signs its receipts it is the whole signed one, since a model rarely sees _meta.
     const receipt = a.receipt ? (receipts ? kept : { ...hashes, sources }) : undefined;

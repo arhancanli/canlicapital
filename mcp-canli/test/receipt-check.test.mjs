@@ -1,12 +1,13 @@
 // receipt_check: a receipt's documents and those of the receipts it was built from, once each, read again by the
 // markets pack's source_check; a receipt that names no documents says nothing can have changed under it.
 import assert from "node:assert/strict";
-import { generateKeyPairSync, sign } from "node:crypto";
+import { createHash, generateKeyPairSync, sign } from "node:crypto";
 import test from "node:test";
 
 import { keyIdFor } from "canli-validation-mcp/src/local/js/receipt-statement.js";
 import { canonicalJson } from "canli-validation-mcp/src/local/scripts/canonical-json.mjs";
 
+import { answerRoot, checkValue, proveValue, valuesOf } from "../src/answer-tree.mjs";
 import { ANSWER_SIGNATURE_SCHEMA, checkAnswerSignature, documentsOf, receiptCheckInput, runReceiptCheck } from "../src/receipt-check.mjs";
 import { RECEIPT_KEY, registerAll } from "../src/server.mjs";
 
@@ -97,9 +98,22 @@ test("a server that signs its receipts puts the whole signed receipt in the answ
   const read = JSON.parse(signing.content[0].text).receipt;
   assert.deepEqual(read, meta, "and it is in the text the model reads");
   assert.equal(checkAnswerSignature(read, [key.published]).valid, true);
+  // The signed receipt carries the root of the tree over the output's values. With digits the answer shows the output
+  // as hashed (the same bytes as output_sha256), so the root rebuilt from it is the receipt's, and one value proved
+  // from it checks against the receipt.
+  const exact = await handlers({ readOnly: true, receipts: { endpoint: "example.org/mcp", sign: (receipt) => signedWith(key, receipt).signature } }).run_tool({ ...call, digits: 10 });
+  const head = exact._meta[RECEIPT_KEY];
+  const { receipt: _r, ref: _ref, ...result } = exact.structuredContent;
+  const output = [{ name: call.name, result }];
+  assert.equal(createHash("sha256").update(JSON.stringify(output)).digest("hex"), head.output_sha256, "the output as hashed");
+  assert.deepEqual({ root: head.output_root, values: head.output_values }, answerRoot(output));
+  const [pointer] = valuesOf(output).find(([p, v]) => p.startsWith("/0/result/") && typeof v === "number");
+  assert.equal(checkValue(proveValue(output, pointer), { root: head.output_root, values: head.output_values }).ok, true);
+  assert.equal(checkAnswerSignature(head, [key.published]).valid, true);
+  assert.equal(checkAnswerSignature({ ...head, output_root: "0".repeat(64) }, [key.published]).valid, false, "the root is under the signature");
   // A server that signs nothing keeps the short receipt in the answer, and its _meta receipt names no endpoint.
   const plain = await handlers({ readOnly: true }).run_tool(call);
   assert.deepEqual(Object.keys(plain.structuredContent.receipt).sort(), ["input_sha256", "output_sha256", "packs", "server", "sources"]);
-  assert.deepEqual([plain._meta[RECEIPT_KEY].endpoint, plain._meta[RECEIPT_KEY].signature], [undefined, undefined]);
+  assert.deepEqual([plain._meta[RECEIPT_KEY].endpoint, plain._meta[RECEIPT_KEY].signature, plain._meta[RECEIPT_KEY].output_root], [undefined, undefined, undefined]);
   assert.equal(plain._meta[RECEIPT_KEY].output_sha256, meta.output_sha256, "signing changes nothing that was answered");
 });
