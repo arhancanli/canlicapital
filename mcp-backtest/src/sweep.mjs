@@ -14,7 +14,7 @@ import { availableParallelism } from "node:os";
 import { Worker } from "node:worker_threads";
 import { z } from "zod";
 
-import { readPanel } from "./panel-io.mjs";
+import { readPanel, readPanelDates } from "./panel-io.mjs";
 
 const filePath = z.string().min(1).max(1000);
 export const sweepInput = z.object({
@@ -105,7 +105,10 @@ const DAY_YEAR = 252; // breadth books are daily (breadth.mjs)
 // warm-ups line up), in every_trial's order. The key is canli-quant-mcp's: JSON leaves it out, so the answer, a shard
 // file and out_file never carry them. With split_date too, since the table shows every variant after the split.
 export const TRIAL_RETURNS = Symbol.for("canli.trial_returns");
-const handOver = (daily, every) => ({ [TRIAL_RETURNS]: every.k.map((k) => daily.get(k)) });
+// And the date of each of those days, the prices file's first column, under canli-mcp's key, so a server can set the
+// returns against other strategies over the same months.
+export const TRIAL_DATES = Symbol.for("canli.trial_dates");
+const handOver = (daily, every, dates) => ({ [TRIAL_RETURNS]: every.k.map((k) => daily.get(k)), ...(dates ? { [TRIAL_DATES]: dates } : {}) });
 
 // The summary over a complete set of results. Every variant's Sharpe, best first, goes back with its combination k and
 // the days it was measured on (every_trial: one number when all variants share them, else one per variant), so a
@@ -158,15 +161,16 @@ export async function breadthSweep(session, args) {
   // The returns leave the results, which a shard file and a shard's answer carry; a merge has none to hand over.
   const daily = new Map();
   for (const r of results) if (r.daily) { daily.set(r.k, r.daily); delete r.daily; }
+  const dates = daily.size ? readPanelDates(files.prices_file) : null;
   if (a.shard) {
     const shard = { schema: "canli.breadth-sweep-shard.v1", sweep_id: sweepId, shard: a.shard, inputs, split_date: a.split_date ?? null, combos, results };
     if (a.out_file) writeFileSync(a.out_file, JSON.stringify(shard));
     // The shard's own variants, as the whole sweep lists them, so a server that counts tries counts them as they run
     // and not first at the merge, which then adds only the variants that server has not seen.
     const { every_trial } = summarize(results, mine, a.split_date ?? null);
-    return { sweep_id: sweepId, shard: a.shard, ran: mine.length, of: combos.length, seconds, workers, ...(a.out_file ? { shard_file: a.out_file } : { results }), every_trial, next: "Run the other shards (same files, grid and split_date) on any machine, then breadth_sweep with merge_files.", ...handOver(daily, every_trial) };
+    return { sweep_id: sweepId, shard: a.shard, ran: mine.length, of: combos.length, seconds, workers, ...(a.out_file ? { shard_file: a.out_file } : { results }), every_trial, next: "Run the other shards (same files, grid and split_date) on any machine, then breadth_sweep with merge_files.", ...handOver(daily, every_trial, dates) };
   }
   const out = { sweep_id: sweepId, inputs, workers, seconds, ...summarize(results, combos, a.split_date ?? null) };
   if (a.out_file) writeFileSync(a.out_file, JSON.stringify(out));
-  return { ...out, limits: ["Trials share the same data, so they are correlated: counting each as an independent trial makes the luck benchmark conservative (it overstates luck).", "Judge the chosen settings on sharpe_after_split only if nothing was chosen on those dates.", "Not investment advice."], ...handOver(daily, out.every_trial) };
+  return { ...out, limits: ["Trials share the same data, so they are correlated: counting each as an independent trial makes the luck benchmark conservative (it overstates luck).", "Judge the chosen settings on sharpe_after_split only if nothing was chosen on those dates.", "Not investment advice."], ...handOver(daily, out.every_trial, dates) };
 }
