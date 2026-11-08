@@ -107,7 +107,7 @@ test("a filing's totals are checked within the figures' rounding, read from the 
   assert.equal(checkSecFilings(sec).filings[0].ok, true, "a company's SEC filings are read as rounded");
 });
 
-test("a filing's minority interests are counted, one amount under two temporary-equity tags once, and a shortfall is said to be what tags by class leave", () => {
+test("a filing's minority interests are counted, one amount once, and a shortfall is left to tags the check cannot read unless a part is a thousand times too small", () => {
   const sheet = (...facts) => [at("Liabilities", 1204000), ...facts];
   // Minority interests tagged on their own, with no total that includes them.
   assert.deepEqual(flags(sheet(at("TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests", 51000), at("StockholdersEquity", 903000), at("MinorityInterest", 27000), at("LiabilitiesAndStockholdersEquity", 2185000))), []);
@@ -115,9 +115,22 @@ test("a filing's minority interests are counted, one amount under two temporary-
   // Redeemable minority interests tagged as both parts of temporary equity: once. Two amounts: both.
   const parts = (parent, redeemable, total) => flags(sheet(at("TemporaryEquityCarryingAmountAttributableToParent", parent), at("RedeemableNoncontrollingInterestEquityCarryingAmount", redeemable), at("StockholdersEquity", 903000), at("LiabilitiesAndStockholdersEquity", total)));
   assert.deepEqual([parts(73000, 73000, 2180000), parts(73000, 19000, 2199000)], [[], []]);
-  // Temporary equity tagged, yet the parts are 45,000 short: flagged, and said to be what tags by class or series leave.
-  const short = checkFacts(sheet(at("TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests", 51000), at("StockholdersEquity", 903000), at("LiabilitiesAndStockholdersEquity", 2203000)), asFiled).findings;
-  assert.deepEqual(short.map((f) => f.detail), ["Liabilities 1204000 plus temporary equity 51000 plus StockholdersEquity 903000 is not LiabilitiesAndStockholdersEquity 2203000 at 2025-12-31: short by 45000, as when temporary equity is tagged only by class or series"]);
+  // Temporary equity tagged, yet the parts are 45,000 short: more of it may be tagged by class or series, under the
+  // company's own tags or in a concept the check does not read, so in a filing a shortfall is left alone. In a book,
+  // where every amount is the book's own, it is flagged.
+  const short = sheet(at("TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests", 51000), at("StockholdersEquity", 903000), at("LiabilitiesAndStockholdersEquity", 2203000));
+  assert.deepEqual([flags(short), flags(short, { rounded: true })], [[], ["balance LiabilitiesAndStockholdersEquity"]]);
+  // Short by about 999 times one part, though: that part filed a thousand times too small, which is flagged.
+  const thousandth = checkFacts(sheet(at("TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests", 51000), at("StockholdersEquity", 903), at("LiabilitiesAndStockholdersEquity", 2158000)), asFiled).findings;
+  assert.deepEqual(thousandth.map((f) => f.detail), ["Liabilities 1204000 plus temporary equity 51000 plus StockholdersEquity 903 is not LiabilitiesAndStockholdersEquity 2158000 at 2025-12-31: short by 902097, as when StockholdersEquity 903 is filed a thousand times too small"]);
+  assert.match(checkFacts(sheet(at("StockholdersEquity", 903000), at("LiabilitiesAndStockholdersEquity", 1204903000)), asFiled).findings[0].detail, /short by 1202796000, as when Liabilities 1204000 is filed a thousand times too small$/);
+  // Redeemable minority interests tagged as temporary equity while they sit among the minority interests in equity
+  // (175,000 of 177,000): the parts add up with them counted once, inside equity. Minority interests smaller than them
+  // cannot hold them, and the parts over the total by them are flagged.
+  const redeemable = (minority) => flags([at("Liabilities", 280000), at("RedeemableNoncontrollingInterestEquityCarryingAmount", 175000), at("StockholdersEquity", 227000), at("MinorityInterest", minority), at("StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest", 227000 + minority), at("LiabilitiesAndStockholdersEquity", 507000 + minority)]);
+  assert.deepEqual([redeemable(177000), redeemable(2000)], [[], ["balance LiabilitiesAndStockholdersEquity"]]);
+  // The parent's temporary equity is not among the minority interests: a sheet that adds up without it is flagged.
+  assert.deepEqual(flags([at("Liabilities", 14700), at("TemporaryEquityCarryingAmountAttributableToParent", 45000), at("StockholdersEquity", 11600), at("MinorityInterest", 50000), at("LiabilitiesAndStockholdersEquity", 76300)]), ["balance LiabilitiesAndStockholdersEquity"]);
   // Equity that includes the temporary equity shown above it: over the total, flagged as it is.
   const over = checkFacts(sheet(at("TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests", 51000), at("StockholdersEquity", 954000), at("LiabilitiesAndStockholdersEquity", 2158000)), asFiled).findings;
   assert.deepEqual(over.map((f) => f.detail), ["Liabilities 1204000 plus temporary equity 51000 plus StockholdersEquity 954000 is not LiabilitiesAndStockholdersEquity 2158000 at 2025-12-31"]);

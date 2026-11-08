@@ -41,6 +41,7 @@ const MAPS = {
     equityWithMinority: "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
     minority: "MinorityInterest",
     temporary: ["TemporaryEquityCarryingAmountIncludingPortionAttributableToNoncontrollingInterests", ["TemporaryEquityCarryingAmountAttributableToParent", "RedeemableNoncontrollingInterestEquityCarryingAmount"]],
+    redeemableMinority: "RedeemableNoncontrollingInterestEquityCarryingAmount",
     // Not Revenues: a commodity pool's, an investment firm's or a bank's can be below zero in the filing itself,
     // net of trading or investment losses.
     nonNegative: ["Assets", "Liabilities", "CashAndCashEquivalentsAtCarryingValue"],
@@ -127,9 +128,12 @@ const where = (period) => (!period ? "" : isInstant(period) ? ` at ${period.inst
 // Checks on facts from any source, this book or a filing read elsewhere: each finding names its rule, the
 // concept and the numbers. The totals are checked period by period and unit by unit, since a filing also carries
 // last year's figures. prior: the last period's or the last filing's facts, for the scale check. untagged: a
-// filing may tag temporary equity in a concept of its own, or only by class or series, which leaves liabilities
-// and equity short of their total by that amount, so the parts are then flagged only when they come to more than
-// the total or when the temporary equity is tagged, and a shortfall is said to be what such tags would leave.
+// filing may tag temporary equity, all of it or some, in a concept of its own, only by class or series, or in a
+// concept this check does not read, which leaves liabilities and equity short of their total by that amount; so
+// the parts are then flagged when they come to more than the total, and when they fall short of it only by about
+// 999 (or 999,999) times one of them, as when that part is filed a thousand (or a million) times too small.
+// Redeemable minority interests tagged as temporary equity can sit inside equity, among the minority interests
+// there: when those are at least as large, the parts may add up with them counted once, inside equity.
 // rounded: the figures are rounded as filed, so a total may miss the sum of its parts by their rounding.
 // priorFiling: the filing the prior facts are from ({ accession, form, filed }), named beside the value a scale
 // finding was compared with.
@@ -178,12 +182,21 @@ export function checkFacts(facts, { prior = [], priorFiling = null, taxonomy = "
     const temporary = temporaries.reduce((s, x) => s + x, 0);
     if (A !== undefined && LE !== undefined && Math.abs(A - LE) > slack([A, LE])) findings.push({ rule: "balance", concept: t.assets, unit, period: { instant }, value: A, detail: `${t.assets} ${A} is not ${t.both} ${LE}${at}` });
     if (L === undefined || E === undefined || LE === undefined) continue;
-    const terms = [L, ...temporaries, E, ...(minority === undefined ? [] : [minority])];
-    const gap = terms.reduce((s, x) => s + x, 0) - LE;
-    if (Math.abs(gap) > slack([...terms, LE]) && (!untagged || tagged || gap > 0)) {
-      const short = untagged && gap < 0 ? `: short by ${-gap}, as when temporary equity is tagged only by class or series` : "";
-      findings.push({ rule: "balance", concept: t.both, unit, period: { instant }, value: LE, detail: `${t.liabilities} ${L}${temporary ? ` plus temporary equity ${temporary}` : ""} plus ${equityConcept} ${E}${minority === undefined ? "" : ` plus ${map.minority} ${minority}`} is not ${t.both} ${LE}${at}${short}` });
-    }
+    const named = (tmp) => [[t.liabilities, L], ...tmp.map((x) => ["temporary equity", x]), [equityConcept, E], ...(minority === undefined ? [] : [[map.minority, minority]])];
+    const gapOf = (terms) => terms.reduce((s, [, x]) => s + x, 0) - LE;
+    const off = (terms) => Math.abs(gapOf(terms)) > slack([...terms.map(([, x]) => x), LE]);
+    const terms = named(temporaries);
+    const gap = gapOf(terms);
+    // Redeemable minority interests no larger than the minority interests in equity may be among them: counted once.
+    const redeemable = !v.has(whole) && map.redeemableMinority ? v.get(map.redeemableMinority) : undefined;
+    const inside = redeemable !== undefined && map.minority && v.has(map.minority) && redeemable <= v.get(map.minority);
+    if (!off(terms) || (inside && !off(named(temporaries.filter((x, i) => i !== temporaries.indexOf(redeemable)))))) continue;
+    // A shortfall is what temporary equity the check cannot see would leave, unless it is about 999 (or 999,999) times
+    // one part: that part filed a thousand (or a million) times too small.
+    const slipped = gap < 0 && terms.map(([name, x]) => [name, x, [1e3, 1e6].find((k) => x > 0 && Math.abs((1 - gap / x) / k - 1) <= 0.1)]).find(([, , k]) => k);
+    if (untagged && gap < 0 && !slipped) continue;
+    const short = slipped ? `: short by ${-gap}, as when ${slipped[0]} ${slipped[1]} is filed ${slipped[2] === 1e3 ? "a thousand" : "a million"} times too small` : "";
+    findings.push({ rule: "balance", concept: t.both, unit, period: { instant }, value: LE, detail: `${t.liabilities} ${L}${temporary ? ` plus temporary equity ${temporary}` : ""} plus ${equityConcept} ${E}${minority === undefined ? "" : ` plus ${map.minority} ${minority}`} is not ${t.both} ${LE}${at}${short}` });
   }
   for (const f of facts) if (map.nonNegative.includes(f.concept) && f.value < 0) findings.push({ rule: "sign", concept: f.concept, unit: f.unit, period: f.period, value: f.value, detail: `${f.concept} is negative: ${f.value}${where(f.period)}` });
   // Against the prior value of the same concept, unit and period, or else the latest of the same kind of period that
