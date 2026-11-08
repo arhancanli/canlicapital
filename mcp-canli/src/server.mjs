@@ -44,7 +44,7 @@ import { createLuck, shownTrials } from "./luck.mjs";
 import { createRedTeam, RED_TEAM_TOOL, runRedTeam } from "./redteam.mjs";
 import { runZooSearch, runZooStats, ZOO_TOOLS } from "./zoo.mjs";
 import { LAKE_TOOLS, runLake } from "./lake.mjs";
-import { TRACK_TOOLS, trackCommit, trackScore } from "./track.mjs";
+import { TRACK_TOOLS } from "./track.mjs";
 import { createVault, HOLDOUT_TOOLS } from "./holdout.mjs";
 import { createRegistry, PREREG_TOOL } from "./prereg.mjs";
 import { CAUSES_TOOL, runCauses } from "./causes.mjs";
@@ -539,8 +539,8 @@ export function selfTools(packs, gov, keeper, readOnly = false, vault = null, pr
   tools.zoo_stats = async () => runZooStats(await zooOf("zoo_stats"));
   // A track record committed before each day and scored on public prices (track.mjs); files on this machine.
   const local = (name) => { allowed(name); if (readOnly) throw new Error(`${name} keeps files on your own machine. Run it locally: npx -y canli-mcp`); };
-  tools.track_commit = (args) => { local("track_commit"); return trackCommit(args); };
-  tools.track_score = (args) => { local("track_score"); return trackScore(args); };
+  tools.track_commit = async (args) => { local("track_commit"); return (await import("../local/track.mjs")).trackCommit(TRACK_TOOLS[0].input.parse(args ?? {})); };
+  tools.track_score = async (args) => { local("track_score"); return (await import("../local/track.mjs")).trackScore(TRACK_TOOLS[1].input.parse(args ?? {})); };
   // The data lake on this machine (local/lake.mjs): DuckDB over Parquet, reaching only the lake folder.
   for (const { name } of LAKE_TOOLS) tools[name] = async (args) => { allowed(name); if (readOnly || !session.lake) throw new Error("The data lake is kept on your own machine. Run it locally: npx -y canli-mcp"); return runLake({ call: desk.call, at, lake: session.lake }, name, args); };
   const keptOrThrow = (ref) => { if (!keeper.has(ref)) throw new Error(`${ref} is not kept; refs name earlier results (the last ${KEEP_COUNT} are kept).`); return keeper.get(ref); };

@@ -9,7 +9,12 @@ import test from "node:test";
 
 import { appendRecords } from "canli-backtest-mcp/src/proof.mjs";
 
-import { trackCommit, trackScore } from "../src/track.mjs";
+import { trackCommit as commit, trackScore as score } from "../local/track.mjs";
+import { TRACK_TOOLS } from "../src/track.mjs";
+
+// As the tools call them: arguments parsed by their schemas first.
+const trackCommit = (args, opts) => commit(TRACK_TOOLS[0].input.parse(args), opts);
+const trackScore = (args) => score(TRACK_TOOLS[1].input.parse(args));
 
 const setup = (t) => {
   const dir = mkdtempSync(path.join(tmpdir(), "canli-track-"));
