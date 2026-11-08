@@ -10,7 +10,7 @@
   "markets": "0.17.0",
   "paper": "0.3.1"
  },
- "count": 470,
+ "count": 486,
  "markets_themes": {
   "Filings and what they say": 18,
   "Results and valuation": 23,
@@ -4186,9 +4186,9 @@
    "pack": "desk",
    "group": "desk",
    "title": "Check an answer's receipt against its documents now",
-   "description": "Read again the documents an earlier answer's receipt names, and those of the answers it was built from: each the same, changed since, or unreachable (the markets pack's source_check). An answer whose documents changed may no longer hold.",
-   "keywords": "receipt check verify sources changed since stale drift documents hash audit trail provenance",
-   "args": "receipt: object"
+   "description": "Read again the documents an earlier answer's receipt names, and those of the answers it was built from: each the same, changed since, or unreachable (the markets pack's source_check). An answer whose documents changed may no longer hold. A receipt the hosted server signed has its signature checked offline against the keys canlicapital.com publishes, and proofs from run_tool's prove are checked against its output_root: each value is in the signed answer or not, without the rest of the answer.",
+   "keywords": "receipt check verify sources changed since stale drift documents hash audit trail provenance signature signed proof prove value merkle",
+   "args": "receipt: object, proofs?: array"
   },
   {
    "name": "reconcile_shares",
@@ -4252,6 +4252,150 @@
    "description": "Each fiscal year's start and end from the company's own filings, 52 or 53 weeks, where each quarter ended, and the calendar quarter holding most of each one's days, to line quarters up across companies with different years.",
    "keywords": "fiscal year calendar quarter end 52 53 week year align quarters calendar quarter fiscal period when does the quarter end",
    "args": "company: string, years?: integer"
+  },
+  {
+   "name": "red_team",
+   "pack": "desk",
+   "group": "desk",
+   "title": "Red-team a strategy, counting every attempt",
+   "description": "Run one strategy tool and judge the result against everything this session has tried: deflated Sharpe at the session's true count of strategies (every attempt and every variant in it), overfitting probability for a grid, against buying and holding, and track-record length. Returns what failed and what to change, and the attempt log. Locally, every attempt is kept in the Null Zoo (zoo_search), and a later session on the same data is judged with the tries before it. Rewriting until it passes is a search, so every attempt is added to the count it is judged against; the final check is holdout_test on years the loop never saw. Clearing the checks is not admission to anything and not a forecast.",
+   "keywords": "red team auto correct loop rewrite strategy until valid self correcting agent backtest audit overfitting deflated sharpe pbo cscv data mining bias feedback fix next attempt",
+   "args": "name: string, arguments?: object, change?: string, bar?: {deflated_sharpe?, overfitting?}"
+  },
+  {
+   "name": "zoo_search",
+   "pack": "desk",
+   "group": "desk",
+   "title": "What red_team already tried here",
+   "description": "Search the Null Zoo on this machine: every strategy red_team tried in any session, with its Sharpe, what failed and the data it ran on, newest first. Use it before a new idea, to see whether it, or something like it, already failed. Local server only.",
+   "keywords": "null zoo failed trials registry tried before history past attempts memory learn from failures search",
+   "args": "contains?: string, outcome?: failed|cleared, data_key?: string, limit?: integer"
+  },
+  {
+   "name": "zoo_stats",
+   "pack": "desk",
+   "group": "desk",
+   "title": "The Null Zoo's counts",
+   "description": "Counts in the Null Zoo on this machine: trials, sessions, failed and cleared, and for each data set the tries on it and their best Sharpe, with whether the file's chain is whole. Local server only.",
+   "keywords": "null zoo stats counts trials sessions data sets failed cleared registry",
+   "args": ""
+  },
+  {
+   "name": "lake_save",
+   "pack": "desk",
+   "group": "desk",
+   "title": "Save a tool's table into the data lake",
+   "description": "Run a tool and save its table (columns and rows) into a dataset in the data lake on this machine, as a new vintage stamped with the time saved. Every free source the server reads can feed the lake this way. Needs DuckDB: npx -y canli-mcp lake setup. Local server only.",
+   "keywords": "data lake save store parquet duckdb local warehouse cache history dataset vintage point in time",
+   "args": "dataset: string, name: string, arguments?: object, path?: string"
+  },
+  {
+   "name": "lake_import",
+   "pack": "desk",
+   "group": "desk",
+   "title": "Import a local file into the data lake",
+   "description": "Copy a local CSV, TSV or Parquet file into a dataset in the data lake as a new dated vintage, with its hash. For data you already hold, such as a licensed options or futures history. Local server only.",
+   "keywords": "import csv parquet file data lake load bring your own data licensed options futures",
+   "args": "dataset: string, file: string"
+  },
+  {
+   "name": "lake_list",
+   "pack": "desk",
+   "group": "desk",
+   "title": "The data lake's datasets",
+   "description": "Each dataset in the data lake on this machine: rows, columns and types, how many vintages and when saved, and where the latest came from.",
+   "keywords": "data lake list datasets tables catalog schema vintages",
+   "args": ""
+  },
+  {
+   "name": "lake_query",
+   "pack": "desk",
+   "group": "desk",
+   "title": "Query the data lake with SQL",
+   "description": "Run one read-only DuckDB SQL statement (SELECT, WITH, FROM, DESCRIBE, SUMMARIZE) over the data lake's datasets, each a view by its name. Writes, other files and the network are refused. Local server only.",
+   "keywords": "sql query duckdb data lake select aggregate join window analytics local",
+   "args": "sql: string, limit?: integer"
+  },
+  {
+   "name": "lake_panel",
+   "pack": "desk",
+   "group": "desk",
+   "title": "A wide price panel from the data lake",
+   "description": "Pivot a long dataset (date, symbol, value) into a wide panel, one column per symbol, the latest vintage of each value, or as the lake knew it on as_of, written as CSV in the lake for backtests: prices_file or {\"$file\": ..., \"columns\": \"all\"}. Local server only.",
+   "keywords": "panel pivot wide matrix prices universe point in time as of backtest input multi asset",
+   "args": "dataset: string, date: string, symbol: string, value: string, symbols?: string[], start?: date, end?: date, as_of?: date, name: string"
+  },
+  {
+   "name": "track_commit",
+   "pack": "desk",
+   "group": "desk",
+   "title": "Commit tomorrow's positions before the day",
+   "description": "Put a salted hash of the positions for a coming day into a signed, append-only ledger, and keep the positions and salt in a private file beside it. Later, track_score checks each day against its hash. Publish the ledger's head somewhere public before the day if others are to trust the timing. Local server only.",
+   "keywords": "track record commit positions before the day precommit hash ledger forward test prove performance investor audit",
+   "args": "ledger_file: string, for_day: date, positions: {symbol: weight}, key_file?: string"
+  },
+  {
+   "name": "track_score",
+   "pack": "desk",
+   "group": "desk",
+   "title": "Score a committed track record on public prices",
+   "description": "Check every committed day's positions against its hash in the ledger and score the track on a prices file: each day's positions are the latest committed before that day, entered at its close and held until the next. A day committed but not shown stops the score, since leaving out bad days is what a track record must not allow. Returns the Sharpe, return, drawdown and the hashes a checker needs.",
+   "keywords": "track record score verify commitments reveal sharpe performance audit investor public prices",
+   "args": "ledger_file: string, reveals_file?: string, prices_file: string, cost_bps?: number, anchors?: {seq,hash}[]"
+  },
+  {
+   "name": "originality_check",
+   "pack": "desk",
+   "group": "desk",
+   "title": "Your strategy against a million counted strategies",
+   "description": "Set a strategy's returns against every strategy in the Lab (about a million rules on public portfolio and factor data, built on this machine): the nearest ones by correlation of monthly returns, how many are near-copies, and where your Sharpe ranks among all strategies covering the same months, with the best of them as the luck bar simple rules reached, and among blends of two of them (every pair, hundreds of billions). Daily returns are compounded into months; at least 24 shared months are needed.",
+   "keywords": "originality novelty is my strategy new nearest strategies correlation duplicate copy crowded factor exposure luck bar percentile beat million strategies lab",
+   "args": "returns: number[], dates: string[], nearest?: integer"
+  },
+  {
+   "name": "lab_search",
+   "pack": "desk",
+   "group": "desk",
+   "title": "Search the Lab's strategies",
+   "description": "Find strategies in the Lab by rule family, series, rebalancing, Sharpe and history length, or those nearly uncorrelated with your own returns (diversifiers for a book). Each row has its id, rule, series and statistics; lab_strategy shows one in full. Remember how many the Lab holds when reading the best of them.",
+   "keywords": "lab search strategies diversifier uncorrelated low correlation filter family momentum trend reversion volatility",
+   "args": "family?, series?, rebalance?, min_sharpe?, min_years?, uncorrelated_with?: {returns, dates}, max_abs_corr?, sort?, limit?"
+  },
+  {
+   "name": "lab_strategy",
+   "pack": "desk",
+   "group": "desk",
+   "title": "One strategy of the Lab",
+   "description": "One Lab strategy by its id, or a blend of two by their ids: its series, rule and settings (each parent's, for a blend), statistics and monthly returns, and how to rebuild it exactly from the same files.",
+   "keywords": "lab strategy detail monthly returns rule settings id blend pair mix",
+   "args": "id?: integer, blend?: [integer, integer]"
+  },
+  {
+   "name": "lab_status",
+   "pack": "desk",
+   "group": "desk",
+   "title": "The Lab's size and data",
+   "description": "Whether the Lab is built on this machine, and if so how many strategies, series and rule variants it holds, its effective number of independent strategies, its data files with their hashes and when it was built.",
+   "keywords": "lab status size count strategies built data",
+   "args": ""
+  },
+  {
+   "name": "backtest_forensics",
+   "pack": "desk",
+   "group": "desk",
+   "title": "Every common way a backtest misleads, checked in one call",
+   "description": "Read a backtest's daily returns for every common way a backtest misleads, each with evidence and what would clear it: the search behind it (deflated Sharpe, overfitting), factor exposure sold as skill (alpha after the Fama-French five factors and momentum), lookahead in the weights, smoothing and selling tail risk, a few days carrying the result, an edge that fades, numbers too good for real trading, and, with the Lab built, near-copies and the luck bar among a million strategies over the same months. Flags are reasons to look, not verdicts.",
+   "keywords": "backtest lie detector forensics audit too good to be true overfitting lookahead factor exposure alpha smoothing tail risk concentration decay red flags due diligence",
+   "args": "returns: number[], dates: string[], trials_tried?: integer, variants?: number[][], weights?: number[], prices?: number[], factors?: boolean"
+  },
+  {
+   "name": "beat_probability",
+   "pack": "desk",
+   "group": "desk",
+   "title": "The chance a company lands above its own guidance",
+   "description": "A Canli model: the chance a company's next reported EPS or revenue lands above, within or below its own guided range, from its record against its guidance blended with the market's base rate. Validated walk-forward on S&P 500 guidance (2023 to 2026): it beat the base rate out of sample for EPS and revenue, with the intervals stated. Not a forecast of the price, and not advice.",
+   "keywords": "beat guidance probability earnings surprise model forecast above range sandbag conservative guidance management credibility",
+   "args": "company: string, measure?: eps|revenue, filed_before?: date"
   }
  ]
 }

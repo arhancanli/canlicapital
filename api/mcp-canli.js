@@ -47,7 +47,7 @@ export const HOSTED_ENDPOINT = "canlicapital.com/mcp/canli";
 // Series go inline here (there are no files): a megabyte holds about 50,000 numbers.
 export const MAX_FLAGSHIP_BODY_BYTES = TIERS.free.max_body_bytes;
 export const REQUESTS_PER_MINUTE = TIERS.free.requests_per_minute;
-export const HOSTED_NOTE = " This is the hosted server (canlicapital.com/mcp/canli), and it keeps nothing between requests: chain tools inside one run_tool call ({\"calls\": [...]}, where {\"$result\": 0} passes the first call's output on); refs such as \"r1\" do not carry over. File arguments, paper trading, prices and Yahoo's data (stock snapshots, analysts' history, market movers, ETF profiles) need the local server: npx canli-mcp.";
+export const HOSTED_NOTE = " This is the hosted server (canlicapital.com/mcp/canli), and it keeps nothing between requests: chain tools inside one run_tool call ({\"calls\": [...]}, where {\"$result\": 0} passes the first call's output on); refs such as \"r1\" do not carry over. File arguments, paper trading, prices, Yahoo's data (stock snapshots, analysts' history, market movers, ETF profiles), the Lab of a million strategies, the data lake and the Null Zoo need the local server: npx canli-mcp.";
 
 // Whether a request's arguments name a file anywhere: a {"$file": ...}, or a tool's own path argument
 // (returns_file, league_dir, out_file and so on), however deeply nested. Either would read or write the
