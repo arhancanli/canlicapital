@@ -131,7 +131,9 @@ const where = (period) => (!period ? "" : isInstant(period) ? ` at ${period.inst
 // and equity short of their total by that amount, so the parts are then flagged only when they come to more than
 // the total or when the temporary equity is tagged, and a shortfall is said to be what such tags would leave.
 // rounded: the figures are rounded as filed, so a total may miss the sum of its parts by their rounding.
-export function checkFacts(facts, { prior = [], taxonomy = "us-gaap", tolerance = 0, untagged = false, rounded = false } = {}) {
+// priorFiling: the filing the prior facts are from ({ accession, form, filed }), named beside the value a scale
+// finding was compared with.
+export function checkFacts(facts, { prior = [], priorFiling = null, taxonomy = "us-gaap", tolerance = 0, untagged = false, rounded = false } = {}) {
   const map = mapFor(taxonomy);
   const t = map.totals;
   const findings = [];
@@ -203,6 +205,7 @@ export function checkFacts(facts, { prior = [], taxonomy = "us-gaap", tolerance 
     earlier.set(key, [...(earlier.get(key) ?? []), q]);
   }
   const given = new Set(facts.map((f) => `${f.concept}|${f.unit}|${JSON.stringify(f.period)}`));
+  const from = priorFiling ? ` in ${priorFiling.form} ${priorFiling.accession}, filed ${priorFiling.filed}` : "";
   for (const f of facts) {
     // Not tax rates and other percentages: an effective tax rate can be a thousand times last year's when pre-tax
     // income is near zero. Exchange rates are checked, since a currency rarely moves a thousandfold between filings
@@ -215,10 +218,10 @@ export function checkFacts(facts, { prior = [], taxonomy = "us-gaap", tolerance 
     if (!p || !p.value || !f.value || (!same && given.has(`${f.concept}|${f.unit}|${JSON.stringify(p.period)}`))) continue;
     const ratio = Math.abs(f.value / p.value);
     const instant = isInstant(f.period);
-    const prior = { value: p.value, period: p.period };
+    const prior = { value: p.value, period: p.period, ...(priorFiling ? { accession: priorFiling.accession, form: priorFiling.form, filed: priorFiling.filed } : {}) };
     const found = { rule: "scale", concept: f.concept, unit: f.unit, period: f.period, value: f.value };
-    if (slip(ratio, instant)) findings.push({ ...found, detail: `${f.value}${where(f.period)} is ${Math.round(ratio)} times the prior value ${p.value}${where(p.period)}: check the scale`, prior });
-    else if (slip(1 / ratio, instant)) findings.push({ ...found, detail: `${f.value}${where(f.period)} is 1/${Math.round(1 / ratio)} of the prior value ${p.value}${where(p.period)}: check the scale`, prior });
+    if (slip(ratio, instant)) findings.push({ ...found, detail: `${f.value}${where(f.period)} is ${Math.round(ratio)} times the prior value ${p.value}${where(p.period)}${from}: check the scale`, prior });
+    else if (slip(1 / ratio, instant)) findings.push({ ...found, detail: `${f.value}${where(f.period)} is 1/${Math.round(1 / ratio)} of the prior value ${p.value}${where(p.period)}${from}: check the scale`, prior });
   }
   return { ok: !findings.length, findings };
 }
@@ -247,20 +250,82 @@ export function secTaxonomy(companyfacts) {
   return tax;
 }
 
+// A scale flag sets two filings' figures side by side: the company's other filings, of any form, earlier or later,
+// that give either figure (the same concept, unit and period) find the one out of line. A figure they give is at the
+// flagged filing's scale or the earlier filing's when it is within ten times that filing's figure, since a figure
+// filed again is the same, or recast by far less than the thousandfold between the two. When they were filed counts:
+// a one-off slip is out of line with the filings on both sides of it, but a scale kept for years and then corrected
+// is out of line only with the filings before the correction, so filings that agree with the earlier one are no
+// evidence against the flagged one unless they came after it. The flagged filing is out of line when a later filing
+// gives its figure at the earlier filing's scale, the earlier filing when a filing before the flagged one gives the
+// earlier figure at the flagged filing's scale (another filing that gives one figure as filed says nothing against
+// the other), and either only when no other filing gives a figure at the scale of the one named; otherwise neither is
+// named, and where the others give both figures as filed the change may be real. Out of line is not proved wrong: a
+// share count restated for a reverse split is out of line with the filings before it.
+function findOutOfLine(rows, all) {
+  const flags = rows.flatMap((row) => row.findings.filter((f) => f.rule === "scale").map((f) => [row, f]));
+  if (!flags.length) return;
+  const keyOf = (concept, unit, period) => `${concept}|${unit}|${JSON.stringify(period)}`;
+  const wanted = new Set(flags.flatMap(([, f]) => [keyOf(f.concept, f.unit, f.period), keyOf(f.concept, f.unit, f.prior.period)]));
+  const given = new Map();
+  for (const { filing, facts } of all) {
+    for (const x of facts) {
+      const key = keyOf(x.concept, x.unit, x.period);
+      if (wanted.has(key) && x.value) given.set(key, [...(given.get(key) ?? []), { accession: filing.accession, form: filing.form, filed: filing.filed, period: x.period, value: x.value }]);
+    }
+  }
+  const near = (v, x) => Math.abs(Math.log10(Math.abs(v / x))) < 1;
+  const byFiled = (list) => [...list].sort((a, b) => (a.filed < b.filed ? -1 : a.filed > b.filed ? 1 : 0));
+  const named = (list) => {
+    const filings = [...new Map(byFiled(list).map((o) => [o.accession, `${o.form} ${o.accession}`])).values()];
+    return `${filings.slice(0, 3).join(", ")}${filings.length > 3 ? ` and ${filings.length - 3} more` : ""}`;
+  };
+  for (const [row, f] of flags) {
+    const ratio = Math.abs(f.value / f.prior.value);
+    const same = JSON.stringify(f.period) === JSON.stringify(f.prior.period);
+    const othersAt = (period) => (given.get(keyOf(f.concept, f.unit, period)) ?? []).filter((o) => o.accession !== row.accession && o.accession !== f.prior.accession);
+    // At the flagged figure's period, that figure and the same at the earlier filing's scale; at the earlier figure's
+    // period, that figure and the same at the flagged filing's scale. At one period both, the two figures.
+    const here = othersAt(f.period);
+    const there = same ? here : othersAt(f.prior.period);
+    const ours = here.filter((o) => near(o.value, f.value));
+    const theirs = here.filter((o) => near(o.value, f.value / ratio));
+    const priorAsFiled = same ? theirs : there.filter((o) => near(o.value, f.prior.value));
+    const priorAtOurs = same ? ours : there.filter((o) => near(o.value, f.prior.value * ratio));
+    const atOurs = [...ours, ...priorAtOurs];
+    const atTheirs = [...theirs, ...priorAsFiled];
+    const priorOut = priorAtOurs.some((o) => o.filed < row.filed) && !atTheirs.length;
+    const flaggedOut = theirs.some((o) => o.filed > row.filed) && !atOurs.length;
+    const others = same ? here : [...here, ...there];
+    f.out_of_line = priorOut ? f.prior.accession : flaggedOut ? row.accession : null;
+    f.others = byFiled(others).slice(0, 10);
+    if (priorOut) f.detail += `. Other filings give these figures at this filing's scale (${named(priorAtOurs)}): the earlier filing is out of line.`;
+    else if (flaggedOut) f.detail += `. Other filings give these figures at the earlier filing's scale (${named(theirs)}): this filing is out of line.`;
+    else if (ours.length && priorAsFiled.length && !theirs.length && !priorAtOurs.length) f.detail += `. Other filings give both figures as filed (${named([...ours, ...priorAsFiled])}): the change may be real.`;
+    else if (atOurs.length && atTheirs.length) f.detail += `. Other filings give these figures at both scales (${named(others)}).`;
+    else if (atTheirs.length && atTheirs.every((o) => o.filed < row.filed)) f.detail += `. Filings before this one give these figures at the earlier filing's scale (${named(atTheirs)}): this filing slipped, or it corrects a scale they shared.`;
+    else if (atOurs.length && atOurs.every((o) => o.filed > row.filed)) f.detail += `. Later filings give these figures at this filing's scale (${named(atOurs)}): the earlier filing slipped, or a new scale began with this one.`;
+  }
+}
+
 // Report's checks on each of a company's filings, oldest first, each against the last filing of the same form
-// before it for the scale check; `last` keeps the most recent. Findings point at facts to look at, not errors
-// proved.
+// before it for the scale check; `last` keeps the most recent. A scale finding names the earlier filing and, where
+// the company's other filings decide it, the filing out of line (findOutOfLine). Findings point at facts to look
+// at, not errors proved.
 export function checkSecFilings(companyfacts, { forms = SEC_FORMS, last = 8, taxonomy } = {}) {
   const tax = taxonomy ?? secTaxonomy(companyfacts);
   mapFor(tax);
-  const filings = [...secFactsByFiling(companyfacts, tax).values()].filter((x) => forms.includes(x.filing.form)).sort((a, b) => (a.filing.filed === b.filing.filed ? (a.filing.accession < b.filing.accession ? -1 : 1) : a.filing.filed < b.filing.filed ? -1 : 1));
+  const all = [...secFactsByFiling(companyfacts, tax).values()];
+  const filings = all.filter((x) => forms.includes(x.filing.form)).sort((a, b) => (a.filing.filed === b.filing.filed ? (a.filing.accession < b.filing.accession ? -1 : 1) : a.filing.filed < b.filing.filed ? -1 : 1));
   const before = new Map();
   const rows = filings.map(({ filing, facts }) => {
-    const checked = checkFacts(facts, { prior: before.get(filing.form) ?? [], taxonomy: tax, untagged: true, rounded: true });
-    before.set(filing.form, facts);
+    const earlier = before.get(filing.form);
+    const checked = checkFacts(facts, { prior: earlier?.facts ?? [], priorFiling: earlier?.filing, taxonomy: tax, untagged: true, rounded: true });
+    before.set(filing.form, { filing, facts });
     return { ...filing, facts: facts.length, ...checked };
   });
   const kept = rows.slice(-last);
+  findOutOfLine(kept, all);
   const counts = {};
   for (const r of kept) for (const f of r.findings) counts[f.rule] = (counts[f.rule] ?? 0) + 1;
   return { cik: companyfacts.cik ?? null, entityName: companyfacts.entityName ?? null, taxonomy: tax, filings: kept, checked: kept.length, withFindings: kept.filter((r) => !r.ok).length, counts };
