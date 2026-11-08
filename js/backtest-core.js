@@ -18,6 +18,14 @@
 import { calculateDsr, minimumTrackRecordLength, probabilisticSharpe } from "./dsr-core.js";
 import { finiteNumbers, perPeriodMoments } from "./moments-core.js";
 
+// Each variant's period returns over every period of the prices, flat (0) before its warm-up ends so that variants
+// from calls with other grids on the same prices line up, in every_trial's order, under the key canli-quant-mcp and
+// canli-backtest-mcp hand theirs over with, so a server running this in its own process (canli-mcp's luck) can
+// measure overfitting across every variant a session tried. The key is a symbol and not enumerable: JSON, a spread
+// and a schema's record check all pass over it, so no answer carries the returns.
+export const TRIAL_RETURNS = Symbol.for("canli.trial_returns");
+const handOver = (value, series) => Object.defineProperty(value, TRIAL_RETURNS, { value: series, configurable: true });
+
 export const BACKTEST_LIMITS = Object.freeze({
   max_prices: 20000,
   max_variants: 200,
@@ -442,7 +450,7 @@ export function runBacktest({ prices, family, grid = {}, periods_per_year: ppy =
     ...(Array.isArray(dates) && dates.length === p.length ? { first_return_date: dates[start + 1], last_date: dates.at(-1) } : {}),
   };
   const shown = ranked.slice(0, BACKTEST_LIMITS.top_variants_shown);
-  return {
+  return handOver({
     schema: "canli.backtest.v1",
     family,
     rule: spec.describe,
@@ -462,7 +470,11 @@ export function runBacktest({ prices, family, grid = {}, periods_per_year: ppy =
     buy_and_hold: performance(buyHold.returns, ppy),
     validation,
     plain_reading: reading(family, runs.length, best, validation, performance(buyHold.returns, ppy)),
-  };
+  }, ranked.filter((r) => r.metrics.sharpe !== null).map((r) => {
+    const all = new Float64Array(p.length - 1);
+    all.set(r.sim.returns, start);
+    return all;
+  }));
 }
 
 function reading(family, count, best, v, buyHold) {
