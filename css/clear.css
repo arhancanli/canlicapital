@@ -91,6 +91,7 @@
 .cl-receipt .cl-was-right { color: var(--cl-right); }
 .cl-receipt a { display: block; font-size: .8125rem; }
 .cl-receipt figcaption { font: 400 .75rem/1.45 var(--cl-body); color: var(--cl-muted); margin-top: 12px; }
+.cl-receipt figcaption a { display: inline; font-size: inherit; }
 
 /* Proof strip */
 .cl-proof { background: var(--cl-deep); color: var(--cl-paper); padding: 28px var(--cl-gutter); }
@@ -159,3 +160,25 @@
   .cl-table { font-size: .875rem; }
 }
 @media (prefers-reduced-motion: reduce) { .cl-receipt, .cl-stamp { transform: none; } }
+
+/* The developer reference (/developers): code, snippets and endpoint cards inside the one look. */
+.clear pre.dev-code { margin: 0; background: var(--cl-ink); color: var(--cl-paper); padding: 14px 16px; border-radius: 6px; overflow-x: auto; max-width: 100%; box-sizing: border-box; font: 500 .875rem/1.55 var(--cl-mono); }
+.clear .dev-snippets { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 12px; margin: 12px 0 20px; }
+.clear .dev-snippet { min-width: 0; margin: 0 0 12px; }
+.clear .dev-snippet-label { font: 500 .8125rem var(--cl-mono); color: var(--cl-muted); margin: 0 0 6px; }
+.clear .dev-note, .clear .dev-list { color: var(--cl-muted); max-width: 72ch; }
+.clear .dev-list { padding-left: 1.2em; }
+.clear .dev-list li { margin: 0 0 8px; }
+.clear .cl-section h3 { font: 700 1.25rem/1.25 var(--cl-display); margin: 32px 0 10px; }
+.clear .dev-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.clear .dev-step, .clear .dev-endpoint { background: var(--cl-paper); border: 1px solid var(--cl-line); border-radius: 8px; padding: 20px 22px; margin: 0 0 14px; min-width: 0; }
+.clear .dev-step h3, .clear .dev-endpoint h3, .clear .dev-endpoint h4 { font: 700 1.125rem/1.3 var(--cl-display); margin: 0 0 8px; overflow-wrap: anywhere; }
+.clear .dev-key-result { margin: 14px 0; padding: 14px 16px; border: 1px solid var(--cl-right); border-radius: 6px; overflow-wrap: anywhere; }
+.clear .dev-key-error { color: var(--cl-wrong); }
+.clear .dev-downloads { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.clear .cl-table td:first-child { white-space: nowrap; }
+.clear .cl-steps pre + p { margin-top: 14px; }
+.clear .developer-contributors { max-width: 1240px; margin: 0 auto; padding: clamp(56px, 8vw, 104px) var(--cl-gutter); box-sizing: content-box; border-top: 1px solid var(--cl-line); }
+.cl-ref-index { display: flex; flex-wrap: wrap; gap: 10px; }
+.cl-ref-index a { background: var(--cl-paper); border: 1px solid var(--cl-line); border-radius: 999px; padding: 8px 16px; font-weight: 600; text-decoration: none; }
+.cl-ref-index a:hover { border-color: var(--cl-cobalt); }
