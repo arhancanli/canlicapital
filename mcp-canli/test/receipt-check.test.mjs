@@ -8,7 +8,7 @@ import { keyIdFor } from "canli-validation-mcp/src/local/js/receipt-statement.js
 import { canonicalJson } from "canli-validation-mcp/src/local/scripts/canonical-json.mjs";
 
 import { answerRoot, checkValue, proveValue, valuesOf } from "../src/answer-tree.mjs";
-import { ANSWER_SIGNATURE_SCHEMA, checkAnswerSignature, documentsOf, proofsOf, receiptCheckInput, runReceiptCheck } from "../src/receipt-check.mjs";
+import { ANSWER_SIGNATURE_SCHEMA, checkAnswerSignature, checkAnswerSignaturePq, documentsOf, PQ_SIGNATURE_FIELD, proofsOf, receiptCheckInput, runReceiptCheck } from "../src/receipt-check.mjs";
 import { RECEIPT_KEY, registerAll } from "../src/server.mjs";
 
 const doc = (url, extra = {}) => ({ url, sha256_16: "0123456789abcdef", retrieved_at: "2026-11-04T06:00:00.000Z", ...extra });
@@ -168,4 +168,57 @@ test("prove: each value named comes with its path to the signed receipt's root, 
     assert.equal(refused.isError, true);
     assert.match(refused.content[0].text, /^prove needs a signed receipt: a proof is checked against the root the receipt carries, and this server holds no key/);
   }
+});
+
+// A post-quantum key as canli-receipt-keys.json would publish one (ML-DSA-65 as JWK, kty AKP), and its signature the
+// way a signing server puts it beside the Ed25519 one: over the receipt without either signature.
+function pqKey() {
+  const { publicKey, privateKey } = generateKeyPairSync("ml-dsa-65");
+  const pub = publicKey.export({ format: "jwk" }).pub;
+  return { privateKey, published: { key_id: keyIdFor(Buffer.from(pub, "base64url")), alg: "ML-DSA-65", pub, status: "active" } };
+}
+const pqSignature = (key, receipt) => {
+  const { signature: _ed, [PQ_SIGNATURE_FIELD]: _pq, ...rest } = JSON.parse(JSON.stringify(receipt));
+  return { alg: "ML-DSA-65", schema: ANSWER_SIGNATURE_SCHEMA, key_id: key.published.key_id, value: sign(null, Buffer.from(canonicalJson({ schema: ANSWER_SIGNATURE_SCHEMA, receipt: rest }), "utf8"), key.privateKey).toString("base64url") };
+};
+
+test("a receipt signed post-quantum beside Ed25519: each signature checks against its own key, and Ed25519, made last, covers both", () => {
+  const ed = receiptKey(), pq = pqKey();
+  const withPq = { ...HOSTED, [PQ_SIGNATURE_FIELD]: pqSignature(pq, HOSTED) };
+  const receipt = signedWith(ed, withPq);
+  // A reader that knows only Ed25519 (as canli-mcp did before) still checks the whole receipt.
+  assert.equal(checkAnswerSignature(receipt, [ed.published]).valid, true);
+  assert.deepEqual(checkAnswerSignaturePq(receipt, [pq.published]), { valid: true, checks: { signed: true, key_published: true, signature_valid: true }, key_id: pq.published.key_id });
+  const changed = { ...receipt, output_sha256: "c".repeat(64) };
+  assert.deepEqual([checkAnswerSignature(changed, [ed.published]).valid, checkAnswerSignaturePq(changed, [pq.published]).valid], [false, false], "any change fails both");
+  const { [PQ_SIGNATURE_FIELD]: _dropped, ...stripped } = receipt;
+  assert.equal(checkAnswerSignature(stripped, [ed.published]).valid, false, "taking the post-quantum signature off breaks the Ed25519 one");
+  assert.deepEqual(checkAnswerSignaturePq(stripped, [pq.published]).checks, { signed: false, key_published: false, signature_valid: false });
+  const other = pqKey();
+  const swapped = { ...receipt, [PQ_SIGNATURE_FIELD]: { ...pqSignature(other, HOSTED), key_id: pq.published.key_id } };
+  assert.equal(checkAnswerSignaturePq(swapped, [pq.published]).checks.signature_valid, false, "another key's signature under this key's id");
+  assert.equal(checkAnswerSignaturePq(receipt, [other.published]).checks.key_published, false, "a key canlicapital.com does not publish");
+  assert.equal(checkAnswerSignaturePq(receipt, [{ ...other.published, key_id: pq.published.key_id }]).valid, false, "a published entry whose key is not its key id");
+  assert.equal(checkAnswerSignaturePq(receipt, [{ ...ed.published, key_id: pq.published.key_id }]).checks.key_published, false, "an Ed25519 key under this id is not a post-quantum key");
+  // The right key listed under an id that is not its own: the signature verifies, but the listing is refused.
+  const renamed = { ...receipt, [PQ_SIGNATURE_FIELD]: { ...receipt[PQ_SIGNATURE_FIELD], key_id: "0".repeat(16) } };
+  assert.equal(checkAnswerSignaturePq(renamed, [{ ...pq.published, key_id: "0".repeat(16) }]).valid, false);
+  // A listed key that is not a key at all, under its own id: it fails, it does not throw.
+  const junk = "AAAA", junkId = keyIdFor(Buffer.from(junk, "base64url"));
+  const onJunk = { ...receipt, [PQ_SIGNATURE_FIELD]: { ...receipt[PQ_SIGNATURE_FIELD], key_id: junkId } };
+  assert.deepEqual(checkAnswerSignaturePq(onJunk, [{ key_id: junkId, alg: "ML-DSA-65", pub: junk }]).checks, { signed: true, key_published: true, signature_valid: false });
+});
+
+test("a server that signs post-quantum too puts both signatures on the receipt, and receipt_check reads them", async () => {
+  const ed = receiptKey(), pq = pqKey();
+  const call = { name: "return_stats", arguments: { returns: [0.01, -0.02, 0.015, 0.003, -0.004, 0.012] }, receipt: true };
+  const signing = await handlers({ readOnly: true, receipts: { endpoint: "example.org/mcp", sign: (receipt) => signedWith(ed, receipt).signature, signPq: (receipt) => pqSignature(pq, receipt) } }).run_tool(call);
+  const receipt = signing._meta[RECEIPT_KEY];
+  assert.deepEqual([receipt.endpoint, receipt[PQ_SIGNATURE_FIELD].alg, receipt.signature.alg], ["example.org/mcp", "ML-DSA-65", "Ed25519"]);
+  assert.deepEqual([checkAnswerSignature(receipt, [ed.published]).valid, checkAnswerSignaturePq(receipt, [pq.published]).valid], [true, true]);
+  // receipt_check reads them with the keys canlicapital.com publishes, which these test keys are not.
+  const checked = await runReceiptCheck({ call: async () => { throw new Error("no documents to read"); } }, { receipt });
+  assert.match(checked.signature.post_quantum.reading, /^The post-quantum signature is not with a key canlicapital\.com publishes/);
+  const plain = await runReceiptCheck({ call: async () => ({}) }, { receipt: signedWith(ed, HOSTED) });
+  assert.equal("post_quantum" in plain.signature, false, "no post-quantum signature, no post_quantum field");
 });

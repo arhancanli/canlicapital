@@ -664,11 +664,15 @@ export function selfTools(packs, gov, keeper, readOnly = false, vault = null, pr
 const signedBy = (receipts, receipt) => {
   if (!receipts) return receipt;
   const issued = { ...receipt, endpoint: receipts.endpoint };
-  return { ...issued, signature: receipts.sign(issued) };
+  // A post-quantum signature first (receipts.signPq, ML-DSA-65), over the receipt without signatures; then the Ed25519
+  // one over the receipt with it, so a reader that knows only Ed25519 checks the whole (receipt-check.mjs).
+  const pq = receipts.signPq ? receipts.signPq(issued) : null;
+  const both = pq ? { ...issued, signature_pq: pq } : issued;
+  return { ...both, signature: receipts.sign(both) };
 };
 
 // live: a local stdio server, which can keep a subscription and poll for it; hosted and browser servers cannot.
-// receipts: { endpoint, sign } for a server that signs every answer's receipt; a local server holds no key.
+// receipts: { endpoint, sign, signPq? } for a server that signs every answer's receipt; a local server holds no key.
 export function registerAll(server, packs = enabledPacks(), gov = governance(process.env, canliHome()), { readOnly = false, live = false, receipts = null } = {}) {
   acceptNulls(server);
   const keeper = createKeeper();
