@@ -33,6 +33,29 @@ export function checkAnswerSignature(receipt, keys = PUBLISHED_KEYS) {
   return { valid: checks.signed && checks.key_published && checks.signature_valid, checks, key_id: signature?.key_id ?? null };
 }
 
+// The post-quantum signature (ML-DSA-65, FIPS 204) a server can put beside the Ed25519 one, under signature_pq: over
+// the receipt without either signature, so it still holds if Ed25519 is broken one day. The Ed25519 signature is made
+// after it and covers it, so a reader that knows only Ed25519 still checks such a receipt whole. Its keys are published
+// beside the Ed25519 ones, as JWK (kty AKP) under the same key id rule.
+export const PQ_SIGNATURE_FIELD = "signature_pq";
+export function checkAnswerSignaturePq(receipt, keys = PUBLISHED_KEYS) {
+  const signature = receipt?.[PQ_SIGNATURE_FIELD];
+  const checks = { signed: typeof signature?.value === "string", key_published: false, signature_valid: false };
+  const key = signature ? keys.find((k) => k.key_id === signature.key_id && k.alg === "ML-DSA-65") : undefined;
+  checks.key_published = Boolean(key);
+  if (key && checks.signed && signature.schema === ANSWER_SIGNATURE_SCHEMA && typeof key.pub === "string" && keyIdFor(Buffer.from(key.pub, "base64url")) === key.key_id) {
+    const { signature: _ed, [PQ_SIGNATURE_FIELD]: _pq, ...rest } = JSON.parse(JSON.stringify(receipt));
+    const statement = canonicalJson({ schema: ANSWER_SIGNATURE_SCHEMA, receipt: rest });
+    try {
+      const publicKey = createPublicKey({ key: { kty: "AKP", alg: "ML-DSA-65", pub: key.pub }, format: "jwk" });
+      checks.signature_valid = verify(null, Buffer.from(statement, "utf8"), publicKey, Buffer.from(signature.value, "base64url"));
+    } catch {
+      checks.signature_valid = false;
+    }
+  }
+  return { valid: checks.signed && checks.key_published && checks.signature_valid, checks, key_id: signature?.key_id ?? null };
+}
+
 function signatureOf(receipt) {
   const checked = checkAnswerSignature(receipt);
   const reading = !checked.checks.signed
@@ -42,7 +65,14 @@ function signatureOf(receipt) {
       : checked.checks.key_published
         ? "The signature does not match this receipt: something in it changed after it was signed, or the signature is not for it."
         : `Not signed with a key canlicapital.com publishes (this server's copy; the list is at ${KEYS_URL}).`;
-  return { ...checked, reading };
+  if (!receipt?.[PQ_SIGNATURE_FIELD]) return { ...checked, reading };
+  const pq = checkAnswerSignaturePq(receipt);
+  const pqReading = pq.valid
+    ? `Also signed post-quantum (ML-DSA-65) with canlicapital.com's published key ${pq.key_id}: the receipt holds even if Ed25519 is broken one day.`
+    : pq.checks.key_published
+      ? "The post-quantum signature does not match this receipt: something in it changed after it was signed, or the signature is not for it."
+      : `The post-quantum signature is not with a key canlicapital.com publishes (this server's copy; the list is at ${KEYS_URL}).`;
+  return { ...checked, reading, post_quantum: { ...pq, reading: pqReading } };
 }
 
 export const receiptCheckInput = z.object({
