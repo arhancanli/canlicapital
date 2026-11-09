@@ -60,6 +60,12 @@ export function readPanel(path, name) {
   return parsePanel(bytes.toString("utf8"), name ?? path);
 }
 
+// A panel's dates alone (its first column, as readPanel would read them), without parsing every price.
+export function readPanelDates(path) {
+  const lines = readFileSync(path, "utf8").replace(/^\uFEFF/, "").split(/\r?\n/).filter((l) => l.trim() !== "");
+  return lines.slice(1).map((l) => { const c = l.indexOf(","); return (c < 0 ? l : l.slice(0, c)).trim().replace(/^"(.*)"$/, "$1"); });
+}
+
 export function writePanel(path, { dates, tickers, values }) {
   const rows = [["date", ...tickers].join(",")];
   dates.forEach((d, i) => rows.push([d, ...tickers.map((t) => (values[t][i] === null || values[t][i] === undefined ? "" : String(values[t][i])))].join(",")));

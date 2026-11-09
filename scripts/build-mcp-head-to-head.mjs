@@ -176,6 +176,9 @@ export function summarize(config, flagship) {
       tools: flagship.packs.reduce((s, p) => s + p.tools, 0),
       search: flagship.search, file_reference: flagship.file_reference, batch: flagship.batch, example: flagship.example,
       benchmarked: flagship.benchmarked, current: flagship.current, views: flagship.views, firms: flagship.firms,
+      // The release canlicapital.com/mcp/canli runs: the site's own canli-mcp dependency, which moves after each npm
+      // publish, so for a while it trails `current`. The pages that name it trace it here.
+      hosted: { version: JSON.parse(readFileSync(resolve(ROOT, "package.json"), "utf8")).dependencies["canli-mcp"] },
       ...(flagship.coverage ? { coverage: flagship.coverage } : {}),
     },
   };

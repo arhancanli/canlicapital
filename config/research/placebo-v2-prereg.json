@@ -1,0 +1,982 @@
+{
+ "schema": "canli.placebo-prereg.v2",
+ "written": "2026-11-07",
+ "question": "When the whole search a researcher would plausibly run is repeated inside every placebo, which published factor-timing claims keep a placebo p-value below 5%, in the paper's own sample and after it?",
+ "what_the_placebo_tests": "A placebo reorders the months, the same order for every series, so each month keeps its cross-section (all factor returns, and for volatility management that month's realized variances) and each series keeps its distribution. When months are exchangeable, the real data and every reordering are equally likely, so the rank of the real result among the placebo results is uniform and the p-value (1 + placebos at least as good) / (K + 1) is exact, whatever the search. The null is exchangeability: it is false whenever the order of months matters at all, for example under volatility clustering. A rejection says the pipeline finds more in the real order than in random orders of the same months. It does not test a static premium: a factor's mean, and the static part of any strategy's mean, are kept by every placebo. The simulated calibration below measures how often volatility clustering alone, with the economic claim false, gives a rejection.",
+ "data": {
+  "source": "Kenneth R. French Data Library, plain CSV files in ZIP archives, downloaded once into a new empty directory; nothing in them is executed. The files say they were created from the 202609 CRSP database.",
+  "last_month": 202609,
+  "vintage_note": "The library recomputes its returns each year, so the values differ somewhat from the vintages the papers used. In-sample tests are re-tests on the current vintage, not exact replications.",
+  "downloaded_utc": "2026-11-07T19:33:02Z",
+  "files": {
+   "F-F_Research_Data_Factors.csv": {
+    "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_Factors_CSV.zip",
+    "zip": "F-F_Research_Data_Factors_CSV.zip",
+    "zip_sha256": "b03d39e4bb253dda0f14893db3b78e64b40b8d6549a0fc0fd4111dae84c98618",
+    "sha256": "a3894d74d553cab812eabbe706bdbf443c97eb20b24b05e3e5f3ce47e46b90bb",
+    "block": "monthly"
+   },
+   "F-F_Research_Data_Factors_daily.csv": {
+    "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_Factors_daily_CSV.zip",
+    "zip": "F-F_Research_Data_Factors_daily_CSV.zip",
+    "zip_sha256": "96c23b88e651cbfff3740a53f8225e59ee39893371e96385a1d8125ec2cd9c89",
+    "sha256": "3f7910502dd6f188748210e5145d95642de1d8cff56c2cf0fa85985299610ff0",
+    "block": "daily"
+   },
+   "F-F_Research_Data_5_Factors_2x3.csv": {
+    "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_5_Factors_2x3_CSV.zip",
+    "zip": "F-F_Research_Data_5_Factors_2x3_CSV.zip",
+    "zip_sha256": "17d7a575e71d6764a70ddec3f8d887756c0eebf3a60f64d6ba95d2adde3fed26",
+    "sha256": "0028f2f3b9f634c34a2bdc0e67dc1e6fc22a2ef18b77177a7926635a785330dd",
+    "block": "monthly"
+   },
+   "F-F_Research_Data_5_Factors_2x3_daily.csv": {
+    "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_5_Factors_2x3_daily_CSV.zip",
+    "zip": "F-F_Research_Data_5_Factors_2x3_daily_CSV.zip",
+    "zip_sha256": "e58577223032aa45071a46686f7068900c371b516c9eb04e28e974c34264f84f",
+    "sha256": "0128e9cae82bc347b9c2c1670dcf7d2bf1f1c3b87ddd0976ba50d229882d3ceb",
+    "block": "daily"
+   },
+   "F-F_Momentum_Factor.csv": {
+    "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Momentum_Factor_CSV.zip",
+    "zip": "F-F_Momentum_Factor_CSV.zip",
+    "zip_sha256": "27ed60e5b2caa9ea334a261cddfa864a9926f6bf45e9677c95dfd835c5abb315",
+    "sha256": "81ff7cab5517159daa5a66c83fd90d4076a0864be2d5fef179719c0f9049a8cb",
+    "block": "monthly"
+   },
+   "F-F_Momentum_Factor_daily.csv": {
+    "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Momentum_Factor_daily_CSV.zip",
+    "zip": "F-F_Momentum_Factor_daily_CSV.zip",
+    "zip_sha256": "e56d5bc845544e2993e77353b12c611cfce3149ef754f9b59fc67904ddadd369",
+    "sha256": "00b9291e5c7d5c35d4a94b62782a6fe2c0b25ba7999896016474d6d19757b0b4",
+    "block": "daily"
+   },
+   "F-F_ST_Reversal_Factor.csv": {
+    "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_ST_Reversal_Factor_CSV.zip",
+    "zip": "F-F_ST_Reversal_Factor_CSV.zip",
+    "zip_sha256": "7ddb68bbaa507ec0b298ceaecf99e719ef051367d93de3d1f89150e3fbb61740",
+    "sha256": "ed1e897e899cc36be45ef360dfa2a1522c5d00cd632099794bc5243f3ca9398f",
+    "block": "monthly"
+   },
+   "F-F_LT_Reversal_Factor.csv": {
+    "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_LT_Reversal_Factor_CSV.zip",
+    "zip": "F-F_LT_Reversal_Factor_CSV.zip",
+    "zip_sha256": "baad3163e4c0a72ea124a83248f2a7518f95d50418bac6167e0a903ce1881624",
+    "sha256": "0b7340ce0c0b0cf5cc8c8c58234f5b22932f4cdda4807c005333f08639ba542c",
+    "block": "monthly"
+   },
+   "12_Industry_Portfolios.csv": {
+    "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/12_Industry_Portfolios_CSV.zip",
+    "zip": "12_Industry_Portfolios_CSV.zip",
+    "zip_sha256": "78ff32de9b3b308c96beb48a5f6f8ae06209495ef63ee6efa274d6bdbb491b86",
+    "sha256": "9bda99d2afbb48f5569670da5dc3f9ce5ae2661be4bd030effee91fff3976b6c",
+    "block": "monthly, value-weighted (first block)"
+   },
+   "30_Industry_Portfolios.csv": {
+    "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/30_Industry_Portfolios_CSV.zip",
+    "zip": "30_Industry_Portfolios_CSV.zip",
+    "zip_sha256": "0d98de64bf37979080834b4d6809fee9b7882f64d823f3881d61593241633c11",
+    "sha256": "da0b6615cf08e42dd4fc11a527db20f6acc6ca4528dd0800b2aca9af6db9300d",
+    "block": "monthly, value-weighted (first block)"
+   }
+  }
+ },
+ "tests": {
+  "ids": [
+   "in_sample_search",
+   "oos_published",
+   "oos_selected",
+   "oos_search",
+   "full_search"
+  ],
+  "in_sample_search": "The full grid on the paper's sample window (sample_start to sample_end); every rule is scored on the same months, after the grid's warm-up; the headline is the best statistic in the grid. Placebos reorder all months of the window.",
+  "oos_published": "The paper's own rule, scored on the months after sample_end to the last month. The months up to sample_end stay in their real order (they feed the first signals); placebos reorder only the out-of-sample months among themselves. For volatility management with several factors the statistic is the mean appraisal ratio of the published rule across the factors. No search.",
+  "oos_selected": "The rule the real in-sample search picked, scored out of sample as above. No search.",
+  "oos_search": "The full grid scored on the out-of-sample months, earlier months fixed as above; the headline is the best statistic.",
+  "full_search": "The full grid on every month from sample_start to the last month; placebos reorder all of them."
+ },
+ "statistics": {
+  "momentum": "annualized Sharpe ratio of the monthly strategy returns (mean over standard deviation, times the square root of 12)",
+  "vol_managed": "annualized appraisal ratio: the intercept over the residual standard deviation of the OLS regression of the managed factor return on the unmanaged factor return, times the square root of 12. The managed return is the factor return divided by the past realized variance (power 2) or volatility (power 1); realized variance is the sum of squared daily returns in a month, averaged over the `window` months before the month earned. The scaling constant does not change the appraisal ratio.",
+  "textbook": "Beside each placebo p-value we report the naive one-sided p-value of the best rule's t-statistic (normal approximation, as if it were the only rule tried) and its Bonferroni correction (times the number of rules). For momentum the naive t tests a zero mean, which a static premium can reject; it is shown because it is what a backtest table prints."
+ },
+ "rules": {
+  "ts_momentum": "Each factor in the universe is held long if its return over the `lookback` months ending `skip` months before the month earned is positive, short if negative, with weight 1/N. Positions are held `hold` months in overlapping monthly cohorts (the position in a month is the average of the last `hold` cohorts' weights).",
+  "cs_momentum": "The assets in the universe are ranked by the same past return; the top `side` (a half, or a third) are held long and the bottom `side` short, each leg equally weighted to one unit; ties keep universe order. Overlapping cohorts as above.",
+  "vol_managed": "As in statistics.vol_managed."
+ },
+ "real": {
+  "placebos": 999,
+  "base_seed": 20261107,
+  "seed_rule": "base_seed + 1000003 * (claim's position in claims) + 7919 * (test's position in tests.ids)"
+ },
+ "families": {
+  "primary_tests": [
+   "in_sample_search",
+   "oos_published"
+  ],
+  "primary": "The in_sample_search and oos_published tests of the four primary claims: eight tests, Holm-adjusted at 5%.",
+  "secondary": "Every other test (oos_selected, oos_search and full_search of the primary claims; in_sample_search and oos_published of each volatility-managed factor alone): Holm-adjusted at 5% within this family."
+ },
+ "bars": {
+  "alpha": 0.05,
+  "size_max": 0.065,
+  "size_max_why": "1,000 simulated tests per cell give a Monte Carlo standard error of 0.69 percentage points at a true size of 5%; 6.5% is about 2.2 standard errors above.",
+  "cell_roles": {
+   "tsfm": {
+    "iid_normal": "exchangeable",
+    "garch_const": "claim_false",
+    "garch_meanvar": "report",
+    "trend_0.2": "power"
+   },
+   "csfm": {
+    "iid_normal": "exchangeable",
+    "garch_const": "claim_false",
+    "garch_meanvar": "report",
+    "trend_0.2": "power"
+   },
+   "indmom": {
+    "iid_normal": "exchangeable",
+    "garch_const": "claim_false",
+    "garch_meanvar": "report",
+    "trend_0.2": "power"
+   },
+   "vmf": {
+    "iid_normal": "exchangeable",
+    "garch_const": "power",
+    "garch_meanvar": "claim_false",
+    "trend_0.2": "report"
+   }
+  }
+ },
+ "hypotheses": {
+  "H1_exactness": "In every exchangeable simulated cell (iid_normal) the placebo's rejection rate at p = 0.05 is at most size_max. This is a theorem; failing it means a code error, and no real-data result is reported until it is found.",
+  "H2_volatility_clustering": "In each pipeline's claim_false cell (volatility clustering with the economic claim false: constant means for the momentum pipelines; means proportional to variance for volatility management) the rejection rate is at most size_max. If a pipeline fails, its real-data rejections are reported as evidence of time-series structure only, not of the claim.",
+  "H3_in_sample": "For each primary claim: is the Holm-adjusted placebo p-value of in_sample_search below 0.05? Reported as 'keeps a placebo p below 5% in sample after the search'.",
+  "H4_out_of_sample": "For each primary claim: is the Holm-adjusted placebo p-value of oos_published below 0.05? Reported as 'the published rule keeps a placebo p below 5% after the paper's sample'.",
+  "reporting": "For every test: the real statistic, the winning rule, the placebo median, 95th percentile and maximum, the raw and Holm p-values, and the naive and Bonferroni p-values. The placebo 95th percentile is the statistic a rule needed to reach p near 0.05, so a non-rejection is reported with how far short it fell."
+ },
+ "predictions": "Written before any statistic was computed on the real data; not bars. In sample: we expect the three momentum claims to keep p below 5% after the search, and the pooled volatility-managed claim too. Out of sample: we expect fewer rejections, because the windows after 2015 or 2019 are short (about 7 to 11 years) and the placebo then has little power; we make no directional prediction for each claim. We expect the naive p-values to be far smaller than the placebo's for the momentum pipelines, because static premia enter the naive test and not the placebo.",
+ "simulation": {
+  "purpose": "Calibration on simulated monthly panels shaped like each primary claim's in-sample data (same number of series and months, same grid and warm-up), with known truth; see scripts/research/placebo/v2/sim.mjs for every family.",
+  "claims": [
+   "tsfm",
+   "csfm",
+   "vmf",
+   "indmom"
+  ],
+  "families": [
+   {
+    "name": "iid_normal",
+    "base": "iid_normal"
+   },
+   {
+    "name": "garch_const",
+    "base": "garch_const"
+   },
+   {
+    "name": "garch_meanvar",
+    "base": "garch_meanvar"
+   },
+   {
+    "name": "trend_0.2",
+    "base": "trend",
+    "strength": 0.2
+   }
+  ],
+  "tests_per_cell": 1000,
+  "placebos": 19,
+  "chunk": 50,
+  "base_seed": 20261108,
+  "simplifications": "Monthly volatility 4% for every series, one common factor (pairwise correlation 0.3), annual Sharpe ratios drawn from N(0.3, 0.3^2); realized variance is the month's true variance times a chi-square(21)/21 draw, independent of the month's return. The industry pipeline draws 42 series, the first 12 standing for the 12-industry universe and the next 30 for the 30-industry one."
+ },
+ "pilot": {
+  "what": "Before this file was written, the simulation code ran a timing pilot of 20 tests per cell (6 families: the four above plus student_t4 and trend_0.1) at base seed 20261106, with draft windows (factor-momentum sample end 201912) and realized variance not yet demeaned, and with an earlier, slower version of the momentum code that gave identical ranks; its output is committed as config/research/placebo-v2-pilot.json. After the timing, the registered simulation was cut to four families and 1,000 tests per cell to fit the compute budget. No strategy or test statistic was computed on the real data before this file was committed and pushed: the real files were only downloaded, hashed and checked for structure (column names, first dates, missing-value markers). A two-test crash check of the final simulation code ran at base seed 99 (output discarded), and the real panels were built once to check coverage (first and last month, row counts), with no statistic computed.",
+  "tests_per_cell": 20,
+  "base_seed": 20261106
+ },
+ "stopping_rule": "The calibration and the real-data run are each executed once, after this file is committed and pushed. If a run crashes, the cause is fixed and the run repeated with the same seeds; the fix is committed and reported. If a bug that changes results is found after a run, both results are reported. No grid, window, seed, test, family or bar is changed after the real data are run.",
+ "language": "We do not say a published paper is wrong. We report which claims keep a placebo p-value below 5% once the search is counted, in the paper's sample (on today's data vintage) and after it.",
+ "scripts": {
+  "data": "scripts/research/placebo/v2/data.mjs",
+  "pipelines": "scripts/research/placebo/v2/pipelines.mjs",
+  "simulation": "scripts/research/placebo/v2/sim.mjs",
+  "run": "scripts/research/placebo/v2/run.mjs",
+  "evaluate": "scripts/research/placebo/v2/evaluate.mjs",
+  "tests": "scripts/research/placebo/v2/v2.test.mjs",
+  "placebo_core": "js/placebo-core.js (placeboOrder, method permute)",
+  "commands": [
+   "node scripts/research/placebo/v2/run.mjs sim config/research/placebo-v2-prereg.json > config/research/placebo-v2-sim.json",
+   "node scripts/research/placebo/v2/run.mjs real config/research/placebo-v2-prereg.json <directory of the unzipped CSV files> > config/research/placebo-v2-real.json",
+   "node scripts/research/placebo/v2/evaluate.mjs config/research/placebo-v2-prereg.json config/research/placebo-v2-sim.json config/research/placebo-v2-real.json > config/research/placebo-v2-evaluation.json"
+  ]
+ },
+ "series": {
+  "Mkt-RF": {
+   "file": "F-F_Research_Data_5_Factors_2x3.csv",
+   "column": "Mkt-RF"
+  },
+  "SMB": {
+   "file": "F-F_Research_Data_5_Factors_2x3.csv",
+   "column": "SMB"
+  },
+  "HML": {
+   "file": "F-F_Research_Data_5_Factors_2x3.csv",
+   "column": "HML"
+  },
+  "RMW": {
+   "file": "F-F_Research_Data_5_Factors_2x3.csv",
+   "column": "RMW"
+  },
+  "CMA": {
+   "file": "F-F_Research_Data_5_Factors_2x3.csv",
+   "column": "CMA"
+  },
+  "UMD": {
+   "file": "F-F_Momentum_Factor.csv",
+   "column": "Mom"
+  },
+  "ST_Rev": {
+   "file": "F-F_ST_Reversal_Factor.csv",
+   "column": "ST_Rev"
+  },
+  "LT_Rev": {
+   "file": "F-F_LT_Reversal_Factor.csv",
+   "column": "LT_Rev"
+  },
+  "vm:Mkt-RF": {
+   "file": "F-F_Research_Data_Factors.csv",
+   "column": "Mkt-RF",
+   "daily": {
+    "file": "F-F_Research_Data_Factors_daily.csv",
+    "column": "Mkt-RF"
+   }
+  },
+  "vm:SMB": {
+   "file": "F-F_Research_Data_Factors.csv",
+   "column": "SMB",
+   "daily": {
+    "file": "F-F_Research_Data_Factors_daily.csv",
+    "column": "SMB"
+   }
+  },
+  "vm:HML": {
+   "file": "F-F_Research_Data_Factors.csv",
+   "column": "HML",
+   "daily": {
+    "file": "F-F_Research_Data_Factors_daily.csv",
+    "column": "HML"
+   }
+  },
+  "vm:UMD": {
+   "file": "F-F_Momentum_Factor.csv",
+   "column": "Mom",
+   "daily": {
+    "file": "F-F_Momentum_Factor_daily.csv",
+    "column": "Mom"
+   }
+  },
+  "vm:RMW": {
+   "file": "F-F_Research_Data_5_Factors_2x3.csv",
+   "column": "RMW",
+   "daily": {
+    "file": "F-F_Research_Data_5_Factors_2x3_daily.csv",
+    "column": "RMW"
+   }
+  },
+  "vm:CMA": {
+   "file": "F-F_Research_Data_5_Factors_2x3.csv",
+   "column": "CMA",
+   "daily": {
+    "file": "F-F_Research_Data_5_Factors_2x3_daily.csv",
+    "column": "CMA"
+   }
+  },
+  "i12:NoDur": {
+   "file": "12_Industry_Portfolios.csv",
+   "column": "NoDur"
+  },
+  "i12:Durbl": {
+   "file": "12_Industry_Portfolios.csv",
+   "column": "Durbl"
+  },
+  "i12:Manuf": {
+   "file": "12_Industry_Portfolios.csv",
+   "column": "Manuf"
+  },
+  "i12:Enrgy": {
+   "file": "12_Industry_Portfolios.csv",
+   "column": "Enrgy"
+  },
+  "i12:Chems": {
+   "file": "12_Industry_Portfolios.csv",
+   "column": "Chems"
+  },
+  "i12:BusEq": {
+   "file": "12_Industry_Portfolios.csv",
+   "column": "BusEq"
+  },
+  "i12:Telcm": {
+   "file": "12_Industry_Portfolios.csv",
+   "column": "Telcm"
+  },
+  "i12:Utils": {
+   "file": "12_Industry_Portfolios.csv",
+   "column": "Utils"
+  },
+  "i12:Shops": {
+   "file": "12_Industry_Portfolios.csv",
+   "column": "Shops"
+  },
+  "i12:Hlth": {
+   "file": "12_Industry_Portfolios.csv",
+   "column": "Hlth"
+  },
+  "i12:Money": {
+   "file": "12_Industry_Portfolios.csv",
+   "column": "Money"
+  },
+  "i12:Other": {
+   "file": "12_Industry_Portfolios.csv",
+   "column": "Other"
+  },
+  "i30:Food": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Food"
+  },
+  "i30:Beer": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Beer"
+  },
+  "i30:Smoke": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Smoke"
+  },
+  "i30:Games": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Games"
+  },
+  "i30:Books": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Books"
+  },
+  "i30:Hshld": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Hshld"
+  },
+  "i30:Clths": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Clths"
+  },
+  "i30:Hlth": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Hlth"
+  },
+  "i30:Chems": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Chems"
+  },
+  "i30:Txtls": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Txtls"
+  },
+  "i30:Cnstr": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Cnstr"
+  },
+  "i30:Steel": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Steel"
+  },
+  "i30:FabPr": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "FabPr"
+  },
+  "i30:ElcEq": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "ElcEq"
+  },
+  "i30:Autos": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Autos"
+  },
+  "i30:Carry": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Carry"
+  },
+  "i30:Mines": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Mines"
+  },
+  "i30:Coal": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Coal"
+  },
+  "i30:Oil": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Oil"
+  },
+  "i30:Util": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Util"
+  },
+  "i30:Telcm": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Telcm"
+  },
+  "i30:Servs": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Servs"
+  },
+  "i30:BusEq": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "BusEq"
+  },
+  "i30:Paper": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Paper"
+  },
+  "i30:Trans": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Trans"
+  },
+  "i30:Whlsl": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Whlsl"
+  },
+  "i30:Rtail": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Rtail"
+  },
+  "i30:Meals": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Meals"
+  },
+  "i30:Fin": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Fin"
+  },
+  "i30:Other": {
+   "file": "30_Industry_Portfolios.csv",
+   "column": "Other"
+  }
+ },
+ "claims": {
+  "tsfm": {
+   "family": "primary",
+   "label": "Time-series factor momentum",
+   "paper": "Ehsani and Linnainmaa (2022), Journal of Finance 77(3); also Gupta and Kelly (2019), Journal of Portfolio Management 45(3), whose one-month lookback is in the grid",
+   "paper_spec": "Long factors with a positive return over months t-12 to t-1, short factors with a negative one, rebalanced monthly; 20 non-momentum factors; strategy months July 1964 to December 2015 (NBER working paper 25551; the published version may differ). Our version uses the seven non-momentum factors in the French library and weights each factor 1/N by the sign of its past return; it is in the style of the paper, not a replication.",
+   "pipeline": "ts_momentum",
+   "series": [
+    "Mkt-RF",
+    "SMB",
+    "HML",
+    "RMW",
+    "CMA",
+    "ST_Rev",
+    "LT_Rev",
+    "UMD"
+   ],
+   "universes": {
+    "no_umd": [
+     "Mkt-RF",
+     "SMB",
+     "HML",
+     "RMW",
+     "CMA",
+     "ST_Rev",
+     "LT_Rev"
+    ],
+    "with_umd": [
+     "Mkt-RF",
+     "SMB",
+     "HML",
+     "RMW",
+     "CMA",
+     "ST_Rev",
+     "LT_Rev",
+     "UMD"
+    ]
+   },
+   "grid": {
+    "universe": [
+     "no_umd",
+     "with_umd"
+    ],
+    "lookback": [
+     1,
+     3,
+     6,
+     12,
+     24,
+     36,
+     60
+    ],
+    "skip": [
+     0,
+     1
+    ],
+    "hold": [
+     1,
+     3,
+     6
+    ]
+   },
+   "published": {
+    "universe": "no_umd",
+    "lookback": 12,
+    "skip": 0,
+    "hold": 1
+   },
+   "sample_start": 196307,
+   "sample_end": 201512
+  },
+  "csfm": {
+   "family": "primary",
+   "label": "Cross-sectional factor momentum",
+   "paper": "Ehsani and Linnainmaa (2022); Arnott, Kalesnik and Linnainmaa (2023), Review of Financial Studies 36(8)",
+   "paper_spec": "Long the factors with above-median returns over months t-12 to t-1, short those below; same sample as time-series factor momentum. Ours: the top and bottom halves of the seven (or eight) French-library factors.",
+   "pipeline": "cs_momentum",
+   "series": [
+    "Mkt-RF",
+    "SMB",
+    "HML",
+    "RMW",
+    "CMA",
+    "ST_Rev",
+    "LT_Rev",
+    "UMD"
+   ],
+   "universes": {
+    "no_umd": [
+     "Mkt-RF",
+     "SMB",
+     "HML",
+     "RMW",
+     "CMA",
+     "ST_Rev",
+     "LT_Rev"
+    ],
+    "with_umd": [
+     "Mkt-RF",
+     "SMB",
+     "HML",
+     "RMW",
+     "CMA",
+     "ST_Rev",
+     "LT_Rev",
+     "UMD"
+    ]
+   },
+   "grid": {
+    "universe": [
+     "no_umd",
+     "with_umd"
+    ],
+    "lookback": [
+     1,
+     3,
+     6,
+     12,
+     24,
+     36,
+     60
+    ],
+    "skip": [
+     0,
+     1
+    ],
+    "hold": [
+     1,
+     3,
+     6
+    ],
+    "side": [
+     "half"
+    ]
+   },
+   "published": {
+    "universe": "no_umd",
+    "lookback": 12,
+    "skip": 0,
+    "hold": 1,
+    "side": "half"
+   },
+   "sample_start": 196307,
+   "sample_end": 201512
+  },
+  "vmf": {
+   "family": "primary",
+   "label": "Volatility-managed factors",
+   "paper": "Moreira and Muir (2017), Journal of Finance 72(4)",
+   "paper_spec": "The factor return scaled by c over the previous month's realized variance from daily returns (demeaned within the month); the alpha of the regression of the managed return on the factor return; sample 1926-2015 for Mkt, SMB, HML and Mom, 1963-2015 for RMW and CMA (Table 1 of NBER working paper 22208). The pooled claim uses the six factors over their common months from July 1963.",
+   "pipeline": "vol_managed",
+   "series": [
+    "vm:Mkt-RF",
+    "vm:SMB",
+    "vm:HML",
+    "vm:UMD",
+    "vm:RMW",
+    "vm:CMA"
+   ],
+   "grid": {
+    "factor": [
+     "vm:Mkt-RF",
+     "vm:SMB",
+     "vm:HML",
+     "vm:UMD",
+     "vm:RMW",
+     "vm:CMA"
+    ],
+    "window": [
+     1,
+     3,
+     6
+    ],
+    "power": [
+     2,
+     1
+    ]
+   },
+   "published": {
+    "window": 1,
+    "power": 2
+   },
+   "sample_start": 196307,
+   "sample_end": 201512
+  },
+  "indmom": {
+   "family": "primary",
+   "label": "Industry momentum",
+   "paper": "Moskowitz and Grinblatt (1999), Journal of Finance 54(4)",
+   "paper_spec": "Long the top three and short the bottom three of 20 industries ranked by their past six-month return, held six months (as described by Ehsani and Linnainmaa, who follow Moskowitz and Grinblatt's Table I). We could not check the sample period against the paper's own text; we use July 1963 to July 1995 as the in-sample window and state this as unverified. Ours: the French 12- and 30-industry value-weighted portfolios, top and bottom thirds.",
+   "pipeline": "cs_momentum",
+   "series": [
+    "i12:NoDur",
+    "i12:Durbl",
+    "i12:Manuf",
+    "i12:Enrgy",
+    "i12:Chems",
+    "i12:BusEq",
+    "i12:Telcm",
+    "i12:Utils",
+    "i12:Shops",
+    "i12:Hlth",
+    "i12:Money",
+    "i12:Other",
+    "i30:Food",
+    "i30:Beer",
+    "i30:Smoke",
+    "i30:Games",
+    "i30:Books",
+    "i30:Hshld",
+    "i30:Clths",
+    "i30:Hlth",
+    "i30:Chems",
+    "i30:Txtls",
+    "i30:Cnstr",
+    "i30:Steel",
+    "i30:FabPr",
+    "i30:ElcEq",
+    "i30:Autos",
+    "i30:Carry",
+    "i30:Mines",
+    "i30:Coal",
+    "i30:Oil",
+    "i30:Util",
+    "i30:Telcm",
+    "i30:Servs",
+    "i30:BusEq",
+    "i30:Paper",
+    "i30:Trans",
+    "i30:Whlsl",
+    "i30:Rtail",
+    "i30:Meals",
+    "i30:Fin",
+    "i30:Other"
+   ],
+   "universes": {
+    "ind12": [
+     "i12:NoDur",
+     "i12:Durbl",
+     "i12:Manuf",
+     "i12:Enrgy",
+     "i12:Chems",
+     "i12:BusEq",
+     "i12:Telcm",
+     "i12:Utils",
+     "i12:Shops",
+     "i12:Hlth",
+     "i12:Money",
+     "i12:Other"
+    ],
+    "ind30": [
+     "i30:Food",
+     "i30:Beer",
+     "i30:Smoke",
+     "i30:Games",
+     "i30:Books",
+     "i30:Hshld",
+     "i30:Clths",
+     "i30:Hlth",
+     "i30:Chems",
+     "i30:Txtls",
+     "i30:Cnstr",
+     "i30:Steel",
+     "i30:FabPr",
+     "i30:ElcEq",
+     "i30:Autos",
+     "i30:Carry",
+     "i30:Mines",
+     "i30:Coal",
+     "i30:Oil",
+     "i30:Util",
+     "i30:Telcm",
+     "i30:Servs",
+     "i30:BusEq",
+     "i30:Paper",
+     "i30:Trans",
+     "i30:Whlsl",
+     "i30:Rtail",
+     "i30:Meals",
+     "i30:Fin",
+     "i30:Other"
+    ]
+   },
+   "grid": {
+    "universe": [
+     "ind12",
+     "ind30"
+    ],
+    "lookback": [
+     1,
+     3,
+     6,
+     12
+    ],
+    "skip": [
+     0,
+     1
+    ],
+    "hold": [
+     1,
+     3,
+     6,
+     12
+    ],
+    "side": [
+     "third"
+    ]
+   },
+   "published": {
+    "universe": "ind30",
+    "lookback": 6,
+    "skip": 0,
+    "hold": 6,
+    "side": "third"
+   },
+   "sample_start": 196307,
+   "sample_end": 199507
+  },
+  "vmf_mkt": {
+   "family": "secondary",
+   "label": "Volatility-managed factors: Mkt-RF alone",
+   "paper": "Moreira and Muir (2017), Journal of Finance 72(4)",
+   "pipeline": "vol_managed",
+   "series": [
+    "vm:Mkt-RF"
+   ],
+   "grid": {
+    "factor": [
+     "vm:Mkt-RF"
+    ],
+    "window": [
+     1,
+     3,
+     6
+    ],
+    "power": [
+     2,
+     1
+    ]
+   },
+   "published": {
+    "window": 1,
+    "power": 2
+   },
+   "sample_start": 192607,
+   "sample_end": 201512,
+   "tests": [
+    "in_sample_search",
+    "oos_published"
+   ]
+  },
+  "vmf_smb": {
+   "family": "secondary",
+   "label": "Volatility-managed factors: SMB alone",
+   "paper": "Moreira and Muir (2017), Journal of Finance 72(4)",
+   "pipeline": "vol_managed",
+   "series": [
+    "vm:SMB"
+   ],
+   "grid": {
+    "factor": [
+     "vm:SMB"
+    ],
+    "window": [
+     1,
+     3,
+     6
+    ],
+    "power": [
+     2,
+     1
+    ]
+   },
+   "published": {
+    "window": 1,
+    "power": 2
+   },
+   "sample_start": 192607,
+   "sample_end": 201512,
+   "tests": [
+    "in_sample_search",
+    "oos_published"
+   ]
+  },
+  "vmf_hml": {
+   "family": "secondary",
+   "label": "Volatility-managed factors: HML alone",
+   "paper": "Moreira and Muir (2017), Journal of Finance 72(4)",
+   "pipeline": "vol_managed",
+   "series": [
+    "vm:HML"
+   ],
+   "grid": {
+    "factor": [
+     "vm:HML"
+    ],
+    "window": [
+     1,
+     3,
+     6
+    ],
+    "power": [
+     2,
+     1
+    ]
+   },
+   "published": {
+    "window": 1,
+    "power": 2
+   },
+   "sample_start": 192607,
+   "sample_end": 201512,
+   "tests": [
+    "in_sample_search",
+    "oos_published"
+   ]
+  },
+  "vmf_umd": {
+   "family": "secondary",
+   "label": "Volatility-managed factors: UMD alone",
+   "paper": "Moreira and Muir (2017), Journal of Finance 72(4)",
+   "pipeline": "vol_managed",
+   "series": [
+    "vm:UMD"
+   ],
+   "grid": {
+    "factor": [
+     "vm:UMD"
+    ],
+    "window": [
+     1,
+     3,
+     6
+    ],
+    "power": [
+     2,
+     1
+    ]
+   },
+   "published": {
+    "window": 1,
+    "power": 2
+   },
+   "sample_start": 192701,
+   "sample_end": 201512,
+   "tests": [
+    "in_sample_search",
+    "oos_published"
+   ]
+  },
+  "vmf_rmw": {
+   "family": "secondary",
+   "label": "Volatility-managed factors: RMW alone",
+   "paper": "Moreira and Muir (2017), Journal of Finance 72(4)",
+   "pipeline": "vol_managed",
+   "series": [
+    "vm:RMW"
+   ],
+   "grid": {
+    "factor": [
+     "vm:RMW"
+    ],
+    "window": [
+     1,
+     3,
+     6
+    ],
+    "power": [
+     2,
+     1
+    ]
+   },
+   "published": {
+    "window": 1,
+    "power": 2
+   },
+   "sample_start": 196307,
+   "sample_end": 201512,
+   "tests": [
+    "in_sample_search",
+    "oos_published"
+   ]
+  },
+  "vmf_cma": {
+   "family": "secondary",
+   "label": "Volatility-managed factors: CMA alone",
+   "paper": "Moreira and Muir (2017), Journal of Finance 72(4)",
+   "pipeline": "vol_managed",
+   "series": [
+    "vm:CMA"
+   ],
+   "grid": {
+    "factor": [
+     "vm:CMA"
+    ],
+    "window": [
+     1,
+     3,
+     6
+    ],
+    "power": [
+     2,
+     1
+    ]
+   },
+   "published": {
+    "window": 1,
+    "power": 2
+   },
+   "sample_start": 196307,
+   "sample_end": 201512,
+   "tests": [
+    "in_sample_search",
+    "oos_published"
+   ]
+  }
+ },
+ "registered": "This file and every script it names were committed (signed) and pushed to the public branch research/placebo-v2-20261107 of github.com/arhancanli/canlicapital before the calibration or the real-data run."
+}

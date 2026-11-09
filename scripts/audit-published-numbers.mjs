@@ -116,6 +116,8 @@ for (const extra of [
   "stats/adoption.json",
   "datasets/filing-facts/v0/leaderboard.json",
   "datasets/filing-facts/index.json",
+  "datasets/company-guidance/index.json",
+  "datasets/bankruptcy-filings/index.json",
   "benchmarks/finance-mcp-servers.json",
   "benchmarks/fresh-filings.json",
   "claim-check-example.json",

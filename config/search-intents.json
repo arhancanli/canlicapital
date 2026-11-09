@@ -697,6 +697,74 @@
         "paper trading mcp server",
         "alpaca paper trading mcp"
       ]
+    },
+    {
+      "path": "/notes/factor-timing-against-a-placebo",
+      "intent": "Check whether factor-timing claims such as factor momentum or volatility-managed portfolios survive a placebo test",
+      "queries": [
+        "factor momentum placebo test",
+        "volatility managed portfolios replication",
+        "does factor timing work"
+      ]
+    },
+    {
+      "path": "/notes/which-overfitting-tests-hold-their-size",
+      "intent": "Choose a data-snooping or backtest-overfitting test whose false-positive rate holds on realistic returns",
+      "queries": [
+        "white reality check vs hansen spa",
+        "deflated sharpe ratio power",
+        "backtest overfitting test false positive rate"
+      ]
+    },
+    {
+      "path": "/datasets",
+      "intent": "Find free financial datasets built from SEC filings",
+      "queries": ["free financial datasets", "sec filings dataset", "open finance datasets csv"]
+    },
+    {
+      "path": "/datasets/company-guidance",
+      "intent": "Download company earnings guidance against reported results",
+      "queries": ["earnings guidance dataset", "guidance vs actual results dataset", "s&p 500 guidance data"]
+    },
+    {
+      "path": "/datasets/bankruptcy-filings",
+      "intent": "Download a list of US public company bankruptcy filings",
+      "queries": ["bankruptcy dataset", "chapter 11 filings list csv", "8-k item 1.03 bankruptcy"]
+    },
+    {
+      "path": "/mcp-servers/tools",
+      "intent": "Find an MCP tool for one finance task by name",
+      "queries": [
+        "canli-mcp tools",
+        "finance mcp tool list"
+      ]
+    },
+    {
+      "path": "/notes/bankruptcy-risk-from-an-annual-report",
+      "intent": "Estimate a company's chance of bankruptcy from its annual report and compare it with Altman's Z-score and Ohlson's O-score",
+      "queries": [
+        "bankruptcy prediction model 10-K",
+        "altman z score vs ohlson o score",
+        "probability of bankruptcy from financial statements"
+      ]
+    },
+    {
+      "path": "/notes/beat-your-own-guidance",
+      "intent": "Estimate the chance a company's results land above its own guidance range",
+      "queries": [
+        "probability company beats guidance",
+        "guidance beat rate by company",
+        "does management sandbag guidance"
+      ]
+    },
+    {
+      "path": "/notes/a-million-simple-strategies",
+      "intent": "Check whether a trading strategy is original and whether it beats simple rules on public data",
+      "queries": [
+        "is my trading strategy original",
+        "library of simple trading strategies",
+        "strategy originality check"
+      ]
     }
   ],
   "expansion_policy": "Add a distinct canonical owner only when its useful answer and source evidence exist. Synonyms stay on the same page. No arbitrary company-by-keyword permutations. Gaps remain explicit until addressed.",

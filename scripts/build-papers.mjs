@@ -39,7 +39,7 @@ import {
 } from "./product-shell.mjs";
 import { discover as discoverMeasurementArtifacts, rawArtifactUrl } from "./build-measurements.mjs";
 import { gitCommitDate, artifactDate, resolveLastmod, writeSourceDates } from "./lastmod.mjs";
-import { PAGE_SOURCES, SHARED_PAGE_SOURCES } from "./lib/page-sources.mjs";
+import { PAGE_SOURCES } from "./lib/page-sources.mjs";
 import { applyReaderPresentation, applyHubNavigation } from './lib/reading-layout.mjs';
 import { applySiteDesign } from './build-site-design.mjs';
 import { fitDescription as fitDescriptionFrom } from "./lib/descriptions.mjs";
@@ -88,7 +88,6 @@ const archivalPaperRoutes = () => {
         `public/${originalRoute.slice(1)}.html`,
         `${wrapperRoute.slice(1)}.html`,
         "scripts/build-publication-wrappers.mjs",
-        ...SHARED_PAGE_SOURCES,
       ],
     };
   });
@@ -163,6 +162,17 @@ const trialRoutes = () => {
     });
 };
 
+// One page per canli-mcp tool (scripts/build-mcp-pages.mjs), each dated by its own content in the record the
+// generator keeps (config/mcp-tool-pages.json), so a template or another tool's change re-dates none of them.
+function toolPageRoutes(record = "config/mcp-tool-pages.json") {
+  const file = resolve(ROOT, record);
+  if (!existsSync(file)) return [];
+  const { tools } = JSON.parse(readFileSync(file, "utf8"));
+  return Object.entries(tools)
+    .filter(([name]) => existsSync(resolve(ROOT, `mcp-servers/tools/${name.replace(/_/g, "-")}.html`)))
+    .map(([name, t]) => ({ loc: `${ORIGIN}/mcp-servers/tools/${name.replace(/_/g, "-")}`, priority: "0.6", changefreq: "monthly", ...(t.changed ? { lastmod: t.changed } : {}) }));
+}
+
 // The engineering notes, DERIVED from what build-notes.mjs put on disk, for the same
 // reason the measurement pages are: build-notes decides how many there are. Each note's
 // lastmod traces to its own hand-authored markdown source (`notes/<slug>.md`), never to
@@ -208,6 +218,9 @@ const STATIC_ROUTES = [
   { path: "/mcp-servers", priority: "0.9", changefreq: "weekly" },
   { path: "/benchmarks/filingfacts", priority: "0.9", changefreq: "weekly" },
   { path: "/datasets/filing-facts", priority: "0.8", changefreq: "monthly" },
+  { path: "/datasets", priority: "0.8", changefreq: "monthly" },
+  { path: "/datasets/company-guidance", priority: "0.8", changefreq: "monthly" },
+  { path: "/datasets/bankruptcy-filings", priority: "0.8", changefreq: "monthly" },
   { path: "/benchmarks/finance-mcp-servers", priority: "0.9", changefreq: "weekly" },
   { path: "/benchmarks/fresh-filings", priority: "0.9", changefreq: "weekly" },
   { path: "/record", priority: "0.8", changefreq: "daily" },
@@ -1161,6 +1174,7 @@ function main() {
     ...measurements.map((route) => ({ ...route, lastmod: measurementLastmods.get(route.loc) })),
     ...trials.map((route) => ({ ...route, lastmod: trialLastmods.get(route.loc) })),
     ...notes.map((route) => ({ ...route, lastmod: noteLastmods.get(route.loc) })),
+    ...toolPageRoutes(),
   ];
 
   if (BUILD_DATE_FALLBACK_WARNINGS.length) {
