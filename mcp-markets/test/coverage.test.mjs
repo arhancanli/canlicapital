@@ -161,6 +161,9 @@ test("fund_portfolio: IVV's N-PORT, its largest positions, exposures, returns, f
   assert.deepEqual(r.fund, { name: "iShares Core S&P 500 ETF", ticker: "IVV", series_id: "S000004310", class_id: "C000012040", registrant: "iShares Trust", registrant_cik: 1100663 });
   assert.deepEqual([r.period, r.filed, r.accession, r.net_assets, r.positions], ["2026-06-30", "2026-08-25", "0002071691-26-019760", 888128937468.17, 508]);
   assert.equal(r.weights_add_to, 1.0012);
+  // The report checked against itself: the positions' values come to the same share of net assets as their weights,
+  // apart by the liabilities less the assets outside the positions, and the totals agree.
+  assert.deepEqual(r.holdings_check, { positions_total: 889159485657.55, values_add_to: 1.0012, liabilities: 1508258608.35, other_assets: 477710418.97, totals_agree: true });
   assert.deepEqual(r.rows.map((x) => [x[0], x[2], x[5]]), [["NVIDIA Corp.", "67066G104", 0.075059], ["Apple, Inc.", "037833100", 0.065823], ["Microsoft Corp.", "594918104", 0.042917]]);
   assert.deepEqual(r.exposure.asset_category.rows[0], ["EC", "equity, common", 0.9983]);
   assert.deepEqual(r.exposure.country.rows[0], ["US", 0.9717]);
@@ -184,6 +187,7 @@ test("fund_portfolio: TLT, a Treasury bond fund, with its coupon and maturity pr
   assert.equal(r.bonds.weighted_coupon_pct, 3.489);
   assert.equal(r.bonds.weighted_years_to_maturity, 26.01);
   assert.deepEqual(r.bonds.maturity.rows.at(-1), ["20 years and over", 0.9682]);
+  assert.deepEqual(r.holdings_check, { positions_total: 42592413608.52, values_add_to: 0.9927, liabilities: 5323538.26, other_assets: 318948485.97, totals_agree: true }, "0.7% of the fund outside its bonds");
   assert.deepEqual(r.rows[0].slice(0, 6), ["United States of America", "U.S. Treasury Bonds", "912810TT5", "US912810TT51", 1964434087.09, 0.045785]);
 });
 

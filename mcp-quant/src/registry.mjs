@@ -51,12 +51,17 @@ export const BY_NAME = new Map(CATALOG.map((t) => [t.name, t]));
 
 if (BY_NAME.size !== CATALOG.length) throw new Error("Duplicate tool name in the catalog");
 
+const withoutNulls = (value) => (value && typeof value === "object" && !Array.isArray(value) && Object.values(value).includes(null) ? Object.fromEntries(Object.entries(value).filter(([, v]) => v !== null)) : null);
+
 // Runs one tool on raw arguments: validates, computes, rounds. Throws an Error whose message says
 // what to fix; callers turn it into an MCP error result.
 export function runTool(name, args, { digits = 10 } = {}) {
   const tool = BY_NAME.get(name);
   if (!tool) throw new Error(`No tool ${name}. Use find_tool to search the ${CATALOG.length} tools.`);
-  const parsed = tool.input.safeParse(args ?? {});
+  let parsed = tool.input.safeParse(args ?? {});
+  // An optional argument sent as null (CrewAI, OpenAI strict mode) counts as not given, so an error names only what is still wrong.
+  const kept = parsed.success ? null : withoutNulls(args);
+  if (kept) parsed = tool.input.safeParse(kept);
   if (!parsed.success) {
     const issues = parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "arguments"}: ${i.message}`).join("; ");
     throw new Error(`${name}: ${issues}. describe_tool ${name} gives the exact input schema.`);

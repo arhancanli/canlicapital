@@ -104,6 +104,18 @@ test("the hosted endpoint refuses to read files, and says what to send instead",
   await assert.rejects(() => toolBacktestStrategy(session, { family: "buy_and_hold", prices_file: "/etc/hosts" }), /hosted endpoint cannot read files on your machine; send prices as numbers/);
 });
 
+test("backtest_strategy hands each variant's returns to a server in the same process, hidden from the answer", async () => {
+  const key = Symbol.for("canli.trial_returns");
+  const r = await toolBacktestStrategy(createSession({ toolsets: ["lab"] }), { family: "momentum", prices: walk(600, 4), grid: { lookback: [10, 20, 40], skip: [0, 5] } });
+  const out = r.structuredContent, series = out[key];
+  assert.deepEqual([series.length, out.every_trial.sharpes.length], [6, 6], "every variant, as every_trial counts them");
+  assert.ok(series.every((x) => x.length === 599), "a return for every period of the prices, so calls with other grids line up");
+  // canli-mcp's luck reads it off the structured answer and deletes it; nothing else sees it.
+  assert.equal(Object.getOwnPropertyDescriptor(out, key).enumerable, false);
+  assert.equal(JSON.parse(r.content[0].text)[key], undefined);
+  assert.equal(delete out[key], true);
+});
+
 test("exactly one source: inline numbers or a file, never both and never neither", async () => {
   const session = createSession({ toolsets: ["lab"] });
   await assert.rejects(() => toolBacktestStrategy(session, { family: "buy_and_hold" }), /send exactly one of prices or prices_file/);
