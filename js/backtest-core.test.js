@@ -5,7 +5,7 @@ const performance_now = () => perf.now();
 
 import { calculateDsr } from "./dsr-core.js";
 import { perPeriodMoments } from "./moments-core.js";
-import { BACKTEST_LIMITS, cscvSplits, expandGrid, fastCscv, performance, positionsFor, runBacktest, simulate } from "./backtest-core.js";
+import { BACKTEST_LIMITS, TRIAL_RETURNS, cscvSplits, expandGrid, fastCscv, performance, positionsFor, runBacktest, simulate } from "./backtest-core.js";
 import { pboCscv } from "./pbo-core.js";
 import { makeRandom } from "./selection-risk-core.js";
 
@@ -118,6 +118,20 @@ test("the selected variant is the highest Sharpe, and the table is sorted and ca
   assert.equal(shown.length, BACKTEST_LIMITS.top_variants_shown);
   assert.deepEqual(shown, [...shown].sort((a, b) => b - a));
   assert.equal(out.selected.metrics.sharpe, shown[0]);
+});
+
+test("every variant's returns go to a server in the same process under the trial key, in every_trial's order, never into JSON", () => {
+  const out = runBacktest({ prices: walk(900, 3), family: "momentum", grid: { lookback: [5, 10, 20, 40, 60, 120], skip: [0, 5] } });
+  const series = out[TRIAL_RETURNS];
+  assert.equal(TRIAL_RETURNS, Symbol.for("canli.trial_returns"), "the key canli-quant-mcp and canli-backtest-mcp use");
+  assert.equal(series.length, out.every_trial.sharpes.length);
+  const warm = out.window.warmup_periods;
+  assert.ok(series.every((r) => r.length === 899 && r.subarray(0, warm).every((x) => x === 0)), "a return for every period of the prices, flat before the warm-up ends");
+  assert.deepEqual(series.map((r) => performance(r.subarray(warm), 252).sharpe), out.every_trial.sharpes, "best first, as every_trial lists them");
+  assert.deepEqual(Object.getOwnPropertySymbols(out), [TRIAL_RETURNS], "the one key that is not a field");
+  assert.equal(Object.getOwnPropertyDescriptor(out, TRIAL_RETURNS).enumerable, false, "a spread or a schema's record check passes over it");
+  assert.equal({ ...out }[TRIAL_RETURNS], undefined);
+  assert.equal(JSON.parse(JSON.stringify(out))[TRIAL_RETURNS], undefined, "JSON leaves it out");
 });
 
 test("a single variant reports its probabilistic Sharpe and says why there is no deflation", () => {

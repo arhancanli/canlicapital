@@ -27,3 +27,7 @@ export function parseHoldings(text) {
 // The same holdings as a link someone can share, and back.
 export const toLink = (holdings) => holdings.map((h) => `${h.symbol}:${h.weight}`).join(",");
 export const fromLink = (value) => String(value ?? "").split(",").map((p) => p.split(":").join(" ")).join("\n").slice(0, 2000);
+
+// Where a fund's positions come from, and, where the server gives it, a check on that report itself: its holdings'
+// dollar values against its net assets, apart by cash and what the fund owes.
+export const sourceLine = (f) => `${f.symbol}: ${f.fund}, its report for ${f.period}, filed ${f.filed}.${Number.isFinite(f.values_add_to) ? ` Its holdings add up to ${(100 * f.values_add_to).toFixed(2)}% of its net assets; cash and what the fund owes make up the difference.` : ""}`;
