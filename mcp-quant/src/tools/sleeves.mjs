@@ -20,7 +20,7 @@ import { z } from "zod";
 
 import { correlation, mean, moments, mulberry32, normCdf, normInv, quantile, std, variance } from "../math.mjs";
 import { MAX_SERIES, ppyArg } from "../inputs.mjs";
-import { defaultSplits, pbo } from "../cscv.mjs";
+import { defaultSplits, pbo, TRIAL_RETURNS } from "../cscv.mjs";
 import { FAMILY_INFO, SLEEVES, SLEEVE_BY_ID } from "../sleeves.mjs";
 import { RECIPES, runEngine, statsOf } from "./strategies.mjs";
 
@@ -331,6 +331,7 @@ export const TOOLS = [
         // Every sleeve's Sharpe on the common window, best first, so a server that counts what a session tried
         // counts each sleeve.
         every_trial: { periods: n, periods_per_year: ppy, sharpes: order.map((r) => r.sharpe) },
+        [TRIAL_RETURNS]: order.map((r) => R[r.k]),
       };
     },
   },

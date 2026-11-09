@@ -5,7 +5,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { createSession, resolveEntity } from "../src/sources.mjs";
+import { createSession, FACTS_FROM, resolveEntity } from "../src/sources.mjs";
 
 const ROWS = [
   [1045810, "NVDA", "NVIDIA CORP"], [320193, "AAPL", "Apple Inc."], [1652044, "GOOGL", "Alphabet Inc."], [1326801, "META", "Meta Platforms, Inc."],
@@ -13,6 +13,13 @@ const ROWS = [
   [1652044, "GOOG", "Alphabet Inc."], [80424, "PG", "PROCTER & GAMBLE Co"], [732717, "T", "AT&T INC."], [1744489, "DIS", "Walt Disney Co"],
   [1418121, "APLE", "Apple Hospitality REIT, Inc."], [5981, "AVD", "AMERICAN VANGUARD CORP"], [1746119, "VGES", "Vanguard Green Investment Ltd"],
   [1341317, "BWB", "Bridgewater Bancshares Inc"], [37996, "F-PD", "FORD MOTOR CO"],
+  // S&P SmallCap 600 holdings as the SEC's ticker file had them on 2026-11-06, in its order.
+  [1057706, "FBP", "FIRST BANCORP /PR/"], [776901, "INDB", "INDEPENDENT BANK CORP"], [1636519, "MSGS", "MSG Knickerbockers Corp."],
+  [1616533, "PENG", "Penguin Solutions, Inc."], [811589, "FBNC", "FIRST BANCORP /NC/"], [1437578, "BFAM", "BRIGHT HORIZONS FAMILY SOLUTIONS INC."],
+  [39311, "IBCP", "INDEPENDENT BANK CORP /MI/"], [765207, "FNLC", "First Bancorp, Inc /ME/"], [1625297, "INDV", "Supernus, Inc."],
+  [1890126, "UNVGY", "Universal Music Group N.V./ADR"], [352915, "UHS", "UNIVERSAL HEALTH SERVICES INC"], [798359, "CSR", "CENTERSPACE"],
+  [102037, "UVV", "UNIVERSAL CORP /VA/"], [1689796, "JBGS", "JBG SMITH Properties"], [2152623, "NAVI", "Navient Holdings, Inc."],
+  [1465740, "TWOD", "TWO HARBORS INVESTMENT CORP."], [1573221, "REAL", "TheRealReal, Inc."],
 ];
 // The SEC's fund ticker file, cut to two ETFs.
 const FUNDS = { fields: ["cik", "seriesId", "classId", "symbol"], data: [[36405, "S000002839", "C000092055", "VOO"], [1067839, "S000101292", "C000271435", "QQQ"]] };
@@ -43,6 +50,27 @@ test("names: the listed company whose registered name starts with them, largest 
   }
   const { s } = offline();
   assert.deepEqual((await resolveEntity(s, "apple")).other_matches.map((o) => o.ticker), ["APLE"], "the others that matched are listed");
+});
+
+test("names: a fund report's names, with a place in brackets, LLC, or the name before a rename", async () => {
+  // The S&P SmallCap 600 fund's June 2026 holdings that found no company on 6 Nov, and the other side of each pair.
+  const want = {
+    "FIRST BANCORP (PUERTO RICO)": ["FBP", 1057706], "First Bancorp (North Carolina)": ["FBNC", 811589],
+    "INDEPENDENT BANK CORP (MASSACHUSETTS)": ["INDB", 776901], "Independent Bank Corp (Michigan)": ["IBCP", 39311],
+    "PENGUIN SOLUTIONS INC (US)": ["PENG", 1616533], "BRIGHT HORIZONS FAMILY SOLUTIONS LLC": ["BFAM", 1437578],
+    "MADISON SQUARE GARDEN SPORTS CORP": ["MSGS", 1636519], "INDIVIOR PHARMACEUTICALS INC": ["INDV", 1625297],
+    "TWO HARBORS INVESTMENTS CORP": ["TWOD", 1465740], "UNIVERSAL CORP": ["UVV", 102037], "JBG SMITH PROPERTIES LP": ["JBGS", 1689796],
+    "CENTERSPACE REAL ESTATE INVESTMENT TRUST": ["CSR", 798359], "NAVIENT CORP": ["NAVI", 2152623],
+    "RealReal, Inc. (The)": ["REAL", 1573221],
+  };
+  for (const [q, [ticker, cik]] of Object.entries(want)) {
+    const { s, asked } = offline();
+    const r = await resolveEntity(s, q);
+    assert.deepEqual([r.ticker, r.cik], [ticker, cik], q);
+    assert.ok(!asked.some((u) => new URL(u).hostname === "efts.sec.gov"), `${q} needed no EDGAR search`);
+  }
+  // Navient Holdings has no annual report yet: its history is read from NAVIENT CORP, now Navient LLC.
+  assert.equal(FACTS_FROM.get(2152623), 1593538);
 });
 
 test("names: fund managers by the filer of their 13Fs, not a listed company that shares a word", async () => {

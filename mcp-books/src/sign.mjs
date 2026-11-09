@@ -7,7 +7,7 @@
 // proved against the signature without the book. Keys stay with whoever owns the books; nothing here stores one.
 import { generateKeyPairSync, sign, verify as checkSignature } from "node:crypto";
 
-import { state, verify } from "./ledger.mjs";
+import { balanceSheet, canonical, incomeStatement, state, verify } from "./ledger.mjs";
 import { bookRoot, checkInclusion } from "./proof.mjs";
 
 export const ALGORITHM = "ml-dsa-65";
@@ -41,6 +41,44 @@ export function checkHead(book, signed, publicKey) {
   }
   const good = checkSignedHead(signed, publicKey);
   return good.ok ? { ok: true, records: checked.records, head: checked.head } : good;
+}
+
+// Statements a company's agent can hand to a lender's or a buyer's agent instead of a PDF: the income statement for a
+// period and the balance sheet at its end, computed from the book, with the book's signed head inside, all signed
+// together with the owner's key over canonical JSON (sorted keys, so a program that rewrites the file in another key
+// order does not break it). The other side checks them with the public key alone, and any entry behind a figure can
+// be shown with a proof (proveRecord) that leads to the root signed inside. Amounts stay in minor units, as the book
+// keeps them.
+export const STATEMENTS = "canli.statements.v1";
+
+export function signStatements(book, { from, to, asOf = to } = {}, privateKey) {
+  const signedHead = signHead(book, privateKey);
+  const fields = {
+    kind: STATEMENTS,
+    book: signedHead.book,
+    currency: state(book).currency,
+    records: signedHead.records,
+    root: signedHead.root,
+    income_statement: incomeStatement(book, { from, to }),
+    balance_sheet: balanceSheet(book, { asOf }),
+    signed_head: signedHead,
+  };
+  return { algorithm: ALGORITHM, ...fields, signature: sign(null, Buffer.from(canonical(fields)), privateKey).toString("base64") };
+}
+
+// With the public key alone: the signature over the whole package, the head signature inside it, that both describe
+// the same book, and the arithmetic a reader would check by hand.
+export function checkStatements(pkg, publicKey) {
+  if (pkg?.algorithm !== ALGORITHM || pkg?.kind !== STATEMENTS) return { ok: false, problem: `not a ${STATEMENTS} package signed with ${ALGORITHM}` };
+  const { algorithm: _algorithm, signature, ...fields } = pkg;
+  if (!checkSignature(null, Buffer.from(canonical(fields)), publicKey, Buffer.from(String(signature), "base64"))) return { ok: false, problem: "the signature does not match this key, or the package was changed after it was signed" };
+  const head = checkSignedHead(pkg.signed_head, publicKey);
+  if (!head.ok) return { ok: false, problem: `the book head inside: ${head.problem}` };
+  if (head.records !== pkg.records || head.root !== pkg.root || head.book !== pkg.book) return { ok: false, problem: "the statements and the head signed inside them describe different books" };
+  const is = pkg.income_statement;
+  const bs = pkg.balance_sheet;
+  const addsUp = is.netIncome === is.totalIncome - is.totalExpenses && bs.totalAssets === bs.totalLiabilitiesAndEquity;
+  return { ok: true, book: pkg.book, currency: pkg.currency, records: pkg.records, root: pkg.root, period: { from: is.from, to: is.to, as_of: bs.asOf }, adds_up: addsUp };
 }
 
 // A proof from proveRecord checked against the owner's signature: the signature must be good, the proof must be for

@@ -25,6 +25,7 @@ import { KEY_LIFECYCLE_TEXT, LIMITS, LIMITS_TEXT } from "../api/_lib/limits.js";
 import { MANIFEST, SNIPPET_LABELS } from "../api/_lib/manifest.js";
 import { renderAll, renderCurl, renderJs, renderPython } from "./render-snippets.mjs";
 import { demandCompanies } from "./lib/demand-companies.mjs";
+import { crumbs, faq as clearFaq, faqSchema, longDate, proof as clearProof, receipt as clearReceipt } from "./lib/clear-page.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const ORIGIN = "https://canlicapital.com";
@@ -298,7 +299,7 @@ function mcpBenchmarkBlock() {
     .join("\n        ");
   return `<h3 id="mcp-benchmark">How well agents use it</h3>
     <p class="dev-note">Each model was given these tools and ${esc(bench.tasks)} fixed questions (deflated Sharpe, track record length, breadth, overfitting, company financials by ticker, and what a result does not establish), each asked ${esc(bench.models[0].repeats)} times. An answer counts when it matches ground truth computed from the same checked code.</p>
-    <table class="dev-table" tabindex="0" aria-label="MCP agent benchmark">
+    <table class="cl-table dev-table" tabindex="0" aria-label="MCP agent benchmark">
       <thead><tr><th>Model</th><th>Correct answers</th><th>Right tool first</th><th>Runs</th></tr></thead>
       <tbody>
         ${rows}
@@ -315,9 +316,9 @@ function mcpAssistantSection() {
   const hostedInstall = extractReadmeFence(readme, "Hosted endpoint (no install)", "bash");
   const localInstall = extractReadmeFence(readme, "Private local mode", "bash");
   const npmUrl = `https://www.npmjs.com/package/${mcpPkg.name}`;
-  return `<section class="dev-section" id="ai-assistant">
-    <h2>Connect the MCP server</h2>
-    <p class="dev-note">This API is also an MCP server, so a coding assistant can call the
+  return `<section class="cl-section" id="ai-assistant"><p class="cl-eyebrow">The validators alone</p>
+    <h2>The validation MCP server</h2>
+    <p class="dev-note">canli-mcp includes these validators. If you want only them, this API is also its own MCP server, so a coding assistant can call the
       routes on this page as tools instead of writing requests by hand. Every result it returns
       keeps, beside the number, the sentences that say what it cannot be used to claim and the
       receipt that records it, so the assistant never sees a number alone. It also reads the
@@ -375,14 +376,14 @@ function mcpFamilyBlock() {
       <div class="dev-snippet"><p class="dev-snippet-label">Hosted, no install: ${esc(s.hosted)}</p><pre class="dev-code" tabindex="0" aria-label="Hosted ${esc(s.name)} endpoint"><code>${esc(`claude mcp add --transport http ${s.name.replace(/-mcp$/, "")} ${s.hosted}`)}</code></pre></div>` : ""}
       <p class="dev-note"><a href="https://www.npmjs.com/package/${esc(s.name)}" rel="noreferrer">npm</a>, <a href="https://registry.modelcontextprotocol.io/v0/servers?search=${esc(s.mcpName)}" rel="noreferrer">MCP Registry</a>, <a href="https://github.com/arhancanli/canlicapital/tree/main/${esc(s.dir)}" rel="noreferrer">Source</a>.</p></article>`;
   });
-  return `<section class="dev-section" id="mcp-family">
+  return `<div class="cl-band"><section class="cl-section" id="mcp-family"><p class="cl-eyebrow">The family</p>
     <h2>More MCP servers</h2>
     <p class="dev-note">Each server does one job with a small tool list, so the tools an assistant re-reads on every turn stay cheap. Add only the ones you need; they run side by side.</p>
 ${items.join("\n")}
     <article class="dev-endpoint" id="mcp-execution"><h3><a href="/mcp-servers/execution">Local paper execution workflow</a></h3>
       <p>The private, Unreleased execution source has local sizing, pre-trade cost and limit checks, shortfall measurements and signed paper journals. Supply the scenario and explicitly enable journal writes in a prepared private home. It connects to no broker and places no orders.</p>
       <p class="dev-note"><a href="/mcp-servers/execution">Read the source-backed workflow and local setup</a>. Hosted release contracts above remain separate.</p></article>
-  </section>`;
+  </section></div>`;
 }
 
 function buildDevelopers() {
@@ -534,25 +535,62 @@ function buildDevelopers() {
   };
   const endpointSlug = (path) => path.split("/").pop();
 
+  // The page in the one look (css/clear.css, November 2026): one install command, one proof, then the reference.
+  // The proof is one real call to this API (config/developers-proof.json, captured from the live service), published
+  // into glassbox/ at build time like the agent benchmark, so the numbers audit traces every figure in the receipt.
+  const proof = JSON.parse(readFileSync(resolve(ROOT, "config/developers-proof.json"), "utf8"));
+  mkdirSync(resolve(ROOT, "public/glassbox"), { recursive: true });
+  writeFileSync(resolve(ROOT, "public/glassbox/developers_proof.json"), `${JSON.stringify(proof, null, 1)}\n`);
+  const flagship = JSON.parse(readFileSync(resolve(ROOT, "public/benchmarks/finance-mcp-servers.json"), "utf8")).flagship;
+  const current = flagship.current;
+  const install = JSON.parse(readFileSync(resolve(ROOT, "config/canli-mcp.json"), "utf8")).install;
+  const count = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
+  const tools = count.format(flagship.tools);
+  const asked = proof.request.body;
+  const pct1 = (x) => `${(x * 100).toFixed(1)}%`;
+
+  const title = "Free finance API and MCP server for developers";
   const description =
-    "A read API over the Canli Capital paper record, and a free keyed API that runs your numbers " +
-    "through the same validation arithmetic. Each response states its limits.";
+    `canli-mcp gives your AI agent or app SEC filings, market data and ${tools} finance tools in one command. ` +
+    "A free API checks a backtest and signs every answer.";
+  const questions = [
+    ["Is it free?", `Yes. canli-mcp and the validation API are free and open source under the MIT licence. The API needs a key, which you get in one call with no signup and no email; each key runs ${count.format(LIMITS.validations_per_key_per_day)} validations a day.`],
+    ["canli-mcp or the API: which do I want?", "canli-mcp, if an AI assistant or agent will do the work: it finds and runs the right tool itself, and it includes these validators. The API, if your own code will call it: plain HTTPS and JSON, from any language."],
+    ["What happens to the numbers I send?", "The service computes the answer and keeps a receipt: the answer, a hash of your input and the hash of the code that computed it. Your series itself is not stored. For a series that must never leave your machine, run the validation server in private local mode."],
+    ["Can someone else check an answer?", `Yes. Every verdict has a receipt at <code>/api/v1/receipts/{id}</code>, signed with Ed25519 by the key published at <a href="/.well-known/canli-receipt-keys.json">/.well-known/canli-receipt-keys.json</a>, and a certificate page at <code>/audit/{id}</code>. <a href="${esc(proof.receipt.certificate)}">Here is the one above</a>.`],
+    ["Is any of this investment advice?", "No. The tools report what companies filed and what the arithmetic says about a series you send, with the limits of each answer. What you do with it is your decision."],
+  ];
 
   const html = `${head({
-    title: "Developers",
+    title,
     description,
     route: "/developers",
-    sources: "validation_api_limits.json validation_api_manifest.json mcp_agent_benchmark.json",
+    sources: "developers_proof.json benchmarks/finance-mcp-servers.json validation_api_limits.json validation_api_manifest.json mcp_agent_benchmark.json",
     jsonLd: [
       {
         "@context": "https://schema.org",
         "@type": "WebAPI",
-        name: "Canli Capital public read API",
+        name: "Canli Capital validation and read API",
         description,
         documentation: `${ORIGIN}/developers`,
         url: `${ORIGIN}/api/v1`,
         provider: { "@id": `${ORIGIN}/#organization` },
         termsOfService: `${ORIGIN}/methodology`,
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: flagship.package,
+        description: `A free finance MCP server: SEC filings, market and economic data and ${tools} finance tools for AI agents.`,
+        applicationCategory: "DeveloperApplication",
+        operatingSystem: "Node.js",
+        url: `${ORIGIN}/mcp-servers`,
+        downloadUrl: `https://www.npmjs.com/package/${flagship.package}`,
+        codeRepository: `${flagship.source.repository}/tree/main/${flagship.source.path}`,
+        license: "https://opensource.org/licenses/MIT",
+        ...(current ? { softwareVersion: current.version } : {}),
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        author: { "@id": `${ORIGIN}/#arhan-canli` },
       },
       {
         "@context": "https://schema.org",
@@ -582,44 +620,71 @@ function buildDevelopers() {
         offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
         author: { "@id": `${ORIGIN}/#arhan-canli` },
       })),
-      ...SOURCE_REPOSITORIES.map(([name, language, description]) => ({
+      ...SOURCE_REPOSITORIES.map(([name, language, about]) => ({
         "@context": "https://schema.org",
         "@type": "SoftwareSourceCode",
         name,
-        description,
+        description: about,
         codeRepository: `https://github.com/arhancanli/${name}`,
         programmingLanguage: language,
         license: "https://opensource.org/licenses/MIT",
         author: { "@id": `${ORIGIN}/#arhan-canli` },
       })),
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [["Home", "/"], ["Developers", "/developers"]].map(([name, href], i) => ({ "@type": "ListItem", position: i + 1, name, item: ORIGIN + href })),
+      },
+      faqSchema(questions),
     ],
   })}
-<body class="dev-page">
-<a class="dev-skip" href="#content">Skip to content</a>
+<body class="clear dev-page">
+<a class="skip-link" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: "developers" })}
 <main id="content" tabindex="-1">
-  <section class="dev-hero">
-    <p class="dev-kicker"><span>Free</span><span aria-hidden="true"> &middot; </span><span>No signup or email</span></p>
-    <h1>Check a backtest.<br />Keep the receipt.</h1>
-    <p class="dev-lead">Send the returns your backtest produced and find out whether the result could be luck:
-      how much the Sharpe ratio shrinks once every version you tried is counted, how likely the backtest
-      is to be overfit, and how long a live record must run to prove it. Each answer comes with a
-      receipt anyone can recheck.</p>
-    <ol class="dev-paths" aria-label="Three ways to start">
-      <li class="dev-path"><span class="dev-path__tag">Fastest</span><h2>From an AI assistant</h2><p>Add the hosted server to Claude, Cursor or VS Code. Nothing to install.</p><pre class="dev-path__code"><code>claude mcp add --transport http canli https://canlicapital.com/mcp</code></pre><a href="#ai-assistant">Setup for every assistant ↘</a></li>
-      <li class="dev-path"><span class="dev-path__tag">Any language</span><h2>From your own code</h2><p>Get a free key, then call the API from Python, JavaScript or curl.</p><a class="dev-button dev-button--primary" href="#quickstart">Get a free API key ↘</a></li>
-      <li class="dev-path"><span class="dev-path__tag">No code</span><h2>In the browser</h2><p>Type your numbers into the free calculators.</p><a href="/tools">Open the calculators ↗</a></li>
-    </ol>
-    <p class="dev-hero-links">Reference: <a href="#validation">Validators</a> &middot; <a href="/mcp-servers">All finance MCP servers</a> &middot; <a href="/api/v1/openapi">OpenAPI document</a> &middot; <a href="/api/v1">Discovery document</a> &middot; <a href="/standards/paper-evidence">Record standard</a> &middot; <a href="https://github.com/arhancanli/canlicapital" rel="noreferrer">Source on GitHub</a> &middot; <a href="https://github.com/arhancanli/alphac" rel="noreferrer">ALPHAC engine</a></p>
-    <p class="dev-hero-note">Every response includes its scope and limits under our <a href="/open">honesty pledge</a>.
-      Public record snapshots need no key.</p>
-  </section>
-
-  <nav class="dev-page-index" aria-label="Developer guide sections"><a href="#quickstart">Get started</a><a href="#validation">Validators</a><a href="#quotas">Quotas</a><a href="#not-established">Result boundaries</a><a href="#ai-assistant">AI assistants</a></nav>
-  <section class="dev-section dev-quickstart" id="quickstart">
-    <h2>Quickstart</h2>
-    <p class="dev-note">Three steps, in the order you need them. Every block below is copy-ready,
-      and the key you get in step one drops straight into the rest.</p>
+<section class="cl-hero">
+<div>
+${crumbs([["Home", "/"], ["Developers", "/developers"]])}
+<p class="cl-kicker">Free · open source · no signup</p>
+<h1>Build on financial data you can check.</h1>
+<p class="cl-lede">canli-mcp gives your AI agent or app SEC filings, market and economic data and ${tools} finance tools in one command. A free API runs your backtest through the checks we run on our own, and signs every answer so anyone can recompute it.</p>
+<div class="cl-actions"><a class="cl-button" href="#start">Add canli-mcp</a><a class="cl-quiet" href="#quickstart">Get a free API key</a></div>
+<p class="cl-command"><code>${esc(install.npx)}</code></p>
+</div>
+${clearReceipt({
+    head: "A real call to this API",
+    question: `Is a Sharpe ratio of ${esc(asked.observed_sharpe_annualized)} still there after ${esc(count.format(asked.effective_independent_trials))} tries?`,
+    rows: [
+      ["Sharpe ratio, as tested", esc(asked.observed_sharpe_annualized)],
+      [`Best of ${count.format(asked.effective_independent_trials)} tries by luck alone`, esc(proof.result.expected_max_sharpe_annualized.toFixed(2))],
+      ["Chance it beats zero, one try", pct1(proof.result.psr_against_zero)],
+      ["Chance it beats luck, every try counted", pct1(proof.result.deflated_sharpe_ratio), "wrong"],
+    ],
+    stamp: `Signed, ${proof.receipt.signature.alg}`,
+    right: true,
+    link: { href: proof.receipt.certificate, label: "Open its certificate and check the signature" },
+    caption: `<code>${esc(proof.request.method)} ${esc(proof.request.path)}</code>, ${longDate(proof.captured.slice(0, 10))}. Receipt <a href="${esc(proof.receipt.url)}"><code>${esc(proof.receipt.id)}</code></a>. Neither chance is a forecast.`,
+  })}
+</section>
+${clearProof([
+    [tools, "finance tools in canli-mcp, which your assistant finds as it needs them"],
+    [count.format(flagship.front.length), `tools loaded at the start${current ? `: ${count.format(current.tokens)} tokens instead of ${count.format(current.separately_tokens)}` : ""}`],
+    [count.format(validators.length), `checks on your own backtest with a free key, ${count.format(LIMITS.validations_per_key_per_day)} a key a day`],
+    ["Free", "MIT licence; no signup and no email"],
+  ], "The developer tools in figures")}
+<section class="cl-section" id="start"><p class="cl-eyebrow">Start</p><h2>Pick how you build</h2>
+<ol class="cl-steps">
+<li><h3>In an AI agent or coding assistant</h3><p>canli-mcp is one server with every tool, the validators below included. In Claude Code:</p><pre>${esc(install.claude_code)}</pre><p>In every AI app on your computer at once (it keeps a copy of each file it changes):</p><pre>${esc(install.npx)} setup</pre><p>As a connector in Claude or ChatGPT, nothing to install:</p><pre>${esc(install.hosted)}</pre><p><a href="/mcp-servers/install">Step-by-step for each app</a> · <a href="/mcp-servers">What canli-mcp can answer</a></p></li>
+<li><h3>From your own code</h3><p>Get a free key, then call the API from Python, JavaScript or curl. Each answer comes back with what it cannot be used to claim and a signed receipt.</p><p><a href="#quickstart">Get a key and make the first call</a></p></li>
+<li><h3>In the browser, no code</h3><p>The same arithmetic as calculators: type your numbers, read the answer.</p><p><a href="/tools">Open the calculators</a></p></li>
+</ol></section>
+<div class="cl-band"><section class="cl-section" id="reference"><p class="cl-eyebrow">Reference</p><h2>The API, route by route</h2>
+<p class="cl-intro">Every response has the same shape and states its limits under our <a href="/open">honesty pledge</a>. Public record snapshots need no key.</p>
+<nav class="cl-ref-index" aria-label="Developer guide sections"><a href="#quickstart">Quickstart</a><a href="#ai-assistant">Validation MCP server</a><a href="#mcp-family">More MCP servers</a><a href="#read">Read endpoints</a><a href="#validation">Validators</a><a href="#quotas">Quotas</a><a href="#not-established">Result boundaries</a><a href="#envelope">The envelope</a><a href="/api/v1/openapi">OpenAPI document</a><a href="/api/v1">Discovery document</a><a href="/standards/paper-evidence">Record standard</a><a href="https://github.com/arhancanli/canlicapital" rel="noreferrer">Source on GitHub</a></nav>
+</section></div>
+  <section class="cl-section dev-quickstart" id="quickstart"><p class="cl-eyebrow">Quickstart</p>
+    <h2>Three steps to a signed answer</h2>
+    <p class="cl-intro">Every block below is copy-ready, and the key you get in step one drops straight into the rest.</p>
     <ol class="dev-steps">
       <li class="dev-step">
         <h3>1. Get a key</h3>
@@ -637,7 +702,7 @@ ${renderProductShellHeader({ active: "developers" })}
         <h3>2. Validate your own numbers</h3>
         <p class="dev-note">${esc(firstValidator.summary)}</p>
         ${snippetsBlock(firstValidator)}
-        <p class="dev-note">The other three validators are documented <a href="#validation">below</a>.</p>
+        <p class="dev-note">The other validators are documented <a href="#validation">below</a>.</p>
       </li>
       <li class="dev-step">
         <h3>3. Fetch the receipt</h3>
@@ -663,9 +728,9 @@ ${renderProductShellHeader({ active: "developers" })}
 
   ${mcpFamilyBlock()}
 
-  <section class="dev-section">
-    <h2>Read endpoints, no key</h2>
-    <table class="dev-table" tabindex="0" aria-label="Public read endpoints">
+  <section class="cl-section" id="read"><p class="cl-eyebrow">No key</p>
+    <h2>Read endpoints</h2>
+    <table class="cl-table dev-table" tabindex="0" aria-label="Public read endpoints">
       <thead><tr><th>Path</th><th>What it returns</th></tr></thead>
       <tbody>
         ${summaries.map((e) => `<tr><td><a href="${esc(e.path)}"><code>GET ${esc(e.path)}</code></a></td><td>${esc(e.summary)}</td></tr>`).join("\n        ")}
@@ -673,11 +738,11 @@ ${renderProductShellHeader({ active: "developers" })}
     </table>
   </section>
 
-  <section class="dev-section" id="validation">
-    <h2>Validation endpoints, free key</h2>
-    <p class="dev-note">Send your own numbers; get back the arithmetic this house runs on itself.
+  <section class="cl-section" id="validation"><p class="cl-eyebrow">Free key</p>
+    <h2>Validation endpoints</h2>
+    <p class="cl-intro">Send your own numbers; get back the arithmetic this house runs on itself.
       Nothing you send is stored. Each verdict returns a receipt anyone can recompute.</p>
-    <table class="dev-table" tabindex="0" aria-label="Validation endpoints">
+    <table class="cl-table dev-table" tabindex="0" aria-label="Validation endpoints">
       <thead><tr><th>Route</th><th>What it does</th></tr></thead>
       <tbody>
         ${MANIFEST.map((m) => {
@@ -705,9 +770,9 @@ ${renderProductShellHeader({ active: "developers" })}
       this server.</p>
   </section>
 
-  <section class="dev-section" id="quotas">
+  <div class="cl-band"><section class="cl-section" id="quotas"><p class="cl-eyebrow">Limits</p>
     <h2>Quotas, public and enforced from one source</h2>
-    <table class="dev-table" tabindex="0" aria-label="API quotas">
+    <table class="cl-table dev-table" tabindex="0" aria-label="API quotas">
       <thead><tr><th>Limit</th><th>Value</th></tr></thead>
       <tbody>
         <tr><td>Validations per key per UTC day</td><td>${LIMITS.validations_per_key_per_day}</td></tr>
@@ -724,33 +789,33 @@ ${renderProductShellHeader({ active: "developers" })}
     <ul class="dev-list">
       ${KEY_LIFECYCLE_TEXT.map((t) => `<li>${esc(t)}</li>`).join("\n      ")}
     </ul>
-  </section>
+  </section></div>
 
-  <section class="dev-section" id="not-established">
+  <section class="cl-section" id="not-established"><p class="cl-eyebrow">Boundaries</p>
     <h2>What a verdict does not establish</h2>
     <ul class="dev-list">
       ${LIMITS_TEXT.map((t) => `<li>${esc(t)}</li>`).join("\n      ")}
     </ul>
   </section>
 
-  <section class="dev-section">
+  <section class="cl-section" id="envelope"><p class="cl-eyebrow">Every response</p>
     <h2>The envelope</h2>
-    <p class="dev-note">Every response has the same shape. The two fields worth reading first are
+    <p class="cl-intro">Every response has the same shape. The two fields worth reading first are
       the two an API usually omits.</p>
-    <div class="dev-grid">
-      <article><h3><code>claim_class</code></h3><p>What kind of claim this is: observed, model
+    <ul class="cl-grid">
+      <li class="cl-card"><h3><code>claim_class</code></h3><p>What kind of claim this is: observed, model
         estimated, a published document, a cryptographic record. Merging these is how a simulated
-        figure acquires the authority of a measured one.</p></article>
-      <article><h3><code>limits</code></h3><p>What this response cannot be used to say. The build
-        refuses to emit an endpoint that declares none.</p></article>
-      <article><h3><code>sources</code></h3><p>Every artifact the response was built from, with its
-        content hash and a URL, so a consumer can recompute rather than trust.</p></article>
-      <article><h3><code>generated_at</code></h3><p>The freshness of every figure inside. These are
-        snapshots, not a stream.</p></article>
-    </div>
+        figure acquires the authority of a measured one.</p></li>
+      <li class="cl-card"><h3><code>limits</code></h3><p>What this response cannot be used to say. The build
+        refuses to emit an endpoint that declares none.</p></li>
+      <li class="cl-card"><h3><code>sources</code></h3><p>Every artifact the response was built from, with its
+        content hash and a URL, so a consumer can recompute rather than trust.</p></li>
+      <li class="cl-card"><h3><code>generated_at</code></h3><p>The freshness of every figure inside. These are
+        snapshots, not a stream.</p></li>
+    </ul>
   </section>
 
-  <section class="dev-section dev-section--tail">
+  <section class="cl-section" id="api-limits"><p class="cl-eyebrow">The whole API</p>
     <h2>Limits of the whole API</h2>
     <ul class="dev-list">
       ${index.limits.map((l) => `<li>${esc(l)}</li>`).join("\n      ")}
@@ -762,6 +827,8 @@ ${renderProductShellHeader({ active: "developers" })}
       <a href="https://github.com/arhancanli/alphac/issues/new?template=external-review.yml" rel="noreferrer">The governed review route</a>
       is the fastest way to get it fixed and recorded.</p>
   </section>
+
+  <div class="cl-band"><section class="cl-section" id="questions"><p class="cl-eyebrow">Questions</p><h2>Before you build</h2>${clearFaq(questions)}</section></div>
 </main>
 ${renderProductShellFooter({ companies: demandCompanies().companies })}
 </body>

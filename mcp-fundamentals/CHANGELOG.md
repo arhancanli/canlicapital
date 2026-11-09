@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.10.0
+
+- An answer as of a date holds nothing filed after it, unless asked by name. `known_as_of`, its ratios and `cross_section` returned `changed_after` beside every value: whether a filing made after `as_of` changed it, a fact from the future beside a value meant for a decision on that date. They now leave it out unless the call passes `changed_after: true`, and the meaning says which. `history` with `as_of` counts in `changed` only the filings made by `as_of`.
+- 8-Ks and pay-versus-performance tables no longer restate a company's figures. Where a periodic report carries a period, an 8-K's values for it (Essential Utilities' 8-K for its merger carried American Water's revenue) never become the first or latest value; an amended annual report whose values for a measure are all whole multiples of 100,000, each within 5% of an earlier finer value, is a rounded repeat (Genco's Part III amendment), not a restatement. Both are listed in `history`'s `set_apart`, each with why.
+
 ## 0.9.1
 
 - A company renamed since the reference was captured is found by its new name. The site's name index now also lists the names the SEC's ticker file gives a covered company where they differ from the reference's (908 companies), and `find_company` and every tool that takes a company name match them, saying which name matched: "Here Group Limited" is CIK 1932770, which the reference names QuantaSing Group Limited; "Franklin Templeton" is Franklin Resources; "Bank of America" is CIK 70858. FilingFacts weekly found this: both of canli-mcp 0.20.0's misses on 2026-W44 were Here Group, searched by its new name. An index without the new list still works, and older versions of this package ignore it.

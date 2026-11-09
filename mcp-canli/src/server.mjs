@@ -40,10 +40,19 @@ import { governance, publicKeys, verifyAudit } from "./governance.mjs";
 import { watchFilings } from "./watch.mjs";
 import { createTimeMachine } from "./timemachine.mjs";
 import { signedTrialCount, TRIALS_TOOL } from "./trials.mjs";
-import { createLuck, shownTrials } from "./luck.mjs";
+import { createLuck, shownTrials, TRIAL_RETURNS } from "./luck.mjs";
+import { createRedTeam, RED_TEAM_TOOL, runRedTeam } from "./redteam.mjs";
+import { runZooSearch, runZooStats, ZOO_TOOLS } from "./zoo.mjs";
+import { LAKE_TOOLS, runLake } from "./lake.mjs";
+import { TRACK_TOOLS } from "./track.mjs";
+import { LAB_TOOLS, openLab, runLabSearch, runLabStatus, runLabStrategy, runOriginality } from "./lab.mjs";
+import { createLabNotes, LAB_NOTES_PER_ANSWER, TRIAL_DATES } from "./labnote.mjs";
+import { FORENSICS_TOOL, runForensics } from "./forensics.mjs";
+import { BEAT_TOOL, runBeat } from "./beat.mjs";
 import { createVault, HOLDOUT_TOOLS } from "./holdout.mjs";
 import { createRegistry, PREREG_TOOL } from "./prereg.mjs";
 import { CAUSES_TOOL, runCauses } from "./causes.mjs";
+import { answerTree } from "./answer-tree.mjs";
 import { RECEIPT_CHECK_TOOL, runReceiptCheck } from "./receipt-check.mjs";
 import { runShares, SHARES_TOOL } from "./shares.mjs";
 import { RED_FLAGS_TOOL, runRedFlags } from "./redflags.mjs";
@@ -70,7 +79,7 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, LIVE_QUOTES_TOOL, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL, EXPORT_TOOL, ...COMPARE_TOOLS, FISCAL_TOOL];
+const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, LIVE_QUOTES_TOOL, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL, EXPORT_TOOL, ...COMPARE_TOOLS, FISCAL_TOOL, RED_TEAM_TOOL, ...ZOO_TOOLS, ...LAKE_TOOLS, ...TRACK_TOOLS, ...LAB_TOOLS, FORENSICS_TOOL, BEAT_TOOL];
 export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
@@ -408,6 +417,11 @@ const RUN_INPUT = z.object({
       changes_only: z.boolean().optional().describe("Only what changed since this call last ran in this session."),
       view: z.boolean().optional().describe("Draw the result for the person (charts, statements, yield curves, backtests) where MCP Apps are drawn; you get a summary."),
     }).strict();
+// prove is listed only where the server signs its receipts: a proof is checked against the root a signed receipt
+// carries, and a local server holds no key, so there it would cost every session its tokens for nothing.
+const RUN_PROVE = RUN_INPUT.extend({
+  prove: z.array(z.string().max(300)).min(1).max(20).optional().describe("Values to prove, as JSON Pointers into the calls' output (e.g. /0/result/sharpe): each comes with a proof against the signed receipt, for receipt_check."),
+});
 
 export const canliHome = (env = process.env) => env.CANLI_HOME ?? join(homedir(), ".canli");
 
@@ -482,6 +496,8 @@ async function execute(tool, name, args, { digits }, files) {
   const out = await shared(tool, name, parsed.data);
   const bad = nonFinitePaths(out);
   const result = digits ? roundNumbers(out, digits) : out;
+  // roundNumbers rebuilds the tree, which leaves out symbol keys: a pack's variant returns go on to luck as they were.
+  if (result !== out && result && typeof result === "object") for (const k of [TRIAL_RETURNS, TRIAL_DATES]) if (out?.[k]) result[k] = out[k];
   if (!bad.length || !result || typeof result !== "object" || Array.isArray(result)) return result;
   return { ...result, non_finite_values: { count: bad.length, paths: bad.slice(0, 8), note: "These numbers are not finite (an overflow, or a division by zero in the inputs) and print as null." } };
 }
@@ -508,7 +524,9 @@ async function describeTool(packs, { name }) {
 // come here, so a desk tool is never handed to a pack's runner.
 // machine: the time machine this call answers under (the server's, its own as_of, or a holdout's), which every call a
 // desk tool makes is held to as well.
-export function selfTools(packs, gov, keeper, readOnly = false, vault = null, preregs = null, machine = TIME_MACHINE, liveHub = null) {
+// session: what the server keeps across calls for red_team (the luck count and its attempt log); a lone call gets its own.
+// liveHub: the local server's live price streams, which live_quotes reads.
+export function selfTools(packs, gov, keeper, readOnly = false, vault = null, preregs = null, machine = TIME_MACHINE, session = {}, liveHub = null) {
   const desk = { call: (name, args) => (name === "triangulate" ? runTriangulate(desk, args) : runOne(packs, { name, arguments: args }, {}, [], gov, machine)), keep: (r) => keeper.put(r), get: (ref) => keeper.get(ref), at, toolFor: (name) => toolFor(name, packs), hosted: Boolean(readOnly) };
   // A rule outlives the call that sets it, so it lives on your machine and never on the hosted server.
   const sentinel = async () => {
@@ -527,6 +545,30 @@ export function selfTools(packs, gov, keeper, readOnly = false, vault = null, pr
   tools.reconcile_shares = (args) => { allowed("reconcile_shares"); return runShares(desk, args); };
   tools.red_flags = (args) => { allowed("red_flags"); return runRedFlags(desk, args); };
   tools.fiscal_calendar = (args) => { allowed("fiscal_calendar"); return runFiscal(desk, args); };
+  // Every attempt counted with everything this session tried (redteam.mjs); its strategy tool runs under the same locks.
+  const redTeamLog = session.redTeam ?? createRedTeam(), redTeamLuck = session.luck ?? createLuck({ scope: "call" });
+  tools.red_team = async (args) => { allowed("red_team"); const out = await runRedTeam({ call: desk.call, luck: redTeamLuck, log: redTeamLog, vault, hosted: Boolean(readOnly), zoo: session.zoo, session: redTeamLog.id }, args); return { ...out, result: shownTrials(out.result) }; };
+  // The Null Zoo on this machine (local/zoo.mjs), opened when first used; never on the hosted server.
+  const zooOf = async (name) => { allowed(name); const z = readOnly ? null : await session.zoo?.(); if (!z) throw new Error(readOnly ? "The Null Zoo is kept on your own machine. Run it locally: npx -y canli-mcp" : "The Null Zoo is off on this server (CANLI_NULL_ZOO=off)."); return z; };
+  tools.zoo_search = async (args) => runZooSearch(await zooOf("zoo_search"), args);
+  tools.zoo_stats = async () => runZooStats(await zooOf("zoo_stats"));
+  // A track record committed before each day and scored on public prices (track.mjs); files on this machine.
+  const local = (name) => { allowed(name); if (readOnly) throw new Error(`${name} keeps files on your own machine. Run it locally: npx -y canli-mcp`); };
+  tools.track_commit = async (args) => { local("track_commit"); return (await import("../local/track.mjs")).trackCommit(TRACK_TOOLS[0].input.parse(args ?? {})); };
+  tools.track_score = async (args) => { local("track_score"); return (await import("../local/track.mjs")).trackScore(TRACK_TOOLS[1].input.parse(args ?? {})); };
+  // The Lab on this machine (src/lab.mjs): about a million strategies, built once by `canli-mcp lab build`.
+  const labDir = join(canliHome(), "lab", "v1");
+  const labOf = (name) => { local(name); return session.lab ? session.lab() : openLab(labDir); };
+  tools.originality_check = (args) => runOriginality(labOf("originality_check"), args);
+  tools.lab_search = (args) => runLabSearch(labOf("lab_search"), args);
+  tools.lab_strategy = (args) => runLabStrategy(labOf("lab_strategy"), args);
+  tools.lab_status = () => { local("lab_status"); return runLabStatus(labDir); };
+  // A Canli model: where a result lands against the company's own guidance (beat.mjs).
+  tools.beat_probability = (args) => { allowed("beat_probability"); return runBeat(desk, args); };
+  // Every common way a backtest misleads, in one call (forensics.mjs); the Lab's comparison where it is built.
+  tools.backtest_forensics = (args) => { allowed("backtest_forensics"); return runForensics({ call: desk.call, lab: () => { if (readOnly) throw new Error("The Lab is not built on this machine. It is local: npx -y canli-mcp"); return session.lab ? session.lab() : openLab(labDir); }, sessionTrials: session.luck?.trials ?? 0, runOriginality }, args); };
+  // The data lake on this machine (local/lake.mjs): DuckDB over Parquet, reaching only the lake folder.
+  for (const { name } of LAKE_TOOLS) tools[name] = async (args) => { allowed(name); if (readOnly || !session.lake) throw new Error("The data lake is kept on your own machine. Run it locally: npx -y canli-mcp"); return runLake({ call: desk.call, at, lake: session.lake }, name, args); };
   const keptOrThrow = (ref) => { if (!keeper.has(ref)) throw new Error(`${ref} is not kept; refs name earlier results (the last ${KEEP_COUNT} are kept).`); return keeper.get(ref); };
   tools.compare_answers = (args) => {
     allowed("compare_answers");
@@ -595,12 +637,34 @@ export function selfTools(packs, gov, keeper, readOnly = false, vault = null, pr
   return Object.fromEntries(Object.entries(tools).map(([name, run]) => [name, TIME_MACHINE.selfAllowed(name) ? run : () => { throw TIME_MACHINE.refuse(name); }]));
 }
 
+// A receipt as the server that signs its receipts issues it ({ endpoint, sign }, as canlicapital.com's hosted server
+// does): naming that endpoint, with sign's signature over the rest. A server that signs nothing returns it as it was.
+const signedBy = (receipts, receipt) => {
+  if (!receipts) return receipt;
+  const issued = { ...receipt, endpoint: receipts.endpoint };
+  return { ...issued, signature: receipts.sign(issued) };
+};
+
 // live: a local stdio server, which can keep a subscription and poll for it; hosted and browser servers cannot.
-export function registerAll(server, packs = enabledPacks(), gov = governance(process.env, canliHome()), { readOnly = false, live = false } = {}) {
+// receipts: { endpoint, sign } for a server that signs every answer's receipt; a local server holds no key.
+export function registerAll(server, packs = enabledPacks(), gov = governance(process.env, canliHome()), { readOnly = false, live = false, receipts = null } = {}) {
   const keeper = createKeeper();
   const readLimits = new Set();
   // Every strategy result counted against the whole search (luck.mjs): a session here, one request when hosted.
   const luck = createLuck({ scope: readOnly ? "request" : "session" });
+  // red_team's attempts in this session, each judged with every strategy the luck count holds (redteam.mjs).
+  const redTeam = createRedTeam();
+  // The Null Zoo: red_team's tries kept across sessions on this machine, opened on first use (local/zoo.mjs).
+  let zooOpened = null;
+  const zoo = readOnly || /^(off|0|false|no)$/i.test(process.env.CANLI_NULL_ZOO ?? "") ? null : () => (zooOpened ??= import("../local/zoo.mjs").then((m) => m.openZoo(canliHome())));
+  // The Lab, read once when first used (src/lab.mjs); not built yet is said again next time.
+  let labOpened = null;
+  const lab = readOnly ? null : () => (labOpened ??= openLab(join(canliHome(), "lab", "v1")));
+  // Every dated strategy answer set against the Lab over the same months (labnote.mjs); CANLI_LAB_NOTES=off stops it.
+  const labNotes = createLabNotes({ lab, runOriginality, enabled: !/^(off|0|false|no)$/i.test(process.env.CANLI_LAB_NOTES ?? "") });
+  // The data lake, opened on first use; a failed open (DuckDB not installed yet) is tried again next time.
+  let lakeOpened = null;
+  const lake = readOnly ? null : () => (lakeOpened ??= import("../local/lake.mjs").then((m) => m.openLake(canliHome())).catch((e) => { lakeOpened = null; throw e; }));
   // Each call's last whole result, for changes_only (delta.mjs).
   const delta = createDelta();
   installTripwire();
@@ -632,7 +696,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     description: `Run a tool find_tool named: one ({name, arguments}), or up to 25 ({calls: [...]}). Independent calls run at once; a failed call returns its own error. Read-only unless the paper-trading pack is on${writers.length ? ` or ${writers.join(", ")} (an upstream server allowed to change things)` : ""}.` + " Any argument can be {\"$file\": \"path.csv\", \"column\": \"close\"} (or \"columns\": [...] / \"all\") instead of pasted numbers. {\"$result\": i, \"path\": \"close\"} passes batch call i's output into a later call; every result also has a ref (\"r1\", ...) later calls pass the same way, {\"$result\": \"r1\", \"path\": \"close\"}, so data never needs copying.",
     // Only the paper pack, or an upstream server marked write, can change anything; without them nothing here is destructive.
     annotations: { title: "Run tools", readOnlyHint: Boolean(readOnly), destructiveHint: packs.includes("paper") || writers.length > 0, idempotentHint: false, openWorldHint: true },
-    inputSchema: RUN_INPUT,
+    inputSchema: receipts ? RUN_PROVE : RUN_INPUT,
     outputSchema: open,
     // Hosts that draw MCP Apps show the result in the viewer; others ignore this.
     _meta: { ui: { resourceUri: VIEW_URI } },
@@ -643,12 +707,13 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     if (a.calls) a.calls = a.calls.flatMap((c) => (c.name === "run_tool" && c.arguments ? (c.arguments.calls ?? [{ name: c.arguments.name, arguments: c.arguments.arguments }]) : [c]));
     // Models sometimes put run_tool's own options inside a call's arguments; move them out when the
     // tool itself has no argument of that name.
-    for (const c of a.calls ?? [a]) for (const k of ["return", "digits", "select", "receipt", "max_chars", "as_of", "changes_only"]) {
+    for (const c of a.calls ?? [a]) for (const k of ["return", "digits", "select", "receipt", "max_chars", "as_of", "changes_only", "prove"]) {
       if (c.arguments && k in c.arguments && !(BY_NAME.get(c.name)?.args ?? "").split(", ").some((x) => x.replace(/\?.*$/, "").replace(/:.*$/, "") === k)) { if (a[k] === undefined) a[k] = c.arguments[k]; delete c.arguments[k]; }
     }
     // The SDK validates the outer envelope. Wrapping and lifting options changes that envelope,
     // so validate the resulting request again before loading or executing any tool.
-    a = RUN_INPUT.parse(a);
+    if (a.prove !== undefined && !receipts) throw new Error("prove needs a signed receipt: a proof is checked against the root the receipt carries, and this server holds no key to sign one. The hosted server (canlicapital.com/mcp/canli) signs its receipts; here, receipt: true gives the answer's SHA-256.");
+    a = (receipts ? RUN_PROVE : RUN_INPUT).parse(a);
     if (!a.calls && !a.name) throw new Error("Pass name (and arguments) for one call, or calls for several.");
     if (a.calls && a.name) throw new Error("Pass either name or calls, not both.");
     const calls = a.calls ?? [{ name: a.name, arguments: a.arguments }], files = [], opts = { digits: a.digits };
@@ -664,7 +729,7 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     const viewing = Boolean(a.view) && clientDrawsApps(server);
     if (a.view) for (const c of calls) if (/^backtest_/.test(c.name) && !(c.arguments && "curve" in c.arguments)) { try { if ((await toolFor(c.name, packs)).input?.shape?.curve) c.arguments = { ...(c.arguments ?? {}), curve: true }; } catch { /* reported when it runs */ } }
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
-    const SELF = selfTools(packs, gov, keeper, readOnly, vault, preregs, machine, liveHub);
+    const SELF = selfTools(packs, gov, keeper, readOnly, vault, preregs, machine, { luck, redTeam, zoo, lake, lab }, liveHub);
     const timed = (name, work) => { const t0 = performance.now(); return work.then((out) => { if (!SELF[name]) { const list = keeper.costs.get(name) ?? []; list.push([performance.now() - t0, JSON.stringify(out ?? null).length]); keeper.costs.set(name, list.slice(-50)); } return out; }); };
     const run = (c, args) => timed(c.name, (c.ran = args, SELF[c.name] ? Promise.resolve().then(() => { if (machine && !machine.selfAllowed(c.name)) throw machine.refuse(c.name); return SELF[c.name](args); }) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov, machine)));
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
@@ -703,11 +768,20 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
     // A company named in words that matched several filers: the person picks, where the client can ask (ask.mjs).
     const question = await askWhich({ server, extra, calls, done, rerun: (i, args) => run(calls[i], args) });
     if (question) return question;
-    // Each strategy result says what is left after luck across everything tried so far (luck.mjs).
+    // Each strategy result says what is left after luck across everything tried so far (luck.mjs), and, where the Lab
+    // is built here and the result is dated, where it ranks among the Lab's strategies over the same months (labnote.mjs).
+    let labChecks = 0;
     done.forEach((d, i) => {
       if (d.result === undefined || SELF[d.name]) return;
-      const note = luck.record(d.name, calls[i]?.arguments, d.result);
-      if (note) d.result = { ...d.result, luck: note };
+      const series = d.result && typeof d.result === "object" ? d.result[TRIAL_RETURNS] : undefined;
+      const handed = d.result && typeof d.result === "object" ? d.result[TRIAL_DATES] : undefined;
+      if (handed !== undefined) delete d.result[TRIAL_DATES];
+      const ran = calls[i]?.ran ?? calls[i]?.arguments;
+      const note = luck.record(d.name, calls[i]?.arguments, d.result, ran);
+      if (!note) return;
+      const labNote = labChecks < LAB_NOTES_PER_ANSWER ? labNotes.note(series, handed, ran) : null;
+      if (labNote?.months) labChecks += 1;
+      d.result = { ...d.result, luck: note, ...(labNote ? { lab: labNote } : {}) };
     });
     // Text from outside that speaks to an AI is marked where it is, and kept as the source gave it (injection.mjs).
     // A pack that sends nothing reads no outside text, so its results are not read for it.
@@ -739,13 +813,23 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
       d.result = Object.fromEntries(paths.map((p) => [p, at(full, p) ?? null]));
       if (paths.some((p) => at(full, p) === undefined)) d.result.available_fields = Object.entries(full).flatMap(([k, v]) => (v && typeof v === "object" && !Array.isArray(v) ? Object.keys(v).slice(0, 12).map((x) => `${k}.${x}`) : [k])).slice(0, 60);
     }
-    const hashes = { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(done.map(({ ref, ...d }) => d)) };
-    // receipt: true puts the receipt in the answer, with the documents it names, for receipt_check.
-    const receipt = a.receipt ? { ...hashes, sources } : undefined;
+    const output = done.map(({ ref, ...d }) => d);
+    const hashes = { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(output) };
+    // Where the server signs its receipts, the receipt also carries the root of a Merkle tree over the output's values
+    // (answer-tree.mjs), so one value can later be proved with a short path instead of the whole output. A local
+    // receipt, unsigned, proves nothing to anyone else, so it is spared the hashing (about 1.6 µs a value).
+    const tree = receipts ? answerTree(output) : null;
     // Every answer's receipt goes to the client in _meta, with the sources the full results were read from.
     const parents = builtFrom(refsRead(calls), keeper);
     const quiet = calls.every((c) => (SELF[c.name] ? ["find_tool", "describe_tool", "show_result"].includes(c.name) : sendsNothing(BY_NAME.get(c.name)?.pack)));
-    const kept = { ...hashes, sources, at: new Date().toISOString(), ...(quiet ? { network: "none: every call ran where fetch is refused" } : {}), ...(parents.length ? { from: parents } : {}), ...(registered.length ? { after: registered } : {}) };
+    const kept = signedBy(receipts, { ...hashes, ...(tree ? { output_root: tree.root, output_values: tree.values } : {}), sources, at: new Date().toISOString(), ...(quiet ? { network: "none: every call ran where fetch is refused" } : {}), ...(parents.length ? { from: parents } : {}), ...(registered.length ? { after: registered } : {}) });
+    // prove: each value named, as hashed, with its path up to the root the signed receipt carries. A pointer that names
+    // no single value gets its own error, and the rest are still proved.
+    const proofs = a.prove?.map((pointer) => { try { return tree.prove(pointer); } catch (e) { return { pointer, error: e.message }; } });
+    // receipt: true puts the receipt in the answer, with the documents it names, for receipt_check, and so does prove,
+    // whose proofs are checked against it. Where the server signs its receipts it is the whole signed one, since a model
+    // rarely sees _meta.
+    const receipt = a.receipt || proofs ? (receipts ? kept : { ...hashes, sources }) : undefined;
     for (const d of done) if (d.ref) keeper.sign(d.ref, kept);
     // After the receipt, which hashes the full results: an oversized one is sent as a preview.
     if (!a.select) for (const d of done) if (d.result !== undefined && !SELF[d.name]) d.result = leanResult(d.result, { name: d.name, ref: readOnly ? undefined : d.ref, seen: readLimits, digits: a.digits });
@@ -759,9 +843,9 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
       return out;
     };
     const sealed = (out) => { RECEIPTS.set(out, kept); return out; };
-    if (!a.calls) { if (done[0].error) throw new Error(done[0].error); return sealed(shown({ ...(done[0].ref ? { ref: done[0].ref } : {}), ...done[0].result, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) })); }
+    if (!a.calls) { if (done[0].error) throw new Error(done[0].error); return sealed(shown({ ...(done[0].ref ? { ref: done[0].ref } : {}), ...done[0].result, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}), ...(proofs ? { proofs } : {}) })); }
     const results = (a.return === "last" ? done.slice(-1) : done).map(({ name, ref, result, error }) => ({ name, ...(ref ? { ref } : {}), ...(error ? { error } : { result }) }));
-    return sealed(shown({ results, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) }));
+    return sealed(shown({ results, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}), ...(proofs ? { proofs } : {}) }));
   }));
   registerResources(server, packs, gov, { readOnly, vault, live, liveHub });
   if (liveHub) { const before = server.server.onclose; server.server.onclose = () => { liveHub.stop(); before?.(); }; }
@@ -984,6 +1068,40 @@ if (isMain && (process.argv[2] === "connect" || process.argv[2] === "disconnect"
     s.start();
     setInterval(() => {}, 60000);
   } else { process.stderr.write("usage: canli-mcp sentinel add '<rule as JSON>' | list | remove <id> | events [--last n] | run [--webhook url] [--slack url] [--discord url] [--exec 'command'] [--once]\n"); process.exit(2); }
+} else if (isMain && process.argv[2] === "lab") {
+  // `canli-mcp lab build [--shards n] | shard i n | status`: Kenneth French's daily files downloaded once into
+  // CANLI_HOME/lab/raw, every Lab strategy run on this machine, merged into CANLI_HOME/lab/v1. No tool builds it.
+  const [verb, ...rest] = process.argv.slice(3);
+  const home = canliHome(), raw = join(home, "lab", "raw"), out = join(home, "lab", "v1");
+  const L = await import("../local/lab.mjs"), log = (m) => process.stderr.write(`${m}\n`);
+  if (verb === "build") {
+    const n = Math.max(1, Math.min(64, Number(flag(rest, "--shards") ?? 1)));
+    log(`Kenneth French's daily files into ${raw} (first run only)...`);
+    await L.downloadLibrary(raw, { log });
+    const loaded = L.loadSeries(raw);
+    log(`${loaded.series.length} series x ${L.VARIANTS} variants = ${loaded.series.length * L.VARIANTS} strategies, in ${n} shard${n === 1 ? "" : "s"}.`);
+    if (n === 1) L.buildShard({ series: loaded.series, out, log });
+    else { const code = await (await import("../local/commands.mjs")).runShards(fileURLToPath(import.meta.url), n); if (code) process.exit(code); }
+    L.finishBuild({ out, series: loaded.series, data: loaded.data, of: n });
+    process.stdout.write(`${JSON.stringify(runLabStatus(out))}\n`);
+  } else if (verb === "shard") {
+    const [i, n] = rest.map(Number);
+    L.buildShard({ series: L.loadSeries(raw).series, out, shard: { index: i, of: n }, log: () => {} });
+  } else if (verb === "status") process.stdout.write(`${JSON.stringify(runLabStatus(out))}\n`);
+  else { process.stderr.write("usage: canli-mcp lab build [--shards n] | status\n"); process.exit(2); }
+} else if (isMain && process.argv[2] === "lake") {
+  // `canli-mcp lake setup | status`: DuckDB for the data lake, pinned, into CANLI_HOME/lake-engine. No tool installs it.
+  const [verb] = process.argv.slice(3);
+  const L = await import("../local/lake.mjs");
+  if (verb === "setup") {
+    const dir = L.engineDir(canliHome()), { installPackage } = await import("../local/commands.mjs");
+    process.stderr.write(`Installing ${L.DUCKDB_PACKAGE} into ${dir} (about 66 MB). The lake itself is ${L.lakeDir(canliHome())}.\n`);
+    process.exit(installPackage(dir, L.DUCKDB_PACKAGE));
+  } else if (verb === "status") {
+    let ready = true;
+    try { (await L.openLake(canliHome())).close(); } catch { ready = false; }
+    process.stdout.write(`${JSON.stringify({ duckdb: ready ? "installed" : "not installed: canli-mcp lake setup", engine: L.engineDir(canliHome()), lake: L.lakeDir(canliHome()), package: L.DUCKDB_PACKAGE })}\n`);
+  } else { process.stderr.write("usage: canli-mcp lake setup | status\n"); process.exit(2); }
 } else if (isMain && process.argv[2] === "models") {
   // `canli-mcp models install | status | index <company> [--years n]`. Installing is the one way the
   // optional local models get onto a machine: no tool ever does it.
