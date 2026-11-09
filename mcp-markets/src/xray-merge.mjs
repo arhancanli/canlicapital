@@ -5,7 +5,8 @@ export const issuerKey = (name) => String(name ?? "").toLowerCase().replace(/&/g
 const round = (x, d) => (Number.isFinite(x) ? Math.round(x * 10 ** d) / 10 ** d : null);
 
 // holdings: [{ symbol, weight }]. opened(symbol) gives what that holding is:
-//   { kind: "fund", fund, period, filed, positions: [[name, percent], ...], looked_through?, note? }
+//   { kind: "fund", fund, period, filed, positions: [[name, percent], ...], values_add_to?, looked_through?, note? }
+// values_add_to: the positions' dollar values over the fund's net assets, a check on the report beside the weights.
 //   { kind: "stock", name, note? }
 export function mergeOpened(holdings, opened, { top = 25 } = {}) {
   const total = holdings.reduce((s, h) => s + h.weight, 0);
@@ -24,7 +25,7 @@ export function mergeOpened(holdings, opened, { top = 25 } = {}) {
       covered += pct / 100;
       add(issuerKey(name), name, (w * pct) / 100, sym);
     }
-    funds.push({ symbol: sym, ...(o.looked_through ? { looked_through: o.looked_through } : {}), fund: o.fund, period: o.period, filed: o.filed, positions: o.positions.length, weight: round(w, 6), weights_add_to: round(covered, 4) });
+    funds.push({ symbol: sym, ...(o.looked_through ? { looked_through: o.looked_through } : {}), fund: o.fund, period: o.period, filed: o.filed, positions: o.positions.length, weight: round(w, 6), weights_add_to: round(covered, 4), ...(Number.isFinite(o.values_add_to) ? { values_add_to: o.values_add_to } : {}) });
   }
   const ranked = [...exposure.values()].sort((x, y) => y.weight - x.weight);
   const sum2 = ranked.reduce((s, e) => s + e.weight ** 2, 0);

@@ -140,6 +140,22 @@ function bondProfile(holdings, period) {
 
 const posKey = (h) => `${h.cusip && h.cusip !== "000000000" && h.cusip !== "N/A" ? h.cusip : h.isin ?? h.name}|${h.payoff ?? ""}`;
 
+// A check a report's own figures allow: the positions' dollar values should come to about the net assets, apart by
+// the liabilities less the assets outside the positions (cash, receivables), and the total assets less the
+// liabilities should be the net assets. Values far from the net assets, or apart from the weights as filed, or
+// totals that disagree point at a report to read before relying on it.
+export function holdingsCheck(report) {
+  const total = report.holdings.reduce((s, h) => s + (h.value ?? 0), 0);
+  const known = (...xs) => xs.every((x) => Number.isFinite(x));
+  return {
+    positions_total: round(total, 2),
+    values_add_to: known(report.net_assets) && report.net_assets ? round(total / report.net_assets, 4) : null,
+    liabilities: report.total_liabilities ?? null,
+    other_assets: known(report.total_assets) ? round(report.total_assets - total, 2) : null,
+    totals_agree: known(report.total_assets, report.total_liabilities, report.net_assets) ? Math.abs(report.total_assets - report.total_liabilities - report.net_assets) <= 1 : null,
+  };
+}
+
 export const portfolioInput = z.object({
   fund: z.string().min(1).max(20).describe("A mutual fund or ETF ticker (VOO, IVV, QQQ, AGG, FXAIX, ARKK) or an SEC series id (S000004310)."),
   period: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("Report date, the last day of a fiscal quarter's last month (2026-06-30); default the latest public one."),
@@ -167,6 +183,7 @@ export async function fundPortfolio(session, args) {
     period: cur.period, filed: list[i].filed, accession: list[i].accession,
     net_assets: cur.net_assets, total_assets: cur.total_assets, positions: hs.length,
     weights_add_to: round(hs.reduce((s, h) => s + (h.pct ?? 0), 0) / 100, 4),
+    holdings_check: holdingsCheck(cur),
     columns: ["name", "title", "cusip", "isin", "value_usd", "weight", "asset_category", "issuer_category", "country", "payoff"],
     rows: ranked.slice(0, top).map((h) => [h.name, h.title, h.cusip, h.isin, h.value, round(h.pct / 100, 6), h.asset, h.issuer, h.country, h.payoff]),
     exposure: {
@@ -200,6 +217,7 @@ export async function fundPortfolio(session, args) {
   out.limits = [
     "From the fund's Form N-PORT as filed with the SEC; funds file it monthly, and only the last month of each fiscal quarter is made public, 60 days after that month ends.",
     "Weights are percentages of net assets as filed; short positions and derivatives can make them add to more or less than 100 percent. Balances are shares, principal amounts or contracts, as each position's units say.",
+    "holdings_check is a check on the report itself: the positions' dollar values come to values_add_to of the net assets (weights_add_to is the same from the weights as filed), apart by the liabilities less other_assets, the assets outside the positions; totals_agree says the total assets less the liabilities equal the net assets.",
     "Sales and redemptions are shares issued and redeemed in dollars (creations and redemptions for an ETF); monthly returns are the share class's total returns as filed.",
     "Not investment advice.",
   ];
