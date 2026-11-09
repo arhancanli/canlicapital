@@ -1,18 +1,21 @@
 // Prices an exchange pushes the moment they trade, for canli://quote subscriptions on a local server. Crypto
 // pairs come from Coinbase's public ticker with no key, and from Kraken's when Coinbase cannot be reached or does
-// not list the pair. US stocks come from Alpaca's trade stream with your Alpaca keys, or Finnhub's with
-// FINNHUB_API_KEY. A symbol no stream carries is left to the timer (CANLI_QUOTE_SECONDS). CANLI_STREAMS=0 turns
-// streams off. What is sent: the symbols subscribed to, and to Alpaca or Finnhub your key; nothing else.
+// not list the pair. US stocks come from Massive's (formerly Polygon.io) trade stream with MASSIVE_API_KEY or
+// POLYGON_API_KEY, Alpaca's with your Alpaca keys, or Finnhub's with FINNHUB_API_KEY, in that order. A symbol no stream carries is left to the timer (CANLI_QUOTE_SECONDS). CANLI_STREAMS=0 turns
+// streams off. What is sent: the symbols subscribed to, and to Massive, Alpaca or Finnhub your key; nothing else.
+// Every price pushed also goes into one-minute bars kept here (the last two hours of each symbol).
 //
 // Node 22 has a WebSocket of its own; Node 20 uses the ws package, so both work.
 export const CRYPTO = /^[A-Z0-9]{2,10}-(USD|USDC|USDT|EUR|GBP)$/;
 const STOCK = /^[A-Z][A-Z.]{0,9}$/;
 const STALL_MS = 90 * 1000;
 const GIVE_UP = 3;
+const BAR_MINUTES = 120;
 
 export const SOURCES = {
   coinbase: "Coinbase's public ticker, live, no key",
   kraken: "Kraken's public ticker, live, no key",
+  massive: "Massive's (formerly Polygon.io) trade stream with your key, live (delayed 15 minutes with MASSIVE_DATA_FEED=delayed)",
   alpaca: "Alpaca's trade stream with your keys, live; trades on its one feed (IEX unless ALPACA_DATA_FEED says sip)",
   finnhub: "Finnhub's trade stream with your key, live",
 };
@@ -44,6 +47,21 @@ const FEEDS = {
       return bad ? { refused: `${bad[1]}-${bad[2]}`.toUpperCase() } : [];
     },
   },
+  massive: {
+    // Real time needs a plan that includes it (Stocks Advanced); MASSIVE_DATA_FEED=delayed reads the 15-minute feed.
+    url: (env) => (env.MASSIVE_DATA_FEED === "delayed" ? "wss://delayed.massive.com/stocks" : "wss://socket.massive.com/stocks"),
+    carries: (s) => STOCK.test(s),
+    key: (env) => { const key = env.MASSIVE_API_KEY ?? env.POLYGON_API_KEY; return key ? { key } : null; },
+    // Massive says connected, wants the key, then says auth_success; symbols wait for that.
+    hello: () => {},
+    greet: (ws, env, m) => { if ([m].flat().some((x) => x?.ev === "status" && x.status === "connected")) ws.send(JSON.stringify({ action: "auth", params: FEEDS.massive.key(env).key })); },
+    ready: (m) => [m].flat().some((x) => x?.ev === "status" && x.status === "auth_success"),
+    // A key refused, or a plan without this feed: no use trying again.
+    fatal: (m) => [m].flat().some((x) => x?.ev === "status" && (x.status === "auth_failed" || /not authorized|not entitled/i.test(String(x.message ?? "")))),
+    subscribe: (ws, symbols) => ws.send(JSON.stringify({ action: "subscribe", params: symbols.map((s) => `T.${s}`).join(",") })),
+    unsubscribe: (ws, symbols) => ws.send(JSON.stringify({ action: "unsubscribe", params: symbols.map((s) => `T.${s}`).join(",") })),
+    read: (m) => [m].flat().filter((x) => x?.ev === "T" && Number.isFinite(Number(x.p))).map((x) => ({ symbol: x.sym, price: Number(x.p), time: x.t })),
+  },
   alpaca: {
     url: (env) => `wss://stream.data.alpaca.markets/v2/${env.ALPACA_DATA_FEED === "sip" ? "sip" : "iex"}`,
     carries: (s) => STOCK.test(s),
@@ -55,6 +73,7 @@ const FEEDS = {
     // Alpaca says connected, then wants the keys, then says authenticated; symbols wait for that.
     hello: (ws, env) => { const k = FEEDS.alpaca.key(env); ws.send(JSON.stringify({ action: "auth", key: k.key, secret: k.secret })); },
     ready: (m) => [m].flat().some((x) => x?.T === "success" && x.msg === "authenticated"),
+    fatal: (m) => [m].flat().some((x) => x?.T === "error" && [401, 402, 404, 409].includes(Number(x.code))),
     subscribe: (ws, symbols) => ws.send(JSON.stringify({ action: "subscribe", trades: symbols })),
     unsubscribe: (ws, symbols) => ws.send(JSON.stringify({ action: "unsubscribe", trades: symbols })),
     read: (m) => [m].flat().filter((x) => x?.T === "t" && Number.isFinite(Number(x.p))).map((x) => ({ symbol: x.S, price: Number(x.p), time: x.t })),
@@ -80,8 +99,8 @@ async function defaultSocket() {
   return (await import("ws")).default;
 }
 
-// Which feed carries a symbol, in order of choice: Coinbase then Kraken for crypto, Alpaca then Finnhub for
-// stocks when their keys are set. Feeds that failed or refused the symbol are skipped.
+// Which feed carries a symbol, in order of choice: Coinbase then Kraken for crypto, Massive, Alpaca then Finnhub
+// for stocks when their keys are set. Feeds that failed or refused the symbol are skipped.
 export function feedsFor(symbol, env = process.env) {
   if (env.CANLI_STREAMS === "0") return [];
   return Object.entries(FEEDS).filter(([, f]) => f.carries(symbol) && (!f.key || f.key(env))).map(([name]) => name);
@@ -95,7 +114,26 @@ export function createStreams({ onPrice = () => {}, env = process.env, WS = null
   const refused = new Map(); // feed -> Set of symbols it does not carry
   const failures = new Map(); // feed -> connections in a row that ended before a price
   const conns = new Map(); // feed -> { ws, symbols: Set, ready, wait, last, watch }
+  const bars = new Map(); // symbol -> one-minute bars, oldest first: { minute, open, high, low, close, prices }
   let stopped = false;
+
+  // Bars are by the minute of the price's own time, so a late price lands in its minute; one older than the
+  // bars kept is left out.
+  function addToBar(symbol, q) {
+    const minute = q.time.slice(0, 16) + ":00Z";
+    let list = bars.get(symbol);
+    if (!list) bars.set(symbol, (list = []));
+    let i = list.length - 1;
+    while (i >= 0 && list[i].minute > minute) i -= 1;
+    if (i >= 0 && list[i].minute === minute) {
+      const b = list[i];
+      b.high = Math.max(b.high, q.price); b.low = Math.min(b.low, q.price); b.close = q.price; b.prices += 1;
+      return;
+    }
+    if (list.length >= BAR_MINUTES && i < 0) return;
+    list.splice(i + 1, 0, { minute, open: q.price, high: q.price, low: q.price, close: q.price, prices: 1 });
+    if (list.length > BAR_MINUTES) list.splice(0, list.length - BAR_MINUTES);
+  }
 
   const usable = (feed) => (failures.get(feed) ?? 0) < GIVE_UP;
   const choose = (symbol) => feedsFor(symbol, env).find((f) => usable(f) && !refused.get(f)?.has(symbol)) ?? null;
@@ -118,6 +156,13 @@ export function createStreams({ onPrice = () => {}, env = process.env, WS = null
       c.last = now();
       let m;
       try { m = JSON.parse(String(event?.data ?? event)); } catch { return; }
+      if (spec.fatal?.(m)) {
+        say(`${feed}: refused the connection (${JSON.stringify(m).slice(0, 160)}); its symbols go to the next stream or the timer`);
+        failures.set(feed, GIVE_UP);
+        try { ws.close(); } catch { /* handled below */ }
+        return closed(feed, false);
+      }
+      if (!c.ready) spec.greet?.(ws, env, m);
       if (!c.ready && spec.ready?.(m)) { c.ready = true; if (c.symbols.size) spec.subscribe(ws, [...c.symbols]); }
       const got = spec.read(m);
       if (got.refused) { refuse(feed, got.refused); return; }
@@ -128,6 +173,7 @@ export function createStreams({ onPrice = () => {}, env = process.env, WS = null
         failures.set(feed, 0);
         const q = { price: p.price, time: isoTime(p.time, now), source: feed };
         latest.set(symbol, { ...q, at: now() });
+        addToBar(symbol, q);
         try { onPrice(symbol, q); } catch (e) { say(String(e?.message ?? e)); }
       }
     });
@@ -200,6 +246,8 @@ export function createStreams({ onPrice = () => {}, env = process.env, WS = null
     // Given to a stream, open or still connecting, so a reader on a timer need not read it too.
     carried: (symbol) => [...conns.values()].some((c) => c.symbols.has(String(symbol).toUpperCase())),
     latest: (symbol) => latest.get(String(symbol).toUpperCase()) ?? null,
+    // The one-minute bars built from the prices pushed, oldest first; the last may still be forming.
+    bars: (symbol) => (bars.get(String(symbol).toUpperCase()) ?? []).map((b) => ({ ...b })),
     feeds: () => Object.fromEntries([...conns].map(([f, c]) => [f, [...c.symbols]])),
     stop() {
       stopped = true;

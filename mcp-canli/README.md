@@ -362,9 +362,11 @@ in MCP's `_meta` under `canlicapital.com/receipt` (hosts do not put it in front 
 hashes, the URLs and times of the documents the result was read from, and the receipts of the kept
 answers it was built from, never data; `receipt: true` adds the hashes to the answer itself.
 
-Live prices stream only while a client subscribes to `canli://quote` on a local server: the symbols in the address go to Coinbase or Kraken (crypto, no key) or, with your keys, to Alpaca or Finnhub (US stocks), and nothing else does. `CANLI_STREAMS=0` turns streams off and leaves the 15-second check.
+Live prices stream only while a client subscribes to `canli://quote` on a local server, or for 15 minutes after a `live_quotes` call: the symbols go to Coinbase or Kraken (crypto, no key) or, with your keys, to Massive (formerly Polygon.io), Alpaca or Finnhub (US stocks), and nothing else does. One-minute bars are built from those prices on your machine and kept in memory only (two hours a symbol). `CANLI_STREAMS=0` turns streams off and leaves the 15-second check.
 
 ## Configuration
+
+Keys can live in your operating system's keychain instead of a client's config file: `npx -y canli-mcp connect finnhub` (or `massive`, `alpaca`, `tiingo`, an upstream such as `fmp`, or any variable name) asks for the key with nothing shown, or reads it from stdin, and stores it in the macOS Keychain or, on Linux, the Secret Service (`secret-tool`). canli-mcp reads it into its own environment when it starts; a variable that is set wins. `CANLI_HOME/keychain.json` lists the names only, never a value. `connect --list` shows what is stored and `disconnect <name>` removes it. Windows has no keychain command that reads a secret back, so there set the variable.
 
 | variable | effect |
 |---|---|
@@ -376,7 +378,8 @@ Live prices stream only while a client subscribes to `canli://quote` on a local 
 | `CANLI_PLUGINS` | Plugin packs to load (below): package names or `.mjs` paths, comma-separated. |
 | `CANLI_QUOTE_SECONDS` | How often a subscribed `canli://quote` address is checked when no stream carries its prices; default 15. |
 | `CANLI_STREAMS` | `0` turns off live price streams (Coinbase and Kraken for crypto; Alpaca or Finnhub for US stocks with keys). |
-| `FINNHUB_API_KEY` | Streams US stock prices from Finnhub for `canli://quote` subscriptions when no Alpaca keys are set. |
+| `MASSIVE_API_KEY` (or `POLYGON_API_KEY`) | Streams US stock trades from Massive, first among the stock streams; real time needs a plan that includes it, and `MASSIVE_DATA_FEED=delayed` reads the 15-minute feed. |
+| `FINNHUB_API_KEY` | Streams US stock prices from Finnhub for `canli://quote` and `live_quotes` when no Massive or Alpaca keys are set. |
 | `CANLI_UPSTREAMS` | Other MCP servers whose tools join these (below), as JSON or a file's path. Default: `CANLI_HOME/upstreams.json`, which `canli-mcp upstream add` writes. |
 
 Order-sending tools never run inside a batch: preview first, then send on its own.
