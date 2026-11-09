@@ -4,7 +4,7 @@
 // funds, and how concentrated it is once the funds are opened up.
 import { z } from "zod";
 
-import { loadNport, resolveFund, seriesFilings } from "./funds.mjs";
+import { holdingsCheck, loadNport, resolveFund, seriesFilings } from "./funds.mjs";
 import { NotFound, resolveEntity } from "./sources.mjs";
 import { issuerKey, mergeOpened } from "./xray-merge.mjs";
 
@@ -37,7 +37,8 @@ export async function openHolding(session, symbol) {
   const filings = await seriesFilings(session, fund.series);
   if (!filings.length) return { kind: "stock", name: sym, note: `${sym} has no public N-PORT; it is counted as one position.` };
   const port = await loadNport(session, filings[0]);
-  return { kind: "fund", ...(used !== sym ? { looked_through: used } : {}), fund: port.series.name, period: port.period, filed: filings[0].filed, positions: port.holdings.map((p) => [p.name, p.pct]), ...(note ? { note } : {}) };
+  const { values_add_to: values } = holdingsCheck(port);
+  return { kind: "fund", ...(used !== sym ? { looked_through: used } : {}), fund: port.series.name, period: port.period, filed: filings[0].filed, positions: port.holdings.map((p) => [p.name, p.pct]), ...(values == null ? {} : { values_add_to: values }), ...(note ? { note } : {}) };
 }
 
 // The words that go with any look-through, here and on the page.

@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Optional arguments sent as null count as not given, at the front tools and inside `run_tool`. CrewAI (through mcpadapt) sends every unset optional argument as null, and OpenAI's strict function calling does the same, so with CrewAI 1.15 every call was refused (`limit: expected number, received null`). A null where a value is required is still refused, with the message as sent.
 - Live price streams for `canli://quote`: a subscribed crypto pair streams from Coinbase's public ticker with no key, or Kraken's when Coinbase cannot be reached (three tries with no price) or does not list the pair; US stocks stream from Alpaca's trade stream with your Alpaca keys, or Finnhub's with `FINNHUB_API_KEY`. The client is told as prices trade, at most once a second for each address, instead of every 15 seconds, and each streamed quote says which exchange it came from (`streamed_from`). Symbols no stream carries are checked on the timer as before. Works on Node 20 (the `ws` package) and on Node 22 and later (Node's own WebSocket); streams close when the client goes; `CANLI_STREAMS=0` turns them off.
 
 ## 0.22.0
