@@ -278,6 +278,26 @@ test("a stream subscribes, feeds prices, and is opened again when it closes", as
   t.done();
 });
 
+test("a rule added while it runs joins the stream at the next beat", async () => {
+  class FakeWS extends EventEmitter {
+    static made = [];
+    constructor(url) { super(); this.url = url; this.sent = []; FakeWS.made.push(this); setImmediate(() => this.emit("open")); }
+    send(m) { this.sent.push(JSON.parse(m)); }
+    close() { this.emit("close"); }
+    terminate() { this.emit("close"); }
+  }
+  const t = setup({ options: { WS: FakeWS, now: () => Date.now() } });
+  t.s.add({ kind: "price_level", symbol: "BTC-USD", above: 100, cooldown_minutes: 0 });
+  t.s.start();
+  await until(() => FakeWS.made[0]?.sent.length);
+  t.s.add({ kind: "price_level", symbol: "ETH-USD", above: 100, cooldown_minutes: 0 });
+  await t.s.pollDue();
+  assert.deepEqual(FakeWS.made[0].sent.at(-1), { type: "subscribe", product_ids: ["ETH-USD"], channels: ["ticker"] });
+  assert.ok(!t.calls.some(([name]) => name === "latest_price"), "both carried by the stream");
+  t.s.stop();
+  t.done();
+});
+
 test("Alpaca's stream authenticates before it subscribes", async () => {
   class FakeWS extends EventEmitter {
     static last;

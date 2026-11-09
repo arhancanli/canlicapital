@@ -1,6 +1,7 @@
 // The sentinel: conditions a person or a model sets, watched from this machine, and a block of context
-// the moment one is met. It streams where a free stream exists (Coinbase's public trades for crypto,
-// Alpaca's trades for US stocks with your keys) and reads on a timer where none does (Yahoo's chart
+// the moment one is met. It streams where a stream exists (local/streams.mjs: Coinbase's or Kraken's public
+// ticker for crypto, Alpaca's or Finnhub's trades for US stocks with your keys) and reads on a timer where none
+// does (Yahoo's chart
 // data, Cboe's delayed option quotes, EDGAR's feed). Every event says how it was seen and how late that
 // can be.
 //
@@ -14,13 +15,10 @@ import { join } from "node:path";
 import WebSocket from "ws";
 
 import { asBlock, ruleInput } from "../src/sentinel.mjs";
+import { CRYPTO, SOURCES, createStreams } from "./streams.mjs";
 
-const CRYPTO = /^[A-Z0-9]{2,10}-(USD|USDC|USDT|EUR|GBP)$/;
-const COINBASE = "wss://ws-feed.exchange.coinbase.com";
-const ALPACA = "wss://stream.data.alpaca.markets/v2/";
 const SEEN = {
-  coinbase: "Coinbase's public trade stream, live",
-  alpaca: "Alpaca's trade stream, live, trades on that one feed only",
+  ...SOURCES,
   polled: "Yahoo's chart data, read every 30 seconds; it can run late, by 15 minutes or more on some markets",
   cboe: "Cboe's delayed option quotes, read every 5 minutes; they run about 15 minutes late",
   edgar: "EDGAR's latest-filings feed, read every 60 seconds; a filing appears within a minute or two of acceptance",
@@ -31,7 +29,6 @@ const POLL_MS = { price: 30 * 1000, volatility: 5 * 60 * 1000, filing: 60 * 1000
 // Each company watched for restatements is held in memory by the fundamentals pack, which holds eight; more
 // would be read in full from the SEC on every check.
 const RESTATEMENT_COMPANIES = 8;
-const STALL_MS = 90 * 1000;
 
 // A filer chooses its own name, so a name is outside text. It stays out of what a model reads, and what
 // is kept for a person's logs is held to plain characters and a short length.
@@ -59,7 +56,6 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
   const sinks = new Set();
   const state = new Map();
   const nextPoll = new Map();
-  const sockets = new Set();
   let timer = null, stopped = true;
 
   const rules = () => { try { return JSON.parse(readFileSync(rulesFile, "utf8")).rules ?? []; } catch { return []; } };
@@ -307,13 +303,13 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
     if (Number.isFinite(r.price)) await onPrice(sym, r.price, now(), "polled");
   }
 
-  const streamed = new Set();
   // One pass over whatever is due. The timer calls it; --once and the tests call it directly.
   async function pollDue() {
     const list = rules(), jobs = [];
     const due = (key, ms) => { if (now() < (nextPoll.get(key) ?? 0)) return false; nextPoll.set(key, now() + ms); return true; };
     const prices = new Set(list.filter((r) => r.kind === "price_move" || r.kind === "price_level").map((r) => r.symbol));
-    for (const sym of prices) if (!streamed.has(sym) && due(`price:${sym}`, POLL_MS.price)) jobs.push(pollPrice(sym));
+    if (!stopped) watchStreams();
+    for (const sym of prices) if (!hub?.carried(sym) && due(`price:${sym}`, POLL_MS.price)) jobs.push(pollPrice(sym));
     for (const r of list) {
       if (r.kind === "volatility_move" && due(r.id, POLL_MS.volatility)) jobs.push(pollVolatility(r));
       if (r.kind === "filing" && due(r.id, POLL_MS.filing)) jobs.push(pollFilings(r));
@@ -324,55 +320,18 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
     for (const out of await Promise.allSettled(jobs)) if (out.status === "rejected") say(`a read failed: ${String(out.reason?.message ?? out.reason).slice(0, 200)}`);
   }
 
-  // A stream that closes or goes quiet is opened again, waiting a little longer each time.
-  function stream(name, url, onOpen, onMessage) {
-    let wait = 1000, socket = null, watch = null;
-    const open = () => {
-      if (stopped) return;
-      socket = new WS(url);
-      sockets.add(socket);
-      let last = now();
-      socket.on("open", () => { wait = 1000; onOpen(socket); });
-      socket.on("message", (data) => { last = now(); try { onMessage(JSON.parse(String(data)), socket); } catch (e) { say(`${name}: ${String(e?.message ?? e).slice(0, 200)}`); } });
-      socket.on("error", (e) => say(`${name}: ${String(e?.message ?? e).slice(0, 200)}`));
-      socket.on("close", () => {
-        sockets.delete(socket);
-        clearInterval(watch);
-        if (!stopped) { const t = setTimeout(open, wait); t.unref?.(); wait = Math.min(wait * 2, 60000); }
-      });
-      clearInterval(watch);
-      watch = setInterval(() => { if (now() - last > STALL_MS) socket.terminate?.(); }, 15000);
-      watch.unref?.();
-    };
-    open();
-  }
-
-  function startStreams() {
-    const symbols = [...new Set(rules().filter((r) => r.kind === "price_move" || r.kind === "price_level").map((r) => r.symbol))];
-    const crypto = symbols.filter((s) => CRYPTO.test(s));
-    if (crypto.length) {
-      for (const s of crypto) streamed.add(s);
-      stream("coinbase", COINBASE, (ws) => ws.send(JSON.stringify({ type: "subscribe", product_ids: crypto, channels: ["ticker"] })), (m) => {
-        if (m.type === "ticker" && Number.isFinite(Number(m.price))) onPrice(m.product_id, Number(m.price), Date.parse(m.time) || now(), "coinbase").catch((e) => say(String(e?.message ?? e)));
-      });
-    }
-    const key = env.ALPACA_API_KEY_ID ?? env.APCA_API_KEY_ID ?? env.ALPACA_PAPER_KEY_ID, secret = env.ALPACA_API_SECRET_KEY ?? env.APCA_API_SECRET_KEY ?? env.ALPACA_PAPER_SECRET_KEY;
-    const stocks = symbols.filter((s) => !CRYPTO.test(s) && /^[A-Z.]{1,10}$/.test(s));
-    if (key && secret && stocks.length) {
-      for (const s of stocks) streamed.add(s);
-      stream("alpaca", `${ALPACA}${env.ALPACA_DATA_FEED ?? "iex"}`, (ws) => ws.send(JSON.stringify({ action: "auth", key, secret })), (m, ws) => {
-        for (const x of Array.isArray(m) ? m : [m]) {
-          if (x.T === "success" && x.msg === "authenticated") ws.send(JSON.stringify({ action: "subscribe", trades: stocks }));
-          if (x.T === "t") onPrice(x.S, Number(x.p), Date.parse(x.t) || now(), "alpaca").catch((e) => say(String(e?.message ?? e)));
-        }
-      });
-    }
+  // Prices pushed by an exchange for every price rule's symbol; a rule added while running joins at the next beat.
+  // A symbol no stream carries, or whose streams gave up, is read on the timer.
+  let hub = null;
+  function watchStreams() {
+    hub ??= createStreams({ env, WS, now, say, onPrice: (sym, q) => { onPrice(sym, q.price, Date.parse(q.time) || now(), q.source).catch((e) => say(String(e?.message ?? e))); } });
+    hub.watch(rules().filter((r) => r.kind === "price_move" || r.kind === "price_level").map((r) => r.symbol));
   }
 
   function start() {
     if (!stopped) return;
     stopped = false;
-    startStreams();
+    watchStreams();
     const beat = () => pollDue().catch((e) => say(String(e?.message ?? e)));
     beat();
     timer = setInterval(beat, 5000);
@@ -381,8 +340,8 @@ export function createSentinel({ home, call, env = process.env, now = () => Date
   function stop() {
     stopped = true;
     clearInterval(timer);
-    for (const s of sockets) { try { s.close(); } catch { /* going anyway */ } }
-    sockets.clear();
+    hub?.stop();
+    hub = null;
   }
 
   return { add, remove, list, events, start, stop, pollDue, onPrice, sinks, rules, exists: () => existsSync(rulesFile) };
