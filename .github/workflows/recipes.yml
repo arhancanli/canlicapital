@@ -1,7 +1,7 @@
 # Runs the recipes and templates for real: the Kubernetes job on a cluster on the runner (kind), the
 # GitLab template in its own image, the Hugging Face Space started and used, and each framework recipe
 # through a small model on the runner, with no API key. Runs when they change, or on request. A pass says
-# the job finished, or that the model loop ran and the server received tool calls. It says nothing about
+# the job finished, or that the model loop ran and a tool call answered without an error. It says nothing about
 # how good a small model's answers are, and none of this ran on GitLab's or Hugging Face's own servers.
 name: Agent recipes
 
@@ -130,9 +130,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { recipe: langgraph_agent.py, model: "ollama:qwen3:1.7b" }
-          - { recipe: openai_agents_agent.py, model: "qwen3:1.7b" }
-          - { recipe: crewai_agent.py, model: "ollama/qwen3:1.7b" }
+          - { recipe: langgraph_agent.py, model: "ollama:qwen3:1.7b", requirements: requirements.txt }
+          - { recipe: openai_agents_agent.py, model: "qwen3:1.7b", requirements: requirements.txt }
+          - { recipe: crewai_agent.py, model: "ollama/qwen3:1.7b", requirements: requirements-crewai.txt }
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -153,8 +153,13 @@ jobs:
       - name: Install the frameworks
         run: |
           python3 -m venv .venv
-          .venv/bin/pip install --quiet -r mcp-canli/recipes/requirements.txt langchain-ollama
-      - name: Run the recipe and count the tool calls the server received
+          .venv/bin/pip install --quiet -r "mcp-canli/recipes/$REQUIREMENTS" langchain-ollama
+        env:
+          REQUIREMENTS: ${{ matrix.requirements }}
+      # The server in this branch, so a fix to it is tested with the recipe that needed it.
+      - run: npm ci
+        working-directory: mcp-canli
+      - name: Run the recipe and count the tool calls that ran without an error
         env:
           CANLI_MODEL: ${{ matrix.model }}
           OPENAI_BASE_URL: http://localhost:11434/v1
@@ -164,16 +169,17 @@ jobs:
           OTEL_SDK_DISABLED: "true"
           RECIPE: ${{ matrix.recipe }}
         run: |
-          printf '#!/bin/sh\ntee -a %s/calls.log | npx -y canli-mcp\n' "$PWD" > wrap.sh
+          printf '#!/bin/sh\ntee -a %s/calls.log | node %s/mcp-canli/src/server.mjs | tee -a %s/answers.log\n' "$PWD" "$PWD" "$PWD" > wrap.sh
           export CANLI_MCP_COMMAND="sh $PWD/wrap.sh"
           # A model this small does not always use its tools, so it gets three tries. The test is that the loop works.
           for try in 1 2 3; do
             timeout 600 .venv/bin/python "mcp-canli/recipes/$RECIPE" "Use find_tool to find the tool for a company's filed financial statements, run it for AAPL, and give the latest annual revenue in one sentence." || true
             calls="$(grep -c '"tools/call"' calls.log || true)"
-            [ "$calls" -ge 1 ] && break
+            ok="$(python3 mcp-canli/recipes/count_answers.py answers.log)"
+            [ "$ok" -ge 1 ] && break
           done
-          echo "$RECIPE on $CANLI_MODEL: $calls tool calls" | tee -a "$GITHUB_STEP_SUMMARY"
-          [ "$calls" -ge 1 ]
+          echo "$RECIPE on $CANLI_MODEL: $calls tool calls, $ok answered without an error" | tee -a "$GITHUB_STEP_SUMMARY"
+          [ "$ok" -ge 1 ]
 
   # A small model through the two recipes with no framework around them. This checks that the plumbing
   # works end to end on a real model, not that the model is any good.
