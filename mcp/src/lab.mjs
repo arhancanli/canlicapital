@@ -19,7 +19,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { ResourceTemplate } from "@modelcontextprotocol/server";
 import { z } from "zod";
-import { BACKTEST_LIMITS, BACKTEST_LIMITS_TEXT, FAMILIES, runBacktest } from "./local/js/backtest-core.js";
+import { BACKTEST_LIMITS, BACKTEST_LIMITS_TEXT, FAMILIES, TRIAL_RETURNS, runBacktest } from "./local/js/backtest-core.js";
 import { FEASIBILITY_LIMITS_TEXT, checkFeasibility } from "./local/js/feasibility-core.js";
 import { SUMMARY_LIMITS_TEXT, summarizeSeries } from "./local/js/series-summary-core.js";
 import { STRESS_LIMITS_TEXT, stressTest } from "./local/js/stress-core.js";
@@ -64,7 +64,11 @@ export async function toolBacktestStrategy(session, args) {
   const input = parse(backtestInput, args, "backtest_strategy");
   const { values, dates, source } = readInput(session, "backtest_strategy", { inline: input.prices, file: input.prices_file, column: input.prices_column, inlineName: "prices", fileName: "prices_file" });
   const result = runBacktest({ prices: values, family: input.family, grid: input.grid ?? {}, periods_per_year: input.periods_per_year ?? 252, cost_bps: input.cost_bps ?? 5, allow_short: input.allow_short ?? false, dates: labels(input.dates) ?? dates });
-  return labText({ ...result, limits: BACKTEST_LIMITS_TEXT, source: { ...source, prices: values.length, input_sha256: digest(values), computed: "locally, in the MCP server process; no receipt" } });
+  const value = { ...result, limits: BACKTEST_LIMITS_TEXT, source: { ...source, prices: values.length, input_sha256: digest(values), computed: "locally, in the MCP server process; no receipt" } };
+  // Each variant's returns, for a server that runs this pack in its own process (canli-mcp's luck), which takes them
+  // off before the answer goes anywhere; hidden as in backtest-core.js, so the answer's schema never sees them.
+  if (result[TRIAL_RETURNS]) Object.defineProperty(value, TRIAL_RETURNS, { value: result[TRIAL_RETURNS], configurable: true });
+  return labText(value);
 }
 
 export async function toolSummarizeSeries(session, args) {
