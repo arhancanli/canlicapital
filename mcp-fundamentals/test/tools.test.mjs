@@ -73,6 +73,23 @@ test("history with as_of never shows a filing made after it, whatever the basis"
   await assert.rejects(toolHistory(s, { company: "FIX", concept: "Revenues", basis: "as_of" }), /needs an as_of date/);
 });
 
+test("history with as_of: changed counts only filings made by then, so a restatement filed later is not seen", async () => {
+  const { s } = session();
+  // Fiscal 2019 revenue: 100 first filed 2019-10-30, restated to 90 in the 10-K of 2020-10-29.
+  const fy2019 = async (as_of) => {
+    const res = out(await toolHistory(s, { company: "FIX", concept: "revenue", basis: "first_reported", as_of }));
+    return [byCol(res).find((r) => r.end === "2019-09-30"), res.meaning];
+  };
+  const [before, meaning] = await fy2019("2020-06-30");
+  assert.deepEqual([before.val, before.changed], [100, false], "the restatement was not filed by then");
+  assert.match(meaning, /made by as_of, reported a different value for the period\. Nothing here comes from a filing made after as_of/);
+  const [after] = await fy2019("2020-11-01");
+  assert.deepEqual([after.val, after.changed], [100, true], "by then it was");
+  // Without as_of, changed still counts every later filing.
+  const all = byCol(out(await toolHistory(s, { company: "FIX", concept: "revenue", basis: "first_reported" }))).find((r) => r.end === "2019-09-30");
+  assert.deepEqual([all.val, all.changed], [100, true]);
+});
+
 test("history: latest and quarterly periods, including a 16-week quarter; prospectus figures are never vintages", async () => {
   const { s } = session();
   const latest = byCol(out(await toolHistory(s, { company: "FIX", concept: "Revenues", basis: "latest" })));
@@ -142,7 +159,10 @@ test("a tag in two taxonomies is one measure; a taxonomy prefix picks one", asyn
 test("known_as_of: values as they stood, across tag and taxonomy changes, with stale and snapshot flags", async () => {
   const { s } = session();
   const before = out(await toolKnownAsOf(s, { company: "FIX", as_of: "2019-12-31" }));
-  const b = byCol(before);
+  // Whether a filing made after as_of changed a value is given only when asked for by name: nobody knew it on as_of.
+  const b = byCol(out(await toolKnownAsOf(s, { company: "FIX", as_of: "2019-12-31", changed_after: true })));
+  assert.deepEqual([before.columns.includes("changed_after"), byCol(before)], [false, b.map(({ changed_after: _later, ...known }) => known)]);
+  assert.match(before.meaning, /Nothing here comes from a filing made after as_of; changed_after: true adds/);
   assert.deepEqual([get(b, "revenue").val, get(b, "revenue").tag, get(b, "revenue").changed_after], [100, "SalesRevenueNet", true]);
   assert.deepEqual([get(b, "assets").val, get(b, "assets").changed_after], [500, true], "the 10-K/A of 2020-01-15 was not yet filed");
   assert.equal(get(b, "eps_diluted").unit, "USD/shares");
@@ -513,7 +533,7 @@ test("known_as_of ratios: every input as filed by as_of, one period, averages ac
   const { s } = session();
   const ratioRows = (res) => Object.fromEntries(res.ratios.rows.map((row) => [row[0], Object.fromEntries(res.ratios.columns.map((c, i) => [c, row[i]]))]));
   // After the 2020 10-K: fiscal 2020 throughout, and the 10-K/A's restated assets (520) for the start.
-  const late = out(await toolKnownAsOf(s, { company: "FIX", as_of: "2020-11-01", ratios: true }));
+  const late = out(await toolKnownAsOf(s, { company: "FIX", as_of: "2020-11-01", ratios: true, changed_after: true }));
   assert.deepEqual(late.ratios.period, { start: "2019-10-01", end: "2020-09-30" });
   const r = ratioRows(late);
   assert.equal(r.gross_margin.value, 0.4);
@@ -528,7 +548,8 @@ test("known_as_of ratios: every input as filed by as_of, one period, averages ac
   assert.deepEqual(r.return_on_assets.inputs.map((x) => [x[0], x[1], x[2]]), [["net_income", 11, "2020-09-30"], ["assets", 600, "2020-09-30"], ["assets", 520, "2019-09-30"]]);
   assert.equal(r.net_margin.changed_after, false);
   // Before the 10-K/A was filed (2020-01-15): fiscal 2019, and the assets as first reported (500).
-  const early = ratioRows(out(await toolKnownAsOf(s, { company: "FIX", as_of: "2020-01-10", ratios: true })));
+  const early = ratioRows(out(await toolKnownAsOf(s, { company: "FIX", as_of: "2020-01-10", ratios: true, changed_after: true })));
+  assert.deepEqual(out(await toolKnownAsOf(s, { company: "FIX", as_of: "2020-01-10", ratios: true })).ratios.columns, ["ratio", "value", "unit", "basis", "inputs"], "not asked for, no changed_after");
   assert.equal(early.return_on_assets.value, 0.018, "9 over 500: the restated 520 was not known yet");
   assert.match(early.return_on_assets.basis, /balance at the period's end/);
   assert.equal(early.net_margin.value, 0.09, "fiscal 2019 revenue as first reported, 100");
@@ -552,8 +573,9 @@ test("cross_section: one row per company in the order asked, each value as filed
   assert.deepEqual(late.rows.map((r) => [r[c("end")], r[c("val")]]), [["2020-09-30", 600], ["2020-09-30", 600], ["2020-09-30", 600]]);
   assert.equal(late.missing.length, 1);
   assert.match(late.missing[0], /^ZZZZ: "ZZZZ" is not a current ticker or a company name/);
-  // Before the 10-K/A (2020-01-15), the 2019 year-end assets as first reported, flagged as later changed.
-  const early = out(await toolCrossSection(s, { companies: ["FIX"], concept: "assets", as_of: "2020-01-10" }));
+  // Before the 10-K/A (2020-01-15), the 2019 year-end assets as first reported, flagged as later changed when asked.
+  assert.equal(out(await toolCrossSection(s, { companies: ["FIX"], concept: "assets", as_of: "2020-01-10" })).columns.includes("changed_after"), false);
+  const early = out(await toolCrossSection(s, { companies: ["FIX"], concept: "assets", as_of: "2020-01-10", changed_after: true }));
   const e = col(early);
   assert.deepEqual([early.rows[0][e("end")], early.rows[0][e("val")], early.rows[0][e("changed_after")]], ["2019-09-30", 500, true]);
   const byName = out(await toolCrossSection(s, { companies: ["Fixture Corp"], concept: "revenue", as_of: "2020-11-01" }));
@@ -643,6 +665,31 @@ test("a proxy statement's pay table is not a filing of the results: Arista's 3,5
   const index = indexFacts({ facts: { "us-gaap": { NetIncomeLoss: { units: { USD: [row(3511400000, "10-K", "2026-02-17"), row(3511, "DEF 14A", "2026-04-16")] } } } } });
   const vintages = index.get("us-gaap:NetIncomeLoss").units.USD[0].vintages;
   assert.deepEqual(vintages.map((v) => [v.val, v.form]), [[3511400000, "10-K"]]);
+});
+
+test("an 8-K does not restate a company's year: Essential Utilities' merger 8-K never replaces its $2.47 billion", () => {
+  const row = (val, form, filed) => ({ start: "2025-01-01", end: "2025-12-31", val, form, filed, accn: `a-${filed}`, fy: 2025, fp: "FY" });
+  const index = indexFacts({ facts: { "us-gaap": { Revenues: { units: { USD: [row(2474610000, "10-K", "2026-02-26"), row(5121000000, "8-K", "2026-03-30")] } } } } });
+  const p = index.get("us-gaap:Revenues").units.USD[0];
+  assert.deepEqual(p.vintages.map((v) => [v.val, v.form]), [[2474610000, "10-K"]], "the periodic report's value stands");
+  assert.deepEqual(p.setApart.map((v) => [v.val, v.form, v.why]), [[5121000000, "8-K", "8-K"]], "the 8-K's value is kept apart");
+  // A period only an 8-K carries keeps its 8-K value (nothing periodic to prefer).
+  const only = indexFacts({ facts: { "us-gaap": { Revenues: { units: { USD: [row(5121000000, "8-K", "2026-03-30")] } } } } });
+  assert.deepEqual(only.get("us-gaap:Revenues").units.USD[0].vintages.map((v) => v.form), ["8-K"]);
+});
+
+test("a pay-versus-performance table is not a restatement: Genco's 10-K/A $(4.5) million never replaces the 10-K's $4,366,000", () => {
+  const row = (val, form, filed) => ({ start: "2025-01-01", end: "2025-12-31", val, form, filed, accn: `a-${filed}`, fy: 2025, fp: "FY" });
+  const y24 = (val, form, filed) => ({ ...row(val, form, filed), start: "2024-01-01", end: "2024-12-31" });
+  const p = indexFacts({ facts: { "us-gaap": { ProfitLoss: { units: { USD: [row(-4366000, "10-K", "2026-02-18"), row(-4500000, "10-K/A", "2026-04-30"), y24(76401000, "10-K", "2026-02-18"), y24(76500000, "10-K/A", "2026-04-30")] } } } } }).get("us-gaap:ProfitLoss").units.USD[0];
+  assert.deepEqual(p.vintages.map((v) => v.val), [-4366000]);
+  assert.deepEqual(p.setApart.map((v) => [v.val, v.why]), [[-4500000, "rounded repeat in an amendment"]]);
+  // A real restatement stays one: Richtech's 10-K/A restated an operating loss to a round $17,200,000, but its
+  // 2024 figure ($7,780,000) is not round; and a lone round value is never enough.
+  const real = (val, other) => indexFacts({ facts: { "us-gaap": { OperatingIncomeLoss: { units: { USD: [row(-17944000, "10-K", "2026-01-20"), row(val, "10-K/A", "2026-08-07"), ...(other ? [y24(-7700000, "10-K", "2025-01-20"), y24(other, "10-K/A", "2026-08-07")] : [])] } } } } }).get("us-gaap:OperatingIncomeLoss").units.USD[0].vintages.map((v) => v.val);
+  assert.deepEqual(real(-17200000, -7780000), [-17944000, -17200000]);
+  assert.deepEqual(real(-17200000), [-17944000, -17200000]);
+  assert.deepEqual(real(-6000000, -7800000), [-17944000, -6000000], "round but far from the first value");
 });
 
 test("a 10-Q does not restate a full year: Comfort Systems' $1.83 billion never replaces the 10-K's $9.1 billion", () => {

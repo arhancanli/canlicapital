@@ -1,0 +1,610 @@
+{
+ "schema": "canli.placebo-study.v2r2-pilot",
+ "what": "Timing pilots of the round-2 code on simulated data only, run on 8 November 2026 before the round-2 registration was written. Seeds 99 (calibration panels), 98 (power panels) and 97 (effect calibration), not the registered ones. The power-study shapes are synthetic: round 1's iid_normal design (garch_const for volatility management) with each claim's number of series and months, not the real data. Timings are seconds on a shared machine whose load average was about 100 to 145.",
+ "runs": [
+  {
+   "order": 1,
+   "design": "draft: power placebos 99; volatility-management effect mu * h^gamma / E[h^gamma] with the GARCH variance multiplier",
+   "finding": "the volatility-management uplift of 0.3 was unreachable for gamma in [-4, 1] (largest uplift about 0.09); the OSAP cross-sectional in-sample test took about 60 s per test with 99 placebos for each of four placebo methods",
+   "output": {
+    "schema": "canli.placebo-study.v2r2-pilot",
+    "note": "timings in seconds on the shared machine; simulated data only; seeds 99, 98, 97",
+    "calib": [
+     {
+      "claim": "tsfm",
+      "family": "garch_const",
+      "tests": 2,
+      "seconds_per_test": 0.6667241665
+     },
+     {
+      "claim": "tsfm",
+      "family": "garch_zero",
+      "tests": 2,
+      "seconds_per_test": 0.6361410625
+     },
+     {
+      "claim": "csfm",
+      "family": "garch_const",
+      "tests": 2,
+      "seconds_per_test": 0.6944857085
+     },
+     {
+      "claim": "csfm",
+      "family": "garch_zero",
+      "tests": 2,
+      "seconds_per_test": 0.67507625
+     },
+     {
+      "claim": "vmf",
+      "family": "garch_const",
+      "tests": 2,
+      "seconds_per_test": 0.169638917
+     },
+     {
+      "claim": "vmf",
+      "family": "garch_zero",
+      "tests": 2,
+      "seconds_per_test": 0.16546625
+     },
+     {
+      "claim": "indmom",
+      "family": "garch_const",
+      "tests": 2,
+      "seconds_per_test": 0.9598680205
+     },
+     {
+      "claim": "indmom",
+      "family": "garch_zero",
+      "tests": 2,
+      "seconds_per_test": 0.9293234375
+     }
+    ],
+    "effects": [
+     {
+      "claim": "tsfm",
+      "effect": 0.3,
+      "kind": "trend",
+      "strength": 0.153405,
+      "reached": 0.299985,
+      "off": 0.453482,
+      "seconds": 1.237643708
+     },
+     {
+      "claim": "csfm",
+      "effect": 0.3,
+      "kind": "trend",
+      "strength": 0.131367,
+      "reached": 0.299961,
+      "off": 0.654747,
+      "seconds": 1.306934541
+     },
+     {
+      "claim": "vmf",
+      "effect": 0.3,
+      "kind": "meanvar",
+      "strength": null,
+      "reached": 0.113069,
+      "off": 0.021324,
+      "seconds": 0.616815375
+     },
+     {
+      "claim": "indmom",
+      "effect": 0.3,
+      "kind": "trend",
+      "strength": 0.081756,
+      "reached": 0.3,
+      "off": 0.621649,
+      "seconds": 8.209113041
+     },
+     {
+      "claim": "osap_tsfm",
+      "effect": 0.3,
+      "kind": "trend",
+      "strength": 0.107176,
+      "reached": 0.3,
+      "off": 0.297419,
+      "seconds": 24.080307791
+     },
+     {
+      "claim": "osap_csfm",
+      "effect": 0.3,
+      "kind": "trend",
+      "strength": 0.062905,
+      "reached": 0.300018,
+      "off": 0.963833,
+      "seconds": 27.81061525
+     }
+    ],
+    "power": [
+     {
+      "claim": "tsfm",
+      "window": "in_sample",
+      "tests": 1,
+      "seconds_per_test": 2.089223625,
+      "unreachable": false
+     },
+     {
+      "claim": "tsfm",
+      "window": "post_sample",
+      "tests": 1,
+      "seconds_per_test": 0.226873666,
+      "unreachable": false
+     },
+     {
+      "claim": "csfm",
+      "window": "in_sample",
+      "tests": 1,
+      "seconds_per_test": 2.740955208,
+      "unreachable": false
+     },
+     {
+      "claim": "csfm",
+      "window": "post_sample",
+      "tests": 1,
+      "seconds_per_test": 0.274915917,
+      "unreachable": false
+     },
+     {
+      "claim": "vmf",
+      "window": "in_sample",
+      "tests": 1,
+      "seconds_per_test": 3.9791e-05,
+      "unreachable": true
+     },
+     {
+      "claim": "vmf",
+      "window": "post_sample",
+      "tests": 1,
+      "seconds_per_test": 6.792e-06,
+      "unreachable": true
+     },
+     {
+      "claim": "indmom",
+      "window": "in_sample",
+      "tests": 1,
+      "seconds_per_test": 4.093399208,
+      "unreachable": false
+     },
+     {
+      "claim": "indmom",
+      "window": "post_sample",
+      "tests": 1,
+      "seconds_per_test": 1.208258917,
+      "unreachable": false
+     },
+     {
+      "claim": "osap_tsfm",
+      "window": "in_sample",
+      "tests": 1,
+      "seconds_per_test": 26.120786208,
+      "unreachable": false
+     },
+     {
+      "claim": "osap_tsfm",
+      "window": "post_sample",
+      "tests": 1,
+      "seconds_per_test": 2.565836834,
+      "unreachable": false
+     },
+     {
+      "claim": "osap_csfm",
+      "window": "in_sample",
+      "tests": 1,
+      "seconds_per_test": 59.567862958,
+      "unreachable": false
+     },
+     {
+      "claim": "osap_csfm",
+      "window": "post_sample",
+      "tests": 1,
+      "seconds_per_test": 2.91340825,
+      "unreachable": false
+     }
+    ]
+   }
+  },
+  {
+   "order": 2,
+   "design": "power placebos 39; volatility management with a log-AR(1) variance multiplier, still mu * h^gamma",
+   "finding": "still unreachable; a separate probe showed the uplift is not monotone in gamma and peaks near 0.1, so the planted effect was changed to kappa * sd * standardized(1/h) on top of the mean-proportional-to-variance null",
+   "output": {
+    "schema": "canli.placebo-study.v2r2-pilot",
+    "note": "timings in seconds on the shared machine; simulated data only; seeds 99, 98, 97",
+    "calib": [
+     {
+      "claim": "tsfm",
+      "family": "garch_const",
+      "tests": 2,
+      "seconds_per_test": 0.651093271
+     },
+     {
+      "claim": "tsfm",
+      "family": "garch_zero",
+      "tests": 2,
+      "seconds_per_test": 0.6420005625
+     },
+     {
+      "claim": "csfm",
+      "family": "garch_const",
+      "tests": 2,
+      "seconds_per_test": 0.747028542
+     },
+     {
+      "claim": "csfm",
+      "family": "garch_zero",
+      "tests": 2,
+      "seconds_per_test": 0.755250625
+     },
+     {
+      "claim": "vmf",
+      "family": "garch_const",
+      "tests": 2,
+      "seconds_per_test": 0.1859017085
+     },
+     {
+      "claim": "vmf",
+      "family": "garch_zero",
+      "tests": 2,
+      "seconds_per_test": 0.185723125
+     },
+     {
+      "claim": "indmom",
+      "family": "garch_const",
+      "tests": 2,
+      "seconds_per_test": 0.964305917
+     },
+     {
+      "claim": "indmom",
+      "family": "garch_zero",
+      "tests": 2,
+      "seconds_per_test": 0.9849377705
+     }
+    ],
+    "effects": [
+     {
+      "claim": "tsfm",
+      "effect": 0.3,
+      "kind": "trend",
+      "strength": 0.153405,
+      "reached": 0.299985,
+      "off": 0.453482,
+      "seconds": 1.290625875
+     },
+     {
+      "claim": "csfm",
+      "effect": 0.3,
+      "kind": "trend",
+      "strength": 0.131367,
+      "reached": 0.299961,
+      "off": 0.654747,
+      "seconds": 1.45958575
+     },
+     {
+      "claim": "vmf",
+      "effect": 0.3,
+      "kind": "meanvar",
+      "strength": null,
+      "reached": -0.020294,
+      "off": -0.005849,
+      "seconds": 0.546601667
+     },
+     {
+      "claim": "indmom",
+      "effect": 0.3,
+      "kind": "trend",
+      "strength": 0.081756,
+      "reached": 0.3,
+      "off": 0.621649,
+      "seconds": 8.665508667
+     },
+     {
+      "claim": "osap_tsfm",
+      "effect": 0.3,
+      "kind": "trend",
+      "strength": 0.107176,
+      "reached": 0.3,
+      "off": 0.297419,
+      "seconds": 26.211360125
+     },
+     {
+      "claim": "osap_csfm",
+      "effect": 0.3,
+      "kind": "trend",
+      "strength": 0.062905,
+      "reached": 0.300018,
+      "off": 0.963833,
+      "seconds": 30.08212825
+     }
+    ],
+    "power": [
+     {
+      "claim": "tsfm",
+      "window": "in_sample",
+      "tests": 1,
+      "seconds_per_test": 1.32706325,
+      "unreachable": false
+     },
+     {
+      "claim": "tsfm",
+      "window": "post_sample",
+      "tests": 1,
+      "seconds_per_test": 0.143447792,
+      "unreachable": false
+     },
+     {
+      "claim": "csfm",
+      "window": "in_sample",
+      "tests": 1,
+      "seconds_per_test": 1.436612291,
+      "unreachable": false
+     },
+     {
+      "claim": "csfm",
+      "window": "post_sample",
+      "tests": 1,
+      "seconds_per_test": 0.091077084,
+      "unreachable": false
+     },
+     {
+      "claim": "vmf",
+      "window": "in_sample",
+      "tests": 1,
+      "seconds_per_test": 3.1917e-05,
+      "unreachable": true
+     },
+     {
+      "claim": "vmf",
+      "window": "post_sample",
+      "tests": 1,
+      "seconds_per_test": 6.667e-06,
+      "unreachable": true
+     },
+     {
+      "claim": "indmom",
+      "window": "in_sample",
+      "tests": 1,
+      "seconds_per_test": 1.821863417,
+      "unreachable": false
+     },
+     {
+      "claim": "indmom",
+      "window": "post_sample",
+      "tests": 1,
+      "seconds_per_test": 0.502279208,
+      "unreachable": false
+     },
+     {
+      "claim": "osap_tsfm",
+      "window": "in_sample",
+      "tests": 1,
+      "seconds_per_test": 11.031726166,
+      "unreachable": false
+     },
+     {
+      "claim": "osap_tsfm",
+      "window": "post_sample",
+      "tests": 1,
+      "seconds_per_test": 1.197817667,
+      "unreachable": false
+     },
+     {
+      "claim": "osap_csfm",
+      "window": "in_sample",
+      "tests": 1,
+      "seconds_per_test": 24.908349416,
+      "unreachable": false
+     },
+     {
+      "claim": "osap_csfm",
+      "window": "post_sample",
+      "tests": 1,
+      "seconds_per_test": 1.273450958,
+      "unreachable": false
+     }
+    ]
+   }
+  },
+  {
+   "order": 3,
+   "design": "as registered: power placebos 39, the kappa effect for volatility management",
+   "finding": "every effect of 0.3 reachable on the synthetic shapes; per-test times set the registered tests per cell (1,000 for round-1 claims, 400 for OSAP claims)",
+   "output": {
+    "schema": "canli.placebo-study.v2r2-pilot",
+    "note": "timings in seconds on the shared machine; simulated data only; seeds 99, 98, 97",
+    "calib": [
+     {
+      "claim": "tsfm",
+      "family": "garch_const",
+      "tests": 2,
+      "seconds_per_test": 0.803436021
+     },
+     {
+      "claim": "tsfm",
+      "family": "garch_zero",
+      "tests": 2,
+      "seconds_per_test": 0.6440296045
+     },
+     {
+      "claim": "csfm",
+      "family": "garch_const",
+      "tests": 2,
+      "seconds_per_test": 0.722323979
+     },
+     {
+      "claim": "csfm",
+      "family": "garch_zero",
+      "tests": 2,
+      "seconds_per_test": 0.7087533335
+     },
+     {
+      "claim": "vmf",
+      "family": "garch_const",
+      "tests": 2,
+      "seconds_per_test": 0.1914384165
+     },
+     {
+      "claim": "vmf",
+      "family": "garch_zero",
+      "tests": 2,
+      "seconds_per_test": 0.156120104
+     },
+     {
+      "claim": "indmom",
+      "family": "garch_const",
+      "tests": 2,
+      "seconds_per_test": 0.9807386455
+     },
+     {
+      "claim": "indmom",
+      "family": "garch_zero",
+      "tests": 2,
+      "seconds_per_test": 0.962788125
+     }
+    ],
+    "effects": [
+     {
+      "claim": "tsfm",
+      "effect": 0.3,
+      "kind": "trend",
+      "strength": 0.153405,
+      "reached": 0.299985,
+      "off": 0.453482,
+      "seconds": 1.364003875
+     },
+     {
+      "claim": "csfm",
+      "effect": 0.3,
+      "kind": "trend",
+      "strength": 0.131367,
+      "reached": 0.299961,
+      "off": 0.654747,
+      "seconds": 1.466059416
+     },
+     {
+      "claim": "vmf",
+      "effect": 0.3,
+      "kind": "voltiming",
+      "strength": 0.185778,
+      "reached": 0.3,
+      "off": -0.005849,
+      "seconds": 8.274304792
+     },
+     {
+      "claim": "indmom",
+      "effect": 0.3,
+      "kind": "trend",
+      "strength": 0.081756,
+      "reached": 0.3,
+      "off": 0.621649,
+      "seconds": 9.584908709
+     },
+     {
+      "claim": "osap_tsfm",
+      "effect": 0.3,
+      "kind": "trend",
+      "strength": 0.107176,
+      "reached": 0.3,
+      "off": 0.297419,
+      "seconds": 27.767126667
+     },
+     {
+      "claim": "osap_csfm",
+      "effect": 0.3,
+      "kind": "trend",
+      "strength": 0.062905,
+      "reached": 0.300018,
+      "off": 0.963833,
+      "seconds": 30.275370084
+     }
+    ],
+    "power": [
+     {
+      "claim": "tsfm",
+      "window": "in_sample",
+      "tests": 1,
+      "seconds_per_test": 1.169030334,
+      "unreachable": false
+     },
+     {
+      "claim": "tsfm",
+      "window": "post_sample",
+      "tests": 1,
+      "seconds_per_test": 0.098166292,
+      "unreachable": false
+     },
+     {
+      "claim": "csfm",
+      "window": "in_sample",
+      "tests": 1,
+      "seconds_per_test": 1.255265917,
+      "unreachable": false
+     },
+     {
+      "claim": "csfm",
+      "window": "post_sample",
+      "tests": 1,
+      "seconds_per_test": 0.102639375,
+      "unreachable": false
+     },
+     {
+      "claim": "vmf",
+      "window": "in_sample",
+      "tests": 1,
+      "seconds_per_test": 0.269157,
+      "unreachable": false
+     },
+     {
+      "claim": "vmf",
+      "window": "post_sample",
+      "tests": 1,
+      "seconds_per_test": 0.1551325,
+      "unreachable": false
+     },
+     {
+      "claim": "indmom",
+      "window": "in_sample",
+      "tests": 1,
+      "seconds_per_test": 1.685595416,
+      "unreachable": false
+     },
+     {
+      "claim": "indmom",
+      "window": "post_sample",
+      "tests": 1,
+      "seconds_per_test": 0.539156542,
+      "unreachable": false
+     },
+     {
+      "claim": "osap_tsfm",
+      "window": "in_sample",
+      "tests": 1,
+      "seconds_per_test": 11.681426667,
+      "unreachable": false
+     },
+     {
+      "claim": "osap_tsfm",
+      "window": "post_sample",
+      "tests": 1,
+      "seconds_per_test": 1.079305958,
+      "unreachable": false
+     },
+     {
+      "claim": "osap_csfm",
+      "window": "in_sample",
+      "tests": 1,
+      "seconds_per_test": 24.329307334,
+      "unreachable": false
+     },
+     {
+      "claim": "osap_csfm",
+      "window": "post_sample",
+      "tests": 1,
+      "seconds_per_test": 1.1406825,
+      "unreachable": false
+     }
+    ]
+   }
+  }
+ ],
+ "also_run": "Unit tests on simulated data (scripts/research/placebo/v2r2/v2r2.test.mjs), a crash check of the real-data and power code paths on synthetic files with the registered column names (no real values), and a crash check of the calibration and evaluation scripts at base seed 99 with 4 tests per cell (outputs discarded)."
+}

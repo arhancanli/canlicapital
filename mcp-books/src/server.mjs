@@ -20,14 +20,16 @@ import { z } from "zod";
 
 import { journalTests } from "./audit.mjs";
 import { smallBusiness } from "./chart.mjs";
+import { cirrunEntry, readCirrunReceipt } from "./cirrun.mjs";
 import { bankEntries, checklist, entryChecks, readStatement, reconcile, variance } from "./close.mjs";
 import { FINDING_COLUMNS, FIRST_FILED_COLUMNS, FIRST_FILED_FORMS, findingRows, firstFiled, packDataset } from "./data.mjs";
 import { consolidate, readEcbRates } from "./group.mjs";
 import { addAccount, balanceSheet, explain, fromJsonl, fromMinor, incomeStatement, lock, openBook, post, reverse, state, toJsonl, toMinor, trialBalance, TYPES, verify } from "./ledger.mjs";
 import { budgetVsActual, dcf, forecast, runway } from "./planning.mjs";
 import { checkFacts, checkSecFilings, SEC_FORMS, TAXONOMIES, toFacts } from "./report.mjs";
+import { toXbrlJson } from "./xbrl.mjs";
 import { bookRoot, proveRecord } from "./proof.mjs";
-import { checkHead, checkProof, newSigningKeys, signHead } from "./sign.mjs";
+import { checkHead, checkProof, checkStatements, newSigningKeys, signHead, signStatements, STATEMENTS } from "./sign.mjs";
 
 export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
 export const SERVER_INFO = Object.freeze({ name: "canli-books-mcp", version: SERVER_VERSION, title: "Canli Books" });
@@ -143,6 +145,23 @@ export function registerTools(server) {
     const done = change(f, (book) => reverse(book, seq, rest));
     return shown({ reversal: done.result }, done.currency);
   });
+  tool("books_record_cirrun", "Record Cirrun runs", "Record what Cirrun runs cost, from their signed receipts. Each folder is one `cirrun share` made (receipt.json, receipt.sig.json, signer.pem). Every receipt is checked first, as cirrun.com/verify checks it, against the signer's key you trust: public_key_file (their public key, from them, not from the folder) or fingerprint (its 64 hex digits; each folder's signer.pem must be that key). One entry for the runs: account debited (default 6300) and pay_from credited (default 2000, accounts payable; a prepaid-credits or intercompany account works too) with the wholesale cost plus Cirrun's fee, in the book's currency at rate, units per US dollar (none for a USD book; AED and SAR take their pegs). The entry is dated at the last run unless date is given, and keeps each run's receipt hash. Runs already in the book are left alone, so a run is never recorded twice. A receipt that does not check, or runs from two months without a date, stop everything. Nothing is written unless post is true.", z.object({ file, receipts: z.array(z.string()).min(1).max(500).describe("Folders made by `cirrun share`, one per run."), public_key_file: z.string().optional(), fingerprint: z.string().regex(/^[0-9a-fA-F]{64}$/).optional(), account: z.string().default("6300"), pay_from: z.string().default("2000"), rate: amount.optional(), date: date.optional(), post: z.boolean().default(false) }).strict(), APPENDS_ONCE, ({ file: f, receipts, public_key_file, fingerprint, account, pay_from, rate, date: on, post: write }) => {
+    if (Boolean(public_key_file) === Boolean(fingerprint)) throw new Error("Give the signer's key you trust: public_key_file or fingerprint, one of them");
+    const trust = fingerprint ? { fingerprint } : { publicKeyPem: readFileSync(resolve(public_key_file), "utf8") };
+    const runs = receipts.map((folder) => readCirrunReceipt(folder, trust));
+    const options = { account, payFrom: pay_from, rate: rate === undefined ? undefined : String(rate), date: on };
+    if (!write) {
+      const { book } = load(f);
+      const planned = cirrunEntry(book, runs, options);
+      return { posted: null, proposed: planned.entry, ...(planned.reason ? { reason: planned.reason } : {}), already: planned.already, totals: planned.totals ?? null, runs };
+    }
+    let planned;
+    const done = change(f, (book) => {
+      planned = cirrunEntry(book, runs, options);
+      return planned.entry ? post(book, planned.entry) : null;
+    });
+    return { posted: done.result ? shown(done.result, done.currency) : null, ...(planned.reason ? { reason: planned.reason } : {}), already: planned.already, totals: planned.totals ?? null, runs };
+  });
   tool("books_lock", "Lock a period", "Lock the books through a date: nothing dated on or before it can be posted afterwards. A lock only moves forward.", z.object({ file, through: date }).strict(), WRITES_LOCAL, ({ file: f, through }) => ({ locked: change(f, (book) => lock(book, through)).result }));
   tool("books_trial_balance", "Trial balance", "Each account's balance as a debit or a credit, and the totals, as of a date (or now).", z.object({ file, as_of: date.optional() }).strict(), READ_ONLY, ({ file: f, as_of }) => {
     const { book, currency } = load(f);
@@ -194,12 +213,26 @@ export function registerTools(server) {
   tool("books_check_proof", "Check proofs", "Check the proofs books_prove made, without the book: the owner's ML-DSA-65 signature over the Merkle root, with their public key, then each record's path to that root. A changed amount, a record moved or swapped, or another signature fails.", z.object({ proofs: z.object({ opening: z.any(), proofs: z.array(z.any()).min(1) }).optional(), proofs_file: z.string().optional(), signature_file: z.string(), public_key_file: z.string() }).strict(), READ_ONLY, ({ proofs, proofs_file, signature_file, public_key_file }) => {
     if (!proofs === !proofs_file) throw new Error("Give the proofs or a proofs_file, one of the two");
     const bundle = proofs ?? JSON.parse(readFileSync(resolve(proofs_file), "utf8"));
-    const signed = JSON.parse(readFileSync(resolve(signature_file), "utf8"));
+    // A head signature file, or a statements file from books_share_statements, which carries the signed head.
+    const given = JSON.parse(readFileSync(resolve(signature_file), "utf8"));
+    const signed = given?.kind === STATEMENTS ? given.signed_head : given;
     const key = readFileSync(resolve(public_key_file), "utf8");
     const opening = checkProof(bundle.opening, signed, key);
     const results = (bundle.proofs ?? []).map((p) => checkProof(p, signed, key));
     const book = opening.ok && bundle.opening.record.kind === "open" ? { name: bundle.opening.record.name, currency: bundle.opening.record.currency } : null;
     return { ok: Boolean(book) && results.length > 0 && results.every((r) => r.ok), book, records: signed.records, results };
+  });
+  tool("books_share_statements", "Signed statements for a lender", "The income statement for a period and the balance sheet at its end, computed from the book and signed together with the book's head (ML-DSA-65), written to a file to hand to a lender's or buyer's agent instead of a PDF. They check it with books_check_statements and the public key, without the book, and any entry behind a figure can be shown with books_prove and checked against the same file. Refuses to overwrite.", z.object({ file, private_key_file: z.string(), from: date, to: date, out_file: z.string() }).strict(), WRITES_LOCAL, ({ file: f, private_key_file, from, to, out_file }) => {
+    const { book, currency } = load(f);
+    const pkg = signStatements(book, { from, to }, readFileSync(resolve(private_key_file), "utf8"));
+    const path = resolve(out_file);
+    writeNew(path, `${JSON.stringify(pkg, null, 1)}\n`);
+    return shown({ out_file: path, book: pkg.book, records: pkg.records, root: pkg.root, netIncome: pkg.income_statement.netIncome, totalAssets: pkg.balance_sheet.totalAssets }, currency);
+  });
+  tool("books_check_statements", "Check signed statements", "Check a statements file from books_share_statements with the owner's public key alone, without the book: the signature over the whole file, the book head signed inside it, and that the figures add up. Shows the statements when they check.", z.object({ statements_file: z.string(), public_key_file: z.string() }).strict(), READ_ONLY, ({ statements_file, public_key_file }) => {
+    const pkg = JSON.parse(readFileSync(resolve(statements_file), "utf8"));
+    const checked = checkStatements(pkg, readFileSync(resolve(public_key_file), "utf8"));
+    return checked.ok ? shown({ ...checked, income_statement: pkg.income_statement, balance_sheet: pkg.balance_sheet }, pkg.currency) : checked;
   });
 
   // Canli Close
@@ -218,6 +251,47 @@ export function registerTools(server) {
       return { ...out, posted: out.entries.map((e) => post(book, e).seq) };
     });
     return shown(done.result, done.currency);
+  });
+  tool("close_month", "Close a month from the bank statement", "Month-end in one call: the bank statement's lines the books lack turned into entries by rules (posted with post: true, else proposed), the bank reconciliation, the month-end checklist, the statements, Report's checks on them as US GAAP or IFRS facts, and with out_file a draft xBRL-JSON report. A line no rule fits is listed, never guessed. Nothing is locked: books_lock does that once the checklist is done.", z.object({ file, statement_file: z.string(), rules: z.array(z.object({ contains: z.string().min(1).max(200), account: z.string(), direction: z.enum(["in", "out"]).optional() }).strict()).max(500).default([]), account: z.string().default("1000"), from: date, to: date, post: z.boolean().default(false), taxonomy: z.enum(TAXONOMIES).default("us-gaap"), entity: z.string().max(200).optional(), year: z.number().int().min(2009).max(2100).optional(), namespace: z.string().url().optional(), schema: z.string().url().optional(), out_file: z.string().optional() }).strict(), APPENDS_ONCE, ({ file: f, statement_file, rules, account, from, to, post: write, taxonomy, entity, year, namespace, schema, out_file }) => {
+    const text = readFileSync(resolve(statement_file), "utf8");
+    const propose = (book) => bankEntries(book, readStatement(text, book.records[0].currency), { rules, account, from, to });
+    let proposed, posted = [];
+    if (write) {
+      const done = change(f, (book) => { const out = propose(book); return { ...out, posted: out.entries.map((e) => post(book, e).seq) }; });
+      proposed = done.result;
+      posted = done.result.posted;
+    } else proposed = propose(load(f).book);
+    // Everything after reads the book as it now is: with the new entries when they were posted.
+    const { book, currency } = load(f);
+    const reconciliation = reconcile(book, readStatement(text, currency), { account, from, to });
+    const steps = checklist(book, { through: to, reconciliation });
+    const facts = toFacts(book, { asOf: to, from, to, taxonomy });
+    const checks = checkFacts(facts.facts, { taxonomy });
+    let xbrl = null;
+    if (out_file) {
+      const out = toXbrlJson(book, { asOf: to, from, to, taxonomy, entity, ...(year ? { year } : {}), namespace, schema });
+      const path = resolve(out_file);
+      writeNew(path, `${JSON.stringify(out.report, null, 1)}\n`);
+      xbrl = { out_file: path, facts: out.facts };
+    }
+    const is = incomeStatement(book, { from, to }), bs = balanceSheet(book, { asOf: to });
+    const left = [
+      ...(!write && proposed.entries.length ? [`${proposed.entries.length} entries proposed, not posted: post: true writes them`] : []),
+      ...(proposed.unassigned.length ? [`${proposed.unassigned.length} statement lines no rule fits`] : []),
+      ...steps.items.slice(0, 4).filter((i) => !i.done).map((i) => i.item),
+      ...(checks.ok ? [] : ["Report's checks found something to look at"]),
+      ...(facts.unmapped.length ? [`${facts.unmapped.length} accounts with no concept`] : []),
+    ];
+    return shown({
+      period: { from, to },
+      entries: { proposed: proposed.entries, posted, unassigned: proposed.unassigned, locked: proposed.locked, already_in_books: proposed.alreadyInBooks },
+      reconciliation: { reconciled: reconciliation.reconciled, unmatched_statement: reconciliation.unmatchedStatement.length, unmatched_books: reconciliation.unmatchedBooks.length, difference: reconciliation.difference },
+      checklist: steps,
+      statements: { netIncome: is.netIncome, totalAssets: bs.totalAssets, totalLiabilitiesAndEquity: bs.totalLiabilitiesAndEquity, balanced: bs.balanced },
+      report: { taxonomy, ok: checks.ok, findings: checks.findings, unmapped: facts.unmapped },
+      xbrl,
+      left: left.length ? left : ["Nothing: books_lock can lock the month through " + to],
+    }, currency);
   });
   tool("close_variance", "What moved, and why", "Each account's change from a prior period to the current one, largest first, with the entries that moved it most.", z.object({ file, from: date, to: date, prior_from: date, prior_to: date, top: z.number().int().min(1).max(20).default(3) }).strict(), READ_ONLY, ({ file: f, from, to, prior_from, prior_to, top }) => {
     const { book, currency } = load(f);
@@ -241,7 +315,14 @@ export function registerTools(server) {
     const prior = prior_facts_file ? JSON.parse(readFileSync(resolve(prior_facts_file), "utf8")) : [];
     return { ...out, ...checkFacts(out.facts, { prior, taxonomy }) };
   });
-  tool("report_check_sec", "Checks on SEC filings", "The same checks on each of a company's SEC filings, from the companyfacts JSON the SEC publishes (data.sec.gov/api/xbrl/companyfacts/CIK##########.json, the data canli-mcp's fundamentals tools read; this server reads only the file given): assets against liabilities and equity at every date, values below zero that never should be, a fact given two values, and a value about a thousand or a million times the last filing's for the same item (a scale slip). Findings point at facts to look at, not errors proved.", z.object({ companyfacts_file: z.string(), forms: z.array(z.string()).min(1).max(10).default([...SEC_FORMS]), last: z.number().int().min(1).max(500).default(8) }).strict(), READ_ONLY, ({ companyfacts_file, forms, last }) => checkSecFilings(JSON.parse(readFileSync(resolve(companyfacts_file), "utf8")), { forms, last }));
+  tool("report_xbrl_json", "Statements as an xBRL-JSON report", "The same facts as report_check, written as an xBRL-JSON report (XBRL International's Open Information Model in JSON), which XBRL processors and other agents read without XML: each fact with its concept, entity, period and unit, amounts in the currency's major unit. US GAAP takes a year for its namespace and schema; IFRS needs the namespace and schema of the release you file under. A draft for review; accounts with no concept are listed, never guessed. Written to out_file, never over an existing file.", z.object({ file, as_of: date, from: date, to: date, taxonomy: z.enum(TAXONOMIES).default("us-gaap"), entity: z.string().max(200).optional().describe("The identifier the report is filed under, such as an LEI; default the book's name."), entity_scheme: z.string().url().optional().describe("The scheme the identifier belongs to; default https://canlicapital.com/books/entity."), year: z.number().int().min(2009).max(2100).optional().describe("US GAAP taxonomy year; default 2025."), namespace: z.string().url().optional(), schema: z.string().url().optional(), out_file: z.string() }).strict(), WRITES_LOCAL, ({ file: f, as_of, from, to, taxonomy, entity, entity_scheme, year, namespace, schema, out_file }) => {
+    const { book } = load(f);
+    const out = toXbrlJson(book, { asOf: as_of, from, to, taxonomy, entity, ...(entity_scheme ? { scheme: entity_scheme } : {}), ...(year ? { year } : {}), namespace, schema });
+    const path = resolve(out_file);
+    writeNew(path, `${JSON.stringify(out.report, null, 1)}\n`);
+    return { out_file: path, document_type: out.report.documentInfo.documentType, facts: out.facts, unmapped: out.unmapped, namespaces: out.report.documentInfo.namespaces };
+  });
+  tool("report_check_sec", "Checks on SEC filings", "The same checks on each of a company's SEC filings, from the companyfacts JSON the SEC publishes (data.sec.gov/api/xbrl/companyfacts/CIK##########.json, the data canli-mcp's fundamentals tools read; this server reads only the file given): assets against liabilities and equity at every date within the figures' rounding, values below zero that never should be, a fact given two values, and a value about a thousand or a million times the last filing's for the same item, compared at the same date or period when the filing repeats one (a scale slip; rates and percentages other than exchange rates are not checked for it). A scale flag names the filing it was compared with and, where the company's other filings decide it, which of the two is out of line with them. Findings point at facts to look at, not errors proved.", z.object({ companyfacts_file: z.string(), forms: z.array(z.string()).min(1).max(10).default([...SEC_FORMS]), last: z.number().int().min(1).max(500).default(8) }).strict(), READ_ONLY, ({ companyfacts_file, forms, last }) => checkSecFilings(JSON.parse(readFileSync(resolve(companyfacts_file), "utf8")), { forms, last }));
 
   // Canli Audit
   tool("audit_journal", "Journal-entry tests", "Benford's law on the amounts against Nigrini's bands, and the entries with round amounts, weekend dates, duplicates, amounts just under an approval limit, no memo, or a reversal. Analytics that point at entries to look at, not an audit opinion.", z.object({ file, round_to: amount.default("1000"), limit: amount.optional(), under: z.number().min(0).max(50).default(5), weekend: z.array(z.number().int().min(0).max(6)).default([6, 0]) }).strict(), READ_ONLY, ({ file: f, round_to, limit, under, weekend }) => journalTests(load(f).book, { roundTo: round_to, limit, under, weekend }));
@@ -293,7 +374,7 @@ export function registerTools(server) {
     const pack = packDataset({ name, title: title ?? "SEC facts as first filed", description, source: SEC_SOURCE, license, columns: FIRST_FILED_COLUMNS, rows });
     return { ...writePack(out_dir, pack), companies: inputs.length, changed };
   });
-  tool("data_pack_sec_findings", "Pack Report's flags on SEC filings", "Report's checks (report_check_sec) on every filing in companyfacts JSON files saved beforehand, one row per finding: the filing (accession, form, date), the rule (scale, balance, sign or duplicate), the concept, unit, period and value, the value a scale flag was compared with, and the check's own words. Flags point at facts to look at, not errors proved. Written as data.csv with its SHA-256 and a dataset card that names each input file's SHA-256. Refuses to overwrite either file.", z.object({ companyfacts_files: companyfactsFiles, out_dir: z.string(), name: z.string(), title: z.string().optional(), license: z.string().min(1), forms: z.array(z.string()).min(1).max(10).default([...SEC_FORMS]) }).strict(), WRITES_LOCAL, ({ companyfacts_files, out_dir, name, title, license, forms }) => {
+  tool("data_pack_sec_findings", "Pack Report's flags on SEC filings", "Report's checks (report_check_sec) on every filing in companyfacts JSON files saved beforehand, one row per finding: the filing (accession, form, date), the rule (scale, balance, sign or duplicate), the concept, unit, period and value, the value a scale flag was compared with and its filing, the filing out of line where the company's other filings decide it, and the check's own words. Flags point at facts to look at, not errors proved. Written as data.csv with its SHA-256 and a dataset card that names each input file's SHA-256. Refuses to overwrite either file.", z.object({ companyfacts_files: companyfactsFiles, out_dir: z.string(), name: z.string(), title: z.string().optional(), license: z.string().min(1), forms: z.array(z.string()).min(1).max(10).default([...SEC_FORMS]) }).strict(), WRITES_LOCAL, ({ companyfacts_files, out_dir, name, title, license, forms }) => {
     const inputs = readCompanyfacts(companyfacts_files);
     const checked = inputs.map(({ facts }) => checkSecFilings(facts, { forms, last: Infinity }));
     const rows = checked.flatMap(findingRows);

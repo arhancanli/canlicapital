@@ -3,6 +3,7 @@
 // and runs the same way whether it is listed directly or reached through run_tool.
 import { z } from "zod";
 
+import { TRIAL_RETURNS } from "./cscv.mjs";
 import { compact } from "./math.mjs";
 import { ECONOMETRICS as ECON_PLUS, OPTIONS as OPTIONS_PLUS, RATES as RATES_PLUS, RISK as RISK_PLUS } from "./tools/analytics.mjs";
 import { TOOLS as CRYPTO_FX } from "./tools/cryptofx.mjs";
@@ -67,7 +68,8 @@ export function runTool(name, args, { digits = 10 } = {}) {
   }
   let nonFiniteCount = 0;
   const examples = [];
-  const result = compact(tool.run(parsed.data), digits, (value, path) => {
+  const raw = tool.run(parsed.data);
+  const result = compact(raw, digits, (value, path) => {
     nonFiniteCount++;
     if (examples.length < 5) {
       const pointer = path.map((key) => String(key).replace(/~/g, "~0").replace(/\//g, "~1")).join("/");
@@ -77,6 +79,8 @@ export function runTool(name, args, { digits = 10 } = {}) {
   if (nonFiniteCount) {
     throw new Error(`${name}: calculation returned ${nonFiniteCount} non-finite value(s): ${examples.join(", ")}${nonFiniteCount > examples.length ? ", ..." : ""}. JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain.`);
   }
+  // compact rebuilds the tree, which leaves out symbol keys: the variants' returns go back as they were.
+  if (raw?.[TRIAL_RETURNS]) result[TRIAL_RETURNS] = raw[TRIAL_RETURNS];
   return result;
 }
 

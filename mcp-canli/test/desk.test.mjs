@@ -4,7 +4,7 @@ import { test } from "node:test";
 import { z } from "zod";
 
 import { runBrief, runSwarm } from "../src/desk.mjs";
-import { compare, differentMeasure, fromStatement } from "../src/triangulate.mjs";
+import { bankStatement, compare, differentMeasure, fromStatement } from "../src/triangulate.mjs";
 import { EPISODES, regress, rng, runWorlds, simulate } from "../src/worlds.mjs";
 
 const at = (v, path) => path.split(".").reduce((x, k) => x?.[k], v);
@@ -150,4 +150,20 @@ test("triangulate: rounding agrees, scales and signs are named, and the parent's
   assert.equal(fromStatement(only, m), null, "a subsidiary's line is not the parent's");
   const two = fromStatement({ ...table, rows: [["Net income", "us-gaap:NetIncomeLoss", 57], ["To common", "us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic", -59]] }, { statement: "income", tags: ["us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic", "us-gaap:NetIncomeLoss"] });
   assert.deepEqual(two.lines.map((l) => l.value), [-59e6, 57e6], "both lines of the measure, for either road to agree with");
+});
+
+test("triangulate: a bank's statement gives no revenue road, so a component is not set against total revenue", () => {
+  // Cathay General's 2025 income statement as rendered: interest income totals, and a revenue tag only on fees.
+  const bank = { columns: ["line", "concept", "12 months to 2025-12-31"], money_scale: 1000, rows: [
+    ["Total interest and dividend income", "us-gaap:InterestAndDividendIncomeOperating", 1309260],
+    ["Net interest income before provision for credit losses", "us-gaap:InterestIncomeExpenseNet", 742460],
+    ["Non-Interest Income", "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax", 7573],
+    ["Total non-interest income", "us-gaap:NoninterestIncome", 75432],
+  ] };
+  const revenue = { key: "revenue", statement: "income", tags: ["us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"] };
+  assert.equal(fromStatement(bank, revenue).value, 7573000, "the line the statement road would have read");
+  assert.equal(bankStatement(bank), true);
+  const company = { columns: bank.columns, money_scale: 1, rows: [["Revenue", "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax", 784993000], ["Net income", "us-gaap:NetIncomeLoss", 54361000]] };
+  assert.equal(bankStatement(company), false);
+  assert.equal(bankStatement(null), false);
 });

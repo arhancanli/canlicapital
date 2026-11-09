@@ -1,13 +1,15 @@
 // Every variant a sweep tried goes back with the periods it was measured on, so a server that counts a
 // session's trials can count each one; and a parameter sweep gives the probability of backtest overfitting
 // over its variants, which is near zero when one variant is better throughout and high when the winner of
-// one half loses the other.
+// one half loses the other. Each variant's returns go, under a symbol key that JSON leaves out, to a server that
+// runs the package in its own process, best first as the Sharpes are.
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { defaultSplits, pbo } from "../src/cscv.mjs";
+import { defaultSplits, pbo, TRIAL_RETURNS } from "../src/cscv.mjs";
 import { mulberry32 } from "../src/math.mjs";
 import { runTool } from "../src/registry.mjs";
+import { statsOf } from "../src/tools/strategies.mjs";
 
 const prices = Array.from({ length: 700 }, (_, i) => 100 * Math.exp(0.0004 * i + 0.05 * Math.sin(i / 17) + 0.02 * Math.sin(i / 5.3)));
 
@@ -55,4 +57,24 @@ test("a tournament returns every sleeve's Sharpe on its common window, best firs
   assert.equal(r.every_trial.periods, r.evaluation.periods);
   assert.deepEqual(r.every_trial.sharpes.slice(0, r.leaderboard.length), r.leaderboard.map((x) => x[2]));
   assert.ok(r.every_trial.sharpes.every((x, i, a) => i === 0 || a[i - 1] >= x));
+  const R = r[TRIAL_RETURNS];
+  assert.equal(R.length, r.sleeves_run, "every sleeve's returns");
+  assert.ok(R.every((x) => x.length === r.evaluation.periods), "on the common window");
+  R.forEach((x, i) => assert.ok(Math.abs(statsOf(x, 252).sharpe - r.every_trial.sharpes[i]) < 1e-8, `sleeve ${i + 1} in every_trial's order`));
+  assert.ok(Math.abs(pbo(R, 8).probability - r.multiple_testing.pbo.probability) < 1e-9, "the returns the tournament measured");
+});
+
+test("each variant's returns go back best first under a key JSON leaves out, and one backtest's own returns too", () => {
+  const s = runTool("strategy_sweep", { recipe: "ma_crossover", arguments: { prices }, grid: { fast: [5, 10, 20], slow: [60, 120] } });
+  const R = s[TRIAL_RETURNS];
+  assert.equal(R.length, 6);
+  assert.ok(R.every((x) => x.length === s.every_trial.periods), "each over the whole sample");
+  R.forEach((x, i) => assert.ok(Math.abs(statsOf(x, 252).sharpe - s.every_trial.sharpes[i]) < 1e-8, `variant ${i + 1} in every_trial's order`));
+  assert.ok(Math.abs(pbo(R, defaultSplits(R[0].length)).probability - s.probability_of_backtest_overfitting.probability) < 1e-9, "the returns the sweep measured");
+  assert.equal(JSON.stringify(s), JSON.stringify(Object.fromEntries(Object.entries(s))), "a client reading JSON never gets them");
+  const one = runTool("backtest_ma_crossover", { prices, fast: 10, slow: 60 });
+  assert.equal(one[TRIAL_RETURNS].length, 1);
+  assert.equal(one[TRIAL_RETURNS][0].length, prices.length - 1);
+  assert.ok(Math.abs(statsOf(one[TRIAL_RETURNS][0], 252).sharpe - one.sharpe) < 1e-8);
+  assert.equal("_net" in one, false);
 });

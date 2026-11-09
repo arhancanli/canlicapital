@@ -36,7 +36,7 @@ export const PAGE_SOURCES = {
   "/record": ["record.html", "scripts/build-hero-fallbacks.mjs", "scripts/lib/paper-curve-controls.mjs"],
   "/systems": ["systems.html"],
   "/performance": ["performance.html"],
-  "/agents": ["agents.html"],
+  "/agents": ["agents.html", "config/home-answers.json", "scripts/build-home-answers.mjs"],
   "/progress": ["progress.html"],
   "/open": ["open.html"],
   // "/research" and "/measurements" and "/trials" and "/notes" are hub indexes whose lastmod is
@@ -82,6 +82,9 @@ export const PAGE_SOURCES = {
   "/vision": ["scripts/build-vision-and-stats.mjs"],
   "/stats": ["scripts/build-vision-and-stats.mjs", "scripts/build-adoption-stats.mjs", "public/stats/adoption.json"],
   "/benchmarks/filingfacts": ["scripts/build-filingfacts-leaderboard.mjs", "public/datasets/filing-facts/v0/leaderboard.json"],
+  "/datasets": ["scripts/build-datasets-hub.mjs", "public/datasets/filing-facts/index.json", "config/research/beat-probability-v1/guidance_lines-2026-11-02.csv", "config/research/default-risk-v1/bankruptcy_8k.csv"],
+  "/datasets/company-guidance": ["scripts/build-datasets-hub.mjs", "config/research/beat-probability-v1/guidance_lines-2026-11-02.csv", "config/research/beat-probability-v1/companies_read-2026-11-02.csv"],
+  "/datasets/bankruptcy-filings": ["scripts/build-datasets-hub.mjs", "config/research/default-risk-v1/bankruptcy_8k.csv"],
   "/datasets/filing-facts": ["scripts/build-datasets-page.mjs", "public/datasets/filing-facts/v1/SHA256SUMS", "public/datasets/filing-facts/v1/ERRATA.md"],
   "/benchmarks/finance-mcp-servers": ["scripts/build-mcp-head-to-head.mjs", "config/mcp-head-to-head.json", "config/canli-mcp.json"],
   "/benchmarks/fresh-filings": ["scripts/build-fresh-filings-page.mjs", "scripts/build-fresh-filings.mjs", "scripts/lib/clear-page.mjs", "css/clear.css", "public/benchmarks/fresh-filings.json"],
@@ -157,9 +160,9 @@ export const PAGE_SOURCES = {
   "/tools": ["scripts/build-tools-hub.mjs"],
 };
 
-// Every editable static route also receives these shared markup transforms.
-// Their committed content dates survive generated input timestamps changing in
-// a Git-free build, and keep the page's structured date and sitemap aligned.
+// The shared markup every static route is wrapped in (header, footer, styles, images). It is NOT a date source:
+// a change to the shell or the design re-dated every page at once, and Google dropped the company pages after a
+// sitewide re-dating on 28 Oct 2026 (#615). A page's <lastmod> and dateModified move only when its own content does.
 export const SHARED_PAGE_SOURCES = [
   'scripts/product-shell.mjs',
   'scripts/build-site-design.mjs',
@@ -168,7 +171,6 @@ export const SHARED_PAGE_SOURCES = [
   'css/product-shell.css', 'css/design-system.css', 'css/story.css', 'css/film.css', 'js/site-motion.js', 'js/evidence-film.js',
   'public/og.png', 'public/favicon.svg', 'public/favicon.ico',
 ];
-for (const files of Object.values(PAGE_SOURCES)) files.push(...SHARED_PAGE_SOURCES);
 
 /**
  * The date a static route's sources last changed, the same as its sitemap <lastmod>; null when no

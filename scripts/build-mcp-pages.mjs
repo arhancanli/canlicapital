@@ -15,6 +15,8 @@ import { clearDocument, crumbs, faq as clearFaq, faqSchema, longDate, proof as c
 import { ANSWERS_ROUTE, answerFile, answerRoute, callsOf, checkAnswers, compactJson, firstTable, resultsOf, tableHtml, toolsNamed, toolsOf, withTools } from './lib/mcp-answers.mjs';
 import { HOW_ROUTE, howBody, INSTALL_ROUTE, installBody, installClients, navOf, TOOLS_ROUTE, toolsBody } from './lib/mcp-catalog.mjs';
 import { TIERS } from '../api/_lib/tiers.js';
+import { ENTRIES as RELEASED_ENTRIES } from 'canli-mcp/src/server.mjs';
+import { contentOf, datePages, DESK_PACK, parseArgs, relatedTools, TOOL_PAGES_RECORD, toolRoute, toolRows } from './lib/mcp-tool-pages.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://canlicapital.com';
@@ -55,11 +57,12 @@ export function releasedCatalog() {
 function breadcrumbs(route, label) {
   const parts = [['Home', '/'], ['canli-mcp', MCP_ROUTE]];
   if (route.startsWith(`${ANSWERS_ROUTE}/`)) parts.push(['Questions it answers', ANSWERS_ROUTE]);
+  if (route.startsWith(`${TOOLS_ROUTE}/`)) parts.push(['Every tool', TOOLS_ROUTE]);
   if (route !== MCP_ROUTE) parts.push([label, route]);
   return { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: parts.map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, item: ORIGIN + path })) };
 }
-function document({ route, title, description, structured, body, sources = 'mcp_discovery.json', scripts = [] }) {
-  const modified = sourceDate(ROOT, route);
+function document({ route, title, description, structured, body, sources = 'mcp_discovery.json', scripts = [], modified: dated }) {
+  const modified = dated !== undefined ? dated : sourceDate(ROOT, route);
   const page = { '@context': 'https://schema.org', '@type': route === MCP_ROUTE ? 'CollectionPage' : 'WebPage', '@id': ORIGIN + route, url: ORIGIN + route, name: title, description, ...(modified ? { dateModified: modified } : {}), publisher: { '@id': ORIGIN + '/#organization' } };
   return `<!doctype html>
 <html lang="en" data-page="mcp-discovery"><head>
@@ -292,9 +295,10 @@ export function answersIndexPage(all, { flagship }) {
 
 // Every tool, from the index that ships with the release (scripts/lib/mcp-catalog.mjs).
 export function toolsPage({ tools, version, flagship, catalog = read('config/mcp-catalog.json') }) {
+  flagship = { ...flagship, packs: flagship.packs.some((p) => p.id === 'desk') ? flagship.packs : [...flagship.packs, { ...DESK_PACK, tools: tools.filter((t) => t[1] === 'desk').length }] };
   const title = 'Every canli-mcp tool';
   const description = `All ${tools.length} canli-mcp tools by pack, with what each does and its arguments: SEC filings, prices, rates, public records, quant analytics, backtests and paper trading.`;
-  const list = { '@context': 'https://schema.org', '@type': 'ItemList', numberOfItems: tools.length, itemListElement: tools.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: t[0], url: `${ORIGIN}${TOOLS_ROUTE}#${t[0]}` })) };
+  const list = { '@context': 'https://schema.org', '@type': 'ItemList', numberOfItems: tools.length, itemListElement: tools.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: t[0], url: `${ORIGIN}${toolRoute(t[0])}` })) };
   const body = toolsBody(tools, flagship.packs, catalog, { nav: navOf(TOOLS_ROUTE, MCP_ROUTE, ANSWERS_ROUTE), version, front: flagship.front });
   return document({ route: TOOLS_ROUTE, title, description, structured: [list], body, sources: 'demos/canli-mcp/tools.json benchmarks/finance-mcp-servers.json', scripts: ['/js/mcp-catalog.js'] });
 }
@@ -398,6 +402,37 @@ ${clearProof([
   return clearDocument({ route: MCP_ROUTE, title, description: fitDescription(summary), body, active: 'mcp-servers', page: 'mcp-discovery', modified: sourceDate(ROOT, MCP_ROUTE), sources: 'mcp_discovery.json benchmarks/finance-mcp-servers.json benchmarks/fresh-filings.json demos/canli-mcp/index.json', structured: [breadcrumbs(MCP_ROUTE, title), list, app, faqSchema(questions)] });
 }
 
+// One tool's page (scripts/lib/mcp-tool-pages.mjs): what it does, its arguments, how a model reaches it, the recorded
+// questions that call it and the tools nearest to it.
+export function toolPage(row, { rows, questions, packs, flagship, version, modified }) {
+  const [name, packId, , title, description, keywords, args] = row;
+  const asked = [...new Set(String(keywords ?? '').toLowerCase().split(/\s+/).filter(Boolean))];
+  const pack = packs.find((p) => p.id === packId) ?? { id: packId, label: packId, package: 'canli-mcp', covers: '' };
+  const route = toolRoute(name), params = parseArgs(args), related = relatedTools(row, rows);
+  const example = { name, arguments: Object.fromEntries(params.filter((p) => p.required).map((p) => [p.name, `<${p.type || 'value'}>`])) };
+  const how = pack.id === 'desk'
+    ? `It is part of canli-mcp itself, so it is there as soon as canli-mcp is added.`
+    : pack.id === 'paper'
+      ? `It is in the paper-trading pack, which is off until it is turned on, and it never places a real order.`
+      : `It comes from <a href="https://www.npmjs.com/package/${esc(pack.package)}" rel="noreferrer"><code>${esc(pack.package)}</code></a>, which canli-mcp includes, and it is also its own server.`;
+  const app = { '@context': 'https://schema.org', '@type': 'SoftwareApplication', '@id': `${ORIGIN}${route}#tool`, name: `${name}: ${title}`, description, applicationCategory: 'FinanceApplication', operatingSystem: 'Any MCP client', isPartOf: { '@type': 'SoftwareApplication', name: 'canli-mcp', url: `${ORIGIN}${MCP_ROUTE}` }, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, license: 'https://opensource.org/licenses/MIT' };
+  const body = `<section class="dev-hero">${navOf(TOOLS_ROUTE, MCP_ROUTE, ANSWERS_ROUTE)}<p class="dev-kicker">canli-mcp / ${esc(pack.label)}</p><h1>${esc(title)}</h1><p class="dev-lead">${esc(description)}</p><p class="dev-hero-note">The tool is <code>${esc(name)}</code> in canli-mcp ${esc(version)}, free and MIT-licensed, with no account and no API key. ${how}</p>
+${installButtons(flagship, 'dev-actions')}</section>
+<section class="dev-section" id="arguments"><h2>Arguments</h2>${params.length ? `<div class="mcp-table"><table class="dev-table" tabindex="0"><caption>As the server declares them</caption><thead><tr><th scope="col">Argument</th><th scope="col">Required</th><th scope="col">Type</th></tr></thead><tbody>${params.map((p) => `<tr><th scope="row"><code>${esc(p.name)}</code></th><td>${p.required ? 'yes' : 'no'}</td><td><code>${esc(p.type)}</code></td></tr>`).join('')}</tbody></table></div>` : '<p>It takes no arguments.</p>'}</section>
+<section class="dev-section" id="call"><h2>How a model reaches it</h2><p>Ask in plain words. The model finds <code>${esc(name)}</code> with canli-mcp's <code>find_tool</code>, reads its arguments with <code>describe_tool</code> if it needs to, and runs it with <code>run_tool</code>. The call has this shape, with your values in place of the angle brackets:</p><pre class="dev-code" tabindex="0" aria-label="The run_tool input"><code>${esc(JSON.stringify(example, null, 2))}</code></pre></section>
+${asked.length ? `<section class="dev-section" id="words"><h2>Words that find it</h2><p>Besides its name, title and description, <code>find_tool</code> matches a question to <code>${esc(name)}</code> on these words: ${esc(asked.join(', '))}.</p></section>` : ''}
+${questions.length ? `<section class="dev-section" id="questions"><h2>Recorded questions that use it</h2><p>Each page shows the call and the full answer it returned, recorded with no API key.</p><ul class="mcp-related">${links(questions.map((q) => ({ path: q.route, label: q.question })))}</ul></section>` : ''}
+${related.length ? `<section class="dev-section" id="related"><h2>Tools near it</h2><ul class="mcp-related">${related.map((t) => `<li><a href="${esc(toolRoute(t[0]))}"><code>${esc(t[0])}</code></a>: ${esc(t[3])}</li>`).join('')}</ul></section>` : ''}
+<section class="dev-section"><h2>More</h2><ul class="mcp-related"><li><a href="${TOOLS_ROUTE}#${esc(name)}">Every canli-mcp tool, by pack</a></li><li><a href="${HOW_ROUTE}">How canli-mcp works, and how it is tested</a></li><li><a href="${INSTALL_ROUTE}">Install canli-mcp in your client</a></li></ul><p class="flagship-note">Nothing here is investment advice.</p></section>`;
+  // The page title fits search results (65 characters with the site's name): the tool and its title, else the title,
+  // else its first clause, else the tool's name; the H1 keeps the whole title.
+  const fits = (s) => `${s} | Canli Capital`.length <= 65;
+  const clause = title.split(/[:,;(]| - /)[0].trim();
+  const pageTitle = [`${name}: ${title}`, title, `${name}: ${clause}`, clause, name].find((s) => s && s.length >= 8 && fits(s)) ?? name;
+  const more = [`${name} is a canli-mcp tool, free and MIT-licensed, with no account and no API key.`, 'A model finds it with find_tool and runs it with run_tool.'];
+  return document({ route, title: pageTitle, description: fitDescription(description, more), structured: [app], body, sources: 'demos/canli-mcp/tools.json', modified });
+}
+
 export function buildMcpPages({ loadExecution = executionSource, write = writeFileSync, makeDir = mkdirSync } = {}) {
   const execution = loadExecution();
   const servers = releasedCatalog();
@@ -411,7 +446,9 @@ export function buildMcpPages({ loadExecution = executionSource, write = writeFi
   const index = read('mcp-canli/src/index.json');
   // The tools page counts the markets tools by theme; the counts are published beside the tools so each one traces.
   const themes = Object.fromEntries(Object.entries(read('config/mcp-catalog.json').markets_groups).map(([label, names]) => [label, index.tools.filter((t) => t[1] === 'markets' && names.includes(t[0])).length]));
-  write(resolve(ROOT, 'public/demos/canli-mcp/tools.json'), JSON.stringify({ package: 'canli-mcp', version: read('mcp-canli/package.json').version, packs: index.versions, count: index.tools.length, markets_themes: themes, tools: index.tools.map(([name, pack, group, title, description]) => ({ name, pack, group, title, description })) }, null, 1) + '\n');
+  // Every released tool, the desk's too, with what each page shows (its keywords and arguments), so each traces here.
+  const allTools = toolRows(index, RELEASED_ENTRIES);
+  write(resolve(ROOT, 'public/demos/canli-mcp/tools.json'), JSON.stringify({ package: 'canli-mcp', version: read('mcp-canli/package.json').version, packs: index.versions, count: allTools.length, markets_themes: themes, tools: allTools.map(([name, pack, group, title, description, keywords, args]) => ({ name, pack, group, title, description, keywords, args })) }, null, 1) + '\n');
   const packages = packagePages({ index });
   write(resolve(ROOT, 'public/demos/canli-mcp/packages.json'), JSON.stringify({ ...read('config/mcp-package-pages.json'), pages: packages.map(({ tools, ...p }) => ({ ...p, tool_count: tools.length })) }, null, 1) + '\n');
   write(resolve(ROOT, 'mcp-servers.html'), directoryPage(servers, { h2h, npmRows, answers, packages }));
@@ -420,13 +457,23 @@ export function buildMcpPages({ loadExecution = executionSource, write = writeFi
   for (const a of answers) write(resolve(ROOT, `${a.route.slice(1)}.html`), answerPage(a, answers, { flagship }));
   for (const p of packages) write(resolve(ROOT, `${p.route.slice(1)}.html`), packagePage(p, answers, { flagship }));
   write(resolve(ROOT, `${ANSWERS_ROUTE.slice(1)}.html`), answersIndexPage(answers, { flagship }));
-  write(resolve(ROOT, `${TOOLS_ROUTE.slice(1)}.html`), toolsPage({ tools: index.tools, version: read('mcp-canli/package.json').version, flagship }));
+  const rows = toolRows(index, RELEASED_ENTRIES), version = read('mcp-canli/package.json').version;
+  write(resolve(ROOT, `${TOOLS_ROUTE.slice(1)}.html`), toolsPage({ tools: rows, version, flagship }));
+  // A page per tool, dated by its own content (config/mcp-tool-pages.json); a deployment keeps the recorded dates.
+  const packs = [...flagship.packs, DESK_PACK];
+  const questionsOf = (name) => answers.filter((a) => toolsOf(a.call).includes(name));
+  const contents = rows.map((row) => [row[0], contentOf(row, rows, questionsOf(row[0]))]);
+  let toolRecord = null; try { toolRecord = read(TOOL_PAGES_RECORD); } catch { /* first build */ }
+  const dated = datePages(toolRecord, contents, { today: new Date().toISOString().slice(0, 10), refresh: !process.env.VERCEL });
+  if (!process.env.VERCEL) write(resolve(ROOT, TOOL_PAGES_RECORD), JSON.stringify(dated.record, null, 1) + '\n');
+  makeDir(resolve(ROOT, TOOLS_ROUTE.slice(1)), { recursive: true });
+  for (const row of rows) write(resolve(ROOT, `${toolRoute(row[0]).slice(1)}.html`), toolPage(row, { rows, questions: questionsOf(row[0]), packs, flagship, version, modified: dated.record.tools[row[0]].changed }));
   write(resolve(ROOT, `${HOW_ROUTE.slice(1)}.html`), howPage({ flagship }));
   write(resolve(ROOT, `${INSTALL_ROUTE.slice(1)}.html`), installPage({ flagship }));
   write(resolve(ROOT, 'public/benchmarks/mcp-testing.json'), JSON.stringify(read('config/mcp-testing.json'), null, 1) + '\n');
   for (const server of servers) write(resolve(ROOT, `${server.route.slice(1)}.html`), serverPage(server, servers, { answers }));
   write(resolve(ROOT, `${EXECUTION_ROUTE.slice(1)}.html`), executionPage(execution, servers));
   write(resolve(ROOT, 'public/glassbox/execution_workflow_source.json'), JSON.stringify(execution, null, 2) + '\n');
-  return { pages: servers.length + 6 + answers.length, answers: answers.length, hosted_tools: Object.fromEntries(servers.map(s => [s.id, s.tools.length])), private_source_tools: execution.default_tools.length };
+  return { pages: servers.length + 6 + answers.length + rows.length, answers: answers.length, tool_pages: rows.length, hosted_tools: Object.fromEntries(servers.map(s => [s.id, s.tools.length])), private_source_tools: execution.default_tools.length };
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) console.log('MCP discovery:', buildMcpPages());
