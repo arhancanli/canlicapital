@@ -38,9 +38,12 @@ test("the only environment variable read is CANLI_TOOLSETS", () => {
   for (const [f, text] of sources) for (const m of text.matchAll(/process\.env(?:\.(\w+)|\[)/g)) assert.equal(m[1], "CANLI_TOOLSETS", `${f} reads process.env.${m[1] ?? "[...]"}`);
 });
 
+// Node 20 names the permission model --experimental-permission; Node 22 and later, --permission (engines: >=20.10).
+const PERMISSION = Number(process.versions.node.split(".")[0]) < 22 ? "--experimental-permission" : "--permission";
+
 test("it runs under Node's permission model: reads only its own package, no writes, processes or workers", async (t) => {
   const client = new Client({ name: "privacy-test", version: "0" });
-  await client.connect(new StdioClientTransport({ command: process.execPath, args: ["--permission", `--allow-fs-read=${ROOT}`, path.join(SRC, "server.mjs")], env: { PATH: process.env.PATH ?? "", CANLI_TOOLSETS: "" } }));
+  await client.connect(new StdioClientTransport({ command: process.execPath, args: [PERMISSION, `--allow-fs-read=${ROOT}`, path.join(SRC, "server.mjs")], env: { PATH: process.env.PATH ?? "", CANLI_TOOLSETS: "" } }));
   t.after(() => client.close());
   const P = Array.from({ length: 400 }, (_, i) => 100 * Math.exp(0.01 * Math.sin(i / 7) + 0.0004 * i));
   for (const [name, args] of [
