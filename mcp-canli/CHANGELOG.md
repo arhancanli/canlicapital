@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Optional arguments sent as null count as not given, at the front tools and inside `run_tool`. CrewAI (through mcpadapt) sends every unset optional argument as null, and OpenAI's strict function calling does the same, so with CrewAI 1.15 every call was refused (`limit: expected number, received null`). A null where a value is required is still refused, with the message as sent.
+
 ## 0.22.0
 
 - The Lab, red_team, the data lake, track records, backtest_forensics, beat_probability, and luck that counts every variant a session runs. 443 tools, on canli-markets-mcp 0.17.0 (139 tools, `default_risk`), canli-fundamentals-mcp 0.10.0, canli-quant-mcp 0.4.0, canli-backtest-mcp 0.6.0 and canli-validation-mcp 0.16.0.

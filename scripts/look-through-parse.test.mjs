@@ -2,7 +2,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { fromLink, parseHoldings, toLink } from "../js/look-through-parse.js";
+import { fromLink, parseHoldings, sourceLine, toLink } from "../js/look-through-parse.js";
 
 const weights = (text) => parseHoldings(text).holdings.map((h) => [h.symbol, h.weight]);
 
@@ -39,4 +39,12 @@ test("nothing typed gives no holdings", () => {
 test("a shared link comes back as the same holdings", () => {
   const { holdings } = parseHoldings("VOO 60\nBRK.B 40");
   assert.deepEqual(parseHoldings(fromLink(toLink(holdings))).holdings, holdings);
+});
+
+test("each fund's source, with the report checked against itself where the server gives the check", () => {
+  const fund = { symbol: "VOO", fund: "Vanguard 500 Index Fund", period: "2026-06-30", filed: "2026-08-27" };
+  assert.equal(sourceLine(fund), "VOO: Vanguard 500 Index Fund, its report for 2026-06-30, filed 2026-08-27.");
+  assert.equal(sourceLine({ ...fund, values_add_to: 1.0009 }), "VOO: Vanguard 500 Index Fund, its report for 2026-06-30, filed 2026-08-27. Its holdings add up to 100.09% of its net assets; cash and what the fund owes make up the difference.");
+  assert.match(sourceLine({ ...fund, values_add_to: 0.9927 }), /add up to 99\.27% of its net assets/);
+  assert.equal(sourceLine({ ...fund, values_add_to: null }), sourceLine(fund), "no check from the server: the line as before");
 });

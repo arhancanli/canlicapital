@@ -259,7 +259,27 @@ export const OUTPUT_SCHEMAS = Object.freeze({
     .describe("data.head is the latest entry of the tamper-evident chain; verify says how to check it."),
 });
 
+// Some MCP clients (CrewAI through mcpadapt, OpenAI strict mode) send every optional argument they leave unset as null.
+// Where null is not allowed, it means "not given": the call is checked again without those keys, and if that fails too, the
+// error names only what is still wrong.
+export const withoutNulls = (value) => (value && typeof value === "object" && !Array.isArray(value) && Object.values(value).includes(null) ? Object.fromEntries(Object.entries(value).filter(([, v]) => v !== null)) : null);
+export function acceptNulls(server) {
+  if (server.__acceptsNulls || typeof server.validateToolInput !== "function") return;
+  const validate = server.validateToolInput.bind(server);
+  server.validateToolInput = async (tool, args, name) => {
+    try {
+      return await validate(tool, args, name);
+    } catch (err) {
+      const kept = withoutNulls(args);
+      if (!kept) throw err;
+      return validate(tool, kept, name);
+    }
+  };
+  server.__acceptsNulls = true;
+}
+
 export function registerTools(server, session) {
+  acceptNulls(server);
   const catalog = {};
   const tool = (name, title, inputSchema, fn) => {
     server.registerTool(name, { title, annotations: { title, ...READ_ONLY }, description: TOOL_DESCRIPTIONS[name], inputSchema, outputSchema: OUTPUT_SCHEMAS[name] }, fn);
