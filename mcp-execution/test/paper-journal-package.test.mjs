@@ -30,7 +30,7 @@ const SOURCE_PINS = Object.freeze({
   "package/PAPER_JOURNAL.md": "56be27fd25576d4b7d142913e927c310f3ff0bcb6c9bb178460e55bc8cdd01f3",
   "package/README.md": "2c1c2b398b865f50e132053b713bf80c498c9f69afb79cf360e562eb13cc7bf8",
   "package/package.json": "0307e47162a2e0709606f6cf30eb227c6c90bfa4741b4f7f3fecaf8346b375a5",
-  "package/src/check-orders.mjs": "ec2e0e50e04e413fff7047b17b5d8273591e66ae5ef63ef9ec2653188f07da21",
+  "package/src/check-orders.mjs": "ca465db43d11f8a9fa8596c65d3341aa236a4f97f9e3df33030a6add5e157f68",
   "package/src/core/js/dsr-core.js": "79ec18cc7c15e0b2ad004dd5296e83020187912aab161b68aad4784d959816d1",
   "package/src/core/js/exec-cost-core.js": "c789a1889931cd6719b37d343ed1a3378b860ed804203df62bf92e47c6f017c9",
   "package/src/core/js/journal-files.js": "52a67922101613665b343c38c3f3133c50c496a0f90086ef31910b22c1e0646d",
@@ -50,7 +50,7 @@ const SOURCE_PINS = Object.freeze({
   "package/src/local-input.mjs": "fafeb03647cd04897fb03cf637186a91c91c9da1186414fd167bcfe9d12ad825",
   "package/src/measure-shortfall.mjs": "74cc85b67a4c0b7a685e81979097c345f1b21fc41c2755b2a65a0303626dc9a2",
   "package/src/paper-journal.mjs": "12d8d1c06bf8d65f9f122e0afbde85a483c62d88517dc9d0ff5f785cba660098",
-  "package/src/server.mjs": "4cd48c1dc40098ac049f45f3951322e3b63118605c36330c6d4874b25951c5bd",
+  "package/src/server.mjs": "c48a47dd42e7ec291cce4365f4f6efbc2d8c2038dd1eeb8581918f0004ef0761",
   "package/src/size-position.mjs": "09e690c9f0452c039ff20fc3f2728e365e6f7ba6bcf9f2da150383654e8453f4"
 });
 const MEMBERS = Object.freeze([
