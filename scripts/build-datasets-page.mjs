@@ -162,6 +162,7 @@ print(len(items), items[0]['question'])"</code></pre>
         <li><a href="/benchmarks/filingfacts">The FilingFacts benchmark</a> scores AI models on the v0 questions, with and without a tool that reads the filings.</li>
         <li><a href="/mcp-servers">canli-mcp</a> gives a model the filings themselves, so it can answer from the source.</li>
         <li><a href="https://github.com/arhancanli/canlicapital/tree/main/scripts/datasets/filing-facts">The generator and scoring harness</a> are open source.</li>
+        <li><a href="/datasets">Every dataset Canli Capital publishes</a>: company guidance against results and every bankruptcy 8-K too.</li>
         <li><a href="/research/filing-facts-v0">The v0 dataset card</a> has its method in full, and <a href="/research/citations/filing-facts-v0.bib">a citation</a>.</li>
       </ul>
       <h2>Limits</h2>

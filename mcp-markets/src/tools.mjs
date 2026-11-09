@@ -156,7 +156,7 @@ export async function readFiling(session, args) {
   }
   // find: passages containing every word (or the quoted phrase), each with its offset, so a long
   // filing is searched in one call instead of paged through.
-  let matches = null;
+  let matches = null, cut = false;
   if (a.find) {
     const phrase = a.find.match(/^"(.+)"$/)?.[1];
     const terms = phrase ? [phrase.toLowerCase()] : a.find.toLowerCase().split(/\s+/).filter((w) => w.length > 1);
@@ -174,11 +174,19 @@ export async function readFiling(session, args) {
       if (!terms.some((t) => own.includes(t))) continue;
       const window = lower.slice(from, to);
       if (!terms.every((t) => window.includes(t))) continue;
-      let text = body.slice(from, to);
-      if (text.length > 1500) { const k = own.indexOf(terms.find((t) => own.includes(t))); text = body.slice(Math.max(from, paras[i][0] + k - 600), paras[i][0] + k + 900); }
-      if (chars + text.length > maxChars) break;
+      // A passage longer than 1,500 characters, or than the max_chars left, is cut around its first
+      // word (two fifths before, three after) rather than dropped, so a small max_chars still finds
+      // what is there; once under 200 characters are left, the answer says more passages match.
+      const room = Math.min(1500, maxChars - chars);
+      if (room < 200) { cut = true; break; }
+      let start = from;
+      if (to - from > room) {
+        const k = paras[i][0] + own.indexOf(terms.find((t) => own.includes(t)));
+        start = Math.max(from, Math.min(k - Math.floor(room * 0.4), to - room));
+      }
+      const text = body.slice(start, Math.min(to, start + room));
       chars += text.length;
-      matches.push({ offset: from, text });
+      matches.push({ offset: start, text });
       covered = to + 1;
     }
   }
@@ -196,7 +204,7 @@ export async function readFiling(session, args) {
     ...(docs ? { documents: { columns: ["name", "type", "description"], rows: docs.filter((d) => /\.(htm|html|txt|xml)$/i.test(d.name)).slice(0, 40).map((d) => [d.name, d.type, d.description]) } } : {}),
     total_chars: body.length,
     // How often each word appears, inside longer words too ("tariff" in "tariffs"): the passages stop at twelve.
-    ...(matches ? { find: a.find, occurrences_in_document: Object.fromEntries((a.find.match(/^"(.+)"$/)?.[1] ? [a.find.slice(1, -1).toLowerCase()] : a.find.toLowerCase().split(/\s+/).filter((w) => w.length > 1)).map((t) => [t, body.toLowerCase().split(t).length - 1])), matches: matches.length ? matches : "no passage contains every word; try fewer or other words, or read without find" } : { offset, ...(end < body.length ? { next_offset: end, more: `${body.length - end} more characters: pass offset ${end}, or use find to jump to the words you need` } : {}), text: slice }),
+    ...(matches ? { find: a.find, occurrences_in_document: Object.fromEntries((a.find.match(/^"(.+)"$/)?.[1] ? [a.find.slice(1, -1).toLowerCase()] : a.find.toLowerCase().split(/\s+/).filter((w) => w.length > 1)).map((t) => [t, body.toLowerCase().split(t).length - 1])), matches: matches.length ? matches : "no passage contains every word; try fewer or other words, or read without find", ...(cut ? { more: "more passages match than max_chars holds: raise max_chars, add words to find, or read on from an offset" } : {}) } : { offset, ...(end < body.length ? { next_offset: end, more: `${body.length - end} more characters: pass offset ${end}, or use find to jump to the words you need` } : {}), text: slice }),
     url,
     limits: SEC_LIMITS,
   };

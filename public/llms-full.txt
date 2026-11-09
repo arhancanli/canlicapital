@@ -6,7 +6,7 @@ This file is the complete text of the research published at https://canlicapital
 
 # Canli Capital
 
-> Canli Capital is an open-source lab that connects AI agents to financial data and quant tools they can check. Its flagship MCP server, canli-mcp, reads SEC filings, market data and economic statistics at the source and puts 442 finance tools behind five, with interactive charts in the chat. It is free, MIT-licensed and needs no API key or account. Built and maintained by Arhan Canli.
+> Canli Capital is an open-source lab that connects AI agents to financial data and quant tools they can check. Its flagship MCP server, canli-mcp, reads SEC filings, market data and economic statistics at the source and puts 443 finance tools behind five, with interactive charts in the chat. It is free, MIT-licensed and needs no API key or account. Built and maintained by Arhan Canli.
 
 ## Claim boundary: read this before summarising anything on this site
 
@@ -21,7 +21,7 @@ This file is the complete text of the research published at https://canlicapital
 
 Free and open source, with no API key and no account. We make these, so weigh that; the comparison pages say what other servers do better.
 
-- [canli-mcp](https://canlicapital.com/mcp-servers): SEC filings, market data, economic statistics and backtests in one server; the latest release is 0.21.0. Run `npx -y canli-mcp`, or connect to https://canlicapital.com/mcp/canli with nothing to install.
+- [canli-mcp](https://canlicapital.com/mcp-servers): SEC filings, market data, economic statistics and backtests in one server; the latest release is 0.22.0. Run `npx -y canli-mcp`, or connect to https://canlicapital.com/mcp/canli with nothing to install.
 - [canli-markets-mcp](https://canlicapital.com/mcp-servers/markets): SEC filings and statements as filed, insider trades, 13F holders, options chains, Treasury yields, FRED and central banks, with no key. Run `npx -y canli-markets-mcp`.
 - [canli-backtest-mcp](https://canlicapital.com/mcp-servers/backtest): Point-in-time factors from SEC filings, backtests with lookahead blocked in code, costs on the actual trades, and a ledger of every variant. Run `npx -y canli-backtest-mcp`.
 - [canli-quant-mcp](https://canlicapital.com/mcp-servers/quant): 236 quant tools: performance and risk, options and exotics, fixed income, portfolios, econometrics, indicators and 399 strategy sleeves. Run `npx -y canli-quant-mcp`.
@@ -81,9 +81,13 @@ Goals, each labelled with what exists; nothing planned is live until it says so.
 
 Post-mortems and derivations. These describe method and engineering; none is a performance claim.
 
+- [A million simple strategies to beat](https://canlicapital.com/notes/a-million-simple-strategies): The Lab runs 588 textbook rules on each of 1,678 public return series: 986,664 strategies, each rebuilt exactly from its number. A backtest can be set against all of them in seconds, to see whether it is new and whether it beats what simple rules on public data already earned. They vary like about 15 independent ones.
+- [Reading bankruptcy risk from an annual report](https://canlicapital.com/notes/bankruptcy-risk-from-an-annual-report): A model that reads only a company's latest annual report, tested year by year on reports it had never seen, ranked the next year's bankruptcies better than Ohlson's O-score and Altman's Z'' across all US filers. Among companies with at least $10 million of assets, Ohlson's O-score did better, and the tool says so in every answer.
+- [Will a company beat its own guidance?](https://canlicapital.com/notes/beat-your-own-guidance): A model of where a company's next EPS or revenue lands against the range it guided to: its own record blended with the market's. Tested quarter by quarter on S&P 500 press releases, each quarter predicted only from what was filed before it, it beat the market-wide rate for both EPS and revenue, with intervals clear of zero.
 - [Was the winning strategy skill or luck?](https://canlicapital.com/notes/best-of-399-strategies): I ran 399 textbook trading strategies on the same prices and asked whether the winner was skill. The answer depended almost entirely on which test I used, because the tests were answering different questions, and only one of them was the question I meant.
 - [The arithmetic of not fooling yourself](https://canlicapital.com/notes/deflating-a-sharpe-ratio): A Sharpe ratio of 1.14 with a p-value of 0.017. Publishable, on the face of it. Whether it means anything depends entirely on a number that does not appear in it: how many things you tried before this one.
 - [The same SEC filing has two acceptance times](https://canlicapital.com/notes/edgar-acceptance-times): EDGAR's submissions API labels each filing's acceptance time as UTC. I checked 450 of them against the filing index pages: in 13 of 25 companies' files every time was late by one US Eastern offset, and the same filing read differently depending on which file it came from.
+- [Do factor-timing claims beat a placebo?](https://canlicapital.com/notes/factor-timing-against-a-placebo): Four published factor-timing claims, retested with placebos that keep a market's volatility clustering. Volatility-managed factors kept their in-sample verdict under every block length. Industry momentum kept it only with the shortest blocks, and cross-sectional factor momentum lost it. No verdict after the papers' samples changed.
 - [How often companies beat their own guidance](https://canlicapital.com/notes/how-often-companies-beat-their-guidance): We set what S&P 500 companies said they would report against what they then reported, quarter by quarter, from their own press releases. Given a range, they landed above it far more often than below it: revenue 170 times against 13, earnings per share 259 times against 24.
 - [The one symbol that explained the whole gap](https://canlicapital.com/notes/one-symbol): I could not reproduce my own result. The replay came out materially worse over the same window, on the same code path, from what I believed were the same inputs. The cause was a single delisted token that had quietly left the universe between the two runs.
 - [My agent dropped numbers when it copied data into a tool call](https://canlicapital.com/notes/pasted-data-lost-numbers): Same model, same question, same tool. With 756 daily returns pasted into the prompt, the agent got 4 of 9 runs right; when the tool read the same series from a file, it got 8 of 9, with about a quarter of the tokens.
@@ -93,6 +97,7 @@ Post-mortems and derivations. These describe method and engineering; none is a p
 - [The trade that lost 99 percent, and the guard I did not add](https://canlicapital.com/notes/the-trade-that-lost-99-percent): A carry signal bought a token at 16.15 and closed it at 0.1553. The strategy was not broken. The interesting decision came afterwards, and it was to change nothing.
 - [The year-end numbers that changed later](https://canlicapital.com/notes/the-year-end-numbers-that-changed): We read 500 companies held by an S&P 500 fund three separate ways and looked for figures that disagree. Six companies had a year-end number that a later filing changed. None of those filings describes fixing a mistake. Here is what each one did.
 - [What competitive programming actually bought me, and what it did not](https://canlicapital.com/notes/what-competitive-programming-bought): There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the honest version of this story is more useful than the flattering one.
+- [Which backtest overfitting tests can you trust?](https://canlicapital.com/notes/which-overfitting-tests-hold-their-size): A test that promises 5% false alarms should give about 5% on markets with nothing to find. On 20 strategies over 504 days, in nine kinds of simulated market, White's Reality Check stayed between 4.5% and 6.4%. Hansen's SPA test, the usual upgrade, reached 12.6% on negatively skewed returns, and Romano and Wolf's StepM matched it. The deflated Sharpe ratio at its usual 0.95 mark almost never raised one, and caught a real edge 9.4% of the time.
 - [Your backtest beat a t-test. Would it beat a placebo?](https://canlicapital.com/notes/would-it-beat-a-placebo): In 300,000 simulated tests on markets with nothing to predict, a t-test on the best rule of a grid said "edge" between 10.9% and 78.9% of the time at a nominal 5%. A placebo test, which reruns the whole pipeline on the same returns in a random order, stayed between 4.6% and 5.5%.
 
 ## Lessons
@@ -213,8 +218,200 @@ Arhan Canli is the founder, named author and accountable human for methodology, 
 
 
 ==============================================================================
-FULL TEXT: 13 ENGINEERING NOTES, THEN THE RESEARCH CORPUS
+FULL TEXT: 18 ENGINEERING NOTES, THEN THE RESEARCH CORPUS
 ==============================================================================
+
+
+------------------------------------------------------------------------------
+SOURCE: https://canlicapital.com/notes/a-million-simple-strategies
+------------------------------------------------------------------------------
+
+# A million simple strategies to beat
+
+> The Lab runs 588 textbook rules on each of 1,678 public return series: 986,664 strategies, each rebuilt
+> exactly from its number. A backtest can be set against all of them in seconds, to see whether it is new and
+> whether it beats what simple rules on public data already earned. They vary like about 15 independent ones.
+
+**Short title:** A million simple strategies
+
+**Published 2026-11-08. Every figure below is read from
+[`lab-v1-2026-11-08.json`](/glassbox/lab-v1-2026-11-08.json), a summary of the Lab built on 8 November 2026.**
+
+## What it is
+
+The Lab downloads Kenneth French's daily portfolio and factor files once (104 files: US portfolios from 1926 and
+international ones from 1990) and runs every rule in a fixed grid on each of their 1,678 series:
+
+- **Rules:** 294 of them in seven families: time-series momentum, moving-average crossovers, breakouts,
+  z-score and RSI reversion, volatility targeting, and momentum with volatility targeting, each with its usual
+  parameters on a plain grid.
+- **Trading:** each rule rebalanced daily or monthly, so 588 variants per series. Positions use only information to
+  the close before and earn from the next close, after a cost of 5 basis points per unit of turnover.
+- **Numbers, not files:** a strategy's id names its series and its variant, so any of them can be rebuilt exactly,
+  and nothing about it is chosen after seeing results.
+
+## How good simple rules get
+
+Each strategy's Sharpe ratio over its whole history, after costs:
+
+| Share of strategies | Sharpe at or below |
+|---|---|
+| 10% | -0.11 |
+| Half | 0.37 |
+| 90% | 0.79 |
+| 99% | 1.34 |
+
+85% have a positive Sharpe, mostly because most of the series are long-only stock portfolios that rose over the
+century, and 3.7% are above 1. The best reaches 5.45: volatility targeting on the portfolio of the smallest stocks
+that fell most the month before, whose paper returns are largely the bounce between bid and ask prices in tiny
+stocks, which no one could trade. That is the bar luck and the data set together, and why a single good backtest
+says little until it is set against everything simple that was tried.
+
+## A million that are about fifteen
+
+The count is honest only beside its effective size. A seeded sample of 1,500 strategies, over the 429 months they
+share from 1991, varies like about 15 independent ones (the participation ratio of their correlations, 14.8): a few
+common movements, the market's above all, dominate it. More rules on the same data add little independent
+information, and `lab_status` reports this number with every build.
+
+## Use it
+
+In canli-mcp's next release, on your machine: `canli-mcp lab build` downloads French's files and builds the Lab
+once. Then:
+
+- `originality_check` sets your returns against every strategy covering the same months: the nearest by
+  correlation, how many are near-copies, and where your Sharpe ranks.
+- `lab_search` finds strategies by family, series and Sharpe, or nearly uncorrelated with your book.
+- `lab_strategy` rebuilds one from its number; `backtest_forensics` uses the Lab for its near-copy check.
+
+The strategies run on French's portfolio returns, which are not investable. They are a reference for what simple
+rules on public data could have earned; resembling one is not proof of copying, and beating them is not a forecast.
+
+
+------------------------------------------------------------------------------
+SOURCE: https://canlicapital.com/notes/bankruptcy-risk-from-an-annual-report
+------------------------------------------------------------------------------
+
+# Reading bankruptcy risk from an annual report
+
+> A model that reads only a company's latest annual report, tested year by year on reports it had never seen,
+> ranked the next year's bankruptcies better than Ohlson's O-score and Altman's Z'' across all US filers. Among
+> companies with at least $10 million of assets, Ohlson's O-score did better, and the tool says so in every answer.
+
+**Short title:** Bankruptcy risk from an annual report
+
+**Published 2026-11-08. The features, the penalty, the test years and the resampling were fixed and committed
+before the first run. Every result below is read from
+[`validation.json`](/glassbox/research/default-risk-v1/validation.json); the four companies' runs are in
+[`default-risk-cases-2026-11-08.json`](/glassbox/default-risk-cases-2026-11-08.json).**
+
+## What it predicts
+
+The chance that a company reports a bankruptcy, an 8-K under Item 1.03, within a year of filing its annual report
+(10-K), from that report's own figures: profit, operating earnings, debt, working capital, retained earnings, operating cash
+flow, cash, sales, interest, long-term debt, the current ratio, the change in profit, size, negative equity and two years of
+losses. The labels are every Item 1.03 8-K found by the SEC's full-text search; the figures are the SEC's company
+facts. No price, no rating and no analyst enters it, so it works for any company that files a 10-K.
+
+## How it was tested
+
+Walk-forward, from 2014 to 2025: for each year, the model was fitted only on reports whose outcome was already known,
+then scored on that year's reports. A company's later reports never helped predict its earlier ones. Intervals come
+from resampling companies, so a company with many reports cannot make the result look surer than it is.
+
+## What it found
+
+| Reports every benchmark can score | The model | Ohlson's O | Altman's Z'' | Leverage alone |
+|---|---|---|---|---|
+| All filers (45,510 reports, 440 bankruptcies) | 0.79 | 0.73 | 0.72 | 0.73 |
+| At least $10 million of assets (37,247 reports, 388 bankruptcies) | 0.81 | 0.83 | 0.82 | 0.79 |
+
+The numbers are the area under the ROC curve: the chance that a report followed by a bankruptcy is ranked riskier
+than one that was not.
+
+- **Across all filers** the model ranks better than each benchmark, by 0.06 to 0.07, with intervals clear of zero.
+  Over all 71,130 reports scored (11,808 companies, 553 bankruptcies) its area is 0.78, and the riskiest tenth of
+  reports held 46% of the bankruptcies.
+- **Among companies with at least $10 million of assets** Ohlson's O-score ranks better by 0.025, with an interval
+  that stays clear of zero, and Altman's Z'' is level with the model. The likely reason: the smallest filers often
+  stop filing rather than report a bankruptcy, so the model learns more about shells than about the companies most
+  people ask about. The tool shows both benchmark scores beside its own in every answer.
+- **Its chances hold up at the risky end and fail at the safe end.** In the riskiest tenth of reports it gave 3.6%
+  on average and 3.5% went bankrupt; in the next tenth, 1.2% against 1.5%. In the tenth it called safest it gave
+  0.02% and 0.37% went bankrupt, more than in any of the four tenths above it: the model misreads some of the
+  reports it scores lowest, so a very low chance from it is not reassurance.
+
+## Four companies that later filed
+
+The tool's answers for four companies, each as of a day before its bankruptcy 8-K. These runs use the final model,
+which was fitted on reports up to November 2025 and so has already seen these bankruptcies: they show what the tool
+says, and the walk-forward test above is the evidence of how well it predicts.
+
+| Company | Report read | Chance within a year | Riskier than this share of 2025's 10-Ks |
+|---|---|---|---|
+| Rite Aid | 2023-05-01 | 16.6% | 99% |
+| WeWork | 2023-03-29 | 9.1% | 99% |
+| Bed Bath & Beyond | 2022-04-21 | 4.3% | 97% |
+| Spirit Airlines | 2024-02-09 | 3.0% | 94% |
+
+Bed Bath & Beyond's report gave an Altman Z'' of 6.0, which that score reads as safe.
+
+## Use it
+
+It is `default_risk`, in canli-markets-mcp's next release and then in [canli-mcp](/mcp-servers), with no account and
+no key: give a ticker, a CIK or a name, and an optional date to see the answer as it stood then. It is a model of filings, not a credit
+rating and not advice.
+
+
+------------------------------------------------------------------------------
+SOURCE: https://canlicapital.com/notes/beat-your-own-guidance
+------------------------------------------------------------------------------
+
+# Will a company beat its own guidance?
+
+> A model of where a company's next EPS or revenue lands against the range it guided to: its own record blended
+> with the market's. Tested quarter by quarter on S&P 500 press releases, each quarter predicted only from what was
+> filed before it, it beat the market-wide rate for both EPS and revenue, with intervals clear of zero.
+
+**Short title:** Will a company beat its own guidance?
+
+**Published 2026-11-08. Every result below is read from
+[`validation.json`](/glassbox/research/beat-probability-v1/validation.json); the guidance lines are the dataset
+behind [How often do companies beat their guidance?](/notes/how-often-companies-beat-their-guidance).**
+
+## What it predicts
+
+Companies that guide give a range for next quarter's EPS or revenue. Most then land above it: across the quarters
+read, EPS came in above the range 318 times, within it 136 times and below it 41 times. The question that matters is
+company by company: does this one usually clear its range, or is it a company that lands inside it?
+
+The model answers with three chances (above, within, below) from the company's own guided quarters, blended with
+the market's rate: its own count plus four quarters' worth at the market's rate, a weight fixed before testing. A
+company with a long record is read mostly from it; a company with two quarters mostly from the market.
+
+## How it was tested
+
+Walk-forward on 2,334 guidance lines from the press releases of the 500 companies in VOO, up to 12 quarters each:
+every quarter was predicted only from what the company had filed before it. The score is the Brier score over the
+three outcomes (lower is better), and the interval comes from resampling companies.
+
+| | Quarters scored | Companies | Market's rate | Own record only | The blend |
+|---|---|---|---|---|---|
+| EPS | 356 | 56 | 0.494 | 0.429 | 0.408 |
+| Revenue | 278 | 42 | 0.528 | 0.495 | 0.469 |
+
+- **EPS:** the blend improves on the market's rate by 0.0865, with a 95% interval from 0.0457 to 0.1318.
+- **Revenue:** by 0.059, from 0.0093 to 0.1146.
+- **Where it is off:** its chances of landing above run a little low. Of the quarters it gave about 71% for EPS,
+  79% landed above.
+- **What it does not show:** 56 and 42 companies over about three years is little, and the market's rate comes
+  from the same years. Only guidance given in press releases counts.
+
+## Use it
+
+It is `beat_probability` in canli-mcp's next release, on your machine with no account and no key: a ticker and
+eps or revenue, and an optional date to see the model as it stood then. It is not a forecast of the share price
+and not advice.
 
 
 ------------------------------------------------------------------------------
@@ -596,6 +793,83 @@ next day. Since 2025 that is 1 of 31 JPMorgan 8-Ks, none of 21 NVIDIA 8-Ks and n
 insider sales. A file that gives Eastern time labelled as UTC would be worse: every results release
 after the close would land on its own day. `event_study` now calibrates each file this way, with
 two extra requests, and says in its result which it did. Both changes ship in the next release.
+
+
+------------------------------------------------------------------------------
+SOURCE: https://canlicapital.com/notes/factor-timing-against-a-placebo
+------------------------------------------------------------------------------
+
+# Do factor-timing claims beat a placebo?
+
+> Four published factor-timing claims, retested with placebos that keep a market's volatility clustering.
+> Volatility-managed factors kept their in-sample verdict under every block length. Industry momentum kept it
+> only with the shortest blocks, and cross-sectional factor momentum lost it. No verdict after the papers'
+> samples changed.
+
+**Short title:** Factor timing against a placebo
+
+**Published 2026-11-08. The design, the decision rules and the predictions were registered and pushed before the
+run, in [`placebo-v2r2-prereg.json`](/glassbox/research/placebo-v2r2-prereg.json); every verdict below is read from
+[`placebo-v2r2-evaluation.json`](/glassbox/research/placebo-v2r2-evaluation.json). The first round is
+[`placebo-v2-evaluation.json`](/glassbox/research/placebo-v2-evaluation.json).**
+
+## The question
+
+A factor-timing paper tests a rule, often one of several it could have chosen, on decades of factor returns. A
+t-test on the winner ignores that search. A placebo test does not: it reruns the whole search, every rule in the
+grid, on the same returns put in a random order, many times, and asks how often the real winner's result is beaten
+by chance. This study does that for four claims:
+
+- **Time-series factor momentum** (Ehsani and Linnainmaa; Gupta and Kelly): a factor that rose over the past months
+  keeps rising.
+- **Cross-sectional factor momentum** (Ehsani and Linnainmaa; Arnott, Kalesnik and Linnainmaa): the factors that did
+  best recently beat the ones that did worst.
+- **Volatility-managed factors** (Moreira and Muir): scaling a factor down when its recent volatility is high raises
+  its Sharpe ratio.
+- **Industry momentum** (Moskowitz and Grinblatt): the industries that rose most keep rising.
+
+Each claim is tested on the papers' own sample and on the months after it, on Kenneth French's factors and
+industries. The wording rule was set beforehand: we do not say a published paper is wrong; we report which claims
+keep a p-value below 5% once a plausible search is counted.
+
+## What the second round changed
+
+A plain shuffle breaks every link between one month and the next, including the clustering of volatility that real
+returns have, so a rule that only exploits clustering can look like timing skill. The second round shuffles whole
+blocks of 3, 6 or 12 months instead, which keeps short-range clustering, with 999 placebos per test. It also runs
+White's Reality Check, Hansen's SPA test and Romano and Wolf's StepM on the same grids, measures how much power each
+method has against timing effects of stated sizes, and repeats factor momentum on the Open Source Asset Pricing
+long-short portfolios rather than the handful of French-library factors.
+
+## What it found
+
+| Claim | First round, in sample | Blocks of 3 months | Blocks of 6 | Blocks of 12 |
+|---|---|---|---|---|
+| Volatility-managed factors | below 5% | below | below | below |
+| Industry momentum | below 5% | below | not below | not below |
+| Cross-sectional factor momentum | below 5% | not below | not below | not below |
+| Time-series factor momentum | not below | not below | not below | not below |
+
+- **Volatility-managed factors** are the one in-sample result that survives at every block length.
+- **Industry momentum** survives only with the shortest blocks, and the evaluation marks that verdict as showing
+  time-series structure rather than the claim itself.
+- **Cross-sectional factor momentum** loses its first-round verdict at every block length. On the Open Source
+  Asset Pricing factors neither factor-momentum claim beats its placebos in sample.
+- **After the papers' samples**, no claim's verdict changed: none was below 5% in the first round, and none is now.
+
+## What did not work
+
+The registration predicted that block permutation would bring the test's false-positive rate back to its nominal
+level in simulated markets with clustered volatility. It largely did not, and the evaluation file reports the rates
+cell by cell. The power runs also show that the tests after the papers' samples have little power against timing
+effects of the sizes tested, so a claim that is "not below" there is weak evidence against it, not evidence that
+it is false. One change was made during the run and is dated in the file: four of the 30 industry portfolios are
+identical to their 12-industry counterparts, so the simulator copies each twin instead of drawing it.
+
+## Use it
+
+The placebo test is `placebo_test` in [canli-mcp](/mcp-servers), on your machine, with no account and no key. The
+first round's method and its size study are in [Would your backtest beat a placebo?](/notes/would-it-beat-a-placebo).
 
 
 ------------------------------------------------------------------------------
@@ -1406,6 +1680,17 @@ Here is what happened in each case:
 
 We searched each later report for restatement and error language and found none about these figures.
 
+## What an accounting professor added
+
+**Updated 2026-11-06.** Preeti Choudhary, Professor of Accounting at the University of Arizona, studies immaterial error corrections. She read these cases after we published and explained them:
+
+- A spin-off, or a business reported as discontinued, requires the earlier periods to be reclassified. That fits Aptiv and Becton Dickinson.
+- A new accounting standard often does not have to be applied to past periods, but a company may choose to. It is permitted, though not common, and eBay did it.
+- Carnival may have had a new noncontrolling interest this year, which then has to be shown separately for the earlier years too.
+- W. R. Berkley's change looks like one that needs an explanation, especially if it is material.
+
+She suspects the same check would find more of these differences among smaller companies, where accounting quality may be lower. That is our next run.
+
 ## Why it matters
 
 If you read company numbers: a figure can change after it is published, and that is often no scandal. A spin-off or a new accounting rule can rewrite the past. Check which filing a number came from, and its date.
@@ -1590,6 +1875,94 @@ absence of it.
 and [`data/universe/store.py`](https://github.com/arhancanli/canli-pit-lake/blob/main/src/alphaforge/data/universe/store.py)
 in `canli-pit-lake`. Both are byte-identical to the engine behind the public record, and CI
 proves it on every push.*
+
+
+------------------------------------------------------------------------------
+SOURCE: https://canlicapital.com/notes/which-overfitting-tests-hold-their-size
+------------------------------------------------------------------------------
+
+# Which backtest overfitting tests can you trust?
+
+> A test that promises 5% false alarms should give about 5% on markets with nothing to find. On 20 strategies
+> over 504 days, in nine kinds of simulated market, White's Reality Check stayed between 4.5% and 6.4%.
+> Hansen's SPA test, the usual upgrade, reached 12.6% on negatively skewed returns, and Romano and Wolf's StepM
+> matched it. The deflated Sharpe ratio at its usual 0.95 mark almost never raised one, and caught a real edge
+> 9.4% of the time.
+
+**Short title:** Which overfitting tests hold their size
+
+**Published 2026-11-08. The design, the pass mark and the rule for choosing a test were registered before each
+run, in [`null-zoo-v1-prereg.json`](/glassbox/research/null-zoo-v1-prereg.json) and
+[`null-zoo-v1b-prereg.json`](/glassbox/research/null-zoo-v1b-prereg.json). The table below is read from the
+confirmation run, [`null-zoo-v1b-evaluation.json`](/glassbox/research/null-zoo-v1b-evaluation.json); the first
+run is [`null-zoo-v1-evaluation.json`](/glassbox/research/null-zoo-v1-evaluation.json).**
+
+## The question
+
+A search tries many strategies and keeps the best. Several tests promise to say whether the best one beat the
+others by more than luck: White's Reality Check, Hansen's SPA test, Romano and Wolf's StepM, Bonferroni-style
+haircuts, the deflated Sharpe ratio. Each promises a false-alarm rate, its size: at a nominal 5%, it should call
+a skill-less search skilled about one time in twenty. Papers prove that for large samples. A researcher has two
+years of daily returns and a grid of 20 rules, so the Null Zoo measures it there.
+
+## How it was measured
+
+- **The search:** 20 strategies over 504 trading days, at most one of them with a real edge: a true annual
+  Sharpe ratio of 0 (no skill), 1, 2 or 3.
+- **Nine kinds of market:** independent normal returns, fat tails, negative skew, positive skew, volatility
+  clustering, autocorrelated returns, two volatility regimes, strategies sharing one common factor, and four
+  clusters of five strongly correlated strategies.
+- **10,000 searches in each cell**, from a fixed seed, so a 5% rate is measured with a standard error of about
+  0.2 percentage points.
+- **The pass mark, fixed before the run:** a false-alarm rate of at most 6% on every one of the nine markets, and
+  at least 45% of searches with a Sharpe 2 strategy called skilled, on normal returns. The ceiling is a test told in advance which
+  strategy has the edge: no honest test of the best of 20 can beat it.
+
+## What it found
+
+| Test | False alarms at a nominal 5%, across the nine markets | Worst market | Real edge found (Sharpe 2) |
+|---|---|---|---|
+| White's Reality Check | 4.5% to 6.4% | Autocorrelated | 53% |
+| Hansen's SPA (consistent) | 4.3% to 12.6% | Negative skew | 57% |
+| Romano and Wolf's StepM | 4.3% to 12.6% | Negative skew | 57% |
+| Luck-equivalent trials, Lo-corrected | 3.2% to 8.8% | Negative skew | 53% |
+| Luck-equivalent trials | 3.1% to 19.6% | Autocorrelated | 52% |
+| Bonferroni haircut | 1.3% to 12.4% | Autocorrelated | 43% |
+| Deflated Sharpe ratio at 0.95 | 0.02% to 1.7% | Correlated strategies | 9.4% |
+| The ceiling (told which strategy has the edge) | 4.5% to 5.9% | | 88% |
+
+- **SPA is oversized at this sample size.** Hansen's test was built to be more powerful than White's, and it is,
+  by about three points, but it buys them with false alarms: 7.7% on plain normal returns, 9.1% on autocorrelated
+  ones and 12.6% on negatively skewed ones, the shape of option-selling and carry returns. It
+  missed the 6% mark on eight of the nine markets, seven in the first run. StepM uses the same studentized
+  statistic and moved with it, case by case.
+- **The Reality Check kept its promise.** Its worst rate was 6.4%, on autocorrelated returns, just over the mark;
+  everywhere else it stayed between 4.5% and 5.7%, in both runs.
+- **Without the other variants**, Lo's correction for autocorrelation is what keeps luck-equivalent trials honest:
+  uncorrected, autocorrelated returns raised false alarms to 19.6%. Negative skew still pushes it to 8.8%.
+- **The deflated Sharpe ratio is very cautious as a pass mark.** At 0.95 it raised a false alarm in at most 1.7%
+  of searches, and found a strategy with a true Sharpe of 2 in 9.4%. It is a probability to read, not a gate.
+
+## Why there were two runs
+
+The first run's registration named only the SPA tests as candidates for a search with all its variants. The
+Reality Check was measured but not named, and it was the one that held. Choosing it from that run would have been
+choosing after seeing the results, so a second run was registered first, on fresh seeds, with the Reality Check
+named first. It held again, and only then became the headline. A result found outside the registered list needs
+its own registered confirmation before anything uses it.
+
+## Use it
+
+`audit_backtest` in [canli-mcp](/mcp-servers) leads with the test this study chose: the Reality Check when you send
+every variant the search tried, Lo-corrected luck-equivalent trials when you send one series. It then quotes the
+false-alarm rate measured on the market most like your returns, by a rule fixed before the run, so no answer can
+quote the friendliest one. `validate_reality_check` gives the SPA test, the Reality Check and StepM side by side.
+All run on your machine, with no account and no key. How luck-equivalent trials work is in
+[Luck-equivalent trials](/research/luck-equivalent-trials), and the first Null Zoo in
+[the Null Zoo](/research/null-zoo-v0).
+
+These are simulations of one size of search and sample. The SPA test is guaranteed for large samples, and longer
+ones were not measured here; the table is for searches like the one described.
 
 
 ------------------------------------------------------------------------------

@@ -9,7 +9,7 @@ import { z } from "zod";
 
 import { mean, normCdf, normInv, std, variance, moments } from "../math.mjs";
 import { MAX_SERIES, ppyArg } from "../inputs.mjs";
-import { defaultSplits, pbo } from "../cscv.mjs";
+import { defaultSplits, pbo, TRIAL_RETURNS } from "../cscv.mjs";
 import { minVariance } from "./portfolio.mjs";
 
 const pricesArg = z.array(z.number().positive()).min(30).max(MAX_SERIES).describe("Prices oldest first (daily closes by default).");
@@ -115,7 +115,7 @@ export function curveOf(P, eng, bench, dates) {
   };
 }
 
-const strip = (r) => { const { _net, ...rest } = r; return rest; };
+const strip = (r) => { const { _net, ...rest } = r; return { ...rest, [TRIAL_RETURNS]: [_net] }; };
 const single = (p) => p.map((x) => [x]);
 
 // Rolling helpers on a single price array.
@@ -384,7 +384,7 @@ function sweep(recipe, base, grid, ppy) {
   }
   const n = best?.periods ?? 0;
   const overfit = ok.length > 1 && n >= 40 ? { ...pbo(ok.map((r) => r.net), defaultSplits(n)), note: "How often the best variant on half the sample landed in the bottom half on the other half; above 0.5, picking the in-sample winner did worse than a random pick." } : null;
-  return { recipe, combinations: combos.length, columns: ["params", "sharpe", "cagr", "max_drawdown", "annual_turnover"], rows: ok.map((r) => [r.params, r.sharpe, r.cagr, r.max_drawdown, r.annual_turnover]).slice(0, 50), errors: rows.filter((r) => r.error).slice(0, 5).map((r) => ({ params: r.params, error: r.error })), best: best ? { params: best.params, sharpe: best.sharpe } : null, deflation, probability_of_backtest_overfitting: overfit, every_trial: { periods: n, periods_per_year: ppy, sharpes: ok.map((r) => r.sharpe) } };
+  return { recipe, combinations: combos.length, columns: ["params", "sharpe", "cagr", "max_drawdown", "annual_turnover"], rows: ok.map((r) => [r.params, r.sharpe, r.cagr, r.max_drawdown, r.annual_turnover]).slice(0, 50), errors: rows.filter((r) => r.error).slice(0, 5).map((r) => ({ params: r.params, error: r.error })), best: best ? { params: best.params, sharpe: best.sharpe } : null, deflation, probability_of_backtest_overfitting: overfit, every_trial: { periods: n, periods_per_year: ppy, sharpes: ok.map((r) => r.sharpe) }, [TRIAL_RETURNS]: ok.map((r) => r.net) };
 }
 
 const recipeTool = (name, title, description, keywords) => ({
