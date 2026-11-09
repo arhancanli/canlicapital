@@ -88,7 +88,27 @@ const file = z.string().describe("path of the book file, ending in .jsonl");
 const line = z.object({ account: z.string(), debit: amount.optional(), credit: amount.optional() }).strict();
 const range = { from: date.optional(), to: date.optional() };
 
+// Some MCP clients (CrewAI through mcpadapt, OpenAI strict mode) send every optional argument they leave unset as null.
+// Where null is not allowed, it means "not given": the call is checked again without those keys, and if that fails too, the
+// error names only what is still wrong.
+export const withoutNulls = (value) => (value && typeof value === "object" && !Array.isArray(value) && Object.values(value).includes(null) ? Object.fromEntries(Object.entries(value).filter(([, v]) => v !== null)) : null);
+export function acceptNulls(server) {
+  if (server.__acceptsNulls || typeof server.validateToolInput !== "function") return;
+  const validate = server.validateToolInput.bind(server);
+  server.validateToolInput = async (tool, args, name) => {
+    try {
+      return await validate(tool, args, name);
+    } catch (err) {
+      const kept = withoutNulls(args);
+      if (!kept) throw err;
+      return validate(tool, kept, name);
+    }
+  };
+  server.__acceptsNulls = true;
+}
+
 export function registerTools(server) {
+  acceptNulls(server);
   const tool = (name, title, description, input, annotations, handler) => server.registerTool(name, { title, description, inputSchema: input, annotations: { title, ...annotations } }, async (args) => text(await handler(args)));
 
   // Canli Books

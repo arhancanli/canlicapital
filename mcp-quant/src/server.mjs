@@ -95,7 +95,27 @@ export function selectedToolsets(env = process.env.CANLI_TOOLSETS) {
   return names;
 }
 
+// Some MCP clients (CrewAI through mcpadapt, OpenAI strict mode) send every optional argument they leave unset as null.
+// Where null is not allowed, it means "not given": the call is checked again without those keys, and if that fails too, the
+// error names only what is still wrong.
+export const withoutNulls = (value) => (value && typeof value === "object" && !Array.isArray(value) && Object.values(value).includes(null) ? Object.fromEntries(Object.entries(value).filter(([, v]) => v !== null)) : null);
+export function acceptNulls(server) {
+  if (server.__acceptsNulls || typeof server.validateToolInput !== "function") return;
+  const validate = server.validateToolInput.bind(server);
+  server.validateToolInput = async (tool, args, name) => {
+    try {
+      return await validate(tool, args, name);
+    } catch (err) {
+      const kept = withoutNulls(args);
+      if (!kept) throw err;
+      return validate(tool, kept, name);
+    }
+  };
+  server.__acceptsNulls = true;
+}
+
 export function registerAll(server, { toolsets = selectedToolsets() } = {}) {
+  acceptNulls(server);
   const toolsetNames = Object.keys(TOOLSETS);
   server.registerTool("find_tool", {
     title: "Find a tool",

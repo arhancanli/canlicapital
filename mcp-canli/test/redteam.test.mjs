@@ -78,6 +78,29 @@ test("one strategy cannot be judged yet; a grid is judged at the whole count; a 
   assert.equal(fourth.search.attempts, 4);
 });
 
+test("overfitting across the session: each attempt's variants pool on the same data and are judged as one grid", async () => {
+  // Skill-less returns, seeded, handed over as the sweeps hand theirs over (luck.mjs).
+  let seed = 7;
+  const noise = () => Array.from({ length: 200 }, () => ((seed = (seed * 16807) % 2147483647) / 2147483647 - 0.5) / 50);
+  const handed = (sharpes) => Object.assign(sweep(sharpes, 0.3), { [Symbol.for("canli.trial_returns")]: sharpes.map(noise) });
+  const prices = Array.from({ length: 201 }, (_, i) => 100 + i);
+  const { ctx } = harness({ answers: [handed([0.9, 0.5, 0.2, 0.1]), handed([1.1, 0.4, 0.3, 0]), handed([1.2, 0.2])] });
+  const first = await runRedTeam(ctx, { name: "strategy_sweep", arguments: { prices } });
+  assert.equal("overfitting_across_session" in first.checks, false, "the pool is this grid, which the overfitting check has");
+  assert.equal(first.search.overfitting_across_session.variants, 4);
+  const second = await runRedTeam(ctx, { name: "strategy_sweep", arguments: { prices }, change: "another lookback grid" });
+  const c = second.checks.overfitting_across_session;
+  assert.match(c.measure, /across the 8 variants this session ran on this data \(CSCV\)$/);
+  assert.deepEqual([typeof c.value, c.bar, c.passed], ["number", "below 0.5", c.value < 0.5]);
+  assert.match(c.why, /^Picking the best of the 8 variants run on this data in this session/);
+  // The same pool, judged against a strict bar: it fails, and the advice is to stop rewriting on this data.
+  const third = await runRedTeam(ctx, { name: "strategy_sweep", arguments: { prices }, bar: { overfitting: 0.05 } });
+  assert.deepEqual([third.checks.overfitting_across_session.passed, third.checks.overfitting_across_session.bar], [false, "below 0.05"]);
+  assert.match(third.verdict, /overfitting_across_session/);
+  assert.match(third.next, /more rewrites on the same data will not fix that/);
+  assert.equal(third.search.overfitting_across_session.variants, 10);
+});
+
 test("a pass with a holdout set points at its one test; ten failed attempts are told to stop; hosted says what it counts", async () => {
   const vault = createVault({ now: NOW });
   vault.set({ from: "2024-01-01" });

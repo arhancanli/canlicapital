@@ -3,7 +3,7 @@ import "../css/check-home.css";
 import "../css/look-through.css";
 import "./navigation.js";
 import { mergeOpened } from "canli-markets-mcp/src/xray-merge.mjs";
-import { fromLink, parseHoldings, toLink } from "./look-through-parse.js";
+import { fromLink, parseHoldings, sourceLine, toLink } from "./look-through-parse.js";
 
 const byId = (id) => document.getElementById(id);
 const form = byId("look-form"), input = byId("look-text"), statusLine = byId("look-status"), out = byId("look-result");
@@ -41,7 +41,7 @@ function draw(answer, holdings) {
   });
   const table = element("table", { className: "lt-table" }, element("caption", { textContent: "The largest positions once your funds are opened" }),
     element("thead", {}, element("tr", {}, ...["Company", "Your share", "Through"].map((t) => element("th", { scope: "col", textContent: t })))), element("tbody", {}, ...rows));
-  const sources = (answer.funds ?? []).map((f) => element("li", { textContent: `${f.symbol}: ${f.fund}, its report for ${f.period}, filed ${f.filed}.` }));
+  const sources = (answer.funds ?? []).map((f) => element("li", { textContent: sourceLine(f) }));
   const notes = [...(answer.notes ?? []), ...(answer.limits ?? [])].map((text) => element("li", { textContent: text }));
   const share = element("button", { type: "button", className: "ck-share", textContent: "Share this portfolio" });
   share.addEventListener("click", async () => {

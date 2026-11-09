@@ -1,6 +1,6 @@
 """The three steps as a CrewAI crew: one agent for each.
 
-pip install -r requirements.txt
+pip install -r requirements-crewai.txt
 CANLI_MODEL=<provider/model> python crewai_agent.py "Test a 50/200 moving-average rule on AAPL."
 """
 import json

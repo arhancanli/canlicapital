@@ -171,8 +171,14 @@ export function limitsDigest(limits) {
 
 const round = (x, places) => (x === null || x === undefined ? null : Number(x.toFixed(places)));
 
+// Some MCP clients (CrewAI through mcpadapt, OpenAI strict mode) send optional arguments left unset as null; where null is
+// not allowed it means "not given", so the input is checked again without those keys and an error names only what is still wrong.
+const withoutNulls = (value) => (value && typeof value === "object" && !Array.isArray(value) && Object.values(value).includes(null) ? Object.fromEntries(Object.entries(value).filter(([, v]) => v !== null)) : null);
+
 export function parseInput(schema, args, tool) {
-  const parsed = schema.safeParse(args ?? {});
+  let parsed = schema.safeParse(args ?? {});
+  const kept = parsed.success ? null : withoutNulls(args);
+  if (kept) parsed = schema.safeParse(kept);
   if (!parsed.success) throw new Error(`${tool}: ${parsed.error.issues.map((i) => `${i.path.join(".") || "input"}: ${i.message}`).join("; ")}`);
   return parsed.data;
 }
