@@ -146,7 +146,7 @@ export const defaultRiskInput = z.object({
 const LIMITS = [
   "A model of whether a company files an Item 1.03 8-K (bankruptcy or receivership) within a year, from its last annual report's figures alone: no share price, no debt prices, nothing filed since that report.",
   "The label is a reported bankruptcy, not every default: a company that stops filing without reporting one counts as no event, and a missed coupon settled out of court is not seen.",
-  "Among companies with at least $10M of assets, both benchmarks ranked the test years' bankruptcies better than this model on the reports all three can score: Ohlson's O (AUC 0.83) and Altman's Z'' (0.82) against 0.81. Both are returned.",
+  "Among companies with at least $10M of assets, on the reports all three can score, Ohlson's O ranked the test years' bankruptcies better than this model (AUC 0.83 against 0.81, a gap clear of zero) and Altman's Z'' was level with it (0.82, a gap within noise). Both are returned.",
   "Fitted and tested on US GAAP 10-Ks filed from 2009 to 2025; for banks and insurers the ratios mean something else. Not investment advice.",
 ];
 
