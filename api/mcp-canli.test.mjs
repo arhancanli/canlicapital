@@ -9,9 +9,9 @@ import { createServer } from "node:http";
 import test from "node:test";
 
 import { keyIdFor } from "../js/receipt-statement.js";
-import { checkAnswerSignature } from "../mcp-canli/src/receipt-check.mjs";
+import { checkAnswerSignature, checkAnswerSignaturePq } from "../mcp-canli/src/receipt-check.mjs";
 import { canonicalJson } from "../scripts/canonical-json.mjs";
-import { ANSWER_RECEIPT_KEY, ANSWER_SIGNATURE_SCHEMA, answerStatement, signAnswerReceipt, verifyAnswerReceipt } from "./_lib/answer-receipts.js";
+import { ANSWER_PQ_FIELD, ANSWER_RECEIPT_KEY, ANSWER_SIGNATURE_SCHEMA, answerStatement, canSignPq, signAnswerReceipt, verifyAnswerReceipt, verifyAnswerReceiptPq } from "./_lib/answer-receipts.js";
 import { createCanliHandler, createLimiter, HOSTED_ENDPOINT, HOSTED_NOTE, MAX_FLAGSHIP_BODY_BYTES, namesAFile } from "./mcp-canli.js";
 
 const INIT = { protocolVersion: "2025-06-18", capabilities: {}, clientInfo: { name: "test", version: "0" } };
@@ -253,5 +253,54 @@ test("with canli-mcp's own signer (after 0.21.0), the receipt a model reads in t
     assert.equal(read.endpoint, HOSTED_ENDPOINT);
     assert.deepEqual(verifyAnswerReceipt(read, [key.published]), { valid: true, checks: { signed: true, key_published: true, signature_valid: true }, key_id: key.published.key_id });
     assert.equal(checkAnswerSignature(read, [key.published]).valid, true);
+  });
+});
+
+// A post-quantum receipt key (ML-DSA-65) as canli-receipt-keys.json would publish one (JWK, kty AKP), and its environment.
+function pqReceiptKey() {
+  const { publicKey, privateKey } = generateKeyPairSync("ml-dsa-65");
+  const pub = publicKey.export({ format: "jwk" }).pub;
+  return {
+    env: { CANLI_RECEIPT_PQ_SIGNING_KEY: privateKey.export({ format: "der", type: "pkcs8" }).toString("base64") },
+    published: { key_id: keyIdFor(Buffer.from(pub, "base64url")), alg: "ML-DSA-65", pub, status: "active" },
+  };
+}
+
+test("with a post-quantum key too, every receipt carries both signatures, and the one a model reads is the one in _meta", { skip: !canSignPq() && "ML-DSA needs Node.js 24.7 or later" }, async () => {
+  const ed = receiptKey(), pq = pqReceiptKey();
+  const next = await import("../mcp-canli/src/server.mjs");
+  await withHandler(createCanliHandler({ env: { ...ed.env, ...pq.env }, flagship: next }), async (url) => {
+    // run_tool's receipt, signed by canli-mcp (post-quantum first, then Ed25519) and again by signReceiptsOf: ML-DSA
+    // signatures are randomized, so the one canli-mcp made is kept and the two stay the same bytes.
+    const res = await rpc(url, "tools/call", { name: "run_tool", arguments: { name: "return_stats", arguments: { returns: RETURNS }, receipt: true } });
+    assert.equal(res.body.result.isError ?? false, false, text(res));
+    const read = JSON.parse(text(res)).receipt;
+    assert.deepEqual(read, res.body.result._meta[ANSWER_RECEIPT_KEY]);
+    assert.deepEqual([read.signature.alg, read[ANSWER_PQ_FIELD].alg], ["Ed25519", "ML-DSA-65"]);
+    assert.equal(verifyAnswerReceipt(read, [ed.published]).valid, true, "Ed25519 over the receipt with its post-quantum signature");
+    assert.deepEqual(verifyAnswerReceiptPq(read, [pq.published]), { valid: true, checks: { signed: true, key_published: true, signature_valid: true }, key_id: pq.published.key_id });
+    assert.deepEqual([checkAnswerSignature(read, [ed.published]).valid, checkAnswerSignaturePq(read, [pq.published]).valid], [true, true], "canli-mcp's receipt_check reads both");
+    // A tool answered directly: signReceiptsOf alone signs its receipt, both ways.
+    const plain = (await call(url, "return_stats", { returns: RETURNS })).body.result._meta[ANSWER_RECEIPT_KEY];
+    assert.deepEqual([verifyAnswerReceipt(plain, [ed.published]).valid, verifyAnswerReceiptPq(plain, [pq.published]).valid], [true, true]);
+    assert.equal(verifyAnswerReceiptPq({ ...plain, output_sha256: "c".repeat(64) }, [pq.published]).valid, false, "a change fails it");
+  });
+  // Without the post-quantum key, receipts are as before: Ed25519 only.
+  await withHandler(createCanliHandler({ env: ed.env, flagship: next }), async (url) => {
+    const plain = (await call(url, "return_stats", { returns: RETURNS })).body.result._meta[ANSWER_RECEIPT_KEY];
+    assert.deepEqual([ANSWER_PQ_FIELD in plain, verifyAnswerReceipt(plain, [ed.published]).valid], [false, true]);
+  });
+});
+
+test("on a Node.js without ML-DSA (the site's 22.x), a post-quantum key that is set is left unused: answers keep their Ed25519 receipt", { skip: canSignPq() && "this Node.js signs ML-DSA" }, async () => {
+  const ed = receiptKey();
+  const next = await import("../mcp-canli/src/server.mjs");
+  await withHandler(createCanliHandler({ env: { ...ed.env, CANLI_RECEIPT_PQ_SIGNING_KEY: Buffer.from("not a key on this Node.js").toString("base64") }, flagship: next }), async (url) => {
+    const res = await rpc(url, "tools/call", { name: "run_tool", arguments: { name: "return_stats", arguments: { returns: RETURNS }, receipt: true } });
+    assert.equal(res.body.result.isError ?? false, false, text(res));
+    const read = JSON.parse(text(res)).receipt;
+    assert.deepEqual([ANSWER_PQ_FIELD in read, verifyAnswerReceipt(read, [ed.published]).valid], [false, true]);
+    const plain = (await call(url, "return_stats", { returns: RETURNS })).body.result._meta[ANSWER_RECEIPT_KEY];
+    assert.deepEqual([ANSWER_PQ_FIELD in plain, verifyAnswerReceipt(plain, [ed.published]).valid], [false, true]);
   });
 });
