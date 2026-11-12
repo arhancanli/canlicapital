@@ -24,7 +24,7 @@
 // canli-mcp after 0.21.0 signs with the same signer itself (registerAll's receipts option, which 0.21.0
 // ignores), so the receipt an answer carries with receipt: true, the one a model sees, is signed too.
 import * as canli from "canli-mcp/src/server.mjs";
-import { signAnswerReceipt, signReceiptsOf } from "./_lib/answer-receipts.js";
+import { signAnswerReceipt, signAnswerReceiptPq, signReceiptsOf } from "./_lib/answer-receipts.js";
 import { bearerKey, hashKey } from "./_lib/auth.js";
 import { defaultStore } from "./_lib/handler.js";
 import { createStatelessMcpHandler } from "./_lib/mcp-stateless.js";
@@ -116,7 +116,7 @@ export function createCanliHandler({ limiter = createLimiter(), tierOf = createT
   return createStatelessMcpHandler({
     serverInfo: flagship.SERVER_INFO,
     instructions: `${flagship.instructions(HOSTED_PACKS)}${HOSTED_NOTE}`,
-    register: (server) => flagship.registerAll(signReceiptsOf(server, { endpoint: HOSTED_ENDPOINT, env }), HOSTED_PACKS, undefined, { readOnly: true, receipts: { endpoint: HOSTED_ENDPOINT, sign: (receipt) => signAnswerReceipt(receipt, env) } }),
+    register: (server) => flagship.registerAll(signReceiptsOf(server, { endpoint: HOSTED_ENDPOINT, env }), HOSTED_PACKS, undefined, { readOnly: true, receipts: { endpoint: HOSTED_ENDPOINT, sign: (receipt) => signAnswerReceipt(receipt, env), signPq: (receipt) => signAnswerReceiptPq(receipt, env) } }),
     path: "/mcp/canli",
     maxBodyBytes: async (req) => tierLimits((await admit(req)).tier).max_body_bytes,
     screen,
