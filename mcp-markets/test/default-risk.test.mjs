@@ -77,7 +77,7 @@ test("the tool on replayed documents: distress ranks riskier, as_of reads the ol
   assert.equal(weak.report.accession, "0000000001-25-000001");
   assert.match(weak.reading, /chance of reporting a bankruptcy within a year/);
   assert.ok(weak.cross_checks.ohlson_o.score > sound.cross_checks.ohlson_o.score);
-  assert.ok(weak.limits.some((l) => /Ohlson's O ranked/.test(l)));
+  assert.ok(weak.limits.some((l) => /Ohlson's O ranked .*\(AUC 0\.83 against 0\.81, a gap clear of zero\) and Altman's Z'' was level with it \(0\.82/.test(l)));
   const then = await run(facts(), 5331, { as_of: "2025-01-01" });
   assert.equal(then.report.filed, "2024-02-20");
   assert.match((await run(facts(), 6022)).reading, /State commercial banks: the ratios mean something else/);
