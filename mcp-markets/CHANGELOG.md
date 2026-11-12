@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `default_risk`: its limits now say that among companies with at least $10M of assets *both* benchmarks ranked the test years' bankruptcies better than the model, on the reports all three can score: Ohlson's O (AUC 0.83) and Altman's Z'' (0.82) against 0.81. Before, they named Ohlson's O alone; the figures are `config/research/default-risk-v1/validation.json`'s, and the note's table already had all three. The 0.17.0 entry below compares the model's 0.81 on all such reports with Ohlson's 0.83 on the comparable ones; on the comparable reports the model's is 0.806.
+
 ## 0.17.0
 
 `default_risk`, the second Canli model, and two fixes to reading filings and fund-report names. 139 tools.
