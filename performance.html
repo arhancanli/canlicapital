@@ -127,6 +127,9 @@
       <div>
         <span class="cc-shell__panel-label">Use it</span>
         <nav aria-label="Products and tools"><a class="cc-shell__panel-link" href="/mcp-servers">canli-mcp, the MCP server</a>
+<a class="cc-shell__panel-link" href="/mcp-servers/install">Add it to your client</a>
+<a class="cc-shell__panel-link" href="/mcp-servers/tools">Every tool</a>
+<a class="cc-shell__panel-link" href="/mcp-servers/how-it-works">How it works and is tested</a>
 <a class="cc-shell__panel-link" href="/mcp-servers/answers">Questions it answers</a>
 <a class="cc-shell__panel-link" href="/companies">Company reference</a>
 <a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a>
@@ -174,7 +177,7 @@
   <script type="module" src="/js/navigation.js"></script>
 </header>
 
-  <main id="content" class="content" tabindex="-1"><header class="cc-hero" data-scene="aerial"><picture class="cc-hero__art" aria-hidden="true"><source type="image/avif" media="(max-width: 768px)" srcset="/scenes/aerial-900.avif"><source type="image/webp" media="(max-width: 768px)" srcset="/scenes/aerial-900.webp"><source type="image/avif" srcset="/scenes/aerial-1600.avif 1600w, /scenes/aerial-2400.avif 2400w" sizes="100vw"><source type="image/webp" srcset="/scenes/aerial-1600.webp 1600w, /scenes/aerial-2400.webp 2400w" sizes="100vw"><img src="/scenes/aerial-1600.webp" alt="" width="1600" height="560" fetchpriority="high" decoding="async"></picture><div class="cc-hero__inner"><nav class="cc-crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Canli Capital</a></li><li><span aria-current="page">Performance, methodology and honest results</span></li></ol></nav><p class="eyebrow label reveal-line"><span class="idx mono-label">00 /</span> Performance</p><h1 class="hero__word display-l" id="performance-word">
+  <main id="content" class="content" tabindex="-1"><header class="cc-hero" data-scene="aerial"><div class="cc-hero__inner"><nav class="cc-crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Canli Capital</a></li><li><span aria-current="page">Performance, methodology and honest results</span></li></ol></nav><p class="eyebrow label reveal-line"><span class="idx mono-label">00 /</span> Performance</p><h1 class="hero__word display-l" id="performance-word">
           <span class="mask" data-chars=""><span class="mask__inner">We would rather show you</span></span>
           <span class="mask" data-chars=""><span class="mask__inner">the method than a number</span></span>
           <span class="mask" data-chars=""><span class="mask__inner">we cannot defend.</span></span>
@@ -240,7 +243,7 @@
       <p class="gauntlet__blurb body">Out-of-sample by construction, with a purge and embargo around every train and test boundary. If an edge only exists in-sample, it disappears here.</p>
       <div class="gauntlet__verdict">
         <span class="gauntlet__value" data-empty="0">+0.04 Sharpe, unstable</span>
-        <span class="chip chip--hold">Holds</span>
+        <span class="chip chip--hold">Fails</span>
       </div>
     </div><div role="listitem" class="gauntlet__row">
       <span class="gauntlet__idx mono-label" aria-hidden="true">02</span>
@@ -251,7 +254,7 @@
       <p class="gauntlet__blurb body">A Sharpe discounted for the number of trials behind it and the non-normal shape of real returns. Given how hard we looked, how impressed should we be.</p>
       <div class="gauntlet__verdict">
         <span class="gauntlet__value" data-empty="0">0.21</span>
-        <span class="chip chip--hold">Holds</span>
+        <span class="chip chip--hold">Fails</span>
       </div>
     </div><div role="listitem" class="gauntlet__row">
       <span class="gauntlet__idx mono-label" aria-hidden="true">03</span>
@@ -262,7 +265,7 @@
       <p class="gauntlet__blurb body">The probability that the true Sharpe sits above zero, given the sample. A confidence statement, not a point estimate.</p>
       <div class="gauntlet__verdict">
         <span class="gauntlet__value" data-empty="0">0.54</span>
-        <span class="chip chip--hold">Holds</span>
+        <span class="chip chip--hold">Fails</span>
       </div>
     </div><div role="listitem" class="gauntlet__row">
       <span class="gauntlet__idx mono-label" aria-hidden="true">04</span>
@@ -273,7 +276,7 @@
       <p class="gauntlet__blurb body">Estimated by combinatorially symmetric cross-validation. The chance the best in-sample configuration is no better than median out-of-sample. Lower is better.</p>
       <div class="gauntlet__verdict">
         <span class="gauntlet__value" data-empty="0">0.88</span>
-        <span class="chip chip--hold">Holds</span>
+        <span class="chip chip--hold">Fails</span>
       </div>
     </div><div role="listitem" class="gauntlet__row">
       <span class="gauntlet__idx mono-label" aria-hidden="true">05</span>
@@ -284,7 +287,7 @@
       <p class="gauntlet__blurb body">Performance estimated across many purged train and test combinations, so the headline figure is not one lucky path through history.</p>
       <div class="gauntlet__verdict">
         <span class="gauntlet__value" data-empty="0">clusters at zero</span>
-        <span class="chip chip--hold">Holds</span>
+        <span class="chip chip--hold">Fails</span>
       </div>
     </div><div role="listitem" class="gauntlet__row">
       <span class="gauntlet__idx mono-label" aria-hidden="true">06</span>
@@ -295,7 +298,7 @@
       <p class="gauntlet__blurb body">Every configuration tried is counted and fed into the deflation, and the strategy must beat a simple honest baseline by a margin. Beating zero is not the bar.</p>
       <div class="gauntlet__verdict">
         <span class="gauntlet__value" data-empty="0">did not beat</span>
-        <span class="chip chip--hold">Holds</span>
+        <span class="chip chip--hold">Fails</span>
       </div>
     </div></div>
 
@@ -544,7 +547,7 @@
                   <span class="label">Runtime rollout</span>
                   <span class="evidence-chain__status mono-label" id="evidenceRolloutStatus">PASS</span>
                 </div>
-                <p class="body evidence-chain__copy" id="evidenceRolloutCopy">VERIFIED FIRST NATURAL MARKED CYCLE. This verifies only prospective position-attribution operation on the first eligible natural cycle. It is not a Sharpe estimate, return trial, or trading authorization. remote_source_files proves only that these three paths hashed to these values on Frankfurt AT verified_at_utc; it does not itself claim signal, weight, or risk-limit equivalence -- that is the change_scope declaration in the preflight contract.</p>
+                <p class="body evidence-chain__copy" id="evidenceRolloutCopy">FIRST NATURAL MARKED CYCLE OBSERVED. This verifies only prospective position-attribution operation on the first eligible natural cycle. It is not a Sharpe estimate, return trial, or trading authorization. remote_source_files proves only that these three paths hashed to these values on Frankfurt AT verified_at_utc; it does not itself claim signal, weight, or risk-limit equivalence -- that is the change_scope declaration in the preflight contract.</p>
                 <a class="evidence-chain__link mono-label" href="/glassbox/crypto_position_attribution_rollout_verification.json">Inspect rollout evidence</a>
               </div>
             </li>
@@ -846,6 +849,7 @@
       <a href="/methodology">Methodology</a>
       <a href="/costs">What costs are charged</a>
       <a href="/verify">Verify record</a>
+      <a href="/privacy">Privacy policy</a>
       <a href="/measurements">Measurements</a>
       <a href="/open">Open data</a>
       <a href="/companies">Company reference</a>

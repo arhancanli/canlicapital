@@ -2,7 +2,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { RESULT_CHARS, createKeeper, nonFinitePaths, preview, registerAll, showResult } from "../src/server.mjs";
+import { RESULT_CHARS, createKeeper, nonFinitePaths, preview, registerAll, showResult, DEFAULT_DIGITS, leanResult, roundNumbers } from "../src/server.mjs";
 
 function handlers() {
   const h = {};
@@ -38,7 +38,8 @@ test("a small result is untouched, and show_result inside a batch reads an earli
   assert.equal(r.preview_only, undefined);
   assert.equal(r.values.length, 99);
   const batch = (await h.run_tool({ calls: [{ name: "show_result", arguments: { ref: r.ref, path: "values", limit: 3 } }] })).structuredContent;
-  assert.deepEqual(batch.results[0].result.items, r.values.slice(0, 3));
+  assert.deepEqual(roundNumbers(batch.results[0].result.items, DEFAULT_DIGITS), r.values.slice(0, 3), "the answer shows six figures, and the full numbers stay under the ref");
+  assert.ok(batch.results[0].result.items.some((x, i) => x !== r.values[i]));
 });
 
 test("numbers JSON cannot print are named, not left to read as missing", async () => {
@@ -84,4 +85,31 @@ test("text shortened by a preview names its actual path for paging", () => {
   const shown = preview({ filing: { text: "x".repeat(2500) } }, "", cuts);
   assert.ok(shown.filing.text.length < 2100);
   assert.deepEqual(cuts, [{ path: "filing.text", chars: 2500 }]);
+});
+
+test("what the model reads: evidence as a count, limits once a session, six figures, the whole result under its ref", () => {
+  const seen = new Set();
+  const full = { value: 1.23456789012, whole: 416161000000, limits: ["a limit"], meaning: "what it means", evidence: { documents: 3, columns: ["url"], rows: [["https://www.sec.gov/a"], ["https://www.sec.gov/b"], ["https://www.sec.gov/c"]] } };
+  const first = leanResult(full, { name: "t", ref: "r1", seen });
+  assert.equal(first.value, 1.23457);
+  assert.equal(first.whole, 416161000000, "a whole number stays exact");
+  assert.deepEqual(first.limits, ["a limit"]);
+  assert.deepEqual(first.evidence, { documents: 3, list: "show_result with ref r1 and path evidence" });
+  const again = leanResult(full, { name: "t", ref: "r2", seen });
+  assert.equal(again.limits, undefined);
+  assert.equal(again.meaning, undefined);
+  assert.equal(again.limits_and_meaning, "As in your earlier call of t.");
+  assert.deepEqual(leanResult(full, { name: "other", seen }).limits, ["a limit"], "another tool's limits still come");
+  assert.equal(leanResult(full, { name: "t2", digits: 10 }).value, full.value, "digits says otherwise: rounded when it ran, and left alone here");
+  assert.equal(full.evidence.rows.length, 3, "the original is not changed");
+  assert.equal(leanResult(full, { name: "t3" }).evidence.rows.length, 3, "with no ref to fetch it from, as on the hosted server, the list stays");
+});
+
+test("a batch of one tool reads its limits once, and the receipt still covers the full results", async () => {
+  const h = handlers();
+  const call = { name: "return_stats", arguments: { returns: [0.01, -0.02, 0.03, 0.015, -0.005, 0.02] } };
+  const r = (await h.run_tool({ calls: [call, call] })).structuredContent;
+  assert.equal(r.results.length, 2);
+  assert.ok(r.results[0].result.cagr !== undefined);
+  assert.ok(String(r.results[0].result.cagr).length <= 9, String(r.results[0].result.cagr));
 });

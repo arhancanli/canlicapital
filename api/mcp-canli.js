@@ -5,8 +5,8 @@
 // connectors, ChatGPT, Cursor). It serves the packs that read public data or compute: quant,
 // validation, fundamentals, research, backtest and markets. Three things stay with a local install
 // (npx canli-mcp), and the server's instructions say so:
-// - files: a {"$file": ...} argument reads the disk, and here the disk is the server's, so a request
-//   that names one is refused before any tool sees it;
+// - files: a {"$file": ...} argument or a tool's path argument reads the disk, and here the disk is the
+//   server's, so a request that names one is refused before any tool sees it;
 // - paper trading, which needs the user's own broker keys;
 // - prices: the keyless source is Yahoo's chart data, for personal use under Yahoo's terms.
 // Nothing is kept between requests (each builds a fresh server), so one caller never sees another's
@@ -18,47 +18,54 @@
 // instead of per address. A request with no key is free and never touches the key store. A key the
 // store does not know, or a revoked one, is refused; if the store cannot be reached, a keyed request
 // is served at the free tier's limits rather than refused.
+//
+// Every answer's receipt (MCP _meta, "canlicapital.com/receipt") leaves here signed with the published
+// receipt key, naming this endpoint (api/_lib/answer-receipts.js), so it can be checked offline later.
+// canli-mcp after 0.21.0 signs with the same signer itself (registerAll's receipts option, which 0.21.0
+// ignores), so the receipt an answer carries with receipt: true, the one a model sees, is signed too.
 import * as canli from "canli-mcp/src/server.mjs";
+import { signAnswerReceipt, signReceiptsOf } from "./_lib/answer-receipts.js";
 import { bearerKey, hashKey } from "./_lib/auth.js";
 import { defaultStore } from "./_lib/handler.js";
 import { createStatelessMcpHandler } from "./_lib/mcp-stateless.js";
+import { slidingMinute } from "./_lib/limiter.js";
 import { TIERS, tierLimits } from "./_lib/tiers.js";
 
 // The markets pack reads this when it first loads, on the first request; with it off, price tools
-// say that prices need a key instead of fetching Yahoo's data.
+// say that prices need a key instead of fetching Yahoo's data, and from canli-markets-mcp 0.16.0 so do the
+// tools that read Yahoo's quote summary or screener (stock_snapshot, analyst_history, market_movers,
+// etf_profile): Yahoo's data is for personal use under its terms.
 process.env.CANLI_KEYLESS_PRICES = "0";
+// A company named in words that matches several filers is put to the person by MCP elicitation on a local
+// server. Each request here builds a fresh, stateless server with no stream to wait on an answer, so the best
+// match stands with the others listed, as a client that cannot be asked gets it.
+process.env.CANLI_ASK = "0";
 
 export const HOSTED_PACKS = ["quant", "validation", "fundamentals", "research", "backtest", "markets"];
+// What each signed receipt names as the endpoint that issued it.
+export const HOSTED_ENDPOINT = "canlicapital.com/mcp/canli";
 // Series go inline here (there are no files): a megabyte holds about 50,000 numbers.
 export const MAX_FLAGSHIP_BODY_BYTES = TIERS.free.max_body_bytes;
 export const REQUESTS_PER_MINUTE = TIERS.free.requests_per_minute;
-export const HOSTED_NOTE = " This is the hosted server (canlicapital.com/mcp/canli), and it keeps nothing between requests: chain tools inside one run_tool call ({\"calls\": [...]}, where {\"$result\": 0} passes the first call's output on); refs such as \"r1\" do not carry over. File arguments, paper trading and prices need the local server: npx canli-mcp.";
+export const HOSTED_NOTE = " This is the hosted server (canlicapital.com/mcp/canli), and it keeps nothing between requests: chain tools inside one run_tool call ({\"calls\": [...]}, where {\"$result\": 0} passes the first call's output on); refs such as \"r1\" do not carry over. File arguments, paper trading, prices, Yahoo's data (stock snapshots, analysts' history, market movers, ETF profiles), the Lab of a million strategies, the data lake and the Null Zoo need the local server: npx canli-mcp.";
 
-// Whether a request's arguments name a file anywhere ({"$file": ...}), however deeply nested.
+// Whether a request's arguments name a file anywhere: a {"$file": ...}, or a tool's own path argument
+// (returns_file, league_dir, out_file and so on), however deeply nested. Either would read or write the
+// server's disk, not the caller's. `files` on fails_to_deliver is a count, so a number passes; text, or
+// anything passed on from an earlier call, does not. A request too deep to read is refused.
+const PATH_ARGUMENT = /^(?:file|files)$|_(?:file|files|dir)$/;
 export function namesAFile(value, depth = 0) {
-  if (depth > 64 || value === null || typeof value !== "object") return false;
-  if (!Array.isArray(value) && Object.hasOwn(value, "$file")) return true;
+  if (value === null || typeof value !== "object") return false;
+  if (depth > 64) return true;
+  if (!Array.isArray(value)) {
+    if (Object.hasOwn(value, "$file")) return true;
+    if (Object.entries(value).some(([k, v]) => PATH_ARGUMENT.test(k) && v !== null && v !== undefined && typeof v !== "number" && typeof v !== "boolean")) return true;
+  }
   return Object.values(value).some((v) => namesAFile(v, depth + 1));
 }
 
-// A sliding minute per caller in this function instance; the oldest callers are forgotten past
-// maxCallers. Returns the seconds to wait, or 0 to go ahead. A call may pass its own limit (a tier's).
-export function createLimiter({ perMinute: defaultPerMinute = REQUESTS_PER_MINUTE, now = () => Date.now(), maxCallers = 10_000 } = {}) {
-  const seen = new Map();
-  return (key, perMinute = defaultPerMinute) => {
-    const t = now();
-    const recent = (seen.get(key) ?? []).filter((x) => t - x < 60_000);
-    seen.delete(key);
-    if (recent.length >= perMinute) {
-      seen.set(key, recent);
-      return Math.max(1, Math.ceil((60_000 - (t - recent[0])) / 1000));
-    }
-    recent.push(t);
-    seen.set(key, recent);
-    if (seen.size > maxCallers) seen.delete(seen.keys().next().value);
-    return 0;
-  };
-}
+// A sliding minute per caller in this function instance: _lib/limiter.js.
+export const createLimiter = (options = {}) => slidingMinute({ perMinute: REQUESTS_PER_MINUTE, ...options });
 
 // The caller: the first address of the X-Forwarded-For header Vercel sets, else the socket's.
 const callerOf = (req) => String(req.headers["x-forwarded-for"] ?? "").split(",")[0].trim() || req.socket?.remoteAddress || "unknown";
@@ -77,7 +84,8 @@ export function createTierResolver({ store, now = () => Date.now(), ttlMs = 60_0
   };
 }
 
-export function createCanliHandler({ limiter = createLimiter(), tierOf = createTierResolver() } = {}) {
+// flagship: the canli-mcp module served; tests pass the repository's own, unreleased one.
+export function createCanliHandler({ limiter = createLimiter(), tierOf = createTierResolver(), env = process.env, flagship = canli } = {}) {
   // Who is asking and at which tier, worked out once per request (the size limit is needed before
   // the body is read, the rate after).
   const admissions = new WeakMap();
@@ -102,13 +110,13 @@ export function createCanliHandler({ limiter = createLimiter(), tierOf = createT
     if (wait) return { status: 429, code: -32000, message: `Too many requests: the hosted server takes ${perMinute} a minute from each ${a.tier === "free" ? "caller" : `${a.tier} key`}. Try again in ${wait} s${a.tier === "free" ? ", run the same server locally with npx canli-mcp, or use a paid key for more" : ""}.`, headers: { "Retry-After": String(wait) } };
     const calls = Array.isArray(body) ? body : [body];
     const named = calls.find((m) => m && typeof m === "object" && namesAFile(m.params));
-    if (named) return { status: 200, code: -32602, id: named.id ?? null, message: "The hosted server reads no files: a {\"$file\": ...} argument would read the server's disk, not yours. Pass the numbers inline, or run canli-mcp locally (npx canli-mcp), where $file reads your own files." };
+    if (named) return { status: 200, code: -32602, id: named.id ?? null, message: "The hosted server reads no files: a {\"$file\": ...} or path argument would read the server's disk, not yours. Pass the numbers inline, or run canli-mcp locally (npx canli-mcp), where $file reads your own files." };
     return null;
   };
   return createStatelessMcpHandler({
-    serverInfo: canli.SERVER_INFO,
-    instructions: `${canli.instructions(HOSTED_PACKS)}${HOSTED_NOTE}`,
-    register: (server) => canli.registerAll(server, HOSTED_PACKS),
+    serverInfo: flagship.SERVER_INFO,
+    instructions: `${flagship.instructions(HOSTED_PACKS)}${HOSTED_NOTE}`,
+    register: (server) => flagship.registerAll(signReceiptsOf(server, { endpoint: HOSTED_ENDPOINT, env }), HOSTED_PACKS, undefined, { readOnly: true, receipts: { endpoint: HOSTED_ENDPOINT, sign: (receipt) => signAnswerReceipt(receipt, env) } }),
     path: "/mcp/canli",
     maxBodyBytes: async (req) => tierLimits((await admit(req)).tier).max_body_bytes,
     screen,

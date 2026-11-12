@@ -4,7 +4,8 @@
 // input is read from the company's annual XBRL and named with its tag; the price is the last close.
 import { z } from "zod";
 
-import { getJson, resolveEntity, tickerTable } from "./sources.mjs";
+import { factBook, marketValue, usdPer } from "./listing.mjs";
+import { getJson, resolveEntity, submissions, tickerTable } from "./sources.mjs";
 import { priceHistory } from "./tools.mjs";
 
 export const reverseDcfInput = z.object({
@@ -29,15 +30,27 @@ const TAGS = {
   debt_total: ["LongTermDebt", "LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities"],
   paper: ["CommercialPaper", "ShortTermBorrowings"],
 };
+// The same measures in the IFRS taxonomy.
+const IFRS_TAGS = {
+  cfo: ["CashFlowsFromUsedInOperatingActivities"],
+  capex: ["PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities", "PurchaseOfPropertyPlantAndEquipment"],
+  revenue: ["Revenue", "RevenueFromContractsWithCustomers"],
+  cash: ["CashAndCashEquivalents"],
+  investments: ["CurrentFinancialAssets", "OtherCurrentFinancialAssets", "CurrentInvestments"],
+  debt_current: ["CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings", "CurrentBorrowings", "CurrentPortionOfLongtermBorrowings"],
+  debt_noncurrent: ["NoncurrentPortionOfNoncurrentBorrowings", "NoncurrentBorrowings", "LongtermBorrowings"],
+  debt_total: ["Borrowings"],
+  paper: ["ShorttermBorrowings"],
+};
 const FLOW = new Set(["cfo", "capex", "revenue"]);
 const round = (x, d = 4) => (Number.isFinite(x) ? Math.round(x * 10 ** d) / 10 ** d : null);
 
 // Annual values of one measure by fiscal-year end, the latest filing's figure for each, from the tag
 // the company reports most recently (companies move between revenue tags, for one).
-export function annualSeries(facts, name) {
+export function annualSeries(facts, name, { tags = TAGS, unit = "USD" } = {}) {
   let best = null;
-  for (const tag of TAGS[name]) {
-    const rows = (facts[tag]?.units?.USD ?? []).filter((x) => ANNUAL.has(x.form) && (FLOW.has(name) ? x.start && days(x.end, x.start) >= 350 && days(x.end, x.start) <= 380 : !x.start));
+  for (const tag of tags[name]) {
+    const rows = (facts[tag]?.units?.[unit] ?? []).filter((x) => ANNUAL.has(x.form) && (FLOW.has(name) ? x.start && days(x.end, x.start) >= 350 && days(x.end, x.start) <= 380 : !x.start));
     if (!rows.length) continue;
     const by = new Map();
     for (const r of rows) if (!by.has(r.end) || r.filed > by.get(r.end).filed) by.set(r.end, r);
@@ -81,14 +94,14 @@ export async function reverseDcf(session, args) {
   if (!symbol) throw new Error(`${a.company} has no listed ticker to price; pass ticker.`);
   const url = `https://data.sec.gov/api/xbrl/companyfacts/CIK${String(e.cik).padStart(10, "0")}.json`;
   const cf = await getJson(session, url, { maxBytes: 96 * 1024 * 1024 });
-  const f = cf.facts?.["us-gaap"] ?? {};
-  const cfo = annualSeries(f, "cfo"), capex = annualSeries(f, "capex");
+  const book = factBook(cf), f = book.facts, how = { tags: book.taxonomy === "ifrs-full" ? IFRS_TAGS : TAGS, unit: book.currency };
+  const cfo = annualSeries(f, "cfo", how), capex = annualSeries(f, "capex", how);
   if (!cfo) throw new Error(`${cf.entityName ?? a.company} (CIK ${e.cik}) tags no annual operating cash flow in its XBRL; a newly formed holding company files under a new CIK, so pass the CIK of the company that filed the earlier 10-Ks.`);
   const fcf = new Map();
   for (const [end, v] of cfo.values) fcf.set(end, v - (capex?.values.get(end) ?? 0));
   const ends = [...fcf.keys()], end = ends.at(-1);
   const base = a.base === "average_3y" && ends.length >= 3 ? ends.slice(-3).reduce((t, k) => t + fcf.get(k), 0) / 3 : fcf.get(end);
-  const latest = (name) => { const s = annualSeries(f, name); return s && s.values.has(end) ? { tag: s.tag, val: s.values.get(end) } : null; };
+  const latest = (name) => { const s = annualSeries(f, name, how); return s && s.values.has(end) ? { tag: s.tag, val: s.values.get(end) } : null; };
   const sharesFacts = (cf.facts?.dei?.EntityCommonStockSharesOutstanding?.units?.shares ?? []).sort((x, y) => (x.end < y.end ? 1 : -1));
   const shares = sharesFacts[0]?.val ?? null;
   const today = new Date(session.now()).toISOString().slice(0, 10);
@@ -102,11 +115,16 @@ export async function reverseDcf(session, args) {
   const short = dc?.tag === "DebtCurrent" ? null : cp;
   const debt = (dn ? (dc?.val ?? 0) + dn.val : dt ? dt.val : dc?.val ?? 0) + (short?.val ?? 0);
   const liquid = (cash?.val ?? 0) + (inv?.val ?? 0);
-  const equity = price * shares, ev = equity + debt - liquid;
+  // Price and shares may stand on different footings (depositary shares), and the filing may not be in
+  // dollars: the model runs in the filing's currency.
+  const [mv, fx] = await Promise.all([marketValue(session, e.cik, await submissions(session, e.cik), price, shares, { book }), usdPer(session, book.currency)]);
+  if (!mv.market_cap) throw new Error(`${cf.entityName ?? a.company}: ${mv.note}`);
+  if (!fx?.rate) throw new Error(`${cf.entityName ?? a.company} reports in ${book.currency}, and no rate to the dollar was available to set its filing against the price.`);
+  const equity = mv.market_cap / fx.rate, ev = equity + debt - liquid;
   const solve = (rr, tt) => impliedGrowth(ev, base, rr, tt, n);
   const main = solve(r, tg);
   const rates = [r - 0.02, r - 0.01, r, r + 0.01, r + 0.02].filter((x) => x > tg + 0.005), terms = [tg - 0.005, tg, tg + 0.005];
-  const revenue = annualSeries(f, "revenue");
+  const revenue = annualSeries(f, "revenue", how);
   const yr = (m) => (m.growth == null ? (m.above ? `above ${m.above}` : m.below != null ? `below ${m.below}` : null) : round(m.growth));
   return {
     company: { cik: e.cik, name: cf.entityName ?? e.name, ticker: symbol }, fiscal_year_end: end,
@@ -118,7 +136,7 @@ export async function reverseDcf(session, args) {
     },
     sensitivity: { note: "Implied yearly growth for each discount rate (rows) and terminal growth (columns).", columns: ["discount_rate", ...terms.map((t) => `terminal_${round(t, 3)}`)], rows: rates.map((rr) => [round(rr, 3), ...terms.map((tt) => { const m = solve(rr, tt); return m ? yr(m) : null; })]) },
     inputs: {
-      price, price_date: priceDate, shares_outstanding: shares, equity_value: round(equity, 0), debt: round(debt, 0), cash_and_investments: round(liquid, 0), enterprise_value: round(ev, 0), base_free_cash_flow: round(base, 0), base: a.base ?? "latest",
+      price, price_date: priceDate, shares_outstanding: shares, ...(mv.ratio?.shares_per_listed_share !== 1 ? { ordinary_shares_per_listed_share: mv.ratio.shares_per_listed_share } : {}), ...(book.currency !== "USD" ? { currency: book.currency, usd_per_unit: round(fx.rate, 6), fx_date: fx.date } : {}), equity_value: round(equity, 0), debt: round(debt, 0), cash_and_investments: round(liquid, 0), enterprise_value: round(ev, 0), base_free_cash_flow: round(base, 0), base: a.base ?? "latest",
       discount_rate: r, terminal_growth: tg, years: n,
       tags: { operating_cash_flow: cfo.tag, capex: capex?.tag ?? "not tagged: taken as 0", cash: cash?.tag ?? null, investments: inv?.tag ?? null, debt: (dn ? [dc?.tag, dn.tag] : dt ? [dt.tag] : [dc?.tag]).concat(short ? [short.tag] : []).filter(Boolean), shares: "dei:EntityCommonStockSharesOutstanding" },
     },

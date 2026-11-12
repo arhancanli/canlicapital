@@ -48,12 +48,13 @@ Apple's 2017 accounts payable".
 | `known_as_of` | For each measure, the most recent period filed on or before a date and its value as it stood then. Flags values later restated (`changed_after`) and measures the company stopped reporting (`stale`). Defaults to ten common measures. With `ratios: true`, adds margins, return on equity and assets, liabilities to equity and free cash flow computed only from those filings, each listing its inputs and their filings. The point-in-time primitive for backtests. |
 | `history` | One measure over time, newest first: `first_reported` (default), `latest`, or as known on an `as_of` date. Annual, quarterly or all periods. |
 | `restatements` | Periods whose latest value differs from the first report, with both values, the percent change and a cause: `split`, `split_likely`, `tag_change`, or none (a restatement, reclassification or correction). Scans every concept when none is given. |
+| `vintage_diff` | A company's history as known on two dates: each period whose value changed between them, with both values, the filing that changed it and the percent change, and how many periods were first reported in between. Stock-split changes are counted, not listed. |
 | `vintages` | Every filing that reported one period of one measure, oldest first. |
 | `list_concepts` | The concepts a company reports and the plain names it supports, with units, period counts, date range and restated-period counts. |
 | `find_company` | Companies matching a name, ticker or CIK, best first, with their CIKs and tickers, and which one the other tools would read. |
 | `cross_section` | One measure for up to 50 companies (tickers, CIKs or names) as filed by a date: each company's latest period, its value then, the filing, and whether it was later restated. The point-in-time building block of a peer comparison or a factor. |
 
-All seven tools are read-only.
+All eight tools are read-only.
 
 A cross-section indexes only the measure asked for in each company's snapshot and keeps none of
 them in memory, so fifty companies cost about as much memory as one. Checked against an independent
@@ -192,7 +193,7 @@ It reads the exact reference, usage and settings bytes supplied by the client,
 keeps every selected row, and makes missing or uncertain outcomes visible.
 The complete repository checkout and its pinned package dependencies are required.
 The canonical helper lives outside this npm package; `npx canli-fundamentals-mcp`
-and the hosted endpoint continue to expose the existing seven tools.
+and the hosted endpoint continue to expose the existing eight tools.
 
 
 ## Opt-in package audit command (Unreleased)
@@ -207,7 +208,7 @@ After a reviewed candidate tarball has been placed in a private installation,
 configure an MCP client with the absolute path to
 `node_modules/.bin/canli-fundamentals-audit`, and supply the four exact input fields
 described in the contract. This command lists one `audit_inputs` tool.
-`canli-fundamentals-mcp` and hosted endpoints still list the existing seven tools.
+`canli-fundamentals-mcp` and hosted endpoints still list the existing eight tools.
 The new command has not been published to npm; version0.5.0 is unchanged while
 PRIMARY assembles the substantial release. Do not use a current npm download as
 evidence that this Unreleased command is available.
@@ -300,3 +301,26 @@ recruit reviewers, dispatch packets, or make rights/admission decisions.
 Three prompts do the common jobs in one step: `known_on_date` (company, as_of), `restatement_review` (company, optional concept) and `peers_as_of` (companies, concept, as_of). In clients that support completion, `company` completes from the SEC ticker list and `concept` from the plain names.
 
 Resources: `canli://concepts` lists every plain name and the tags behind it; `canli://limits` gives the limits to quote; `canli://schemas/{tool}` gives a tool's exact JSON Schemas; `canli://examples/{language}/{tool}` gives a working call in `python`, `javascript` or `curl`.
+
+## Companies outside the reference
+
+The reference covers the filers listed on its site. Set `CANLI_SEC_LIVE=1` and a company outside it, such as TSMC or
+Shell, is read live from the SEC (`data.sec.gov`), with `snapshot.read_live` and a note saying so. `SEC_USER_AGENT`
+sets who the SEC sees. It is off by default, so this server alone contacts only `CANLI_API_BASE`. The canli-mcp
+flagship turns it on.
+
+With it on, a company inside the reference is checked too: when the SEC's filing list (`data.sec.gov/submissions`)
+shows an annual or quarterly report filed on or after the day its reference snapshot was captured, the SEC's own
+company facts are read instead. The snapshot block then carries `read_live`, `newer_filing` (the form, date and
+accession number of that report), `reference` (the snapshot it replaced) and a note, so an answer is never quietly
+older than the company's latest report.
+
+## As of a date, nothing from later (Unreleased)
+
+An answer as of a date holds only what had been filed by then. `known_as_of` and `cross_section` leave out
+`changed_after` (whether a filing made after the date changed a value) unless the call asks for it with
+`changed_after: true`: nobody knew it on that date, so it is for checking a backtest, not for its decisions, and a
+pipeline that reads a value as of each decision date no longer sees, beside it, that a later filing changed it.
+With `as_of`, `history`'s `changed` counts only filings made by that date; `vintages` and `restatements` show the
+later ones. This replaces the `changed_after` flag the tools table above describes. The time machine in canli-mcp
+already dropped the field.

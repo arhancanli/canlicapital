@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "canli-mcp",
   "display_name": "Canli Capital Finance",
-  "version": "0.11.1",
+  "version": "0.22.0",
   "description": "Finance research and quantitative analysis through one Canli MCP connection.",
   "author": { "name": "Canli Capital", "url": "https://canlicapital.com" },
   "homepage": "https://canlicapital.com/developers",
@@ -11,10 +11,10 @@
   "license": "MIT",
   "server": {
     "type": "node",
-    "entry_point": "src/server.mjs",
+    "entry_point": "src/start.mjs",
     "mcp_config": {
       "command": "node",
-      "args": ["${__dirname}/src/server.mjs"],
+      "args": ["${__dirname}/src/start.mjs"],
       "env": {
         "CANLI_PACKS": "${user_config.packs}",
         "CANLI_OFFLINE": "${user_config.offline}",

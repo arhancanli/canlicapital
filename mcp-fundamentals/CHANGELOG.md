@@ -1,5 +1,62 @@
 # Changelog
 
+## 0.10.0
+
+- An answer as of a date holds nothing filed after it, unless asked by name. `known_as_of`, its ratios and `cross_section` returned `changed_after` beside every value: whether a filing made after `as_of` changed it, a fact from the future beside a value meant for a decision on that date. They now leave it out unless the call passes `changed_after: true`, and the meaning says which. `history` with `as_of` counts in `changed` only the filings made by `as_of`.
+- 8-Ks and pay-versus-performance tables no longer restate a company's figures. Where a periodic report carries a period, an 8-K's values for it (Essential Utilities' 8-K for its merger carried American Water's revenue) never become the first or latest value; an amended annual report whose values for a measure are all whole multiples of 100,000, each within 5% of an earlier finer value, is a rounded repeat (Genco's Part III amendment), not a restatement. Both are listed in `history`'s `set_apart`, each with why.
+
+## 0.9.1
+
+- A company renamed since the reference was captured is found by its new name. The site's name index now also lists the names the SEC's ticker file gives a covered company where they differ from the reference's (908 companies), and `find_company` and every tool that takes a company name match them, saying which name matched: "Here Group Limited" is CIK 1932770, which the reference names QuantaSing Group Limited; "Franklin Templeton" is Franklin Resources; "Bank of America" is CIK 70858. FilingFacts weekly found this: both of canli-mcp 0.20.0's misses on 2026-W44 were Here Group, searched by its new name. An index without the new list still works, and older versions of this package ignore it.
+
+## 0.9.0
+
+When reading live is on, answers no longer stop at the date the reference was captured, or at the moment a long session first read a company; and `vintage_diff` says what changed in a company's history between two dates.
+
+- `vintage_diff`: a company's history as known on two dates. Each period whose value as known on `from` (the latest filing by then) differs from its value as known on `to`, latest filing first, with both values, the filing that changed it and the percent change; how many periods were compared and how many were first reported in between. Every concept by default, or one (a plain name follows its tags). Stock-split changes are counted, not listed. `restatements` compares each period's first report with its latest; this answers "what did the filings since a date change?", such as a new 10-K's restatements of earlier years.
+
+- With `secLive` on (the canli-mcp flagship), a company inside the reference whose snapshot was captured before its newest annual or quarterly report is read live from the SEC instead, with `snapshot.newer_filing`, `snapshot.reference` and a note. The reference on canlicapital.com was captured on 2026-09-19, so until this, Apple's answers stopped before the 10-K it filed on 2026-11-03, and every company's before this quarter's 10-Qs. One small request to the SEC's filing list per company decides it.
+- A long session sees a report filed after it first read a company. A company held in memory is checked against the SEC's filing list at most every 15 minutes while it is in use, and a newer annual or quarterly report is read live. The SEC's company facts can trail its filing list by minutes, so a report whose figures are not in them yet is read for up to four times in all; a failed read keeps the figures held. Until this, a desktop app left open for days, or the canli-mcp sentinel, kept each company's first read for as long as it ran.
+
+## 0.8.0
+
+From a test against other finance MCP servers on the newest models:
+
+- `createSession({ secLive: true })`, or `CANLI_SEC_LIVE=1`: a company outside the reference is read live from the SEC (`data.sec.gov`), with `snapshot.read_live` and a note saying so. Off by default, so this server alone still contacts only `CANLI_API_BASE`. The canli-mcp flagship turns it on, which gives its `history` about 25 of the largest foreign companies it could not read: TSMC, Shell, Novo Nordisk, SAP, HSBC, AstraZeneca.
+- Names people use reach the listed company: "Google" had returned Google Inc.'s 2014 revenue, "Facebook" and "TSMC" nothing.
+- The unit of the latest period is used by default, so a company that changed its reporting currency reads to today: Diageo stopped in 2023 under pounds.
+- `revenue` also reads `RevenueAndOperatingIncome` and `RevenueFromSaleOfGoods`, for banks and for filers such as Novartis and Sanofi that tag only those.
+- `stale_note`: when the latest value is over fifteen months old, the answer says so and points to the filing, since the SEC's facts feed can miss a foreign issuer's newest annual report.
+- `concept` and `concepts` together mean all of them, for clients that force every optional field.
+
+## 0.7.5
+
+- A ticker held by a company outside the reference is never read as another company's name: "BP" had returned BP
+  Midstream Partners' figures, and 96 such tickers could collide the same way. The answer now says who holds the
+  ticker and lists the names that fit.
+- A short capitalized query read as the start of a name says so ("BK" is BK Technologies, not BNY Mellon's former ticker).
+
+## 0.7.4
+
+- A name finds the listed company: "T Rowe Price Group Inc" had read a private credit fund of that family, and "Southern
+  Co/The" another filer.
+
+## 0.7.3
+
+Found by checking the S&P 500 against its own statements.
+
+- A 10-Q no longer restates a full year: Comfort Systems' April 2026 10-Q tagged a quarter's $1.83 billion as all of
+  2025, which replaced the 10-K's $9.1 billion in `history`.
+- Revenue follows `RevenuesNetOfInterestExpense`, a lender's total: American Express's reads $72.2 billion, not $41.3.
+
+## 0.7.2
+
+- `history`, `known_as_of` and the rest no longer read proxy statements as filings of a company's results. Their
+  pay tables repeat net income in rounded units: Arista's 2025 net income came back as 3,511 rather than $3.5114
+  billion.
+- Net income follows the many 10-Ks that, since the 2025 reports, tag the common-stockholders line rather than
+  `NetIncomeLoss`.
+
 ## 0.7.1
 
 - `history` lists `other_dates`: balances annual reports also carry on dates that are not year ends,

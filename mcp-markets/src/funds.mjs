@@ -3,7 +3,8 @@
 // fund's exposures, its monthly returns and the money that came in and went out.
 import { z } from "zod";
 
-import { getJson, getText, NotFound, own, tickerTable } from "./sources.mjs";
+import { getJson, getText, getZipText, NotFound, own, tickerTable } from "./sources.mjs";
+import { xlsxRows } from "./xlsx.mjs";
 import { child, children, num, parseXml, textAt } from "./xml.mjs";
 
 const round = (x, d = 4) => (x == null ? null : Math.round(x * 10 ** d) / 10 ** d);
@@ -38,9 +39,11 @@ export async function resolveFund(session, query) {
   throw new NotFound(`No US mutual fund or ETF has the ticker ${q} in SEC's fund ticker table. Pass a fund ticker (VOO, IVV, AGG, FXAIX) or a series id (S000004310).`);
 }
 
-// A series' public N-PORT filings, newest first, from EDGAR's filing list for that series.
-export async function seriesFilings(session, series) {
-  const xml = await getText(session, `https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${series}&type=NPORT-P&dateb=&owner=include&count=12&output=atom`, { maxBytes: 2 * 1024 * 1024 });
+// A series' public N-PORT filings, newest first, from EDGAR's filing list for that series; with before (a date),
+// the forty filed on or before it, to reach back years.
+export async function seriesFilings(session, series, { before } = {}) {
+  const page = before ? `dateb=${before.replaceAll("-", "")}&owner=include&count=40` : "dateb=&owner=include&count=12";
+  const xml = await getText(session, `https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${series}&type=NPORT-P&${page}&output=atom`, { maxBytes: 2 * 1024 * 1024 });
   const out = [];
   for (const entry of xml.split(/<entry>/).slice(1)) {
     const get = (t) => entry.match(new RegExp(`<${t}>([^<]*)</${t}>`))?.[1] ?? null;
@@ -98,6 +101,20 @@ export async function loadNport(session, filing) {
   return { url, ...parseNport(await getText(session, url, { maxBytes: 48 * 1024 * 1024 })) };
 }
 
+const addDays = (date, n) => new Date(Date.parse(`${date}T00:00:00Z`) + n * 86400000).toISOString().slice(0, 10);
+
+// The report for the last quarter-end on or before a date. A fund files N-PORT within 60 days of the month it
+// reports, so that report was filed by 75 days after the date: the newest filings up to then are read in turn,
+// three at most, until one reports a period on or before the date.
+export async function reportOn(session, f, date) {
+  const list = await seriesFilings(session, f.series, { before: addDays(date, 75) });
+  for (const filing of list.slice(0, 3)) {
+    const report = await loadNport(session, filing);
+    if (report.period <= date) return { filing, report };
+  }
+  throw new NotFound(`${f.ticker ?? f.series} has no public N-PORT for a quarter-end on or before ${date} among its filings up to ${addDays(date, 75)}.`);
+}
+
 const weightBy = (holdings, key, labels) => {
   const by = new Map();
   for (const h of holdings) { const k = h[key] ?? "unknown"; by.set(k, (by.get(k) ?? 0) + (h.pct ?? 0)); }
@@ -122,6 +139,22 @@ function bondProfile(holdings, period) {
 }
 
 const posKey = (h) => `${h.cusip && h.cusip !== "000000000" && h.cusip !== "N/A" ? h.cusip : h.isin ?? h.name}|${h.payoff ?? ""}`;
+
+// A check a report's own figures allow: the positions' dollar values should come to about the net assets, apart by
+// the liabilities less the assets outside the positions (cash, receivables), and the total assets less the
+// liabilities should be the net assets. Values far from the net assets, or apart from the weights as filed, or
+// totals that disagree point at a report to read before relying on it.
+export function holdingsCheck(report) {
+  const total = report.holdings.reduce((s, h) => s + (h.value ?? 0), 0);
+  const known = (...xs) => xs.every((x) => Number.isFinite(x));
+  return {
+    positions_total: round(total, 2),
+    values_add_to: known(report.net_assets) && report.net_assets ? round(total / report.net_assets, 4) : null,
+    liabilities: report.total_liabilities ?? null,
+    other_assets: known(report.total_assets) ? round(report.total_assets - total, 2) : null,
+    totals_agree: known(report.total_assets, report.total_liabilities, report.net_assets) ? Math.abs(report.total_assets - report.total_liabilities - report.net_assets) <= 1 : null,
+  };
+}
 
 export const portfolioInput = z.object({
   fund: z.string().min(1).max(20).describe("A mutual fund or ETF ticker (VOO, IVV, QQQ, AGG, FXAIX, ARKK) or an SEC series id (S000004310)."),
@@ -150,6 +183,7 @@ export async function fundPortfolio(session, args) {
     period: cur.period, filed: list[i].filed, accession: list[i].accession,
     net_assets: cur.net_assets, total_assets: cur.total_assets, positions: hs.length,
     weights_add_to: round(hs.reduce((s, h) => s + (h.pct ?? 0), 0) / 100, 4),
+    holdings_check: holdingsCheck(cur),
     columns: ["name", "title", "cusip", "isin", "value_usd", "weight", "asset_category", "issuer_category", "country", "payoff"],
     rows: ranked.slice(0, top).map((h) => [h.name, h.title, h.cusip, h.isin, h.value, round(h.pct / 100, 6), h.asset, h.issuer, h.country, h.payoff]),
     exposure: {
@@ -183,6 +217,7 @@ export async function fundPortfolio(session, args) {
   out.limits = [
     "From the fund's Form N-PORT as filed with the SEC; funds file it monthly, and only the last month of each fiscal quarter is made public, 60 days after that month ends.",
     "Weights are percentages of net assets as filed; short positions and derivatives can make them add to more or less than 100 percent. Balances are shares, principal amounts or contracts, as each position's units say.",
+    "holdings_check is a check on the report itself: the positions' dollar values come to values_add_to of the net assets (weights_add_to is the same from the weights as filed), apart by the liabilities less other_assets, the assets outside the positions; totals_agree says the total assets less the liabilities equal the net assets.",
     "Sales and redemptions are shares issued and redeemed in dollars (creations and redemptions for an ETF); monthly returns are the share class's total returns as filed.",
     "Not investment advice.",
   ];
@@ -201,38 +236,126 @@ export const INDEX_ETFS = Object.freeze({
   "msci world": ["URTH", "MSCI World"], "msci acwi": ["ACWI", "MSCI ACWI"], "aggregate bond": ["AGG", "Bloomberg US Aggregate Bond"],
 });
 const UIT_INDEXES = Object.freeze({ dow: "DIA", "dow jones": "DIA", djia: "DIA", "dow jones industrial average": "DIA" });
+// Funds whose holdings State Street publishes each day: the unit investment trusts (DIA, SPY, MDY, which file no N-PORT)
+// and the Select Sector SPDRs. Their index is read from the latest day's file before the quarter-old N-PORT.
+const DAILY_HOLDINGS = Object.freeze({
+  DIA: "Dow Jones Industrial Average", SPY: "S&P 500", MDY: "S&P MidCap 400",
+  XLK: "Technology Select Sector", XLF: "Financial Select Sector", XLV: "Health Care Select Sector", XLE: "Energy Select Sector", XLI: "Industrial Select Sector",
+  XLY: "Consumer Discretionary Select Sector", XLP: "Consumer Staples Select Sector", XLU: "Utilities Select Sector", XLB: "Materials Select Sector",
+  XLRE: "Real Estate Select Sector", XLC: "Communication Services Select Sector",
+});
+// The Select Sector SPDRs split the S&P 500 by GICS sector.
+export const SECTOR_FUNDS = Object.freeze({ XLK: "Information Technology", XLF: "Financials", XLV: "Health Care", XLE: "Energy", XLI: "Industrials", XLY: "Consumer Discretionary", XLP: "Consumer Staples", XLU: "Utilities", XLB: "Materials", XLRE: "Real Estate", XLC: "Communication Services" });
+const DAILY_INDEXES = Object.freeze({ ...UIT_INDEXES, "s&p 500": "SPY", "sp 500": "SPY", spx: "SPY", "s&p 400": "MDY", "s&p midcap 400": "MDY" });
+const dailyUrl = (etf) => `https://www.ssga.com/library-content/products/fund-data/etfs/us/holdings-daily-us-en-${etf.toLowerCase()}.xlsx`;
+const MONTH = { jan: "01", feb: "02", mar: "03", apr: "04", may: "05", jun: "06", jul: "07", aug: "08", sep: "09", oct: "10", nov: "11", dec: "12" };
+
+// An index's members from a fund's daily holdings file (State Street's spreadsheet), the cash and futures left out.
+export async function dailyHoldings(session, etf, limit) {
+  const url = dailyUrl(etf), indexName = DAILY_HOLDINGS[etf];
+  const rows = JSON.parse(await getZipText(session, url, { decode: (bytes) => JSON.stringify(xlsxRows(bytes)) }));
+  const head = rows.findIndex((r) => r[0] === "Name" && r.includes("Weight") && r.includes("Ticker"));
+  if (head < 0) throw new Error(`${etf}'s daily holdings file had no table of holdings.`);
+  const col = (k) => rows[head].indexOf(k);
+  const dated = /As of (\d{1,2})-([A-Za-z]{3})-(\d{4})/.exec(rows.slice(0, head).flat().join(" "));
+  const members = [];
+  for (const r of rows.slice(head + 1)) {
+    if (!r[0]) break;
+    const weight = Number(r[col("Weight")]);
+    if (!Number.isFinite(weight) || !/^[A-Z.]+$/.test(r[col("Ticker")] ?? "")) continue;
+    members.push({ name: r[0], ticker: r[col("Ticker")], cusip: r[col("Identifier")] || null, weight, shares: Number(r[col("Shares Held")]) || null });
+  }
+  if (!members.length) throw new NotFound(`${etf}'s daily holdings file listed no stocks.`);
+  members.sort((x, y) => y.weight - x.weight);
+  const total = members.reduce((s, m) => s + m.weight, 0);
+  return {
+    index: indexName, through: { etf, fund: rows[0]?.[1] ?? null },
+    as_of: dated ? `${dated[3]}-${MONTH[dated[2].toLowerCase()]}-${dated[1].padStart(2, "0")}` : null, members: members.length,
+    stock_weight_of_fund: round(total / 100, 4), top_10_weight: round(members.slice(0, 10).reduce((s, m) => s + m.weight, 0) / total, 4),
+    columns: ["name", "ticker", "cusip", "weight_in_index", "shares_held"],
+    rows: members.slice(0, limit).map((m) => [m.name, m.ticker, m.cusip, round(m.weight / total, 6), m.shares]),
+    source: url,
+    limits: [
+      `Members and weights are ${etf}'s holdings as State Street published them for the date shown, rescaled to add to 1 without the cash; source: "nport" reads the latest N-PORT of a fund that files one instead.`,
+      ...(etf === "DIA" ? ["The Dow is price-weighted: a member's weight is its share price over the sum of the prices, and the trust holds the same number of shares of each."] : []),
+      "S&P Dow Jones Indices' own list is authoritative; a fund's holdings can differ from its index for a day around a change.",
+      "Not investment advice.",
+    ],
+  };
+}
 
 export const indexInput = z.object({
-  index: z.string().min(1).max(60).describe("An index by name (\"S&P 500\", \"Nasdaq 100\", \"Russell 2000\", \"S&P 400\", \"MSCI EAFE\"), or the ticker of an ETF that tracks the index you want (VOO, IWM)."),
+  index: z.string().min(1).max(60).describe("An index by name (\"S&P 500\", \"Nasdaq 100\", \"Russell 2000\", \"S&P 400\", \"MSCI EAFE\", \"Dow Jones\"), or the ticker of an ETF that tracks the index you want (VOO, IWM, XLK)."),
+  source: z.enum(["daily", "nport"]).optional().describe("daily (default where State Street publishes the fund's holdings each day: the S&P 500 through SPY, the S&P 400 through MDY, the Dow through DIA, the Select Sector SPDRs) or nport (the latest N-PORT, a quarter old)."),
   limit: z.number().int().min(1).max(5000).optional().describe("Most members to list, by weight; default 50."),
+  as_of: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("A past date: the members as the tracking ETF's N-PORT reported them for the last quarter-end on or before it, companies since removed included, so a backtest's universe has no survivorship bias."),
+  changes_from: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("An earlier date: also list the members added and removed between the report for it and the one used (as_of, or the latest)."),
 }).strict();
+
+const stocksIn = (report) => report.holdings.filter((h) => (h.asset === "EC" || h.asset === "EP") && (h.pct ?? 0) > 0).sort((x, y) => y.pct - x.pct);
+const memberKey = (h) => (h.cusip && h.cusip !== "000000000" && h.cusip !== "N/A" ? h.cusip : h.isin ?? h.name);
 
 export async function indexConstituents(session, args) {
   const a = indexInput.parse(args);
+  if (a.as_of && a.changes_from && a.changes_from >= a.as_of) throw new RangeError("changes_from must be before as_of.");
+  const past = Boolean(a.as_of || a.changes_from);
   const key = a.index.trim().toLowerCase().replace(/[-\s]+/g, " ").replace(/ index$/, "");
   const uit = own(UIT_INDEXES, key);
-  if (uit) throw new NotFound(`The Dow's ETF (${uit}) is a unit investment trust, which files no N-PORT. The Dow's 30 members are listed by S&P Dow Jones Indices; screen_companies and company_profile cover each of them.`);
+  const ticker = a.index.trim().toUpperCase();
+  const daily = own(DAILY_INDEXES, key) ?? (own(DAILY_HOLDINGS, ticker) ? ticker : null);
+  let fallback = null;
+  // State Street's file holds only the latest day; a past date always reads N-PORT.
+  if (daily && !past && (a.source ?? "daily") === "daily") {
+    try { return await dailyHoldings(session, daily, a.limit ?? 50); } catch (err) {
+      if (uit) throw err;
+      fallback = `State Street's daily holdings of ${daily} could not be read (${err.message}); these are the latest N-PORT's.`;
+    }
+  }
+  if (uit) throw new NotFound(`The Dow's ETF (${uit}) is a unit investment trust, which files no N-PORT; its members come from State Street's daily holdings (source: "daily")${past ? ", which hold only the latest day" : ""}.`);
   const [etf, indexName] = own(INDEX_ETFS, key) ?? [a.index.trim().toUpperCase(), null];
   const f = await resolveFund(session, etf);
-  const list = await seriesFilings(session, f.series);
-  if (!list.length) throw new NotFound(`${etf} has no public N-PORT to read its holdings from.`);
-  const cur = await loadNport(session, list[0]);
-  const members = cur.holdings.filter((h) => (h.asset === "EC" || h.asset === "EP") && (h.pct ?? 0) > 0).sort((x, y) => y.pct - x.pct);
-  if (!members.length) throw new NotFound(`${etf}'s latest N-PORT holds no stocks; for a bond index use fund_portfolio.`);
+  let filing, cur;
+  if (a.as_of) ({ filing, report: cur } = await reportOn(session, f, a.as_of));
+  else {
+    const list = await seriesFilings(session, f.series);
+    if (!list.length) throw new NotFound(`${etf} has no public N-PORT to read its holdings from.`);
+    [filing, cur] = [list[0], await loadNport(session, list[0])];
+  }
+  const members = stocksIn(cur);
+  if (!members.length) throw new NotFound(`${etf}'s ${a.as_of ? `N-PORT for ${cur.period}` : "latest N-PORT"} holds no stocks; for a bond index use fund_portfolio.`);
   const limit = a.limit ?? 50;
   const weight = members.reduce((s, h) => s + h.pct, 0);
-  return {
+  const out = {
     index: indexName ?? `the index ${etf} tracks`, through: { etf, fund: cur.series.name, series_id: cur.series.id },
-    as_of: cur.period, filed: list[0].filed, members: members.length,
+    ...(a.as_of ? { requested_as_of: a.as_of } : {}),
+    as_of: cur.period, filed: filing.filed, members: members.length,
     stock_weight_of_fund: round(weight / 100, 4),
     top_10_weight: round(members.slice(0, 10).reduce((s, h) => s + h.pct, 0) / weight, 4),
     columns: ["name", "title", "cusip", "isin", "country", "weight_in_index"],
     rows: members.slice(0, limit).map((h) => [h.name, h.title, h.cusip, h.isin, h.country, round(h.pct / weight, 6)]),
-    source: `${list[0].base}/${list[0].accession}-index.htm`,
-    limits: [
-      `Members and weights are ${etf}'s stock holdings in its latest public N-PORT (the last month of a fiscal quarter, made public 60 days later), rescaled to add to 1. An ETF that samples its index can hold fewer names or different weights than the index itself.`,
-      "The index provider's own list is authoritative; members added or removed since the report date are not shown.",
-      "Not investment advice.",
-    ],
+    source: `${filing.base}/${filing.accession}-index.htm`,
   };
+  if (a.changes_from) {
+    const { filing: was, report: prev } = await reportOn(session, f, a.changes_from);
+    const earlier = stocksIn(prev);
+    const before = new Map(earlier.map((h) => [memberKey(h), h])), now = new Map(members.map((h) => [memberKey(h), h]));
+    const priorWeight = earlier.reduce((s, h) => s + h.pct, 0);
+    const added = members.filter((h) => !before.has(memberKey(h))).map((h) => ["added", h.name, h.cusip, h.isin, null, round(h.pct / weight, 6)]);
+    const removed = earlier.filter((h) => !now.has(memberKey(h))).map((h) => ["removed", h.name, h.cusip, h.isin, round(h.pct / priorWeight, 6), null]);
+    out.changes = {
+      from: { requested: a.changes_from, as_of: prev.period, filed: was.filed, members: earlier.length, source: `${was.base}/${was.accession}-index.htm` },
+      columns: ["change", "name", "cusip", "isin", "weight_before", "weight_now"],
+      rows: [...added, ...removed], counts: { added: added.length, removed: removed.length },
+      ...(prev.period === cur.period ? { note: `Both dates fall on the report for ${cur.period}, so nothing changed between them here.` } : {}),
+    };
+  }
+  out.limits = [
+    ...(fallback ? [fallback] : []),
+    `Members and weights are ${etf}'s stock holdings in its ${a.as_of ? `N-PORT for ${cur.period}, the last public report on or before ${a.as_of}` : "latest public N-PORT"} (the last month of a fiscal quarter, made public 60 days later), rescaled to add to 1. An ETF that samples its index can hold fewer names or different weights than the index itself.`,
+    !a.as_of ? "The index provider's own list is authoritative; members added or removed since the report date are not shown."
+      : cur.period < a.as_of ? `A member added or removed between ${cur.period} and ${a.as_of} is not shown; the index provider's own list is authoritative.` : "The index provider's own list is authoritative.",
+    ...(a.changes_from ? ["Changes compare the two reports' stocks by CUSIP: a company whose CUSIP changed (a reorganization, a new share class) shows as removed and added."] : []),
+    "Not investment advice.",
+  ];
+  return out;
 }

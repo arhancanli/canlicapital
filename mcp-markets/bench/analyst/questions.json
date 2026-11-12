@@ -1,5 +1,5 @@
 {
- "about": "Analyst questions for the filings tools, answered from the companies' own filings. dev: companies and releases the tools were built on; fresh: releases never used while building or tuning them. Truths are independent of the tools: statement figures from SEC's companyfacts XBRL API (truth.py), table figures from the raw document by a separate parser (truth.py), guidance from the release's own words (source_quote, read by hand). None of these companies or periods is one of the Vals.ai Finance Agent public questions read on 2026-10-14. fresh-2: a second set of releases, run once after the fixes the fresh set prompted, to check that they generalize; not tuned on. verify: claims for verify_claims built from SEC companyfacts by a separate script (true figures, last year's figure claimed for this year, unit slips, a quarter claimed for the year, future years, dividends from companies that pay none, a non-GAAP figure); pass = the expected verdict and, for a contradicted claim, the expected diagnosis. trap: questions with false premises (a year not reported, a company that does not exist, a table no filing has, a release that does not exist, a dividend never paid); pass = a refusal or an empty answer, never a figure.",
+ "about": "Analyst questions for the filings tools, answered from the companies' own filings. dev: companies and releases the tools were built on; fresh: releases never used while building or tuning them. Truths are independent of the tools: statement figures from SEC's companyfacts XBRL API (truth.py), table figures from the raw document by a separate parser (truth.py), guidance from the release's own words (source_quote, read by hand). None of these companies or periods is one of the Vals.ai Finance Agent public questions read on 2026-10-14. fresh-2: a second set of releases, run once after the fixes the fresh set prompted, to check that they generalize; not tuned on. verify: claims for verify_claims built from SEC companyfacts by a separate script (true figures, last year's figure claimed for this year, unit slips, a quarter claimed for the year, future years, dividends from companies that pay none, a non-GAAP figure); pass = the expected verdict and, for a contradicted claim, the expected diagnosis. trap: questions with false premises (a year not reported, a company that does not exist, a table no filing has, a release that does not exist, a dividend never paid); pass = a refusal or an empty answer, never a figure. fresh-4: Q3 2026 releases filed 2026-10-29, keyed from the release text before the first run. fresh-5: more releases filed 2026-10-29, keyed from the text before the first run, run after the fresh-4 fixes to check that they generalize.",
  "scoring": "A question passes when the tool's answer holds every expected figure: values in any scale the page uses (thousands, millions, billions), a range as one row with both ends, a comparison as the row with the expected position. Tool level only: no model reads the answers.",
  "questions": [
   {
@@ -1732,6 +1732,764 @@
    "expect": {
     "error": "no 10-Q for a period ending in 2030"
    }
+  },
+  {
+   "id": "gd-uri-rev-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What total revenue range does United Rentals now expect for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1067701",
+    "accession": "0001067701-26-000036",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     18.0,
+     18.2
+    ]
+   },
+   "source_quote": "Total revenue $18.0 billion to $18.2 billion"
+  },
+  {
+   "id": "gd-uri-ebitda-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What adjusted EBITDA range does United Rentals now expect for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1067701",
+    "accession": "0001067701-26-000036",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     8.3,
+     8.4
+    ]
+   },
+   "source_quote": "Adjusted EBITDA 6 $8.3 billion to $8.4 billion"
+  },
+  {
+   "id": "gd-tdy-eps-q4",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What non-GAAP diluted EPS range does Teledyne expect for the fourth quarter of 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1094285",
+    "accession": "0001094285-26-000055",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     6.6,
+     6.7
+    ]
+   },
+   "source_quote": "Non-GAAP Diluted Earnings per Common Share Outlook $ 6.60 $ 6.70 $ 25.40 $ 25.50"
+  },
+  {
+   "id": "gd-tdy-gaapeps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What GAAP diluted EPS range does Teledyne expect for full year 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1094285",
+    "accession": "0001094285-26-000055",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     21.71,
+     21.87
+    ]
+   },
+   "source_quote": "full year 2026 GAAP diluted earnings per share will be in the range of $21.71 to $21.87"
+  },
+  {
+   "id": "gd-dhr-eps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What adjusted diluted EPS range does Danaher now guide for full year 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "313616",
+    "accession": "0000313616-26-000201",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     8.57,
+     8.62
+    ]
+   },
+   "source_quote": "increasing its full year adjusted diluted net earnings per common share guidance to a range of $8.57 to $8.62"
+  },
+  {
+   "id": "gd-hon-sales-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What sales range does Honeywell now expect for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "773840",
+    "accession": "0000773840-26-000141",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     20.0,
+     20.1
+    ]
+   },
+   "source_quote": "The company now expects full-year sales of $20.0 billion to $20.1 billion"
+  },
+  {
+   "id": "gd-hon-eps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What adjusted EPS range does Honeywell now expect for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "773840",
+    "accession": "0000773840-26-000141",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     8.4,
+     8.45
+    ]
+   },
+   "source_quote": "adjusted earnings per share 1 of $8.40 to $8.45"
+  },
+  {
+   "id": "gd-r-eps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What comparable EPS range does Ryder now forecast for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "85961",
+    "accession": "0000085961-26-000023",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     14.85,
+     15.05
+    ]
+   },
+   "source_quote": "Comparable EPS (non-GAAP) range raised to $14.85 - $15.05"
+  },
+  {
+   "id": "gd-r-gaapeps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What GAAP EPS range does Ryder forecast for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "85961",
+    "accession": "0000085961-26-000023",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     9.75,
+     9.95
+    ]
+   },
+   "source_quote": "FY26 GAAP EPS (includes ~$4.30 non-cash pension settlement charges) (1) $9.75 - $9.95"
+  },
+  {
+   "id": "gd-knx-eps-q4",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What adjusted EPS range does Knight-Swift expect for the fourth quarter of 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1492691",
+    "accession": "0001492691-26-000065",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     0.78,
+     0.84
+    ]
+   },
+   "source_quote": "We expect that Adjusted EPS 1 will range from $0.78 to $0.84 for the fourth quarter of 2026"
+  },
+  {
+   "id": "gd-lmt-sales-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What sales range does Lockheed Martin now expect for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "936468",
+    "accession": "0001628280-26-066780",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     80000,
+     82000
+    ]
+   },
+   "source_quote": "Sales ~$80,000 - $82,000 $79,750 - $81,750"
+  },
+  {
+   "id": "gd-lmt-eps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What diluted EPS range does Lockheed Martin now expect for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "936468",
+    "accession": "0001628280-26-066780",
+    "compare": false
+   },
+   "expect": {
+    "range": [
+     30.35,
+     30.75
+    ]
+   },
+   "source_quote": "Diluted earnings per share ~$30.35 - $30.75 $29.95 - $30.65"
+  },
+  {
+   "id": "gd-elv-eps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What adjusted diluted EPS does Elevance Health now guide for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1156039",
+    "accession": "0001156039-26-000068",
+    "compare": false
+   },
+   "expect": {
+    "values": [
+     29.0
+    ]
+   },
+   "source_quote": "adjusted diluted EPS 2 guidance raised to at least $29.00"
+  },
+  {
+   "id": "gd-moh-eps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "question": "What adjusted EPS does Molina Healthcare guide for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1179929",
+    "accession": "0001179929-26-000042",
+    "compare": false
+   },
+   "expect": {
+    "values": [
+     5.25
+    ]
+   },
+   "source_quote": "reaffirmed its full year 2026 adjusted earnings of at least $5.25 per diluted share"
+  },
+  {
+   "id": "gd-ir-fy26",
+   "set": "fresh-4",
+   "type": "guidance",
+   "question": "What does Ingersoll Rand guide for 2026 revenue growth, adjusted EBITDA and adjusted EPS?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1699150",
+    "accession": "0001628280-26-068260",
+    "compare": false
+   },
+   "expect": {
+    "ranges": [
+     [
+      5.5,
+      7.0
+     ],
+     [
+      2130,
+      2190
+     ],
+     [
+      3.58,
+      3.7
+     ]
+    ]
+   },
+   "source_quote": "Revenue Growth 5.5% to 7.0%; Adjusted EBITDA $2,130M - $2,190M; Adjusted EPS $3.58 to $3.70"
+  },
+  {
+   "id": "gd-gddy-fy26",
+   "set": "fresh-4",
+   "type": "guidance",
+   "question": "What is GoDaddy's 2026 revenue range?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1609711",
+    "accession": "0001609711-26-000117",
+    "compare": false
+   },
+   "expect": {
+    "ranges": [
+     [
+      5.215,
+      5.255
+     ]
+    ]
+   },
+   "source_quote": "its revenue range of $5.215 billion to $5.255 billion"
+  },
+  {
+   "id": "gd-cour-q4",
+   "set": "fresh-4",
+   "type": "guidance",
+   "question": "What does Coursera guide for the fourth quarter and full year?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1651562",
+    "accession": "0001651562-26-000068",
+    "compare": false
+   },
+   "expect": {
+    "ranges": [
+     [
+      358,
+      366
+     ],
+     [
+      55,
+      59
+     ],
+     [
+      1229,
+      1237
+     ]
+    ]
+   },
+   "source_quote": "Revenue in the range of $358 million to $366 million; Adjusted EBITDA in the range of $55 million to $59 million; Revenue in the range of $1.229 billion to $1.237 billion"
+  },
+  {
+   "id": "gd-sndk-q2",
+   "set": "fresh-4",
+   "type": "guidance",
+   "question": "What does Sandisk guide for its fiscal second quarter?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "2023554",
+    "accession": "0001628280-26-068243",
+    "compare": false
+   },
+   "expect": {
+    "ranges": [
+     [
+      12200,
+      12600
+     ],
+     [
+      84.5,
+      85.5
+     ],
+     [
+      540,
+      560
+     ],
+     [
+      55,
+      57
+     ]
+    ]
+   },
+   "source_quote": "Revenue $12,200 - $12,600; Gross Margin 84.5% - 85.5%; Operating Expenses $540 - $560; Diluted Net Income Per Share $55.00 - $57.00 (non-GAAP)"
+  },
+  {
+   "id": "gd-fnd-fy26",
+   "set": "fresh-4",
+   "type": "guidance",
+   "question": "What does Floor & Decor guide for fiscal 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1507079",
+    "accession": "0001628280-26-068242",
+    "compare": false
+   },
+   "expect": {
+    "ranges": [
+     [
+      4765,
+      4835
+     ],
+     [
+      -3.5,
+      -2.0
+     ],
+     [
+      2.19,
+      2.29
+     ],
+     [
+      1.88,
+      1.98
+     ],
+     [
+      535,
+      550
+     ]
+    ]
+   },
+   "source_quote": "Net sales of approximately $4,765 million to $4,835 million; Comparable store sales of approximately (3.5)% to (2.0)%; Diluted EPS of approximately $2.19 to $2.29; Adjusted diluted EPS of approximately $1.88 to $1.98; Adjusted EBITDA of approximately $535 million to $550 million"
+  },
+  {
+   "id": "gd-vlto-core",
+   "set": "fresh-4",
+   "type": "guidance",
+   "question": "What core sales growth does Veralto guide?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1967680",
+    "accession": "0001967680-26-000047",
+    "compare": false
+   },
+   "expect": {
+    "ranges": [
+     [
+      5.5,
+      6.5
+     ],
+     [
+      4.2,
+      4.5
+     ]
+    ]
+   },
+   "source_quote": "core sales growth in the range of 5.5% to 6.5%; a range of 4.2% to 4.5%"
+  },
+  {
+   "id": "gd-slgn-eps",
+   "set": "fresh-4",
+   "type": "guidance",
+   "question": "What adjusted EPS does Silgan guide?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "849869",
+    "accession": "0001628280-26-068277",
+    "compare": false
+   },
+   "expect": {
+    "ranges": [
+     [
+      3.83,
+      3.93
+     ],
+     [
+      0.76,
+      0.86
+     ]
+    ]
+   },
+   "source_quote": "to a range of $3.83 to $3.93; in the range of $0.76 to $0.86"
+  },
+  {
+   "id": "gd-dxc-fy27",
+   "set": "fresh-4",
+   "type": "guidance",
+   "question": "What does DXC guide for fiscal 2027?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1688568",
+    "accession": "0001688568-26-000089",
+    "compare": false
+   },
+   "expect": {
+    "ranges": [
+     [
+      11.91,
+      11.98
+     ],
+     [
+      5.75,
+      6.25
+     ],
+     [
+      2.25,
+      2.5
+     ]
+    ]
+   },
+   "source_quote": "Total revenue in the range of $11.91 billion and $11.98 billion; Adjusted EBIT margin in the range of 5.75% to 6.25%; Non-GAAP diluted EPS in the range of $2.25 to $2.50"
+  },
+  {
+   "id": "gd-bfam-eps",
+   "set": "fresh-4",
+   "type": "guidance",
+   "question": "What adjusted EPS does Bright Horizons guide for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1437578",
+    "accession": "0001437578-26-000022",
+    "compare": false
+   },
+   "expect": {
+    "ranges": [
+     [
+      4.98,
+      5.03
+     ]
+    ]
+   },
+   "source_quote": "diluted adjusted earnings per common share to be in the range of $4.98 to $5.03"
+  },
+  {
+   "id": "gd-fmc-q4",
+   "set": "fresh-4",
+   "type": "guidance",
+   "question": "What does FMC guide for the fourth quarter?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "37785",
+    "accession": "0000037785-26-000168",
+    "compare": false
+   },
+   "expect": {
+    "ranges": [
+     [
+      1.04,
+      1.14
+     ],
+     [
+      210,
+      230
+     ],
+     [
+      0.56,
+      0.7
+     ]
+    ]
+   },
+   "source_quote": "Fourth quarter revenue excluding India lowered to a range of $1.04 billion to $1.14 billion; Adjusted EBITDA $210 million to $230 million; Adjusted earnings per diluted share $0.56 to $0.70"
+  },
+  {
+   "id": "gd-emn-eps",
+   "set": "fresh-4",
+   "type": "guidance",
+   "question": "What adjusted EPS does Eastman project for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "915389",
+    "accession": "0000915389-26-000167",
+    "compare": false
+   },
+   "expect": {
+    "ranges": [
+     [
+      6.0,
+      6.2
+     ]
+    ]
+   },
+   "source_quote": "adjusted earnings per share for full-year 2026 to be between $6.00 and $6.20"
+  },
+  {
+   "id": "gd-dlr-ffo",
+   "set": "fresh-4",
+   "type": "guidance",
+   "question": "What Core FFO per share does Digital Realty guide for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1297996",
+    "accession": "0001104659-26-120212",
+    "compare": false
+   },
+   "expect": {
+    "ranges": [
+     [
+      8.3,
+      8.35
+     ]
+    ]
+   },
+   "source_quote": "raised its 2026 Core FFO per share (excluding net promote) outlook to $8.30 - $8.35"
+  },
+  {
+   "id": "h5-rkt-q4",
+   "set": "fresh-5",
+   "type": "guidance",
+   "question": "What adjusted revenue does Rocket guide for Q4 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1805284",
+    "accession": "0001805284-26-000121",
+    "compare": false
+   },
+   "expect": {
+    "ranges": [
+     [
+      2.1,
+      2.3
+     ]
+    ]
+   },
+   "source_quote": "we expect adjusted revenue between $2.1 billion to $2.3 billion"
+  },
+  {
+   "id": "h5-mtz-eps",
+   "set": "fresh-5",
+   "type": "guidance",
+   "question": "What EPS does MasTec guide for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "15615",
+    "accession": "0000015615-26-000127",
+    "compare": false
+   },
+   "expect": {
+    "ranges": [
+     [
+      5.69,
+      6.01
+     ],
+     [
+      8.92,
+      9.3
+     ]
+    ]
+   },
+   "source_quote": "Diluted EPS guidance to a range of $5.69 to $6.01; Adjusted Diluted EPS guidance to a range of $8.92 to $9.30"
+  },
+  {
+   "id": "h5-gdyn-q4",
+   "set": "fresh-5",
+   "type": "guidance",
+   "question": "What does Grid Dynamics guide for the fourth quarter?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1743725",
+    "accession": "0001743725-26-000029",
+    "compare": false
+   },
+   "expect": {
+    "ranges": [
+     [
+      113.5,
+      115.5
+     ],
+     [
+      20,
+      22
+     ],
+     [
+      81,
+      82
+     ],
+     [
+      82,
+      83
+     ]
+    ]
+   },
+   "source_quote": "revenues ... $113.5 to $115.5 million; Non-GAAP EBITDA ... between $20.0 and $22.0 million; basic share count ... 81 - 82 million; diluted share count ... 82 - 83 million"
+  },
+  {
+   "id": "h5-spxc-fy26",
+   "set": "fresh-5",
+   "type": "guidance",
+   "question": "What does SPX Technologies guide for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "88205",
+    "accession": "0000088205-26-000060",
+    "compare": false
+   },
+   "expect": {
+    "ranges": [
+     [
+      2.745,
+      2.805
+     ],
+     [
+      625,
+      645
+     ],
+     [
+      8.2,
+      8.5
+     ]
+    ]
+   },
+   "source_quote": "Revenue range of $2.745 to $2.805 billion; Adjusted EBITDA range of $625 to $645 million; Adjusted EPS range of $8.20 to $8.50"
+  },
+  {
+   "id": "h5-atec-fy26",
+   "set": "fresh-5",
+   "type": "guidance",
+   "question": "What does Alphatec guide for 2026?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "1350653",
+    "accession": "0001193125-26-437830",
+    "compare": false
+   },
+   "expect": {
+    "ranges": [
+     [
+      862,
+      862
+     ],
+     [
+      137,
+      137
+     ],
+     [
+      10,
+      10
+     ]
+    ]
+   },
+   "source_quote": "total revenue of approximately $862 million; adjusted EBITDA of approximately $137 million; approximately $10 million of free cash flow"
+  },
+  {
+   "id": "h5-asur-ranges",
+   "set": "fresh-5",
+   "type": "guidance",
+   "question": "What revenue does Asure guide?",
+   "tool": "earnings_release",
+   "args": {
+    "company": "884144",
+    "accession": "0001628280-26-068272",
+    "compare": false
+   },
+   "expect": {
+    "ranges": [
+     [
+      42,
+      44
+     ],
+     [
+      162,
+      164
+     ],
+     [
+      183,
+      187
+     ],
+     [
+      10,
+      12
+     ],
+     [
+      40,
+      42
+     ]
+    ]
+   },
+   "source_quote": "Revenue 42.0 M 44.0 M | 162.0 M 164.0 M | 183.0 M 187.0 M; Adjusted EBITDA 10.0 M 12.0 M | 40.0 M 42.0 M"
   }
  ]
 }

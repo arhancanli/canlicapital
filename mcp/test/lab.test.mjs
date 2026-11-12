@@ -66,6 +66,11 @@ test("backtest_strategy over stdio: the grid count drives the validation, and th
   const out = await call(client, "backtest_strategy", { family: "sma_cross", grid: { fast: [10, 20, 50], slow: [100, 200] }, prices, cost_bps: 5 });
   assert.equal(out.variants.count, 6);
   assert.equal(out.validation.trials_counted, 6);
+  // Every variant's Sharpe, best first as in top, for a server that counts a session's trials.
+  assert.equal(out.every_trial.sharpes.length, 6);
+  assert.deepEqual([out.every_trial.periods, out.every_trial.periods_per_year], [out.window.evaluated_returns, 252]);
+  assert.deepEqual(out.every_trial.sharpes.slice(0, out.variants.top.length), out.variants.top.map((row) => row[out.variants.columns.indexOf("sharpe")]));
+  assert.equal(out.every_trial.sharpes[0], out.selected.metrics.sharpe);
   assert.ok(out.validation.deflated_sharpe.probability >= 0 && out.validation.deflated_sharpe.probability <= 1);
   assert.match(out.source.input_sha256, /^[0-9a-f]{64}$/);
   assert.match(out.source.computed, /no receipt/);
@@ -97,6 +102,18 @@ test("files: a dated CSV is read on this machine, its dates label the result, an
 test("the hosted endpoint refuses to read files, and says what to send instead", async () => {
   const session = createSession({ hosted: { keySource: "shared" }, toolsets: ["lab"] });
   await assert.rejects(() => toolBacktestStrategy(session, { family: "buy_and_hold", prices_file: "/etc/hosts" }), /hosted endpoint cannot read files on your machine; send prices as numbers/);
+});
+
+test("backtest_strategy hands each variant's returns to a server in the same process, hidden from the answer", async () => {
+  const key = Symbol.for("canli.trial_returns");
+  const r = await toolBacktestStrategy(createSession({ toolsets: ["lab"] }), { family: "momentum", prices: walk(600, 4), grid: { lookback: [10, 20, 40], skip: [0, 5] } });
+  const out = r.structuredContent, series = out[key];
+  assert.deepEqual([series.length, out.every_trial.sharpes.length], [6, 6], "every variant, as every_trial counts them");
+  assert.ok(series.every((x) => x.length === 599), "a return for every period of the prices, so calls with other grids line up");
+  // canli-mcp's luck reads it off the structured answer and deletes it; nothing else sees it.
+  assert.equal(Object.getOwnPropertyDescriptor(out, key).enumerable, false);
+  assert.equal(JSON.parse(r.content[0].text)[key], undefined);
+  assert.equal(delete out[key], true);
 });
 
 test("exactly one source: inline numbers or a file, never both and never neither", async () => {

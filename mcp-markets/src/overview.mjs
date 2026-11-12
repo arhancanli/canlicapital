@@ -41,7 +41,7 @@ export async function marketOverview(session, args) {
   const out = {};
   await Promise.all(groups.map(async (g) => {
     const rows = await Promise.all(GROUPS[g].map(async ([symbol, name]) => {
-      const p = await priceHistory(session, { symbol, start, adjusted: false }).catch((err) => { missing.push(`${symbol}: ${String(err.message).slice(0, 120)}`); return null; });
+      const p = await priceHistory(session, { symbol, start, adjustment: "splits" }).catch((err) => { missing.push(`${symbol}: ${String(err.message).slice(0, 120)}`); return null; });
       if (!p?.close?.length) return null;
       if (p.source) sources.add(p.source);
       const c = changes(p.dates, p.close, { points: YIELDS.has(symbol) });
@@ -51,6 +51,8 @@ export async function marketOverview(session, args) {
     // Sectors are easiest read best to worst over the month.
     if (g === "sectors") out[g].sort((x, y) => (y[6] ?? -Infinity) - (x[6] ?? -Infinity));
   }));
+  // Nothing at all came back: say why rather than answer with empty lists.
+  if (missing.length && !sources.size) throw new Error(missing.some((m) => /CANLI_KEYLESS_PRICES=0/.test(m)) ? "Prices are off on this server (CANLI_KEYLESS_PRICES=0), so there is no market overview. On the hosted server, run the local one: npx -y canli-mcp." : missing[0].replace(/^[^:]+: /, ""));
   return {
     columns: ["symbol", "name", "date", "close", "day", "week", "month", "three_months", "year_to_date", "year"],
     ...Object.fromEntries(groups.map((g) => [g, out[g]])),

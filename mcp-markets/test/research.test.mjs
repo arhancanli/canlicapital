@@ -35,7 +35,7 @@ test("screen_companies: R&D takes the larger of the filer's R&D tags; growth use
   assert.equal(g.rows[0][0], "QXO");
   assert.ok(g.rows[0][col(g, "revenue_growth")] > 100);
   assert.ok(g.sources.some((u) => u.includes("/CY2024.json")));
-  await assert.rejects(R.screenCompanies(s, { sort_by: "pe" }), /Valuation metrics need a price/);
+  await assert.rejects(R.screenCompanies(s, { sort_by: "pe" }), /No prices came back/);
   await assert.rejects(R.screenCompanies(s, { period: "2025" }), /not like FY2025/);
 });
 
@@ -103,6 +103,12 @@ test("event_study: recovers a known 5% abnormal return and the market beta", asy
   assert.equal(wide.average_path.rows.length, 6);
   assert.equal(wide.summary.t_stat, null);
   await assert.rejects(R.eventStudy(session(chartFetch), { symbol: "TEST" }), /Give events/);
+  assert.match(r.day_0, /event_type times that/);
+});
+
+test("event_study takes last, and it is in the input schema", () => {
+  assert.equal(R.eventInput.parse({ symbol: "NVDA", event_type: "earnings", last: 8 }).last, 8);
+  assert.throws(() => R.eventInput.parse({ symbol: "NVDA", event_type: "earnings", last: 0 }));
 });
 
 test("tTwoSided matches scipy's Student t to 1e-9", () => {
@@ -188,4 +194,12 @@ test("a fiscal-year-end window takes each company's year ending in it, and the b
   assert.match(r.period, /fiscal year ending 2025-10-01 to 2026-01-31/);
   await assert.rejects(R.screenCompanies(s, { period: "FY2025", fiscal_year_end: ["2025-01-01", "2025-12-31"] }), /not both/);
   assert.deepEqual(R.quarterInstants(["2025-10-01", "2026-01-31"]), ["CY2025Q3I", "CY2025Q4I", "CY2026Q1I", "CY2026Q2I"]);
+});
+
+test("the year's column on a statement that also shows quarters: Lennox's fourth quarter ends on the same day", () => {
+  const columns = ["line", "concept", "3 months to 2025-12-31", "3 months to 2025-09-30", "12 months to 2025-12-31", "12 months to 2024-12-31"];
+  assert.equal(R.annualColumn(columns, "2025-12-31"), 4);
+  assert.equal(R.annualColumn(columns, "2024-12-31"), 5);
+  assert.equal(R.annualColumn(columns, "2023-12-31"), -1);
+  assert.equal(R.annualColumn(undefined, "2025-12-31"), -1);
 });

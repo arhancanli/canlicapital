@@ -1,0 +1,92 @@
+{
+  "all_confirmed_gone": true,
+  "attempts": [
+    {
+      "cost": 0.0,
+      "gpu": "none",
+      "outcome": "box_lost",
+      "preflight": {
+        "cpus": 18,
+        "disk_free_gb": 33.3,
+        "download_mbps": 50066,
+        "memory_gb": null,
+        "ok": true,
+        "problems": [],
+        "seconds": 0.03,
+        "upload_mbps": 31902
+      },
+      "price_per_hour": 0.0,
+      "provider": "local",
+      "region": "machine A",
+      "seconds": 5.717,
+      "spot": false,
+      "start_seconds": 0.207,
+      "stop": {
+        "checks": 1,
+        "confirmed": true,
+        "gone_within_s": null,
+        "shutdown_s": 0.0
+      }
+    },
+    {
+      "cost": 0.0,
+      "gpu": "none",
+      "outcome": "completed",
+      "preflight": {
+        "cpus": 18,
+        "disk_free_gb": 33.3,
+        "download_mbps": 42555,
+        "memory_gb": null,
+        "ok": true,
+        "problems": [],
+        "seconds": 0.03,
+        "upload_mbps": 31842
+      },
+      "price_per_hour": 0.0,
+      "provider": "local",
+      "region": "machine B",
+      "seconds": 6.765,
+      "spot": false,
+      "start_seconds": 0.208,
+      "stop": {
+        "checks": 1,
+        "confirmed": true,
+        "gone_within_s": 0.2,
+        "shutdown_s": 0.0
+      }
+    }
+  ],
+  "code_sha256": "e759480b086d5f2add3adbcdc8995ccd2306cb9fcdee1b596901ed2215e1c3f8",
+  "data": [],
+  "exit_code": 0,
+  "fee": 0.0,
+  "files": 2,
+  "finished": 1793015692.172548,
+  "gone_within_s": 0.2,
+  "job_sha256": "0c9f4017b33ecb9a7c523e55a6b5789cde99c97c6fc14900a7088d8da840bc9f",
+  "manifest_sha256": "ed600d8ddf4c3e057853d4868cbad1f9603acf681fa5587de30a202d254cf78c",
+  "offer": {
+    "billed_every_s": 1,
+    "country": "",
+    "cpu": 18,
+    "gpu": "none",
+    "gpu_count": 0,
+    "memory_gb": 1,
+    "min_billed_s": 0,
+    "price_per_hour": 0.0,
+    "provider": "local",
+    "region": "machine B",
+    "spot": false
+  },
+  "origin": "",
+  "outcome": "completed",
+  "provider": "local",
+  "run_id": "20261026-155439-f04977",
+  "seconds": 12.488,
+  "start_seconds": 0.207,
+  "started": 1793015679.6848068,
+  "verified": true,
+  "version": 2,
+  "waited_s": 0.0,
+  "wholesale_cost": 0.0
+}

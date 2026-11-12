@@ -52,6 +52,13 @@ function score(q, truth, answer) {
     const hit = rows.find((r) => String(r[pos]).startsWith(want.position) && same(r[act], want.actual));
     return hit ? { pass: true, row: hit.slice(0, 12) } : { pass: false, why: `no comparison row "${want.position}" with actual ${want.actual}`, rows: rows.map((r) => r.slice(0, 12)) };
   }
+  // Several ranges, each as the guidance row's own low and high (the quote beside them does not count).
+  if (want.ranges) {
+    const cols = answer?.guidance?.columns ?? [], rows = answer?.guidance?.rows ?? [];
+    const [lo, hi] = [cols.indexOf("low"), cols.indexOf("high")];
+    const missing = want.ranges.filter(([a, b]) => !rows.some((r) => typeof r[lo] === "number" && same(r[lo], a) && same(r[hi], b)));
+    return missing.length ? { pass: false, why: `missing ${JSON.stringify(missing)}` } : { pass: true };
+  }
   if (want.range) {
     const missing = [want.range, want.also_range].filter(Boolean).filter((r) => !rowHolds(answer, r));
     return missing.length ? { pass: false, why: `no row holds ${missing.map((r) => r.join("-")).join(" and ")}` } : { pass: true };

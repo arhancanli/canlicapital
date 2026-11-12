@@ -1,19 +1,23 @@
 // Filing documents as text a model can read: HTML to lines, and a filing cut into its items.
 // No dependencies; EDGAR's HTML is regular enough for this, and the tests pin real filings.
 
-const ENTITIES = { amp: "&", lt: "<", gt: ">", quot: "\"", apos: "'", nbsp: " ", rsquo: "'", lsquo: "'", rdquo: "\"", ldquo: "\"", ndash: "-", mdash: "-", bull: "*", hellip: "...", reg: "(R)", trade: "(TM)", copy: "(C)", sect: "§", middot: "·" };
+// Accented Latin letters by their HTML names ("&uuml;" in T&uuml;rkiye, "&eacute;" in Soci&eacute;t&eacute;), each case kept.
+const ACCENTED = Object.fromEntries([..."AEIOUY"].flatMap((v) => [["grave", "\u0300"], ["acute", "\u0301"], ["circ", "\u0302"], ["tilde", "\u0303"], ["uml", "\u0308"]].flatMap(([name, mark]) => [[`${v}${name}`, `${v}${mark}`.normalize("NFC")], [`${v.toLowerCase()}${name}`, `${v.toLowerCase()}${mark}`.normalize("NFC")]])).concat([["Ntilde", "Ñ"], ["ntilde", "ñ"], ["Ccedil", "Ç"], ["ccedil", "ç"], ["Aring", "Å"], ["aring", "å"], ["AElig", "Æ"], ["aelig", "æ"], ["Oslash", "Ø"], ["oslash", "ø"], ["szlig", "ß"]]).filter(([, c]) => c.length === 1));
+const ENTITIES = { amp: "&", lt: "<", gt: ">", quot: "\"", apos: "'", nbsp: " ", rsquo: "'", lsquo: "'", rdquo: "\"", ldquo: "\"", ndash: "-", mdash: "-", bull: "*", hellip: "...", reg: "(R)", trade: "(TM)", copy: "(C)", sect: "§", middot: "·", euro: "€", pound: "£", yen: "¥" };
 
 export function decodeEntities(s) {
   return s.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (m, e) => {
     if (e[0] === "#") {
       const code = e[1] === "x" || e[1] === "X" ? parseInt(e.slice(2), 16) : parseInt(e.slice(1), 10);
       if (code === 160) return " ";
-      if (code === 8217 || code === 8216) return "'";
-      if (code === 8220 || code === 8221) return "\"";
-      if (code === 8211 || code === 8212) return "-";
+      // 145-151 are Windows quotes and dashes, written as numeric entities in many older filings.
+      if (code === 8217 || code === 8216 || code === 145 || code === 146) return "'";
+      if (code === 8220 || code === 8221 || code === 147 || code === 148) return "\"";
+      if (code === 8211 || code === 8212 || code === 150 || code === 151) return "-";
+      if (code === 128) return "€";
       return Number.isFinite(code) && code > 0 && code < 0x110000 ? String.fromCodePoint(code) : "";
     }
-    return ENTITIES[e.toLowerCase()] ?? m;
+    return ACCENTED[e] ?? ENTITIES[e.toLowerCase()] ?? m;
   });
 }
 

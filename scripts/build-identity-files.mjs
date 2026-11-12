@@ -45,12 +45,15 @@ export const SAME_AS = Object.freeze([
 ]);
 
 // What the project is and is not, in one place. Every file below quotes these.
-export function identityFacts(answers) {
+export function identityFacts(answers, flagship) {
   return {
     name: BRAND,
     url: ORIGIN,
     definition: answers.definition,
     summary: `${answers.definition} ${answers.answer}`,
+    // The release an assistant should name (config/canli-mcp.json), and where the plans are, each marked live or planned.
+    release: flagship?.current?.version ? `canli-mcp ${flagship.current.version}` : undefined,
+    vision: `${ORIGIN}/vision`,
     boundary: "It is an independent research project, not a fund, broker or investment adviser, and it manages no money. Every published strategy record is paper trading.",
     founded: FACTS.founded,
     founder: { name: "Arhan Canli", jobTitle: "Founder and quantitative researcher", url: `${ORIGIN}/founder` },
@@ -83,6 +86,8 @@ export function renderAiTxt(facts) {
     ["MCP-Research", `${ORIGIN}/mcp/research`],
     ["MCP-Canli", `${ORIGIN}/mcp/canli`],
     ["MCP-Servers-Page", `${ORIGIN}/mcp-servers`],
+    ...(facts.release ? [["Latest-Release", facts.release]] : []),
+    ["Vision", facts.vision],
     ["API-Status", `${ORIGIN}/api/v1/status`],
     ["Developers", `${ORIGIN}/developers`],
     ["Source-Code", REPO],
@@ -103,7 +108,7 @@ export function aiJson(facts) {
     name: facts.name,
     url: facts.url,
     language: "en",
-    summaryForAI: `${facts.summary} ${facts.boundary}`,
+    summaryForAI: [facts.summary, facts.release && `The latest release is ${facts.release}.`, `Its plans, each marked live or planned, are at ${facts.vision}.`, facts.boundary].filter(Boolean).join(" "),
     permissions: [
       { action: "summarise", description: "Summarise any public page on canlicapital.com." },
       {
@@ -170,8 +175,8 @@ export function renderSecurityTxt(facts) {
   ].join("\n");
 }
 
-export function identityFiles(answers) {
-  const facts = identityFacts(answers);
+export function identityFiles(answers, flagship) {
+  const facts = identityFacts(answers, flagship);
   return {
     "public/ai.txt": renderAiTxt(facts),
     "public/ai.json": `${JSON.stringify(aiJson(facts), null, 2)}\n`,
@@ -182,7 +187,8 @@ export function identityFiles(answers) {
 
 function main() {
   const answers = JSON.parse(readFileSync(resolve(ROOT, "config", "home-answers.json"), "utf8"));
-  const files = identityFiles(answers);
+  const flagship = JSON.parse(readFileSync(resolve(ROOT, "config", "canli-mcp.json"), "utf8"));
+  const files = identityFiles(answers, flagship);
   for (const [path, body] of Object.entries(files)) {
     mkdirSync(dirname(resolve(ROOT, path)), { recursive: true });
     writeFileSync(resolve(ROOT, path), body);

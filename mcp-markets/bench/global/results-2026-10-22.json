@@ -1,0 +1,166 @@
+{
+ "ran": "2026-10-22T19:49:07.654Z",
+ "node": "v24.19.0",
+ "summary": {
+  "passed": 21,
+  "of": 21
+ },
+ "checks": [
+  {
+   "name": "TotalEnergies 2024 revenue: ESEF against 20-F",
+   "expected": 214550000000,
+   "got": 214550000000,
+   "pass": true,
+   "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000879764.json"
+  },
+  {
+   "name": "TotalEnergies 2024 net_income: ESEF against 20-F",
+   "expected": 16031000000,
+   "got": 16031000000,
+   "pass": true,
+   "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000879764.json"
+  },
+  {
+   "name": "TotalEnergies 2025 revenue: ESEF against 20-F",
+   "expected": 201196000000,
+   "got": 201196000000,
+   "pass": true,
+   "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000879764.json"
+  },
+  {
+   "name": "TotalEnergies 2025 net_income: ESEF against 20-F",
+   "expected": 13357000000,
+   "got": 13357000000,
+   "pass": true,
+   "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000879764.json"
+  },
+  {
+   "name": "Novo Nordisk 2024 revenue: ESEF against 20-F",
+   "expected": 290403000000,
+   "got": 290403000000,
+   "pass": true,
+   "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000353278.json"
+  },
+  {
+   "name": "Novo Nordisk 2024 net_income: ESEF against 20-F",
+   "expected": 100988000000,
+   "got": 100988000000,
+   "pass": true,
+   "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000353278.json"
+  },
+  {
+   "name": "Novo Nordisk 2025 revenue: ESEF against 20-F",
+   "expected": 309064000000,
+   "got": 309064000000,
+   "pass": true,
+   "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000353278.json"
+  },
+  {
+   "name": "Novo Nordisk 2025 net_income: ESEF against 20-F",
+   "expected": 102434000000,
+   "got": 102434000000,
+   "pass": true,
+   "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000353278.json"
+  },
+  {
+   "name": "Shell 2024 revenue: ESEF against 20-F",
+   "expected": 284312000000,
+   "got": 284312000000,
+   "pass": true,
+   "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001306965.json"
+  },
+  {
+   "name": "Shell 2024 net_income: ESEF against 20-F",
+   "expected": 16521000000,
+   "got": 16521000000,
+   "pass": true,
+   "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001306965.json"
+  },
+  {
+   "name": "Shell 2025 revenue: ESEF against 20-F",
+   "expected": 266886000000,
+   "got": 266886000000,
+   "pass": true,
+   "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001306965.json"
+  },
+  {
+   "name": "Shell 2025 net_income: ESEF against 20-F",
+   "expected": 18119000000,
+   "got": 18119000000,
+   "pass": true,
+   "source": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001306965.json"
+  },
+  {
+   "name": "ECB deposit facility rate against the BIS euro-area policy rate on 2026-03-31",
+   "expected": 2,
+   "got": 2,
+   "pass": true,
+   "source": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.XM?startPeriod=2026-01-01&endPeriod=2026-10-06&format=csv"
+  },
+  {
+   "name": "ECB deposit facility rate against the BIS euro-area policy rate on 2026-06-30",
+   "expected": 2.25,
+   "got": 2.25,
+   "pass": true,
+   "source": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.XM?startPeriod=2026-01-01&endPeriod=2026-10-06&format=csv"
+  },
+  {
+   "name": "ECB deposit facility rate against the BIS euro-area policy rate on 2026-09-30",
+   "expected": 2.5,
+   "got": 2.5,
+   "pass": true,
+   "source": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.XM?startPeriod=2026-01-01&endPeriod=2026-10-06&format=csv"
+  },
+  {
+   "name": "Bank of England Bank Rate against the BIS UK policy rate on 2026-03-31",
+   "expected": 3.75,
+   "got": 3.75,
+   "pass": true,
+   "source": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.GB?startPeriod=2026-01-01&endPeriod=2026-10-06&format=csv"
+  },
+  {
+   "name": "Bank of England Bank Rate against the BIS UK policy rate on 2026-06-30",
+   "expected": 3.75,
+   "got": 3.75,
+   "pass": true,
+   "source": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.GB?startPeriod=2026-01-01&endPeriod=2026-10-06&format=csv"
+  },
+  {
+   "name": "Bank of England Bank Rate against the BIS UK policy rate on 2026-09-30",
+   "expected": 3.75,
+   "got": 3.75,
+   "pass": true,
+   "source": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.GB?startPeriod=2026-01-01&endPeriod=2026-10-06&format=csv"
+  },
+  {
+   "name": "New York Fed target range against the BIS US policy rate on 2026-03-31",
+   "expected": 3.625,
+   "got": [
+    3.5,
+    3.75
+   ],
+   "pass": true,
+   "source": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.US?startPeriod=2026-01-01&endPeriod=2026-10-06&format=csv"
+  },
+  {
+   "name": "New York Fed target range against the BIS US policy rate on 2026-06-30",
+   "expected": 3.625,
+   "got": [
+    3.5,
+    3.75
+   ],
+   "pass": true,
+   "source": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.US?startPeriod=2026-01-01&endPeriod=2026-10-06&format=csv"
+  },
+  {
+   "name": "New York Fed target range against the BIS US policy rate on 2026-09-30",
+   "expected": 3.875,
+   "got": [
+    3.75,
+    4
+   ],
+   "pass": true,
+   "source": "https://stats.bis.org/api/v1/data/WS_CBPOL/D.US?startPeriod=2026-01-01&endPeriod=2026-10-06&format=csv"
+  }
+ ]
+}

@@ -1,0 +1,1114 @@
+{
+ "ran": "2026-10-22T19:57:48.933Z",
+ "node": "v24.19.0",
+ "summary": {
+  "passed": 101,
+  "of": 101,
+  "by_set": [
+   {
+    "group": "dev",
+    "passed": 21,
+    "of": 21
+   },
+   {
+    "group": "fresh",
+    "passed": 32,
+    "of": 32
+   },
+   {
+    "group": "fresh-2",
+    "passed": 9,
+    "of": 9
+   },
+   {
+    "group": "verify",
+    "passed": 19,
+    "of": 19
+   },
+   {
+    "group": "trap",
+    "passed": 6,
+    "of": 6
+   },
+   {
+    "group": "fresh-3",
+    "passed": 14,
+    "of": 14
+   }
+  ],
+  "by_type": [
+   {
+    "group": "dev statement",
+    "passed": 4,
+    "of": 4
+   },
+   {
+    "group": "fresh statement",
+    "passed": 8,
+    "of": 8
+   },
+   {
+    "group": "dev trend",
+    "passed": 1,
+    "of": 1
+   },
+   {
+    "group": "fresh trend",
+    "passed": 2,
+    "of": 2
+   },
+   {
+    "group": "dev kpi",
+    "passed": 3,
+    "of": 3
+   },
+   {
+    "group": "dev segment",
+    "passed": 1,
+    "of": 1
+   },
+   {
+    "group": "dev reconciliation",
+    "passed": 1,
+    "of": 1
+   },
+   {
+    "group": "dev guidance",
+    "passed": 8,
+    "of": 8
+   },
+   {
+    "group": "dev beat_or_miss",
+    "passed": 3,
+    "of": 3
+   },
+   {
+    "group": "fresh guidance",
+    "passed": 19,
+    "of": 19
+   },
+   {
+    "group": "fresh beat_or_miss",
+    "passed": 3,
+    "of": 3
+   },
+   {
+    "group": "fresh-2 guidance",
+    "passed": 9,
+    "of": 9
+   },
+   {
+    "group": "verify verify",
+    "passed": 19,
+    "of": 19
+   },
+   {
+    "group": "trap trap",
+    "passed": 6,
+    "of": 6
+   },
+   {
+    "group": "fresh-3 guidance",
+    "passed": 14,
+    "of": 14
+   }
+  ],
+  "median_ms": 637,
+  "median_chars": 5492
+ },
+ "results": [
+  {
+   "id": "st-ko-revenue-2025",
+   "set": "dev",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 1036,
+   "chars": 2822
+  },
+  {
+   "id": "st-jpm-netincome-2025",
+   "set": "dev",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 16301,
+   "chars": 4043
+  },
+  {
+   "id": "st-cost-netincome-2026",
+   "set": "dev",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 482,
+   "chars": 2837
+  },
+  {
+   "id": "st-msft-eps-2026",
+   "set": "dev",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 1045,
+   "chars": 2816
+  },
+  {
+   "id": "st-pg-sales-2026",
+   "set": "fresh",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 515,
+   "chars": 2569
+  },
+  {
+   "id": "st-xom-revenue-2025",
+   "set": "fresh",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 551,
+   "chars": 3361
+  },
+  {
+   "id": "st-orcl-revenue-2026",
+   "set": "fresh",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 500,
+   "chars": 3684
+  },
+  {
+   "id": "st-nke-netincome-2026",
+   "set": "fresh",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 514,
+   "chars": 2551
+  },
+  {
+   "id": "st-cat-opprofit-2025",
+   "set": "fresh",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 528,
+   "chars": 4107
+  },
+  {
+   "id": "st-pfe-netincome-2025",
+   "set": "fresh",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 517,
+   "chars": 6281
+  },
+  {
+   "id": "st-hd-assets-2025",
+   "set": "fresh",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 549,
+   "chars": 4006
+  },
+  {
+   "id": "st-aapl-opcash-2025",
+   "set": "fresh",
+   "type": "statement",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 629,
+   "chars": 5021
+  },
+  {
+   "id": "tr-msft-rnd-2023-2026",
+   "set": "dev",
+   "type": "trend",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 679,
+   "chars": 3204
+  },
+  {
+   "id": "tr-nvda-revenue-2023-2026",
+   "set": "fresh",
+   "type": "trend",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 865,
+   "chars": 3222
+  },
+  {
+   "id": "tr-ko-opincome-2022-2025",
+   "set": "fresh",
+   "type": "trend",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 550,
+   "chars": 3177
+  },
+  {
+   "id": "kpi-cost-members-2022-2026",
+   "set": "dev",
+   "type": "kpi",
+   "tool": "filing_tables",
+   "pass": true,
+   "ms": 1013,
+   "chars": 3332
+  },
+  {
+   "id": "kpi-cost-employees-2026",
+   "set": "dev",
+   "type": "kpi",
+   "tool": "filing_tables",
+   "pass": true,
+   "ms": 356,
+   "chars": 1503
+  },
+  {
+   "id": "kpi-cost-warehouses-2026",
+   "set": "dev",
+   "type": "kpi",
+   "tool": "filing_tables",
+   "pass": true,
+   "ms": 799,
+   "chars": 1345
+  },
+  {
+   "id": "seg-msft-us-revenue-2026",
+   "set": "dev",
+   "type": "segment",
+   "tool": "filing_tables",
+   "pass": true,
+   "ms": 986,
+   "chars": 2156
+  },
+  {
+   "id": "rc-wmt-fcf-h1-fy27",
+   "set": "dev",
+   "type": "reconciliation",
+   "tool": "filing_tables",
+   "pass": true,
+   "ms": 533,
+   "chars": 2791
+  },
+  {
+   "id": "gd-nvda-rev-q3fy27",
+   "set": "dev",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 596,
+   "chars": 5036
+  },
+  {
+   "id": "gd-txn-rev-q3-2026",
+   "set": "dev",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 678,
+   "chars": 4216
+  },
+  {
+   "id": "gd-lulu-eps-q3-2026",
+   "set": "dev",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 718,
+   "chars": 5580
+  },
+  {
+   "id": "gd-wmt-eps-fy27",
+   "set": "dev",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 482,
+   "chars": 7381
+  },
+  {
+   "id": "gd-hd-opmargin-fy26",
+   "set": "dev",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 669,
+   "chars": 5552
+  },
+  {
+   "id": "gd-dal-eps-q4-2026",
+   "set": "dev",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 637,
+   "chars": 8228
+  },
+  {
+   "id": "gd-crm-rev-fy27",
+   "set": "dev",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 692,
+   "chars": 14674
+  },
+  {
+   "id": "gd-mu-rev-q1fy27",
+   "set": "dev",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 628,
+   "chars": 5779
+  },
+  {
+   "id": "bm-nvda-rev-q2fy27",
+   "set": "dev",
+   "type": "beat_or_miss",
+   "tool": "earnings_release",
+   "pass": true,
+   "row": [
+    "revenue",
+    null,
+    "second quarter of fiscal 2027",
+    "USD billion",
+    89.18,
+    92.82,
+    96.2,
+    7.02,
+    3.38,
+    null,
+    null,
+    "above the range"
+   ],
+   "ms": 949,
+   "chars": 6455
+  },
+  {
+   "id": "bm-wmt-eps-q2fy27",
+   "set": "dev",
+   "type": "beat_or_miss",
+   "tool": "earnings_release",
+   "pass": true,
+   "row": [
+    "eps",
+    "adjusted",
+    "Second quarter",
+    "USD per share",
+    0.72,
+    0.74,
+    0.81,
+    0.09,
+    0.07,
+    null,
+    null,
+    "above the range"
+   ],
+   "ms": 833,
+   "chars": 8908
+  },
+  {
+   "id": "bm-lulu-rev-q2-2026",
+   "set": "dev",
+   "type": "beat_or_miss",
+   "tool": "earnings_release",
+   "pass": true,
+   "row": [
+    "revenue",
+    null,
+    "second quarter of 2026",
+    "%",
+    -3,
+    -2,
+    -4,
+    -1,
+    -2,
+    -100,
+    -200,
+    "below the range"
+   ],
+   "ms": 800,
+   "chars": 7147
+  },
+  {
+   "id": "gd-qcom-rev-q4fy26",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 613,
+   "chars": 5874
+  },
+  {
+   "id": "gd-qcom-eps-q4fy26",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 450,
+   "chars": 5874
+  },
+  {
+   "id": "gd-amat-rev-q4fy26",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 706,
+   "chars": 7419
+  },
+  {
+   "id": "gd-mrvl-rev-q3fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 797,
+   "chars": 8332
+  },
+  {
+   "id": "gd-mrvl-gm-q3fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 526,
+   "chars": 8332
+  },
+  {
+   "id": "gd-csco-rev-q1fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 730,
+   "chars": 7372
+  },
+  {
+   "id": "gd-csco-opm-q1fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 466,
+   "chars": 7372
+  },
+  {
+   "id": "gd-intu-rev-fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 682,
+   "chars": 10921
+  },
+  {
+   "id": "gd-hpq-eps-q4fy26",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 705,
+   "chars": 9091
+  },
+  {
+   "id": "gd-hpq-fcf-fy26",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 515,
+   "chars": 9091
+  },
+  {
+   "id": "gd-panw-rev-q1fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 620,
+   "chars": 5492
+  },
+  {
+   "id": "gd-panw-eps-fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 453,
+   "chars": 5492
+  },
+  {
+   "id": "gd-acn-eps-fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 661,
+   "chars": 9390
+  },
+  {
+   "id": "gd-len-deliveries-q4-2026",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 683,
+   "chars": 6082
+  },
+  {
+   "id": "gd-ctas-rev-fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 762,
+   "chars": 11695
+  },
+  {
+   "id": "gd-lrcx-rev-sep-q",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 644,
+   "chars": 7223
+  },
+  {
+   "id": "gd-adsk-rev-q3fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 653,
+   "chars": 5921
+  },
+  {
+   "id": "gd-adsk-eps-fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 440,
+   "chars": 5921
+  },
+  {
+   "id": "gd-dell-rev-fy27",
+   "set": "fresh",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 1034,
+   "chars": 8434
+  },
+  {
+   "id": "bm-hpq-eps-q3fy26",
+   "set": "fresh",
+   "type": "beat_or_miss",
+   "tool": "earnings_release",
+   "pass": true,
+   "row": [
+    "eps",
+    "non-GAAP",
+    "third quarter",
+    "USD per share",
+    0.61,
+    0.71,
+    0.83,
+    0.22,
+    0.12,
+    null,
+    null,
+    "above the range"
+   ],
+   "ms": 865,
+   "chars": 11238
+  },
+  {
+   "id": "bm-acn-rev-q4fy26",
+   "set": "fresh",
+   "type": "beat_or_miss",
+   "tool": "earnings_release",
+   "pass": true,
+   "row": [
+    "revenue",
+    null,
+    "Fourth Quarter Fiscal 2026",
+    "USD billion",
+    17.75,
+    18.4,
+    18.68,
+    0.93,
+    0.28,
+    null,
+    null,
+    "above the range"
+   ],
+   "ms": 850,
+   "chars": 10754
+  },
+  {
+   "id": "bm-mrvl-rev-q2fy27",
+   "set": "fresh",
+   "type": "beat_or_miss",
+   "tool": "earnings_release",
+   "pass": true,
+   "row": [
+    "revenue",
+    null,
+    "Second Quarter of Fiscal 2027",
+    "USD billion",
+    2.565,
+    2.835,
+    2.739,
+    0.174,
+    -0.096,
+    null,
+    null,
+    "within the range"
+   ],
+   "ms": 844,
+   "chars": 9736
+  },
+  {
+   "id": "f2-cdns-rev-fy26",
+   "set": "fresh-2",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 683,
+   "chars": 6177
+  },
+  {
+   "id": "f2-cdns-eps-fy26",
+   "set": "fresh-2",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 437,
+   "chars": 6177
+  },
+  {
+   "id": "f2-ftnt-rev-q3-2026",
+   "set": "fresh-2",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 670,
+   "chars": 5184
+  },
+  {
+   "id": "f2-ftnt-rev-fy26",
+   "set": "fresh-2",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 447,
+   "chars": 5184
+  },
+  {
+   "id": "f2-dri-eps-fy27",
+   "set": "fresh-2",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 766,
+   "chars": 3851
+  },
+  {
+   "id": "f2-stz-eps-fy27",
+   "set": "fresh-2",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 672,
+   "chars": 13762
+  },
+  {
+   "id": "f2-stz-fcf-fy27",
+   "set": "fresh-2",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 468,
+   "chars": 13762
+  },
+  {
+   "id": "f2-now-subrev-q3-2026",
+   "set": "fresh-2",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 638,
+   "chars": 10884
+  },
+  {
+   "id": "f2-now-subrev-fy26",
+   "set": "fresh-2",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 488,
+   "chars": 10884
+  },
+  {
+   "id": "vt-msft-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 536,
+   "chars": 1362
+  },
+  {
+   "id": "vt-nvda-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 937,
+   "chars": 1361
+  },
+  {
+   "id": "vt-909832-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 461,
+   "chars": 1348
+  },
+  {
+   "id": "vt-21344-rev-2025",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 2225,
+   "chars": 1342
+  },
+  {
+   "id": "vt-80424-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 830,
+   "chars": 1335
+  },
+  {
+   "id": "vt-1341439-rev-2026",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 369,
+   "chars": 1346
+  },
+  {
+   "id": "vt-34088-ni-2025",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 426,
+   "chars": 1348
+  },
+  {
+   "id": "vt-19617-ni-2025",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 411,
+   "chars": 1398
+  },
+  {
+   "id": "vw-msft-rev-prior",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 663,
+   "chars": 1393
+  },
+  {
+   "id": "vw-nvda-rev-prior",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 507,
+   "chars": 1392
+  },
+  {
+   "id": "vw-21344-rev-prior",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 475,
+   "chars": 1372
+  },
+  {
+   "id": "vw-msft-rev-slip",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 233,
+   "chars": 1420
+  },
+  {
+   "id": "vw-80424-rev-slip",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 184,
+   "chars": 1390
+  },
+  {
+   "id": "vw-cost-ni-quarter",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 383,
+   "chars": 1400
+  },
+  {
+   "id": "vp-msft-rev-2031",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 2594,
+   "chars": 1427
+  },
+  {
+   "id": "vp-ko-ni-2030",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 1588,
+   "chars": 1418
+  },
+  {
+   "id": "vp-amzn-div-2025",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 2237,
+   "chars": 1444
+  },
+  {
+   "id": "vp-brk-div-2025",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 2083,
+   "chars": 1423
+  },
+  {
+   "id": "vp-nvda-ebitda",
+   "set": "verify",
+   "type": "verify",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 244,
+   "chars": 1387
+  },
+  {
+   "id": "tp-aapl-statements-2031",
+   "set": "trap",
+   "type": "trap",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 471,
+   "chars": 0
+  },
+  {
+   "id": "tp-unknown-company",
+   "set": "trap",
+   "type": "trap",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 493,
+   "chars": 0
+  },
+  {
+   "id": "tp-msft-warp-table",
+   "set": "trap",
+   "type": "trap",
+   "tool": "filing_tables",
+   "pass": true,
+   "ms": 1219,
+   "chars": 1102
+  },
+  {
+   "id": "tp-nvda-release-fake",
+   "set": "trap",
+   "type": "trap",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 471,
+   "chars": 0
+  },
+  {
+   "id": "tp-tsla-div-statement",
+   "set": "trap",
+   "type": "trap",
+   "tool": "verify_claims",
+   "pass": true,
+   "ms": 2247,
+   "chars": 1434
+  },
+  {
+   "id": "tp-wmt-q4-10q",
+   "set": "trap",
+   "type": "trap",
+   "tool": "financial_statements",
+   "pass": true,
+   "ms": 401,
+   "chars": 0
+  },
+  {
+   "id": "gd-uri-rev-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 655,
+   "chars": 8321
+  },
+  {
+   "id": "gd-uri-ebitda-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 455,
+   "chars": 8321
+  },
+  {
+   "id": "gd-tdy-eps-q4",
+   "set": "fresh-3",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 721,
+   "chars": 7256
+  },
+  {
+   "id": "gd-tdy-gaapeps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 488,
+   "chars": 7256
+  },
+  {
+   "id": "gd-dhr-eps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 637,
+   "chars": 9509
+  },
+  {
+   "id": "gd-hon-sales-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 666,
+   "chars": 14506
+  },
+  {
+   "id": "gd-hon-eps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 476,
+   "chars": 14506
+  },
+  {
+   "id": "gd-r-eps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 793,
+   "chars": 8722
+  },
+  {
+   "id": "gd-r-gaapeps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 462,
+   "chars": 8722
+  },
+  {
+   "id": "gd-knx-eps-q4",
+   "set": "fresh-3",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 715,
+   "chars": 8990
+  },
+  {
+   "id": "gd-lmt-sales-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 633,
+   "chars": 7878
+  },
+  {
+   "id": "gd-lmt-eps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 449,
+   "chars": 7878
+  },
+  {
+   "id": "gd-elv-eps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 712,
+   "chars": 6936
+  },
+  {
+   "id": "gd-moh-eps-fy26",
+   "set": "fresh-3",
+   "type": "guidance",
+   "tool": "earnings_release",
+   "pass": true,
+   "ms": 636,
+   "chars": 8130
+  }
+ ]
+}

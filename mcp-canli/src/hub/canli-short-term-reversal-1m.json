@@ -1,0 +1,20 @@
+{
+  "spec": "canli.sleeve.v1",
+  "id": "canli/short-term-reversal-1m",
+  "title": "Short-term reversal, one month",
+  "author": "arhancanli",
+  "recipe": "short_term_reversal",
+  "params": {
+    "lookback": 21,
+    "top_fraction": 0.1,
+    "rebalance_every": 21
+  },
+  "data": "universe",
+  "rationale": "Holds the stocks that fell most over the past month. A sharp short move can come from someone needing to trade rather than from news, and such moves can partly undo themselves.",
+  "risks": "It buys what has just fallen, and a fall can be for a good reason. Turnover is very high, so costs and the gap between bid and ask can take most of any effect.",
+  "references": [
+    "Jegadeesh (1990), Evidence of Predictable Behavior of Security Returns, Journal of Finance",
+    "Lehmann (1990), Fads, Martingales, and Market Efficiency, Quarterly Journal of Economics"
+  ],
+  "license": "CC-BY-4.0"
+}

@@ -1,0 +1,313 @@
+{
+ "version": "0.16.0",
+ "recorded": "2026-11-02T09:28:46.973Z",
+ "call": {
+  "name": "shipping_activity",
+  "arguments": {}
+ },
+ "model_chars": 2936,
+ "ms": 1465,
+ "result": {
+  "ref": "r3",
+  "period": {
+   "from": "2026-10-19",
+   "to": "2026-10-25",
+   "compared_with": "the same seven days of the week, 52 weeks earlier"
+  },
+  "columns": [
+   "chokepoint",
+   "ships",
+   "tankers",
+   "container_ships",
+   "ships_a_year_earlier",
+   "change_percent",
+   "tankers_change_percent"
+  ],
+  "rows": [
+   [
+    "Malacca Strait",
+    1596,
+    531,
+    427,
+    1660,
+    -3.9,
+    -4.2
+   ],
+   [
+    "Korea Strait",
+    1389,
+    369,
+    382,
+    1474,
+    -5.8,
+    -2.1
+   ],
+   [
+    "Taiwan Strait",
+    1330,
+    307,
+    476,
+    1062,
+    25.2,
+    18.1
+   ],
+   [
+    "Bohai Strait",
+    1148,
+    245,
+    141,
+    1164,
+    -1.4,
+    7.9
+   ],
+   [
+    "Dover Strait",
+    901,
+    310,
+    195,
+    1088,
+    -17.2,
+    -24.6
+   ],
+   [
+    "Gibraltar Strait",
+    815,
+    257,
+    210,
+    889,
+    -8.3,
+    -16.6
+   ],
+   [
+    "Cape of Good Hope",
+    610,
+    153,
+    100,
+    660,
+    -7.6,
+    0
+   ],
+   [
+    "Luzon Strait",
+    436,
+    139,
+    55,
+    658,
+    -33.7,
+    -13.1
+   ],
+   [
+    "Makassar Strait",
+    410,
+    49,
+    18,
+    332,
+    23.5,
+    48.5
+   ],
+   [
+    "Yucatan Channel",
+    389,
+    213,
+    73,
+    342,
+    13.7,
+    15.8
+   ],
+   [
+    "Mindoro Strait",
+    383,
+    41,
+    24,
+    217,
+    76.5,
+    57.7
+   ],
+   [
+    "Bosporus Strait",
+    376,
+    111,
+    37,
+    707,
+    -46.8,
+    -39
+   ],
+   [
+    "Tsugaru Strait",
+    326,
+    104,
+    70,
+    298,
+    9.4,
+    8.3
+   ],
+   [
+    "Oresund Strait",
+    300,
+    67,
+    27,
+    307,
+    -2.3,
+    8.1
+   ],
+   [
+    "Suez Canal",
+    289,
+    114,
+    97,
+    299,
+    -3.3,
+    1.8
+   ],
+   [
+    "Lombok Strait",
+    281,
+    52,
+    1,
+    242,
+    16.1,
+    -17.5
+   ],
+   [
+    "Sunda Strait",
+    216,
+    74,
+    26,
+    187,
+    15.5,
+    -5.1
+   ],
+   [
+    "Bab el-Mandeb Strait",
+    202,
+    67,
+    51,
+    262,
+    -22.9,
+    -22.1
+   ],
+   [
+    "Panama Canal",
+    201,
+    86,
+    59,
+    230,
+    -12.6,
+    -9.5
+   ],
+   [
+    "Windward Passage",
+    106,
+    14,
+    61,
+    88,
+    20.5,
+    -30
+   ],
+   [
+    "Mona Passage",
+    95,
+    22,
+    25,
+    105,
+    -9.5,
+    -18.5
+   ],
+   [
+    "Balabac Strait",
+    87,
+    32,
+    8,
+    69,
+    26.1,
+    88.2
+   ],
+   [
+    "Torres Strait",
+    56,
+    9,
+    9,
+    59,
+    -5.1,
+    -10
+   ],
+   [
+    "Ombai Strait",
+    51,
+    16,
+    6,
+    75,
+    -32,
+    -27.3
+   ],
+   [
+    "Magellan Strait",
+    30,
+    8,
+    2,
+    23,
+    30.4,
+    14.3
+   ],
+   [
+    "Strait of Hormuz",
+    23,
+    6,
+    1,
+    714,
+    -96.8,
+    -98.5
+   ],
+   [
+    "Bering Strait",
+    14,
+    10,
+    0,
+    18,
+    -22.2,
+    -16.7
+   ],
+   [
+    "Kerch Strait",
+    1,
+    0,
+    0,
+    112,
+    -99.1,
+    -100
+   ]
+  ],
+  "meaning": "Ship transits in seven days. Name one chokepoint for its weekly series.",
+  "source": "IMF PortWatch (https://portwatch.imf.org), from satellite AIS tracking of ships",
+  "limits": [
+   "These are estimates from ships' own tracking signals. A ship that turns its signal off is not counted, and that happens most in conflict zones and under sanctions.",
+   "The latest days can be revised, and the data arrives about a week or more after the day it covers.",
+   "Ship counts say how much moved through a place. They do not say what any one company shipped, and nothing here shows they predict a price."
+  ],
+  "evidence": {
+   "documents": 3,
+   "columns": [
+    "url",
+    "sha256_16",
+    "retrieved_at"
+   ],
+   "rows": [
+    [
+     "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query?where=portid%20%3D%20'chokepoint1'%20AND%20date%20%3E%3D%20DATE%20'2026-09-18'&outFields=*&f=json",
+     "269ad5d6545e6e16",
+     "2026-11-02T09:28:46.098Z"
+    ],
+    [
+     "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query?where=date%20%3E%3D%20DATE%20'2025-10-20'%20AND%20date%20%3C%3D%20DATE%20'2025-10-26'&outFields=*&f=json",
+     "579532318547ae5a",
+     "2026-11-02T09:28:46.624Z"
+    ],
+    [
+     "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query?where=date%20%3E%3D%20DATE%20'2026-10-19'%20AND%20date%20%3C%3D%20DATE%20'2026-10-25'&outFields=*&f=json",
+     "aa7329eb2a5927de",
+     "2026-11-02T09:28:46.972Z"
+    ]
+   ]
+  }
+ }
+}

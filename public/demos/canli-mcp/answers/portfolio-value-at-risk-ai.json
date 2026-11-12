@@ -1,0 +1,121 @@
+{
+ "version": "0.16.1",
+ "recorded": "2026-11-02T12:37:43.475Z",
+ "call": {
+  "name": "portfolio_var",
+  "arguments": {
+   "positions": [
+    60000,
+    40000
+   ],
+   "returns": [
+    [
+     0.012,
+     0.006
+    ],
+    [
+     -0.008,
+     -0.002
+    ],
+    [
+     0.004,
+     0.001
+    ],
+    [
+     0.021,
+     0.009
+    ],
+    [
+     -0.015,
+     -0.007
+    ],
+    [
+     0.007,
+     0.004
+    ],
+    [
+     -0.003,
+     -0.001
+    ],
+    [
+     0.011,
+     0.005
+    ],
+    [
+     -0.022,
+     -0.011
+    ],
+    [
+     0.009,
+     0.003
+    ],
+    [
+     0.005,
+     0.002
+    ],
+    [
+     -0.012,
+     -0.005
+    ],
+    [
+     0.016,
+     0.007
+    ],
+    [
+     -0.006,
+     -0.003
+    ],
+    [
+     0.002,
+     0.001
+    ],
+    [
+     0.013,
+     0.006
+    ],
+    [
+     -0.019,
+     -0.009
+    ],
+    [
+     0.008,
+     0.004
+    ],
+    [
+     0.003,
+     0.002
+    ],
+    [
+     -0.004,
+     -0.001
+    ]
+   ],
+   "confidence": 0.95,
+   "names": [
+    "Stocks",
+    "Bonds"
+   ]
+  }
+ },
+ "model_chars": 512,
+ "ms": 61,
+ "result": {
+  "ref": "r4",
+  "historical_var": 1513,
+  "historical_es": 1760,
+  "parametric_var": 1443.13,
+  "parametric_es": 1832.1,
+  "es_contribution": {
+   "Stocks": 1320,
+   "Bonds": 440
+  },
+  "parametric_var_contribution": {
+   "Stocks": 1174.63,
+   "Bonds": 356.5
+  },
+  "sum_of_standalone_var": 1533.26,
+  "diversification_benefit": 2.13062,
+  "tail_scenarios": 1,
+  "method": "Historical: empirical quantile of portfolio P&L (linear interpolation); contributions are each position's average P&L in the tail. Parametric: normal with sample mean and covariance; Euler contributions."
+ }
+}

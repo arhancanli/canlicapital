@@ -8,7 +8,7 @@ import { ANSWER_WORDS, REGIONS, buildHomeAnswers, checkConfig, faqJsonLd, wordCo
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const config = JSON.parse(readFileSync(resolve(ROOT, "config", "home-answers.json"), "utf8"));
-const page = readFileSync(resolve(ROOT, "index.html"), "utf8");
+const page = readFileSync(resolve(ROOT, "agents.html"), "utf8");
 const clone = () => structuredClone(config);
 // Visible text of a fragment, for comparing two renderings of the same words. Tags are stripped
 // until none remain (one pass can leave a tag assembled from the pieces of two), and &amp; is
@@ -23,7 +23,7 @@ const text = (html) => stripTags(html).replace(/&#39;/g, "'").replace(/&quot;/g,
 const region = (html, [start, end]) => html.slice(html.indexOf(start) + start.length, html.indexOf(end));
 
 test("the committed homepage is what the generator writes", () => {
-  assert.equal(buildHomeAnswers(page, config), page, "run node scripts/build-home-answers.mjs and commit index.html");
+  assert.equal(buildHomeAnswers(page, config), page, "run node scripts/build-home-answers.mjs and commit agents.html");
 });
 
 test("the homepage opens with a definition and a 40 to 60 word answer, before anything else in <main>", () => {

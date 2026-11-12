@@ -456,6 +456,9 @@ export function runBacktest({ prices, family, grid = {}, periods_per_year: ppy =
       top: shown.map((r) => [...spec.params.map((k) => r.params[k]), r.metrics.sharpe, r.metrics.cagr, r.metrics.max_drawdown, r.metrics.turnover_per_year]),
     },
     selected: { params: best.params, metrics: best.metrics },
+    // Every variant's annualized Sharpe, best first as in top, so a server that counts trials across a session
+    // (canli-mcp's luck) counts each variant run and not one, as with canli-quant-mcp's strategy_sweep.
+    every_trial: { sharpes: ranked.filter((r) => r.metrics.sharpe !== null).map((r) => r.metrics.sharpe), periods: evaluated, periods_per_year: Number(ppy) },
     buy_and_hold: performance(buyHold.returns, ppy),
     validation,
     plain_reading: reading(family, runs.length, best, validation, performance(buyHold.returns, ppy)),

@@ -1,0 +1,61 @@
+{
+ "version": "0.16.1",
+ "recorded": "2026-11-02T12:05:44.445Z",
+ "call": {
+  "name": "my_week",
+  "arguments": {
+   "holdings": [
+    "AAPL",
+    "NVDA",
+    "VOO"
+   ]
+  }
+ },
+ "model_chars": 534,
+ "ms": 1315,
+ "result": {
+  "days": 7,
+  "summary": [
+   "AAPL: down 0.89%.",
+   "NVDA: down 3%; expected to report around 2026-11-18.",
+   "VOO: down 0.54%."
+  ],
+  "biggest_move": {
+   "symbol": "NVDA",
+   "change_percent": -3
+  },
+  "columns": [
+   "symbol",
+   "change_percent",
+   "close",
+   "told_the_sec_about",
+   "next_report_expected"
+  ],
+  "rows": [
+   [
+    "AAPL",
+    -0.89,
+    344.63,
+    [],
+    null
+   ],
+   [
+    "NVDA",
+    -3,
+    204.64,
+    [],
+    "2026-11-18"
+   ],
+   [
+    "VOO",
+    -0.54,
+    694.81,
+    [],
+    null
+   ]
+  ],
+  "limits": [
+   "What happened, with no view on what to do. Prices can run late. Funds file little, so most of what moves them is in what they hold: portfolio_xray opens them."
+  ]
+ }
+}

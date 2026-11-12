@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.0
+
+- Each variant's returns, for a server that runs this package in its own process: `strategy_sweep` and `sleeve_tournament` (in `every_trial`'s order) and every backtest in the strategies toolset (its one series) carry them under `Symbol.for("canli.trial_returns")`, a key JSON leaves out, so a client reading the answer never gets them and the answer's size does not change. `runTool` keeps them through rounding. canli-mcp pools them to measure overfitting across everything a session tried on the same data.
+
+## 0.3.0
+
+- `lookahead_check`: target weights checked for lookahead from the weights alone. Their return is lined up with the period each was decided for, one, two and five periods late, and one period early (the return that had just happened). Weights computed with their own period's outcome show an edge all in that period, gone a period later and unexplained by the last return; the verdict reads so when that holds beyond about two standard errors of the Sharpe ratio. On simulated data it flags weights that peek every day and one day in seven, and not momentum, reversal or weights with no edge. It reads the weights, not the code behind them: hindsight in the universe, revised data or survivorship can leave no such pattern.
+- Sweeps count every try. `strategy_sweep` and `sleeve_tournament` return `every_trial`: every variant's annualized Sharpe, best first, with the periods it was measured on and `periods_per_year`. The table still shows the top 50 variants (or the leaderboard), but a server that counts what a session tried, such as canli-mcp's luck count, can now count all 400 variants of a grid and all 399 sleeves of a tournament, not the best alone.
+- `strategy_sweep` gives the probability of backtest overfitting by combinatorially symmetric cross-validation (Bailey, Borwein, Lopez de Prado and Zhu 2017), over the variants' net returns: how often the best variant on half the sample landed in the bottom half on the other half, with the median logit, the probability of an out-of-sample loss and the degradation slope. It is computed on the whole sample, where a variant with a longer lookback is flat for longer at the start; there is none for one variant or under 40 periods. The CSCV code `sleeve_tournament` uses moved to `src/cscv.mjs`, unchanged.
+
 ## 0.2.0
 
 - Backtests can return their path: `curve: true` adds the equity curve (from 1) against buy-and-hold,

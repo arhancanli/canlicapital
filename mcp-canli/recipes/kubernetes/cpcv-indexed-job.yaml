@@ -1,0 +1,43 @@
+# Cross-validation shards as a Kubernetes Indexed Job: each pod runs the splits for its index and
+# writes a shard to a shared volume. Afterwards, merge them from any machine with the same volume:
+#   canli-mcp run cpcv '{"merge_files":["/data/shard-0.json","/data/shard-1.json","..."]}'
+# Put returns.csv on the volume first. A shard refuses to merge with one run on other data or settings.
+# CI runs this file on a kind cluster, then merges what it wrote (.github/workflows/recipes.yml).
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: canli-cpcv
+spec:
+  completionMode: Indexed
+  completions: 8
+  parallelism: 8
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+        - name: shard
+          image: node:24-slim
+          env:
+            - name: HOME
+              value: /tmp
+          command:
+            - sh
+            - -c
+            - >-
+              npx -y canli-mcp run cpcv
+              "{\"returns_file\":\"/data/returns.csv\",\"groups\":12,\"test_groups\":3,\"shard\":{\"index\":$JOB_COMPLETION_INDEX,\"of\":8},\"out_file\":\"/data/shard-$JOB_COMPLETION_INDEX.json\"}"
+          resources:
+            requests: { cpu: "1", memory: 2Gi }
+            limits: { memory: 4Gi }
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: canli-cpcv-data

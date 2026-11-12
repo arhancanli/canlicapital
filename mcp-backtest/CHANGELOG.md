@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.6.0
+
+- `breadth_sweep` returns `every_trial`: every variant's annualized Sharpe, best first, with its combination `k`, the days it was measured on (one number when all variants share them, else one per variant) and `periods_per_year`. With `split_date` it is the Sharpe the settings were chosen on. A server that counts what a session tries, as canli-mcp does, counts each variant and not only the best, as with canli-quant-mcp's `strategy_sweep`. A shard's answer carries `every_trial` for its own variants, so they are counted as each shard runs, not first at the merge.
+- `breadth_sweep` hands each variant's daily book returns to a server that runs this package in its own process, as canli-quant-mcp's sweeps do: every date of the prices file (a flat day as 0, so variants with longer warm-ups line up), in `every_trial`'s order, under `Symbol.for("canli.trial_returns")`. JSON leaves that key out, so the answer, `out_file` and shard files are unchanged. A shard hands over its own variants' returns as it runs; a merge hands over none. canli-mcp pools them by the prices file's bytes to measure overfitting across everything a session tried on that data.
+- With those returns, the date of each day (the prices file's first column) under `Symbol.for("canli.trial_dates")`, so canli-mcp can set the best variant against the Lab's strategies over the same months. JSON leaves it out too.
+
+## 0.5.1
+
+- A file path with a null byte is refused by name instead of crashing. Found by the robustness bench on `find_diversifiers`.
+
+## 0.5.0
+
+New tools: `exchange_new`, `exchange_join`, `exchange_view`, `exchange_orders`, `exchange_step`, `exchange_report`, `exchange_run`, `agent_consensus`, `find_diversifiers`.
+
+- The agent exchange is a closed paper market with limit order books, margin rules and forced selling, so a shock can become a cascade. Different AI agents join with tokens, each sees only its own account, time moves in steps that wait for everyone, and a hash chain of the tape lets anyone check a run by replaying it. The rules are in docs/AGENT_EXCHANGE.md.
+- `agent_consensus` counts how many independent views a group of agents really holds, from their errors after each agent's usual error on that outcome is removed, because forecasters who are right about the same things otherwise look alike.
+- `find_diversifiers` ranks by independent bets added and behaviour on a book's worst days. Return is never used to rank.
+- A file that is not an arena or an exchange is refused without quoting it. A JSON parse error quotes what it read.
+
+## 0.4.0
+
+- `backtest_signal` with `capital_usd` and `dollar_volume_file`: an order fills only up to a share of recent daily volume and pays square-root impact, read from the days before each trade. The reply shows the Sharpe at each size the market can take, and none for a book that could not fill.
+- Every `backtest_signal` reply replays the named crises its dates fully cover and lists the rest as untested. `fails` names what went wrong.
+- `crisis_replay`: the same for any returns file.
+- `cpcv`: combinatorial purged cross-validation of a search, with shards other machines can run and a merge that refuses other data, gaps and duplicates.
+- `proof_filings`, `proof_file`, `proof_verify`, `proof_find`: a signed, append-only ledger of what companies filed, their restatements and file hashes. It shows lines were not changed afterwards, not that a figure is right.
+- `league_new`, `league_commit`, `league_score`: a paper league. Commit a hash, reveal later, scored in the open against the best luck gives, with a paper book chosen on earlier rounds only. No prizes, no stakes, nobody's money.
+- `arena_new`, `arena_orders`, `arena_step`: a paper market for AI agents with made-up assets and money.
+
 ## 0.3.0
 
 - `breadth_sweep`: a grid of breadth-book settings run in parallel on every core (or as shards other

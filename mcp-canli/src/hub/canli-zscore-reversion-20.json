@@ -1,0 +1,20 @@
+{
+  "spec": "canli.sleeve.v1",
+  "id": "canli/zscore-reversion-20",
+  "title": "Reversion to a 20-day average",
+  "author": "arhancanli",
+  "recipe": "zscore_reversion",
+  "params": {
+    "window": 20,
+    "entry_z": 2,
+    "exit_z": 0.5,
+    "long_only": true
+  },
+  "data": "single",
+  "rationale": "Buys when a price falls two standard deviations under its 20-day average, and sells as it returns. These are the same limits as the common Bollinger Bands.",
+  "risks": "A price well under its average may be there for good reason, and trends can run far past two standard deviations. It tends to lose most in the long falls where it keeps buying.",
+  "references": [
+    "Bollinger (2001), Bollinger on Bollinger Bands, McGraw-Hill"
+  ],
+  "license": "CC-BY-4.0"
+}

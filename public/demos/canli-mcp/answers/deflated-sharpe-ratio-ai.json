@@ -1,0 +1,54 @@
+{
+ "version": "0.16.1",
+ "recorded": "2026-11-02T12:37:43.414Z",
+ "call": {
+  "name": "validate_deflated_sharpe",
+  "arguments": {
+   "observed_sharpe_annualized": 2,
+   "observations": 756,
+   "periods_per_year": 252,
+   "skew": 0,
+   "non_excess_kurtosis": 3,
+   "effective_independent_trials": 50,
+   "cross_trial_sharpe_sd_annualized": 0.5
+  }
+ },
+ "model_chars": 1514,
+ "ms": 25,
+ "result": {
+  "ref": "r3",
+  "computed": "locally",
+  "note": "Computed on this machine in local mode. Nothing was sent to canlicapital.com and no receipt was stored.",
+  "data": {
+   "input_mode": "contract_inputs",
+   "derived_inputs": {
+    "observed_sharpe_annualized": 2,
+    "observations": 756,
+    "periods_per_year": 252,
+    "skew": 0,
+    "non_excess_kurtosis": 3,
+    "effective_independent_trials": 50,
+    "cross_trial_sharpe_sd_annualized": 0.5
+   },
+   "result": {
+    "observed_sharpe_per_period": 0.125988,
+    "cross_trial_sharpe_variance_per_period": 0.000992063,
+    "expected_max_sharpe_per_period": 0.0716968,
+    "expected_max_sharpe_annualized": 1.13815,
+    "psr_against_zero": 0.999718,
+    "deflated_sharpe_ratio": 0.931346,
+    "non_normality_variance_term": 1.00794,
+    "search_haircut_annualized": 0.861848,
+    "psr_z_score": 3.44815,
+    "dsr_z_score": 1.48589
+   },
+   "plain_reading": "Counting only sample uncertainty, the probability this Sharpe is above zero is 100.0 percent. Deflated for the best-by-luck Sharpe the declared search would produce (1.138 annualised), it is 93.1 percent. Neither number is a forecast."
+  },
+  "limits": [
+   "This verdict is about the series exactly as submitted. The service never saw the data source, its costs, survivorship, or any lookahead in how the series was built.",
+   "A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast.",
+   "The receipt is content-hashed, reproducible from the open-source core it names, and signed with Ed25519 by a key published at https://canlicapital.com/.well-known/canli-receipt-keys.json."
+  ],
+  "receipt": null
+ }
+}

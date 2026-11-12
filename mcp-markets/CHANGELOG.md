@@ -1,5 +1,302 @@
 # Changelog
 
+## 0.17.0
+
+`default_risk`, the second Canli model, and two fixes to reading filings and fund-report names. 139 tools.
+
+- `default_risk`, a Canli model: the chance a company reports a bankruptcy (an 8-K under Item 1.03) within a year of its latest annual report, from that 10-K's own figures, with its rank among the 2025 reports and Ohlson's O and Altman's Z'' beside it. `as_of` reads the company as it stood on a past day. Tested walk-forward on every US GAAP 10-K filed from 2014 to 2025 (71,130 reports, 553 bankruptcies), with the design committed before the first run. Across all reports it ranked bankruptcies better than both benchmarks (AUC 0.79 against 0.73 and 0.72). Among companies with at least $10M of assets Ohlson's O did better (0.83 against 0.81); the tool says so in its answer. The data, scripts and results are in `config/research/default-risk-v1` and `scripts/research/default-risk`. 139 tools.
+- Fix: `read_filing` with `find` and a small `max_chars` dropped a matching passage longer than the characters left, and answered that no passage held the words. Digital Turbine's 10-Q of 5 August 2026 says it "identified an immaterial error"; at `max_chars` 500 or 800 the tool found nothing, at 1,499 the 1,108-character passage. A passage is now cut around its first word to fit what is left instead of being dropped; each match's `offset` is where its text starts (a passage cut from a long paragraph gave the paragraph's start before); and when `max_chars` ends the passages before the words run out, `more` says so.
+- Fix: names as fund reports write them now find their company. A place in brackets picks among same-named companies by the SEC's state tag ("FIRST BANCORP (PUERTO RICO)" is FIRST BANCORP /PR/, not /NC/; "INDEPENDENT BANK CORP (MASSACHUSETTS)" is not the /MI/ one) and "(US)" is dropped; "LLC" and "LP" count as legal suffixes, so "BRIGHT HORIZONS FAMILY SOLUTIONS LLC" is the listed company, not an old subsidiary filer of that name; and two companies renamed after June 2026 are found by their old names (Madison Square Garden Sports, now MSG Knickerbockers; Indivior Pharmaceuticals, now Supernus). Plurals count as the same word ("TWO HARBORS INVESTMENTS CORP" is TWO HARBORS INVESTMENT CORP.), a trailing "REAL ESTATE INVESTMENT TRUST" goes, the whole name comes before a longer one ("UNIVERSAL CORP" is UNIVERSAL CORP /VA/, not Universal Music Group), and Navient Holdings, which has no annual report yet, reads its history from NAVIENT CORP, as ExxonMobil Holdings does from Exxon Mobil. Twelve of the S&P SmallCap 600 fund's holdings found no company before.
+
+## 0.16.0
+
+Where a portfolio stands against the US filing and concentration lines, prices as traded on every source, and an index's members on a past date. 138 tools.
+
+- `portfolio_rules`: where a list of holdings stands against the US lines that bring a filing or cap concentration, each with its rule's text linked. Each position's share of its class from the company's latest cover page (an ADR at its deposit ratio), against more than 5% (Schedule 13D within five business days, or 13G) and more than 10% (a Section 16 insider: Form 3, then Form 4 within two business days, and short-swing profits); the $100 million Form 13F line and whom it applies to; concentration (the largest issuer, the top five, HHI, effective positions); the diversified-fund 75-5-10 test and the RIC test (50% qualifying, at most 25% in one issuer), with cash and funds counted as the rules count them and an undecided share where a class size is unknown; and days to exit at a chosen share of FINRA's average daily volume. ETFs and mutual funds are recognised from the SEC's fund file. Values come from the input or, where the server has prices, the latest price; the hosted server asks for them. A check, not compliance advice.
+- Fix: `CANLI_KEYLESS_PRICES=0` turned off Yahoo's prices but not the rest of Yahoo's data, so a server running with it (the hosted canli-mcp does, because Yahoo's data is for personal use under its terms) still served `stock_snapshot`, `analyst_history`, `market_movers` and `etf_profile` from Yahoo. Those four now refuse there as the price tools do, with the local install named, and fetch nothing.
+- Fix: `price_history` with `adjusted: false` on the keyless source gave split-adjusted prices, because Yahoo's own close is adjusted for splits, while Alpaca and Tiingo gave prices as traded. It now gives prices as traded on every source: each price, volume and dividend is multiplied back (a volume divided) by the splits after its date, read up to today. NVIDIA on 7 June 2024, the day before its 10-for-1 split: $1,208.88 on 41.2 million shares, where it said $120.89 on 412 million; March's dividend $0.04, where it said $0.004. `price_return` and `returns` come from split-adjusted closes, so a split is not read as a loss. Behind it, Altman's market value and other figures that set a price against a filing's share count now get the price of that date.
+- `price_history` `adjustment`: all (splits and dividends, the default), splits (comparable across a split, dividends left out) or none (as traded). `market_overview` asks for splits, as before. With Tiingo, split-adjusted prices come from its split factors.
+- `index_constituents` on a past date: `as_of` gives an index's members as the tracking ETF's N-PORT reported them for the last quarter-end on or before the date, companies since removed included, so a backtest's universe has no survivorship bias; `changes_from` lists who joined and who left between two dates, matched by CUSIP (by ISIN where the filing gives no CUSIP). The S&P 500 through IVV: on 30 November 2020 the 30 September report's 505 members, without Tesla; from then to 31 December 2020, Tesla, Viatris, Pool and Vontier joined, and E*TRADE, Mylan, Apartment Investment and Management, and Noble Energy left. A past date reads N-PORT only: State Street's daily files hold the latest day, so the Dow (DIA files no N-PORT) has no past members here.
+
+## 0.15.0
+
+### The economy, from the publishers
+
+- `world_series`: a country's economy from the office or central bank that publishes it, in one shape. Inflation, core inflation, unemployment, GDP growth, the policy rate, the 10-year yield, the exchange rate, industrial production, retail sales, wages, house prices, the OECD's composite leading indicator, consumer confidence, business confidence (official surveys: the EU's economic sentiment indicator, the Bank of Japan's Tankan, the Philadelphia Fed's for the US), government debt, money supply and central banks' total assets (the Fed, the Eurosystem, the Bank of Japan), for 70 countries and the euro area. Each country is read at its own statistics office or central bank where that has an open service: Statistics Canada, the ONS, the ABS, IBGE, Statistics Norway and Sweden, Eurostat for EU members, and the Fed, the Bank of Canada, the Bank of England, the ECB, the Bundesbank, the Bank of Japan, Japan's Ministry of Finance, the RBA, Banco Central do Brasil, the Riksbank, Norges Bank, the SNB and the Bank of Israel. Otherwise the OECD's, the IMF's or the BIS's compilation of the country's official figures is read, and the answer names who compiled it. Up to 30 countries side by side, or a group (G7, G20, EU, euro area members, BRICS, Nordics, ASEAN, Latin America), are read in one request per publisher: the G20's inflation takes nine requests, not twenty. Any series at those 24 publishers can be asked for by its own code (`statcan:2062815`, `eurostat:une_rt_m?geo=DE&...`, `imf:CPI/IND...`, `boj:FM01/STRDCLUCON`). `check: true` reads the same figure from a second official publisher and compares the latest period both report, for one country or for every country in a table at once: the G20's inflation against the IMF's and the BIS's compilations takes about three seconds, and 18 of the 20 agree within 0.15 points (France's harmonised index and the UK's CPI are the two that differ, by definition). Quotes are turned over where one publisher gives dollars per unit and the other units per dollar, and daily rates are averaged against monthly averages. US inflation from the BLS's own index matches the IMF's to 0.0001 points; Norway's from Statistics Norway's index matches to 0.00002. A policy rate comes with its recent moves (up to eight). `measure: "all"` gives one country's every measure in one call, each from its own publisher with the figure a year earlier, and with `check: true` each measure set against a second official publisher (Brazil's nine in about 3.5 s). A figure whose latest observation is more than eighteen months old is marked stale; Russia's GDP stops in 2021, for example.
+- Built to 2026's changes at the sources. Eurostat's HICP moved to ECOICOP 2 (`prc_hicp_minr`) in February, Statistics Sweden moved to `KPI2020M`, Statistics Norway moved to table 14710 (an index only, so its change on a year is computed), and the ABS's monthly CPI is now its headline.
+- `inflation_nowcast`: the Cleveland Fed's daily nowcast of CPI, core CPI, PCE and core PCE inflation, with no key. For each month and the quarter not yet published, the latest nowcast month over month, year over year and annualized, beside the last month published with its figure and the day it came out; `month` gives a month's nowcast day by day; `record` sets the last nowcast before each release against the figure published, with the average miss. The published figures agree with FRED's (September 2026 CPI on a year: 3.7377% from CPIAUCNS, 3.7377% in the Cleveland Fed's file). Release markers in the Cleveland Fed's charts hold no data point, so each day is read from the point itself; a month never published (October 2025's CPI, after the shutdown) is not shown as pending.
+- `inflation_breakdown`: what is driving US consumer prices, from the BLS's CPI with no key: all items and core beside fourteen components (food at home and away, energy and gasoline, core goods and used cars, core services, shelter, rent, owners' equivalent rent, medical care, transportation services), each on the month (seasonally adjusted), over three months at an annual rate and on a year (on the unadjusted index, as the BLS states it), with the headline and core month by month. September 2026: 3.74% on a year, core 2.56%, energy 20.45%, gasoline 34.17%, shelter 3.22%.
+- `gdp_nowcast`: the Atlanta Fed's GDPNow, read from its own workbook with no key: this quarter's running estimate of real GDP growth and each update since the quarter's first with the data releases behind it, what each part of spending adds in points of growth and each part's own growth, the BEA's latest estimates for the quarters before, and the model's record against the BEA's advance estimates (2026-Q4: 3.44% on 4 November, from 3.22% on 29 October; the last eight quarters missed by 0.74 points on average). The latest matches FRED's GDPNOW (3.4408). The workbook (11 MB, 56 tabs) is read by a small spreadsheet reader written for it, three tabs at a time.
+- `recession_watch`: the indicators read for a US recession, each beside the line it is read against and whether it is past it, with no key: the New York Fed's yield-curve model (the chance of being in recession twelve months ahead, from the 10-year less 3-month spread, month by month), the Sahm rule, the 10-year less 2-year curve and its last inversion, jobless claims against a year earlier, the Chauvet-Piger probability, GDPNow, and the Fed Board staff's excess bond premium model (the chance of a recession starting within twelve months: 9.1% in September 2026). The yield-curve model is computed as the New York Fed publishes it and matches its chart of 4 October 2026 exactly (September: spread 0.95509, 12.7587%); October's 12.42% comes a month before the New York Fed's. The lines are said for what they are, with the false alarms (the curve in 2022 to 2024, the Sahm rule in 2024).
+- `financial_conditions`: how loose or tight US financial conditions are and how much stress markets show, in one answer with no key: the OFR's daily Financial Stress Index with what each of its five categories (credit, equity valuation, safe assets, funding, volatility) and three regions adds, the Chicago Fed's NFCI with its adjusted, risk, credit and leverage parts, the St. Louis and Kansas City Feds' stress indexes, the Fed Board's Gilchrist-Zakrajšek spread and excess bond premium, ICE BofA corporate spreads by rating, Moody's Baa less the 10-year Treasury and the VIX. Each comes with its change on a week, a month and a year, its percentile in its own history and when it was last this low or this high; one measure's history on request. Every latest value matches its source file, and the percentiles and changes were reproduced by a separate reading of the files. The ICE and Moody's terms are stated in every answer.
+- `labor_market`: the US jobs picture in one answer with no key: payroll gains with the three-month average, the unemployment rate and U-6, participation and the prime-age employment ratio, wages and hours, JOLTS openings, quits and layoffs with openings per unemployed person, and weekly jobless claims, each beside the reading before and a year before. September 2026: payrolls up 29 thousand (three-month average 51 thousand), unemployment 4.2%, 1.06 openings per unemployed person.
+- `job_postings`: labour demand as Indeed sees it, day by day, with no key: job postings against 1 February 2020 (= 100), seasonally adjusted, in the US, Canada, the UK, Australia, Germany, France, Ireland, Italy, Spain, the Netherlands and the euro area, with the change over four weeks, a quarter and a year and the distance from the peak; `by: "sector"` ranks the occupational sectors by their change on a year (US engineering postings up 35 to 45% on a year to 30 October 2026, dental down 13%), `by: "region"` the states, provinces or regions; `country: "all"` sets every economy side by side. Indeed Hiring Lab data (CC BY 4.0), cited in every answer; the US total matches FRED's copy (IHLIDXUS 103.79 on 30 October).
+- `consumer_expectations`: what American households expect, from the New York Fed's Survey of Consumer Expectations with no key: inflation over one, three and five years, home prices, the prices of gas, food, rent, medical care, college and gold, earnings, income and spending, and the chances of losing or finding a job, of higher unemployment, of missing a debt payment, of higher savings rates and of higher stock prices; the latest month beside a month and a year before, or one topic month by month with every measure the survey gives. September 2026: 3.9% inflation expected over the next year (3.38% a year before). Every answer carries the attribution and disclaimer the survey's license requires, taken from the New York Fed's workbook.
+- `housing_market`: the US housing market, nationally or for a metro area, with no key: Zillow's typical home value (ZHVI) with its change on a month, a year and five years and its distance from the peak; Realtor.com's listings (median listing price, active and new listings, days on market, the share with a price cut, pending sales), each against a year earlier; the 30-year mortgage rate (Freddie Mac, via FRED); or `rank: "falling"` or `"rising"`, the largest metros by how fast home values move, with their listings beside them. A metro is matched across the two sources by its main city and state. Realtor.com's national September figures match FRED's copies exactly (median listing price $419,250, 1,161,615 active listings, 61 days on market). Austin in September 2026: $414,273, down 4.3% on a year and 26.7% below its June 2022 peak.
+- `state_economy`: a US state's economy beside the nation's, with no key: the unemployment rate, payroll jobs, the Philadelphia Fed's coincident index of activity, house prices (FHFA) and real GDP, each with its change on a year; or every state and DC ranked by unemployment or by the growth of jobs, activity or house prices. September 2026: Texas 4.4% unemployed (the US 4.2%), jobs up 1.1% on a year (the US 0.3%); the District of Columbia highest at 5.6%, South Dakota lowest at 2%.
+- `economic_series` as it was published on a past date: `as_of` reads any FRED series from ALFRED, FRED's archive of past releases, so only what had been released by that day appears, at the values then shown. `revisions: true` sets each value then against today's: payrolls for July 2025 read 159,539 thousand on 1 September 2025 and 158,542 thousand now, a revision of 997 thousand. The unemployment rate as known on 1 April 2020 ends in February at 3.5%. Point-in-time macro is what a backtest of an economic signal needs; no other finance MCP server serves it.
+
+### The Fed, money markets and rates
+
+- `rate_expectations`: what the futures market expects the Fed to do, with no key. From CBOT 30-day fed funds futures (a contract a month, Yahoo's quotes) and the Fed's own meeting calendar, by the method CME's FedWatch publishes: the rate implied after each scheduled FOMC meeting, the expected change there and from today, the chances of no change, a hike or a cut, and the chance of each target range after each meeting, with the contracts behind it and today's range and effective rate (FRED). 4 November 2026: an 81.7% chance of a quarter-point hike on 9 December; Kalshi paid 80.5% and Polymarket 77.5% for the same outcome that evening.
+- `fed_liquidity`: the Fed's footprint in the money markets, with no key. From the New York Fed: the overnight reverse repo facility's daily take-up, award rate and counterparties, and the standing repo facility's lending in its morning and afternoon operations by collateral, with the New York Fed's own small value exercises kept apart (its note names them); the Fed's securities holdings (SOMA) each week by type with the change over a week, four weeks, 13 weeks and a year and the monthly pace. From the H.4.1 via FRED: total assets, reserve balances, the Treasury's General Account and net liquidity (assets less the TGA and the reverse repo facility, a market rule of thumb, said so). A plain summary first; `view` gives the operations day by day or the holdings and balance sheet week by week. 4 November 2026: the reverse repo took $225 million from one counterparty (the same as FRED's RRPONTSYD), against $17 billion a year earlier.
+- `money_markets`: the US money markets' plumbing in one answer with no key: overnight repo by segment (SOFR, TGCR and BGCR from the New York Fed; tri-party without the Fed, GCF and cleared bilateral DVP from the OFR's U.S. Repo Markets release), each rate with its volume, its change on a month and a year and its spread to the Fed's interest on reserves and overnight reverse repo rate, and how often SOFR printed above interest on reserves lately; what US money market funds hold by type and whom their repo is with (the OFR's Money Market Fund Monitor, from Form N-MFP), which add up to the total as published; and primary dealers' net Treasury positions by maturity from the New York Fed. `part` gives one with its history. 3 November: SOFR 3.97% on $3.26 trillion (as the New York Fed's own API gives it), 7 bp above interest on reserves and above it on 8 of the last 20 sessions; money funds $8.40 trillion; dealers net long $425.6 billion on 21 October, TIPS included ($392.3 billion without them: the New York Fed names its total as leaving TIPS out, but in every week since July 2024 it equals the other buckets with the TIPS buckets).
+- `fed_speeches`: what the Federal Reserve Board says, from its own feeds with no key: the latest speeches and testimony by its members and its monetary policy releases, with speaker, title, date, venue and link; one member's; or one speech read, its paragraphs on monetary policy and the economy quoted as given (works of the US government). Waller, 8 October 2026: "in September the Federal Open Market Committee (FOMC) voted to raise our policy rate 25 basis points".
+- `central_bank_speeches`: what central bankers everywhere are saying, from the BIS's collection of their speeches with no key: the latest fifty with speaker, role and bank, title, date and link; one bank's or one speaker's; or one speech read, brief excerpts of its passages on policy, as the BIS allows with the source stated.
+- `treasury_holders`: who holds US Treasury securities, from the Treasury's TIC system with no key. The major foreign holders by country at the last thirteen month ends, each with its change on a year, its share of all foreign holdings and its rank, the total and what foreign official institutions hold (bills against notes and bonds), or one country month by month. August 2026: Japan $1,068 billion (down $116 billion on a year), the UK $1,010 billion (up $108 billion), mainland China $591 billion (down $109 billion). With the Treasury's caution that custodial holdings are counted under the custodian's country.
+- `reserve_currencies`: what the world's central banks hold their foreign exchange reserves in, from the IMF's COFER with no key: each currency's share of the reserves whose currency is reported and its value in dollars at the latest quarter, the change in share on a year and over ten years, and the shares quarter by quarter, read in one request. 2026-Q2: the dollar 56.7% ($7.49 trillion of $13.22 trillion), down 0.24 points on a year and 7.3 on ten years; the euro 20.6%, the renminbi 2.11%. The answer says that shares move with exchange rates, not only with buying and selling.
+
+### Commodities and energy
+
+- `commodity_prices`: world commodity prices from the World Bank's Pink Sheet with no key, monthly since 1960: oil, gas, LNG and coal, metals and precious metals, grains, oilseeds, coffee, cocoa, sugar, cotton, rubber, timber and fertilizers, each with its change on a month, a year and five years beside the World Bank's sector indexes; one commodity month by month with its record; or all of them. The workbook's address changes each month, so it is read from the World Bank's page. Copper for September 2026 matches the IMF's series on FRED within 0.01%; the answer says where other benchmarks differ (October's WTI is 97.7 here, 102.07 in the EIA's monthly average).
+- `energy_report`: the week in US oil and natural gas from the Energy Information Administration's weekly reports, with no key. Stocks of crude oil (commercial, at Cushing and in the Strategic Petroleum Reserve), gasoline, distillate, jet fuel and propane with the change on the week and the year and where each stands against its five-year average, low and high for the same week; refinery runs and utilization; crude production, imports and exports; products supplied over four weeks; natural gas in storage by region with EIA's year-ago and five-year comparisons; a plain summary first. `stock` gives one stock week by week against its five-year range. The five-year comparison, computed from EIA's weekly history, agrees with EIA's own highlights for the week to 11 September 2026 (crude 1% above, gasoline 5% below, distillate 13% below, propane 22% above).
+- `crop_outlook`: the USDA's World Agricultural Supply and Demand Estimates, read from each month's report at the USDA's publication service (ESMIS), with no key. The world balance sheet of wheat, corn, coarse grains, rice, cotton, soybeans, soybean meal or soybean oil, by country: beginning stocks, production, imports, use, exports and ending stocks for the last two market years and this year's projection. Last month's projection sits beside this month's, with the revision between them. In October 2026 world corn ending stocks for 2026/27 were raised from 272.10 to 280.44 million tons. One country, every country at once, or any month's report. For the United States, the report's own balance sheets with the season-average farm price, for corn, wheat, soybeans, soybean meal and oil, rice, cotton, sorghum, barley, oats and feed grains, the US meats (beef, pork, broilers, turkey, red meat and poultry, two projection years each), eggs and dairy prices (cheese, butter, nonfat dry milk, whey, Class III and IV milk), each line with its unit (US corn: 2026/27 ending stocks 1,567 to 1,849 million bushels, the price $4.80 to $4.70). Checked against the report's text version. Beside the projection, the USDA's own record of that month's projections against the final estimates since 1981/82, from the report's reliability pages: world wheat production has come within 1.6% two years in three and within 2.8% nine in ten, while US soybean ending stocks have missed by 42.5% at the root mean square.
+
+### Markets and sentiment
+
+- `earnings_move`: the move the options market prices for a company's next results beside the moves its shares made after its past ones, with no key. The next release is estimated from the same quarter a year earlier (earnings_calendar's window); the at-the-money straddle of the first expiration after it gives the move priced to that date, and the results' own move is backed out of the volatilities of that expiration and the one before the results, so it can be set beside past one-day reactions; each of the last eight releases' reaction is close to close across the reaction session (after the close: the next session). NVIDIA on 5 November: about 9% to the 20 November expiration, about 5.2% for the results alone, against an average 4.0% reaction (3 of 8 larger). The past moves match the record (NVIDIA -8.48% on 27 February 2025, Apple -3.74% on 2 May 2025).
+- `earnings_season`: how the S&P 500's reporting season is going, with no key: how many of its companies have reported in the window (by default since the last calendar quarter ended), the share that beat, matched or missed the consensus EPS estimate, the median surprise, how the ten largest did, the largest beats and misses, `by_sector` for the eleven sectors, the companies listed to report whose figures Nasdaq has not filled in yet, and who is due in the coming days. Reports come from Nasdaq's daily earnings calendars (the consensus is Zacks'); members and weights from SPY's daily holdings, with a company's share classes counted once. 5 November: 341 of 500 companies reported since 1 October, 82.3% beat, median surprise +4.7%. The surprise, computed from the figures shown, equals Nasdaq's own on 1,408 of 1,418 reports.
+- `market_breadth`: how many of an index's members take part in its moves, computed from the members themselves with no key: for the S&P 500 (or the S&P 400, the Dow, or one Select Sector SPDR) the share closing above their 50- and 200-day averages, how many rose and fell, closes at a 52-week high or low, the median distance below the 52-week high and how many are 20% or more below it; the average member's return beside the index's own over a day, a month, the year to date and a year; the shares above each average for each recent session; and `by_sector` for the eleven sectors. Members and shares come from State Street's daily holdings, prices from each member's daily closes (all 503 of the S&P 500 in about 1.5 s). The index is rebuilt from the shares the fund holds: for the Dow it matches the index itself (+3.03% on 4 November, +4.07% over the month), and for the S&P 500 it was within 0.1 points of SPY over the day and the month. The per-member flags were checked against a separate reading in Python.
+- `options_sentiment`: how much protection options traders buy, from Cboe's daily market statistics with no key: the total, equity, index, ETF, VIX and SPX put/call ratios of the latest trading day with the calls and puts traded, and the main ratios day by day with their 10- and 20-day averages. A published day never changes, so each is kept on disk for a month. 3 November 2026: equity 0.60, total 0.86, index 1.02.
+- `margin_debt`: how much investors borrow against their stocks, from FINRA's monthly margin statistics since 1997 with no key: margin debt with its change on a month and a year, the record and how far the latest is from it, the free credit balances in cash and margin accounts, and the months before. September 2026: $1.48 trillion, up 31.4% on a year, 1.5% below June's record.
+- `lockup_calendar`: when insiders' shares from recent IPOs may be sold, read from each company's own final prospectus with no key. Each lock-up period is taken from the prospectus's words and counted from the date they name: Fervo Energy's "180 days after the date of this prospectus" (12 May 2026) ends 8 November; Rank One Computing's "6 months after the closing of this offering" counts from the closing its cover expects (23 February 2026), so 23 August. Release schedules and early ends are listed as stated: Cerebras's lock-up ends on 9 November 2026 at the latest, sooner on the second trading day after its earnings release for the quarter ending 30 September, with six dated releases from 19 August; X-Energy's ends ten trading days before a blackout period once 120 days have passed. Across the market, the lock-ups and dated releases that end in a window (SpaceX frees part of its shares on 9 October, the 120th day after its prospectus), found by EDGAR full-text search over final prospectuses, SPACs and funds left out; for one company, later 8-Ks and prospectus supplements that say the lock-up was waived or shares released. A length the prospectus does not state is never guessed, and a period counted from a date it does not give has no expiry.
+- `index_constituents` reads the latest day's holdings where State Street publishes them: the S&P 500 through SPY, the S&P 400 through MDY, the Dow through DIA, and the Select Sector SPDRs (XLK and the rest), dated, the cash left out, weights adding to 1. Before, the S&P 500's weights came from IVV's N-PORT, a quarter old (30 June against 3 November), and the Dow, whose trust files no N-PORT, was refused. `source: "nport"` still reads the N-PORT, and it is the fallback when the daily file cannot be read. The spreadsheets are read by a small reader written for them, no library.
+
+### Filings
+
+- `release_check`: a quarter's results press release set against the 10-Q or 10-K filed after it. Every figure in the release's tables is looked for among the report's inline XBRL facts for the same period: it agrees within the rounding either document shows, it changed, or it has no counterpart in the report (non-GAAP measures, operating metrics). A changed figure comes with the release's value, the filed value, the difference and percentage, the concept the report tags on its line, and how that line was found: the same line, where the figure's other period agrees, or the line with its label between lines that agree; a label alone is never enough. Lines the report adds are listed too. Vicor's first quarter of 2024 shows the $17.2 million litigation charge booked after its release turning $2.6 million of net income into a $14.5 million loss; Cumberland Pharmaceuticals' third quarter of 2022 shows the balance sheet adjustment its 10-Q describes; Apple's and Microsoft's latest releases agree with their reports figure for figure.
+- `audit_signals`: what auditors and companies say when something is wrong, from SEC filings with no key. Going-concern doubt: every 10-K and 10-Q whose own words say there is substantial doubt about the company's ability to continue as a going concern, as a timeline of first raised, still raised and lifted (a report saying its plans alleviated the doubt is lifted, never raised; a policy, a risk that might come or another company's doubt is not counted), quoting the sentence and saying when the auditor's report states it; across the market, the companies whose latest 10-K or 10-Q newly raised it in a window, found by EDGAR full-text search. LiveWire Group first raised it in its 10-Q of 4 November 2026; Star Gold's 10-K of 22 July 2026 says the doubt it raised was alleviated. Auditor changes from 8-K Item 4.01: the firm that left and the one engaged, resigned or dismissed only as the filing says, and whether it reports disagreements or reportable events (Mannatech dismissed BDO on 15 October 2026 and engaged CBIZ). And the critical audit matters named in the auditor's report of the latest 10-K.
+
+### Fixes
+
+- `world_yields`: the Bank of England's dates are written with English month names on every system. Newer ICU builds write September as "Sept", which the Bank refuses, so the UK curve failed whenever its window began in September.
+- Accented letters by their HTML names ("&uuml;", "&eacute;") are decoded everywhere text is read from HTML, filings included; they were left as written.
+
+## 0.14.1
+
+- `financial_cycle` and `scenario_risk` answer through MCP. In 0.14.0 their `source` was a list where the output schema declares a string, so the server answered every call to them with a validation error. `source` is now a string and the URLs are in `sources`, as other tools keep them, and the stdio test calls each new tool through the server.
+- `bond_offerings`: the bonds a company sold, tranche by tranche, from the SEC filings that priced them. Each final term sheet gives amount, coupon, maturity, price, yield, the spread over the benchmark Treasury (mid-swaps for euro bonds, the index for floating notes), the benchmark's yield and the CUSIP; the XBRL fee tables of final prospectus supplements confirm amounts and prices and add deals priced without a term sheet, such as a financing arm's medium-term notes. Five term sheet layouts are read, including one cell per tranche and one row per tranche. Every fixed-rate dollar yield is recomputed from its price (a short first coupon paid for its days), and every benchmark yield plus spread is compared with the stated yield. A tranche whose figures disagree with its own title has them left out, not shown wrong. Deals are grouped by pricing day and totalled by year and currency. Apple since 2019: 33 tranches in eight deals, including a euro deal priced over mid-swaps, every check passing.
+- Filings that write the euro sign as Windows code 128 now read as € in every tool that reads filing text.
+
+## 0.14.0
+
+- Five new tools where the incumbents led, each from public sources with no key. `scenario_risk`: a portfolio's own holdings under a macro shock or a past crisis, the way institutional risk systems run scenarios. Each holding's weekly returns are regressed on eight factors (US stocks, the 2- and 10-year Treasury yields, the Baa-Aaa corporate spread, oil, the broad dollar, gold and the VIX). A shock to some factors moves the others by their mean given it, under the factors' covariance in the same years, with a 90% range over a horizon in weeks. A crisis from crisis_replay's catalog (the 2008 bank crisis, the 2020 crash, the 2022 rate shock and eight more) replays the factors' actual moves beside each holding's actual return then, and `model_check` says how far off the model was; a factor with no data then (the dollar index before 2006) is estimated from the others. Twelve broad funds through six crises: the median miss is 2.3 points per holding (scripts/check-scenario-replays.mjs).
+- `trade_ticks`: every trade on a Kraken crypto market from any past moment, to the microsecond, with price, size, the taker's side and the order type, the window's VWAP, buying against selling, market-order share, the largest trades and one-minute bars built from the ticks. Up to 10,000 trades a call. `next_since` is Kraken's own nanosecond cursor, so a read continued from it equals one longer read: fills of one order share a timestamp, which a time cannot split.
+- `trade_flows`: what countries buy from and sell to each other by product, from UN Comtrade: every partner ranked by share in a year, or one partner year by year with its share of the total, in dollars and kilograms, products by HS code or plain words. Taiwan, which reports to no UN body and appears in other countries' customs as "Other Asia, nes", is named (30.6% of US chip imports in 2025, 13.1% in 2021). Trade filed with no partner is counted as `unattributed_share` and flagged above 10%: Germany files 96 to 98% of its natural gas imports with no partner, so Russia's 0.2% there is a confidentiality artifact.
+- `standardized_financials`: a company's three statements in one 26-line template whether it files US GAAP or IFRS, with 14 ratios computed as company_report computes them. Each figure says which tag it came from, or the arithmetic that made it where the company tagged none (gross profit, SG&A, EBITDA, free cash flow, total liabilities). IFRS debt is read as debt_profile reads it, so bonds count beside loans. Up to five companies side by side; `in_usd` converts flows at each fiscal year's average rate and balances at its year-end close.
+- `financial_cycle`: house prices (real and nominal), debt service ratios of households and companies, credit to households, companies and government as a share of GDP, and real and nominal effective exchange rates, from the Bank for International Settlements, for up to eight countries side by side; a measure a country lacks is listed.
+
+## 0.13.0
+
+- Four new tools, each from its publisher with no key. `treasury_cash`: the Treasury General Account each business day since 2005 from the Daily Treasury Statement, read across the three names the statement has given it, with the last day's largest deposits and withdrawals. `federal_budget`: the Monthly Treasury Statement's receipts, outlays and deficit, the fiscal year to date against the same months a year earlier. `factor_returns`: the Fama-French three- and five-factor models and momentum from Kenneth French's data library, monthly, daily or by year, as fractions. `crypto_options`: Deribit's option term structure (at-the-money volatility, open interest, put/call ratio, volume) with DVOL, or one expiry's chain in dollars, for BTC, ETH and the coins it lists in USDC.
+- `unusual_options`: unusual options activity from the Cboe delayed quotes options_chain reads. It lists contracts whose volume is at least as many times their open interest as asked (new positions more likely than closing ones), ranked by the premium that changed hands, with expiry, strike, IV, delta and distance from the price, and the day's call and put premium. The answer says what the quotes cannot show: who bought, and whether a trade opened or closed a position.
+- `company_emissions`: a company's greenhouse-gas emissions from its US facilities, as they reported them to EPA's Greenhouse Gas Reporting Program, read from Envirofacts with no key. It gives direct (scope 1) tonnes of CO2e, the company's share where a facility has several owners, the split by gas (biogenic CO2 shown apart, as EPA does), the largest facilities, and a trend over up to five years. Exxon in 2023: 64 facilities, 45.2 million tonnes, 38.9 million by ownership share, down from 55.3 million in 2022.
+- `crypto_markets`: the crypto market from CoinGecko's public API. It gives coins ranked by market value with price, volume, the change over a day, a week and a month, supply and the distance from the all-time high, and the whole market's value with bitcoin's and ether's shares. It also answers for coins named by symbol or CoinGecko id, where a name that is a coin's id is not mixed with other coins that use it as a symbol.
+- `price_history` takes minute bars: `1Min` for the last 30 days, and `5Min`, `15Min` and `30Min` for the last 60, on the keyless source. Alpaca keys give them over its own history, and Tiingo stays daily. The default window for minute bars is the last five days. Bars within a day are stamped in the exchange's own time zone bar by bar: the chart's single offset is today's, which put bars before a daylight-saving change an hour off.
+- `etf_profile`: what an ETF or mutual fund costs and holds, from Yahoo Finance's fund profile. It gives the expense ratio beside its category's average, turnover, total assets, yield, year-to-date and five-year returns, beta, inception, the top holdings, the mix of stocks, bonds and cash, and sector weights. fund_portfolio still reads every holding from the fund's own N-PORT filing.
+- `market_calendar`: the whole market's schedule from Nasdaq's public calendars. It gives who reports earnings on given days (before the open or after the close, consensus EPS and number of estimates, last year's EPS), who goes ex-dividend (amount, record and payment dates), and the splits coming up. With `kind: "ipos"` it lists a month's IPOs (priced, expected, filed and withdrawn, with price, shares and value); ipo_pipeline reads the same companies' SEC filings. It filters by tickers or market value, largest companies first. earnings_calendar still answers for one company from its own past reports.
+- `congress_trades`: trades by members of the House from their periodic transaction reports. The Clerk's yearly index finds the reports (by member, state, district, or the newest filed), and each PDF is read into its transactions: owner, asset and ticker, purchase or sale, trade date, date notified and the amount range, across names and amounts that wrap onto a second line. A report filed on paper is a scanned image and is listed with its link. A small PDF text reader (pdf.mjs) does the reading: Flate streams, two-byte and one-byte fonts through their ToUnicode maps, form XObjects, positions through the transformation matrices. The answer states the Ethics in Government Act's limits on using these reports.
+- `analyst_history`: a stock's analyst record from Yahoo Finance, as stock_snapshot reads it: every upgrade, downgrade, initiation and price-target change by firm over any window (or one firm's), the last four quarters' EPS against the consensus, how the EPS consensus moved over 90 days with the analysts raising and lowering it, and the buy, hold and sell counts month by month. A vendor's aggregates, and the answer says so.
+- `market_movers`: today's biggest US gainers, losers and most traded stocks, or Yahoo Finance's ready-made lists (small-cap gainers, most shorted, undervalued growth, growth technology, aggressive small caps, undervalued large caps), with price, change, volume, average volume and market value.
+- `market_hours`: the US stock market's calendar, with no network. Open, pre-market, after-hours or closed now; the next open and close in Eastern time and UTC; a year's holidays and 1 p.m. early closes; whether a date trades; trading days between two dates. From NYSE's rules (a Saturday holiday moves to Friday except New Year's Day) and its unscheduled closures since 2000 (9/11, Hurricane Sandy, the days of mourning). It gives 252 trading days for 2024 and 250 for 2025, as NYSE published.
+- The stdio test no longer reads the disk cache of the machine it runs on (CANLI_DISK_CACHE=0), so a cache filled by real use cannot change its answers.
+
+- `source_check`: whether the documents behind an answer are still the bytes it was read from. Each evidence row, or a canli-mcp receipt's source, is read again past every cache and reported as the same, changed since, or unreachable. Only documents from the hosts this pack reads are fetched; a test holds every address in the source to that list. An address carrying a key, a query sent as a POST, or a row with no hash is named and not fetched. A Canli reference snapshot is checked by the hash of the JSON inside it. `getText` takes `fresh` for this.
+- New tool: `filing_check`, every number in a 10-K or 10-Q read twice: as a person reads the document and as machines read its inline XBRL. It lists each figure tagged at a scale other than the unit its words or table state ("in millions", "shares in thousands", "$3.8 billion", "48,700 shares", a per-share amount, a rate with %), each fact tagged twice with values further apart than their rounding, each sum in the filing's own calculation linkbase that its lines do not add up to, and each fact SEC's company facts hold differently or not at all for the filing. Each finding names the concept, period and unit, what is shown and what is tagged, what it was compared with, the table or heading it sits under and a link to the figure; counts say what was checked, so a clean result can be told from one where nothing was. A filing not in inline XBRL gets an error that says so and names `figure_trace` and `financial_statements`. Up to five filings of a form at once.
+- Filings lists carry SEC's flag for inline XBRL, so a filing without it is answered before its document is fetched.
+- New tool: `buybacks`, a company's share repurchases by fiscal year or quarter from its own XBRL: the cash it paid, the shares it bought and the value it recorded for them, the average price, its program's authorized and remaining amounts where it tagged them, and the change in shares outstanding. Every figure names the filing it came from, and a figure the company does not tag is said to be untagged, not estimated. A quarter that the reports give only year to date is worked out from them, and a stock split between two reports is allowed for.
+
+## 0.12.0
+
+From a test against other finance MCP servers on the newest models. New tools:
+
+- `stock_snapshot`: what a quote page shows and no primary source publishes, from Yahoo Finance: analysts' price targets, ratings and estimates, market cap and valuation ratios, 52-week range, short interest, holder percentages, next earnings date. Labeled as a vendor's aggregates.
+- `technical_indicators`: moving averages, RSI, MACD, Bollinger Bands and ATR for a symbol in one call.
+
+Foreign companies read wrong or not at all in `financial_statements`:
+
+- A filing that shows a year in two currencies (TSMC in NT$ and US$, PDD, Alibaba, JD, HDFC Bank) came back with those rows blank. The translated column now stands apart, marked with its currency, and `currency` names the main one.
+- `money_scale` read 1 for every filing not in dollars, so a value "in millions" of euros or yen looked like a full amount. It now reads any currency's sign.
+- A single statement for income and comprehensive income returned no income statement (Novo Nordisk, TSMC, AstraZeneca, PDD, Infosys).
+- `filing_tables` looked for a 10-K when named a 20-F's accession, and now reads the form from the accession or files the company actually makes.
+
+Also:
+
+- `reference_rates` has the ECB's euro exchange reference rates (`fx:GBP`).
+- `read_filing` with `find` counts how often each word appears, since its passages stop at twelve.
+- `event_study` takes `last` and is steered to `event_type` for filing dates.
+- An accession that names no filing beside a `fiscal_year` no longer stops `financial_statements`: the year decides and the answer says so. Alone, the error lists the real ones. Clients that force every optional field send these.
+- Wide equity statements show up to 24 columns.
+
+## 0.11.1
+
+New tool: `exposure_map`, who depends on a company, from what others say in their annual reports.
+
+`earnings_release` set some guides against the wrong results, found when a run over the S&P 500 said Eaton had missed its EPS guide 12 times in 13:
+
+- A year's guide in a table column headed "Year ended December 31, 2026" was read as the quarter's: Eaton's $10.88 to $11.33 against a quarter's $3.15.
+- A part's guide in a table was read as the total's: Qualcomm's QCT revenues of $7.9B to $8.5B against total revenue of $9.9B.
+- A result too far from a dollar range to be the same thing is now not placed at all.
+- A guide that names no basis is not called a miss when the adjusted result lands elsewhere: Gen Digital's EPS guide of $0.68 to $0.70 against a diluted $0.36 and a non-GAAP figure inside the range.
+- "Excluding special items" now reads as adjusted, and "fiscal 2025" as a year.
+- "GAAP diluted EPS and non-GAAP diluted EPS of $0.45 and $0.64, respectively" goes one figure each. Last year's figure after "compared with" and a "Previous Range" column are not read as the guide.
+- `guidance_record` counts one line a quarter for each measure, and a line that was not placed counts for nothing.
+
+- `shipping_activity` asks PortWatch less: every chokepoint in two queries, and one chokepoint in one. It took 18.8 seconds on the hosted server. PortWatch and Wikipedia answers are now kept on disk for six hours.
+- `portfolio_xray` adds up its holdings in `xray-merge.mjs`, which imports nothing, so the look-through page can run the same code in a browser. `openHolding` opens one holding.
+
+## 0.11.0
+
+New tools: `filing_memory`, `filing_sentiment`, `guidance_record`, `what_happened_next`, `shipping_activity`, `page_attention`, `latest_price`.
+
+- `filing_memory` searches every annual report a company has on EDGAR. It reads them once, ranks paragraphs with BM25 on your machine, and counts mentions by a rule it states. Apple's 25 reports took 5.5 seconds the first time and under half a second after that. A local embedding model can rank by meaning too; on six test questions word search alone failed where the wording differed, and either supplied synonyms or embeddings fixed most of it, each winning on different ones.
+- Optional local models, installed only by `canli-mcp models install` and never by a tool. No vector database: at a few thousand paragraphs a company, a file of plain floats is as fast.
+- The filings feed was answered from the ten-minute cache, so `canli-mcp watch --every 60` saw new filings only every ten minutes against the two it claimed. It is now read on each poll.
+- Windows quotes and dashes in older filings (numeric entities 145 to 151) now read as quotes and dashes.
+- `verify_claims` says what a loose sentence is missing: this company, one period, or both.
+
+## 0.10.1
+
+verify_claims: on 0.10.0, 12 of 24 settled answers on 284 real sentences were wrong: 11 of 12 "contradicted" and 1 of 12 confirmations. Most read someone else's figure as this company's.
+
+- A sentence calls a figure wrong only if it names the company and one period of its own. Otherwise, a figure that does not match comes back as not checkable, with the filed figure beside it. A match is still confirmed.
+- The name nearest before a figure decides whose it is, so another company's figure in the sentence is left out.
+- Figures for one country ("in the U.S.", "abroad") and for a rolling twelve months ("TTM", "past 12 months") are not read.
+
+- `company_report` read the year's revenue from the wrong column when a 10-K shows the four quarters beside the year: Lennox's fiscal 2025 came out as $1.195 billion, its fourth quarter, with a 77.6% fall, against $5.195 billion filed. Found by running `triangulate` across the S&P 500.
+
+## 0.10.0
+
+Two new tools, and verify_claims fixed against claims people wrote in public posts.
+
+- `figure_trace`: a reported figure followed down the filing's own calculation, each line's value, every sum recomputed, what it feeds into and how the filing splits it. It shows the filing agrees with itself, not that the figures are right.
+- `token_check`: what an ERC-20 token's contract can do (mint, pause, blacklist, upgrade, fees), its proxy, owner, supply and source verification, and an unlock schedule you give set against it. If the code cannot be read it says the powers are unknown. A clean reading never means safe.
+
+verify_claims: on 0.9.0, 14 of 29 settled answers on 64 real sentences were wrong, every one a false "contradicted"; all 12 confirmations were right.
+
+- A sentence's period reaches all its figures; "Q3 fiscal 2026" and calendar quarters are read.
+- Years ending early in the calendar year are checked under either label.
+- Parts are not read as the whole ("of which", product names, "Oracle Cloud's"); a company's name or ticker is not read as a part.
+- A figure cut short rather than rounded agrees, within 1%. Margins and revenue are checked on any revenue line the company tags.
+- No fourth-quarter per-share figure, a list of companies, a second value for one measure or a quarter with no year is judged.
+
+## 0.9.0
+
+verify_claims reads claims as people say them, not only as press releases word them.
+
+- New wording: "earned $9 per share", "made $416 billion in revenue", "lost $18.8 billion", "has $90 billion in cash",
+  "profit fell 46%", "a 30% profit margin", "spent $34 billion on R&D".
+- Hedges count: "about" is within 5%, "over" and "under" are read as bounds.
+- "Last year" and "last quarter" are resolved; no period at all means the latest annual report. The row's note says so.
+- "Profit" matching another line of the accounts is named as that line. A cash or debt figure off the one tagged line
+  is not called wrong, because each sits on several lines.
+- A second figure in a sentence is no longer dropped. A year before a full stop is read.
+- Fixed: a part of the business ("Cloud revenue") was judged against the whole company's revenue. It now comes back
+  not checkable. Another company's figure, someone else's money ("Tim Cook earned") and the future are not read.
+- summary.figures_not_read counts the figures left unread.
+
+## 0.8.4
+
+- Exxon Mobil's statements, filings, segments and everything else read from its filing record work again: the ticker
+  moved to a new holding company with no 10-K yet, and the record now continues from the old filer.
+- Northern Trust's revenue reads $8.09 billion, not $5.02 billion: a bank's fee line no longer corrects its total.
+- NXP's statements keep their scale when the title has no dash before the units.
+- company_report names the tag behind its latest revenue, net income and cash.
+
+## 0.8.3
+
+Found by checking the S&P 500 against its own statements (3,112 figures, 49 lines flagged).
+
+- A name no longer finds the wrong company. "DR Horton Inc" had resolved to an individual filer, "T Rowe Price Group" to
+  an ETF and "Equity Residential" to a small LLC. Names match listed companies first, in any word order, and a name
+  that fits nothing says so with the closest matches.
+- `company_report` takes the latest year's revenue from the income statement when the XBRL tag is another measure:
+  Republic Services' $16.6 billion, not $19.0 billion gross. American Express reads $72.2 billion, not $41.3 billion.
+- `financial_statements` reads "€ in Millions, $ in Millions": NXP's figures had come back with no scale.
+
+## 0.8.2
+
+- Foreign issuers' results: `earnings_release` and `earnings_calendar` read Form 6-K, which has no item numbers, by
+  recognising a results release from how its documents open. TSMC, ASML, SAP, Shell, Alibaba and Novo Nordisk read.
+- A figure in NT$, HK$, A$, C$, S$, R$, RMB, won or rupees keeps its currency: TSMC's NT$29.43 had read as US dollars.
+
+## 0.8.1
+
+Wrong figures, found by asking analysts' questions across the market.
+
+- Net income. Since the 2025 reports many 10-Ks tag only the common-stockholders line or `ProfitLoss`, and
+  `NetIncomeLoss` comes from the proxy's pay table, sometimes in rounded units. `company_report` showed no net income
+  for Booking, and screens read Arista's $3.5114 billion as 3,511. The line is now followed through its tags, and a
+  figure a thousand or a million times smaller than another of the same line is passed over. `verify_claims` no longer
+  calls a true claim about such a company "not reported".
+- P/E survives a stock split the last annual EPS predates: Booking's read 0.91 and now reads 20.92.
+- Share counts tagged in thousands (Camtek, Nova) are caught against diluted shares or profit over EPS.
+- Berkshire's market value counts its A-share equivalents at 1,500 B shares each. Exxon Mobil's history is read from
+  its old filer until its new holding company has an annual report.
+- `screen_companies` filters and ranks on P/E, P/S, FCF yield and market cap across the whole market in seconds, at
+  20 prices a request. Figures no company could have are held out by name instead of ranking first.
+
+## 0.8.0
+
+Foreign filers read properly. `company_report` showed TSMC at USD 11.2 trillion: a depositary share's price times
+ordinary shares. Market value, P/E, P/S, FCF yield, short interest and yields now use the ratio from the 20-F (36 of
+39 right against the banks' published ratios, 3 unread and left blank, none wrong; `bench/listing/run.mjs`) and the
+filing's currency, with share counts checked against profit over EPS. `company_report`, `reverse_dcf`,
+`forensic_scores` and `comps` read IFRS; `comps` takes `companies`, named peers from any country.
+
+- `european_filings` was down: its source caps page size at 1,000 now, so it reads pages.
+- Event studies and the earnings calendar took Tesla's deliveries, filed under Item 2.02, for earnings. Now one
+  release a quarter.
+- Banks, brokers and insurers get "not applicable" from the accounting screens rather than a list of missing inputs.
+- `news` answers from Yahoo Finance's headlines when GDELT is over its limit, instead of waiting over a minute.
+- Fund-report names resolve: "TJX Cos Inc/The", "Lowe's Cos Inc", "Charles Schwab Corp/The".
+- Public SEC, FRED and Treasury data stays on disk between sessions (`~/.cache/canli-markets`, 512 MB at most;
+  `CANLI_DISK_CACHE=0` turns it off): `company_report` on a new session went from 7.6 s to 0.6 s, and a source that is
+  down is answered from an older copy, dated. Prices, news and keyed requests are never written.
+
+Ten new tools, 74 in all, each from the body that keeps the record and without a key:
+
+- Public records: `enforcement_actions` (SEC litigation releases and administrative proceedings),
+  `consumer_complaints` (CFPB), `product_recalls` (FDA drugs, devices and food; NHTSA vehicles),
+  `sanctions_check` (the Treasury's SDN list and aliases), `federal_rules` (Federal Register, with comment
+  deadlines). `bank_financials` lists failures by year and state.
+- Identity: `security_identifiers` (ticker, ISIN, CUSIP, SEDOL and FIGI through OpenFIGI; check digits
+  tested first) and `legal_entity` (the Global LEI register: legal name, jurisdiction, parents, children).
+- World: `world_yields` (US, euro area, UK, Japan and Canada side by side, each curve's date and basis
+  stated) and `credit_cycle` (the BIS credit-to-GDP gap).
+- `dividend_history`: payments, totals by year, trailing yield, growth, streak and splits.
+- With prices off, as on the hosted server, `market_overview` says so instead of answering with empty
+  lists, and the price tools' message tells a hosted user to run the local server.
+- Names match only when every word of the name is in the record, so a near miss is refused. Each tool
+  says what it cannot show: an empty sanctions answer is not clearance, complaints are unverified and
+  not adjusted for size, enforcement feeds reach back only so far.
+
+And `earnings_release`, read against 21 third-quarter releases filed on 2026-10-29, each keyed from its
+text first:
+
+- `earnings_release` with no accession read a quarter's first 8-K, so FMC's preliminary 8-K of
+  2026-10-15 was served instead of its results of 2026-10-29, and an accession named in the same
+  quarter was replaced by the first. It now reads the one asked for, else the newest.
+- Guidance a release gave and the tool missed: an "Updated Outlook for the Fiscal Year Ending ..."
+  heading (Floor & Decor, all of it), two periods in one heading with lines under each (DXC), a
+  footnote left of an outlook table's labels (Lockheed Martin), ranges in rows above the first plain
+  number (Sandisk's margin and expenses), "raised ... to a range of" (Veralto).
+- Wrong figures it gave: "negative $350 million to negative $150 million" came back positive and
+  split; "(3.5)% to (2.0)%" as positive or not at all; "14.5 percent and 15.5 percent" for two years
+  as one range; `Net interest expense $230M` in an assumptions column as EPS of $230 (Ingersoll Rand).
+- What is not guidance is no longer listed as guidance: the prior range it replaced, results set
+  against the outlook ("$11.4 million above the high end of the outlook"), the size of an impact,
+  "expected to contribute", a sentence that opens by reporting, footnotes. A table with a column for
+  each date the outlook was given keeps the latest (Digital Realty). "2026 Outlook | 2025 Actual"
+  leaves out the actuals.
+- `results` adds what a release states only in a comparison table (revenue, EPS, FFO), with the
+  column read and the prior year's beside it in the quote. New measures: FFO, AFFO, NOI, RevPAR, EBIT,
+  EBIT margin, net interest income and margin, combined ratio, book value per share, assets under
+  management. A range's period is the one named nearest it; a table's letterhead address is not the
+  headline.
+- Measured: `bench/analyst` 119 of 119. The new sets: fresh-4 would have scored 7 of 12 on its first run under this strict scoring, then 12
+  of 12; fresh-5, keyed before running and run once after the fixes, 6 of 6.
+
 ## 0.7.4
 
 - `treasury_yields` over several years lines each maturity up by name. The Treasury added the 4-month
@@ -93,6 +390,10 @@
   line shown negated has the opposite sign in its XBRL fact.
 - `event_study` says how day 0 is chosen.
 
+- `earnings_release` reads outlook tables whose footnote sits left of the labels (Lockheed Martin's
+  2026 outlook came back with no guidance), takes "in millions" from a table's own title row, and no
+  longer lists a results column ("2025 Actual") beside the outlook as guidance. Found by 14 new
+  questions on Q3 2026 releases, keyed before the first run (12 of 14, now 14 of 14).
 - `verify_claims` checks foreign companies: IFRS and US GAAP facts from 20-F and 40-F annual
   reports and tagged 6-K quarters, in the currency the company reports in (Novo Nordisk in DKK,
   TSMC in TWD and in its US-dollar translation, ASML's US GAAP in euros). Before, every foreign

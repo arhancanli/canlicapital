@@ -4,7 +4,8 @@
 // yield (dividends plus net buybacks over the market value). Each figure names its tag.
 import { z } from "zod";
 
-import { getJson, resolveEntity, tickerTable } from "./sources.mjs";
+import { asDollarShaped, factBook, marketValue, usdPer } from "./listing.mjs";
+import { getJson, resolveEntity, submissions, tickerTable } from "./sources.mjs";
 import { priceHistory } from "./tools.mjs";
 
 export const payoutsInput = z.object({
@@ -16,6 +17,16 @@ export const payoutsInput = z.object({
 const ANNUAL = new Set(["10-K", "10-K/A", "20-F", "20-F/A", "40-F", "40-F/A"]);
 const days = (a, b) => (Date.parse(a) - Date.parse(b)) / 86400000;
 // [tags, unit, flow]: a flow is a full fiscal year (a duration of about a year), the rest are balances.
+// The same lines in the IFRS taxonomy.
+const IFRS_PAYOUTS = {
+  CommonStockDividendsPerShareDeclared: ["DividendsRecognisedAsDistributionsToOwnersPerShare"],
+  PaymentsOfDividends: ["DividendsPaidClassifiedAsFinancingActivities", "DividendsPaidToEquityHoldersOfParentClassifiedAsFinancingActivities", "DividendsPaid"],
+  PaymentsForRepurchaseOfCommonStock: ["PaymentsToAcquireOrRedeemEntitysShares"],
+  NetIncomeLoss: ["ProfitLossAttributableToOwnersOfParent", "ProfitLoss"],
+  NetCashProvidedByUsedInOperatingActivities: ["CashFlowsFromUsedInOperatingActivities"],
+  PaymentsToAcquirePropertyPlantAndEquipment: ["PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities", "PurchaseOfPropertyPlantAndEquipment"],
+  WeightedAverageNumberOfDilutedSharesOutstanding: ["WeightedAverageShares", "AdjustedWeightedAverageShares"],
+};
 export const MEASURES = {
   dps_declared: [["CommonStockDividendsPerShareDeclared"], "USD/shares", true],
   dps_paid: [["CommonStockDividendsPerShareCashPaid"], "USD/shares", true],
@@ -95,7 +106,7 @@ export async function shareholderReturns(session, args) {
   const e = await resolveEntity(session, a.company);
   const url = `https://data.sec.gov/api/xbrl/companyfacts/CIK${String(e.cik).padStart(10, "0")}.json`;
   const cf = await getJson(session, url, { maxBytes: 96 * 1024 * 1024 });
-  const f = cf.facts?.["us-gaap"] ?? {};
+  const book = factBook(cf), f = asDollarShaped(book, IFRS_PAYOUTS);
   const m = Object.fromEntries(Object.keys(MEASURES).map((k) => [k, annualValues(f, k)]));
   const dps = m.dps_declared ?? m.dps_paid;
   const ends = [...new Set(Object.values(m).filter(Boolean).flatMap((s) => [...s.values.keys()]))].sort();
@@ -115,11 +126,13 @@ export async function shareholderReturns(session, args) {
       const today = new Date(session.now()).toISOString().slice(0, 10);
       const px = await priceHistory(session, { symbol, start: new Date(session.now() - 12 * 86400000).toISOString().slice(0, 10), end: today, adjusted: false }).catch(() => null);
       const price = px?.close?.at(-1) ?? null, end = ends.at(-1);
-      if (price) {
-        const cap = price * shares, div = v("dividends_paid", end) ?? 0, net = (v("buybacks", end) ?? 0) - (v("issued", end) ?? 0);
+      const [mv, fx] = price ? await Promise.all([marketValue(session, e.cik, await submissions(session, e.cik), price, shares, { book }), usdPer(session, book.currency)]) : [null, null];
+      if (mv?.market_cap && fx?.rate) {
+        // The price is in dollars; the filing may not be.
+        const cap = mv.market_cap / fx.rate, div = v("dividends_paid", end) ?? 0, net = (v("buybacks", end) ?? 0) - (v("issued", end) ?? 0);
         yields = {
           price, price_date: px?.dates?.at(-1) ?? px?.date?.at(-1) ?? null, market_value: round(cap, 0), fiscal_year_end: end,
-          dividend_yield: dps?.values.has(end) ? round(dps.values.get(end) / price) : round(div / cap),
+          dividend_yield: dps?.values.has(end) ? round((dps.values.get(end) * fx.rate) / mv.price_per_share) : round(div / cap),
           net_buyback_yield: round(net / cap), shareholder_yield: round((div + net) / cap),
           source: px?.source ?? null,
         };
@@ -127,7 +140,7 @@ export async function shareholderReturns(session, args) {
     }
   }
   return {
-    company: { cik: e.cik, name: cf.entityName ?? e.name, ticker: e.ticker ?? null },
+    company: { cik: e.cik, name: cf.entityName ?? e.name, ticker: e.ticker ?? null, ...(book.currency !== "USD" || book.taxonomy === "ifrs-full" ? { accounts: { standard: book.taxonomy === "ifrs-full" ? "IFRS" : "US GAAP", currency: book.currency } } : {}) },
     columns: ["fiscal_year_end", "dividend_per_share", "dividends_paid", "buybacks", "shares_issued_for_cash", "payout_ratio", "paid_out_of_free_cash_flow", "diluted_shares", "diluted_shares_change"],
     rows,
     dividends: dps ? { per_share_tag: dps.tag, ...dividendRecord(dps.values, m.diluted_shares?.values) } : { note: "No dividend per share tagged for full years." },

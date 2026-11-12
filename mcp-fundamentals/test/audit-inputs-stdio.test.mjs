@@ -188,7 +188,7 @@ test('audit stdio: compact projection names omissions without relabeling its dig
 test('audit stdio: released seven-tool server stays unchanged and never lists the example', { timeout: 15000 }, async () => {
   await withClient(async client => {
     const { tools } = await client.listTools();
-    assert.deepEqual(tools.map(t => t.name).sort(), ['cross_section', 'find_company', 'history', 'known_as_of', 'list_concepts', 'restatements', 'vintages']);
+    assert.deepEqual(tools.map(t => t.name).sort(), ['cross_section', 'find_company', 'history', 'known_as_of', 'list_concepts', 'restatements', 'vintage_diff', 'vintages']);
     assert.equal(client.getServerVersion().version, JSON.parse(readFileSync(resolve(PACKAGE_ROOT, 'package.json'))).version);
   }, { released: true });
 });

@@ -9,6 +9,7 @@ import { z } from "zod";
 
 import { mean, normCdf, normInv, std, variance, moments } from "../math.mjs";
 import { MAX_SERIES, ppyArg } from "../inputs.mjs";
+import { defaultSplits, pbo, TRIAL_RETURNS } from "../cscv.mjs";
 import { minVariance } from "./portfolio.mjs";
 
 const pricesArg = z.array(z.number().positive()).min(30).max(MAX_SERIES).describe("Prices oldest first (daily closes by default).");
@@ -114,7 +115,7 @@ export function curveOf(P, eng, bench, dates) {
   };
 }
 
-const strip = (r) => { const { _net, ...rest } = r; return rest; };
+const strip = (r) => { const { _net, ...rest } = r; return { ...rest, [TRIAL_RETURNS]: [_net] }; };
 const single = (p) => p.map((x) => [x]);
 
 // Rolling helpers on a single price array.
@@ -358,12 +359,16 @@ export const RECIPES = {
   },
 };
 
+// Every variant's Sharpe, best first, goes back with the periods it was measured on (every_trial), so a server
+// that counts the strategies tried in a session can count each one and not only the best. The probability of
+// backtest overfitting is computed on the variants' net returns over the whole sample, where a variant with a
+// longer lookback is flat for longer at the start.
 function sweep(recipe, base, grid, ppy) {
   const keys = Object.keys(grid), combos = keys.reduce((acc, k) => acc.flatMap((c) => grid[k].map((v) => ({ ...c, [k]: v }))), [{}]);
   if (combos.length > 400) throw new Error(`The grid has ${combos.length} combinations; keep it to 400 or fewer.`);
   const rows = [];
   for (const c of combos) {
-    try { const b = RECIPES[recipe].build({ ...base, ...c }); const r = report(b.P, b.targets, { ...base, ...c, curve: false }, b.rule, b.params); rows.push({ params: c, sharpe: r.sharpe, cagr: r.cagr, max_drawdown: r.max_drawdown, annual_turnover: r.annual_turnover, net: r._net }); }
+    try { const b = RECIPES[recipe].build({ ...base, ...c }); const r = report(b.P, b.targets, { ...base, ...c, curve: false }, b.rule, b.params); rows.push({ params: c, sharpe: r.sharpe, cagr: r.cagr, max_drawdown: r.max_drawdown, annual_turnover: r.annual_turnover, periods: r.periods, net: r._net }); }
     catch (e) { rows.push({ params: c, error: e.message }); }
   }
   const ok = rows.filter((r) => r.sharpe !== null && r.sharpe !== undefined);
@@ -377,7 +382,9 @@ function sweep(recipe, base, grid, ppy) {
     const dsr = normCdf((sr - srStar) * Math.sqrt(n - 1) / Math.sqrt(1 - m.skew * sr + (k4 - 1) / 4 * sr * sr));
     deflation = { trials: Nn, expected_max_sharpe_under_null: srStar * Math.sqrt(ppy), deflated_sharpe_probability: dsr, verdict: dsr > 0.95 ? "The best variant survives deflation for the number tried." : "The best variant does not survive deflation: its Sharpe is what the best of this many tries would show by luck." };
   }
-  return { recipe, combinations: combos.length, columns: ["params", "sharpe", "cagr", "max_drawdown", "annual_turnover"], rows: ok.map((r) => [r.params, r.sharpe, r.cagr, r.max_drawdown, r.annual_turnover]).slice(0, 50), errors: rows.filter((r) => r.error).slice(0, 5).map((r) => ({ params: r.params, error: r.error })), best: best ? { params: best.params, sharpe: best.sharpe } : null, deflation };
+  const n = best?.periods ?? 0;
+  const overfit = ok.length > 1 && n >= 40 ? { ...pbo(ok.map((r) => r.net), defaultSplits(n)), note: "How often the best variant on half the sample landed in the bottom half on the other half; above 0.5, picking the in-sample winner did worse than a random pick." } : null;
+  return { recipe, combinations: combos.length, columns: ["params", "sharpe", "cagr", "max_drawdown", "annual_turnover"], rows: ok.map((r) => [r.params, r.sharpe, r.cagr, r.max_drawdown, r.annual_turnover]).slice(0, 50), errors: rows.filter((r) => r.error).slice(0, 5).map((r) => ({ params: r.params, error: r.error })), best: best ? { params: best.params, sharpe: best.sharpe } : null, deflation, probability_of_backtest_overfitting: overfit, every_trial: { periods: n, periods_per_year: ppy, sharpes: ok.map((r) => r.sharpe) }, [TRIAL_RETURNS]: ok.map((r) => r.net) };
 }
 
 const recipeTool = (name, title, description, keywords) => ({
@@ -423,10 +430,66 @@ export const TOOLS = [
     },
   },
   {
+    name: "lookahead_check",
+    title: "Check target weights for lookahead",
+    description: "Check a strategy's target weights for lookahead from the weights alone: their return lined up with the period they were decided for, a period late, several periods late and a period early. An edge that is all in its own period and gone a period later, unexplained by the last period's return, is what weights computed with that period's outcome look like.",
+    keywords: "lookahead look ahead bias leak peeking future data check audit weights signal delay shifted timestamps too good to be true",
+    input: z.object({
+      prices: z.union([z.array(z.number().positive()).min(30).max(MAX_SERIES), matrixArg]).describe("One price series, or one row per period with a column per asset."),
+      weights: z.array(z.union([z.number().min(-10).max(10), z.array(z.number().min(-10).max(10)).min(1).max(200), z.null()])).min(30).max(MAX_SERIES).describe("Target weights per period (same rows as prices), decided at each close: a number for one series, a row for several; null holds."),
+      periods_per_year: ppyArg,
+    }).strict(),
+    run(a) {
+      if (a.weights.length !== a.prices.length) throw new Error(`weights has ${a.weights.length} rows and prices ${a.prices.length}.`);
+      const P = typeof a.prices[0] === "number" ? a.prices.map((x) => [x]) : a.prices, T = P.length, N = P[0].length, ppy = a.periods_per_year ?? 252;
+      const weights = a.weights.map((w) => (typeof w === "number" ? [w] : w));
+      weights.forEach((w, t) => { if (w && w.length !== N) throw new Error(`weights row ${t} has ${w.length} entries for ${N} asset${N === 1 ? "" : "s"}.`); });
+      // The weights held after each close (the last target, zeros before the first), and each period's returns.
+      const held = [];
+      let w = new Array(N).fill(0);
+      for (let t = 0; t < T; t++) { if (weights[t]) w = weights[t]; held.push(w); }
+      const R = returnsMatrix(P);
+      // lag k: the weights decided at close t against the return from t+k to t+k+1; 0 is as traded, -1 the
+      // return that had just happened (known when the weights were decided).
+      const lags = [-1, 0, 1, 2, 5];
+      const sharpeAt = (k) => {
+        const g = [];
+        for (let t = Math.max(0, -k); t + 1 + k <= T - 1; t++) g.push(held[t].reduce((acc, x, i) => acc + x * R[t + 1 + k][i], 0));
+        const sd = std(g);
+        return g.length > 2 && sd > 0 ? (mean(g) / sd) * Math.sqrt(ppy) : null;
+      };
+      const by = Object.fromEntries(lags.map((k) => [k, sharpeAt(k)]));
+      const [before, own, late] = [by[-1] ?? 0, by[0] ?? 0, by[1] ?? 0];
+      // A Sharpe ratio measured over n periods is uncertain by about sqrt(periods_per_year / n) a year, so a
+      // lag reads as gone, or the last return as no explanation, within two of those.
+      const se = Math.sqrt(ppy / (T - 1));
+      const spike = own >= 1 && own >= 3 * se && late <= Math.max(0.25 * own, 2 * se) && Math.abs(before) <= Math.max(0.5 * own, 2 * se);
+      const verdict = own < 1 || own < 3 * se
+        ? "Too little edge in the weights' own period to tell: an annualized Sharpe under 1 as traded, or within three standard errors of none."
+        : spike && own >= 3
+          ? "Consistent with lookahead: the edge is all in the period the weights were decided for (Sharpe above 3), gone a period later, and not explained by the return that had just happened. Check what the weights at each close could have known: a signal computed with that period's close or later, or data revised after the fact."
+          : spike
+            ? "The edge is all in the period the weights were decided for and gone a period later, unexplained by the return that had just happened: lookahead, or an edge that lasts one period. Check what the weights at each close could have known."
+            : "No sign of lookahead in the weights: the edge does not vanish a period later, or the return that had just happened explains it.";
+      return {
+        periods: T - 1, periods_per_year: ppy, standard_error: se,
+        columns: ["lag", "sharpe", "reading"],
+        rows: lags.map((k) => [k, by[k], k === -1 ? "the return that had just happened, known at the decision" : k === 0 ? "as traded: the next period's return" : `${k} period${k === 1 ? "" : "s"} late`]),
+        lookahead_pattern: spike,
+        verdict,
+        limits: [
+          "Frictionless and without drift between rebalances: each lag holds the latest weights against that period's returns, so it reads the signal, not the costed result (backtest_weights gives that).",
+          "It reads the weights given, not the code that made them: lookahead through a universe chosen with hindsight, revised data or survivorship can leave no such pattern.",
+          "A real edge that lasts one period (short-term reversal on intraday data, say) shows the same pattern; the verdict says so when the Sharpe is under 3.",
+        ],
+      };
+    },
+  },
+  {
     name: "strategy_sweep",
     title: "Parameter sweep with deflated Sharpe",
-    description: "Run one strategy recipe over a parameter grid (up to 400 variants), rank the variants by Sharpe, and deflate the best one for the number tried, so tuning cannot pass off luck as skill.",
-    keywords: "parameter sweep grid search optimization overfitting deflated sharpe multiple testing backtest robustness",
+    description: "Run one strategy recipe over a parameter grid (up to 400 variants), rank the variants by Sharpe, deflate the best one for the number tried and give the probability of backtest overfitting (CSCV), so tuning cannot pass off luck as skill.",
+    keywords: "parameter sweep grid search optimization overfitting deflated sharpe multiple testing backtest robustness pbo cscv probability of backtest overfitting",
     input: z.object({
       recipe: z.enum(Object.keys(RECIPES)).describe("Which recipe, e.g. ma_crossover."),
       arguments: z.record(z.string(), z.unknown()).describe("Fixed arguments for the recipe, including prices."),

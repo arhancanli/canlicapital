@@ -524,7 +524,7 @@ function renderAlphac(state) {
 // =============================================================================
 async function boot() {
   // The glass-box trust surfaces (hero proof strip, proof live readout, the
-  // "Proven in the open" chapter) read the signed glassbox artifacts and are
+  // "Kept in the open" chapter) read the signed glassbox artifacts and are
   // independent of paper-state.json, so we fire them regardless of whether this
   // page authored a holdings surface. Fire-and-forget: failures are swallowed
   // inside bootGlass so they can never strand the page.

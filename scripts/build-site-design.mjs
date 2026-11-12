@@ -8,11 +8,11 @@ import { applyHero } from './lib/site-hero.mjs';
 import { computedTrail, declaredTrail, pageLabel, visibleNav } from './lib/breadcrumbs.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const family = path => path === 'index.html' ? 'home'
+const family = path => path === 'index.html' || path === 'agents.html' || path === 'tools/look-through.html' ? 'home'
   : path.startsWith('tools/') || path === 'annotate.html' ? 'workbench'
   : path.startsWith('companies/') || path === 'companies.html' ? 'reference'
   : path.startsWith('mcp-servers') || path === 'developers.html' ? 'developer'
-  : /^(research|measurements|notes|trials|publication)\//.test(path) ? 'reader'
+  : /^(research|measurements|notes|learn|trials|publication)\//.test(path) ? 'reader'
   : 'chapter';
 
 // Runs after the source generators. Only the site's editable route documents are
@@ -27,6 +27,9 @@ export function applySiteDesign(html, path, { labels = null } = {}) {
   next = next.replace(/\sdata-film-scene="[^"]*"/g, '');
   next = next.replace('<html ', `<html data-design="${family(path)}" `);
   next = next.replace(/<!-- evidence-film:start -->[\s\S]*?<!-- evidence-film:end -->\s*/g, '');
+  // One look (6 Nov): headers sit on the Canli blue band; the film stills once set behind them are taken out of
+  // the pages that already have a header, as scripts/lib/site-hero.mjs no longer writes them.
+  next = next.replace(/<picture class="cc-hero__art"[^>]*>[\s\S]*?<\/picture>/g, '');
   next = next.replace(/<!-- contributor-chapter:start -->[\s\S]*?<!-- contributor-chapter:end -->\s*/g, '');
   if (family(path) === 'home') {
     next = next.replace(/(<section class="home-next")/, `<!-- contributor-chapter:start -->${renderContributorChapter()}<!-- contributor-chapter:end -->$1`);
@@ -98,7 +101,7 @@ function run() {
       else if (path.endsWith('.html')) files.push(path);
     }
   };
-  for (const dir of ['research','measurements','companies','publication','notes','trials','tools','standards','mcp-servers','datasets','benchmarks']) visit(resolve(root,dir));
+  for (const dir of ['research','measurements','companies','publication','notes','learn','trials','tools','standards','mcp-servers','datasets','benchmarks']) visit(resolve(root,dir));
   const routes = [];
   // every page's name, for the breadcrumb trails the headers carry
   const labels = new Map();

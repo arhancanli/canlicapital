@@ -3,31 +3,31 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Developers | Canli Capital</title>
-<meta name="description" content="A read API over the Canli Capital paper record, and a free keyed API that runs your numbers through the same validation arithmetic. Each response states its limits." />
+<title>Free finance API and MCP server for developers | Canli Capital</title>
+<meta name="description" content="canli-mcp gives your AI agent or app SEC filings, market data and 442 finance tools in one command. A free API checks a backtest and signs every answer." />
 <link rel="canonical" href="https://canlicapital.com/developers" />
 <meta name="author" content="Arhan Canli" />
-<meta name="canli:sources" content="validation_api_limits.json validation_api_manifest.json mcp_agent_benchmark.json" />
+<meta name="canli:sources" content="developers_proof.json benchmarks/finance-mcp-servers.json validation_api_limits.json validation_api_manifest.json mcp_agent_benchmark.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
-<meta property="og:title" content="Developers" />
-<meta property="og:description" content="A read API over the Canli Capital paper record, and a free keyed API that runs your numbers through the same validation arithmetic. Each response states its limits." />
+<meta property="og:title" content="Free finance API and MCP server for developers" />
+<meta property="og:description" content="canli-mcp gives your AI agent or app SEC filings, market data and 442 finance tools in one command. A free API checks a backtest and signs every answer." />
 <meta property="og:url" content="https://canlicapital.com/developers" />
 <meta property="og:image" content="https://canlicapital.com/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Developers" />
-<meta name="twitter:description" content="A read API over the Canli Capital paper record, and a free keyed API that runs your numbers through the same validation arithmetic. Each response states its limits." />
+<meta name="twitter:title" content="Free finance API and MCP server for developers" />
+<meta name="twitter:description" content="canli-mcp gives your AI agent or app SEC filings, market data and 442 finance tools in one command. A free API checks a backtest and signs every answer." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebAPI","name":"Canli Capital public read API","description":"A read API over the Canli Capital paper record, and a free keyed API that runs your numbers through the same validation arithmetic. Each response states its limits.","documentation":"https://canlicapital.com/developers","url":"https://canlicapital.com/api/v1","provider":{"@id":"https://canlicapital.com/#organization"},"termsOfService":"https://canlicapital.com/methodology"},{"@context":"https://schema.org","@type":"SoftwareApplication","name":"canli-validation-mcp","description":"MCP server that validates a backtest against the Canli Capital Validation API from Claude, Cursor or any MCP client.","applicationCategory":"DeveloperApplication","operatingSystem":"Node.js","url":"https://canlicapital.com/developers#ai-assistant","downloadUrl":"https://www.npmjs.com/package/canli-validation-mcp","codeRepository":"https://github.com/arhancanli/canlicapital/tree/main/mcp","license":"https://opensource.org/licenses/MIT","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareApplication","name":"canli-fundamentals-mcp","description":"MCP server for SEC company fundamentals point in time: what was first reported, what was known on any date, and every later restatement, each value with the filing behind it. Computed locally from a hash-checked SEC snapshot.","applicationCategory":"DeveloperApplication","operatingSystem":"Node.js","url":"https://canlicapital.com/developers#mcp-fundamentals","downloadUrl":"https://www.npmjs.com/package/canli-fundamentals-mcp","codeRepository":"https://github.com/arhancanli/canlicapital/tree/main/mcp-fundamentals","license":"https://opensource.org/licenses/MIT","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareApplication","name":"canli-research-mcp","description":"MCP server for Canli Capital's open research record: every paper, killed candidate, trial count, the live paper record and its verification chain, each with its own limits.","applicationCategory":"DeveloperApplication","operatingSystem":"Node.js","url":"https://canlicapital.com/developers#mcp-research","downloadUrl":"https://www.npmjs.com/package/canli-research-mcp","codeRepository":"https://github.com/arhancanli/canlicapital/tree/main/mcp-research","license":"https://opensource.org/licenses/MIT","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"alphac","description":"Auditable multi-asset quantitative research engine with point-in-time data, walk-forward validation, trial accounting and execution simulation.","codeRepository":"https://github.com/arhancanli/alphac","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"canli-pit-lake","description":"A point-in-time market data lake where every read takes an explicit as-of.","codeRepository":"https://github.com/arhancanli/canli-pit-lake","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"canli-backtest","description":"A backtester that enforces fill-time causality and counts every hypothesis ever run.","codeRepository":"https://github.com/arhancanli/canli-backtest","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"canlicapital","description":"The source of canlicapital.com: methodology, paper record, kill log, retractions and reproducible artifacts.","codeRepository":"https://github.com/arhancanli/canlicapital","programmingLanguage":"HTML","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://canlicapital.com/#arhan-canli"}}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebAPI","name":"Canli Capital validation and read API","description":"canli-mcp gives your AI agent or app SEC filings, market data and 442 finance tools in one command. A free API checks a backtest and signs every answer.","documentation":"https://canlicapital.com/developers","url":"https://canlicapital.com/api/v1","provider":{"@id":"https://canlicapital.com/#organization"},"termsOfService":"https://canlicapital.com/methodology"},{"@context":"https://schema.org","@type":"SoftwareApplication","name":"canli-mcp","description":"A free finance MCP server: SEC filings, market and economic data and 442 finance tools for AI agents.","applicationCategory":"DeveloperApplication","operatingSystem":"Node.js","url":"https://canlicapital.com/mcp-servers","downloadUrl":"https://www.npmjs.com/package/canli-mcp","codeRepository":"https://github.com/arhancanli/canlicapital/tree/main/mcp-canli","license":"https://opensource.org/licenses/MIT","softwareVersion":"0.21.0","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareApplication","name":"canli-validation-mcp","description":"MCP server that validates a backtest against the Canli Capital Validation API from Claude, Cursor or any MCP client.","applicationCategory":"DeveloperApplication","operatingSystem":"Node.js","url":"https://canlicapital.com/developers#ai-assistant","downloadUrl":"https://www.npmjs.com/package/canli-validation-mcp","codeRepository":"https://github.com/arhancanli/canlicapital/tree/main/mcp","license":"https://opensource.org/licenses/MIT","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareApplication","name":"canli-fundamentals-mcp","description":"MCP server for SEC company fundamentals point in time: what was first reported, what was known on any date, and every later restatement, each value with the filing behind it. Computed locally from a hash-checked SEC snapshot.","applicationCategory":"DeveloperApplication","operatingSystem":"Node.js","url":"https://canlicapital.com/developers#mcp-fundamentals","downloadUrl":"https://www.npmjs.com/package/canli-fundamentals-mcp","codeRepository":"https://github.com/arhancanli/canlicapital/tree/main/mcp-fundamentals","license":"https://opensource.org/licenses/MIT","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareApplication","name":"canli-research-mcp","description":"MCP server for Canli Capital's open research record: every paper, killed candidate, trial count, the live paper record and its verification chain, each with its own limits.","applicationCategory":"DeveloperApplication","operatingSystem":"Node.js","url":"https://canlicapital.com/developers#mcp-research","downloadUrl":"https://www.npmjs.com/package/canli-research-mcp","codeRepository":"https://github.com/arhancanli/canlicapital/tree/main/mcp-research","license":"https://opensource.org/licenses/MIT","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"alphac","description":"Auditable multi-asset quantitative research engine with point-in-time data, walk-forward validation, trial accounting and execution simulation.","codeRepository":"https://github.com/arhancanli/alphac","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"canli-pit-lake","description":"A point-in-time market data lake where every read takes an explicit as-of.","codeRepository":"https://github.com/arhancanli/canli-pit-lake","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"canli-backtest","description":"A backtester that enforces fill-time causality and counts every hypothesis ever run.","codeRepository":"https://github.com/arhancanli/canli-backtest","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"canlicapital","description":"The source of canlicapital.com: methodology, paper record, kill log, retractions and reproducible artifacts.","codeRepository":"https://github.com/arhancanli/canlicapital","programmingLanguage":"HTML","license":"https://opensource.org/licenses/MIT","author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://canlicapital.com/"},{"@type":"ListItem","position":2,"name":"Developers","item":"https://canlicapital.com/developers"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is it free?","acceptedAnswer":{"@type":"Answer","text":"Yes. canli-mcp and the validation API are free and open source under the MIT licence. The API needs a key, which you get in one call with no signup and no email; each key runs 1,000 validations a day."}},{"@type":"Question","name":"canli-mcp or the API: which do I want?","acceptedAnswer":{"@type":"Answer","text":"canli-mcp, if an AI assistant or agent will do the work: it finds and runs the right tool itself, and it includes these validators. The API, if your own code will call it: plain HTTPS and JSON, from any language."}},{"@type":"Question","name":"What happens to the numbers I send?","acceptedAnswer":{"@type":"Answer","text":"The service computes the answer and keeps a receipt: the answer, a hash of your input and the hash of the code that computed it. Your series itself is not stored. For a series that must never leave your machine, run the validation server in private local mode."}},{"@type":"Question","name":"Can someone else check an answer?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every verdict has a receipt at /api/v1/receipts/{id}, signed with Ed25519 by the key published at /.well-known/canli-receipt-keys.json, and a certificate page at /audit/{id}. Here is the one above."}},{"@type":"Question","name":"Is any of this investment advice?","acceptedAnswer":{"@type":"Answer","text":"No. The tools report what companies filed and what the arithmetic says about a series you send, with the limits of each answer. What you do with it is your decision."}}]}]</script>
 <!-- site-design:start -->
 <link rel="stylesheet" href="/css/product-shell.css" />
 <!-- site-design:end -->
 </head>
-<body class="dev-page">
-<a class="dev-skip" href="#content">Skip to content</a>
+<body class="clear dev-page">
+<a class="skip-link" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="5">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
@@ -46,6 +46,9 @@
       <div>
         <span class="cc-shell__panel-label">Use it</span>
         <nav aria-label="Products and tools"><a class="cc-shell__panel-link" href="/mcp-servers">canli-mcp, the MCP server</a>
+<a class="cc-shell__panel-link" href="/mcp-servers/install">Add it to your client</a>
+<a class="cc-shell__panel-link" href="/mcp-servers/tools">Every tool</a>
+<a class="cc-shell__panel-link" href="/mcp-servers/how-it-works">How it works and is tested</a>
 <a class="cc-shell__panel-link" href="/mcp-servers/answers">Questions it answers</a>
 <a class="cc-shell__panel-link" href="/companies">Company reference</a>
 <a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a>
@@ -92,29 +95,39 @@
   <a class="cc-shell__cta" href="/mcp-servers#install">Add canli-mcp</a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main id="content" tabindex="-1"><header class="cc-hero" data-scene="gates"><picture class="cc-hero__art" aria-hidden="true"><source type="image/avif" media="(max-width: 768px)" srcset="/scenes/gates-900.avif"><source type="image/webp" media="(max-width: 768px)" srcset="/scenes/gates-900.webp"><source type="image/avif" srcset="/scenes/gates-1600.avif 1600w, /scenes/gates-2400.avif 2400w" sizes="100vw"><source type="image/webp" srcset="/scenes/gates-1600.webp 1600w, /scenes/gates-2400.webp 2400w" sizes="100vw"><img src="/scenes/gates-1600.webp" alt="" width="1600" height="560" fetchpriority="high" decoding="async"></picture><div class="cc-hero__inner"><nav class="cc-crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Canli Capital</a></li><li><span aria-current="page">Developers</span></li></ol></nav><p class="dev-kicker"><span>Free</span><span aria-hidden="true"> &middot; </span><span>No signup or email</span></p><h1>Check a backtest.<br />Keep the receipt.</h1><p class="dev-lead">Send the returns your backtest produced and find out whether the result could be luck:
-      how much the Sharpe ratio shrinks once every version you tried is counted, how likely the backtest
-      is to be overfit, and how long a live record must run to prove it. Each answer comes with a
-      receipt anyone can recheck.</p></div></header>
-  <section class="dev-hero">
-
-
-
-    <ol class="dev-paths" aria-label="Three ways to start">
-      <li class="dev-path"><span class="dev-path__tag">Fastest</span><h2>From an AI assistant</h2><p>Add the hosted server to Claude, Cursor or VS Code. Nothing to install.</p><pre class="dev-path__code" tabindex="0"><code>claude mcp add --transport http canli https://canlicapital.com/mcp</code></pre><a href="#ai-assistant">Setup for every assistant ↘</a></li>
-      <li class="dev-path"><span class="dev-path__tag">Any language</span><h2>From your own code</h2><p>Get a free key, then call the API from Python, JavaScript or curl.</p><a class="dev-button dev-button--primary" href="#quickstart">Get a free API key ↘</a></li>
-      <li class="dev-path"><span class="dev-path__tag">No code</span><h2>In the browser</h2><p>Type your numbers into the free calculators.</p><a href="/tools">Open the calculators ↗</a></li>
-    </ol>
-    <p class="dev-hero-links">Reference: <a href="#validation">Validators</a> &middot; <a href="/mcp-servers">All finance MCP servers</a> &middot; <a href="/api/v1/openapi">OpenAPI document</a> &middot; <a href="/api/v1">Discovery document</a> &middot; <a href="/standards/paper-evidence">Record standard</a> &middot; <a href="https://github.com/arhancanli/canlicapital" rel="noreferrer">Source on GitHub</a> &middot; <a href="https://github.com/arhancanli/alphac" rel="noreferrer">ALPHAC engine</a></p>
-    <p class="dev-hero-note">Every response includes its scope and limits under our <a href="/open">honesty pledge</a>.
-      Public record snapshots need no key.</p>
-  </section>
-
-  <nav class="dev-page-index" aria-label="Developer guide sections"><a href="#quickstart">Get started</a><a href="#validation">Validators</a><a href="#quotas">Quotas</a><a href="#not-established">Result boundaries</a><a href="#ai-assistant">AI assistants</a></nav>
-  <section class="dev-section dev-quickstart" id="quickstart">
-    <h2>Quickstart</h2>
-    <p class="dev-note">Three steps, in the order you need them. Every block below is copy-ready,
-      and the key you get in step one drops straight into the rest.</p>
+<main id="content" tabindex="-1">
+<section class="cl-hero">
+<div>
+<nav class="cl-crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Developers</li></ol></nav>
+<p class="cl-kicker">Free · open source · no signup</p>
+<h1>Build on financial data you can check.</h1>
+<p class="cl-lede">canli-mcp gives your AI agent or app SEC filings, market and economic data and 442 finance tools in one command. A free API runs your backtest through the checks we run on our own, and signs every answer so anyone can recompute it.</p>
+<div class="cl-actions"><a class="cl-button" href="#start">Add canli-mcp</a><a class="cl-quiet" href="#quickstart">Get a free API key</a></div>
+<p class="cl-command"><code>npx -y canli-mcp</code></p>
+</div>
+<figure class="cl-receipt" aria-label="A real call to this API">
+<p class="cl-receipt__head"><span>A real call to this API</span><span>Receipt</span></p>
+<p class="cl-receipt__q">Is a Sharpe ratio of 1.5 still there after 229 tries?</p>
+<dl><div><dt>Sharpe ratio, as tested</dt><dd>1.5</dd></div><div><dt>Best of 229 tries by luck alone</dt><dd>1.60</dd></div><div><dt>Chance it beats zero, one try</dt><dd>98.1%</dd></div><div><dt>Chance it beats luck, every try counted</dt><dd class="cl-was-wrong">44.4%</dd></div></dl>
+<p class="cl-stamp is-right">Signed, Ed25519</p>
+<a href="https://canlicapital.com/audit/b54f553842bde0fe41ab6802" rel="noreferrer">Open its certificate and check the signature</a>
+<figcaption><code>POST /api/v1/validate/deflated-sharpe</code>, <time datetime="2026-11-07">7 November 2026</time>. Receipt <a href="https://canlicapital.com/api/v1/receipts/b54f553842bde0fe41ab6802"><code>b54f553842bde0fe41ab6802</code></a>. Neither chance is a forecast.</figcaption>
+</figure>
+</section>
+<section class="cl-proof" aria-label="The developer tools in figures"><ul><li><b>442</b><span>finance tools in canli-mcp, which your assistant finds as it needs them</span></li><li><b>5</b><span>tools loaded at the start: 2,558 tokens instead of 100,039</span></li><li><b>9</b><span>checks on your own backtest with a free key, 1,000 a key a day</span></li><li><b>Free</b><span>MIT licence; no signup and no email</span></li></ul></section>
+<section class="cl-section" id="start"><p class="cl-eyebrow">Start</p><h2>Pick how you build</h2>
+<ol class="cl-steps">
+<li><h3>In an AI agent or coding assistant</h3><p>canli-mcp is one server with every tool, the validators below included. In Claude Code:</p><pre tabindex="0">claude mcp add canli -- npx -y canli-mcp</pre><p>In every AI app on your computer at once (it keeps a copy of each file it changes):</p><pre tabindex="0">npx -y canli-mcp setup</pre><p>As a connector in Claude or ChatGPT, nothing to install:</p><pre tabindex="0">https://canlicapital.com/mcp/canli</pre><p><a href="/mcp-servers/install">Step-by-step for each app</a> · <a href="/mcp-servers">What canli-mcp can answer</a></p></li>
+<li><h3>From your own code</h3><p>Get a free key, then call the API from Python, JavaScript or curl. Each answer comes back with what it cannot be used to claim and a signed receipt.</p><p><a href="#quickstart">Get a key and make the first call</a></p></li>
+<li><h3>In the browser, no code</h3><p>The same arithmetic as calculators: type your numbers, read the answer.</p><p><a href="/tools">Open the calculators</a></p></li>
+</ol></section>
+<div class="cl-band"><section class="cl-section" id="reference"><p class="cl-eyebrow">Reference</p><h2>The API, route by route</h2>
+<p class="cl-intro">Every response has the same shape and states its limits under our <a href="/open">honesty pledge</a>. Public record snapshots need no key.</p>
+<nav class="cl-ref-index" aria-label="Developer guide sections"><a href="#quickstart">Quickstart</a><a href="#ai-assistant">Validation MCP server</a><a href="#mcp-family">More MCP servers</a><a href="#read">Read endpoints</a><a href="#validation">Validators</a><a href="#quotas">Quotas</a><a href="#not-established">Result boundaries</a><a href="#envelope">The envelope</a><a href="/api/v1/openapi">OpenAPI document</a><a href="/api/v1">Discovery document</a><a href="/standards/paper-evidence">Record standard</a><a href="https://github.com/arhancanli/canlicapital" rel="noreferrer">Source on GitHub</a></nav>
+</section></div>
+  <section class="cl-section dev-quickstart" id="quickstart"><p class="cl-eyebrow">Quickstart</p>
+    <h2>Three steps to a signed answer</h2>
+    <p class="cl-intro">Every block below is copy-ready, and the key you get in step one drops straight into the rest.</p>
     <ol class="dev-steps">
       <li class="dev-step">
         <h3>1. Get a key</h3>
@@ -200,7 +213,7 @@ const response = await fetch(&quot;https://canlicapital.com/api/v1/validate/defl
 console.log(await response.json());</code></pre></div>
       </div>
     </div>
-        <p class="dev-note">The other three validators are documented <a href="#validation">below</a>.</p>
+        <p class="dev-note">The other validators are documented <a href="#validation">below</a>.</p>
       </li>
       <li class="dev-step">
         <h3>3. Fetch the receipt</h3>
@@ -326,9 +339,9 @@ console.log(await response.json());</code></pre></div>
 })();</script>
   <script type="module" src="/js/developer-workbench.js"></script>
 
-  <section class="dev-section" id="ai-assistant">
-    <h2>Connect the MCP server</h2>
-    <p class="dev-note">This API is also an MCP server, so a coding assistant can call the
+  <section class="cl-section" id="ai-assistant"><p class="cl-eyebrow">The validators alone</p>
+    <h2>The validation MCP server</h2>
+    <p class="dev-note">canli-mcp includes these validators. If you want only them, this API is also its own MCP server, so a coding assistant can call the
       routes on this page as tools instead of writing requests by hand. Every result it returns
       keeps, beside the number, the sentences that say what it cannot be used to claim and the
       receipt that records it, so the assistant never sees a number alone. It also reads the
@@ -358,7 +371,7 @@ console.log(await response.json());</code></pre></div>
 }</code></pre></div>
     <h3 id="mcp-benchmark">How well agents use it</h3>
     <p class="dev-note">Each model was given these tools and 24 fixed questions (deflated Sharpe, track record length, breadth, overfitting, company financials by ticker, and what a result does not establish), each asked 3 times. An answer counts when it matches ground truth computed from the same checked code.</p>
-    <!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="dev-table" tabindex="0" aria-label="MCP agent benchmark">
+    <!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="cl-table dev-table" tabindex="0" aria-label="MCP agent benchmark">
       <thead><tr><th>Model</th><th>Correct answers</th><th>Right tool first</th><th>Runs</th></tr></thead>
       <tbody>
         <tr><td>Claude Haiku 4.5</td><td>97.2%</td><td>98.6%</td><td>72</td></tr>
@@ -371,7 +384,7 @@ console.log(await response.json());</code></pre></div>
     <p class="dev-note"><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">canli-validation-mcp on npm</a>, with the full tool list and what each one does not establish.</p>
   </section>
 
-  <section class="dev-section" id="mcp-family">
+  <div class="cl-band"><section class="cl-section" id="mcp-family"><p class="cl-eyebrow">The family</p>
     <h2>More MCP servers</h2>
     <p class="dev-note">Each server does one job with a small tool list, so the tools an assistant re-reads on every turn stay cheap. Add only the ones you need; they run side by side.</p>
     <article class="dev-endpoint" id="mcp-fundamentals"><h3><code>canli-fundamentals-mcp</code>: SEC fundamentals point in time</h3><p>MCP server for SEC company fundamentals point in time: what was first reported, what was known on any date, and every later restatement, each value with the filing behind it. Computed locally from a hash-checked SEC snapshot. Tools: <code>known_as_of</code>, <code>history</code>, <code>restatements</code>, <code>vintages</code>, <code>list_concepts</code>, <code>find_company</code>, <code>cross_section</code>.</p>
@@ -385,11 +398,11 @@ console.log(await response.json());</code></pre></div>
     <article class="dev-endpoint" id="mcp-execution"><h3><a href="/mcp-servers/execution">Local paper execution workflow</a></h3>
       <p>The private, Unreleased execution source has local sizing, pre-trade cost and limit checks, shortfall measurements and signed paper journals. Supply the scenario and explicitly enable journal writes in a prepared private home. It connects to no broker and places no orders.</p>
       <p class="dev-note"><a href="/mcp-servers/execution">Read the source-backed workflow and local setup</a>. Hosted release contracts above remain separate.</p></article>
-  </section>
+  </section></div>
 
-  <section class="dev-section">
-    <h2>Read endpoints, no key</h2>
-    <!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="dev-table" tabindex="0" aria-label="Public read endpoints">
+  <section class="cl-section" id="read"><p class="cl-eyebrow">No key</p>
+    <h2>Read endpoints</h2>
+    <!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="cl-table dev-table" tabindex="0" aria-label="Public read endpoints">
       <thead><tr><th>Path</th><th>What it returns</th></tr></thead>
       <tbody>
         <tr><td><a href="/api/v1/chain/head"><code>GET /api/v1/chain/head</code></a></td><td>The head of the signed append-only transparency chain, and the public key needed to verify it.</td></tr>
@@ -402,11 +415,11 @@ console.log(await response.json());</code></pre></div>
     </table></div><!-- design-table:end -->
   </section>
 
-  <section class="dev-section" id="validation">
-    <h2>Validation endpoints, free key</h2>
-    <p class="dev-note">Send your own numbers; get back the arithmetic this house runs on itself.
+  <section class="cl-section" id="validation"><p class="cl-eyebrow">Free key</p>
+    <h2>Validation endpoints</h2>
+    <p class="cl-intro">Send your own numbers; get back the arithmetic this house runs on itself.
       Nothing you send is stored. Each verdict returns a receipt anyone can recompute.</p>
-    <!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="dev-table" tabindex="0" aria-label="Validation endpoints">
+    <!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="cl-table dev-table" tabindex="0" aria-label="Validation endpoints">
       <thead><tr><th>Route</th><th>What it does</th></tr></thead>
       <tbody>
         <tr><td><code>POST /api/v1/keys/revoke</code></td><td>Permanently revoke the bearer key without consuming validation quota. Already admitted requests may finish; public receipts remain available.</td></tr>
@@ -706,9 +719,9 @@ console.log(await response.json());</code></pre></div>
       this server.</p>
   </section>
 
-  <section class="dev-section" id="quotas">
+  <div class="cl-band"><section class="cl-section" id="quotas"><p class="cl-eyebrow">Limits</p>
     <h2>Quotas, public and enforced from one source</h2>
-    <!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="dev-table" tabindex="0" aria-label="API quotas">
+    <!-- design-table:start --><div class="cc-table-scroll" role="region" aria-label="Scrollable data table" tabindex="0"><table class="cl-table dev-table" tabindex="0" aria-label="API quotas">
       <thead><tr><th>Limit</th><th>Value</th></tr></thead>
       <tbody>
         <tr><td>Validations per key per UTC day</td><td>1000</td></tr>
@@ -727,9 +740,9 @@ console.log(await response.json());</code></pre></div>
       <li>Revoke the bearer key with POST /api/v1/keys/revoke. Revocation does not use validation quota and is irreversible; repeating it leaves the original revocation time intact. Requests already admitted may finish. Confirm a successful response before assuming the key is disabled. Issue a replacement separately; there is no atomic rotate operation.</li>
       <li>&quot;Client&quot;, for the daily key-issuance quota, means the request&#39;s IP address hashed together with a salt that rotates every UTC day, not a stored account. A shared office or NAT IP address draws from the same pool of 5 keys a day as every other request behind it.</li>
     </ul>
-  </section>
+  </section></div>
 
-  <section class="dev-section" id="not-established">
+  <section class="cl-section" id="not-established"><p class="cl-eyebrow">Boundaries</p>
     <h2>What a verdict does not establish</h2>
     <ul class="dev-list">
       <li>This verdict is about the series exactly as submitted. The service never saw the data source, its costs, survivorship, or any lookahead in how the series was built.</li>
@@ -739,24 +752,24 @@ console.log(await response.json());</code></pre></div>
     </ul>
   </section>
 
-  <section class="dev-section">
+  <section class="cl-section" id="envelope"><p class="cl-eyebrow">Every response</p>
     <h2>The envelope</h2>
-    <p class="dev-note">Every response has the same shape. The two fields worth reading first are
+    <p class="cl-intro">Every response has the same shape. The two fields worth reading first are
       the two an API usually omits.</p>
-    <div class="dev-grid">
-      <article><h3><code>claim_class</code></h3><p>What kind of claim this is: observed, model
+    <ul class="cl-grid">
+      <li class="cl-card"><h3><code>claim_class</code></h3><p>What kind of claim this is: observed, model
         estimated, a published document, a cryptographic record. Merging these is how a simulated
-        figure acquires the authority of a measured one.</p></article>
-      <article><h3><code>limits</code></h3><p>What this response cannot be used to say. The build
-        refuses to emit an endpoint that declares none.</p></article>
-      <article><h3><code>sources</code></h3><p>Every artifact the response was built from, with its
-        content hash and a URL, so a consumer can recompute rather than trust.</p></article>
-      <article><h3><code>generated_at</code></h3><p>The freshness of every figure inside. These are
-        snapshots, not a stream.</p></article>
-    </div>
+        figure acquires the authority of a measured one.</p></li>
+      <li class="cl-card"><h3><code>limits</code></h3><p>What this response cannot be used to say. The build
+        refuses to emit an endpoint that declares none.</p></li>
+      <li class="cl-card"><h3><code>sources</code></h3><p>Every artifact the response was built from, with its
+        content hash and a URL, so a consumer can recompute rather than trust.</p></li>
+      <li class="cl-card"><h3><code>generated_at</code></h3><p>The freshness of every figure inside. These are
+        snapshots, not a stream.</p></li>
+    </ul>
   </section>
 
-  <section class="dev-section dev-section--tail">
+  <section class="cl-section" id="api-limits"><p class="cl-eyebrow">The whole API</p>
     <h2>Limits of the whole API</h2>
     <ul class="dev-list">
       <li>Read only. There is no write path and no authentication, because there is nothing to authenticate to.</li>
@@ -770,6 +783,8 @@ console.log(await response.json());</code></pre></div>
       <a href="https://github.com/arhancanli/alphac/issues/new?template=external-review.yml" rel="noreferrer">The governed review route</a>
       is the fastest way to get it fixed and recorded.</p>
   </section>
+
+  <div class="cl-band"><section class="cl-section" id="questions"><p class="cl-eyebrow">Questions</p><h2>Before you build</h2><div class="cl-faq"><details><summary>Is it free?</summary><p>Yes. canli-mcp and the validation API are free and open source under the MIT licence. The API needs a key, which you get in one call with no signup and no email; each key runs 1,000 validations a day.</p></details><details><summary>canli-mcp or the API: which do I want?</summary><p>canli-mcp, if an AI assistant or agent will do the work: it finds and runs the right tool itself, and it includes these validators. The API, if your own code will call it: plain HTTPS and JSON, from any language.</p></details><details><summary>What happens to the numbers I send?</summary><p>The service computes the answer and keeps a receipt: the answer, a hash of your input and the hash of the code that computed it. Your series itself is not stored. For a series that must never leave your machine, run the validation server in private local mode.</p></details><details><summary>Can someone else check an answer?</summary><p>Yes. Every verdict has a receipt at <code>/api/v1/receipts/{id}</code>, signed with Ed25519 by the key published at <a href="/.well-known/canli-receipt-keys.json">/.well-known/canli-receipt-keys.json</a>, and a certificate page at <code>/audit/{id}</code>. <a href="https://canlicapital.com/audit/b54f553842bde0fe41ab6802">Here is the one above</a>.</p></details><details><summary>Is any of this investment advice?</summary><p>No. The tools report what companies filed and what the arithmetic says about a series you send, with the limits of each answer. What you do with it is your decision.</p></details></div></section></div>
 <!-- developer-contributors:start --><section class="developer-contributors" aria-labelledby="developer-contributors-title"><p class="eyebrow">Contribute</p><h2 id="developer-contributors-title">Improve the tools you use.</h2><p>Reproduce a result, fix a tool or improve its documentation. Contributor rewards include higher hosted API quotas and early access to new MCP tools; the program is in development.</p><a href="/contributors">Explore contribution routes and reward status ↗</a></section><!-- developer-contributors:end --></main>
 <footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="5">
   <section class="cc-footer__dev" aria-labelledby="cc-footer-dev-title">
@@ -831,6 +846,7 @@ console.log(await response.json());</code></pre></div>
       <a href="/methodology">Methodology</a>
       <a href="/costs">What costs are charged</a>
       <a href="/verify">Verify record</a>
+      <a href="/privacy">Privacy policy</a>
       <a href="/measurements">Measurements</a>
       <a href="/open">Open data</a>
       <a href="/companies">Company reference</a>
@@ -873,10 +889,10 @@ console.log(await response.json());</code></pre></div>
       <a href="/companies/0000915389">Eastman Chemical (EMN)</a>
       <a href="/companies/0000046080">Hasbro (HAS)</a>
       <a href="/companies/0000732712">Verizon Communications (VZ)</a>
-      <a href="/companies/0000804328">Qualcomm Inc/de (QCOM)</a>
+      <a href="/companies/0000804328">Qualcomm (QCOM)</a>
       <a href="/companies/0000320187">NIKE (NKE)</a>
       <a href="/companies/0000024545">Molson Coors Beverage Company (TAP)</a>
-      <a href="/companies/0001018724">Amazon COM (AMZN)</a>
+      <a href="/companies/0001018724">Amazon.com (AMZN)</a>
       <a href="/companies/0000858877">Cisco Systems (CSCO)</a>
       <a href="/companies/0000026172">Cummins (CMI)</a>
       <a href="/companies/0001327811">Workday (WDAY)</a>

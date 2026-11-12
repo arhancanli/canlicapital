@@ -21,6 +21,7 @@ import { readSitemapXml } from "./lib/sitemaps.mjs";
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { LINES, NEAR, NEVER, NEXT, ROAD } from "./build-vision-and-stats.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const ORIGIN = "https://canlicapital.com";
@@ -84,6 +85,35 @@ say("- Retracted figures stay published inside their own retraction. If you find
 say("- Open-source code is not a track record. It is evidence about method, not about returns.");
 say(`- ${sleeves} strategy sleeves are paper-traded, aggregated into one composite book, against a larger planned set; the difference is stated on the status page, not implied away.`);
 say();
+say("## Free finance MCP servers");
+say();
+say("Free and open source, with no API key and no account. We make these, so weigh that; the comparison pages say what other servers do better.");
+say();
+say(`- [canli-mcp](${ORIGIN}/mcp-servers): SEC filings, market data, economic statistics and backtests in one server; the latest release is ${read("config/canli-mcp.json").current.version}. Run \`npx -y canli-mcp\`, or connect to ${ORIGIN}/mcp/canli with nothing to install.`);
+// Each server on its own, for someone who asks for one thing. A line may write its tool count as {tools}, filled
+// from the release index as its page is (left as written, it reached the file on 6 November).
+const serverWords = read("config/mcp-package-pages.json");
+const index = read("mcp-canli/src/index.json");
+const fill = (s, pack) => s.replaceAll("{tools}", String(index.tools.filter((t) => t[1] === pack).length));
+for (const p of serverWords.pages) say(`- [${p.package}](${ORIGIN}${p.route}): ${fill(p.one_line, p.pack)} Run \`npx -y ${p.package}\`.`);
+for (const [id, h] of Object.entries(serverWords.hosted)) say(`- [${h.install}](${ORIGIN}/mcp-servers/${id}): ${h.one_line} Run \`npx -y ${h.install}\`.`);
+say(`- [Free finance MCP servers compared](${ORIGIN}/mcp-servers/answers/best-free-finance-mcp-server): canli-mcp against OpenBB, EdgarTools and Alpha Vantage's server, with the benchmark behind it.`);
+say(`- [Finance MCP servers that need no API key](${ORIGIN}/mcp-servers/answers/finance-mcp-server-no-api-key)`);
+say(`- [Connect ChatGPT to stock data](${ORIGIN}/mcp-servers/answers/connect-chatgpt-to-stock-data)`);
+say(`- [Connect Claude to stock data](${ORIGIN}/mcp-servers/answers/connect-claude-to-stock-data)`);
+say(`- [Free SEC EDGAR MCP server](${ORIGIN}/mcp-servers/answers/free-sec-edgar-mcp-server)`);
+say();
+// The vision page's own items, with the status each carries there, so an assistant can tell what exists from what
+// is planned.
+say("## What Canli Capital is working toward");
+say();
+say(`Goals, each labelled with what exists; nothing planned is live until it says so. The whole plan: ${ORIGIN}/vision`);
+say();
+for (const [name, status, text] of NEXT) say(`- ${name} (canli-mcp, ${status}): ${text}`);
+for (const [when, what, text] of [...NEAR, ...ROAD]) say(`- ${when}, ${what}: ${text}`);
+say(`- Product lines, each becoming its own company once it has paying customers: ${LINES.map(([name, , status]) => `${name} (${status})`).join("; ")}.`);
+say(`- What it will not do: ${NEVER.join(" ")}`);
+say();
 say("## Start here");
 say();
 say(`- [Home](${ORIGIN}/): What the project is: canli-mcp, the problem it solves, the vision and how it compares.`);
@@ -92,6 +122,7 @@ say(`- [The record](${ORIGIN}/record): The ALPHAC paper-trading record, publishe
 say(`- [Vision](${ORIGIN}/vision): What Canli Capital is building for AI agents in finance, pillar by pillar, with what exists today and what comes next.`);
 say(`- [MCP downloads](${ORIGIN}/stats): npm downloads of the open MCP servers, read from npm at each build.`);
 say(`- [FilingFacts benchmark](${ORIGIN}/benchmarks/filingfacts): AI models answering SEC filing questions on their own and with an MCP server that reads the filings, from public, rescorable run records.`);
+say(`- [Weekly test on new filings](${ORIGIN}/benchmarks/fresh-filings): each week, questions only that week's annual reports can answer, put to a model alone and with canli-mcp, every answer checked against the filing.`);
 say(`- [Methodology](${ORIGIN}/methodology): Evidence-linked answers to how the research is actually done.`);
 say(`- [How to validate a backtest](${ORIGIN}/how-to-validate-a-backtest): A step-by-step walk-through of this site's own instruments, in order, with the calculator and API route beside each step.`);
 say(`- [Status](${ORIGIN}/performance): The honest numbers and what each one is and is not.`);
@@ -126,10 +157,24 @@ say("Post-mortems and derivations. These describe method and engineering; none i
 say();
 for (const n of notes) say(`- [${n.title}](${ORIGIN}/notes/${n.slug}): ${n.dek}`);
 say();
+say("## Lessons");
+say();
+say("Short lessons for people investing their own money, using figures from real filings. Education, not advice.");
+say();
+say(`- [Learn how the stock market works](${ORIGIN}/learn): The index of lessons.`);
+for (const f of readdirSync(resolve(ROOT, "learn")).filter((name) => name.endsWith(".md")).sort()) {
+  const md = readFileSync(resolve(ROOT, "learn", f), "utf8");
+  say(`- [${md.match(/^# (.+)$/m)[1]}](${ORIGIN}/learn/${f.slice(0, -3)}): ${md.match(/^> (.+)$/m)[1]}`);
+}
+say();
 say("## Machine interfaces");
 say();
 say(`- [Read API](${ORIGIN}/developers): static JSON over the published record. Every response carries its sources with SHA-256 hashes, its claim class, and what it cannot be used to claim.`);
 say(`- [canli-mcp](${ORIGIN}/mcp-servers): the flagship finance MCP server. Install: \`npx -y canli-mcp\` (stdio), or add the hosted URL ${ORIGIN}/mcp/canli as a connector. The page also covers the released hosted [validation](${ORIGIN}/mcp-servers/validation), [SEC fundamentals](${ORIGIN}/mcp-servers/fundamentals) and [research](${ORIGIN}/mcp-servers/research) servers.`);
+say(`- [Add canli-mcp to your client](${ORIGIN}/mcp-servers/install): steps for Claude, Claude Code, Cursor, VS Code, ChatGPT, Codex, Gemini CLI, Windsurf, Cline and Zed.`);
+say(`- [Privacy policy](${ORIGIN}/privacy): what the site, the hosted servers and the package collect, send and keep.`);
+say(`- [Every canli-mcp tool](${ORIGIN}/mcp-servers/tools): all the tools by pack, with what each does and its arguments.`);
+say(`- [How canli-mcp works and is tested](${ORIGIN}/mcp-servers/how-it-works): what happens on a question, where the data comes from, test scores including first runs, and limits.`);
 say(`- [Finance questions canli-mcp answers](${ORIGIN}/mcp-servers/answers): one page per question, each with the call it makes and a recorded result:`);
 for (const a of JSON.parse(readFileSync(resolve(ROOT, "config/mcp-answers.json"), "utf8")).answers) say(`  - [${a.question}](${ORIGIN}/mcp-servers/answers/${a.slug})`);
 say(`- [Local paper execution MCP workflow](${ORIGIN}/mcp-servers/execution): private, Unreleased repository source for supplied sizing, pre-trade checks, signed journals and paper evidence. Explicit local writes; no broker connection or order placement.`);
@@ -144,6 +189,7 @@ say();
 say(`- [Corrections](${ORIGIN}/progress): What was published, found wrong, and withdrawn. Read this before trusting any other page.`);
 say(`- [Open data](${ORIGIN}/open): The kill log, the signed hash chain and the glass-box artifacts.`);
 say(`- [Trial accounting](${ORIGIN}/tools/trial-accounting): Every hypothesis ever tested, which is the denominator every Sharpe here is corrected by.`);
+say(`- [Portfolio look-through](${ORIGIN}/tools/look-through): List your funds and shares, and see every company inside them, added up from each fund's SEC report.`);
 say(`- [Deflated Sharpe calculator](${ORIGIN}/tools/deflated-sharpe): Run the correction yourself against a source-bound implementation.`);
 say(`- [Probability of backtest overfitting calculator](${ORIGIN}/tools/backtest-overfitting): Run Combinatorially Symmetric Cross-Validation on your own matrix of variant returns, the same core the validation API imports.`);
 say(`- [Execution Reality Lab](${ORIGIN}/tools/execution): the same strategy under six execution assumptions, measuring which are costs (negative on every series) and which are re-timings (sign unreliable per series). Educational, synthetic.`);

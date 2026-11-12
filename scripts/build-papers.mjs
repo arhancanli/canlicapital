@@ -39,7 +39,7 @@ import {
 } from "./product-shell.mjs";
 import { discover as discoverMeasurementArtifacts, rawArtifactUrl } from "./build-measurements.mjs";
 import { gitCommitDate, artifactDate, resolveLastmod, writeSourceDates } from "./lastmod.mjs";
-import { PAGE_SOURCES, SHARED_PAGE_SOURCES } from "./lib/page-sources.mjs";
+import { PAGE_SOURCES } from "./lib/page-sources.mjs";
 import { applyReaderPresentation, applyHubNavigation } from './lib/reading-layout.mjs';
 import { applySiteDesign } from './build-site-design.mjs';
 import { fitDescription as fitDescriptionFrom } from "./lib/descriptions.mjs";
@@ -88,7 +88,6 @@ const archivalPaperRoutes = () => {
         `public/${originalRoute.slice(1)}.html`,
         `${wrapperRoute.slice(1)}.html`,
         "scripts/build-publication-wrappers.mjs",
-        ...SHARED_PAGE_SOURCES,
       ],
     };
   });
@@ -163,22 +162,33 @@ const trialRoutes = () => {
     });
 };
 
+// One page per canli-mcp tool (scripts/build-mcp-pages.mjs), each dated by its own content in the record the
+// generator keeps (config/mcp-tool-pages.json), so a template or another tool's change re-dates none of them.
+function toolPageRoutes(record = "config/mcp-tool-pages.json") {
+  const file = resolve(ROOT, record);
+  if (!existsSync(file)) return [];
+  const { tools } = JSON.parse(readFileSync(file, "utf8"));
+  return Object.entries(tools)
+    .filter(([name]) => existsSync(resolve(ROOT, `mcp-servers/tools/${name.replace(/_/g, "-")}.html`)))
+    .map(([name, t]) => ({ loc: `${ORIGIN}/mcp-servers/tools/${name.replace(/_/g, "-")}`, priority: "0.6", changefreq: "monthly", ...(t.changed ? { lastmod: t.changed } : {}) }));
+}
+
 // The engineering notes, DERIVED from what build-notes.mjs put on disk, for the same
 // reason the measurement pages are: build-notes decides how many there are. Each note's
 // lastmod traces to its own hand-authored markdown source (`notes/<slug>.md`), never to
 // the day build-notes.mjs happened to run.
-function noteRoutes() {
-  const dir = resolve(ROOT, "notes");
+function noteRoutes(folder = "notes") {
+  const dir = resolve(ROOT, folder);
   if (!existsSync(dir)) return [];
   return readdirSync(dir)
     .filter((name) => name.endsWith(".html"))
     .map((name) => {
       const slug = name.slice(0, -5);
       return {
-        loc: `${ORIGIN}/notes/${slug}`,
+        loc: `${ORIGIN}/${folder}/${slug}`,
         priority: "0.8",
         changefreq: "monthly",
-        lastmodFiles: [`notes/${slug}.md`],
+        lastmodFiles: [`${folder}/${slug}.md`],
       };
     });
 }
@@ -187,6 +197,7 @@ const STATIC_ROUTES = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
   { path: "/systems", priority: "0.8", changefreq: "weekly" },
   { path: "/performance", priority: "0.8", changefreq: "weekly" },
+  { path: "/agents", priority: "0.8", changefreq: "weekly" },
   { path: "/progress", priority: "0.8", changefreq: "weekly" },
   { path: "/research", priority: "0.9", changefreq: "weekly" },
   { path: "/open", priority: "0.8", changefreq: "weekly" },
@@ -202,19 +213,30 @@ const STATIC_ROUTES = [
   { path: "/annotate", priority: "0.6", changefreq: "monthly" },
   { path: "/engineering", priority: "0.9", changefreq: "weekly" },
   { path: "/notes", priority: "0.9", changefreq: "weekly" },
+  { path: "/learn", priority: "0.9", changefreq: "monthly" },
   { path: "/developers", priority: "0.9", changefreq: "weekly" },
   { path: "/mcp-servers", priority: "0.9", changefreq: "weekly" },
   { path: "/benchmarks/filingfacts", priority: "0.9", changefreq: "weekly" },
+  { path: "/datasets/filing-facts", priority: "0.8", changefreq: "monthly" },
+  { path: "/datasets", priority: "0.8", changefreq: "monthly" },
+  { path: "/datasets/company-guidance", priority: "0.8", changefreq: "monthly" },
+  { path: "/datasets/bankruptcy-filings", priority: "0.8", changefreq: "monthly" },
   { path: "/benchmarks/finance-mcp-servers", priority: "0.9", changefreq: "weekly" },
+  { path: "/benchmarks/fresh-filings", priority: "0.9", changefreq: "weekly" },
   { path: "/record", priority: "0.8", changefreq: "daily" },
   { path: "/vision", priority: "0.9", changefreq: "monthly" },
   { path: "/stats", priority: "0.7", changefreq: "daily" },
-  ...['validation', 'fundamentals', 'research', 'execution'].map(name => ({ path: `/mcp-servers/${name}`, priority: "0.9", changefreq: "weekly" })),
+  ...['validation', 'fundamentals', 'research', 'execution', 'markets', 'backtest', 'quant', 'paper-trading'].map(name => ({ path: `/mcp-servers/${name}`, priority: "0.9", changefreq: "weekly" })),
   { path: "/mcp-servers/answers", priority: "0.8", changefreq: "weekly" },
+  { path: "/mcp-servers/install", priority: "0.9", changefreq: "monthly" },
+  { path: "/privacy", priority: "0.3", changefreq: "yearly" },
+  { path: "/mcp-servers/tools", priority: "0.8", changefreq: "weekly" },
+  { path: "/mcp-servers/how-it-works", priority: "0.8", changefreq: "monthly" },
   ...JSON.parse(readFileSync(resolve(ROOT, "config/mcp-answers.json"), "utf8")).answers.map(a => ({ path: `/mcp-servers/answers/${a.slug}`, priority: "0.8", changefreq: "monthly" })),
   { path: "/costs", priority: "0.9", changefreq: "weekly" },
   { path: "/standards/paper-evidence", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/deflated-sharpe", priority: "0.9", changefreq: "weekly" },
+  { path: "/tools/look-through", priority: "0.9", changefreq: "monthly" },
   { path: "/tools/evidence-chain", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/trial-accounting", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/selection-risk", priority: "0.9", changefreq: "weekly" },
@@ -760,8 +782,10 @@ function relatedSection(paper, papers) {
   if (!kind && !subjects.length && !siblings.length) return "";
 
   const hubs = [
-    ...(kind ? [{ href: `/research/topics/${kind.slug}`, label: kind.label }] : []),
-    ...subjects.map((s) => ({ href: `/research/topics/${s.slug}`, label: s.label })),
+    // Only hubs that get a page (see the three-member rule where the hubs are written).
+    ...(kind && papers.filter((other) => other.taxonomy.kind === kind).length >= 3 ? [{ href: `/research/topics/${kind.slug}`, label: kind.label }] : []),
+    ...subjects.filter((s) => papers.filter((other) => other.taxonomy.subjects.some((t) => t.slug === s.slug)).length >= 3)
+      .map((s) => ({ href: `/research/topics/${s.slug}`, label: s.label })),
   ];
 
   const parts = [];
@@ -1071,7 +1095,7 @@ function main() {
 
   const measurements = measurementRoutes();
   const trials = trialRoutes();
-  const notes = noteRoutes();
+  const notes = [...noteRoutes(), ...noteRoutes("learn")];
 
   const withResolvedLastmod = (route, { allowUndated = false } = {}) =>
     resolveLastmod({
@@ -1150,6 +1174,7 @@ function main() {
     ...measurements.map((route) => ({ ...route, lastmod: measurementLastmods.get(route.loc) })),
     ...trials.map((route) => ({ ...route, lastmod: trialLastmods.get(route.loc) })),
     ...notes.map((route) => ({ ...route, lastmod: noteLastmods.get(route.loc) })),
+    ...toolPageRoutes(),
   ];
 
   if (BUILD_DATE_FALLBACK_WARNINGS.length) {
@@ -1168,7 +1193,7 @@ function main() {
   // and summary are read from the page build-notes.mjs wrote, as noteRoutes() reads its routes.
   const unescapeHtml = (text) => text.replaceAll("&quot;", '"').replaceAll("&#39;", "'").replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&");
   const noteEntries = notes.map((route) => {
-    const html = readFileSync(resolve(ROOT, `notes/${route.loc.split("/").at(-1)}.html`), "utf8");
+    const html = readFileSync(resolve(ROOT, `${route.loc.slice(ORIGIN.length + 1)}.html`), "utf8");
     const title = html.match(/<meta property="og:title" content="([^"]*)"/)?.[1];
     const summary = html.match(/<meta name="description" content="([^"]*)"/)?.[1];
     if (!title || !summary) throw new Error(`${route.loc}: no og:title or description for the feed`);

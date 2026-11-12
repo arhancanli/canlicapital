@@ -1,0 +1,84 @@
+{
+ "schema": "canli.fresh-filings.v1",
+ "about": "Each week, questions from the annual reports filed that week, answered by a model alone and with an MCP server; scored by scripts/datasets/filing-facts/eval.mjs against the filed figures.",
+ "weeks": [
+  {
+   "week": "2026-W44",
+   "from": "2026-10-26",
+   "to": "2026-11-01",
+   "annual_reports": 45,
+   "companies": 31,
+   "questions": 93,
+   "forms": [
+    "10-K",
+    "20-F",
+    "40-F"
+   ],
+   "set": "/datasets/filing-facts/weekly/2026-W44/items.jsonl",
+   "manifest": "/datasets/filing-facts/weekly/2026-W44/manifest.json",
+   "runs": [
+    {
+     "date": "2026-11-05",
+     "file": "/datasets/filing-facts/weekly/2026-W44/runs/2026-11-05/gpt-6.1-terra-canli-mcp-0.20.0.json",
+     "model": "gpt-6.1-terra",
+     "per_kind": 30,
+     "with": {
+      "name": "canli-mcp",
+      "version": "0.20.0"
+     },
+     "questions": 91,
+     "correct": 89,
+     "wrong_numbers": 0,
+     "no_number": 2,
+     "stopped_at_turn_limit": 2,
+     "mean_tokens": 6769,
+     "tool_calls": 130
+    },
+    {
+     "date": "2026-11-05",
+     "file": "/datasets/filing-facts/weekly/2026-W44/runs/2026-11-05/gpt-6.1-terra-closed.json",
+     "model": "gpt-6.1-terra",
+     "per_kind": 30,
+     "with": null,
+     "questions": 91,
+     "correct": 0,
+     "wrong_numbers": 0,
+     "no_number": 91,
+     "stopped_at_turn_limit": 0,
+     "mean_tokens": 456,
+     "tool_calls": 0
+    }
+   ],
+   "example": {
+    "id": "6adaae947a921109",
+    "company": "AutoZone, Inc.",
+    "question": "According to AutoZone, Inc.'s XBRL data in its 10-K filed 2026-10-26 (accession 0001104659-26-118791), what was revenues for the fiscal year ended 2026-08-29, in USD?",
+    "filed": {
+     "value": 20338555000,
+     "unit": "USD",
+     "form": "10-K",
+     "date": "2026-10-26",
+     "accession": "0001104659-26-118791",
+     "url": "https://www.sec.gov/Archives/edgar/data/866787/000110465926118791/"
+    },
+    "answers": [
+     {
+      "with": {
+       "name": "canli-mcp",
+       "version": "0.20.0"
+      },
+      "model": "gpt-6.1-terra",
+      "said": "20338555000",
+      "correct": true
+     },
+     {
+      "with": null,
+      "model": "gpt-6.1-terra",
+      "said": "not reported",
+      "correct": false
+     }
+    ]
+   }
+  }
+ ]
+}

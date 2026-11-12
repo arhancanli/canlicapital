@@ -8,7 +8,8 @@ import { identityFiles, securityExpiry } from "./build-identity-files.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const answers = JSON.parse(readFileSync(resolve(ROOT, "config", "home-answers.json"), "utf8"));
-const files = identityFiles(answers);
+const flagship = JSON.parse(readFileSync(resolve(ROOT, "config", "canli-mcp.json"), "utf8"));
+const files = identityFiles(answers, flagship);
 const read = (path) => readFileSync(resolve(ROOT, path), "utf8");
 
 test("the committed identity files are what the generator writes", () => {
@@ -92,4 +93,22 @@ test("search-marketing crawlers are kept off the company catalogue only; search 
   for (const agent of ["semrushbot", "mj12bot", "dotbot", "dataforseobot"]) assert.ok(seo.agents.includes(agent), agent);
   assert.deepEqual(seo.rules, [{ type: "disallow", path: "/companies/" }, { type: "disallow", path: "/company-data/" }]);
   for (const agent of ["*", "googlebot", ...RETRIEVAL_AGENTS.map((a) => a.toLowerCase())]) assert.ok(!seo.agents.includes(agent), `${agent} is not fenced off`);
+});
+
+test("crawlers that walk the catalogue and send no readers are kept off it; the search services AI agents use are not", () => {
+  const groups = robotsGroups(read("public/robots.txt"));
+  const fenced = groups.find((g) => g.agents.includes("qlyzebot"));
+  assert.ok(fenced, "the group exists");
+  assert.ok(fenced.agents.includes("reflectionbot"));
+  assert.deepEqual(fenced.rules, [{ type: "disallow", path: "/companies/" }, { type: "disallow", path: "/company-data/" }]);
+  // Exa and Parallel (ShapBot) power the web search of AI agents, Amazonbot answers in Alexa: they keep the * group.
+  for (const agent of ["*", "googlebot", "exasearchbot", "shapbot", "amazonbot", ...RETRIEVAL_AGENTS.map((a) => a.toLowerCase())]) {
+    assert.ok(!groups.some((g) => g.agents.includes(agent) && g.rules.some((r) => r.type === "disallow" && r.path === "/companies/")), `${agent} may read the catalogue`);
+  }
+});
+
+test("the AI files name the latest canli-mcp release and the vision page", () => {
+  assert.match(files["public/ai.txt"], new RegExp(`^Latest-Release: canli-mcp ${flagship.current.version.replaceAll(".", "\\.")}$`, "m"));
+  assert.match(files["public/ai.txt"], /^Vision: https:\/\/canlicapital\.com\/vision$/m);
+  assert.match(JSON.parse(files["public/ai.json"]).summaryForAI, new RegExp(`latest release is canli-mcp ${flagship.current.version.replaceAll(".", "\\.")}\\.`));
 });

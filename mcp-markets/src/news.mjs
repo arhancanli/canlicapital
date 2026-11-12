@@ -1,7 +1,9 @@
 // News about a company or a topic from the GDELT Project's index of world news (open, no key):
 // the articles, newest first, with their outlet and country, and the daily average tone of the
 // coverage (GDELT scores each article's wording from about -10, very negative, to +10). GDELT asks
-// for no more than one request every five seconds, so the tone series waits its turn.
+// for no more than one request every five seconds, so the tone series waits its turn. GDELT is often
+// slow or over its limit; a company's recent headlines then come from Yahoo Finance's search, which
+// answers in under a second, where keyless prices are allowed.
 import { z } from "zod";
 
 import { getJson, resolveEntity } from "./sources.mjs";
@@ -37,7 +39,7 @@ async function gdelt(session, params, attempts = 2) {
     if (wait > 0) await session.sleep(wait);
     lastCall = session.now();
     // GDELT often takes 15 s or more to answer a search; 25 s lets a slow answer arrive.
-    try { return { url, body: await getJson(session, url, { maxBytes: 4 * 1024 * 1024, timeoutMs: 25000, retries: 0 }) }; } catch (err) {
+    try { return { url, body: await getJson(session, url, { maxBytes: 4 * 1024 * 1024, timeoutMs: attempts === 1 ? 15000 : 25000, retries: 0 }) }; } catch (err) {
       // Over the rate GDELT answers with a sentence instead of JSON: wait and ask again.
       if (attempt < attempts - 1 && /did not return JSON|429|could not be reached/.test(String(err.message))) continue;
       throw err;
@@ -55,6 +57,7 @@ function refused(err) {
 // per address and often refuses one in a burst); explain_move asks once, to stay quick.
 export async function news(session, args, { attempts = 3 } = {}) {
   const a = newsInput.parse(args);
+  const began = session.now();
   if (!a.query && !a.company) throw new Error("news needs query or company.");
   let who = null;
   if (a.company) {
@@ -66,14 +69,23 @@ export async function news(session, args, { attempts = 3 } = {}) {
   if (a.end && !a.start) throw new Error("end needs start.");
   const compact = (d, t) => `${d.replace(/-/g, "")}${t}`;
   const when = a.start ? { startdatetime: compact(a.start, "000000"), enddatetime: compact(a.end ?? a.start, "235959") } : { timespan: `${a.days ?? 7}d` };
-  const list = await gdelt(session, { query: q, mode: "artlist", maxrecords: String(a.limit ?? 25), ...when, sort: "datedesc" }, attempts).catch((err) => { throw refused(err); });
+  // A fallback is ready for recent news: GDELT then gets one try rather than a long wait.
+  const canFallBack = !a.start && session.env?.CANLI_KEYLESS_PRICES !== "0";
+  const list = await gdelt(session, { query: q, mode: "artlist", maxrecords: String(a.limit ?? 25), ...when, sort: "datedesc" }, canFallBack ? 1 : attempts).catch((err) => (canFallBack ? { failed: err } : Promise.reject(refused(err))));
+  if (list.failed) {
+    const quick = await yahooNews(session, who?.ticker ?? a.query ?? who?.searched_as, { ...a, who }).catch(() => null);
+    if (!quick?.rows.length) throw refused(list.failed);
+    return finish({ ...(who ? { company: who } : {}), query: q, days: a.days ?? 7, articles: { columns: ["seen", "title", "outlet", "country", "language", "url"], rows: quick.rows }, tone: { note: "GDELT did not answer, so these headlines are from Yahoo Finance's search and carry no tone series." }, sources: [quick.url] });
+  }
   const articles = (list.body.articles ?? []).map((x) => [stamp(x.seendate), x.title?.replace(/\s+([.,:;?!])/g, "$1").trim() ?? null, x.domain ?? null, x.sourcecountry ?? null, x.language ?? null, x.url]);
   const out = {
     ...(who ? { company: who } : {}), query: q, ...(a.start ? { start: a.start, end: a.end ?? a.start } : { days: a.days ?? 7 }),
     articles: { columns: ["seen", "title", "outlet", "country", "language", "url"], rows: articles },
     sources: [list.url],
   };
-  if (a.tone ?? true) {
+  // A slow first answer means GDELT is busy: the tone series would hold the articles up, so it is left out.
+  if ((a.tone ?? true) && session.now() - began > 20000) out.tone = { note: "GDELT was slow, so the tone series was left out; ask again for it." };
+  else if (a.tone ?? true) {
     // The articles stand on their own: a refused tone request leaves a note, not an error.
     const t = await gdelt(session, { query: q, mode: "timelinetone", ...when }, attempts).catch((err) => ({ error: String(err.message) }));
     if (t.error) { out.tone = { note: `GDELT did not return the tone series (${t.error.slice(0, 120)}); ask again in a minute.` }; return finish(out); }
@@ -85,6 +97,18 @@ export async function news(session, args, { attempts = 3 } = {}) {
     out.sources.push(t.url);
   }
   return finish(out);
+}
+
+// Recent headlines from Yahoo Finance's search, newest first, within the days asked for.
+async function yahooNews(session, q, a) {
+  const url = `https://query1.finance.yahoo.com/v1/finance/search?${new URLSearchParams({ q, newsCount: String(Math.min(a.limit ?? 25, 25)), quotesCount: "0" })}`;
+  const body = await getJson(session, url, { timeoutMs: 8000, retries: 0 });
+  const since = session.now() - (a.days ?? 7) * 86400000;
+  // Its search returns any story tagging the ticker: a company's news must name it in the headline.
+  const names = a.who ? [a.who.ticker, a.who.searched_as].filter(Boolean).map((w) => w.toLowerCase()) : null;
+  const rows = (body.news ?? []).filter((x) => x.providerPublishTime * 1000 >= since && (!names || names.some((w) => new RegExp(`\\b${w.replace(/[^a-z0-9 ]/g, "")}\\b`).test(String(x.title).toLowerCase())))).sort((x, y) => y.providerPublishTime - x.providerPublishTime)
+    .map((x) => [new Date(x.providerPublishTime * 1000).toISOString().replace(/\.\d+Z$/, "Z"), x.title ?? null, x.publisher ?? null, null, null, x.link ?? null]);
+  return { url, rows };
 }
 
 function finish(out) {

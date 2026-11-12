@@ -36,6 +36,7 @@ export const PAGE_SOURCES = {
   "/record": ["record.html", "scripts/build-hero-fallbacks.mjs", "scripts/lib/paper-curve-controls.mjs"],
   "/systems": ["systems.html"],
   "/performance": ["performance.html"],
+  "/agents": ["agents.html", "config/home-answers.json", "scripts/build-home-answers.mjs"],
   "/progress": ["progress.html"],
   "/open": ["open.html"],
   // "/research" and "/measurements" and "/trials" and "/notes" are hub indexes whose lastmod is
@@ -45,6 +46,7 @@ export const PAGE_SOURCES = {
   "/measurements": ["scripts/build-measurements.mjs"],
   "/trials": ["scripts/build-trials.mjs", "public/glassbox/trial_sharpe_distribution.json"],
   "/notes": ["scripts/build-notes.mjs"],
+  "/learn": ["scripts/build-notes.mjs", "learn/what-you-own-when-you-buy-a-share.md", "learn/how-to-read-an-income-statement.md", "learn/what-a-pe-ratio-tells-you.md", "learn/whats-inside-an-index-fund.md", "learn/why-a-great-track-record-can-be-luck.md"],
   "/verify": ["scripts/build-verify.mjs", "public/glassbox"],
   "/review": [
     "scripts/build-review.mjs",
@@ -80,7 +82,12 @@ export const PAGE_SOURCES = {
   "/vision": ["scripts/build-vision-and-stats.mjs"],
   "/stats": ["scripts/build-vision-and-stats.mjs", "scripts/build-adoption-stats.mjs", "public/stats/adoption.json"],
   "/benchmarks/filingfacts": ["scripts/build-filingfacts-leaderboard.mjs", "public/datasets/filing-facts/v0/leaderboard.json"],
+  "/datasets": ["scripts/build-datasets-hub.mjs", "public/datasets/filing-facts/index.json", "config/research/beat-probability-v1/guidance_lines-2026-11-02.csv", "config/research/default-risk-v1/bankruptcy_8k.csv"],
+  "/datasets/company-guidance": ["scripts/build-datasets-hub.mjs", "config/research/beat-probability-v1/guidance_lines-2026-11-02.csv", "config/research/beat-probability-v1/companies_read-2026-11-02.csv"],
+  "/datasets/bankruptcy-filings": ["scripts/build-datasets-hub.mjs", "config/research/default-risk-v1/bankruptcy_8k.csv"],
+  "/datasets/filing-facts": ["scripts/build-datasets-page.mjs", "public/datasets/filing-facts/v1/SHA256SUMS", "public/datasets/filing-facts/v1/ERRATA.md"],
   "/benchmarks/finance-mcp-servers": ["scripts/build-mcp-head-to-head.mjs", "config/mcp-head-to-head.json", "config/canli-mcp.json"],
+  "/benchmarks/fresh-filings": ["scripts/build-fresh-filings-page.mjs", "scripts/build-fresh-filings.mjs", "scripts/lib/clear-page.mjs", "css/clear.css", "public/benchmarks/fresh-filings.json"],
   "/annotate": ["scripts/build-annotate.mjs", "js/annotate.js", "js/annotate-core.js", "js/filing-facts-packet.js", "scripts/canonical-json.mjs", "public/datasets/filing-facts/v0/gold-packet-v0.json"],
   "/developers": [
     // Owned by another generator (scripts/build-standards-and-developers.mjs) this fix does not
@@ -100,8 +107,13 @@ export const PAGE_SOURCES = {
   ],
   ...Object.fromEntries(['', '/validation', '/fundamentals', '/research'].map(suffix => [`/mcp-servers${suffix}`, [
     'scripts/build-mcp-pages.mjs', 'config/mcp-discovery.json', 'config/mcp-hosted-releases.json',
-    ...(suffix ? [`mcp-released${suffix}`] : ['mcp-released']),
+    ...(suffix ? [`mcp-released${suffix}`] : ['mcp-released', 'scripts/lib/clear-page.mjs', 'css/clear.css', 'public/benchmarks/fresh-filings.json']),
   ]])),
+  ...Object.fromEntries(['markets', 'backtest', 'quant', 'paper-trading'].map((id) => [`/mcp-servers/${id}`, ["scripts/build-mcp-pages.mjs", "config/mcp-package-pages.json", "mcp-canli/src/index.json"]])),
+  "/mcp-servers/install": ["scripts/lib/mcp-catalog.mjs", "config/canli-mcp.json"],
+  "/privacy": ["scripts/build-privacy.mjs"],
+  "/mcp-servers/tools": ["scripts/lib/mcp-catalog.mjs", "config/mcp-catalog.json", "mcp-canli/src/index.json"],
+  "/mcp-servers/how-it-works": ["scripts/lib/mcp-catalog.mjs", "config/mcp-testing.json", "config/canli-mcp.json"],
   "/mcp-servers/answers": [...ANSWER_SOURCES, ...ANSWER_SLUGS.map((slug) => `public/demos/canli-mcp/answers/${slug}.json`)],
   ...Object.fromEntries(ANSWER_SLUGS.map((slug) => [`/mcp-servers/answers/${slug}`, [...ANSWER_SOURCES, `public/demos/canli-mcp/answers/${slug}.json`]])),
   "/mcp-servers/execution": [
@@ -118,6 +130,7 @@ export const PAGE_SOURCES = {
     "public/glassbox/alpaca_broker_reconciliation.json",
     "public/glassbox/cost_coverage.json",
   ],
+  "/tools/look-through": ["scripts/build-look-through-tool.mjs", "js/look-through.js", "css/look-through.css"],
   "/tools/deflated-sharpe": [
     "scripts/build-dsr-tool.mjs",
     "public/glassbox/deflated_sharpe_calculator_contract.json",
@@ -147,9 +160,9 @@ export const PAGE_SOURCES = {
   "/tools": ["scripts/build-tools-hub.mjs"],
 };
 
-// Every editable static route also receives these shared markup transforms.
-// Their committed content dates survive generated input timestamps changing in
-// a Git-free build, and keep the page's structured date and sitemap aligned.
+// The shared markup every static route is wrapped in (header, footer, styles, images). It is NOT a date source:
+// a change to the shell or the design re-dated every page at once, and Google dropped the company pages after a
+// sitewide re-dating on 28 Oct 2026 (#615). A page's <lastmod> and dateModified move only when its own content does.
 export const SHARED_PAGE_SOURCES = [
   'scripts/product-shell.mjs',
   'scripts/build-site-design.mjs',
@@ -158,7 +171,6 @@ export const SHARED_PAGE_SOURCES = [
   'css/product-shell.css', 'css/design-system.css', 'css/story.css', 'css/film.css', 'js/site-motion.js', 'js/evidence-film.js',
   'public/og.png', 'public/favicon.svg', 'public/favicon.ico',
 ];
-for (const files of Object.values(PAGE_SOURCES)) files.push(...SHARED_PAGE_SOURCES);
 
 /**
  * The date a static route's sources last changed, the same as its sitemap <lastmod>; null when no

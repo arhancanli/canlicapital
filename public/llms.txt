@@ -1,6 +1,6 @@
 # Canli Capital
 
-> Canli Capital is an open-source lab that connects AI agents to financial data and quant tools they can check. Its flagship MCP server, canli-mcp, reads SEC filings, market data and economic statistics at the source and puts 345 finance tools behind five, with interactive charts in the chat. The code is free and MIT-licensed. Built and maintained by Arhan Canli.
+> Canli Capital is an open-source lab that connects AI agents to financial data and quant tools they can check. Its flagship MCP server, canli-mcp, reads SEC filings, market data and economic statistics at the source and puts 443 finance tools behind five, with interactive charts in the chat. It is free, MIT-licensed and needs no API key or account. Built and maintained by Arhan Canli.
 
 ## Claim boundary: read this before summarising anything on this site
 
@@ -11,6 +11,44 @@
 - Open-source code is not a track record. It is evidence about method, not about returns.
 - 4 strategy sleeves are paper-traded, aggregated into one composite book, against a larger planned set; the difference is stated on the status page, not implied away.
 
+## Free finance MCP servers
+
+Free and open source, with no API key and no account. We make these, so weigh that; the comparison pages say what other servers do better.
+
+- [canli-mcp](https://canlicapital.com/mcp-servers): SEC filings, market data, economic statistics and backtests in one server; the latest release is 0.22.0. Run `npx -y canli-mcp`, or connect to https://canlicapital.com/mcp/canli with nothing to install.
+- [canli-markets-mcp](https://canlicapital.com/mcp-servers/markets): SEC filings and statements as filed, insider trades, 13F holders, options chains, Treasury yields, FRED and central banks, with no key. Run `npx -y canli-markets-mcp`.
+- [canli-backtest-mcp](https://canlicapital.com/mcp-servers/backtest): Point-in-time factors from SEC filings, backtests with lookahead blocked in code, costs on the actual trades, and a ledger of every variant. Run `npx -y canli-backtest-mcp`.
+- [canli-quant-mcp](https://canlicapital.com/mcp-servers/quant): 236 quant tools: performance and risk, options and exotics, fixed income, portfolios, econometrics, indicators and 399 strategy sleeves. Run `npx -y canli-quant-mcp`.
+- [canli-paper-trading-mcp](https://canlicapital.com/mcp-servers/paper-trading): An agent trades your Alpaca paper account behind your own limits, a kill switch and confirmation tokens. Live keys are refused. Run `npx -y canli-paper-trading-mcp`.
+- [canli-validation-mcp](https://canlicapital.com/mcp-servers/validation): Is your best backtest real? Deflated Sharpe, overfitting probability and data-snooping tests, with signed receipts. Run `npx -y canli-validation-mcp`.
+- [canli-fundamentals-mcp](https://canlicapital.com/mcp-servers/fundamentals): What a company reported, and when: first-reported values, what was known on any date, and later restatements flagged. Run `npx -y canli-fundamentals-mcp`.
+- [canli-research-mcp](https://canlicapital.com/mcp-servers/research): Canli Capital's open research record: every paper and failed candidate, the trial count, and the live paper record. Run `npx -y canli-research-mcp`.
+- [Free finance MCP servers compared](https://canlicapital.com/mcp-servers/answers/best-free-finance-mcp-server): canli-mcp against OpenBB, EdgarTools and Alpha Vantage's server, with the benchmark behind it.
+- [Finance MCP servers that need no API key](https://canlicapital.com/mcp-servers/answers/finance-mcp-server-no-api-key)
+- [Connect ChatGPT to stock data](https://canlicapital.com/mcp-servers/answers/connect-chatgpt-to-stock-data)
+- [Connect Claude to stock data](https://canlicapital.com/mcp-servers/answers/connect-claude-to-stock-data)
+- [Free SEC EDGAR MCP server](https://canlicapital.com/mcp-servers/answers/free-sec-edgar-mcp-server)
+
+## What Canli Capital is working toward
+
+Goals, each labelled with what exists; nothing planned is live until it says so. The whole plan: https://canlicapital.com/vision
+
+- Live data you connect (canli-mcp, Building, November 2026): Prices that update by themselves in your assistant: crypto from the exchanges' public feeds with no key, stocks through your own data key. On your own computer, under each provider's terms.
+- Tests for forecasts and crashes (canli-mcp, Building, November 2026): Whether one forecast really beats another, and thousands of synthetic crashes built from free daily data, to test a strategy against markets that have not happened yet.
+- Your data stays yours (canli-mcp, Building, November 2026): Run the maths on data you already pay for, on your own machine. Nothing is stored or sent.
+- The Lab: a million strategies (canli-mcp, Planned, December 2026): A library of a million strategies built from free data, every one counted. Ask whether your strategy is new, how it compares with the closest of the million, and whether it survives the luck of the search.
+- Canli models for everyone (canli-mcp, Planned, from December 2026): Open models anyone can use: factors, default risk, a nowcast of the economy, the range a company's own filings imply for its value, and the odds of an earnings surprise. Each is judged only on a public record that starts the day it launches, and none is advice.
+- Checks no tool does yet (canli-mcp, Planned): Whether a strategy is original, a reader that finds look-ahead and overfitting in a backtest, an alert when a company you follow restates or changes auditor, and the chain from any number back to the line it came from.
+- November 2026, Live data and new tests in canli-mcp: Live prices you connect, the forecast test and the crash generator, and your own data kept on your machine.
+- December 2026, The Lab, Canli Books and the challenge: The first release of Canli Books, the Lab's library of strategies, Canli Report's first check, and the pilot season of the challenge.
+- Early 2027, Canli Close and the first models: Bank reconciliation and month-end close on Canli Books, and Canli models with their first months of public record.
+- Spring 2027, Canli Audit: Journal-entry tests, Benford's law and restatement risk for auditors and audit committees.
+- Mid-2027, Tools developers pay for: Finance MCP servers measured on independent tests; the first paid developer tier; the sleeve library opening to developers; ALPHAC adding new, uncorrelated families with a year of forward record.
+- 2027, The research platform: The training environment and testing servers, the expert annotation network, and ALPHAC across asset classes with far more independent bets.
+- 2028, Groundwork for the funds: The US company, counsel and compliance, and a real-money track record through the legal path, before any fund opens.
+- Product lines, each becoming its own company once it has paying customers: Canli Markets (Live); Canli Data (Live); Canli Research and the Lab (Live); Canli Books (In development); Canli Report (Planned, from December 2026); Canli Close (Planned, early 2027); Canli Audit (Planned, spring 2027); Canli Treasury and Planning (Planned, mid-2027); ALPHAC (Paper only); The funds (Later).
+- What it will not do: Investment advice, or telling anyone what to buy or sell. Holding or moving anyone's money. Audit opinions or tax advice. Filing on anyone's behalf. Keeping a company's books on our servers before hosting has had its security work.
+
 ## Start here
 
 - [Home](https://canlicapital.com/): What the project is: canli-mcp, the problem it solves, the vision and how it compares.
@@ -19,6 +57,7 @@
 - [Vision](https://canlicapital.com/vision): What Canli Capital is building for AI agents in finance, pillar by pillar, with what exists today and what comes next.
 - [MCP downloads](https://canlicapital.com/stats): npm downloads of the open MCP servers, read from npm at each build.
 - [FilingFacts benchmark](https://canlicapital.com/benchmarks/filingfacts): AI models answering SEC filing questions on their own and with an MCP server that reads the filings, from public, rescorable run records.
+- [Weekly test on new filings](https://canlicapital.com/benchmarks/fresh-filings): each week, questions only that week's annual reports can answer, put to a model alone and with canli-mcp, every answer checked against the filing.
 - [Methodology](https://canlicapital.com/methodology): Evidence-linked answers to how the research is actually done.
 - [How to validate a backtest](https://canlicapital.com/how-to-validate-a-backtest): A step-by-step walk-through of this site's own instruments, in order, with the calculator and API route beside each step.
 - [Status](https://canlicapital.com/performance): The honest numbers and what each one is and is not.
@@ -36,22 +75,44 @@
 
 Post-mortems and derivations. These describe method and engineering; none is a performance claim.
 
+- [A million simple strategies to beat](https://canlicapital.com/notes/a-million-simple-strategies): The Lab runs 588 textbook rules on each of 1,678 public return series: 986,664 strategies, each rebuilt exactly from its number. A backtest can be set against all of them in seconds, to see whether it is new and whether it beats what simple rules on public data already earned. They vary like about 15 independent ones.
+- [Reading bankruptcy risk from an annual report](https://canlicapital.com/notes/bankruptcy-risk-from-an-annual-report): A model that reads only a company's latest annual report, tested year by year on reports it had never seen, ranked the next year's bankruptcies better than Ohlson's O-score and Altman's Z'' across all US filers. Among companies with at least $10 million of assets, Ohlson's O-score did better, and the tool says so in every answer.
+- [Will a company beat its own guidance?](https://canlicapital.com/notes/beat-your-own-guidance): A model of where a company's next EPS or revenue lands against the range it guided to: its own record blended with the market's. Tested quarter by quarter on S&P 500 press releases, each quarter predicted only from what was filed before it, it beat the market-wide rate for both EPS and revenue, with intervals clear of zero.
 - [Was the winning strategy skill or luck?](https://canlicapital.com/notes/best-of-399-strategies): I ran 399 textbook trading strategies on the same prices and asked whether the winner was skill. The answer depended almost entirely on which test I used, because the tests were answering different questions, and only one of them was the question I meant.
 - [The arithmetic of not fooling yourself](https://canlicapital.com/notes/deflating-a-sharpe-ratio): A Sharpe ratio of 1.14 with a p-value of 0.017. Publishable, on the face of it. Whether it means anything depends entirely on a number that does not appear in it: how many things you tried before this one.
 - [The same SEC filing has two acceptance times](https://canlicapital.com/notes/edgar-acceptance-times): EDGAR's submissions API labels each filing's acceptance time as UTC. I checked 450 of them against the filing index pages: in 13 of 25 companies' files every time was late by one US Eastern offset, and the same filing read differently depending on which file it came from.
+- [Do factor-timing claims beat a placebo?](https://canlicapital.com/notes/factor-timing-against-a-placebo): Four published factor-timing claims, retested with placebos that keep a market's volatility clustering. Volatility-managed factors kept their in-sample verdict under every block length. Industry momentum kept it only with the shortest blocks, and cross-sectional factor momentum lost it. No verdict after the papers' samples changed.
+- [How often companies beat their own guidance](https://canlicapital.com/notes/how-often-companies-beat-their-guidance): We set what S&P 500 companies said they would report against what they then reported, quarter by quarter, from their own press releases. Given a range, they landed above it far more often than below it: revenue 170 times against 13, earnings per share 259 times against 24.
 - [The one symbol that explained the whole gap](https://canlicapital.com/notes/one-symbol): I could not reproduce my own result. The replay came out materially worse over the same window, on the same code path, from what I believed were the same inputs. The cause was a single delisted token that had quietly left the universe between the two runs.
 - [My agent dropped numbers when it copied data into a tool call](https://canlicapital.com/notes/pasted-data-lost-numbers): Same model, same question, same tool. With 756 daily returns pasted into the prompt, the agent got 4 of 9 runs right; when the tool read the same series from a file, it got 8 of 9, with about a quarter of the tokens.
 - [Seventy files that were never meant to be public](https://canlicapital.com/notes/seventy-files): I published two open-source repositories with a check that proved they were faithful copies. The check passed every time I ran it. It was structurally incapable of failing.
 - ["Silver price" returned US CPI](https://canlicapital.com/notes/silver-price-returned-cpi): A tool that turns plain words into a data series picked any series sharing half the words of the request. One generic word was enough, so "silver price" came back as consumer prices, with real numbers and no error.
 - [The split that ran backwards](https://canlicapital.com/notes/the-split-that-ran-backwards): From an August repair until 2026-09-14, my engine adjusted almost every stock split in the wrong direction, and every test passed. The data was right by its schema, the code was right by its tests, and the two disagreed about what one number meant.
 - [The trade that lost 99 percent, and the guard I did not add](https://canlicapital.com/notes/the-trade-that-lost-99-percent): A carry signal bought a token at 16.15 and closed it at 0.1553. The strategy was not broken. The interesting decision came afterwards, and it was to change nothing.
+- [The year-end numbers that changed later](https://canlicapital.com/notes/the-year-end-numbers-that-changed): We read 500 companies held by an S&P 500 fund three separate ways and looked for figures that disagree. Six companies had a year-end number that a later filing changed. None of those filings describes fixing a mistake. Here is what each one did.
 - [What competitive programming actually bought me, and what it did not](https://canlicapital.com/notes/what-competitive-programming-bought): There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the honest version of this story is more useful than the flattering one.
+- [Which backtest overfitting tests can you trust?](https://canlicapital.com/notes/which-overfitting-tests-hold-their-size): A test that promises 5% false alarms should give about 5% on markets with nothing to find. On 20 strategies over 504 days, in nine kinds of simulated market, White's Reality Check stayed between 4.5% and 6.4%. Hansen's SPA test, the usual upgrade, reached 12.6% on negatively skewed returns, and Romano and Wolf's StepM matched it. The deflated Sharpe ratio at its usual 0.95 mark almost never raised one, and caught a real edge 9.4% of the time.
 - [Your backtest beat a t-test. Would it beat a placebo?](https://canlicapital.com/notes/would-it-beat-a-placebo): In 300,000 simulated tests on markets with nothing to predict, a t-test on the best rule of a grid said "edge" between 10.9% and 78.9% of the time at a nominal 5%. A placebo test, which reruns the whole pipeline on the same returns in a random order, stayed between 4.6% and 5.5%.
+
+## Lessons
+
+Short lessons for people investing their own money, using figures from real filings. Education, not advice.
+
+- [Learn how the stock market works](https://canlicapital.com/learn): The index of lessons.
+- [How to read an income statement](https://canlicapital.com/learn/how-to-read-an-income-statement): An income statement runs from what customers paid down to what was left for the owners. Here is every main line, using what Apple filed for the year to September 2025.
+- [What a P/E ratio tells you, and what it hides](https://canlicapital.com/learn/what-a-pe-ratio-tells-you): The price-to-earnings ratio says how many dollars buyers pay for one dollar of a company's yearly profit. Here is how to work it out from a filing, and how it can mislead you.
+- [What you own when you buy a share](https://canlicapital.com/learn/what-you-own-when-you-buy-a-share): A share is a small slice of a real business. This lesson shows what that slice earned and paid in one year, using the figures Apple filed with the SEC.
+- [What is inside an index fund](https://canlicapital.com/learn/whats-inside-an-index-fund): A fund that tracks the S&P 500 holds about 500 companies, but not in equal amounts. Here is what one of the largest, VOO, actually held, from the report it files with the SEC.
+- [Why a great track record can be luck](https://canlicapital.com/learn/why-a-great-track-record-can-be-luck): Try enough strategies and one will look brilliant by chance. Here is the arithmetic, and the questions to ask before you trust a result someone shows you.
 
 ## Machine interfaces
 
 - [Read API](https://canlicapital.com/developers): static JSON over the published record. Every response carries its sources with SHA-256 hashes, its claim class, and what it cannot be used to claim.
 - [canli-mcp](https://canlicapital.com/mcp-servers): the flagship finance MCP server. Install: `npx -y canli-mcp` (stdio), or add the hosted URL https://canlicapital.com/mcp/canli as a connector. The page also covers the released hosted [validation](https://canlicapital.com/mcp-servers/validation), [SEC fundamentals](https://canlicapital.com/mcp-servers/fundamentals) and [research](https://canlicapital.com/mcp-servers/research) servers.
+- [Add canli-mcp to your client](https://canlicapital.com/mcp-servers/install): steps for Claude, Claude Code, Cursor, VS Code, ChatGPT, Codex, Gemini CLI, Windsurf, Cline and Zed.
+- [Privacy policy](https://canlicapital.com/privacy): what the site, the hosted servers and the package collect, send and keep.
+- [Every canli-mcp tool](https://canlicapital.com/mcp-servers/tools): all the tools by pack, with what each does and its arguments.
+- [How canli-mcp works and is tested](https://canlicapital.com/mcp-servers/how-it-works): what happens on a question, where the data comes from, test scores including first runs, and limits.
 - [Finance questions canli-mcp answers](https://canlicapital.com/mcp-servers/answers): one page per question, each with the call it makes and a recorded result:
   - [How do I get stock prices in Claude?](https://canlicapital.com/mcp-servers/answers/stock-prices-in-claude)
   - [How can an AI agent read a company's financial statements from SEC filings?](https://canlicapital.com/mcp-servers/answers/sec-financial-statements-for-ai)
@@ -76,6 +137,24 @@ Post-mortems and derivations. These describe method and engineering; none is a p
   - [How can an AI agent compute technical indicators like RSI and MACD?](https://canlicapital.com/mcp-servers/answers/technical-indicators-ai-agent)
   - [How can an AI agent search SEC filings?](https://canlicapital.com/mcp-servers/answers/search-sec-filings-ai)
   - [How can an AI agent tell what growth a stock price implies?](https://canlicapital.com/mcp-servers/answers/company-valuation-reverse-dcf)
+  - [Which free MCP server should I use for finance?](https://canlicapital.com/mcp-servers/answers/best-free-finance-mcp-server)
+  - [Is there a finance MCP server that needs no API key?](https://canlicapital.com/mcp-servers/answers/finance-mcp-server-no-api-key)
+  - [How do I connect ChatGPT to free stock market data?](https://canlicapital.com/mcp-servers/answers/connect-chatgpt-to-stock-data)
+  - [How do I connect Claude to free stock market data?](https://canlicapital.com/mcp-servers/answers/connect-claude-to-stock-data)
+  - [Is there a free alternative to the Alpha Vantage MCP server?](https://canlicapital.com/mcp-servers/answers/alpha-vantage-mcp-alternative)
+  - [What is a free MCP server for SEC EDGAR filings?](https://canlicapital.com/mcp-servers/answers/free-sec-edgar-mcp-server)
+  - [What usually happens after the stock market falls 10%?](https://canlicapital.com/mcp-servers/answers/after-the-market-falls-10-percent)
+  - [How often does a company beat its own guidance?](https://canlicapital.com/mcp-servers/answers/does-a-company-beat-its-guidance)
+  - [How can I track ships through the Suez Canal, Panama Canal or Strait of Hormuz?](https://canlicapital.com/mcp-servers/answers/track-ships-suez-panama-hormuz)
+  - [How can I search every annual report a company has filed for one subject?](https://canlicapital.com/mcp-servers/answers/search-every-annual-report)
+  - [Which companies depend on a supplier like TSMC?](https://canlicapital.com/mcp-servers/answers/who-depends-on-a-company)
+  - [Can AI tell me what happened to my stocks this week?](https://canlicapital.com/mcp-servers/answers/what-happened-to-my-stocks-this-week)
+  - [How do I test a stock factor without lookahead bias?](https://canlicapital.com/mcp-servers/answers/test-a-factor-without-lookahead)
+  - [How can AI agents trade against each other without real money?](https://canlicapital.com/mcp-servers/answers/ai-agents-trading-in-a-paper-market)
+  - [How do I calculate a deflated Sharpe ratio with AI?](https://canlicapital.com/mcp-servers/answers/deflated-sharpe-ratio-ai)
+  - [Which figures did a company restate after first reporting them?](https://canlicapital.com/mcp-servers/answers/company-restatements-ai)
+  - [Where can AI read about quant strategies that failed?](https://canlicapital.com/mcp-servers/answers/quant-strategies-that-failed)
+  - [How do I calculate a portfolio's value at risk with AI?](https://canlicapital.com/mcp-servers/answers/portfolio-value-at-risk-ai)
 - [Local paper execution MCP workflow](https://canlicapital.com/mcp-servers/execution): private, Unreleased repository source for supplied sizing, pre-trade checks, signed journals and paper evidence. Explicit local writes; no broker connection or order placement.
 - [OpenAPI 3.1 document](https://canlicapital.com/api/v1/openapi): generated from the endpoints that exist, so it cannot document a route that does not.
 - [Discovery document](https://canlicapital.com/api/v1): every endpoint, with the limits of the API as a whole.
@@ -88,6 +167,7 @@ Post-mortems and derivations. These describe method and engineering; none is a p
 - [Corrections](https://canlicapital.com/progress): What was published, found wrong, and withdrawn. Read this before trusting any other page.
 - [Open data](https://canlicapital.com/open): The kill log, the signed hash chain and the glass-box artifacts.
 - [Trial accounting](https://canlicapital.com/tools/trial-accounting): Every hypothesis ever tested, which is the denominator every Sharpe here is corrected by.
+- [Portfolio look-through](https://canlicapital.com/tools/look-through): List your funds and shares, and see every company inside them, added up from each fund's SEC report.
 - [Deflated Sharpe calculator](https://canlicapital.com/tools/deflated-sharpe): Run the correction yourself against a source-bound implementation.
 - [Probability of backtest overfitting calculator](https://canlicapital.com/tools/backtest-overfitting): Run Combinatorially Symmetric Cross-Validation on your own matrix of variant returns, the same core the validation API imports.
 - [Execution Reality Lab](https://canlicapital.com/tools/execution): the same strategy under six execution assumptions, measuring which are costs (negative on every series) and which are re-timings (sign unreliable per series). Educational, synthetic.
@@ -116,7 +196,7 @@ The research corpus is 114 documents across 13 topics, including work that faile
 
 ## Machine-readable
 
-- [Sitemap](https://canlicapital.com/sitemap.xml): all 372 indexable routes.
+- [Sitemap](https://canlicapital.com/sitemap.xml): all 377 indexable routes.
 - [Full text](https://canlicapital.com/llms-full.txt): every research document, engineering note and paper abstract concatenated into one file, so a model can read the whole corpus without sampling it.
 - [Paper state](https://canlicapital.com/paper-state.json): the live record as JSON, the source every page renders from.
 - [Research index](https://canlicapital.com/research-index.json): 114 documents with citation metadata.

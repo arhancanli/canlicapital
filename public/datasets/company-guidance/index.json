@@ -1,0 +1,180 @@
+{
+ "schema": "canli.dataset-summary.v1",
+ "name": "S&P 500 company guidance against results",
+ "released": "2026-11-02",
+ "license": "https://creativecommons.org/licenses/by/4.0/",
+ "files": [
+  {
+   "url": "/datasets/company-guidance/guidance-lines-2026-11-02.csv",
+   "name": "guidance-lines-2026-11-02.csv",
+   "sha256": "5ad1a28c3d8b771a1de8e358b070d8dbc32d2dedb2ec9318fa462f5c0938c4f8",
+   "kilobytes": 449,
+   "rows": 2334
+  },
+  {
+   "url": "/datasets/company-guidance/companies-read-2026-11-02.csv",
+   "name": "companies-read-2026-11-02.csv",
+   "sha256": "e75920212b72aed9bee600b6700c78b74733cf8f2f3e4f30bb61b95952e6a65f",
+   "kilobytes": 34,
+   "rows": 500
+  }
+ ],
+ "lines": 2334,
+ "companies_with_lines": 140,
+ "index_companies": 500,
+ "companies_read": 498,
+ "releases_read": 5929,
+ "first_filed": "2023-07-26",
+ "last_filed": "2026-10-30",
+ "first_year": 2023,
+ "last_year": 2026,
+ "measures": 20,
+ "by_measure": {
+  "eps": {
+   "lines": 899,
+   "above": 458,
+   "within": 204,
+   "below": 66,
+   "not placed": 171
+  },
+  "revenue": {
+   "lines": 768,
+   "above": 369,
+   "within": 202,
+   "below": 43,
+   "not placed": 154
+  },
+  "gross_margin": {
+   "lines": 172,
+   "above": 61,
+   "within": 61,
+   "below": 49,
+   "not placed": 1
+  },
+  "ebitda": {
+   "lines": 156,
+   "above": 74,
+   "within": 14,
+   "below": 15,
+   "not placed": 53
+  },
+  "operating_margin": {
+   "lines": 132,
+   "above": 80,
+   "within": 10,
+   "below": 40,
+   "not placed": 2
+  },
+  "ebitda_margin": {
+   "lines": 51,
+   "above": 45,
+   "within": 3,
+   "below": 3,
+   "not placed": 0
+  },
+  "operating_income": {
+   "lines": 42,
+   "above": 36,
+   "within": 3,
+   "below": 1,
+   "not placed": 2
+  },
+  "net_income": {
+   "lines": 31,
+   "above": 17,
+   "within": 0,
+   "below": 8,
+   "not placed": 6
+  },
+  "gross_profit": {
+   "lines": 17,
+   "above": 5,
+   "within": 0,
+   "below": 2,
+   "not placed": 10
+  },
+  "tax_rate": {
+   "lines": 17,
+   "above": 1,
+   "within": 6,
+   "below": 6,
+   "not placed": 4
+  },
+  "free_cash_flow": {
+   "lines": 10,
+   "above": 5,
+   "within": 0,
+   "below": 3,
+   "not placed": 2
+  },
+  "comparable_sales": {
+   "lines": 10,
+   "above": 5,
+   "within": 0,
+   "below": 5,
+   "not placed": 0
+  },
+  "pretax_margin": {
+   "lines": 8,
+   "above": 7,
+   "within": 0,
+   "below": 1,
+   "not placed": 0
+  },
+  "operating_cash_flow": {
+   "lines": 4,
+   "above": 3,
+   "within": 0,
+   "below": 0,
+   "not placed": 1
+  },
+  "operating_expenses": {
+   "lines": 4,
+   "above": 4,
+   "within": 0,
+   "below": 0,
+   "not placed": 0
+  },
+  "capex": {
+   "lines": 3,
+   "above": 0,
+   "within": 1,
+   "below": 0,
+   "not placed": 2
+  },
+  "noi": {
+   "lines": 3,
+   "above": 1,
+   "within": 0,
+   "below": 1,
+   "not placed": 1
+  },
+  "interest_expense": {
+   "lines": 3,
+   "above": 2,
+   "within": 0,
+   "below": 1,
+   "not placed": 0
+  },
+  "share_count": {
+   "lines": 2,
+   "above": 0,
+   "within": 1,
+   "below": 1,
+   "not placed": 0
+  },
+  "affo": {
+   "lines": 2,
+   "above": 1,
+   "within": 0,
+   "below": 1,
+   "not placed": 0
+  }
+ },
+ "hand_check": {
+  "lines": 30,
+  "right": 29,
+  "source": "the dataset's README, 2026-11-02: a random sample of 30 lines read by hand against both quotes"
+ },
+ "summaryUrl": "/datasets/company-guidance/index.json"
+}

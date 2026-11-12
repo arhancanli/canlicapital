@@ -120,6 +120,24 @@ jobs:
       - run: npm audit --prefix mcp-execution --audit-level=high
       - run: npm test --prefix mcp-execution
 
+  books:
+    # Node 24: Canli Books signs with ML-DSA-65 from Node's own crypto module.
+    name: Canli Books and the company cores
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: mcp-books/package-lock.json
+      - run: npm ci --prefix mcp-books
+      - run: npm audit --prefix mcp-books --audit-level=high
+      - run: npm test --prefix mcp-books
+      # canli-mcp's post-quantum receipt checks need ML-DSA too; the MCP job runs on Node 22, where they are skipped.
+      - run: npm ci --prefix mcp-canli
+      - run: node --test mcp-canli/test/receipt-check.test.mjs
+
   key-lifecycle:
     name: Key revocation PostgreSQL contract
     runs-on: ubuntu-latest

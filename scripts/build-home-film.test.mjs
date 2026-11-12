@@ -24,7 +24,7 @@ function visibleText(html) {
 const text = visibleText(region);
 
 test("the committed homepage is what the generator writes", () => {
-  assert.equal(buildHomeFilm(page, h2h, leaderboard), page, "run node scripts/build-home-film.mjs and commit index.html");
+  assert.equal(buildHomeFilm(page, h2h, leaderboard), page, "run node scripts/build-home-film.mjs and commit agents.html");
 });
 
 test("the film is twelve chapters, numbered in order, each labelled by its heading", () => {

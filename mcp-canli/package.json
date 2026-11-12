@@ -1,37 +1,40 @@
 {
   "name": "canli-mcp",
-  "version": "0.11.1",
-  "description": "Every Canli Capital MCP server in one: 345 finance tools (SEC filings and XBRL, statements as filed, figures checked against the filings, markets, ownership, options, the Fed and macro, dividends, quant, backtest validation, paper trading) behind five tools in context (2,408 tokens instead of 53,974). Interactive charts, market maps, yield curves, statements, volatility surfaces, stock comparisons, option chains, backtest dashboards with sliders and a paper order ticket in the chat (MCP Apps), firm policy and signed audit log, batch calls, offline mode, local by default.",
+  "version": "0.22.0",
+  "description": "Every Canli Capital MCP server in one: 443 finance tools (SEC filings and XBRL, statements as filed, figures checked against the filings, markets, ownership, options, the Fed and macro, dividends, quant, backtest validation, paper trading) behind five tools in context (2,408 tokens instead of 53,974). Interactive charts, market maps, yield curves, statements, volatility surfaces, stock comparisons, option chains, backtest dashboards with sliders and a paper order ticket in the chat (MCP Apps), firm policy and signed audit log, batch calls, offline mode, local by default.",
   "private": false,
   "type": "module",
   "license": "MIT",
   "bin": {
-    "canli-mcp": "src/server.mjs"
+    "canli-mcp": "src/start.mjs"
   },
   "engines": {
     "node": ">=20.10"
   },
   "files": [
     "src",
+    "local",
     "README.md",
     "FEATURES.md",
     "CHANGELOG.md",
     "LICENSE"
   ],
   "scripts": {
+    "build": "node -e \"console.log('Plain JavaScript: nothing to build.')\"",
     "build-index": "node scripts/build-index.mjs",
-    "test": "node --test test/*.test.mjs"
+    "test": "node --test test/*.test.mjs test/*.test.js"
   },
   "dependencies": {
     "@modelcontextprotocol/client": "2.3.1",
     "@modelcontextprotocol/server": "2.3.1",
-    "canli-backtest-mcp": "0.3.0",
-    "canli-fundamentals-mcp": "0.7.1",
-    "canli-markets-mcp": "0.7.4",
+    "canli-backtest-mcp": "0.6.0",
+    "canli-fundamentals-mcp": "0.10.0",
+    "canli-markets-mcp": "0.17.0",
     "canli-paper-trading-mcp": "0.3.1",
-    "canli-quant-mcp": "0.2.0",
+    "canli-quant-mcp": "0.4.0",
     "canli-research-mcp": "0.3.1",
-    "canli-validation-mcp": "0.14.1",
+    "canli-validation-mcp": "0.16.0",
+    "ws": "8.22.1",
     "zod": "4.6.7"
   },
   "mcpName": "io.github.arhancanli/canli-mcp",
@@ -40,7 +43,7 @@
     "url": "git+https://github.com/arhancanli/canlicapital.git",
     "directory": "mcp-canli"
   },
-  "homepage": "https://canlicapital.com/developers",
+  "homepage": "https://canlicapital.com/mcp-servers",
   "bugs": {
     "url": "https://github.com/arhancanli/canlicapital/issues"
   },
@@ -79,5 +82,9 @@
       "canli-validation-mcp": "$canli-validation-mcp"
     },
     "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@duckdb/node-api": "1.5.6-r.2",
+    "fast-check": "4.10.2"
   }
 }

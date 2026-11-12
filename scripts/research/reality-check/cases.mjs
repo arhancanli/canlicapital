@@ -1,4 +1,4 @@
-// The three fixed-seed cases the data-snooping tests are checked on, generated the same way in
+// The four fixed-seed cases the data-snooping tests are checked on, generated the same way in
 // the test and in the reference build, so the stored reference values need no stored data.
 import { makeRandom } from "../../../js/selection-risk-core.js";
 

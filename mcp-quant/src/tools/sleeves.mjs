@@ -20,6 +20,7 @@ import { z } from "zod";
 
 import { correlation, mean, moments, mulberry32, normCdf, normInv, quantile, std, variance } from "../math.mjs";
 import { MAX_SERIES, ppyArg } from "../inputs.mjs";
+import { defaultSplits, pbo, TRIAL_RETURNS } from "../cscv.mjs";
 import { FAMILY_INFO, SLEEVES, SLEEVE_BY_ID } from "../sleeves.mjs";
 import { RECIPES, runEngine, statsOf } from "./strategies.mjs";
 
@@ -211,38 +212,6 @@ function jointTests(R, B, { reps, block, seed, size }) {
   return { tested: K, statistic: obsSPA, p_values: { lower: pv[0], consistent: pv[1], upper: pv[2] }, reality_check: rcCount / reps, superior: superior.map((k) => keep[k]).sort((x, y) => x - y) };
 }
 
-// Combinatorially symmetric cross-validation (Bailey, Borwein, Lopez de Prado and Zhu 2017).
-function* combinations(n, k) {
-  const c = [...Array(k).keys()];
-  for (;;) {
-    yield c;
-    let i = k - 1;
-    while (i >= 0 && c[i] === n - k + i) i--;
-    if (i < 0) return;
-    c[i]++;
-    for (let j = i + 1; j < k; j++) c[j] = c[j - 1] + 1;
-  }
-}
-
-function pbo(R, S) {
-  const K = R.length, n = R[0].length, m = Math.floor(n / S), off = n - S * m, half = S / 2;
-  const sums = R.map((x) => { const s = new Float64Array(S), q = new Float64Array(S); for (let c = 0; c < S; c++) for (let t = off + c * m; t < off + (c + 1) * m; t++) { s[c] += x[t]; q[c] += x[t] * x[t]; } return [s, q]; });
-  const sharpeOf = (k, chunks) => { let s = 0, q = 0; for (const c of chunks) { s += sums[k][0][c]; q += sums[k][1][c]; } const len = chunks.length * m, mu = s / len, v = (q - s * s / len) / (len - 1); return v > 0 ? mu / Math.sqrt(v) : 0; };
-  const logits = [], isB = [], oosB = [];
-  for (const IS of combinations(S, half)) {
-    const OOS = [...Array(S).keys()].filter((c) => !IS.includes(c));
-    let best = 0, bestV = -Infinity;
-    for (let k = 0; k < K; k++) { const v = sharpeOf(k, IS); if (v > bestV) { bestV = v; best = k; } }
-    const oos = Array.from({ length: K }, (_, k) => sharpeOf(k, OOS)), mine = oos[best];
-    let less = 0, eq = 0; for (let k = 0; k < K; k++) { if (oos[k] < mine) less++; else if (oos[k] === mine && k !== best) eq++; }
-    const w = (1 + less + 0.5 * eq) / (K + 1);
-    logits.push(Math.log(w / (1 - w))); isB.push(bestV); oosB.push(mine);
-  }
-  const mx = mean(isB), my = mean(oosB);
-  let sxy = 0, sxx = 0; for (let i = 0; i < isB.length; i++) { sxy += (isB[i] - mx) * (oosB[i] - my); sxx += (isB[i] - mx) ** 2; }
-  return { probability: logits.filter((l) => l <= 0).length / logits.length, splits: S, combinations: logits.length, median_logit: quantile(Float64Array.from(logits).sort(), 0.5), probability_oos_loss: oosB.filter((v) => v < 0).length / oosB.length, degradation_slope: sxx > 0 ? sxy / sxx : null };
-}
-
 function familyTable(rows) {
   const by = {};
   for (const r of rows) (by[r.family] ??= []).push(r);
@@ -331,7 +300,7 @@ export const TOOLS = [
       const order = [...rows].sort((x, y) => y.sharpe - x.sharpe || x.k - y.k);
       const best = order[0], K = chosen.length, Keff = effectiveTrials(R);
       const sv = variance(R.map(perSharpe)), dRaw = deflated(R[best.k], K, sv), dEff = deflated(R[best.k], Keff, sv);
-      const S = a.splits ?? (n >= 16 * 40 ? 16 : Math.max(4, 2 * Math.floor(n / 80))), block = a.block ?? Math.max(1, Math.round(n ** (1 / 3)));
+      const S = a.splits ?? defaultSplits(n), block = a.block ?? Math.max(1, Math.round(n ** (1 / 3)));
       const spa = jointTests(R, B, { reps: a.reps ?? 1000, block, seed: a.seed ?? 7, size: 0.05 });
       const cv = pbo(R, S), bs = statsOf(B, ppy);
       const superior = spa ? spa.superior.map((k) => chosen[k].id) : [];
@@ -359,6 +328,10 @@ export const TOOLS = [
           pbo: cv,
         },
         verdict,
+        // Every sleeve's Sharpe on the common window, best first, so a server that counts what a session tried
+        // counts each sleeve.
+        every_trial: { periods: n, periods_per_year: ppy, sharpes: order.map((r) => r.sharpe) },
+        [TRIAL_RETURNS]: order.map((r) => R[r.k]),
       };
     },
   },

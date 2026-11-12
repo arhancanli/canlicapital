@@ -47,10 +47,16 @@ but inherits the selection that made that trial the best.
 ## Autocorrelation
 
 On the Null Zoo ([`/research/null-zoo-v0`](/research/null-zoo-v0)), autocorrelated returns
-make a skill-less search look skilled: at the same level the statistic rejected 0.200
-of searches. Correcting the Sharpe for the returns' own autocorrelation as Lo (2002) does brings it
-to 0.059, and costs nothing where there is no autocorrelation (0.059
-before, 0.061 after). The API and the MCP tool accept the autocorrelation.
+make a skill-less search look skilled: with a lag-one autocorrelation of 0.2, a stress level, the
+statistic rejected 0.200 of searches at the same level. Smaller values matter too,
+because the cutoff for the best of 20 sits far in the tail. In a follow-up with
+10000 searches per autocorrelation ([`/glassbox/research/null-zoo-v1-ar1-levels.json`](/glassbox/research/null-zoo-v1-ar1-levels.json)), it rejected
+0.078 of searches at 0.05 and 0.108 at 0.1, close to the
+closed form (0.075 and 0.107). Correcting the Sharpe for the
+returns' own autocorrelation as Lo (2002) does brings it to 0.059 at 0.2, and to
+0.055 and 0.051 at 0.05 and 0.1, and costs nothing where there is no
+autocorrelation (0.059 before, 0.061 after). The API and the MCP tool accept
+the autocorrelation.
 
 ## Use it
 

@@ -1,0 +1,98 @@
+{
+ "schema": "canli.filing-facts-releases.v1",
+ "license": "https://creativecommons.org/licenses/by/4.0/",
+ "modified": "2026-10-23",
+ "releases": [
+  {
+   "label": "v1, all",
+   "version": "1",
+   "released": "2026-10-07",
+   "url": "/datasets/filing-facts/v1/filing-facts-v1-all.jsonl",
+   "sha256": "889b70205de40640b52c7f343d92bf5c638edc0ec61cbee08ec6cc7884b3a8a0",
+   "megabytes": 2.1,
+   "companies": 402,
+   "questions": 2243,
+   "types": {
+    "lookup": 402,
+    "change": 402,
+    "ratio": 402,
+    "restatement": 361,
+    "net_assets": 338,
+    "unanswerable": 338
+   }
+  },
+  {
+   "label": "v1, fresh",
+   "version": "1",
+   "released": "2026-10-07",
+   "url": "/datasets/filing-facts/v1/filing-facts-v1-fresh.jsonl",
+   "sha256": "4587aa097b2182e6c901d02d439ba3b63eae6eee7a1608731ee454f196fe65de",
+   "megabytes": 0.2,
+   "companies": 55,
+   "questions": 241,
+   "types": {
+    "lookup": 55,
+    "change": 55,
+    "ratio": 54,
+    "net_assets": 47,
+    "unanswerable": 15,
+    "restatement": 15
+   }
+  },
+  {
+   "label": "v0",
+   "version": "0",
+   "released": "2026-09-26",
+   "url": "/datasets/filing-facts/v0/filing-facts-v0.jsonl",
+   "sha256": "c01b9e3e660ff341017532718e6bc8f7fe96d1ffa68d86236c53e73ae3149d7d",
+   "megabytes": 1.7,
+   "companies": 402,
+   "questions": 1882,
+   "types": {
+    "lookup": 402,
+    "change": 402,
+    "ratio": 402,
+    "net_assets": 338,
+    "unanswerable": 338
+   }
+  }
+ ],
+ "sample": {
+  "id": "fbc74fd67f28299d",
+  "question": "Using AAR CORP.'s annual XBRL data, by what percentage did net deferred tax assets change from its balance as of 2025-05-31 to its balance as of 2026-05-31? Give the change relative to the earlier value's magnitude, as a percent to two decimals.",
+  "answer": {
+   "kind": "percent",
+   "value": 14.72,
+   "unit": "percent"
+  },
+  "facts": [
+   {
+    "concept": "DeferredTaxAssetsNet",
+    "taxonomy": "us-gaap",
+    "end": "2025-05-31",
+    "val": 48900000,
+    "unit": "USD",
+    "accn": "0001104659-26-085459",
+    "form": "10-K",
+    "filed": "2026-07-22",
+    "url": "https://www.sec.gov/Archives/edgar/data/1750/000110465926085459/"
+   },
+   {
+    "concept": "DeferredTaxAssetsNet",
+    "taxonomy": "us-gaap",
+    "end": "2026-05-31",
+    "val": 56100000,
+    "unit": "USD",
+    "accn": "0001104659-26-085459",
+    "form": "10-K",
+    "filed": "2026-07-22",
+    "url": "https://www.sec.gov/Archives/edgar/data/1750/000110465926085459/"
+   }
+  ]
+ },
+ "errata": {
+  "release": "v1",
+  "items_to_score_out": 15,
+  "url": "/datasets/filing-facts/v1/ERRATA.md"
+ }
+}

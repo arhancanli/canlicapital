@@ -20,7 +20,7 @@
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Backtest validation calculators","description":"Every browser calculator this project publishes: deflated Sharpe, overfitting, selection risk, execution cost and portfolio breadth, free and source-bound.","url":"https://canlicapital.com/tools","author":{"@id":"https://canlicapital.com/#arhan-canli"},"mainEntity":{"@type":"ItemList","numberOfItems":7,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://canlicapital.com/tools/deflated-sharpe","name":"Deflated Sharpe ratio calculator (PSR and DSR)"},{"@type":"ListItem","position":2,"url":"https://canlicapital.com/tools/backtest-overfitting","name":"Probability of backtest overfitting calculator"},{"@type":"ListItem","position":3,"url":"https://canlicapital.com/tools/selection-risk","name":"Backtest selection risk simulator"},{"@type":"ListItem","position":4,"url":"https://canlicapital.com/tools/execution","name":"Execution assumptions cost calculator"},{"@type":"ListItem","position":5,"url":"https://canlicapital.com/tools/breadth","name":"Portfolio breadth calculator"},{"@type":"ListItem","position":6,"url":"https://canlicapital.com/tools/trial-accounting","name":"Trial accounting explorer"},{"@type":"ListItem","position":7,"url":"https://canlicapital.com/tools/evidence-chain","name":"Signed evidence chain verifier"}]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Backtest validation calculators","description":"Every browser calculator this project publishes: deflated Sharpe, overfitting, selection risk, execution cost and portfolio breadth, free and source-bound.","url":"https://canlicapital.com/tools","author":{"@id":"https://canlicapital.com/#arhan-canli"},"mainEntity":{"@type":"ItemList","numberOfItems":8,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://canlicapital.com/tools/look-through","name":"Portfolio look-through: see what you really own"},{"@type":"ListItem","position":2,"url":"https://canlicapital.com/tools/deflated-sharpe","name":"Deflated Sharpe ratio calculator (PSR and DSR)"},{"@type":"ListItem","position":3,"url":"https://canlicapital.com/tools/backtest-overfitting","name":"Probability of backtest overfitting calculator"},{"@type":"ListItem","position":4,"url":"https://canlicapital.com/tools/selection-risk","name":"Backtest selection risk simulator"},{"@type":"ListItem","position":5,"url":"https://canlicapital.com/tools/execution","name":"Execution assumptions cost calculator"},{"@type":"ListItem","position":6,"url":"https://canlicapital.com/tools/breadth","name":"Portfolio breadth calculator"},{"@type":"ListItem","position":7,"url":"https://canlicapital.com/tools/trial-accounting","name":"Trial accounting explorer"},{"@type":"ListItem","position":8,"url":"https://canlicapital.com/tools/evidence-chain","name":"Signed evidence chain verifier"}]}}</script>
 <!-- site-design:start -->
 <link rel="stylesheet" href="/css/product-shell.css" />
 <!-- site-design:end -->
@@ -45,6 +45,9 @@
       <div>
         <span class="cc-shell__panel-label">Use it</span>
         <nav aria-label="Products and tools"><a class="cc-shell__panel-link" href="/mcp-servers">canli-mcp, the MCP server</a>
+<a class="cc-shell__panel-link" href="/mcp-servers/install">Add it to your client</a>
+<a class="cc-shell__panel-link" href="/mcp-servers/tools">Every tool</a>
+<a class="cc-shell__panel-link" href="/mcp-servers/how-it-works">How it works and is tested</a>
 <a class="cc-shell__panel-link" href="/mcp-servers/answers">Questions it answers</a>
 <a class="cc-shell__panel-link" href="/companies">Company reference</a>
 <a class="cc-shell__panel-link" href="/datasets/filing-facts">Financial datasets</a>
@@ -91,9 +94,14 @@
   <a class="cc-shell__cta" href="/mcp-servers#install">Add canli-mcp</a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main><header class="cc-hero" data-scene="gates"><picture class="cc-hero__art" aria-hidden="true"><source type="image/avif" media="(max-width: 768px)" srcset="/scenes/gates-900.avif"><source type="image/webp" media="(max-width: 768px)" srcset="/scenes/gates-900.webp"><source type="image/avif" srcset="/scenes/gates-1600.avif 1600w, /scenes/gates-2400.avif 2400w" sizes="100vw"><source type="image/webp" srcset="/scenes/gates-1600.webp 1600w, /scenes/gates-2400.webp 2400w" sizes="100vw"><img src="/scenes/gates-1600.webp" alt="" width="1600" height="560" fetchpriority="high" decoding="async"></picture><div class="cc-hero__inner"><nav class="cc-crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Canli Capital</a></li><li><span aria-current="page">Backtest validation calculators</span></li></ol></nav><p class="lab-kicker"><span>Open research instruments</span><span>7 calculators</span></p><h1 id="tools-title">Every calculator, in one place.</h1><p class="lab-lead">Free, no account, and everything runs in your browser. Each one uses the same
+<main><header class="cc-hero" data-scene="gates"><div class="cc-hero__inner"><nav class="cc-crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Canli Capital</a></li><li><span aria-current="page">Backtest validation calculators</span></li></ol></nav><p class="lab-kicker"><span>Open research instruments</span><span>8 calculators</span></p><h1 id="tools-title">Every calculator, in one place.</h1><p class="lab-lead">Free, no account, and everything runs in your browser. Each one uses the same
       code our own published record is held to.</p></div></header>
   <section class="tools-grid" id="tools-list" aria-label="All calculators">
+    <article class="tools-card">
+        <h2><a href="/tools/look-through">Portfolio look-through: see what you really own</a></h2>
+
+        <p>List your funds and shares, and see every company inside them, added up from each fund&#39;s own SEC report.</p>
+      </article>
     <article class="tools-card">
         <h2><a href="/tools/deflated-sharpe">Deflated Sharpe ratio calculator (PSR and DSR)</a></h2>
         <p class="tools-card__house">Deflated Sharpe calculator</p>
@@ -218,6 +226,7 @@
       <a href="/methodology">Methodology</a>
       <a href="/costs">What costs are charged</a>
       <a href="/verify">Verify record</a>
+      <a href="/privacy">Privacy policy</a>
       <a href="/measurements">Measurements</a>
       <a href="/open">Open data</a>
       <a href="/companies">Company reference</a>

@@ -4,8 +4,8 @@ Checked by `node bench/rivals/coverage.mjs` against each server's own tool list:
 
 | | canli-mcp | OpenBB | EdgarTools | Yahoo Finance MCP |
 |---|---|---|---|---|
-| Questions with a keyless tool (of 53) | 49 | 39 | 11 | 13 |
-| Tools listed | 306 behind 3 (find_tool, describe_tool, run_tool) | 1056 | 13 | 9 |
+| Questions with a keyless tool (of 53) | 51 | 39 | 11 | 13 |
+| Tools listed | 345 behind 3 (find_tool, describe_tool, run_tool) | 1056 | 13 | 9 |
 | Tokens of tool definitions per request (REPORT.md) | 859 | 432,001 (2,171 in discovery mode) | 3,801 | 2,205 |
 
 | Area | Question | canli-mcp | OpenBB | EdgarTools | Yahoo | Note |
@@ -19,9 +19,9 @@ Checked by `node bench/rivals/coverage.mjs` against each server's own tool list:
 | Companies | Executive pay, and pay versus performance | yes | yes | yes | · |  |
 | Companies | A company's events from its 8-Ks (deals, executive changes, restatements) | yes | · | yes | · | canli reads each 8-K item; EdgarTools lists recent filings. |
 | Companies | One kind of event across the market (restatements, bankruptcies, cyber incidents) | yes | · | · | · |  |
-| Companies | News headlines | · | yes | · | yes | Not primary sources; canli reads the companies' own 8-Ks instead. |
+| Companies | News headlines | yes | yes | · | yes | canli: the GDELT Project's open index of the world's press, and each company's own 8-Ks. |
 | Companies | Analyst estimates, price targets, recommendations | · | yes | · | yes | No primary source publishes these. |
-| Companies | Upcoming earnings dates | · | yes | · | · |  |
+| Companies | Upcoming earnings dates | yes | yes | · | · | canli: estimated from each company's own past 8-K release dates and labelled as an estimate. |
 | Companies | Dividends and splits | yes | yes | · | yes |  |
 | Companies | How the stock reacted to events (event study) | yes | · | · | · |  |
 | Companies | How often filings mention a theme over time | yes | · | yes | · |  |
@@ -68,4 +68,4 @@ Checked by `node bench/rivals/coverage.mjs` against each server's own tool list:
 
 Only canli-mcp: financials as first reported, and what was restated; one kind of event across the market (restatements, bankruptcies, cyber incidents); how the stock reacted to events (event study); new activist stakes across the market; private raises by startups and funds (form d); futures positioning (cftc commitments of traders); us economic series (inflation, jobs, gdp); performance and risk (sharpe, drawdown, var); portfolio construction (min variance, risk parity, black-litterman); strategy backtests; is a backtest overfit (deflated sharpe, pbo, reality check); paper trading behind pre-trade checks.
 
-canli-mcp has no tool yet: news headlines; analyst estimates, price targets, recommendations; upcoming earnings dates; corporate bond prices.
+canli-mcp has no tool yet: analyst estimates, price targets, recommendations; corporate bond prices.

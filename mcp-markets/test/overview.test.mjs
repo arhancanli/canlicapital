@@ -40,3 +40,8 @@ test("the overview: every group, sectors best month first, and a failed market l
   const only = await marketOverview(s, { groups: ["crypto"] });
   assert.deepEqual(Object.keys(only).filter((k) => Object.keys(GROUPS).includes(k)), ["crypto"]);
 });
+
+test("with prices off, market_overview says why instead of answering with empty lists", async () => {
+  const off = createSession({ env: { CANLI_KEYLESS_PRICES: "0" }, now: () => Date.parse("2026-10-30T00:00:00Z"), sleep: async () => {}, fetchImpl: async () => new Response("not found", { status: 404 }) });
+  await assert.rejects(marketOverview(off, {}), /Prices are off on this server/);
+});

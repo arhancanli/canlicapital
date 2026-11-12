@@ -15,8 +15,64 @@
 export const ENGINE_LIMITS_TEXT = Object.freeze([
   "Prices are the caller's: survivorship, splits, dividends and data errors in them pass straight into the result.",
   "A backtest measures one path of history under these costs; it does not establish that the signal will keep working.",
-  "Costs are a flat rate per unit traded; market impact, borrow fees for shorts and financing are not charged unless included in cost_bps.",
+  "Costs are a flat rate per unit traded; market impact is charged only when capital and dollar volume are given, and borrow fees for shorts and financing are not charged unless included in cost_bps.",
 ]);
+
+// With capital and dollar volume, size meets the market. Average daily dollar volume and daily
+// volatility are read from the days before each trade, never the trade day. An order fills only up
+// to max participation of that volume (the rest stays unfilled and the old position stays open), and
+// pays square-root impact, the same law check_feasibility uses: Y x daily volatility x sqrt(participation)
+// (Toth et al. 2011). A name with too little volume history cannot trade at all: nothing is assumed.
+const LIQUIDITY_DAYS = 20, MIN_LIQUIDITY_DAYS = 10;
+export const FILL_RATIO_TRADABLE = 0.95;
+
+function liquidityAt(prices, volumes, t) {
+  let dollars = 0, days = 0;
+  const rets = [];
+  for (let i = Math.max(1, t - LIQUIDITY_DAYS); i < t; i += 1) {
+    if (finite(volumes[i]) && volumes[i] > 0) { dollars += volumes[i]; days += 1; }
+    const a = prices[i - 1], b = prices[i];
+    if (finite(a) && finite(b) && a > 0) rets.push(b / a - 1);
+  }
+  if (days < MIN_LIQUIDITY_DAYS || rets.length < MIN_LIQUIDITY_DAYS) return null;
+  const mean = rets.reduce((x, y) => x + y, 0) / rets.length;
+  return { adv: dollars / days, vol: Math.sqrt(rets.reduce((x, y) => x + (y - mean) ** 2, 0) / (rets.length - 1)) };
+}
+
+// Whole stretches of market history a strategy can be held against. Dates are peak to trough or the
+// episode's usual bounds; the first eight are the ones stress_worlds drops into its worlds.
+export const CRISES = Object.freeze({
+  dotcom_bust: { from: "2000-03-24", to: "2002-10-09", what: "the 2000-02 dot-com bust" },
+  bank_crisis: { from: "2008-09-02", to: "2009-03-09", what: "the 2008-09 bank crisis" },
+  debt_ceiling_2011: { from: "2011-04-29", to: "2011-10-03", what: "the 2011 US downgrade and euro debt scare" },
+  taper_tantrum: { from: "2013-05-22", to: "2013-09-05", what: "the 2013 taper tantrum in bonds" },
+  oil_collapse: { from: "2014-06-20", to: "2016-02-11", what: "the 2014-16 oil collapse" },
+  dollar_surge: { from: "2014-07-01", to: "2015-03-13", what: "the 2014-15 surge in the dollar" },
+  q4_2018: { from: "2018-09-20", to: "2018-12-24", what: "the late 2018 sell-off" },
+  pandemic_crash: { from: "2020-02-19", to: "2020-03-23", what: "the February-March 2020 crash" },
+  inflation_shock: { from: "2022-01-03", to: "2022-06-16", what: "the 2022 inflation and rate shock" },
+  compute_bust: { from: "2022-01-03", to: "2022-10-14", what: "the 2022 fall in chip and compute stocks" },
+  regional_bank_run: { from: "2023-03-01", to: "2023-03-24", what: "the March 2023 regional bank run" },
+});
+export const CRISIS_DRAWDOWN_LIMIT = 0.5;
+
+// The strategy's own returns inside every crisis its dates fully cover. A crisis the run does not
+// fully cover is listed as untested: not having been there is not the same as having survived it.
+export function crisisReplay({ dates, returns, limit = CRISIS_DRAWDOWN_LIMIT }) {
+  if (!(limit > 0 && limit <= 1)) throw new RangeError("the crisis drawdown limit must be above 0 and at most 1");
+  const tested = [], untested = [];
+  for (const [id, c] of Object.entries(CRISES)) {
+    if (!(dates[0] <= c.from && dates.at(-1) >= c.to)) { untested.push({ id, what: c.what, from: c.from, to: c.to }); continue; }
+    let wealth = 1, peak = 1, drawdown = 0, days = 0, worst = 0;
+    for (let i = 0; i < dates.length; i += 1) {
+      if (dates[i] < c.from || dates[i] > c.to) continue;
+      wealth *= 1 + returns[i]; peak = Math.max(peak, wealth); drawdown = Math.max(drawdown, 1 - wealth / peak); worst = Math.min(worst, returns[i]); days += 1;
+    }
+    tested.push({ id, what: c.what, from: c.from, to: c.to, days, return: wealth - 1, drawdown, worst_day: worst, ruptured: drawdown > limit });
+  }
+  const verdict = !tested.length ? "untested" : tested.some((c) => c.ruptured) ? "ruptured" : "survived_tested";
+  return { verdict, drawdown_limit: limit, tested, untested };
+}
 
 const REBALANCE = Object.freeze({ weekly: "week", monthly: "month", quarterly: "quarter" });
 const periodKey = (date, every) => {
@@ -70,12 +126,20 @@ function lastRowOnOrBefore(signalDates, bound) {
   return found;
 }
 
-export function runBacktest({ dates, tickers, prices, signalDates, signals, rebalance = "monthly", lagDays = 1, side = "long_short", quantile = 0.2, costBps = 10, minNames = 5, periodsPerYear = 252 }) {
+export function runBacktest({ dates, tickers, prices, signalDates, signals, rebalance = "monthly", lagDays = 1, side = "long_short", quantile = 0.2, costBps = 10, minNames = 5, periodsPerYear = 252, capital = null, dollarVolumes = null, maxParticipation = 0.1, impactCoefficient = 1 }) {
   checkInputs({ dates, tickers, prices, signalDates, signals });
   if (!Number.isInteger(lagDays) || lagDays < 1) throw new RangeError("lag_days must be a whole number of at least 1: a signal cannot trade on the day it becomes known");
   if (!(quantile > 0 && quantile <= 0.5)) throw new RangeError("quantile must be in (0, 0.5]");
   if (!["long_short", "long_only"].includes(side)) throw new RangeError("side must be long_short or long_only");
   if (!(costBps >= 0)) throw new RangeError("cost_bps cannot be negative");
+  const sized = capital !== null;
+  if (sized) {
+    if (!(capital > 0)) throw new RangeError("capital must be above zero");
+    if (!dollarVolumes) throw new RangeError("capital needs dollar volume: without it nothing says how much the market can take");
+    if (!(maxParticipation > 0 && maxParticipation <= 1)) throw new RangeError("max participation must be above 0 and at most 1");
+    if (!(impactCoefficient >= 0)) throw new RangeError("the impact coefficient cannot be negative");
+  }
+  const liq = { impact: 0, orders: 0, clipped: 0, blocked: 0, wanted: 0, filled: 0, maxFilled: 0, worst: null };
 
   const n = dates.length;
   const rebal = new Set(rebalanceIndices(dates, rebalance, lagDays));
@@ -116,9 +180,26 @@ export function runBacktest({ dates, tickers, prices, signalDates, signals, reba
     const long = ranked.slice(0, k), short = side === "long_short" ? ranked.slice(-k) : [];
     for (const tk of long) target.set(tk, nav / long.length);
     for (const tk of short) target.set(tk, (target.get(tk) ?? 0) - nav / short.length);
-    let traded = 0;
-    for (const tk of new Set([...pos.keys(), ...target.keys()])) traded += Math.abs((target.get(tk) ?? 0) - (pos.get(tk) ?? 0));
-    const cost = traded * costBps / 1e4;
+    let traded = 0, impact = 0;
+    for (const tk of new Set([...pos.keys(), ...target.keys()])) {
+      const held = pos.get(tk) ?? 0, want = (target.get(tk) ?? 0) - held;
+      if (!sized) { traded += Math.abs(want); continue; }
+      if (want === 0) continue;
+      const l = liquidityAt(prices[tk], dollarVolumes[tk] ?? [], t);
+      const wanted = Math.abs(want);
+      liq.orders += 1; liq.wanted += wanted;
+      if (!l) { liq.blocked += 1; target.set(tk, held); continue; }
+      const room = maxParticipation * l.adv / capital;
+      const wantedShare = wanted * capital / l.adv;
+      if (!liq.worst || wantedShare > liq.worst.wanted_participation) liq.worst = { ticker: tk, date: dates[t], wanted_participation: wantedShare, average_daily_dollars: l.adv };
+      const fill = Math.min(wanted, room);
+      if (fill < wanted) { liq.clipped += 1; target.set(tk, held + Math.sign(want) * fill); }
+      const share = fill * capital / l.adv;
+      impact += fill * impactCoefficient * l.vol * Math.sqrt(share);
+      traded += fill; liq.filled += fill; liq.maxFilled = Math.max(liq.maxFilled, share);
+    }
+    liq.impact += impact;
+    const cost = traded * costBps / 1e4 + impact;
     nav -= cost;
     const factor = 1 - cost / (nav + cost);
     if (started && out.returns.length) {
@@ -133,7 +214,14 @@ export function runBacktest({ dates, tickers, prices, signalDates, signals, reba
     started = true;
   }
   if (!rebalances) throw new RangeError("no rebalance had enough names with both a known signal and a price; check the dates overlap and min_names");
-  return { ...out, used, nav, rebalances, turnoverSum, costSum, missingDays, longNames, shortNames, periodsPerYear };
+  const fillRatio = liq.wanted > 0 ? liq.filled / liq.wanted : 1;
+  const liquidity = sized ? {
+    capital_usd: capital, max_participation: maxParticipation, impact_coefficient: impactCoefficient,
+    impact_paid: liq.impact, orders: liq.orders, clipped_orders: liq.clipped, blocked_orders: liq.blocked,
+    fill_ratio: fillRatio, filled_participation_max: liq.maxFilled, worst: liq.worst,
+    verdict: fillRatio >= FILL_RATIO_TRADABLE ? "tradable" : "too_big",
+  } : undefined;
+  return { ...out, used, nav, rebalances, turnoverSum, costSum, missingDays, longNames, shortNames, periodsPerYear, ...(sized ? { liquidity } : {}) };
 }
 
 // Plain statistics of a return series, in the same Sharpe convention as the validators (sample sd).

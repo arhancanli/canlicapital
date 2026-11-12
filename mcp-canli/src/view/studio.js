@@ -7,6 +7,7 @@
 // a released slider, Approve) calls a tool again, through the host, and its answer goes to the view.
 import { esc, fmt, short } from "./render.js";
 import { ATLAS_MOUNTS, atlasFor } from "./atlas.js";
+import { PROOF_MOUNTS, proofFor } from "./proof.js";
 
 const PLACED = [];
 let STUDIO = { input: {}, call: null, compact: false };
@@ -164,6 +165,7 @@ export function studioFor(result) {
   if (c && c[0] === "params" && typeof result.recipe === "string" && result.rows.length > 1) { out.push(place("sweep", result)); if (sweepGrid(result.rows)) use("deflation"); }
   if (result.paper === true && "token" in result && c && c.includes("accepted")) { out.push(place("ticket", result)); use("columns", "rows", "token", "expires_at", "accepted", "next"); }
   out.push(...atlasFor(result, use, used));
+  out.push(...proofFor(result, use));
   if (!used.has("rows")) {
     const tm = [[null, result], ...Object.entries(result).filter(([k]) => !used.has(k))].map(([k, t]) => [k, treemapData(t)]).find(([, d]) => d) ?? [null, weightLists(result)];
     if (tm[1]) out.push(place("treemap", { ...tm[1], title: tm[0] }));
@@ -698,7 +700,7 @@ export function mountStudio(root, host) {
     const p = PLACED[+el.dataset.w];
     if (!p || el.dataset.mounted) continue;
     el.dataset.mounted = "1";
-    try { (MOUNTS[p.kind] ?? ATLAS_MOUNTS[p.kind])(el, p.data, p, host); } catch (err) { notice(el, `This view could not be drawn: ${err && err.message}`, "error"); }
+    try { (MOUNTS[p.kind] ?? ATLAS_MOUNTS[p.kind] ?? PROOF_MOUNTS[p.kind])(el, p.data, p, host); } catch (err) { notice(el, `This view could not be drawn: ${err && err.message}`, "error"); }
   }
   wireTables(root);
 }

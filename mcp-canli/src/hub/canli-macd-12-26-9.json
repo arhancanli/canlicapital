@@ -1,0 +1,20 @@
+{
+  "spec": "canli.sleeve.v1",
+  "id": "canli/macd-12-26-9",
+  "title": "MACD trend, 12, 26 and 9 days",
+  "author": "arhancanli",
+  "recipe": "macd_trend",
+  "params": {
+    "fast": 12,
+    "slow": 26,
+    "signal": 9,
+    "long_only": true
+  },
+  "data": "single",
+  "rationale": "Holds when a faster average of the price is gaining on a slower one. It is a very widely used way to describe the direction and pace of a trend.",
+  "risks": "It is built from past prices, so it reacts late and can give many false signals when a market moves sideways. Being so widely known, it offers no information others lack.",
+  "references": [
+    "Appel (2005), Technical Analysis: Power Tools for Active Investors, FT Press"
+  ],
+  "license": "CC-BY-4.0"
+}

@@ -3,6 +3,7 @@
 // and runs the same way whether it is listed directly or reached through run_tool.
 import { z } from "zod";
 
+import { TRIAL_RETURNS } from "./cscv.mjs";
 import { compact } from "./math.mjs";
 import { ECONOMETRICS as ECON_PLUS, OPTIONS as OPTIONS_PLUS, RATES as RATES_PLUS, RISK as RISK_PLUS } from "./tools/analytics.mjs";
 import { TOOLS as CRYPTO_FX } from "./tools/cryptofx.mjs";
@@ -50,19 +51,25 @@ export const BY_NAME = new Map(CATALOG.map((t) => [t.name, t]));
 
 if (BY_NAME.size !== CATALOG.length) throw new Error("Duplicate tool name in the catalog");
 
+const withoutNulls = (value) => (value && typeof value === "object" && !Array.isArray(value) && Object.values(value).includes(null) ? Object.fromEntries(Object.entries(value).filter(([, v]) => v !== null)) : null);
+
 // Runs one tool on raw arguments: validates, computes, rounds. Throws an Error whose message says
 // what to fix; callers turn it into an MCP error result.
 export function runTool(name, args, { digits = 10 } = {}) {
   const tool = BY_NAME.get(name);
   if (!tool) throw new Error(`No tool ${name}. Use find_tool to search the ${CATALOG.length} tools.`);
-  const parsed = tool.input.safeParse(args ?? {});
+  let parsed = tool.input.safeParse(args ?? {});
+  // An optional argument sent as null (CrewAI, OpenAI strict mode) counts as not given, so an error names only what is still wrong.
+  const kept = parsed.success ? null : withoutNulls(args);
+  if (kept) parsed = tool.input.safeParse(kept);
   if (!parsed.success) {
     const issues = parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "arguments"}: ${i.message}`).join("; ");
     throw new Error(`${name}: ${issues}. describe_tool ${name} gives the exact input schema.`);
   }
   let nonFiniteCount = 0;
   const examples = [];
-  const result = compact(tool.run(parsed.data), digits, (value, path) => {
+  const raw = tool.run(parsed.data);
+  const result = compact(raw, digits, (value, path) => {
     nonFiniteCount++;
     if (examples.length < 5) {
       const pointer = path.map((key) => String(key).replace(/~/g, "~0").replace(/\//g, "~1")).join("/");
@@ -72,6 +79,8 @@ export function runTool(name, args, { digits = 10 } = {}) {
   if (nonFiniteCount) {
     throw new Error(`${name}: calculation returned ${nonFiniteCount} non-finite value(s): ${examples.join(", ")}${nonFiniteCount > examples.length ? ", ..." : ""}. JSON cannot represent this numerical result. Check input scale and the tool's mathematical domain.`);
   }
+  // compact rebuilds the tree, which leaves out symbol keys: the variants' returns go back as they were.
+  if (raw?.[TRIAL_RETURNS]) result[TRIAL_RETURNS] = raw[TRIAL_RETURNS];
   return result;
 }
 

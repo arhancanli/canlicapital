@@ -1,0 +1,6 @@
+# The versions crewai_agent.py was connected and tested with on 2026-11-07, in its own environment (CrewAI needs
+# openai below 3; the OpenAI Agents SDK in requirements.txt needs 3 or above). crewai-tools 1.15.1 or later fixes an
+# SSRF advisory in 0.76.0. CrewAI sends unset optional arguments as null, which canli-mcp accepts from the release
+# after 0.21.0.
+crewai==1.15.37
+crewai-tools[mcp]==1.15.37

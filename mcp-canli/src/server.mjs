@@ -20,12 +20,17 @@ import { homedir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { McpServer, ResourceTemplate } from "@modelcontextprotocol/server";
+import { isInputRequiredResult, McpServer, ResourceTemplate } from "@modelcontextprotocol/server";
 import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { z } from "zod";
 
 import { resolveRefs } from "./files.mjs";
-import { OMITTED, PACKS, PLUGINS, RENAMES, enabledPacks, loadPack, loadPlugins, packInfo } from "./packs.mjs";
+import { DESK as FANOUT, runBrief, runSwarm } from "./desk.mjs";
+import { runTriangulate, TRIANGULATE_TOOL } from "./triangulate.mjs";
+import { runWorlds, WORLDS_TOOL } from "./worlds.mjs";
+import { HUB_TOOLS, runHubCheck, runHubList, runHubRun } from "./hub.mjs";
+import { DRAFT_TOOL, runDraft } from "./draft.mjs";
+import { OMITTED, PACKS, PLUGINS, RENAMES, UPSTREAMS, enabledPacks, loadPack, loadPlugins, loadUpstreams, offlineMode, packInfo } from "./packs.mjs";
 import { signature } from "./signature.mjs";
 import { buildIndex, search } from "./search.mjs";
 import { registerPrompts } from "./prompts.mjs";
@@ -33,6 +38,35 @@ import { clientDrawsApps, registerView, VIEW_URI } from "./view.mjs";
 import { registerPackGuides } from "./guides.mjs";
 import { governance, publicKeys, verifyAudit } from "./governance.mjs";
 import { watchFilings } from "./watch.mjs";
+import { createTimeMachine } from "./timemachine.mjs";
+import { signedTrialCount, TRIALS_TOOL } from "./trials.mjs";
+import { createLuck, shownTrials, TRIAL_RETURNS } from "./luck.mjs";
+import { createRedTeam, RED_TEAM_TOOL, runRedTeam } from "./redteam.mjs";
+import { runZooSearch, runZooStats, ZOO_TOOLS } from "./zoo.mjs";
+import { LAKE_TOOLS, runLake } from "./lake.mjs";
+import { TRACK_TOOLS } from "./track.mjs";
+import { LAB_TOOLS, openLab, runLabSearch, runLabStatus, runLabStrategy, runOriginality } from "./lab.mjs";
+import { createLabNotes, LAB_NOTES_PER_ANSWER, TRIAL_DATES } from "./labnote.mjs";
+import { FORENSICS_TOOL, runForensics } from "./forensics.mjs";
+import { BEAT_TOOL, runBeat } from "./beat.mjs";
+import { createVault, HOLDOUT_TOOLS } from "./holdout.mjs";
+import { createRegistry, PREREG_TOOL } from "./prereg.mjs";
+import { CAUSES_TOOL, runCauses } from "./causes.mjs";
+import { answerTree } from "./answer-tree.mjs";
+import { RECEIPT_CHECK_TOOL, runReceiptCheck } from "./receipt-check.mjs";
+import { runShares, SHARES_TOOL } from "./shares.mjs";
+import { RED_FLAGS_TOOL, runRedFlags } from "./redflags.mjs";
+import { EXPORT_TOOL, exportInput } from "./export.mjs";
+import { COMPARE_TOOLS, compareInput, previewInput, rerunInput } from "./compare.mjs";
+import { diff } from "./delta.mjs";
+import { FISCAL_TOOL, runFiscal } from "./fiscal.mjs";
+import { addressedToAi, CAUTION } from "./injection.mjs";
+import { installTripwire, withoutNetwork } from "./tripwire.mjs";
+import { createDelta } from "./delta.mjs";
+import { runWeek, WEEK_TOOL } from "./week.mjs";
+import { askWhich } from "./ask.mjs";
+import { quoteSeconds, registerQuotes } from "./quotes.mjs";
+import { channelSink, CHANNEL_INSTRUCTIONS, SENTINEL_TOOLS } from "./sentinel.mjs";
 
 const PKG = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
 const INDEX = JSON.parse(readFileSync(new URL("./index.json", import.meta.url), "utf8"));
@@ -44,7 +78,8 @@ export const SERVER_INFO = Object.freeze({
   icons: [{ src: "https://canlicapital.com/icon-512.png", mimeType: "image/png", sizes: ["512x512"] }, { src: "https://canlicapital.com/favicon.svg", mimeType: "image/svg+xml", sizes: ["any"] }],
 });
 
-export const ENTRIES = INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args }));
+const DESK = [...FANOUT, WORLDS_TOOL, TRIANGULATE_TOOL, ...HUB_TOOLS, DRAFT_TOOL, ...SENTINEL_TOOLS, TRIALS_TOOL, WEEK_TOOL, ...HOLDOUT_TOOLS, PREREG_TOOL, CAUSES_TOOL, RECEIPT_CHECK_TOOL, SHARES_TOOL, RED_FLAGS_TOOL, EXPORT_TOOL, ...COMPARE_TOOLS, FISCAL_TOOL, RED_TEAM_TOOL, ...ZOO_TOOLS, ...LAKE_TOOLS, ...TRACK_TOOLS, ...LAB_TOOLS, FORENSICS_TOOL, BEAT_TOOL];
+export const ENTRIES = [...INDEX.tools.map(([name, pack, toolset, title, description, keywords, args]) => ({ name, pack, toolset, title, description, keywords, args })), ...DESK.map(({ name, pack, toolset, title, description, keywords, args }) => ({ name, pack, toolset, title, description, keywords, args }))];
 const BY_NAME = new Map(ENTRIES.map((e) => [e.name, e]));
 let SEARCH = buildIndex(ENTRIES);
 
@@ -56,8 +91,21 @@ export async function addPlugins(env = process.env) {
     ENTRIES.push(e); BY_NAME.set(e.name, e);
   }
   if (plugins.length) SEARCH = buildIndex(ENTRIES);
-  return plugins.map((p) => p.pack);
+  // Upstream MCP servers connect in the background, so a slow one never delays this server's start;
+  // their tools join the catalog and the search as each answers.
+  const upstreams = loadUpstreams(env, canliHome(env), {
+    taken: (name) => BY_NAME.has(name), version: SERVER_INFO.version,
+    onTools: (pack, tools) => {
+      for (const t of tools) { const e = { name: t.name, pack, toolset: pack, title: t.title, description: t.description, keywords: t.keywords, args: signature(t.input) }; ENTRIES.push(e); BY_NAME.set(e.name, e); }
+      if (tools.length) SEARCH = buildIndex(ENTRIES);
+    },
+  });
+  UPSTREAM_READY.push(...upstreams.map((u) => u.ready));
+  return [...plugins.map((p) => p.pack), ...upstreams.map((u) => u.pack)];
 }
+const UPSTREAM_READY = [];
+// Waits, at most ms, for the upstream servers still connecting.
+const upstreamsSettled = (ms = 8000) => (UPSTREAM_READY.length ? Promise.race([Promise.allSettled(UPSTREAM_READY), new Promise((r) => setTimeout(r, ms).unref?.())]) : null);
 
 // The most asked-for tools, which run_tool takes without a find_tool first: each saves the model a
 // search turn on the commonest questions. Only tools in enabled packs are named.
@@ -80,11 +128,36 @@ const open = z.looseObject({});
 // A result drawn as a view has a summary for the model in SUMMARIES: the model reads the summary,
 // the view the whole result.
 const SUMMARIES = new WeakMap();
-const ok = (result) => ({ content: [{ type: "text", text: JSON.stringify((result && typeof result === "object" && SUMMARIES.get(result)) ?? result) }], structuredContent: result });
+// Every run_tool answer's receipt, for the client in _meta (RECEIPT_KEY): what was asked, a hash of the whole result,
+// and the source documents it was read from.
+const RECEIPTS = new WeakMap();
+export const RECEIPT_KEY = "canlicapital.com/receipt";
+const ok = (result) => ({ content: [{ type: "text", text: JSON.stringify((result && typeof result === "object" && SUMMARIES.get(result)) ?? result) }], structuredContent: result, ...(result && typeof result === "object" && RECEIPTS.has(result) ? { _meta: { [RECEIPT_KEY]: RECEIPTS.get(result) } } : {}) });
 const fail = (err) => ({ isError: true, content: [{ type: "text", text: String(err?.message ?? err) }] });
-const guard = (fn) => async (args) => { try { return ok(await fn(args)); } catch (err) { return fail(err); } };
+// What each call cost, for the client in MCP's _meta, which hosts do not put in front of the model, so measuring
+// costs no tokens: wall time, the process's CPU time over the call where the runtime reports it (other calls
+// running at the same time included), and the characters the model reads.
+export const COST_KEY = "canlicapital.com/cost";
+const cpuNow = () => (typeof process?.cpuUsage === "function" ? process.cpuUsage() : null);
+// extra: the request's own, with its cancellation signal and progress token, for the tools that use them.
+const guard = (fn) => async (args, extra) => {
+  const started = performance.now(), cpu = cpuNow();
+  let out;
+  try {
+    const value = await fn(args, extra);
+    // A question for the person (2026-07-28 input_required) goes out as it is; the client retries with the answer.
+    if (isInputRequiredResult(value)) return value;
+    out = ok(value);
+  } catch (err) { out = fail(err); }
+  const used = cpu ? process.cpuUsage(cpu) : null;
+  const cost = { ms: Math.round(performance.now() - started), ...(used ? { cpu_ms: Math.round((used.user + used.system) / 1000) } : {}), chars: out.content.reduce((t, c) => t + (c.text?.length ?? 0), 0) };
+  return { ...out, _meta: { ...out._meta, [COST_KEY]: cost } };
+};
 
 async function toolFor(name, packs) {
+  const desk = DESK.find((t) => t.name === name);
+  if (desk) return desk;
+  if (!BY_NAME.has(name)) await upstreamsSettled();
   const e = BY_NAME.get(name);
   if (!e || !packs.includes(e.pack)) {
     const near = search(SEARCH, name.replace(/_/g, " "), { packs, limit: 3 }).map((t) => t.name);
@@ -131,8 +204,29 @@ export function createKeeper() {
     },
     get: (ref) => kept.get(ref)?.result,
     has: (ref) => kept.has(ref),
+    clear: () => { kept.clear(); chars = 0; },
+    // The receipt of the answer a kept result came in, for the receipts of answers built from it.
+    sign: (ref, receipt) => { const k = kept.get(ref); if (k) k.receipt = receipt; },
+    // The call that made a kept result, its arguments as they ran, for rerun_answer.
+    note: (ref, call) => { const k = kept.get(ref); if (k) k.call = call; },
+    callOf: (ref) => kept.get(ref)?.call,
+    receiptOf: (ref) => kept.get(ref)?.receipt,
   };
 }
+
+// Receipt chains: the kept results a call reads ($result refs in its arguments, or show_result's ref), each with
+// the receipt of the answer it came in, which names its own in turn. An answer's receipt writes out those it was
+// built from and theirs; below that, a receipt is named by its hashes.
+const RECEIPT_DEPTH = 3;
+function refsRead(calls) {
+  const refs = new Set();
+  const walk = (v) => { if (Array.isArray(v)) v.forEach(walk); else if (v && typeof v === "object") { if (typeof v.$result === "string") refs.add(v.$result); Object.values(v).forEach(walk); } };
+  for (const c of calls) { walk(c.arguments); if (c.name === "show_result" && typeof c.arguments?.ref === "string") refs.add(c.arguments.ref); }
+  return [...refs];
+}
+const named = ({ ref, input_sha256, output_sha256, at }) => ({ ref, input_sha256, output_sha256, at });
+const cut = (receipt, depth) => { const { from, ...own } = receipt; return from ? { ...own, from: from.map((p) => (depth > 1 ? cut(p, depth - 1) : named(p))) } : own; };
+const builtFrom = (refs, keeper) => refs.flatMap((ref) => { const r = keeper.receiptOf(ref); return r ? [{ ref, ...cut(r, RECEIPT_DEPTH - 1) }] : []; });
 
 function resolveResults(value, done, keeper) {
   if (Array.isArray(value)) return value.map((v) => resolveResults(v, done, keeper));
@@ -147,7 +241,7 @@ function resolveResults(value, done, keeper) {
     }
     if (Number.isInteger(value.$result)) {
       const i = value.$result;
-      if (!(i >= 0 && i < done.length)) throw new Error(`$result ${i} refers to a call that has not run in this batch. A number refers to an earlier call in the same batch; to use a result from an earlier run_tool call, pass its ref, for example {"$result": "r1", "path": "close"}.`);
+      if (!(i >= 0 && i < done.length) || !done[i]) throw new Error(`$result ${i} refers to a call that has not run in this batch. A number refers to an earlier call in the same batch; to use a result from an earlier run_tool call, pass its ref, for example {"$result": "r1", "path": "close"}.`);
       if (done[i].error) throw new Error(`$result ${i} failed: ${done[i].error}`);
       let v = at(done[i].result, value.path);
       if (v === undefined) throw new Error(`$result ${i} has nothing at "${value.path}".`);
@@ -159,6 +253,8 @@ function resolveResults(value, done, keeper) {
   return value;
 }
 const usesResults = (v) => (Array.isArray(v) ? v.some(usesResults) : v && typeof v === "object" ? Number.isInteger(v.$result) || typeof v.$result === "string" || Object.values(v).some(usesResults) : false);
+// The calls of the same batch a call reads, by number.
+const batchRefs = (v, out = new Set()) => { if (Array.isArray(v)) v.forEach((x) => batchRefs(x, out)); else if (v && typeof v === "object") { if (Number.isInteger(v.$result)) out.add(v.$result); Object.values(v).forEach((x) => batchRefs(x, out)); } return [...out]; };
 
 // Rounds fractional numbers to `digits` significant figures and never changes a whole number
 // (counts, share amounts, CIKs, dollar totals) or the integer part of a large value.
@@ -186,25 +282,71 @@ export function nonFinitePaths(v, path = "", out = []) {
 // long lists cut to their first and last items. The full result stays under its ref, and the
 // show_result call (named in the preview's note) reads any part of it.
 export const RESULT_CHARS = 200_000;
-const LIST_KEEP = 5, LIST_MAX = 40;
-export function preview(v, path = "", cut = []) {
+const LIST_KEEP = 5, LIST_MAX = 40, TEXT_KEEP = 2000;
+// keep, max and text shorten further for a tighter budget (fit, below).
+export function preview(v, path = "", cut = [], { keep = LIST_KEEP, max = LIST_MAX, text = TEXT_KEEP } = {}) {
   const at = (k) => (path ? `${path}.${k}` : String(k));
+  const limits = { keep, max, text };
   if (Array.isArray(v)) {
-    if (v.length <= LIST_MAX) return v.map((x, i) => preview(x, at(i), cut));
+    if (v.length <= max) return v.map((x, i) => preview(x, at(i), cut, limits));
     cut.push({ path: path || "result", items: v.length });
-    return { list_of: v.length, first: v.slice(0, LIST_KEEP).map((x, i) => preview(x, at(i), cut)), last: v.slice(-LIST_KEEP).map((x, i) => preview(x, at(v.length - LIST_KEEP + i), cut)) };
+    return { list_of: v.length, first: v.slice(0, keep).map((x, i) => preview(x, at(i), cut, limits)), last: keep ? v.slice(-keep).map((x, i) => preview(x, at(v.length - keep + i), cut, limits)) : [] };
   }
-  if (v && typeof v === "object") return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, preview(x, at(k), cut)]));
-  if (typeof v === "string" && v.length > 2000) {
+  if (v && typeof v === "object") return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, preview(x, at(k), cut, limits)]));
+  if (typeof v === "string" && v.length > text) {
     cut.push({ path: path || "result", chars: v.length });
-    return `${v.slice(0, 2000)}… (${v.length} characters)`;
+    return `${v.slice(0, text)}… (${v.length} characters)`;
   }
   return v;
 }
-function trimmed(result, ref, limit = RESULT_CHARS) {
+// What a model reads of a result. The whole result stays under its ref, so nothing is lost: show_result
+// gets it, and $result passes it on. On the 33 recorded answers this reads 15% fewer characters on a
+// first call and 22% fewer when a tool is called again (bench/result-chars.mjs).
+// - The list of source documents becomes a count and where to find it: a model rarely reads it.
+// - A tool's limits and meaning come once a session: the words do not change, and reading them twice costs tokens.
+// - Numbers show six significant figures unless digits says otherwise. Whole numbers stay exact.
+// The source documents results were read from, as the packs report them: the markets pack's evidence (URL, the
+// first 16 hex digits of the SHA-256 of the bytes received, and when) and the fundamentals pack's snapshot (URL,
+// full SHA-256, when it was taken). At most 200, each once.
+export function sourcesOf(results) {
+  const out = [], seen = new Set();
+  const add = (url, sha256, at, kind) => {
+    if (typeof url !== "string" || seen.has(`${url} ${sha256}`)) return;
+    seen.add(`${url} ${sha256}`);
+    out.push({ url, [kind]: sha256 ?? null, retrieved_at: at ?? null });
+  };
+  for (const r of results) {
+    if (!r || typeof r !== "object") continue;
+    const ev = r.evidence;
+    if (Array.isArray(ev?.rows) && Array.isArray(ev.columns)) {
+      const [u, h, t] = ["url", "sha256_16", "retrieved_at"].map((c) => ev.columns.indexOf(c));
+      for (const row of ev.rows) if (Array.isArray(row)) add(row[u], row[h], row[t], "sha256_16");
+    }
+    if (r.snapshot?.url) add(r.snapshot.url, r.snapshot.sha256, r.snapshot.fetched_at, "sha256");
+  }
+  return out.slice(0, 200);
+}
+export const DEFAULT_DIGITS = 6;
+export function leanResult(result, { name, ref, seen, digits } = {}) {
+  if (!result || typeof result !== "object" || Array.isArray(result)) return result;
+  let out = result;
+  // Only where the list can still be had: the hosted server keeps nothing between requests.
+  if (ref && Array.isArray(out.evidence?.rows)) out = { ...out, evidence: { documents: out.evidence.documents ?? out.evidence.rows.length, list: `show_result with ref ${ref} and path evidence` } };
+  if (seen && name) {
+    if (seen.has(name) && (out.limits || out.meaning)) {
+      const { limits: _limits, meaning: _meaning, ...rest } = out;
+      out = { ...rest, limits_and_meaning: `As in your earlier call of ${name}.` };
+    }
+    seen.add(name);
+  }
+  return digits === undefined ? roundNumbers(out, DEFAULT_DIGITS) : out;
+}
+
+function trimmed(result, ref, limit = RESULT_CHARS, shorten = {}) {
   const chars = JSON.stringify(result).length;
   if (chars <= limit) return result;
-  const cut = [], shown = preview(result, "", cut);
+  const { keep = LIST_KEEP, text = TEXT_KEEP } = shorten;
+  const cut = [], shown = preview(result, "", cut, shorten);
   const parts = cut.slice(0, 6).map((c) => `${c.path} (${c.items !== undefined ? `${c.items} items` : `${c.chars} characters`})`).join(", ") + (cut.length > 6 ? ` and ${cut.length - 6} more` : "");
   const first = cut[0]?.path === "result" ? "" : cut[0]?.path ?? "";
   return {
@@ -212,9 +354,24 @@ function trimmed(result, ref, limit = RESULT_CHARS) {
     preview_only: {
       chars,
       shortened: cut.slice(0, 20),
-      note: `This result is ${chars} characters. Lists show their first and last ${LIST_KEEP} items; long text shows its first 2000 characters. Shortened: ${parts || "large fields"}. ${ref ? `The whole result is kept as ${ref}: read a part with run_tool {"name": "show_result", "arguments": {"ref": "${ref}", "path": "${first}", "offset": 0, "limit": 200}}, pass {"$result": "${ref}", "path": "${first}"} to another tool, or call again with select.` : "Call again with select to choose the fields you need."}`,
+      note: `This result is ${chars} characters. Lists show their first and last ${keep} items; long text shows its first ${text} characters. Shortened: ${parts || "large fields"}. ${ref ? `The whole result is kept as ${ref}: read a part with run_tool {"name": "show_result", "arguments": {"ref": "${ref}", "path": "${first}", "offset": 0, "limit": 200}}, pass {"$result": "${ref}", "path": "${first}"} to another tool, or call again with select.` : "Call again with select to choose the fields you need."}`,
     },
   };
+}
+
+// A result within `budget` characters of JSON (run_tool's max_chars): shortened step by step, with lists cut to
+// fewer ends and long text to fewer characters, and as a last resort only the shape of its top level. The whole
+// result stays under its ref either way.
+const SHORTER = [{}, { keep: 3, max: 12, text: 600 }, { keep: 1, max: 4, text: 200 }, { keep: 0, max: 0, text: 80 }];
+export function fit(result, ref, budget = RESULT_CHARS) {
+  for (const shorten of SHORTER) {
+    const out = trimmed(result, ref, budget, shorten);
+    if (JSON.stringify(out).length <= budget) return out;
+  }
+  const shape = result && typeof result === "object" && !Array.isArray(result)
+    ? Object.fromEntries(Object.entries(result).map(([k, v]) => [k, Array.isArray(v) ? `list of ${v.length}` : v && typeof v === "object" ? "object" : typeof v === "string" && v.length > 80 ? `text of ${v.length} characters` : v]))
+    : { result: Array.isArray(result) ? `list of ${result.length}` : typeof result };
+  return { ...shape, preview_only: { chars: JSON.stringify(result).length, note: `Only the shape fits max_chars ${budget}.${ref ? ` The whole result is kept as ${ref}: read parts with show_result, or call again with select.` : " Call again with select or a larger max_chars."}` } };
 }
 
 // What the model reads of a result the person sees as a view: every field, with each long list as
@@ -247,46 +404,136 @@ export function showResult(keeper, args) {
 }
 
 const RUN_INPUT = z.object({
-      name: z.string().max(100).optional().describe("Tool name from find_tool (single call)."),
-      arguments: z.record(z.string(), z.unknown()).optional().describe("The tool's arguments (single call)."),
-      calls: z.array(z.object({ name: z.string().max(100), arguments: z.record(z.string(), z.unknown()).optional() }).strict()).min(1).max(25).optional().describe("Several calls in one round trip. Calls without $result references run concurrently."),
-      return: z.enum(["all", "last"]).optional().describe("For a batch: every result (default) or only the last one."),
-      digits: z.number().int().min(3).max(10).optional().describe("Round fractional numbers in the results to this many significant figures (4-6 saves output tokens); whole numbers such as counts, shares and IDs are never changed. Default: as each tool returns them."),
-      select: z.array(z.string().max(200)).min(1).max(30).optional().describe("Return only these fields of each result, as dotted paths, e.g. [\"verdict\", \"multiple_testing.best\", \"rows.0.accession\"] (table rows take column names)."),
-      receipt: z.boolean().optional().describe("Add input and output SHA-256 and pack versions so the result can be recomputed and compared."),
-      view: z.boolean().optional().describe("Draw the whole result for the person (charts, comparisons, option chains, yield curves, statements, backtest dashboards, order tickets) and return you a summary, where MCP Apps are drawn."),
+      name: z.string().max(100).optional().describe("Tool name from find_tool."),
+      arguments: z.record(z.string(), z.unknown()).optional().describe("The tool's arguments."),
+      calls: z.array(z.object({ name: z.string().max(100), arguments: z.record(z.string(), z.unknown()).optional() }).strict()).min(1).max(25).optional().describe("Several calls in one round trip; calls without $result run concurrently."),
+      return: z.enum(["all", "last"]).optional().describe("Batch: every result (default) or only the last."),
+      digits: z.number().int().min(3).max(10).optional().describe("Round fractional numbers to this many significant figures (default 6; 4 saves tokens); whole numbers never change."),
+      select: z.array(z.string().max(200)).min(1).max(30).optional().describe("Only these fields of each result, as dotted paths, e.g. [\"verdict\", \"rows.0.accession\"] (rows take column names)."),
+      receipt: z.boolean().optional().describe("Add input and output SHA-256 and pack versions, to recompute and compare later."),
+      max_chars: z.number().int().min(1000).max(RESULT_CHARS).optional().describe("Cap each result at this many JSON characters; the rest stays under its ref."),
+      as_of: z.string().max(10).optional().describe("As of this past date (YYYY-MM-DD): only what was public then."),
+      changes_only: z.boolean().optional().describe("Only what changed since this call last ran in this session."),
+      view: z.boolean().optional().describe("Draw the result for the person (charts, statements, yield curves, backtests) where MCP Apps are drawn; you get a summary."),
     }).strict();
+// prove is listed only where the server signs its receipts: a proof is checked against the root a signed receipt
+// carries, and a local server holds no key, so there it would cost every session its tokens for nothing.
+const RUN_PROVE = RUN_INPUT.extend({
+  prove: z.array(z.string().max(300)).min(1).max(20).optional().describe("Values to prove, as JSON Pointers into the calls' output (e.g. /0/result/sharpe): each comes with a proof against the signed receipt, for receipt_check."),
+});
 
 export const canliHome = (env = process.env) => env.CANLI_HOME ?? join(homedir(), ".canli");
 
 // Every pack tool call passes the policy (CANLI_POLICY) first and is written to its audit log,
 // refusals and failures too.
-async function runOne(packs, { name, arguments: args }, opts, files, gov) {
+// --as-of or CANLI_AS_OF, read once when the server starts: no call can change it. See timemachine.mjs.
+const AS_OF_ARG = process.argv.includes("--as-of") ? process.argv[process.argv.indexOf("--as-of") + 1] : process.env.CANLI_AS_OF;
+const TIME_MACHINE = AS_OF_ARG ? createTimeMachine(AS_OF_ARG) : null;
+
+async function runOne(packs, { name, arguments: given }, opts, files, gov, machine = TIME_MACHINE) {
   const tool = await toolFor(name, packs);
-  if (!gov?.policy) return execute(tool, name, args, opts, files);
+  // Offline with packs, what the fundamentals pack cannot find was never saved: its own words would say the SEC
+  // has no figures, so they are put right.
+  if (OFFLINE_PACKS && tool.pack === "fundamentals") return runOneAt(packs, tool, name, given, opts, files, gov, machine).catch((e) => { throw new Error(`${e.message} Offline: only the companies saved with canli-mcp pack add are here (canli-mcp pack list).`); });
+  return runOneAt(packs, tool, name, given, opts, files, gov, machine);
+}
+async function runOneAt(packs, tool, name, given, opts, files, gov, machine) {
+  const args = machine ? machine.admit(name, tool.pack, given) : given;
+  const finish = (result) => (machine ? machine.seal(name, result) : result);
+  if (!gov?.policy) return finish(await execute(tool, name, args, opts, files));
   try {
     gov.check(BY_NAME.get(name), { destructive: Boolean(tool.annotations?.destructiveHint) });
-    const result = await execute(tool, name, args, opts, files);
+    const result = finish(await execute(tool, name, args, opts, files));
     gov.record({ tool: name, pack: tool.pack, args, result });
     return result;
   } catch (e) { gov.record({ tool: name, pack: tool.pack, args, error: e.message }); throw e; }
 }
+// Identical read-only calls in flight share one computation: a batch that asks the same thing twice, or concurrent
+// requests in one process. The first caller keeps the result and each later one gets its own copy, so no caller
+// can change another's. A tool that writes or sends anything always runs.
+const INFLIGHT = new Map();
+// A pack that sends nothing runs with fetch refused (tripwire.mjs).
+// With CANLI_OFFLINE=packs, the fundamentals pack is one of them: it reads only what canli-mcp pack add saved.
+const OFFLINE_PACKS = offlineMode() === "packs";
+const sendsNothing = (pack) => Boolean(PACKS[pack]?.offline) || PLUGINS.get(pack)?.network === "none" || (OFFLINE_PACKS && pack === "fundamentals");
+function shared(tool, name, data) {
+  const run = sendsNothing(tool.pack) ? () => withoutNetwork(name, tool.pack, () => tool.run(data, tool.pack === "quant" ? { digits: 15 } : undefined)) : () => tool.run(data, tool.pack === "quant" ? { digits: 15 } : undefined);
+  if (!tool.annotations?.readOnlyHint || tool.annotations?.destructiveHint) return run();
+  const key = `${name}\u0000${JSON.stringify(data)}`;
+  const running = INFLIGHT.get(key);
+  if (running) return running.then((out) => structuredClone(out));
+  const started = Promise.resolve().then(run);
+  INFLIGHT.set(key, started);
+  started.then(() => INFLIGHT.delete(key), () => INFLIGHT.delete(key));
+  return started;
+}
+// An argument a model got nearly right: the tool's own key it most likely meant, by the names models reach for
+// (ticker for symbol, start_date for start) or by spelling. When renaming fixes the call, the error gives the call.
+const MEANT = { ticker: ["symbol", "company"], tickers: ["symbols", "companies", "holdings"], symbols: ["tickers", "holdings"], company: ["symbol", "ticker"], symbol: ["ticker", "company"], start_date: ["start", "since", "from"], end_date: ["end", "until", "to"], from: ["start", "since"], to: ["end", "until"], date: ["as_of", "end"], n: ["limit", "top"], count: ["limit", "top"], max: ["limit"], form: ["forms"], forms: ["form"], query: ["search", "q"], search: ["query"], period: ["periods"], cik: ["company"] };
+const apart = (a, b) => { const d = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]); for (let j = 1; j <= b.length; j++) d[0][j] = j; for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); return d[a.length][b.length]; };
+// given: the arguments as sent, resolved: with $file read in, which is what is checked; the call shown is the one
+// sent, so nothing read from a file comes back in an error.
+function corrected(tool, given, resolved, issues) {
+  const keys = Object.keys(tool.input?.shape ?? {}), fixed = { ...given }, checked = { ...resolved }, renames = [];
+  for (const bad of issues.filter((i) => i.code === "unrecognized_keys").flatMap((i) => i.keys)) {
+    const meant = (MEANT[bad] ?? []).find((k) => keys.includes(k) && !(k in fixed)) ?? keys.filter((k) => !(k in fixed)).map((k) => [k, apart(bad, k)]).filter(([, n]) => n <= 2).sort((x, y) => x[1] - y[1])[0]?.[0];
+    if (!meant) continue;
+    for (const o of [fixed, checked]) { o[meant] = o[bad]; delete o[bad]; }
+    renames.push(`${bad} is ${meant}`);
+  }
+  if (!renames.length) return "";
+  if (!tool.input.safeParse(checked).success) return ` ${renames.join("; ")}.`;
+  const call = JSON.stringify({ name: tool.name, arguments: fixed });
+  return call.length <= 600 ? ` ${renames.join("; ")}: the call is ${call}.` : ` ${renames.join("; ")}, and with that the call checks.`;
+}
+// Some frameworks send every optional argument, as null when unset (CrewAI through mcpadapt; OpenAI's strict
+// function calling). An argument that is null where null is not allowed counts as not given, so an error names only what
+// is still wrong, not the nulls.
+export const withoutNulls = (value) => (value && typeof value === "object" && !Array.isArray(value) && Object.values(value).includes(null) ? Object.fromEntries(Object.entries(value).filter(([, v]) => v !== null)) : null);
+function parseLenient(schema, value) {
+  const parsed = schema.safeParse(value);
+  if (parsed.success) return parsed;
+  const kept = withoutNulls(value);
+  return kept ? schema.safeParse(kept) : parsed;
+}
+// The SDK checks a tool's arguments before its handler runs, so the same rule is applied there.
+function acceptNulls(server) {
+  if (server.__acceptsNulls || typeof server.validateToolInput !== "function") return;
+  const validate = server.validateToolInput.bind(server);
+  server.validateToolInput = async (tool, args, name) => {
+    try {
+      return await validate(tool, args, name);
+    } catch (err) {
+      const kept = withoutNulls(args);
+      if (!kept) throw err;
+      return validate(tool, kept, name);
+    }
+  };
+  server.__acceptsNulls = true;
+}
 async function execute(tool, name, args, { digits }, files) {
-  const parsed = tool.input.safeParse(resolveRefs(args ?? {}, files));
-  if (!parsed.success) throw new Error(`${name}: ${parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "arguments"}: ${i.message}`).join("; ")}. Arguments: ${BY_NAME.get(name).args}. describe_tool ${name} explains each one.`);
+  const resolved = resolveRefs(args ?? {}, files);
+  const parsed = parseLenient(tool.input, resolved);
+  const plain = args && typeof args === "object" && !Array.isArray(args) && resolved && typeof resolved === "object" && !Array.isArray(resolved);
+  if (!parsed.success) throw new Error(`${name}: ${parsed.error.issues.slice(0, 5).map((i) => `${i.path.join(".") || "arguments"}: ${i.message}`).join("; ")}.${plain ? corrected({ ...tool, name }, args, resolved, parsed.error.issues) : ""} Arguments: ${BY_NAME.get(name).args}. describe_tool ${name} explains each one.`);
   // Packs return full precision (quant's own default); rounding happens once, here.
-  const out = await tool.run(parsed.data, tool.pack === "quant" ? { digits: 15 } : undefined);
+  const out = await shared(tool, name, parsed.data);
   const bad = nonFinitePaths(out);
   const result = digits ? roundNumbers(out, digits) : out;
+  // roundNumbers rebuilds the tree, which leaves out symbol keys: a pack's variant returns go on to luck as they were.
+  if (result !== out && result && typeof result === "object") for (const k of [TRIAL_RETURNS, TRIAL_DATES]) if (out?.[k]) result[k] = out[k];
   if (!bad.length || !result || typeof result !== "object" || Array.isArray(result)) return result;
   return { ...result, non_finite_values: { count: bad.length, paths: bad.slice(0, 8), note: "These numbers are not finite (an overflow, or a division by zero in the inputs) and print as null." } };
 }
 
 // No pack filter: in an agent evaluation a model narrowed its search to one pack and missed the tool
 // that fitted its inputs in another.
-function findTool(packs, { query, limit }) {
+async function findTool(packs, { query, limit }) {
   if (typeof query !== "string" || !query.trim()) throw new Error("find_tool: query is what you need, in plain words.");
-  const found = search(SEARCH, query, { packs, limit: Math.min(Math.max(Number(limit) || 6, 1), 50) });
+  await upstreamsSettled();
+  const want = Math.min(Math.max(Number(limit) || 6, 1), 50);
+  const all = search(SEARCH, query, { packs: [...packs, "desk"], limit: TIME_MACHINE ? 50 : want });
+  const found = TIME_MACHINE ? all.filter((t) => TIME_MACHINE.admits(t.name, t.pack) || TIME_MACHINE.selfAllowed(t.name)).slice(0, want) : all;
   return { columns: ["name", "pack", "args", "description"], rows: found.map((t) => [t.name, t.pack, t.args, t.description.split(/(?<=\.)\s/)[0]]), next: "run_tool with these args (? = optional); describe_tool only if you need each argument's meaning or limits." };
 }
 async function describeTool(packs, { name }) {
@@ -295,66 +542,288 @@ async function describeTool(packs, { name }) {
   return { name: t.name, pack: t.pack, title: t.title, description: t.description, input_schema: schema, ...(t.annotations?.destructiveHint ? { destructive: true } : {}) };
 }
 
-export function registerAll(server, packs = enabledPacks(), gov = governance(process.env, canliHome())) {
+// readOnly: the hosted server, where a call changes nothing that outlives its request, says so, so a
+// client need not ask before each one.
+// The tools this server answers itself rather than through a pack. run_tool and the shell command both
+// come here, so a desk tool is never handed to a pack's runner.
+// machine: the time machine this call answers under (the server's, its own as_of, or a holdout's), which every call a
+// desk tool makes is held to as well.
+// session: what the server keeps across calls for red_team (the luck count and its attempt log); a lone call gets its own.
+export function selfTools(packs, gov, keeper, readOnly = false, vault = null, preregs = null, machine = TIME_MACHINE, session = {}) {
+  const desk = { call: (name, args) => (name === "triangulate" ? runTriangulate(desk, args) : runOne(packs, { name, arguments: args }, {}, [], gov, machine)), keep: (r) => keeper.put(r), get: (ref) => keeper.get(ref), at, toolFor: (name) => toolFor(name, packs), hosted: Boolean(readOnly) };
+  // A rule outlives the call that sets it, so it lives on your machine and never on the hosted server.
+  const sentinel = async () => {
+    if (readOnly) throw new Error("The sentinel watches from your own machine. Run it locally: npx -y canli-mcp");
+    const { createSentinel } = await import("../local/sentinel.mjs");
+    return createSentinel({ home: canliHome(), call: desk.call });
+  };
+  // A policy that bars these tools bars them here too, as it does for any pack's.
+  const allowed = (name) => { if (gov?.policy) gov.check(BY_NAME.get(name), { destructive: false }); };
+  const tools = { my_week: (args) => { allowed("my_week"); return runWeek(desk, args); }, signed_trial_count: (args) => { allowed("signed_trial_count"); if (readOnly) throw new Error("The signed log is on your own machine. Run it locally: npx -y canli-mcp"); return signedTrialCount(args, { dir: join(canliHome(), "audit"), keys: publicKeys(canliHome()) }); }, sentinel_add: async (args) => { allowed("sentinel_add"); return (await sentinel()).add(args); }, sentinel_list: async () => { allowed("sentinel_list"); return (await sentinel()).list(); }, sentinel_remove: async ({ id }) => { allowed("sentinel_remove"); return (await sentinel()).remove(id); }, sentinel_events: async (args) => { allowed("sentinel_events"); return (await sentinel()).events(args ?? {}); }, brief: (args) => runBrief(desk, args), swarm: (args) => runSwarm(desk, args), stress_worlds: (args) => runWorlds(desk, args), hub_list: (args) => runHubList(args), hub_check: (args) => runHubCheck(args), hub_run: (args) => runHubRun(desk, args), draft_orders: (args) => runDraft(args), triangulate: (args) => runTriangulate(desk, args), show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
+  // The holdout vault keeps a session, so it lives on your machine (holdout.mjs).
+  const vaulted = (name) => { allowed(name); if (readOnly || !vault) throw new Error("The holdout vault keeps a session, and the hosted server keeps nothing between requests. Run it locally: npx -y canli-mcp"); return vault; };
+  tools.restatement_causes = (args) => { allowed("restatement_causes"); return runCauses(desk, args); };
+  tools.receipt_check = (args) => { allowed("receipt_check"); return runReceiptCheck(desk, args); };
+  tools.reconcile_shares = (args) => { allowed("reconcile_shares"); return runShares(desk, args); };
+  tools.red_flags = (args) => { allowed("red_flags"); return runRedFlags(desk, args); };
+  tools.fiscal_calendar = (args) => { allowed("fiscal_calendar"); return runFiscal(desk, args); };
+  // Every attempt counted with everything this session tried (redteam.mjs); its strategy tool runs under the same locks.
+  const redTeamLog = session.redTeam ?? createRedTeam(), redTeamLuck = session.luck ?? createLuck({ scope: "call" });
+  tools.red_team = async (args) => { allowed("red_team"); const out = await runRedTeam({ call: desk.call, luck: redTeamLuck, log: redTeamLog, vault, hosted: Boolean(readOnly), zoo: session.zoo, session: redTeamLog.id }, args); return { ...out, result: shownTrials(out.result) }; };
+  // The Null Zoo on this machine (local/zoo.mjs), opened when first used; never on the hosted server.
+  const zooOf = async (name) => { allowed(name); const z = readOnly ? null : await session.zoo?.(); if (!z) throw new Error(readOnly ? "The Null Zoo is kept on your own machine. Run it locally: npx -y canli-mcp" : "The Null Zoo is off on this server (CANLI_NULL_ZOO=off)."); return z; };
+  tools.zoo_search = async (args) => runZooSearch(await zooOf("zoo_search"), args);
+  tools.zoo_stats = async () => runZooStats(await zooOf("zoo_stats"));
+  // A track record committed before each day and scored on public prices (track.mjs); files on this machine.
+  const local = (name) => { allowed(name); if (readOnly) throw new Error(`${name} keeps files on your own machine. Run it locally: npx -y canli-mcp`); };
+  tools.track_commit = async (args) => { local("track_commit"); return (await import("../local/track.mjs")).trackCommit(TRACK_TOOLS[0].input.parse(args ?? {})); };
+  tools.track_score = async (args) => { local("track_score"); return (await import("../local/track.mjs")).trackScore(TRACK_TOOLS[1].input.parse(args ?? {})); };
+  // The Lab on this machine (src/lab.mjs): about a million strategies, built once by `canli-mcp lab build`.
+  const labDir = join(canliHome(), "lab", "v1");
+  const labOf = (name) => { local(name); return session.lab ? session.lab() : openLab(labDir); };
+  tools.originality_check = (args) => runOriginality(labOf("originality_check"), args);
+  tools.lab_search = (args) => runLabSearch(labOf("lab_search"), args);
+  tools.lab_strategy = (args) => runLabStrategy(labOf("lab_strategy"), args);
+  tools.lab_status = () => { local("lab_status"); return runLabStatus(labDir); };
+  // A Canli model: where a result lands against the company's own guidance (beat.mjs).
+  tools.beat_probability = (args) => { allowed("beat_probability"); return runBeat(desk, args); };
+  // Every common way a backtest misleads, in one call (forensics.mjs); the Lab's comparison where it is built.
+  tools.backtest_forensics = (args) => { allowed("backtest_forensics"); return runForensics({ call: desk.call, lab: () => { if (readOnly) throw new Error("The Lab is not built on this machine. It is local: npx -y canli-mcp"); return session.lab ? session.lab() : openLab(labDir); }, sessionTrials: session.luck?.trials ?? 0, runOriginality }, args); };
+  // The data lake on this machine (local/lake.mjs): DuckDB over Parquet, reaching only the lake folder.
+  for (const { name } of LAKE_TOOLS) tools[name] = async (args) => { allowed(name); if (readOnly || !session.lake) throw new Error("The data lake is kept on your own machine. Run it locally: npx -y canli-mcp"); return runLake({ call: desk.call, at, lake: session.lake }, name, args); };
+  const keptOrThrow = (ref) => { if (!keeper.has(ref)) throw new Error(`${ref} is not kept; refs name earlier results (the last ${KEEP_COUNT} are kept).`); return keeper.get(ref); };
+  tools.compare_answers = (args) => {
+    allowed("compare_answers");
+    const a = compareInput.parse(args ?? {});
+    const [before, after] = [keptOrThrow(a.before), keptOrThrow(a.after)];
+    const [cb, ca] = [keeper.callOf(a.before), keeper.callOf(a.after)];
+    const changed = diff(before, after);
+    return { before: a.before, after: a.after, same_question: Boolean(cb && ca && JSON.stringify(cb) === JSON.stringify(ca)), ...(changed === undefined ? { unchanged: true } : { changed }) };
+  };
+  tools.rerun_answer = async (args) => {
+    allowed("rerun_answer");
+    const a = rerunInput.parse(args ?? {});
+    const before = keptOrThrow(a.ref), call = keeper.callOf(a.ref);
+    if (!call) throw new Error(`${a.ref} was not kept with its call, so it cannot be run again.`);
+    const now = await runOne(packs, { name: call.name, arguments: call.arguments }, {}, [], gov, machine);
+    const ref = keeper.put(now);
+    if (ref) keeper.note(ref, call);
+    const changed = diff(before, now);
+    return { ref: a.ref, rerun: call.name, ...(ref ? { new_ref: ref } : {}), ...(changed === undefined ? { same: true, reading: "The same answer, apart from when its sources were read." } : { same: false, changed }) };
+  };
+  tools.cost_preview = (args) => {
+    allowed("cost_preview");
+    const { name } = previewInput.parse(args ?? {});
+    const e = BY_NAME.get(name);
+    if (!e) throw new Error(`No tool ${name}; find_tool names them.`);
+    const list = keeper.costs?.get(name) ?? [];
+    const med = (xs) => [...xs].sort((x, y) => x - y)[Math.floor(xs.length / 2)];
+    const network = sendsNothing(e.pack) ? "none" : (packInfo(e.pack)?.network ?? "the desk tools call other tools");
+    if (!list.length) return { tool: name, measured: false, network, reading: "Not run yet in this session. Reading the network makes a first call slower than later ones, which use caches; max_chars caps an answer's size." };
+    const ms = list.map((x) => x[0]), chars = list.map((x) => x[1]);
+    return { tool: name, measured: true, calls: list.length, ms: { median: Math.round(med(ms)), largest: Math.round(Math.max(...ms)) }, chars: { median: med(chars), largest: Math.max(...chars) }, tokens_about: Math.round(med(chars) / 4), network, reading: `Earlier in this session it took about ${Math.round(med(ms))} ms and answered with about ${med(chars)} characters (${Math.round(med(chars) / 4)} tokens); max_chars or select keep a call smaller.` };
+  };
+  tools.export_result = async (args) => {
+    allowed("export_result");
+    if (readOnly) throw new Error("export_result writes to your own machine. Run it locally: npx -y canli-mcp");
+    const a = exportInput.parse(args ?? {});
+    if (!keeper.has(a.ref)) throw new Error(`${a.ref} is not kept; refs name earlier results (the last ${KEEP_COUNT} are kept).`);
+    const value = a.path ? at(keeper.get(a.ref), a.path) : keeper.get(a.ref);
+    if (value === undefined) throw new Error(`${a.ref} has nothing at "${a.path}".`);
+    const { toCsv, writeExport } = await import("../local/export.mjs");
+    const text = a.name.endsWith(".csv") ? toCsv(value) : JSON.stringify(value, null, 1);
+    const out = writeExport(canliHome(), a.name, text, keeper.receiptOf(a.ref));
+    return { ...out, bytes: Buffer.byteLength(`${text}\n`), ...(a.name.endsWith(".csv") ? { lines: text.split("\n").length } : {}) };
+  };
+  tools.preregister = async (args) => {
+    allowed("preregister");
+    if (readOnly || !preregs) throw new Error("A pre-registration is named in the receipts of a session's later answers, and the hosted server keeps nothing between requests. Run it locally: npx -y canli-mcp");
+    const entry = await preregs.add(args);
+    gov?.audit?.record?.({ tool: "preregister", pack: "desk", args: { sha256: entry.sha256 }, result: { id: entry.id, at: entry.at } });
+    return entry;
+  };
+  tools.holdout_set = (args) => vaulted("holdout_set").set(args);
+  tools.holdout_status = () => vaulted("holdout_status").status();
+  tools.holdout_test = async (args) => {
+    const v = vaulted("holdout_test");
+    v.check();
+    const a = HOLDOUT_TOOLS[1].input.parse(args ?? {});
+    if (BY_NAME.get(a.name)?.pack === "desk") throw new Error(`holdout_test runs a pack's tool, not ${a.name}.`);
+    // Held only to the server's own date, if it runs as of one: the holdout is what this call may see.
+    const result = await runOne(packs, { name: a.name, arguments: a.arguments ?? {} }, {}, [], gov, TIME_MACHINE ?? undefined);
+    const test = v.record({ tool: a.name, input_sha256: sha256({ name: a.name, arguments: a.arguments ?? {} }), output_sha256: sha256(result) });
+    gov?.audit?.record?.({ tool: "holdout_test", pack: "desk", args: { tool: a.name, from: v.from() }, result: test });
+    return { ...result, holdout: { from: v.from(), test, reading: "The one test of this holdout. It stays hidden after this test, so a second one is refused." } };
+  };
+  if (!TIME_MACHINE) return tools;
+  return Object.fromEntries(Object.entries(tools).map(([name, run]) => [name, TIME_MACHINE.selfAllowed(name) ? run : () => { throw TIME_MACHINE.refuse(name); }]));
+}
+
+// A receipt as the server that signs its receipts issues it ({ endpoint, sign }, as canlicapital.com's hosted server
+// does): naming that endpoint, with sign's signature over the rest. A server that signs nothing returns it as it was.
+const signedBy = (receipts, receipt) => {
+  if (!receipts) return receipt;
+  const issued = { ...receipt, endpoint: receipts.endpoint };
+  // A post-quantum signature first (receipts.signPq, ML-DSA-65), over the receipt without signatures; then the Ed25519
+  // one over the receipt with it, so a reader that knows only Ed25519 checks the whole (receipt-check.mjs).
+  const pq = receipts.signPq ? receipts.signPq(issued) : null;
+  const both = pq ? { ...issued, signature_pq: pq } : issued;
+  return { ...both, signature: receipts.sign(both) };
+};
+
+// live: a local stdio server, which can keep a subscription and poll for it; hosted and browser servers cannot.
+// receipts: { endpoint, sign, signPq? } for a server that signs every answer's receipt; a local server holds no key.
+export function registerAll(server, packs = enabledPacks(), gov = governance(process.env, canliHome()), { readOnly = false, live = false, receipts = null } = {}) {
+  acceptNulls(server);
   const keeper = createKeeper();
+  const readLimits = new Set();
+  // Every strategy result counted against the whole search (luck.mjs): a session here, one request when hosted.
+  const luck = createLuck({ scope: readOnly ? "request" : "session" });
+  // red_team's attempts in this session, each judged with every strategy the luck count holds (redteam.mjs).
+  const redTeam = createRedTeam();
+  // The Null Zoo: red_team's tries kept across sessions on this machine, opened on first use (local/zoo.mjs).
+  let zooOpened = null;
+  const zoo = readOnly || /^(off|0|false|no)$/i.test(process.env.CANLI_NULL_ZOO ?? "") ? null : () => (zooOpened ??= import("../local/zoo.mjs").then((m) => m.openZoo(canliHome())));
+  // The Lab, read once when first used (src/lab.mjs); not built yet is said again next time.
+  let labOpened = null;
+  const lab = readOnly ? null : () => (labOpened ??= openLab(join(canliHome(), "lab", "v1")));
+  // Every dated strategy answer set against the Lab over the same months (labnote.mjs); CANLI_LAB_NOTES=off stops it.
+  const labNotes = createLabNotes({ lab, runOriginality, enabled: !/^(off|0|false|no)$/i.test(process.env.CANLI_LAB_NOTES ?? "") });
+  // The data lake, opened on first use; a failed open (DuckDB not installed yet) is tried again next time.
+  let lakeOpened = null;
+  const lake = readOnly ? null : () => (lakeOpened ??= import("../local/lake.mjs").then((m) => m.openLake(canliHome())).catch((e) => { lakeOpened = null; throw e; }));
+  // Each call's last whole result, for changes_only (delta.mjs).
+  const delta = createDelta();
+  installTripwire();
+  // What each tool cost when it ran in this session, for cost_preview: milliseconds and answer characters, the last 50.
+  keeper.costs = new Map();
+  // A holdout period hidden from every tool until its one test (holdout.mjs); setting it clears what was kept.
+  const vault = createVault({ onSet: () => { keeper.clear(); delta.clear(); } });
+  // Hypotheses hashed before the data, named in every later receipt (prereg.mjs); kept in CANLI_HOME on this machine.
+  const preregs = createRegistry({ keep: readOnly ? null : async (line) => (await import("../local/prereg.mjs")).keepPreregistration(canliHome(), line) });
+  const writers = packs.filter((p) => UPSTREAMS.get(p)?.write);
   server.registerTool("find_tool", {
     title: "Find a tool",
-    description: `Search the ${ENTRIES.filter((e) => packs.includes(e.pack)).length} finance tools (packs: ${packs.join(", ")}) by what you need, e.g. "deflated sharpe", "black scholes greeks", "revenue as of 2019". Returns names, packs, argument signatures and one-line descriptions, best first.`,
+    description: `Search the ${ENTRIES.filter((e) => packs.includes(e.pack)).length} finance tools (packs: ${packs.join(", ")}) in plain words, e.g. "deflated sharpe", "revenue as of 2019". Returns the closest matches first, with names, argument signatures and one line each, even when none fits, so check them. Next: run_tool, or describe_tool if an argument is unclear.`,
     annotations: { title: "Find a tool", ...READ_ONLY },
-    inputSchema: z.object({ query: z.string().max(200).describe("What you need, in plain words."), limit: z.number().int().min(1).max(50).optional().describe("Default 6.") }).strict(),
+    inputSchema: z.object({ query: z.string().max(200).describe("What you need, in plain words."), limit: z.number().int().min(1).max(50).optional().describe("1 to 50, default 6.") }).strict(),
     outputSchema: open,
   }, guard(({ query, limit }) => findTool(packs, { query, limit })));
   server.registerTool("describe_tool", {
     title: "Describe a tool",
-    description: "Get one tool's full description and exact input JSON Schema before calling run_tool.",
+    description: "Read one tool's full description and input JSON Schema, between find_tool and run_tool, when find_tool's signature does not settle an argument. An unknown name returns an error.",
     annotations: { title: "Describe a tool", ...READ_ONLY },
-    inputSchema: z.object({ name: z.string().max(100).describe("A tool name from find_tool.") }).strict(),
+    inputSchema: z.object({ name: z.string().max(100).describe("The exact tool name, as find_tool returned it.") }).strict(),
     outputSchema: open,
   }, guard(({ name }) => describeTool(packs, { name })));
   server.registerTool("run_tool", {
     title: "Run tools",
-    description: "Run one tool ({name, arguments}) or several in one call ({calls: [...]}). Any argument can be {\"$file\": \"path.csv\", \"column\": \"close\"} (or \"columns\": [...] / \"all\") instead of pasted numbers. {\"$result\": i, \"path\": \"close\"} passes batch call i's output into a later call; every result also has a ref (\"r1\", \"r2\", ...) that later run_tool calls can pass the same way, {\"$result\": \"r1\", \"path\": \"close\"}, so data never needs to be copied.",
-    annotations: { title: "Run tools", readOnlyHint: false, destructiveHint: true, idempotentHint: false, openWorldHint: true },
-    inputSchema: RUN_INPUT,
+    description: `Run a tool find_tool named: one ({name, arguments}), or up to 25 ({calls: [...]}). Independent calls run at once; a failed call returns its own error. Read-only unless the paper-trading pack is on${writers.length ? ` or ${writers.join(", ")} (an upstream server allowed to change things)` : ""}.` + " Any argument can be {\"$file\": \"path.csv\", \"column\": \"close\"} (or \"columns\": [...] / \"all\") instead of pasted numbers. {\"$result\": i, \"path\": \"close\"} passes batch call i's output into a later call; every result also has a ref (\"r1\", ...) later calls pass the same way, {\"$result\": \"r1\", \"path\": \"close\"}, so data never needs copying.",
+    // Only the paper pack, or an upstream server marked write, can change anything; without them nothing here is destructive.
+    annotations: { title: "Run tools", readOnlyHint: Boolean(readOnly), destructiveHint: packs.includes("paper") || writers.length > 0, idempotentHint: false, openWorldHint: true },
+    inputSchema: receipts ? RUN_PROVE : RUN_INPUT,
     outputSchema: open,
     // Hosts that draw MCP Apps show the result in the viewer; others ignore this.
     _meta: { ui: { resourceUri: VIEW_URI } },
-  }, guard(async (a) => {
+  }, guard(async (a, extra) => {
     // Models sometimes call run_tool through itself ({"name": "run_tool", "arguments": {...}});
     // unwrap it, and its calls inside a batch.
     if (a.name === "run_tool" && a.arguments && typeof a.arguments === "object") { const { name, arguments: inner, ...outer } = a; a = { ...inner, ...Object.fromEntries(Object.entries(outer).filter(([, v]) => v !== undefined)) }; }
     if (a.calls) a.calls = a.calls.flatMap((c) => (c.name === "run_tool" && c.arguments ? (c.arguments.calls ?? [{ name: c.arguments.name, arguments: c.arguments.arguments }]) : [c]));
     // Models sometimes put run_tool's own options inside a call's arguments; move them out when the
     // tool itself has no argument of that name.
-    for (const c of a.calls ?? [a]) for (const k of ["return", "digits", "select", "receipt"]) {
+    for (const c of a.calls ?? [a]) for (const k of ["return", "digits", "select", "receipt", "max_chars", "as_of", "changes_only", "prove"]) {
       if (c.arguments && k in c.arguments && !(BY_NAME.get(c.name)?.args ?? "").split(", ").some((x) => x.replace(/\?.*$/, "").replace(/:.*$/, "") === k)) { if (a[k] === undefined) a[k] = c.arguments[k]; delete c.arguments[k]; }
     }
     // The SDK validates the outer envelope. Wrapping and lifting options changes that envelope,
     // so validate the resulting request again before loading or executing any tool.
-    a = RUN_INPUT.parse(a);
+    if (a.prove !== undefined && !receipts) throw new Error("prove needs a signed receipt: a proof is checked against the root the receipt carries, and this server holds no key to sign one. The hosted server (canlicapital.com/mcp/canli) signs its receipts; here, receipt: true gives the answer's SHA-256.");
+    a = (receipts ? RUN_PROVE : RUN_INPUT).parse(a);
     if (!a.calls && !a.name) throw new Error("Pass name (and arguments) for one call, or calls for several.");
     if (a.calls && a.name) throw new Error("Pass either name or calls, not both.");
     const calls = a.calls ?? [{ name: a.name, arguments: a.arguments }], files = [], opts = { digits: a.digits };
+    // The pre-registrations made before this answer, which its receipt names.
+    const registered = preregs.list();
+    // as_of: this call as of a past date, under the time machine's locks, and never later than the server's own date.
+    let machine = a.as_of ? createTimeMachine(TIME_MACHINE && TIME_MACHINE.asOf < a.as_of ? TIME_MACHINE.asOf : a.as_of, { call: !TIME_MACHINE }) : TIME_MACHINE;
+    // A holdout hides its years from every call but its one test, which runs on its own (holdout_test).
+    const hidden = readOnly ? null : vault.until();
+    if (hidden && (!machine || hidden < machine.asOf)) machine = createTimeMachine(hidden, { reason: `while the holdout from ${vault.from()} is set (holdout_status)` });
     // A view is drawn only where the host draws MCP Apps; elsewhere view changes nothing but the
     // backtest curve. A backtest shown as a view gets its curve and trades.
     const viewing = Boolean(a.view) && clientDrawsApps(server);
     if (a.view) for (const c of calls) if (/^backtest_/.test(c.name) && !(c.arguments && "curve" in c.arguments)) { try { if ((await toolFor(c.name, packs)).input?.shape?.curve) c.arguments = { ...(c.arguments ?? {}), curve: true }; } catch { /* reported when it runs */ } }
     // Models sometimes reach find_tool and describe_tool through run_tool; they run here as well.
-    const SELF = { show_result: (args) => showResult(keeper, args), find_tool: (args) => findTool(packs, args ?? {}), describe_tool: (args) => describeTool(packs, args ?? {}), ...(gov?.audit ? { audit_log: (args) => auditLog(gov, args) } : {}) };
-    const run = (c, args) => (SELF[c.name] ? Promise.resolve().then(() => SELF[c.name](args)) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov));
+    const SELF = selfTools(packs, gov, keeper, readOnly, vault, preregs, machine, { luck, redTeam, zoo, lake, lab });
+    const timed = (name, work) => { const t0 = performance.now(); return work.then((out) => { if (!SELF[name]) { const list = keeper.costs.get(name) ?? []; list.push([performance.now() - t0, JSON.stringify(out ?? null).length]); keeper.costs.set(name, list.slice(-50)); } return out; }); };
+    const run = (c, args) => timed(c.name, (c.ran = args, SELF[c.name] ? Promise.resolve().then(() => { if (machine && !machine.selfAllowed(c.name)) throw machine.refuse(c.name); return SELF[c.name](args); }) : runOne(packs, { name: c.name, arguments: args }, opts, files, gov, machine)));
     const destructive = await Promise.all(calls.map(async (c) => { if (SELF[c.name]) return false; try { return (await toolFor(c.name, packs)).annotations?.destructiveHint; } catch { return false; } }));
     if (calls.length > 1 && destructive.some(Boolean)) throw new Error("A tool that sends orders cannot run inside a batch; call it on its own after previewing.");
     const done = [];
-    if (calls.some((c) => usesResults(c.arguments))) {
-      for (const c of calls) {
-        try { done.push({ name: c.name, result: await run(c, resolveResults(c.arguments ?? {}, done, keeper)) }); }
-        catch (e) { done.push({ name: c.name, error: e.message }); }
-      }
-    } else {
-      done.push(...await Promise.all(calls.map((c) => run(c, c.arguments).then((result) => ({ name: c.name, result }), (e) => ({ name: c.name, error: e.message })))));
+    // A batch reports each call as it finishes when the client asked for progress, which also keeps a long batch
+    // from timing out on clients that wait longer while progress comes; a cancelled batch starts no further call.
+    // The SDK gives these as ctx.mcpReq (v2) or on the handler's extra (v1).
+    const req = extra?.mcpReq ?? extra ?? {};
+    const token = req._meta?.progressToken, notify = req.notify ?? req.sendNotification;
+    let finished = 0;
+    const progress = () => {
+      finished += 1;
+      if (token === undefined || calls.length < 2 || typeof notify !== "function") return;
+      Promise.resolve(notify({ method: "notifications/progress", params: { progressToken: token, progress: finished, total: calls.length, message: `${finished} of ${calls.length} calls done` } })).catch(() => {});
+    };
+    const cancelled = () => Boolean(req.signal?.aborted);
+    // In waves: a call starts as soon as the calls whose results it reads ($result by number) are done, so
+    // independent calls run at once even in a batch where others wait. The results keep the batch's order.
+    const needs = calls.map((c) => batchRefs(c.arguments));
+    done.length = calls.length;
+    const runAt = async (i) => {
+      const c = calls[i];
+      if (cancelled()) { done[i] = { name: c.name, error: "not run: the request was cancelled" }; return; }
+      try { done[i] = { name: c.name, result: await run(c, usesResults(c.arguments) ? resolveResults(c.arguments ?? {}, done, keeper) : c.arguments) }; }
+      catch (e) { done[i] = { name: c.name, error: e.message }; }
+      progress();
+    };
+    for (let left = calls.map((_, i) => i); left.length;) {
+      // A call reading a later or missing call runs last, where resolveResults says why it cannot.
+      const ready = left.filter((i) => needs[i].every((j) => j < i && done[j]));
+      const wave = ready.length ? ready : left.slice(0, 1);
+      await Promise.all(wave.map(runAt));
+      left = left.filter((i) => !wave.includes(i));
     }
+    // A company named in words that matched several filers: the person picks, where the client can ask (ask.mjs).
+    const question = await askWhich({ server, extra, calls, done, rerun: (i, args) => run(calls[i], args) });
+    if (question) return question;
+    // Each strategy result says what is left after luck across everything tried so far (luck.mjs), and, where the Lab
+    // is built here and the result is dated, where it ranks among the Lab's strategies over the same months (labnote.mjs).
+    let labChecks = 0;
+    done.forEach((d, i) => {
+      if (d.result === undefined || SELF[d.name]) return;
+      const series = d.result && typeof d.result === "object" ? d.result[TRIAL_RETURNS] : undefined;
+      const handed = d.result && typeof d.result === "object" ? d.result[TRIAL_DATES] : undefined;
+      if (handed !== undefined) delete d.result[TRIAL_DATES];
+      const ran = calls[i]?.ran ?? calls[i]?.arguments;
+      const note = luck.record(d.name, calls[i]?.arguments, d.result, ran);
+      if (!note) return;
+      const labNote = labChecks < LAB_NOTES_PER_ANSWER ? labNotes.note(series, handed, ran) : null;
+      if (labNote?.months) labChecks += 1;
+      d.result = { ...d.result, luck: note, ...(labNote ? { lab: labNote } : {}) };
+    });
+    // Text from outside that speaks to an AI is marked where it is, and kept as the source gave it (injection.mjs).
+    // A pack that sends nothing reads no outside text, so its results are not read for it.
+    for (const d of done) {
+      if (d.result === undefined || SELF[d.name] || !d.result || typeof d.result !== "object" || sendsNothing(BY_NAME.get(d.name)?.pack)) continue;
+      const found = addressedToAi(d.result);
+      if (found.length) d.result = { ...d.result, caution: { note: CAUTION, found } };
+    }
+    // Calls that read the world before a holdout was set may have seen it; its status counts them.
+    for (const d of done) if (!SELF[d.name] && !["quant", "validation"].includes(BY_NAME.get(d.name)?.pack)) vault.saw();
     // Keep each full result (before select) under a ref for later calls.
-    for (const d of done) if (d.result !== undefined && !SELF[d.name]) { const ref = keeper.put(d.result); if (ref) d.ref = ref; }
+    done.forEach((d, i) => { if (d.result === undefined || SELF[d.name]) return; const ref = keeper.put(d.result); if (ref) { d.ref = ref; keeper.note(ref, { name: calls[i].name, arguments: calls[i].ran ?? calls[i].arguments ?? {} }); } });
+    // The receipt's sources come from the whole results, before select or changes_only narrow them.
+    const sources = sourcesOf(done.map((d) => d.result));
+    // A sweep's list of every variant's Sharpe was for the count; the model reads how many (luck.mjs).
+    for (const d of done) if (d.result !== undefined && !SELF[d.name]) d.result = shownTrials(d.result);
+    if (a.changes_only) done.forEach((d, i) => { if (d.result !== undefined && !SELF[d.name]) d.result = delta.changes(d.name, calls[i]?.arguments, d.result); });
     if (a.select) for (const d of done) if (d.result) {
       const full = d.result;
       // Rows without their column names are unreadable: selecting a table's rows keeps its columns.
@@ -369,9 +838,27 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
       d.result = Object.fromEntries(paths.map((p) => [p, at(full, p) ?? null]));
       if (paths.some((p) => at(full, p) === undefined)) d.result.available_fields = Object.entries(full).flatMap(([k, v]) => (v && typeof v === "object" && !Array.isArray(v) ? Object.keys(v).slice(0, 12).map((x) => `${k}.${x}`) : [k])).slice(0, 60);
     }
-    const receipt = a.receipt ? { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(done.map(({ ref, ...d }) => d)) } : undefined;
+    const output = done.map(({ ref, ...d }) => d);
+    const hashes = { server: `${SERVER_NAME}@${SERVER_VERSION}`, packs: Object.fromEntries([...new Set(calls.map((c) => BY_NAME.get(c.name)?.pack))].filter(Boolean).map((p) => [p, INDEX.versions[p]])), input_sha256: sha256({ calls, digits: a.digits ?? null }), output_sha256: sha256(output) };
+    // Where the server signs its receipts, the receipt also carries the root of a Merkle tree over the output's values
+    // (answer-tree.mjs), so one value can later be proved with a short path instead of the whole output. A local
+    // receipt, unsigned, proves nothing to anyone else, so it is spared the hashing (about 1.6 µs a value).
+    const tree = receipts ? answerTree(output) : null;
+    // Every answer's receipt goes to the client in _meta, with the sources the full results were read from.
+    const parents = builtFrom(refsRead(calls), keeper);
+    const quiet = calls.every((c) => (SELF[c.name] ? ["find_tool", "describe_tool", "show_result"].includes(c.name) : sendsNothing(BY_NAME.get(c.name)?.pack)));
+    const kept = signedBy(receipts, { ...hashes, ...(tree ? { output_root: tree.root, output_values: tree.values } : {}), sources, at: new Date().toISOString(), ...(quiet ? { network: "none: every call ran where fetch is refused" } : {}), ...(parents.length ? { from: parents } : {}), ...(registered.length ? { after: registered } : {}) });
+    // prove: each value named, as hashed, with its path up to the root the signed receipt carries. A pointer that names
+    // no single value gets its own error, and the rest are still proved.
+    const proofs = a.prove?.map((pointer) => { try { return tree.prove(pointer); } catch (e) { return { pointer, error: e.message }; } });
+    // receipt: true puts the receipt in the answer, with the documents it names, for receipt_check, and so does prove,
+    // whose proofs are checked against it. Where the server signs its receipts it is the whole signed one, since a model
+    // rarely sees _meta.
+    const receipt = a.receipt || proofs ? (receipts ? kept : { ...hashes, sources }) : undefined;
+    for (const d of done) if (d.ref) keeper.sign(d.ref, kept);
     // After the receipt, which hashes the full results: an oversized one is sent as a preview.
-    for (const d of done) if (d.result !== undefined) d.result = trimmed(d.result, d.ref, viewing ? VIEW_CHARS : RESULT_CHARS);
+    if (!a.select) for (const d of done) if (d.result !== undefined && !SELF[d.name]) d.result = leanResult(d.result, { name: d.name, ref: readOnly ? undefined : d.ref, seen: readLimits, digits: a.digits });
+    for (const d of done) if (d.result !== undefined) d.result = viewing ? trimmed(d.result, d.ref, VIEW_CHARS) : fit(d.result, d.ref, a.max_chars ?? RESULT_CHARS);
     const shown = (out) => {
       if (!viewing) return out;
       const refs = (out.results ?? [out]).map((r) => r.ref).filter(Boolean);
@@ -380,14 +867,17 @@ export function registerAll(server, packs = enabledPacks(), gov = governance(pro
       if (JSON.stringify(summary).length < JSON.stringify(out).length) SUMMARIES.set(out, summary);
       return out;
     };
-    if (!a.calls) { if (done[0].error) throw new Error(done[0].error); return shown({ ...(done[0].ref ? { ref: done[0].ref } : {}), ...done[0].result, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) }); }
+    const sealed = (out) => { RECEIPTS.set(out, kept); return out; };
+    if (!a.calls) { if (done[0].error) throw new Error(done[0].error); return sealed(shown({ ...(done[0].ref ? { ref: done[0].ref } : {}), ...done[0].result, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}), ...(proofs ? { proofs } : {}) })); }
     const results = (a.return === "last" ? done.slice(-1) : done).map(({ name, ref, result, error }) => ({ name, ...(ref ? { ref } : {}), ...(error ? { error } : { result }) }));
-    return shown({ results, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}) });
+    return sealed(shown({ results, ...(files.length ? { files_read: files } : {}), ...(receipt ? { receipt } : {}), ...(proofs ? { proofs } : {}) }));
   }));
-  registerResources(server, packs, gov);
+  registerResources(server, packs, gov, { readOnly, vault, live });
   registerView(server);
   registerPrompts(server, BY_NAME, packs);
   registerPackGuides(server, packs);
+  // What the tools listed beside run_tool share with it: kept results, what was read once, and the holdout.
+  return { keeper, readLimits, vault };
 }
 
 // audit_log (through run_tool, when the policy keeps a log): its state, a signed checkpoint now, or
@@ -400,16 +890,74 @@ function auditLog(gov, args) {
 }
 
 export const PRIVACY = (packs, gov) => ({
-  packs: Object.fromEntries(packs.map((p) => [p, { network: packInfo(p).network, disk: packInfo(p).disk, ...(PLUGINS.has(p) ? { plugin: packInfo(p).package } : {}) }])),
+  packs: Object.fromEntries(packs.map((p) => { const info = packInfo(p); return [p, { network: info.network, disk: info.disk, ...(PLUGINS.has(p) ? { plugin: info.package } : {}), ...(UPSTREAMS.has(p) ? { upstream: info.package, tools: info.tools ?? "still connecting", ...(info.error ? { error: info.error } : {}), ...(info.off_because_they_change_things ? { off_because_they_change_things: info.off_because_they_change_things } : {}) } : {}) }]; })),
   files: "{\"$file\": ...} arguments are read on this machine; nothing is uploaded and nothing is written by the reader",
+  compile_cache: "Node keeps compiled JavaScript in its temp folder to start faster; it holds this server's code and nothing of yours",
+  price_streams: "off until a client subscribes to canli://quote on a local server: the symbols in the address go to Coinbase or Kraken (crypto, no key) or, with your keys, to Alpaca or Finnhub (US stocks); CANLI_STREAMS=0 turns them off",
+  sentinel: "off until you use it: rules and events are kept in CANLI_HOME/sentinel on this machine, and sent only where you say with --webhook, --slack, --discord, --exec or --channel",
+  local_models: "off until you run canli-mcp models install: they run on this machine, and no text leaves it",
   telemetry: "none: no analytics, logging or crash reporting",
-  offline: "CANLI_OFFLINE=1 enables only the packs whose network is none (quant, validation), and no other pack's code is loaded",
-  receipts: "opt-in receipts carry SHA-256 hashes, never the data",
+  offline: "CANLI_OFFLINE=1 enables only the packs whose network is none (quant, validation), and no other pack's code is loaded; CANLI_OFFLINE=packs adds the fundamentals pack, which then reads only what canli-mcp pack add saved on this machine, with fetch refused",
+  receipts: "every answer's receipt, in MCP's _meta, carries SHA-256 hashes and the URLs and times of the documents read, never the data",
+  preregistrations: "off until you use preregister: each record is kept in CANLI_HOME/preregistrations.jsonl on this machine, readable only by you",
+  holdout: "a holdout vault is kept in memory for the session and written nowhere",
+  exports: "off until you use export_result: files are written only into CANLI_HOME/exports, under plain names, never over a file already there",
+  network_tripwire: "packs that send nothing (quant, validation, and plugins whose network is none) run each tool with fetch refused, and an answer whose every call ran so says network none in its receipt",
   policy: gov?.policy ? { tools: gov.policy.tools ?? "all", orders: gov.policy.orders ?? "on", calls_per_minute: gov.policy.calls_per_minute ?? null, audit_log: gov.audit ? { file: gov.audit.path, arguments: gov.policy.audit.arguments ?? "hash" } : "off" } : "none (CANLI_POLICY unset): no policy and no audit log",
 });
 
-function registerResources(server, packs, gov) {
+function registerResources(server, packs, gov, { readOnly = false, vault = null, live = false } = {}) {
   const json = (uri, v) => ({ contents: [{ uri, mimeType: "application/json", text: JSON.stringify(v) }] });
+  // Prices by address, and on a local server a subscription that notifies when they change. They are the present,
+  // so a holdout or a past date hides them.
+  if (packs.includes("markets")) {
+    registerQuotes(server, {
+      price: (symbol) => runOne(packs, { name: "latest_price", arguments: { symbol } }, {}, [], gov),
+      refuse: () => (TIME_MACHINE ? TIME_MACHINE.refuse("canli://quote") : vault?.until() ? new Error(`canli://quote reads the present, which the holdout from ${vault.from()} hides; holdout_status shows it.`) : null),
+      live: live && !readOnly && !TIME_MACHINE, seconds: quoteSeconds(),
+    });
+  }
+  // The week, for a host to attach at the start of a session: my_week over the holdings in the address, with the
+  // sentinel's events of the same days on a local server. It reads the present, so a server running as of a past
+  // date, or with a holdout set, does not answer it.
+  server.registerResource("week", new ResourceTemplate("canli://week/{holdings*}", { list: undefined }), { title: "This week", description: "my_week over the holdings in the address, comma-separated (canli://week/AAPL,NVDA,VOO), with the sentinel's events of the same seven days on a local server.", mimeType: "application/json" },
+    async (uri, { holdings }) => {
+      if (TIME_MACHINE) throw TIME_MACHINE.refuse("canli://week");
+      if (vault?.until()) throw new Error(`canli://week reads this week, which the holdout from ${vault.from()} hides; holdout_status shows it.`);
+      const list = [holdings].flat().flatMap((x) => decodeURIComponent(String(x)).split(/[,+\s]+/)).filter(Boolean).slice(0, 25);
+      const week = await runWeek({ call: (name, args) => runOne(packs, { name, arguments: args }, {}, [], gov) }, { holdings: list });
+      if (readOnly) return json(uri.href, week);
+      const { createSentinel } = await import("../local/sentinel.mjs");
+      const since = new Date(Date.now() - 7 * 86400000).toISOString();
+      const events = createSentinel({ home: canliHome(), call: async () => { throw new Error("not watching"); } }).events({ last: 100 }).events.filter((e) => e.at >= since);
+      return json(uri.href, { ...week, sentinel_events: events.length ? events : "none in these seven days (canli-mcp sentinel run, or --channel, watches)" });
+    });
+  // A company to attach to a conversation by its address (in Claude Code, @canli:canli://company/AAPL): company_report,
+  // its profile, five fiscal years of figures and its price and risk, cut to the size of an answer.
+  server.registerResource("company", new ResourceTemplate("canli://company/{company}", { list: undefined }), { title: "A company", description: "company_report for the ticker, CIK or name in the address (canli://company/AAPL): profile, five fiscal years of financials, price and risk.", mimeType: "application/json" },
+    async (uri, { company }) => {
+      if (vault?.until()) throw new Error(`canli://company reads the present, which the holdout from ${vault.from()} hides; holdout_status shows it.`);
+      const report = await runOne(packs, { name: "company_report", arguments: { company: decodeURIComponent(String(company)) } }, {}, [], gov);
+      return json(uri.href, fit(report, null, RESULT_CHARS));
+    });
+  // A country to attach the same way (canli://economy/Brazil, canli://economy/JP): world_series with measure "all", every
+  // measure from the country's own statistics office or central bank beside the figure a year earlier.
+  if (packs.includes("markets") && BY_NAME.has("world_series")) server.registerResource("economy", new ResourceTemplate("canli://economy/{country}", { list: undefined }), { title: "A country's economy", description: "world_series for the country in the address (canli://economy/Brazil, canli://economy/JP): inflation, unemployment, growth, the policy rate, the 10-year yield, the currency and more, each from the country's own statistics office or central bank, beside the figure a year earlier.", mimeType: "application/json" },
+    async (uri, { country }) => {
+      if (vault?.until()) throw new Error(`canli://economy reads the present, which the holdout from ${vault.from()} hides; holdout_status shows it.`);
+      const economy = await runOne(packs, { name: "world_series", arguments: { country: decodeURIComponent(String(country)), measure: "all" } }, {}, [], gov);
+      return json(uri.href, fit(economy, null, RESULT_CHARS));
+    });
+  // The Fed today, to attach: what fed funds futures price for its next meetings, its footprint in the money markets, and
+  // the nowcasts of this quarter's growth and of the inflation not yet published, and what the Board said lately. A part
+  // whose source fails says so.
+  const FED_PARTS = [["rate_expectations", { meetings: 4 }], ["fed_liquidity", {}], ["money_markets", {}], ["inflation_nowcast", {}], ["gdp_nowcast", { quarters: 4 }], ["fed_speeches", { limit: 5 }]];
+  if (packs.includes("markets") && FED_PARTS.every(([n]) => BY_NAME.has(n))) server.registerResource("fed", "canli://fed", { title: "The Fed today", description: "What fed funds futures price for the Fed's next four meetings, its repo facilities, holdings, reserves and net liquidity, the money markets around them (repo by segment against its rates, money funds, dealers), the nowcasts of this quarter's growth and of the inflation not yet published, and the Board's latest speeches and releases, each from its source.", mimeType: "application/json" },
+    async (uri) => {
+      if (vault?.until()) throw new Error(`canli://fed reads the present, which the holdout from ${vault.from()} hides; holdout_status shows it.`);
+      const parts = await Promise.all(FED_PARTS.map(([name, args]) => runOne(packs, { name, arguments: args }, {}, [], gov).catch((err) => ({ error: err.message }))));
+      return json(uri.href, fit(Object.fromEntries(FED_PARTS.map(([name], i) => [name, parts[i]])), null, RESULT_CHARS));
+    });
   server.registerResource("catalog", "canli://catalog", { title: "Tool catalog", description: "Every tool: name, pack and title.", mimeType: "application/json" },
     (uri) => json(uri.href, { tools: ENTRIES.filter((e) => packs.includes(e.pack)).length, columns: ["name", "pack", "title"], rows: ENTRIES.filter((e) => packs.includes(e.pack)).map((e) => [e.name, e.pack, e.title]) }));
   server.registerResource("packs", "canli://packs", { title: "Packs", description: "Each pack: its source package and version, tool count, network and disk use, and renamed or omitted tools.", mimeType: "application/json" },
@@ -424,25 +972,43 @@ function registerResources(server, packs, gov) {
 // tools: a model calls them in one step instead of searching first, for a few hundred more tokens of
 // tool list. CANLI_FRONT names them, comma-separated; set it empty to list only the three.
 export const FRONT_DEFAULT = Object.freeze(["history", "financial_statements"]);
+// Which of the two to reach for: both can give a company's revenue.
+const FRONT_GUIDE = {
+  history: " Use it for one measure across periods or as known on a past date; financial_statements for whole statements. Long answers come in pages.",
+  financial_statements: " Use it for every line in the company's own words; history for one measure over many years.",
+};
 export function frontTools(packs, env = process.env) {
   const names = env.CANLI_FRONT === undefined ? FRONT_DEFAULT : env.CANLI_FRONT.split(",").map((x) => x.trim()).filter(Boolean);
   return [...new Set(names)].filter((n) => BY_NAME.has(n) && packs.includes(BY_NAME.get(n).pack));
 }
-export async function registerFront(server, packs, names = frontTools(packs), gov = null) {
+export async function registerFront(server, packs, names = frontTools(packs), gov = null, shared = null) {
+  acceptNulls(server);
   for (const name of names) {
     const t = await toolFor(name, packs);
     server.registerTool(name, {
-      title: t.title, description: t.description, inputSchema: t.input, outputSchema: open,
+      title: t.title, description: t.description + (FRONT_GUIDE[name] ?? ""), inputSchema: t.input, outputSchema: open,
       annotations: { title: t.title, ...(t.annotations ?? READ_ONLY) },
-    }, guard(async (args) => trimmed(await runOne(packs, { name, arguments: args }, {}, [], gov))));
+    }, guard(async (args) => {
+      // A holdout hides its years from these tools as from run_tool, and they count toward what read the world before one.
+      const hidden = shared?.vault?.until();
+      const machine = hidden && (!TIME_MACHINE || hidden < TIME_MACHINE.asOf) ? createTimeMachine(hidden, { reason: `while the holdout from ${shared.vault.from()} is set (holdout_status)` }) : TIME_MACHINE;
+      const full = await runOne(packs, { name, arguments: args }, {}, [], gov, machine), ref = shared?.keeper.put(full) || undefined;
+      shared?.vault?.saw();
+      const shown = trimmed(leanResult(full, { name, ref, seen: shared?.readLimits }), ref);
+      return ref && shown && typeof shown === "object" && !Array.isArray(shown) ? { ref, ...shown } : shown;
+    }));
   }
   return names;
 }
 
-const isMain = (() => { try { return realpathSync(process.argv[1] ?? "") === realpathSync(fileURLToPath(import.meta.url)); } catch { return false; } })();
+const isMain = (() => { try { const run = realpathSync(process.argv[1] ?? ""); return run === realpathSync(fileURLToPath(import.meta.url)) || run === realpathSync(fileURLToPath(new URL("./start.mjs", import.meta.url))); } catch { return false; } })();
 // Besides serving MCP over stdio: `canli-mcp audit verify [log] [--ed25519 pub.pem] [--ml-dsa pub.pem]`
 // checks an audit log, and `canli-mcp watch [--forms 8-K,4] [--company words] [--event earnings]
-// [--every 60]` prints each new EDGAR filing as a line of JSON.
+// [--every 60]` prints each new EDGAR filing as a line of JSON. `canli-mcp gui` opens the tools and
+// result views in a browser; `canli-mcp serve` offers MCP over Streamable HTTP and WebSocket. Both
+// answer only on the loopback address, and live apart in local/: nothing in src listens.
+// `canli-mcp check returns.csv --trials 40` is the luck check for a CI job, and `canli-mcp run <tool>
+// '<json>'` runs one tool from a shell.
 const flag = (argv, name) => { const i = argv.indexOf(name); return i >= 0 ? argv[i + 1] : undefined; };
 if (isMain && process.argv[2] === "audit") {
   const argv = process.argv.slice(3), home = canliHome();
@@ -464,15 +1030,164 @@ if (isMain && process.argv[2] === "audit") {
     company: flag(argv, "--company"), event: flag(argv, "--event"),
     every: Number(flag(argv, "--every") ?? 60),
   }, (line) => process.stdout.write(`${line}\n`));
+} else if (isMain && process.argv[2] === "setup") {
+  // `canli-mcp setup [--dry-run] [--only cursor,vscode] [--remove] [--name canli] [--json]`: canli-mcp added to every
+  // MCP client found on this machine (local/setup.mjs).
+  const { formatSetup, setupClients } = await import("../local/setup.mjs");
+  try {
+    const r = setupClients({ home: homedir(), argv: process.argv.slice(3) });
+    process.stdout.write(process.argv.includes("--json") ? `${JSON.stringify(r)}\n` : formatSetup(r));
+  } catch (e) { process.stderr.write(`${e.message}\n`); process.exit(2); }
+} else if (isMain && process.argv[2] === "upstream") {
+  // `canli-mcp upstream add|list|remove`: other MCP servers whose tools join this one (local/upstream.mjs).
+  const { upstreamCommand } = await import("../local/upstream.mjs");
+  try { process.stdout.write(`${JSON.stringify(upstreamCommand(canliHome(), process.argv.slice(3)))}\n`); } catch (e) { process.stderr.write(`${e.message}\n`); process.exit(2); }
+} else if (isMain && process.argv[2] === "pack") {
+  // `canli-mcp pack add <ticker, CIK or name>... | list`: companies saved for CANLI_OFFLINE=packs (local/pack.mjs).
+  const [verb, ...rest] = process.argv.slice(3);
+  const show = (x) => process.stdout.write(`${JSON.stringify(x)}\n`);
+  if (verb === "list") { show((await import("../local/pack.mjs")).packList(canliHome())); process.exit(0); }
+  if (verb !== "add" || !rest.length) { process.stderr.write("usage: canli-mcp pack add <ticker, CIK or name>... | list\n"); process.exit(2); }
+  if (OFFLINE_PACKS) { process.stderr.write("canli-mcp pack add reads from the network: run it without CANLI_OFFLINE.\n"); process.exit(2); }
+  const packs = enabledPacks({ ...process.env, CANLI_PACKS: "fundamentals" }), gov = governance(process.env, canliHome());
+  process.on("exit", () => gov.close());
+  show(await (await import("../local/pack.mjs")).packAdd(canliHome(), (name, args) => runOne(packs, { name, arguments: args }, {}, [], gov), rest.slice(0, 200)));
+} else if (isMain && process.argv[2] === "sentinel") {
+  // `canli-mcp sentinel add '<rule as JSON>' | list | remove <id> | events | run [--webhook url] [--slack url] [--discord url] [--exec 'command'] [--once]`.
+  // Where events go is set here, by whoever runs this, and never by a rule.
+  const [verb, ...rest] = process.argv.slice(3);
+  if (TIME_MACHINE) { process.stderr.write("The sentinel watches the present, so it does not run as of a past date.\n"); process.exit(2); }
+  const packs = enabledPacks({ ...process.env, CANLI_PACKS: "markets,fundamentals" }), gov = governance(process.env, canliHome());
+  process.on("exit", () => gov.close());
+  const call = (name, args) => runOne(packs, { name, arguments: args }, {}, [], gov);
+  const { chatSink, createSentinel, webhookSink } = await import("../local/sentinel.mjs");
+  const s = createSentinel({ home: canliHome(), call, say: (m) => process.stderr.write(`${m}\n`) });
+  const show = (x) => process.stdout.write(`${JSON.stringify(x)}\n`);
+  if (verb === "add") show(s.add(JSON.parse(rest[0] ?? "{}")));
+  else if (verb === "list") show(s.list());
+  else if (verb === "remove") show(s.remove(rest[0]));
+  else if (verb === "events") show(s.events({ last: Number(flag(rest, "--last") ?? 20) }));
+  else if (verb === "run") {
+    if (!s.rules().length) { process.stderr.write("No rules yet. Add one: canli-mcp sentinel add '{\"kind\":\"price_move\",\"symbol\":\"BTC-USD\",\"percent\":2,\"within_minutes\":30}'\n"); process.exit(2); }
+    s.sinks.add((event) => show(event));
+    if (flag(rest, "--webhook")) s.sinks.add(webhookSink(flag(rest, "--webhook")));
+    for (const service of ["slack", "discord"]) if (flag(rest, `--${service}`)) s.sinks.add(chatSink(flag(rest, `--${service}`), service));
+    if (flag(rest, "--exec")) s.sinks.add((await import("../local/commands.mjs")).execSink(flag(rest, "--exec")));
+    if (rest.includes("--once")) { await s.pollDue(); process.exit(0); }
+    for (const signal of ["SIGINT", "SIGTERM"]) process.on(signal, () => { s.stop(); process.exit(0); });
+    s.start();
+    setInterval(() => {}, 60000);
+  } else { process.stderr.write("usage: canli-mcp sentinel add '<rule as JSON>' | list | remove <id> | events [--last n] | run [--webhook url] [--slack url] [--discord url] [--exec 'command'] [--once]\n"); process.exit(2); }
+} else if (isMain && process.argv[2] === "lab") {
+  // `canli-mcp lab build [--shards n] | shard i n | status`: Kenneth French's daily files downloaded once into
+  // CANLI_HOME/lab/raw, every Lab strategy run on this machine, merged into CANLI_HOME/lab/v1. No tool builds it.
+  const [verb, ...rest] = process.argv.slice(3);
+  const home = canliHome(), raw = join(home, "lab", "raw"), out = join(home, "lab", "v1");
+  const L = await import("../local/lab.mjs"), log = (m) => process.stderr.write(`${m}\n`);
+  if (verb === "build") {
+    const n = Math.max(1, Math.min(64, Number(flag(rest, "--shards") ?? 1)));
+    log(`Kenneth French's daily files into ${raw} (first run only)...`);
+    await L.downloadLibrary(raw, { log });
+    const loaded = L.loadSeries(raw);
+    log(`${loaded.series.length} series x ${L.VARIANTS} variants = ${loaded.series.length * L.VARIANTS} strategies, in ${n} shard${n === 1 ? "" : "s"}.`);
+    if (n === 1) L.buildShard({ series: loaded.series, out, log });
+    else { const code = await (await import("../local/commands.mjs")).runShards(fileURLToPath(import.meta.url), n); if (code) process.exit(code); }
+    L.finishBuild({ out, series: loaded.series, data: loaded.data, of: n });
+    process.stdout.write(`${JSON.stringify(runLabStatus(out))}\n`);
+  } else if (verb === "shard") {
+    const [i, n] = rest.map(Number);
+    L.buildShard({ series: L.loadSeries(raw).series, out, shard: { index: i, of: n }, log: () => {} });
+  } else if (verb === "status") process.stdout.write(`${JSON.stringify(runLabStatus(out))}\n`);
+  else { process.stderr.write("usage: canli-mcp lab build [--shards n] | status\n"); process.exit(2); }
+} else if (isMain && process.argv[2] === "lake") {
+  // `canli-mcp lake setup | status`: DuckDB for the data lake, pinned, into CANLI_HOME/lake-engine. No tool installs it.
+  const [verb] = process.argv.slice(3);
+  const L = await import("../local/lake.mjs");
+  if (verb === "setup") {
+    const dir = L.engineDir(canliHome()), { installPackage } = await import("../local/commands.mjs");
+    process.stderr.write(`Installing ${L.DUCKDB_PACKAGE} into ${dir} (about 66 MB). The lake itself is ${L.lakeDir(canliHome())}.\n`);
+    process.exit(installPackage(dir, L.DUCKDB_PACKAGE));
+  } else if (verb === "status") {
+    let ready = true;
+    try { (await L.openLake(canliHome())).close(); } catch { ready = false; }
+    process.stdout.write(`${JSON.stringify({ duckdb: ready ? "installed" : "not installed: canli-mcp lake setup", engine: L.engineDir(canliHome()), lake: L.lakeDir(canliHome()), package: L.DUCKDB_PACKAGE })}\n`);
+  } else { process.stderr.write("usage: canli-mcp lake setup | status\n"); process.exit(2); }
+} else if (isMain && process.argv[2] === "models") {
+  // `canli-mcp models install | status | index <company> [--years n]`. Installing is the one way the
+  // optional local models get onto a machine: no tool ever does it.
+  const [verb, ...rest] = process.argv.slice(3);
+  const M = await import("canli-markets-mcp/src/models.mjs");
+  if (verb === "install") {
+    const dir = M.modelsDir(), { installPackage } = await import("../local/commands.mjs");
+    process.stderr.write(`Installing ${M.RUNTIME_PACKAGE} into ${dir} (about 500 MB). Models come down from Hugging Face on first use (about 140 MB).\nFinBERT is licensed for non-commercial use: ${M.MODELS.sentiment.license}\n`);
+    process.exit(installPackage(dir, M.RUNTIME_PACKAGE));
+  } else if (verb === "status") {
+    process.stdout.write(`${JSON.stringify({ installed: M.modelsInstalled(), at: M.modelsDir(), runtime: M.RUNTIME_PACKAGE, models: M.MODELS })}\n`);
+  } else if (verb === "index" && rest[0]) {
+    const { buildMemoryVectors } = await import("canli-markets-mcp/src/memory.mjs");
+    const { createSession } = await import("canli-markets-mcp/src/sources.mjs");
+    const n = await buildMemoryVectors(createSession(), rest[0], { years: Number(flag(rest, "--years") ?? 25), onReport: (filed, paragraphs) => process.stderr.write(`${filed}: ${paragraphs} paragraphs\n`) });
+    process.stdout.write(`${JSON.stringify({ indexed_reports: n, company: rest[0] })}\n`);
+  } else { process.stderr.write("usage: canli-mcp models install | status | index <company> [--years n]\n"); process.exit(2); }
+} else if (isMain && process.argv[2] === "check") {
+  const argv = process.argv.slice(3), file = argv[0];
+  // --trials log: the number comes from the signed audit log, which someone else can check.
+  const fromLog = flag(argv, "--trials") === "log" ? signedTrialCount({ since: flag(argv, "--since") }, { dir: join(canliHome(), "audit"), keys: publicKeys(canliHome()) }) : null;
+  if (fromLog && !fromLog.log_on) { process.stderr.write(`${fromLog.how}\n`); process.exit(2); }
+  const trials = fromLog ? Math.max(fromLog.trials, 1) : Number(flag(argv, "--trials"));
+  if (!file || file.startsWith("--") || !Number.isInteger(trials) || trials < 1) { process.stderr.write("usage: canli-mcp check returns.csv --trials <how many variants were tried> [--column name] [--periods 252] [--spread 0.5] [--format markdown|json] [--at-least 0.95]\n"); process.exit(2); }
+  const { asMarkdown, checkReport, readReturns } = await import("./check.mjs");
+  const bytes = readFileSync(file), { column, returns } = readReturns(bytes.toString("utf8"), flag(argv, "--column"));
+  const tool = await toolFor("validate_deflated_sharpe", enabledPacks({ ...process.env, CANLI_PACKS: "validation" }));
+  const result = await tool.run(tool.input.parse({ returns, periods_per_year: Number(flag(argv, "--periods") ?? 252), effective_independent_trials: Math.max(2, trials), cross_trial_sharpe_sd_annualized: Number(flag(argv, "--spread") ?? 0.5) }));
+  const report = checkReport({ file, bytes, column, count: returns.length, trials, result, version: SERVER_VERSION });
+  process.stdout.write(flag(argv, "--format") === "json" ? `${JSON.stringify(report, null, 2)}\n` : `${asMarkdown(report)}\n`);
+  // A floor is the caller's own choice for its own pipeline; the report itself never says passed.
+  const floor = flag(argv, "--at-least");
+  if (floor !== undefined && !(report.deflated_sharpe_probability >= Number(floor))) process.exit(1);
+} else if (isMain && process.argv[2] === "run") {
+  const [name, json] = process.argv.slice(3);
+  if (!name) { process.stderr.write("usage: canli-mcp run <tool> '<arguments as JSON>'\n"); process.exit(2); }
+  const packs = [...enabledPacks(), ...await addPlugins()];
+  const args = JSON.parse(json ?? "{}"), self = selfTools(packs, null, createKeeper());
+  if (!self[name] && (await toolFor(name, packs)).annotations?.destructiveHint) { process.stderr.write(`${name} sends orders, so it cannot run from the command line.\n`); process.exit(2); }
+  const out = self[name] ? await self[name](args) : await runOne(packs, { name, arguments: args }, {}, [], null);
+  process.stdout.write(`${JSON.stringify(out)}\n`);
+} else if (isMain && (process.argv[2] === "gui" || process.argv[2] === "serve")) {
+  const argv = process.argv.slice(3), packs = [...enabledPacks(), ...await addPlugins()], gov = governance(process.env, canliHome());
+  const makeServer = async () => { const server = new McpServer(SERVER_INFO, { instructions: instructions(packs, []) }); registerAll(server, packs, gov); return server; };
+  process.on("exit", () => gov.close());
+  for (const signal of ["SIGINT", "SIGTERM"]) process.on(signal, () => process.exit(0));
+  const port = Number(flag(argv, "--port") ?? 0);
+  if (process.argv[2] === "gui") {
+    const { startGui } = await import("../local/gui.mjs");
+    const gui = await startGui({ makeServer, port });
+    process.stdout.write(`Open this address in your browser:\n${gui.url}\nIt answers only on this machine. Press Ctrl-C to stop.\n`);
+  } else {
+    const { startServe } = await import("../local/serve.mjs");
+    const s = await startServe({ makeServer, port, token: process.env.CANLI_SERVE_TOKEN || undefined });
+    process.stdout.write(`${JSON.stringify({ http: s.http, websocket: s.ws, token: s.token, note: "Send Authorization: Bearer <token>. Loopback only." })}\n`);
+  }
 } else if (isMain) {
   const packs = [...enabledPacks(), ...await addPlugins()];
   const front = frontTools(packs);
   const gov = governance(process.env, canliHome());
-  const server = new McpServer(SERVER_INFO, { instructions: instructions(packs, front) });
-  registerAll(server, packs, gov);
-  await registerFront(server, packs, front, gov);
+  // --channel: the sentinel runs inside this server and each event wakes a Claude Code session started
+  // with channels on. Other hosts ignore the notification; for them, canli-mcp sentinel run --exec.
+  const channel = process.argv.includes("--channel");
+  const server = new McpServer(SERVER_INFO, { instructions: `${TIME_MACHINE ? `${TIME_MACHINE.instructions} ` : ""}${instructions(packs, front)}${channel ? ` ${CHANNEL_INSTRUCTIONS}` : ""}` });
+  if (channel) server.server.registerCapabilities({ experimental: { "claude/channel": {} } });
+  await registerFront(server, packs, front, gov, registerAll(server, packs, gov, { live: true }));
   // Signing is synchronous, so the last calls are signed even as the process exits.
   process.on("exit", () => gov.close());
   for (const signal of ["SIGINT", "SIGTERM"]) process.on(signal, () => process.exit(0));
   await server.connect(new StdioServerTransport());
+  // Its reads go through the same policy and audit log as any call. It watches the present, so a server
+  // running as of a past date never starts it.
+  if (channel && !TIME_MACHINE) {
+    const { createSentinel } = await import("../local/sentinel.mjs");
+    const s = createSentinel({ home: canliHome(), call: (name, args) => runOne(packs, { name, arguments: args }, {}, [], gov) });
+    s.sinks.add(channelSink(server));
+    s.start();
+  }
 }

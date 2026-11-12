@@ -1,0 +1,14 @@
+{
+  "name": "canli-mcp-worker",
+  "private": true,
+  "type": "module",
+  "description": "The hosted canli-mcp on Cloudflare Workers: the published npm package, served over MCP Streamable HTTP.",
+  "scripts": {
+    "test": "node --test replay/*.test.mjs test/*.test.mjs",
+    "replay": "node replay/replay.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.3.1",
+    "canli-mcp": "0.17.1"
+  }
+}

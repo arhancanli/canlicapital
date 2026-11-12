@@ -12,7 +12,7 @@ const manifest = JSON.parse(readFileSync(join(root, "mcpb/manifest.json"), "utf8
 if (manifest.version !== pkg.version) throw new Error("MCPB manifest and package versions differ.");
 const stage = mkdtempSync(join(tmpdir(), "canli-flagship-mcpb-"));
 try {
-  for (const file of ["src", "package.json", "package-lock.json", "LICENSE", "README.md", "FEATURES.md", "CHANGELOG.md"]) cpSync(join(root, file), join(stage, file), { recursive: true });
+  for (const file of ["src", "local", "package.json", "package-lock.json", "LICENSE", "README.md", "FEATURES.md", "CHANGELOG.md"]) cpSync(join(root, file), join(stage, file), { recursive: true });
   cpSync(join(root, "mcpb/manifest.json"), join(stage, "manifest.json"));
   execFileSync("npm", ["ci", "--omit=dev", "--ignore-scripts"], { cwd: stage, stdio: "inherit" });
   execFileSync("npx", ["--yes", "@anthropic-ai/mcpb@2.1.2", "validate", join(stage, "manifest.json")], { stdio: "inherit" });

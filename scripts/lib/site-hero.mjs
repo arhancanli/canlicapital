@@ -1,5 +1,6 @@
-// The cinematic header every page except the homepage opens with: a still from the homepage film behind the
-// page's own breadcrumb trail, label, title, summary line and actions.
+// The header every page except the homepage opens with: the page's own breadcrumb trail, label, title, summary
+// line and actions on the homepage's Canli blue band (SITE_PLAN_20261105, "One look": the dark film stills that
+// used to sit behind it are retired, 6 Nov).
 //
 // The page generators keep writing their own openers. This runs after them (scripts/build-site-design.mjs):
 // it lifts the title and the elements around it out of whatever opener a page has and sets them in one header
@@ -7,12 +8,7 @@
 // source notice) stays where it was. A page that already has the header is left alone, so a second run is
 // byte-identical.
 //
-// The stills are frames of js/home-film.js, rendered once and kept in public/scenes. Each part of the site has
-// its own: research in the rain on Wall Street at night, the MCP servers on the orb of tools, the benchmarks at
-// the five towers, ALPHAC's record over the city from above, company data among the towers of filings, the
-// founder at the water at first light, and the vision at sunrise over the harbour.
-
-export const SCENES = ["canyon", "gates", "orb", "towers", "aerial", "district", "rail", "harbour"];
+// data-scene still names the part of the site each header belongs to, for styles that want it.
 
 const BY_PATH = [
   [/^mcp-servers/, "orb"],
@@ -28,17 +24,6 @@ const BY_PATH = [
 export function sceneFor(file) {
   for (const [pattern, scene] of BY_PATH) if (pattern.test(file)) return scene;
   return "aerial";
-}
-
-export function heroArt(scene) {
-  const set = (fmt, ...widths) => widths.map((w) => `/scenes/${scene}-${w}.${fmt} ${w}w`).join(", ");
-  return `<picture class="cc-hero__art" aria-hidden="true">`
-    + `<source type="image/avif" media="(max-width: 768px)" srcset="/scenes/${scene}-900.avif">`
-    + `<source type="image/webp" media="(max-width: 768px)" srcset="/scenes/${scene}-900.webp">`
-    + `<source type="image/avif" srcset="${set("avif", 1600, 2400)}" sizes="100vw">`
-    + `<source type="image/webp" srcset="${set("webp", 1600, 2400)}" sizes="100vw">`
-    + `<img src="/scenes/${scene}-1600.webp" alt="" width="1600" height="560" fetchpriority="high" decoding="async">`
-    + `</picture>`;
 }
 
 // The extent of the element that starts at `start` (a "<tag" position): through its matching end tag.
@@ -107,7 +92,8 @@ function crumbsOf(html, mainStart, h1Start, trailNav) {
 }
 
 export function applyHero(html, file, { trailNav = null } = {}) {
-  if (html.includes('<header class="cc-hero"')) return html;
+  // A rebuilt page (css/clear.css) brings its own first screen; it keeps it.
+  if (html.includes('<header class="cc-hero"') || html.includes('<section class="cl-hero"')) return html;
   const main = /<main\b[^>]*>/.exec(html);
   if (!main) return html;
   const mainStart = main.index, inner = main.index + main[0].length;
@@ -158,7 +144,7 @@ export function applyHero(html, file, { trailNav = null } = {}) {
   const crumbsHtml = crumbs?.range ? html.slice(...crumbs.range) : crumbs?.html ?? "";
 
   const scene = sceneFor(file);
-  const header = `<header class="cc-hero" data-scene="${scene}">${heroArt(scene)}<div class="cc-hero__inner">`
+  const header = `<header class="cc-hero" data-scene="${scene}"><div class="cc-hero__inner">`
     + crumbsHtml + parts.eyebrow + html.slice(h1Start, h1End) + parts.lede + parts.meta + parts.actions + `</div></header>`;
 
   // lift the pieces out, last first so earlier positions stay true

@@ -68,3 +68,9 @@ test("a correction filed within 20 days is the same release; with under a year o
   assert.equal(n.status, "upcoming");
   assert.equal(nextRelease(rel, "2026-11-30").status, "late: no release filed yet");
 });
+
+test("a preliminary 8-K and the full release within 20 days are one quarter, with both as members", () => {
+  const row = (d, a) => ({ form: "8-K", items: "2.02,9.01", filingDate: d, accessionNumber: a, primaryDocument: "x.htm" });
+  const [q] = releasesFrom([row("2026-10-15", "prelim"), row("2026-10-29", "full")]);
+  assert.deepEqual(q.members, [{ date: "2026-10-15", accession: "prelim" }, { date: "2026-10-29", accession: "full" }]);
+});

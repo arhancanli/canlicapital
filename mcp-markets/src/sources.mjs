@@ -4,10 +4,16 @@
 import { AsyncLocalStorage } from "node:async_hooks";
 import { Buffer } from "node:buffer";
 import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 import { inflateRawSync } from "node:zlib";
 
 import { BoundedCache } from "./bounded-cache.mjs";
-import { fetchBoundedText, ResponseReadError } from "./bounded-response.mjs";
+import { createDiskCache, freshFor } from "./disk-cache.mjs";
+import { readBoundedResponse, fetchBoundedText, ResponseReadError } from "./bounded-response.mjs";
+
+// A document kept on disk in a form a transform or decoder made is kept under the package's version, so an upgrade that
+// changes the form never reads an older one.
+const VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
 
 // SEC asks every client to identify itself with a contact; SEC_USER_AGENT replaces the default.
 // Other hosts get the plain product name: Treasury's servers hold any request whose User-Agent
@@ -25,6 +31,8 @@ export function createSession({ fetchImpl, env = process.env, now = () => Date.n
     sleep: sleep ?? ((ms) => new Promise((r) => setTimeout(r, ms))),
     userAgent: String(env.SEC_USER_AGENT ?? "").trim() || DEFAULT_USER_AGENT,
     cache: new BoundedCache(),
+    // On your machine, not for sessions with their own fetch (tests) or on the hosted server.
+    disk: fetchImpl || env.CANLI_DISK_CACHE === "0" || env.VERCEL ? null : createDiskCache({ env }),
     hashes: new Map(),
     secNext: 0,
   };
@@ -55,6 +63,7 @@ function fetchError(error, { url, secret, aborted, maxBytes, timeoutMs = TIMEOUT
     if (error.code === "HTTP" && (error.status === 401 || error.status === 403)) return new Error(`${host(url)} refused the key (HTTP ${error.status}).`);
     if (error.code === "HTTP" && error.status >= 500) return new Error(`${where} returned HTTP ${error.status}; the service may be busy (some throttle bursts of queries), so retry in a minute.`);
     if (error.code === "HTTP") return new Error(`${where} returned HTTP ${error.status}.`);
+    if (error.code === "INVALID_UTF8") return new NotText(`${where} is not UTF-8 text.`);
     if (error.code === "TOO_LARGE") return new Error(`${where} is larger than ${Math.round(maxBytes / 1048576)} MB; not read.`);
   }
   return new Error(`${where} could not be reached (${error?.message ?? error}).`);
@@ -75,11 +84,33 @@ function witness(session, url, record) {
 // `variant` caches a second form of the same document under its own name (a filing's text for
 // read_filing, its parsed tables for filing_tables); the evidence still names the URL.
 // timeoutMs and retries: a source that can stall (GDELT) asks for less waiting than the default.
-export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false, method = "GET", body, variant, timeoutMs = TIMEOUT_MS, retries = 2 } = {}) {
+// A company that has just moved under a new holding company files its reports under the old CIK until the
+// new one's first annual report: Exxon Mobil's ticker moved in 2026 to ExxonMobil Holdings Corp. Its XBRL
+// history is read from the old filer. Remove an entry once the new filer has an annual report in XBRL. Navient
+// Holdings (2026, first 10-Q on 4 Nov) continues NAVIENT CORP, now Navient LLC (checked 2026-11-06).
+export const FACTS_FROM = Object.freeze(new Map([[2115436, 34088], [2152623, 1593538]]));
+const factsHome = (url) => url.replace(/^(https:\/\/data\.sec\.gov\/api\/xbrl\/(?:companyfacts|companyconcept)\/CIK)(\d{10})/, (whole, head, cik) => (FACTS_FROM.has(Number(cik)) ? `${head}${String(FACTS_FROM.get(Number(cik))).padStart(10, "0")}` : whole));
+
+// fresh: read the source again, past both caches (source_check, which asks whether a document has changed).
+export async function getText(session, rawUrl, { headers = {}, maxBytes = 16 * 1024 * 1024, transform, parse = (t) => t, secret = false, method = "GET", body, variant, maxAgeMs, timeoutMs = TIMEOUT_MS, retries = 2, fresh = false } = {}) {
+  const url = factsHome(rawUrl);
   const key = method === "GET" ? url : `${method} ${url} ${body ?? ""}`;
   const cacheKey = variant ? `${key}#${variant}` : key;
   const hit = session.cache.lookup(cacheKey, session.now());
-  if (hit) { witness(session, key, session.hashes.get(key)); return parse(hit.text); }
+  // maxAgeMs: a feed someone polls must not be answered from the ten-minute cache.
+  if (!fresh && hit && (maxAgeMs === undefined || session.now() - hit.at < maxAgeMs)) { witness(session, key, session.hashes.get(key)); return parse(hit.text); }
+  // Public data fetched in an earlier session, when still fresh for what it is.
+  const keepsOnDisk = !fresh && session.disk && method === "GET" && !secret && !Object.keys(headers).length && freshFor(url) > 0;
+  const diskKey = transform ? `${cacheKey}@${VERSION}` : cacheKey;
+  const copy = keepsOnDisk ? await session.disk.read(diskKey) : null;
+  const useCopy = () => {
+    session.hashes.delete(key);
+    session.hashes.set(key, copy.record);
+    witness(session, key, copy.record);
+    session.cache.set(cacheKey, { at: session.now(), text: copy.text });
+    return parse(copy.text);
+  };
+  if (copy && session.now() - copy.at < freshFor(url)) return useCopy();
   let text;
   // Server errors are often momentary (EDGAR full-text search answered 1 request in 12 with HTTP 500
   // on 2026-10-09): retry them, and dropped connections, twice with a short backoff.
@@ -93,6 +124,8 @@ export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024
     } catch (error) {
       const transient = !signal.aborted && (error instanceof ResponseReadError ? error.code === "HTTP" && error.status >= 500 : true);
       if (transient && attempt < retries) { await session.sleep((isOecd(url) ? 4000 : 500) * 3 ** attempt); continue; }
+      // The source is down: an older copy is better than nothing, and its retrieved_at says how old.
+      if (copy && (signal.aborted || transient)) return useCopy();
       throw fetchError(error, { url, secret, aborted: signal.aborted, maxBytes, timeoutMs });
     }
   }
@@ -103,11 +136,15 @@ export async function getText(session, url, { headers = {}, maxBytes = 16 * 1024
   witness(session, key, record);
   if (transform) text = transform(text);
   const value = parse(text);
-  session.cache.set(cacheKey, { at: session.now(), text });
+  // A fresh read (source_check's) is the raw document: kept, it would stand in for the form a transform makes.
+  if (!fresh) session.cache.set(cacheKey, { at: session.now(), text });
+  if (keepsOnDisk) session.disk.write(diskKey, { at: session.now(), text, record });
   return value;
 }
 
 export class NotFound extends Error {}
+// A document that is not UTF-8 text (a workbook, a zip, a table in Windows-1252), which only a read of its bytes takes.
+export class NotText extends Error {}
 
 // A lookup table's own entry for a key from a request, never an inherited property ("constructor").
 export const own = (map, key) => (Object.hasOwn(map, key) ? map[key] : undefined);
@@ -138,9 +175,20 @@ export function unzipFirst(bytes, { maxText = 64 * 1024 * 1024 } = {}) {
   return out.toString("utf8");
 }
 
-export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024 } = {}) {
+// decode turns the bytes into the text kept: the zip's first file by default, or another binary format's
+// text (a PDF's, for the House's transaction reports, or a spreadsheet's tabs). A file fresh for a while (freshFor) is
+// also kept on disk as its decoded text, so a large workbook is not fetched again by the next session.
+export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024, decode = unzipFirst } = {}) {
   const hit = session.cache.lookup(url, session.now());
   if (hit) { witness(session, url, session.hashes.get(url)); return hit.text; }
+  const keepsOnDisk = session.disk && freshFor(url) > 0;
+  const copy = keepsOnDisk ? await session.disk.read(`${url}#decoded@${VERSION}`) : null;
+  if (copy && session.now() - copy.at < freshFor(url)) {
+    session.hashes.set(url, copy.record);
+    witness(session, url, copy.record);
+    session.cache.set(url, { at: session.now(), text: copy.text });
+    return copy.text;
+  }
   let bytes;
   for (let attempt = 0; ; attempt++) {
     if (isSec(url)) await secTurn(session);
@@ -157,7 +205,46 @@ export async function getZipText(session, url, { maxBytes = 16 * 1024 * 1024 } =
   const record = { sha256: createHash("sha256").update(bytes).digest("hex"), bytes: bytes.byteLength, retrieved_at: new Date(session.now()).toISOString() };
   session.hashes.set(url, record);
   witness(session, url, record);
-  const text = unzipFirst(bytes);
+  const text = decode(bytes);
+  session.cache.set(url, { at: session.now(), text });
+  if (keepsOnDisk) session.disk.write(`${url}#decoded@${VERSION}`, { at: session.now(), text, record });
+  return text;
+}
+
+// The sources whose files sit behind one redirect, and the host each may lead to: EIA's weekly tables (to another
+// address on its own host) and OFAC's lists (to a signed storage address that is never shown or kept). Every other
+// read refuses redirects.
+export const REDIRECTS = Object.freeze({ "ir.eia.gov": /^ir\.eia\.gov$/, "sanctionslistservice.ofac.treas.gov": /^[\w-]+\.s3\.us-gov-west-1\.amazonaws\.com$/ });
+
+// A document's exact bytes, past every cache, following at most one redirect, to the host named for it.
+export async function readBytes(session, url, { redirectHost = own(REDIRECTS, new URL(url).hostname) ?? null, maxBytes = 16 * 1024 * 1024, timeoutMs = TIMEOUT_MS } = {}) {
+  if (isSec(url)) await secTurn(session);
+  const signal = AbortSignal.timeout(timeoutMs);
+  const headers = { "User-Agent": isSec(url) ? session.userAgent : PLAIN_USER_AGENT };
+  try {
+    let response = await session.fetchImpl(url, { signal, redirect: "manual", headers });
+    if (response.status >= 300 && response.status < 400) {
+      const target = new URL(response.headers.get("location") ?? "", url);
+      await response.body?.cancel?.();
+      if (!redirectHost || !redirectHost.test(target.hostname) || target.protocol !== "https:") throw new Error(`${url} redirected to an unexpected host.`);
+      response = await session.fetchImpl(target.href, { signal, redirect: "error", headers });
+    }
+    return await readBoundedResponse(response, { signal, maxBytes, as: "bytes" });
+  } catch (error) {
+    throw error instanceof Error && /unexpected host/.test(error.message) ? error : fetchError(error, { url, aborted: signal.aborted, maxBytes, timeoutMs });
+  }
+}
+
+// A public file that is not UTF-8 (Japan's Ministry of Finance, EIA's tables) or that sits behind one redirect
+// (REDIRECTS). Evidence is recorded under the stable address, by the bytes received.
+export async function getEncodedText(session, url, { encoding = "utf-8", redirectHost, maxBytes = 16 * 1024 * 1024, timeoutMs = TIMEOUT_MS } = {}) {
+  const hit = session.cache.lookup(url, session.now());
+  if (hit) { witness(session, url, session.hashes.get(url)); return hit.text; }
+  const bytes = await readBytes(session, url, { redirectHost, maxBytes, timeoutMs });
+  const record = { sha256: createHash("sha256").update(bytes).digest("hex"), bytes: bytes.byteLength, retrieved_at: new Date(session.now()).toISOString() };
+  session.hashes.set(url, record);
+  witness(session, url, record);
+  const text = new TextDecoder(encoding).decode(bytes);
   session.cache.set(url, { at: session.now(), text });
   return text;
 }
@@ -172,7 +259,8 @@ export async function postJson(session, url, payload, opts = {}) {
 // ---------------------------------------------------------------------------------------------
 
 export const pad10 = (cik) => String(Number(cik)).padStart(10, "0");
-export const archiveBase = (cik, accession) => `https://www.sec.gov/Archives/edgar/data/${Number(cik)}/${String(accession).replace(/-/g, "")}`;
+const FILED_UNDER = new Map();
+export const archiveBase = (cik, accession) => { const a = String(accession).replace(/-/g, ""); return `https://www.sec.gov/Archives/edgar/data/${FILED_UNDER.get(a) ?? Number(cik)}/${a}`; };
 
 // Fund share classes by ticker (mutual funds and ETFs), from the SEC's fund ticker file.
 export async function fundTickers(session) {
@@ -188,6 +276,10 @@ export async function tickerTable(session) {
 // Names people use that are not the registered name: listed companies by ticker, and fund managers
 // by the filer their 13Fs come from (checked on EDGAR 2026-10-11).
 const KNOWN_AS = Object.freeze({
+  // Renamed, and still written the old way in fund reports and by people.
+  "franklin resources": "BEN", "hartford financial services group": "HIG", "blackrock funding": "BLK",
+  // Renamed after the S&P SmallCap 600 fund's June 2026 report (the SEC's former names, checked 2026-11-06).
+  "madison square garden sports": "MSGS", "indivior pharmaceuticals": "INDV", indivior: "INDV",
   google: "GOOGL", youtube: "GOOGL", facebook: "META", instagram: "META", whatsapp: "META", "p and g": "PG", bofa: "BAC", tsmc: "TSM",
   vanguard: { cik: 102909, name: "VANGUARD GROUP INC" }, fidelity: { cik: 315066, name: "FMR LLC" }, "fidelity investments": { cik: 315066, name: "FMR LLC" },
   citadel: { cik: 1423053, name: "CITADEL ADVISORS LLC" }, "de shaw": { cik: 1009207, name: "D. E. Shaw & Co., Inc." }, "d e shaw": { cik: 1009207, name: "D. E. Shaw & Co., Inc." },
@@ -198,7 +290,37 @@ const KNOWN_AS = Object.freeze({
   soros: { cik: 1029160, name: "SOROS FUND MANAGEMENT LLC" }, "ark invest": { cik: 1697748, name: "ARK Investment Management LLC" },
   baupost: { cik: 1061768, name: "BAUPOST GROUP LLC/MA" }, "lone pine": { cik: 1061165, name: "LONE PINE CAPITAL LLC" },
 });
-const SUFFIXES = new Set(["inc", "corp", "corporation", "co", "company", "companies", "plc", "ltd", "limited", "the", "holdings", "holding", "group", "sa", "nv", "ag", "se"]);
+const SUFFIXES = new Set(["inc", "corp", "corporation", "co", "company", "companies", "plc", "ltd", "limited", "the", "holdings", "holding", "group", "sa", "nv", "ag", "se", "llc", "lp"]);
+// A place in brackets after a name, as fund reports write it, and the SEC's tag for it: "FIRST BANCORP (PUERTO RICO)" is
+// FIRST BANCORP /PR/, not /NC/ or /ME/.
+const STATES = Object.freeze({
+  alabama: "AL", alaska: "AK", arizona: "AZ", arkansas: "AR", california: "CA", colorado: "CO", connecticut: "CT", delaware: "DE",
+  florida: "FL", georgia: "GA", hawaii: "HI", idaho: "ID", illinois: "IL", indiana: "IN", iowa: "IA", kansas: "KS", kentucky: "KY",
+  louisiana: "LA", maine: "ME", maryland: "MD", massachusetts: "MA", michigan: "MI", minnesota: "MN", mississippi: "MS", missouri: "MO",
+  montana: "MT", nebraska: "NE", nevada: "NV", "new hampshire": "NH", "new jersey": "NJ", "new mexico": "NM", "new york": "NY",
+  "north carolina": "NC", "north dakota": "ND", ohio: "OH", oklahoma: "OK", oregon: "OR", pennsylvania: "PA", "rhode island": "RI",
+  "south carolina": "SC", "south dakota": "SD", tennessee: "TN", texas: "TX", utah: "UT", vermont: "VT", virginia: "VA",
+  washington: "WA", "west virginia": "WV", wisconsin: "WI", wyoming: "WY", "puerto rico": "PR", "district of columbia": "DC",
+});
+const tagOf = (title) => /\/\s*([A-Z]{2})\s*\/?\s*$/.exec(String(title))?.[1] ?? null;
+// The place picks among same-named companies: the one tagged with it, else the one with no tag (Massachusetts's
+// INDEPENDENT BANK CORP beside INDEPENDENT BANK CORP /MI/). A place that is not a state, such as "(US)", only goes.
+export function byPlace(rows, place) {
+  const code = STATES[String(place ?? "").toLowerCase().replace(/[^a-z ]+/g, " ").replace(/\s+/g, " ").trim()];
+  if (!code || rows.length < 2) return rows;
+  const tagged = rows.filter((r) => tagOf(r.title) === code);
+  if (tagged.length) return tagged;
+  const untagged = rows.filter((r) => !tagOf(r.title));
+  return untagged.length ? untagged : rows;
+}
+// A title's words, with initials written apart joined up: "HORTON D R INC" also holds "dr".
+const titleWords = (title) => {
+  const raw = String(title).toLowerCase().replace(/[^a-z0-9 ]+/g, " ").split(/\s+/).filter(Boolean);
+  const out = new Set(nameWords(title));
+  for (let i = 0; i + 1 < raw.length; i += 1) if (raw[i].length === 1 && raw[i + 1].length === 1) out.add(raw[i] + raw[i + 1]);
+  return out;
+};
+const FUND_LIKE = /\b(etf|fund|funds|trust|bitcoin|ethereum|crypto|portfolio)\b/i;
 const knownAs = (name) => (Object.hasOwn(KNOWN_AS, name) ? KNOWN_AS[name] : null);
 const nameWords = (s) => String(s).toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9 ]+/g, " ").split(/\s+/).filter((w) => w && !SUFFIXES.has(w));
 
@@ -211,13 +333,20 @@ export function listedByName(table, q) {
   if (!joined) return [];
   const known = knownAs(words.join(" "));
   if (known && typeof known !== "string") return [];
+  // A plural is the same word ("TWO HARBORS INVESTMENTS CORP" in a fund report is TWO HARBORS INVESTMENT CORP.).
+  const stem = (w) => (w && w.length > 4 && w.endsWith("s") ? w.slice(0, -1) : w);
   const rows = Object.values(table).filter((row) => {
     if (known) return row.ticker === known;
     const title = nameWords(row.title);
-    return words.every((w, i) => title[i] === w) || (joined.length >= 5 && title.join("").startsWith(joined));
+    // "TheRealReal, Inc." is one word in the ticker file; a fund report writes "RealReal, Inc. (The)".
+    const run = title.join("");
+    return words.every((w, i) => title[i] === w || stem(title[i]) === stem(w)) || (joined.length >= 5 && (run.startsWith(joined) || run.replace(/^the/, "").startsWith(joined)));
   });
+  // The whole name before a longer one that starts with it: "UNIVERSAL CORP" is UNIVERSAL CORP /VA/, not Universal Music
+  // Group, which the ticker file lists first. A state tag is not part of the name.
+  const whole = (row) => nameWords(String(row.title).replace(/\s*[/\\]\s*[a-z]{2,3}\s*[/\\]?\s*$/i, "")).join(" ") === words.join(" ");
   const seen = new Set();
-  return rows.filter((row) => !seen.has(row.cik_str) && seen.add(row.cik_str));
+  return rows.filter((row) => !seen.has(row.cik_str) && seen.add(row.cik_str)).sort((a, b) => Number(whole(b)) - Number(whole(a)));
 }
 
 // A company or fund by ticker, CIK or name. A name is looked for among listed companies first, then
@@ -237,9 +366,26 @@ export async function resolveEntity(session, query) {
   if (fund) return { cik: fund.cik, name: null, ticker: want, matched_by: "fund ticker", series: fund.series, class: fund.class };
   // Written like a ticker but in neither file: not a name to guess at ("VOO" is not Vooy, Inc.).
   if (funds && /^\$?[A-Z]{1,5}([.-][A-Z])?$/.test(q)) throw new NotFound(`${want} is not a ticker in the SEC's files of listed companies, mutual funds and ETFs (a delisted or changed ticker, or a foreign listing). Pass the company's name or CIK instead.`);
-  const filer = knownAs(nameWords(q).join(" "));
+  // Fund reports write names their own way: "TJX Cos Inc/The", "Lowe's Cos Inc", "Hess Corp/DE", and a place in
+  // brackets, "FIRST BANCORP (PUERTO RICO)" (byPlace).
+  const bracket = /\s*\(([^()]+)\)\s*$/.exec(q);
+  const base = bracket ? q.slice(0, bracket.index).trim() : q;
+  const filer = knownAs(nameWords(base).join(" "));
   if (filer && typeof filer !== "string") return { cik: filer.cik, name: filer.name, ticker: null, matched_by: "name" };
-  const listed = listedByName(table, q);
+  // A fund report may also add the trust's form ("CENTERSPACE REAL ESTATE INVESTMENT TRUST" is CENTERSPACE).
+  const tidied = base.replace(/\s*\/\s*(?:the|[a-z]{2,3})\s*\/?\s*$/i, "").replace(/['\u2019]/g, "").replace(/\bcos\b/i, "Companies")
+    .replace(/\s+real estate investment trust\s*$/i, "").trim();
+  const asWritten = listedByName(table, base);
+  let listed = asWritten.length ? asWritten : listedByName(table, tidied);
+  // SEC often writes a person's name family name first ("SCHWAB CHARLES CORP", "HORTON D R INC", "PRICE T ROWE
+  // GROUP INC"): every word in any order, initials joined, for a handful of companies at most. It also beats a
+  // name that only found funds: "T Rowe Price Group" is the company, not its crypto ETF.
+  if (!listed.length || listed.every((r) => FUND_LIKE.test(r.title))) {
+    const want = nameWords(tidied);
+    const anyOrder = want.length >= 2 ? [...new Map(Object.values(table).filter((row) => !FUND_LIKE.test(row.title) && want.every((w) => titleWords(row.title).has(w))).map((row) => [row.cik_str, row])).values()] : [];
+    if (anyOrder.length && anyOrder.length <= 3) listed = anyOrder;
+  }
+  listed = byPlace(listed, bracket?.[1]);
   if (listed.length) {
     const [top, ...others] = listed;
     return {
@@ -247,10 +393,23 @@ export async function resolveEntity(session, query) {
       ...(others.length ? { other_matches: others.slice(0, 4).map((r) => ({ cik: r.cik_str, name: r.title, ticker: r.ticker })) } : {}),
     };
   }
-  const found = await getJson(session, `https://efts.sec.gov/LATEST/search-index?keysTyped=${encodeURIComponent(q)}`);
+  const found = await getJson(session, `https://efts.sec.gov/LATEST/search-index?keysTyped=${encodeURIComponent(base)}`);
   const hits = found?.hits?.hits ?? [];
   if (!hits.length) throw new NotFound(`No SEC filer matches "${q}". Try the ticker, the CIK, or the name as registered (for example "Berkshire Hathaway").`);
-  const top = hits[0];
+  // EDGAR's search returns any filer whose name resembles the words: individuals, shells and funds. A name must
+  // hold every word asked for, and a listed company comes first. Anything else is said to be no match, because
+  // the wrong company's figures look exactly like the right one's.
+  const listedCiks = new Set(Object.values(table).map((r) => r.cik_str));
+  const asked = nameWords(tidied);
+  const fits = hits.filter((h) => { const t = titleWords(String(h._source?.entity ?? "").replace(/\s*\(.*$/, "")); return asked.every((w) => t.has(w)); });
+  if (!fits.length) throw new NotFound(`No SEC filer is named "${q}". Closest: ${hits.slice(0, 3).map((h) => h._source?.entity).filter(Boolean).join("; ") || "none"}. Try the ticker or the CIK; a company that was renamed files under its new name.`);
+  const exact = (h) => { const t = nameWords(String(h._source?.entity ?? "").replace(/\s*\(.*$/, "")); return t.length === asked.length; };
+  fits.sort((x, y) => Number(exact(y)) - Number(exact(x)) || Number(listedCiks.has(Number(y._id))) - Number(listedCiks.has(Number(x._id))) || Number(/^[A-Z]+ [A-Z] /.test(x._source?.entity ?? "")) - Number(/^[A-Z]+ [A-Z] /.test(y._source?.entity ?? "")));
+  const top = fits[0];
+  // Every word somewhere in the name is not enough for an unlisted filer: "Equity Residential" is not "CA
+  // Residential Preferred Equity, LLC". Its name must hold them in the order asked.
+  const inOrder = (h) => { const t = nameWords(String(h._source?.entity ?? "").replace(/\s*\(.*$/, "")); let i = 0; for (const w of t) if (w === asked[i]) i += 1; return i === asked.length; };
+  if (!exact(top) && !listedCiks.has(Number(top._id)) && !inOrder(top)) throw new NotFound(`No SEC filer is named "${q}". Closest: ${fits.slice(0, 3).map((h) => h._source?.entity).join("; ")}. Try the ticker or the CIK; a company that was renamed files under its new name.`);
   // A company's common shares come first in the ticker file.
   const byCik = new Map();
   for (const r of Object.values(table)) if (!byCik.has(r.cik_str)) byCik.set(r.cik_str, r.ticker);
@@ -260,11 +419,27 @@ export async function resolveEntity(session, query) {
   };
 }
 
+// A company newly under a holding company: its filing record continues from the old filer, whose documents stay
+// under the old CIK's folder (FILED_UNDER tells archiveBase which that is).
 export async function submissions(session, cik) {
-  return getJson(session, `https://data.sec.gov/submissions/CIK${pad10(cik)}.json`);
+  const sub = await getJson(session, `https://data.sec.gov/submissions/CIK${pad10(cik)}.json`);
+  const before = FACTS_FROM.get(Number(cik));
+  if (!before) return sub;
+  const old = await getJson(session, `https://data.sec.gov/submissions/CIK${pad10(before)}.json`).catch(() => null);
+  return old ? continuedFrom(sub, old, before) : sub;
 }
 
-const FILING_FIELDS = ["accessionNumber", "filingDate", "reportDate", "form", "primaryDocument", "primaryDocDescription", "items"];
+export function continuedFrom(sub, old, before) {
+  const [now, then] = [sub.filings?.recent ?? {}, old.filings?.recent ?? {}];
+  const own = new Set(now.accessionNumber ?? []);
+  const rows = [...(now.accessionNumber ?? []).map((_, i) => [now, i]), ...(then.accessionNumber ?? []).map((_, i) => [then, i]).filter(([, i]) => !own.has(then.accessionNumber[i]))];
+  rows.sort(([a, i], [b, j]) => String(b.filingDate[j]).localeCompare(String(a.filingDate[i])));
+  for (const a of then.accessionNumber ?? []) if (!own.has(a)) FILED_UNDER.set(a.replace(/-/g, ""), before);
+  const recent = Object.fromEntries([...new Set([...Object.keys(now), ...Object.keys(then)])].map((k) => [k, rows.map(([block, i]) => block[k]?.[i] ?? null)]));
+  return { ...sub, filings: { ...sub.filings, recent, files: old.filings?.files ?? [] } };
+}
+
+const FILING_FIELDS = ["accessionNumber", "filingDate", "reportDate", "form", "primaryDocument", "primaryDocDescription", "items", "isInlineXBRL"];
 function filingRows(block) {
   const n = block?.accessionNumber?.length ?? 0;
   const out = [];
@@ -402,6 +577,22 @@ export async function fredCsv(session, id, { start, end } = {}) {
     out.push([d, v === "" || v === "." ? null : Number(v)]);
   }
   return { url: `https://fred.stlouisfed.org/series/${encodeURIComponent(id)}`, rows: out };
+}
+
+// A series as it was published on a date (ALFRED, FRED's archive of past releases): only what had been released by
+// then, at the values then shown, before any later revision. The column is named for the vintage it holds.
+export async function alfredCsv(session, id, asOf, { start, end } = {}) {
+  const url = `https://alfred.stlouisfed.org/graph/alfredgraph.csv?id=${encodeURIComponent(id)}&vintage_date=${asOf}${start ? `&cosd=${start}` : ""}${end ? `&coed=${end}` : ""}`;
+  const text = await getText(session, url, { maxBytes: 8 * 1024 * 1024 });
+  const head = text.slice(0, text.indexOf("\n"));
+  const vintage = /^observation_date,[A-Z0-9_]+_(\d{4})(\d{2})(\d{2})\s*$/i.exec(head);
+  if (!vintage) throw new NotFound(`ALFRED has no vintage of ${id} published by ${asOf} (the series may be newer than that date, or not kept in vintages).`);
+  const out = [];
+  for (const line of text.trim().split(/\r?\n/).slice(1)) {
+    const [d, v] = line.split(",");
+    out.push([d, v === "" || v === "." ? null : Number(v)]);
+  }
+  return { url: `https://alfred.stlouisfed.org/series?seid=${encodeURIComponent(id)}`, csv: url, vintage: `${vintage[1]}-${vintage[2]}-${vintage[3]}`, rows: out };
 }
 
 export async function fredTitle(session, id) {

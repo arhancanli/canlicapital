@@ -532,6 +532,490 @@
         "sec-financial-statements-for-ai",
         "compare-stocks-in-claude"
       ]
+    },
+    {
+      "slug": "best-free-finance-mcp-server",
+      "cites": "benchmarks/finance-mcp-servers.json",
+      "title": "Free finance MCP servers compared",
+      "question": "Which free MCP server should I use for finance?",
+      "short": "Free servers compared",
+      "answer": "We make canli-mcp, so weigh this accordingly: it is free, needs no API key, and in our open benchmark, with the same model and questions, it answered 79% of the questions every server finished, against 54% for the best other open setup. OpenBB covers far more if you hold data-provider keys, EdgarTools is strong on SEC filings alone, and Alpha Vantage's official server needs its own API key.",
+      "call": {
+        "name": "company_report",
+        "arguments": {
+          "company": "AAPL",
+          "years": 2
+        }
+      },
+      "ask": "Give me Apple's last two years from its filings.",
+      "related": [
+        "finance-mcp-server-no-api-key",
+        "free-sec-edgar-mcp-server",
+        "fact-check-financial-figures"
+      ]
+    },
+    {
+      "slug": "finance-mcp-server-no-api-key",
+      "title": "A finance MCP server with no API key",
+      "question": "Is there a finance MCP server that needs no API key?",
+      "short": "No API key",
+      "answer": "Yes. canli-mcp needs no API key and no account: it reads SEC filings, Treasury and FRED data and prices from their public sources. It runs on your machine, or at a free hosted address that leaves prices out.",
+      "call": {
+        "name": "treasury_yields",
+        "arguments": {
+          "curve": "nominal",
+          "start": "2026-10-01"
+        }
+      },
+      "ask": "What has the Treasury yield curve done this month?",
+      "related": [
+        "best-free-finance-mcp-server",
+        "economic-data-for-ai-agents",
+        "treasury-yield-curve-ai"
+      ]
+    },
+    {
+      "slug": "connect-chatgpt-to-stock-data",
+      "title": "Connect ChatGPT to free stock market data",
+      "question": "How do I connect ChatGPT to free stock market data?",
+      "short": "ChatGPT",
+      "answer": "Add canli-mcp's free hosted server as a connector in ChatGPT, at https://canlicapital.com/mcp/canli. It needs no API key, and ChatGPT can then read SEC filings, insider trades and economic data. Share prices are not on the hosted server; they come with canli-mcp on your own computer. Custom connectors depend on your ChatGPT plan and settings, so check yours first.",
+      "call": {
+        "name": "insider_trades",
+        "arguments": {
+          "company": "AAPL",
+          "since": "2026-10-01"
+        }
+      },
+      "ask": "Have Apple's insiders been buying or selling since October?",
+      "related": [
+        "connect-claude-to-stock-data",
+        "insider-trades-ai-agent",
+        "fact-check-financial-figures"
+      ]
+    },
+    {
+      "slug": "connect-claude-to-stock-data",
+      "title": "Connect Claude to free stock market data",
+      "question": "How do I connect Claude to free stock market data?",
+      "short": "Claude",
+      "answer": "Run claude mcp add canli -- npx -y canli-mcp in Claude Code, or add https://canlicapital.com/mcp/canli as a connector in claude.ai if your plan allows it. Both are free and need no API key. Claude can then read filings and economic data from their sources. Prices and the market overview below come with the Claude Code install; the hosted connector leaves prices out.",
+      "call": {
+        "name": "market_overview",
+        "arguments": {}
+      },
+      "ask": "What are the markets doing today?",
+      "related": [
+        "stock-prices-in-claude",
+        "connect-chatgpt-to-stock-data",
+        "sec-financial-statements-for-ai"
+      ]
+    },
+    {
+      "slug": "alpha-vantage-mcp-alternative",
+      "title": "A free alternative to the Alpha Vantage MCP",
+      "question": "Is there a free alternative to the Alpha Vantage MCP server?",
+      "short": "Alpha Vantage alternative",
+      "answer": "canli-mcp is one: it is free, needs no API key, and reads SEC filings, Treasury and FRED data from the sources themselves. Alpha Vantage's server uses your Alpha Vantage API key and follows that plan's limits, so compare what each covers for your use.",
+      "call": {
+        "name": "price_history",
+        "arguments": {
+          "symbol": "MSFT",
+          "start": "2026-10-01",
+          "interval": "1Day"
+        }
+      },
+      "ask": "How has Microsoft's share price moved this month?",
+      "related": [
+        "best-free-finance-mcp-server",
+        "finance-mcp-server-no-api-key",
+        "stock-prices-in-claude"
+      ]
+    },
+    {
+      "slug": "free-sec-edgar-mcp-server",
+      "title": "A free MCP server for SEC EDGAR filings",
+      "question": "What is a free MCP server for SEC EDGAR filings?",
+      "short": "SEC EDGAR",
+      "answer": "canli-mcp reads SEC filings for free with no API key: statements as filed, full-text search, insider trades, 13F holdings and a check of any figure against the filing. EdgarTools is another good option with no key, especially if you want a Python library first.",
+      "call": {
+        "name": "read_filing",
+        "arguments": {
+          "company": "NVDA",
+          "form": "10-K",
+          "find": "employees"
+        }
+      },
+      "ask": "How many employees does NVIDIA say it has in its annual report?",
+      "related": [
+        "search-sec-filings-ai",
+        "sec-financial-statements-for-ai",
+        "insider-trades-ai-agent"
+      ]
+    },
+    {
+      "slug": "after-the-market-falls-10-percent",
+      "title": "What happens after the market falls 10%",
+      "question": "What usually happens after the stock market falls 10%?",
+      "short": "After a 10% fall",
+      "answer": "Since 1950 the S&P 500 has fallen 10% or more within a month 41 separate times. A year later the median gain was 15.5%, against 10.7% from all days, and the worst case was -36.2%. That is a record, not a forecast or advice. canli-mcp's what_happened_next lists every case, free with no key.",
+      "call": {
+        "name": "what_happened_next",
+        "arguments": {
+          "condition": "fell",
+          "percent": 10,
+          "days": 21
+        }
+      },
+      "ask": "What has usually happened after the S&P 500 fell 10% in a month?",
+      "related": [
+        "market-overview-in-claude",
+        "stock-prices-in-claude",
+        "does-a-company-beat-its-guidance"
+      ]
+    },
+    {
+      "slug": "does-a-company-beat-its-guidance",
+      "title": "Does a company beat its own guidance?",
+      "question": "How often does a company beat its own guidance?",
+      "short": "Beating guidance",
+      "answer": "Over 11 guided quarters, NVIDIA's revenue came in above its own range every time. canli-mcp's guidance_record sets each quarter's guidance against what followed, from the company's own press releases, free with no key. A company that nearly always beats may simply set its range low.",
+      "call": {
+        "name": "guidance_record",
+        "arguments": {
+          "company": "NVDA",
+          "quarters": 12
+        }
+      },
+      "ask": "How often has NVIDIA beaten its own guidance?",
+      "related": [
+        "search-every-annual-report",
+        "sec-financial-statements-for-ai",
+        "after-the-market-falls-10-percent"
+      ]
+    },
+    {
+      "slug": "track-ships-suez-panama-hormuz",
+      "title": "Track ships through Suez, Panama and Hormuz",
+      "question": "How can I track ships through the Suez Canal, Panama Canal or Strait of Hormuz?",
+      "short": "Ship traffic",
+      "answer": "canli-mcp's shipping_activity reads the IMF's PortWatch, which estimates ship traffic from satellite tracking, free with no key. In the week to October 25, 2026, 23 ships crossed the Strait of Hormuz against 714 a year earlier, and 289 crossed the Suez Canal against 299. A ship that turns off its tracking signal is not counted.",
+      "call": {
+        "name": "shipping_activity",
+        "arguments": {}
+      },
+      "ask": "How much shipping is going through the world's chokepoints against a year ago?",
+      "related": [
+        "market-overview-in-claude",
+        "search-every-annual-report",
+        "after-the-market-falls-10-percent"
+      ]
+    },
+    {
+      "slug": "search-every-annual-report",
+      "title": "Search every annual report a company filed",
+      "question": "How can I search every annual report a company has filed for one subject?",
+      "short": "Every annual report",
+      "answer": "canli-mcp's filing_memory reads every annual report a company has on EDGAR, on your machine, and returns the most relevant passages and how often a subject came up each year, free with no key. Across Coca-Cola's 33 reports back to 1994, the year 2000 problem is counted only in those for 1997, 1998 and 1999.",
+      "call": {
+        "name": "filing_memory",
+        "arguments": {
+          "company": "KO",
+          "query": "year 2000 computer systems",
+          "also": [
+            "Y2K"
+          ],
+          "years": 33,
+          "limit": 3,
+          "per_year": 1
+        }
+      },
+      "ask": "What has Coca-Cola said about the year 2000 problem across its annual reports?",
+      "related": [
+        "does-a-company-beat-its-guidance",
+        "free-sec-edgar-mcp-server",
+        "sec-financial-statements-for-ai"
+      ]
+    },
+    {
+      "slug": "who-depends-on-a-company",
+      "title": "Which companies depend on TSMC?",
+      "question": "Which companies depend on a supplier like TSMC?",
+      "short": "Who depends on whom",
+      "answer": "canli-mcp's exposure_map reads what other companies say in their annual reports and lists every filer that names a company, with the passage, free with no key. For TSMC it found 64 filers; of the 20 it read, 19 describe TSMC as a supplier. It reads by rules on the words, so check the passage. Many companies keep suppliers unnamed.",
+      "call": {
+        "name": "exposure_map",
+        "arguments": {
+          "name": "TSMC",
+          "also": [
+            "Taiwan Semiconductor"
+          ]
+        }
+      },
+      "ask": "Which companies depend on TSMC?",
+      "related": [
+        "search-every-annual-report",
+        "does-a-company-beat-its-guidance",
+        "sec-financial-statements-for-ai"
+      ]
+    },
+    {
+      "slug": "what-happened-to-my-stocks-this-week",
+      "title": "What happened to my stocks this week?",
+      "question": "Can AI tell me what happened to my stocks this week?",
+      "short": "My week",
+      "answer": "canli-mcp's my_week sums up a week across what you hold in plain words: how each holding moved, what it told the SEC about, and when it is expected to report next, with no view on what to do. It runs on your own machine with npx canli-mcp, free with no key or account.",
+      "call": {
+        "name": "my_week",
+        "arguments": {
+          "holdings": [
+            "AAPL",
+            "NVDA",
+            "VOO"
+          ]
+        }
+      },
+      "ask": "What happened to my stocks this week? I hold Apple, NVIDIA and VOO.",
+      "related": [
+        "after-the-market-falls-10-percent",
+        "does-a-company-beat-its-guidance",
+        "connect-claude-to-stock-data"
+      ]
+    },
+    {
+      "slug": "test-a-factor-without-lookahead",
+      "title": "Test a factor without lookahead",
+      "question": "How do I test a stock factor without lookahead bias?",
+      "short": "No lookahead",
+      "answer": "canli-backtest-mcp's pit_factor builds a factor from SEC filings using only what had been filed by each date, so an annual figure filed in February cannot reach a January decision. For Apple and Microsoft, gross margin from January to March 2024 came back as a file ready for backtest_signal, free with no key.",
+      "call": {
+        "name": "pit_factor",
+        "arguments": {
+          "factor": "gross_margin",
+          "tickers": [
+            "AAPL",
+            "MSFT"
+          ],
+          "start": "2024-01-01",
+          "end": "2024-03-31"
+        }
+      },
+      "ask": "Build a gross-margin factor for Apple and Microsoft using only what had been filed by each date.",
+      "related": [
+        "is-my-backtest-overfit",
+        "point-in-time-fundamentals",
+        "backtest-a-strategy-in-claude"
+      ]
+    },
+    {
+      "slug": "ai-agents-trading-in-a-paper-market",
+      "title": "AI agents trading in a paper market",
+      "question": "How can AI agents trade against each other without real money?",
+      "short": "Paper market",
+      "answer": "canli-mcp's exchange_run runs a closed paper market with order books, margin and forced selling, where market makers, value traders, momentum traders and your own agents trade made-up money. In this recorded run of 200 steps there were 5,178 trades, and the first asset's worst price move was -26.23% while its true value was cut 10%.",
+      "call": {
+        "name": "exchange_run",
+        "arguments": {
+          "seed": 7,
+          "assets": 2,
+          "personas": {
+            "market_maker": 2,
+            "value": 3,
+            "momentum": 3,
+            "noise": 4,
+            "deleverager": 1
+          },
+          "steps": 200,
+          "shocks": [
+            {
+              "step": 100,
+              "kind": "value",
+              "percent": -10
+            }
+          ]
+        }
+      },
+      "ask": "Run a paper market with market makers, value and momentum traders, and a 10% fall in true value halfway.",
+      "related": [
+        "backtest-a-strategy-in-claude",
+        "is-my-backtest-overfit",
+        "after-the-market-falls-10-percent"
+      ]
+    },
+    {
+      "slug": "deflated-sharpe-ratio-ai",
+      "title": "Deflated Sharpe ratio in an AI assistant",
+      "question": "How do I calculate a deflated Sharpe ratio with AI?",
+      "short": "Deflated Sharpe",
+      "answer": "canli-mcp's validate_deflated_sharpe asks how likely a Sharpe ratio is real once you count the tries behind it. For a Sharpe of 2 over 756 days after 50 independent tries, luck alone reaches 1.138 and the deflated Sharpe is 93.1%. It runs on your machine, free with no key, and neither number is a forecast.",
+      "call": {
+        "name": "validate_deflated_sharpe",
+        "arguments": {
+          "observed_sharpe_annualized": 2,
+          "observations": 756,
+          "periods_per_year": 252,
+          "skew": 0,
+          "non_excess_kurtosis": 3,
+          "effective_independent_trials": 50,
+          "cross_trial_sharpe_sd_annualized": 0.5
+        }
+      },
+      "ask": "My best backtest has a Sharpe of 2 over three years of daily data, after about 50 independent tries. Is that real?",
+      "related": [
+        "is-my-backtest-overfit",
+        "test-a-factor-without-lookahead",
+        "backtest-a-strategy-in-claude"
+      ]
+    },
+    {
+      "slug": "company-restatements-ai",
+      "title": "Find a company's restated figures",
+      "question": "Which figures did a company restate after first reporting them?",
+      "short": "Restatements",
+      "answer": "canli-mcp's restatements tool compares what a company first reported with what its latest filing says, free with no key. For Becton Dickinson it scanned 4,329 annual values and 661 had changed. A change can be a restatement, a reclassification or a correction, so read the filing it names before calling it an error.",
+      "call": {
+        "name": "restatements",
+        "arguments": {
+          "company": "BDX",
+          "periods": "annual",
+          "limit": 10
+        }
+      },
+      "ask": "Which of Becton Dickinson's annual figures changed after they were first reported?",
+      "related": [
+        "point-in-time-fundamentals",
+        "sec-financial-statements-for-ai",
+        "fact-check-financial-figures"
+      ]
+    },
+    {
+      "slug": "quant-strategies-that-failed",
+      "title": "Quant strategies that failed the tests",
+      "question": "Where can AI read about quant strategies that failed?",
+      "short": "What failed",
+      "answer": "canli-mcp's search_research reads Canli Capital's open research record, including every candidate that failed its tests. A search for momentum returned five failed candidates, among them 52-week-high momentum and residual momentum, each with a page saying what was tried. It is free with no key. It is our own record, so weigh that.",
+      "call": {
+        "name": "search_research",
+        "arguments": {
+          "query": "killed momentum",
+          "limit": 5
+        }
+      },
+      "ask": "What has been tried on momentum and failed?",
+      "related": [
+        "is-my-backtest-overfit",
+        "deflated-sharpe-ratio-ai",
+        "backtest-a-strategy-in-claude"
+      ]
+    },
+    {
+      "slug": "portfolio-value-at-risk-ai",
+      "title": "Portfolio value at risk in an AI assistant",
+      "question": "How do I calculate a portfolio's value at risk with AI?",
+      "short": "Value at risk",
+      "answer": "canli-mcp's portfolio_var works out value at risk from your positions and return history, on your own machine with no key. For $60,000 of stocks and $40,000 of bonds over 20 days of sample returns, one-day historical value at risk at 95% confidence was $1,513. These returns are made up, and 20 days is too few for a real answer.",
+      "call": {
+        "name": "portfolio_var",
+        "arguments": {
+          "positions": [
+            60000,
+            40000
+          ],
+          "returns": [
+            [
+              0.012,
+              0.006
+            ],
+            [
+              -0.008,
+              -0.002
+            ],
+            [
+              0.004,
+              0.001
+            ],
+            [
+              0.021,
+              0.009
+            ],
+            [
+              -0.015,
+              -0.007
+            ],
+            [
+              0.007,
+              0.004
+            ],
+            [
+              -0.003,
+              -0.001
+            ],
+            [
+              0.011,
+              0.005
+            ],
+            [
+              -0.022,
+              -0.011
+            ],
+            [
+              0.009,
+              0.003
+            ],
+            [
+              0.005,
+              0.002
+            ],
+            [
+              -0.012,
+              -0.005
+            ],
+            [
+              0.016,
+              0.007
+            ],
+            [
+              -0.006,
+              -0.003
+            ],
+            [
+              0.002,
+              0.001
+            ],
+            [
+              0.013,
+              0.006
+            ],
+            [
+              -0.019,
+              -0.009
+            ],
+            [
+              0.008,
+              0.004
+            ],
+            [
+              0.003,
+              0.002
+            ],
+            [
+              -0.004,
+              -0.001
+            ]
+          ],
+          "confidence": 0.95,
+          "names": [
+            "Stocks",
+            "Bonds"
+          ]
+        }
+      },
+      "ask": "I hold $60,000 of stocks and $40,000 of bonds, with these daily returns. What is my one-day value at risk?",
+      "related": [
+        "black-scholes-in-claude",
+        "technical-indicators-ai-agent",
+        "is-my-backtest-overfit"
+      ]
     }
   ]
 }

@@ -19,13 +19,15 @@ import {
   toolKnownAsOf,
   toolListConcepts,
   toolRestatements,
+  toolVintageDiff,
   toolVintages,
 } from "../src/server.mjs";
-import { CIK, EXXON, RAW, SHA, fakeFetch, files } from "./fixture.mjs";
+import { CIK, EXXON, FACTS, RAW, SHA, fakeFetch, files } from "./fixture.mjs";
+import { indexFacts } from "../src/server.mjs";
 
-const session = (map) => {
+const session = (map, opts = {}) => {
   const f = fakeFetch(map);
-  return { s: createSession({ base: "https://example.test", fetchImpl: f.impl, cacheDir: "" }), calls: f.calls };
+  return { s: createSession({ base: "https://example.test", fetchImpl: f.impl, cacheDir: "", ...opts }), calls: f.calls };
 };
 const out = (r) => r.structuredContent;
 const byCol = (res) => res.rows.map((row) => Object.fromEntries(res.columns.map((c, i) => [c, row[i]])));
@@ -69,6 +71,23 @@ test("history with as_of never shows a filing made after it, whatever the basis"
     assert.deepEqual(r.map((x) => [x.end, x.val, x.filed]), [["2019-09-30", 100, "2019-10-30"], ["2018-09-30", 80, "2018-10-31"]], basis);
   }
   await assert.rejects(toolHistory(s, { company: "FIX", concept: "Revenues", basis: "as_of" }), /needs an as_of date/);
+});
+
+test("history with as_of: changed counts only filings made by then, so a restatement filed later is not seen", async () => {
+  const { s } = session();
+  // Fiscal 2019 revenue: 100 first filed 2019-10-30, restated to 90 in the 10-K of 2020-10-29.
+  const fy2019 = async (as_of) => {
+    const res = out(await toolHistory(s, { company: "FIX", concept: "revenue", basis: "first_reported", as_of }));
+    return [byCol(res).find((r) => r.end === "2019-09-30"), res.meaning];
+  };
+  const [before, meaning] = await fy2019("2020-06-30");
+  assert.deepEqual([before.val, before.changed], [100, false], "the restatement was not filed by then");
+  assert.match(meaning, /made by as_of, reported a different value for the period\. Nothing here comes from a filing made after as_of/);
+  const [after] = await fy2019("2020-11-01");
+  assert.deepEqual([after.val, after.changed], [100, true], "by then it was");
+  // Without as_of, changed still counts every later filing.
+  const all = byCol(out(await toolHistory(s, { company: "FIX", concept: "revenue", basis: "first_reported" }))).find((r) => r.end === "2019-09-30");
+  assert.deepEqual([all.val, all.changed], [100, true]);
 });
 
 test("history: latest and quarterly periods, including a 16-week quarter; prospectus figures are never vintages", async () => {
@@ -140,7 +159,10 @@ test("a tag in two taxonomies is one measure; a taxonomy prefix picks one", asyn
 test("known_as_of: values as they stood, across tag and taxonomy changes, with stale and snapshot flags", async () => {
   const { s } = session();
   const before = out(await toolKnownAsOf(s, { company: "FIX", as_of: "2019-12-31" }));
-  const b = byCol(before);
+  // Whether a filing made after as_of changed a value is given only when asked for by name: nobody knew it on as_of.
+  const b = byCol(out(await toolKnownAsOf(s, { company: "FIX", as_of: "2019-12-31", changed_after: true })));
+  assert.deepEqual([before.columns.includes("changed_after"), byCol(before)], [false, b.map(({ changed_after: _later, ...known }) => known)]);
+  assert.match(before.meaning, /Nothing here comes from a filing made after as_of; changed_after: true adds/);
   assert.deepEqual([get(b, "revenue").val, get(b, "revenue").tag, get(b, "revenue").changed_after], [100, "SalesRevenueNet", true]);
   assert.deepEqual([get(b, "assets").val, get(b, "assets").changed_after], [500, true], "the 10-K/A of 2020-01-15 was not yet filed");
   assert.equal(get(b, "eps_diluted").unit, "USD/shares");
@@ -205,6 +227,146 @@ test("unknown names get suggestions, plain names and current tags first", async 
   await assert.rejects(toolHistory(s, { company: "FIX", concept: "Revenues", unit: "EUR" }), /reported in USD, not EUR/);
 });
 
+test("a ticker held outside the reference is never read as another company's name", async () => {
+  const { s } = session();
+  await assert.rejects(toolListConcepts(s, { company: "META" }), /META is the SEC's ticker for Some Other Listed Plc \(CIK 0002300000\).*pass one CIK as company/);
+  // Not a ticker at all: a name's first word still finds the company, and the answer says how it was read.
+  assert.match((await resolveCompany(s, "STAR")).matched.note, /STAR is not a current ticker/);
+  assert.doesNotMatch((await resolveCompany(s, "Star")).matched.note ?? "", /not a current ticker/);
+});
+
+test("a company outside the reference is read live from the SEC when the flagship turns that on, and the answer says so", async () => {
+  const map = files();
+  map["/api/xbrl/companyfacts/CIK0002200000.json"] = RAW;
+  const { s, calls } = session(map, { secLive: true });
+  for (const company of ["NEWCO", "Brand New"]) {
+    const r = out(await toolListConcepts(s, { company }));
+    assert.equal(r.company.cik, "0002200000");
+    assert.match(r.company.matched.note, /outside the Canli company reference, so its figures are read live from the SEC/);
+    assert.equal(r.snapshot.read_live, true);
+    assert.equal(r.snapshot.sec_url, "https://data.sec.gov/api/xbrl/companyfacts/CIK0002200000.json");
+  }
+  assert.equal(calls.filter((c) => c.includes("companyfacts")).length, 1);
+  assert.equal(out(await toolHistory(s, { company: "NEWCO", concept: "revenue" })).company.cik, "0002200000");
+  assert.equal(out(await toolFindCompany(s, { query: "Brand New" })).rows.length > 0, true);
+  // No SEC facts for the holder: says so. Off by default: only the reference is contacted.
+  const { s: empty } = session(files(), { secLive: true });
+  await assert.rejects(toolListConcepts(empty, { company: "NEWCO" }), /CIK 0002200000 is not in the Canli company reference, and the SEC has no XBRL facts for it/);
+  const { s: off, calls: offCalls } = session(map);
+  await assert.rejects(toolListConcepts(off, { company: "NEWCO" }), /does not cover/);
+  assert.equal(offCalls.some((c) => c.includes("companyfacts")), false);
+});
+
+test("a reference snapshot older than the company's newest report gives way to the SEC's own facts when the flagship reads live, and says why", async () => {
+  // The fixture's reference was captured 2026-09-19; the SEC lists a 10-Q filed since, after an 8-K.
+  const list = (forms, dates) => JSON.stringify({ filings: { recent: { form: forms, filingDate: dates, accessionNumber: forms.map((_, i) => `0000123456-26-00003${i}`) } } });
+  const map = files();
+  map[`/submissions/CIK${CIK}.json`] = list(["8-K", "10-Q", "10-K"], ["2026-11-04", "2026-11-03", "2026-02-20"]);
+  map[`/api/xbrl/companyfacts/CIK${CIK}.json`] = RAW;
+  const { s } = session(map, { secLive: true });
+  const r = out(await toolListConcepts(s, { company: "FIX" }));
+  assert.equal(r.snapshot.read_live, true);
+  assert.deepEqual(r.snapshot.newer_filing, { form: "10-Q", filed: "2026-11-03", accession: "0000123456-26-000031" });
+  assert.deepEqual(r.snapshot.reference, { fetched_at: "2026-09-19T09:30:25.021Z", sha256: SHA, url: `https://example.test/company-data/sources/${SHA}.json.gz` });
+  assert.match(r.snapshot.note, /captured 2026-09-19; its 10-Q filed 2026-11-03 is newer, so the SEC's own company facts were read live/);
+  assert.equal(r.company.cik, CIK);
+  // Nothing newer than the snapshot: the reference stands.
+  const current = files();
+  current[`/submissions/CIK${CIK}.json`] = list(["8-K", "10-Q"], ["2026-11-04", "2026-08-01"]);
+  const { s: same, calls } = session(current, { secLive: true });
+  assert.equal(out(await toolListConcepts(same, { company: "FIX" })).snapshot.read_live, undefined);
+  assert.equal(calls.some((c) => c.includes("companyfacts")), false);
+  // Not reading live: the SEC is never asked.
+  const { s: off, calls: offCalls } = session(map);
+  assert.equal(out(await toolListConcepts(off, { company: "FIX" })).snapshot.read_live, undefined);
+  assert.equal(offCalls.some((c) => c.startsWith("/submissions/")), false);
+});
+
+test("a long session sees a report filed after it first read a company, and reads again a few times for figures the SEC's facts do not hold yet", async () => {
+  const list = (...reports) => JSON.stringify({ filings: { recent: { form: reports.map((r) => r[0]), filingDate: reports.map((r) => r[1]), accessionNumber: reports.map((r) => r[2]) } } });
+  // The SEC's company facts with one more filing: a 10-K/A that restates the year to 2020-09-30 from 110 to 112.
+  const withFiling = (accn, filed) => {
+    const facts = structuredClone(FACTS);
+    facts.facts["us-gaap"].Revenues.units.USD.push({ start: "2019-10-01", end: "2020-09-30", val: 112, accn, fy: 2020, fp: "FY", form: "10-K/A", filed });
+    return Buffer.from(JSON.stringify(facts));
+  };
+  let clock = Date.parse("2026-11-05T12:00:00Z");
+  const map = files();
+  map[`/submissions/CIK${CIK}.json`] = list(["10-Q", "2026-08-01", "0000123456-26-000020"]);
+  const { s, calls } = session(map, { secLive: true, now: () => clock });
+  const year = { company: "FIX", concept: "Revenues", end: "2020-09-30", start: "2019-10-01" };
+  const last = async () => out(await toolVintages(s, year)).rows.at(-1);
+  const count = (part) => calls.filter((c) => c.includes(part)).length;
+  assert.equal((await last())[7], 110, "nothing newer than the reference: its figures stand");
+  // The fixture's reference holds no figures from that older 10-Q, as a 10-K/A adding only Part III would not;
+  // the reference stands against it at every check.
+  clock += 16 * 60 * 1000;
+  assert.equal((await last())[7], 110);
+  assert.equal(count("companyfacts"), 0);
+  // A restatement filed later the same session, read within fifteen minutes of the last check.
+  map[`/submissions/CIK${CIK}.json`] = list(["10-K/A", "2026-11-05", "0000123456-26-000041"], ["10-Q", "2026-08-01", "0000123456-26-000020"]);
+  map[`/api/xbrl/companyfacts/CIK${CIK}.json`] = withFiling("0000123456-26-000041", "2026-11-05");
+  clock += 10 * 60 * 1000;
+  assert.equal((await last())[7], 110, "checked at most every fifteen minutes");
+  assert.equal(count("/submissions/"), 2);
+  clock += 6 * 60 * 1000;
+  const restated = out(await toolVintages(s, year));
+  assert.deepEqual(restated.rows.at(-1).slice(2, 5), ["2026-11-05", "10-K/A", "0000123456-26-000041"]);
+  assert.equal(restated.rows.at(-1)[7], 112);
+  assert.equal(restated.snapshot.newer_filing.accession, "0000123456-26-000041");
+  assert.equal(restated.snapshot.reference.sha256, SHA, "the reference it replaced is still named");
+  assert.equal(count("companyfacts"), 1);
+  // Another report the SEC's facts do not hold yet: read again at each check, four reads in all, then let be.
+  map[`/submissions/CIK${CIK}.json`] = list(["10-Q", "2026-11-06", "0000123456-26-000050"], ["10-K/A", "2026-11-05", "0000123456-26-000041"]);
+  for (let i = 0; i < 6; i++) {
+    clock += 16 * 60 * 1000;
+    assert.equal((await last())[7], 112);
+  }
+  assert.equal(count("companyfacts"), 1 + 4);
+  // Facts that catch up within the tries are taken, and reading stops there.
+  map[`/submissions/CIK${CIK}.json`] = list(["10-Q", "2026-11-07", "0000123456-26-000060"], ["10-Q", "2026-11-06", "0000123456-26-000050"]);
+  clock += 16 * 60 * 1000;
+  await last();
+  map[`/api/xbrl/companyfacts/CIK${CIK}.json`] = withFiling("0000123456-26-000060", "2026-11-07");
+  clock += 16 * 60 * 1000;
+  assert.equal((await last())[2], "2026-11-07");
+  for (let i = 0; i < 3; i++) { clock += 16 * 60 * 1000; await last(); }
+  assert.equal(count("companyfacts"), 1 + 4 + 2);
+  // A failed read keeps the figures held.
+  map[`/submissions/CIK${CIK}.json`] = list(["10-Q", "2026-11-08", "0000123456-26-000070"]);
+  delete map[`/api/xbrl/companyfacts/CIK${CIK}.json`];
+  clock += 16 * 60 * 1000;
+  assert.equal((await last())[2], "2026-11-07");
+});
+
+test("vintage_diff lists what changed between two dates, with the filing that changed it, and counts what was new", async () => {
+  const { s } = session();
+  const all = out(await toolVintageDiff(s, { company: "FIX", from: "2020-01-01", to: "2021-01-01", periods: "all" }));
+  assert.deepEqual([all.compared, all.changed, all.first_reported_between, all.splits_excluded], [10, 2, 16, 1]);
+  assert.deepEqual(byCol(all).map((r) => [r.concept, r.value_then, r.value_now, r.form, r.accn]), [
+    ["OperatingLeaseLiability", 0, 30, "10-K", "0000123456-20-000020"],
+    ["Assets", 500, 520, "10-K/A", "0000123456-20-000002"],
+  ], "latest filing first");
+  // A plain name follows its tags, so a value moved to a new tag is a change.
+  const revenue = out(await toolVintageDiff(s, { company: "FIX", concept: "revenue", from: "2020-01-01", to: "2021-01-01" }));
+  assert.deepEqual(revenue.rows, [["revenue", "USD", "2019-09-30", "2018-10-01", 100, "2019-10-30", 90, "2020-10-29", "10-K", "0000123456-20-000020", -10]]);
+  assert.equal(revenue.first_reported_between, 1);
+  // Nothing filed between two dates: nothing changed.
+  const quiet = out(await toolVintageDiff(s, { company: "FIX", from: "2020-11-01", to: "2021-01-01", periods: "all" }));
+  assert.equal(quiet.changed, 0);
+  assert.equal(quiet.first_reported_between, 0);
+  await assert.rejects(toolVintageDiff(s, { company: "FIX", from: "2021-01-01", to: "2020-01-01" }), /must be before/);
+});
+
+test("names people use reach the listed company", async () => {
+  const map = files();
+  map["/api/v1/company-tickers.json"] = Buffer.from(JSON.stringify({ tickers: { FIX: CIK, GOOGL: "0001652044" } }));
+  const { s } = session(map);
+  const google = await resolveCompany(s, "Google");
+  assert.equal(google.cik, "0001652044");
+  assert.equal(google.matched.by, "known_name");
+});
+
 test("companies resolve by ticker, dotted ticker or CIK; unknown ones say what to do", async () => {
   const { s } = session();
   assert.equal(out(await toolListConcepts(s, { company: "fix" })).company.cik, CIK);
@@ -263,6 +425,21 @@ test("find_company: best match first, resolved only when one is clearly best, an
   const none = out(await toolFindCompany(s, { query: "Nothing Like It" }));
   assert.deepEqual([none.total, none.rows, none.resolved], [0, [], undefined]);
   await assert.rejects(toolFindCompany(s, { query: "" }), /find_company: query/);
+});
+
+test("a company renamed since the reference was captured is found by its new SEC name, and says so", async () => {
+  const { s } = session();
+  const here = out(await toolFindCompany(s, { query: "Here Group Limited" }));
+  assert.deepEqual(here.resolved, { cik: "0001932770", name: "QuantaSing Group Limited", match: "name", matched_name: "Here Group Ltd" });
+  assert.deepEqual(here.rows.map((r) => [r[0], r[3]]), [["0001932770", "name"], ["0000820318", "name_contains"]], "Coherent only holds the letters");
+  assert.deepEqual(here.matched_by_other_name, [{ cik: "0001932770", sec_name: "Here Group Ltd" }]);
+  const resolved = await resolveCompany(s, "Here Group");
+  assert.equal(resolved.cik, "0001932770");
+  assert.equal(resolved.matched.note, "Matched by Here Group Ltd, the name the SEC's ticker file gives CIK 0001932770; the Canli company reference names it QuantaSing Group Limited.");
+  // The reference's own name still resolves, and says nothing about another name.
+  const old = out(await toolFindCompany(s, { query: "QuantaSing" }));
+  assert.deepEqual([old.resolved.cik, old.resolved.matched_name, old.matched_by_other_name], ["0001932770", undefined, undefined]);
+  assert.equal((await resolveCompany(s, "HERE")).cik, "0001932770", "the ticker as before");
 });
 
 test("a snapshot whose hash does not match its record is refused", async () => {
@@ -356,7 +533,7 @@ test("known_as_of ratios: every input as filed by as_of, one period, averages ac
   const { s } = session();
   const ratioRows = (res) => Object.fromEntries(res.ratios.rows.map((row) => [row[0], Object.fromEntries(res.ratios.columns.map((c, i) => [c, row[i]]))]));
   // After the 2020 10-K: fiscal 2020 throughout, and the 10-K/A's restated assets (520) for the start.
-  const late = out(await toolKnownAsOf(s, { company: "FIX", as_of: "2020-11-01", ratios: true }));
+  const late = out(await toolKnownAsOf(s, { company: "FIX", as_of: "2020-11-01", ratios: true, changed_after: true }));
   assert.deepEqual(late.ratios.period, { start: "2019-10-01", end: "2020-09-30" });
   const r = ratioRows(late);
   assert.equal(r.gross_margin.value, 0.4);
@@ -371,7 +548,8 @@ test("known_as_of ratios: every input as filed by as_of, one period, averages ac
   assert.deepEqual(r.return_on_assets.inputs.map((x) => [x[0], x[1], x[2]]), [["net_income", 11, "2020-09-30"], ["assets", 600, "2020-09-30"], ["assets", 520, "2019-09-30"]]);
   assert.equal(r.net_margin.changed_after, false);
   // Before the 10-K/A was filed (2020-01-15): fiscal 2019, and the assets as first reported (500).
-  const early = ratioRows(out(await toolKnownAsOf(s, { company: "FIX", as_of: "2020-01-10", ratios: true })));
+  const early = ratioRows(out(await toolKnownAsOf(s, { company: "FIX", as_of: "2020-01-10", ratios: true, changed_after: true })));
+  assert.deepEqual(out(await toolKnownAsOf(s, { company: "FIX", as_of: "2020-01-10", ratios: true })).ratios.columns, ["ratio", "value", "unit", "basis", "inputs"], "not asked for, no changed_after");
   assert.equal(early.return_on_assets.value, 0.018, "9 over 500: the restated 520 was not known yet");
   assert.match(early.return_on_assets.basis, /balance at the period's end/);
   assert.equal(early.net_margin.value, 0.09, "fiscal 2019 revenue as first reported, 100");
@@ -395,8 +573,9 @@ test("cross_section: one row per company in the order asked, each value as filed
   assert.deepEqual(late.rows.map((r) => [r[c("end")], r[c("val")]]), [["2020-09-30", 600], ["2020-09-30", 600], ["2020-09-30", 600]]);
   assert.equal(late.missing.length, 1);
   assert.match(late.missing[0], /^ZZZZ: "ZZZZ" is not a current ticker or a company name/);
-  // Before the 10-K/A (2020-01-15), the 2019 year-end assets as first reported, flagged as later changed.
-  const early = out(await toolCrossSection(s, { companies: ["FIX"], concept: "assets", as_of: "2020-01-10" }));
+  // Before the 10-K/A (2020-01-15), the 2019 year-end assets as first reported, flagged as later changed when asked.
+  assert.equal(out(await toolCrossSection(s, { companies: ["FIX"], concept: "assets", as_of: "2020-01-10" })).columns.includes("changed_after"), false);
+  const early = out(await toolCrossSection(s, { companies: ["FIX"], concept: "assets", as_of: "2020-01-10", changed_after: true }));
   const e = col(early);
   assert.deepEqual([early.rows[0][e("end")], early.rows[0][e("val")], early.rows[0][e("changed_after")]], ["2019-09-30", 500, true]);
   const byName = out(await toolCrossSection(s, { companies: ["Fixture Corp"], concept: "revenue", as_of: "2020-11-01" }));
@@ -440,7 +619,9 @@ test("history takes several concepts in one call, each series as a single call g
   assert.deepEqual(both.series[1].rows, alone.rows);
   assert.equal(both.company.cik, alone.company.cik);
   await assert.rejects(toolHistory(s, { company: "FIX" }), /send concept \(one measure\) or concepts/);
-  await assert.rejects(toolHistory(s, { company: "FIX", concept: "assets", concepts: ["revenue", "assets"] }), /not both/);
+  // Both together mean all of them: some clients make a model fill every optional field.
+  const merged = out(await toolHistory(s, { company: "FIX", concept: "assets", concepts: ["revenue", "assets"] }));
+  assert.equal(merged.series.length, 2);
 });
 
 test("history says what span the data covers, so a question outside it is answered as not reported", async () => {
@@ -477,4 +658,42 @@ test("history lists balances an annual report carries on a date that is not a ye
   assert.deepEqual(r.other_dates.rows.map((x) => [x[0], x[1], x[3]]), [["2019-12-31", 515, "10-K"]]);
   // Without an annual report carrying it, an interim balance stays out.
   assert.equal(out(await toolHistory(session().s, { company: "FIX", concept: "assets" })).other_dates, undefined);
+});
+
+test("a proxy statement's pay table is not a filing of the results: Arista's 3,511 never replaces $3.5114 billion", () => {
+  const row = (val, form, filed) => ({ start: "2025-01-01", end: "2025-12-31", val, form, filed, accn: `a-${filed}`, fy: 2025, fp: "FY" });
+  const index = indexFacts({ facts: { "us-gaap": { NetIncomeLoss: { units: { USD: [row(3511400000, "10-K", "2026-02-17"), row(3511, "DEF 14A", "2026-04-16")] } } } } });
+  const vintages = index.get("us-gaap:NetIncomeLoss").units.USD[0].vintages;
+  assert.deepEqual(vintages.map((v) => [v.val, v.form]), [[3511400000, "10-K"]]);
+});
+
+test("an 8-K does not restate a company's year: Essential Utilities' merger 8-K never replaces its $2.47 billion", () => {
+  const row = (val, form, filed) => ({ start: "2025-01-01", end: "2025-12-31", val, form, filed, accn: `a-${filed}`, fy: 2025, fp: "FY" });
+  const index = indexFacts({ facts: { "us-gaap": { Revenues: { units: { USD: [row(2474610000, "10-K", "2026-02-26"), row(5121000000, "8-K", "2026-03-30")] } } } } });
+  const p = index.get("us-gaap:Revenues").units.USD[0];
+  assert.deepEqual(p.vintages.map((v) => [v.val, v.form]), [[2474610000, "10-K"]], "the periodic report's value stands");
+  assert.deepEqual(p.setApart.map((v) => [v.val, v.form, v.why]), [[5121000000, "8-K", "8-K"]], "the 8-K's value is kept apart");
+  // A period only an 8-K carries keeps its 8-K value (nothing periodic to prefer).
+  const only = indexFacts({ facts: { "us-gaap": { Revenues: { units: { USD: [row(5121000000, "8-K", "2026-03-30")] } } } } });
+  assert.deepEqual(only.get("us-gaap:Revenues").units.USD[0].vintages.map((v) => v.form), ["8-K"]);
+});
+
+test("a pay-versus-performance table is not a restatement: Genco's 10-K/A $(4.5) million never replaces the 10-K's $4,366,000", () => {
+  const row = (val, form, filed) => ({ start: "2025-01-01", end: "2025-12-31", val, form, filed, accn: `a-${filed}`, fy: 2025, fp: "FY" });
+  const y24 = (val, form, filed) => ({ ...row(val, form, filed), start: "2024-01-01", end: "2024-12-31" });
+  const p = indexFacts({ facts: { "us-gaap": { ProfitLoss: { units: { USD: [row(-4366000, "10-K", "2026-02-18"), row(-4500000, "10-K/A", "2026-04-30"), y24(76401000, "10-K", "2026-02-18"), y24(76500000, "10-K/A", "2026-04-30")] } } } } }).get("us-gaap:ProfitLoss").units.USD[0];
+  assert.deepEqual(p.vintages.map((v) => v.val), [-4366000]);
+  assert.deepEqual(p.setApart.map((v) => [v.val, v.why]), [[-4500000, "rounded repeat in an amendment"]]);
+  // A real restatement stays one: Richtech's 10-K/A restated an operating loss to a round $17,200,000, but its
+  // 2024 figure ($7,780,000) is not round; and a lone round value is never enough.
+  const real = (val, other) => indexFacts({ facts: { "us-gaap": { OperatingIncomeLoss: { units: { USD: [row(-17944000, "10-K", "2026-01-20"), row(val, "10-K/A", "2026-08-07"), ...(other ? [y24(-7700000, "10-K", "2025-01-20"), y24(other, "10-K/A", "2026-08-07")] : [])] } } } } }).get("us-gaap:OperatingIncomeLoss").units.USD[0].vintages.map((v) => v.val);
+  assert.deepEqual(real(-17200000, -7780000), [-17944000, -17200000]);
+  assert.deepEqual(real(-17200000), [-17944000, -17200000]);
+  assert.deepEqual(real(-6000000, -7800000), [-17944000, -6000000], "round but far from the first value");
+});
+
+test("a 10-Q does not restate a full year: Comfort Systems' $1.83 billion never replaces the 10-K's $9.1 billion", () => {
+  const row = (val, form, filed) => ({ start: "2025-01-01", end: "2025-12-31", val, form, filed, accn: `a-${filed}`, fy: 2025, fp: "FY" });
+  const index = indexFacts({ facts: { "us-gaap": { Revenues: { units: { USD: [row(9101641000, "10-K", "2026-02-19"), row(1831286000, "10-Q", "2026-04-23")] } } } } });
+  assert.deepEqual(index.get("us-gaap:Revenues").units.USD[0].vintages.map((v) => v.val), [9101641000]);
 });

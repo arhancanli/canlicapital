@@ -48,12 +48,18 @@ export function nameWords(name) {
   return String(name).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").split(" ").filter((w) => w.length > 1 && !LEGAL.has(w));
 }
 
-// Every filer the repository knows (about 7,400 names and LEIs, one request of about 3 MB), read
-// once a session.
+// Every filer the repository knows (about 7,400 names and LEIs), read once a session. The API serves
+// at most 1,000 to a page (a larger page size has answered HTTP 400 since October 2026).
 async function filers(session) {
   if (session.esefFilers) return session.esefFilers;
-  const data = await patient(session, `${BASE}/api/entities?page%5Bsize%5D=10000`, { maxBytes: 32 * 1024 * 1024 });
-  session.esefFilers = (Array.isArray(data?.data) ? data.data : []).map((e) => e?.attributes).filter((x) => x?.identifier && x?.name)
+  const rows = [];
+  for (let page = 1; page <= 30; page += 1) {
+    const data = await patient(session, `${BASE}/api/entities?page%5Bsize%5D=1000&page%5Bnumber%5D=${page}`, { maxBytes: 8 * 1024 * 1024 });
+    const list = Array.isArray(data?.data) ? data.data : [];
+    rows.push(...list);
+    if (list.length < 1000) break;
+  }
+  session.esefFilers = rows.map((e) => e?.attributes).filter((x) => x?.identifier && x?.name)
     .map((x) => ({ lei: x.identifier, name: x.name, words: nameWords(x.name) }));
   return session.esefFilers;
 }

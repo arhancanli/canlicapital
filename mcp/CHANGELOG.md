@@ -1,10 +1,39 @@
 # Changelog
 
+## 0.16.0
+
+- `backtest_strategy` returns `every_trial`: every grid variant's annualized Sharpe, best first as in `top`, with the periods evaluated and `periods_per_year`, so a server that counts what a session tries (canli-mcp's luck) counts each variant run and not one, as with canli-quant-mcp's `strategy_sweep`.
+
+## 0.15.0
+
+- Fixed: `validate_reality_check` studentizes inside the bootstrap. Hansen's SPA and Romano-Wolf
+  StepM divided every resample by one standard deviation estimated once from the data (the
+  Politis-Romano long-run variance), so the bootstrap ignored that estimate's noise and its
+  downward bias. On Null Zoo v1's skill-less searches (20 variants, 504 days, 1,000 resamples, mean
+  block length 8) the SPA rejected 7.5% at a nominal 5% with normal returns and 12.5% with negative
+  skew, and StepM as often. Each resample is now divided by its own standard deviation (a
+  bootstrap-t, as in Romano and Wolf's 2005 studentized StepM; Python's arch made the same
+  kind of change in its PR 882, with a long-run variance in place of the standard deviation). On
+  4,000 new searches per family the SPA rejected 5.1% (normal), 5.4% (negative skew) and 6.9%
+  (AR(1), where the Reality Check rejected 6.6%), against 7.2%, 12.7% and 9.4% for the old code on
+  the same searches. The observed t-statistic now uses each variant's sample standard deviation, so
+  `spa.statistic` and `best_variant.t_stat` change slightly; the Politis-Romano variance still sets
+  the consistent-recentring threshold.
+- Fixed: p-values count ties, `#(T* >= T) / reps`. When every variant was below the benchmark, the
+  SPA statistic and all its resamples were floored at zero, and the strict inequality gave a
+  p-value near 0, a false rejection. It is now 1. StepM's critical value is floored at zero too, so
+  a variant that does not beat the benchmark is never declared superior (with a large `alpha`, 0.5
+  is allowed, one such variant could be). With one variant at zero and 19 far below it, the two
+  fixes together took the SPA's rate on 4,000 skill-less searches from 7.0% to 4.7%.
+- Tests: the studentized SPA and StepM are checked against a numpy bootstrap-t
+  (`scripts/research/reality-check/reference.py`, cross-checked with the Null Zoo v2 code) on the
+  four fixed-seed cases; the checks against arch 8.0 without studentizing are unchanged. New tests
+  recompute the p-values from the definition on the same draws and cover the tie case and a variant
+  that is constant in a resample.
+
 ## 0.14.1
 
 - zod 4.6.7 (a high advisory in earlier zod: memory exhaustion on oversized constrained collections). No code change.
-
-## Unreleased
 
 ## 0.14.0 (2026-10-07)
 

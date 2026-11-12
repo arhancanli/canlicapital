@@ -80,17 +80,27 @@ export function parseTable(tableHtml, caption = null) {
     if (rows.length >= MAX_ROWS) break;
   }
   if (!rows.length) return null;
-  const left = Math.min(...rows.map((r) => r.tokens[0].start));
   const notes = [], body = [];
   for (const r of rows) {
     if (r.tokens.length === 1 && r.tokens[0].text.length > 150) notes.push(r.tokens[0].text);
+    // A footnote under the table ("1 | Business segment operating profit ... are non-GAAP measures")
+    // often starts a cell left of every label (Lockheed Martin's outlook, 2026-10-22): as a row it
+    // would make that empty column the labels' and leave every real row without a label.
+    else if (r.tokens.length === 2 && /^(?:\(?\d{1,2}\)?|\*+|[a-z])$/.test(r.tokens[0].text) && r.tokens[1].text.length > 60) notes.push(`${r.tokens[0].text} ${r.tokens[1].text}`);
     else body.push(r);
   }
+  if (!body.length) return { caption, columns: ["line"], rows: [], notes };
+  const left = Math.min(...body.map((r) => r.tokens[0].start));
   // A row is data when a value after its label is a number (a year alone is a header).
   const labelOf = (r) => (r.tokens[0].start === left && !isNumeric(r.tokens[0].text) ? r.tokens[0] : null);
   const valuesOf = (r) => (labelOf(r) ? r.tokens.slice(1) : r.tokens);
+  // In a table of numbers, so is a range above the first plain number ("$12,200 - $12,600" above
+  // "14.3%"): a header it is not. A table of ranges alone keeps its text layout.
+  const isRange = (x) => /^\(?[$€£]?\s?\d[\d,.]*\s?(?:%|[KMB])?\)?\s*(?:-|–|—|to)\s*\(?[$€£]?\s?\d/.test(x) && !/^(?:19|20)\d{2}\s*(?:-|–|—|to)\s*(?:(?:19|20)?\d{2})$/.test(x);
   const isData = (r) => valuesOf(r).some((t) => isNumeric(t.text) && !isYear(t.text));
-  const firstData = body.findIndex(isData);
+  const firstNumber = body.findIndex(isData);
+  const firstRange = firstNumber > 0 ? body.slice(0, firstNumber).findIndex((r) => labelOf(r) && valuesOf(r).some((t) => isRange(t.text))) : -1;
+  const firstData = firstRange >= 0 ? firstRange : firstNumber;
   const numeric = firstData >= 0;
   // Header rows: before the first data row, rows of several cells or cells right of the labels.
   const headRows = numeric ? body.slice(0, firstData).filter((r) => r.tokens.length > 1 || r.tokens[0].start > left) : body.length > 1 && body[0].tokens.length > 1 ? [body[0]] : [];

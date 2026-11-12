@@ -10,12 +10,14 @@ const INDEX = buildIndex(ENTRIES);
 const PACKS = ["quant", "validation", "fundamentals", "research", "backtest", "markets", "paper"];
 const Q = [
   ["did my backtest overfit after trying 40 variants", ["validate_deflated_sharpe", "deflated_sharpe_ratio"]],
-  ["probability of backtest overfitting cscv", ["validate_overfitting"]],
+  // Since quant 0.3.0 a sweep gives the probability of overfitting for its own variants.
+  ["probability of backtest overfitting cscv", ["validate_overfitting", "strategy_sweep"]],
   ["data snooping test on all the variants i tried", ["validate_reality_check"]],
   ["how many years of track record do i need", ["validate_track_record"]],
   ["haircut sharpe harvey liu", ["validate_haircut_sharpe"]],
   ["audit my strategy returns", ["audit_backtest"]],
-  ["does my signal look ahead", ["check_leakage"]],
+  // check_leakage reruns the signal's code; quant 0.3.0's lookahead_check reads the weights alone.
+  ["does my signal look ahead", ["check_leakage", "lookahead_check"]],
   ["run my pipeline on noise placebo", ["placebo_test"]],
   ["will my strategy survive a crash bootstrap drawdown", ["strategy_stress_test"]],
   ["can my broker handle this many orders", ["check_feasibility"]],
@@ -86,7 +88,7 @@ test("form names keep their number, \"news\" stays news, and a one-word tool nam
 
 // The markets tools added in 0.3.0, asked the way people ask. Measured 37 of 37 first when added.
 const MARKETS_Q = [
-  ["how heavily shorted is gamestop", ["short_interest"]], ["days to cover for tesla", ["short_interest"]], ["most shorted stocks", ["short_interest"]],
+  ["how heavily shorted is gamestop", ["short_interest"]], ["days to cover for tesla", ["short_interest"]], ["most shorted stocks", ["short_interest", "market_movers"]],
   ["dark pool volume for apple", ["off_exchange_volume"]], ["how much of nvda trades off exchange", ["off_exchange_volume"]],
   ["fails to deliver gme", ["fails_to_deliver"]], ["hedge fund positioning in gold futures", ["futures_positioning"]], ["commitments of traders crude oil", ["futures_positioning"]],
   ["what does voo hold", ["fund_portfolio", "index_constituents"]], ["top holdings of the ark innovation etf", ["fund_portfolio"]], ["etf inflows and outflows ivv", ["fund_portfolio"]],
@@ -136,7 +138,8 @@ const EVERYDAY_Q = [
   ["jobs report date", ["economic_calendar"]],
   ["tesla stock prices last month", ["price_history"]],
   ["historical prices for the s&p 500 index", ["price_history"]],
-  ["usd jpy exchange rates", ["price_history"]],
+  // reference_rates has the ECB's daily rates for both currencies against the euro since 0.17.0.
+  ["usd jpy exchange rates", ["price_history", "reference_rates"]],
   ["crude oil futures prices", ["price_history","futures_curve"]],
   ["vix futures term structure", ["futures_curve"]],
   ["implied volatility of apple options", ["options_chain","volatility_surface","implied_volatility"]],
@@ -171,7 +174,8 @@ const EVERYDAY_Q = [
   ["canli research on value investing", ["search_research"]],
   ["what is the current cpi", ["economic_series"]],
   ["chart of the 10 year yield since 2020", ["treasury_yields","economic_series"]],
-  ["are we in a recession", ["economic_series","economic_outlook"]],
+  // recession_watch (markets 0.15.0) sets each recession indicator against its line, the question's own answer.
+  ["are we in a recession", ["economic_series","economic_outlook","recession_watch"]],
   ["eurozone unemployment forecast", ["economic_outlook"]],
   ["brazil inflation history", ["world_economy"]],
   ["next fomc meeting date", ["fomc","economic_calendar"]],
@@ -205,7 +209,7 @@ const EVERYDAY_Q = [
   ["forward rate between two years", ["forward_rate"]],
   ["risk parity weights", ["risk_parity_portfolio"]],
   ["is the sharpe ratio significant after many trials", ["validate_deflated_sharpe","deflated_sharpe_ratio","validate_haircut_sharpe"]],
-  ["check my returns for lookahead bias", ["check_leakage"]],
+  ["check my returns for lookahead bias", ["check_leakage", "lookahead_check"]],
   ["how long a track record to prove skill", ["validate_track_record"]],
   ["momentum factor backtest without look-ahead", ["pit_factor","backtest_cross_sectional_momentum","backtest_time_series_momentum"]],
   ["buy spy in my alpaca paper account", ["preview_paper_orders","send_paper_orders"]],
@@ -261,7 +265,8 @@ const NEW_Q = [
   ["bank of england base rate", ["reference_rates"]],
   ["sonia overnight rate", ["reference_rates"]],
   ["bank of japan policy rate", ["reference_rates"]],
-  ["central bank interest rates around the world", ["reference_rates"]],
+  // world_series reads each central bank's own policy rate, up to 30 countries side by side.
+  ["central bank interest rates around the world", ["reference_rates", "world_series"]],
   ["effective federal funds rate daily", ["reference_rates", "economic_series"]],
   ["airbus net income from its annual financial report", ["european_filings"]],
   ["lvmh revenue in its esef annual financial report", ["european_filings"]],
@@ -352,13 +357,14 @@ const Q09 = [
   ["s&p 500 nasdaq and vix this week", ["market_overview"]],
   ["give me a market snapshot with oil gold and bitcoin", ["market_overview"]],
   ["how did european and asian markets do", ["market_overview"]],
-  ["coca cola dividend history", ["shareholder_returns"]],
+  ["coca cola dividend history", ["shareholder_returns", "dividend_history"]],
   ["how much has apple spent on buybacks", ["shareholder_returns"]],
   ["is johnson and johnson's dividend safe payout ratio", ["shareholder_returns"]],
   ["dividend growth rate over ten years for pepsi", ["shareholder_returns"]],
   ["shareholder yield including repurchases", ["shareholder_returns"]],
   ["how many years in a row has the dividend been raised", ["shareholder_returns"]],
-  ["is the share count shrinking", ["shareholder_returns"]],
+  // Since markets 0.13.0, buybacks gives each period's share count change too.
+  ["is the share count shrinking", ["shareholder_returns", "buybacks"]],
 ];
 
 test("requests for the 0.9.0 tools: a right tool first in at least 11 of 12 (the miss, \"european and asian markets\", finds Asian options first)", () => {
@@ -370,4 +376,50 @@ test("requests for the 0.9.0 tools: a right tool first in at least 11 of 12 (the
   }
   console.log(JSON.stringify({ top1, of: Q09.length, misses }));
   assert.ok(top1 >= 11, JSON.stringify({ top1, misses }));
+});
+
+// The tools added in 0.16.0, asked the way people ask, measured once before any keywords were added for
+// them on 2026-11-02: 18 first and 22 in the top three of 26. Then tuned, so this set is no longer held out.
+const FRONTIER_Q = [["which companies depend on tsmc", ["exposure_map"]], ["who names nvidia as a customer in their filings", ["exposure_map"]], ["supply chain map of companies exposed to taiwan semiconductor", ["exposure_map"]], ["which filers mention boeing as a major customer", ["exposure_map"]], ["everything apple has said about supply chains over the years", ["filing_memory"]], ["search all of nvidia's 10-ks for mentions of export controls", ["filing_memory", "search_filings"]], ["what happened the last time the market dropped 20 percent", ["what_happened_next"]], ["should i worry the s&p fell 10 percent history", ["what_happened_next"]], ["did walmart hit its guidance", ["guidance_record", "earnings_release"]], ["management credibility track record against guidance", ["guidance_record"]], ["how many ships through the suez canal", ["shipping_activity"]], ["shipping traffic strait of hormuz", ["shipping_activity"]], ["port congestion shanghai", ["shipping_activity"]], ["wikipedia page views for tesla", ["page_attention"]], ["public interest in a stock", ["page_attention", "mentions_trend"]], ["what is nvidia trading at right now", ["latest_price", "price_history", "market_overview"]], ["current price of bitcoin", ["latest_price", "price_history", "crypto_fundamentals"]], ["finbert sentiment on an 8-k", ["filing_sentiment"]], ["tone of the earnings release", ["filing_sentiment", "earnings_release"]], ["alert me when nvda falls 5 percent", ["sentinel_add"]], ["wake me when a company files an 8-k", ["sentinel_add", "latest_filings"]], ["notify my agent on a volatility spike", ["sentinel_add"]], ["what alerts fired while i was away", ["sentinel_events"]], ["simulate ai agents trading against each other", ["exchange_new", "exchange_run", "arena_new"]], ["limit order book simulation with margin calls and cascades", ["exchange_run", "exchange_new"]], ["do my models really disagree or are they the same opinion", ["agent_consensus"]], ["combine forecasts from several ai models", ["agent_consensus"]], ["find strategies uncorrelated with my portfolio", ["find_diversifiers"]], ["what should i add to my book to diversify", ["find_diversifiers"]], ["how many backtests did i run honest count", ["signed_trial_count"]], ["what happened to my stocks this week", ["my_week"]]];
+test("requests for the newest tools: a right tool first in at least 28 of 31, in the top three in at least 30", () => {
+  let top1 = 0, top3 = 0;
+  const misses = [];
+  for (const [q, want] of FRONTIER_Q) {
+    const r = search(INDEX, q, { limit: 3 }).map((t) => t.name);
+    if (want.includes(r[0])) top1++; else misses.push(`${q} -> ${r.join(", ")}`);
+    if (r.some((n) => want.includes(n))) top3++;
+  }
+  console.log(JSON.stringify({ top1, top3, of: FRONTIER_Q.length, misses }));
+  assert.ok(top1 >= 28 && top3 >= 30, JSON.stringify({ top1, top3, misses }));
+});
+
+// The tools added in 0.17.0, written and measured once on 2026-11-03 before any keywords were tried:
+// stock_snapshot first on all six; technical_indicators first on one of six and in the top three on four,
+// behind the quant pack's single indicators (stochastic_rsi, hull_moving_average, macd, bollinger_bands, atr),
+// which answer too after price_history.
+// Words added for technical_indicators changed none of these, so none were kept.
+const Q017 = [
+  ["what is the analyst price target for apple", ["stock_snapshot"]],
+  ["how many analysts rate nvidia a buy", ["stock_snapshot"]],
+  ["short interest in gamestop", ["stock_snapshot", "short_interest"]],
+  ["forward pe ratio of microsoft", ["stock_snapshot"]],
+  ["market cap and 52 week high of amazon", ["stock_snapshot"]],
+  ["wall street consensus eps estimate for google next year", ["stock_snapshot"]],
+  ["rsi of tesla", ["technical_indicators"]],
+  ["is spy above its 200 day moving average", ["technical_indicators"]],
+  ["macd for bitcoin", ["technical_indicators"]],
+  ["bollinger bands for qqq", ["technical_indicators"]],
+  ["average true range of nvda", ["technical_indicators"]],
+  ["technical analysis of apple stock", ["technical_indicators"]],
+];
+test("requests for the 0.17.0 tools: a right tool first in at least 7 of 12, in the top three in at least 10", () => {
+  let top1 = 0, top3 = 0;
+  const misses = [];
+  for (const [q, want] of Q017) {
+    const r = search(INDEX, q).map((t) => t.name);
+    if (want.includes(r[0])) top1++; else misses.push(`${q} -> ${r.slice(0, 3).join(", ")}`);
+    if (r.slice(0, 3).some((n) => want.includes(n))) top3++;
+  }
+  console.log(JSON.stringify({ top1, top3, of: Q017.length, misses }));
+  assert.ok(top1 >= 7 && top3 >= 10, JSON.stringify({ top1, top3, misses }));
 });

@@ -13,7 +13,9 @@ export const bankInput = z.object({
   company: z.string().min(1).max(120).optional().describe("A bank or its holding company: ticker, CIK or name (WAL, \"Zions\")."),
   cert: z.number().int().min(1).max(999999).optional().describe("Or the bank's FDIC certificate number."),
   quarters: z.number().int().min(1).max(40).optional().describe("Quarters to return, newest first; default 8."),
-  failures: z.number().int().min(1).max(50).optional().describe("With no bank: the latest failures to list; default 10."),
+  failures: z.number().int().min(1).max(200).optional().describe("With no bank: the latest failures to list; default 10."),
+  failures_year: z.number().int().min(1934).max(2100).optional().describe("With no bank: failures in one year."),
+  failures_state: z.string().regex(/^[A-Za-z]{2}$/, "a two-letter state").optional().describe("With no bank: failures in one state, e.g. KS."),
 }).strict();
 
 const SUFFIX = /\b(INC|INCORPORATED|CORP|CORPORATION|CO|COMPANY|LTD|HOLDINGS?|GROUP|THE|BANCORP|BANCORPORATION|BANCSHARES|BCORP|FINANCIAL|FINL|N ?A|NATIONAL ASSOCIATION)\b\.?/gi;
@@ -37,11 +39,12 @@ export const isoDate = (s) => { const m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec
 export async function bankFinancials(session, args) {
   const a = bankInput.parse(args);
   if (!a.company && !a.cert) {
-    const url = `${API}/failures?${new URLSearchParams({ fields: "NAME,CERT,CITYST,FAILDATE,QBFASSET,QBFDEP,COST,RESTYPE1", sort_by: "FAILDATE", sort_order: "DESC", limit: String(a.failures ?? 10) })}`;
+    const filters = [a.failures_year ? `FAILYR:${a.failures_year}` : null, a.failures_state ? `PSTALP:${a.failures_state.toUpperCase()}` : null].filter(Boolean).join(" AND ");
+    const url = `${API}/failures?${new URLSearchParams({ fields: "NAME,CERT,CITYST,FAILDATE,QBFASSET,QBFDEP,COST,RESTYPE1", sort_by: "FAILDATE", sort_order: "DESC", limit: String(a.failures ?? 10), ...(filters ? { filters } : {}) })}`;
     const r = await getJson(session, url);
     return {
       failures: { columns: ["bank", "cert", "place", "failed", "assets_thousands", "deposits_thousands", "estimated_cost_thousands", "resolution"], rows: (r.data ?? []).map(({ data: d }) => [d.NAME, d.CERT, d.CITYST ?? null, isoDate(d.FAILDATE), d.QBFASSET ?? null, d.QBFDEP ?? null, d.COST ?? null, d.RESTYPE1 ?? null]) },
-      total_failures_since_1934: r.meta?.total ?? null, source: url,
+      ...(filters ? { matched: r.meta?.total ?? null } : { total_failures_since_1934: r.meta?.total ?? null }), source: url,
       limits: ["Cost is the FDIC's estimate of the loss to the Deposit Insurance Fund and is revised.", "Not investment advice."],
     };
   }
