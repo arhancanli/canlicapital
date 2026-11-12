@@ -193,3 +193,5 @@ html:not(.js) .factor__detail{grid-template-rows:1fr}
 .mcp-cards article>p:not(.mcp-count){font-size:.83rem;color:var(--cc-muted)}.mcp-cards article>a{font-size:.75rem}
 .sys-pipe{display:none}
 @media(max-width:1000px){.dev-paths,.mcp-cards{grid-template-columns:1fr}.dev-paths .dev-path{padding:24px}.dev-path pre{max-width:100%}}
+/* Legible footer text: nothing under 12px (Lighthouse counted 44% of the home page text below it, mostly here). */
+.cc-footer :is(.cc-footer__boundary,.cc-footer__context,.cc-footer__routes nav,.cc-footer__routes nav>span,.cc-footer__dev-item>span,.cc-footer__dev-item code,.cc-footer__dev-item nav,.cc-footer__lead p,.cc-handoff__boundary,.cc-handoff__steps small,.cc-handoff__steps em,.cc-handoff__intro>p:first-child),body .access-form #form-status{font-size:.75rem}
