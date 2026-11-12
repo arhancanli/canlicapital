@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Indicator reference values are taken under TA-Lib's C library 0.8.3, pinned in the regeneration command, with every parameter passed explicitly (Bollinger Bands' moving-average type was left to its default) and the C version recorded in the fixture. On the 33 cases, C 0.6.4 and 0.7.1 give identical values, 0.8.1 differs from them in the last digits only, and 0.8.3 from 0.8.1 by at most 2.4e-12 relative (the Chaikin oscillator); John Benediktsson, who maintains the Python wrapper, suggested building on 0.8.x.
 - `american_option`: a call on an asset that pays nothing, at a rate that is not negative, is priced at the European price exactly (it is never worth exercising early), and no American price falls below the European one (the tree's error can fall either side). The reference values are now QuantLib's QD+ fixed-point engine at its high-precision setting (`QdFpAmericanEngine`), suggested by Luigi Ballabio: it gives the European price for the three calls, where the extrapolated finite-difference references sat up to 5.4e-6 below it; the puts move by 3e-7 to 1.6e-6. The tree's largest error against them is 6.7e-6, inside the 1e-5 tolerance.
 
 ## 0.4.0

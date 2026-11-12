@@ -2,7 +2,11 @@
 few indicators TA-Lib lacks (Donchian, Keltner from TA-Lib parts, VWAP, Ichimoku, z-score, Hull).
 Regenerate with:
 
-    uv run --python 3.12 --with TA-Lib --with numpy --with pandas python scripts/reference/indicators.py > test/fixtures/indicators.json
+    uv run --python 3.12 --with TA-Lib==0.8.3 --with numpy --with pandas python scripts/reference/indicators.py > test/fixtures/indicators.json
+
+TA-Lib's maintainers keep numerical changes between C releases to none or very small, so the values are taken under
+one pinned C library (0.8.x), every parameter is passed explicitly rather than left to a default, and the fixture
+records the C version they came from.
 """
 
 import json
@@ -46,7 +50,7 @@ m, s, hist = talib.MACD(c, 12, 26, 9)
 add("macd", C, {"macd": m, "signal": s, "histogram": hist})
 m, s, hist = talib.MACD(c, 5, 35, 5)
 add("macd", {**C, "fast": 5, "slow": 35, "signal": 5}, {"macd": m, "signal": s, "histogram": hist})
-up, mid, lo = talib.BBANDS(c, 20, 2, 2)
+up, mid, lo = talib.BBANDS(c, 20, 2, 2, 0)
 add("bollinger_bands", C, {"upper": up, "middle": mid, "lower": lo})
 k, d = talib.STOCH(h, l, c, 14, 3, 0, 3, 0)
 add("stochastic", HLC, {"k": k, "d": d})
@@ -82,4 +86,6 @@ add("rolling_zscore", C, {"zscore": (cs - cs.rolling(20).mean()) / cs.rolling(20
 w1, w2 = talib.WMA(c, 10), talib.WMA(c, 20)
 add("hull_moving_average", C, {"hma": talib.WMA(2 * w1 - w2, 4)})
 
-print(json.dumps({"generated_by": "scripts/reference/indicators.py", "cases": cases}))
+print(json.dumps({"generated_by": "scripts/reference/indicators.py",
+                  "ta_lib": {"python": talib.__version__, "c": talib.__ta_version__.decode().split(" ")[0]},
+                  "cases": cases}))
