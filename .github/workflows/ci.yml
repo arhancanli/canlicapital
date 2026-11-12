@@ -134,6 +134,9 @@ jobs:
       - run: npm ci --prefix mcp-books
       - run: npm audit --prefix mcp-books --audit-level=high
       - run: npm test --prefix mcp-books
+      # canli-mcp's post-quantum receipt checks need ML-DSA too; the MCP job runs on Node 22, where they are skipped.
+      - run: npm ci --prefix mcp-canli
+      - run: node --test mcp-canli/test/receipt-check.test.mjs
 
   key-lifecycle:
     name: Key revocation PostgreSQL contract
