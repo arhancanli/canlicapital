@@ -11,7 +11,7 @@ import test from "node:test";
 import { keyIdFor } from "../js/receipt-statement.js";
 import { checkAnswerSignature, checkAnswerSignaturePq } from "../mcp-canli/src/receipt-check.mjs";
 import { canonicalJson } from "../scripts/canonical-json.mjs";
-import { ANSWER_PQ_FIELD, ANSWER_RECEIPT_KEY, ANSWER_SIGNATURE_SCHEMA, answerStatement, signAnswerReceipt, verifyAnswerReceipt, verifyAnswerReceiptPq } from "./_lib/answer-receipts.js";
+import { ANSWER_PQ_FIELD, ANSWER_RECEIPT_KEY, ANSWER_SIGNATURE_SCHEMA, answerStatement, canSignPq, signAnswerReceipt, verifyAnswerReceipt, verifyAnswerReceiptPq } from "./_lib/answer-receipts.js";
 import { createCanliHandler, createLimiter, HOSTED_ENDPOINT, HOSTED_NOTE, MAX_FLAGSHIP_BODY_BYTES, namesAFile } from "./mcp-canli.js";
 
 const INIT = { protocolVersion: "2025-06-18", capabilities: {}, clientInfo: { name: "test", version: "0" } };
@@ -266,7 +266,7 @@ function pqReceiptKey() {
   };
 }
 
-test("with a post-quantum key too, every receipt carries both signatures, and the one a model reads is the one in _meta", async () => {
+test("with a post-quantum key too, every receipt carries both signatures, and the one a model reads is the one in _meta", { skip: !canSignPq() && "ML-DSA needs Node.js 24.7 or later" }, async () => {
   const ed = receiptKey(), pq = pqReceiptKey();
   const next = await import("../mcp-canli/src/server.mjs");
   await withHandler(createCanliHandler({ env: { ...ed.env, ...pq.env }, flagship: next }), async (url) => {
@@ -287,6 +287,19 @@ test("with a post-quantum key too, every receipt carries both signatures, and th
   });
   // Without the post-quantum key, receipts are as before: Ed25519 only.
   await withHandler(createCanliHandler({ env: ed.env, flagship: next }), async (url) => {
+    const plain = (await call(url, "return_stats", { returns: RETURNS })).body.result._meta[ANSWER_RECEIPT_KEY];
+    assert.deepEqual([ANSWER_PQ_FIELD in plain, verifyAnswerReceipt(plain, [ed.published]).valid], [false, true]);
+  });
+});
+
+test("on a Node.js without ML-DSA (the site's 22.x), a post-quantum key that is set is left unused: answers keep their Ed25519 receipt", { skip: canSignPq() && "this Node.js signs ML-DSA" }, async () => {
+  const ed = receiptKey();
+  const next = await import("../mcp-canli/src/server.mjs");
+  await withHandler(createCanliHandler({ env: { ...ed.env, CANLI_RECEIPT_PQ_SIGNING_KEY: Buffer.from("not a key on this Node.js").toString("base64") }, flagship: next }), async (url) => {
+    const res = await rpc(url, "tools/call", { name: "run_tool", arguments: { name: "return_stats", arguments: { returns: RETURNS }, receipt: true } });
+    assert.equal(res.body.result.isError ?? false, false, text(res));
+    const read = JSON.parse(text(res)).receipt;
+    assert.deepEqual([ANSWER_PQ_FIELD in read, verifyAnswerReceipt(read, [ed.published]).valid], [false, true]);
     const plain = (await call(url, "return_stats", { returns: RETURNS })).body.result._meta[ANSWER_RECEIPT_KEY];
     assert.deepEqual([ANSWER_PQ_FIELD in plain, verifyAnswerReceipt(plain, [ed.published]).valid], [false, true]);
   });

@@ -18,7 +18,7 @@
 // ML-DSA signatures are randomized, so a receipt that already carries a valid one from this key keeps it: the receipt a
 // model reads in the answer and the one here stay the same bytes. Set the key only once canli-mcp signs post-quantum
 // itself (receipts.signPq), or the two would differ.
-import { createPrivateKey, createPublicKey, sign, verify } from "node:crypto";
+import { createPrivateKey, createPublicKey, generateKeyPairSync, sign, verify } from "node:crypto";
 
 import { keyIdFor } from "../../js/receipt-statement.js";
 import { canonicalJson } from "../../scripts/canonical-json.mjs";
@@ -35,10 +35,25 @@ export function answerStatement(receipt) {
 
 export const ANSWER_PQ_FIELD = "signature_pq";
 
+// ML-DSA is in Node.js from 24.7. The site runs on Node.js 22.x until it moves, and there a key that is set is left
+// unused (receipts carry Ed25519 alone) rather than failing every answer. Asked once.
+let pqSupported;
+export function canSignPq() {
+  if (pqSupported === undefined) {
+    try {
+      generateKeyPairSync("ml-dsa-65");
+      pqSupported = true;
+    } catch {
+      pqSupported = false;
+    }
+  }
+  return pqSupported;
+}
+
 let pqCached;
 export function pqSigningKey(env = process.env) {
   const encoded = env.CANLI_RECEIPT_PQ_SIGNING_KEY;
-  if (!encoded) return null;
+  if (!encoded || !canSignPq()) return null;
   if (pqCached?.encoded === encoded) return pqCached;
   const privateKey = createPrivateKey({ key: Buffer.from(encoded, "base64"), format: "der", type: "pkcs8" });
   if (privateKey.asymmetricKeyType !== "ml-dsa-65") throw new Error("CANLI_RECEIPT_PQ_SIGNING_KEY is not an ML-DSA-65 key");
