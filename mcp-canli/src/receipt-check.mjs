@@ -3,7 +3,7 @@
 // source_check: the same, changed since, or unreachable. An answer whose documents changed may no longer hold.
 // A receipt from the hosted server carries its signature, which is checked here offline, and the root of its answer's
 // values, against which a proof that one value is in the answer is checked without the rest of it.
-import { createPublicKey, verify } from "node:crypto";
+import { createPublicKey, generateKeyPairSync, verify } from "node:crypto";
 import { readFileSync } from "node:fs";
 
 import { keyIdFor, KEYS_URL } from "canli-validation-mcp/src/local/js/receipt-statement.js";
@@ -38,12 +38,28 @@ export function checkAnswerSignature(receipt, keys = PUBLISHED_KEYS) {
 // after it and covers it, so a reader that knows only Ed25519 still checks such a receipt whole. Its keys are published
 // beside the Ed25519 ones, as JWK (kty AKP) under the same key id rule.
 export const PQ_SIGNATURE_FIELD = "signature_pq";
+// ML-DSA is in Node.js from 24.7: an older Node.js reads a post-quantum signature but cannot check it, and says so
+// rather than calling it wrong. Asked once, the first time a receipt carries one.
+let pqCheckable;
+export function canCheckPq() {
+  if (pqCheckable === undefined) {
+    try {
+      generateKeyPairSync("ml-dsa-65");
+      pqCheckable = true;
+    } catch {
+      pqCheckable = false;
+    }
+  }
+  return pqCheckable;
+}
+
 export function checkAnswerSignaturePq(receipt, keys = PUBLISHED_KEYS) {
   const signature = receipt?.[PQ_SIGNATURE_FIELD];
   const checks = { signed: typeof signature?.value === "string", key_published: false, signature_valid: false };
   const key = signature ? keys.find((k) => k.key_id === signature.key_id && k.alg === "ML-DSA-65") : undefined;
   checks.key_published = Boolean(key);
   if (key && checks.signed && signature.schema === ANSWER_SIGNATURE_SCHEMA && typeof key.pub === "string" && keyIdFor(Buffer.from(key.pub, "base64url")) === key.key_id) {
+    if (!canCheckPq()) return { valid: false, checks, key_id: signature.key_id ?? null, checkable: false };
     const { signature: _ed, [PQ_SIGNATURE_FIELD]: _pq, ...rest } = JSON.parse(JSON.stringify(receipt));
     const statement = canonicalJson({ schema: ANSWER_SIGNATURE_SCHEMA, receipt: rest });
     try {
@@ -67,7 +83,9 @@ function signatureOf(receipt) {
         : `Not signed with a key canlicapital.com publishes (this server's copy; the list is at ${KEYS_URL}).`;
   if (!receipt?.[PQ_SIGNATURE_FIELD]) return { ...checked, reading };
   const pq = checkAnswerSignaturePq(receipt);
-  const pqReading = pq.valid
+  const pqReading = pq.checkable === false
+    ? `Also signed post-quantum (ML-DSA-65) with canlicapital.com's published key ${pq.key_id}, but this Node.js (${process.version}) cannot check ML-DSA signatures; Node.js 24.7 or later can.`
+    : pq.valid
     ? `Also signed post-quantum (ML-DSA-65) with canlicapital.com's published key ${pq.key_id}: the receipt holds even if Ed25519 is broken one day.`
     : pq.checks.key_published
       ? "The post-quantum signature does not match this receipt: something in it changed after it was signed, or the signature is not for it."
