@@ -155,8 +155,11 @@ export const TOOLS = [
     keywords: "american option binomial tree crr early exercise",
     input: z.object({ type: kind, spot: S, strike: K, years: T, rate: r, dividend_yield: q, volatility: vol, steps: z.number().int().min(10).max(5000).optional().describe("Tree steps; default 1000.") }).strict(),
     run(a) {
-      const am = americanPrice(a);
       const eu = bsm(a).price;
+      // A call on an asset that pays nothing, at a rate that is not negative, is never worth exercising early: its
+      // American price is the European one exactly. Otherwise the tree's price, never below the European one (an American option is worth at least
+      // as much, and the tree's error can fall either side).
+      const am = a.type === "call" && (a.dividend_yield ?? 0) <= 0 && (a.rate ?? 0) >= 0 ? eu : Math.max(eu, americanPrice(a));
       return { price: am, european_price: eu, early_exercise_premium: Math.max(0, am - eu), steps: a.steps ?? 1000, method: "binomial Black-Scholes with Richardson extrapolation (Broadie and Detemple 1996) on a CRR tree of steps and 2 x steps; european_price closed-form." };
     },
   },
