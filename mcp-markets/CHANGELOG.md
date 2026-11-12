@@ -3,6 +3,7 @@
 ## Unreleased
 
 - `default_risk`: its limits now give both benchmarks among companies with at least $10M of assets, on the reports all three can score: Ohlson's O ranked the test years' bankruptcies better than the model (AUC 0.83 against 0.81; the gap's 95% interval by company, -0.048 to -0.002, is clear of zero) and Altman's Z'' was level with it (0.82; interval -0.037 to 0.012). Before, they named Ohlson's O alone; the figures are `config/research/default-risk-v1/validation.json`'s, and the note's table already had all three. The 0.17.0 entry below compares the model's 0.81 on all such reports with Ohlson's 0.83 on the comparable ones; on the comparable reports the model's is 0.806.
+- Look-through (`portfolio_xray` and the site's look-through page): each opened fund now carries its SEC `series_id`, and `class_id` for the ticker asked about. A ticker is one share class of a series, and Form N-PORT is filed per series, so VOO, VFIAX and VFINX open the same positions; the page now says so ("one share class of Vanguard 500 Index Fund (SEC series S000002839)").
 
 ## 0.17.0
 
