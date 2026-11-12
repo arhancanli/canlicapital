@@ -1,0 +1,12 @@
+{
+  "name": "canli-broker",
+  "version": "0.1.0",
+  "description": "Send an order file you have read to your own broker account from your own machine. Paper by default. Not an MCP tool: a person runs it.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "bin": { "canli-broker": "src/cli.mjs" },
+  "engines": { "node": ">=20.10" },
+  "files": ["src", "README.md", "LICENSE"],
+  "scripts": { "test": "node --test test/*.test.mjs" }
+}
