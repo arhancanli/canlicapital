@@ -30,4 +30,9 @@ export const fromLink = (value) => String(value ?? "").split(",").map((p) => p.s
 
 // Where a fund's positions come from, and, where the server gives it, a check on that report itself: its holdings'
 // dollar values against its net assets, apart by cash and what the fund owes.
-export const sourceLine = (f) => `${f.symbol}: ${f.fund}, its report for ${f.period}, filed ${f.filed}.${Number.isFinite(f.values_add_to) ? ` Its holdings add up to ${(100 * f.values_add_to).toFixed(2)}% of its net assets; cash and what the fund owes make up the difference.` : ""}`;
+// A ticker is one share class of a series, and the series files the report for all its classes (Form N-PORT), so the
+// line names the series where the server gives its id.
+const reportOf = (f) => f.series_id
+  ? `${f.symbol}${f.looked_through ? ` (through ${f.looked_through})` : ""}: one share class of ${f.fund} (SEC series ${f.series_id}); the series' report for ${f.period}, filed ${f.filed}, covers all its classes.`
+  : `${f.symbol}: ${f.fund}, its report for ${f.period}, filed ${f.filed}.`;
+export const sourceLine = (f) => `${reportOf(f)}${Number.isFinite(f.values_add_to) ? ` Its holdings add up to ${(100 * f.values_add_to).toFixed(2)}% of its net assets; cash and what the fund owes make up the difference.` : ""}`;

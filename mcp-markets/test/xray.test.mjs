@@ -31,7 +31,7 @@ test("SPY opened through IVV, a direct stock merged with the funds' holding of i
 test("the shared merge: a stock and two funds, their overlap, and the same answer for any casing", async () => {
   const { issuerKey, mergeOpened } = await import("../src/xray-merge.mjs");
   assert.equal(issuerKey("NVIDIA Corp"), issuerKey("NVIDIA CORPORATION"));
-  const opened = { VOO: { kind: "fund", fund: "An S&P fund", period: "2026-06-30", filed: "2026-08-01", positions: [["NVIDIA Corp", 8], ["Apple Inc", 7], ["Other Co", 85]], values_add_to: 1.0009 }, QQQ: { kind: "fund", fund: "A tech fund", period: "2026-06-30", filed: "2026-08-01", positions: [["NVIDIA CORP", 10], ["Apple Inc", 10], ["Third Inc", 80]] }, NVDA: { kind: "stock", name: "NVIDIA CORP" } };
+  const opened = { VOO: { kind: "fund", fund: "An S&P fund", period: "2026-06-30", filed: "2026-08-01", series_id: "S000002839", class_id: "C000092055", positions: [["NVIDIA Corp", 8], ["Apple Inc", 7], ["Other Co", 85]], values_add_to: 1.0009 }, QQQ: { kind: "fund", fund: "A tech fund", period: "2026-06-30", filed: "2026-08-01", positions: [["NVIDIA CORP", 10], ["Apple Inc", 10], ["Third Inc", 80]] }, NVDA: { kind: "stock", name: "NVIDIA CORP" } };
   const r = mergeOpened([{ symbol: "VOO", weight: 60 }, { symbol: "qqq", weight: 30 }, { symbol: "NVDA", weight: 10 }], (s) => opened[s]);
   assert.equal(r.holdings, 3);
   assert.equal(r.positions_after_look_through, 4, "nvidia counts once");
@@ -43,6 +43,7 @@ test("the shared merge: a stock and two funds, their overlap, and the same answe
   assert.deepEqual(r.overlap.rows[0], ["VOO", "QQQ", 0.15]);
   assert.equal(r.funds[0].weights_add_to, 1);
   assert.deepEqual([r.funds[0].values_add_to, "values_add_to" in r.funds[1]], [1.0009, false], "the check on each report, where the report gives it");
+  assert.deepEqual([r.funds[0].series_id, r.funds[0].class_id, "series_id" in r.funds[1]], ["S000002839", "C000092055", false], "the series and class, where the server names them");
 });
 
 test("holdingsCheck: a report's positions against its net assets, and totals that disagree or are missing", async () => {

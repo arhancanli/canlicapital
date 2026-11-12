@@ -47,4 +47,8 @@ test("each fund's source, with the report checked against itself where the serve
   assert.equal(sourceLine({ ...fund, values_add_to: 1.0009 }), "VOO: Vanguard 500 Index Fund, its report for 2026-06-30, filed 2026-08-27. Its holdings add up to 100.09% of its net assets; cash and what the fund owes make up the difference.");
   assert.match(sourceLine({ ...fund, values_add_to: 0.9927 }), /add up to 99\.27% of its net assets/);
   assert.equal(sourceLine({ ...fund, values_add_to: null }), sourceLine(fund), "no check from the server: the line as before");
+  const series = { ...fund, series_id: "S000002839", class_id: "C000092055" };
+  assert.equal(sourceLine(series), "VOO: one share class of Vanguard 500 Index Fund (SEC series S000002839); the series' report for 2026-06-30, filed 2026-08-27, covers all its classes.");
+  assert.match(sourceLine({ ...series, values_add_to: 1.0009 }), /covers all its classes\. Its holdings add up to 100\.09% of its net assets/);
+  assert.match(sourceLine({ ...series, symbol: "SPY", looked_through: "IVV" }), /^SPY \(through IVV\): one share class of/);
 });

@@ -38,7 +38,8 @@ export async function openHolding(session, symbol) {
   if (!filings.length) return { kind: "stock", name: sym, note: `${sym} has no public N-PORT; it is counted as one position.` };
   const port = await loadNport(session, filings[0]);
   const { values_add_to: values } = holdingsCheck(port);
-  return { kind: "fund", ...(used !== sym ? { looked_through: used } : {}), fund: port.series.name, period: port.period, filed: filings[0].filed, positions: port.holdings.map((p) => [p.name, p.pct]), ...(values == null ? {} : { values_add_to: values }), ...(note ? { note } : {}) };
+  // The report is the series'; a ticker is one share class of it, holding the same positions as every other class.
+  return { kind: "fund", ...(used !== sym ? { looked_through: used } : {}), fund: port.series.name, series_id: port.series.id ?? fund.series, ...(fund.class ? { class_id: fund.class } : {}), period: port.period, filed: filings[0].filed, positions: port.holdings.map((p) => [p.name, p.pct]), ...(values == null ? {} : { values_add_to: values }), ...(note ? { note } : {}) };
 }
 
 // The words that go with any look-through, here and on the page.
