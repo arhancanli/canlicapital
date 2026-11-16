@@ -25,7 +25,7 @@ export function mergeOpened(holdings, opened, { top = 25 } = {}) {
       covered += pct / 100;
       add(issuerKey(name), name, (w * pct) / 100, sym);
     }
-    funds.push({ symbol: sym, ...(o.looked_through ? { looked_through: o.looked_through } : {}), fund: o.fund, period: o.period, filed: o.filed, positions: o.positions.length, weight: round(w, 6), weights_add_to: round(covered, 4), ...(Number.isFinite(o.values_add_to) ? { values_add_to: o.values_add_to } : {}) });
+    funds.push({ symbol: sym, ...(o.looked_through ? { looked_through: o.looked_through } : {}), fund: o.fund, ...(o.series_id ? { series_id: o.series_id } : {}), ...(o.class_id ? { class_id: o.class_id } : {}), period: o.period, filed: o.filed, positions: o.positions.length, weight: round(w, 6), weights_add_to: round(covered, 4), ...(Number.isFinite(o.values_add_to) ? { values_add_to: o.values_add_to } : {}) });
   }
   const ranked = [...exposure.values()].sort((x, y) => y.weight - x.weight);
   const sum2 = ranked.reduce((s, e) => s + e.weight ** 2, 0);

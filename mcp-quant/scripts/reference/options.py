@@ -62,13 +62,12 @@ for typ, S, K, days, r, q, v in GRID:
     add("black_scholes", args, {"vanna": vanna, "volga": volga, "speed": speed}, tol=1e-5)
     add("implied_volatility", {k: a for k, a in args.items() if k != "volatility"} | {"price": o.NPV()}, {"implied_volatility": v}, tol=1e-8)
     am = option(typ, K, days, american=True)
-    # QuantLib's binomial American engine undershoots (below the European price for a call that is
-    # never exercised early), so the reference is its finite-difference engine. Its error halves as
-    # the grid doubles (first order), so 2 V(8000) - V(4000) extrapolates out the leading term.
-    def fd(n):
-        am.setPricingEngine(ql.FdBlackScholesVanillaEngine(process(S, r, q, v), n, n))
-        return am.NPV()
-    add("american_option", args, {"price": 2 * fd(8000) - fd(4000), "european_price": o.NPV()}, tol=1e-5)
+    # QuantLib's QD+ fixed-point engine at its high-precision setting (Andersen, Lake and Offengenden 2016), as
+    # Luigi Ballabio suggested: it gives the European price for a call that is never exercised early, where the
+    # extrapolated finite-difference values it replaced sat up to 5.4e-6 below it. The tolerance is the tool's own
+    # tree (binomial Black-Scholes with Richardson extrapolation), whose largest error on these six is 6.7e-6.
+    am.setPricingEngine(ql.QdFpAmericanEngine(process(S, r, q, v), ql.QdFpAmericanEngine.highPrecisionScheme()))
+    add("american_option", args, {"price": am.NPV(), "european_price": o.NPV()}, tol=1e-5)
     for kind, payoff in (("cash", ql.CashOrNothingPayoff(ql.Option.Call if typ == "call" else ql.Option.Put, K, 1.0)), ("asset", ql.AssetOrNothingPayoff(ql.Option.Call if typ == "call" else ql.Option.Put, K))):
         d = option(typ, K, days, payoff=payoff)
         d.setPricingEngine(ql.AnalyticEuropeanEngine(process(S, r, q, v)))

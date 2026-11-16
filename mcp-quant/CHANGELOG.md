@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `american_option`: a call on an asset that pays nothing, at a rate that is not negative, is priced at the European price exactly (it is never worth exercising early), and no American price falls below the European one (the tree's error can fall either side). The reference values are now QuantLib's QD+ fixed-point engine at its high-precision setting (`QdFpAmericanEngine`), suggested by Luigi Ballabio: it gives the European price for the three calls, where the extrapolated finite-difference references sat up to 5.4e-6 below it; the puts move by 3e-7 to 1.6e-6. The tree's largest error against them is 6.7e-6, inside the 1e-5 tolerance.
+
 ## 0.4.0
 
 - Each variant's returns, for a server that runs this package in its own process: `strategy_sweep` and `sleeve_tournament` (in `every_trial`'s order) and every backtest in the strategies toolset (its one series) carry them under `Symbol.for("canli.trial_returns")`, a key JSON leaves out, so a client reading the answer never gets them and the answer's size does not change. `runTool` keeps them through rounding. canli-mcp pools them to measure overfitting across everything a session tried on the same data.
